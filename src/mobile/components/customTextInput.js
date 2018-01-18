@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import whiteQrImagePath from 'iota-wallet-shared-modules/images/qr-white.png';
-import blackQrImagePath from 'iota-wallet-shared-modules/images/qr-black.png';
+import whiteQRImagePath from 'iota-wallet-shared-modules/images/qr-white.png';
+import blackQRImagePath from 'iota-wallet-shared-modules/images/qr-black.png';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         marginVertical: height / 120,
         flex: 1,
     },
-    qrImage: {},
+    QRImage: {},
     widgetButton: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -60,9 +60,8 @@ class CustomTextInput extends React.Component {
         widget: PropTypes.string,
         onDenominationPress: PropTypes.func,
         denominationText: PropTypes.string,
-        onQrPress: PropTypes.func,
+        onQRPress: PropTypes.func,
         onRef: PropTypes.func,
-        negativeColor: PropTypes.object.isRequired,
         backgroundColor: PropTypes.string.isRequired,
     };
 
@@ -72,7 +71,7 @@ class CustomTextInput extends React.Component {
         containerStyle: {},
         widget: 'empty',
         onDenominationPress: () => {},
-        onQrPress: () => {},
+        onQRPress: () => {},
         denominationText: 'i',
     };
 
@@ -110,13 +109,13 @@ class CustomTextInput extends React.Component {
     }
 
     renderQR() {
-        const { secondaryBackgroundColor, onQrPress, containerStyle } = this.props;
-        const qrImagePath = secondaryBackgroundColor === 'white' ? whiteQrImagePath : blackQrImagePath;
-        const qrImageSize = { width: containerStyle.width / 15, height: containerStyle.width / 15 };
+        const { secondaryBackgroundColor, onQRPress, containerStyle } = this.props;
+        const QRImagePath = secondaryBackgroundColor === 'white' ? whiteQRImagePath : blackQRImagePath;
+        const QRImageSize = { width: containerStyle.width / 15, height: containerStyle.width / 15 };
         return (
             <View style={styles.widgetContainer}>
-                <TouchableOpacity onPress={() => onQrPress()} style={styles.widgetButton}>
-                    <Image source={qrImagePath} style={[styles.qrImage, qrImageSize]} />
+                <TouchableOpacity onPress={() => onQRPress()} style={styles.widgetButton}>
+                    <Image source={QRImagePath} style={[styles.QRImage, QRImageSize]} />
                 </TouchableOpacity>
             </View>
         );

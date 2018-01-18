@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons';
@@ -26,6 +26,7 @@ class SeedReentry extends Component {
         negativeColor: PropTypes.object.isRequired,
         backgroundColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        textInputColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -61,7 +62,7 @@ class SeedReentry extends Component {
 
     render() {
         const { seed } = this.state;
-        const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const { t, backgroundColor, negativeColor, secondaryBackgroundColor, textInputColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
         const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
@@ -82,25 +83,19 @@ class SeedReentry extends Component {
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
-                                <TextField
-                                    style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={width / 31.8}
-                                    fontSize={width / 20.7}
-                                    labelPadding={3}
-                                    baseColor={secondaryBackgroundColor}
+                                <CustomTextInput
                                     label={t('global:seed')}
-                                    tintColor={THEMES.getHSL(negativeColor)}
-                                    autoCapitalize={'characters'}
+                                    onChangeText={seed => this.setState({ seed })}
+                                    containerStyle={{ width: width / 1.4 }}
+                                    autoCapitalize={'none'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
-                                    value={seed}
-                                    onChangeText={seed => this.setState({ seed })}
-                                    containerStyle={{
-                                        width: width / 1.4,
-                                    }}
                                     onSubmitEditing={() => this.onDonePress()}
+                                    secondaryBackgroundColor={secondaryBackgroundColor}
+                                    negativeColor={negativeColor}
+                                    backgroundColor={textInputColor}
+                                    value={seed}
                                 />
                                 <View style={[styles.infoTextContainer, borderColor]}>
                                     <Image source={infoImagePath} style={styles.infoIcon} />
@@ -235,6 +230,7 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    textInputColor: state.settings.theme.textInputColor,
 });
 
 const mapDispatchToProps = {

@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { Navigation } from 'react-native-navigation';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import QRCode from 'react-native-qrcode-svg';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
@@ -67,6 +67,7 @@ class TwoFactorSetupEnterToken extends Component {
         set2FAStatus: PropTypes.func.isRequired,
         set2FAKey: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        textInputColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -126,7 +127,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor } = this.props;
+        const { t, negativeColor, secondaryBackgroundColor, textInputColor } = this.props;
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -144,21 +145,18 @@ class TwoFactorSetupEnterToken extends Component {
                         <View style={{ alignItems: 'center', flex: 1 }}>
                             <Text style={[styles.subHeaderText, textColor]}>Enter the token from your 2FA app</Text>
                             <View style={styles.textfieldsContainer}>
-                                <TextField
-                                    style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={width / 31.8}
-                                    fontSize={width / 20.7}
-                                    labelPadding={3}
-                                    baseColor={secondaryBackgroundColor}
+                                <CustomTextInput
                                     label="Token"
-                                    tintColor={THEMES.getHSL(negativeColor)}
-                                    autoCorrect={false}
                                     onChangeText={code => this.setState({ code })}
-                                    containerStyle={{
-                                        width: width / 1.36,
-                                    }}
+                                    containerStyle={{ width: width / 1.36 }}
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically
+                                    returnKeyType="done"
                                     onSubmitEditing={this.check2FA}
+                                    secondaryBackgroundColor={secondaryBackgroundColor}
+                                    negativeColor={negativeColor}
+                                    backgroundColor={textInputColor}
                                 />
                             </View>
                         </View>
@@ -188,6 +186,7 @@ const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     key2FA: state.account.key2FA,
+    textInputColor: state.settings.theme.textInputColor,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken);

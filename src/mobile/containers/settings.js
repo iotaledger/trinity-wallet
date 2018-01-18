@@ -178,6 +178,7 @@ class Settings extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
+        textInputColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -209,6 +210,7 @@ class Settings extends Component {
             extraColor,
             ctaBorderColor,
             secondaryCtaColor,
+            textInputColor,
         } = this.props;
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -283,6 +285,7 @@ class Settings extends Component {
                 textColor: { color: secondaryBackgroundColor },
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 arrowLeftImagePath,
+                textInputColor: textInputColor,
             },
             viewAddresses: {
                 addressData: this.props.selectedAccount.addresses,
@@ -299,6 +302,7 @@ class Settings extends Component {
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 tickImagePath,
                 arrowLeftImagePath,
+                textInputColor: textInputColor,
             },
             deleteAccount: {
                 backPress: () => this.props.setSetting('accountManagement'),
@@ -313,6 +317,7 @@ class Settings extends Component {
                 borderColor: { borderColor: secondaryBackgroundColor },
                 tickImagePath,
                 arrowLeftImagePath,
+                textInputColor: textInputColor,
             },
             addNewAccount: {
                 addExistingSeed: () => this.props.setSetting('addExistingSeed'),
@@ -336,6 +341,7 @@ class Settings extends Component {
                 arrowLeftImagePath,
                 ctaBorderColor: ctaBorderColor,
                 secondaryCtaColor: secondaryCtaColor,
+                textInputColor: textInputColor,
             },
             nodeSelection: {
                 setNode: selectedNode => {
@@ -367,6 +373,7 @@ class Settings extends Component {
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 arrowLeftImagePath,
                 addImagePath,
+                textInputColor: textInputColor,
             },
             currencySelection: {
                 getCurrencyData: (currency, withAlerts) => this.props.getCurrencyData(currency, withAlerts),
@@ -397,6 +404,7 @@ class Settings extends Component {
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 tickImagePath,
                 arrowLeftImagePath,
+                textInputColor: textInputColor,
             },
             manualSync: {
                 t: this.props.t,
@@ -828,6 +836,7 @@ const mapStateToProps = state => ({
     isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
     hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
+    textInputColor: state.settings.theme.textInputColor,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(

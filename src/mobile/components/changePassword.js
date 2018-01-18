@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import Colors from '../theme/Colors';
@@ -21,6 +21,9 @@ class ChangePassword extends Component {
         generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
+        textInputColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -48,7 +51,7 @@ class ChangePassword extends Component {
 
     changePassword() {
         const isValid = this.isValid();
-        const { password, setPassword, generateAlert, t } = this.props;
+        const { setPassword, generateAlert, t } = this.props;
         const { newPassword } = this.state;
 
         if (isValid) {
@@ -91,27 +94,26 @@ class ChangePassword extends Component {
         // This should be abstracted away as an independent component
         // We are using almost the same field styles and props
         // across all app
+
+        const { negativeColor, textInputColor, secondaryBackgroundColor } = this.props;
         const props = {
             ref: ref,
-            style: [styles.textField, this.props.textColor],
-            labelTextStyle: { fontFamily: Fonts.tertiary },
-            labelFontSize: height / 55,
-            fontSize: height / 40,
-            baseColor: this.props.secondaryBackgroundColor,
-            tintColor: THEMES.getHSL(this.props.negativeColor),
+            label,
+            onChangeText,
+            containerStyle: { width: width / 1.4 },
             autoCapitalize: 'none',
             autoCorrect: false,
             enablesReturnKeyAutomatically: true,
-            containerStyle: styles.textFieldContainer,
             secureTextEntry: true,
-            label,
-            value,
-            onChangeText,
             returnKeyType,
             onSubmitEditing,
+            value,
+            secondaryBackgroundColor: secondaryBackgroundColor,
+            negativeColor: negativeColor,
+            backgroundColor: textInputColor,
         };
 
-        return <TextField {...props} />;
+        return <CustomTextInput {...props} />;
     }
 
     renderInvalidSubmissionAlerts() {
