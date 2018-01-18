@@ -181,7 +181,7 @@ const accountInfoFetchRequest = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
 });
 
-const accountInfoFetchSuccess = (payload) => ({
+export const accountInfoFetchSuccess = (payload) => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
     payload,
 });
@@ -190,7 +190,7 @@ const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
-const updateAccountInfoAfterSpending = (payload) => ({
+export const updateAccountInfoAfterSpending = (payload) => ({
     type: ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING,
     payload,
 });
