@@ -205,6 +205,7 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                             'success',
                             i18next.t('global:transferSent'),
                             i18next.t('global:transferSentMessage'),
+                            100000,
                         ),
                     );
                     dispatch(sendTransferSuccess({ address, value }));
@@ -215,10 +216,12 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                         attachToTangle: [
                             i18next.t('global:attachToTangleUnavailable'),
                             i18next.t('global:attachToTangleUnavailableExplanation'),
+                            100000,
                         ],
                         default: [
                             i18next.t('global:invalidResponse'),
                             i18next.t('global:invalidResponseSendingTransfer'),
+                            100000,
                         ],
                     };
 
@@ -235,19 +238,28 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
         const unspentInputs = (err, inputs) => {
             if (err && err.message !== 'Not enough balance') {
                 dispatch(sendTransferError());
+                console.log(err);
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
+                    100000,
                 );
             }
             if (get(inputs, 'allBalance') < value) {
                 dispatch(sendTransferError());
+                console.log(err);
                 return dispatch(
-                    generateAlert('error', i18next.t('global:balanceError'), i18next.t('global:balanceErrorMessage')),
+                    generateAlert(
+                        'error',
+                        i18next.t('global:balanceError'),
+                        i18next.t('global:balanceErrorMessage'),
+                        20000,
+                    ),
                 );
             } else if (get(inputs, 'totalBalance') < value) {
                 dispatch(sendTransferError());
+                console.log(err);
                 return dispatch(
-                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
+                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError'), 20000),
                 );
             }
 

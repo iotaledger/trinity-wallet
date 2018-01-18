@@ -32,6 +32,7 @@
     />
       <activity
         android:name=".MainActivity"
+        android:theme="@style/SplashTheme"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|screenSize"
         android:screenOrientation="portrait"
