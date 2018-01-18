@@ -16,7 +16,7 @@ export default class Confirm extends React.PureComponent {
         const { category, translations, isOpen } = this.props;
 
         return (
-            <Modal className="confirm" isOpen={isOpen} hideCloseButton>
+            <Modal className="confirm" isOpen={isOpen}>
                 {translations.title ? <h1 className={category ? category : 'primary'}>{translations.title}</h1> : null}
                 {translations.message ? <p>{translations.message}</p> : null}
                 <footer>

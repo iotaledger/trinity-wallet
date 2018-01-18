@@ -122,7 +122,7 @@ class Settings extends React.PureComponent {
         return this.props.tempAccount && this.props.tempAccount.ready ? (
             <Template>{this.renderSettings()}</Template>
         ) : (
-            <Modal isOpen isWide hideCloseButton>
+            <Modal isOpen>
                 <div className={css.public}>{this.renderSettings()}</div>
                 <Button onClick={() => history.push('/')}>{t('global:back')}</Button>
             </Modal>
