@@ -5,7 +5,8 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import Seedbox from '../components/seedBox';
 import COLORS from '../theme/Colors';
@@ -83,12 +84,13 @@ class CopySeedToClipboard extends Component {
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
         const ctaTextColor = { color: secondaryCtaColor };
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <Image source={iotaImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
                     <Text style={[styles.infoTextNormal, textColor]}>{t('clickToCopy')}</Text>

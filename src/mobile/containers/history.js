@@ -44,9 +44,29 @@ class History extends Component {
         }
     }
 
+    shouldPreventManualRefresh() {
+        const props = this.props;
+
+        const isAlreadyDoingSomeHeavyLifting =
+            props.isSyncing || props.isSendingTransfer || props.isGeneratingReceiveAddress;
+
+        const isAlreadyFetchingAccountInfo = props.isFetchingAccountInfo;
+
+        if (isAlreadyFetchingAccountInfo) {
+            props.generateAlert(
+                'error',
+                'Already fetching transaction history',
+                'Your transaction history will be updated automatically.',
+            );
+        }
+        return isAlreadyDoingSomeHeavyLifting || isAlreadyFetchingAccountInfo;
+    }
+
     _onRefresh() {
-        this.setState({ refreshing: true });
-        this.updateAccountData();
+        if (!this.shouldPreventManualRefresh()) {
+            this.setState({ refreshing: true });
+            this.updateAccountData();
+        }
     }
 
     updateAccountData() {
@@ -112,7 +132,6 @@ class History extends Component {
                                         addresses={addresses}
                                         rowData={dataSource}
                                         titleColor="#F8FFA6"
-                                        onPress={event => this._showModal()}
                                         copyAddress={item => this.copyAddress(item)}
                                         copyBundleHash={item => this.copyBundleHash(item)}
                                         positiveColor={THEMES.getHSL(positiveColor)}
@@ -170,7 +189,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = ({ tempAccount, account, settings }) => ({
+const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.seedNames),
@@ -181,6 +200,10 @@ const mapStateToProps = ({ tempAccount, account, settings }) => ({
     secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
     pendingColor: settings.theme.pendingColor,
     isFetchingLatestAccountInfoOnLogin: tempAccount.isFetchingLatestAccountInfoOnLogin,
+    isFetchingAccountInfo: polling.isFetchingAccountInfo,
+    isGeneratingReceiveAddress: tempAccount.isGeneratingReceiveAddress,
+    isSendingTransfer: tempAccount.isSendingTransfer,
+    isSyncing: tempAccount.isSyncing,
 });
 
 const mapDispatchToProps = {
