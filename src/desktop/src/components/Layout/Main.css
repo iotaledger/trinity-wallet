@@ -24,20 +24,21 @@
         min-height: 100vh;
         padding-top: var(--header-height);
     }
-    .content {
-        flex: 1 1 calc(100% - var(--sidebar-width));
-        position: relative;
-    }
-    .inner {
-        height: calc(100vh - var(--header-height));
-        overflow: auto;
-        padding: 24px;
-        display: flex;
-        > section {
-            width: 50%;
-            flex: 1 0 auto;
-            padding: 20px;
-        }
+}
+
+.content {
+    flex: 1 1 calc(100%);
+    position: relative;
+}
+.inner {
+    height: calc(100vh - var(--header-height));
+    overflow: auto;
+    padding: 24px;
+    display: flex;
+    > section {
+        width: 50%;
+        flex: 1 0 auto;
+        padding: 20px;
     }
 }
 
