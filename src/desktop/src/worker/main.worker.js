@@ -11,10 +11,14 @@ const actions = {
 };
 
 const dispatch = (action) => {
-    self.postMessage({
-        type: 'dispatch',
-        action,
-    });
+    if (typeof action === 'function') {
+        action(dispatch, getState);
+    } else {
+        self.postMessage({
+            type: 'dispatch',
+            action,
+        });
+    }
 };
 
 const getState = () => {
