@@ -88,6 +88,20 @@
     }
 }
 
+.info {
+    display: block;
+    float: right;
+    font-size: 11px;
+    color: #8fa1a5;
+    line-height: 14px;
+    padding: 4px 8px 2px;
+    border-radius: 0 0 4px 4px;
+    position: relative;
+    background: #2a4a51;
+    margin: -3px 38px 0 0;
+    opacity: 0.6;
+}
+
 .checkbox {
     display: inline-block;
     margin: 12px 0 0 auto;

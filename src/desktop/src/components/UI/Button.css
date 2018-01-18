@@ -12,9 +12,9 @@
     cursor: pointer;
     display: inline-block;
     height: 42px;
-    line-height: 38px;
-    font-size: var(--font-size-small);
-    line-height: var(--font-size-small);
+    line-height: 40px;
+    font-size: var(--font-size-default);
+    letter-spacing: 0.2px;
     min-width: 140px;
     text-decoration: none;
     text-transform: uppercase;

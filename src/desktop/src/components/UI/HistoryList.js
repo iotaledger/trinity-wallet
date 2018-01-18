@@ -25,7 +25,7 @@ class HistoryList extends React.PureComponent {
         activeItem: null,
     };
 
-    setHistoryItem = itemIndex => {
+    setHistoryItem = (itemIndex) => {
         this.setState({
             activeItem: itemIndex,
         });
@@ -104,7 +104,7 @@ class HistoryList extends React.PureComponent {
                     )}
                 </ul>
                 {activeTransfer !== null ? (
-                    <Modal isOpen hideCloseButton>
+                    <Modal isOpen onClose={() => this.setState({ activeItem: null })}>
                         <div className={css.historyItem}>
                             <header
                                 className={classNames(
