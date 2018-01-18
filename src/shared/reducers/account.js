@@ -9,6 +9,7 @@ const updateAccountInfo = (state, payload) => ({
     accountInfo: {
         ...state.accountInfo,
         [payload.accountName]: {
+            ...get(state.accountInfo, `${payload.accountName}`),
             balance: payload.balance,
             addresses: {
                 ...get(state.accountInfo, `${payload.accountName}.addresses`),
