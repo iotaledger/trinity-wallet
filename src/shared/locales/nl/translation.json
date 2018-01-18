@@ -53,10 +53,10 @@
         "somethingWentWrongExplanation": "Start de app opnieuw.",
         "node": "Node",
         "cannotPerformAction": "Kan actie niet uitvoeren",
-        "cannotPerformActionExplanation":
-            "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen.",
+        "cannotPerformActionExplanation": "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen.",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De sleutel bevat ongeldige tekens",
@@ -237,7 +237,16 @@
         "cannotPerformActionExplanation":
             "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen.",
         "poorConnection": "Slechte verbinding",
-        "poorConnectionExplanation": "Van munt wisselen niet gelukt door slechte verbinding."
+        "poorConnectionExplanation": "Van munt wisselen niet gelukt door slechte verbinding.",
+        "hide": "Hide",
+        "hideOthers": "Hide Others",
+        "showAll": "Show All",
+        "quit": "Quit",
+        "edit": "Edit",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "selectAll": "Select All"
     },
     "resetWalletConfirmation": {
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",

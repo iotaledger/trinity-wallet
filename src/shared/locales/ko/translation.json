@@ -55,7 +55,8 @@
         "cannotPerformAction": "작업 수행할 수 없음",
         "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오.",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -230,7 +231,16 @@
         "cannotPerformAction": "작업 수행할 수 없음",
         "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오.",
         "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
+        "hide": "Hide",
+        "hideOthers": "Hide Others",
+        "showAll": "Show All",
+        "quit": "Quit",
+        "edit": "Edit",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "selectAll": "Select All"
     },
     "resetWalletConfirmation": {
         "thisAction": "이 작업은 취소할 수 없습니다.",
