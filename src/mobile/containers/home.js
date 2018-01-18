@@ -167,6 +167,7 @@ class Home extends Component {
             positiveColor,
             secondaryBarColor,
             secondaryBackgroundColor,
+            textInputColor,
         } = this.props;
 
         const balanceImagePath = secondaryBarColor === 'white' ? whiteBalanceImagePath : blackBalanceImagePath;
@@ -257,6 +258,7 @@ class Home extends Component {
                                     negativeColor={negativeColor}
                                     positiveColor={positiveColor}
                                     secondaryBackgroundColor={secondaryBackgroundColor}
+                                    textInputColor={textInputColor}
                                     textColor={textColor}
                                 />
                             </View>
@@ -284,6 +286,7 @@ const mapStateToProps = state => ({
     secondaryBarColor: state.settings.theme.secondaryBarColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     currentRoute: state.home.childRoute,
+    textInputColor: state.settings.theme.textInputColor,
 });
 
 const mapDispatchToProps = {
@@ -310,6 +313,7 @@ Home.propTypes = {
     secondaryBarColor: PropTypes.string.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
     currentRoute: PropTypes.string.isRequired,
+    textInputColor: PropTypes.string.isRequired,
 };
 
 export default withUserActivity()(

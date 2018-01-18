@@ -16,7 +16,6 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { round, VALID_SEED_REGEX, ADDRESS_LENGTH, parse } from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
@@ -429,7 +428,7 @@ class Send extends Component {
                                 returnKeyType="next"
                                 onSubmitEditing={() => this.amountField.onFocus()}
                                 widget="qr"
-                                onQrPress={() => this.setModalContent('qrScanner')}
+                                onQRPress={() => this.setModalContent('qrScanner')}
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 backgroundColor={textInputColor}
@@ -618,35 +617,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    maxButtonContainer: {
-        flex: 0.5,
-        justifyContent: 'flex-end',
-        alignItems: 'flex-start',
-    },
-    button: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 0.8,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 6.5,
-        height: height / 16,
-    },
-    qrText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
-        backgroundColor: 'transparent',
-    },
-    buttonText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
-        backgroundColor: 'transparent',
-    },
-    buttonContainer: {
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        paddingBottom: height / 110,
-    },
     sendButton: {
         borderRadius: GENERAL.borderRadius,
         width: width / 2,
@@ -667,10 +637,6 @@ const styles = StyleSheet.create({
     sendButtonContainer: {
         alignItems: 'center',
     },
-    separator: {
-        flex: 1,
-        height: 15,
-    },
     conversionText: {
         fontFamily: 'Lato-Light',
         backgroundColor: 'transparent',
@@ -682,15 +648,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
         backgroundColor: 'transparent',
-    },
-    maxButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 0.8,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 6,
-        height: height / 16,
     },
     infoText: {
         fontFamily: 'Lato-Light',

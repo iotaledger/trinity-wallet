@@ -3,7 +3,7 @@ import React from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Image } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -29,6 +29,8 @@ class UseExistingSeed extends React.Component {
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
         ctaBorderColor: PropTypes.string.isRequired,
+        textInputColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -100,7 +102,15 @@ class UseExistingSeed extends React.Component {
     }
 
     render() {
-        const { t, textColor, borderColor, secondaryBackgroundColor, arrowLeftImagePath } = this.props;
+        const {
+            t,
+            textColor,
+            borderColor,
+            secondaryBackgroundColor,
+            arrowLeftImagePath,
+            textInputColor,
+            negativeColor,
+        } = this.props;
         const { seed, accountName } = this.state;
         const arrowRightImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowRightImagePath : blackArrowRightImagePath;
@@ -118,30 +128,23 @@ class UseExistingSeed extends React.Component {
                             <View style={{ flex: 1 }} />
                             <View style={{ flexDirection: 'row', width: width / 1.4 }}>
                                 <View style={styles.textFieldContainer}>
-                                    <TextField
-                                        style={[styles.textField, textColor]}
-                                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                        labelFontSize={width / 31.8}
-                                        fontSize={width / 20.7}
-                                        labelPadding={3}
-                                        baseColor={secondaryBackgroundColor}
-                                        tintColor={THEMES.getHSL(this.props.negativeColor)}
-                                        enablesReturnKeyAutomatically
+                                    <CustomTextInput
                                         label="Seed"
-                                        autoCorrect={false}
-                                        value={seed}
-                                        maxLength={MAX_SEED_LENGTH}
                                         onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
+                                        containerStyle={{ width: width / 1.4 }}
+                                        autoCapitalize={'none'}
+                                        maxLength={MAX_SEED_LENGTH}
+                                        value={seed}
+                                        autoCorrect={false}
+                                        enablesReturnKeyAutomatically
+                                        returnKeyType="next"
                                         onSubmitEditing={() => this.refs.accountName.focus()}
+                                        secondaryBackgroundColor={secondaryBackgroundColor}
+                                        negativeColor={negativeColor}
+                                        backgroundColor={textInputColor}
+                                        widget="qr"
+                                        onQRPress={() => this.onQRPress()}
                                     />
-                                </View>
-                                <View style={styles.qrButtonContainer}>
-                                    <TouchableOpacity onPress={() => this.onQRPress()}>
-                                        <View style={[styles.qrButton, borderColor]}>
-                                            <Image source={cameraImagePath} style={styles.qrImage} />
-                                            <Text style={[styles.qrText, textColor]}>{` ${t('global:qr')} `}</Text>
-                                        </View>
-                                    </TouchableOpacity>
                                 </View>
                             </View>
                             <View style={{ flex: 1 }} />
@@ -151,22 +154,21 @@ class UseExistingSeed extends React.Component {
                         </View>
                         <View style={{ flex: 1 }} />
                         <View style={styles.accountNameContainer}>
-                            <TextField
+                            <CustomTextInput
                                 ref="accountName"
-                                style={[styles.textField, textColor]}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor={secondaryBackgroundColor}
-                                tintColor={THEMES.getHSL(this.props.negativeColor)}
-                                enablesReturnKeyAutomatically
                                 label={t('addAdditionalSeed:accountName')}
-                                autoCapitalize="words"
-                                autoCorrect={false}
-                                value={accountName}
-                                containerStyle={{ width: width / 1.4 }}
                                 onChangeText={accountName => this.setState({ accountName })}
+                                containerStyle={{ width: width / 1.4 }}
+                                autoCapitalize={'words'}
+                                maxLength={MAX_SEED_LENGTH}
+                                value={seed}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
+                                backgroundColor={textInputColor}
+                                value={accountName}
                             />
                         </View>
                     </View>
@@ -257,25 +259,6 @@ const styles = StyleSheet.create({
         width: width / 20,
         height: width / 20,
     },
-    qrImage: {
-        height: width / 28,
-        width: width / 28,
-        marginRight: width / 100,
-    },
-    qrButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 0.8,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 6.5,
-        height: height / 16,
-    },
-    qrText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
-    },
     textFieldContainer: {
         flex: 1,
         paddingRight: width / 30,
@@ -283,11 +266,6 @@ const styles = StyleSheet.create({
     },
     textField: {
         fontFamily: 'Lato-Light',
-    },
-    qrButtonContainer: {
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        paddingBottom: height / 90,
     },
     accountNameContainer: {
         flex: 4,
