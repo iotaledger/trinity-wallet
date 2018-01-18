@@ -37,13 +37,13 @@
 
     &--error {
         composes: notification;
-        background-color: var(--color-error);
+        background-color: var(--color-negative);
         color: white;
     }
 
     &--success {
         composes: notification;
-        background-color: var(--color-valid);
+        background-color: var(--color-positive);
         color: white;
     }
 

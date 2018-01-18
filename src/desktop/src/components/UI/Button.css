@@ -65,7 +65,7 @@ footer .button + .button {
 .default,
 .primary {
     composes: button;
-    background: var(--color-valid);
+    background: var(--color-positive);
 }
 
 .secondary {
@@ -76,12 +76,12 @@ footer .button + .button {
 
 .danger {
     composes: button;
-    background: var(--color-error);
+    background: var(--color-negative);
 }
 
 .success {
     composes: button;
-    background: var(--color-valid);
+    background: var(--color-positive);
 }
 
 .extra,

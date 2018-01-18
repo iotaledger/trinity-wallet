@@ -7,17 +7,6 @@
 @custom-media --xl (max-width: 1440px);
 
 :root {
-    --color-body: #ffffff;
-    --color-highlight: #f7d002;
-
-    --color-bg: #16373e;
-    --color-bg-secondary: #1a1b1b;
-
-    --color-valid: #009a33;
-    --color-extra: #8bd4ff;
-    --color-warning: var(--color-highlight);
-    --color-error: #f75602;
-
     --font-size-default: 14px;
     --font-size-small: 12px;
     --font-size-large: 16px;
