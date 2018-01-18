@@ -44,7 +44,18 @@ class Login extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
+        const { tempAccount } = this.props;
+
+        const ready = !tempAccount.ready && newProps.tempAccount.ready;
+        const hasError =
+            !tempAccount.hasErrorFetchingAccountInfoOnLogin && newProps.tempAccount.hasErrorFetchingAccountInfoOnLogin;
+
+        if (hasError) {
+            this.setState({
+                loading: false,
+            });
+        }
+
         if (ready) {
             this.setState({
                 loading: false,
@@ -95,8 +106,7 @@ class Login extends React.Component {
                 loading: true,
             });
 
-            //TODO: Fix iota.api call freeze. Do API calls in a worker/electron main?
-            setTimeout(() => this.setupAccount(seed, seeds.selectedSeedIndex), 2000);
+            this.setupAccount(seed, seeds.selectedSeedIndex);
         }
     };
 
