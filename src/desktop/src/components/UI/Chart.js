@@ -39,7 +39,7 @@ export default class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.y;
             }),
         );
@@ -50,7 +50,7 @@ export default class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const minValue = Math.min(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.y;
             }),
         );
@@ -61,7 +61,7 @@ export default class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.x;
             }),
         );
@@ -137,13 +137,15 @@ export default class Chart extends React.Component {
                     </Button>
                 </nav>
                 <div>
-                    <VictoryChart>
+                    <svg>
                         <defs>
                             <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
                                 <stop stopColor="#FFA25B" stopOpacity={1} offset="100%" />
                                 <stop stopColor="#FFFFFF" stopOpacity={0.25} offset="0%" />
                             </linearGradient>
                         </defs>
+                    </svg>
+                    <VictoryChart>
                         <VictoryLine
                             data={data}
                             style={{
@@ -164,7 +166,7 @@ export default class Chart extends React.Component {
                         />
                         <VictoryAxis
                             dependentAxis
-                            tickFormat={x => this.getPriceFormat(x)}
+                            tickFormat={(x) => this.getPriceFormat(x)}
                             style={{
                                 axis: { stroke: 'transparent' },
                                 tickLabels: { fill: 'white', fontSize: 9, fontFamily: 'Lato-Regular' },
