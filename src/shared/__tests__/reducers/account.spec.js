@@ -768,6 +768,7 @@ describe('Reducer: account', () => {
             const initialState = {
                 accountInfo: {
                     dummy: {
+                        balance: 0,
                         addresses: { foo: {} },
                         transfers: [],
                     },
@@ -784,6 +785,7 @@ describe('Reducer: account', () => {
             const expectedState = {
                 accountInfo: {
                     dummy: {
+                        balance: 0,
                         addresses: { foo: {}, baz: {} },
                         transfers: [],
                     },
@@ -797,6 +799,7 @@ describe('Reducer: account', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
+                        balance: 0,
                         transfers: [[{}, {}], [{}, {}], [{}, {}]],
                     },
                 },
@@ -812,6 +815,7 @@ describe('Reducer: account', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        balance: 0,
                         transfers: [[{}, {}], [{}, {}]],
                     },
                 },
