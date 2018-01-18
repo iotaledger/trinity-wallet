@@ -30,11 +30,21 @@
 }
 
 * {
+    user-select: none;
+    cursor: default;
     &,
     &:before,
     &:after {
         box-sizing: border-box;
     }
+}
+a,
+a * {
+    cursor: pointer;
+}
+input,
+textarea {
+    cursor: text;
 }
 
 @font-face {
