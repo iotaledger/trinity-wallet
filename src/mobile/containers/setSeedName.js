@@ -16,9 +16,10 @@ import { width, height } from '../util/dimensions';
 import keychain, { hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
-
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import infoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
+import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
+import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 
 export class SetSeedName extends Component {
     static propTypes = {
@@ -170,6 +171,8 @@ export class SetSeedName extends Component {
         const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
+        const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
@@ -177,7 +180,7 @@ export class SetSeedName extends Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                            <Image source={iotaImagePath} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
                                 <Text style={[styles.greetingText, textColor]}>
                                     {t('addAdditionalSeed:enterAccountName')}
