@@ -63,7 +63,7 @@ class InitialLoading extends Component {
 
     clearKeychain() {
         if (isIOS) {
-            keychain.clear().catch((err) => console.error(err)); // eslint-disable-line no-console
+            keychain.clear().catch(err => console.error(err)); // eslint-disable-line no-console
         }
     }
 
@@ -79,7 +79,7 @@ class InitialLoading extends Component {
                 <View style={styles.logoContainer}>
                     <View style={styles.animationContainer}>
                         <LottieView
-                            ref={(animation) => {
+                            ref={animation => {
                                 this.animation = animation;
                             }}
                             source={welcomeAnimationPath}
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     onboardingComplete: state.account.onboardingComplete,
     backgroundColor: state.settings.theme.backgroundColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,

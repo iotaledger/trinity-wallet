@@ -265,7 +265,8 @@
         "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig att följa hela processen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Din seed är {{maxSeedLength}} tecken, den läses från vänster till höger. Skriv ner din seed samt kontrollsumma och",
+        "yourSeedIs":
+            "Din seed är {{maxSeedLength}} tecken, den läses från vänster till höger. Skriv ner din seed samt kontrollsumma och",
         "tripleCheck": "kolla mer än 2 gånger",
         "thatTheyAreCorrect": "att den stämmer."
     },
