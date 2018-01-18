@@ -26,7 +26,6 @@ import {
     getFromKeychainSuccess,
     getFromKeychainError,
 } from 'iota-wallet-shared-modules/actions/keychain';
-import { TextField } from 'react-native-material-textfield';
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
@@ -174,14 +173,14 @@ class Receive extends Component {
                         style={{
                             opacity: this.getOpacity(),
                             alignItems: 'center',
-                            flex: 2,
+                            flex: 1.8,
                             justifyContent: 'flex-end',
                         }}
                     >
                         <View style={[styles.qrContainer, { opacity: this.getQrOpacity() }, qrBorder]}>
                             <QRCode
                                 value={JSON.stringify({ address: receiveAddress, message })}
-                                size={height / 5}
+                                size={height / 5.5}
                                 color={'black'}
                             />
                         </View>
@@ -215,7 +214,7 @@ class Receive extends Component {
                             </TouchableOpacity>
                         )}
                     </View>
-                    <View style={{ alignItems: 'center', flex: 0.7, justifyContent: 'center' }}>
+                    <View style={{ alignItems: 'center', flex: 0.75, justifyContent: 'center' }}>
                         <CustomTextInput
                             onRef={c => {
                                 this.addressField = c;

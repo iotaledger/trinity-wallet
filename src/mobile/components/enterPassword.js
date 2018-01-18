@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import THEMES from '../theme/themes';
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     midContainer: {
         flex: 4.8,
         alignItems: 'center',
-        paddingTop: height / 4.2,
+        paddingTop: height / 5,
     },
     bottomContainer: {
         flex: 0.7,
@@ -72,7 +72,7 @@ class EnterPassword extends Component {
 
     render() {
         const { password } = this.state;
-        const { t, positiveColor, secondaryBackgroundColor, textColor, negativeColor } = this.props;
+        const { t, positiveColor, secondaryBackgroundColor, textColor, negativeColor, textInputColor } = this.props;
         const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
         const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -82,31 +82,21 @@ class EnterPassword extends Component {
                 <View>
                     <View style={styles.topContainer}>
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
-                        <View style={styles.titleContainer}>
-                            <Text style={[styles.title, textColor]}>{t('enterPassword')}</Text>
-                        </View>
                     </View>
                     <View style={styles.midContainer}>
-                        <TextField
-                            style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                            labelFontSize={width / 31.8}
-                            fontSize={width / 20.7}
-                            labelPadding={3}
-                            baseColor={secondaryBackgroundColor}
+                        <CustomTextInput
                             label={t('global:password')}
-                            tintColor={THEMES.getHSL(negativeColor)}
+                            onChangeText={this.handleChangeText}
+                            containerStyle={{ width: width / 1.4 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
-                            value={password}
-                            onChangeText={this.handleChangeText}
-                            containerStyle={{
-                                width: width / 1.4,
-                            }}
                             secureTextEntry
                             onSubmitEditing={this.handleLogin}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            negativeColor={negativeColor}
+                            backgroundColor={textInputColor}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -129,6 +119,7 @@ EnterPassword.propTypes = {
     textColor: PropTypes.object.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
     negativeColor: PropTypes.object.isRequired,
+    textInputColor: PropTypes.string.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPassword);

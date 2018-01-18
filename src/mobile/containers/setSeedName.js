@@ -6,7 +6,7 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import { Keyboard } from 'react-native';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import OnboardingButtons from '../components/onboardingButtons';
@@ -168,7 +168,7 @@ export class SetSeedName extends Component {
 
     render() {
         const { accountName } = this.state;
-        const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const { t, backgroundColor, negativeColor, secondaryBackgroundColor, textInputColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
@@ -188,28 +188,22 @@ export class SetSeedName extends Component {
                             </View>
                         </View>
                         <View style={styles.midContainer}>
-                            <TextField
-                                style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor={secondaryBackgroundColor}
+                            <CustomTextInput
                                 label={t('addAdditionalSeed:accountName')}
-                                tintColor={THEMES.getHSL(negativeColor)}
-                                autoCapitalize="words"
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
-                                returnKeyType="done"
-                                value={accountName}
                                 onChangeText={accountName => this.setState({ accountName })}
-                                containerStyle={{
-                                    width: width / 1.4,
-                                }}
+                                containerStyle={{ width: width / 1.4 }}
+                                autoCapitalize={'words'}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
+                                onSubmitEditing={() => this.onDonePress()}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
+                                backgroundColor={textInputColor}
                                 ref={input => {
                                     this.nameInput = input;
                                 }}
-                                onSubmitEditing={() => this.onDonePress()}
+                                value={accountName}
                             />
                             <View style={[styles.infoTextContainer, borderColor]}>
                                 <Image source={infoImagePath} style={styles.infoIcon} />
@@ -303,6 +297,7 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    textInputColor: state.settings.theme.textInputColor,
 });
 
 const mapDispatchToProps = {

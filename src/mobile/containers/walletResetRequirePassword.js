@@ -14,7 +14,7 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import COLORS from '../theme/Colors';
 import THEMES from '../theme/themes';
 import Fonts from '../theme/Fonts';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Keyboard } from 'react-native';
@@ -36,6 +36,7 @@ class WalletResetRequirePassword extends Component {
         backgroundColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        textInputColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -131,7 +132,7 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor } = this.props;
+        const { t, negativeColor, secondaryBackgroundColor, textInputColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
 
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
@@ -163,24 +164,19 @@ class WalletResetRequirePassword extends Component {
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={[styles.generalText, textColor]}>{t('enterPassword')}</Text>
-                            <TextField
-                                style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor={secondaryBackgroundColor}
+                            <CustomTextInput
                                 label={t('global:password')}
-                                tintColor={THEMES.getHSL(negativeColor)}
+                                onChangeText={password => this.setState({ password })}
+                                value={this.state.password}
+                                containerStyle={{ width: width / 1.4 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
-                                value={this.state.password}
-                                onChangeText={password => this.setState({ password })}
-                                containerStyle={{
-                                    width: width / 1.4,
-                                }}
+                                onSubmitEditing={this.handleLogin}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
+                                backgroundColor={textInputColor}
                                 secureTextEntry
                             />
                         </View>
@@ -246,6 +242,7 @@ const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    textInputColor: state.settings.theme.textInputColor,
 });
 
 const mapDispatchToProps = {
