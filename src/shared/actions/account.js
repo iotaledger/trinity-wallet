@@ -234,6 +234,7 @@ export const fetchFullAccountInfoForFirstUse = (
                 iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
                     if (err) {
                         onError();
+                        console.log(err);
                     } else {
                         storeInKeychainPromise(password, seed, accountName)
                             .then(() => {
@@ -242,6 +243,7 @@ export const fetchFullAccountInfoForFirstUse = (
                             })
                             .catch(() => {
                                 onError();
+                                console.log(err);
                             });
                     }
                 });
@@ -264,7 +266,6 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
             if (navigator) {
                 navigator.pop({ animated: false });
             }
-
             dispatch(generateAccountInfoErrorAlert());
             dispatch(fullAccountInfoFetchError());
         };
@@ -278,6 +279,7 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
                     iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
                         if (err) {
                             onError();
+                            console.log(err);
                         }
                         const payloadWithHashes = assign({}, data, { hashes });
                         dispatch(fullAccountInfoFetchSuccess(payloadWithHashes));
@@ -300,12 +302,12 @@ export const manuallySyncAccount = (seed, accountName) => {
         dispatch(manualSyncRequest());
         getAccountData(seed, accountName)
             .then(data => {
-                dispatch(clearTempData()); // Clean up partial state for reducer anyways.
                 const unspentAddresses = getUnspentAddresses(data.addresses);
                 if (!isEmpty(unspentAddresses)) {
                     iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
                         if (err) {
                             onError();
+                            console.log(err);
                         } else {
                             dispatch(generateSyncingCompleteAlert());
                             const payloadWithHashes = assign({}, data, { hashes });
@@ -432,6 +434,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
 
                     dispatch(accountInfoFetchError());
                     dispatch(generateAccountInfoErrorAlert());
+                    console.log(err);
                 }
             });
     };
