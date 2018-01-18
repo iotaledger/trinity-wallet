@@ -18,7 +18,7 @@
             line-height: 26px;
             width: 100%;
             border: none;
-            background: #2a4a51;
+            background: var(--color-input);
             color: #fff;
             padding: 6px 12px;
             resize: none;
@@ -125,7 +125,7 @@
         opacity: 1;
     }
     &.on:after {
-        background: var(--color-valid);
+        background: var(--color-positive);
     }
 }
 
