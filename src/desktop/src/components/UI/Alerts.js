@@ -27,7 +27,7 @@ class Alerts extends React.PureComponent {
         }
 
         return (
-            <Modal className="confirm" isOpen hideCloseButton>
+            <Modal isConfirm isOpen hideCloseButton>
                 <h1 className={alerts.category}>{alerts.title}</h1>
                 <p>{alerts.message}</p>
                 <Button onClick={disposeOffAlert} variant="success">
@@ -38,7 +38,7 @@ class Alerts extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     alerts: state.alerts,
 });
 

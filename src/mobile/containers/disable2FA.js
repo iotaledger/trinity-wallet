@@ -6,14 +6,14 @@ import { set2FAKey, set2FAStatus } from 'iota-wallet-shared-modules/actions/acco
 import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
 import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { Navigation } from 'react-native-navigation';
-import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import COLORS from '../theme/Colors';
 import THEMES from '../theme/themes';
 import Fonts from '../theme/Fonts';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Keyboard } from 'react-native';
@@ -35,7 +35,7 @@ class Disable2FA extends Component {
         super();
 
         this.state = {
-            password: '',
+            token: '',
         };
 
         this.goBack = this.goBack.bind(this);
@@ -101,24 +101,17 @@ class Disable2FA extends Component {
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={[styles.generalText, textColor]}>Enter your token to disable 2FA</Text>
-                            <TextField
-                                style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor={secondaryBackgroundColor}
+                            <CustomTextInput
                                 label="Token"
-                                tintColor={THEMES.getHSL(negativeColor)}
+                                onChangeText={(token) => this.setState({ token })}
+                                containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
-                                value={this.state.password}
-                                onChangeText={password => this.setState({ password })}
-                                containerStyle={{
-                                    width: width / 1.4,
-                                }}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
+                                value={this.state.token}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -182,8 +175,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
-    password: state.tempAccount.password,
+const mapStateToProps = (state) => ({
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
     key2FA: state.account.key2FA,
@@ -195,7 +187,6 @@ const mapDispatchToProps = {
     setFirstUse,
     setOnboardingComplete,
     clearTempData,
-    setPassword,
     generateAlert,
     set2FAKey,
     set2FAStatus,

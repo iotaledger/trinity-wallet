@@ -55,7 +55,8 @@
         "cannotPerformAction": "Nie można wykonać akcji",
         "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
         "attachToTangleUnavailable": "Dołączenie do Tangle niedostępne",
-        "attachToTangleUnavailableExplanation": "Dołączenie do Tangle niedostępne na wybranym node."
+        "attachToTangleUnavailableExplanation": "Dołączenie do Tangle niedostępne na wybranym node.",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -231,7 +232,16 @@
         "cannotPerformAction": "Nie można wykonać akcji",
         "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
         "poorConnection": "Słabe połączenie",
-        "poorConnectionExplanation": "Nie można zmienić waluty ze względu na słabe połączenie."
+        "poorConnectionExplanation": "Nie można zmienić waluty ze względu na słabe połączenie.",
+        "hide": "Hide",
+        "hideOthers": "Hide Others",
+        "showAll": "Show All",
+        "quit": "Quit",
+        "edit": "Edit",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "selectAll": "Select All"
     },
     "resetWalletConfirmation": {
         "thisAction": "Tej akcji nie można cofnąć.",
