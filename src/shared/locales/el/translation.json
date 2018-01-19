@@ -148,7 +148,7 @@
     "receive": {
         "addressCopied": "Η διεύθυνση αντιγράφηκε",
         "addressCopiedExplanation": "Η διεύθυνσή σας έχει αντιγραφεί στο Πρόχειρο.",
-        "generateNewAddress": "ΔΗΜΙΟΥΡΓΙΑ ΝΕΑΣ ΔΙΕΥΘΥΝΣΗΣ",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Προαιρετικό μήνυμα",
         "removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ"
     },
@@ -236,9 +236,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
-        "warning1": "Όλα τα δεδομένα του πορτοφολιού σας, συμπεριλαμβανομένων",
-        "warning2": " σπόρων, κωδικών πρόσβασης ",
-        "warning3": "και",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " άλλες πληροφορίες λογαριασμού",
         "warning5": " θα χαθούν.",
         "areYouSure": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;"
@@ -253,7 +253,7 @@
         "doYouAlreadyHaveASeed": "Έχετε ήδη έναν σπόρο που θα θέλατε να χρησιμοποιήσετε;",
         "seedExplanation": "Ο σπόρος ΙΟΤΑ είναι όπως ένα όνομα χρήστη και κωδικός πρόσβασης για το λογαριασμό σας, σε συνδυασμένα σε μια συμβολοσειρά 81 χαρακτήρων.",
         "explanation1": "Μπορείτε να το χρησιμοποιήσετε για να αποκτήσετε πρόσβαση στα κεφάλαιά σας από",
-        "explanation2": " κάθε πορτοφόλι ",
+        "explanation2": " any wallet",
         "explanation3": ", σε",
         "explanation4": " οποιαδήποτε συσκευή",
         "explanation5": ". Αλλά αν χάσετε το σπόρο σας, θα χάσετε επίσης τα ΙΟΤΑ σας.",
