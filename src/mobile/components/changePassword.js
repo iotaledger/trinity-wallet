@@ -96,7 +96,7 @@ class ChangePassword extends Component {
 
         const { negativeColor, secondaryBackgroundColor } = this.props;
         const props = {
-            ref: ref,
+            onRef: ref,
             label,
             onChangeText,
             containerStyle: { width: width / 1.36 },
@@ -143,23 +143,29 @@ class ChangePassword extends Component {
                             <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
                         </View>
                         {this.renderTextField(
-                            'currentPassword',
+                            c => {
+                                this.currentPassword = c;
+                            },
                             currentPassword,
                             t('currentPassword'),
                             currentPassword => this.setState({ currentPassword }),
                             'next',
-                            onSubmitEditing => this.refs.newPassword.focus(),
+                            onSubmitEditing => this.newPassword.focus(),
                         )}
                         {this.renderTextField(
-                            'newPassword',
+                            c => {
+                                this.newPassword = c;
+                            },
                             newPassword,
                             t('newPassword'),
                             newPassword => this.setState({ newPassword }),
                             'next',
-                            onSubmitEditing => this.refs.confirmedNewPassword.focus(),
+                            onSubmitEditing => this.confirmedNewPassword.focus(),
                         )}
                         {this.renderTextField(
-                            'confirmedNewPassword',
+                            c => {
+                                this.confirmedNewPassword = c;
+                            },
                             confirmedNewPassword,
                             t('confirmPassword'),
                             confirmedNewPassword => this.setState({ confirmedNewPassword }),

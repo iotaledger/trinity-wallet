@@ -59,7 +59,7 @@ class CustomTextInput extends React.Component {
         onDenominationPress: PropTypes.func,
         denominationText: PropTypes.string,
         onQRPress: PropTypes.func,
-        onRef: PropTypes.func,
+        negativeColor: PropTypes.object,
     };
 
     static defaultProps = {
@@ -71,6 +71,12 @@ class CustomTextInput extends React.Component {
         onQRPress: () => {},
         denominationText: 'i',
         secondaryBackgroundColor: 'white',
+        negativeColor: {
+            h: 50.44897959183674,
+            s: 0.9839357429718876,
+            l: 0.48823529411764705,
+            a: 1,
+        },
     };
 
     constructor(props) {
@@ -138,9 +144,9 @@ class CustomTextInput extends React.Component {
             onChangeText,
             containerStyle,
             widget,
-            backgroundColor,
             secondaryBackgroundColor,
             negativeColor,
+            onRef,
             ...restProps
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
@@ -157,6 +163,7 @@ class CustomTextInput extends React.Component {
                 <View style={[styles.innerContainer, innerContainerBackgroundColor]}>
                     <TextInput
                         {...restProps}
+                        ref={onRef}
                         style={[styles.textInput, textInputColor]}
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
