@@ -46,7 +46,7 @@ class SaveYourSeed extends Component {
         if (newProps.tempAccount.copiedToClipboard) {
             this.timeout = setTimeout(() => {
                 this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
-            }, 500);
+            }, 250);
             this.props.setCopiedToClipboard(false);
         }
     }
