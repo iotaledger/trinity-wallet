@@ -20,18 +20,16 @@ const styles = StyleSheet.create({
         fontSize: width / 23,
         lineHeight: width / 23,
         fontFamily: 'Lato-Light',
-        color: 'white',
         flex: 6,
+        marginHorizontal: width / 28,
     },
     innerContainer: {
         flexDirection: 'row',
         borderRadius: GENERAL.borderRadiusSmall,
-        paddingLeft: width / 35,
         height: height / 14,
     },
     widgetContainer: {
         borderLeftWidth: 2,
-        borderLeftColor: 'rgba(255, 255, 255, 0.2)',
         justifyContent: 'center',
         marginVertical: height / 120,
         flex: 1,
@@ -53,7 +51,7 @@ class CustomTextInput extends React.Component {
     static propTypes = {
         label: PropTypes.string.isRequired,
         onChangeText: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string,
         onFocus: PropTypes.func,
         onBlur: PropTypes.func,
         containerStyle: PropTypes.object,
@@ -62,7 +60,6 @@ class CustomTextInput extends React.Component {
         denominationText: PropTypes.string,
         onQRPress: PropTypes.func,
         onRef: PropTypes.func,
-        backgroundColor: PropTypes.string.isRequired,
     };
 
     static defaultProps = {
@@ -73,6 +70,7 @@ class CustomTextInput extends React.Component {
         onDenominationPress: () => {},
         onQRPress: () => {},
         denominationText: 'i',
+        secondaryBackgroundColor: 'white',
     };
 
     constructor(props) {
@@ -108,12 +106,12 @@ class CustomTextInput extends React.Component {
         return this.state.isFocused ? focusedFieldLabel : unfocusedFieldLabel;
     }
 
-    renderQR() {
+    renderQR(widgetBorderColor) {
         const { secondaryBackgroundColor, onQRPress, containerStyle } = this.props;
         const QRImagePath = secondaryBackgroundColor === 'white' ? whiteQRImagePath : blackQRImagePath;
         const QRImageSize = { width: containerStyle.width / 15, height: containerStyle.width / 15 };
         return (
-            <View style={styles.widgetContainer}>
+            <View style={[styles.widgetContainer, widgetBorderColor]}>
                 <TouchableOpacity onPress={() => onQRPress()} style={styles.widgetButton}>
                     <Image source={QRImagePath} style={[styles.QRImage, QRImageSize]} />
                 </TouchableOpacity>
@@ -121,10 +119,10 @@ class CustomTextInput extends React.Component {
         );
     }
 
-    renderDenomination() {
+    renderDenomination(widgetBorderColor) {
         const { secondaryBackgroundColor, onDenominationPress, denominationText } = this.props;
         return (
-            <View style={styles.widgetContainer}>
+            <View style={[styles.widgetContainer, widgetBorderColor]}>
                 <TouchableOpacity onPress={() => onDenominationPress()} style={styles.widgetButton}>
                     <Text style={[styles.denominationText, { color: secondaryBackgroundColor }]}>
                         {denominationText}
@@ -135,20 +133,36 @@ class CustomTextInput extends React.Component {
     }
 
     render() {
-        const { label, onChangeText, containerStyle, widget, backgroundColor, ...restProps } = this.props;
-        const innerContainerBackgroundColor = { backgroundColor };
+        const {
+            label,
+            onChangeText,
+            containerStyle,
+            widget,
+            backgroundColor,
+            secondaryBackgroundColor,
+            ...restProps
+        } = this.props;
+        const isWhite = secondaryBackgroundColor === 'white';
+        const innerContainerBackgroundColor = isWhite
+            ? { backgroundColor: 'rgba(255, 255, 255, 0.15)' }
+            : { backgroundColor: 'rgba(0, 0, 0, 0.08)' };
+        const textInputColor = isWhite ? { color: 'white' } : { color: 'black' };
+        const widgetBorderColor = isWhite
+            ? { borderLeftColor: 'rgba(255, 255, 255, 0.2)' }
+            : { borderLeftColor: 'rgba(0, 0, 0, 1)' };
         return (
             <View style={[styles.fieldContainer, containerStyle]}>
                 <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>
                 <View style={[styles.innerContainer, innerContainerBackgroundColor]}>
                     <TextInput
                         {...restProps}
-                        style={styles.textInput}
+                        style={[styles.textInput, textInputColor]}
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
                         onChangeText={onChangeText}
                     />
-                    {(widget === 'qr' && this.renderQR()) || (widget === 'denomination' && this.renderDenomination())}
+                    {(widget === 'qr' && this.renderQR(widgetBorderColor)) ||
+                        (widget === 'denomination' && this.renderDenomination(widgetBorderColor))}
                 </View>
             </View>
         );

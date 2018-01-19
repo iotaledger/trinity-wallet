@@ -113,7 +113,6 @@ const initialState = {
         ctaBorderColor: 'transparent',
         pendingColor: '#f75602',
         chartLineColor: '#FFA25B',
-        textInputColor: '#2A4A52',
     },
     hasRandomizedNode: false,
 };

@@ -6,7 +6,7 @@ import OnboardingButtons from '../components/onboardingButtons';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import infoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
+import InfoBox from '../components/infoBox';
 
 import { width, height } from '../util/dimensions';
 
@@ -49,26 +49,28 @@ class WalletSetup extends Component {
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={styles.topMidContainer}>
-                        <View style={styles.greetingTextContainer}>
-                            <Text style={styles.greetingText}>{t('okay')}</Text>
-                            <Text style={styles.questionText}>{t('doYouAlreadyHaveASeed')}</Text>
-                        </View>
+                    <View style={{ flex: 0.5 }} />
+                    <View style={styles.greetingTextContainer}>
+                        <Text style={styles.greetingText}>{t('okay')}</Text>
+                        <Text style={styles.questionText}>{t('doYouAlreadyHaveASeed')}</Text>
                     </View>
-                    <View style={styles.bottomMidContainer}>
-                        <View style={styles.infoTextContainer}>
-                            <Image source={infoImagePath} style={styles.infoIcon} />
-                            <Text style={styles.infoText}>{t('seedExplanation')}</Text>
-                            <Text style={styles.infoText}>
-                                <Text style={styles.infoTextLight}>{t('explanation1')}</Text>
-                                <Text style={styles.infoTextRegular}>{t('explanation2')}</Text>
-                                <Text style={styles.infoTextLight}>{t('explanation3')}</Text>
-                                <Text style={styles.infoTextRegular}>{t('explanation4')}</Text>
-                                <Text style={styles.infoTextLight}>{t('explanation5')}</Text>
-                            </Text>
-                            <Text style={styles.infoText}>{t('keepSafe')}</Text>
-                        </View>
-                    </View>
+                    <View style={{ flex: 0.25 }} />
+                    <InfoBox
+                        text={
+                            <View>
+                                <Text style={styles.infoText}>{t('seedExplanation')}</Text>
+                                <Text style={styles.infoText}>
+                                    <Text style={styles.infoTextLight}>{t('explanation1')}</Text>
+                                    <Text style={styles.infoTextRegular}>{t('explanation2')}</Text>
+                                    <Text style={styles.infoTextLight}>{t('explanation3')}</Text>
+                                    <Text style={styles.infoTextRegular}>{t('explanation4')}</Text>
+                                    <Text style={styles.infoTextLight}>{t('explanation5')}</Text>
+                                </Text>
+                                <Text style={styles.infoText}>{t('keepSafe')}</Text>
+                            </View>
+                        }
+                    />
+                    <View style={{ flex: 0.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons
@@ -97,16 +99,8 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 3.7,
+        flex: 4,
         alignItems: 'center',
-    },
-    topMidContainer: {
-        flex: 0.65,
-        justifyContent: 'flex-end',
-    },
-    bottomMidContainer: {
-        flex: 1.35,
-        justifyContent: 'center',
     },
     bottomContainer: {
         flex: 0.5,
@@ -129,7 +123,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'center',
+        textAlign: 'justify',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
@@ -152,21 +146,22 @@ const styles = StyleSheet.create({
     greetingTextContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: width / 8,
+        width: width / 1.36,
+        paddingHorizontal: width / 20,
     },
     greetingText: {
         color: 'white',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'Lato-Light',
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     questionText: {
         color: 'white',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'Lato-Light',
         fontSize: width / 20.7,
         textAlign: 'center',
-        paddingTop: height / 40,
+        paddingTop: height / 50,
         backgroundColor: 'transparent',
     },
     buttonsContainer: {

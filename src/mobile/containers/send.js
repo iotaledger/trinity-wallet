@@ -73,7 +73,6 @@ class Send extends Component {
         isSendingTransfer: PropTypes.bool.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         ctaBorderColor: PropTypes.string.isRequired,
-        textInputColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -400,7 +399,6 @@ class Send extends Component {
             secondaryBackgroundColor,
             secondaryCtaColor,
             ctaBorderColor,
-            textInputColor,
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
@@ -431,7 +429,6 @@ class Send extends Component {
                                 onQRPress={() => this.setModalContent('qrScanner')}
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
-                                backgroundColor={textInputColor}
                                 value={address}
                                 onFocus={() => this.onFocus()}
                             />
@@ -452,7 +449,6 @@ class Send extends Component {
                                 widget="denomination"
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
-                                backgroundColor={textInputColor}
                                 denominationText={this.state.denomination}
                                 onDenominationPress={event => this.onDenominationPress()}
                                 value={amount}
@@ -475,6 +471,7 @@ class Send extends Component {
                                                 borderRadius: GENERAL.borderRadiusSmall,
                                                 height: width / 20,
                                                 marginRight: width / 40,
+                                                opacity: 0.8,
                                             },
                                             { backgroundColor: this.state.maxColor },
                                         ]}
@@ -498,7 +495,6 @@ class Send extends Component {
                                 onSubmitEditing={() => this.setModalContent('transferConfirmation')}
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
-                                backgroundColor={textInputColor}
                                 value={message}
                             />
                         </View>
@@ -584,7 +580,7 @@ const styles = StyleSheet.create({
         height: height / 5,
     },
     emptyContainer: {
-        flex: 0.3,
+        flex: 0.5,
     },
     topContainer: {
         flex: 3.6,
@@ -606,7 +602,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     maxContainer: {
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'flex-start',
         width: width / 1.3,
         flex: 0.3,
@@ -685,7 +681,6 @@ const mapStateToProps = state => ({
     secondaryBarColor: state.settings.theme.secondaryBarColor,
     secondaryCtaColor: state.settings.theme.secondaryCtaColor,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
-    textInputColor: state.settings.theme.textInputColor,
 });
 
 const mapDispatchToProps = {

@@ -65,7 +65,6 @@ class Enter2FA extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.object.isRequired,
         onBackPress: PropTypes.func.isRequired,
-        textInputColor: PropTypes.string.isRequired,
     };
 
     state = {
@@ -87,7 +86,7 @@ class Enter2FA extends Component {
 
     render() {
         const { codefor2FA } = this.state;
-        const { positiveColor, secondaryBackgroundColor, negativeColor, textInputColor } = this.props;
+        const { positiveColor, secondaryBackgroundColor, negativeColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
@@ -104,7 +103,7 @@ class Enter2FA extends Component {
                         <CustomTextInput
                             label="Token"
                             onChangeText={this.handleChange2FAToken}
-                            containerStyle={{ width: width / 1.4 }}
+                            containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -112,7 +111,6 @@ class Enter2FA extends Component {
                             onSubmitEditing={this.handleDonePress}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             negativeColor={negativeColor}
-                            backgroundColor={textInputColor}
                             value={codefor2FA}
                         />
                     </View>

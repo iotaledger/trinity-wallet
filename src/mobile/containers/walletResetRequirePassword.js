@@ -36,7 +36,6 @@ class WalletResetRequirePassword extends Component {
         backgroundColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        textInputColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -132,7 +131,7 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor, textInputColor } = this.props;
+        const { t, negativeColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
 
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
@@ -163,7 +162,6 @@ class WalletResetRequirePassword extends Component {
                             <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midWrapper}>
-                            <Text style={[styles.generalText, textColor]}>{t('enterPassword')}</Text>
                             <CustomTextInput
                                 label={t('global:password')}
                                 onChangeText={password => this.setState({ password })}
@@ -176,9 +174,9 @@ class WalletResetRequirePassword extends Component {
                                 onSubmitEditing={this.handleLogin}
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
-                                backgroundColor={textInputColor}
                                 secureTextEntry
                             />
+                            <View style={{ flex: 0.2 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
@@ -204,17 +202,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topWrapper: {
-        flex: 1.3,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midWrapper: {
-        flex: 1.6,
+        flex: 3.7,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 2,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -242,7 +241,6 @@ const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    textInputColor: state.settings.theme.textInputColor,
 });
 
 const mapDispatchToProps = {

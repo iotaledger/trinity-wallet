@@ -78,7 +78,7 @@ class EnterPasswordOnLogin extends Component {
     };
 
     render() {
-        const { t, secondaryBackgroundColor, negativeColor, textInputColor } = this.props;
+        const { t, secondaryBackgroundColor, negativeColor } = this.props;
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
@@ -91,7 +91,7 @@ class EnterPasswordOnLogin extends Component {
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={this.handleChangeText}
-                            containerStyle={{ width: width / 1.4 }}
+                            containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -100,7 +100,6 @@ class EnterPasswordOnLogin extends Component {
                             onSubmitEditing={this.handleLogin}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             negativeColor={negativeColor}
-                            backgroundColor={textInputColor}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -123,7 +122,6 @@ EnterPasswordOnLogin.propTypes = {
     secondaryBackgroundColor: PropTypes.string.isRequired,
     negativeColor: PropTypes.object.isRequired,
     navigateToNodeSelection: PropTypes.func.isRequired,
-    textInputColor: PropTypes.string.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPasswordOnLogin);
