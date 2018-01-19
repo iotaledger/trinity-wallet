@@ -14,7 +14,7 @@ import MessageInput from 'components/UI/input/Message';
 import Button from 'components/UI/Button';
 import Modal from 'components/UI/Modal';
 import css from 'components/Main/Send.css';
-import store from 'store';
+// import store from 'store';
 
 class Send extends React.PureComponent {
     static propTypes = {
@@ -33,10 +33,10 @@ class Send extends React.PureComponent {
         isModalVisible: false,
     };
 
-    componentWillMount() {
-        console.log(store.getState());
-        console.log(store);
-    }
+    // componentWillMount() {
+    //     console.log(store.getState());
+    //     console.log(store);
+    // }
 
     onAddressChange = value => {
         this.setState(() => ({
