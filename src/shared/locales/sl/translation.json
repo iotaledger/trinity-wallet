@@ -148,7 +148,7 @@
     "receive": {
         "addressCopied": "Naslov kopiran",
         "addressCopiedExplanation": "Vaš naslov je bil kopiran v odložišče.",
-        "generateNewAddress": "Ustvari nov naslov",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Neobvezno sporočilo",
         "removeMessage": "ODSTRANI SPOROČILO"
     },
@@ -236,9 +236,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Tega dejanja ni mogoče razveljaviti.",
-        "warning1": "Vsi vaši podatki o denarnici vlkjucno z vašim",
-        "warning2": " generiranim številom, geslom, ",
-        "warning3": "in",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " ostali podatki o računu",
         "warning5": " bodo izgubljeni.",
         "areYouSure": "Ali ste prepričani da želite nadaljevati?"
@@ -253,7 +253,7 @@
         "doYouAlreadyHaveASeed": "Ali že imate seed, ki bi ga želeli uporabiti?",
         "seedExplanation": "IOTA seed je kot uporabniško ime in geslo za vaš račun, združeni v enoten niz 81 znakov.",
         "explanation1": "Uporabljate jo lahko za dostop do vaših sredstev iz",
-        "explanation2": " katere koli denarnice ",
+        "explanation2": " any wallet",
         "explanation3": ", na",
         "explanation4": " kateri koli napravi",
         "explanation5": ". Ampak če izgubite vašo generirano vrednost boste izgubili tudi vaš IOTA.",
