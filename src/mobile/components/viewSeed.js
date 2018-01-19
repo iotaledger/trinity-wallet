@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import Fonts from '../theme/Fonts';
 import Seedbox from '../components/seedBox.js';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
@@ -82,7 +82,7 @@ class ViewSeed extends Component {
     }
 
     render() {
-        const { t, textColor, secondaryBackgroundColor, borderColor, arrowLeftImagePath } = this.props;
+        const { t, textColor, secondaryBackgroundColor, borderColor, arrowLeftImagePath, negativeColor } = this.props;
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -94,25 +94,19 @@ class ViewSeed extends Component {
                         )}
                         {!this.state.showSeed && (
                             <View style={styles.textFieldContainer}>
-                                <TextField
-                                    style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={width / 31.8}
-                                    fontSize={width / 20.7}
-                                    labelPadding={3}
-                                    baseColor={secondaryBackgroundColor}
-                                    label="Password"
-                                    tintColor={THEMES.getHSL(this.props.negativeColor)}
+                                <CustomTextInput
+                                    label={t('global:password')}
+                                    onChangeText={password => this.setState({ password })}
+                                    containerStyle={{ width: width / 1.4 }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
-                                    value={this.state.password}
-                                    onChangeText={password => this.setState({ password })}
-                                    containerStyle={{
-                                        width: width / 1.4,
-                                    }}
                                     secureTextEntry
+                                    onSubmitEditing={this.handleLogin}
+                                    secondaryBackgroundColor={secondaryBackgroundColor}
+                                    negativeColor={negativeColor}
+                                    value={this.state.password}
                                 />
                             </View>
                         )}

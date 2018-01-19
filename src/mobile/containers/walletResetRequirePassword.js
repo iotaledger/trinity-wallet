@@ -14,7 +14,7 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import COLORS from '../theme/Colors';
 import THEMES from '../theme/themes';
 import Fonts from '../theme/Fonts';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Keyboard } from 'react-native';
@@ -162,27 +162,21 @@ class WalletResetRequirePassword extends Component {
                             <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midWrapper}>
-                            <Text style={[styles.generalText, textColor]}>{t('enterPassword')}</Text>
-                            <TextField
-                                style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor={secondaryBackgroundColor}
+                            <CustomTextInput
                                 label={t('global:password')}
-                                tintColor={THEMES.getHSL(negativeColor)}
+                                onChangeText={password => this.setState({ password })}
+                                value={this.state.password}
+                                containerStyle={{ width: width / 1.4 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
-                                value={this.state.password}
-                                onChangeText={password => this.setState({ password })}
-                                containerStyle={{
-                                    width: width / 1.4,
-                                }}
+                                onSubmitEditing={this.handleLogin}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
                                 secureTextEntry
                             />
+                            <View style={{ flex: 0.2 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
@@ -208,17 +202,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topWrapper: {
-        flex: 1.3,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midWrapper: {
-        flex: 1.6,
+        flex: 3.7,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 2,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
