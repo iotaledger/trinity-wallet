@@ -72,7 +72,7 @@ class EnterPassword extends Component {
 
     render() {
         const { password } = this.state;
-        const { t, positiveColor, secondaryBackgroundColor, textColor, negativeColor, textInputColor } = this.props;
+        const { t, positiveColor, secondaryBackgroundColor, textColor, negativeColor } = this.props;
         const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
         const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -87,7 +87,7 @@ class EnterPassword extends Component {
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={this.handleChangeText}
-                            containerStyle={{ width: width / 1.4 }}
+                            containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -96,7 +96,6 @@ class EnterPassword extends Component {
                             onSubmitEditing={this.handleLogin}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             negativeColor={negativeColor}
-                            backgroundColor={textInputColor}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -119,7 +118,6 @@ EnterPassword.propTypes = {
     textColor: PropTypes.object.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
     negativeColor: PropTypes.object.isRequired,
-    textInputColor: PropTypes.string.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPassword);

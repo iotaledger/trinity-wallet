@@ -82,15 +82,7 @@ class ViewSeed extends Component {
     }
 
     render() {
-        const {
-            t,
-            textColor,
-            secondaryBackgroundColor,
-            borderColor,
-            arrowLeftImagePath,
-            textInputColor,
-            negativeColor,
-        } = this.props;
+        const { t, textColor, secondaryBackgroundColor, borderColor, arrowLeftImagePath, negativeColor } = this.props;
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -114,7 +106,6 @@ class ViewSeed extends Component {
                                     onSubmitEditing={this.handleLogin}
                                     secondaryBackgroundColor={secondaryBackgroundColor}
                                     negativeColor={negativeColor}
-                                    backgroundColor={textInputColor}
                                     value={this.state.password}
                                 />
                             </View>
