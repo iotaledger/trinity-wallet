@@ -121,22 +121,22 @@
         "emptyPasswordExplanation": "Você deve digitar uma senha para entrar. Por favor, tente novamente.",
         "enterPassword": "Por favor, digite sua senha.",
         "useSeed": "USAR A SEED",
-        "login": "Iniciar sessão",
-        "selectDifferentNode": "Você quer selecionar um nó diferente?"
+        "login": "INICIAR SESSÃO",
+        "selectDifferentNode": "Você quer selecionar um servidor diferente?"
     },
     "loading": {
-        "loadingFirstTime": "A carregar a Seed pela primeira vez.",
+        "loadingFirstTime": "Carregando a Seed pela primeira vez.",
         "thisMayTake": "Isto pode demorar algum tempo.",
-        "youMayNotice": "Pode notar um abrandamento do seu dispositivo."
+        "youMayNotice": "Você pode notar seu dispositivo ficar mais lento."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Não foi gerada a Seed",
-        "seedNotGeneratedExplanation": "Por favor pressione o botão \"Gerar Nova Seed\".",
+        "seedNotGenerated": "A Seed não foi gerada",
+        "seedNotGeneratedExplanation": "Por favor pressione o botão \"OBTER NOVA SEED\".",
         "pressForNewSeed": "PRESSIONE PARA OBTER NOVA SEED",
         "individualLetters": "Digite letras individuais para tornar o processo mais aleatório."
     },
     "onboardingComplete": {
-        "walletReady": "A carteira está configurada e pronta para ser utilizada. Se posteriormente necessitar de efetuar alterações, utilize o menu \"Configurações\"."
+        "walletReady": "A carteira está configurada e pronta para ser utilizada. Se desejar efetuar alterações no futuro, utilize o menu Opções."
     },
     "paperWallet": {
         "clickToPrint": "Clique no botão abaixo para imprimir uma cópia em papel da sua seed.",
@@ -147,17 +147,17 @@
     },
     "receive": {
         "addressCopied": "Endereço copiado",
-        "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
+        "addressCopiedExplanation": "O seu endereço foi copiado para o clipboard.",
         "generateNewAddress": "GERAR NOVO ENDEREÇO",
         "message": "Mensagem opcional",
         "removeMessage": "REMOVER MENSAGEM"
     },
     "saveYourSeed": {
         "seedCleared": "Seed removida",
-        "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
-        "mustSaveYourSeed": "Deverá guardar a sua Seed com ",
+        "seedClearedExplanation": "Para sua segurança, a Seed foi removida do clipboard.",
+        "mustSaveYourSeed": "Você deve guardar a sua Seed com ",
         "atLeastOne": "pelo menos uma ",
-        "ofTheOptions": "das opções listadas em baixo."
+        "ofTheOptions": "das opções listadas abaixo."
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorreta",
