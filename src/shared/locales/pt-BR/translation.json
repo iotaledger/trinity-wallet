@@ -92,34 +92,34 @@
     "copyToClipboard": {
         "seedCleared": "Seed removida",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida do clipboard.",
-        "seedCopied": "A Seed foi copiada para a área de transferência",
-        "seedCopiedExplanation": "A Seed será removida quando pressionar \"CONCLUÍDO\" ou decorridos 60 segundos.",
-        "clickToCopy": "Clique no botão em baixo e copie a sua Seed para o gestor de palavras-passe.",
-        "doNotStore": "Não grave a sua Seed num arquivo de texto não cifrado.",
-        "copyToClipboard": "Copiar para área de transferência"
+        "seedCopied": "A Seed foi copiada para o clipboard",
+        "seedCopiedExplanation": "A Seed será removida quando pressionar \"CONCLUÍDO\" ou ao passar de 60 segundos.",
+        "clickToCopy": "Clique no botão abaixo e copie a sua Seed para o gerenciador de senha.",
+        "doNotStore": "Não grave a seed em arquivo de texto descriptografado.",
+        "copyToClipboard": "Copiar para o clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém carateres inválidos",
-        "invalidCharactersExplanation": "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
-        "seedTooShort": "A Seed é demasiado curta",
-        "seedTooShortExplanation": "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente de novo.",
-        "seedExplanation": "As Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Não pode utilizar Seeds com mais de {{maxLength}} caracteres.",
-        "neverShare": "NUNCA PARTILHE A SUA SEED COM NINGUÉM"
+        "invalidCharactersExplanation": "Seeds só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
+        "seedTooShort": "A Seed é muito curta",
+        "seedTooShortExplanation": "Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
+        "seedExplanation": "Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Você não pode usar Seeds com mais de {{maxLength}} caracteres.",
+        "neverShare": "NUNCA REVELE A SUA SEED PARA NINGUÉM"
     },
     "home": {
         "balance": "SALDO",
         "send": "ENVIAR",
         "receive": "RECEBER",
         "history": "HISTÓRICO",
-        "settings": "CONFIGURAÇÕES"
+        "settings": "OPÇÕES"
     },
     "languageSetup": {
         "language": "Idioma"
     },
     "login": {
-        "emptyPassword": "Palavra-passe vazia",
-        "emptyPasswordExplanation": "Deve inserir uma palavra-passe para iniciar a sessão, Por favor, tente de novo.",
-        "enterPassword": "Por favor, insira a sua palavra-passe.",
+        "emptyPassword": "Senha vazia",
+        "emptyPasswordExplanation": "Você deve digitar uma senha para entrar. Por favor, tente novamente.",
+        "enterPassword": "Por favor, digite sua senha.",
         "useSeed": "USAR A SEED",
         "login": "Iniciar sessão",
         "selectDifferentNode": "Você quer selecionar um nó diferente?"
