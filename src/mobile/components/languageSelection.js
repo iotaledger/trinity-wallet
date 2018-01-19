@@ -73,6 +73,7 @@ class LanguageSelection extends Component {
     static propTypes = {
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        setLanguage: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -82,8 +83,10 @@ class LanguageSelection extends Component {
     }
 
     saveLanguageSelection() {
-        const { backPress } = this.props;
-        i18next.changeLanguage(getLocaleFromLabel(this.languageSelected));
+        const { backPress, setLanguage } = this.props;
+        const nextLanguage = this.languageSelected;
+        setLanguage(nextLanguage);
+        i18next.changeLanguage(getLocaleFromLabel(nextLanguage));
         backPress();
     }
 
@@ -95,7 +98,7 @@ class LanguageSelection extends Component {
             secondaryBackgroundColor,
             arrowLeftImagePath,
             tickImagePath,
-            currencySelection,
+            language,
         } = this.props;
 
         return (
@@ -113,9 +116,9 @@ class LanguageSelection extends Component {
                             onRef={c => {
                                 this.dropdown = c;
                             }}
-                            title={this.languageSelected} //TODO: Ask if this is correct
+                            title={language}
                             dropdownWidth={styles.dropdownWidth}
-                            defaultOption={currentLanguageLabel}
+                            defaultOption={language}
                             options={I18N_LOCALE_LABELS}
                             saveSelection={language => {
                                 this.languageSelected = language;

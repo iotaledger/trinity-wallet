@@ -11,6 +11,8 @@ import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
 import THEMES from '../theme/themes';
+import i18next from 'i18next';
+import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 
 const version = getVersion();
 const build = getBuildNumber();
@@ -32,9 +34,12 @@ class InitialLoading extends Component {
 
     componentDidMount() {
         this.animation.play();
-        this.timeout = setTimeout(this.onLoaded.bind(this), 0);
+        this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
     }
-
+    componentWillMount() {
+        const { language } = this.props;
+        i18next.changeLanguage(getLocaleFromLabel(language));
+    }
     onLoaded() {
         if (!this.props.onboardingComplete) {
             this.clearKeychain();
@@ -50,7 +55,7 @@ class InitialLoading extends Component {
             });
         } else {
             this.props.navigator.push({
-                screen: 'home',
+                screen: 'login',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -133,6 +138,7 @@ const mapStateToProps = state => ({
     onboardingComplete: state.account.onboardingComplete,
     backgroundColor: state.settings.theme.backgroundColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    language: state.settings.language,
 });
 
 export default connect(mapStateToProps, null)(InitialLoading);
