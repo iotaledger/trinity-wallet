@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: GENERAL.borderRadiusSmall,
         borderBottomRightRadius: GENERAL.borderRadiusSmall,
         width: width / 1.36,
-        backgroundColor: 'rgba(255, 255, 255, 0.04)',
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: height / 23,
@@ -34,7 +33,6 @@ const styles = StyleSheet.create({
     iconContainer: {
         width: height / 26,
         height: height / 48,
-        backgroundColor: 'rgba(255, 255, 255, 0.11)',
         borderBottomLeftRadius: height / 24,
         borderBottomRightRadius: height / 24,
         position: 'absolute',
@@ -49,7 +47,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     banner: {
-        backgroundColor: 'rgba(255, 255, 255, 0.15)',
         borderTopLeftRadius: GENERAL.borderRadiusSmall,
         borderTopRightRadius: GENERAL.borderRadiusSmall,
         height: height / 23,

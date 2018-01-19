@@ -111,57 +111,50 @@ class UseExistingSeed extends React.Component {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={styles.seedContainer}>
-                            <View style={{ flex: 0.5 }} />
-                            <View style={styles.titleContainer}>
-                                <Text style={[styles.title, textColor]}>{t('useExistingSeed:title')}</Text>
-                            </View>
-                            <View style={{ flex: 1 }} />
-                            <View style={{ flexDirection: 'row', width: width / 1.4 }}>
-                                <View style={styles.textFieldContainer}>
-                                    <CustomTextInput
-                                        label="Seed"
-                                        onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
-                                        containerStyle={{ width: width / 1.4 }}
-                                        autoCapitalize={'none'}
-                                        maxLength={MAX_SEED_LENGTH}
-                                        value={seed}
-                                        autoCorrect={false}
-                                        enablesReturnKeyAutomatically
-                                        returnKeyType="next"
-                                        onSubmitEditing={() => this.accountNameField.focus()}
-                                        secondaryBackgroundColor={secondaryBackgroundColor}
-                                        negativeColor={negativeColor}
-                                        widget="qr"
-                                        onQRPress={() => this.onQRPress()}
-                                    />
-                                </View>
-                            </View>
-                            <View style={{ flex: 1 }} />
-                            <View style={[styles.checksum, checksumBackgroundColor]}>
-                                <Text style={[styles.checksumText, textColor]}>{this.getChecksumValue()}</Text>
-                            </View>
+                        <View style={{ flex: 0.8 }} />
+                        <View style={styles.titleContainer}>
+                            <Text style={[styles.title, textColor]}>{t('useExistingSeed:title')}</Text>
                         </View>
-                        <View style={{ flex: 1 }} />
-                        <View style={styles.accountNameContainer}>
-                            <CustomTextInput
-                                onRef={c => {
-                                    this.accountNameField = c;
-                                }}
-                                label={t('addAdditionalSeed:accountName')}
-                                onChangeText={accountName => this.setState({ accountName })}
-                                containerStyle={{ width: width / 1.4 }}
-                                autoCapitalize={'words'}
-                                maxLength={MAX_SEED_LENGTH}
-                                value={seed}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="done"
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
-                                value={accountName}
-                            />
+                        <View style={{ flex: 0.4 }} />
+                        <CustomTextInput
+                            label="Seed"
+                            onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
+                            containerStyle={{ width: width / 1.4 }}
+                            autoCapitalize={'none'}
+                            maxLength={MAX_SEED_LENGTH}
+                            value={seed}
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="next"
+                            onSubmitEditing={() => this.accountNameField.focus()}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            negativeColor={negativeColor}
+                            widget="qr"
+                            onQRPress={() => this.onQRPress()}
+                        />
+                        <View style={{ flex: 0.6 }} />
+                        <View style={[styles.checksum, checksumBackgroundColor]}>
+                            <Text style={[styles.checksumText, textColor]}>{this.getChecksumValue()}</Text>
                         </View>
+                        <View style={{ flex: 0.3 }} />
+                        <CustomTextInput
+                            onRef={c => {
+                                this.accountNameField = c;
+                            }}
+                            label={t('addAdditionalSeed:accountName')}
+                            onChangeText={accountName => this.setState({ accountName })}
+                            containerStyle={{ width: width / 1.4 }}
+                            autoCapitalize={'words'}
+                            maxLength={MAX_SEED_LENGTH}
+                            value={seed}
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="done"
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            negativeColor={negativeColor}
+                            value={accountName}
+                        />
+                        <View style={{ flex: 1.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
@@ -220,7 +213,8 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         flex: 9,
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     logoContainer: {
         justifyContent: 'center',

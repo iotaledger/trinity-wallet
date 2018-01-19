@@ -127,7 +127,7 @@ class AddCustomNode extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.2 }} />
+                        <View style={{ flex: 0.3 }} />
                         <CustomTextInput
                             label={t('customNode')}
                             negativeColor={negativeColor}
