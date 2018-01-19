@@ -209,7 +209,7 @@
         "language": "Idioma",
         "accountManagement": "Gerenciamento de conta",
         "addNewSeed": "Adicionar nova seed",
-        "twoFA": "Autenticação 2-FA",
+        "twoFA": "Autenticação 2FA",
         "changePassword": "Mudar senha",
         "advanced": "Configurações avançadas",
         "logout": "Terminar sessão",
@@ -237,11 +237,11 @@
     "resetWalletConfirmation": {
         "thisAction": "Esta ação não pode ser anulada.",
         "warning1": "Toda a informação da sua carteira, incluindo",
-        "warning2": " Seeds, palavra-passe, ",
+        "warning2": " seeds, senha, ",
         "warning3": "e",
         "warning4": " outras informações da conta",
         "warning5": " serão perdidas.",
-        "areYouSure": "Tem a certeza que deseja continuar?"
+        "areYouSure": "Tem certeza que deseja continuar?"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
