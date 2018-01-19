@@ -42,10 +42,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
-    subHeaderWrapper: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     subHeaderText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
@@ -140,24 +136,20 @@ class TwoFactorSetupEnterToken extends Component {
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                     </View>
                     <View style={styles.midWrapper}>
-                        <View style={{ flex: 0.1 }} />
-                        <View style={{ alignItems: 'center', flex: 1 }}>
-                            <Text style={[styles.subHeaderText, textColor]}>Enter the token from your 2FA app</Text>
-                            <View style={styles.textfieldsContainer}>
-                                <CustomTextInput
-                                    label="Token"
-                                    onChangeText={code => this.setState({ code })}
-                                    containerStyle={{ width: width / 1.36 }}
-                                    autoCapitalize={'none'}
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    onSubmitEditing={this.check2FA}
-                                    secondaryBackgroundColor={secondaryBackgroundColor}
-                                    negativeColor={negativeColor}
-                                />
-                            </View>
-                        </View>
+                        <View style={{ flex: 0.25 }} />
+                        <Text style={[styles.subHeaderText, textColor]}>Enter the token from your 2FA app</Text>
+                        <CustomTextInput
+                            label="Token"
+                            onChangeText={code => this.setState({ code })}
+                            containerStyle={{ width: width / 1.36 }}
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="done"
+                            onSubmitEditing={this.check2FA}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            negativeColor={negativeColor}
+                        />
                     </View>
                     <View style={styles.bottomWrapper}>
                         <OnboardingButtons

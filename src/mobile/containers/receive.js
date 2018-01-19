@@ -176,7 +176,7 @@ class Receive extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View style={{ flex: 0.3 }} />
+                    <View style={{ flex: 0.6 }} />
                     <View style={[styles.qrContainer, opacity, qrBorder]}>
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
@@ -238,7 +238,7 @@ class Receive extends Component {
                     <View style={{ flex: 0.3 }} />
                     {receiveAddress === ' ' &&
                         (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
-                            <View style={{ flex: 0.8 }} />
+                            <View style={{ flex: 0.6 }} />
                         )}
                     {/*{receiveAddress === ' ' &&
                         (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
@@ -266,7 +266,7 @@ class Receive extends Component {
                             </View>
                         )}*/}
                     {(isGettingSensitiveInfoToGenerateAddress || isGeneratingReceiveAddress) && (
-                        <View style={{ flex: 0.8 }}>
+                        <View style={{ flex: 0.6 }}>
                             <ActivityIndicator
                                 animating={isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress}
                                 style={styles.activityIndicator}
@@ -277,7 +277,7 @@ class Receive extends Component {
                     )}
                     {receiveAddress.length > 1 &&
                         message.length >= 1 && (
-                            <View style={{ flex: 0.8 }}>
+                            <View style={{ flex: 0.6 }}>
                                 <View style={{ flex: 0.2 }} />
                                 <TouchableOpacity
                                     onPress={() => {
@@ -293,7 +293,7 @@ class Receive extends Component {
                                 </TouchableOpacity>
                             </View>
                         )}
-                    {receiveAddress.length > 1 && message.length === 0 && <View style={{ flex: 0.8 }} />}
+                    {receiveAddress.length > 1 && message.length === 0 && <View style={{ flex: 0.6 }} />}
                     <View style={{ flex: 0.3 }} />
                 </View>
             </TouchableWithoutFeedback>
