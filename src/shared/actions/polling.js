@@ -432,7 +432,6 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
 
                         // Update pendingTxTailHashes with the new reattachment
                         // Also transfers. Possible reattachment to get confirmed.
-                        console.log('Always gets tx account', txAccount);
                         const selectedAccountInfo = getSelectedAccount(txAccount, getState().account.accountInfo);
                         const existingTransfers = selectedAccountInfo.transfers;
                         const existingPendingTxTailHashes = getPendingTxTailsHashesForSelectedAccount(
