@@ -230,9 +230,9 @@
         "quit": "Sair",
         "edit": "Editar",
         "cut": "Cortar",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
+        "copy": "Copiar",
+        "paste": "Colar",
+        "selectAll": "Selecionar Tudo"
     },
     "resetWalletConfirmation": {
         "thisAction": "Esta ação não pode ser anulada.",
@@ -244,7 +244,7 @@
         "areYouSure": "Tem a certeza que deseja continuar?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Digite sua senha para redefinir a carteira.",
         "cancel": "CANCELAR",
         "reset": "RECONFIGURAR COMPLETAMENTE"
     },
@@ -265,18 +265,18 @@
         "reminder": "Você pode se sentir tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Seu endereço é {{maxSeedLength}} caracteres lidos da esquerda para a direita. Anote seu endereço e código de verificação e",
         "tripleCheck": "verifique com muita ATENÇÃO",
         "thatTheyAreCorrect": "se eles estão corretos."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Pacote hash copiado",
+        "bundleHashCopiedExplanation": "O pacote hash foi copiado para o clipboard.",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
+        "viewSeed": "Ver endereço",
         "viewAddresses": "View addresses",
         "editAccountName": "Edit account name",
         "deleteAccount": "Delete account",
@@ -346,7 +346,7 @@
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
         "infoTextOne": "Toda a informação da sua carteira, incluindo",
-        "infoTextTwo": "Seeds, palavra-passe",
+        "infoTextTwo": "seeds, senha",
         "infoTextThree": "e",
         "infoTextFour": "outras informações da conta",
         "infoTextFive": "serão perdidas."
