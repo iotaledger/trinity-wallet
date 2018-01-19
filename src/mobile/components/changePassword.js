@@ -58,7 +58,7 @@ class ChangePassword extends Component {
 
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     const payload = get(credentials, 'data');
 
                     if (payload) {
@@ -144,40 +144,40 @@ class ChangePassword extends Component {
                             <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
                         </View>
                         {this.renderTextField(
-                            c => {
+                            (c) => {
                                 this.currentPassword = c;
                             },
                             currentPassword,
                             t('currentPassword'),
-                            currentPassword => this.setState({ currentPassword }),
+                            (currentPassword) => this.setState({ currentPassword }),
                             'next',
-                            onSubmitEditing => this.newPassword.focus(),
+                            (onSubmitEditing) => this.newPassword.focus(),
                         )}
                         {this.renderTextField(
-                            c => {
+                            (c) => {
                                 this.newPassword = c;
                             },
                             newPassword,
                             t('newPassword'),
-                            newPassword => this.setState({ newPassword }),
+                            (newPassword) => this.setState({ newPassword }),
                             'next',
-                            onSubmitEditing => this.confirmedNewPassword.focus(),
+                            (onSubmitEditing) => this.confirmedNewPassword.focus(),
                         )}
                         {this.renderTextField(
-                            c => {
+                            (c) => {
                                 this.confirmedNewPassword = c;
                             },
                             confirmedNewPassword,
                             t('confirmPassword'),
-                            confirmedNewPassword => this.setState({ confirmedNewPassword }),
+                            (confirmedNewPassword) => this.setState({ confirmedNewPassword }),
                             'done',
-                            onSubmitEditing => this.changePassword(),
+                            (onSubmitEditing) => this.changePassword(),
                         )}
                         <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={event => this.props.backPress()}
+                            onPress={(event) => this.props.backPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>

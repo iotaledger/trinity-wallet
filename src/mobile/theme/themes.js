@@ -43,7 +43,7 @@ const themes = {
         pendingColor: '#f75602',
         chartLineColor: '#FFA25B',
     },
-    'Light': {
+    Light: {
         backgroundColor: tinycolor(`white`).toHsl(),
         barColor: tinycolor(`white`).toHsl(),
         ctaColor: tinycolor(`white`).toHsl(),
@@ -57,7 +57,7 @@ const themes = {
         pendingColor: '#f75602',
         chartLineColor: 'black',
     },
-    'Dark': {
+    Dark: {
         backgroundColor: tinycolor(`black`).toHsl(),
         barColor: tinycolor(`black`).toHsl(),
         ctaColor: tinycolor(`black`).toHsl(),
@@ -87,7 +87,7 @@ const themes = {
     }, */
 };
 
-const getHSL = color => {
+const getHSL = (color) => {
     return tinycolor(color).toHslString();
 };
 

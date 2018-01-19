@@ -231,7 +231,7 @@ class Send extends Component {
         this.props.getFromKeychainRequest('send', 'makeTransaction');
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
                 if (get(credentials, 'data')) {
@@ -268,9 +268,9 @@ class Send extends Component {
 
     _showModal = () => this.setState({ isModalVisible: true });
 
-    _hideModal = callback =>
+    _hideModal = (callback) =>
         this.setState({ isModalVisible: false }, () => {
-            const callable = fn => isFunction(fn);
+            const callable = (fn) => isFunction(fn);
 
             if (callable(callback)) {
                 setTimeout(callback);
@@ -286,7 +286,7 @@ class Send extends Component {
             case 'qrScanner':
                 modalContent = (
                     <QRScanner
-                        onQRRead={data => this.onQRRead(data)}
+                        onQRRead={(data) => this.onQRRead(data)}
                         hideModal={() => this._hideModal()}
                         backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
                         ctaColor={THEMES.getHSL(this.props.ctaColor)}
@@ -307,7 +307,7 @@ class Send extends Component {
                         denomination={this.state.denomination}
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
-                        hideModal={callback => this._hideModal(callback)}
+                        hideModal={(callback) => this._hideModal(callback)}
                         backgroundColor={THEMES.getHSL(this.props.barColor)}
                         borderColor={{ borderColor: secondaryBackgroundColor }}
                         textColor={{ color: secondaryBackgroundColor }}
@@ -424,12 +424,12 @@ class Send extends Component {
                     <View style={styles.topContainer}>
                         <View style={styles.fieldContainer}>
                             <CustomTextInput
-                                onRef={c => {
+                                onRef={(c) => {
                                     this.addressField = c;
                                 }}
                                 maxLength={90}
                                 label={t('recipientAddress')}
-                                onChangeText={address => this.setState({ address })}
+                                onChangeText={(address) => this.setState({ address })}
                                 containerStyle={{ width: width / 1.3 }}
                                 autoCapitalize={'characters'}
                                 autoCorrect={false}
@@ -445,12 +445,12 @@ class Send extends Component {
                         </View>
                         <View style={styles.fieldContainer}>
                             <CustomTextInput
-                                onRef={c => {
+                                onRef={(c) => {
                                     this.amountField = c;
                                 }}
                                 keyboardType={'numeric'}
                                 label={t('amount')}
-                                onChangeText={amount => this.onAmountType(amount)}
+                                onChangeText={(amount) => this.onAmountType(amount)}
                                 containerStyle={{ width: width / 1.3 }}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -460,7 +460,7 @@ class Send extends Component {
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 denominationText={this.state.denomination}
-                                onDenominationPress={event => this.onDenominationPress()}
+                                onDenominationPress={(event) => this.onDenominationPress()}
                                 value={amount}
                             />
                             <Text style={[styles.conversionText, textColor]}>
@@ -471,7 +471,7 @@ class Send extends Component {
                             </Text>
                         </View>
                         <View style={styles.maxContainer}>
-                            <TouchableOpacity onPress={event => this.onMaxPress()}>
+                            <TouchableOpacity onPress={(event) => this.onMaxPress()}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <View
                                         style={[
@@ -493,12 +493,12 @@ class Send extends Component {
                         </View>
                         <View style={styles.messageFieldContainer}>
                             <CustomTextInput
-                                onRef={c => {
+                                onRef={(c) => {
                                     this.messageField = c;
                                 }}
                                 keyboardType={'numeric'}
                                 label={t('message')}
-                                onChangeText={message => this.setState({ message })}
+                                onChangeText={(message) => this.setState({ message })}
                                 containerStyle={{ width: width / 1.3 }}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -515,7 +515,7 @@ class Send extends Component {
                             !this.props.isGettingSensitiveInfoToMakeTransaction && (
                                 <View style={styles.sendButtonContainer}>
                                     <TouchableOpacity
-                                        onPress={event => {
+                                        onPress={(event) => {
                                             this.setModalContent('transferConfirmation');
                                             this.addressField.blur();
                                             this.amountField.blur();
@@ -674,7 +674,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),

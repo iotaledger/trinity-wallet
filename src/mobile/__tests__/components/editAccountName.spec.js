@@ -7,7 +7,7 @@ import { EditAccountName } from '../../components/editAccountName';
 
 jest.mock('react-native-device-info');
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {

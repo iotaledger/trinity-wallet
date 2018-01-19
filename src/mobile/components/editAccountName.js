@@ -40,7 +40,7 @@ export class EditAccountName extends Component {
                         <View style={styles.textFieldContainer}>
                             <CustomTextInput
                                 label={t('accountName')}
-                                onChangeText={accountName => this.setState({ accountName })}
+                                onChangeText={(accountName) => this.setState({ accountName })}
                                 containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -56,7 +56,7 @@ export class EditAccountName extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={event => this.props.backPress()}
+                            onPress={(event) => this.props.backPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
