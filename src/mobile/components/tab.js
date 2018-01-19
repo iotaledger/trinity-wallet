@@ -4,7 +4,7 @@ import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     button: {
-        width: width / 8,
+        width: width / 5,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
@@ -41,6 +41,7 @@ class Tab extends Component {
                         source={icon}
                     />
                     <Text
+                        numberOfLines={1}
                         style={
                             isActive
                                 ? [styles.iconTitle, styles.fullyOpaque, textColor]

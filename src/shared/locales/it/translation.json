@@ -57,7 +57,8 @@
         "cannotPerformActionExplanation": "Vai alle impostazioni avanzate per reimpostare il portafoglio.",
         "attachToTangleUnavailable": "Collegamento al Tangle non disponibile",
         "attachToTangleUnavailableExplanation":
-            "La funzione di collegamento al Tangle non è disponibile nel nodo che hai selezionato."
+            "La funzione di collegamento al Tangle non è disponibile nel nodo che hai selezionato.",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -239,7 +240,16 @@
         "cannotPerformAction": "Non è possibile eseguire l'azione",
         "cannotPerformActionExplanation": "Vai alle impostazioni avanzate per reimpostare il portafoglio.",
         "poorConnection": "Connessione scadente",
-        "poorConnectionExplanation": "Impossibile modificare la valuta a causa di una cattiva connessione."
+        "poorConnectionExplanation": "Impossibile modificare la valuta a causa di una cattiva connessione.",
+        "hide": "Hide",
+        "hideOthers": "Hide Others",
+        "showAll": "Show All",
+        "quit": "Quit",
+        "edit": "Edit",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "selectAll": "Select All"
     },
     "resetWalletConfirmation": {
         "thisAction": "Questa azione non può essere annullata.",

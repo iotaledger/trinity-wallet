@@ -54,7 +54,8 @@
         "cannotPerformAction": "Kan inte utföra åtgärden",
         "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
         "attachToTangleUnavailable": "Fäst på Tangle otillgänglig",
-        "attachToTangleUnavailableExplanation": "Fäst på Tangle är otillgänglig på din valda nod."
+        "attachToTangleUnavailableExplanation": "Fäst på Tangle är otillgänglig på din valda nod.",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -231,7 +232,16 @@
         "cannotPerformAction": "Kan inte utföra åtgärden",
         "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
         "poorConnection": "Dålig anslutning",
-        "poorConnectionExplanation": "Det gick inte att ändra valuta på grund av en dålig anslutning."
+        "poorConnectionExplanation": "Det gick inte att ändra valuta på grund av en dålig anslutning.",
+        "hide": "Hide",
+        "hideOthers": "Hide Others",
+        "showAll": "Show All",
+        "quit": "Quit",
+        "edit": "Edit",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "selectAll": "Select All"
     },
     "resetWalletConfirmation": {
         "thisAction": "Denna åtgärd kan inte ångras.",

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ListView, Clipboard } from 'react-native';
-import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
 
@@ -53,7 +53,7 @@ class ViewAddresses extends Component {
                                 </TouchableOpacity>
                                 <View style={{ alignItems: 'flex-end', flex: 2, justifyContent: 'center' }}>
                                     <Text style={[styles.balanceText, textColor]}>
-                                        {formatValue(rowData[1].balance)} {formatUnit(rowData[1].balance)}
+                                        {round(formatValue(rowData[1].balance), 1)} {formatUnit(rowData[1].balance)}
                                     </Text>
                                 </View>
                             </View>
@@ -63,9 +63,10 @@ class ViewAddresses extends Component {
                         enableEmptySections
                     />
                 </View>
+                <View style={{ flex: 0.2 }} />
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity
-                        onPress={event => this.props.backPress()}
+                        onPress={(event) => this.props.backPress()}
                         style={{ flex: 1 }}
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     listView: {
-        flex: 9,
+        flex: 8.8,
         justifyContent: 'center',
         width: width,
     },
@@ -143,7 +144,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import THEMES from '../theme/themes';
@@ -71,7 +71,7 @@ class Enter2FA extends Component {
         token2FA: '',
     };
 
-    handleChange2FAToken = token2FA => this.setState({ token2FA });
+    handleChange2FAToken = (token2FA) => this.setState({ token2FA });
 
     handleDonePress = () => {
         const { token2FA } = this.state;
@@ -100,25 +100,18 @@ class Enter2FA extends Component {
                         </View>
                     </View>
                     <View style={styles.midContainer}>
-                        <TextField
-                            style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                            labelFontSize={width / 31.8}
-                            fontSize={width / 20.7}
-                            labelPadding={3}
-                            baseColor={secondaryBackgroundColor}
+                        <CustomTextInput
                             label="Token"
-                            tintColor={THEMES.getHSL(negativeColor)}
+                            onChangeText={this.handleChange2FAToken}
+                            containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
-                            value={codefor2FA}
-                            onChangeText={this.handleChange2FAToken}
-                            containerStyle={{
-                                width: width / 1.4,
-                            }}
                             onSubmitEditing={this.handleDonePress}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            negativeColor={negativeColor}
+                            value={codefor2FA}
                         />
                     </View>
                     <View style={styles.bottomContainer}>

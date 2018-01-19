@@ -13,11 +13,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
-    textFieldContainer: {
-        flex: 1,
-        alignItems: 'center',
-        paddingTop: height / 10,
-    },
     bottomContainer: {
         flex: 1,
         width,
@@ -84,10 +79,10 @@ const styles = StyleSheet.create({
     },
 });
 
-const ManualSync = props => (
+const ManualSync = (props) => (
     <View style={styles.container}>
         <View style={styles.topContainer}>
-            <View style={{ flex: 0.5 }} />
+            <View style={{ flex: 0.8 }} />
             {!props.isSyncing && (
                 <View style={styles.innerContainer}>
                     <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:pressToSync')}</Text>
