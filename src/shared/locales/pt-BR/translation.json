@@ -213,7 +213,7 @@
         "changePassword": "Mudar senha",
         "advanced": "Configurações avançadas",
         "logout": "Terminar sessão",
-        "reset": "Reiniciar completamente a carteira",
+        "reset": "Redefinir a carteira",
         "syncingComplete": "Sincronização completa",
         "syncingCompleteExplanation": "Sua conta foi sincronizada com sucesso.",
         "nicknameChanged": "Nome da conta alterada",
@@ -262,28 +262,28 @@
     "welcome": {
         "thankYou": "Obrigado por baixar a carteira IOTA.",
         "weWillSpend": "Vamos passar os próximos minutos configurando sua carteira.",
-        "reminder": "Você pode se sentir tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo."
+        "reminder": "Você pode se sentir tentado a ignorar alguns passos, mas aconselhamos que conclua o processo."
     },
     "writeSeedDown": {
         "yourSeedIs": "Seu endereço é {{maxSeedLength}} caracteres lidos da esquerda para a direita. Anote seu endereço e código de verificação e",
-        "tripleCheck": "verifique com muita ATENÇÃO",
+        "tripleCheck": "verifique várias vezes",
         "thatTheyAreCorrect": "se eles estão corretos."
     },
     "history": {
         "bundleHashCopied": "Pacote hash copiado",
         "bundleHashCopiedExplanation": "O pacote hash foi copiado para o clipboard.",
         "addressCopied": "Endereço copiado",
-        "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência."
+        "addressCopiedExplanation": "O seu endereço foi copiado para o clipboard."
     },
     "accountManagement": {
-        "viewSeed": "Ver endereço",
+        "viewSeed": "Ver seed",
         "viewAddresses": "Ver endereços",
         "editAccountName": "Editar o nome da conta",
         "deleteAccount": "Excluir conta",
         "addNewAccount": "Adicionar nova conta"
     },
     "addCustomNode": {
-        "customNode": "Nó personalizado",
+        "customNode": "Servidor personalizado",
         "add": "Adicionar"
     },
     "addNewAccount": {
