@@ -88,6 +88,7 @@ class Send extends Component {
             modalContent: '',
             maxPressed: false,
             maxColor: props.secondaryBackgroundColor,
+            maxText: 'SEND MAX',
         };
     }
 
@@ -127,11 +128,21 @@ class Send extends Component {
             amount: max,
             maxPressed: true,
             maxColor: '#FF6C69',
+            maxText: 'MAXIMUM amount selected',
         });
     }
 
     onAmountType(amount) {
-        this.setState({ amount, maxPressed: false, maxColor: this.props.secondaryBackgroundColor });
+        if (amount === (this.props.balance / this.getUnitMultiplier()).toString()) {
+            this.onMaxPress();
+        } else {
+            this.setState({
+                amount,
+                maxPressed: false,
+                maxColor: this.props.secondaryBackgroundColor,
+                maxText: 'SEND MAX',
+            });
+        }
     }
 
     isValidAddress(address) {
@@ -466,15 +477,17 @@ class Send extends Component {
                                         style={[
                                             {
                                                 width: width / 20,
-                                                borderRadius: GENERAL.borderRadiusSmall,
+                                                borderRadius: width / 40,
                                                 height: width / 20,
-                                                marginRight: width / 40,
+                                                marginRight: width / 50,
                                                 opacity: 0.8,
                                             },
                                             { backgroundColor: this.state.maxColor },
                                         ]}
                                     />
-                                    <Text style={[styles.maxButtonText, { color: this.state.maxColor }]}>SEND MAX</Text>
+                                    <Text style={[styles.maxButtonText, { color: this.state.maxColor }]}>
+                                        {this.state.maxText}
+                                    </Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
