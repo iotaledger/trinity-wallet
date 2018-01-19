@@ -14,16 +14,16 @@
         "keyReuse": "Reutilização da chave",
         "keyReuseError": "Você não pode enviar para um endereço no qual já foi gasto.",
         "invalidResponse": "Resposta inválida",
-        "invalidResponseExplanation": "O servidor devolveu uma resposta inválida.",
+        "invalidResponseExplanation": "O servidor retornou uma resposta inválida.",
         "invalidResponsePollingExplanation": "Falha ao aceder aos dados mais recentes da conta.",
-        "invalidResponseFetchingAccount": "O nó retornou uma resposta inválida ao transmitir informações da sua conta.",
-        "invalidResponseSendingTransfer": "O nó retornou uma resposta inválida ao enviar a transferência.",
+        "invalidResponseFetchingAccount": "O servidor retornou uma resposta inválida ao transmitir informações da sua conta.",
+        "invalidResponseSendingTransfer": "O servidor retornou uma resposta inválida ao enviar a transferência.",
         "seed": "Seed",
         "back": "VOLTAR",
         "backLowercase": "Anterior",
-        "done": "CONCLUÍDO",
-        "doneLowercase": "Concluído",
-        "next": "SEGUINTE",
+        "done": "CONCLUIR",
+        "doneLowercase": "Concluir",
+        "next": "PRÓXIMO",
         "apply": "Confirmar",
         "save": "Salvar",
         "close": "FECHAR",
@@ -340,11 +340,11 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Eu tenho guardado minha seed",
         "reenter": "Agora você será solicitado a redigitar sua semente.",
-        "reenterWarningOne": "If your device fails and you have not saved",
-        "reenterWarningTwo": "your seed, you will lose your IOTA."
+        "reenterWarningOne": "Se seu dispositivo falhar e você não guardou",
+        "reenterWarningTwo": "sua seed, você perderá seu IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "ESTA AÇÃO NÃO PODE SER REVERTIDA.",
         "infoTextOne": "Toda a informação da sua carteira, incluindo seus",
         "infoTextTwo": "seeds, senha",
         "infoTextThree": "e",
@@ -352,7 +352,7 @@
         "infoTextFive": "serão perdidas."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "Você está prestes a enviar {{contents}} para o endereço",
+        "aMessage": "uma mensagem"
     }
 }
