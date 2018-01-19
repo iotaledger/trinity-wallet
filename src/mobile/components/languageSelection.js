@@ -88,7 +88,15 @@ class LanguageSelection extends Component {
     }
 
     render() {
-        const { backPress, t, textColor, secondaryBackgroundColor, tickImagePath, currencySelection } = this.props;
+        const {
+            backPress,
+            t,
+            textColor,
+            secondaryBackgroundColor,
+            arrowLeftImagePath,
+            tickImagePath,
+            currencySelection,
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -100,7 +108,7 @@ class LanguageSelection extends Component {
             >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.2 }} />
+                        <View style={{ flex: 0.4 }} />
                         <Dropdown
                             onRef={c => {
                                 this.dropdown = c;

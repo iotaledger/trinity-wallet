@@ -138,6 +138,7 @@ class ChangePassword extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
+                        <View style={{ flex: 0.2 }} />
                         <View style={[styles.infoTextWrapper, borderColor]}>
                             <Image source={infoImagePath} style={styles.infoIcon} />
                             <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
@@ -172,6 +173,7 @@ class ChangePassword extends Component {
                             'done',
                             onSubmitEditing => this.changePassword(),
                         )}
+                        <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
