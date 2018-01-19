@@ -51,6 +51,7 @@ export const ActionTypes = {
     ADD_SEED_NAME: 'IOTA/ACCOUNT/ADD_SEED_NAME',
     ADD_ADDRESSES: 'IOTA/ACCOUNT/ADD_ADDRESSES',
     SET_BALANCE: 'IOTA/ACCOUNT/SET_BALANCE',
+    SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT: 'IOTA/ACCOUNT/SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT',
     SET_NEW_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/SET_NEW_UNCONFIRMED_BUNDLE_TAILS',
     UPDATE_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/UPDATE_UNCONFIRMED_BUNDLE_TAILS',
     REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS',
@@ -207,6 +208,11 @@ export const getAccountInfoNewSeedAsync = (seed, seedName) => {
         dispatch(setReady());
     };
 };
+
+export const setPendingTransactionTailsHashesForAccount = (payload) => ({
+    type: ActionTypes.SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT,
+    payload,
+});
 
 export const fetchFullAccountInfoForFirstUse = (
     seed,
@@ -491,7 +497,11 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
     // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
     // Also check if it was a value transfer
     const tail = filter(newTransferBundle, (tx) => tx.currentIndex === 0);
-    const updatedUnconfirmedBundleTails = value ? { [bundle]: tail } : existingUnconfirmedBundleTails;
+    const updatedUnconfirmedBundleTails = value
+        ? {
+              [bundle]: map(tail, (t) => ({ ...t, account: accountName })), // Assign account name to each tx
+          }
+        : existingUnconfirmedBundleTails;
     const updatedPendingTxTailsHashes = [...pendingTxTailsHashes, ...map(tail, (t) => t.hash)];
 
     if (!isEmpty(updatedUnspentAddresses)) {

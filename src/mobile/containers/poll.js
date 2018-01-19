@@ -15,7 +15,7 @@ import {
     getAccountInfo,
     promoteTransfer,
 } from '../../shared/actions/polling';
-import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from '../../shared/actions/account';
+import { removeBundleFromUnconfirmedBundleTails } from '../../shared/actions/account';
 import keychain, { getSeed } from '../util/keychain';
 import { isWithinADay } from '../../shared/libs/promoter';
 import { sortWithProp } from '../../shared/libs/accountUtils';
@@ -43,7 +43,6 @@ export class Poll extends Component {
         fetchChartData: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         promoteTransfer: PropTypes.func.isRequired,
-        setNewUnconfirmedBundleTails: PropTypes.func.isRequired,
         removeBundleFromUnconfirmedBundleTails: PropTypes.func.isRequired,
     };
 
@@ -181,7 +180,6 @@ const mapDispatchToProps = {
     setPollFor,
     getAccountInfo,
     promoteTransfer,
-    setNewUnconfirmedBundleTails,
     removeBundleFromUnconfirmedBundleTails,
 };
 
