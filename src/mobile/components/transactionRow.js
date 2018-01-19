@@ -155,7 +155,7 @@ class TransactionRow extends React.Component {
                                 style={[
                                     styles.status,
                                     { color: positiveColor },
-                                    !isReceived && { color: negativeColor },
+                                    !isReceived && { color: positiveColor },
                                     !hasPersistence && { color: pendingColor },
                                 ]}
                             >
