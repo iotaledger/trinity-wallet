@@ -65,13 +65,13 @@ class SetPassword extends Component {
                         overrideBackPress: true,
                     });
                 })
-                .catch(err => console.error(err));
+                .catch((err) => console.error(err));
         };
 
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password === this.state.reentry) {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     if (isEmpty(credentials)) {
                         return ifNoKeychainDuplicates(
                             this.state.password,
@@ -154,7 +154,7 @@ class SetPassword extends Component {
                             <View style={{ flex: 0.2 }} />
                             <CustomTextInput
                                 label={t('global:password')}
-                                onChangeText={password => this.setState({ password })}
+                                onChangeText={(password) => this.setState({ password })}
                                 containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -166,11 +166,11 @@ class SetPassword extends Component {
                             />
                             <View style={{ flex: 0.2 }} />
                             <CustomTextInput
-                                onRef={c => {
+                                onRef={(c) => {
                                     this.reentry = c;
                                 }}
                                 label={t('retypePassword')}
-                                onChangeText={reentry => this.setState({ reentry })}
+                                onChangeText={(reentry) => this.setState({ reentry })}
                                 containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
 });
 

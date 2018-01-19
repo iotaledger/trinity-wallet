@@ -41,7 +41,7 @@ class ViewSeed extends Component {
         if (this.state.password === this.props.password) {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     const data = get(credentials, 'data');
 
                     if (!data) {
@@ -52,7 +52,7 @@ class ViewSeed extends Component {
                         this.setState({ showSeed: true });
                     }
                 })
-                .catch(err => console.log(err));
+                .catch((err) => console.log(err));
         } else {
             this.props.onWrongPassword();
         }
@@ -66,7 +66,7 @@ class ViewSeed extends Component {
         AppState.removeEventListener('change', this._handleAppStateChange);
     }
 
-    _handleAppStateChange = nextAppState => {
+    _handleAppStateChange = (nextAppState) => {
         if (nextAppState.match(/inactive|background/)) {
             this.hideSeed();
         }
@@ -96,7 +96,7 @@ class ViewSeed extends Component {
                             <View style={styles.textFieldContainer}>
                                 <CustomTextInput
                                     label={t('global:password')}
-                                    onChangeText={password => this.setState({ password })}
+                                    onChangeText={(password) => this.setState({ password })}
                                     containerStyle={{ width: width / 1.4 }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
@@ -153,7 +153,7 @@ class ViewSeed extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={event => this.props.backPress()}
+                            onPress={(event) => this.props.backPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>

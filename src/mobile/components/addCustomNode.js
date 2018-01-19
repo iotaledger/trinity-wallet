@@ -131,7 +131,7 @@ class AddCustomNode extends Component {
                         <CustomTextInput
                             label={t('customNode')}
                             negativeColor={negativeColor}
-                            onChangeText={customNode => this.setState({ customNode })}
+                            onChangeText={(customNode) => this.setState({ customNode })}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}

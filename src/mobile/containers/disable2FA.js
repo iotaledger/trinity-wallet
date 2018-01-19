@@ -103,7 +103,7 @@ class Disable2FA extends Component {
                             <Text style={[styles.generalText, textColor]}>Enter your token to disable 2FA</Text>
                             <CustomTextInput
                                 label="Token"
-                                onChangeText={token => this.setState({ token })}
+                                onChangeText={(token) => this.setState({ token })}
                                 containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
     key2FA: state.account.key2FA,
