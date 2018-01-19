@@ -55,7 +55,8 @@
         "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
         "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
         "attachToTangleUnavailable": "Η επισύναψη στο Tangle δεν είναι διαθέσιμη",
-        "attachToTangleUnavailableExplanation": "Επισύναψη στο Tangle δεν είναι διαθέσιμη για το επιλεγμένο κόμβο."
+        "attachToTangleUnavailableExplanation": "Επισύναψη στο Tangle δεν είναι διαθέσιμη για το επιλεγμένο κόμβο.",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -241,7 +242,16 @@
         "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
         "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
         "poorConnection": "Κακή σύνδεση",
-        "poorConnectionExplanation": "Απέτυχε η αλλαγή νομίσματος εξαιτίας κακής σύνδεσης."
+        "poorConnectionExplanation": "Απέτυχε η αλλαγή νομίσματος εξαιτίας κακής σύνδεσης.",
+        "hide": "Hide",
+        "hideOthers": "Hide Others",
+        "showAll": "Show All",
+        "quit": "Quit",
+        "edit": "Edit",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "selectAll": "Select All"
     },
     "resetWalletConfirmation": {
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
