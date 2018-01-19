@@ -73,6 +73,7 @@ class LanguageSelection extends Component {
     static propTypes = {
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        setLanguage: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -82,13 +83,23 @@ class LanguageSelection extends Component {
     }
 
     saveLanguageSelection() {
-        const { backPress } = this.props;
-        i18next.changeLanguage(getLocaleFromLabel(this.languageSelected));
+        const { backPress, setLanguage } = this.props;
+        const nextLanguage = this.languageSelected;
+        setLanguage(nextLanguage);
+        i18next.changeLanguage(getLocaleFromLabel(nextLanguage));
         backPress();
     }
 
     render() {
-        const { backPress, t, textColor, secondaryBackgroundColor, tickImagePath, currencySelection } = this.props;
+        const {
+            backPress,
+            t,
+            textColor,
+            secondaryBackgroundColor,
+            arrowLeftImagePath,
+            tickImagePath,
+            language,
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -100,14 +111,14 @@ class LanguageSelection extends Component {
             >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.2 }} />
+                        <View style={{ flex: 0.4 }} />
                         <Dropdown
                             onRef={c => {
                                 this.dropdown = c;
                             }}
-                            title={this.languageSelected} //TODO: Ask if this is correct
+                            title={language}
                             dropdownWidth={styles.dropdownWidth}
-                            defaultOption={currentLanguageLabel}
+                            defaultOption={language}
                             options={I18N_LOCALE_LABELS}
                             saveSelection={language => {
                                 this.languageSelected = language;
