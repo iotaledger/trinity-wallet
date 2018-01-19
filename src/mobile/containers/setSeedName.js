@@ -36,12 +36,6 @@ export class SetSeedName extends Component {
         };
     }
 
-    componentDidMount() {
-        if (this.nameInput) {
-            this.nameInput.focus();
-        }
-    }
-
     navigateTo(screen) {
         if (screen === 'loading') {
             return this.props.navigator.push({
@@ -193,9 +187,6 @@ export class SetSeedName extends Component {
                                 onSubmitEditing={() => this.onDonePress()}
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
-                                ref={input => {
-                                    this.nameInput = input;
-                                }}
                                 value={accountName}
                             />
                             <View style={{ flex: 0.3 }} />

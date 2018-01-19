@@ -424,13 +424,12 @@ class Send extends Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="next"
-                                onSubmitEditing={() => this.amountField.onFocus()}
+                                onSubmitEditing={() => this.amountField.focus()}
                                 widget="qr"
                                 onQRPress={() => this.setModalContent('qrScanner')}
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 value={address}
-                                onFocus={() => this.onFocus()}
                             />
                         </View>
                         <View style={styles.fieldContainer}>
@@ -445,14 +444,13 @@ class Send extends Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="next"
-                                onSubmitEditing={() => this.messageField.onFocus()}
+                                onSubmitEditing={() => this.messageField.focus()}
                                 widget="denomination"
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 denominationText={this.state.denomination}
                                 onDenominationPress={event => this.onDenominationPress()}
                                 value={amount}
-                                onFocus={() => this.onFocus()}
                             />
                             <Text style={[styles.conversionText, textColor]}>
                                 {' '}
@@ -637,7 +635,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         backgroundColor: 'transparent',
         position: 'absolute',
-        bottom: height / 25,
+        bottom: height / 27.5,
         right: width / 7.8,
     },
     maxButtonText: {
