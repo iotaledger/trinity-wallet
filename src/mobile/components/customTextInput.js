@@ -140,6 +140,7 @@ class CustomTextInput extends React.Component {
             widget,
             backgroundColor,
             secondaryBackgroundColor,
+            negativeColor,
             ...restProps
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
@@ -160,6 +161,7 @@ class CustomTextInput extends React.Component {
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
                         onChangeText={onChangeText}
+                        selectionColor={THEMES.getHSL(negativeColor)}
                     />
                     {(widget === 'qr' && this.renderQR(widgetBorderColor)) ||
                         (widget === 'denomination' && this.renderDenomination(widgetBorderColor))}
