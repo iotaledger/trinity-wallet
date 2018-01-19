@@ -70,7 +70,9 @@ class Receive extends Component {
     }
 
     componentWillMount() {
-        this.onGeneratePress();
+        if(!this.props.isGeneratingReceiveAddress){
+            this.onGeneratePress();
+        }
     }
 
     componentWillUnmount() {
