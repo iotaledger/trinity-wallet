@@ -26,6 +26,7 @@ import {
     getCurrencyData,
     addCustomPoWNode,
     updateTheme,
+    setLanguage,
 } from 'iota-wallet-shared-modules/actions/settings';
 import whiteModeImagePath from 'iota-wallet-shared-modules/images/mode-white.png';
 import whiteThemeImagePath from 'iota-wallet-shared-modules/images/theme-white.png';
@@ -178,6 +179,8 @@ class Settings extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
+        setLanguage: PropTypes.func.isRequired,
+        language: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -209,6 +212,7 @@ class Settings extends Component {
             extraColor,
             ctaBorderColor,
             secondaryCtaColor,
+            language,
         } = this.props;
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -239,7 +243,7 @@ class Settings extends Component {
                 onThemePress: () => this.props.setSetting('themeCustomisation'),
                 onModePress: () => this.featureUnavailable(),
                 mode: this.props.mode,
-                onLanguagePress: () => this.featureUnavailable(),
+                onLanguagePress: () => this.props.setSetting('languageSelection'),
                 themeName: this.props.themeName,
                 currency: this.props.currency,
                 borderBottomColor: { borderBottomColor: secondaryBackgroundColor },
@@ -385,6 +389,8 @@ class Settings extends Component {
                 textColor: { color: secondaryBackgroundColor },
                 tickImagePath,
                 arrowLeftImagePath,
+                language,
+                setLanguage: lang => this.props.setLanguage(lang),
             },
             changePassword: {
                 password: this.props.password,
@@ -797,6 +803,7 @@ const mapDispatchToProps = {
     updateTheme,
     setAdditionalAccountInfo,
     update2FA,
+    setLanguage,
 };
 
 const mapStateToProps = state => ({
@@ -828,6 +835,7 @@ const mapStateToProps = state => ({
     isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
     hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
+    language: state.settings.language,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(

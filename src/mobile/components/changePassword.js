@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import Colors from '../theme/Colors';
@@ -21,6 +21,8 @@ class ChangePassword extends Component {
         generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -48,7 +50,7 @@ class ChangePassword extends Component {
 
     changePassword() {
         const isValid = this.isValid();
-        const { password, setPassword, generateAlert, t } = this.props;
+        const { setPassword, generateAlert, t } = this.props;
         const { newPassword } = this.state;
 
         if (isValid) {
@@ -91,27 +93,25 @@ class ChangePassword extends Component {
         // This should be abstracted away as an independent component
         // We are using almost the same field styles and props
         // across all app
+
+        const { negativeColor, secondaryBackgroundColor } = this.props;
         const props = {
-            ref: ref,
-            style: [styles.textField, this.props.textColor],
-            labelTextStyle: { fontFamily: Fonts.tertiary },
-            labelFontSize: height / 55,
-            fontSize: height / 40,
-            baseColor: this.props.secondaryBackgroundColor,
-            tintColor: THEMES.getHSL(this.props.negativeColor),
+            onRef: ref,
+            label,
+            onChangeText,
+            containerStyle: { width: width / 1.36 },
             autoCapitalize: 'none',
             autoCorrect: false,
             enablesReturnKeyAutomatically: true,
-            containerStyle: styles.textFieldContainer,
             secureTextEntry: true,
-            label,
-            value,
-            onChangeText,
             returnKeyType,
             onSubmitEditing,
+            value,
+            secondaryBackgroundColor: secondaryBackgroundColor,
+            negativeColor: negativeColor,
         };
 
-        return <TextField {...props} />;
+        return <CustomTextInput {...props} />;
     }
 
     renderInvalidSubmissionAlerts() {
@@ -138,34 +138,42 @@ class ChangePassword extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
+                        <View style={{ flex: 0.2 }} />
                         <View style={[styles.infoTextWrapper, borderColor]}>
                             <Image source={infoImagePath} style={styles.infoIcon} />
                             <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
                         </View>
                         {this.renderTextField(
-                            'currentPassword',
+                            c => {
+                                this.currentPassword = c;
+                            },
                             currentPassword,
                             t('currentPassword'),
                             currentPassword => this.setState({ currentPassword }),
                             'next',
-                            onSubmitEditing => this.refs.newPassword.focus(),
+                            onSubmitEditing => this.newPassword.focus(),
                         )}
                         {this.renderTextField(
-                            'newPassword',
+                            c => {
+                                this.newPassword = c;
+                            },
                             newPassword,
                             t('newPassword'),
                             newPassword => this.setState({ newPassword }),
                             'next',
-                            onSubmitEditing => this.refs.confirmedNewPassword.focus(),
+                            onSubmitEditing => this.confirmedNewPassword.focus(),
                         )}
                         {this.renderTextField(
-                            'confirmedNewPassword',
+                            c => {
+                                this.confirmedNewPassword = c;
+                            },
                             confirmedNewPassword,
                             t('confirmPassword'),
                             confirmedNewPassword => this.setState({ confirmedNewPassword }),
                             'done',
                             onSubmitEditing => this.changePassword(),
                         )}
+                        <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
@@ -218,7 +226,7 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         flex: 9,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
     },
     logo: {

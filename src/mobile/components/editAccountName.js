@@ -2,7 +2,7 @@ import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
@@ -31,32 +31,25 @@ export class EditAccountName extends Component {
     }
 
     render() {
-        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, tickImagePath } = this.props;
+        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, tickImagePath, negativeColor } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={styles.textFieldContainer}>
-                            <TextField
-                                style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor={secondaryBackgroundColor}
+                            <CustomTextInput
                                 label={t('accountName')}
-                                tintColor={THEMES.getHSL(this.props.negativeColor)}
-                                autoCapitalize="words"
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
-                                returnKeyType="done"
-                                value={this.state.accountName}
                                 onChangeText={accountName => this.setState({ accountName })}
-                                containerStyle={{
-                                    width: width / 1.4,
-                                }}
+                                containerStyle={{ width: width / 1.36 }}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
                                 onSubmitEditing={() => this.props.saveAccountName(trim(this.state.accountName))}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
+                                value={this.state.accountName}
                             />
                         </View>
                         <View style={styles.saveButtonContainer} />
