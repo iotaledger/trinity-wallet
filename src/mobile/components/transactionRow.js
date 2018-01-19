@@ -74,13 +74,13 @@ class TransactionRow extends React.Component {
                                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 2 }}>
                                     <TouchableOpacity
                                         onPress={() => this.props.copyAddress(rowData.address)}
-                                        style={{ flex: 5.1 }}
+                                        style={{ flex: 4.7 }}
                                     >
                                         <Text style={[styles.hash, textColor]} numberOfLines={2}>
                                             {rowData.address}
                                         </Text>
                                     </TouchableOpacity>
-                                    <View style={{ flex: 0.9 }}>
+                                    <View style={{ flex: 1.3 }}>
                                         <Text style={[styles.modalValue, textColor]} numberOfLines={1}>
                                             {' '}
                                             {round(formatValue(rowData.value), 1)} {formatUnit(rowData.value)}
@@ -254,12 +254,12 @@ const styles = StyleSheet.create({
     },
     hash: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'Inconsolata-Regular',
         fontSize: width / 31.8,
     },
     bundleHash: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'Inconsolata-Regular',
         fontSize: width / 31.8,
         marginTop: 2,
     },
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         width: width / 1.15,
-        maxHeight: height / 1.1,
+        maxHeight: height / 1.05,
         padding: width / 25,
         justifyContent: 'center',
         borderRadius: GENERAL.borderRadius,
