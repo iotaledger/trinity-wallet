@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import filter from 'lodash/filter';
+import union from 'lodash/union';
 import { ActionTypes } from '../actions/account';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 
@@ -209,6 +210,14 @@ const account = (
             return {
                 ...state,
                 key2FA: action.payload,
+            };
+        case ActionTypes.SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT:
+            return {
+                ...state,
+                pendingTxTailsHashes: {
+                    ...state.pendingTxTailsHashes,
+                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
+                },
             };
         default:
             return state;
