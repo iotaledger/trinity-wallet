@@ -148,7 +148,7 @@
     "receive": {
         "addressCopied": "تم نسخ العنوان",
         "addressCopiedExplanation": "تم نسخ عنوانك إلى الحافظة.",
-        "generateNewAddress": "إنشاء سييد جديد",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "رسالة اختيارية",
         "removeMessage": "احذف الرسالة"
     },
@@ -236,9 +236,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": " seeds, password, ",
-        "warning3": "و",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " other account information",
         "warning5": " سيضيع.",
         "areYouSure": "Are you sure you want to continue?"
@@ -253,7 +253,7 @@
         "doYouAlreadyHaveASeed": "هل لديك seed ترغب في استخدامه؟",
         "seedExplanation": "السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
         "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
+        "explanation2": " any wallet",
         "explanation3": ", on",
         "explanation4": " any device",
         "explanation5": ". But if you lose your seed, you also lose your IOTA.",
