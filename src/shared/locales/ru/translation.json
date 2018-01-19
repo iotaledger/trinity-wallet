@@ -54,7 +54,8 @@
         "cannotPerformAction": "Не удается выполнить действие",
         "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса настроек кошелька.",
         "attachToTangleUnavailable": "Привязка к Tangle недоступна",
-        "attachToTangleUnavailableExplanation": "Привязка к Tangle недоступна на выбранном узле."
+        "attachToTangleUnavailableExplanation": "Привязка к Tangle недоступна на выбранном узле.",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -236,7 +237,16 @@
         "cannotPerformAction": "Не удается выполнить действие",
         "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса настроек кошелька.",
         "poorConnection": "Плохое соединение",
-        "poorConnectionExplanation": "Не удалось изменить валюту по причине плохой связи."
+        "poorConnectionExplanation": "Не удалось изменить валюту по причине плохой связи.",
+        "hide": "Hide",
+        "hideOthers": "Hide Others",
+        "showAll": "Show All",
+        "quit": "Quit",
+        "edit": "Edit",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "selectAll": "Select All"
     },
     "resetWalletConfirmation": {
         "thisAction": "Данное действие нельзя будет отменить.",

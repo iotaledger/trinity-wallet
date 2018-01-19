@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -5,6 +6,7 @@ import { persistStore } from 'redux-persist';
 import { withRouter } from 'react-router-dom';
 import store from 'store';
 import i18next from 'libs/i18next';
+import { translate } from 'react-i18next';
 import Loading from 'components/UI/Loading';
 import Onboarding from 'components/Layout/Onboarding';
 import Main from 'components/Layout/Main';
@@ -13,30 +15,12 @@ import Alerts from 'components/UI/Alerts';
 
 import './App.css';
 
-// should be used later:
-
-// class ErrorBoundary extends React.Component {
-//     static propTypes = {
-//         children: PropTypes.node,
-//     };
-//
-//     state = {};
-//
-//     componentDidCatch(error) {
-//         this.setState(() => ({
-//             error,
-//         }));
-//     }
-//     render() {
-//         if (this.state.error) {
-//             return <p>{this.state.error.message}</p>;
-//         }
-//         return this.props.children;
-//     }
-// }
-
 class App extends React.Component {
     static propTypes = {
+        t: PropTypes.func.isRequired,
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
         settings: PropTypes.shape({
             locale: PropTypes.string.isRequired,
             fullNode: PropTypes.string.isRequired,
@@ -62,9 +46,31 @@ class App extends React.Component {
         });
     }
 
+    componentDidMount() {
+        this.onMenuToggle = this.menuToggle.bind(this);
+        Electron.onEvent('menu', this.onMenuToggle);
+        Electron.changeLanguage(this.props.t);
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.settings.locale !== this.props.settings.locale) {
             i18next.changeLanguage(nextProps.settings.locale);
+            Electron.changeLanguage(this.props.t);
+        }
+    }
+
+    componentWillUnmount() {
+        Electron.removeEvent('menu', this.onMenuToggle);
+    }
+
+    menuToggle(item) {
+        switch (item) {
+            case 'logout':
+                this.props.history.push('/login');
+                break;
+            default:
+                this.props.history.push(`/${item}`);
+                break;
         }
     }
 
@@ -92,9 +98,10 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     settings: state.settings,
+    tempAccount: state.tempAccount,
     app: state.app,
 });
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(translate('onboardingComplete')(connect(mapStateToProps)(App)));
