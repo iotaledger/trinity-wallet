@@ -27,9 +27,7 @@ class UseExistingSeed extends React.Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
-        borderColor: PropTypes.object.isRequired,
         ctaBorderColor: PropTypes.string.isRequired,
-        textInputColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.object.isRequired,
     };
 
@@ -102,20 +100,13 @@ class UseExistingSeed extends React.Component {
     }
 
     render() {
-        const {
-            t,
-            textColor,
-            borderColor,
-            secondaryBackgroundColor,
-            arrowLeftImagePath,
-            textInputColor,
-            negativeColor,
-        } = this.props;
+        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, negativeColor } = this.props;
         const { seed, accountName } = this.state;
-        const arrowRightImagePath =
-            secondaryBackgroundColor === 'white' ? whiteArrowRightImagePath : blackArrowRightImagePath;
-        const cameraImagePath = secondaryBackgroundColor === 'white' ? whiteCameraImagePath : blackCameraImagePath;
-
+        const isWhite = secondaryBackgroundColor === 'white';
+        const arrowRightImagePath = isWhite ? whiteArrowRightImagePath : blackArrowRightImagePath;
+        const checksumBackgroundColor = isWhite
+            ? { backgroundColor: 'rgba(255, 255, 255, 0.05)' }
+            : { backgroundColor: 'rgba(0, 0, 0, 0.05)' };
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -141,14 +132,13 @@ class UseExistingSeed extends React.Component {
                                         onSubmitEditing={() => this.refs.accountName.focus()}
                                         secondaryBackgroundColor={secondaryBackgroundColor}
                                         negativeColor={negativeColor}
-                                        backgroundColor={textInputColor}
                                         widget="qr"
                                         onQRPress={() => this.onQRPress()}
                                     />
                                 </View>
                             </View>
                             <View style={{ flex: 1 }} />
-                            <View style={[styles.checksum, borderColor]}>
+                            <View style={[styles.checksum, checksumBackgroundColor]}>
                                 <Text style={[styles.checksumText, textColor]}>{this.getChecksumValue()}</Text>
                             </View>
                         </View>
@@ -167,7 +157,6 @@ class UseExistingSeed extends React.Component {
                                 returnKeyType="done"
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
-                                backgroundColor={textInputColor}
                                 value={accountName}
                             />
                         </View>
@@ -311,7 +300,6 @@ const styles = StyleSheet.create({
         width: width / 8,
         height: height / 20,
         borderRadius: GENERAL.borderRadiusSmall,
-        borderWidth: height / 1000,
         justifyContent: 'center',
         alignItems: 'center',
     },
