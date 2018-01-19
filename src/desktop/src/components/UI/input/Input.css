@@ -131,14 +131,17 @@
 }
 
 .qrScanner {
-    width: 640px;
-    max-width: 100%;
-    margin: auto;
+    display: block;
+    margin: 0 auto;
+    width: 320px;
     text-align: center;
     video {
         transform: rotateY(180deg);
         max-width: 100%;
         margin-bottom: 50px;
         border: 2px solid #fff;
+    }
+    > section {
+        margin-bottom: 40px;
     }
 }
