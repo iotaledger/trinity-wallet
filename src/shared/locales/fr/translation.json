@@ -148,7 +148,7 @@
     "receive": {
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papier.",
-        "generateNewAddress": "GÉNÉRER UNE NOUVELLE ADRESSE",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Message facultatif",
         "removeMessage": "SUPPRIMER LE MESSAGE"
     },
@@ -236,9 +236,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Cette action est irréversible.",
-        "warning1": "Toutes vos données de wallet incluant vos",
-        "warning2": " seeds, mots de passe, ",
-        "warning3": "et",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " les autres informations de compte",
         "warning5": " seront perdues.",
         "areYouSure": "Êtes-vous sûr(e) de vouloir continuer ?"
@@ -253,7 +253,7 @@
         "doYouAlreadyHaveASeed": "Détenez-vous déjà un code d'accès que vous désirez utiliser ?",
         "seedExplanation": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
         "explanation1": "Vous pouvez l’utiliser pour accéder à vos fonds à partir de",
-        "explanation2": " n’importe quel wallet ",
+        "explanation2": " any wallet",
         "explanation3": ", sur",
         "explanation4": " n'importe quel appareil",
         "explanation5": ". Mais si vous perdez votre seed, vous perdez aussi vos IOTA.",
