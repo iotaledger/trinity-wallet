@@ -1,8 +1,6 @@
 apply plugin: "com.android.application"
 apply plugin: "io.fabric"
 
-apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
-
 import com.android.build.OutputFile
 
 /**
@@ -99,8 +97,8 @@ android {
 
     defaultConfig {
         applicationId "com.iota.wallet"
-        versionCode project.env.get("ANDROID_BUILD_NUMBER").toInteger()
-        versionName project.env.get("ANDROID_VERSION")
+        versionCode 8
+        versionName "3.3.2"
         minSdkVersion 16
         targetSdkVersion 26
         multiDexEnabled true
@@ -147,7 +145,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-config')
     compile project(':react-native-fabric')
     compile project(':react-native-keep-awake')
     compile project(':react-native-device-info')
