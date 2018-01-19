@@ -54,7 +54,8 @@
         "cannotPerformAction": "無法執行操作",
         "cannotPerformActionExplanation": "轉到進階設定中重置錢包。",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -222,7 +223,16 @@
         "cannotPerformAction": "無法執行操作",
         "cannotPerformActionExplanation": "轉到進階設定中重置錢包。",
         "poorConnection": "連線不良",
-        "poorConnectionExplanation": "由於連接不良, 無法更改幣別。"
+        "poorConnectionExplanation": "由於連接不良, 無法更改幣別。",
+        "hide": "Hide",
+        "hideOthers": "Hide Others",
+        "showAll": "Show All",
+        "quit": "Quit",
+        "edit": "Edit",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "selectAll": "Select All"
     },
     "resetWalletConfirmation": {
         "thisAction": "此向操作無法復原",
@@ -255,8 +265,7 @@
         "reminder": "您或許希望跳過一些步驟，但我們建議您按完整程序設置。"
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "再三確認",
         "thatTheyAreCorrect": "兩者皆正確"
     },

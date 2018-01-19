@@ -1,15 +1,17 @@
 {
     "name": "iota-desktop-wallet",
+    "productName": "Trinity",
     "version": "0.1.0",
     "description": "iota light wallet for desktop",
     "main": "main.js",
+    "author": "UCL",
     "moduleRoots": [
         ".",
         "src",
         "../shared"
     ],
     "scripts": {
-        "start": "concurrently --kill-others \"npm run devserver\" \"npm run electron\"",
+        "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron main.js\"",
         "electron": "electron main.js",
         "devserver": "node server.js",
         "build": "rm -rf ./dist && cross-env NODE_ENV=production webpack -p --env=production --config webpack.config",
@@ -39,7 +41,6 @@
         "electron": "^1.7.9",
         "electron-builder": "^19.29.2",
         "electron-devtools-installer": "^2.2.1",
-        "electron-rebuild": "^1.6.0",
         "eslint": "^4.9.0",
         "eslint-config-airbnb": "^16.1.0",
         "eslint-plugin-jsx-a11y": "^6.0.3",
@@ -76,11 +77,12 @@
         "worker-loader": "^1.1.0"
     },
     "build": {
+        "productName": "Trinity",
         "directories": {
-            "buildResources": "../../shared/build",
+            "buildResources": "./assets",
             "output": "./out"
         },
-        "appId": "com.iotatoken.uclwallet",
+        "appId": "com.iotatoken.trinity",
         "asar": false,
         "protocols": [
             {
@@ -92,6 +94,7 @@
         ],
         "dmg": {
             "iconSize": 125,
+            "title": "${productName}",
             "contents": [
                 {
                     "x": 235,
@@ -118,7 +121,7 @@
             ]
         },
         "mac": {
-            "category": "public.app-category.developer-tools"
+            "category": "public.app-category.finance"
         }
     },
     "dependencies": {
