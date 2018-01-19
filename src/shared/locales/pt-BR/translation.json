@@ -6,7 +6,7 @@
         "noTransactions": "NENHUM HISTÓRICO RECENTE",
         "qr": "QR",
         "balanceError": "Saldo insuficiente",
-        "balanceErrorMessage": "Não contém fundos suficientes para realizar esta transferência.",
+        "balanceErrorMessage": "Você não tem IOTA suficiente para realizar esta transferência.",
         "transferError": "Erro de transferência",
         "transferErrorMessage": "Algo deu errado ao enviar a sua transferência. Por favor, tente novamente.",
         "transferSent": "Transferência enviada",
@@ -291,8 +291,8 @@
         "createNewSeed": "Criar uma seed nova"
     },
     "advancedSettings": {
-        "selectNode": "Selecionar nó",
-        "addCustomNode": "Adicionar nó personalizado",
+        "selectNode": "Selecionar servidor",
+        "addCustomNode": "Adicionar servidor personalizado",
         "manualSync": "Sincronização manual"
     },
     "advancedThemeCustomisation": {
@@ -319,13 +319,13 @@
     "deleteAccount": {
         "areYouSure": "Tem certeza que deseja apagar esta conta?",
         "yourSeedWillBeRemoved": "Sua seed e histórico de transação serão removidos.",
-        "thisAction": "Esta ação não pode ser anulada.",
+        "thisAction": "Esta ação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
     },
     "manualSync": {
         "pressToSync": "Pressione o botão abaixo para sincronizar sua conta.",
         "thisMayTake": "Isso pode demorar algum tempo.",
-        "youMayNotice": "Você pode notar seus dispositivo ficar mais lento.",
+        "youMayNotice": "Você pode notar seu dispositivo ficar mais lento.",
         "syncAccount": "SINCRONIZAR CONTA",
         "syncingYourAccount": "Sincronizando sua conta."
     },
@@ -345,7 +345,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "ESTA AÇÃO NÃO PODE SER REVERTIDA.",
-        "infoTextOne": "Toda a informação da sua carteira, incluindo seus",
+        "infoTextOne": "Toda a informação da sua carteira, incluindo suas",
         "infoTextTwo": "seeds, senha",
         "infoTextThree": "e",
         "infoTextFour": "outras informações da conta",
