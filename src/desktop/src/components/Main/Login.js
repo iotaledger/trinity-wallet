@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -5,7 +6,8 @@ import { connect } from 'react-redux';
 import { getSecurelyPersistedSeeds } from 'libs/storage';
 import { setFirstUse } from 'actions/account';
 import { showError } from 'actions/notifications';
-import { loadSeeds } from 'actions/seeds';
+import { clearTempData } from 'actions/tempAccount';
+import { loadSeeds, clearSeeds } from 'actions/seeds';
 import { sendAmount } from 'actions/deepLinks.js';
 import { runTask } from 'worker';
 import Template, { Content, Footer } from 'components/Onboarding/Template';
@@ -29,6 +31,9 @@ class Login extends React.Component {
         tempAccount: PropTypes.object.isRequired,
         loadSeeds: PropTypes.func.isRequired,
         showError: PropTypes.func.isRequired,
+        clearTempData: PropTypes.func.isRequired,
+        clearSeeds: PropTypes.func.isRequired,
+        sendAmount: PropTypes.func.isRequired
     };
 
     state = {
@@ -37,6 +42,9 @@ class Login extends React.Component {
     };
 
     componentDidMount() {
+        this.props.clearTempData();
+        this.props.clearSeeds();
+        Electron.updateMenu('authorised', false);
         let regexAddress = /\:\/\/(.*?)\/\?/;
         let regexAmount = /amount=(.*?)\&/;
         let regexMessage = /message=([^\n\r]*)/;
@@ -53,7 +61,7 @@ class Login extends React.Component {
                     message: message[1]
                 });
                 console.log(this.state.address);
-                this.props.sendAmountDeepLink(this.state.amount);
+                this.props.sendAmount(this.state.amount);
             } else {
                 console.log(false);
             }
@@ -61,14 +69,16 @@ class Login extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        console.log('props '+ newPropsnewProps);
         const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
+        console.log('ready ' + ready);
         if (ready) {
             this.setState({
                 loading: false,
             });
+            console.log('after ready' + this.state);
             if(!this.state['amount']) {
                 this.props.history.push('/balance');
+                Electron.updateMenu('authorised', true);
             } else {
                 this.props.history.push('/send');
             }
@@ -85,8 +95,10 @@ class Login extends React.Component {
         const { account } = this.props;
 
         if (account.firstUse) {
+            console.log('firstuse');
             runTask('getFullAccountInfo', [seed.seed, seed.name]);
         } else {
+            console.log('setupacc');
             runTask('getAccountInfo', [seed.seed, seed.name]);
         }
     }
@@ -114,7 +126,7 @@ class Login extends React.Component {
             this.setState({
                 loading: true,
             });
-
+            console.log('loggin seed');
             //TODO: Fix iota.api call freeze. Do API calls in a worker/electron main?
             setTimeout(() => this.setupAccount(seed, seeds.selectedSeedIndex), 2000);
         }
@@ -156,15 +168,17 @@ const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
 });
 
-const mapDispatchToProps = dispatch => {
-        return {
+const mapDispatchToProps = {
             showError,
             loadSeeds,
+            clearTempData,
+            clearSeeds,
             setFirstUse,
-            sendAmountDeepLink: amount => {
-            dispatch(sendAmount(amount));
-        }
-    }
+            sendAmount
+        //     sendAmountDeepLink: amount => {
+        //         console.log('dispatch test '+ amount);
+        //     dispatch(sendAmount(amount));
+        // }
 };
 
 export default translate('login')(connect(mapStateToProps, mapDispatchToProps)(Login));
