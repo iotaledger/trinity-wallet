@@ -217,7 +217,7 @@ class Receive extends Component {
                     <View style={{ flex: 0.05 }} />
                     <CustomTextInput
                         onRef={c => {
-                            this.addressField = c;
+                            this.messageField = c;
                         }}
                         label={t('message')}
                         onChangeText={message => this.setState({ message })}
@@ -273,7 +273,7 @@ class Receive extends Component {
                                     onPress={() => {
                                         // Check if there's already a network call in progress.
                                         this.setState({ message: '' });
-                                        this.refs.message.blur();
+                                        this.messageField.blur();
                                     }}
                                     style={styles.removeButtonContainer}
                                 >

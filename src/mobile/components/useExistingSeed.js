@@ -129,7 +129,7 @@ class UseExistingSeed extends React.Component {
                                         autoCorrect={false}
                                         enablesReturnKeyAutomatically
                                         returnKeyType="next"
-                                        onSubmitEditing={() => this.refs.accountName.focus()}
+                                        onSubmitEditing={() => this.accountNameField.focus()}
                                         secondaryBackgroundColor={secondaryBackgroundColor}
                                         negativeColor={negativeColor}
                                         widget="qr"
@@ -145,7 +145,9 @@ class UseExistingSeed extends React.Component {
                         <View style={{ flex: 1 }} />
                         <View style={styles.accountNameContainer}>
                             <CustomTextInput
-                                ref="accountName"
+                                onRef={c => {
+                                    this.accountNameField = c;
+                                }}
                                 label={t('addAdditionalSeed:accountName')}
                                 onChangeText={accountName => this.setState({ accountName })}
                                 containerStyle={{ width: width / 1.4 }}

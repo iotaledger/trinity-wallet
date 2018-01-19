@@ -32,14 +32,14 @@ class InitialLoading extends Component {
 
     componentDidMount() {
         this.animation.play();
-        this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
+        this.timeout = setTimeout(this.onLoaded.bind(this), 0);
     }
 
     onLoaded() {
         if (!this.props.onboardingComplete) {
             this.clearKeychain();
             this.props.navigator.push({
-                screen: 'walletSetup',
+                screen: 'languageSetup',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,

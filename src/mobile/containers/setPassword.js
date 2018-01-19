@@ -162,13 +162,11 @@ class SetPassword extends Component {
                                 returnKeyType="next"
                                 onSubmitEditing={() => this.reentry.focus()}
                                 secondaryBackgroundColor="white"
-                                negativeColor="#F7D002"
-                                backgroundColor="#2A4A52"
                                 secureTextEntry
                             />
                             <View style={{ flex: 0.2 }} />
                             <CustomTextInput
-                                ref={c => {
+                                onRef={c => {
                                     this.reentry = c;
                                 }}
                                 label={t('retypePassword')}
@@ -180,8 +178,6 @@ class SetPassword extends Component {
                                 returnKeyType="done"
                                 onSubmitEditing={() => this.onDonePress()}
                                 secondaryBackgroundColor="white"
-                                negativeColor="#F7D002"
-                                backgroundColor="#2A4A52"
                                 secureTextEntry
                             />
                             <View style={{ flex: 0.3 }} />
