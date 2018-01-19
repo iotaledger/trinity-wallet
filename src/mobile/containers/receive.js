@@ -70,7 +70,7 @@ class Receive extends Component {
     }
 
     componentWillMount() {
-        if(!this.props.isGeneratingReceiveAddress){
+        if (!this.props.isGeneratingReceiveAddress) {
             this.onGeneratePress();
         }
     }
@@ -236,6 +236,10 @@ class Receive extends Component {
                         negativeColor={negativeColor}
                     />
                     <View style={{ flex: 0.3 }} />
+                    {receiveAddress === ' ' &&
+                        (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
+                            <View style={{ flex: 0.8 }} />
+                        )}
                     {/*{receiveAddress === ' ' &&
                         (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
                             <View style={{ flex: 0.8 }}>
