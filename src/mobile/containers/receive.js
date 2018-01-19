@@ -69,6 +69,10 @@ class Receive extends Component {
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
+    componentWillMount() {
+        this.onGeneratePress();
+    }
+
     componentWillUnmount() {
         this.resetAddress();
     }
@@ -230,7 +234,7 @@ class Receive extends Component {
                         negativeColor={negativeColor}
                     />
                     <View style={{ flex: 0.3 }} />
-                    {receiveAddress === ' ' &&
+                    {/*{receiveAddress === ' ' &&
                         (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
                             <View style={{ flex: 0.8 }}>
                                 <TouchableOpacity
@@ -254,7 +258,7 @@ class Receive extends Component {
                                     </View>
                                 </TouchableOpacity>
                             </View>
-                        )}
+                        )}*/}
                     {(isGettingSensitiveInfoToGenerateAddress || isGeneratingReceiveAddress) && (
                         <View style={{ flex: 0.8 }}>
                             <ActivityIndicator
