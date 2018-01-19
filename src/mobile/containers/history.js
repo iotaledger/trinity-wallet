@@ -78,11 +78,11 @@ class History extends Component {
         const { selectedAccountName } = this.props;
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 const seed = getSeed(credentials.data, 0);
                 this.props.getAccountInfo(seed, selectedAccountName);
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
     }
 
     // FIXME: findNodeHangle is not defined
@@ -132,13 +132,13 @@ class History extends Component {
                                 }
                                 contentContainerStyle={{ paddingTop: 1, paddingBottom: 1 }}
                                 dataSource={ds.cloneWithRows(transfers)}
-                                renderRow={dataSource => (
+                                renderRow={(dataSource) => (
                                     <TransactionRow
                                         addresses={addresses}
                                         rowData={dataSource}
                                         titleColor="#F8FFA6"
-                                        copyAddress={item => this.copyAddress(item)}
-                                        copyBundleHash={item => this.copyBundleHash(item)}
+                                        copyAddress={(item) => this.copyAddress(item)}
+                                        copyBundleHash={(item) => this.copyBundleHash(item)}
                                         positiveColor={THEMES.getHSL(positiveColor)}
                                         negativeColor={THEMES.getHSL(negativeColor)}
                                         extraColor={THEMES.getHSL(extraColor)}
@@ -151,7 +151,7 @@ class History extends Component {
                                 )}
                                 renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                                 enableEmptySections
-                                ref={listview => {
+                                ref={(listview) => {
                                     this.listview = listview;
                                 }}
                                 onLoadEnd={this.imageLoaded.bind(this)}
