@@ -430,8 +430,6 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
 };
 
 export const getConfirmedTxTailsHashes = (states, hashes) => {
-    console.log('states', states);
-    console.log('hashes', hashes);
     const confirmedHashes = filter(hashes, (hash, idx) => states[idx]);
 
     return new Promise((resolve, reject) => resolve(confirmedHashes));
