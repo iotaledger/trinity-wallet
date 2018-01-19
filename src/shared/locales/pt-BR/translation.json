@@ -277,40 +277,40 @@
     },
     "accountManagement": {
         "viewSeed": "Ver endereço",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewAddresses": "Ver endereços",
+        "editAccountName": "Editar o nome da conta",
+        "deleteAccount": "Excluir conta",
+        "addNewAccount": "Adicionar nova conta"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Nó personalizado",
+        "add": "Adicionar"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Usar seed existente",
+        "createNewSeed": "Criar uma seed nova"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Selecionar nó",
+        "addCustomNode": "Adicionar nó personalizado",
+        "manualSync": "Sincronização manual"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Plano de Fundo",
+        "frame": "Bordas"
     },
     "currencySelection": {
         "currency": "Moeda"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Tem certeza que deseja sair?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Ler código QR"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
+        "unitSystem": "SISTEMA DE UNIDADES",
+        "trillion": "Trilhão",
         "billion": "Billion",
         "million": "Million",
         "thousand": "Thousand",
@@ -324,8 +324,8 @@
     },
     "manualSync": {
         "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "Isto pode demorar algum tempo.",
-        "youMayNotice": "Pode notar um abrandamento do seu dispositivo.",
+        "thisMayTake": "Isso pode demorar algum tempo.",
+        "youMayNotice": "Você pode notar seus dispositivo ficar mais lento.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
     },
@@ -345,7 +345,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "infoTextOne": "Toda a informação da sua carteira, incluindo",
+        "infoTextOne": "Toda a informação da sua carteira, incluindo seus",
         "infoTextTwo": "seeds, senha",
         "infoTextThree": "e",
         "infoTextFour": "outras informações da conta",
