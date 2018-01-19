@@ -251,7 +251,8 @@
     "walletSetup": {
         "okay": "Ok. Vamos configurar a sua carteira!",
         "doYouAlreadyHaveASeed": "Já possui uma seed que gostaria de utilizar?",
-        "seedExplanation": "A seed IOTA representa, simultaneamente, o nome do utilizador e a senha da sua conta, combinados numa sequência de 81 caracteres.",
+        "seedExplanation":
+            "A seed IOTA representa, simultaneamente, o nome do utilizador e a senha da sua conta, combinados numa sequência de 81 caracteres.",
         "explanation1": "Poderá usá-la para aceder aos seus fundos a partir",
         "explanation2": " de qualquer carteira ",
         "explanation3": ", em",
