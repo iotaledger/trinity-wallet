@@ -54,8 +54,8 @@
         "cannotPerformAction": "Não é possível executar a ação",
         "cannotPerformActionExplanation": "Vá para configurações avançadas para redefinir a carteira.",
         "attachToTangleUnavailable": "Anexar ao Tangle indisponível",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
-        "wallet": "Wallet"
+        "attachToTangleUnavailableExplanation": "Anexar ao Tangle não está disponível no nó selecionado.",
+        "wallet": "Carteira"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém carateres inválidos",
@@ -68,8 +68,8 @@
         "accountName": "Nome da Conta",
         "noNickname": "Não foi inserido nenhum nome de conta",
         "noNicknameExplanation": "Por favor, insira um nome de conta para a sua Seed.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUse": "Endereço já em uso",
+        "seedInUseExplanation": "Esse endereço já está anexado em sua carteira. Por favor, use outro endereço."
     },
     "changePassword": {
         "oops": "Uups! Aconteceu algum problema",
@@ -122,7 +122,7 @@
         "enterPassword": "Por favor, insira a sua palavra-passe.",
         "useSeed": "USAR A SEED",
         "login": "Iniciar sessão",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Você quer selecionar um nó diferente?"
     },
     "loading": {
         "loadingFirstTime": "A carregar a Seed pela primeira vez.",
@@ -170,7 +170,7 @@
         "invalidAddressExplanation1": "O endereço deve ter {{maxLength}} caracteres e o código de verificação.",
         "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
         "invalidAddressExplanation3": "O endereço contém um código de verificação incorreto.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Fundos insuficientes",
         "notEnoughFundsExplanation": "Não contém fundos suficientes para realizar esta transferência.",
         "keyReuse": "Reutilização da chave",
         "keyReuseExplanation": "Está a tentar enviar para um endereço que já foi utilizado. Por favor, tente outro endereço.",
