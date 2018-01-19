@@ -67,7 +67,6 @@ class TwoFactorSetupEnterToken extends Component {
         set2FAStatus: PropTypes.func.isRequired,
         set2FAKey: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        textInputColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -127,7 +126,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor, textInputColor } = this.props;
+        const { t, negativeColor, secondaryBackgroundColor } = this.props;
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -156,7 +155,6 @@ class TwoFactorSetupEnterToken extends Component {
                                     onSubmitEditing={this.check2FA}
                                     secondaryBackgroundColor={secondaryBackgroundColor}
                                     negativeColor={negativeColor}
-                                    backgroundColor={textInputColor}
                                 />
                             </View>
                         </View>
@@ -186,7 +184,6 @@ const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     key2FA: state.account.key2FA,
-    textInputColor: state.settings.theme.textInputColor,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken);

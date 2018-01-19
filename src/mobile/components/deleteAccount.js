@@ -89,7 +89,6 @@ class DeleteAccount extends Component {
             borderColor,
             arrowLeftImagePath,
             tickImagePath,
-            textInputColor,
         } = this.props;
 
         return (
@@ -112,7 +111,7 @@ class DeleteAccount extends Component {
                                 <CustomTextInput
                                     label={t('global:password')}
                                     onChangeText={password => this.setState({ password })}
-                                    containerStyle={{ width: width / 1.4 }}
+                                    containerStyle={{ width: width / 1.36 }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
@@ -120,7 +119,6 @@ class DeleteAccount extends Component {
                                     onSubmitEditing={this.handleLogin}
                                     secondaryBackgroundColor={secondaryBackgroundColor}
                                     negativeColor={negativeColor}
-                                    backgroundColor={textInputColor}
                                     secureTextEntry={true}
                                     value={this.state.password}
                                 />

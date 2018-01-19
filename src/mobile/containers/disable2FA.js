@@ -29,7 +29,6 @@ class Disable2FA extends Component {
         negativeColor: PropTypes.object.isRequired,
         set2FAStatus: PropTypes.func.isRequired,
         set2FAKey: PropTypes.func.isRequired,
-        textInputColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -71,7 +70,7 @@ class Disable2FA extends Component {
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor, textInputColor } = this.props;
+        const { t, negativeColor, secondaryBackgroundColor } = this.props;
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -105,14 +104,13 @@ class Disable2FA extends Component {
                             <CustomTextInput
                                 label="Token"
                                 onChangeText={token => this.setState({ token })}
-                                containerStyle={{ width: width / 1.4 }}
+                                containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
-                                backgroundColor={textInputColor}
                                 value={this.state.token}
                             />
                         </View>
@@ -182,7 +180,6 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     key2FA: state.account.key2FA,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    textInputColor: state.settings.theme.textInputColor,
 });
 
 const mapDispatchToProps = {

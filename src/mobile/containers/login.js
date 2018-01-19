@@ -58,7 +58,6 @@ class Login extends Component {
         is2FAEnabled: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
         migrate: PropTypes.func.isRequired,
-        textInputColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -238,7 +237,7 @@ class Login extends Component {
     }
 
     render() {
-        const { backgroundColor, positiveColor, negativeColor, secondaryBackgroundColor, textInputColor } = this.props;
+        const { backgroundColor, positiveColor, negativeColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -256,7 +255,6 @@ class Login extends Component {
                             navigateToNodeSelection={this.navigateToNodeSelection}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             textColor={textColor}
-                            textInputColor={textInputColor}
                         />
                     )}
                 {!this.state.changingNode &&
@@ -269,7 +267,6 @@ class Login extends Component {
                             navigateToNodeSelection={this.navigateToNodeSelection}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             textColor={textColor}
-                            textInputColor={textInputColor}
                         />
                     )}
                 {this.state.changingNode && (
@@ -354,7 +351,6 @@ const mapStateToProps = state => ({
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    textInputColor: state.settings.theme.textInputColor,
     is2FAEnabled: state.account.is2FAEnabled,
     key2FA: state.account.key2FA,
     versions: state.app.versions,

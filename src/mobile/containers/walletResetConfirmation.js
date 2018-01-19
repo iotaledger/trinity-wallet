@@ -9,13 +9,12 @@ import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
-import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
-import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { width, height } from '../util/dimensions';
 import THEMES from '../theme/themes';
 import { connect } from 'react-redux';
+import InfoBox from '../components/infoBox';
 
 class WalletResetConfirmation extends Component {
     constructor() {
@@ -74,7 +73,6 @@ class WalletResetConfirmation extends Component {
         const textColor = { color: secondaryBackgroundColor };
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
         const negativeColor = { color: THEMES.getHSL(this.props.negativeColor) };
-        const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
@@ -89,16 +87,18 @@ class WalletResetConfirmation extends Component {
                             {t('walletResetConfirmation:cannotUndo')}
                         </Text>
                     </View>
-                    <View style={[styles.infoTextWrapper, { borderColor: secondaryBackgroundColor }]}>
-                        <Image source={infoImagePath} style={styles.infoIcon} />
-                        <Text style={[styles.infoText, textColor]}>
-                            <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextOne')}</Text>
-                            <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextTwo')}}</Text>
-                            <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextThree')}</Text>
-                            <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextFour')}</Text>
-                            <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextFive')}}</Text>
-                        </Text>
-                    </View>
+                    <InfoBox
+                        text={
+                            <Text style={[styles.infoText, textColor]}>
+                                <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextOne')} </Text>
+                                <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextTwo')} </Text>
+                                <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextThree')} </Text>
+                                <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextFour')} </Text>
+                                <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextFive')}</Text>
+                            </Text>
+                        }
+                        secondaryBackgroundColor={secondaryBackgroundColor}
+                    />
                     <View style={styles.confirmationTextWrapper}>
                         <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                     </View>
@@ -149,20 +149,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    infoTextWrapper: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.6,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingHorizontal: width / 30,
-        paddingVertical: height / 35,
-        borderStyle: 'dotted',
-    },
     infoText: {
         fontSize: width / 27.6,
-        textAlign: 'center',
-        paddingTop: height / 60,
+        textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     infoTextLight: {

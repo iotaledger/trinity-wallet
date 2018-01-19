@@ -18,8 +18,7 @@ import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
-import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
+import InfoBox from '../components/infoBox';
 
 export class SetSeedName extends Component {
     static propTypes = {
@@ -168,11 +167,10 @@ export class SetSeedName extends Component {
 
     render() {
         const { accountName } = this.state;
-        const { t, backgroundColor, negativeColor, secondaryBackgroundColor, textInputColor } = this.props;
+        const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
-        const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
@@ -181,17 +179,13 @@ export class SetSeedName extends Component {
                     <View>
                         <View style={styles.topContainer}>
                             <Image source={iotaImagePath} style={styles.iotaLogo} />
-                            <View style={styles.titleContainer}>
-                                <Text style={[styles.greetingText, textColor]}>
-                                    {t('addAdditionalSeed:enterAccountName')}
-                                </Text>
-                            </View>
                         </View>
                         <View style={styles.midContainer}>
+                            <View style={{ flex: 0.5 }} />
                             <CustomTextInput
                                 label={t('addAdditionalSeed:accountName')}
                                 onChangeText={accountName => this.setState({ accountName })}
-                                containerStyle={{ width: width / 1.4 }}
+                                containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'words'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -199,17 +193,22 @@ export class SetSeedName extends Component {
                                 onSubmitEditing={() => this.onDonePress()}
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
-                                backgroundColor={textInputColor}
                                 ref={input => {
                                     this.nameInput = input;
                                 }}
                                 value={accountName}
                             />
-                            <View style={[styles.infoTextContainer, borderColor]}>
-                                <Image source={infoImagePath} style={styles.infoIcon} />
-                                <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
-                                <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
-                            </View>
+                            <View style={{ flex: 0.3 }} />
+                            <InfoBox
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                text={
+                                    <View>
+                                        <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
+                                        <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
+                                    </View>
+                                }
+                            />
+                            <View style={{ flex: 0.5 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
@@ -234,15 +233,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.2,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
         flex: 4.8,
-        justifyContent: 'flex-start',
-        paddingTop: height / 8,
+        justifyContent: 'space-around',
         alignItems: 'center',
         width,
     },
@@ -257,28 +255,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: height / 15,
     },
-    infoTextContainer: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.6,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: width / 30,
-        borderStyle: 'dotted',
-        paddingVertical: height / 35,
-        marginTop: height / 15,
-    },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'center',
+        textAlign: 'justify',
         paddingTop: height / 60,
-        backgroundColor: 'transparent',
-    },
-    greetingText: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.7,
-        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoIcon: {
@@ -297,7 +278,6 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    textInputColor: state.settings.theme.textInputColor,
 });
 
 const mapDispatchToProps = {

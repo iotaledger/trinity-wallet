@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import infoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { connect } from 'react-redux';
 import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
@@ -18,6 +17,7 @@ import { isAndroid } from '../util/device';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import InfoBox from '../components/infoBox';
 
 const MIN_PASSWORD_LENGTH = 12;
 
@@ -140,53 +140,51 @@ class SetPassword extends Component {
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
-                            <View style={styles.titleContainer}>
-                                <Text style={styles.greetingText}>{t('nowWeNeedTo')}</Text>
-                            </View>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.3 }} />
-                            <View style={styles.infoTextWrapper}>
-                                <View style={styles.infoTextContainer}>
-                                    <Image source={infoImagePath} style={styles.infoIcon} />
-                                    <Text style={styles.infoText}>{t('anEncryptedCopy')}</Text>
-                                    <Text style={styles.warningText}>{t('ensure')}</Text>
-                                </View>
-                            </View>
-                            <View style={styles.textfieldsContainer}>
-                                <CustomTextInput
-                                    label={t('global:password')}
-                                    onChangeText={password => this.setState({ password })}
-                                    containerStyle={{ width: width / 1.4 }}
-                                    autoCapitalize={'none'}
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="next"
-                                    onSubmitEditing={() => this.reentry.focus()}
-                                    secondaryBackgroundColor="white"
-                                    negativeColor="#F7D002"
-                                    backgroundColor="#2A4A52"
-                                    secureTextEntry
-                                />
-                                <CustomTextInput
-                                    ref={c => {
-                                        this.reentry = c;
-                                    }}
-                                    label={t('retypePassword')}
-                                    onChangeText={reentry => this.setState({ reentry })}
-                                    containerStyle={{ width: width / 1.4 }}
-                                    autoCapitalize={'none'}
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    onSubmitEditing={() => this.onDonePress()}
-                                    secondaryBackgroundColor="white"
-                                    negativeColor="#F7D002"
-                                    backgroundColor="#2A4A52"
-                                    secureTextEntry
-                                />
-                            </View>
+                            <View style={{ flex: 0.8 }} />
+                            <InfoBox
+                                text={
+                                    <View>
+                                        <Text style={styles.infoText}>{t('anEncryptedCopy')}</Text>
+                                        <Text style={styles.warningText}>{t('ensure')}</Text>
+                                    </View>
+                                }
+                            />
                             <View style={{ flex: 0.2 }} />
+                            <CustomTextInput
+                                label={t('global:password')}
+                                onChangeText={password => this.setState({ password })}
+                                containerStyle={{ width: width / 1.36 }}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="next"
+                                onSubmitEditing={() => this.reentry.focus()}
+                                secondaryBackgroundColor="white"
+                                negativeColor="#F7D002"
+                                backgroundColor="#2A4A52"
+                                secureTextEntry
+                            />
+                            <View style={{ flex: 0.2 }} />
+                            <CustomTextInput
+                                ref={c => {
+                                    this.reentry = c;
+                                }}
+                                label={t('retypePassword')}
+                                onChangeText={reentry => this.setState({ reentry })}
+                                containerStyle={{ width: width / 1.36 }}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
+                                onSubmitEditing={() => this.onDonePress()}
+                                secondaryBackgroundColor="white"
+                                negativeColor="#F7D002"
+                                backgroundColor="#2A4A52"
+                                secureTextEntry
+                            />
+                            <View style={{ flex: 0.3 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
@@ -233,13 +231,13 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
-        flex: 1.2,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 3.7,
         justifyContent: 'space-around',
         alignItems: 'center',
         width,
@@ -250,22 +248,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     bottomContainer: {
-        flex: 0.3,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 15,
-    },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     infoTextContainer: {
         borderColor: 'white',
@@ -288,15 +274,14 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'center',
-        paddingTop: height / 60,
+        textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     warningText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
-        textAlign: 'center',
+        textAlign: 'justify',
         paddingTop: height / 70,
         backgroundColor: 'transparent',
     },

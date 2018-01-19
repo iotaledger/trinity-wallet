@@ -120,7 +120,6 @@ class AddCustomNode extends Component {
             textColor,
             arrowLeftImagePath,
             addImagePath,
-            textInputColor,
             negativeColor,
         } = this.props;
 
@@ -132,7 +131,7 @@ class AddCustomNode extends Component {
                         <CustomTextInput
                             label={t('customNode')}
                             onChangeText={customNode => this.setState({ customNode })}
-                            containerStyle={{ width: width / 1.4 }}
+                            containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -140,7 +139,6 @@ class AddCustomNode extends Component {
                             onSubmitEditing={() => this.addNode()}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             negativeColor={negativeColor}
-                            backgroundColor={textInputColor}
                             value={this.state.accountName}
                         />
                     </View>

@@ -15,7 +15,6 @@ export class EditAccountName extends Component {
         accountName: PropTypes.string.isRequired,
         saveAccountName: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
-        textInputColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -32,15 +31,7 @@ export class EditAccountName extends Component {
     }
 
     render() {
-        const {
-            t,
-            textColor,
-            secondaryBackgroundColor,
-            arrowLeftImagePath,
-            tickImagePath,
-            textInputColor,
-            negativeColor,
-        } = this.props;
+        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, tickImagePath, negativeColor } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -50,7 +41,7 @@ export class EditAccountName extends Component {
                             <CustomTextInput
                                 label={t('accountName')}
                                 onChangeText={accountName => this.setState({ accountName })}
-                                containerStyle={{ width: width / 1.4 }}
+                                containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -58,7 +49,6 @@ export class EditAccountName extends Component {
                                 onSubmitEditing={() => this.props.saveAccountName(trim(this.state.accountName))}
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
-                                backgroundColor={textInputColor}
                                 value={this.state.accountName}
                             />
                         </View>
