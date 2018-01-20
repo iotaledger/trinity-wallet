@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { AsyncStorage, StyleSheet, View, Text } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
-import Config from 'react-native-config';
+//import Config from 'react-native-config';
 import LottieView from 'lottie-react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import whiteWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-white.json';
