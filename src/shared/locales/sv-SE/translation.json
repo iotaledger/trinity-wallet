@@ -270,8 +270,8 @@
         "thatTheyAreCorrect": "att den stämmer."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash kopierades",
-        "bundleHashCopiedExplanation": "Bundle hashen har kopierats till Urklipp.",
+        "bundleHashCopied": "Hashbunt kopierades",
+        "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp."
     },
