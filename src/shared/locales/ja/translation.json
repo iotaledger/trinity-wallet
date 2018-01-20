@@ -154,7 +154,7 @@
     "receive": {
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "generateNewAddress": "アドレス生成",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "任意のメッセージ",
         "removeMessage": "メッセージを削除します。"
     },
@@ -245,9 +245,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "この操作は元に戻せません。",
-        "warning1": "全てのウォレットのデータ",
-        "warning2": "Seedやパスワードや",
-        "warning3": "や",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " その他のアカウント情報",
         "warning5": " が失われます。",
         "areYouSure": "本当に続行しますか？"
@@ -262,7 +262,7 @@
         "doYouAlreadyHaveASeed": "IOTAのSeedはすでにお持ちでしょうか？",
         "seedExplanation": "IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
         "explanation1": "Seedを使ってあなたの資金にアクセスできます。",
-        "explanation2": " 全てのウォレットで",
+        "explanation2": " any wallet",
         "explanation3": "や",
         "explanation4": " 全てのデバイスで",
         "explanation5": "しかし、Seedを失うとIOTAも失われます。",

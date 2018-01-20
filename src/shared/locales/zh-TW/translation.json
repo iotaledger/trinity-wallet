@@ -149,7 +149,7 @@
     "receive": {
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
-        "generateNewAddress": "產生新地址",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "選擇性訊息",
         "removeMessage": "移除訊息"
     },
@@ -237,9 +237,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "此向操作無法復原",
-        "warning1": "所有錢包資訊，包含您的",
-        "warning2": "種子碼、密碼",
-        "warning3": "和",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": "其他帳戶資訊",
         "warning5": "將會遺失。",
         "areYouSure": "您確定要繼續嗎？"
@@ -254,7 +254,7 @@
         "doYouAlreadyHaveASeed": "您是否已有希望使用的種子碼?",
         "seedExplanation": "IOTA種子碼是由您帳戶的名稱和密碼結合成為81個字元長的字串。",
         "explanation1": "您可以使用它來存取您的資金從",
-        "explanation2": " 任何錢包 ",
+        "explanation2": " any wallet",
         "explanation3": "， 啟用",
         "explanation4": " 任何裝置",
         "explanation5": "但是, 如果你失去了你的種子, 你也失去了你的IOTA。",
