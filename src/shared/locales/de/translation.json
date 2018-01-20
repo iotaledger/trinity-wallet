@@ -148,7 +148,7 @@
     "receive": {
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "NEUE ADRESSE",
         "message": "Optionale Nachricht",
         "removeMessage": "NACHRICHT LÖSCHEN"
     },
