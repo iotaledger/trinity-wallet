@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import each from 'lodash/each';
 import transform from 'lodash/transform';
@@ -69,7 +70,7 @@ export const isADayAgo = (timestamp) => {
     return isMinutesAgo(convertUnixTimeToJSDate(timestamp / 1000), 1440);
 };
 
-export const getBundleTailsForSentTransfers = (transfers, addresses) => {
+export const getBundleTailsForSentTransfers = (transfers, addresses, account) => {
     const categorizedTransfers = iota.utils.categorizeTransfers(transfers, addresses);
     const sentTransfers = get(categorizedTransfers, 'sent');
 
@@ -81,11 +82,12 @@ export const getBundleTailsForSentTransfers = (transfers, addresses) => {
             const hasMadeReattachmentWithinADay = isWithinADay(attachmentTimestamp);
             if (!v.persistence && v.currentIndex === 0 && v.value > 0 && hasMadeReattachmentWithinADay) {
                 const bundle = v.bundle;
+                const withAccount = assign({}, v, { account });
 
                 if (bundle in payload) {
-                    payload[bundle] = [...payload[bundle], v];
+                    payload[bundle] = [...payload[bundle], withAccount];
                 } else {
-                    payload[bundle] = [v];
+                    payload[bundle] = [withAccount];
                 }
             }
         });

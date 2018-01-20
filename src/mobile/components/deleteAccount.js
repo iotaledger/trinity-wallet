@@ -5,7 +5,7 @@ import Colors from '../theme/Colors';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { width, height } from '../util/dimensions';
 import Modal from 'react-native-modal';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { translate } from 'react-i18next';
@@ -21,7 +21,7 @@ class DeleteAccount extends Component {
         };
     }
 
-    _showModal = data => this.setState({ isModalVisible: true });
+    _showModal = (data) => this.setState({ isModalVisible: true });
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
@@ -108,25 +108,19 @@ class DeleteAccount extends Component {
                         {this.state.pressedContinue && (
                             <View style={styles.textContainer}>
                                 <Text style={[styles.infoText, textColor]}>{t('enterPassword')}</Text>
-                                <TextField
-                                    style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={width / 31.8}
-                                    fontSize={width / 20.7}
-                                    labelPadding={3}
-                                    baseColor={secondaryBackgroundColor}
+                                <CustomTextInput
                                     label={t('global:password')}
-                                    tintColor={THEMES.getHSL(negativeColor)}
+                                    onChangeText={(password) => this.setState({ password })}
+                                    containerStyle={{ width: width / 1.36 }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
-                                    enablesReturnKeyAutomatically={true}
+                                    enablesReturnKeyAutomatically
                                     returnKeyType="done"
-                                    value={this.state.password}
-                                    onChangeText={password => this.setState({ password })}
-                                    containerStyle={{
-                                        width: width / 1.4,
-                                    }}
+                                    onSubmitEditing={this.handleLogin}
+                                    secondaryBackgroundColor={secondaryBackgroundColor}
+                                    negativeColor={negativeColor}
                                     secureTextEntry={true}
+                                    value={this.state.password}
                                 />
                             </View>
                         )}
@@ -134,7 +128,7 @@ class DeleteAccount extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={event => this.onBackPress()}
+                            onPress={(event) => this.onBackPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
