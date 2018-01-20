@@ -27,17 +27,15 @@ const styles = StyleSheet.create({
         width: height / 24,
         height: height / 24,
         position: 'absolute',
-        top: height / 58,
+        top: height / 48,
         left: width / 17,
+        justifyContent: 'flex-end',
     },
     iconContainer: {
-        width: height / 26,
+        width: height / 24,
         height: height / 48,
         borderBottomLeftRadius: height / 24,
         borderBottomRightRadius: height / 24,
-        position: 'absolute',
-        top: height / 27,
-        left: width / 16,
     },
     infoText: {
         color: 'white',
@@ -49,7 +47,7 @@ const styles = StyleSheet.create({
     banner: {
         borderTopLeftRadius: GENERAL.borderRadiusSmall,
         borderTopRightRadius: GENERAL.borderRadiusSmall,
-        height: height / 23,
+        height: height / 24,
         alignItems: 'center',
         width: width / 1.36,
     },
@@ -83,8 +81,9 @@ class InfoBox extends React.Component {
         return (
             <View style={styles.fieldContainer}>
                 <View style={[styles.banner, bannerBackgroundColor]} />
-                <View style={[styles.iconContainer, iconContainerBackgroundColor]} />
-                <Image source={infoImagePath} style={styles.icon} />
+                <Image source={infoImagePath} style={styles.icon}>
+                    <View style={[styles.iconContainer, iconContainerBackgroundColor]} />
+                </Image>
                 <View style={[styles.innerContainer, innerContainerBackgroundColor]}>{text}</View>
             </View>
         );
