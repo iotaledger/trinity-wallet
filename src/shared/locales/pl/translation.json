@@ -55,7 +55,7 @@
         "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
         "attachToTangleUnavailable": "Dołączenie do Tangle niedostępne",
         "attachToTangleUnavailableExplanation": "Dołączenie do Tangle niedostępne na wybranym node.",
-        "wallet": "Wallet"
+        "wallet": "Portfel"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -148,7 +148,7 @@
     "receive": {
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "NOWY ADRES",
         "message": "Wiadomość opcjonalna",
         "removeMessage": "USUŃ WIADOMOŚĆ"
     },
@@ -224,21 +224,21 @@
         "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
         "poorConnection": "Słabe połączenie",
         "poorConnectionExplanation": "Nie można zmienić waluty ze względu na słabe połączenie.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
+        "hide": "Ukryj",
+        "hideOthers": "Ukryj pozostałe",
+        "showAll": "Pokaż wszystkie",
+        "quit": "Zakończ",
+        "edit": "Edytuj",
+        "cut": "Wytnij",
+        "copy": "Kopiuj",
+        "paste": "Wklej",
+        "selectAll": "Zaznacz wszystko"
     },
     "resetWalletConfirmation": {
         "thisAction": "Tej akcji nie można cofnąć.",
-        "warning1": "All your wallet data including your ",
-        "warning2": " seeds, password,",
-        "warning3": " and",
+        "warning1": "Wszystkie dane twojego portfela w tym także twoje ",
+        "warning2": " seeedy, hasła,",
+        "warning3": " oraz",
         "warning4": " inne informacje o koncie",
         "warning5": " zostaną utracone.",
         "areYouSure": "Czy na pewno chcesz kontynuować?"
@@ -253,7 +253,7 @@
         "doYouAlreadyHaveASeed": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
         "seedExplanation": "SEED IOTA jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składającego się z ciągu 81 znaków.",
         "explanation1": "Można go używać w celu uzyskania dostępu do swoich środków z",
-        "explanation2": " any wallet",
+        "explanation2": " jakikolwiek portfel",
         "explanation3": ", na",
         "explanation4": " dowolne urządzenie",
         "explanation5": "Ale jeśli utracisz swojego seeda, utracisz również swoje IOTA.",
