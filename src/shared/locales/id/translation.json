@@ -156,7 +156,7 @@
     "receive": {
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat Anda telah disalin ke papan klip.",
-        "generateNewAddress": "BUAT SEED BARU",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Pesan opsional",
         "removeMessage": "HAPUS PESAN"
     },
@@ -247,9 +247,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Tindakan ini tidak dapat diulang.",
-        "warning1": "Semua dompet anda termasuk",
-        "warning2": " Seed, kata sandi, ",
-        "warning3": "dan",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " informasi akun lainnya",
         "warning5": " akan dihapus.",
         "areYouSure": "Anda yakin ingin melanjutkan?"
@@ -265,7 +265,7 @@
         "seedExplanation":
             "Seed di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
         "explanation1": "Anda dapat menggunakan ini untuk mengakses dana anda dari",
-        "explanation2": " dompet manapun ",
+        "explanation2": " any wallet",
         "explanation3": ", di",
         "explanation4": " perangkat manapun",
         "explanation5": ". Tetapi jika anda lupa Seed, Anda juga akan kehilangan IOTA.",
