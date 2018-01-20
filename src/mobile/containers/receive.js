@@ -79,29 +79,32 @@ class Receive extends Component {
         this.resetAddress();
     }
 
+    componentDidUpdate(newProps) {
+        const { selectedAccountName, generateAlert } = this.props;
+        if (selectedAccountName !== newProps.selectedAccountName) {
+            this.onGeneratePress();
+        }
+    }
+
     onAddressPress(address) {
-        const { t } = this.props;
+        const { t, generateAlert } = this.props;
 
         if (address !== ' ') {
             Clipboard.setString(address);
-            this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
+            generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
         }
     }
 
     onGeneratePress() {
-        const { t, seedIndex, selectedAccount, selectedAccountName, isSyncing } = this.props;
+        const { t, seedIndex, selectedAccount, selectedAccountName, isSyncing, generateAlert } = this.props;
 
         if (isSyncing) {
-            return this.props.generateAlert('error', 'Syncing in process', 'Please wait until syncing is complete.');
+            return generateAlert('error', 'Syncing in process', 'Please wait until syncing is complete.');
         }
 
         const error = () => {
             this.props.getFromKeychainError('receive', 'addressGeneration');
-            this.props.generateAlert(
-                'error',
-                t('global:somethingWentWrong'),
-                t('global:somethingWentWrongExplanation'),
-            );
+            generateAlert('error', t('global:somethingWentWrong'), t('global:somethingWentWrongExplanation'));
         };
 
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
