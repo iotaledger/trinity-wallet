@@ -12,7 +12,7 @@
         "transferSent": "Överföring skickad",
         "transferSentMessage": "Din överföring har skickats till Tangle:n.",
         "keyReuse": "Nyckelåteranvändning",
-        "keyReuseError": "Du kan inte skicka till en adress som redan utnyttjats till en utgående transaktion.",
+        "keyReuseError": "Du kan inte skicka till en adress som redan utnyttjats för en utgående transaktion.",
         "invalidResponse": "Ogiltigt svar",
         "invalidResponseExplanation": "Noden returnerade ett ogiltigt svar.",
         "invalidResponsePollingExplanation": "Noden returnerade ett ogiltigt svar.",
@@ -55,7 +55,7 @@
         "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
         "attachToTangleUnavailable": "Fastsättning på Tangle otillgänglig",
         "attachToTangleUnavailableExplanation": "Fäst på Tangle är otillgänglig på din valda nod.",
-        "wallet": "Wallet"
+        "wallet": "Plånbok"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -148,7 +148,7 @@
     "receive": {
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "NY ADRESS",
         "message": "Valfritt meddelande",
         "removeMessage": "TA BORT MEDDELANDE"
     },
@@ -224,8 +224,8 @@
         "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
         "poorConnection": "Dålig anslutning",
         "poorConnectionExplanation": "Det gick inte att ändra valuta på grund av en dålig anslutning.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
+        "hide": "Dölj",
+        "hideOthers": "Dölj övriga",
         "showAll": "Visa alla",
         "quit": "Avsluta",
         "edit": "Redigera",
@@ -323,11 +323,11 @@
         "enterPassword": "Ange lösenord för att radera detta konto."
     },
     "manualSync": {
-        "pressToSync": "Tryck på knappen under för att synka ditt konto.",
+        "pressToSync": "Tryck på knappen nedan för att synka ditt konto.",
         "thisMayTake": "Detta kan ta ett tag.",
         "youMayNotice": "Din enhet kan tillfälligt bli långsammare.",
         "syncAccount": "SYNKA KONTO",
-        "syncingYourAccount": "Skynkar konto."
+        "syncingYourAccount": "Synkar konto."
     },
     "useExistingSeed": {
         "title": "Ange ett seed och ett konto namn."
@@ -339,13 +339,13 @@
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Jag har sparat min seed",
-        "reenter": "Du kommer nu bli tvungen att skriva in din seed.",
-        "reenterWarningOne": "Om din enhet misslyckas och du inte har sparat",
-        "reenterWarningTwo": "din seed kommer du att förlora din IOTA."
+        "reenter": "Du kommer nu bli ombedd att upprepa din seed.",
+        "reenterWarningOne": "Om din enhet går sönder och du inte har sparat",
+        "reenterWarningTwo": "din seed kommer du att förlora dina IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNA ÅTGÄRD KAN INTE ÅNGRAS.",
-        "infoTextOne": "Alla din plånbok data inklusive din",
+        "infoTextOne": "All din plånboks data inklusive din",
         "infoTextTwo": "seed, lösenord",
         "infoTextThree": "och",
         "infoTextFour": "annan kontoinformation",
