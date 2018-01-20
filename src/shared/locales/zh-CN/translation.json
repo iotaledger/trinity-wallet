@@ -149,7 +149,7 @@
     "receive": {
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
-        "generateNewAddress": "生成新的地址",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "可选消息",
         "removeMessage": "移除消息"
     },
@@ -238,9 +238,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "本操作无法撤销。",
-        "warning1": "所有您的钱包数据, 包括您的",
-        "warning2": " 种子，密码, ",
-        "warning3": "和",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " 其他账户信息",
         "warning5": " 将会丢失。",
         "areYouSure": "是否确定继续？"
@@ -255,7 +255,7 @@
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
         "explanation1": "您可以用它来访问您的资金，从",
-        "explanation2": " 任何钱包 ",
+        "explanation2": " any wallet",
         "explanation3": "，在",
         "explanation4": " 任何设备上",
         "explanation5": "。但是, 如果你丢失了你的种子, 你也会丢失您的IOTA。",
