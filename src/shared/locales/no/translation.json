@@ -157,7 +157,7 @@
     "receive": {
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
-        "generateNewAddress": "LAG NY ADDRESSE",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Valgfri melding",
         "removeMessage": "FJERN MELDINGEN"
     },
@@ -248,9 +248,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Denne handlingen kan ikke angres.",
-        "warning1": "Alle data i lommeboken, inkludert dine",
-        "warning2": " hovednøkler, passord, ",
-        "warning3": "og",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " annen kontoinformasjon",
         "warning5": " vil gå tapt.",
         "areYouSure": "Er du sikker på at du vil fortsette?"
@@ -266,7 +266,7 @@
         "seedExplanation":
             "IOTA hovednøkkel er som et brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
         "explanation1": "Du kan bruke den for å få tilgang til dine midler fra",
-        "explanation2": " enhver lommebok ",
+        "explanation2": " any wallet",
         "explanation3": ", på",
         "explanation4": " enhver enhet",
         "explanation5": ". Men hvis du mister din hovednøkkel, vil du også miste dine IOTA.",
