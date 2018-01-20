@@ -43,32 +43,32 @@ const themes = {
         pendingColor: '#f75602',
         chartLineColor: '#FFA25B',
     },
-    'Monochrome Light': {
+    Light: {
         backgroundColor: tinycolor(`white`).toHsl(),
         barColor: tinycolor(`white`).toHsl(),
         ctaColor: tinycolor(`white`).toHsl(),
         positiveColor: tinycolor(`black`).toHsl(),
-        negativeColor: tinycolor(`black`).toHsl(),
-        extraColor: tinycolor(`black`).toHsl(),
+        negativeColor: tinycolor(`#black`).toHsl(),
+        extraColor: tinycolor(`#black`).toHsl(),
         secondaryBarColor: 'black',
         secondaryBackgroundColor: 'black',
         secondaryCtaColor: 'black',
         ctaBorderColor: 'black',
-        pendingColor: 'black',
+        pendingColor: '#f75602',
         chartLineColor: 'black',
     },
-    'Monochrome Dark': {
+    Dark: {
         backgroundColor: tinycolor(`black`).toHsl(),
         barColor: tinycolor(`black`).toHsl(),
         ctaColor: tinycolor(`black`).toHsl(),
-        positiveColor: tinycolor(`white`).toHsl(),
-        negativeColor: tinycolor(`white`).toHsl(),
-        extraColor: tinycolor(`white`).toHsl(),
+        positiveColor: tinycolor(`#9DFFAF`).toHsl(),
+        negativeColor: tinycolor(`#F7D002`).toHsl(),
+        extraColor: tinycolor(`#88D4FF`).toHsl(),
         secondaryBarColor: 'white',
         secondaryBackgroundColor: 'white',
         secondaryCtaColor: 'white',
         ctaBorderColor: 'white',
-        pendingColor: 'white',
+        pendingColor: '#f75602',
         chartLineColor: 'white',
     },
     /* Custom: {
@@ -87,7 +87,7 @@ const themes = {
     }, */
 };
 
-const getHSL = color => {
+const getHSL = (color) => {
     return tinycolor(color).toHslString();
 };
 

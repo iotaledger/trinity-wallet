@@ -53,7 +53,8 @@
         "somethingWentWrongExplanation": "Start de app opnieuw.",
         "node": "Node",
         "cannotPerformAction": "Kan actie niet uitvoeren",
-        "cannotPerformActionExplanation": "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen.",
+        "cannotPerformActionExplanation":
+            "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen.",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
         "wallet": "Wallet"
@@ -157,7 +158,7 @@
     "receive": {
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Uw adres is naar het Klembord gekopieerd.",
-        "generateNewAddress": "GENEREER EEN NIEUW ADRES",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Bericht",
         "removeMessage": "VERWIJDER BERICHT"
     },
@@ -250,9 +251,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
-        "warning1": "Alle gegevens in uw wallet waaronder",
-        "warning2": " sleutels, wachtwoorden, ",
-        "warning3": "en",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " andere accountgegevens",
         "warning5": " zullen verloren gaan.",
         "areYouSure": "Weet u zeker dat u wilt doorgaan?"
@@ -268,7 +269,7 @@
         "seedExplanation":
             "De toegangscode van uw IOTA wallet is als een gebruikersnaam en wachtwoord samengevoegd in een sleutel van 81 karakters.",
         "explanation1": "U kunt deze gebruiken voor toegang tot uw IOTA vanuit",
-        "explanation2": " elke wallet ",
+        "explanation2": " any wallet",
         "explanation3": "en op",
         "explanation4": " elk apparaat",
         "explanation5": ". Maar als u uw sleutel verliest, verliest u ook uw IOTA.",

@@ -29,12 +29,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     innerContainer: {
-        flex: 4,
+        flex: 5,
         justifyContent: 'center',
         alignItems: 'center',
     },
     topContainer: {
-        flex: 9,
+        flex: 4,
         justifyContent: 'flex-start',
     },
     itemLeft: {
@@ -81,9 +81,6 @@ const styles = StyleSheet.create({
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,
-    },
-    dropdownContainer: {
-        flex: 0.2,
     },
     dropdownWidth: {
         width: width / 2,
@@ -173,7 +170,7 @@ export class CurrencySelection extends Component {
             >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={styles.dropdownContainer} />
+                        <View style={{ flex: 1.2 }} />
                         <Dropdown
                             onRef={c => {
                                 this.dropdown = c;
@@ -186,19 +183,16 @@ export class CurrencySelection extends Component {
                             background
                         />
                     </View>
-                    {isFetchingCurrencyData && (
+                    {(isFetchingCurrencyData && (
                         <View style={styles.innerContainer}>
-                            <Text style={[styles.infoText, { color: secondaryBackgroundColor }]}>
-                                Fetching latest conversion rates for {this.getNewlySelectedValue()}
-                            </Text>
                             <ActivityIndicator
-                                animating={true}
+                                animating
                                 style={styles.activityIndicator}
                                 size="large"
                                 color={THEMES.getHSL(negativeColor)}
                             />
                         </View>
-                    )}
+                    )) || <View style={styles.innerContainer} />}
                     <View style={styles.bottomContainer}>
                         {!isFetchingCurrencyData && this.renderBackOption()}
                         {!isFetchingCurrencyData && this.renderSaveOption()}
