@@ -160,7 +160,7 @@
     "receive": {
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
-        "generateNewAddress": "GENERA UN NUOVO INDIRIZZO",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Messaggio opzionale",
         "removeMessage": "RIMUOVI IL MESSAGGIO"
     },
@@ -253,9 +253,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Questa azione non può essere annullata.",
-        "warning1": "Tutti i dati del tuo portafoglio tra cui",
-        "warning2": " semi, password, ",
-        "warning3": "e",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " altre informazioni sui conti",
         "warning5": " andranno persi.",
         "areYouSure": "Sei sicuro di voler continuare?"
@@ -271,7 +271,7 @@
         "seedExplanation":
             "Il seme IOTA è come una combinazione di utente e password per il tuo conto, in un'unica stringa di 81 caratteri.",
         "explanation1": "Puoi usarlo per accedere ai tuoi fondi da",
-        "explanation2": " qualsiasi portafoglio ",
+        "explanation2": " any wallet",
         "explanation3": ", su",
         "explanation4": " qualsiasi dispositivo",
         "explanation5": ". Ma se perdi il tuo seme, perdi anche i tuoi IOTA.",
