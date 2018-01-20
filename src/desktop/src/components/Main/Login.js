@@ -8,7 +8,7 @@ import { setFirstUse } from 'actions/account';
 import { showError } from 'actions/notifications';
 import { clearTempData } from 'actions/tempAccount';
 import { loadSeeds, clearSeeds } from 'actions/seeds';
-import { sendAmount } from 'actions/deepLinks.js';
+import { sendAmount } from 'actions/deepLinks';
 import { runTask } from 'worker';
 import Template, { Content, Footer } from 'components/Onboarding/Template';
 import PasswordInput from 'components/UI/input/Password';
@@ -33,12 +33,15 @@ class Login extends React.Component {
         showError: PropTypes.func.isRequired,
         clearTempData: PropTypes.func.isRequired,
         clearSeeds: PropTypes.func.isRequired,
-        sendAmount: PropTypes.func.isRequired
+        sendAmount: PropTypes.func.isRequired,
     };
 
     state = {
         loading: false,
         password: '',
+        address: '',
+        amount: '',
+        message: '',
     };
 
     componentDidMount() {
@@ -50,42 +53,44 @@ class Login extends React.Component {
         let regexMessage = /message=([^\n\r]*)/;
         ipcRenderer.on('url-params', (e, data) => {
             let address = data.match(regexAddress);
-            console.log('result '+ address);
-
             if (address !== null) {
-               let amount = data.match(regexAmount);
+                let amount = data.match(regexAmount);
                 let message = data.match(regexMessage);
                 this.setState({
                     address: address[1],
                     amount: amount[1],
-                    message: message[1]
+                    message: message[1],
                 });
-                console.log(this.state.address);
-                this.props.sendAmount(this.state.amount);
-            } else {
-                console.log(false);
+                this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
             }
         });
     }
 
     componentWillReceiveProps(newProps) {
         const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
-        console.log('ready ' + ready);
         if (ready) {
             this.setState({
                 loading: false,
             });
-            console.log('after ready' + this.state);
-            if(!this.state['amount']) {
-                this.props.history.push('/balance');
+            if (!this.state.amount) {
                 Electron.updateMenu('authorised', true);
+                this.props.history.push('/balance');
             } else {
-                this.props.history.push('/send');
+                if (this.state.address.length === ADDRESS_LENGTH) {
+                    this.props.history.push('/send');
+                } else {
+                    const { showError } = this.props;
+                    showError({
+                        title: 'send:invalidAddress',
+                        text: 'send:invalidAddressExplanation1',
+                        translate: true,
+                    });
+                }
             }
         }
     }
 
-    setPassword = (password) => {
+    setPassword = password => {
         this.setState({
             password: password,
         });
@@ -95,15 +100,13 @@ class Login extends React.Component {
         const { account } = this.props;
 
         if (account.firstUse) {
-            console.log('firstuse');
             runTask('getFullAccountInfo', [seed.seed, seed.name]);
         } else {
-            console.log('setupacc');
             runTask('getAccountInfo', [seed.seed, seed.name]);
         }
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = e => {
         e.preventDefault();
         const { password } = this.state;
         const { t, loadSeeds, showError } = this.props;
@@ -122,13 +125,12 @@ class Login extends React.Component {
         if (seeds) {
             loadSeeds(seeds);
             const seed = seeds.items[seeds.selectedSeedIndex];
-
             this.setState({
                 loading: true,
             });
-            console.log('loggin seed');
             //TODO: Fix iota.api call freeze. Do API calls in a worker/electron main?
-            setTimeout(() => this.setupAccount(seed, seeds.selectedSeedIndex), 2000);
+            //Removed timeout because the loading screen was never ending.
+            this.setupAccount(seed, seeds.selectedSeedIndex);
         }
     };
 
@@ -163,22 +165,18 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     account: state.account,
     tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = {
-            showError,
-            loadSeeds,
-            clearTempData,
-            clearSeeds,
-            setFirstUse,
-            sendAmount
-        //     sendAmountDeepLink: amount => {
-        //         console.log('dispatch test '+ amount);
-        //     dispatch(sendAmount(amount));
-        // }
+    showError,
+    loadSeeds,
+    clearTempData,
+    clearSeeds,
+    setFirstUse,
+    sendAmount,
 };
 
 export default translate('login')(connect(mapStateToProps, mapDispatchToProps)(Login));

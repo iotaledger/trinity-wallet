@@ -14,7 +14,7 @@ import MessageInput from 'components/UI/input/Message';
 import Button from 'components/UI/Button';
 import Modal from 'components/UI/Modal';
 import css from 'components/Main/Send.css';
-// import store from 'store';
+import store from 'store';
 
 class Send extends React.PureComponent {
     static propTypes = {
@@ -29,14 +29,19 @@ class Send extends React.PureComponent {
 
     state = {
         address: '',
+        amount: '0',
         message: '',
         isModalVisible: false,
     };
 
-    // componentWillMount() {
-    //     console.log(store.getState());
-    //     console.log(store);
-    // }
+    componentWillMount() {
+        let storeItens = store.getState();
+        if (storeItens.deepLinks.amount) {
+            this.state.amount = storeItens.deepLinks.amount;
+            this.state.address = storeItens.deepLinks.address;
+            this.state.message = storeItens.deepLinks.message;
+        }
+    }
 
     onAddressChange = value => {
         this.setState(() => ({

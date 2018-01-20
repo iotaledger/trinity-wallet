@@ -14,6 +14,7 @@ import home from './reducers/home';
 import keychain from './reducers/keychain';
 import polling from './reducers/polling';
 import ui from './reducers/ui';
+import deepLinks from './reducers/deepLinks';
 import { ActionTypes } from './actions/app';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -34,6 +35,7 @@ const reducers = combineReducers({
     keychain,
     polling,
     ui,
+    deepLinks,
 });
 
 const rootReducer = (state, action) => {
@@ -51,7 +53,7 @@ const store = createStore(
     compose(
         applyMiddleware(...middleware),
         autoRehydrate(),
-        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : (f) => f,
+        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
     ),
 );
 

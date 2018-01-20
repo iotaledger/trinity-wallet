@@ -1,7 +1,9 @@
 import { ActionTypes } from '../actions/deepLinks';
 
 const initialState = {
-    amount: ''
+    amount: 0,
+    address: '',
+    message: '',
 };
 
 export default (state = initialState, action) => {
@@ -9,7 +11,11 @@ export default (state = initialState, action) => {
         case ActionTypes.SEND_AMOUNT:
             return {
                 ...state,
-                amount: action.amount
+                amount: action.payload.amount,
+                address: action.payload.address,
+                message: action.payload.message,
             };
+        default:
+            return state;
     }
 };
