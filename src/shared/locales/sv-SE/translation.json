@@ -318,7 +318,7 @@
     },
     "deleteAccount": {
         "areYouSure": "Är du säker på att du vill ta bort detta kontot?",
-        "yourSeedWillBeRemoved": "Din seed och transaktions historik kommer tas bort.",
+        "yourSeedWillBeRemoved": "Din seed och transaktionshistorik kommer att tas bort.",
         "thisAction": "Denna åtgärd kan inte ångras.",
         "enterPassword": "Ange lösenord för att radera detta konto."
     },
