@@ -107,7 +107,7 @@ class Receive extends Component {
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
         return keychain
             .get()
-            .then((credentials) => {
+            .then(credentials => {
                 this.props.getFromKeychainSuccess('receive', 'addressGeneration');
 
                 if (get(credentials, 'data')) {
@@ -176,7 +176,7 @@ class Receive extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View style={{ flex: 0.6 }} />
+                    <View style={{ flex: 0.5 }} />
                     <View style={[styles.qrContainer, opacity, qrBorder]}>
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
@@ -222,11 +222,11 @@ class Receive extends Component {
                     )}
                     <View style={{ flex: 0.05 }} />
                     <CustomTextInput
-                        onRef={(c) => {
+                        onRef={c => {
                             this.messageField = c;
                         }}
                         label={t('message')}
-                        onChangeText={(message) => this.setState({ message })}
+                        onChangeText={message => this.setState({ message })}
                         containerStyle={{ width: width / 1.36 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
@@ -238,7 +238,7 @@ class Receive extends Component {
                     <View style={{ flex: 0.3 }} />
                     {receiveAddress === ' ' &&
                         (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
-                            <View style={{ flex: 0.6 }} />
+                            <View style={{ flex: 0.7 }} />
                         )}
                     {/*{receiveAddress === ' ' &&
                         (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
@@ -266,7 +266,7 @@ class Receive extends Component {
                             </View>
                         )}*/}
                     {(isGettingSensitiveInfoToGenerateAddress || isGeneratingReceiveAddress) && (
-                        <View style={{ flex: 0.6 }}>
+                        <View style={{ flex: 0.7 }}>
                             <ActivityIndicator
                                 animating={isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress}
                                 style={styles.activityIndicator}
@@ -277,7 +277,7 @@ class Receive extends Component {
                     )}
                     {receiveAddress.length > 1 &&
                         message.length >= 1 && (
-                            <View style={{ flex: 0.6 }}>
+                            <View style={{ flex: 0.7 }}>
                                 <View style={{ flex: 0.2 }} />
                                 <TouchableOpacity
                                     onPress={() => {
@@ -293,7 +293,7 @@ class Receive extends Component {
                                 </TouchableOpacity>
                             </View>
                         )}
-                    {receiveAddress.length > 1 && message.length === 0 && <View style={{ flex: 0.6 }} />}
+                    {receiveAddress.length > 1 && message.length === 0 && <View style={{ flex: 0.7 }} />}
                     <View style={{ flex: 0.3 }} />
                 </View>
             </TouchableWithoutFeedback>
@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     isSyncing: state.tempAccount.isSyncing,
