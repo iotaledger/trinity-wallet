@@ -17,14 +17,14 @@ class OnboardingButtons extends Component {
 
         return (
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity onPress={event => this.props.onLeftButtonPress()}>
-                    <View style={[styles.leftButton, negativeBorderColor]}>
-                        <Text style={[styles.leftText, negativeTextColor]}>{this.props.leftText}</Text>
+                <TouchableOpacity onPress={(event) => this.props.onLeftButtonPress()}>
+                    <View style={[styles.button, negativeBorderColor]}>
+                        <Text style={[styles.text, negativeTextColor]}>{this.props.leftText}</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={event => this.props.onRightButtonPress()}>
-                    <View style={[styles.rightButton, positiveBorderColor]}>
-                        <Text style={[styles.rightText, positiveTextColor]}>{this.props.rightText}</Text>
+                <TouchableOpacity onPress={(event) => this.props.onRightButtonPress()}>
+                    <View style={[styles.button, positiveBorderColor]}>
+                        <Text style={[styles.text, positiveTextColor]}>{this.props.rightText}</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -35,10 +35,11 @@ class OnboardingButtons extends Component {
 const styles = StyleSheet.create({
     buttonsContainer: {
         alignItems: 'flex-end',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         flexDirection: 'row',
+        width: width / 1.36,
     },
-    rightButton: {
+    button: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
         width: width / 3,
@@ -46,28 +47,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
     },
-    rightText: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
-    leftButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginRight: width / 14,
-    },
-    leftText: {
+    text: {
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,

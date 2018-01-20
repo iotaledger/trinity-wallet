@@ -7,7 +7,7 @@ import { EditAccountName } from '../../components/editAccountName';
 
 jest.mock('react-native-device-info');
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {
@@ -80,7 +80,7 @@ describe('Testing EditAccountName component', () => {
 
                 const wrapper = shallow(<EditAccountName {...props} />);
                 wrapper.setState({ accountName: 'foo   ' });
-                const textField = wrapper.find('TextField');
+                const textField = wrapper.find('CustomTextInput');
                 textField.props().onSubmitEditing();
                 expect(props.saveAccountName).toHaveBeenCalledWith('foo');
             });
