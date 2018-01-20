@@ -5,6 +5,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, ListView, Clipboard } 
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
+import { translate } from 'react-i18next';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -18,11 +19,11 @@ class ViewAddresses extends Component {
 
     copy(address) {
         Clipboard.setString(address);
-        return this.props.generateAlert('success', 'Address copied', 'The address has been copied to the clipboard.');
+        return this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
     render() {
-        const { secondaryBackgroundColor, arrowLeftImagePath } = this.props;
+        const { secondaryBackgroundColor, arrowLeftImagePath, t } = this.props;
         let addressData = Object.entries(this.props.addressData);
         addressData = addressData.reverse();
         const textColor = { color: secondaryBackgroundColor };
@@ -72,7 +73,7 @@ class ViewAddresses extends Component {
                     >
                         <View style={styles.itemLeft}>
                             <Image source={arrowLeftImagePath} style={styles.icon} />
-                            <Text style={[styles.titleText, textColor]}>Back</Text>
+                            <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -148,4 +149,4 @@ const mapStateToProps = (state) => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewAddresses);
+export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewAddresses));
