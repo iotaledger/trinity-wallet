@@ -189,20 +189,20 @@
         "passwordTooShortExplanation": "Ditt lösenord måste vara minst ${MIN_PASSWORD_LENGTH} tecken. Det är för närvarande ${this.state.password.length} tecken lång. Vänligen försök igen.",
         "passwordMismatch": "Lösenorden matchar inte",
         "passwordMismatchExplanation": "De lösenord du har angett stämmer inte överens. Vänligen försök igen.",
-        "nowWeNeedTo": "Nu behöver vi ställa in ett lösenord.",
-        "anEncryptedCopy": "En krypterad version av din seed sparas på din enhet. Detta lösenord kommer användas för att få tillgång till din plånbok i framtiden.",
+        "nowWeNeedTo": "Nu behöver vi sätta ett lösenord.",
+        "anEncryptedCopy": "En krypterad version av din seed kommer sparas på din enhet. Detta lösenord kommer användas för att få tillgång till din plånbok i framtiden.",
         "ensure": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
         "retypePassword": "Skriv lösenordet igen"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "Du kan använda flera seeds med denna plånbok. Varje seed kräver ett kontonamn.",
-        "youCanAdd": "Du kan lägga till fler seeds i inställningar."
+        "youCanAdd": "Du kan lägga till fler seeds i inställningsmenyn."
     },
     "settings": {
         "transferSending": "Skickar",
         "transferSendingExplanation": "Vänta tills din överföring har skickats.",
         "generatingAddress": "Generera adress för att ta emot IOTA",
-        "generatingAddressExplanation": "Vänta tills din adress har genererats.",
+        "generatingAddressExplanation": "Vänligen vänta tills din adress har genererats.",
         "mode": "Läge",
         "theme": "Tema",
         "currency": "Valuta",
@@ -252,7 +252,7 @@
         "okay": "Okej. Låt oss ställa in din plånbok!",
         "doYouAlreadyHaveASeed": "Har du redan en seed som du vill använda?",
         "seedExplanation": "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
-        "explanation1": "Du kan använda det för att komma åt dina pengar från",
+        "explanation1": "Du kan använda den för att komma åt dina pengar från",
         "explanation2": " vilken plånbok som helst",
         "explanation3": ", på",
         "explanation4": " valfri enhet",
@@ -261,24 +261,24 @@
     },
     "welcome": {
         "thankYou": "Tack för att du använder IOTA plånboken.",
-        "weWillSpend": "Vi kommer att tillbringa de närmaste minuterna till att konfiguera din plånbok.",
+        "weWillSpend": "Vi kommer att tillbringa de närmaste minuterna åt att konfigurera din plånbok.",
         "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig att följa hela processen."
     },
     "writeSeedDown": {
         "yourSeedIs": "Din seed är {{maxSeedLength}} tecken, den läses från vänster till höger. Skriv ner din seed samt kontrollsumma och",
-        "tripleCheck": "kolla mer än 2 gånger",
+        "tripleCheck": "dubbelkolla",
         "thatTheyAreCorrect": "att den stämmer."
     },
     "history": {
-        "bundleHashCopied": "Hash kopierades",
-        "bundleHashCopiedExplanation": "Bunt hashen har kopierats till Urklipp.",
+        "bundleHashCopied": "Bundle hash kopierades",
+        "bundleHashCopiedExplanation": "Bundle hashen har kopierats till Urklipp.",
         "addressCopied": "Adress kopierad",
-        "addressCopiedExplanation": "Din adress har kopierats till urklippet."
+        "addressCopiedExplanation": "Din adress har kopierats till urklipp."
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
         "viewAddresses": "Visa adresser",
-        "editAccountName": "Ändra namn på konto",
+        "editAccountName": "Ändra kontonamn",
         "deleteAccount": "Radera konto",
         "addNewAccount": "Lägg till konto"
     },
@@ -292,7 +292,7 @@
     },
     "advancedSettings": {
         "selectNode": "Välj nod",
-        "addCustomNode": "Lägga till anpassad nod",
+        "addCustomNode": "Lägg till anpassad nod",
         "manualSync": "Synka manuellt"
     },
     "advancedThemeCustomisation": {
@@ -314,10 +314,10 @@
         "billion": "Miljard",
         "million": "Miljon",
         "thousand": "Tusen",
-        "one": "Ett"
+        "one": "En"
     },
     "deleteAccount": {
-        "areYouSure": "Är du säker på att du vill ta bort detta konto?",
+        "areYouSure": "Är du säker på att du vill ta bort detta kontot?",
         "yourSeedWillBeRemoved": "Din seed och transaktions historik kommer tas bort.",
         "thisAction": "Denna åtgärd kan inte ångras.",
         "enterPassword": "Ange lösenord för att radera detta konto."
