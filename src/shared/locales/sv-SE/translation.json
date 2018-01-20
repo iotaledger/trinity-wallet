@@ -155,7 +155,7 @@
     "receive": {
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklippet.",
-        "generateNewAddress": "GENERERA NY ADRESS",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Valfritt meddelande",
         "removeMessage": "TA BORT MEDDELANDE"
     },
@@ -245,9 +245,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Denna åtgärd kan inte ångras.",
-        "warning1": "Alla din plånbok data inklusive din",
-        "warning2": " seed, lösenord, ",
-        "warning3": "och",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " annan kontoinformation",
         "warning5": " kommer försvinna.",
         "areYouSure": "Är du säker på att du vill fortsätta?"
@@ -263,7 +263,7 @@
         "seedExplanation":
             "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
         "explanation1": "Du kan använda det för att komma åt dina pengar från",
-        "explanation2": " vilken plånbok som helst ",
+        "explanation2": " any wallet",
         "explanation3": ", på",
         "explanation4": " valfri enhet",
         "explanation5": ". Men om du förlorar din seed, då förlorar du också dina IOTA.",
