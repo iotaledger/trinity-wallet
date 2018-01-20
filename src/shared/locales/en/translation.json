@@ -157,7 +157,7 @@
     "receive": {
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Optional message",
         "removeMessage": "REMOVE MESSAGE"
     },
@@ -248,9 +248,9 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": " seeds, password, ",
-        "warning3": "and",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " other account information",
         "warning5": " will be lost.",
         "areYouSure": "Are you sure you want to continue?"
@@ -266,7 +266,7 @@
         "seedExplanation":
             "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
         "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
+        "explanation2": " any wallet",
         "explanation3": ", on",
         "explanation4": " any device",
         "explanation5": ". But if you lose your seed, you also lose your IOTA.",

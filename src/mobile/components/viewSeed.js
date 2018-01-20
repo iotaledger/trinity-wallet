@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import Fonts from '../theme/Fonts';
 import Seedbox from '../components/seedBox.js';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
@@ -41,7 +41,7 @@ class ViewSeed extends Component {
         if (this.state.password === this.props.password) {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     const data = get(credentials, 'data');
 
                     if (!data) {
@@ -52,7 +52,7 @@ class ViewSeed extends Component {
                         this.setState({ showSeed: true });
                     }
                 })
-                .catch(err => console.log(err));
+                .catch((err) => console.log(err));
         } else {
             this.props.onWrongPassword();
         }
@@ -66,7 +66,7 @@ class ViewSeed extends Component {
         AppState.removeEventListener('change', this._handleAppStateChange);
     }
 
-    _handleAppStateChange = nextAppState => {
+    _handleAppStateChange = (nextAppState) => {
         if (nextAppState.match(/inactive|background/)) {
             this.hideSeed();
         }
@@ -82,7 +82,7 @@ class ViewSeed extends Component {
     }
 
     render() {
-        const { t, textColor, secondaryBackgroundColor, borderColor, arrowLeftImagePath } = this.props;
+        const { t, textColor, secondaryBackgroundColor, borderColor, arrowLeftImagePath, negativeColor } = this.props;
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -94,25 +94,19 @@ class ViewSeed extends Component {
                         )}
                         {!this.state.showSeed && (
                             <View style={styles.textFieldContainer}>
-                                <TextField
-                                    style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={width / 31.8}
-                                    fontSize={width / 20.7}
-                                    labelPadding={3}
-                                    baseColor={secondaryBackgroundColor}
-                                    label="Password"
-                                    tintColor={THEMES.getHSL(this.props.negativeColor)}
+                                <CustomTextInput
+                                    label={t('global:password')}
+                                    onChangeText={(password) => this.setState({ password })}
+                                    containerStyle={{ width: width / 1.4 }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
-                                    value={this.state.password}
-                                    onChangeText={password => this.setState({ password })}
-                                    containerStyle={{
-                                        width: width / 1.4,
-                                    }}
                                     secureTextEntry
+                                    onSubmitEditing={this.handleLogin}
+                                    secondaryBackgroundColor={secondaryBackgroundColor}
+                                    negativeColor={negativeColor}
+                                    value={this.state.password}
                                 />
                             </View>
                         )}
@@ -159,7 +153,7 @@ class ViewSeed extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={event => this.props.backPress()}
+                            onPress={(event) => this.props.backPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
