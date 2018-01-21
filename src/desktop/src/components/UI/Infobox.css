@@ -1,9 +1,10 @@
 .wrapper {
-    border: 1px dotted rgba(255, 255, 255, 0.3);
-    border-radius: 16px;
+    border-radius: 4px;
+    background: var(--color-box);
+    border-top: 20px solid var(--color-input);
     font-size: var(--font-size-small);
     margin: 16px auto;
-    padding: 24px 16px 24px 57px;
+    padding: 21px 16px 21px 57px;
     text-align: left;
     position: relative;
     max-width: 512px;

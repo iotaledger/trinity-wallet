@@ -26,7 +26,7 @@ class Theme extends PureComponent {
         //TODO: Normalize color naming together with mobile
         document.documentElement.style.setProperty('--color-body', theme.secondaryBarColor);
         document.documentElement.style.setProperty('--color-bg', this.hslToCSS(theme.backgroundColor));
-        document.documentElement.style.setProperty('--color-bg-secondary', this.hslToCSS(theme.barColor));
+        document.documentElement.style.setProperty('--color-bar', this.hslToCSS(theme.barColor));
 
         document.documentElement.style.setProperty('--color-positive', this.hslToCSS(theme.ctaColor));
         document.documentElement.style.setProperty('--color-negative', theme.pendingColor);

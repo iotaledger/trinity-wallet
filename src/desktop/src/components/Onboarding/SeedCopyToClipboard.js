@@ -7,7 +7,6 @@ import { showNotification } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
 import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
-import css from './SeedCopyToClipboard.css';
 
 // TODO: Translate component
 class SeedCopyToClipboard extends React.PureComponent {
@@ -24,15 +23,16 @@ class SeedCopyToClipboard extends React.PureComponent {
             <div>
                 <p>{t('copyToClipboard:clickToCopy')}</p>
                 <BoxedSeed t={t} seed={seed} />
-                <div className={css.buttonWrapper}>
+                <div>
                     <CopyToClipboard text={seed}>
                         <Button
-                            variant="secondary"
+                            variant="primary"
                             onClick={() =>
                                 showNotification({
                                     type: 'success',
                                     title: 'Seed copied to clipboard!',
-                                })}
+                                })
+                            }
                         >
                             {t('copyToClipboard:copyToClipboard')}
                         </Button>
@@ -43,7 +43,7 @@ class SeedCopyToClipboard extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     seed: getSelectedSeed(state).seed,
 });
 
