@@ -1,5 +1,6 @@
 .select {
     width: 100%;
+    margin-bottom: 50px;
     select {
         font-family: 'Lato';
         font-weight: 200;

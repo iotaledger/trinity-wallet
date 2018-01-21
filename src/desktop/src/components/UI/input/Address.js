@@ -69,7 +69,7 @@ export default class AddressInput extends React.PureComponent {
                     <Modal isOpen onClose={this.closeScanner}>
                         <div className={css.qrScanner}>
                             <QrReader delay={350} onError={this.onScanError} onScan={this.onScanEvent} />
-                            <Button type="button" onClick={this.closeScanner} variant="cta">
+                            <Button type="button" onClick={this.closeScanner} variant="primary">
                                 {closeLabel}
                             </Button>
                         </div>
