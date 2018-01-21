@@ -78,7 +78,7 @@
         "passwordUpdatedExplanation": "Twoje hasło zostało pomyślnie zaktualizowane.",
         "incorrectPassword": "Nieprawidłowe hasło",
         "incorrectPasswordExplanation": "Podane hasło jest nieprawidłowe. Spróbuj ponownie.",
-        "passwordsDoNotMatch": "Hasła się różnią",
+        "passwordsDoNotMatch": "Hasła są różne",
         "passwordsDoNotMatchExplanation": "Hasła się różnią. Proszę spróbować jeszcze raz.",
         "passwordTooShort": "Hasło jest zbyt krótkie",
         "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej 12 znaków. Spróbuj ponownie.",
@@ -94,7 +94,7 @@
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "seedCopied": "Seed skopiowany do schowka",
         "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"Gotowe\", lub po upływie 60 sekund.",
-        "clickToCopy": "Kliknij przycisk poniżej i skopiuj swój seed do menedżera haseł.",
+        "clickToCopy": "Kliknij przycisk poniżej i skopiuj swojego seeda do menedżera haseł.",
         "doNotStore": "Nie przechowuj swojego seeda w formie zwykłego tekstu.",
         "copyToClipboard": "Kopiuj do schowka"
     },
@@ -104,7 +104,7 @@
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
         "seedExplanation": "Seed powinien składać się z {{maxLength}} znaków i powinien zawierać wielkie litery A-Z lub cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
-        "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA"
+        "neverShare": "NIKOMU NIE UDOSTĘPNIAJ SWOJEGO SEEDA"
     },
     "home": {
         "balance": "SALDO",
@@ -118,7 +118,7 @@
     },
     "login": {
         "emptyPassword": "Puste hasło",
-        "emptyPasswordExplanation": "Należy wprowadzić hasło, aby się zalogować. Proszę spróbować ponownie.",
+        "emptyPasswordExplanation": "Musisz wprowadzić hasło, aby się zalogować. Proszę spróbować ponownie.",
         "enterPassword": "Wprowadź swoje hasło.",
         "useSeed": "UŻYJ SEEDA",
         "login": "ZALOGUJ",
@@ -127,13 +127,13 @@
     "loading": {
         "loadingFirstTime": "Ładowanie seeda po raz pierwszy.",
         "thisMayTake": "To może chwilę potrwać.",
-        "youMayNotice": "Możesz zaobserwować spowolnienie Twojego urządzenia."
+        "youMayNotice": "Możesz zaobserwować spowolnienie twojego urządzenia."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed nie został wygenerowany",
-        "seedNotGeneratedExplanation": "Kliknij na przycisk generowania nowego seeda.",
+        "seedNotGeneratedExplanation": "Kliknij przycisk generowania nowego Seeda.",
         "pressForNewSeed": "NACIŚNIJ DLA NOWEGO SEEDa",
-        "individualLetters": "Kliknij poszczególne litery żeby dokonać losowego wyboru."
+        "individualLetters": "Kliknij poszczególne litery żeby dokonać wyboru losowego."
     },
     "onboardingComplete": {
         "walletReady": "Portfel jest teraz skonfigurowany i gotowy do użycia. W przypadku konieczności wprowadzenia zmian w przyszłości, skorzystaj z menu ustawień."
@@ -162,7 +162,7 @@
     "seedReentry": {
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
-        "thisIsACheck": "To jest test w celu upewnienia się że zapisałeś swój seed.",
+        "thisIsACheck": "To jest test w celu upewnienia się że zapisałeś swojego seeda.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego seeda, proszę wrócić do poprzedniego ekranu i to zrobić."
     },
     "send": {
