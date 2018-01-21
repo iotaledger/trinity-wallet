@@ -103,8 +103,7 @@
         "invalidCharactersExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
         "seedTooShort": "種子碼過短",
         "seedTooShortExplanation": "您的密碼必須至少{{最大的長度}} 字元。目前{{目前長度}} 字元長。請再試一次",
-        "seedExplanation":
-            "種子應{{maxLength}} 字長, 並應包含大寫字母 a-z, 或數字9。您不能使用種子長於{{maxLength}} 字元。",
+        "seedExplanation": "種子應{{maxLength}} 字長, 並應包含大寫字母 a-z, 或數字9。您不能使用種子長於{{maxLength}} 字元。",
         "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {
@@ -225,21 +224,21 @@
         "cannotPerformActionExplanation": "轉到進階設定中重置錢包。",
         "poorConnection": "連線不良",
         "poorConnectionExplanation": "由於連接不良, 無法更改幣別。",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
+        "hide": "隱藏",
+        "hideOthers": "隱藏其他",
+        "showAll": "全部顯示",
+        "quit": "退出",
+        "edit": "編輯",
+        "cut": "剪下",
+        "copy": "複製",
+        "paste": "貼上",
+        "selectAll": "選擇所有"
     },
     "resetWalletConfirmation": {
         "thisAction": "此向操作無法復原",
-        "warning1": "All your wallet data including your ",
-        "warning2": " seeds, password,",
-        "warning3": " and",
+        "warning1": "所有錢包資訊，包含您的 ",
+        "warning2": " 種子，密碼,",
+        "warning3": " 和",
         "warning4": "其他帳戶資訊",
         "warning5": "將會遺失。",
         "areYouSure": "您確定要繼續嗎？"
@@ -254,7 +253,7 @@
         "doYouAlreadyHaveASeed": "您是否已有希望使用的種子碼?",
         "seedExplanation": "IOTA種子碼是由您帳戶的名稱和密碼結合成為81個字元長的字串。",
         "explanation1": "您可以使用它來存取您的資金從",
-        "explanation2": " any wallet",
+        "explanation2": " 任何錢包",
         "explanation3": "， 啟用",
         "explanation4": " 任何裝置",
         "explanation5": "但是, 如果你失去了你的種子, 你也失去了你的IOTA。",
@@ -266,8 +265,7 @@
         "reminder": "您或許希望跳過一些步驟，但我們建議您按完整程序設置。"
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "再三確認",
         "thatTheyAreCorrect": "兩者皆正確"
     },

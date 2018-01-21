@@ -6,13 +6,13 @@
         "noTransactions": "Ingen historik",
         "qr": "QR",
         "balanceError": "Otillräckligt saldo",
-        "balanceErrorMessage": "Du har inte tillräckligt IOTA att slutföra denna överföring.",
+        "balanceErrorMessage": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
         "transferError": "Överföringsfel",
-        "transferErrorMessage": "Något gick fel när överföringen skickades. Vänligen försök igen.",
+        "transferErrorMessage": "Något gick fel under överföringen. Vänligen försök igen.",
         "transferSent": "Överföring skickad",
-        "transferSentMessage": "Din överföring har skickats till Tangle:n.",
+        "transferSentMessage": "Din överföring har skickats till Tangle.",
         "keyReuse": "Nyckelåteranvändning",
-        "keyReuseError": "Du kan inte skicka till en adress som redan skickats från.",
+        "keyReuseError": "Du kan inte skicka till en adress som redan utnyttjats för en utgående transaktion.",
         "invalidResponse": "Ogiltigt svar",
         "invalidResponseExplanation": "Noden returnerade ett ogiltigt svar.",
         "invalidResponsePollingExplanation": "Noden returnerade ett ogiltigt svar.",
@@ -29,7 +29,7 @@
         "close": "STÄNG",
         "continue": "Fortsätt",
         "manualCopy": "Skriv ner din seed",
-        "paperWallet": "Skriva ut papperskopia",
+        "paperWallet": "Skriv ut papperskopia",
         "copyToClipboard": "Lägg till i lösenordshanteraren",
         "notAvailable": "Denna funktion är inte tillgänglig",
         "notAvailableExplanation": "Funktionen kommer i en senare version.",
@@ -53,40 +53,37 @@
         "node": "Nod",
         "cannotPerformAction": "Kan inte utföra åtgärden",
         "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
-        "attachToTangleUnavailable": "Fäst på Tangle otillgänglig",
+        "attachToTangleUnavailable": "Fastsättning på Tangle otillgänglig",
         "attachToTangleUnavailableExplanation": "Fäst på Tangle är otillgänglig på din valda nod.",
-        "wallet": "Wallet"
+        "wallet": "Plånbok"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
-        "seedInvalidCharsExplanation":
-            "Din seed kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken, försök igen.",
+        "seedInvalidCharsExplanation": "Din seed kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken. Försök igen.",
         "seedTooShort": "Din seed är för kort",
-        "seedTooShortExplanation":
-            "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
+        "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Seeden är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
         "nameInUse": "Kontonamnet används redan",
         "nameInUseExplanation": "Vänligen använd ett unikt namn för din seed.",
         "enterAccountName": "Ange ditt kontonamn.",
         "accountName": "Kontonamn",
-        "noNickname": "Inget kontonamn angivet",
-        "noNicknameExplanation": "Vänligen ange ett namn för din Sseed.",
+        "noNickname": "Inget kontonamn är angivet",
+        "noNicknameExplanation": "Vänligen ange ett namn för din seed.",
         "seedInUse": "Seeden används redan",
-        "seedInUseExplanation": "Denna seed är redan länkad till din plånbok. Använd en annan."
+        "seedInUseExplanation": "Den här seeden är redan länkad till din plånbok. Vänligen använd en annan."
     },
     "changePassword": {
         "oops": "Ops! Något gick snett",
-        "oopsExplanation": "Det verkar som att något gick fel vid ändring av ditt lösenord, vänligen försök igen.",
-        "passwordUpdated": "Lösenord uppdaterad",
+        "oopsExplanation": "Det verkar som att något gick fel vid ändringen av ditt lösenord, vänligen försök igen.",
+        "passwordUpdated": "Lösenordet uppdaterat",
         "passwordUpdatedExplanation": "Ditt lösenord har uppdaterats.",
         "incorrectPassword": "Felaktigt lösenord",
-        "incorrectPasswordExplanation": "Ditt nuvarande lösenord är fel, försök igen.",
+        "incorrectPasswordExplanation": "Ditt nuvarande lösenord är felaktigt, försök igen.",
         "passwordsDoNotMatch": "Lösenorden stämmer inte överens",
         "passwordsDoNotMatchExplanation": "Lösenorden stämmer inte överens, försök igen.",
         "passwordTooShort": "Lösenordet är för kort",
         "passwordTooShortExplanation": "Ditt lösenord måste åtminstone vara 12 tecken långt, försök igen.",
-        "oldPassword": "Ett gammalt lösenord får ej användas",
-        "oldPasswordExplanation":
-            "Ett gammalt lösenord får ej användas som ditt nya, försök igen med ett nytt lösenord.",
+        "oldPassword": "Ett gammalt lösenord får ej återanvändas",
+        "oldPasswordExplanation": "Ett gammalt lösenord kan inte återanvändas, försök igen med ett nytt lösenord.",
         "ensureStrongPassword": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
         "currentPassword": "Nuvarande lösenord",
         "newPassword": "Nytt lösenord",
@@ -94,26 +91,23 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed rensad",
-        "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhet.",
-        "seedCopied": "Kopierat till urklipp",
-        "seedCopiedExplanation": "Din seed kommer att rensas när du trycker på ”klar” eller 60 sekunder har gått.",
-        "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till ett lösenordshanterare.",
+        "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhets skull.",
+        "seedCopied": "Seed kopierad till urklipp",
+        "seedCopiedExplanation": "Din seed kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
+        "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till en lösenordshanterare.",
         "doNotStore": "Förvara inte din seed i oformaterad text.",
         "copyToClipboard": "Kopiera till urklipp"
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
-        "invalidCharactersExplanation":
-            "Seeden kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken, försök igen.",
+        "invalidCharactersExplanation": "Seeden får enbart innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken. Försök igen.",
         "seedTooShort": "Seeden är för kort",
-        "seedTooShortExplanation":
-            "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
-        "seedExplanation":
-            "Seed ska vara {{maxLength}} tecken lång och får endast innehålla bokstäverna A-Z och nummer 9. Din seed får inte vara längre än {{maxLength}} tecken.",
+        "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
+        "seedExplanation": "Seed ska vara {{maxLength}} tecken lång och får endast innehålla bokstäverna A-Z och nummer 9. Din seed får inte vara längre än {{maxLength}} tecken.",
         "neverShare": "DELA ALDRIG DIN SEED MED NÅGON"
     },
     "home": {
-        "balance": "Konton",
+        "balance": "SALDO",
         "send": "SKICKA",
         "receive": "TA EMOT",
         "history": "HISTORIK",
@@ -137,13 +131,12 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "En seed har inte blivit genererad",
-        "seedNotGeneratedExplanation": "Vänligen klicka på knappen Generera ny seed.",
-        "pressForNewSeed": "TRYCK FÖR NYA SEED",
-        "individualLetters": "Tryck på enskilda bokstäver för att slumpmässigt ändra de."
+        "seedNotGeneratedExplanation": "Vänligen klicka på knappen Generera Ny Seed.",
+        "pressForNewSeed": "TRYCK FÖR NY SEED",
+        "individualLetters": "Tryck på enskilda bokstäver för att ändra de slumpmässigt."
     },
     "onboardingComplete": {
-        "walletReady":
-            "Plånboken är nu inställd och redo för att användas. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
+        "walletReady": "Plånboken är nu inställd och redo att använda. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
     },
     "paperWallet": {
         "clickToPrint": "Klicka på knappen nedan för att skriva ut en papperskopia av din seed.",
@@ -154,8 +147,8 @@
     },
     "receive": {
         "addressCopied": "Adress kopierad",
-        "addressCopiedExplanation": "Din adress har kopierats till urklippet.",
-        "generateNewAddress": "NEW ADDRESS",
+        "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
+        "generateNewAddress": "NY ADRESS",
         "message": "Valfritt meddelande",
         "removeMessage": "TA BORT MEDDELANDE"
     },
@@ -163,60 +156,58 @@
         "seedCleared": "Seed rensad",
         "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhet.",
         "mustSaveYourSeed": "Du måste spara din seed med ",
-        "atLeastOne": "minst en ",
+        "atLeastOne": "åtminstone en ",
         "ofTheOptions": "av alternativen som anges nedan."
     },
     "seedReentry": {
-        "incorrectSeed": "Felaktiga seed",
+        "incorrectSeed": "Felaktig seed",
         "incorrectSeedExplanation": "Den seed som du angav är felaktig. Vänligen försök igen.",
-        "thisIsACheck": "Detta är en kontroll för att kontrollera om du sparat din seed.",
-        "ifYouHaveNotSaved": "Om du inte har sparat din seed, gå tillbaka till föregående skärm och göra så."
+        "thisIsACheck": "Detta är en kontroll för att kontrollera att du sparat din seed.",
+        "ifYouHaveNotSaved": "Om du inte har sparat din seed, gå tillbaka till föregående skärm och gör så."
     },
     "send": {
         "invalidAddress": "Ogiltig adress",
         "invalidAddressExplanation1": "Din seed bör vara {{maxLength}} tecken långt och ska ha en kontrollsumma.",
         "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
-        "notEnoughFunds": "Otillräckligt med pengar",
-        "notEnoughFundsExplanation": "Du har inte tillräckligt IOTA att slutföra denna överföring.",
+        "notEnoughFunds": "Otillräckliga tillgångar",
+        "notEnoughFundsExplanation": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
         "keyReuse": "Nyckelåteranvändning",
-        "keyReuseExplanation": "Den adress som du försöker skicka till har redan använts. Försök med en annan adress.",
+        "keyReuseExplanation": "Den adress som du försöker skicka till har redan använts. Försök igen med en annan adress.",
         "recipientAddress": "Mottagarens adress",
-        "amount": "Antal",
+        "amount": "Belopp",
         "max": "MAX",
         "message": "Meddelande",
         "send": "SKICKA",
         "invalidAmount": "Felaktigt belopp angivet",
         "invalidAmountExplanation": "Ange ett numeriskt värde för transaktionsbeloppet.",
-        "maximumSelected": "HÖGSTA belopp valt",
+        "maximumSelected": "MAXIMALA belopp valt",
         "iotaUnits": "IOTA enheter"
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
-        "passwordTooShortExplanation":
-            "Ditt lösenord måste vara minst ${MIN_PASSWORD_LENGTH} tecken. Det är för närvarande ${this.state.password.length} tecken lång. Vänligen försök igen.",
+        "passwordTooShortExplanation": "Ditt lösenord måste vara minst ${MIN_PASSWORD_LENGTH} tecken. Det är för närvarande ${this.state.password.length} tecken lång. Vänligen försök igen.",
         "passwordMismatch": "Lösenorden matchar inte",
         "passwordMismatchExplanation": "De lösenord du har angett stämmer inte överens. Vänligen försök igen.",
-        "nowWeNeedTo": "Nu behöver vi ställa in ett lösenord.",
-        "anEncryptedCopy":
-            "En krypterad version av din seed sparas på din enhet. Detta lösenord kommer användas för att få tillgång till din plånbok i framtiden.",
+        "nowWeNeedTo": "Nu behöver vi sätta ett lösenord.",
+        "anEncryptedCopy": "En krypterad version av din seed kommer sparas på din enhet. Detta lösenord kommer att användas för att få tillgång till din plånbok i framtiden.",
         "ensure": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
         "retypePassword": "Skriv lösenordet igen"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "Du kan använda flera seeds med denna plånbok. Varje seed kräver ett kontonamn.",
-        "youCanAdd": "Du kan lägga till fler seeds i inställningar."
+        "youCanAdd": "Du kan lägga till fler seeds i inställningsmenyn."
     },
     "settings": {
         "transferSending": "Skickar",
         "transferSendingExplanation": "Vänta tills din överföring har skickats.",
-        "generatingAddress": "Generera adress för att ta emot IOTA",
-        "generatingAddressExplanation": "Vänta tills din adress har genererats.",
+        "generatingAddress": "Genererar mottagaradress",
+        "generatingAddressExplanation": "Vänligen vänta tills din adress har genererats.",
         "mode": "Läge",
-        "theme": "Tema",
+        "theme": "Teman",
         "currency": "Valuta",
         "language": "Språk",
-        "accountManagement": "Hantera konton",
+        "accountManagement": "Kontohantering",
         "addNewSeed": "Lägg till ny seed",
         "twoFA": "Tvåfaktorsautentisering",
         "changePassword": "Ändra lösenord",
@@ -224,30 +215,30 @@
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
         "syncingComplete": "Synkronisering genomförd",
-        "syncingCompleteExplanation": "Ditt konto har synkroniserat färdigt.",
+        "syncingCompleteExplanation": "Ditt konto har synkroniserats.",
         "nicknameChanged": "Kontonamn bytt",
-        "nicknameChangedExplanation": "Namnet på ditt konto har ändrats.",
+        "nicknameChangedExplanation": "Ditt kontonamn har ändrats.",
         "accountDeleted": "Kontot har tagits bort",
         "accountDeletedExplanation": "Ditt konto har tagits bort från plånboken.",
         "cannotPerformAction": "Kan inte utföra åtgärden",
         "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
         "poorConnection": "Dålig anslutning",
         "poorConnectionExplanation": "Det gick inte att ändra valuta på grund av en dålig anslutning.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
+        "hide": "Dölj",
+        "hideOthers": "Dölj övriga",
+        "showAll": "Visa alla",
+        "quit": "Avsluta",
+        "edit": "Redigera",
+        "cut": "Klipp ut",
+        "copy": "Kopiera",
+        "paste": "Klistra in",
+        "selectAll": "Välj alla"
     },
     "resetWalletConfirmation": {
         "thisAction": "Denna åtgärd kan inte ångras.",
-        "warning1": "All your wallet data including your ",
-        "warning2": " seeds, password,",
-        "warning3": " and",
+        "warning1": "All din plånboks data inklusive din ",
+        "warning2": " seed, lösenord,",
+        "warning3": " och",
         "warning4": " annan kontoinformation",
         "warning5": " kommer försvinna.",
         "areYouSure": "Är du säker på att du vill fortsätta?"
@@ -258,38 +249,36 @@
         "reset": "ÅTERSTÄLL"
     },
     "walletSetup": {
-        "okay": "Okej. Låt oss ställa in din plånbok!",
+        "okay": "Okej. Låt oss sammanställa din plånbok!",
         "doYouAlreadyHaveASeed": "Har du redan en seed som du vill använda?",
-        "seedExplanation":
-            "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
-        "explanation1": "Du kan använda det för att komma åt dina pengar från",
-        "explanation2": " any wallet",
+        "seedExplanation": "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
+        "explanation1": "Du kan använda den för att komma åt dina tillgångar från",
+        "explanation2": " vilken plånbok som helst",
         "explanation3": ", på",
         "explanation4": " valfri enhet",
-        "explanation5": ". Men om du förlorar din seed, då förlorar du också dina IOTA.",
+        "explanation5": ". Om du förlorar din seed, då förlorar du också dina IOTA.",
         "keepSafe": "Vänligen förvara din seed säkert."
     },
     "welcome": {
         "thankYou": "Tack för att du använder IOTA plånboken.",
-        "weWillSpend": "Vi kommer att tillbringa de närmaste minuterna till att konfiguera din plånbok.",
-        "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig att följa hela processen."
+        "weWillSpend": "Vi kommer att tillbringa de närmaste minuterna åt att konfigurera din plånbok.",
+        "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig till att följa hela processen."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Din seed är {{maxSeedLength}} tecken, den läses från vänster till höger. Skriv ner din seed samt kontrollsumma och",
-        "tripleCheck": "kolla mer än 2 gånger",
+        "yourSeedIs": "Din seed är {{maxSeedLength}} tecken, den läses från vänster till höger. Skriv ner din seed samt kontrollsumma och",
+        "tripleCheck": "dubbelkolla",
         "thatTheyAreCorrect": "att den stämmer."
     },
     "history": {
-        "bundleHashCopied": "Hash kopierades",
-        "bundleHashCopiedExplanation": "Bunt hashen har kopierats till Urklipp.",
+        "bundleHashCopied": "Hashbunt kopierad",
+        "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
-        "addressCopiedExplanation": "Din adress har kopierats till urklippet."
+        "addressCopiedExplanation": "Din adress har kopierats till urklipp."
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
         "viewAddresses": "Visa adresser",
-        "editAccountName": "Ändra namn på konto",
+        "editAccountName": "Ändra kontonamn",
         "deleteAccount": "Radera konto",
         "addNewAccount": "Lägg till konto"
     },
@@ -299,11 +288,11 @@
     },
     "addNewAccount": {
         "useExistingSeed": "Använd befintlig seed",
-        "createNewSeed": "Skapa nya seed"
+        "createNewSeed": "Skapa ny seed"
     },
     "advancedSettings": {
         "selectNode": "Välj nod",
-        "addCustomNode": "Lägga till anpassad nod",
+        "addCustomNode": "Lägg till anpassad nod",
         "manualSync": "Synka manuellt"
     },
     "advancedThemeCustomisation": {
@@ -314,7 +303,7 @@
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Är du säker att du vill logga ut?"
+        "logoutConfirmation": "Är du säker på att du vill logga ut?"
     },
     "qrScanner": {
         "scan": "Skanna din QR-kod"
@@ -328,20 +317,20 @@
         "one": "Ett"
     },
     "deleteAccount": {
-        "areYouSure": "Är du säker på att du vill ta bort detta konto?",
-        "yourSeedWillBeRemoved": "Din seed och transaktions historik kommer tas bort.",
+        "areYouSure": "Är du säker på att du vill ta bort detta kontot?",
+        "yourSeedWillBeRemoved": "Din seed och transaktionshistorik kommer tas bort.",
         "thisAction": "Denna åtgärd kan inte ångras.",
-        "enterPassword": "Ange lösenord för att radera detta konto."
+        "enterPassword": "Ange ditt lösenord för att radera detta kontot."
     },
     "manualSync": {
-        "pressToSync": "Tryck på knappen under för att synka ditt konto.",
-        "thisMayTake": "Detta kan ta ett tag.",
+        "pressToSync": "Tryck på knappen nedan för att synka ditt konto.",
+        "thisMayTake": "Det kan ta ett tag.",
         "youMayNotice": "Din enhet kan tillfälligt bli långsammare.",
         "syncAccount": "SYNKA KONTO",
-        "syncingYourAccount": "Skynkar konto."
+        "syncingYourAccount": "Synkar konto."
     },
     "useExistingSeed": {
-        "title": "Ange ett seed och ett konto namn."
+        "title": "Ange din seed och ett kontonamn."
     },
     "viewSeed": {
         "enterPassword": "Ange lösenord för att visa din seed.",
@@ -350,17 +339,17 @@
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Jag har sparat min seed",
-        "reenter": "Du kommer nu bli tvungen att skriva in din seed.",
-        "reenterWarningOne": "Om din enhet misslyckas och du inte har sparat",
-        "reenterWarningTwo": "din seed kommer du att förlora din IOTA."
+        "reenter": "Du kommer nu bli ombedd att upprepa din seed.",
+        "reenterWarningOne": "Om din enhet går sönder och du inte har sparat",
+        "reenterWarningTwo": "din seed kommer du att förlora dina IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNA ÅTGÄRD KAN INTE ÅNGRAS.",
-        "infoTextOne": "Alla din plånbok data inklusive din",
+        "infoTextOne": "All din plånboks data inklusive din",
         "infoTextTwo": "seed, lösenord",
         "infoTextThree": "och",
         "infoTextFour": "annan kontoinformation",
-        "infoTextFive": "kommer försvinna."
+        "infoTextFive": "kommer att försvinna."
     },
     "transferConfirmation": {
         "youAreAbout": "Du kommer att skicka {{contents}} till adressen",
