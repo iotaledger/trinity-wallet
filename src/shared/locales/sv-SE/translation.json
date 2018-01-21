@@ -303,7 +303,7 @@
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Är du säker att du vill logga ut?"
+        "logoutConfirmation": "Är du säker på att du vill logga ut?"
     },
     "qrScanner": {
         "scan": "Skanna din QR-kod"
@@ -314,13 +314,13 @@
         "billion": "Miljard",
         "million": "Miljon",
         "thousand": "Tusen",
-        "one": "Ett"
+        "one": "En"
     },
     "deleteAccount": {
         "areYouSure": "Är du säker på att du vill ta bort detta kontot?",
-        "yourSeedWillBeRemoved": "Din seed och transaktionshistorik kommer att tas bort.",
+        "yourSeedWillBeRemoved": "Din seed och transaktionshistorik kommer tas bort.",
         "thisAction": "Denna åtgärd kan inte ångras.",
-        "enterPassword": "Ange lösenord för att radera detta konto."
+        "enterPassword": "Ange ditt lösenord för att radera detta kontot."
     },
     "manualSync": {
         "pressToSync": "Tryck på knappen nedan för att synka ditt konto.",
@@ -330,7 +330,7 @@
         "syncingYourAccount": "Synkar konto."
     },
     "useExistingSeed": {
-        "title": "Ange ett seed och ett konto namn."
+        "title": "Ange din seed och ett kontonamn."
     },
     "viewSeed": {
         "enterPassword": "Ange lösenord för att visa din seed.",
@@ -349,7 +349,7 @@
         "infoTextTwo": "seed, lösenord",
         "infoTextThree": "och",
         "infoTextFour": "annan kontoinformation",
-        "infoTextFive": "kommer försvinna."
+        "infoTextFive": "kommer att försvinna."
     },
     "transferConfirmation": {
         "youAreAbout": "Du kommer att skicka {{contents}} till adressen",
