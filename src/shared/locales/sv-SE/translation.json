@@ -204,7 +204,7 @@
         "generatingAddress": "Genererar mottagaradress",
         "generatingAddressExplanation": "Vänligen vänta tills din adress har genererats.",
         "mode": "Läge",
-        "theme": "Tema",
+        "theme": "Teman",
         "currency": "Valuta",
         "language": "Språk",
         "accountManagement": "Hantera konton",
@@ -314,7 +314,7 @@
         "billion": "Miljard",
         "million": "Miljon",
         "thousand": "Tusen",
-        "one": "En"
+        "one": "Ett"
     },
     "deleteAccount": {
         "areYouSure": "Är du säker på att du vill ta bort detta kontot?",
