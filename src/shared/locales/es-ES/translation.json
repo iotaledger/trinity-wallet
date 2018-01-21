@@ -1,11 +1,11 @@
 {
     "global": {
         "send": "ENVIAR",
-        "cancel": "CANCEL",
-        "continue?": "Are you sure you want to continue?",
-        "noTransactions": "NO RECENT HISTORY",
+        "cancel": "CANCELAR",
+        "continue?": "¿Seguro que quieres continuar?",
+        "noTransactions": "NO HAY HISTORIAL RECIENTE",
         "qr": "QR",
-        "balanceError": "Not enough balance",
+        "balanceError": "No hay suficiente balance",
         "balanceErrorMessage": "No tienes suficiente IOTA para completar esta transferencia.",
         "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
