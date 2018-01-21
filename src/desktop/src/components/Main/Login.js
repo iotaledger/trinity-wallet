@@ -14,7 +14,6 @@ import PasswordInput from 'components/UI/input/Password';
 import Button from 'components/UI/Button';
 import Loading from 'components/UI/Loading';
 import css from 'components/Layout/Onboarding.css';
-import { setTimeout } from 'timers';
 
 class Login extends React.Component {
     static propTypes = {
@@ -139,7 +138,9 @@ class Login extends React.Component {
                         <Button to="/seedlogin" variant="secondary">
                             {t('login:useSeed')}
                         </Button>
-                        <Button variant="success">{t('login:login')}</Button>
+                        <Button className="outline" variant="primary">
+                            {t('login:login')}
+                        </Button>
                     </Footer>
                 </Template>
             </div>

@@ -7,10 +7,10 @@
 @custom-media --xl (max-width: 1440px);
 
 :root {
-    --font-size-default: 14px;
-    --font-size-small: 12px;
-    --font-size-large: 16px;
-    --font-size-title: 20px;
+    --font-size-xl: 26px;
+    --font-size-l: 21px;
+    --font-size-m: 14px;
+    --font-size-s: 12px;
 
     --z-index-modal: 2048;
     --z-index-overlay: 2049;
@@ -65,12 +65,27 @@ body {
     color: var(--color-body);
     font-family: 'Lato';
     font-weight: 200;
-    font-size: var(--font-size-default);
+    font-size: var(--font-size-m);
     line-height: 1.5;
 }
 
+h1,
+h2,
+p {
+    font-weight: 200;
+    line-height: 1.6em;
+    margin: 0 0 1em;
+}
 h1 {
-    font-size: var(--font-size-title);
+    font-size: var(--font-size-xl);
+}
+h2 {
+    font-size: var(--font-size-l);
+}
+
+p {
+    font-size: var(--font-size-m);
+    margin-bottom: 2em;
 }
 
 label {

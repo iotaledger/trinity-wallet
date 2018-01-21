@@ -22,10 +22,10 @@ export default translate('welcome1')(
                         </p>
                     </Content>
                     <Footer>
-                        <Button to="/" variant="secondary">
+                        <Button to="/" className="outline" variant="highlight">
                             {t('global:back')}
                         </Button>
-                        <Button to="/wallet-setup" variant="success">
+                        <Button to="/wallet-setup" className="outline" variant="primary">
                             {t('global:next')}
                         </Button>
                     </Footer>
