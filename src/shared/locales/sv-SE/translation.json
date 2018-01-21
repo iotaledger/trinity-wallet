@@ -324,7 +324,7 @@
     },
     "manualSync": {
         "pressToSync": "Tryck på knappen nedan för att synka ditt konto.",
-        "thisMayTake": "Detta kan ta ett tag.",
+        "thisMayTake": "Det kan ta ett tag.",
         "youMayNotice": "Din enhet kan tillfälligt bli långsammare.",
         "syncAccount": "SYNKA KONTO",
         "syncingYourAccount": "Synkar konto."
