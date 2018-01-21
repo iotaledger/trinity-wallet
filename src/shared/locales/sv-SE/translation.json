@@ -217,7 +217,7 @@
         "syncingComplete": "Synkronisering genomförd",
         "syncingCompleteExplanation": "Ditt konto har synkroniserat färdigt.",
         "nicknameChanged": "Kontonamn bytt",
-        "nicknameChangedExplanation": "Namnet på ditt konto har ändrats.",
+        "nicknameChangedExplanation": "Ditt kontonamn har ändrats.",
         "accountDeleted": "Kontot har tagits bort",
         "accountDeletedExplanation": "Ditt konto har tagits bort från plånboken.",
         "cannotPerformAction": "Kan inte utföra åtgärden",
@@ -249,20 +249,20 @@
         "reset": "ÅTERSTÄLL"
     },
     "walletSetup": {
-        "okay": "Okej. Låt oss ställa in din plånbok!",
+        "okay": "Okej. Låt oss sammanställa din plånbok!",
         "doYouAlreadyHaveASeed": "Har du redan en seed som du vill använda?",
         "seedExplanation": "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
-        "explanation1": "Du kan använda den för att komma åt dina pengar från",
+        "explanation1": "Du kan använda den för att komma åt dina tillgångar från",
         "explanation2": " vilken plånbok som helst",
         "explanation3": ", på",
         "explanation4": " valfri enhet",
-        "explanation5": ". Men om du förlorar din seed, då förlorar du också dina IOTA.",
+        "explanation5": ". Om du förlorar din seed, då förlorar du också dina IOTA.",
         "keepSafe": "Vänligen förvara din seed säkert."
     },
     "welcome": {
         "thankYou": "Tack för att du använder IOTA plånboken.",
         "weWillSpend": "Vi kommer att tillbringa de närmaste minuterna åt att konfigurera din plånbok.",
-        "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig att följa hela processen."
+        "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig till att följa hela processen."
     },
     "writeSeedDown": {
         "yourSeedIs": "Din seed är {{maxSeedLength}} tecken, den läses från vänster till höger. Skriv ner din seed samt kontrollsumma och",
