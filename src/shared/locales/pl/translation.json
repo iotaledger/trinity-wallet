@@ -15,7 +15,7 @@
         "keyReuseError": "Nie można wysłać na adres, który został już obciążony.",
         "invalidResponse": "Błędna odpowiedź",
         "invalidResponseExplanation": "Node zwrócił nieprawidłową odpowiedź.",
-        "invalidResponsePollingExplanation": "Serwer zwrócił nieprawidłową odpowiedź podczas połączenia.",
+        "invalidResponsePollingExplanation": "Serwer zwrócił błędna odpowiedź podczas połączenia.",
         "invalidResponseFetchingAccount": "Node zwrócił nieprawidłową odpowiedź podczas pobierania informacji o twoim koncie.",
         "invalidResponseSendingTransfer": "Node zwrócił nieprawidłową odpowiedź podczas wysyłania transferu.",
         "seed": "Seed",
