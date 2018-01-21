@@ -204,10 +204,10 @@
         "generatingAddress": "Genererar mottagaradress",
         "generatingAddressExplanation": "Vänligen vänta tills din adress har genererats.",
         "mode": "Läge",
-        "theme": "Tema",
+        "theme": "Teman",
         "currency": "Valuta",
         "language": "Språk",
-        "accountManagement": "Hantera konton",
+        "accountManagement": "Kontohantering",
         "addNewSeed": "Lägg till ny seed",
         "twoFA": "Tvåfaktorsautentisering",
         "changePassword": "Ändra lösenord",
@@ -215,7 +215,7 @@
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
         "syncingComplete": "Synkronisering genomförd",
-        "syncingCompleteExplanation": "Ditt konto har synkroniserat färdigt.",
+        "syncingCompleteExplanation": "Ditt konto har synkroniserats.",
         "nicknameChanged": "Kontonamn bytt",
         "nicknameChangedExplanation": "Ditt kontonamn har ändrats.",
         "accountDeleted": "Kontot har tagits bort",
@@ -314,7 +314,7 @@
         "billion": "Miljard",
         "million": "Miljon",
         "thousand": "Tusen",
-        "one": "En"
+        "one": "Ett"
     },
     "deleteAccount": {
         "areYouSure": "Är du säker på att du vill ta bort detta kontot?",
@@ -324,7 +324,7 @@
     },
     "manualSync": {
         "pressToSync": "Tryck på knappen nedan för att synka ditt konto.",
-        "thisMayTake": "Detta kan ta ett tag.",
+        "thisMayTake": "Det kan ta ett tag.",
         "youMayNotice": "Din enhet kan tillfälligt bli långsammare.",
         "syncAccount": "SYNKA KONTO",
         "syncingYourAccount": "Synkar konto."
