@@ -181,7 +181,7 @@
         "send": "SKICKA",
         "invalidAmount": "Felaktigt belopp angivet",
         "invalidAmountExplanation": "Ange ett numeriskt värde för transaktionsbeloppet.",
-        "maximumSelected": "HÖGSTA belopp valt",
+        "maximumSelected": "MAXIMALA belopp valt",
         "iotaUnits": "IOTA enheter"
     },
     "setPassword": {
@@ -190,7 +190,7 @@
         "passwordMismatch": "Lösenorden matchar inte",
         "passwordMismatchExplanation": "De lösenord du har angett stämmer inte överens. Vänligen försök igen.",
         "nowWeNeedTo": "Nu behöver vi sätta ett lösenord.",
-        "anEncryptedCopy": "En krypterad version av din seed kommer sparas på din enhet. Detta lösenord kommer användas för att få tillgång till din plånbok i framtiden.",
+        "anEncryptedCopy": "En krypterad version av din seed kommer sparas på din enhet. Detta lösenord kommer att användas för att få tillgång till din plånbok i framtiden.",
         "ensure": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
         "retypePassword": "Skriv lösenordet igen"
     },
@@ -201,7 +201,7 @@
     "settings": {
         "transferSending": "Skickar",
         "transferSendingExplanation": "Vänta tills din överföring har skickats.",
-        "generatingAddress": "Generera adress för att ta emot IOTA",
+        "generatingAddress": "Genererar mottagaradress",
         "generatingAddressExplanation": "Vänligen vänta tills din adress har genererats.",
         "mode": "Läge",
         "theme": "Tema",
