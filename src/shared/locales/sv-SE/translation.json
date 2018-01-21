@@ -270,7 +270,7 @@
         "thatTheyAreCorrect": "att den stämmer."
     },
     "history": {
-        "bundleHashCopied": "Hashbunt kopierades",
+        "bundleHashCopied": "Hashbunt kopierad",
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp."
@@ -288,7 +288,7 @@
     },
     "addNewAccount": {
         "useExistingSeed": "Använd befintlig seed",
-        "createNewSeed": "Skapa nya seed"
+        "createNewSeed": "Skapa ny seed"
     },
     "advancedSettings": {
         "selectNode": "Välj nod",
