@@ -69,7 +69,7 @@
         "noNickname": "Nie wprowadzono nazwy konta",
         "noNicknameExplanation": "Wpisz nazwę konta dla twojego seeda.",
         "seedInUse": "Seed jest już w użyciu",
-        "seedInUseExplanation": "Ten seed został już wcześniej powiązany z Twoim portfelem. Proszę użyj innego."
+        "seedInUseExplanation": "Ten seed jest już powiązany z Twoim portfelem. Proszę użyj innego."
     },
     "changePassword": {
         "oops": "Ups. Coś poszło nie tak",
@@ -251,12 +251,12 @@
     "walletSetup": {
         "okay": "Okay. Ustawmy twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
-        "seedExplanation": "SEED IOTA jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składającego się z ciągu 81 znaków.",
-        "explanation1": "Można go używać w celu uzyskania dostępu do swoich środków z",
+        "seedExplanation": "SEED jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składa się on z ciągu 81 znaków.",
+        "explanation1": "Używa sie go w celu uzyskania dostępu do swoich środków z",
         "explanation2": " każdego portfela ",
         "explanation3": ", na",
-        "explanation4": " każdym urządzeniu",
-        "explanation5": "Ale jeśli utracisz swojego seeda, utracisz również swoje IOTA.",
+        "explanation4": " dowolnym urządzeniu, ",
+        "explanation5": "ale jeśli utracisz swojego seeda, utracisz również swoje IOTY.",
         "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seed'a."
     },
     "welcome": {
