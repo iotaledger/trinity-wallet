@@ -55,7 +55,7 @@
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
         "attachToTangleUnavailable": "Tangleにアタッチ出来ません。",
         "attachToTangleUnavailableExplanation": "選択したノードではTangleにアタッチ出来ません。",
-        "wallet": "Wallet"
+        "wallet": "ウォレット"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -154,7 +154,7 @@
     "receive": {
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "新しいアドレス",
         "message": "任意のメッセージ",
         "removeMessage": "メッセージを削除します。"
     },
@@ -233,21 +233,21 @@
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
         "poorConnection": "接続不良",
         "poorConnectionExplanation": "接続不良により通貨を変更できませんでした。",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
+        "hide": "非表示",
+        "hideOthers": "他を隠す",
+        "showAll": "すべて表示",
+        "quit": "終了",
+        "edit": "編集",
+        "cut": "切り取り",
+        "copy": "コピー",
+        "paste": "貼り付け",
+        "selectAll": "すべてを選択"
     },
     "resetWalletConfirmation": {
         "thisAction": "この操作は元に戻せません。",
-        "warning1": "All your wallet data including your ",
-        "warning2": " seeds, password,",
-        "warning3": " and",
+        "warning1": "全てのウォレットのデータ ",
+        "warning2": "Seedやパスワード",
+        "warning3": " や",
         "warning4": " その他のアカウント情報",
         "warning5": " が失われます。",
         "areYouSure": "本当に続行しますか？"
@@ -262,7 +262,7 @@
         "doYouAlreadyHaveASeed": "IOTAのSeedはすでにお持ちでしょうか？",
         "seedExplanation": "IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
         "explanation1": "Seedを使ってあなたの資金にアクセスできます。",
-        "explanation2": " any wallet",
+        "explanation2": " 全てのウォレットのデータ",
         "explanation3": "や",
         "explanation4": " 全てのデバイスで",
         "explanation5": "しかし、Seedを失うとIOTAも失われます。",

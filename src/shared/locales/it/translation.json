@@ -56,9 +56,8 @@
         "cannotPerformAction": "Non è possibile eseguire l'azione",
         "cannotPerformActionExplanation": "Vai alle impostazioni avanzate per reimpostare il portafoglio.",
         "attachToTangleUnavailable": "Collegamento al Tangle non disponibile",
-        "attachToTangleUnavailableExplanation":
-            "La funzione di collegamento al Tangle non è disponibile nel nodo che hai selezionato.",
-        "wallet": "Wallet"
+        "attachToTangleUnavailableExplanation": "La funzione di collegamento al Tangle non è disponibile nel nodo che hai selezionato.",
+        "wallet": "Portafoglio"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -160,7 +159,7 @@
     "receive": {
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "NUOVO INDIRIZZO",
         "message": "Messaggio opzionale",
         "removeMessage": "RIMUOVI IL MESSAGGIO"
     },
@@ -241,21 +240,21 @@
         "cannotPerformActionExplanation": "Vai alle impostazioni avanzate per reimpostare il portafoglio.",
         "poorConnection": "Connessione scadente",
         "poorConnectionExplanation": "Impossibile modificare la valuta a causa di una cattiva connessione.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
+        "hide": "Nascondi",
+        "hideOthers": "Nascondi altri",
+        "showAll": "Mostra tutti",
+        "quit": "Esci",
+        "edit": "Modifica",
+        "cut": "Taglia",
+        "copy": "Copia",
+        "paste": "Incolla",
+        "selectAll": "Seleziona tutto"
     },
     "resetWalletConfirmation": {
         "thisAction": "Questa azione non può essere annullata.",
-        "warning1": "All your wallet data including your ",
-        "warning2": " seeds, password,",
-        "warning3": " and",
+        "warning1": "Tutti i dati del tuo portafoglio, inclusi i tuoi ",
+        "warning2": " semi, password,",
+        "warning3": " e",
         "warning4": " altre informazioni sui conti",
         "warning5": " andranno persi.",
         "areYouSure": "Sei sicuro di voler continuare?"
@@ -271,7 +270,7 @@
         "seedExplanation":
             "Il seme IOTA è come una combinazione di utente e password per il tuo conto, in un'unica stringa di 81 caratteri.",
         "explanation1": "Puoi usarlo per accedere ai tuoi fondi da",
-        "explanation2": " any wallet",
+        "explanation2": " qualsiasi portafoglio",
         "explanation3": ", su",
         "explanation4": " qualsiasi dispositivo",
         "explanation5": ". Ma se perdi il tuo seme, perdi anche i tuoi IOTA.",
