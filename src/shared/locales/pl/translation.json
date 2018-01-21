@@ -29,7 +29,7 @@
         "close": "ZAMKNIJ",
         "continue": "Kontynuuj",
         "manualCopy": "Zanotuj seeda",
-        "paperWallet": "Wydrukuj wersje papierową",
+        "paperWallet": "Wydrukuj wersję papierową",
         "copyToClipboard": "Dodaj do menedżera haseł",
         "notAvailable": "Ta funkcja nie jest dostępna",
         "notAvailableExplanation": "Zostanie dodane na późniejszym etapie.",
@@ -59,7 +59,7 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
-        "seedInvalidCharsExplanation": "Seed może składać się tylko z wielkich liter A-Z i oraz cyfr 9. Twój Seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
+        "seedInvalidCharsExplanation": "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seed musi zawierać co najmniej {{maxLength}} znaków. Twój Seed ma {{currentLength}} znaków. Proszę spróbować ponownie.",
         "nameInUse": "Ta nazwa konta jest już w użyciu",
