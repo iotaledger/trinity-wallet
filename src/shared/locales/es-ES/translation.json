@@ -224,15 +224,15 @@
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
         "poorConnection": "Poor connection",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
+        "hide": "Ocultar",
+        "hideOthers": "Ocultar otros",
+        "showAll": "Mostrar Todo",
+        "quit": "Salir",
+        "edit": "Editar",
+        "cut": "Cortar",
+        "copy": "Copiar",
+        "paste": "Pegar",
+        "selectAll": "Seleccionar todo"
     },
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
@@ -241,11 +241,11 @@
         "warning3": " and",
         "warning4": " other account information",
         "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "areYouSure": "¿Seguro que quieres continuar?"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
+        "cancel": "CANCELAR",
         "reset": "RESET"
     },
     "walletSetup": {
