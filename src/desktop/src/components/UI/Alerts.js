@@ -30,7 +30,7 @@ class Alerts extends React.PureComponent {
             <Modal isConfirm isOpen onClose={disposeOffAlert}>
                 <h1 className={alerts.category}>{alerts.title}</h1>
                 <p>{alerts.message}</p>
-                <Button onClick={disposeOffAlert} variant="success">
+                <Button onClick={disposeOffAlert} variant="primary">
                     {t('global:back')}
                 </Button>
             </Modal>

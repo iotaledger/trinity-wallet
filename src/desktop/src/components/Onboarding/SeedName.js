@@ -43,7 +43,7 @@ class SeedName extends React.PureComponent {
         history.push('/security/enter');
     };
 
-    setName = name => {
+    setName = (name) => {
         this.setState(() => ({
             name: name,
         }));
@@ -62,10 +62,10 @@ class SeedName extends React.PureComponent {
                     </Infobox>
                 </Content>
                 <Footer>
-                    <Button to="/seed/enter" variant="secondary">
+                    <Button to="/seed/enter" className="outline" variant="highlight">
                         {t('global:back')}
                     </Button>
-                    <Button onClick={this.onRequestNext} variant="success">
+                    <Button onClick={this.onRequestNext} className="outline" variant="primary">
                         {t('global:done')}
                     </Button>
                 </Footer>
@@ -74,7 +74,7 @@ class SeedName extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     seed: getSelectedSeed(state),
 });
 
