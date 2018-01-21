@@ -10,7 +10,7 @@
         "transferError": "Överföringsfel",
         "transferErrorMessage": "Något gick fel under överföringen. Vänligen försök igen.",
         "transferSent": "Överföring skickad",
-        "transferSentMessage": "Din överföring har skickats till Tangle:n.",
+        "transferSentMessage": "Din överföring har skickats till Tangle.",
         "keyReuse": "Nyckelåteranvändning",
         "keyReuseError": "Du kan inte skicka till en adress som redan utnyttjats för en utgående transaktion.",
         "invalidResponse": "Ogiltigt svar",
@@ -66,10 +66,10 @@
         "nameInUseExplanation": "Vänligen använd ett unikt namn för din seed.",
         "enterAccountName": "Ange ditt kontonamn.",
         "accountName": "Kontonamn",
-        "noNickname": "Inget kontonamn angivet",
-        "noNicknameExplanation": "Vänligen ange ett namn för din Seed.",
+        "noNickname": "Inget kontonamn är angivet",
+        "noNicknameExplanation": "Vänligen ange ett namn för din seed.",
         "seedInUse": "Seeden används redan",
-        "seedInUseExplanation": "Denna seed är redan länkad till din plånbok. Vänligen använd en annan."
+        "seedInUseExplanation": "Den här seeden är redan länkad till din plånbok. Vänligen använd en annan."
     },
     "changePassword": {
         "oops": "Ops! Något gick snett",
@@ -82,8 +82,8 @@
         "passwordsDoNotMatchExplanation": "Lösenorden stämmer inte överens, försök igen.",
         "passwordTooShort": "Lösenordet är för kort",
         "passwordTooShortExplanation": "Ditt lösenord måste åtminstone vara 12 tecken långt, försök igen.",
-        "oldPassword": "Ett gammalt lösenord får ej användas",
-        "oldPasswordExplanation": "Ett gammalt lösenord kan ej användas som ditt nya, försök igen med ett nytt lösenord.",
+        "oldPassword": "Ett gammalt lösenord får ej återanvändas",
+        "oldPasswordExplanation": "Ett gammalt lösenord kan inte återanvändas, försök igen med ett nytt lösenord.",
         "ensureStrongPassword": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
         "currentPassword": "Nuvarande lösenord",
         "newPassword": "Nytt lösenord",
@@ -94,13 +94,13 @@
         "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhets skull.",
         "seedCopied": "Seed kopierad till urklipp",
         "seedCopiedExplanation": "Din seed kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
-        "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till ett lösenordshanterare.",
+        "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till en lösenordshanterare.",
         "doNotStore": "Förvara inte din seed i oformaterad text.",
         "copyToClipboard": "Kopiera till urklipp"
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
-        "invalidCharactersExplanation": "Seeden kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken, försök igen.",
+        "invalidCharactersExplanation": "Seeden får enbart innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken. Försök igen.",
         "seedTooShort": "Seeden är för kort",
         "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
         "seedExplanation": "Seed ska vara {{maxLength}} tecken lång och får endast innehålla bokstäverna A-Z och nummer 9. Din seed får inte vara längre än {{maxLength}} tecken.",
@@ -131,12 +131,12 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "En seed har inte blivit genererad",
-        "seedNotGeneratedExplanation": "Vänligen klicka på knappen Generera ny seed.",
+        "seedNotGeneratedExplanation": "Vänligen klicka på knappen Generera Ny Seed.",
         "pressForNewSeed": "TRYCK FÖR NY SEED",
-        "individualLetters": "Tryck på enskilda bokstäver för att slumpmässigt ändra de."
+        "individualLetters": "Tryck på enskilda bokstäver för att ändra de slumpmässigt."
     },
     "onboardingComplete": {
-        "walletReady": "Plånboken är nu inställd och redo för att användas. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
+        "walletReady": "Plånboken är nu inställd och redo att använda. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
     },
     "paperWallet": {
         "clickToPrint": "Klicka på knappen nedan för att skriva ut en papperskopia av din seed.",
@@ -156,7 +156,7 @@
         "seedCleared": "Seed rensad",
         "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhet.",
         "mustSaveYourSeed": "Du måste spara din seed med ",
-        "atLeastOne": "minst en ",
+        "atLeastOne": "åtminstone en ",
         "ofTheOptions": "av alternativen som anges nedan."
     },
     "seedReentry": {
@@ -170,8 +170,8 @@
         "invalidAddressExplanation1": "Din seed bör vara {{maxLength}} tecken långt och ska ha en kontrollsumma.",
         "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
-        "notEnoughFunds": "Otillräckligt med tillgångar",
-        "notEnoughFundsExplanation": "Du har inte tillräckligt IOTA för att slutföra denna överföring.",
+        "notEnoughFunds": "Otillräckliga tillgångar",
+        "notEnoughFundsExplanation": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
         "keyReuse": "Nyckelåteranvändning",
         "keyReuseExplanation": "Den adress som du försöker skicka till har redan använts. Försök igen med en annan adress.",
         "recipientAddress": "Mottagarens adress",
