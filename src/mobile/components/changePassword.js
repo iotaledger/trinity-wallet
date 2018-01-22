@@ -1,17 +1,15 @@
 import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
-import CustomTextInput from '../components/customTextInput';
 import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
-import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
-import { translate } from 'react-i18next';
+import CustomTextInput from './customTextInput';
 
 const styles = StyleSheet.create({
     container: {
@@ -106,8 +104,11 @@ class ChangePassword extends Component {
         generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
+        tickImagePath: PropTypes.number.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -150,7 +151,7 @@ class ChangePassword extends Component {
                         return keychain.set(newPassword, payload);
                     }
 
-                    throw 'Error';
+                    throw new Error('Error');
                 })
                 .then(() => {
                     setPassword(newPassword);
@@ -192,8 +193,8 @@ class ChangePassword extends Component {
             returnKeyType,
             onSubmitEditing,
             value,
-            secondaryBackgroundColor: secondaryBackgroundColor,
-            negativeColor: negativeColor,
+            secondaryBackgroundColor,
+            negativeColor,
         };
 
         return <CustomTextInput {...props} />;
@@ -212,6 +213,8 @@ class ChangePassword extends Component {
         } else if (newPassword === currentPassword) {
             return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
         }
+
+        return null;
     }
 
     render() {
@@ -234,9 +237,9 @@ class ChangePassword extends Component {
                             },
                             currentPassword,
                             t('currentPassword'),
-                            (currentPassword) => this.setState({ currentPassword }),
+                            (password) => this.setState({ currentPassword: password }),
                             'next',
-                            (onSubmitEditing) => this.newPassword.focus(),
+                            () => this.newPassword.focus(),
                         )}
                         {this.renderTextField(
                             (c) => {
@@ -244,9 +247,9 @@ class ChangePassword extends Component {
                             },
                             newPassword,
                             t('newPassword'),
-                            (newPassword) => this.setState({ newPassword }),
+                            (password) => this.setState({ newPassword: password }),
                             'next',
-                            (onSubmitEditing) => this.confirmedNewPassword.focus(),
+                            () => this.confirmedNewPassword.focus(),
                         )}
                         {this.renderTextField(
                             (c) => {
@@ -254,15 +257,15 @@ class ChangePassword extends Component {
                             },
                             confirmedNewPassword,
                             t('confirmPassword'),
-                            (confirmedNewPassword) => this.setState({ confirmedNewPassword }),
+                            (password) => this.setState({ confirmedNewPassword: password }),
                             'done',
-                            (onSubmitEditing) => this.changePassword(),
+                            () => this.changePassword(),
                         )}
                         <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.backPress()}
+                            onPress={() => this.props.backPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>

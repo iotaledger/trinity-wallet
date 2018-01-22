@@ -1,5 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { HueSlider, SaturationSlider, LightnessSlider } from 'react-native-color';
 import tinycolor from 'tinycolor2';
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width: width,
+        width,
     },
     content: {
         flex: 1,
@@ -87,6 +88,16 @@ const styles = StyleSheet.create({
 });
 
 class AdvancedThemeCustomisation extends React.Component {
+    static propTypes = {
+        backgroundColor: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
+        updateTheme: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+        tickImagePath: PropTypes.number.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+    };
+
     constructor(props) {
         super(props);
 
@@ -98,7 +109,7 @@ class AdvancedThemeCustomisation extends React.Component {
 
     onApplyPress() {
         const { backgroundColor, barColor } = this.state;
-        let theme = cloneDeep(this.props.theme);
+        const theme = cloneDeep(this.props.theme);
         theme.backgroundColor = backgroundColor;
         theme.barColor = barColor;
         theme.secondaryBackgroundColor = tinycolor(backgroundColor).isDark() ? 'white' : '#222';
@@ -108,7 +119,7 @@ class AdvancedThemeCustomisation extends React.Component {
     }
 
     render() {
-        const { t, secondaryBackgroundColor, tickImagePath, arrowLeftImagePath, textColor } = this.props;
+        const { t, tickImagePath, arrowLeftImagePath, textColor } = this.props;
         const backgroundTextColor = tinycolor(this.state.backgroundColor).isDark() ? '#FAFAFA' : '#222';
         const barTextColor = tinycolor(this.state.barColor).isDark() ? '#FAFAFA' : '#222';
         return (
