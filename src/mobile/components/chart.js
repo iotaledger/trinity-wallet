@@ -9,7 +9,73 @@ import GENERAL from '../theme/general';
 const chartWidth = width * 0.98;
 const chartHeight = height * 0.38;
 
-const getChartCurrencySymbol = currency => {
+const styles = StyleSheet.create({
+    buttonContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        borderWidth: height / 2000,
+        borderRadius: GENERAL.borderRadiusSmall,
+        paddingHorizontal: width / 40,
+        paddingVertical: height / 110,
+    },
+    button: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
+    topContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: 'transparent',
+        alignItems: 'center',
+        zIndex: 1,
+        paddingVertical: height / 70,
+    },
+    priceContainer: {
+        flex: 8,
+        alignItems: 'center',
+    },
+    chartContainer: {
+        flex: 5,
+        width: width / 1.15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 0,
+        paddingLeft: width / 8,
+    },
+    marketDataContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: 'transparent',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    buttonText: {
+        fontWeight: 'normal',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 35,
+    },
+    iotaPrice: {
+        fontWeight: 'normal',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 24,
+    },
+    marketFigure: {
+        fontWeight: 'normal',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 37.6,
+    },
+    marketFigureTitle: {
+        fontWeight: 'bold',
+    },
+});
+
+const getChartCurrencySymbol = (currency) => {
     if (currency === 'BTC') {
         if (isAndroid) {
             return '฿';
@@ -81,7 +147,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.y;
             }),
         );
@@ -92,7 +158,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const minValue = Math.min(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.y;
             }),
         );
@@ -103,7 +169,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.x;
             }),
         );
@@ -144,7 +210,7 @@ class Chart extends React.Component {
                 <View style={styles.topContainer}>
                     <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
-                            onPress={event => this.changeCurrency()}
+                            onPress={(event) => this.changeCurrency()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
@@ -160,7 +226,7 @@ class Chart extends React.Component {
                     </View>
                     <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
-                            onPress={event => this.changeTimeframe()}
+                            onPress={(event) => this.changeTimeframe()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
@@ -204,7 +270,7 @@ class Chart extends React.Component {
                         />
                         <VictoryAxis
                             dependentAxis
-                            tickFormat={x => this.getPriceFormat(x)}
+                            tickFormat={(x) => this.getPriceFormat(x)}
                             style={{
                                 axis: { stroke: 'transparent' },
                                 tickLabels: {
@@ -240,71 +306,5 @@ class Chart extends React.Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    buttonContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        borderWidth: height / 2000,
-        borderRadius: GENERAL.borderRadiusSmall,
-        paddingHorizontal: width / 40,
-        paddingVertical: height / 110,
-    },
-    button: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-    },
-    topContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        backgroundColor: 'transparent',
-        alignItems: 'center',
-        zIndex: 1,
-        paddingVertical: height / 70,
-    },
-    priceContainer: {
-        flex: 8,
-        alignItems: 'center',
-    },
-    chartContainer: {
-        flex: 5,
-        width: width / 1.15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: 0,
-        paddingLeft: width / 8,
-    },
-    marketDataContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        backgroundColor: 'transparent',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    buttonText: {
-        fontWeight: 'normal',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 35,
-    },
-    iotaPrice: {
-        fontWeight: 'normal',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 24,
-    },
-    marketFigure: {
-        fontWeight: 'normal',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 37.6,
-    },
-    marketFigureTitle: {
-        fontWeight: 'bold',
-    },
-});
 
 module.exports = Chart;

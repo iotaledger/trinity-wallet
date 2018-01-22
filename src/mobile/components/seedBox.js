@@ -4,10 +4,47 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { TextWithLetterSpacing } from './textWithLetterSpacing';
 import whiteArrowImagePath from 'iota-wallet-shared-modules/images/arrow-white.png';
 import blackArrowImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
-
 import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
+
+const styles = StyleSheet.create({
+    seedBox: {
+        borderWidth: 1,
+        borderRadius: GENERAL.borderRadiusLarge,
+        width: width / 1.65,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: height / 80,
+        marginTop: height / 60,
+    },
+    seedBoxTextContainer: {
+        width: width / 1.65,
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        paddingTop: height / 160,
+        paddingLeft: width / 30,
+    },
+    seedBoxTextLeft: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 25,
+        textAlign: 'justify',
+        backgroundColor: 'transparent',
+        paddingVertical: 2,
+    },
+    seedBoxTextRight: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 25,
+        textAlign: 'justify',
+        backgroundColor: 'transparent',
+        paddingVertical: 2,
+    },
+    arrow: {
+        width: width / 1.9,
+        height: height / 80,
+    },
+});
 
 class SeedBox extends React.Component {
     render() {
@@ -113,42 +150,4 @@ class SeedBox extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    seedBox: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.65,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: height / 80,
-        marginTop: height / 60,
-    },
-    seedBoxTextContainer: {
-        width: width / 1.65,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        paddingTop: height / 160,
-        paddingLeft: width / 30,
-    },
-    seedBoxTextLeft: {
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 25,
-        textAlign: 'justify',
-        backgroundColor: 'transparent',
-        paddingVertical: 2,
-    },
-    seedBoxTextRight: {
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 25,
-        textAlign: 'justify',
-        backgroundColor: 'transparent',
-        paddingVertical: 2,
-    },
-    arrow: {
-        width: width / 1.9,
-        height: height / 80,
-    },
-});
-
-module.exports = SeedBox;
+export default SeedBox;
