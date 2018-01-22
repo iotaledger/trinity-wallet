@@ -19,7 +19,7 @@ class Notifications extends React.PureComponent {
 
     state = {};
 
-    hideNotification = id => {
+    hideNotification = (id) => {
         return () => this.props.hideNotification(id);
     };
 
@@ -27,7 +27,7 @@ class Notifications extends React.PureComponent {
         const { notifications, t } = this.props;
         return (
             <div className={css.wrapper}>
-                {Object.keys(notifications).map(id => {
+                {Object.keys(notifications).map((id) => {
                     let { title, text } = notifications[id];
 
                     const { type = 'info', translationScope, translate } = notifications[id];
@@ -50,7 +50,7 @@ class Notifications extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     notifications: state.notifications,
 });
 

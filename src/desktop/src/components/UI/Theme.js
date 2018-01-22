@@ -23,7 +23,6 @@ class Theme extends PureComponent {
     }
 
     updateTheme(theme) {
-        console.log('BANG');
         Object.keys(theme).map((colorName) => {
             document.documentElement.style.setProperty(`--color-${colorName}`, this.hslToCSS(theme[colorName]));
         });
