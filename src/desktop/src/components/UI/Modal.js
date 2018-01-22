@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Button from 'components/UI/Button';
 import css from './Modal.css';
 
 export default class Modal extends React.Component {
@@ -10,22 +11,26 @@ export default class Modal extends React.Component {
         className: PropTypes.string,
         hideCloseButton: PropTypes.bool,
         isOpen: PropTypes.bool,
+        isConfirm: PropTypes.bool,
         onOpen: PropTypes.func,
         onClose: PropTypes.func,
         onStateChange: PropTypes.func,
     };
 
-    state = {
-        isOpen: this.props.isOpen,
-    };
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.isOpen !== this.state.isOpen) {
-            this.toggle(nextProps.isOpen);
-        }
+    componentDidMount() {
+        window.addEventListener('keydown', this.onKeyDown, false);
     }
 
-    // TODO: add an keyDown [esc] == close function here
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.onKeyDown, false);
+    }
+
+    onKeyDown = (e) => {
+        if (e.which === 27 && this.props.isOpen) {
+            this.close();
+        }
+    };
+
     onOpen = () => {
         if (typeof this.props.onOpen === 'function') {
             return this.props.onOpen();
@@ -38,47 +43,19 @@ export default class Modal extends React.Component {
         }
     };
 
-    onStateChange = newState => {
+    onStateChange = (newState) => {
         if (typeof this.props.onStateChange === 'function') {
             return this.props.onStateChange(newState);
         }
     };
 
-    toggle = isOpen => {
-        const doneCallback = () => {
-            this.onStateChange(this.state.isOpen);
-            this.state.isOpen ? this.onOpen() : this.onClose();
-        };
-        if (isOpen === true || isOpen === false) {
-            return this.setState(() => {
-                return {
-                    isOpen: isOpen,
-                };
-            }, doneCallback);
-        }
-        return this.setState(
-            state => ({
-                isOpen: !state.isOpen,
-            }),
-            doneCallback,
-        );
-    };
-
     close = () => {
-        this.setState(
-            () => ({
-                isOpen: false,
-            }),
-            () => {
-                this.onStateChange(false);
-                this.onClose();
-            },
-        );
+        this.onStateChange(false);
+        this.onClose();
     };
 
     render() {
-        const { isOpen } = this.state;
-        const { className, hideCloseButton } = this.props;
+        const { className, hideCloseButton, isOpen, isConfirm } = this.props;
 
         if (!isOpen) {
             return null;
@@ -86,14 +63,17 @@ export default class Modal extends React.Component {
 
         return ReactDOM.createPortal(
             <div
-                ref={node => {
+                ref={(node) => {
                     this.backdropEl = node;
                 }}
-                className={classNames(css.backdrop, className)}
-                onClick={e => e.target === this.backdropEl && this.close()}
+                className={classNames(css.backdrop, css[className], isConfirm ? css.confirm : null)}
             >
                 <div className={css.wrapper}>
-                    {!hideCloseButton && <button onClick={this.close}>X</button>}
+                    {!hideCloseButton && (
+                        <Button className="square" onClick={this.close}>
+                            X
+                        </Button>
+                    )}
                     <div className={css.content}>{this.props.children}</div>
                 </div>
             </div>,

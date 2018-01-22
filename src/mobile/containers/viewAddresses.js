@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ListView, Clipboard } from 'react-native';
-import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import { translate } from 'react-i18next';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -14,16 +14,19 @@ class ViewAddresses extends Component {
         addressData: PropTypes.object.isRequired,
         generateAlert: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     copy(address) {
         Clipboard.setString(address);
-        return this.props.generateAlert('success', 'Address copied', 'The address has been copied to the clipboard.');
+        return this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
     render() {
+        const { secondaryBackgroundColor, arrowLeftImagePath, t } = this.props;
         let addressData = Object.entries(this.props.addressData);
         addressData = addressData.reverse();
+        const textColor = { color: secondaryBackgroundColor };
 
         return (
             <View style={styles.container}>
@@ -33,7 +36,7 @@ class ViewAddresses extends Component {
                         renderRow={(rowData, sectionID, rowID) => (
                             <View style={{ flexDirection: 'row', paddingHorizontal: width / 15 }}>
                                 <TouchableOpacity
-                                    onPress={() => this.copy(rowID)}
+                                    onPress={() => this.copy(rowData[0])}
                                     style={{ alignItems: 'flex-start', flex: 8, justifyContent: 'center' }}
                                 >
                                     <View>
@@ -42,6 +45,7 @@ class ViewAddresses extends Component {
                                             style={[
                                                 styles.addressText,
                                                 { textDecorationLine: rowData[1].spent ? 'line-through' : 'none' },
+                                                textColor,
                                             ]}
                                         >
                                             {rowData[0]}
@@ -49,8 +53,8 @@ class ViewAddresses extends Component {
                                     </View>
                                 </TouchableOpacity>
                                 <View style={{ alignItems: 'flex-end', flex: 2, justifyContent: 'center' }}>
-                                    <Text style={styles.balanceText}>
-                                        {formatValue(rowData[1].balance)} {formatUnit(rowData[1].balance)}
+                                    <Text style={[styles.balanceText, textColor]}>
+                                        {round(formatValue(rowData[1].balance), 1)} {formatUnit(rowData[1].balance)}
                                     </Text>
                                 </View>
                             </View>
@@ -60,11 +64,16 @@ class ViewAddresses extends Component {
                         enableEmptySections
                     />
                 </View>
+                <View style={{ flex: 0.2 }} />
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={event => this.props.backPress()} style={{ flex: 1 }}>
+                    <TouchableOpacity
+                        onPress={(event) => this.props.backPress()}
+                        style={{ flex: 1 }}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
                         <View style={styles.itemLeft}>
                             <Image source={arrowLeftImagePath} style={styles.icon} />
-                            <Text style={styles.titleText}>Back</Text>
+                            <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -97,7 +106,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleText: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -111,21 +119,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     addressText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Bold',
         fontSize: width / 29.6,
         textDecorationStyle: 'solid',
     },
     balanceText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
         textAlign: 'right',
     },
     listView: {
-        flex: 9,
+        flex: 8.8,
         justifyContent: 'center',
         width: width,
     },
@@ -139,4 +145,8 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(null, mapDispatchToProps)(ViewAddresses);
+const mapStateToProps = (state) => ({
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+});
+
+export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewAddresses));

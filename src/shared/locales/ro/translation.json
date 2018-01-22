@@ -7,7 +7,7 @@
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
-        "transferError": "Transfer Error",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
@@ -52,7 +52,10 @@
         "somethingWentWrongExplanation": "Please restart the app.",
         "node": "Nod",
         "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -145,7 +148,7 @@
     "receive": {
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Optional message",
         "removeMessage": "REMOVE MESSAGE"
     },
@@ -220,13 +223,22 @@
         "cannotPerformAction": "Cannot perform action",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
         "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
+        "hide": "Hide",
+        "hideOthers": "Hide Others",
+        "showAll": "Show All",
+        "quit": "Quit",
+        "edit": "Edit",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "selectAll": "Select All"
     },
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": " seeds, password, ",
-        "warning3": "and",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " other account information",
         "warning5": " will be lost.",
         "areYouSure": "Are you sure you want to continue?"
@@ -241,7 +253,7 @@
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
         "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
         "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
+        "explanation2": " any wallet",
         "explanation3": ", on",
         "explanation4": " any device",
         "explanation5": ". But if you lose your seed, you also lose your IOTA.",

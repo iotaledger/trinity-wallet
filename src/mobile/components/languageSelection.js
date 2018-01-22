@@ -7,8 +7,6 @@ import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modul
 import { detectLocale, selectLocale } from '../components/locale';
 import Dropdown from '../components/dropdown';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 
 const { width } = Dimensions.get('window');
 const { height } = global;
@@ -49,7 +47,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleTextLeft: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -59,7 +56,6 @@ const styles = StyleSheet.create({
         height: width / 28,
     },
     titleTextRight: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -77,6 +73,7 @@ class LanguageSelection extends Component {
     static propTypes = {
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        setLanguage: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -86,13 +83,23 @@ class LanguageSelection extends Component {
     }
 
     saveLanguageSelection() {
-        const { backPress } = this.props;
-        i18next.changeLanguage(getLocaleFromLabel(this.languageSelected));
+        const { backPress, setLanguage } = this.props;
+        const nextLanguage = this.languageSelected;
+        setLanguage(nextLanguage);
+        i18next.changeLanguage(getLocaleFromLabel(nextLanguage));
         backPress();
     }
 
     render() {
-        const { backPress, t } = this.props;
+        const {
+            backPress,
+            t,
+            textColor,
+            secondaryBackgroundColor,
+            arrowLeftImagePath,
+            tickImagePath,
+            language,
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -104,30 +111,37 @@ class LanguageSelection extends Component {
             >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.2 }} />
+                        <View style={{ flex: 0.4 }} />
                         <Dropdown
-                            onRef={c => {
+                            onRef={(c) => {
                                 this.dropdown = c;
                             }}
-                            title={this.languageSelected} //TODO: Ask if this is correct
+                            title={language}
                             dropdownWidth={styles.dropdownWidth}
-                            defaultOption={currentLanguageLabel}
+                            defaultOption={language}
                             options={I18N_LOCALE_LABELS}
-                            saveSelection={language => {
+                            saveSelection={(language) => {
                                 this.languageSelected = language;
                             }}
+                            background
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={() => backPress()}>
+                        <TouchableOpacity
+                            onPress={() => backPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.saveLanguageSelection()}>
+                        <TouchableOpacity
+                            onPress={() => this.saveLanguageSelection()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.itemRight}>
-                                <Text style={styles.titleTextRight}>{t('global:save')}</Text>
+                                <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
                                 <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>

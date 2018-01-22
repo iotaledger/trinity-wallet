@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, Clipboard, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, Clipboard } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import Seedbox from '../components/seedBox';
 import COLORS from '../theme/Colors';
@@ -20,6 +22,7 @@ class CopySeedToClipboard extends Component {
         setCopiedToClipboard: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -30,12 +33,12 @@ class CopySeedToClipboard extends Component {
 
     componentWillUnmount() {
         this.clearTimeout();
-        Clipboard.setString('');
+        Clipboard.setString(' ');
     }
 
     onDonePress() {
         this.clearTimeout();
-        Clipboard.setString('');
+        Clipboard.setString(' ');
         this.props.setCopiedToClipboard(true);
 
         this.props.navigator.pop({
@@ -51,9 +54,9 @@ class CopySeedToClipboard extends Component {
         this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
 
         this.timeout = setTimeout(() => {
-            Clipboard.setString('');
+            Clipboard.setString(' ');
             this.generateClipboardClearAlert();
-        }, 60000);
+        }, 30000);
     }
 
     generateClipboardClearAlert() {
@@ -69,20 +72,43 @@ class CopySeedToClipboard extends Component {
     }
 
     render() {
-        const { t, positiveColor, backgroundColor, ctaColor } = this.props;
+        const {
+            t,
+            positiveColor,
+            backgroundColor,
+            ctaColor,
+            secondaryBackgroundColor,
+            secondaryCtaColor,
+            ctaBorderColor,
+        } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
+        const borderColor = { borderColor: secondaryBackgroundColor };
+        const ctaTextColor = { color: secondaryCtaColor };
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
+
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <Image source={iotaImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
-                    <Text style={styles.infoTextNormal}>{t('clickToCopy')}</Text>
-                    <Text style={styles.infoTextBold}>{t('doNotStore')}</Text>
-                    <Seedbox seed={this.props.tempAccount.seed} />
+                    <Text style={[styles.infoTextNormal, textColor]}>{t('clickToCopy')}</Text>
+                    <Text style={[styles.infoTextBold, textColor]}>{t('doNotStore')}</Text>
+                    <Seedbox
+                        secondaryBackgroundColor={secondaryBackgroundColor}
+                        borderColor={borderColor}
+                        textColor={textColor}
+                        seed={this.props.tempAccount.seed}
+                    />
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ marginTop: height / 22 }}>
-                        <View style={[styles.copyButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
-                            <Text style={styles.copyText}>{t('copyToClipboard').toUpperCase()}</Text>
+                        <View
+                            style={[
+                                styles.copyButton,
+                                { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
+                            ]}
+                        >
+                            <Text style={[styles.copyText, ctaTextColor]}>{t('copyToClipboard').toUpperCase()}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -143,7 +169,6 @@ const styles = StyleSheet.create({
     },
     infoTextNormal: {
         paddingTop: height / 12,
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'center',
@@ -151,7 +176,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 5,
     },
     infoTextBold: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
         textAlign: 'center',
@@ -183,41 +207,12 @@ const styles = StyleSheet.create({
         height: height / 12,
         justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 1.2,
     },
     copyText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
-    },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
     },
 });
 
@@ -227,6 +222,9 @@ const mapStateToProps = state => ({
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
     ctaColor: state.settings.theme.ctaColor,
+    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    ctaBorderColor: state.settings.theme.ctaBorderColor,
 });
 
 const mapDispatchToProps = {

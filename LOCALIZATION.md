@@ -25,7 +25,7 @@ changes to
 <Text>{t(‘helloWorld’)}</Text>
 ```
 
-4. Export the translations
+4. Wrap the component
 ```
 export translate(‘myContainer’)(MyContainer);
 ```
@@ -36,3 +36,5 @@ export translate(‘myContainer’)(MyContainer);
     “helloWorld”: “Hello world!”
 }
 ```
+
+You're all done! Your strings will be shown on Crowdin once your merge request has been merged into the develop branch. 

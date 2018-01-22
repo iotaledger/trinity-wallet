@@ -14,6 +14,7 @@ const getProps = overrides =>
             negativeColor: 'black',
             onRef: noop,
             options: [],
+            disableWhen: false,
         },
         overrides,
     );
@@ -22,6 +23,10 @@ describe('Testing Dropdown component', () => {
     describe('propTypes', () => {
         it('should accept an onRef function as a prop', () => {
             expect(Dropdown.propTypes.onRef).toBe(PropTypes.func);
+        });
+
+        it('should accept a disableWhen boolean as a prop', () => {
+            expect(Dropdown.propTypes.disableWhen).toBe(PropTypes.bool);
         });
     });
 
@@ -49,6 +54,44 @@ describe('Testing Dropdown component', () => {
                 wrapper.unmount();
 
                 expect(props.onRef).toHaveBeenCalledWith(null);
+            });
+        });
+    });
+
+    describe('when onPress prop on TouchableWithoutFeedback is triggered', () => {
+        beforeEach(() => {
+            jest.mock('LayoutAnimation');
+        });
+
+        describe('when disableWhen prop is false', () => {
+            it('should call instance method onDropdownTitlePress', () => {
+                const props = getProps();
+                const wrapper = shallow(<Dropdown {...props} />);
+                const instance = wrapper.instance();
+
+                jest.spyOn(instance, 'onDropdownTitlePress');
+                wrapper
+                    .find('TouchableWithoutFeedback')
+                    .props()
+                    .onPress();
+
+                expect(instance.onDropdownTitlePress).toHaveBeenCalled();
+            });
+        });
+
+        describe('when disableWhen prop is true', () => {
+            it('should not call instance method onDropdownTitlePress', () => {
+                const props = getProps({ disableWhen: true });
+                const wrapper = shallow(<Dropdown {...props} />);
+                const instance = wrapper.instance();
+
+                jest.spyOn(instance, 'onDropdownTitlePress');
+                wrapper
+                    .find('TouchableWithoutFeedback')
+                    .props()
+                    .onPress();
+
+                expect(instance.onDropdownTitlePress).toHaveBeenCalledTimes(0);
             });
         });
     });
