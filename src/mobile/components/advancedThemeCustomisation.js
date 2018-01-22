@@ -14,123 +14,6 @@ import { width, height } from '../util/dimensions';
 import cloneDeep from 'lodash/cloneDeep';
 import { translate } from 'react-i18next';
 
-class AdvancedThemeCustomisation extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            backgroundColor: props.backgroundColor,
-            barColor: props.barColor,
-        };
-    }
-
-    onApplyPress() {
-        const { backgroundColor, barColor } = this.state;
-        let theme = cloneDeep(this.props.theme);
-        theme.backgroundColor = backgroundColor;
-        theme.barColor = barColor;
-        theme.secondaryBackgroundColor = tinycolor(backgroundColor).isDark() ? 'white' : '#222';
-        theme.secondaryBarColor = tinycolor(barColor).isDark() ? 'white' : '#222';
-        this.props.updateTheme(theme, 'Custom');
-        this.props.backPress();
-    }
-
-    render() {
-        const { t, secondaryBackgroundColor, tickImagePath, arrowLeftImagePath, textColor } = this.props;
-        const backgroundTextColor = tinycolor(this.state.backgroundColor).isDark() ? '#FAFAFA' : '#222';
-        const barTextColor = tinycolor(this.state.barColor).isDark() ? '#FAFAFA' : '#222';
-        return (
-            <View style={styles.container}>
-                <View style={styles.topContainer}>
-                    <View style={styles.content}>
-                        <View
-                            style={[
-                                styles.colorPreview,
-                                { backgroundColor: tinycolor(this.state.backgroundColor).toHslString() },
-                            ]}
-                        >
-                            <Text style={[styles.colorString, { color: backgroundTextColor }]}>{t('background')}</Text>
-                        </View>
-                        <HueSlider
-                            style={styles.sliderRow}
-                            gradientSteps={40}
-                            value={this.state.backgroundColor.h}
-                            onValueChange={h =>
-                                this.setState({ backgroundColor: { ...this.state.backgroundColor, h } })}
-                        />
-                        <SaturationSlider
-                            style={styles.sliderRow}
-                            gradientSteps={20}
-                            value={this.state.backgroundColor.s}
-                            color={this.state.backgroundColor}
-                            onValueChange={s =>
-                                this.setState({ backgroundColor: { ...this.state.backgroundColor, s } })}
-                        />
-                        <LightnessSlider
-                            style={styles.sliderRow}
-                            gradientSteps={20}
-                            value={this.state.backgroundColor.l}
-                            color={this.state.backgroundColor}
-                            onValueChange={l =>
-                                this.setState({ backgroundColor: { ...this.state.backgroundColor, l } })}
-                        />
-                    </View>
-                    <View style={styles.content}>
-                        <View
-                            style={[
-                                styles.colorPreview,
-                                { backgroundColor: tinycolor(this.state.barColor).toHslString() },
-                            ]}
-                        >
-                            <Text style={[styles.colorString, { color: barTextColor }]}>{t('frame')}</Text>
-                        </View>
-                        <HueSlider
-                            style={styles.sliderRow}
-                            gradientSteps={40}
-                            value={this.state.barColor.h}
-                            onValueChange={h => this.setState({ barColor: { ...this.state.barColor, h } })}
-                        />
-                        <SaturationSlider
-                            style={styles.sliderRow}
-                            gradientSteps={20}
-                            value={this.state.barColor.s}
-                            color={this.state.barColor}
-                            onValueChange={s => this.setState({ barColor: { ...this.state.barColor, s } })}
-                        />
-                        <LightnessSlider
-                            style={styles.sliderRow}
-                            gradientSteps={20}
-                            value={this.state.barColor.l}
-                            color={this.state.barColor}
-                            onValueChange={l => this.setState({ barColor: { ...this.state.barColor, l } })}
-                        />
-                    </View>
-                </View>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.backPress()}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.itemLeft}>
-                            <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                            <Text style={[styles.titleTextLeft, textColor]}>Back</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => this.onApplyPress()}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.itemRight}>
-                            <Text style={[styles.titleTextRight, textColor]}>Apply</Text>
-                            <Image source={tickImagePath} style={styles.iconRight} />
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        );
-    }
-}
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -210,5 +93,125 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
 });
+
+class AdvancedThemeCustomisation extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            backgroundColor: props.backgroundColor,
+            barColor: props.barColor,
+        };
+    }
+
+    onApplyPress() {
+        const { backgroundColor, barColor } = this.state;
+        let theme = cloneDeep(this.props.theme);
+        theme.backgroundColor = backgroundColor;
+        theme.barColor = barColor;
+        theme.secondaryBackgroundColor = tinycolor(backgroundColor).isDark() ? 'white' : '#222';
+        theme.secondaryBarColor = tinycolor(barColor).isDark() ? 'white' : '#222';
+        this.props.updateTheme(theme, 'Custom');
+        this.props.backPress();
+    }
+
+    render() {
+        const { t, secondaryBackgroundColor, tickImagePath, arrowLeftImagePath, textColor } = this.props;
+        const backgroundTextColor = tinycolor(this.state.backgroundColor).isDark() ? '#FAFAFA' : '#222';
+        const barTextColor = tinycolor(this.state.barColor).isDark() ? '#FAFAFA' : '#222';
+        return (
+            <View style={styles.container}>
+                <View style={styles.topContainer}>
+                    <View style={styles.content}>
+                        <View
+                            style={[
+                                styles.colorPreview,
+                                { backgroundColor: tinycolor(this.state.backgroundColor).toHslString() },
+                            ]}
+                        >
+                            <Text style={[styles.colorString, { color: backgroundTextColor }]}>{t('background')}</Text>
+                        </View>
+                        <HueSlider
+                            style={styles.sliderRow}
+                            gradientSteps={40}
+                            value={this.state.backgroundColor.h}
+                            onValueChange={(h) =>
+                                this.setState({ backgroundColor: { ...this.state.backgroundColor, h } })
+                            }
+                        />
+                        <SaturationSlider
+                            style={styles.sliderRow}
+                            gradientSteps={20}
+                            value={this.state.backgroundColor.s}
+                            color={this.state.backgroundColor}
+                            onValueChange={(s) =>
+                                this.setState({ backgroundColor: { ...this.state.backgroundColor, s } })
+                            }
+                        />
+                        <LightnessSlider
+                            style={styles.sliderRow}
+                            gradientSteps={20}
+                            value={this.state.backgroundColor.l}
+                            color={this.state.backgroundColor}
+                            onValueChange={(l) =>
+                                this.setState({ backgroundColor: { ...this.state.backgroundColor, l } })
+                            }
+                        />
+                    </View>
+                    <View style={styles.content}>
+                        <View
+                            style={[
+                                styles.colorPreview,
+                                { backgroundColor: tinycolor(this.state.barColor).toHslString() },
+                            ]}
+                        >
+                            <Text style={[styles.colorString, { color: barTextColor }]}>{t('frame')}</Text>
+                        </View>
+                        <HueSlider
+                            style={styles.sliderRow}
+                            gradientSteps={40}
+                            value={this.state.barColor.h}
+                            onValueChange={(h) => this.setState({ barColor: { ...this.state.barColor, h } })}
+                        />
+                        <SaturationSlider
+                            style={styles.sliderRow}
+                            gradientSteps={20}
+                            value={this.state.barColor.s}
+                            color={this.state.barColor}
+                            onValueChange={(s) => this.setState({ barColor: { ...this.state.barColor, s } })}
+                        />
+                        <LightnessSlider
+                            style={styles.sliderRow}
+                            gradientSteps={20}
+                            value={this.state.barColor.l}
+                            color={this.state.barColor}
+                            onValueChange={(l) => this.setState({ barColor: { ...this.state.barColor, l } })}
+                        />
+                    </View>
+                </View>
+                <View style={styles.bottomContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.backPress()}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.itemLeft}>
+                            <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                            <Text style={[styles.titleTextLeft, textColor]}>Back</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => this.onApplyPress()}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.itemRight}>
+                            <Text style={[styles.titleTextRight, textColor]}>Apply</Text>
+                            <Image source={tickImagePath} style={styles.iconRight} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        );
+    }
+}
 
 export default translate(['advancedThemeCustomisation', 'global'])(AdvancedThemeCustomisation);

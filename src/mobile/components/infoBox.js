@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class InfoBox extends React.Component {
+class InfoBox extends Component {
     static propTypes = {
         secondaryBackgroundColor: PropTypes.string,
         containerStyle: PropTypes.object,

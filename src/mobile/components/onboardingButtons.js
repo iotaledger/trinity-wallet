@@ -1,11 +1,31 @@
-import get from 'lodash/get';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import GENERAL from '../theme/general';
 import { connect } from 'react-redux';
 import THEMES from '../theme/themes';
-
 import { width, height } from '../util/dimensions';
+
+const styles = StyleSheet.create({
+    buttonsContainer: {
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        width: width / 1.36,
+    },
+    button: {
+        borderWidth: 1.2,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 3,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+    text: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 24.4,
+        backgroundColor: 'transparent',
+    },
+});
 
 class OnboardingButtons extends Component {
     render() {
@@ -31,28 +51,6 @@ class OnboardingButtons extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    buttonsContainer: {
-        alignItems: 'flex-end',
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        width: width / 1.36,
-    },
-    button: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    text: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
-});
 
 const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
