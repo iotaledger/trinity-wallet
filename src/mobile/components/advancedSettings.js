@@ -71,15 +71,18 @@ const styles = StyleSheet.create({
     },
 });
 
+/* eslint-disable react/prefer-stateless-function */
 class AdvancedSettings extends Component {
     static propTypes = {
         setSetting: PropTypes.func.isRequired,
         onResetWalletPress: PropTypes.func.isRequired,
         node: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         addImagePath: PropTypes.number.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     render() {
