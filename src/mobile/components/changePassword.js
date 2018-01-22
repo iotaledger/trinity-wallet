@@ -13,6 +13,91 @@ import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import { translate } from 'react-i18next';
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    bottomContainer: {
+        flex: 1,
+        width,
+        paddingHorizontal: width / 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    topContainer: {
+        flex: 9,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
+    logo: {
+        height: width / 5,
+        width: width / 5,
+    },
+    infoTextWrapper: {
+        borderWidth: 1,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 1.6,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: width / 40,
+        borderStyle: 'dotted',
+        paddingVertical: height / 50,
+    },
+    infoText: {
+        fontFamily: Fonts.secondary,
+        fontSize: width / 27.6,
+        textAlign: 'center',
+        paddingTop: height / 60,
+        backgroundColor: 'transparent',
+    },
+    infoIcon: {
+        width: width / 20,
+        height: width / 20,
+    },
+    textField: {
+        fontFamily: Fonts.tertiary,
+    },
+    textFieldContainer: {
+        width: width / 1.36,
+        paddingTop: height / 90,
+    },
+    itemLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: height / 50,
+        justifyContent: 'flex-start',
+    },
+    itemRight: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: height / 50,
+        justifyContent: 'flex-end',
+    },
+    iconLeft: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
+    },
+    titleTextLeft: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+    },
+    iconRight: {
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
+    },
+});
+
 class ChangePassword extends Component {
     static propTypes = {
         password: PropTypes.string.isRequired,
@@ -209,90 +294,5 @@ class ChangePassword extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    bottomContainer: {
-        flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    topContainer: {
-        flex: 9,
-        justifyContent: 'space-around',
-        alignItems: 'center',
-    },
-    logo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    infoTextWrapper: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 1.6,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: width / 40,
-        borderStyle: 'dotted',
-        paddingVertical: height / 50,
-    },
-    infoText: {
-        fontFamily: Fonts.secondary,
-        fontSize: width / 27.6,
-        textAlign: 'center',
-        paddingTop: height / 60,
-        backgroundColor: 'transparent',
-    },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
-    },
-    textField: {
-        fontFamily: Fonts.tertiary,
-    },
-    textFieldContainer: {
-        width: width / 1.36,
-        paddingTop: height / 90,
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: height / 50,
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: height / 50,
-        justifyContent: 'flex-end',
-    },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
-    },
-    titleTextLeft: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-    },
-    iconRight: {
-        width: width / 28,
-        height: width / 28,
-    },
-    titleTextRight: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
-    },
-});
 
 export default translate(['changePassword', 'global'])(ChangePassword);

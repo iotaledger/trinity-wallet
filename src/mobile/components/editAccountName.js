@@ -8,6 +8,73 @@ import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import { translate } from 'react-i18next';
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    textFieldContainer: {
+        flex: 1,
+        alignItems: 'center',
+        paddingTop: height / 10,
+    },
+    saveText: {
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 34.5,
+        backgroundColor: 'transparent',
+    },
+    saveButtonContainer: {
+        flex: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    bottomContainer: {
+        flex: 1,
+        width: width,
+        paddingHorizontal: width / 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    topContainer: {
+        flex: 9,
+        justifyContent: 'space-around',
+    },
+    itemLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: height / 50,
+        justifyContent: 'flex-start',
+    },
+    itemRight: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: height / 50,
+        justifyContent: 'flex-end',
+    },
+    iconLeft: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
+    },
+    titleTextLeft: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+    },
+    iconRight: {
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
+    },
+});
+
 export class EditAccountName extends Component {
     static propTypes = {
         t: PropTypes.func.isRequired,
@@ -79,72 +146,5 @@ export class EditAccountName extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    textFieldContainer: {
-        flex: 1,
-        alignItems: 'center',
-        paddingTop: height / 10,
-    },
-    saveText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
-    },
-    saveButtonContainer: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    bottomContainer: {
-        flex: 1,
-        width: width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    topContainer: {
-        flex: 9,
-        justifyContent: 'space-around',
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: height / 50,
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: height / 50,
-        justifyContent: 'flex-end',
-    },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
-    },
-    titleTextLeft: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-    },
-    iconRight: {
-        width: width / 28,
-        height: width / 28,
-    },
-    titleTextRight: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
-    },
-});
 
 export default translate(['addAdditionalSeed', 'global'])(EditAccountName);

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import whiteArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-white.png';
-import blackArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-black.png';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';

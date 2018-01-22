@@ -8,102 +8,7 @@ import whiteDeleteImagePath from 'iota-wallet-shared-modules/images/delete-white
 import blackAddressesImagePath from 'iota-wallet-shared-modules/images/addresses-black.png';
 import blackEditImagePath from 'iota-wallet-shared-modules/images/edit-black.png';
 import blackDeleteImagePath from 'iota-wallet-shared-modules/images/delete-black.png';
-
 import { translate } from 'react-i18next';
-
-class AdvancedSettings extends Component {
-    static propTypes = {
-        setSetting: PropTypes.func.isRequired,
-        onDeleteAccountPress: PropTypes.func.isRequired,
-    };
-
-    render() {
-        const { t, secondaryBackgroundColor, textColor, arrowLeftImagePath, addImagePath, keyImagePath } = this.props;
-        const addressesImagePath =
-            secondaryBackgroundColor === 'white' ? whiteAddressesImagePath : blackAddressesImagePath;
-        const editImagePath = secondaryBackgroundColor === 'white' ? whiteEditImagePath : blackEditImagePath;
-        const deleteImagePath = secondaryBackgroundColor === 'white' ? whiteDeleteImagePath : blackDeleteImagePath;
-
-        return (
-            <View style={styles.advancedSettingsContainer}>
-                <View style={{ flex: 5.5 }}>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={event => this.props.setSetting('viewSeed')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Image source={keyImagePath} style={styles.icon} />
-                                <Text style={[styles.titleText, textColor]}>{t('viewSeed')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={event => this.props.setSetting('viewAddresses')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Image source={addressesImagePath} style={styles.icon} />
-                                <Text style={[styles.titleText, textColor]}>{t('viewAddresses')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={event => this.props.setSetting('editAccountName')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Image source={editImagePath} style={styles.icon} />
-                                <Text style={[styles.titleText, textColor]}>{t('editAccountName')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={event => this.props.onDeleteAccountPress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Image source={deleteImagePath} style={styles.icon} />
-                                <Text style={[styles.titleText, textColor]}>{t('deleteAccount')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.separatorContainer}>
-                        <View style={[styles.separator, { borderBottomColor: secondaryBackgroundColor }]} />
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={event => this.props.setSetting('addNewAccount')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Image source={addImagePath} style={styles.icon} />
-                                <Text style={[styles.titleText, textColor]}>{t('addNewAccount')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={{ flex: 4.5 }}>
-                    <View style={{ flex: 3.5 }} />
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={event => this.props.setSetting('mainSettings')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Image source={arrowLeftImagePath} style={styles.backIcon} />
-                                <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </View>
-        );
-    }
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -165,5 +70,99 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
 });
+
+class AdvancedSettings extends Component {
+    static propTypes = {
+        setSetting: PropTypes.func.isRequired,
+        onDeleteAccountPress: PropTypes.func.isRequired,
+    };
+
+    render() {
+        const { t, secondaryBackgroundColor, textColor, arrowLeftImagePath, addImagePath, keyImagePath } = this.props;
+        const addressesImagePath =
+            secondaryBackgroundColor === 'white' ? whiteAddressesImagePath : blackAddressesImagePath;
+        const editImagePath = secondaryBackgroundColor === 'white' ? whiteEditImagePath : blackEditImagePath;
+        const deleteImagePath = secondaryBackgroundColor === 'white' ? whiteDeleteImagePath : blackDeleteImagePath;
+
+        return (
+            <View style={styles.advancedSettingsContainer}>
+                <View style={{ flex: 5.5 }}>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={(event) => this.props.setSetting('viewSeed')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Image source={keyImagePath} style={styles.icon} />
+                                <Text style={[styles.titleText, textColor]}>{t('viewSeed')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={(event) => this.props.setSetting('viewAddresses')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Image source={addressesImagePath} style={styles.icon} />
+                                <Text style={[styles.titleText, textColor]}>{t('viewAddresses')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={(event) => this.props.setSetting('editAccountName')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Image source={editImagePath} style={styles.icon} />
+                                <Text style={[styles.titleText, textColor]}>{t('editAccountName')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={(event) => this.props.onDeleteAccountPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Image source={deleteImagePath} style={styles.icon} />
+                                <Text style={[styles.titleText, textColor]}>{t('deleteAccount')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.separatorContainer}>
+                        <View style={[styles.separator, { borderBottomColor: secondaryBackgroundColor }]} />
+                    </View>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={(event) => this.props.setSetting('addNewAccount')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Image source={addImagePath} style={styles.icon} />
+                                <Text style={[styles.titleText, textColor]}>{t('addNewAccount')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View style={{ flex: 4.5 }}>
+                    <View style={{ flex: 3.5 }} />
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={(event) => this.props.setSetting('mainSettings')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Image source={arrowLeftImagePath} style={styles.backIcon} />
+                                <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </View>
+        );
+    }
+}
 
 export default translate(['accountManagement', 'global'])(AdvancedSettings);

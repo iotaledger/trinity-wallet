@@ -93,8 +93,9 @@ class TransferConfirmationModal extends Component {
         // Hotfix
 
         let transferContents = null;
+        /* eslint-disable eqeqeq */
         if (this.props.amount == 0) {
-            // eslint-disable-line eqeqeq
+            /* eslint-enable eqeqeq */
             // doesn't work with === for some reason
             transferContents = <Text style={styles.iotaText}>a message</Text>;
         } else {
