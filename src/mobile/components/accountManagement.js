@@ -77,6 +77,7 @@ class AdvancedSettings extends Component {
         arrowLeftImagePath: PropTypes.number.isRequired,
         addImagePath: PropTypes.number.isRequired,
         keyImagePath: PropTypes.number.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
         setSetting: PropTypes.func.isRequired,
         onDeleteAccountPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
