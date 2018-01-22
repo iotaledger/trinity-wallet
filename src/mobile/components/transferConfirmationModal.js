@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate, Trans } from 'react-i18next';
+import { translate } from 'react-i18next';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -26,28 +26,14 @@ class TransferConfirmationModal extends Component {
         // TODO: fix this using trans component
         /*
         let transferContents = null;
-        let amount = this.props.amount;
-        let denomination = this.props.denomination;
-        if (amount == 0) {
-            //For some reason === does not work
-            transferContents = (
-                <Trans i18nKey="sendMessage">
-                    <Text style={styles.regularText}>
-                        You are about to send <Text style={styles.iotaText}>a message</Text> to the address
-                    </Text>
-                </Trans>
-            );
+        if (this.props.amount === 0) {
+            transferContents = <Text style={styles.iotaText}>{t('transferConfirmation:aMessage')}</Text>;
         } else {
             transferContents = (
-                <Trans i18nKey="sendValue">
-                    <Text style={styles.regularText}>
-                        You are about to send{' '}
-                        <Text style={styles.iotaText}>
-                            {{ amount }} {{ denomination }}
-                        </Text>{' '}
-                        to the address
-                    </Text>
-                </Trans>
+                <Text style={styles.iotaText}>
+                    {' '}
+                    {this.props.amount} {this.props.denomination}{' '}
+                </Text>
             );
         }
         */
@@ -68,8 +54,12 @@ class TransferConfirmationModal extends Component {
             <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <View style={styles.textContainer}>
-                        <Text style={styles.text}>{transferContents}</Text>
-                        <Text numberOfLines={3} style={styles.addressText}>
+                        <Text style={[styles.text, textColor]}>
+                            <Text style={[styles.regularText, textColor]}>
+                                You are about to send {transferContents} to the address
+                            </Text>
+                        </Text>
+                        <Text numberOfLines={3} style={[styles.addressText, textColor]}>
                             {this.props.address}
                         </Text>
                     </View>
