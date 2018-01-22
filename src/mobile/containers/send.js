@@ -351,7 +351,7 @@ class Send extends Component {
                 });
             }
         }
-        if (data.match(/iota:/)) {
+        if (data.match(/iota\:/)) {
             // For codes with iota: at the front (TheTangle.org)
             data = data.substring(5);
             this.setState({
