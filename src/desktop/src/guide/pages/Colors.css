@@ -27,14 +27,14 @@
 .positive {
     background: var(--color-positive);
 }
-.positiveBody {
-    color: var(--color-positiveBody);
+.positiveBorder {
+    color: var(--color-positiveBorder);
 }
 .negative {
     background: var(--color-negative);
 }
-.negativeBody {
-    color: var(--color-negativeBody);
+.negativeBorder {
+    color: var(--color-negativeBorder);
 }
 .extra {
     background: var(--color-extra);

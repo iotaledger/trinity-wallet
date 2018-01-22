@@ -128,7 +128,7 @@
         opacity: 1;
     }
     &.on:after {
-        background: var(--color-positive);
+        background: var(--color-positiveBorder);
     }
 }
 

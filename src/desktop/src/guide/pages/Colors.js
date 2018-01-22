@@ -11,7 +11,9 @@ const Colors = () => {
             {colors.map((color, key) => {
                 return (
                     <div key={key} className={css.color}>
-                        {css[`${color}Body`] ? <strong className={css[`${color}Body`]}>{`${color}Body`}</strong> : null}
+                        {css[`${color}Border`] ? (
+                            <strong className={css[`${color}Border`]}>{`${color}Border`}</strong>
+                        ) : null}
                         <strong className={css[color]}>{color}</strong>
                         <strong className={classNames(css[color], css.hover)}>{color} hover</strong>
                     </div>
