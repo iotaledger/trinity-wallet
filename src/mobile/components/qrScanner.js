@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { translate } from 'react-i18next';
+import { isAndroid } from '../util/device';
 
 import { width, height } from '../util/dimensions';
 
 class QRScanner extends Component {
+    componentWillMount() {
+        if (isAndroid) {
+            this.requestCameraPermission();
+        }
+    }
+
+    async requestCameraPermission() {
+        const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA, {
+            title: 'QR Scanner permission',
+            message: 'The wallet needs access to your camera ' + 'to scan a QR code.',
+        });
+    }
+
     render() {
-        const { t, backgroundColor, ctaColor } = this.props;
+        const { t, backgroundColor, ctaColor, secondaryCtaColor, ctaBorderColor } = this.props;
 
         return (
             <View style={styles.modalContent}>
@@ -19,10 +33,12 @@ class QRScanner extends Component {
                     <QRCodeScanner onRead={data => this.props.onQRRead(data.data)} />
                     <View style={{ paddingBottom: height / 15 }}>
                         <TouchableOpacity
-                            style={[styles.closeButton, { backgroundColor: ctaColor }]}
+                            style={[styles.closeButton, { backgroundColor: ctaColor }, { borderColor: ctaBorderColor }]}
                             onPress={() => this.props.hideModal()}
                         >
-                            <Text style={styles.closeButtonText}>{t('global:close')}</Text>
+                            <Text style={[styles.closeButtonText, { color: secondaryCtaColor }]}>
+                                {t('global:close')}
+                            </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -46,6 +62,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
+        borderWidth: 1.2,
     },
     closeButtonText: {
         color: 'white',

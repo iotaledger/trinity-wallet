@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
-import Template, { Content, Footer } from './Template';
+import Template, { Content, Footer } from 'components/Onboarding/Template';
 import SeedManualCopy from 'components/Onboarding/SeedManualCopy';
 import SeedCopyToClipboard from 'components/Onboarding/SeedCopyToClipboard';
 import SeedPaperWallet from 'components/Onboarding/SeedPaperWallet';
@@ -16,6 +16,7 @@ class SaveYourSeedOptions extends PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         seed: PropTypes.string,
+        match: PropTypes.object.isRequired,
     };
 
     state = {
@@ -66,7 +67,7 @@ class SaveYourSeedOptions extends PureComponent {
                     </div>
                 </Content>
                 <Footer>
-                    <Button to="/seed/generate" variant="warning">
+                    <Button to="/seed/generate" variant="secondary">
                         {t('global:back')}
                     </Button>
                     {/* TODO: Remove the console log and think of a solution when to actually clear the seeds */}

@@ -812,6 +812,10 @@ home-or-tmp@^2.0.0:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.1"
 
+i18next-browser-languagedetector@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-2.1.0.tgz#1b0e17b09507f84e7a1fa761539a07544f92a0df"
+
 i18next@^10.2.2:
   version "10.2.2"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.2.2.tgz#1f2dc55ca2e8d7e071f7aff9f78654ef7f003c0e"
@@ -833,9 +837,9 @@ invariant@^2.2.0, invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
-iota.lib.js@^0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.4.5.tgz#26cbc0c83ec64b7199a92436f55f22ae239b685a"
+iota.lib.js@^0.4.6:
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.4.6.tgz#47afdc03d57c7f55d2f58f068db492df6bc6e9bb"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"

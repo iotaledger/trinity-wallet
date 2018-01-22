@@ -7,7 +7,7 @@
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "거래를 완료를 하기 위해서는 현재 IOTA 잔액이 충분하지 않습니다.",
-        "transferError": "Transfer Error",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
@@ -52,7 +52,10 @@
         "somethingWentWrongExplanation": "어플을 다시 실행하여 주십시오.",
         "node": "노드",
         "cannotPerformAction": "작업 수행할 수 없음",
-        "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오."
+        "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -145,7 +148,7 @@
     "receive": {
         "addressCopied": "주소가 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
-        "generateNewAddress": "새 씨드 생성하기",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "선택 정보 입력",
         "removeMessage": "메시지 삭제하기"
     },
@@ -220,13 +223,22 @@
         "cannotPerformAction": "작업 수행할 수 없음",
         "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오.",
         "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
+        "hide": "숨기기",
+        "hideOthers": "Others 숨기기",
+        "showAll": "전부 펼치기",
+        "quit": "중단하기",
+        "edit": "수정",
+        "cut": "삭제",
+        "copy": "복사",
+        "paste": "붙여넣기",
+        "selectAll": "전체 선택"
     },
     "resetWalletConfirmation": {
         "thisAction": "이 작업은 취소할 수 없습니다.",
-        "warning1": "귀하의 모든 지갑 데이터들",
-        "warning2": " 씨드, 패스워드",
-        "warning3": "그리고",
+        "warning1": "귀하의 모든 지갑 데이터들 ",
+        "warning2": " seeds, password,",
+        "warning3": " 그리고",
         "warning4": " 기타 계정 정보들은",
         "warning5": " 삭제될 것입니다.",
         "areYouSure": "계속하시겠습니까?"
@@ -241,7 +253,7 @@
         "doYouAlreadyHaveASeed": "이미 당신이 사용하고 싶은 씨드가 있습니까?",
         "seedExplanation": "81자로 이루어진 IOTA 씨드는 귀하의 계정에 아이디 및 비밀번호와 같습니다.",
         "explanation1": "귀하의 자금이 보관된 장소들에 접근하기 위해 사용할 수 있습니다.",
-        "explanation2": " 모든 지갑 ",
+        "explanation2": " 모든 지갑",
         "explanation3": "에",
         "explanation4": " 모든 디바이스",
         "explanation5": "하지만 만약 귀하의 씨드를 분실하는 경우, 귀하의 IOTA 또한 잃게 됩니다.",
