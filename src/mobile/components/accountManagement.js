@@ -83,7 +83,6 @@ class AdvancedSettings extends Component {
     };
 
     render() {
-        console.log(this.props);
         const { t, secondaryBackgroundColor, textColor, arrowLeftImagePath, addImagePath, keyImagePath } = this.props;
         const addressesImagePath =
             secondaryBackgroundColor === 'white' ? whiteAddressesImagePath : blackAddressesImagePath;
