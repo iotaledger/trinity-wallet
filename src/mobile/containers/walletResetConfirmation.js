@@ -1,5 +1,5 @@
 import toUpper from 'lodash/toUpper';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, Image, BackHandler } from 'react-native';
@@ -87,18 +87,18 @@ class WalletResetConfirmation extends Component {
                             {t('walletResetConfirmation:cannotUndo')}
                         </Text>
                     </View>
-                    <InfoBox
-                        text={
-                            <Text style={[styles.infoText, textColor]}>
-                                <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextOne')} </Text>
-                                <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextTwo')} </Text>
-                                <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextThree')} </Text>
-                                <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextFour')} </Text>
-                                <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextFive')}</Text>
+                    <View style={styles.infoTextWrapper}>
+                        <Image source={infoImagePath} style={styles.infoIcon} />
+                        <Trans i18nKey="walletResetConfirmation:infoText">
+                            <Text style={styles.infoText}>
+                                <Text style={styles.infoTextLight}>All of your wallet data including your </Text>
+                                <Text style={styles.infoTextRegular}>seeds, password,</Text>
+                                <Text style={styles.infoTextLight}> and </Text>
+                                <Text style={styles.infoTextRegular}>other account information</Text>
+                                <Text style={styles.infoTextLight}> will be lost.</Text>
                             </Text>
-                        }
-                        secondaryBackgroundColor={secondaryBackgroundColor}
-                    />
+                        </Trans>
+                    </View>
                     <View style={styles.confirmationTextWrapper}>
                         <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                     </View>
