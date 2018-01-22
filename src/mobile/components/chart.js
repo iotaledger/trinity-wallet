@@ -1,4 +1,5 @@
-import React from 'react';
+import noop from 'lodash/noop';
+import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
@@ -77,11 +78,7 @@ const styles = StyleSheet.create({
 
 const getChartCurrencySymbol = (currency) => {
     if (currency === 'BTC') {
-        if (isAndroid) {
-            return '฿';
-        } else {
-            return '₿';
-        }
+        return isAndroid ? '฿' : '₿';
     } else if (currency === 'ETH') {
         return 'Ξ';
     } else if (currency === 'EUR') {
@@ -105,7 +102,7 @@ const nextCurrency = {
     ETH: 'USD',
 };
 
-class Chart extends React.Component {
+class Chart extends Component {
     constructor(props) {
         super(props);
 
@@ -117,17 +114,15 @@ class Chart extends React.Component {
     componentWillMount() {
         switch (this.props.marketData.currency) {
             case 'USD':
-                this.setState({ price: this.props.marketData.usdPrice });
-                break;
+                return this.setState({ price: this.props.marketData.usdPrice });
             case 'EUR':
-                this.setState({ price: this.props.marketData.eurPrice });
-                break;
+                return this.setState({ price: this.props.marketData.eurPrice });
             case 'BTC':
-                this.setState({ price: this.props.marketData.btcPrice });
-                break;
+                return this.setState({ price: this.props.marketData.btcPrice });
             case 'ETH':
-                this.setState({ price: this.props.marketData.ethPrice });
-                break;
+                return this.setState({ price: this.props.marketData.ethPrice });
+            default:
+                return noop;
         }
     }
 
@@ -210,7 +205,7 @@ class Chart extends React.Component {
                 <View style={styles.topContainer}>
                     <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
-                            onPress={(event) => this.changeCurrency()}
+                            onPress={() => this.changeCurrency()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
@@ -226,7 +221,7 @@ class Chart extends React.Component {
                     </View>
                     <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
-                            onPress={(event) => this.changeTimeframe()}
+                            onPress={() => this.changeTimeframe()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
@@ -307,4 +302,4 @@ class Chart extends React.Component {
     }
 }
 
-module.exports = Chart;
+export default Chart;
