@@ -6,7 +6,7 @@
         width: 240px;
         margin-right: 40px;
         flex-shrink: 0;
-        background: var(--color-bgBar);
+        background: var(--bar-bg);
         text-align: center;
 
         h1 {
@@ -21,11 +21,11 @@
             a {
                 display: block;
                 margin-bottom: 20px;
-                color: var(--color-body);
+                color: var(--bar);
                 text-decoration: none;
                 &:hover,
                 &[aria-current='true'] {
-                    color: var(--color-highlightBorder);
+                    color: var(--highlight);
                 }
             }
         }

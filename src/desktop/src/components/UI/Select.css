@@ -7,9 +7,9 @@
         font-size: var(--font-size-default);
         line-height: 26px;
         width: 100%;
-        border: 1px solid var(--color-border);
-        background: var(--color-input);
-        color: var(--color-body);
+        border: 1px solid var(--input-border);
+        background: var(--input-bg);
+        color: var(--input);
         padding: 6px 12px;
         resize: none;
         -webkit-appearance: none;
@@ -29,7 +29,7 @@
             height: 0;
             border-style: solid;
             border-width: 6px 4px 0 4px;
-            border-color: var(--color-body) transparent transparent transparent;
+            border-color: var(--body) transparent transparent transparent;
             position: absolute;
             right: 12px;
             top: calc(50% - 2px);

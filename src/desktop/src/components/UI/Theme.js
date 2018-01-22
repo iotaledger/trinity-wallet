@@ -24,7 +24,23 @@ class Theme extends PureComponent {
 
     updateTheme(theme) {
         Object.keys(theme).map((colorName) => {
-            document.documentElement.style.setProperty(`--color-${colorName}`, this.hslToCSS(theme[colorName]));
+            const color = theme[colorName];
+            if (!color.color) {
+                return;
+            }
+            document.documentElement.style.setProperty(`--${colorName}`, this.hslToCSS(color.color));
+            document.documentElement.style.setProperty(
+                `--${colorName}-bg`,
+                this.hslToCSS(color.background || color.color),
+            );
+            document.documentElement.style.setProperty(
+                `--${colorName}-border`,
+                this.hslToCSS(color.border || color.background || color.color),
+            );
+            document.documentElement.style.setProperty(
+                `--${colorName}-secondary`,
+                this.hslToCSS(color.secondary || color.color),
+            );
         });
     }
 
