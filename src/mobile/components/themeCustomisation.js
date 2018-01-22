@@ -1,5 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Image } from 'react-native';
 import blackChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-black.png';
 import whiteChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-white.png';
@@ -175,6 +176,17 @@ const styles = StyleSheet.create({
 });
 
 class ThemeCustomisation extends Component {
+    static propTypes = {
+        updateTheme: PropTypes.func.isRequired,
+        onAdvancedPress: PropTypes.func.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        tickImagePath: PropTypes.number.isRequired,
+        theme: PropTypes.object.isRequired,
+        themeName: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        backPress: PropTypes.func.isRequired,
+    };
+
     constructor(props) {
         super(props);
 

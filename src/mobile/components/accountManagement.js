@@ -71,14 +71,19 @@ const styles = StyleSheet.create({
     },
 });
 
+/* eslint-disable react/prefer-stateless-function */
 class AdvancedSettings extends Component {
     static propTypes = {
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        addImagePath: PropTypes.number.isRequired,
+        keyImagePath: PropTypes.number.isRequired,
         setSetting: PropTypes.func.isRequired,
         onDeleteAccountPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
     };
 
     render() {
+        console.log(this.props);
         const { t, secondaryBackgroundColor, textColor, arrowLeftImagePath, addImagePath, keyImagePath } = this.props;
         const addressesImagePath =
             secondaryBackgroundColor === 'white' ? whiteAddressesImagePath : blackAddressesImagePath;
