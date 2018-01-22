@@ -14,13 +14,13 @@
         "keyReuse": "Ponowne użycie klucza",
         "keyReuseError": "Nie można wysłać na adres, który został już obciążony.",
         "invalidResponse": "Błędna odpowiedź",
-        "invalidResponseExplanation": "Node zwrócił nieprawidłową odpowiedź.",
+        "invalidResponseExplanation": "Serwer zwrócił nieprawidłową odpowiedź.",
         "invalidResponsePollingExplanation": "Serwer zwrócił błędna odpowiedź podczas połączenia.",
-        "invalidResponseFetchingAccount": "Node zwrócił nieprawidłową odpowiedź podczas pobierania informacji o twoim koncie.",
-        "invalidResponseSendingTransfer": "Node zwrócił nieprawidłową odpowiedź podczas wysyłania transferu.",
+        "invalidResponseFetchingAccount": "Serwer zwrócił nieprawidłową odpowiedź podczas pobierania informacji o Twoim koncie.",
+        "invalidResponseSendingTransfer": "Serwer zwrócił błędną odpowiedź podczas wysyłania transferu.",
         "seed": "Seed",
-        "back": "COFNIJ",
-        "backLowercase": "Cofnij",
+        "back": "WSTECZ",
+        "backLowercase": "Wstecz",
         "done": "GOTOWE",
         "doneLowercase": "Gotowe",
         "next": "DALEJ",
@@ -33,7 +33,7 @@
         "copyToClipboard": "Dodaj do menedżera haseł",
         "notAvailable": "Ta funkcja nie jest dostępna",
         "notAvailableExplanation": "Zostanie dodane na późniejszym etapie.",
-        "enterSeed": "Proszę wpisz swój seed.",
+        "enterSeed": "Proszę podaj swojego Seeda.",
         "mainWallet": "KONTO GŁÓWNE",
         "secondWallet": "DRUGIE KONTO",
         "thirdWallet": "TRZECIE KONTO",
@@ -49,12 +49,12 @@
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
         "somethingWentWrong": "Coś poszło nie tak",
-        "somethingWentWrongExplanation": "Prosimy o zrestartowanie aplikacji.",
+        "somethingWentWrongExplanation": "Uruchom ponownie aplikację.",
         "node": "Serwer",
         "cannotPerformAction": "Nie można wykonać akcji",
         "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
         "attachToTangleUnavailable": "Dołączenie do Tangle niedostępne",
-        "attachToTangleUnavailableExplanation": "Dołączenie do Tangle niedostępne na wybranym node.",
+        "attachToTangleUnavailableExplanation": "Dołączenie do sieci Tangle niedostępne na wybranym serwerze.",
         "wallet": "Portfel"
     },
     "addAdditionalSeed": {
@@ -78,12 +78,12 @@
         "passwordUpdatedExplanation": "Twoje hasło zostało pomyślnie zaktualizowane.",
         "incorrectPassword": "Nieprawidłowe hasło",
         "incorrectPasswordExplanation": "Podane hasło jest nieprawidłowe. Spróbuj ponownie.",
-        "passwordsDoNotMatch": "Hasła są różne",
+        "passwordsDoNotMatch": "Hasła nie są zgodne",
         "passwordsDoNotMatchExplanation": "Hasła się różnią. Proszę spróbować jeszcze raz.",
         "passwordTooShort": "Hasło jest zbyt krótkie",
         "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej 12 znaków. Spróbuj ponownie.",
         "oldPassword": "Nie można ustawić starego hasła",
-        "oldPasswordExplanation": "Nie możesz ponownie użyć starego hasła. Proszę spróbować ponownie z nowym hasłem.",
+        "oldPasswordExplanation": "Nie można ponownie użyć starego hasła. Proszę spróbować z nowym hasłem.",
         "ensureStrongPassword": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "currentPassword": "Obecne hasło",
         "newPassword": "Nowe hasło",
@@ -94,7 +94,7 @@
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "seedCopied": "Seed skopiowany do schowka",
         "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"Gotowe\", lub po upływie 60 sekund.",
-        "clickToCopy": "Kliknij przycisk poniżej i skopiuj swojego seeda do menedżera haseł.",
+        "clickToCopy": "Kliknij przycisk poniżej i skopiuj swojego Seeda do Menedżera haseł.",
         "doNotStore": "Nie przechowuj swojego seeda w formie zwykłego tekstu.",
         "copyToClipboard": "Kopiuj do schowka"
     },
@@ -104,7 +104,7 @@
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
         "seedExplanation": "Seed powinien składać się z {{maxLength}} znaków i powinien zawierać wielkie litery A-Z lub cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
-        "neverShare": "NIKOMU NIE UDOSTĘPNIAJ SWOJEGO SEEDA"
+        "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA"
     },
     "home": {
         "balance": "SALDO",
@@ -118,7 +118,7 @@
     },
     "login": {
         "emptyPassword": "Puste hasło",
-        "emptyPasswordExplanation": "Musisz wprowadzić hasło, aby się zalogować. Proszę spróbować ponownie.",
+        "emptyPasswordExplanation": "Należy wprowadzić hasło, aby się zalogować. Proszę spróbować ponownie.",
         "enterPassword": "Wprowadź swoje hasło.",
         "useSeed": "UŻYJ SEEDA",
         "login": "ZALOGUJ",
@@ -132,14 +132,14 @@
     "newSeedSetup": {
         "seedNotGenerated": "Seed nie został wygenerowany",
         "seedNotGeneratedExplanation": "Kliknij przycisk generowania nowego Seeda.",
-        "pressForNewSeed": "NACIŚNIJ DLA NOWEGO SEEDa",
-        "individualLetters": "Kliknij poszczególne litery żeby dokonać wyboru losowego."
+        "pressForNewSeed": "WYGENERUJ NOWEGO SEEDa",
+        "individualLetters": "Naciśnij poszczególne litery żeby dokonać ich losowego wyboru."
     },
     "onboardingComplete": {
         "walletReady": "Portfel jest teraz skonfigurowany i gotowy do użycia. W przypadku konieczności wprowadzenia zmian w przyszłości, skorzystaj z menu ustawień."
     },
     "paperWallet": {
-        "clickToPrint": "Kliknij przycisk niżej, aby wydrukować swojego seeda.",
+        "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopie twojego seeda.",
         "storeSafely": "Przechowuj go bezpiecznie.",
         "neverShare": "Nigdy nie udostępniaj nikomu swojego seeda.",
         "iotaLogo": "Logo IOTA",
@@ -156,14 +156,14 @@
         "seedCleared": "Seed wyczyszczony",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "mustSaveYourSeed": "Musisz zapisać swojego seeda z ",
-        "atLeastOne": "co najmniej jedną ",
+        "atLeastOne": "co najmniej jeden ",
         "ofTheOptions": "z opcji wymienionych poniżej."
     },
     "seedReentry": {
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "thisIsACheck": "To jest test w celu upewnienia się że zapisałeś swojego seeda.",
-        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego seeda, proszę cofnij się i to zrób."
+        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego seeda, proszę wrócić do poprzedniego ekranu i to wykonać."
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -175,12 +175,12 @@
         "keyReuse": "Ponowne użycie klucza",
         "keyReuseExplanation": "Adres na który próbujesz wysłać został już wcześniej użyty. Spróbuj użyć innego adresu.",
         "recipientAddress": "Adres odbiorcy",
-        "amount": "Kwota",
+        "amount": "Ilość",
         "max": "MAX",
         "message": "Wiadomość",
         "send": "WYŚLIJ",
         "invalidAmount": "Wprowadzono niepoprawną ilość",
-        "invalidAmountExplanation": "Proszę wprowadzić wartość transakcji.",
+        "invalidAmountExplanation": "Proszę wprowadzić numeryczną wartość transakcji.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
         "iotaUnits": "Jednostki IOTA"
     },
@@ -255,13 +255,13 @@
         "explanation1": "Używa sie go w celu uzyskania dostępu do swoich środków z",
         "explanation2": " każdego portfela ",
         "explanation3": ", na",
-        "explanation4": " dowolnym urządzeniu, ",
-        "explanation5": "ale jeśli utracisz swojego seeda, utracisz również swoje IOTY.",
+        "explanation4": " dowolnym urządzeniu",
+        "explanation5": ". Ale jeśli utracisz swojego seeda, utracisz również swoje IOTA.",
         "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seed'a."
     },
     "welcome": {
         "thankYou": "Dziękujemy za pobranie portfela IOTA.",
-        "weWillSpend": "Kilka następnych minut spędzimy nad konfiguracją Twojego portfela.",
+        "weWillSpend": "Kilka następnych minut spędzimy na Konfiguracji portfela.",
         "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces."
     },
     "writeSeedDown": {
@@ -283,7 +283,7 @@
         "addNewAccount": "Dodaj nowe konto"
     },
     "addCustomNode": {
-        "customNode": "Niestandardowy node",
+        "customNode": "Serwer niestandardowy",
         "add": "Dodaj"
     },
     "addNewAccount": {
@@ -291,8 +291,8 @@
         "createNewSeed": "Stwórz nowego seeda"
     },
     "advancedSettings": {
-        "selectNode": "Wybierz node",
-        "addCustomNode": "Dodaj niestandardowy node",
+        "selectNode": "Wybierz serwer",
+        "addCustomNode": "Dodaj niestandardowy serwer",
         "manualSync": "Ręczna synchronizacja"
     },
     "advancedThemeCustomisation": {
