@@ -1,12 +1,19 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Confirm from 'components/UI/Confirm';
 import Modal from 'components/UI/Modal';
 import Button from 'components/UI/Button';
 
-import css from './Modals.css';
+import { showError, showNotification } from 'actions/notifications';
+import css from './modals.css';
 
 class Modals extends React.PureComponent {
+    static propTypes = {
+        showError: PropTypes.func.isRequired,
+        showNotification: PropTypes.func.isRequired,
+    };
+
     state = {
         confirmOn: false,
         warningOn: false,
@@ -16,6 +23,7 @@ class Modals extends React.PureComponent {
     render() {
         return (
             <div className={css.modals}>
+                <h1>Modals</h1>
                 <Button onClick={() => this.setState({ confirmOn: true })} variant="secondary">
                     Confirm
                 </Button>
@@ -49,9 +57,40 @@ class Modals extends React.PureComponent {
                         Back
                     </Button>
                 </Modal>
+                <hr />
+                <h1>Notifications</h1>
+                <Button
+                    onClick={() =>
+                        this.props.showNotification({
+                            title: 'All fine!',
+                            text: 'The thing you did, finished upo just fine!',
+                        })
+                    }
+                    variant="primary"
+                >
+                    Success
+                </Button>
+                <Button
+                    onClick={() =>
+                        this.props.showError({
+                            title: 'Something went wrong!',
+                            text: 'Something you did was not wroking as expected!',
+                        })
+                    }
+                    variant="warning"
+                >
+                    Error
+                </Button>
             </div>
         );
     }
 }
 
-export default Modals;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = {
+    showError,
+    showNotification,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modals);

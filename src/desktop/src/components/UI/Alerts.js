@@ -19,6 +19,10 @@ class Alerts extends React.PureComponent {
 
     state = {};
 
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+    }
+
     render() {
         const { alerts, disposeOffAlert, t } = this.props;
 

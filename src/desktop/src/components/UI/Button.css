@@ -26,9 +26,6 @@
     &:focus {
         outline: none;
     }
-    &:active {
-        box-shadow: inset 0 0 0 30px rgba(0, 0, 0, 0.2);
-    }
     &.small {
         padding: 0 16px;
         height: 32px;
@@ -68,6 +65,9 @@
     }
     &:hover:after {
         opacity: 0.1;
+    }
+    &:active:after {
+        opacity: 0.25;
     }
 }
 

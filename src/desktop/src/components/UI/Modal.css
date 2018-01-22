@@ -26,13 +26,17 @@
         h1 {
             font-weight: 200;
             margin-bottom: 20px;
+            max-width: none;
+        }
+        p {
+            max-width: none;
         }
         :global {
             h1.error {
-                color: var(--color-negative);
+                color: var(--color-negativeBorder);
             }
             h1.success {
-                color: var(--color-positive);
+                color: var(--color-positiveBorder);
             }
         }
         strong {
