@@ -132,7 +132,7 @@
     "newSeedSetup": {
         "seedNotGenerated": "Seed nie został wygenerowany",
         "seedNotGeneratedExplanation": "Kliknij przycisk generowania nowego Seeda.",
-        "pressForNewSeed": "NACIŚNIJ DLA NOWEGO SEEDa",
+        "pressForNewSeed": "Wygeneruj nowy seed.",
         "individualLetters": "Kliknij poszczególne litery żeby dokonać wyboru losowego."
     },
     "onboardingComplete": {
@@ -156,7 +156,7 @@
         "seedCleared": "Seed wyczyszczony",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "mustSaveYourSeed": "Musisz zapisać swojego seeda z ",
-        "atLeastOne": "co najmniej jedną ",
+        "atLeastOne": "wybranej ",
         "ofTheOptions": "z opcji wymienionych poniżej."
     },
     "seedReentry": {
