@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { TouchableOpacity, View, Text, StyleSheet, ListView, ScrollView } from 'react-native';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
@@ -92,6 +93,21 @@ const styles = StyleSheet.create({
 });
 
 class TransactionRow extends Component {
+    static propTypes = {
+        backgroundColor: PropTypes.string.isRequired,
+        positiveColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
+        pendingColor: PropTypes.string.isRequired,
+        rowData: PropTypes.array.isRequired,
+        extraColor: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        borderColor: PropTypes.object.isRequired,
+        addresses: PropTypes.array.isRequired,
+        copyBundleHash: PropTypes.func.isRequired,
+        copyAddress: PropTypes.func.isRequired,
+    };
+
     constructor() {
         super();
 
@@ -153,7 +169,7 @@ class TransactionRow extends Component {
                         <Text style={[styles.modalBundleTitle, textColor]}>Addresses:</Text>
                         <ListView
                             dataSource={ds.cloneWithRows(this.props.rowData)}
-                            renderRow={(rowData, sectionId) => (
+                            renderRow={(rowData) => (
                                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 2 }}>
                                     <TouchableOpacity
                                         onPress={() => this.props.copyAddress(rowData.address)}
@@ -185,7 +201,6 @@ class TransactionRow extends Component {
     );
 
     render() {
-        console.log(this.props);
         const {
             negativeColor,
             positiveColor,
