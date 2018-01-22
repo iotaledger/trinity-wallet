@@ -1,6 +1,6 @@
 .wrapper {
     border-radius: 4px;
-    background: var(--color-box);
+    background: var(--color-bgSecondary);
     border-top: 20px solid var(--color-input);
     font-size: var(--font-size-small);
     margin: 16px auto;

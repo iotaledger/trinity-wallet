@@ -23,19 +23,9 @@ class Theme extends PureComponent {
     }
 
     updateTheme(theme) {
-        //TODO: Normalize color naming together with mobile
-        document.documentElement.style.setProperty('--color-body', theme.secondaryBarColor);
-        document.documentElement.style.setProperty('--color-bg', this.hslToCSS(theme.backgroundColor));
-        document.documentElement.style.setProperty('--color-bar', this.hslToCSS(theme.barColor));
-
-        document.documentElement.style.setProperty('--color-positive', this.hslToCSS(theme.ctaColor));
-        document.documentElement.style.setProperty('--color-negative', theme.pendingColor);
-        document.documentElement.style.setProperty('--color-highlight', this.hslToCSS(theme.negativeColor));
-        document.documentElement.style.setProperty('--color-extra', this.hslToCSS(theme.extraColor));
-
-        document.documentElement.style.setProperty('--color-chart', theme.chartLineColor);
-        document.documentElement.style.setProperty('--color-input', '#2a4a51');
-        document.documentElement.style.setProperty('--color-box', '#234046');
+        Object.keys(theme).map((colorName) => {
+            document.documentElement.style.setProperty(`--color-${colorName}`, this.hslToCSS(theme[colorName]));
+        });
     }
 
     render() {
