@@ -1,19 +1,19 @@
-import React from 'react';
+import cloneDeep from 'lodash/cloneDeep';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Image } from 'react-native';
-import { width, height } from '../util/dimensions';
-import Dropdown from '../components/dropdown';
 import blackChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-black.png';
 import whiteChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-white.png';
+import Dropdown from './dropdown'; // eslint-disable-line import/no-named-as-default
+import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
-import cloneDeep from 'lodash/cloneDeep';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width: width,
+        width,
     },
     themeSelectorContainer: {
         width: width / 1.3,
@@ -174,14 +174,15 @@ const styles = StyleSheet.create({
     },
 });
 
-class ThemeCustomisation extends React.Component {
+class ThemeCustomisation extends Component {
     constructor(props) {
         super(props);
-        const themes = (this.state = {
+
+        this.state = {
             theme: props.theme,
             themeName: props.themeName,
             themes: Object.keys(THEMES.themes),
-        });
+        };
     }
 
     onApplyPress(theme, themeName) {
@@ -198,7 +199,6 @@ class ThemeCustomisation extends React.Component {
         const { themes, theme, themeName } = this.state;
         const {
             backgroundColor,
-            barColor,
             ctaColor,
             positiveColor,
             negativeColor,
@@ -303,12 +303,6 @@ class ThemeCustomisation extends React.Component {
                                 </View>
                             </View>
                         </View>
-                        {/*}<TouchableOpacity
-                            onPress={() => this.onAdvancedPress()}
-                            style={[styles.advancedButton, { borderColor: this.props.secondaryBackgroundColor }]}
-                        >
-                            <Text style={[styles.advancedText, { color: this.props.secondaryBackgroundColor }]}>ADVANCED</Text>
-                        </TouchableOpacity>*/}
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
