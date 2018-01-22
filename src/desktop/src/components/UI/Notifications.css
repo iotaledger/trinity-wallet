@@ -12,7 +12,7 @@
     margin: 8px;
     padding: 8px 16px 16px;
     width: 320px;
-    background-color: var(--color-bg);
+    background-color: var(--body-bg);
     border: none;
     border-left: 4px solid transparent;
     max-width: calc(100% - 32px);
@@ -34,36 +34,36 @@
 
     &--info {
         composes: notification;
-        background: var(--color-positive);
-        border-color: var(--color-positiveBorder);
+        background: var(--positive-bg);
+        border-color: var(--positive-border);
         color: var(--color-body);
     }
 
     &--error {
         composes: notification;
-        background: var(--color-negative);
-        border-color: var(--color-negativeBorder);
+        background: var(--negative-bg);
+        border-color: var(--negative-border);
         color: var(--color-body);
     }
 
     &--success {
         composes: notification;
-        background: var(--color-positive);
-        border-color: var(--color-positiveBorder);
-        color: var(--color-body);
+        background: var(--positive);
+        border-color: var(--positive-border);
+        color: var(--body);
     }
 
     &--extra {
         composes: notification;
-        background: var(--color-extra);
-        border-color: var(--color-extraBorder);
-        color: var(--color-body);
+        background: var(--extra-bg);
+        border-color: var(--extra-border);
+        color: var(--body);
     }
 
     &--warning {
         composes: notification;
-        background: var(--color-negative);
-        border-color: var(--color-negativeBorder);
-        color: var(--color-body);
+        background: var(--negative-bg);
+        border-color: var(--negative-border);
+        color: var(--body);
     }
 }

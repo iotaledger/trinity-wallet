@@ -23,6 +23,7 @@ import Buttons from './pages/Buttons';
 import Inputs from './pages/Inputs';
 import Modals from './pages/Modals';
 import Typography from './pages/Typography';
+import Lists from './pages/Lists';
 
 const Intro = () => {
     return (
@@ -57,6 +58,7 @@ class Guide extends React.Component {
                         <NavLink to="/buttons">Buttons</NavLink>
                         <NavLink to="/inputs">Inputs</NavLink>
                         <NavLink to="/modals">Modals & Alerts</NavLink>
+                        <NavLink to="/lists">Lists</NavLink>
                     </nav>
                     <hr />
                     <ThemePicker />
@@ -68,6 +70,7 @@ class Guide extends React.Component {
                         <Route path="/inputs" component={Inputs} />
                         <Route path="/modals" component={Modals} />
                         <Route path="/typography" component={Typography} />
+                        <Route path="/lists" component={Lists} />
                         <Route path="/" component={Intro} />
                     </Switch>
                 </section>
