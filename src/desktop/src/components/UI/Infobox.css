@@ -1,9 +1,10 @@
 .wrapper {
+    display: inline-block;
     border-radius: 4px;
     background: var(--color-bgSecondary);
     border-top: 20px solid var(--color-input);
     font-size: var(--font-size-small);
-    margin: 16px auto;
+    margin: 16px 0;
     padding: 21px 16px 21px 57px;
     text-align: left;
     position: relative;
