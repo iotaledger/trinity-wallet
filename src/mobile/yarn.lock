@@ -4325,7 +4325,7 @@ methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
 
-metro-bundler@0.20.0, metro-bundler@^0.20.0:
+metro-bundler@^0.20.0:
   version "0.20.0"
   resolved "https://registry.yarnpkg.com/metro-bundler/-/metro-bundler-0.20.0.tgz#a2faef20ba7f566484a6c5bd585f590f8640c183"
   dependencies:
@@ -5413,9 +5413,9 @@ react-native-qrcode@^0.2.6:
     prop-types "^15.5.10"
     qr.js "0.0.0"
 
-"react-native-randombytes@git+https://github.com/cvarley100/react-native-randombytes":
+react-native-randombytes@^3.0.0:
   version "3.0.0"
-  resolved "git+https://github.com/cvarley100/react-native-randombytes#cc3dc8850c1b0f9f8df7d18039e724551c1a47f9"
+  resolved "https://registry.yarnpkg.com/react-native-randombytes/-/react-native-randombytes-3.0.0.tgz#8327464f227a2c42d6ef013b7586b0ad4385ae61"
   dependencies:
     buffer "^4.9.1"
     sjcl "^1.0.3"
