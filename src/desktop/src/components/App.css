@@ -61,8 +61,8 @@ body {
 }
 
 body {
-    background: var(--color-bg);
-    color: var(--color-body);
+    background: var(--body-bg);
+    color: var(--body);
     font-family: 'Lato';
     font-weight: 200;
     font-size: var(--font-size-m);
@@ -90,7 +90,7 @@ p {
 }
 
 label {
-    color: var(--color-label);
+    color: var(--label);
     font-size: var(--font-size-small);
     display: block;
     margin-bottom: 8px;

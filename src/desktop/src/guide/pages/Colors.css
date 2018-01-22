@@ -11,47 +11,34 @@
     }
 }
 
-.body {
-    color: var(--color-body);
-    background: var(--color-bg);
-}
-.highlight {
-    background: var(--color-highlight);
-}
-.bg {
-    background: var(--color-bg);
-}
-.bar {
-    background: var(--color-bgbar);
-}
 .positive {
-    background: var(--color-positive);
+    background: var(--positive-bg);
 }
-.positiveBorder {
-    color: var(--color-positiveBorder);
-}
+
 .negative {
-    background: var(--color-negative);
+    background: var(--negative-bg);
 }
-.negativeBorder {
-    color: var(--color-negativeBorder);
+
+.highlight {
+    background: var(--highlight-bg);
 }
+
 .extra {
-    background: var(--color-extra);
+    background: var(--extra-bg);
 }
-.input {
-    background: var(--color-input);
+
+.bar {
+    background: var(--bar-bg);
 }
-.bgBar {
-    background: var(--color-bgBar);
-}
+
 .bgSecondary {
-    background: var(--color-bgSecondary);
+    background: var(--body-secondary);
 }
-.border {
-    background: var(--color-border);
+
+.input {
+    background: var(--input-bg);
 }
 
 .hover {
-    box-shadow: inset 0 0 0 30px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 0 0 30px var(--hover-bg);
 }

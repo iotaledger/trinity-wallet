@@ -8,6 +8,7 @@ import Select from 'components/UI/Select';
 
 class ThemePicker extends React.PureComponent {
     static propTypes = {
+        themeName: PropTypes.string.isRequired,
         updateTheme: PropTypes.func.isRequired,
     };
 
@@ -23,7 +24,7 @@ class ThemePicker extends React.PureComponent {
                     }}
                 >
                     {Object.keys(themes).map((themeName) => (
-                        <option key={themeName} value={themeName}>
+                        <option selected={themeName === this.props.themeName} key={themeName} value={themeName}>
                             {themeName}
                         </option>
                     ))}
@@ -33,7 +34,9 @@ class ThemePicker extends React.PureComponent {
     }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({
+    themeName: state.settings.themeName,
+});
 
 const mapDispatchToProps = {
     updateTheme,
