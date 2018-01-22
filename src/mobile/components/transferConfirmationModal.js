@@ -15,13 +15,16 @@ class TransferConfirmationModal extends Component {
 
     onSendPress() {
         this.props.hideModal(() => {
-            this.props.sendTransfer();
-            this.props.clearOnSend();
+            this.timeout = setTimeout(() => {
+                this.props.sendTransfer();
+            }, 250);
         });
     }
 
     render() {
-        const { t, backgroundColor } = this.props;
+        const { t, backgroundColor, textColor, borderColor } = this.props;
+        // TODO: fix this using trans component
+        /*
         let transferContents = null;
         let amount = this.props.amount;
         let denomination = this.props.denomination;
@@ -47,9 +50,23 @@ class TransferConfirmationModal extends Component {
                 </Trans>
             );
         }
+        */
+        //hotfix
+        let transferContents = null;
+        if (this.props.amount == 0) {
+            //doesn't work with === for some reason
+            transferContents = <Text style={styles.iotaText}>a message</Text>;
+        } else {
+            transferContents = (
+                <Text style={styles.iotaText}>
+                    {' '}
+                    {this.props.amount} {this.props.denomination}{' '}
+                </Text>
+            );
+        }
         return (
             <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
-                <View style={styles.modalContent}>
+                <View style={[styles.modalContent, borderColor]}>
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>{transferContents}</Text>
                         <Text numberOfLines={3} style={styles.addressText}>
@@ -84,26 +101,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     text: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
         fontSize: width / 31.8,
     },
     regularText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
         fontSize: width / 31.8,
     },
     middleText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
         fontSize: width / 31.8,
         paddingBottom: height / 80,
     },
     addressText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
@@ -111,7 +124,6 @@ const styles = StyleSheet.create({
         marginTop: height / 70,
     },
     iotaText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,

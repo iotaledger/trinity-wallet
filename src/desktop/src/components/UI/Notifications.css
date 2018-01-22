@@ -31,31 +31,31 @@
 
     &--info {
         composes: notification;
-        background-color: var(--color-button-default);
-        color: black;
+        background-color: var(--color-extra);
+        color: white;
     }
 
     &--error {
         composes: notification;
-        background-color: var(--color-button-danger);
+        background-color: var(--color-error);
         color: white;
     }
 
     &--success {
         composes: notification;
-        background-color: var(--color-button-success);
-        color: black;
+        background-color: var(--color-valid);
+        color: white;
     }
 
     &--extra {
         composes: notification;
-        background-color: var(--color-button-extra);
+        background-color: var(--color-extra);
         color: white;
     }
 
     &--warning {
         composes: notification;
-        background-color: var(--color-button-warning);
+        background-color: var(--color-warning);
         color: black;
     }
 }

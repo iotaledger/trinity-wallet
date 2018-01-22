@@ -15,11 +15,10 @@ import {
     getAccountInfo,
     promoteTransfer,
 } from '../../shared/actions/polling';
-import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from '../../shared/actions/account';
+import { removeBundleFromUnconfirmedBundleTails } from '../../shared/actions/account';
 import keychain, { getSeed } from '../util/keychain';
-import { isWithinAnHourAndTenMinutesAgo, isTenMinutesAgo, isAnHourAgo } from '../../shared/libs/promoter';
+import { isWithinADay } from '../../shared/libs/promoter';
 import { sortWithProp } from '../../shared/libs/accountUtils';
-import { rearrangeObjectKeys } from '../../shared/libs/util';
 
 export class Poll extends Component {
     static propTypes = {
@@ -31,7 +30,6 @@ export class Poll extends Component {
         isFetchingAccountInfo: PropTypes.bool.isRequired,
         isPromoting: PropTypes.bool.isRequired,
         isSyncing: PropTypes.bool.isRequired,
-        inactive: PropTypes.bool.isRequired,
         addingAdditionalAccount: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
@@ -45,13 +43,12 @@ export class Poll extends Component {
         fetchChartData: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         promoteTransfer: PropTypes.func.isRequired,
-        setNewUnconfirmedBundleTails: PropTypes.func.isRequired,
         removeBundleFromUnconfirmedBundleTails: PropTypes.func.isRequired,
     };
 
     static shouldPromote(latestTail) {
         const attachmentTimestamp = get(latestTail, 'attachmentTimestamp');
-        return isWithinAnHourAndTenMinutesAgo(attachmentTimestamp);
+        return isWithinADay(attachmentTimestamp);
     }
 
     constructor() {
@@ -86,7 +83,7 @@ export class Poll extends Component {
             props.isFetchingAccountInfo ||
             props.isPromoting;
 
-        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething || props.inactive; // Stop polling if the app goes to an inactive state.
+        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
 
     fetch(service) {
@@ -111,13 +108,13 @@ export class Poll extends Component {
 
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.getAccountInfo(seed, selectedAccountName);
                 }
             })
-            .catch(err => console.error(err)); // eslint-disable-line no-console
+            .catch((err) => console.error(err)); // eslint-disable-line no-console
     }
 
     startBackgroundProcesses() {
@@ -135,33 +132,17 @@ export class Poll extends Component {
             const top = bundles[0];
 
             const tails = unconfirmedBundleTails[top];
-            const isTheOnlyBundle = size(bundles) === 1;
 
             const tailsSortedWithAttachmentTimestamp = sortWithProp(tails, 'attachmentTimestamp');
             const tailWithMostRecentTimestamp = get(tailsSortedWithAttachmentTimestamp, '[0]');
 
+            // Check if lies within a day
             if (Poll.shouldPromote(tailWithMostRecentTimestamp)) {
                 this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
             } else {
-                /* eslint-disable no-lonely-if */
-                // Check where it lies within the ten minutes
-
-                if (!isTenMinutesAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
-                    this.props.setPollFor(allPollingServices[next]);
-
-                    // Move the top transaction to the last
-                    // Ignore if its the only bundle
-                    if (!isTheOnlyBundle) {
-                        this.props.setNewUnconfirmedBundleTails(rearrangeObjectKeys(unconfirmedBundleTails, top));
-                    }
-                }
-
-                if (isAnHourAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
-                    this.props.removeBundleFromUnconfirmedBundleTails(top);
-                    this.props.setPollFor(allPollingServices[next]);
-                }
-
-                /* eslint-enable no-lonely-if */
+                // Otherwise get rid of it and move on
+                this.props.removeBundleFromUnconfirmedBundleTails(top);
+                this.props.setPollFor(allPollingServices[next]);
             }
         } else {
             // In case there are no unconfirmed bundle tails, move to the next service item
@@ -174,7 +155,7 @@ export class Poll extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,
@@ -183,7 +164,6 @@ const mapStateToProps = state => ({
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
     isPromoting: state.polling.isPromoting,
     isSyncing: state.tempAccount.isSyncing,
-    inactive: state.tempAccount.inactive,
     addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
@@ -200,7 +180,6 @@ const mapDispatchToProps = {
     setPollFor,
     getAccountInfo,
     promoteTransfer,
-    setNewUnconfirmedBundleTails,
     removeBundleFromUnconfirmedBundleTails,
 };
 

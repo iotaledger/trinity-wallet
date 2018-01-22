@@ -4,15 +4,20 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "postinstall": "./node_modules/.bin/rn-nodeify --hack --install",
+    "log:android": "./node_modules/.bin/react-native log-android",
+    "log:ios": "./node_modules/.bin/react-native log-ios",
     "android": "./node_modules/.bin/react-native run-android",
-    "lint": "./node_modules/.bin/eslint --ext .js .",
+    "android:dev": "cross-env NODE_ENV=development ./node_modules/.bin/react-native run-android",
     "ios": "./node_modules/.bin/react-native run-ios",
-    "test": "jest --forceExit"
+    "ios:dev": "cross-env NODE_ENV=development ./node_modules/.bin/react-native run-ios",
+    "test": "jest --forceExit",
+    "postinstall": "./node_modules/.bin/rn-nodeify --hack --install",
+    "lint": "./node_modules/.bin/eslint --ext .js ."
   },
   "dependencies": {
     "assert": "^1.4.1",
     "asyncstorage-down": "^3.1.1",
+    "authenticator": "^1.1.3",
     "browserify-zlib": "^0.1.4",
     "buffer": "^3.6.0",
     "console-browserify": "^1.1.0",
@@ -20,6 +25,7 @@
     "dns.js": "^1.0.1",
     "domain-browser": "^1.1.7",
     "events": "^1.1.1",
+    "global": "^4.3.2",
     "hoist-non-react-statics": "^2.3.1",
     "https-browserify": "0.0.1",
     "i18next": "^10.1.0",
@@ -27,15 +33,17 @@
     "iota-wallet-shared-modules": "../shared/",
     "iota.lib.js": "^0.4.6",
     "lodash": "^4.17.4",
+    "lottie-ios": "^2.1.5",
+    "lottie-react-native": "2.2.7",
     "os-browserify": "^0.1.2",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",
     "prop-types": "^15.6.0",
     "punycode": "^1.4.1",
     "querystring-es3": "^0.2.1",
-    "react": "16.0.0-alpha.12",
-    "react-i18next": "^6.2.0",
-    "react-native": "0.47.2",
+    "react": "16.0.0",
+    "react-i18next": "^7.3.0",
+    "react-native": "0.51.0",
     "react-native-camera": "^0.10.0",
     "react-native-clipboard": "^0.0.5",
     "react-native-color": "^0.0.10",
@@ -46,6 +54,7 @@
     "react-native-extra-dimensions-android": "^0.21.0",
     "react-native-fabric": "^0.5.1",
     "react-native-fs": "^2.8.1",
+    "react-native-git-upgrade": "^0.2.7",
     "react-native-html-to-pdf": "^0.4.0",
     "react-native-http": "github:tradle/react-native-http#834492d",
     "react-native-keep-awake": "^2.0.6",
@@ -53,7 +62,6 @@
     "react-native-keychain": "2.0.0-rc",
     "react-native-letter-spacing": "^0.0.5",
     "react-native-level-fs": "^3.0.0",
-    "react-native-material-textfield": "^0.9.0",
     "react-native-modal": "^4.0.0",
     "react-native-navigation": "^1.1.205",
     "react-native-os": "git+https://github.com/laumair/react-native-os.git#527b0ae",
@@ -61,7 +69,7 @@
     "react-native-qrcode": "^0.2.6",
     "react-native-qrcode-scanner": "^0.0.22",
     "react-native-qrcode-svg": "^5.0.3",
-    "react-native-randombytes": "^2.3.0",
+    "react-native-randombytes": "^3.0.0",
     "react-native-safe-area-view": "^0.2.0",
     "react-native-shake-event": "^4.0.1",
     "react-native-svg": "^6.0.1-rc.1",
@@ -69,7 +77,6 @@
     "react-native-timer": "^1.3.1",
     "react-native-triangle": "0.0.8",
     "react-native-udp": "^1.2.9",
-    "react-native-user-inactivity": "https://github.com/jkomyno/react-native-user-inactivity",
     "react-navigation": "^1.0.0-beta.21",
     "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
@@ -92,6 +99,7 @@
     "babel-jest": "20.0.3",
     "babel-preset-react-native": "3.0.1",
     "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.1.3",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.7.2",
@@ -120,9 +128,9 @@
       "/node_modules/",
       "/shared/"
     ],
-      "transformIgnorePatterns": [
-          "node_modules/?!(react-native|iota-wallet-shared-modules)"
-      ]
+    "transformIgnorePatterns": [
+      "node_modules/?!(react-native|iota-wallet-shared-modules)"
+    ]
   },
   "react-native": {
     "zlib": "browserify-zlib",

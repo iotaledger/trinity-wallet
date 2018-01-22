@@ -52,6 +52,7 @@
 -keep class com.facebook.react.bridge.JavaScriptExecutor { *; }
 -keep class com.facebook.react.bridge.queue.NativeRunnable { *; }
 -keep class com.facebook.react.bridge.ReadableType { *; }
+-keep class com.iota.wallet.BuildConfig { *; }
 
 -dontwarn com.facebook.react.**
 

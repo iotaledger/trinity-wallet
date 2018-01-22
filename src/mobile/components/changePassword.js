@@ -2,10 +2,9 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import CustomTextInput from '../components/customTextInput';
+import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
+import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import keychain from '../util/keychain';
@@ -20,6 +19,10 @@ class ChangePassword extends Component {
         setPassword: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        textColor: PropTypes.object.isRequired,
+        borderColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -47,7 +50,7 @@ class ChangePassword extends Component {
 
     changePassword() {
         const isValid = this.isValid();
-        const { password, setPassword, generateAlert, t } = this.props;
+        const { setPassword, generateAlert, t } = this.props;
         const { newPassword } = this.state;
 
         if (isValid) {
@@ -55,7 +58,7 @@ class ChangePassword extends Component {
 
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     const payload = get(credentials, 'data');
 
                     if (payload) {
@@ -90,27 +93,25 @@ class ChangePassword extends Component {
         // This should be abstracted away as an independent component
         // We are using almost the same field styles and props
         // across all app
+
+        const { negativeColor, secondaryBackgroundColor } = this.props;
         const props = {
-            ref: ref,
-            style: styles.textField,
-            labelTextStyle: { fontFamily: Fonts.tertiary },
-            labelFontSize: height / 55,
-            fontSize: height / 40,
-            baseColor: Colors.white,
-            tintColor: THEMES.getHSL(this.props.negativeColor),
+            onRef: ref,
+            label,
+            onChangeText,
+            containerStyle: { width: width / 1.36 },
             autoCapitalize: 'none',
             autoCorrect: false,
             enablesReturnKeyAutomatically: true,
-            containerStyle: styles.textFieldContainer,
             secureTextEntry: true,
-            label,
-            value,
-            onChangeText,
             returnKeyType,
             onSubmitEditing,
+            value,
+            secondaryBackgroundColor: secondaryBackgroundColor,
+            negativeColor: negativeColor,
         };
 
-        return <TextField {...props} />;
+        return <CustomTextInput {...props} />;
     }
 
     renderInvalidSubmissionAlerts() {
@@ -130,54 +131,74 @@ class ChangePassword extends Component {
 
     render() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { t } = this.props;
+        const { t, textColor, borderColor, secondaryBackgroundColor, tickImagePath, arrowLeftImagePath } = this.props;
+        const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={styles.infoTextWrapper}>
+                        <View style={{ flex: 0.2 }} />
+                        <View style={[styles.infoTextWrapper, borderColor]}>
                             <Image source={infoImagePath} style={styles.infoIcon} />
-                            <Text style={styles.infoText}>{t('ensureStrongPassword')}</Text>
+                            <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
                         </View>
                         {this.renderTextField(
-                            'currentPassword',
+                            (c) => {
+                                this.currentPassword = c;
+                            },
                             currentPassword,
                             t('currentPassword'),
-                            currentPassword => this.setState({ currentPassword }),
+                            (currentPassword) => this.setState({ currentPassword }),
                             'next',
-                            onSubmitEditing => this.refs.newPassword.focus(),
+                            (onSubmitEditing) => this.newPassword.focus(),
                         )}
                         {this.renderTextField(
-                            'newPassword',
+                            (c) => {
+                                this.newPassword = c;
+                            },
                             newPassword,
                             t('newPassword'),
-                            newPassword => this.setState({ newPassword }),
+                            (newPassword) => this.setState({ newPassword }),
                             'next',
-                            onSubmitEditing => this.refs.confirmedNewPassword.focus(),
+                            (onSubmitEditing) => this.confirmedNewPassword.focus(),
                         )}
                         {this.renderTextField(
-                            'confirmedNewPassword',
+                            (c) => {
+                                this.confirmedNewPassword = c;
+                            },
                             confirmedNewPassword,
                             t('confirmPassword'),
-                            confirmedNewPassword => this.setState({ confirmedNewPassword }),
+                            (confirmedNewPassword) => this.setState({ confirmedNewPassword }),
                             'done',
-                            onSubmitEditing => this.changePassword(),
+                            (onSubmitEditing) => this.changePassword(),
                         )}
+                        <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={event => this.props.backPress()}>
+                        <TouchableOpacity
+                            onPress={(event) => this.props.backPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         {currentPassword !== '' &&
                             newPassword !== '' &&
                             confirmedNewPassword !== '' && (
-                                <TouchableOpacity onPress={() => this.changePassword()}>
+                                <TouchableOpacity
+                                    onPress={() => this.changePassword()}
+                                    hitSlop={{
+                                        top: height / 55,
+                                        bottom: height / 55,
+                                        left: width / 55,
+                                        right: width / 55,
+                                    }}
+                                >
                                     <View style={styles.itemRight}>
-                                        <Text style={styles.titleTextRight}>{t('global:save')}</Text>
+                                        <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
                                         <Image source={tickImagePath} style={styles.iconRight} />
                                     </View>
                                 </TouchableOpacity>
@@ -205,7 +226,7 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         flex: 9,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
     },
     logo: {
@@ -213,7 +234,6 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     infoTextWrapper: {
-        borderColor: 'white',
         borderWidth: 1,
         borderRadius: GENERAL.borderRadius,
         width: width / 1.6,
@@ -224,7 +244,6 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
     },
     infoText: {
-        color: Colors.white,
         fontFamily: Fonts.secondary,
         fontSize: width / 27.6,
         textAlign: 'center',
@@ -236,7 +255,6 @@ const styles = StyleSheet.create({
         height: width / 20,
     },
     textField: {
-        color: Colors.white,
         fontFamily: Fonts.tertiary,
     },
     textFieldContainer: {
@@ -261,7 +279,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleTextLeft: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -271,7 +288,6 @@ const styles = StyleSheet.create({
         height: width / 28,
     },
     titleTextRight: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',

@@ -1,13 +1,13 @@
 {
     "global": {
         "send": "ENVIAR",
-        "cancel": "CANCEL",
-        "continue?": "Are you sure you want to continue?",
-        "noTransactions": "NO RECENT HISTORY",
+        "cancel": "CANCELAR",
+        "continue?": "¿Seguro que quieres continuar?",
+        "noTransactions": "NO HAY HISTORIAL RECIENTE",
         "qr": "QR",
-        "balanceError": "Not enough balance",
+        "balanceError": "No hay suficiente balance",
         "balanceErrorMessage": "No tienes suficiente IOTA para completar esta transferencia.",
-        "transferError": "Transfer Error",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
@@ -52,7 +52,10 @@
         "somethingWentWrongExplanation": "Por favor, reinicie la aplicación.",
         "node": "Nodo",
         "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
@@ -145,7 +148,7 @@
     "receive": {
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERAR NUEVA DIRECCIÓN",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Mensaje opcional",
         "removeMessage": "ELIMINAR MENSAJE"
     },
@@ -172,7 +175,7 @@
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Dirección del destinatario",
-        "amount": "Monto",
+        "amount": "Cantidad",
         "max": "MAX",
         "message": "Mensaje",
         "send": "ENVIAR",
@@ -220,20 +223,29 @@
         "cannotPerformAction": "Cannot perform action",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
         "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
+        "hide": "Ocultar",
+        "hideOthers": "Ocultar otros",
+        "showAll": "Mostrar Todo",
+        "quit": "Salir",
+        "edit": "Editar",
+        "cut": "Cortar",
+        "copy": "Copiar",
+        "paste": "Pegar",
+        "selectAll": "Seleccionar todo"
     },
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": " seeds, password, ",
-        "warning3": "and",
+        "warning1": "All your wallet data including your ",
+        "warning2": " seeds, password,",
+        "warning3": " and",
         "warning4": " other account information",
         "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "areYouSure": "¿Seguro que quieres continuar?"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
+        "cancel": "CANCELAR",
         "reset": "RESET"
     },
     "walletSetup": {
@@ -241,7 +253,7 @@
         "doYouAlreadyHaveASeed": "¿Ya tienes un seed que te gustaría usar?",
         "seedExplanation": "Una seed de IOTA funciona simultáneamente como nombre del usuario y contraseña para tu cuenta, combinados en una cadena de 81 caracteres.",
         "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
+        "explanation2": " any wallet",
         "explanation3": ", on",
         "explanation4": " any device",
         "explanation5": ". But if you lose your seed, you also lose your IOTA.",

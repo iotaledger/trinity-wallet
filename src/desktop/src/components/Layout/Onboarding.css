@@ -39,11 +39,19 @@
             width: 100%;
         }
 
+        > header {
+            text-align: center;
+        }
+
         > main {
             display: flex;
             flex: 1 1 auto;
             flex-direction: column;
             justify-content: center;
+
+            > div > p {
+                margin-bottom: 50px;
+            }
         }
 
         > header,

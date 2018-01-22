@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { width, height } from '../util/dimensions';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import addImagePath from 'iota-wallet-shared-modules/images/add.png';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import { translate } from 'react-i18next';
 import THEMES from '../theme/themes';
 
@@ -45,7 +43,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleTextLeft: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -55,7 +52,6 @@ const styles = StyleSheet.create({
         height: width / 28,
     },
     titleTextRight: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -72,6 +68,9 @@ class AddCustomNode extends Component {
         currentNode: PropTypes.string.isRequired,
         onDuplicateNodeError: PropTypes.func.isRequired,
         checkNode: PropTypes.func.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -112,45 +111,55 @@ class AddCustomNode extends Component {
     }
 
     render() {
-        const { node, nodes, backPress, t } = this.props;
+        const {
+            node,
+            nodes,
+            backPress,
+            t,
+            secondaryBackgroundColor,
+            textColor,
+            arrowLeftImagePath,
+            addImagePath,
+            negativeColor,
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.2 }} />
-                        <TextField
-                            style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                            labelFontSize={width / 31.8}
-                            fontSize={width / 20.7}
-                            labelPadding={3}
-                            baseColor="white"
+                        <View style={{ flex: 0.3 }} />
+                        <CustomTextInput
                             label={t('customNode')}
-                            tintColor={THEMES.getHSL(this.props.negativeColor)}
-                            autoCapitalize="none"
+                            negativeColor={negativeColor}
+                            onChangeText={(customNode) => this.setState({ customNode })}
+                            containerStyle={{ width: width / 1.36 }}
+                            autoCapitalize={'none'}
                             autoCorrect={false}
-                            enablesReturnKeyAutomatically={true}
+                            enablesReturnKeyAutomatically
                             returnKeyType="done"
-                            value={this.state.accountName}
-                            onChangeText={customNode => this.setState({ customNode })}
-                            containerStyle={{
-                                width: width / 1.4,
-                            }}
                             onSubmitEditing={() => this.addNode()}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            negativeColor={negativeColor}
+                            value={this.state.accountName}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={() => backPress()}>
+                        <TouchableOpacity
+                            onPress={() => backPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         {this.state.customNode.startsWith('http') && (
-                            <TouchableOpacity onPress={() => this.addNode()}>
+                            <TouchableOpacity
+                                onPress={() => this.addNode()}
+                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                            >
                                 <View style={styles.itemRight}>
-                                    <Text style={styles.titleTextRight}>{t('add')}</Text>
+                                    <Text style={[styles.titleTextRight, textColor]}>{t('add')}</Text>
                                     <Image source={addImagePath} style={styles.iconRight} />
                                 </View>
                             </TouchableOpacity>

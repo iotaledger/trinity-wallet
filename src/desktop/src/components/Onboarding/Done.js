@@ -16,7 +16,7 @@ class Done extends React.PureComponent {
         setOnboardingCompletionStatus: PropTypes.func.isRequired,
     };
 
-    onRequestNext = e => {
+    onRequestNext = () => {
         const { history, setOnboardingCompletionStatus } = this.props;
 
         setOnboardingCompletionStatus(true);
@@ -42,7 +42,7 @@ class Done extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
     setOnboardingCompletionStatus,
