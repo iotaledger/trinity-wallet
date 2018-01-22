@@ -1,8 +1,8 @@
 .wrapper {
     display: inline-block;
     border-radius: 4px;
-    background: var(--color-bgSecondary);
-    border-top: 20px solid var(--color-input);
+    background: var(--body-secondary);
+    border-top: 20px solid var(--input-bg);
     font-size: var(--font-size-small);
     margin: 16px 0;
     padding: 21px 16px 21px 57px;

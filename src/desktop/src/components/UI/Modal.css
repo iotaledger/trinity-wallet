@@ -16,7 +16,7 @@
         top: 0px;
         left: 0px;
         z-index: 1;
-        background: var(--color-bg);
+        background: var(--body-bg);
     }
     &.confirm {
         &:before {
@@ -33,10 +33,10 @@
         }
         :global {
             h1.error {
-                color: var(--color-negativeBorder);
+                color: var(--negative);
             }
             h1.success {
-                color: var(--color-positiveBorder);
+                color: var(--positive);
             }
         }
         strong {

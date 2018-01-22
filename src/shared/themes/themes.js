@@ -2,24 +2,47 @@ import tinycolor from 'tinycolor2';
 
 export const themes = {
     Default: {
-        body: tinycolor('#ffffff').toHsl(),
-        hover: tinycolor('#000000').toHsl(),
-        bg: tinycolor('#1a373e').toHsl(),
-        cta: tinycolor('#9DFFAF').toHsl(),
-        bgSecondary: tinycolor('#436A72').toHsl(),
-        bgSecondaryBorder: tinycolor('#436A72').toHsl(),
-        bgBar: tinycolor('#0b282f').toHsl(),
-        highlight: tinycolor('#F7D002').toHsl(),
-        highlightBorder: tinycolor('#F7D002').toHsl(),
-        positive: tinycolor('#009f3f').toHsl(),
-        positiveBorder: tinycolor('#009f3f').toHsl(),
-        negative: tinycolor('#f75602').toHsl(),
-        negativeBorder: tinycolor('#f75602').toHsl(),
-        extra: tinycolor('#88D4FF').toHsl(),
-        extraBorder: tinycolor('#88D4FF').toHsl(),
-        input: tinycolor('#2a4a51').toHsl(),
-        chartLine: tinycolor('#FFA25B').toHsl(),
-        border: { h: 0, s: 0, l: 0, a: 0 },
+        body: {
+            color: tinycolor('#ffffff').toHsl(),
+            background: tinycolor('#1a373e').toHsl(),
+            secondary: tinycolor('#244146').toHsl(),
+        },
+        bar: {
+            color: tinycolor('#ffffff').toHsl(),
+            background: tinycolor('#0b282f').toHsl(),
+            secondary: tinycolor('#436A72').toHsl(),
+        },
+        positive: {
+            color: tinycolor('#009f3f').toHsl(),
+        },
+        secondary: {
+            color: tinycolor('#436A72').toHsl(),
+        },
+        negative: {
+            color: tinycolor('#f75602').toHsl(),
+        },
+        extra: {
+            color: tinycolor('#88D4FF').toHsl(),
+        },
+        label: {
+            color: tinycolor('#ffffff').toHsl(),
+        },
+        input: {
+            color: tinycolor('#ffffff').toHsl(),
+            background: tinycolor('#2a4a51').toHsl(),
+        },
+        chart: {
+            color: tinycolor('#FFA25B').toHsl(),
+        },
+        highlight: {
+            color: tinycolor('#F7D002').toHsl(),
+        },
+        hover: {
+            color: tinycolor('rgba(0,0,0,0.25)').toHsl(),
+        },
+        cta: {
+            color: tinycolor('#9DFFAF').toHsl(),
+        },
         /* TODO: Merge mobile and desktop styles */
         backgroundColor: {
             h: 191.66666666666663,
@@ -64,65 +87,147 @@ export const themes = {
         pendingColor: '#f75602',
         chartLineColor: '#FFA25B',
     },
-    Grey: {
-        body: tinycolor('#ffffff').toHsl(),
-        hover: tinycolor('#000000').toHsl(),
-        bg: tinycolor('#313131').toHsl(),
-        cta: tinycolor('#9DFFAF').toHsl(),
-        bgSecondary: tinycolor('#1a1a1a').toHsl(),
-        bgSecondaryBorder: tinycolor('#1a1a1a').toHsl(),
-        bgBar: tinycolor('#1a1a1a').toHsl(),
-        highlight: tinycolor('#F7D002').toHsl(),
-        highlightBorder: tinycolor('#F7D002').toHsl(),
-        positive: tinycolor('#009f3f').toHsl(),
-        positiveBorder: tinycolor('#009f3f').toHsl(),
-        negative: tinycolor('#f75602').toHsl(),
-        negativeBorder: tinycolor('#f75602').toHsl(),
-        extra: tinycolor('#88D4FF').toHsl(),
-        extraBorder: tinycolor('#88D4FF').toHsl(),
-        input: tinycolor('#282828').toHsl(),
-        chartLine: tinycolor('#FFA25B').toHsl(),
-        border: { h: 0, s: 0, l: 0, a: 0 },
+    'Grey dark': {
+        body: {
+            color: tinycolor('#ffffff').toHsl(),
+            background: tinycolor('#313131').toHsl(),
+            secondary: tinycolor('#2B2B2B').toHsl(),
+        },
+        bar: {
+            color: tinycolor('#ffffff').toHsl(),
+            background: tinycolor('#1a1a1a').toHsl(),
+            secondary: tinycolor('#436A72').toHsl(),
+        },
+        positive: {
+            color: tinycolor('#009f3f').toHsl(),
+        },
+        secondary: {
+            color: tinycolor('#1a1a1a').toHsl(),
+        },
+        negative: {
+            color: tinycolor('#f75602').toHsl(),
+        },
+        extra: {
+            color: tinycolor('#88D4FF').toHsl(),
+        },
+        input: {
+            color: tinycolor('#ffffff').toHsl(),
+            background: tinycolor('#282828').toHsl(),
+        },
+        chart: {
+            color: tinycolor('#FFA25B').toHsl(),
+        },
+        highlight: {
+            color: tinycolor('#F7D002').toHsl(),
+        },
+        hover: {
+            color: tinycolor('rgba(0,0,0,0.25)').toHsl(),
+        },
+        cta: {
+            color: tinycolor('#9DFFAF').toHsl(),
+        },
     },
     'Monochrome Light': {
-        body: tinycolor('#000000').toHsl(),
-        hover: tinycolor('#000000').toHsl(),
-        bg: tinycolor('#ffffff').toHsl(),
-        cta: tinycolor('#9DFFAF').toHsl(),
-        bgSecondary: tinycolor('#F6F6F6').toHsl(),
-        bgSecondaryBorder: tinycolor('#717171').toHsl(),
-        bgBar: tinycolor('#F6F6F6').toHsl(),
-        highlight: tinycolor('#ffffff').toHsl(),
-        highlightBorder: tinycolor('#F7D002').toHsl(),
-        positive: tinycolor('#ffffff').toHsl(),
-        positiveBorder: tinycolor('#009f3f').toHsl(),
-        negative: tinycolor('#ffffff').toHsl(),
-        negativeBorder: tinycolor('f75602').toHsl(),
-        extra: tinycolor('#ffffff').toHsl(),
-        extraBorder: tinycolor('#5B5B5B').toHsl(),
-        input: tinycolor('#ffffff').toHsl(),
-        chartLine: tinycolor('#5B5B5B').toHsl(),
-        border: tinycolor('#5B5B5B').toHsl(),
+        body: {
+            color: tinycolor('#151515').toHsl(),
+            background: tinycolor('#FAFAFA').toHsl(),
+            secondary: tinycolor('#EEEEEE').toHsl(),
+        },
+        bar: {
+            color: tinycolor('#151515').toHsl(),
+            background: tinycolor('#F6F6F6').toHsl(),
+            secondary: tinycolor('#151515').toHsl(),
+        },
+        positive: {
+            color: tinycolor('#009f3f').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#009f3f').toHsl(),
+        },
+        secondary: {
+            color: tinycolor('#151515').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#151515').toHsl(),
+        },
+        negative: {
+            color: tinycolor('#f75602').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#f75602').toHsl(),
+        },
+        extra: {
+            color: tinycolor('#88D4FF').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#88D4FF').toHsl(),
+        },
+        input: {
+            color: tinycolor('#151515').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#151515').toHsl(),
+        },
+        chart: {
+            color: tinycolor('#FFA25B').toHsl(),
+        },
+        highlight: {
+            color: tinycolor('#F7D002').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#F7D002').toHsl(),
+        },
+        hover: {
+            color: tinycolor('rgba(0,0,0,0.05)').toHsl(),
+        },
+        cta: {
+            color: tinycolor('#009f3f').toHsl(),
+        },
     },
     'Monochrome Dark': {
-        body: tinycolor('#F1F1F1').toHsl(),
-        hover: tinycolor('#ffffff').toHsl(),
-        bg: tinycolor('#000000').toHsl(),
-        cta: tinycolor('#9DFFAF').toHsl(),
-        bgSecondary: tinycolor('#141414').toHsl(),
-        bgSecondaryBorder: tinycolor('#343434').toHsl(),
-        bgBar: tinycolor('#141414').toHsl(),
-        highlight: tinycolor('#373737').toHsl(),
-        highlightBorder: tinycolor('#F7D002').toHsl(),
-        positive: tinycolor('#000000').toHsl(),
-        positiveBorder: tinycolor('#009f3f').toHsl(),
-        negative: tinycolor('#000000').toHsl(),
-        negativeBorder: tinycolor('f75602').toHsl(),
-        extra: tinycolor('#000000').toHsl(),
-        extraBorder: tinycolor('#88D4FF').toHsl(),
-        input: tinycolor('#000000').toHsl(),
-        chartLine: tinycolor('#5B5B5B').toHsl(),
-        border: tinycolor('#5B5B5B').toHsl(),
+        body: {
+            color: tinycolor('#FAFAFA').toHsl(),
+            background: tinycolor('#151515').toHsl(),
+            secondary: tinycolor('#151515').toHsl(),
+        },
+        bar: {
+            color: tinycolor('#FAFAFA').toHsl(),
+            background: tinycolor('#141414').toHsl(),
+            secondary: tinycolor('#141414').toHsl(),
+        },
+        positive: {
+            color: tinycolor('#009f3f').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#009f3f').toHsl(),
+        },
+        secondary: {
+            color: tinycolor('#D5D5D5').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#D5D5D5').toHsl(),
+        },
+        negative: {
+            color: tinycolor('#f75602').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#f75602').toHsl(),
+        },
+        extra: {
+            color: tinycolor('#88D4FF').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#88D4FF').toHsl(),
+        },
+        input: {
+            color: tinycolor('#FAFAFA').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#FAFAFA').toHsl(),
+        },
+        chart: {
+            color: tinycolor('#FFA25B').toHsl(),
+        },
+        highlight: {
+            color: tinycolor('#F7D002').toHsl(),
+            background: tinycolor('transparent').toHsl(),
+            border: tinycolor('#F7D002').toHsl(),
+        },
+        hover: {
+            color: tinycolor('rgba(255,255,255,0.05)').toHsl(),
+        },
+        cta: {
+            color: tinycolor('#009f3f').toHsl(),
+        },
     },
 };
 
