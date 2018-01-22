@@ -6,9 +6,8 @@
 
 .button {
     position: relative;
-    border: none;
+    border: 1px solid var(--color-border);
     border-radius: 3px;
-    border-color: inherit inherit;
     cursor: pointer;
     display: inline-block;
     height: 42px;
@@ -19,7 +18,7 @@
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 200;
-    padding: 1px 24px 0;
+    padding: 0 24px 0;
     color: var(--color-body);
     user-select: none;
     overflow: hidden;
@@ -72,7 +71,7 @@ footer .button + .button {
 
 .secondary {
     composes: button;
-    background: var(--color-box);
+    background: var(--color-bgSecondary);
 }
 
 .warning {
@@ -95,24 +94,39 @@ footer .button + .button {
     border: 1px solid;
 
     &.primary {
-        border-color: var(--color-positive);
-        color: var(--color-positive);
+        border-color: var(--color-positiveBody);
+        color: var(--color-positiveBody);
+        &:hover {
+            border: 1px solid var(--color-positiveBody);
+        }
     }
     &.secondary {
-        border-color: var(--color-input);
-        color: var(--color-input);
+        border-color: var(--color-bgSecondaryBody);
+        color: var(--color-bgSecondaryBody);
+        &:hover {
+            border: 1px solid var(--color-bgSecondaryBody);
+        }
     }
     &.warning {
-        border-color: var(--color-negative);
-        color: var(--color-negative);
+        border-color: var(--color-negativeBody);
+        color: var(--color-negativeBody);
+        &:hover {
+            border: 1px solid var(--color-negativeBody);
+        }
     }
     &.extra {
-        border-color: var(--color-extra);
-        color: var(--color-extra);
+        border-color: var(--color-extraBody);
+        color: var(--color-extraBody);
+        &:hover {
+            border: 1px solid var(--color-extraBody);
+        }
     }
     &.highlight {
-        border-color: var(--color-highlight);
-        color: var(--color-highlight);
+        border-color: var(--color-highlightBody);
+        color: var(--color-highlightBody);
+        &:hover {
+            border: 1px solid var(--color-highlightBody);
+        }
     }
 }
 

@@ -29,10 +29,10 @@
         }
         :global {
             h1.error {
-                color: var(--color-negative);
+                color: var(--color-negativeBody);
             }
             h1.success {
-                color: var(--color-positive);
+                color: var(--color-positiveBody);
             }
         }
         strong {
