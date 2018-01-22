@@ -496,7 +496,6 @@ class Send extends Component {
                                 onRef={(c) => {
                                     this.messageField = c;
                                 }}
-                                keyboardType={'numeric'}
                                 label={t('message')}
                                 onChangeText={(message) => this.setState({ message })}
                                 containerStyle={{ width: width / 1.3 }}
