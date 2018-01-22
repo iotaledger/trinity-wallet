@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Settings from 'components/Settings/Index';
 import Welcome from '../Onboarding/Welcome';
 import Instructions from '../Onboarding/Instructions';
 import LightServerSetup from '../Onboarding/LightServerSetup';
@@ -10,7 +11,6 @@ import GenerateSeed from '../Onboarding/GenerateSeed';
 import SeedEnter from '../Onboarding/SeedEnter';
 import SeedName from '../Onboarding/SeedName';
 import SaveYourSeedOptions from '../Onboarding/SaveYourSeedOptions';
-import SecurityIntro from '../Onboarding/SecurityIntro';
 import SecurityEnter from '../Onboarding/SecurityEnter';
 import Done from '../Onboarding/Done';
 
@@ -42,10 +42,10 @@ export default withRouter(
                                 <Route exact path="/seed/save/:type" component={SaveYourSeedOptions} />
                                 <Route path="/seed/enter" component={SeedEnter} />
                                 <Route path="/seed/name" component={SeedName} />
-                                <Route path="/security/intro" component={SecurityIntro} />
                                 <Route path="/security/enter" component={SecurityEnter} />
                                 <Route exact path="/security/extra" component={() => {}} />
                                 <Route path="/security/extra/authenticator" component={() => {}} />
+                                <Route exact path="/settings/:setting?" component={Settings} />
                                 <Route path="/done" component={Done} />
                                 <Route path="/" component={Welcome} />
                             </Switch>

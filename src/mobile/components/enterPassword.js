@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import CustomTextInput from '../components/customTextInput';
+import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -17,7 +19,7 @@ const styles = StyleSheet.create({
     midContainer: {
         flex: 4.8,
         alignItems: 'center',
-        paddingTop: height / 4.2,
+        paddingTop: height / 5,
     },
     bottomContainer: {
         flex: 0.7,
@@ -27,10 +29,9 @@ const styles = StyleSheet.create({
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 15,
+        paddingTop: height / 8,
     },
     title: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     },
     loginButton: {
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -61,7 +62,7 @@ class EnterPassword extends Component {
         password: '',
     };
 
-    handleChangeText = password => this.setState({ password });
+    handleChangeText = (password) => this.setState({ password });
 
     handleLogin = () => {
         const { password } = this.state;
@@ -71,46 +72,36 @@ class EnterPassword extends Component {
 
     render() {
         const { password } = this.state;
-        const { t, positiveColor } = this.props;
+        const { t, positiveColor, secondaryBackgroundColor, textColor, negativeColor } = this.props;
         const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
-        const textColor = { color: THEMES.getHSL(positiveColor) };
+        const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
+        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
-                        <View style={styles.titleContainer}>
-                            <Text style={styles.title}>{t('enterPassword')}</Text>
-                        </View>
+                        <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                     </View>
                     <View style={styles.midContainer}>
-                        <TextField
-                            style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                            labelFontSize={width / 31.8}
-                            fontSize={width / 20.7}
-                            labelPadding={3}
-                            baseColor="white"
+                        <CustomTextInput
                             label={t('global:password')}
-                            tintColor={THEMES.getHSL(this.props.negativeColor)}
+                            onChangeText={this.handleChangeText}
+                            containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
-                            value={password}
-                            onChangeText={this.handleChangeText}
-                            containerStyle={{
-                                width: width / 1.4,
-                            }}
                             secureTextEntry
                             onSubmitEditing={this.handleLogin}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            negativeColor={negativeColor}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={this.handleLogin}>
                             <View style={[styles.loginButton, borderColor]}>
-                                <Text style={[styles.loginText, textColor]}>{t('login')}</Text>
+                                <Text style={[styles.loginText, positiveTextColor]}>{t('login')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -124,6 +115,9 @@ EnterPassword.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     positiveColor: PropTypes.object.isRequired,
+    textColor: PropTypes.object.isRequired,
+    secondaryBackgroundColor: PropTypes.string.isRequired,
+    negativeColor: PropTypes.object.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPassword);

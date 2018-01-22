@@ -1,0 +1,9 @@
+.send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > div {
+        width: 100%;
+        text-align: center;
+    }
+}
