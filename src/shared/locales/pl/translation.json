@@ -156,7 +156,7 @@
         "seedCleared": "Seed wyczyszczony",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "mustSaveYourSeed": "Musisz zapisać swojego seeda z ",
-        "atLeastOne": "wybranej ",
+        "atLeastOne": "co najmniej jeden ",
         "ofTheOptions": "z opcji wymienionych poniżej."
     },
     "seedReentry": {
