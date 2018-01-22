@@ -1,6 +1,6 @@
 import { ActionTypes } from '../actions/settings.js';
 import { defaultNode as fullNode, nodes as availablePoWNodes } from '../config';
-import tinycolor from 'tinycolor2';
+import { themes } from 'themes/themes';
 
 const initialState = {
     locale: 'en',
@@ -70,71 +70,8 @@ const initialState = {
         'ZAR',
     ],
     conversionRate: 1,
-    themeName: 'Standard',
-    // TODO: merge desktop and mobile theme state, so this object can be replaced with:
-    // theme: themes[Default];
-    theme: {
-        /* Mobile */
-        backgroundColor: {
-            h: 191.66666666666663,
-            s: 0.4090909090909091,
-            l: 0.17254901960784313,
-            a: 1,
-        },
-        barColor: {
-            h: 191.66666666666669,
-            s: 0.6206896551724137,
-            l: 0.11372549019607844,
-            a: 1,
-        },
-        ctaColor: {
-            h: 143.77358490566039,
-            s: 1,
-            l: 0.31176470588235294,
-            a: 1,
-        },
-        positiveColor: {
-            h: 131.0204081632653,
-            s: 1,
-            l: 0.807843137254902,
-            a: 1,
-        },
-        negativeColor: {
-            h: 50.44897959183674,
-            s: 0.9839357429718876,
-            l: 0.48823529411764705,
-            a: 1,
-        },
-        extraColor: {
-            h: 201.68067226890756,
-            s: 1,
-            l: 0.7666666666666666,
-            a: 1,
-        },
-        secondaryBarColor: 'white',
-        secondaryBackgroundColor: 'white',
-        secondaryCtaColor: 'white',
-        ctaBorderColor: 'transparent',
-        pendingColor: '#f75602',
-        chartLineColor: '#FFA25B',
-        /* Desktop */
-        body: tinycolor('#ffffff').toHsl(),
-        bg: tinycolor('#1a373e').toHsl(),
-        bgSecondary: tinycolor('#234046').toHsl(),
-        bgSecondaryBody: tinycolor('#bababa').toHsl(),
-        bgBar: tinycolor('#0b282f').toHsl(),
-        highlight: tinycolor('#F7D002').toHsl(),
-        highlightBody: tinycolor('#F7D002').toHsl(),
-        positive: tinycolor('#009f3f').toHsl(),
-        positiveBody: tinycolor('#009f3f').toHsl(),
-        negative: tinycolor('#f75602').toHsl(),
-        negativeBody: tinycolor('#f75602').toHsl(),
-        extra: tinycolor('#88D4FF').toHsl(),
-        extraBody: tinycolor('#88D4FF').toHsl(),
-        input: tinycolor('#2a4a51').toHsl(),
-        chartLine: tinycolor('#FFA25B').toHsl(),
-        border: { h: 0, s: 0, l: 0, a: 0 },
-    },
+    themeName: 'Default',
+    theme: themes.Default,
     hasRandomizedNode: false,
 };
 
