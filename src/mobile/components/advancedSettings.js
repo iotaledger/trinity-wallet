@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { width, height } from '../util/dimensions';
 import whiteNodeImagePath from 'iota-wallet-shared-modules/images/node-white.png';
 import whiteSyncImagePath from 'iota-wallet-shared-modules/images/sync-white.png';
 import whiteCrossImagePath from 'iota-wallet-shared-modules/images/cross-white.png';
 import blackNodeImagePath from 'iota-wallet-shared-modules/images/node-black.png';
 import blackSyncImagePath from 'iota-wallet-shared-modules/images/sync-black.png';
 import blackCrossImagePath from 'iota-wallet-shared-modules/images/cross-black.png';
-
-import { translate } from 'react-i18next';
+import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width: width,
+        width,
         paddingHorizontal: width / 15,
     },
     icon: {
@@ -79,6 +78,8 @@ class AdvancedSettings extends Component {
         node: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        addImagePath: PropTypes.number.isRequired,
     };
 
     render() {
@@ -92,7 +93,7 @@ class AdvancedSettings extends Component {
                 <View style={{ flex: 4.5 }}>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.setSetting('nodeSelection')}
+                            onPress={() => this.props.setSetting('nodeSelection')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -106,7 +107,7 @@ class AdvancedSettings extends Component {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.setSetting('addCustomNode')}
+                            onPress={() => this.props.setSetting('addCustomNode')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -117,7 +118,7 @@ class AdvancedSettings extends Component {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.setSetting('manualSync')}
+                            onPress={() => this.props.setSetting('manualSync')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -131,7 +132,7 @@ class AdvancedSettings extends Component {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.onResetWalletPress()}
+                            onPress={() => this.props.onResetWalletPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -145,7 +146,7 @@ class AdvancedSettings extends Component {
                     <View style={{ flex: 4.5 }} />
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.setSetting('mainSettings')}
+                            onPress={() => this.props.setSetting('mainSettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>

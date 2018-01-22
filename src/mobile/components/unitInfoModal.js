@@ -4,7 +4,7 @@ import { Image, View, StyleSheet, TouchableOpacity } from 'react-native';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { translate } from 'react-i18next';
-import { TextWithLetterSpacing } from './textWithLetterSpacing';
+import TextWithLetterSpacing from './textWithLetterSpacing';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 
