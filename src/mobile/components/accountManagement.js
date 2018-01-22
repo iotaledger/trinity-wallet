@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { width, height } from '../util/dimensions';
+import { translate } from 'react-i18next';
 import whiteAddressesImagePath from 'iota-wallet-shared-modules/images/addresses-white.png';
 import whiteEditImagePath from 'iota-wallet-shared-modules/images/edit-white.png';
 import whiteDeleteImagePath from 'iota-wallet-shared-modules/images/delete-white.png';
 import blackAddressesImagePath from 'iota-wallet-shared-modules/images/addresses-black.png';
 import blackEditImagePath from 'iota-wallet-shared-modules/images/edit-black.png';
 import blackDeleteImagePath from 'iota-wallet-shared-modules/images/delete-black.png';
-import { translate } from 'react-i18next';
+import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width: width,
+        width,
         paddingHorizontal: width / 15,
     },
     icon: {
@@ -75,6 +75,7 @@ class AdvancedSettings extends Component {
     static propTypes = {
         setSetting: PropTypes.func.isRequired,
         onDeleteAccountPress: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     render() {
@@ -89,7 +90,7 @@ class AdvancedSettings extends Component {
                 <View style={{ flex: 5.5 }}>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.setSetting('viewSeed')}
+                            onPress={() => this.props.setSetting('viewSeed')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -100,7 +101,7 @@ class AdvancedSettings extends Component {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.setSetting('viewAddresses')}
+                            onPress={() => this.props.setSetting('viewAddresses')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -111,7 +112,7 @@ class AdvancedSettings extends Component {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.setSetting('editAccountName')}
+                            onPress={() => this.props.setSetting('editAccountName')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -122,7 +123,7 @@ class AdvancedSettings extends Component {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.onDeleteAccountPress()}
+                            onPress={() => this.props.onDeleteAccountPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -136,7 +137,7 @@ class AdvancedSettings extends Component {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.setSetting('addNewAccount')}
+                            onPress={() => this.props.setSetting('addNewAccount')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -150,7 +151,7 @@ class AdvancedSettings extends Component {
                     <View style={{ flex: 3.5 }} />
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.setSetting('mainSettings')}
+                            onPress={() => this.props.setSetting('mainSettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
