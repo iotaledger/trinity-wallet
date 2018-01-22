@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 
 const styles = StyleSheet.create({
     fieldContainer: {

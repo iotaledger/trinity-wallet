@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { Letter } from './letter';
 
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export const TextWithLetterSpacing = (props) => {
+const TextWithLetterSpacing = (props) => {
     const { children, spacing, viewStyle, textStyle } = props;
     const letters = children.split('');
 
@@ -24,3 +25,12 @@ export const TextWithLetterSpacing = (props) => {
         </View>
     );
 };
+
+TextWithLetterSpacing.propTypes = {
+    children: PropTypes.string.isRequired,
+    spacing: PropTypes.number.isRequired,
+    viewStyle: PropTypes.object,
+    textStyle: PropTypes.object,
+};
+
+export default TextWithLetterSpacing;

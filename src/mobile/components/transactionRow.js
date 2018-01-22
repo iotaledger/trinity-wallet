@@ -92,6 +92,8 @@ const styles = StyleSheet.create({
     },
 });
 
+/* eslint-disable no-nested-ternary */
+// FIXME: Remove nested ternary
 class TransactionRow extends Component {
     static propTypes = {
         backgroundColor: PropTypes.string.isRequired,

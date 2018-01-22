@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableWithoutFeedback, Image, View } from 'react-native';
 import { width, height } from '../util/dimensions';
 
@@ -29,9 +30,16 @@ const styles = StyleSheet.create({
     },
 });
 
+/* eslint-disable react/prefer-stateless-function */
 class Tab extends Component {
+    static propTypes = {
+        icon: PropTypes.number.isRequired,
+        textColor: PropTypes.object.isRequired,
+        text: PropTypes.string.isRequired,
+    };
+
     render() {
-        const { onPress, name, icon, text, isActive, textColor } = this.props;
+        const { onPress, icon, text, isActive, textColor } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={onPress}>

@@ -2,11 +2,9 @@ import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import CustomTextInput from '../components/customTextInput';
-import { width, height } from '../util/dimensions';
-import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import { translate } from 'react-i18next';
+import CustomTextInput from './customTextInput';
+import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -86,6 +84,7 @@ export class EditAccountName extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             accountName: props.accountName,
         };

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, Image, StyleSheet } from 'react-native';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import { TextWithLetterSpacing } from './textWithLetterSpacing';
 import whiteArrowImagePath from 'iota-wallet-shared-modules/images/arrow-white.png';
 import blackArrowImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
+import TextWithLetterSpacing from './textWithLetterSpacing';
 import GENERAL from '../theme/general';
-
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -46,7 +46,15 @@ const styles = StyleSheet.create({
     },
 });
 
-class SeedBox extends React.Component {
+/* eslint-disable react/prefer-stateless-function */
+class SeedBox extends Component {
+    static propTypes = {
+        seed: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        borderColor: PropTypes.object.isRequired,
+    };
+
     render() {
         const { textColor, secondaryBackgroundColor } = this.props;
         const arrowImagePath = secondaryBackgroundColor === 'white' ? whiteArrowImagePath : blackArrowImagePath;
