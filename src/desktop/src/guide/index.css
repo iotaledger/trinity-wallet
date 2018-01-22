@@ -25,7 +25,7 @@
                 text-decoration: none;
                 &:hover,
                 &[aria-current='true'] {
-                    color: var(--color-highlight);
+                    color: var(--color-highlightBorder);
                 }
             }
         }

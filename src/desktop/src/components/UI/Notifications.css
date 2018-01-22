@@ -10,8 +10,11 @@
 
     position: relative;
     margin: 8px;
-    padding: 16px;
+    padding: 8px 16px 16px;
     width: 320px;
+    background-color: var(--color-bg);
+    border: none;
+    border-left: 4px solid transparent;
     max-width: calc(100% - 32px);
 
     h2 {
@@ -31,31 +34,36 @@
 
     &--info {
         composes: notification;
-        background-color: var(--color-extra);
-        color: white;
+        background: var(--color-positive);
+        border-color: var(--color-positiveBorder);
+        color: var(--color-body);
     }
 
     &--error {
         composes: notification;
-        background-color: var(--color-negative);
-        color: white;
+        background: var(--color-negative);
+        border-color: var(--color-negativeBorder);
+        color: var(--color-body);
     }
 
     &--success {
         composes: notification;
-        background-color: var(--color-positive);
-        color: white;
+        background: var(--color-positive);
+        border-color: var(--color-positiveBorder);
+        color: var(--color-body);
     }
 
     &--extra {
         composes: notification;
-        background-color: var(--color-extra);
-        color: white;
+        background: var(--color-extra);
+        border-color: var(--color-extraBorder);
+        color: var(--color-body);
     }
 
     &--warning {
         composes: notification;
-        background-color: var(--color-warning);
-        color: black;
+        background: var(--color-negative);
+        border-color: var(--color-negativeBorder);
+        color: var(--color-body);
     }
 }

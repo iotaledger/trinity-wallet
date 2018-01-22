@@ -75,6 +75,7 @@ p {
     font-weight: 200;
     line-height: 1.6em;
     margin: 0 0 1em;
+    max-width: 560px;
 }
 h1 {
     font-size: var(--font-size-xl);

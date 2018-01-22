@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import css from './Colors.css';
+import css from './colors.css';
 
 const colors = ['positive', 'negative', 'highlight', 'extra'];
 
