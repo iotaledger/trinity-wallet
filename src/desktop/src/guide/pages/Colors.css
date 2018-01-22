@@ -1,0 +1,57 @@
+.color {
+    display: inline-block;
+    margin: 0 48px 48px 0;
+    > strong {
+        display: block;
+        width: 180px;
+        height: 60px;
+        line-height: 60px;
+        padding: 0 20px;
+        font-weight: 200;
+    }
+}
+
+.body {
+    color: var(--color-body);
+    background: var(--color-bg);
+}
+.highlight {
+    background: var(--color-highlight);
+}
+.bg {
+    background: var(--color-bg);
+}
+.bar {
+    background: var(--color-bgbar);
+}
+.positive {
+    background: var(--color-positive);
+}
+.positiveBody {
+    color: var(--color-positiveBody);
+}
+.negative {
+    background: var(--color-negative);
+}
+.negativeBody {
+    color: var(--color-negativeBody);
+}
+.extra {
+    background: var(--color-extra);
+}
+.input {
+    background: var(--color-input);
+}
+.bgBar {
+    background: var(--color-bgBar);
+}
+.bgSecondary {
+    background: var(--color-bgSecondary);
+}
+.border {
+    background: var(--color-border);
+}
+
+.hover {
+    box-shadow: inset 0 0 0 30px rgba(0, 0, 0, 0.15);
+}

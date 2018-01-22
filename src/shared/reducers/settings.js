@@ -1,5 +1,6 @@
 import { ActionTypes } from '../actions/settings.js';
 import { defaultNode as fullNode, nodes as availablePoWNodes } from '../config';
+import tinycolor from 'tinycolor2';
 
 const initialState = {
     locale: 'en',
@@ -70,7 +71,10 @@ const initialState = {
     ],
     conversionRate: 1,
     themeName: 'Standard',
+    // TODO: merge desktop and mobile theme state, so this object can be replaced with:
+    // theme: themes[Default];
     theme: {
+        /* Mobile */
         backgroundColor: {
             h: 191.66666666666663,
             s: 0.4090909090909091,
@@ -113,6 +117,23 @@ const initialState = {
         ctaBorderColor: 'transparent',
         pendingColor: '#f75602',
         chartLineColor: '#FFA25B',
+        /* Desktop */
+        body: tinycolor('#ffffff').toHsl(),
+        bg: tinycolor('#1a373e').toHsl(),
+        bgSecondary: tinycolor('#234046').toHsl(),
+        bgSecondaryBody: tinycolor('#bababa').toHsl(),
+        bgBar: tinycolor('#0b282f').toHsl(),
+        highlight: tinycolor('#F7D002').toHsl(),
+        highlightBody: tinycolor('#F7D002').toHsl(),
+        positive: tinycolor('#009f3f').toHsl(),
+        positiveBody: tinycolor('#009f3f').toHsl(),
+        negative: tinycolor('#f75602').toHsl(),
+        negativeBody: tinycolor('#f75602').toHsl(),
+        extra: tinycolor('#88D4FF').toHsl(),
+        extraBody: tinycolor('#88D4FF').toHsl(),
+        input: tinycolor('#2a4a51').toHsl(),
+        chartLine: tinycolor('#FFA25B').toHsl(),
+        border: { h: 0, s: 0, l: 0, a: 0 },
     },
     hasRandomizedNode: false,
 };
