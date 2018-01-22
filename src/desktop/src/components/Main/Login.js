@@ -135,7 +135,7 @@ class Login extends React.Component {
                         />
                     </Content>
                     <Footer>
-                        <Button to="/seedlogin" variant="secondary">
+                        <Button to="/seedlogin" className="outline" variant="highlight">
                             {t('login:useSeed')}
                         </Button>
                         <Button className="outline" variant="primary">
