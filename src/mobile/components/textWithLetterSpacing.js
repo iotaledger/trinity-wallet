@@ -4,7 +4,13 @@ import { Letter } from './letter';
 
 const spacingForLetterIndex = (letters, index, spacing) => (letters.length - 1 === index ? 0 : spacing);
 
-export const TextWithLetterSpacing = props => {
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+    },
+});
+
+export const TextWithLetterSpacing = (props) => {
     const { children, spacing, viewStyle, textStyle } = props;
     const letters = children.split('');
 
@@ -18,9 +24,3 @@ export const TextWithLetterSpacing = props => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-    },
-});
