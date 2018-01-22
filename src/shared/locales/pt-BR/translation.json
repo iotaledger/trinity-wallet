@@ -15,7 +15,7 @@
         "keyReuseError": "Você não pode enviar para um endereço no qual já foi gasto.",
         "invalidResponse": "Resposta inválida",
         "invalidResponseExplanation": "O servidor retornou uma resposta inválida.",
-        "invalidResponsePollingExplanation": "Falha ao aceder aos dados mais recentes da conta.",
+        "invalidResponsePollingExplanation": "O servidor retornou uma resposta inválida ao obter os dados.",
         "invalidResponseFetchingAccount": "O servidor retornou uma resposta inválida ao transmitir informações da sua conta.",
         "invalidResponseSendingTransfer": "O servidor retornou uma resposta inválida ao enviar a transferência.",
         "seed": "Seed",
@@ -58,7 +58,7 @@
         "wallet": "Carteira"
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "A Seed contém carateres inválidos",
+        "seedInvalidChars": "A Seed contém caracteres inválidos",
         "seedInvalidCharsExplanation": "Seeds só podem conter letras maiúsculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
         "seedTooShort": "A Seed é muito curta",
         "seedTooShortExplanation": "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
