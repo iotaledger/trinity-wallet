@@ -36,34 +36,34 @@
         composes: notification;
         background: var(--positive-bg);
         border-color: var(--positive-border);
-        color: var(--color-body);
+        color: var(--positive-body);
     }
 
     &--error {
         composes: notification;
         background: var(--negative-bg);
         border-color: var(--negative-border);
-        color: var(--color-body);
+        color: var(--negative-body);
     }
 
     &--success {
         composes: notification;
         background: var(--positive);
         border-color: var(--positive-border);
-        color: var(--body);
+        color: var(--positive-body);
     }
 
     &--extra {
         composes: notification;
         background: var(--extra-bg);
         border-color: var(--extra-border);
-        color: var(--body);
+        color: var(--extra-body);
     }
 
     &--warning {
         composes: notification;
         background: var(--negative-bg);
         border-color: var(--negative-border);
-        color: var(--body);
+        color: var(--negative-body);
     }
 }

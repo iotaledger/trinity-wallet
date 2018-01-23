@@ -1,5 +1,10 @@
 .buttons {
-    button {
-        margin: 0 32px 16px 0;
+    nav {
+        display: flex;
+        justify-content: space-between;
     }
+    button {
+        margin: 0 0 16px 0;
+    }
+    div: nth-child();
 }
