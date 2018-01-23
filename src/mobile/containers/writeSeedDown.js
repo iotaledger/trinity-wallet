@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate, Trans } from 'react-i18next';
+import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
@@ -35,16 +35,13 @@ class WriteSeedDown extends Component {
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
-                    <Trans i18nKey="writeSeedDown:yourSeedIs">
-                        <Text style={[styles.infoText, textColor]}>
-                            <Text style={styles.infoTextNormal}>
-                                Your seed is {{ maxSeedLength }} characters read from left to right. Write down your
-                                seed and checksum and
-                            </Text>
-                            <Text style={styles.infoTextBold}> triple check </Text>
-                            <Text style={styles.infoTextNormal}>that they are correct.</Text>
+                    <Text style={[styles.infoText, textColor]}>
+                        <Text style={styles.infoTextNormal}>
+                            {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
                         </Text>
-                    </Trans>
+                        <Text style={styles.infoTextBold}>{` ${t('writeSeedDown:tripleCheck')} `}</Text>
+                        <Text style={styles.infoTextNormal}>{t('writeSeedDown:thatTheyAreCorrect')}</Text>
+                    </Text>
                     <Seedbox
                         secondaryBackgroundColor={secondaryBackgroundColor}
                         borderColor={borderColor}
