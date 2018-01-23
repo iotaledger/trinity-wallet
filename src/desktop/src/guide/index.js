@@ -24,6 +24,7 @@ import Inputs from './pages/Inputs';
 import Modals from './pages/Modals';
 import Typography from './pages/Typography';
 import Lists from './pages/Lists';
+import Icons from './pages/Icons';
 
 const Intro = () => {
     return (
@@ -54,6 +55,7 @@ class Guide extends React.Component {
                     <h1>Trinity</h1>
                     <nav>
                         <NavLink to="/colors">Colors</NavLink>
+                        <NavLink to="/icons">Icons</NavLink>
                         <NavLink to="/typography">Typography</NavLink>
                         <NavLink to="/buttons">Buttons</NavLink>
                         <NavLink to="/inputs">Inputs</NavLink>
@@ -66,6 +68,7 @@ class Guide extends React.Component {
                 <section>
                     <Switch>
                         <Route path="/colors" component={Colors} />
+                        <Route path="/icons" component={Icons} />
                         <Route path="/buttons" component={Buttons} />
                         <Route path="/inputs" component={Inputs} />
                         <Route path="/modals" component={Modals} />
