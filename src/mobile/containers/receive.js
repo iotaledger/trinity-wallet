@@ -69,12 +69,6 @@ class Receive extends Component {
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
-    componentWillMount() {
-        if (!this.props.isGeneratingReceiveAddress) {
-            this.onGeneratePress();
-        }
-    }
-
     componentWillUnmount() {
         this.resetAddress();
     }
@@ -110,7 +104,7 @@ class Receive extends Component {
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
         return keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 this.props.getFromKeychainSuccess('receive', 'addressGeneration');
 
                 if (get(credentials, 'data')) {
@@ -179,7 +173,7 @@ class Receive extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View style={{ flex: 0.5 }} />
+                    <View style={{ flex: 0.4 }} />
                     <View style={[styles.qrContainer, opacity, qrBorder]}>
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
@@ -225,11 +219,11 @@ class Receive extends Component {
                     )}
                     <View style={{ flex: 0.05 }} />
                     <CustomTextInput
-                        onRef={c => {
+                        onRef={(c) => {
                             this.messageField = c;
                         }}
                         label={t('message')}
-                        onChangeText={message => this.setState({ message })}
+                        onChangeText={(message) => this.setState({ message })}
                         containerStyle={{ width: width / 1.36 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
@@ -238,14 +232,10 @@ class Receive extends Component {
                         value={message}
                         negativeColor={negativeColor}
                     />
-                    <View style={{ flex: 0.3 }} />
+                    <View style={{ flex: 0.5 }} />
                     {receiveAddress === ' ' &&
                         (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
-                            <View style={{ flex: 0.7 }} />
-                        )}
-                    {/*{receiveAddress === ' ' &&
-                        (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
-                            <View style={{ flex: 0.8 }}>
+                            <View style={{ flex: 0.7, justifyContent: 'center' }}>
                                 <TouchableOpacity
                                     onPress={() => {
                                         // Check if there's already a network call in progress.
@@ -267,7 +257,7 @@ class Receive extends Component {
                                     </View>
                                 </TouchableOpacity>
                             </View>
-                        )}*/}
+                        )}
                     {(isGettingSensitiveInfoToGenerateAddress || isGeneratingReceiveAddress) && (
                         <View style={{ flex: 0.7 }}>
                             <ActivityIndicator
@@ -297,7 +287,7 @@ class Receive extends Component {
                             </View>
                         )}
                     {receiveAddress.length > 1 && message.length === 0 && <View style={{ flex: 0.7 }} />}
-                    <View style={{ flex: 0.3 }} />
+                    <View style={{ flex: 0.5 }} />
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -377,7 +367,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     isSyncing: state.tempAccount.isSyncing,
