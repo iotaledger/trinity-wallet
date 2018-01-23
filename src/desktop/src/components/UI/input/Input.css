@@ -52,6 +52,8 @@
             right: 0px;
             cursor: pointer;
             user-select: none;
+            color: var(--body);
+            opacity: 0.3;
             &:before {
                 content: '';
                 position: absolute;
@@ -61,7 +63,6 @@
                 left: -2px;
                 border-radius: 4px;
                 background: var(--body);
-                opacity: 0.3;
                 transform: translate(0, -50%);
             }
             > img {
@@ -77,9 +78,9 @@
                 }
             }
             &:hover {
-                > img,
-                > span {
-                    opacity: 1;
+                opacity: 1;
+                &:before {
+                    opacity: 0.3;
                 }
             }
         }
