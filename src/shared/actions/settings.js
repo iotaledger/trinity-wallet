@@ -66,7 +66,7 @@ export function getCurrencyData(currency, withAlerts = false) {
                 },
             )
             .then(json => {
-                const conversionRate = get(json, `rates${currency}`) || 1;
+                const conversionRate = get(json, `rates.${currency}`) || 1;
                 dispatch(
                     currencyDataFetchSuccess({
                         conversionRate,

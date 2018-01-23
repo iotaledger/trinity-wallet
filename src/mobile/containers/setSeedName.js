@@ -6,7 +6,7 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import { Keyboard } from 'react-native';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import OnboardingButtons from '../components/onboardingButtons';
@@ -16,9 +16,9 @@ import { width, height } from '../util/dimensions';
 import keychain, { hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
-
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import infoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
+import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import InfoBox from '../components/infoBox';
 
 export class SetSeedName extends Component {
     static propTypes = {
@@ -34,12 +34,6 @@ export class SetSeedName extends Component {
         this.state = {
             accountName: this.getDefaultAccountName(),
         };
-    }
-
-    componentDidMount() {
-        if (this.nameInput) {
-            this.nameInput.focus();
-        }
     }
 
     navigateTo(screen) {
@@ -71,7 +65,7 @@ export class SetSeedName extends Component {
         const { t } = this.props;
         const trimmedAccountName = trim(this.state.accountName);
 
-        const fetch = accountName => {
+        const fetch = (accountName) => {
             this.props.setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
                 additionalAccountName: accountName,
@@ -88,7 +82,7 @@ export class SetSeedName extends Component {
             } else {
                 keychain
                     .get()
-                    .then(credentials => {
+                    .then((credentials) => {
                         if (isEmpty(credentials)) {
                             return fetch(trimmedAccountName);
                         } else {
@@ -170,6 +164,7 @@ export class SetSeedName extends Component {
         const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
@@ -177,42 +172,34 @@ export class SetSeedName extends Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
-                            <View style={styles.titleContainer}>
-                                <Text style={[styles.greetingText, textColor]}>
-                                    {t('addAdditionalSeed:enterAccountName')}
-                                </Text>
-                            </View>
+                            <Image source={iotaImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midContainer}>
-                            <TextField
-                                style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor={secondaryBackgroundColor}
+                            <View style={{ flex: 0.5 }} />
+                            <CustomTextInput
                                 label={t('addAdditionalSeed:accountName')}
-                                tintColor={THEMES.getHSL(negativeColor)}
-                                autoCapitalize="words"
+                                onChangeText={(accountName) => this.setState({ accountName })}
+                                containerStyle={{ width: width / 1.36 }}
+                                autoCapitalize={'words'}
                                 autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
+                                enablesReturnKeyAutomatically
                                 returnKeyType="done"
-                                value={accountName}
-                                onChangeText={accountName => this.setState({ accountName })}
-                                containerStyle={{
-                                    width: width / 1.4,
-                                }}
-                                ref={input => {
-                                    this.nameInput = input;
-                                }}
                                 onSubmitEditing={() => this.onDonePress()}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
+                                value={accountName}
                             />
-                            <View style={[styles.infoTextContainer, borderColor]}>
-                                <Image source={infoImagePath} style={styles.infoIcon} />
-                                <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
-                                <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
-                            </View>
+                            <View style={{ flex: 0.3 }} />
+                            <InfoBox
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                text={
+                                    <View>
+                                        <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
+                                        <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
+                                    </View>
+                                }
+                            />
+                            <View style={{ flex: 0.5 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
@@ -237,15 +224,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.2,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
         flex: 4.8,
-        justifyContent: 'flex-start',
-        paddingTop: height / 8,
+        justifyContent: 'space-around',
         alignItems: 'center',
         width,
     },
@@ -260,28 +246,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: height / 15,
     },
-    infoTextContainer: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.6,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: width / 30,
-        borderStyle: 'dotted',
-        paddingVertical: height / 35,
-        marginTop: height / 15,
-    },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'center',
+        textAlign: 'justify',
         paddingTop: height / 60,
-        backgroundColor: 'transparent',
-    },
-    greetingText: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.7,
-        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoIcon: {
@@ -294,7 +263,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     account: state.account,
     backgroundColor: state.settings.theme.backgroundColor,

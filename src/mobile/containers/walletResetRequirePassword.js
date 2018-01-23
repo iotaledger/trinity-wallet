@@ -14,7 +14,7 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import COLORS from '../theme/Colors';
 import THEMES from '../theme/themes';
 import Fonts from '../theme/Fonts';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Keyboard } from 'react-native';
@@ -84,7 +84,7 @@ class WalletResetRequirePassword extends Component {
     redirectToInitialScreen() {
         Navigation.startSingleScreenApp({
             screen: {
-                screen: 'welcome',
+                screen: 'languageSetup',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -114,7 +114,7 @@ class WalletResetRequirePassword extends Component {
                     this.props.setPassword('');
                     this.props.resetWallet();
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
@@ -162,27 +162,21 @@ class WalletResetRequirePassword extends Component {
                             <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midWrapper}>
-                            <Text style={[styles.generalText, textColor]}>{t('enterPassword')}</Text>
-                            <TextField
-                                style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor={secondaryBackgroundColor}
+                            <CustomTextInput
                                 label={t('global:password')}
-                                tintColor={THEMES.getHSL(negativeColor)}
+                                onChangeText={(password) => this.setState({ password })}
+                                value={this.state.password}
+                                containerStyle={{ width: width / 1.4 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
-                                value={this.state.password}
-                                onChangeText={password => this.setState({ password })}
-                                containerStyle={{
-                                    width: width / 1.4,
-                                }}
+                                onSubmitEditing={this.handleLogin}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
                                 secureTextEntry
                             />
+                            <View style={{ flex: 0.2 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
@@ -208,17 +202,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topWrapper: {
-        flex: 1.3,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
+        paddingTop: height / 22,
     },
     midWrapper: {
-        flex: 1.6,
+        flex: 3.7,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 2,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -231,8 +226,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     iotaLogo: {
-        height: width / 7,
-        width: width / 7,
+        height: width / 5,
+        width: width / 5,
     },
     buttonsContainer: {
         alignItems: 'flex-end',
@@ -241,7 +236,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     password: state.tempAccount.password,
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
