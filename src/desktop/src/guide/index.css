@@ -7,6 +7,7 @@
         margin-right: 40px;
         flex-shrink: 0;
         background: var(--bar-bg);
+        color: var(--bar);
         text-align: center;
 
         h1 {
@@ -33,7 +34,7 @@
         hr {
             background: none;
             border: none;
-            border-top: 1px solid var(--body-secondary);
+            border-top: 1px solid var(--bar-secondary);
             margin-bottom: 20px;
         }
 
@@ -48,7 +49,7 @@
     }
 
     section {
-        padding-top: 140px;
+        padding-top: 60px;
         max-width: 960px;
         min-width: 480px;
 
