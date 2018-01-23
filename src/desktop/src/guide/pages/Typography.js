@@ -12,9 +12,13 @@ const Typography = () => {
                 design influencer handshake first mover advantage. Focus interaction design influencer handshake first
                 mover advantage.
             </p>
+            <p>
+                <small>Font size s. Focus interaction design influencer handshake first mover advantage.</small>
+            </p>
             <Infobox>
-                Focus interaction design influencer handshake first mover advantage. Focus interaction design influencer
-                handshake first mover advantage. Focus interaction design influencer handshake first mover advantage.
+                <strong>Infobox.</strong> Focus interaction design influencer handshake first mover advantage. Focus
+                interaction design influencer handshake first mover advantage. Focus interaction design influencer
+                handshake first mover advantage.
             </Infobox>
         </div>
     );
