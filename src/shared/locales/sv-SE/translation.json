@@ -156,7 +156,7 @@
         "seedCleared": "Seed rensad",
         "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhet.",
         "mustSaveYourSeed": "Du måste spara din seed med ",
-        "atLeastOne": "åtminstone en ",
+        "atLeastOne": "åtminstone ett",
         "ofTheOptions": "av alternativen som anges nedan."
     },
     "seedReentry": {
