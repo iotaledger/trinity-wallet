@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     banner: {
-        borderTopStartRadius: 6,
-        borderTopEndRadius: 6,
+        borderTopLeftRadius: 6,
+        borderTopRightRadius: 6,
         height: height / 24,
         alignItems: 'center',
         width: width / 1.36,
