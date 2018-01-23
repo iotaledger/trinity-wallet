@@ -279,7 +279,9 @@
     },
     "writeSeedDown": {
         "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and triple check that they are correct."
+            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "tripleCheck": "triple check",
+        "thatTheyAreCorrect": "that they are correct."
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
@@ -352,15 +354,19 @@
     "saveSeedConfirmation": {
         "alreadyHave": "I have saved my seed",
         "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarningOne": "If your device fails and you have not saved",
+        "reenterWarningTwo": "your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "infoText":
-            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "infoTextOne": "All your wallet data including your",
+        "infoTextTwo": "seeds, password",
+        "infoTextThree": "and",
+        "infoTextFour": "other account information",
+        "infoTextFive": "will be lost."
     },
     "transferConfirmation": {
-        "sendMessage": "<0>You are about to send <1>a message</1> to the address</0>",
-        "sendValue": " "
+        "youAreAbout": "You are about to send {{contents}} to the address",
+        "aMessage": "a message"
     }
 }
