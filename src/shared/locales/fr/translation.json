@@ -148,7 +148,7 @@
     "receive": {
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papier.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "NOUVELLE ADRESSE",
         "message": "Message facultatif",
         "removeMessage": "SUPPRIMER LE MESSAGE"
     },
