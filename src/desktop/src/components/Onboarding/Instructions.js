@@ -15,7 +15,7 @@ export default translate('welcome1')(
             return (
                 <Template>
                     <Content>
-                        <p>{t('welcome:thankYou')}</p>
+                        <h2>{t('welcome:thankYou')}</h2>
                         <p>{t('welcome:weWillSpend')}</p>
                         <p>
                             <strong>{t('welcome:reminder')}</strong>

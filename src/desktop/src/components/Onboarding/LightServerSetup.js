@@ -24,7 +24,7 @@ class LightServerSetup extends React.PureComponent {
         fullNode: this.props.fullNode,
     };
 
-    onCustomServerChange = e => {
+    onCustomServerChange = (e) => {
         const { target: { value: customServer } } = e;
         this.setState(() => ({
             customServer,
@@ -49,7 +49,7 @@ class LightServerSetup extends React.PureComponent {
         }
     };
 
-    setServer = server => {
+    setServer = (server) => {
         this.setState(() => ({
             fullNode: server,
             customServer: null,
@@ -89,7 +89,7 @@ class LightServerSetup extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     fullNode: state.settings.fullNode,
 });
 
