@@ -1,16 +1,9 @@
-@import-normalize;
-
-@custom-media --xs (min-width: 0px); /* default */
-@custom-media --sm (max-width: 480px);
-@custom-media --md (max-width: 768px);
-@custom-media --lg (max-width: 1024px);
-@custom-media --xl (max-width: 1440px);
-
 :root {
     --font-size-xl: 26px;
     --font-size-l: 21px;
     --font-size-m: 14px;
     --font-size-s: 12px;
+    --font-size-xs: 11px;
 
     --z-index-modal: 2048;
     --z-index-overlay: 2049;
@@ -57,7 +50,6 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
 }
 
 body {
@@ -67,6 +59,7 @@ body {
     font-weight: 200;
     font-size: var(--font-size-m);
     line-height: 1.5;
+    overflow: hidden;
 }
 
 h1,

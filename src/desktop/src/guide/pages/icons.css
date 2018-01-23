@@ -6,15 +6,19 @@
         span {
             display: block;
         }
+        span:nth-child(1) {
+            margin-bottom: 8px;
+        }
         span:nth-child(2) {
             float: left;
             margin-right: 12px;
         }
         span:nth-child(3) {
-            margin: 8px 0 0;
+            margin: 22px 0 0;
         }
         p {
             clear: both;
+            margin-top: 6px;
         }
     }
 }
