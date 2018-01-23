@@ -438,6 +438,34 @@
 			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
 			remoteInfo = ReactNativeNavigation;
 		};
+		CBB351F720163EF800AC8449 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D001F3B181A0099AA32;
+			remoteInfo = fishhook;
+		};
+		CBB351F920163EF800AC8449 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D0D1F3B181C0099AA32;
+			remoteInfo = "fishhook-tvOS";
+		};
+		CBB3520920163EF800AC8449 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9936F3131F5F2E4B0010BF04;
+			remoteInfo = privatedata;
+		};
+		CBB3520B20163EF800AC8449 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
+			remoteInfo = "privatedata-tvOS";
+		};
 		CBDB988D1F8EADC300035DC3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CBDB986A1F8EAD9800035DC3 /* RNHTMLtoPDF.xcodeproj */;
@@ -724,6 +752,8 @@
 			children = (
 				139FDEF41B06529B00C62182 /* libRCTWebSocket.a */,
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
+				CBB351F820163EF800AC8449 /* libfishhook.a */,
+				CBB351FA20163EF800AC8449 /* libfishhook-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -758,6 +788,8 @@
 				CB87E5B81F55064B009DB5ED /* libthird-party.a */,
 				CB87E5BA1F55064B009DB5ED /* libdouble-conversion.a */,
 				CB87E5BC1F55064B009DB5ED /* libdouble-conversion.a */,
+				CBB3520A20163EF800AC8449 /* libprivatedata.a */,
+				CBB3520C20163EF800AC8449 /* libprivatedata-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1671,6 +1703,34 @@
 			remoteRef = CB87E5BE1F55064B009DB5ED /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CBB351F820163EF800AC8449 /* libfishhook.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libfishhook.a;
+			remoteRef = CBB351F720163EF800AC8449 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CBB351FA20163EF800AC8449 /* libfishhook-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libfishhook-tvOS.a";
+			remoteRef = CBB351F920163EF800AC8449 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CBB3520A20163EF800AC8449 /* libprivatedata.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libprivatedata.a;
+			remoteRef = CBB3520920163EF800AC8449 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CBB3520C20163EF800AC8449 /* libprivatedata-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libprivatedata-tvOS.a";
+			remoteRef = CBB3520B20163EF800AC8449 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CBDB988E1F8EADC300035DC3 /* libRNHTMLtoPDF.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2171,6 +2231,9 @@
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/**",
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)/usr/local/include/**",
+					"${PODS_DEV_ROOT}/React/**",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -2209,6 +2272,9 @@
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/**",
+					"$(inherited)",
+					"${PODS_DEV_ROOT}/React/**",
+					"$(BUILT_PRODUCTS_DIR)/usr/local/include/**",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;

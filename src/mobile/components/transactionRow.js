@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
-        paddingRight: width / 20,
+        paddingRight: width / 25,
     },
     modalValue: {
         backgroundColor: 'transparent',
