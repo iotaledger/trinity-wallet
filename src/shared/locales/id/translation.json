@@ -24,7 +24,7 @@
         "done": "SELESAI",
         "doneLowercase": "Selesai",
         "next": "BERIKUTNYA",
-        "apply": "Apply",
+        "apply": "Terapkan",
         "save": "Simpan",
         "close": "TUTUP",
         "continue": "Lanjutkan",
@@ -55,7 +55,7 @@
         "cannotPerformActionExplanation": "Klik aturan lanjut untuk menghapus dompet.",
         "attachToTangleUnavailable": "Tambatkan ke Tangle tidak tersedia",
         "attachToTangleUnavailableExplanation": "Menambatkan pada Tangle tidak tersedia pada node pilihan anda.",
-        "wallet": "Wallet"
+        "wallet": "Dompet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -148,7 +148,7 @@
     "receive": {
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat Anda telah disalin ke papan klip.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "ALAMAT BARU",
         "message": "Pesan opsional",
         "removeMessage": "HAPUS PESAN"
     },
@@ -224,15 +224,15 @@
         "cannotPerformActionExplanation": "Klik aturan lanjut untuk menghapus dompet.",
         "poorConnection": "Sambungan lemah",
         "poorConnectionExplanation": "Gagal untuk mengubah mata uang karena koneksi lemah.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
+        "hide": "Menyembunyikan",
+        "hideOthers": "Sembunyikan Lainnya",
+        "showAll": "Tunjukkan Semua",
+        "quit": "Berhenti",
         "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
+        "cut": "Potong",
+        "copy": "Salin",
+        "paste": "Tempelkan",
+        "selectAll": "Pilih Semua"
     },
     "resetWalletConfirmation": {
         "thisAction": "Tindakan ini tidak dapat diulang.",
@@ -265,7 +265,7 @@
         "reminder": "Kami berharap anda tidak mencoba untuk melewatkan beberapa tahap penting ini."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Seed anda terdiri dari 81 karakter dari kiri ke kanan. Tulis Seed tersebut, cek jumlah karakternya dan pastikan mereka sudah benar",
         "tripleCheck": "cek kembali",
         "thatTheyAreCorrect": "bahwa mereka benar."
     },
@@ -292,26 +292,26 @@
     },
     "advancedSettings": {
         "selectNode": "Pilih node",
-        "addCustomNode": "Add custom node",
+        "addCustomNode": "Menambahkan node kustom",
         "manualSync": "Manual sync"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Latar belakang",
+        "frame": "Batas"
     },
     "currencySelection": {
         "currency": "Mata Uang"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Yakin ingin keluar?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Memindai kode QR"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
+        "trillion": "Trilyun",
+        "billion": "Miliar",
         "million": "Million",
         "thousand": "Thousand",
         "one": "One"
