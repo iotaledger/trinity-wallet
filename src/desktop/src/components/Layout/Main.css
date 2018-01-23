@@ -81,7 +81,8 @@
         width: var(--sidebar-width);
         text-decoration: none;
         text-transform: uppercase;
-        &:hover {
+        &:hover,
+        &[aria-current='true'] {
             color: var(--bar-body);
             img {
                 opacity: 1;
