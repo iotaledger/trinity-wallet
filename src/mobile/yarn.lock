@@ -5103,10 +5103,6 @@ punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
-qr.js@0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
-
 qrcode-terminal@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.10.0.tgz#a76a48e2610a18f97fa3a2bd532b682acff86c53"
@@ -5405,14 +5401,6 @@ react-native-qrcode-svg@^5.0.3:
     prop-types "^15.5.10"
     qrcode "^0.9.0"
 
-react-native-qrcode@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/react-native-qrcode/-/react-native-qrcode-0.2.6.tgz#dd92f151c118860092af9fa5bc0995f2f9dddb16"
-  dependencies:
-    create-react-class "^15.6.0"
-    prop-types "^15.5.10"
-    qr.js "0.0.0"
-
 react-native-randombytes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-native-randombytes/-/react-native-randombytes-3.0.0.tgz#8327464f227a2c42d6ef013b7586b0ad4385ae61"
@@ -5431,12 +5419,6 @@ react-native-safe-module@^1.1.0:
   resolved "https://registry.yarnpkg.com/react-native-safe-module/-/react-native-safe-module-1.2.0.tgz#a23824ca24edc2901913694a76646475113d570d"
   dependencies:
     dedent "^0.6.0"
-
-react-native-shake-event@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-shake-event/-/react-native-shake-event-4.0.1.tgz#b167e844b711eff50d44d029537fbb228b2ac6b2"
-  dependencies:
-    invariant "^2.2.2"
 
 react-native-slider@^0.11.0:
   version "0.11.0"
