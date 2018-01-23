@@ -156,7 +156,7 @@ class HistoryList extends React.PureComponent {
                             <h6>Message</h6>
                             <p>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</p>
                             <footer>
-                                <Button onClick={() => this.setState({ activeItem: null })} variant="success">
+                                <Button onClick={() => this.setState({ activeItem: null })} variant="primary">
                                     {t('global:back')}
                                 </Button>
                             </footer>

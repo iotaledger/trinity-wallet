@@ -156,7 +156,7 @@ class Send extends React.PureComponent {
                                 onChange={this.onAmountChange}
                             />
                             <MessageInput message={message} label={t('send:message')} onChange={this.onMessageChange} />
-                            <Button loading={tempAccount.isSendingTransfer} onClick={this.send} variant="success">
+                            <Button loading={tempAccount.isSendingTransfer} onClick={this.send} variant="primary">
                                 {t('send:send')}
                             </Button>
                         </div>
