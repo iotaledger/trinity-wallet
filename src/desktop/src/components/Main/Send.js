@@ -137,7 +137,7 @@ class Send extends React.PureComponent {
                                 <Button onClick={this.toggleConfirmation} variant="secondary">
                                     {t('global:no')}
                                 </Button>
-                                <Button onClick={this.sendTransfer} variant="success">
+                                <Button onClick={this.sendTransfer} variant="primary">
                                     {t('global:yes')}
                                 </Button>
                             </Modal>

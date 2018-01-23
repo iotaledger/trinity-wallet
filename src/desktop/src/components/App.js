@@ -84,17 +84,19 @@ class App extends React.Component {
     render() {
         const { app } = this.props;
 
-        if (this.state.initialized === false) {
-            return <Loading loop={false} />;
-        }
-
         return (
             <div>
                 {this.state.error && <p>{this.state.error.message}</p>}
                 <Notifications />
                 <Theme />
                 <Alerts />
-                {app.isOnboardingCompleted ? <Main /> : <Onboarding />}
+                {!this.state.initialized ? (
+                    <Loading loop={false} />
+                ) : app.isOnboardingCompleted ? (
+                    <Main />
+                ) : (
+                    <Onboarding />
+                )}
             </div>
         );
     }
