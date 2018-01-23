@@ -7,6 +7,23 @@ import { translate } from 'react-i18next';
 
 import { width, height } from '../util/dimensions';
 
+const styles = StyleSheet.create({
+    modalContent: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderRadius: GENERAL.borderRadius,
+        borderWidth: 2,
+        paddingVertical: height / 18,
+        width: width / 1.15,
+    },
+    questionText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 27.6,
+        paddingBottom: height / 16,
+    },
+});
+
 class LogoutConfirmationModal extends Component {
     render() {
         const { t, backgroundColor, textColor, borderColor } = this.props;
@@ -26,22 +43,5 @@ class LogoutConfirmationModal extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    modalContent: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
-        borderWidth: 2,
-        paddingVertical: height / 18,
-        width: width / 1.15,
-    },
-    questionText: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 27.6,
-        paddingBottom: height / 16,
-    },
-});
 
 export default translate(['logoutConfirmationModal', 'global'])(LogoutConfirmationModal);

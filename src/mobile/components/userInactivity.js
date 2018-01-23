@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, PanResponder, ViewPropTypes, StyleSheet } from 'react-native';
+import { View, PanResponder, ViewPropTypes } from 'react-native';
 
 export default class UserInactivity extends Component {
     static propTypes = {
@@ -20,7 +20,7 @@ export default class UserInactivity extends Component {
     };
 
     state = {};
-    lastInteraction = new Date();
+    lastInteraction = new Date(); // eslint-disable-line react/sort-comp
     panResponder = {};
 
     componentWillMount() {
@@ -52,19 +52,6 @@ export default class UserInactivity extends Component {
         return false;
     };
 
-    maybeStartWatchingForInactivity = () => {
-        if (this.inactivityTimer) {
-            return;
-        }
-        const { timeForInactivity, checkInterval } = this.props;
-
-        this.inactivityTimer = setInterval(() => {
-            if (new Date() - this.lastInteraction >= timeForInactivity) {
-                this.setIsInactive();
-            }
-        }, checkInterval);
-    };
-
     setIsActive = () => {
         this.lastInteraction = new Date();
         if (this.state.timeWentInactive) {
@@ -85,6 +72,19 @@ export default class UserInactivity extends Component {
         );
         clearInterval(this.inactivityTimer);
         this.inactivityTimer = null;
+    };
+
+    maybeStartWatchingForInactivity = () => {
+        if (this.inactivityTimer) {
+            return;
+        }
+        const { timeForInactivity, checkInterval } = this.props;
+
+        this.inactivityTimer = setInterval(() => {
+            if (new Date() - this.lastInteraction >= timeForInactivity) {
+                this.setIsInactive();
+            }
+        }, checkInterval);
     };
 
     render() {

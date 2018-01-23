@@ -3,7 +3,7 @@
         "send": "SENDEN",
         "cancel": "ABBRECHEN",
         "continue?": "Bist du sicher, dass du fortfahren möchtest?",
-        "noTransactions": "KEINE AKTUELLER VERLAUF",
+        "noTransactions": "KEIN AKTUELLER VERLAUF",
         "qr": "QR",
         "balanceError": "Nicht genügend Guthaben",
         "balanceErrorMessage": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
