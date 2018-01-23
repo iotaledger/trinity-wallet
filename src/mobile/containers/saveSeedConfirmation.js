@@ -99,10 +99,7 @@ class SaveSeedConfirmation extends Component {
                         <View style={styles.infoTextContainer}>
                             <Text style={[styles.infoTextLight, textColor]}>{t('saveSeedConfirmation:reenter')}</Text>
                             <Text style={[styles.infoTextLight, textColor]}>
-                                {t('saveSeedConfirmation:reenterWarningOne')}
-                            </Text>
-                            <Text style={[styles.infoTextLight, textColor]}>
-                                {t('saveSeedConfirmation:reenterWarningTwo')}
+                                {t('saveSeedConfirmation:reenterWarning')}
                             </Text>
                         </View>
                     </View>
@@ -110,7 +107,7 @@ class SaveSeedConfirmation extends Component {
                         {this.state.showCheckbox && (
                             <TouchableOpacity
                                 style={styles.checkboxContainer}
-                                onPress={event => this.onCheckboxPress()}
+                                onPress={(event) => this.onCheckboxPress()}
                             >
                                 <Image source={this.state.checkboxImage} style={styles.checkbox} />
                                 <Text style={[styles.checkboxText, textColor]}>
@@ -224,7 +221,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
