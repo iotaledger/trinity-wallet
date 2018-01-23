@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { width, height } from '../util/dimensions';
-import { TextField } from 'react-native-material-textfield';
 import { translate } from 'react-i18next';
-import THEMES from '../theme/themes';
+import { width, height } from '../util/dimensions';
+import CustomTextInput from './customTextInput';
 
 const styles = StyleSheet.create({
     container: {
@@ -70,6 +69,14 @@ class AddCustomNode extends Component {
         checkNode: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
+        setNode: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+        onAddNodeError: PropTypes.func.isRequired,
+        onAddNodeSuccess: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        addImagePath: PropTypes.number.isRequired,
     };
 
     constructor() {
@@ -95,7 +102,7 @@ class AddCustomNode extends Component {
 
         if (!nodes.includes(customNode)) {
             setNode(customNode);
-            checkNode((error, success) => {
+            checkNode((error) => {
                 if (error) {
                     onAddNodeError();
                     setNode(currentNode);
@@ -111,40 +118,32 @@ class AddCustomNode extends Component {
 
     render() {
         const {
-            node,
-            nodes,
             backPress,
             t,
             secondaryBackgroundColor,
             textColor,
             arrowLeftImagePath,
             addImagePath,
+            negativeColor,
         } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.2 }} />
-                        <TextField
-                            style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                            labelFontSize={width / 31.8}
-                            fontSize={width / 20.7}
-                            labelPadding={3}
-                            baseColor={secondaryBackgroundColor}
+                        <View style={{ flex: 0.3 }} />
+                        <CustomTextInput
                             label={t('customNode')}
-                            tintColor={THEMES.getHSL(this.props.negativeColor)}
-                            autoCapitalize="none"
+                            onChangeText={(customNode) => this.setState({ customNode })}
+                            containerStyle={{ width: width / 1.36 }}
+                            autoCapitalize={'none'}
                             autoCorrect={false}
-                            enablesReturnKeyAutomatically={true}
+                            enablesReturnKeyAutomatically
                             returnKeyType="done"
-                            value={this.state.accountName}
-                            onChangeText={customNode => this.setState({ customNode })}
-                            containerStyle={{
-                                width: width / 1.4,
-                            }}
                             onSubmitEditing={() => this.addNode()}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            negativeColor={negativeColor}
+                            value={this.state.accountName}
                         />
                     </View>
                     <View style={styles.bottomContainer}>

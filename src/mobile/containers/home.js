@@ -179,8 +179,8 @@ class Home extends Component {
         const textColor = { color: secondaryBackgroundColor };
 
         const config = {
-            velocityThreshold: 0.3,
-            directionalOffsetThreshold: 80,
+            velocityThreshold: 0.09,
+            directionalOffsetThreshold: 110,
             detectSwipeUp: false,
             detectSwipeDown: false,
         };

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import whiteArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-white.png';
-import blackArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-black.png';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';
@@ -12,11 +10,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-between',
-    },
-    textFieldContainer: {
-        flex: 1,
-        alignItems: 'center',
-        paddingTop: height / 10,
     },
     bottomContainer: {
         flex: 1,
@@ -84,10 +77,10 @@ const styles = StyleSheet.create({
     },
 });
 
-const ManualSync = props => (
+const ManualSync = (props) => (
     <View style={styles.container}>
         <View style={styles.topContainer}>
-            <View style={{ flex: 0.5 }} />
+            <View style={{ flex: 0.8 }} />
             {!props.isSyncing && (
                 <View style={styles.innerContainer}>
                     <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:pressToSync')}</Text>
