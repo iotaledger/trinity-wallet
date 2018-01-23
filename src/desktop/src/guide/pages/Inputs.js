@@ -16,7 +16,7 @@ class Inputs extends React.PureComponent {
 
     render() {
         return (
-            <div className={css.inputs}>
+            <div>
                 <Select label="Select" defaultValue="en" onChange={(e) => {}}>
                     <option value="en">English (International)</option>
                     <option value="ar">عربى - Arabic</option>

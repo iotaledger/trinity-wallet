@@ -3,32 +3,51 @@
     margin: 0 48px 48px 0;
     > strong {
         display: block;
-        width: 180px;
-        height: 60px;
-        line-height: 60px;
+        font-size: var(--font-size-s);
+        width: 130px;
+        height: 40px;
+        line-height: 40px;
         padding: 0 20px;
         font-weight: 200;
     }
 }
 
 .positive {
+    color: var(--positive-body);
     background: var(--positive-bg);
 }
 
+.secondary {
+    color: var(--secondary-body);
+    background: var(--secondary-bg);
+}
+
 .negative {
+    color: var(--negative-body);
     background: var(--negative-bg);
 }
 
 .highlight {
+    color: var(--highlight-body);
     background: var(--highlight-bg);
 }
 
 .extra {
+    background: var(--extra-body);
     background: var(--extra-bg);
 }
 
 .bar {
     background: var(--bar-bg);
+    color: var(--bar);
+}
+
+.chart {
+    background: var(--chart);
+}
+.cta {
+    background: var(--cta);
+    color: var(--cta-body);
 }
 
 .bgSecondary {

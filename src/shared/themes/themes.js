@@ -30,6 +30,7 @@ export const themes = {
         input: {
             color: tinycolor('#ffffff').toHsl(),
             background: tinycolor('#2a4a51').toHsl(),
+            secondary: tinycolor('#94A8AC').toHsl(),
         },
         chart: {
             color: tinycolor('#FFA25B').toHsl(),
@@ -113,6 +114,7 @@ export const themes = {
         input: {
             color: tinycolor('#ffffff').toHsl(),
             background: tinycolor('#282828').toHsl(),
+            secondary: tinycolor('#888888').toHsl(),
         },
         chart: {
             color: tinycolor('#FFA25B').toHsl(),
@@ -125,6 +127,52 @@ export const themes = {
         },
         cta: {
             color: tinycolor('#9DFFAF').toHsl(),
+        },
+    },
+    Grey: {
+        body: {
+            color: tinycolor('#1E1E1E').toHsl(),
+            background: tinycolor('#D9D9D9').toHsl(),
+            secondary: tinycolor('#D1D1D1').toHsl(),
+        },
+        bar: {
+            color: tinycolor('#D9D9D9').toHsl(),
+            background: tinycolor('#1E1E1E').toHsl(),
+            secondary: tinycolor('#292929').toHsl(),
+        },
+        positive: {
+            color: tinycolor('#009C2C').toHsl(),
+            body: tinycolor('#FFFFFF').toHsl(),
+        },
+        secondary: {
+            color: tinycolor('#4F4F4F').toHsl(),
+            body: tinycolor('#FFFFFF').toHsl(),
+        },
+        negative: {
+            color: tinycolor('#CF6666').toHsl(),
+            body: tinycolor('#FFFFFF').toHsl(),
+        },
+        extra: {
+            color: tinycolor('#88D4FF').toHsl(),
+            body: tinycolor('#FFFFFF').toHsl(),
+        },
+        input: {
+            color: tinycolor('#1E1E1E').toHsl(),
+            background: tinycolor('#cccccc').toHsl(),
+            secondary: tinycolor('#727272').toHsl(),
+        },
+        chart: {
+            color: tinycolor('#FFA25B').toHsl(),
+        },
+        highlight: {
+            color: tinycolor('#66A8CF').toHsl(),
+            body: tinycolor('#FFFFFF').toHsl(),
+        },
+        hover: {
+            color: tinycolor('rgba(0,0,0,0.1)').toHsl(),
+        },
+        cta: {
+            color: tinycolor('#66CF72').toHsl(),
         },
     },
     'Monochrome Light': {

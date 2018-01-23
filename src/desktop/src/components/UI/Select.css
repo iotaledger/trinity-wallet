@@ -20,6 +20,12 @@
             outline: none;
         }
     }
+    label {
+        color: var(--body);
+        text-transform: uppercase;
+        font-size: var(--font-size-xs);
+        margin-bottom: 4px;
+    }
     > div {
         position: relative;
         &:after {

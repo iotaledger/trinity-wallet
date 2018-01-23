@@ -41,6 +41,10 @@ class Theme extends PureComponent {
                 `--${colorName}-secondary`,
                 this.hslToCSS(color.secondary || color.color),
             );
+            document.documentElement.style.setProperty(
+                `--${colorName}-body`,
+                this.hslToCSS(color.body || theme.body.color),
+            );
         });
     }
 

@@ -77,30 +77,35 @@ footer .button + .button {
 
 .primary {
     composes: button;
+    color: var(--positive-body);
     background: var(--positive-bg);
     border-color: var(--positive-border);
 }
 
 .secondary {
     composes: button;
+    color: var(--secondary-body);
     background: var(--secondary-bg);
     border-color: var(--secondary-border);
 }
 
 .warning {
     composes: button;
+    color: var(--negative-body);
     background: var(--negative-bg);
     border-color: var(--negative-border);
 }
 
 .highlight {
     composes: button;
+    color: var(--highlight-body);
     background: var(--highlight-bg);
     border-color: var(--highlight-border);
 }
 
 .extra {
     composes: button;
+    color: var(--extra-body);
     background: var(--extra-bg);
     border-color: var(--extra-border);
 }
