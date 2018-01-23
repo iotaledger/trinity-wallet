@@ -64,11 +64,11 @@
         "seedTooShortExplanation": "Les seeds doivent comporter {{maxLength}} caractères. Votre seed comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
         "nameInUse": "Nom de compte déjà utilisé",
         "nameInUseExplanation": "Veuillez utiliser un nom de compte unique pour votre seed.",
-        "enterAccountName": "Introduisez un nom de compte.",
+        "enterAccountName": "Veuillez saisir un nom de compte.",
         "accountName": "Nom du compte",
         "noNickname": "Aucun nom de compte saisi",
         "noNicknameExplanation": "Veuillez saisir un nom de compte pour votre seed.",
-        "seedInUse": "Code d'accès déjà utilisé",
+        "seedInUse": "Seed déjà utilisée",
         "seedInUseExplanation": "Cette seed est déjà liée à votre wallet. Veuillez en utiliser une autre."
     },
     "changePassword": {
@@ -95,15 +95,15 @@
         "seedCopied": "Seed copiée dans le presse-papier",
         "seedCopiedExplanation": "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez votre seed dans un gestionnaire de mot de passe.",
-        "doNotStore": "Ne conservez pas votre adresse de connexion en texte en clair.",
+        "doNotStore": "Ne stockez pas votre seed en texte en clair.",
         "copyToClipboard": "Copier dans le presse-papier"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contient des caractères invalides",
-        "invalidCharactersExplanation": "Les adresses de connexion ne peuvent être composées que de lettres majuscules de A à Z et du chiffre 9. Votre adresse comporte des caractères invalides. Veuillez réessayer.",
+        "invalidCharactersExplanation": "Les seeds ne peuvent être constituées que de lettres majuscules de A à Z et du chiffre 9. Votre seed comporte des caractères invalides. Veuillez réessayer.",
         "seedTooShort": "La seed est trop courte",
-        "seedTooShortExplanation": "Les codes d'accès doivent être composés de {{maxLength}} caractères. L'adresse introduite en comporte {{currentLength}}. Veuillez réessayer.",
-        "seedExplanation": "Les codes d'accès doivent être composés de {{maxLength}} caractères. Seules les lettres majuscules de A à Z et le chiffre 9 sont permis. Vous ne pouvez pas utiliser de code plus long.",
+        "seedTooShortExplanation": "Les seeds doivent comporter au moins {{maxLength}} caractères. Votre seed comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
+        "seedExplanation": "Les seeds doivent comporter {{maxLength}} caractères et doivent contenir des majuscules de A à Z, ou le chiffre 9. Vous ne pouvez pas utiliser les seeds de plus de {{maxLength}} caractères.",
         "neverShare": "NE PARTAGEZ JAMAIS VOTRE SEED"
     },
     "home": {
@@ -122,10 +122,10 @@
         "enterPassword": "Veuillez introduire votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
         "login": "SE CONNECTER",
-        "selectDifferentNode": "Voulez-vous sélectionner un nœud différent ?"
+        "selectDifferentNode": "Voulez-vous sélectionner un node différent ?"
     },
     "loading": {
-        "loadingFirstTime": "Première connexion à ce code d'accès.",
+        "loadingFirstTime": "Chargement de la seed pour la première fois.",
         "thisMayTake": "Cela peut prendre un certain temps.",
         "youMayNotice": "Il se peut que votre appareil ralentisse."
     },
@@ -161,15 +161,15 @@
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorrecte",
-        "incorrectSeedExplanation": "Le code d'accès introduit est incorrect. Veuillez réessayer.",
-        "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre code d'accès.",
+        "incorrectSeedExplanation": "La seed que vous avez saisie est incorrecte. Veuillez réessayer.",
+        "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre seed.",
         "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre code d'accès, veuillez revenir en arrière et faites-le."
     },
     "send": {
         "invalidAddress": "Adresse invalide",
-        "invalidAddressExplanation1": "L'adresse doit être composée de {{maxLength}} caractères et un checksum doit être visible.",
+        "invalidAddressExplanation1": "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
         "invalidAddressExplanation2": "L'adresse contient des caractères invalides.",
-        "invalidAddressExplanation3": "Le checksum de cette adresse est invalide.",
+        "invalidAddressExplanation3": "L'adresse contient un code de vérification invalide.",
         "notEnoughFunds": "Fonds insuffisants",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
         "keyReuse": "Réutilisation de clé",
@@ -179,24 +179,24 @@
         "max": "MAX",
         "message": "Message",
         "send": "ENVOYER",
-        "invalidAmount": "Montant introduit incorrect",
-        "invalidAmountExplanation": "Veuillez introduire une valeur numérique pour le montant de la transaction.",
+        "invalidAmount": "Montant saisi incorrect",
+        "invalidAmountExplanation": "Veuillez saisir une valeur numérique pour le montant de la transaction.",
         "maximumSelected": "Montant MAXIMAL sélectionné",
         "iotaUnits": "Unités IOTA"
     },
     "setPassword": {
         "passwordTooShort": "Le mot de passe est trop court",
-        "passwordTooShortExplanation": "Votre mot de passe doit être composé d'au moins {{minLength}} caractères. Celui que vous avez introduit n'en comporte que {{currentLength}}. Veuillez réessayer.",
+        "passwordTooShortExplanation": "Votre mot de passe doit comporter au moins {{minLength}} caractères. Il comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
         "passwordMismatch": "Les mots de passe ne correspondent pas",
         "passwordMismatchExplanation": "Les mots de passe que vous avez saisis ne correspondent pas. Veuillez réessayer.",
         "nowWeNeedTo": "Maintenant nous devons paramétrer un mot de passe.",
-        "anEncryptedCopy": "Une copie chiffrée de votre code d'accès sera conservée sur votre appareil. Désormais, c'est à l'aide de ce mot de passe que vous vous connecterez à votre portefeuille.",
+        "anEncryptedCopy": "Une copie chiffrée de votre seed sera stockée sur votre appareil. Vous utiliserez ce mot de passe pour accéder à votre wallet à l’avenir.",
         "ensure": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "retypePassword": "Confirmer le mot de passe"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Ce portefeuille vous permet d'utiliser plusieurs codes d'accès. Chaque code d'accès doit être lié à un nom de compte.",
-        "youCanAdd": "Vous pouvez ajouter plus de codes d'accès dans le menu Réglages."
+        "canUseMultipleSeeds": "Vous pouvez utiliser plusieurs seeds avec ce wallet. Chaque seed requiert un nom de compte.",
+        "youCanAdd": "Vous pouvez ajouter plus de seeds dans le menu Réglages."
     },
     "settings": {
         "transferSending": "Transfert en cours",
@@ -213,15 +213,15 @@
         "changePassword": "Modifier le mot de passe",
         "advanced": "Réglages avancés",
         "logout": "Déconnexion",
-        "reset": "Réinitialiser le portefeuille",
+        "reset": "Réinitialiser le wallet",
         "syncingComplete": "Synchronisation terminée",
         "syncingCompleteExplanation": "Votre compte a été synchronisé avec succès.",
         "nicknameChanged": "Nom de compte modifié",
-        "nicknameChangedExplanation": "Le nom de votre compte a été modifié.",
+        "nicknameChangedExplanation": "Votre nom de compte a été modifié.",
         "accountDeleted": "Compte supprimé",
-        "accountDeletedExplanation": "Votre compte a été supprimé du portefeuille.",
+        "accountDeletedExplanation": "Votre compte a été supprimé du wallet.",
         "cannotPerformAction": "Impossible d’effectuer cette action",
-        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
+        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
         "poorConnection": "Mauvaise connexion",
         "poorConnectionExplanation": "Impossible de changer de devise à cause de la mauvaise connexion.",
         "hide": "Masquer",
@@ -244,7 +244,7 @@
         "areYouSure": "Êtes-vous sûr(e) de vouloir continuer ?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
+        "enterPassword": "Saisissez votre mot de passe pour réinitialiser le wallet.",
         "cancel": "ANNULER",
         "reset": "RÉINITIALISER"
     },
@@ -252,7 +252,7 @@
         "okay": "Bien ! Configurons votre portefeuille !",
         "doYouAlreadyHaveASeed": "Détenez-vous déjà un code d'accès que vous désirez utiliser ?",
         "seedExplanation": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
-        "explanation1": "Vous pouvez l’utiliser pour accéder à vos fonds à partir de",
+        "explanation1": "Vous pouvez l’utiliser pour accéder à vos fonds de",
         "explanation2": " n’importe quel wallet",
         "explanation3": ", sur",
         "explanation4": " n'importe quel appareil",
