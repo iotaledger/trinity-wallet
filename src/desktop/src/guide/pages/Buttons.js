@@ -22,50 +22,59 @@ class Buttons extends React.PureComponent {
     render() {
         return (
             <div className={css.buttons}>
-                {variants.map((variant, key) => {
-                    return (
-                        <Button key={key} variant={variant}>
-                            {variant}
-                        </Button>
-                    );
-                })}
-                <hr />
-                {variants.map((variant, key) => {
-                    return (
-                        <Button key={key} disabled variant={variant}>
-                            Disabled
-                        </Button>
-                    );
-                })}
-                <hr />
-                {variants.map((variant, key) => {
-                    return (
-                        <Button className="outline" key={key} variant={variant}>
-                            {variant}
-                        </Button>
-                    );
-                })}
-                <hr />
-                {variants.map((variant, key) => {
-                    return (
-                        <Button className="small" key={key} variant={variant}>
-                            {variant} small
-                        </Button>
-                    );
-                })}
-                <hr />
-                {variants.map((variant, key) => {
-                    return (
-                        <Button
-                            key={key}
-                            variant={variant}
-                            onClick={() => this.loadingDummy(variant)}
-                            loading={this.state[variant]}
-                        >
-                            {variant} load
-                        </Button>
-                    );
-                })}
+                <h1>Buttons</h1>
+                <nav>
+                    <div>
+                        {variants.map((variant, key) => {
+                            return (
+                                <Button key={key} variant={variant}>
+                                    {variant}
+                                </Button>
+                            );
+                        })}
+                    </div>
+                    <div>
+                        {variants.map((variant, key) => {
+                            return (
+                                <Button key={key} disabled variant={variant}>
+                                    Disabled
+                                </Button>
+                            );
+                        })}
+                    </div>
+                    <div>
+                        {variants.map((variant, key) => {
+                            return (
+                                <Button className="outline" key={key} variant={variant}>
+                                    {variant}
+                                </Button>
+                            );
+                        })}
+                    </div>
+                    <div>
+                        {variants.map((variant, key) => {
+                            return (
+                                <Button className="small" key={key} variant={variant}>
+                                    Small
+                                </Button>
+                            );
+                        })}
+                    </div>
+                    <div>
+                        {variants.map((variant, key) => {
+                            return (
+                                <Button
+                                    key={key}
+                                    variant={variant}
+                                    onClick={() => this.loadingDummy(variant)}
+                                    loading={this.state[variant]}
+                                >
+                                    {variant} load
+                                </Button>
+                            );
+                        })}
+                    </div>
+                </nav>
             </div>
         );
     }

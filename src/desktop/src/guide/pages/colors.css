@@ -43,7 +43,7 @@
 }
 
 .chart {
-    background: var(--chart);
+    background: linear-gradient(to right, var(--body-bg), var(--chart));
 }
 .cta {
     background: var(--cta);
@@ -55,6 +55,13 @@
 }
 
 .input {
+    background: var(--input-bg);
+}
+.label {
+    color: var(--label);
+}
+.inputSecondary {
+    color: var(--input-secondary);
     background: var(--input-bg);
 }
 
