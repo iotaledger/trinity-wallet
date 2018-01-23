@@ -1,5 +1,5 @@
-import get from 'lodash/get';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import { isReceivedTransfer, getRelevantTransfer } from 'iota-wallet-shared-modules/libs/iota';
@@ -32,9 +32,18 @@ const styles = StyleSheet.create({
     },
 });
 
+/* eslint-disable react/prefer-stateless-function */
 class SimpleTransactionRow extends Component {
+    static propTypes = {
+        rowData: PropTypes.array.isRequired,
+        addresses: PropTypes.array.isRequired,
+        negativeColor: PropTypes.string.isRequired,
+        extraColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+    };
+
     render() {
-        const { t, rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor } = this.props;
+        const { rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor } = this.props;
         const transfer = getRelevantTransfer(rowData, addresses);
         const isReceived = isReceivedTransfer(rowData, addresses);
         const sign = isReceived ? '+' : '-';
@@ -70,4 +79,4 @@ class SimpleTransactionRow extends Component {
     }
 }
 
-module.exports = SimpleTransactionRow;
+export default SimpleTransactionRow;

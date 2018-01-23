@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { isAndroid } from '../util/device';
-import COLORS from '../theme/Colors';
 import BorderShadow from './borderShadow';
 
 import { width, height } from '../util/dimensions';
@@ -30,7 +29,7 @@ class Tabs extends Component {
     render() {
         const { children, onPress, currentRoute } = this.props;
 
-        const childComponents = Children.map(children, child =>
+        const childComponents = Children.map(children, (child) =>
             cloneElement(child, {
                 onPress: () => onPress(child.props.name),
                 isActive: child.props.name === currentRoute,
@@ -67,7 +66,7 @@ Tabs.propTypes = {
     currentRoute: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     currentRoute: state.home.childRoute,
 });
 
