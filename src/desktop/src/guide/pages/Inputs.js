@@ -4,7 +4,7 @@ import PasswordInput from 'components/UI/input/Password';
 import SeedInput from 'components/UI/input/Seed';
 import AmountInput from 'components/UI/input/Amount';
 import MessageInput from 'components/UI/input/Message';
-import Select from 'components/UI/Select';
+import Select from 'components/UI/input/Select';
 
 class Inputs extends React.PureComponent {
     state = {
@@ -17,7 +17,7 @@ class Inputs extends React.PureComponent {
     render() {
         return (
             <div>
-                <Select label="Select" defaultValue="en" onChange={(e) => {}}>
+                <Select label="Select" defaultValue="en" onChange={() => {}}>
                     <option value="en">English (International)</option>
                     <option value="ar">عربى - Arabic</option>
                     <option value="da">Dansk - Danish</option>

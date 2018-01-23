@@ -11,7 +11,8 @@
         position: relative;
         text-align: left;
         input,
-        textarea {
+        textarea,
+        select {
             font-family: 'Lato';
             font-weight: 200;
             font-size: var(--font-size-default);
@@ -22,9 +23,27 @@
             color: var(--input);
             padding: 6px 12px;
             resize: none;
+            -webkit-appearance: none;
             border-radius: 4px;
             &:focus {
                 outline: none;
+            }
+        }
+        select {
+            position: relative;
+            &:after {
+                content: '';
+                display: block;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 6px 4px 0 4px;
+                border-color: var(--body) transparent transparent transparent;
+                position: absolute;
+                right: 12px;
+                top: calc(50% - 2px);
+                opacity: 0.6;
+                pointer-event: none;
             }
         }
         small {
@@ -37,7 +56,8 @@
             transition: color 0.2s ease-out;
         }
         input:focus + small,
-        textarea:focus + small {
+        textarea:focus + small,
+        select:focus + small {
             color: var(--highlight);
         }
         a {
@@ -141,6 +161,32 @@
         border-radius: 2px;
         background: var(--input-secondary);
         transform: rotate(45deg);
+    }
+}
+
+.down {
+    position: relative;
+    opacity: 1;
+    z-index: 2;
+    pointer-events: none;
+    &:before {
+        display: none;
+    }
+    &:after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 6px 4px 0 4px;
+        border-color: var(--input-secondary) transparent transparent transparent;
+        position: absolute;
+        right: 12px;
+        top: calc(50% - 2px);
+        opacity: 0.6;
+    }
+    &:hover:after {
+        opacity: 1;
     }
 }
 

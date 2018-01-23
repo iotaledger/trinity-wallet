@@ -15,7 +15,7 @@ class ServerSelect extends React.PureComponent {
 
     state = {};
 
-    changeHandler = e => {
+    changeHandler = (e) => {
         const { target } = e;
         const { onChange, setFullNode } = this.props;
 
@@ -33,7 +33,7 @@ class ServerSelect extends React.PureComponent {
 
         return (
             <select defaultValue={fullNode} onChange={this.changeHandler}>
-                {availableNodes.map(node => (
+                {availableNodes.map((node) => (
                     <option key={node} value={node}>
                         {node}
                     </option>

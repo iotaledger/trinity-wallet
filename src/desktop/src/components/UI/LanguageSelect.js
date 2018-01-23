@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Select from 'components/UI/Select';
+import Select from 'components/UI/input/Select';
 import i18next from 'libs/i18next';
 import { setLocale } from 'actions/settings';
 
@@ -18,7 +18,7 @@ class LanguageSelect extends React.PureComponent {
         de: 'Deutsch',
     };
 
-    changeHandler = e => {
+    changeHandler = (e) => {
         const { target } = e;
         const { setLocale } = this.props;
         setLocale(target.value);
@@ -64,7 +64,7 @@ class LanguageSelect extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     locale: state.settings.locale,
 });
 
