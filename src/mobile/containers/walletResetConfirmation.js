@@ -87,18 +87,20 @@ class WalletResetConfirmation extends Component {
                             {t('walletResetConfirmation:cannotUndo')}
                         </Text>
                     </View>
-                    <View style={styles.infoTextWrapper}>
-                        <Image source={infoImagePath} style={styles.infoIcon} />
-                        <Trans i18nKey="walletResetConfirmation:infoText">
-                            <Text style={styles.infoText}>
-                                <Text style={styles.infoTextLight}>All of your wallet data including your </Text>
-                                <Text style={styles.infoTextRegular}>seeds, password,</Text>
-                                <Text style={styles.infoTextLight}> and </Text>
-                                <Text style={styles.infoTextRegular}>other account information</Text>
-                                <Text style={styles.infoTextLight}> will be lost.</Text>
-                            </Text>
-                        </Trans>
-                    </View>
+                    <InfoBox
+                        text={
+                            <Trans i18nKey="walletResetConfirmation:infoText">
+                                <Text style={[styles.infoText, textColor]}>
+                                    <Text style={styles.infoTextLight}>All of your wallet data including your </Text>
+                                    <Text style={styles.infoTextRegular}>seeds, password,</Text>
+                                    <Text style={styles.infoTextLight}> and </Text>
+                                    <Text style={styles.infoTextRegular}>other account information</Text>
+                                    <Text style={styles.infoTextLight}> will be lost.</Text>
+                                </Text>
+                            </Trans>
+                        }
+                        secondaryBackgroundColor={secondaryBackgroundColor}
+                    />
                     <View style={styles.confirmationTextWrapper}>
                         <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                     </View>
