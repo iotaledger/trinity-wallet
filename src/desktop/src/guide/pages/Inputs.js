@@ -6,8 +6,6 @@ import AmountInput from 'components/UI/input/Amount';
 import MessageInput from 'components/UI/input/Message';
 import Select from 'components/UI/Select';
 
-import css from './inputs.css';
-
 class Inputs extends React.PureComponent {
     state = {
         password: '',
