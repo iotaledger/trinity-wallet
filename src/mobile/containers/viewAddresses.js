@@ -18,6 +18,8 @@ class ViewAddresses extends Component {
     };
 
     copy(address) {
+        const { t } = this.props;
+
         Clipboard.setString(address);
         return this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
