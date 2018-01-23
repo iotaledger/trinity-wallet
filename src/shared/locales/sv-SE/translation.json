@@ -261,7 +261,7 @@
     },
     "welcome": {
         "thankYou": "Tack för att du använder IOTA plånboken.",
-        "weWillSpend": "Vi kommer att tillbringa de närmaste minuterna åt att konfigurera din plånbok.",
+        "weWillSpend": "Vi kommer att tillbringa de närmsta minuterna åt att konfigurera din plånbok.",
         "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig till att följa hela processen."
     },
     "writeSeedDown": {
