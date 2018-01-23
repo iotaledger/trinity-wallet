@@ -34,6 +34,7 @@ export const themes = {
         },
         chart: {
             color: tinycolor('#FFA25B').toHsl(),
+            secondary: tinycolor('#FFFFFF').toHsl(),
         },
         highlight: {
             color: tinycolor('#F7D002').toHsl(),
