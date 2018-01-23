@@ -7,7 +7,7 @@ import css from 'components/UI/input/Input.css';
 import Modal from 'components/UI/Modal';
 import Button from 'components/UI/Button';
 
-import Camera from 'images/camera-white.png';
+import Icon from 'components/UI/Icon';
 
 export default class SeedInput extends React.PureComponent {
     static propTypes = {
@@ -54,7 +54,7 @@ export default class SeedInput extends React.PureComponent {
             <div className={css.input}>
                 <fieldset>
                     <a onClick={this.openScanner}>
-                        <img src={Camera} alt="" />
+                        <Icon icon="camera" size={16} />
                     </a>
                     <input
                         type="text"
