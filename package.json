@@ -10,7 +10,8 @@
         "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../",
         "full-setup": "yarn && node full-setup.js",
         "start:desktop": "cd src/desktop && yarn start",
-        "start:mobile": "cd src/mobile && yarn start"
+        "start:mobile": "cd src/mobile && yarn start",
+        "start:styleguide": "cd src/desktop && yarn run styleguide"
     },
     "lint-staged": {
         "*.{js,json,css}": [
