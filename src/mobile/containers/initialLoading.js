@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text } from 'react-native';
+import { AsyncStorage, StyleSheet, View, Text } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
-import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import LottieView from 'lottie-react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import whiteWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-white.json';
@@ -12,6 +11,8 @@ import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
 import THEMES from '../theme/themes';
+import i18next from 'i18next';
+import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 
 const version = getVersion();
 const build = getBuildNumber();
@@ -35,12 +36,15 @@ class InitialLoading extends Component {
         this.animation.play();
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
     }
-
+    componentWillMount() {
+        const { language } = this.props;
+        i18next.changeLanguage(getLocaleFromLabel(language));
+    }
     onLoaded() {
         if (!this.props.onboardingComplete) {
             this.clearKeychain();
             this.props.navigator.push({
-                screen: 'welcome',
+                screen: 'languageSetup',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -64,7 +68,7 @@ class InitialLoading extends Component {
 
     clearKeychain() {
         if (isIOS) {
-            keychain.clear().catch(err => console.error(err)); // eslint-disable-line no-console
+            keychain.clear().catch((err) => console.error(err)); // eslint-disable-line no-console
         }
     }
 
@@ -80,7 +84,7 @@ class InitialLoading extends Component {
                 <View style={styles.logoContainer}>
                     <View style={styles.animationContainer}>
                         <LottieView
-                            ref={animation => {
+                            ref={(animation) => {
                                 this.animation = animation;
                             }}
                             source={welcomeAnimationPath}
@@ -130,10 +134,11 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     onboardingComplete: state.account.onboardingComplete,
     backgroundColor: state.settings.theme.backgroundColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    language: state.settings.language,
 });
 
 export default connect(mapStateToProps, null)(InitialLoading);

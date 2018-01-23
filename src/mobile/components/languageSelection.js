@@ -5,7 +5,7 @@ import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { detectLocale, selectLocale } from '../components/locale';
-import Dropdown from '../components/dropdown';
+import Dropdown from './dropdown';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 
 const { width } = Dimensions.get('window');
@@ -73,6 +73,7 @@ class LanguageSelection extends Component {
     static propTypes = {
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        setLanguage: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -82,13 +83,23 @@ class LanguageSelection extends Component {
     }
 
     saveLanguageSelection() {
-        const { backPress } = this.props;
-        i18next.changeLanguage(getLocaleFromLabel(this.languageSelected));
+        const { backPress, setLanguage } = this.props;
+        const nextLanguage = this.languageSelected;
+        setLanguage(nextLanguage);
+        i18next.changeLanguage(getLocaleFromLabel(nextLanguage));
         backPress();
     }
 
     render() {
-        const { backPress, t, textColor, secondaryBackgroundColor, tickImagePath, currencySelection } = this.props;
+        const {
+            backPress,
+            t,
+            textColor,
+            secondaryBackgroundColor,
+            arrowLeftImagePath,
+            tickImagePath,
+            language,
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -100,16 +111,16 @@ class LanguageSelection extends Component {
             >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.2 }} />
+                        <View style={{ flex: 0.4 }} />
                         <Dropdown
-                            onRef={c => {
+                            onRef={(c) => {
                                 this.dropdown = c;
                             }}
-                            title={this.languageSelected} //TODO: Ask if this is correct
+                            title={language}
                             dropdownWidth={styles.dropdownWidth}
-                            defaultOption={currentLanguageLabel}
+                            defaultOption={language}
                             options={I18N_LOCALE_LABELS}
-                            saveSelection={language => {
+                            saveSelection={(language) => {
                                 this.languageSelected = language;
                             }}
                             background

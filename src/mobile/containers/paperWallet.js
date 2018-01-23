@@ -11,7 +11,8 @@ import { iotaLogo, arrow } from 'iota-wallet-shared-modules/libs/html';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { isAndroid, isIOS } from '../util/device';
 import { width, height } from '../util/dimensions';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import iotaFullImagePath from 'iota-wallet-shared-modules/images/iota-full.png';
 import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-white.png';
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
@@ -276,12 +277,13 @@ class PaperWallet extends Component {
         const positiveColorText = { color: THEMES.getHSL(positiveColor) };
         const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
         const ctaTextColor = { color: secondaryCtaColor };
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <Image source={iotaImagePath} style={styles.iotaLogo} />
                     <Text style={[styles.infoText, textColor]}>
                         <Text style={styles.infoTextNormal}>{t('clickToPrint')}</Text>
                         <Text style={styles.infoTextBold}> {t('storeSafely')}</Text>

@@ -16,7 +16,6 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { round, VALID_SEED_REGEX, ADDRESS_LENGTH, parse } from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
@@ -40,6 +39,7 @@ import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import KeepAwake from 'react-native-keep-awake';
+import CustomTextInput from '../components/customTextInput';
 
 import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
@@ -75,8 +75,8 @@ class Send extends Component {
         ctaBorderColor: PropTypes.string.isRequired,
     };
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             denomination: 'i',
@@ -87,6 +87,8 @@ class Send extends Component {
             selectedSetting: '',
             modalContent: '',
             maxPressed: false,
+            maxColor: props.secondaryBackgroundColor,
+            maxText: 'SEND MAX',
         };
     }
 
@@ -99,30 +101,24 @@ class Send extends Component {
             KeepAwake.activate();
         } else if (this.props.isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
+            this.setState({ message: '', amount: '', address: '' });
         }
     }
 
     onDenominationPress() {
-        switch (this.state.denomination) {
-            case 'Mi':
-                this.setState({ denomination: 'Gi', maxPressed: false });
-                break;
-            case 'Gi':
-                this.setState({ denomination: 'Ti', maxPressed: false });
-                break;
-            case 'Ti':
-                this.setState({ denomination: currencySymbol, maxPressed: false });
-                break;
-            case currencySymbol:
-                this.setState({ denomination: 'i', maxPressed: false });
-                break;
-            case 'i':
-                this.setState({ denomination: 'Ki', maxPressed: false });
-                break;
-            case 'Ki':
-                this.setState({ denomination: 'Mi', maxPressed: false });
-                break;
-        }
+        const { secondaryBackgroundColor } = this.props;
+        const { denomination } = this.state;
+        const availableDenominations = ['i', 'Ki', 'Mi', 'Gi', 'Ti', currencySymbol];
+        const indexOfDenomination = availableDenominations.indexOf(denomination);
+        const nextDenomination =
+            indexOfDenomination === -1
+                ? availableDenominations[indexOfDenomination + 2]
+                : availableDenominations[indexOfDenomination + 1];
+        this.setState({
+            denomination: nextDenomination,
+            maxPressed: false,
+            maxColor: secondaryBackgroundColor,
+        });
     }
 
     onMaxPress() {
@@ -131,11 +127,22 @@ class Send extends Component {
         this.setState({
             amount: max,
             maxPressed: true,
+            maxColor: '#FF6C69',
+            maxText: 'MAXIMUM amount selected',
         });
     }
 
     onAmountType(amount) {
-        this.setState({ amount, maxPressed: false });
+        if (amount === (this.props.balance / this.getUnitMultiplier()).toString()) {
+            this.onMaxPress();
+        } else {
+            this.setState({
+                amount,
+                maxPressed: false,
+                maxColor: this.props.secondaryBackgroundColor,
+                maxText: 'SEND MAX',
+            });
+        }
     }
 
     isValidAddress(address) {
@@ -224,7 +231,7 @@ class Send extends Component {
         this.props.getFromKeychainRequest('send', 'makeTransaction');
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
                 if (get(credentials, 'data')) {
@@ -261,9 +268,9 @@ class Send extends Component {
 
     _showModal = () => this.setState({ isModalVisible: true });
 
-    _hideModal = callback =>
+    _hideModal = (callback) =>
         this.setState({ isModalVisible: false }, () => {
-            const callable = fn => isFunction(fn);
+            const callable = (fn) => isFunction(fn);
 
             if (callable(callback)) {
                 setTimeout(callback);
@@ -279,7 +286,7 @@ class Send extends Component {
             case 'qrScanner':
                 modalContent = (
                     <QRScanner
-                        onQRRead={data => this.onQRRead(data)}
+                        onQRRead={(data) => this.onQRRead(data)}
                         hideModal={() => this._hideModal()}
                         backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
                         ctaColor={THEMES.getHSL(this.props.ctaColor)}
@@ -297,11 +304,10 @@ class Send extends Component {
                 modalContent = (
                     <TransferConfirmationModal
                         amount={this.state.amount}
-                        clearOnSend={() => this.setState({ message: '', amount: '', address: '' })}
                         denomination={this.state.denomination}
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
-                        hideModal={callback => this._hideModal(callback)}
+                        hideModal={(callback) => this._hideModal(callback)}
                         backgroundColor={THEMES.getHSL(this.props.barColor)}
                         borderColor={{ borderColor: secondaryBackgroundColor }}
                         textColor={{ color: secondaryBackgroundColor }}
@@ -344,28 +350,21 @@ class Send extends Component {
                     message: data.message,
                 });
             }
+        }
+        if (data.match(/iota\:/)) {
+            // For codes with iota: at the front (TheTangle.org)
+            data = data.substring(5);
+            this.setState({
+                address: data,
+            });
         } else {
-            // For codes with plain text (Bitfinex and Binance)
+            // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.setState({
                 address: data,
             });
         }
 
         this._hideModal();
-    }
-
-    _renderMaximum() {
-        const { t } = this.props;
-
-        if (this.state.maxPressed) {
-            return (
-                <View style={{ justifyContent: 'center' }}>
-                    <Text style={styles.maxWarningText}>{t('maximumSelected')}</Text>
-                </View>
-            );
-        } else {
-            return null;
-        }
     }
 
     clearInteractions() {
@@ -424,100 +423,89 @@ class Send extends Component {
                     <View style={styles.emptyContainer} />
                     <View style={styles.topContainer}>
                         <View style={styles.fieldContainer}>
-                            <View style={styles.textFieldContainer}>
-                                <TextField
-                                    ref="address"
-                                    autoCapitalize={'characters'}
-                                    style={[styles.textField, textColor]}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={height / 55}
-                                    maxLength={90}
-                                    fontSize={height / 40}
-                                    height={height / 24}
-                                    labelPadding={2}
-                                    baseColor={secondaryBackgroundColor}
-                                    tintColor={THEMES.getHSL(negativeColor)}
-                                    enablesReturnKeyAutomatically={true}
-                                    returnKeyType="next"
-                                    label={t('recipientAddress')}
-                                    autoCorrect={false}
-                                    value={address}
-                                    onChangeText={address => this.setState({ address })}
-                                    onSubmitEditing={() => this.refs.amount.focus()}
-                                />
-                            </View>
-                            <View style={styles.buttonContainer}>
-                                <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
-                                    <View style={[styles.button, borderColor]}>
-                                        <Text style={[styles.qrText, textColor]}>{t('global:qr')}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
+                            <CustomTextInput
+                                onRef={(c) => {
+                                    this.addressField = c;
+                                }}
+                                maxLength={90}
+                                label={t('recipientAddress')}
+                                onChangeText={(address) => this.setState({ address })}
+                                containerStyle={{ width: width / 1.3 }}
+                                autoCapitalize={'characters'}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="next"
+                                onSubmitEditing={() => this.amountField.focus()}
+                                widget="qr"
+                                onQRPress={() => this.setModalContent('qrScanner')}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
+                                value={address}
+                            />
                         </View>
                         <View style={styles.fieldContainer}>
-                            <View style={styles.textFieldContainer}>
-                                <TextField
-                                    ref={'amount'}
-                                    keyboardType={'numeric'}
-                                    style={[styles.textField, textColor]}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={height / 55}
-                                    fontSize={height / 40}
-                                    height={height / 24}
-                                    labelPadding={2}
-                                    baseColor={secondaryBackgroundColor}
-                                    enablesReturnKeyAutomatically={true}
-                                    returnKeyType="next"
-                                    label={t('amount')}
-                                    tintColor={THEMES.getHSL(negativeColor)}
-                                    autoCorrect={false}
-                                    value={amount}
-                                    onChangeText={amount => this.onAmountType(amount)}
-                                    onSubmitEditing={() => this.refs.message.focus()}
-                                />
-                            </View>
+                            <CustomTextInput
+                                onRef={(c) => {
+                                    this.amountField = c;
+                                }}
+                                keyboardType={'numeric'}
+                                label={t('amount')}
+                                onChangeText={(amount) => this.onAmountType(amount)}
+                                containerStyle={{ width: width / 1.3 }}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="next"
+                                onSubmitEditing={() => this.messageField.focus()}
+                                widget="denomination"
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
+                                denominationText={this.state.denomination}
+                                onDenominationPress={(event) => this.onDenominationPress()}
+                                value={amount}
+                            />
                             <Text style={[styles.conversionText, textColor]}>
                                 {' '}
                                 {this.state.denomination === currencySymbol
                                     ? this.getConversionTextFiat()
                                     : this.getConversionTextIota()}{' '}
                             </Text>
-                            <View style={styles.buttonContainer}>
-                                <TouchableOpacity onPress={event => this.onDenominationPress()}>
-                                    <View style={[styles.button, borderColor]}>
-                                        <Text style={[styles.buttonText, textColor]}> {this.state.denomination} </Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
                         </View>
                         <View style={styles.maxContainer}>
-                            <View style={styles.maxButtonContainer}>
-                                <TouchableOpacity onPress={event => this.onMaxPress()}>
-                                    <View style={[styles.maxButton, borderColor]}>
-                                        <Text style={[styles.maxButtonText, textColor]}>{t('max')}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                            {this._renderMaximum()}
+                            <TouchableOpacity onPress={(event) => this.onMaxPress()}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <View
+                                        style={[
+                                            {
+                                                width: width / 20,
+                                                borderRadius: width / 40,
+                                                height: width / 20,
+                                                marginRight: width / 50,
+                                                opacity: 0.8,
+                                            },
+                                            { backgroundColor: this.state.maxColor },
+                                        ]}
+                                    />
+                                    <Text style={[styles.maxButtonText, { color: this.state.maxColor }]}>
+                                        {this.state.maxText}
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
                         </View>
                         <View style={styles.messageFieldContainer}>
-                            <TextField
-                                ref={'message'}
-                                style={[styles.textField, textColor]}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
-                                height={height / 24}
-                                labelPadding={2}
-                                baseColor={secondaryBackgroundColor}
-                                enablesReturnKeyAutomatically={true}
-                                returnKeyType="send"
+                            <CustomTextInput
+                                onRef={(c) => {
+                                    this.messageField = c;
+                                }}
                                 label={t('message')}
-                                tintColor={THEMES.getHSL(negativeColor)}
+                                onChangeText={(message) => this.setState({ message })}
+                                containerStyle={{ width: width / 1.3 }}
                                 autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="send"
+                                onSubmitEditing={() => this.setModalContent('transferConfirmation')}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
                                 value={message}
-                                onChangeText={message => this.setState({ message })}
-                                onSubmitEditing={() => this.onSendPress()}
                             />
                         </View>
                     </View>
@@ -526,11 +514,11 @@ class Send extends Component {
                             !this.props.isGettingSensitiveInfoToMakeTransaction && (
                                 <View style={styles.sendButtonContainer}>
                                     <TouchableOpacity
-                                        onPress={event => {
+                                        onPress={(event) => {
                                             this.setModalContent('transferConfirmation');
-                                            this.refs.address.blur();
-                                            this.refs.amount.blur();
-                                            this.refs.message.blur();
+                                            this.addressField.blur();
+                                            this.amountField.blur();
+                                            this.messageField.blur();
                                         }}
                                     >
                                         <View
@@ -602,12 +590,12 @@ const styles = StyleSheet.create({
         height: height / 5,
     },
     emptyContainer: {
-        flex: 0.3,
+        flex: 0.5,
     },
     topContainer: {
-        paddingHorizontal: width / 10,
-        flex: 2.5,
+        flex: 3.6,
         justifyContent: 'flex-end',
+        alignItems: 'center',
     },
     midContainer: {
         flex: 1.4,
@@ -620,50 +608,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     fieldContainer: {
-        flexDirection: 'row',
-        flex: 1,
-        alignItems: 'flex-end',
+        flex: 0.8,
+        alignItems: 'center',
     },
-    textFieldContainer: {
-        flex: 1,
-        paddingRight: width / 30,
-        paddingTop: 1,
+    maxContainer: {
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        width: width / 1.3,
+        flex: 0.3,
+        paddingLeft: 1,
     },
     messageFieldContainer: {
         flex: 0.7,
         justifyContent: 'center',
-    },
-    maxButtonContainer: {
-        flex: 0.5,
-        justifyContent: 'flex-end',
-        alignItems: 'flex-start',
-    },
-    textField: {
-        fontFamily: 'Lato-Light',
-    },
-    button: {
-        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 0.8,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 6.5,
-        height: height / 16,
-    },
-    qrText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
-        backgroundColor: 'transparent',
-    },
-    buttonText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
-        backgroundColor: 'transparent',
-    },
-    buttonContainer: {
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        paddingBottom: height / 110,
     },
     sendButton: {
         borderRadius: GENERAL.borderRadius,
@@ -685,44 +643,17 @@ const styles = StyleSheet.create({
     sendButtonContainer: {
         alignItems: 'center',
     },
-    separator: {
-        flex: 1,
-        height: 15,
-    },
     conversionText: {
         fontFamily: 'Lato-Light',
         backgroundColor: 'transparent',
         position: 'absolute',
-        bottom: height / 45,
-        right: width / 4.6,
-    },
-    maxContainer: {
-        justifyContent: 'flex-start',
-        marginTop: height / 150,
-        flexDirection: 'row',
-        alignItems: 'center',
+        bottom: height / 27.5,
+        right: width / 7.8,
     },
     maxButtonText: {
         fontFamily: 'Lato-Regular',
-        fontSize: width / 29.6,
+        fontSize: width / 31.8,
         backgroundColor: 'transparent',
-    },
-    maxWarningText: {
-        color: '#FF6C69',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 29.6,
-        backgroundColor: 'transparent',
-        marginLeft: width / 30,
-        justifyContent: 'center',
-    },
-    maxButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 0.8,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 6,
-        height: height / 16,
     },
     infoText: {
         fontFamily: 'Lato-Light',
@@ -742,7 +673,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),

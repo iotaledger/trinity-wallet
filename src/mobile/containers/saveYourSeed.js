@@ -5,7 +5,8 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
@@ -45,7 +46,7 @@ class SaveYourSeed extends Component {
         if (newProps.tempAccount.copiedToClipboard) {
             this.timeout = setTimeout(() => {
                 this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
-            }, 500);
+            }, 250);
             this.props.setCopiedToClipboard(false);
         }
     }
@@ -106,12 +107,13 @@ class SaveYourSeed extends Component {
         const textColor = { color: secondaryBackgroundColor };
         const extraColorText = { color: THEMES.getHSL(extraColor) };
         const extraColorBorder = { borderColor: THEMES.getHSL(extraColor) };
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <Image source={iotaImagePath} style={styles.iotaLogo} />
                     <Text style={[styles.infoText, textColor]}>
                         <Text style={styles.infoTextNormal}>{t('mustSaveYourSeed')}</Text>
                         <Text style={styles.infoTextBold}>{t('atLeastOne')}</Text>
@@ -120,7 +122,7 @@ class SaveYourSeed extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ paddingTop: height / 20 }}>
-                        <TouchableOpacity onPress={event => this.onWriteClick()}>
+                        <TouchableOpacity onPress={(event) => this.onWriteClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:manualCopy').toUpperCase()}
@@ -129,7 +131,7 @@ class SaveYourSeed extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={event => this.onPrintClick()}>
+                        <TouchableOpacity onPress={(event) => this.onPrintClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:paperWallet').toUpperCase()}
@@ -138,7 +140,7 @@ class SaveYourSeed extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={event => this.onCopyClick()}>
+                        <TouchableOpacity onPress={(event) => this.onCopyClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:copyToClipboard').toUpperCase()}
@@ -225,7 +227,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     extraColor: state.settings.theme.extraColor,
