@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'components/UI/Button';
 import css from './buttons.css';
 
-const variants = ['primary', 'secondary', 'warning', 'extra'];
+const variants = ['primary', 'secondary', 'warning', 'extra', 'highlight'];
 
 class Buttons extends React.PureComponent {
     state = {};
@@ -45,9 +45,6 @@ class Buttons extends React.PureComponent {
                         </Button>
                     );
                 })}
-                <Button className="outline" key="highlight" variant="highlight">
-                    Highlight
-                </Button>
                 <hr />
                 {variants.map((variant, key) => {
                     return (
