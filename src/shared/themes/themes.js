@@ -34,7 +34,6 @@ export const themes = {
         },
         chart: {
             color: tinycolor('#FFA25B').toHsl(),
-            secondary: tinycolor('#FFFFFF').toHsl(),
         },
         highlight: {
             color: tinycolor('#F7D002').toHsl(),
@@ -282,6 +281,10 @@ export const themes = {
 
 export const getHSL = (color) => {
     return tinycolor(color).toHslString();
+};
+
+export const hslToCSS = (hsla) => {
+    return `hsla(${Math.round(hsla.h)},${Math.round(hsla.s * 100)}%,${Math.round(hsla.l * 100)}%,${hsla.a})`;
 };
 
 export default {
