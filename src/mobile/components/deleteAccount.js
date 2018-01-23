@@ -10,6 +10,84 @@ import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { translate } from 'react-i18next';
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    modalContent: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderRadius: GENERAL.borderRadius,
+        borderWidth: 2,
+        paddingVertical: height / 18,
+        width: width / 1.15,
+    },
+    topContainer: {
+        flex: 9,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    bottomContainer: {
+        flex: 1,
+        width: width,
+        paddingHorizontal: width / 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    textContainer: {
+        flex: 2.5,
+        justifyContent: 'space-around',
+        paddingHorizontal: width / 15,
+    },
+    itemLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: height / 50,
+        justifyContent: 'flex-start',
+    },
+    itemRight: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: height / 50,
+        justifyContent: 'flex-end',
+    },
+    iconLeft: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
+    },
+    titleTextLeft: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+    },
+    iconRight: {
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
+    },
+    infoText: {
+        fontFamily: Fonts.secondary,
+        fontSize: width / 25.9,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    warningText: {
+        fontFamily: Fonts.secondary,
+        fontSize: width / 25.9,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+});
+
 class DeleteAccount extends Component {
     constructor() {
         super();
@@ -167,83 +245,5 @@ class DeleteAccount extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    modalContent: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
-        borderWidth: 2,
-        paddingVertical: height / 18,
-        width: width / 1.15,
-    },
-    topContainer: {
-        flex: 9,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    bottomContainer: {
-        flex: 1,
-        width: width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    textContainer: {
-        flex: 2.5,
-        justifyContent: 'space-around',
-        paddingHorizontal: width / 15,
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: height / 50,
-        justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: height / 50,
-        justifyContent: 'flex-end',
-    },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
-    },
-    titleTextLeft: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-    },
-    iconRight: {
-        width: width / 28,
-        height: width / 28,
-    },
-    titleTextRight: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
-    },
-    infoText: {
-        fontFamily: Fonts.secondary,
-        fontSize: width / 25.9,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    warningText: {
-        fontFamily: Fonts.secondary,
-        fontSize: width / 25.9,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-});
 
 export default translate(['deleteAccount', 'global'])(DeleteAccount);

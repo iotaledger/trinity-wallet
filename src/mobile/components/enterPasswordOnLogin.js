@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
-import OnboardingButtons from '../components/onboardingButtons';
-import CustomTextInput from '../components/customTextInput';
+import OnboardingButtons from './onboardingButtons';
+import CustomTextInput from './customTextInput';
 
 const styles = StyleSheet.create({
     topContainer: {
