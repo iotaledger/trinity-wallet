@@ -18,6 +18,8 @@ import {
     setNewUnconfirmedBundleTails,
     updateUnconfirmedBundleTails,
     removeBundleFromUnconfirmedBundleTails,
+    setPendingTransactionTailsHashesForAccount,
+    updateTransfers,
 } from './account';
 import { getFirstConsistentTail, isWithinADay } from '../libs/promoter';
 import {
@@ -192,6 +194,23 @@ export const fetchChartData = () => {
     };
 };
 
+/**
+ *   Poll for updated account information.
+ *   - Starts by checking if there are pending transaction hashes. In case there are it would grab persistence on those.
+ *   - Checks for latest addresses.
+ *   - Grabs balance on latest addresses
+ *   - Grabs transaction hashes on all unspent addresses
+ *   - Checks if there are new transaction hashes by comparing it with a local copy of transaction hashes.
+ *     In case there are new hashes, constructs the bundle and dispatch with latest account information
+ *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
+ *
+ *   @method getAccountInfo
+ *   @param {string} seed
+ *   @param {string} accountName
+ *   @param {object} [navigator=null]
+ *   @returns {function} dispatch
+ **/
+
 export const getAccountInfo = (seed, accountName) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
@@ -217,9 +236,12 @@ export const getAccountInfo = (seed, accountName) => {
             transfers: selectedAccount.transfers,
         };
 
-        const checkConfirmationForPendingTxs = () => {
+        const checkConfirmationForPendingTxsAndLatestAddresses = () => {
+            const addressSearchIndex = Object.keys(payload.addresses).length
+                ? Object.keys(payload.addresses).length - 1
+                : 0;
             if (isEmpty(pendingTxTailsHashes)) {
-                return Promise.resolve(getTotalBalance(Object.keys(payload.addresses)));
+                return Promise.resolve(getLatestAddresses(seed, addressSearchIndex));
             }
 
             return Promise.resolve(getHashesWithPersistence(pendingTxTailsHashes))
@@ -227,6 +249,7 @@ export const getAccountInfo = (seed, accountName) => {
                     return getConfirmedTxTailsHashes(states, hashes);
                 })
                 .then((confirmedHashes) => {
+                    console.log('Confirmed hashes');
                     if (!isEmpty(confirmedHashes)) {
                         payload = assign({}, payload, {
                             transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
@@ -237,20 +260,18 @@ export const getAccountInfo = (seed, accountName) => {
                         });
                     }
 
-                    return Promise.resolve(getTotalBalance(Object.keys(payload.addresses)));
+                    return Promise.resolve(getLatestAddresses(seed, addressSearchIndex));
                 });
         };
 
-        return checkConfirmationForPendingTxs()
-            .then((balance) => {
-                payload = assign({}, payload, { balance });
-
-                const index = Object.keys(payload.addresses).length ? Object.keys(payload.addresses).length - 1 : 0;
-
-                return getLatestAddresses(seed, index);
-            })
+        return checkConfirmationForPendingTxsAndLatestAddresses()
             .then((addressData) => {
                 payload = merge({}, payload, { addresses: addressData });
+
+                return getTotalBalance(Object.keys(payload.addresses));
+            })
+            .then((balance) => {
+                payload = assign({}, payload, { balance });
 
                 const unspentAddresses = getUnspentAddresses(payload.addresses);
                 if (isEmpty(unspentAddresses)) {
@@ -310,6 +331,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
     // Create a copy so you can mutate easily
     let consistentTails = map(tails, clone);
     let allTails = map(tails, clone);
+    const txAccount = get(tails, '[0].account');
 
     const alertArguments = (title, message, status = 'success') => [status, title, message];
 
@@ -318,6 +340,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
 
         return iota.api.promoteTransaction(tail.hash, 3, 14, spamTransfer, { interrupt: false, delay: 0 }, (err) => {
             if (err) {
+                console.log(err);
                 if (err.message.indexOf('Inconsistent subtangle') > -1) {
                     consistentTails = filter(consistentTails, (t) => t.hash !== tail.hash);
 
@@ -358,7 +381,11 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
         });
 
         if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
-            dispatch(updateUnconfirmedBundleTails({ [bundle]: tailsFromLatestTransactionObjects }));
+            dispatch(
+                updateUnconfirmedBundleTails({
+                    [bundle]: map(tailsFromLatestTransactionObjects, (t) => ({ ...t, account: txAccount })),
+                }),
+            );
 
             // Assign updated tails to the local copy
             allTails = tailsFromLatestTransactionObjects;
@@ -395,12 +422,40 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                             ),
                         );
 
-                        const newTail = filter(newTxs, (t) => t.currentIndex === 0);
+                        const newTxsWithAccount = map(newTxs, (t) => ({ ...t, account: txAccount }));
+                        const newTail = filter(newTxsWithAccount, (t) => t.currentIndex === 0);
                         // Update local copy for all tails
                         allTails = concat([], newTail, allTails);
 
                         // Probably unnecessary at this point
                         consistentTails = concat([], newTail, consistentTails);
+
+                        // Update pendingTxTailHashes with the new reattachment
+                        // Also transfers. Possible reattachment to get confirmed.
+                        const selectedAccountInfo = getSelectedAccount(txAccount, getState().account.accountInfo);
+                        const existingTransfers = selectedAccountInfo.transfers;
+                        const existingPendingTxTailHashes = getPendingTxTailsHashesForSelectedAccount(
+                            txAccount,
+                            getState().account.pendingTxTailsHashes,
+                        );
+
+                        const newTransferBundleWithPersistenceAndTransferValue = map(newTxs, (bundle) => ({
+                            ...bundle,
+                            ...{ transferValue: bundle.value, persistence: false },
+                        }));
+                        const updatedTransfers = [
+                            ...[newTransferBundleWithPersistenceAndTransferValue],
+                            ...existingTransfers,
+                        ];
+
+                        dispatch(
+                            setPendingTransactionTailsHashesForAccount({
+                                accountName: txAccount,
+                                pendingTxTailsHashes: union(existingPendingTxTailHashes, newTail),
+                            }),
+                        );
+                        dispatch(updateTransfers(txAccount, updatedTransfers));
+
                         const existingBundlesInStore = getState().account.unconfirmedBundleTails;
 
                         const updateBundles = merge({}, existingBundlesInStore, { [bundle]: allTails });

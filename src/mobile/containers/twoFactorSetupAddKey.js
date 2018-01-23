@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
+        paddingTop: height / 22,
         width,
     },
     midWrapper: {
@@ -42,25 +42,12 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
-    subHeaderWrapper: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     subHeaderText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
         marginBottom: height / 15,
-    },
-    infoTextWrapper: {
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingHorizontal: width / 16,
-        paddingVertical: width / 12,
-        borderRadius: GENERAL.borderRadiusLarge,
-        borderWidth: 1,
-        borderStyle: 'dotted',
     },
     infoText: {
         fontSize: width / 27.6,
@@ -73,20 +60,9 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
-    confirmationTextWrapper: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    confirmationText: {
-        fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
-        paddingBottom: height / 70,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
     iotaLogo: {
-        height: width / 7,
-        width: width / 7,
+        height: width / 5,
+        width: width / 5,
     },
     qrContainer: {
         backgroundColor: 'white',
@@ -166,7 +142,6 @@ class TwoFactorSetupAddKey extends Component {
         const { t, negativeColor, secondaryBackgroundColor } = this.props;
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
         const textColor = { color: secondaryBackgroundColor };
-        const borderColor = { borderColor: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
@@ -177,28 +152,22 @@ class TwoFactorSetupAddKey extends Component {
                     <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midWrapper}>
-                    <View style={{ flex: 0.1 }} />
-                    <View style={{ flex: 1, justifyContent: 'flex-start' }}>
-                        <View style={styles.subHeaderWrapper}>
-                            <Text style={[styles.subHeaderText, textColor]}>Add this key to your 2FA app</Text>
-                        </View>
-                        <View style={[styles.infoTextWrapper, borderColor]}>
-                            <View style={styles.qrContainer}>
-                                <QRCode
-                                    value={authenticator.generateTotpUri(this.state.authkey, 'Trinity Wallet Mobile')}
-                                    size={height / 5}
-                                    bgColor="#000"
-                                    fgColor="#FFF"
-                                />
-                            </View>
-                            <TouchableOpacity onPress={() => this.onKeyPress(this.state.authkey)}>
-                                <Text style={[styles.infoText, textColor]}>
-                                    <Text style={styles.infoText}>Key: </Text>
-                                    <Text style={styles.infoTextLight}>{this.state.authkey}</Text>
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
+                    <View style={{ flex: 0.4 }} />
+                    <Text style={[styles.subHeaderText, textColor]}>Add this key to your 2FA app</Text>
+                    <View style={styles.qrContainer}>
+                        <QRCode
+                            value={authenticator.generateTotpUri(this.state.authkey, 'Trinity Wallet Mobile')}
+                            size={height / 5}
+                            bgColor="#000"
+                            fgColor="#FFF"
+                        />
                     </View>
+                    <TouchableOpacity onPress={() => this.onKeyPress(this.state.authkey)}>
+                        <Text style={[styles.infoText, textColor]}>
+                            <Text style={styles.infoText}>Key: </Text>
+                            <Text style={styles.infoTextLight}>{this.state.authkey}</Text>
+                        </Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.bottomWrapper}>
                     <OnboardingButtons
@@ -217,7 +186,7 @@ const mapDispatchToProps = {
     set2FAKey,
     generateAlert,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,

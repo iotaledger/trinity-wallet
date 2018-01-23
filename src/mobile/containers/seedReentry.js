@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
-
-import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
-import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import InfoBox from '../components/infoBox';
+import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -63,7 +63,7 @@ class SeedReentry extends Component {
         const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
-        const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
@@ -73,38 +73,36 @@ class SeedReentry extends Component {
                         <View style={styles.container}>
                             <View style={styles.topContainer}>
                                 <View style={styles.logoContainer}>
-                                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
-                                </View>
-                                <View style={styles.titleContainer}>
-                                    <Text style={[styles.title, textColor]}>{t('global:enterSeed')}</Text>
+                                    <Image source={iotaImagePath} style={styles.iotaLogo} />
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
-                                <TextField
-                                    style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={width / 31.8}
-                                    fontSize={width / 20.7}
-                                    labelPadding={3}
-                                    baseColor={secondaryBackgroundColor}
+                                <View style={{ flex: 0.5 }} />
+                                <CustomTextInput
                                     label={t('global:seed')}
-                                    tintColor={THEMES.getHSL(negativeColor)}
-                                    autoCapitalize={'characters'}
+                                    onChangeText={(seed) => this.setState({ seed: seed.toUpperCase() })}
+                                    containerStyle={{ width: width / 1.36 }}
+                                    maxLength={MAX_SEED_LENGTH}
+                                    autoCapitalize={'none'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
-                                    value={seed}
-                                    onChangeText={seed => this.setState({ seed })}
-                                    containerStyle={{
-                                        width: width / 1.4,
-                                    }}
                                     onSubmitEditing={() => this.onDonePress()}
+                                    secondaryBackgroundColor={secondaryBackgroundColor}
+                                    negativeColor={negativeColor}
+                                    value={seed}
                                 />
-                                <View style={[styles.infoTextContainer, borderColor]}>
-                                    <Image source={infoImagePath} style={styles.infoIcon} />
-                                    <Text style={[styles.infoText, textColor]}>{t('thisIsACheck')}</Text>
-                                    <Text style={[styles.infoText, textColor]}>{t('ifYouHaveNotSaved')}</Text>
-                                </View>
+                                <View style={{ flex: 0.3 }} />
+                                <InfoBox
+                                    text={
+                                        <View>
+                                            <Text style={[styles.infoText, textColor]}>{t('thisIsACheck')}</Text>
+                                            <Text style={[styles.infoText, textColor]}>{t('ifYouHaveNotSaved')}</Text>
+                                        </View>
+                                    }
+                                    secondaryBackgroundColor={secondaryBackgroundColor}
+                                />
+                                <View style={{ flex: 0.5 }} />
                             </View>
                             <View style={styles.bottomContainer}>
                                 <OnboardingButtons
@@ -130,18 +128,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.2,
+        flex: 0.5,
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 3.8,
+        flex: 3.7,
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: height / 8,
         width,
     },
     bottomContainer: {
-        flex: 1.7,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -161,21 +158,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    infoTextContainer: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.6,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingHorizontal: width / 30,
-        borderStyle: 'dotted',
-        paddingVertical: height / 35,
-    },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'center',
-        paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     warningText: {
@@ -188,10 +174,6 @@ const styles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
-    },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
     },
     qrImage: {
         height: width / 28,
@@ -228,7 +210,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,

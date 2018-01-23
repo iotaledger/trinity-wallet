@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { Navigation } from 'react-native-navigation';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import QRCode from 'react-native-qrcode-svg';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
+        paddingTop: height / 22,
         width,
     },
     midWrapper: {
@@ -42,10 +42,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
-    subHeaderWrapper: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     subHeaderText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
@@ -54,8 +50,8 @@ const styles = StyleSheet.create({
         marginBottom: height / 8,
     },
     iotaLogo: {
-        height: width / 7,
-        width: width / 7,
+        height: width / 5,
+        width: width / 5,
     },
 });
 
@@ -140,28 +136,20 @@ class TwoFactorSetupEnterToken extends Component {
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                     </View>
                     <View style={styles.midWrapper}>
-                        <View style={{ flex: 0.1 }} />
-                        <View style={{ alignItems: 'center', flex: 1 }}>
-                            <Text style={[styles.subHeaderText, textColor]}>Enter the token from your 2FA app</Text>
-                            <View style={styles.textfieldsContainer}>
-                                <TextField
-                                    style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={width / 31.8}
-                                    fontSize={width / 20.7}
-                                    labelPadding={3}
-                                    baseColor={secondaryBackgroundColor}
-                                    label="Token"
-                                    tintColor={THEMES.getHSL(negativeColor)}
-                                    autoCorrect={false}
-                                    onChangeText={code => this.setState({ code })}
-                                    containerStyle={{
-                                        width: width / 1.36,
-                                    }}
-                                    onSubmitEditing={this.check2FA}
-                                />
-                            </View>
-                        </View>
+                        <View style={{ flex: 0.25 }} />
+                        <Text style={[styles.subHeaderText, textColor]}>Enter the token from your 2FA app</Text>
+                        <CustomTextInput
+                            label="Token"
+                            onChangeText={(code) => this.setState({ code })}
+                            containerStyle={{ width: width / 1.36 }}
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="done"
+                            onSubmitEditing={this.check2FA}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            negativeColor={negativeColor}
+                        />
                     </View>
                     <View style={styles.bottomWrapper}>
                         <OnboardingButtons
@@ -182,7 +170,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
