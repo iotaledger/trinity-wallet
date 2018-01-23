@@ -15,10 +15,8 @@ class WalletSetup extends React.PureComponent {
         return (
             <Template>
                 <Content>
-                    <p>{t('walletSetup:okay')}</p>
-                    <p>
-                        <strong>{t('walletSetup:doYouAlreadyHaveASeed')}</strong>
-                    </p>
+                    <h2>{t('walletSetup:okay')}</h2>
+                    <p>{t('walletSetup:doYouAlreadyHaveASeed')}</p>
                     <Infobox>
                         <p>{t('walletSetup:seedExplanation')}</p>
                         <p>
