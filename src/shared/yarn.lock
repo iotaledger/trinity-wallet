@@ -846,6 +846,15 @@ iota.lib.js@^0.4.6:
     crypto-js "^3.1.9-1"
     xmlhttprequest "^1.8.0"
 
+"iota.lib.js@https://github.com/rajivshah3/iota.lib.js#rn-hotfix":
+  version "0.4.6"
+  resolved "https://github.com/rajivshah3/iota.lib.js#05feb30ad8ab4ab2c40718e83d1e70c6570125ca"
+  dependencies:
+    async "^2.5.0"
+    bignumber.js "^4.1.0"
+    crypto-js "^3.1.9-1"
+    xmlhttprequest "^1.8.0"
+
 is-finite@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-finite/-/is-finite-1.0.2.tgz#cc6677695602be550ef11e8b4aa6305342b6d0aa"
