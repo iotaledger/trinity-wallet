@@ -55,7 +55,7 @@
         "cannotPerformActionExplanation": "转到高级设置以重置钱包。",
         "attachToTangleUnavailable": "无法连接到Tangle",
         "attachToTangleUnavailableExplanation": "连接到Tangle的功能在选定的节点上无法使用",
-        "wallet": "Wallet"
+        "wallet": "钱包"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -148,7 +148,7 @@
     "receive": {
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "新地址",
         "message": "可选消息",
         "removeMessage": "移除消息"
     },
