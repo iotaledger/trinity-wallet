@@ -2,83 +2,9 @@ import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import CustomTextInput from '../components/customTextInput';
-import { width, height } from '../util/dimensions';
-import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import { translate } from 'react-i18next';
-
-export class EditAccountName extends Component {
-    static propTypes = {
-        t: PropTypes.func.isRequired,
-        seedIndex: PropTypes.number.isRequired,
-        accountName: PropTypes.string.isRequired,
-        saveAccountName: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired,
-    };
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            accountName: props.accountName,
-        };
-    }
-
-    componentWillReceiveProps(newProps) {
-        if (this.props.accountName !== newProps.accountName) {
-            this.setState({ accountName: newProps.accountName });
-        }
-    }
-
-    render() {
-        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, tickImagePath, negativeColor } = this.props;
-
-        return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.container}>
-                    <View style={styles.topContainer}>
-                        <View style={styles.textFieldContainer}>
-                            <CustomTextInput
-                                label={t('accountName')}
-                                onChangeText={(accountName) => this.setState({ accountName })}
-                                containerStyle={{ width: width / 1.36 }}
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="done"
-                                onSubmitEditing={() => this.props.saveAccountName(trim(this.state.accountName))}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
-                                value={this.state.accountName}
-                            />
-                        </View>
-                        <View style={styles.saveButtonContainer} />
-                    </View>
-                    <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={(event) => this.props.backPress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.props.saveAccountName(trim(this.state.accountName))}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                <Image source={tickImagePath} style={styles.iconRight} />
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </TouchableWithoutFeedback>
-        );
-    }
-}
+import CustomTextInput from './customTextInput';
+import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -146,5 +72,78 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
 });
+
+export class EditAccountName extends Component {
+    static propTypes = {
+        t: PropTypes.func.isRequired,
+        seedIndex: PropTypes.number.isRequired,
+        accountName: PropTypes.string.isRequired,
+        saveAccountName: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+    };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            accountName: props.accountName,
+        };
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (this.props.accountName !== newProps.accountName) {
+            this.setState({ accountName: newProps.accountName });
+        }
+    }
+
+    render() {
+        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, tickImagePath, negativeColor } = this.props;
+
+        return (
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.container}>
+                    <View style={styles.topContainer}>
+                        <View style={styles.textFieldContainer}>
+                            <CustomTextInput
+                                label={t('accountName')}
+                                onChangeText={(accountName) => this.setState({ accountName })}
+                                containerStyle={{ width: width / 1.36 }}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
+                                onSubmitEditing={() => this.props.saveAccountName(trim(this.state.accountName))}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
+                                value={this.state.accountName}
+                            />
+                        </View>
+                        <View style={styles.saveButtonContainer} />
+                    </View>
+                    <View style={styles.bottomContainer}>
+                        <TouchableOpacity
+                            onPress={(event) => this.props.backPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.itemLeft}>
+                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => this.props.saveAccountName(trim(this.state.accountName))}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.itemRight}>
+                                <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
+                                <Image source={tickImagePath} style={styles.iconRight} />
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </TouchableWithoutFeedback>
+        );
+    }
+}
 
 export default translate(['addAdditionalSeed', 'global'])(EditAccountName);
