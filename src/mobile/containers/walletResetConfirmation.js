@@ -89,13 +89,15 @@ class WalletResetConfirmation extends Component {
                     </View>
                     <InfoBox
                         text={
-                            <Text style={[styles.infoText, textColor]}>
-                                <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextOne')} </Text>
-                                <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextTwo')} </Text>
-                                <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextThree')} </Text>
-                                <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextFour')} </Text>
-                                <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextFive')}</Text>
-                            </Text>
+                            <Trans i18nKey="walletResetConfirmation:infoText">
+                                <Text style={[styles.infoText, textColor]}>
+                                    <Text style={styles.infoTextLight}>All of your wallet data including your </Text>
+                                    <Text style={styles.infoTextRegular}>seeds, password,</Text>
+                                    <Text style={styles.infoTextLight}> and </Text>
+                                    <Text style={styles.infoTextRegular}>other account information</Text>
+                                    <Text style={styles.infoTextLight}> will be lost.</Text>
+                                </Text>
+                            </Trans>
                         }
                         secondaryBackgroundColor={secondaryBackgroundColor}
                     />
