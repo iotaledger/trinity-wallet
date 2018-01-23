@@ -351,7 +351,7 @@ class Send extends Component {
                 });
             }
         }
-        if (data.match(/iota:/)) {
+        if (data.match(/iota\:/)) {
             // For codes with iota: at the front (TheTangle.org)
             data = data.substring(5);
             this.setState({
@@ -496,7 +496,6 @@ class Send extends Component {
                                 onRef={(c) => {
                                     this.messageField = c;
                                 }}
-                                keyboardType={'numeric'}
                                 label={t('message')}
                                 onChangeText={(message) => this.setState({ message })}
                                 containerStyle={{ width: width / 1.3 }}
