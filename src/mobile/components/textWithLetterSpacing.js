@@ -30,7 +30,7 @@ TextWithLetterSpacing.propTypes = {
     children: PropTypes.string.isRequired,
     spacing: PropTypes.number.isRequired,
     viewStyle: PropTypes.object,
-    textStyle: PropTypes.object,
+    textStyle: PropTypes.array,
 };
 
 export default TextWithLetterSpacing;

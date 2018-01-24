@@ -318,7 +318,7 @@ export const getAccountInfo = (seed, accountName) => {
                     dispatch(accountInfoFetchSuccess(payload));
                 } else {
                     dispatch(accountInfoFetchError());
-                    dispatch(generateAccountInfoErrorAlert());
+                    dispatch(generateAccountInfoErrorAlert(err));
                 }
             });
     };
@@ -339,7 +339,6 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
 
         return iota.api.promoteTransaction(tail.hash, 3, 14, spamTransfer, { interrupt: false, delay: 0 }, err => {
             if (err) {
-                console.log(err);
                 if (err.message.indexOf('Inconsistent subtangle') > -1) {
                     consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
 
