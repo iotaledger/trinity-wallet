@@ -43,23 +43,23 @@ export const getSelectedAccountNameViaSeedIndex = createSelector(currentAccountN
 
 export const getBalanceForSelectedAccountViaSeedIndex = createSelector(
     currentAccountSelectorBySeedIndex,
-    account => get(account, 'balance') || 0
+    account => get(account, 'balance') || 0,
 );
 
 export const getAddressesForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, account =>
-    Object.keys(get(account, 'addresses'))
+    Object.keys(get(account, 'addresses')),
 );
 
 export const getAddressesWithBalanceForSelectedAccountViaSeedIndex = createSelector(
     currentAccountSelectorBySeedIndex,
-    account => get(account, 'addresses')
+    account => get(account, 'addresses'),
 );
 
 export const getTransfersForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, account =>
-    get(account, 'transfers')
+    get(account, 'transfers'),
 );
 
 export const getDeduplicatedTransfersForSelectedAccountViaSeedIndex = createSelector(
     currentAccountSelectorBySeedIndex,
-    account => deduplicateTransferBundles(get(account, 'transfers'))
+    account => deduplicateTransferBundles(get(account, 'transfers')),
 );

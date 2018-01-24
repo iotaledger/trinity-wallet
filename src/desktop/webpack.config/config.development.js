@@ -9,12 +9,12 @@ config.entry = ['webpack-hot-middleware/client?reload=true', 'react-error-overla
 
 config.plugins = [
     new webpack.HotModuleReplacementPlugin(),
-    new WatchMissingNodeModulesPlugin(path.resolve(path.join(__dirname, '..', 'node_modules')))
+    new WatchMissingNodeModulesPlugin(path.resolve(path.join(__dirname, '..', 'node_modules'))),
 ].concat(config.plugins);
 
 config.devServer = {
     contentBase: './dist',
-    hot: true
+    hot: true,
 };
 
 module.exports = config;

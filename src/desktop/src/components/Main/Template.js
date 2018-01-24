@@ -16,7 +16,7 @@ export const Footer = ({ children }) => children && <footer>{children}</footer>;
 export default class Template extends React.Component {
     static propTypes = {
         bodyClass: PropTypes.string,
-        children: PropTypes.node.isRequired
+        children: PropTypes.node.isRequired,
     };
 
     static Content = Content;

@@ -14,34 +14,34 @@ const styles = StyleSheet.create({
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22
+        paddingTop: height / 22,
     },
     midContainer: {
         flex: 4.8,
         width,
         alignItems: 'center',
-        paddingTop: height / 5
+        paddingTop: height / 5,
     },
     bottomContainer: {
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20
+        paddingBottom: height / 20,
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 8
+        paddingTop: height / 8,
     },
     title: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     loginButton: {
         borderWidth: 1.2,
@@ -49,18 +49,18 @@ const styles = StyleSheet.create({
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     loginText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
-        backgroundColor: 'transparent'
-    }
+        backgroundColor: 'transparent',
+    },
 });
 
 class EnterPasswordOnLogin extends Component {
     state = {
-        password: ''
+        password: '',
     };
 
     handleChangeText = password => this.setState({ password });
@@ -120,7 +120,7 @@ EnterPasswordOnLogin.propTypes = {
     t: PropTypes.func.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
     negativeColor: PropTypes.object.isRequired,
-    navigateToNodeSelection: PropTypes.func.isRequired
+    navigateToNodeSelection: PropTypes.func.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPasswordOnLogin);

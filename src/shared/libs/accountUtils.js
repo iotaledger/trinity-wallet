@@ -18,7 +18,7 @@ export const formatFullAddressData = data => {
     const addresses = data.addresses;
     const addressData = Object.assign(
         {},
-        ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } }))
+        ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } })),
     );
 
     for (let i = 0; i < data.inputs.length; i++) {
@@ -197,9 +197,9 @@ export const filterSpentAddresses = inputs => {
                                                 reject(err);
                                             }
                                             resolve(typeof hash === 'string' ? bundle : { bundle, validate: true });
-                                        }
+                                        },
                                     );
-                                })
+                                }),
                         );
                         resolve(
                             Promise.all(getBundles)
@@ -218,7 +218,7 @@ export const filterSpentAddresses = inputs => {
                                         .map(tx => tx.address);
                                     return inputs.filter(input => blacklist.indexOf(input.address) === -1);
                                 })
-                                .catch(err => reject(err))
+                                .catch(err => reject(err)),
                         );
                     });
                 });
@@ -255,15 +255,15 @@ export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
                         {
                             inputs: inputs.inputs.concat(filtered),
                             totalBalance: inputs.totalBalance + collected,
-                            allBalance: inputs.allBalance
+                            allBalance: inputs.allBalance,
                         },
-                        callback
+                        callback,
                     );
                 } else {
                     callback(null, {
                         inputs: inputs.inputs.concat(filtered),
                         totalBalance: inputs.totalBalance + collected,
-                        allBalance: inputs.allBalance
+                        allBalance: inputs.allBalance,
                     });
                 }
             })
@@ -297,7 +297,7 @@ export const markTransfersConfirmed = (transfers, tailHashes) => {
             }
 
             return tx;
-        })
+        }),
     );
 };
 
@@ -317,7 +317,7 @@ export const organizeAccountInfo = (accountName, data) => {
         addresses: addressDataWithSpentFlag,
         balance,
         unconfirmedBundleTails,
-        pendingTxTailsHashes
+        pendingTxTailsHashes,
     };
 };
 
@@ -334,7 +334,7 @@ export const getTotalBalance = (addresses, threshold = 1) => {
                         res = res + val;
                         return res;
                     },
-                    0
+                    0,
                 );
 
                 resolve(totalBalance);
@@ -355,7 +355,7 @@ export const getLatestAddresses = (seed, index) => {
                         obj[x.address] = { balance: x.balance, spent: false };
                         return obj;
                     },
-                    {}
+                    {},
                 );
 
                 resolve(addresses);
@@ -426,7 +426,7 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
                 })
                 .catch(console.error);
         },
-        Promise.resolve([])
+        Promise.resolve([]),
     );
 };
 
@@ -523,7 +523,7 @@ export const getAccountData = (seed, accountName) => {
             addresses: [],
             transfers: [],
             inputs: [],
-            balance: 0
+            balance: 0,
         };
 
         const pushIfNotExists = (pushTo, value) => {
@@ -569,17 +569,17 @@ export const getAccountData = (seed, accountName) => {
 
                         if (states[i]) {
                             res.confirmed[v.bundle] = Object.assign({}, v, {
-                                persistence: true
+                                persistence: true,
                             });
                         } else {
                             res.unconfirmed[v.bundle] = Object.assign({}, v, {
-                                persistence: false
+                                persistence: false,
                             });
                         }
 
                         return res;
                     },
-                    {}
+                    {},
                 );
 
                 // Get rid of transactions duplicates that are already confirmed
@@ -589,7 +589,7 @@ export const getAccountData = (seed, accountName) => {
 
                 const finalTailTxs = [
                     ...map(allTxsAsObjects.confirmed, t => t),
-                    ...map(deduplicatedUnconfirmedTxs, t => t)
+                    ...map(deduplicatedUnconfirmedTxs, t => t),
                 ];
 
                 each(finalTailTxs, tx => {
@@ -614,7 +614,7 @@ export const getAccountData = (seed, accountName) => {
                             address: data.addresses[idx],
                             keyIndex: idx,
                             security: 2,
-                            balance: balanceAsNumber
+                            balance: balanceAsNumber,
                         });
                     }
                 });

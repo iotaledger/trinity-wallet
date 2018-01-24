@@ -7,7 +7,7 @@ import Infobox from 'components/UI/Infobox';
 
 class WalletSetup extends React.PureComponent {
     static propTypes = {
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     render() {

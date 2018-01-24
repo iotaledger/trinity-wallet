@@ -7,7 +7,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex
+    getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import TransactionRow from '../components/transactionRow';
@@ -31,7 +31,7 @@ class History extends Component {
         getAccountInfo: PropTypes.func.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
-        generateAlert: PropTypes.func.isRequired
+        generateAlert: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -63,7 +63,7 @@ class History extends Component {
         this.props.generateAlert(
             'error',
             'Already fetching transaction history',
-            'Your transaction history will be updated automatically.'
+            'Your transaction history will be updated automatically.',
         );
     }
 
@@ -112,7 +112,7 @@ class History extends Component {
             backgroundColor,
             extraColor,
             secondaryBackgroundColor,
-            pendingColor
+            pendingColor,
         } = this.props;
         const hasTransactions = transfers.length > 0;
         const textColor = { color: secondaryBackgroundColor };
@@ -172,26 +172,26 @@ class History extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     listView: {
         height: height * 0.7,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     separator: {
         flex: 1,
-        height: height / 60
+        height: height / 60,
     },
     noTransactionsContainer: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     noTransactions: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        backgroundColor: 'transparent'
-    }
+        backgroundColor: 'transparent',
+    },
 });
 
 const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
@@ -208,12 +208,12 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     isFetchingAccountInfo: polling.isFetchingAccountInfo,
     isGeneratingReceiveAddress: tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: tempAccount.isSendingTransfer,
-    isSyncing: tempAccount.isSyncing
+    isSyncing: tempAccount.isSyncing,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    getAccountInfo
+    getAccountInfo,
 };
 
 export default translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History));

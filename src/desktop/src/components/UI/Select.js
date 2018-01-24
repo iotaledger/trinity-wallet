@@ -7,11 +7,11 @@ export default class Select extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
         label: PropTypes.string,
-        variant: PropTypes.oneOf(['default', 'success', 'warning']).isRequired
+        variant: PropTypes.oneOf(['default', 'success', 'warning']).isRequired,
     };
 
     static defaultProps = {
-        variant: 'default'
+        variant: 'default',
     };
 
     render() {

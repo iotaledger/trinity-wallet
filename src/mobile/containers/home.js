@@ -33,21 +33,21 @@ import { width, height } from '../util/dimensions';
 const styles = StyleSheet.create({
     topContainer: {
         flex: 0.8,
-        marginBottom: height / 100
+        marginBottom: height / 100,
     },
     balance: {
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.9,
-        paddingTop: height / 150
+        paddingTop: height / 150,
     },
     midContainer: {
         flex: 4.62,
-        zIndex: 0
+        zIndex: 0,
     },
     bottomContainer: {
-        flex: 0.68
+        flex: 0.68,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular'
+        fontFamily: 'Lato-Regular',
     },
     dropdownTextContainer: {
         flex: 1,
         paddingLeft: width / 20,
         paddingRight: width / 15,
-        paddingVertical: height / 30
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
         fontSize: width / 29.6,
@@ -70,14 +70,14 @@ const styles = StyleSheet.create({
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        paddingTop: height / 60
+        paddingTop: height / 60,
     },
     dropdownImage: {
         marginLeft: width / 25,
         width: width / 12,
         height: width / 12,
-        alignSelf: 'center'
-    }
+        alignSelf: 'center',
+    },
 });
 
 class Home extends Component {
@@ -93,13 +93,13 @@ class Home extends Component {
                         screen: 'login',
                         navigatorStyle: {
                             navBarHidden: true,
-                            navBarTransparent: true
+                            navBarTransparent: true,
                         },
-                        overrideBackPress: true
+                        overrideBackPress: true,
                     },
                     appStyle: {
-                        orientation: 'portrait'
-                    }
+                        orientation: 'portrait',
+                    },
                 });
             }
             this.lastBackPressed = Date.now();
@@ -121,7 +121,7 @@ class Home extends Component {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
-                t('global:unrecognisedPasswordExplanation')
+                t('global:unrecognisedPasswordExplanation'),
             );
         } else {
             this.props.setUserActivity({ inactive: false });
@@ -165,7 +165,7 @@ class Home extends Component {
             negativeColor,
             positiveColor,
             secondaryBarColor,
-            secondaryBackgroundColor
+            secondaryBackgroundColor,
         } = this.props;
 
         const balanceImagePath = secondaryBarColor === 'white' ? whiteBalanceImagePath : blackBalanceImagePath;
@@ -181,7 +181,7 @@ class Home extends Component {
             velocityThreshold: 0.09,
             directionalOffsetThreshold: 110,
             detectSwipeUp: false,
-            detectSwipeDown: false
+            detectSwipeDown: false,
         };
 
         return (
@@ -275,7 +275,7 @@ const mapStateToProps = state => ({
     positiveColor: state.settings.theme.positiveColor,
     secondaryBarColor: state.settings.theme.secondaryBarColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    currentRoute: state.home.childRoute
+    currentRoute: state.home.childRoute,
 });
 
 const mapDispatchToProps = {
@@ -283,7 +283,7 @@ const mapDispatchToProps = {
     generateAlert,
     clearTempData,
     setPassword,
-    setUserActivity
+    setUserActivity,
 };
 
 Home.propTypes = {
@@ -301,9 +301,9 @@ Home.propTypes = {
     tempAccount: PropTypes.object.isRequired,
     secondaryBarColor: PropTypes.string.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
-    currentRoute: PropTypes.string.isRequired
+    currentRoute: PropTypes.string.isRequired,
 };
 
 export default withUserActivity()(
-    translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))
+    translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home)),
 );

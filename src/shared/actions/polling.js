@@ -19,13 +19,13 @@ import {
     updateUnconfirmedBundleTails,
     removeBundleFromUnconfirmedBundleTails,
     setPendingTransactionTailsHashesForAccount,
-    updateTransfers
+    updateTransfers,
 } from './account';
 import { getFirstConsistentTail, isWithinADay } from '../libs/promoter';
 import {
     getSelectedAccount,
     getExistingUnspentAddressesHashes,
-    getPendingTxTailsHashesForSelectedAccount
+    getPendingTxTailsHashesForSelectedAccount,
 } from '../selectors/account';
 import { iota } from '../libs/iota';
 import {
@@ -39,7 +39,7 @@ import {
     getTransactionsObjects,
     getHashesWithPersistence,
     getConfirmedTxTailsHashes,
-    getBundlesWithPersistence
+    getBundlesWithPersistence,
 } from '../libs/accountUtils';
 import { rearrangeObjectKeys } from '../libs/util';
 
@@ -59,73 +59,73 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_ERROR',
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/POLLING/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
-    PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR'
+    PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
 };
 
 const fetchPriceRequest = () => ({
-    type: ActionTypes.FETCH_PRICE_REQUEST
+    type: ActionTypes.FETCH_PRICE_REQUEST,
 });
 
 const fetchPriceSuccess = () => ({
-    type: ActionTypes.FETCH_PRICE_SUCCESS
+    type: ActionTypes.FETCH_PRICE_SUCCESS,
 });
 
 const fetchPriceError = () => ({
-    type: ActionTypes.FETCH_PRICE_ERROR
+    type: ActionTypes.FETCH_PRICE_ERROR,
 });
 
 const fetchChartDataRequest = () => ({
-    type: ActionTypes.FETCH_CHART_DATA_REQUEST
+    type: ActionTypes.FETCH_CHART_DATA_REQUEST,
 });
 
 const fetchChartDataSuccess = () => ({
-    type: ActionTypes.FETCH_CHART_DATA_SUCCESS
+    type: ActionTypes.FETCH_CHART_DATA_SUCCESS,
 });
 
 const fetchChartDataError = () => ({
-    type: ActionTypes.FETCH_CHART_DATA_ERROR
+    type: ActionTypes.FETCH_CHART_DATA_ERROR,
 });
 
 const fetchMarketDataRequest = () => ({
-    type: ActionTypes.FETCH_MARKET_DATA_REQUEST
+    type: ActionTypes.FETCH_MARKET_DATA_REQUEST,
 });
 
 const fetchMarketDataSuccess = () => ({
-    type: ActionTypes.FETCH_MARKET_DATA_SUCCESS
+    type: ActionTypes.FETCH_MARKET_DATA_SUCCESS,
 });
 
 const fetchMarketDataError = () => ({
-    type: ActionTypes.FETCH_MARKET_DATA_ERROR
+    type: ActionTypes.FETCH_MARKET_DATA_ERROR,
 });
 
 const accountInfoFetchRequest = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST
+    type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
 });
 
 const accountInfoFetchSuccess = payload => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
-    payload
+    payload,
 });
 
 const accountInfoFetchError = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR
+    type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
 const promoteTransactionRequest = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_REQUEST
+    type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
 });
 
 const promoteTransactionSuccess = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS
+    type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS,
 });
 
 const promoteTransactionError = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_ERROR
+    type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
 });
 
 export const setPollFor = payload => ({
     type: ActionTypes.SET_POLL_FOR,
-    payload
+    payload,
 });
 
 // TODO: Do not call fetch again for market data api calls.
@@ -138,7 +138,7 @@ export const fetchMarketData = () => {
                 response => response.json(),
                 () => {
                     dispatch(fetchMarketDataError());
-                }
+                },
             )
             .then(json => {
                 dispatch(setMarketData(json));
@@ -168,7 +168,7 @@ export const fetchChartData = () => {
         currencies.forEach((currency, i) => {
             timeframes.forEach((timeframe, j) => {
                 const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
-                    timeframe
+                    timeframe,
                 )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeframe)}`;
                 return fetch(url)
                     .then(
@@ -177,7 +177,7 @@ export const fetchChartData = () => {
                             if (i === currencies.length - 1 && j === timeframes.length - 1) {
                                 dispatch(fetchChartDataError());
                             }
-                        }
+                        },
                     )
                     .then(json => {
                         if (json) {
@@ -219,12 +219,12 @@ export const getAccountInfo = (seed, accountName) => {
 
         const existingHashes = getExistingUnspentAddressesHashes(
             accountName,
-            getState().account.unspentAddressesHashes
+            getState().account.unspentAddressesHashes,
         );
 
         const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
             accountName,
-            getState().account.pendingTxTailsHashes
+            getState().account.pendingTxTailsHashes,
         );
 
         let payload = {
@@ -233,7 +233,7 @@ export const getAccountInfo = (seed, accountName) => {
             addresses: selectedAccount.addresses,
             unspentAddressesHashes: existingHashes,
             pendingTxTailsHashes,
-            transfers: selectedAccount.transfers
+            transfers: selectedAccount.transfers,
         };
 
         const checkConfirmationForPendingTxsAndLatestAddresses = () => {
@@ -255,8 +255,8 @@ export const getAccountInfo = (seed, accountName) => {
                             transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
                             pendingTxTailsHashes: filter(
                                 payload.pendingTxTailsHashes,
-                                tx => !includes(confirmedHashes, tx)
-                            )
+                                tx => !includes(confirmedHashes, tx),
+                            ),
                         });
                     }
 
@@ -287,7 +287,7 @@ export const getAccountInfo = (seed, accountName) => {
                     const diff = difference(latestHashes, existingHashes);
 
                     payload = assign({}, payload, {
-                        unspentAddressesHashes: union(existingHashes, latestHashes)
+                        unspentAddressesHashes: union(existingHashes, latestHashes),
                     });
                     return getTransactionsObjects(diff);
                 }
@@ -304,12 +304,12 @@ export const getAccountInfo = (seed, accountName) => {
                 const updatedTransfers = [...payload.transfers, ...bundles];
                 const updatedTransfersWithFormatting = formatTransfers(
                     updatedTransfers,
-                    Object.keys(payload.addresses)
+                    Object.keys(payload.addresses),
                 );
 
                 payload = assign({}, payload, {
                     transfers: updatedTransfersWithFormatting,
-                    pendingTxTailsHashes: union(payload.pendingTxTailsHashes, getPendingTxTailsHashes(bundles)) // Update pending transfers copy with new transfers.
+                    pendingTxTailsHashes: union(payload.pendingTxTailsHashes, getPendingTxTailsHashes(bundles)), // Update pending transfers copy with new transfers.
                 });
 
                 return dispatch(accountInfoFetchSuccess(payload));
@@ -357,7 +357,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
             }
 
             dispatch(
-                generateAlert(...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`))
+                generateAlert(...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`)),
             );
 
             const existingBundlesInStore = getState().account.unconfirmedBundleTails;
@@ -383,8 +383,8 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
         if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
             dispatch(
                 updateUnconfirmedBundleTails({
-                    [bundle]: map(tailsFromLatestTransactionObjects, t => ({ ...t, account: txAccount }))
-                })
+                    [bundle]: map(tailsFromLatestTransactionObjects, t => ({ ...t, account: txAccount })),
+                }),
             );
 
             // Assign updated tails to the local copy
@@ -417,9 +417,9 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                             generateAlert(
                                 ...alertArguments(
                                     'Autoreattaching to Tangle',
-                                    `Reattaching transaction with hash ${txHash}`
-                                )
-                            )
+                                    `Reattaching transaction with hash ${txHash}`,
+                                ),
+                            ),
                         );
 
                         const newTxsWithAccount = map(newTxs, t => ({ ...t, account: txAccount }));
@@ -436,23 +436,23 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                         const existingTransfers = selectedAccountInfo.transfers;
                         const existingPendingTxTailHashes = getPendingTxTailsHashesForSelectedAccount(
                             txAccount,
-                            getState().account.pendingTxTailsHashes
+                            getState().account.pendingTxTailsHashes,
                         );
 
                         const newTransferBundleWithPersistenceAndTransferValue = map(newTxs, bundle => ({
                             ...bundle,
-                            ...{ transferValue: bundle.value, persistence: false }
+                            ...{ transferValue: bundle.value, persistence: false },
                         }));
                         const updatedTransfers = [
                             ...[newTransferBundleWithPersistenceAndTransferValue],
-                            ...existingTransfers
+                            ...existingTransfers,
                         ];
 
                         dispatch(
                             setPendingTransactionTailsHashesForAccount({
                                 accountName: txAccount,
-                                pendingTxTailsHashes: union(existingPendingTxTailHashes, newTail)
-                            })
+                                pendingTxTailsHashes: union(existingPendingTxTailHashes, newTail),
+                            }),
                         );
                         dispatch(updateTransfers(txAccount, updatedTransfers));
 

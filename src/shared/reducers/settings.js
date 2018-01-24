@@ -29,7 +29,7 @@ const initialState = {
         'http://5.9.118.112:14265',
         'http://176.9.3.149:14265',
         'http://mainnet.necropaz.com:14500',
-        'http://iota.bitfinex.com:80'
+        'http://iota.bitfinex.com:80',
     ],
     mode: 'Standard',
     language: 'English (International)',
@@ -66,7 +66,7 @@ const initialState = {
         'SGD',
         'THB',
         'TRY',
-        'ZAR'
+        'ZAR',
     ],
     conversionRate: 1,
     themeName: 'Standard',
@@ -75,46 +75,46 @@ const initialState = {
             h: 191.66666666666663,
             s: 0.4090909090909091,
             l: 0.17254901960784313,
-            a: 1
+            a: 1,
         },
         barColor: {
             h: 191.66666666666669,
             s: 0.6206896551724137,
             l: 0.11372549019607844,
-            a: 1
+            a: 1,
         },
         ctaColor: {
             h: 143.77358490566039,
             s: 1,
             l: 0.31176470588235294,
-            a: 1
+            a: 1,
         },
         positiveColor: {
             h: 131.0204081632653,
             s: 1,
             l: 0.807843137254902,
-            a: 1
+            a: 1,
         },
         negativeColor: {
             h: 50.44897959183674,
             s: 0.9839357429718876,
             l: 0.48823529411764705,
-            a: 1
+            a: 1,
         },
         extraColor: {
             h: 201.68067226890756,
             s: 1,
             l: 0.7666666666666666,
-            a: 1
+            a: 1,
         },
         secondaryBarColor: 'white',
         secondaryBackgroundColor: 'white',
         secondaryCtaColor: 'white',
         ctaBorderColor: 'transparent',
         pendingColor: '#f75602',
-        chartLineColor: '#FFA25B'
+        chartLineColor: '#FFA25B',
     },
-    hasRandomizedNode: false
+    hasRandomizedNode: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -122,19 +122,19 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.LOCALE:
             return {
                 ...state,
-                locale: action.payload
+                locale: action.payload,
             };
 
         case ActionTypes.SET_LOCALE:
             return {
                 ...state,
-                locale: action.payload
+                locale: action.payload,
             };
 
         case ActionTypes.SET_FULLNODE:
             return {
                 ...state,
-                fullNode: action.payload
+                fullNode: action.payload,
             };
 
         case ActionTypes.ADD_CUSTOM_NODE:
@@ -142,47 +142,47 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 availableNodes: state.availableNodes.includes(action.payload)
                     ? state.availableNodes
-                    : [].concat(state.availableNodes, action.payload)
+                    : [].concat(state.availableNodes, action.payload),
             };
         case ActionTypes.ADD_CUSTOM_POW_NODE:
             return {
                 ...state,
                 availablePoWNodes: state.availablePoWNodes.includes(action.payload)
                     ? state.availablePoWNodes
-                    : [].concat(state.availablePoWNodes, action.payload)
+                    : [].concat(state.availablePoWNodes, action.payload),
             };
         case ActionTypes.SET_MODE:
             return {
                 ...state,
-                mode: action.payload
+                mode: action.payload,
             };
         case ActionTypes.SET_THEME:
             return {
                 ...state,
-                theme: action.payload
+                theme: action.payload,
             };
         case ActionTypes.SET_LANGUAGE:
             return {
                 ...state,
-                language: action.payload
+                language: action.payload,
             };
         case ActionTypes.CURRENCY_DATA_FETCH_SUCCESS:
             return {
                 ...state,
                 currency: action.payload.currency,
-                conversionRate: action.payload.conversionRate
+                conversionRate: action.payload.conversionRate,
             };
         case ActionTypes.UPDATE_THEME:
             return {
                 ...state,
                 theme: action.theme,
-                themeName: action.themeName
+                themeName: action.themeName,
             };
         case ActionTypes.SET_RANDOMLY_SELECTED_NODE:
             return {
                 ...state,
                 fullNode: action.payload,
-                hasRandomizedNode: true
+                hasRandomizedNode: true,
             };
     }
 

@@ -11,7 +11,7 @@ import Chart from '../components/chart';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
-    getBalanceForSelectedAccountViaSeedIndex
+    getBalanceForSelectedAccountViaSeedIndex,
 } from '../../shared/selectors/account';
 import THEMES from '../theme/themes';
 
@@ -35,14 +35,14 @@ class Balance extends Component {
         extraColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        chartLineColor: PropTypes.string.isRequired
+        chartLineColor: PropTypes.string.isRequired,
     };
 
     constructor() {
         super();
 
         this.state = {
-            balanceIsShort: true
+            balanceIsShort: true,
         };
     }
 
@@ -86,7 +86,7 @@ class Balance extends Component {
             extraColor,
             secondaryBackgroundColor,
             chartLineColor,
-            themeName
+            themeName,
         } = this.props;
 
         const shortenedBalance =
@@ -161,52 +161,52 @@ class Balance extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     balanceContainer: {
         flex: 1.8,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     transactionsContainer: {
         flex: 2,
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 10
+        marginTop: 10,
     },
     chartContainer: {
         flex: 5,
-        paddingVertical: height / 70
+        paddingVertical: height / 70,
     },
     iotaBalance: {
         fontFamily: 'Lato-Heavy',
         fontSize: width / 8,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     fiatBalance: {
         paddingTop: height / 150,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     noTransactions: {
         fontFamily: 'Lato-Light',
         fontSize: width / 37.6,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     line: {
         borderBottomWidth: height / 1000,
-        width: width / 1.2
+        width: width / 1.2,
     },
     separator: {
         height: height / 120,
-        flex: 1
+        flex: 1,
     },
     listView: {
         flex: 1,
         justifyContent: 'center',
-        paddingVertical: height / 50
-    }
+        paddingVertical: height / 50,
+    },
 });
 
 const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
@@ -222,7 +222,7 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     negativeColor: settings.theme.negativeColor,
     extraColor: settings.theme.extraColor,
     secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
-    chartLineColor: settings.theme.chartLineColor
+    chartLineColor: settings.theme.chartLineColor,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -231,7 +231,7 @@ const mapDispatchToProps = dispatch => ({
     },
     setTimeframe: timeframe => {
         dispatch(setTimeframe(timeframe));
-    }
+    },
 });
 
 export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Balance));

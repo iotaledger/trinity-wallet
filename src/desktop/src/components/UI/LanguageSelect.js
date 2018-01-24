@@ -9,13 +9,13 @@ class LanguageSelect extends React.PureComponent {
     static propTypes = {
         locale: PropTypes.string,
         setLocale: PropTypes.func.isRequired,
-        label: PropTypes.string
+        label: PropTypes.string,
     };
 
     static languages = {
         en: 'English',
         'es-ES': 'Español',
-        de: 'Deutsch'
+        de: 'Deutsch',
     };
 
     changeHandler = e => {
@@ -65,11 +65,11 @@ class LanguageSelect extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    locale: state.settings.locale
+    locale: state.settings.locale,
 });
 
 const mapDispatchToProps = {
-    setLocale
+    setLocale,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LanguageSelect);

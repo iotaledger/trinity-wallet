@@ -14,7 +14,7 @@ class ViewAddresses extends Component {
         addressData: PropTypes.object.isRequired,
         generateAlert: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     copy(address) {
@@ -47,7 +47,7 @@ class ViewAddresses extends Component {
                                             style={[
                                                 styles.addressText,
                                                 { textDecorationLine: rowData[1].spent ? 'line-through' : 'none' },
-                                                textColor
+                                                textColor,
                                             ]}
                                         >
                                             {rowData[0]}
@@ -88,29 +88,29 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'stretch',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     icon: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     bottomContainer: {
         flex: 1,
@@ -118,37 +118,37 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     addressText: {
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Bold',
         fontSize: width / 29.6,
-        textDecorationStyle: 'solid'
+        textDecorationStyle: 'solid',
     },
     balanceText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
-        textAlign: 'right'
+        textAlign: 'right',
     },
     listView: {
         flex: 8.8,
         justifyContent: 'center',
-        width: width
+        width: width,
     },
     separator: {
         flex: 1,
-        height: height / 60
-    }
+        height: height / 60,
+    },
 });
 
 const mapDispatchToProps = {
-    generateAlert
+    generateAlert,
 };
 
 const mapStateToProps = state => ({
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewAddresses));

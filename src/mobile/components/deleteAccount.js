@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     modalContent: {
         justifyContent: 'space-between',
@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        width: width / 1.15
+        width: width / 1.15,
     },
     topContainer: {
         flex: 9,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     bottomContainer: {
         flex: 1,
@@ -35,57 +35,57 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     textContainer: {
         flex: 2.5,
         justifyContent: 'space-around',
-        paddingHorizontal: width / 15
+        paddingHorizontal: width / 15,
     },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     iconLeft: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iconRight: {
         width: width / 28,
-        height: width / 28
+        height: width / 28,
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     infoText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 25.9,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 25.9,
         textAlign: 'center',
-        backgroundColor: 'transparent'
-    }
+        backgroundColor: 'transparent',
+    },
 });
 
 class DeleteAccount extends Component {
@@ -95,7 +95,7 @@ class DeleteAccount extends Component {
         this.state = {
             isModalVisible: false,
             pressedContinue: false,
-            password: ''
+            password: '',
         };
     }
 
@@ -139,7 +139,7 @@ class DeleteAccount extends Component {
                 style={{
                     width: width / 1.15,
                     alignItems: 'center',
-                    backgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                    backgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 }}
             >
                 <View style={[styles.modalContent, borderColor]}>
@@ -166,7 +166,7 @@ class DeleteAccount extends Component {
             backgroundColor,
             borderColor,
             arrowLeftImagePath,
-            tickImagePath
+            tickImagePath,
         } = this.props;
 
         return (

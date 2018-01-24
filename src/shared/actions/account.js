@@ -12,7 +12,7 @@ import { iota } from '../libs/iota';
 import {
     getSelectedAccount,
     getExistingUnspentAddressesHashes,
-    getPendingTxTailsHashesForSelectedAccount
+    getPendingTxTailsHashesForSelectedAccount,
 } from '../selectors/account';
 import {
     formatTransfers,
@@ -29,14 +29,14 @@ import {
     markTransfersConfirmed,
     markAddressSpend,
     getPendingTxTailsHashes,
-    getAccountData
+    getAccountData,
 } from '../libs/accountUtils';
 import { setReady, clearTempData } from './tempAccount';
 import {
     generateAccountInfoErrorAlert,
     generateSyncingCompleteAlert,
     generateInvalidResponseAlert,
-    generateAccountDeletedAlert
+    generateAccountDeletedAlert,
 } from '../actions/alerts';
 
 export const ActionTypes = {
@@ -68,132 +68,132 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNT/ACCOUNT_INFO_FETCH_SUCCESS',
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNT/ACCOUNT_INFO_FETCH_ERROR',
     SET_2FA_STATUS: 'IOTA/ACCOUNT/SET_2FA_STATUS',
-    SET_2FA_KEY: 'IOTA/ACCOUNT/SET_2FA_KEY'
+    SET_2FA_KEY: 'IOTA/ACCOUNT/SET_2FA_KEY',
 };
 
 export const manualSyncRequest = () => ({
-    type: ActionTypes.MANUAL_SYNC_REQUEST
+    type: ActionTypes.MANUAL_SYNC_REQUEST,
 });
 
 export const manualSyncSuccess = payload => ({
     type: ActionTypes.MANUAL_SYNC_SUCCESS,
-    payload
+    payload,
 });
 
 export const manualSyncError = () => ({
-    type: ActionTypes.MANUAL_SYNC_ERROR
+    type: ActionTypes.MANUAL_SYNC_ERROR,
 });
 
 export const fullAccountInfoForFirstUseFetchRequest = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST
+    type: ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST,
 });
 
 export const fullAccountInfoForFirstUseFetchSuccess = payload => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS,
-    payload
+    payload,
 });
 
 export const fullAccountInfoForFirstUseFetchError = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR
+    type: ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR,
 });
 
 export const fullAccountInfoFetchRequest = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST
+    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST,
 });
 
 export const fullAccountInfoFetchSuccess = payload => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS,
-    payload
+    payload,
 });
 
 export const fullAccountInfoFetchError = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR
+    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR,
 });
 
 export const setFirstUse = payload => ({
     type: ActionTypes.SET_FIRST_USE,
-    payload
+    payload,
 });
 
 export const updateTransfers = (seedName, transfers) => ({
     type: ActionTypes.UPDATE_TRANSFERS,
     seedName,
-    transfers
+    transfers,
 });
 
 export const updateAddresses = (seedName, addresses) => ({
     type: ActionTypes.UPDATE_ADDRESSES,
     seedName,
-    addresses
+    addresses,
 });
 
 export const changeAccountName = (accountInfo, accountNames) => ({
     type: ActionTypes.CHANGE_ACCOUNT_NAME,
     accountInfo,
-    accountNames
+    accountNames,
 });
 
 export const removeAccount = payload => ({
     type: ActionTypes.REMOVE_ACCOUNT,
-    payload
+    payload,
 });
 
 export const setOnboardingComplete = payload => ({
     type: ActionTypes.SET_ONBOARDING_COMPLETE,
-    payload
+    payload,
 });
 
 export const increaseSeedCount = () => ({
-    type: ActionTypes.INCREASE_SEED_COUNT
+    type: ActionTypes.INCREASE_SEED_COUNT,
 });
 
 export const addAccountName = seedName => ({
     type: ActionTypes.ADD_SEED_NAME,
-    seedName
+    seedName,
 });
 
 export const addAddresses = (seedName, addresses) => ({
     type: ActionTypes.ADD_ADDRESSES,
     seedName,
-    addresses
+    addresses,
 });
 
 export const setBalance = payload => ({
     type: ActionTypes.SET_BALANCE,
-    payload
+    payload,
 });
 
 export const updateUnconfirmedBundleTails = payload => ({
     type: ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS,
-    payload
+    payload,
 });
 
 export const setNewUnconfirmedBundleTails = payload => ({
     type: ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS,
-    payload
+    payload,
 });
 
 export const removeBundleFromUnconfirmedBundleTails = payload => ({
     type: ActionTypes.REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS,
-    payload
+    payload,
 });
 
 const accountInfoFetchRequest = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST
+    type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
 });
 
 export const accountInfoFetchSuccess = payload => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
-    payload
+    payload,
 });
 
 const accountInfoFetchError = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR
+    type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
 export const updateAccountInfoAfterSpending = payload => ({
     type: ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING,
-    payload
+    payload,
 });
 
 export const getAccountInfoNewSeedAsync = (seed, seedName) => {
@@ -211,7 +211,7 @@ export const getAccountInfoNewSeedAsync = (seed, seedName) => {
 
 export const setPendingTransactionTailsHashesForAccount = payload => ({
     type: ActionTypes.SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT,
-    payload
+    payload,
 });
 
 export const fetchFullAccountInfoForFirstUse = (
@@ -219,7 +219,7 @@ export const fetchFullAccountInfoForFirstUse = (
     accountName,
     password,
     storeInKeychainPromise,
-    navigator = null
+    navigator = null,
 ) => dispatch => {
     const onError = () => {
         if (navigator) {
@@ -354,12 +354,12 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
 
         const existingHashes = getExistingUnspentAddressesHashes(
             accountName,
-            getState().account.unspentAddressesHashes
+            getState().account.unspentAddressesHashes,
         );
 
         const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
             accountName,
-            getState().account.pendingTxTailsHashes
+            getState().account.pendingTxTailsHashes,
         );
 
         let payload = {
@@ -368,7 +368,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             addresses: selectedAccount.addresses,
             unspentAddressesHashes: existingHashes,
             pendingTxTailsHashes,
-            transfers: selectedAccount.transfers
+            transfers: selectedAccount.transfers,
         };
 
         const checkConfirmationForPendingTxsAndLatestAddresses = () => {
@@ -389,8 +389,8 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
                             transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
                             pendingTxTailsHashes: filter(
                                 payload.pendingTxTailsHashes,
-                                tx => !includes(confirmedHashes, tx)
-                            )
+                                tx => !includes(confirmedHashes, tx),
+                            ),
                         });
                     }
 
@@ -422,7 +422,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
                     const diff = difference(latestHashes, existingHashes);
 
                     payload = assign({}, payload, {
-                        unspentAddressesHashes: union(existingHashes, latestHashes)
+                        unspentAddressesHashes: union(existingHashes, latestHashes),
                     });
                     return getTransactionsObjects(diff);
                 }
@@ -439,12 +439,12 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
                 const updatedTransfers = [...payload.transfers, ...bundles];
                 const updatedTransfersWithFormatting = formatTransfers(
                     updatedTransfers,
-                    Object.keys(payload.addresses)
+                    Object.keys(payload.addresses),
                 );
 
                 payload = assign({}, payload, {
                     transfers: updatedTransfersWithFormatting,
-                    pendingTxTailsHashes: union(payload.pendingTxTailsHashes, getPendingTxTailsHashes(bundles)) // Update pending transfers copy with new transfers.
+                    pendingTxTailsHashes: union(payload.pendingTxTailsHashes, getPendingTxTailsHashes(bundles)), // Update pending transfers copy with new transfers.
                 });
 
                 return dispatch(accountInfoFetchSuccess(payload));
@@ -477,17 +477,17 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
     const existingTransfers = selectedAccount.transfers;
     const existingUnspentAddressesHashes = getExistingUnspentAddressesHashes(
         accountName,
-        getState().account.unspentAddressesHashes
+        getState().account.unspentAddressesHashes,
     );
     const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
         accountName,
-        getState().account.pendingTxTailsHashes
+        getState().account.pendingTxTailsHashes,
     );
     const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
 
     const newTransferBundleWithPersistenceAndTransferValue = map(newTransferBundle, bundle => ({
         ...bundle,
-        ...{ transferValue: -bundle.value, persistence: false }
+        ...{ transferValue: -bundle.value, persistence: false },
     }));
     const updatedTransfers = [...[newTransferBundleWithPersistenceAndTransferValue], ...existingTransfers];
     const updatedAddressData = markAddressSpend([newTransferBundle], existingAddressData);
@@ -499,7 +499,7 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
     const tail = filter(newTransferBundle, tx => tx.currentIndex === 0);
     const updatedUnconfirmedBundleTails = value
         ? {
-              [bundle]: map(tail, t => ({ ...t, account: accountName })) // Assign account name to each tx
+              [bundle]: map(tail, t => ({ ...t, account: accountName })), // Assign account name to each tx
           }
         : existingUnconfirmedBundleTails;
     const updatedPendingTxTailsHashes = [...pendingTxTailsHashes, ...map(tail, t => t.hash)];
@@ -516,8 +516,8 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
                         addresses: updatedAddressData,
                         unspentAddressesHashes: hashes,
                         unconfirmedBundleTails: updatedUnconfirmedBundleTails,
-                        pendingTxTailsHashes: updatedPendingTxTailsHashes
-                    })
+                        pendingTxTailsHashes: updatedPendingTxTailsHashes,
+                    }),
                 );
             }
         });
@@ -529,18 +529,18 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
                 addresses: updatedAddressData,
                 unspentAddressesHashes: existingUnspentAddressesHashes,
                 unconfirmedBundleTails: updatedUnconfirmedBundleTails,
-                pendingTxTailsHashes: updatedPendingTxTailsHashes
-            })
+                pendingTxTailsHashes: updatedPendingTxTailsHashes,
+            }),
         );
     }
 };
 
 export const set2FAStatus = payload => ({
     type: ActionTypes.SET_2FA_STATUS,
-    payload
+    payload,
 });
 
 export const set2FAKey = payload => ({
     type: ActionTypes.SET_2FA_KEY,
-    payload
+    payload,
 });

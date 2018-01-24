@@ -14,7 +14,7 @@ export default class Modal extends React.Component {
         isConfirm: PropTypes.bool,
         onOpen: PropTypes.func,
         onClose: PropTypes.func,
-        onStateChange: PropTypes.func
+        onStateChange: PropTypes.func,
     };
 
     componentDidMount() {
@@ -77,7 +77,7 @@ export default class Modal extends React.Component {
                     <div className={css.content}>{this.props.children}</div>
                 </div>
             </div>,
-            document.getElementById('modal')
+            document.getElementById('modal'),
         );
     }
 }

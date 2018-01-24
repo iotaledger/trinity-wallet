@@ -12,13 +12,13 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width
+        width,
     },
     content: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width: width / 1.2
+        width: width / 1.2,
     },
     colorPreview: {
         alignItems: 'center',
@@ -30,14 +30,14 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         width: width / 1.2,
         paddingVertical: height / 80,
-        marginBottom: height / 100
+        marginBottom: height / 100,
     },
     sliderRow: {
-        alignSelf: 'stretch'
+        alignSelf: 'stretch',
     },
     colorString: {
         fontSize: width / 20.7,
-        fontFamily: 'Lato-Regular'
+        fontFamily: 'Lato-Regular',
     },
     bottomContainer: {
         flex: 1,
@@ -45,46 +45,46 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     topContainer: {
         flex: 9,
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     iconLeft: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     titleTextLeft: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iconRight: {
         width: width / 28,
-        height: width / 28
+        height: width / 28,
     },
     titleTextRight: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        marginRight: width / 20
-    }
+        marginRight: width / 20,
+    },
 });
 
 class AdvancedThemeCustomisation extends React.Component {
@@ -95,7 +95,7 @@ class AdvancedThemeCustomisation extends React.Component {
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         tickImagePath: PropTypes.number.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired
+        arrowLeftImagePath: PropTypes.number.isRequired,
     };
 
     constructor(props) {
@@ -103,7 +103,7 @@ class AdvancedThemeCustomisation extends React.Component {
 
         this.state = {
             backgroundColor: props.backgroundColor,
-            barColor: props.barColor
+            barColor: props.barColor,
         };
     }
 
@@ -129,7 +129,7 @@ class AdvancedThemeCustomisation extends React.Component {
                         <View
                             style={[
                                 styles.colorPreview,
-                                { backgroundColor: tinycolor(this.state.backgroundColor).toHslString() }
+                                { backgroundColor: tinycolor(this.state.backgroundColor).toHslString() },
                             ]}
                         >
                             <Text style={[styles.colorString, { color: backgroundTextColor }]}>{t('background')}</Text>
@@ -165,7 +165,7 @@ class AdvancedThemeCustomisation extends React.Component {
                         <View
                             style={[
                                 styles.colorPreview,
-                                { backgroundColor: tinycolor(this.state.barColor).toHslString() }
+                                { backgroundColor: tinycolor(this.state.barColor).toHslString() },
                             ]}
                         >
                             <Text style={[styles.colorString, { color: barTextColor }]}>{t('frame')}</Text>
