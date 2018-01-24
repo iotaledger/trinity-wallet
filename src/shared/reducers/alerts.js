@@ -5,6 +5,7 @@ const initialState = {
     title: '',
     message: '',
     closeInterval: 5500,
+    notificationLog: [],
 };
 
 export default (state = initialState, action) => {
@@ -18,7 +19,23 @@ export default (state = initialState, action) => {
                 closeInterval: action.closeInterval,
             };
         case ActionTypes.HIDE:
-            return initialState;
+            return {
+                category: '',
+                title: '',
+                message: '',
+                closeInterval: 5500,
+                notificationLog: [...state.notificationLog],
+            };
+        case ActionTypes.UPDATE_LOG:
+            return {
+                ...state,
+                notificationLog: [...state.notificationLog, action.logItem],
+            };
+        case ActionTypes.CLEAR_LOG:
+            return {
+                ...state,
+                notificationLog: [],
+            };
         default:
             return state;
     }
