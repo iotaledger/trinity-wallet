@@ -519,7 +519,6 @@ export const getAccountData = (seed, accountName) => {
         const transfers = [];
 
         const data = {
-            latestAddress: '',
             addresses: [],
             transfers: [],
             inputs: [],
@@ -537,8 +536,7 @@ export const getAccountData = (seed, accountName) => {
         withHealthCheck()
             .then(() => getAllAddresses(seed))
             .then(addresses => {
-                data.latestAddress = addresses[addresses.length - 1];
-                data.addresses = addresses.slice(0, -1);
+                data.addresses = addresses;
 
                 return findTransactionObjects({ addresses: data.addresses });
             })

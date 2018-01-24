@@ -3,7 +3,39 @@ import size from 'lodash/size';
 import { iota } from './iota';
 
 /**
- *   Returns associated addresses with a seed plus a deposit address as last entry in the array
+ *   Starts traversing from specified index backwards
+ *   Keeps on calling findTransactions to see if there's any associated tx with address
+ *   Stops at the point where it finds an address with hash
+ *   Basically just removes the unused addresses
+ *
+ *   @method removeUnusedAddresses
+ *   @param {function} resolve
+ *   @param {function} reject
+ *   @param {number} index
+ *   @param {array} finalAddresses
+ **/
+const removeUnusedAddresses = (resolve, reject, index, finalAddresses) => {
+    if (!finalAddresses[index]) {
+        resolve(finalAddresses);
+        return;
+    }
+
+    iota.api.findTransactions({ addresses: [finalAddresses[index]] }, (err, hashes) => {
+        if (err) {
+            reject(err);
+        } else {
+            // If address has affiliated txs
+            if (size(hashes)) {
+                resolve(finalAddresses);
+            } else {
+                removeUnusedAddresses(resolve, reject, index - 1, finalAddresses.slice(0, index));
+            }
+        }
+    });
+};
+
+/**
+ *   Returns associated addresses with a seed
  *   Generates addresses in batches and upon each execution increase the index to fetch the next batch
  *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
  *
@@ -22,17 +54,28 @@ const getRelevantAddresses = (resolve, reject, seed, opts, allAddresses) => {
             reject(err);
         } else {
             iota.api.findTransactions({ addresses }, (err, hashes) => {
-                allAddresses = [...allAddresses, ...addresses];
+                console.log(size(hashes));
                 if (size(hashes)) {
+                    allAddresses = [...allAddresses, ...addresses];
                     const newOpts = assign({}, opts, { index: opts.total + opts.index });
                     getRelevantAddresses(resolve, reject, seed, newOpts, allAddresses);
                 } else {
-                    resolve(allAddresses);
+                    // Last ten addresses that were generated are fresh
+                    // Traverse backwards for deposit address
+                    new Promise((res, rej) => {
+                        const lastAddressIndex = size(allAddresses) - 1;
+                        removeUnusedAddresses(res, rej, lastAddressIndex, allAddresses.slice());
+                    })
+                        .then(finalAddresses => {
+                            resolve(finalAddresses);
+                        })
+                        .catch(err => reject(err));
                 }
             });
         }
     });
 };
+
 /**
  *   Returns a promise meant for returning all associated addresses with a seed
  *
