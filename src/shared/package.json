@@ -17,7 +17,7 @@
         "bluebird": "^3.5.1",
         "i18next": "^10.2.2",
         "i18next-browser-languagedetector": "^2.1.0",
-        "iota.lib.js": "^0.4.6",
+        "iota.lib.js": "https://github.com/rajivshah3/iota.lib.js#rn-hotfix",
         "lodash": "^4.17.4",
         "moment": "^2.19.1",
         "redux": "^3.7.2",
