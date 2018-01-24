@@ -20,7 +20,7 @@ class Balance extends React.Component {
         seed: PropTypes.shape({
             name: PropTypes.string,
             seed: PropTypes.string,
-            addresses: PropTypes.array
+            addresses: PropTypes.array,
         }).isRequired,
         account: PropTypes.object.isRequired,
         settings: PropTypes.object.isRequired,
@@ -29,7 +29,7 @@ class Balance extends React.Component {
         setTimeframe: PropTypes.func.isRequired,
         getChartData: PropTypes.func.isRequired,
         getPrice: PropTypes.func.isRequired,
-        getMarketData: PropTypes.func.isRequired
+        getMarketData: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -63,7 +63,7 @@ class Balance extends React.Component {
 
         const currencySymbol = getCurrencySymbol(settings.currency);
         const fiatBalance = round(
-            accountInfo.balance * marketData.usdPrice / 1000000 * settings.conversionRate
+            accountInfo.balance * marketData.usdPrice / 1000000 * settings.conversionRate,
         ).toFixed(2);
 
         return (
@@ -95,7 +95,7 @@ const mapStateToProps = state => ({
     account: state.account,
     seed: getSelectedSeed(state),
     marketData: state.marketData,
-    settings: state.settings
+    settings: state.settings,
 });
 
 const mapDispatchToProps = {
@@ -105,7 +105,7 @@ const mapDispatchToProps = {
     getPrice,
     getMarketData,
     setCurrency,
-    setTimeframe
+    setTimeframe,
 };
 
 export default translate('balance')(connect(mapStateToProps, mapDispatchToProps)(Balance));

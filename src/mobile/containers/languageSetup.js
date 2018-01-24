@@ -20,23 +20,23 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22
+        paddingTop: height / 22,
     },
     midContainer: {
         flex: 4,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     bottomContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     nextButton: {
         borderColor: '#9DFFAF',
@@ -46,26 +46,26 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginBottom: height / 20
+        marginBottom: height / 20,
     },
     nextText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     helloBackground: {
         position: 'absolute',
         width,
-        height: width / 0.95
+        height: width / 0.95,
     },
     dropdownWidth: {
-        width: width / 1.5
-    }
+        width: width / 1.5,
+    },
 });
 
 const locale = getDeviceLocale();
@@ -83,9 +83,9 @@ class LanguageSetup extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: COLORS.backgroundGreen
+                screenBackgroundColor: COLORS.backgroundGreen,
             },
-            animated: false
+            animated: false,
         });
     }
 

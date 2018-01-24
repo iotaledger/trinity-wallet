@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     bottomContainer: {
         flex: 1,
@@ -17,36 +17,36 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     topContainer: {
         flex: 9,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     innerContainer: {
         flex: 4,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     icon: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     syncButtonContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     syncButton: {
         borderWidth: 1.5,
@@ -55,26 +55,26 @@ const styles = StyleSheet.create({
         height: height / 17,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     syncButtonText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
-        textAlign: 'center'
+        textAlign: 'center',
     },
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: height / 40
-    }
+        marginTop: height / 40,
+    },
 });
 
 const ManualSync = props => (
@@ -135,7 +135,7 @@ ManualSync.propTypes = {
     isSyncing: PropTypes.bool.isRequired,
     backPress: PropTypes.func.isRequired,
     onManualSyncPress: PropTypes.func.isRequired,
-    t: PropTypes.func.isRequired
+    t: PropTypes.func.isRequired,
 };
 
 export default ManualSync;

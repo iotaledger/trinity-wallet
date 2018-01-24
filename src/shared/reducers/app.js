@@ -5,7 +5,7 @@ const initialState = {
     isOnboardingCompleted: false,
     mode: 'STANDARD',
     root: 'initialLoading',
-    versions: {}
+    versions: {},
 };
 
 export default (state = initialState, action) => {
@@ -13,11 +13,11 @@ export default (state = initialState, action) => {
         case ActionTypes.SET_ONBOARDING_COMPLETED:
             return {
                 ...state,
-                isOnboardingCompleted: action.payload
+                isOnboardingCompleted: action.payload,
             };
         case ActionTypes.SET_VERSIONS:
             return merge({}, state, {
-                versions: action.payload
+                versions: action.payload,
             });
     }
     return state;

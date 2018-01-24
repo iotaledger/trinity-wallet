@@ -9,11 +9,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     topContainer: {
         flex: 9,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     bottomContainer: {
         flex: 1,
@@ -21,45 +21,45 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     iconLeft: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     titleTextLeft: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iconRight: {
         width: width / 28,
-        height: width / 28
+        height: width / 28,
     },
     titleTextRight: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     dropdownWidth: {
-        width: width / 1.5
-    }
+        width: width / 1.5,
+    },
 });
 
 class NodeSelection extends Component {
@@ -69,7 +69,7 @@ class NodeSelection extends Component {
         backPress: PropTypes.func.isRequired,
         setNode: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     saveNodeSelection() {
@@ -89,7 +89,7 @@ class NodeSelection extends Component {
             secondaryBackgroundColor,
             nodeSelection,
             arrowLeftImagePath,
-            tickImagePath
+            tickImagePath,
         } = this.props;
 
         return (

@@ -48,6 +48,6 @@ export const getAllAddresses = (
         index: 0,
         total: 10,
         returnAll: true,
-        security: 2
-    }
+        security: 2,
+    },
 ) => new Promise((res, rej) => getRelevantAddresses(res, rej, seed, addressesOpts, []));

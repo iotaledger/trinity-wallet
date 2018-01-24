@@ -17,107 +17,107 @@ import { width, height } from '../util/dimensions';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     bottomContainer: {
         flex: 1,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     topContainer: {
         flex: 9,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     logoContainer: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: height / 30
+        paddingBottom: height / 30,
     },
     subtitleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: height / 30
+        paddingBottom: height / 30,
     },
     title: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     infoIcon: {
         width: width / 20,
-        height: width / 20
+        height: width / 20,
     },
     textFieldContainer: {
         flex: 1,
         paddingRight: width / 30,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     textField: {
-        fontFamily: 'Lato-Light'
+        fontFamily: 'Lato-Light',
     },
     accountNameContainer: {
         flex: 4,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     seedContainer: {
         flex: 6.5,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     iconLeft: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iconRight: {
         width: width / 28,
-        height: width / 28
+        height: width / 28,
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     checksum: {
         width: width / 8,
         height: height / 20,
         borderRadius: GENERAL.borderRadiusSmall,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     checksumText: {
         fontSize: width / 29.6,
-        fontFamily: 'Lato-Regular'
-    }
+        fontFamily: 'Lato-Regular',
+    },
 });
 
 class UseExistingSeed extends React.Component {
@@ -133,7 +133,7 @@ class UseExistingSeed extends React.Component {
         negativeColor: PropTypes.object.isRequired,
         addAccount: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -142,7 +142,7 @@ class UseExistingSeed extends React.Component {
         this.state = {
             seed: '',
             accountName: this.getDefaultAccountName(),
-            isModalVisible: false
+            isModalVisible: false,
         };
     }
 
@@ -152,7 +152,7 @@ class UseExistingSeed extends React.Component {
 
     onQRRead(data) {
         this.setState({
-            seed: data
+            seed: data,
         });
 
         this.hideModal();

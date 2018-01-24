@@ -9,42 +9,42 @@ import THEMES from '../theme/themes';
 
 const styles = StyleSheet.create({
     fieldContainer: {
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     fieldLabel: {
         fontSize: width / 34.5,
         marginVertical: height / 70,
-        marginLeft: 1
+        marginLeft: 1,
     },
     textInput: {
         fontSize: width / 23,
         lineHeight: width / 23,
         fontFamily: 'Lato-Light',
         flex: 6,
-        marginHorizontal: width / 28
+        marginHorizontal: width / 28,
     },
     innerContainer: {
         flexDirection: 'row',
         borderRadius: GENERAL.borderRadiusSmall,
-        height: height / 14
+        height: height / 14,
     },
     widgetContainer: {
         borderLeftWidth: 2,
         justifyContent: 'center',
         marginVertical: height / 120,
-        flex: 1
+        flex: 1,
     },
     QRImage: {},
     widgetButton: {
         alignItems: 'center',
         justifyContent: 'center',
-        flex: 1
+        flex: 1,
     },
     denominationText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 29.6,
-        backgroundColor: 'transparent'
-    }
+        backgroundColor: 'transparent',
+    },
 });
 
 class CustomTextInput extends React.Component {
@@ -59,7 +59,7 @@ class CustomTextInput extends React.Component {
         onDenominationPress: PropTypes.func,
         denominationText: PropTypes.string,
         onQRPress: PropTypes.func,
-        negativeColor: PropTypes.object
+        negativeColor: PropTypes.object,
     };
 
     static defaultProps = {
@@ -75,8 +75,8 @@ class CustomTextInput extends React.Component {
             h: 50.44897959183674,
             s: 0.9839357429718876,
             l: 0.48823529411764705,
-            a: 1
-        }
+            a: 1,
+        },
     };
 
     constructor(props) {

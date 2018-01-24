@@ -11,7 +11,7 @@ class Clipboard extends React.PureComponent {
         text: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         success: PropTypes.string.isRequired,
-        showNotification: PropTypes.func.isRequired
+        showNotification: PropTypes.func.isRequired,
     };
 
     render() {
@@ -25,7 +25,7 @@ class Clipboard extends React.PureComponent {
                         showNotification({
                             type: 'success',
                             title: title,
-                            text: success
+                            text: success,
                         })
                     }
                 >
@@ -39,7 +39,7 @@ class Clipboard extends React.PureComponent {
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
-    showNotification
+    showNotification,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clipboard);

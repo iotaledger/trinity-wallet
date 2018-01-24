@@ -37,6 +37,6 @@ export default i18next.init({
         tr: require('locales/tr/translation.json'),
         ur: require('locales/ur/translation.json'),
         zh_CN: require('locales/zh-CN/translation.json'),
-        zh_TW: require('locales/zh-TW/translation.json')
-    }
+        zh_TW: require('locales/zh-TW/translation.json'),
+    },
 });

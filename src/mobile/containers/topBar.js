@@ -19,7 +19,7 @@ import {
     TouchableOpacity,
     Dimensions,
     ScrollView,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
 } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { setPollFor } from '../../shared/actions/polling';
@@ -37,12 +37,12 @@ class TopBar extends Component {
     static getIconPath(isActive, chevronUpImagePath, chevronDownImagePath) {
         if (isActive) {
             return {
-                source: chevronDownImagePath
+                source: chevronDownImagePath,
             };
         }
 
         return {
-            source: chevronUpImagePath
+            source: chevronUpImagePath,
         };
     }
 
@@ -63,7 +63,7 @@ class TopBar extends Component {
         selectedAccount: PropTypes.object.isRequired,
         barColor: PropTypes.object.isRequired,
         setPollFor: PropTypes.func.isRequired,
-        secondaryBarColor: PropTypes.string.isRequired
+        secondaryBarColor: PropTypes.string.isRequired,
     };
 
     componentDidMount() {
@@ -144,7 +144,7 @@ class TopBar extends Component {
                                     ? StyleSheet.flatten([
                                           styles.mainTitle,
                                           styles.disabled,
-                                          { color: secondaryBarColor }
+                                          { color: secondaryBarColor },
                                       ])
                                     : [styles.mainTitle, { color: secondaryBarColor }]
                             }
@@ -283,8 +283,8 @@ class TopBar extends Component {
                         styles.container,
                         {
                             backgroundColor: THEMES.getHSL(this.props.barColor),
-                            shadowColor: 'black'
-                        }
+                            shadowColor: 'black',
+                        },
                     ]}
                 >
                     <DynamicStatusBar textColor={secondaryBarColor} />
@@ -324,63 +324,63 @@ const styles = StyleSheet.create({
         opacity: 0.98,
         shadowOffset: {
             width: 0,
-            height: -1
+            height: -1,
         },
         shadowRadius: 4,
-        shadowOpacity: 1.0
+        shadowOpacity: 1.0,
     },
     titleWrapper: {
         paddingHorizontal: width / 40,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     mainTitle: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 24.4,
         paddingBottom: height / 170,
-        paddingHorizontal: width / 9
+        paddingHorizontal: width / 9,
     },
     subtitle: {
         textAlign: 'center',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
-        paddingHorizontal: width / 9
+        paddingHorizontal: width / 9,
     },
     centralView: {
-        alignItems: 'center'
+        alignItems: 'center',
     },
     chevronWrapper: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     chevron: {
         height: width / 20,
         width: width / 20,
         position: 'absolute',
         top: 0,
-        right: width / 20
+        right: width / 20,
     },
     disabled: {
-        color: '#a9a9a9'
+        color: '#a9a9a9',
     },
     disabledImage: {
-        tintColor: '#a9a9a9'
+        tintColor: '#a9a9a9',
     },
     separator: {
         width: width / 2,
         marginVertical: height / 60,
         height: 1,
-        borderBottomWidth: height / 3000
+        borderBottomWidth: height / 3000,
     },
     topSeparator: {
         width: width,
         marginVertical: height / 60,
         height: 1,
-        borderBottomWidth: height / 3000
+        borderBottomWidth: height / 3000,
     },
     scrollViewContainer: {
-        maxHeight: height
-    }
+        maxHeight: height,
+    },
 });
 
 const mapStateToProps = state => ({
@@ -396,14 +396,14 @@ const mapStateToProps = state => ({
     isTopBarActive: state.home.isTopBarActive,
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     barColor: state.settings.theme.barColor,
-    secondaryBarColor: state.settings.theme.secondaryBarColor
+    secondaryBarColor: state.settings.theme.secondaryBarColor,
 });
 
 const mapDispatchToProps = {
     toggleTopBarDisplay,
     setSeedIndex,
     setReceiveAddress,
-    setPollFor
+    setPollFor,
 };
 
 export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));

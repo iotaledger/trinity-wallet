@@ -6,7 +6,7 @@ export const nodes = [
     'https://iotanode.us:443',
     'http://astra2261.startdedicated.net:14265',
     'https://www.veriti.io',
-    'http://148.251.181.105:14265'
+    'http://148.251.181.105:14265',
 ];
 
 export const DEFAULT_DEPTH = 4;

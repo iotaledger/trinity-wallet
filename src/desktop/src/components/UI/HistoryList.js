@@ -18,16 +18,16 @@ class HistoryList extends React.PureComponent {
         inline: PropTypes.bool,
         filter: PropTypes.oneOf(['sent', 'received', 'pending']),
         transfers: PropTypes.array.isRequired,
-        addresses: PropTypes.array.isRequired
+        addresses: PropTypes.array.isRequired,
     };
 
     state = {
-        activeItem: null
+        activeItem: null,
     };
 
     setHistoryItem = itemIndex => {
         this.setState({
-            activeItem: itemIndex
+            activeItem: itemIndex,
         });
     };
 
@@ -90,7 +90,7 @@ class HistoryList extends React.PureComponent {
                                     onClick={() => this.setHistoryItem(key)}
                                     className={classNames(
                                         isReceived ? css.received : css.sent,
-                                        isConfirmed ? css.confirmed : css.pending
+                                        isConfirmed ? css.confirmed : css.pending,
                                     )}
                                 >
                                     {inline
@@ -109,7 +109,7 @@ class HistoryList extends React.PureComponent {
                             <header
                                 className={classNames(
                                     addresses.includes(activeTransfer.address) ? css.received : css.sent,
-                                    activeTransfer.persistence ? css.confirmed : css.pending
+                                    activeTransfer.persistence ? css.confirmed : css.pending,
                                 )}
                             >
                                 <p>
@@ -119,7 +119,7 @@ class HistoryList extends React.PureComponent {
                                             : addresses.includes(activeTransfer.address) ? 'Received' : 'Sent'}
                                     </strong>{' '}
                                     <span>{`${round(formatValue(activeTransfer.value))} ${formatUnit(
-                                        activeTransfer.value
+                                        activeTransfer.value,
                                     )}`}</span>
                                 </p>
                                 <small>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</small>
@@ -146,7 +146,7 @@ class HistoryList extends React.PureComponent {
                                                     />
                                                 </p>
                                                 <strong>{`${round(formatValue(tx.value))} ${formatUnit(
-                                                    tx.value
+                                                    tx.value,
                                                 )}`}</strong>
                                             </li>
                                         );

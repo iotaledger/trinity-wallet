@@ -8,17 +8,17 @@ export default class PasswordInput extends React.PureComponent {
     static propTypes = {
         value: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired
+        onChange: PropTypes.func.isRequired,
     };
 
     state = {
-        type: 'password'
+        type: 'password',
     };
 
     toggleVisibility = e => {
         e.preventDefault();
         this.setState(state => ({
-            type: state.type === 'password' ? 'text' : 'password'
+            type: state.type === 'password' ? 'text' : 'password',
         }));
     };
 

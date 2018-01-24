@@ -14,7 +14,7 @@ class SeedCopyToClipboard extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         seed: PropTypes.string,
-        showNotification: PropTypes.func.isRequired
+        showNotification: PropTypes.func.isRequired,
     };
 
     render() {
@@ -31,7 +31,7 @@ class SeedCopyToClipboard extends React.PureComponent {
                             onClick={() =>
                                 showNotification({
                                     type: 'success',
-                                    title: 'Seed copied to clipboard!'
+                                    title: 'Seed copied to clipboard!',
                                 })
                             }
                         >
@@ -45,11 +45,11 @@ class SeedCopyToClipboard extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seed: getSelectedSeed(state).seed
+    seed: getSelectedSeed(state).seed,
 });
 
 const mapDispatchToProps = {
-    showNotification
+    showNotification,
 };
 
 export default translate('saveYourSeed3')(connect(mapStateToProps, mapDispatchToProps)(SeedCopyToClipboard));

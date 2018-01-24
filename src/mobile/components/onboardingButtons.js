@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         justifyContent: 'space-between',
         flexDirection: 'row',
-        width: width / 1.36
+        width: width / 1.36,
     },
     button: {
         borderWidth: 1.2,
@@ -18,13 +18,13 @@ const styles = StyleSheet.create({
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     text: {
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
-        backgroundColor: 'transparent'
-    }
+        backgroundColor: 'transparent',
+    },
 });
 
 class OnboardingButtons extends Component {
@@ -55,7 +55,7 @@ class OnboardingButtons extends Component {
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     positiveColor: state.settings.theme.positiveColor,
-    negativeColor: state.settings.theme.negativeColor
+    negativeColor: state.settings.theme.negativeColor,
 });
 
 export default connect(mapStateToProps)(OnboardingButtons);

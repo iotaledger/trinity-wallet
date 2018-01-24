@@ -36,25 +36,25 @@ export default i18next.use(reactI18nextModule).init(
             tr: require('../shared/locales/tr/translation.json'),
             ur: require('../shared/locales/ur/translation.json'),
             zh_CN: require('../shared/locales/zh-CN/translation.json'),
-            zh_TW: require('../shared/locales/zh-TW/translation.json')
+            zh_TW: require('../shared/locales/zh-TW/translation.json'),
         },
         interpolation: {
             escapeValue: false,
             format: function(value, format, lng) {
                 if (format === 'uppercase') return value.toUpperCase();
                 return value;
-            }
+            },
         },
         react: {
             wait: false,
             bindI18n: 'languageChanged loaded',
             bindStore: 'added removed',
-            nsMode: 'default'
-        }
+            nsMode: 'default',
+        },
     },
     function(err, t) {
         if (err) {
             console.error(err);
         }
-    }
+    },
 );
