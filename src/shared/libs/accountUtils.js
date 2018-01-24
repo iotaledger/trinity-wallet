@@ -230,6 +230,7 @@ export const filterSpentAddresses = (inputs) => {
 };
 
 export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
+    console.log('SHOULD NOT GET CALLED');
     if (isNull(inputs)) {
         inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
     }
