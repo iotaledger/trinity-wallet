@@ -340,8 +340,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Zapisałem swojego seeda",
         "reenter": "Teraz będziesz poproszony\/a o ponowne wprowadzenie swojego seeda.",
-        "reenterWarningOne": "W przypadku gdy twoje urządzenie ulegnie uszkodzeniu a nie zapisano",
-        "reenterWarningTwo": "seeda, stracisz swoje IOTA."
+        "reenterWarningOne": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TEJ CZYNNOŚCI NIE MOŻNA COFNĄĆ.",
