@@ -199,7 +199,7 @@ class AdvancedThemeCustomisation extends React.Component {
                     >
                         <View style={styles.itemLeft}>
                             <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                            <Text style={[styles.titleTextLeft, textColor]}>Back</Text>
+                            <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
