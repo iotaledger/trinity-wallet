@@ -73,13 +73,6 @@ class Receive extends Component {
         this.resetAddress();
     }
 
-    componentDidUpdate(newProps) {
-        const { selectedAccountName, generateAlert } = this.props;
-        if (selectedAccountName !== newProps.selectedAccountName) {
-            this.onGeneratePress();
-        }
-    }
-
     onAddressPress(address) {
         const { t, generateAlert } = this.props;
 
