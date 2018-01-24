@@ -128,14 +128,16 @@ class Send extends Component {
     }
 
     onMaxPress() {
+        const { isSendingTransfer } = this.props;
         const max = (this.props.balance / this.getUnitMultiplier()).toString();
-
-        this.setState({
-            amount: max,
-            maxPressed: true,
-            maxColor: '#FF6C69',
-            maxText: 'MAXIMUM amount selected',
-        });
+        if (!isSendingTransfer) {
+            this.setState({
+                amount: max,
+                maxPressed: true,
+                maxColor: '#FF6C69',
+                maxText: 'MAXIMUM amount selected',
+            });
+        }
     }
 
     onAmountType(amount) {
@@ -413,7 +415,7 @@ class Send extends Component {
     }
 
     render() {
-        const { amount, address, message } = this.state;
+        const { amount, address, message, isModalVisible, denomination, maxColor, maxText } = this.state;
         const {
             t,
             ctaColor,
@@ -422,12 +424,15 @@ class Send extends Component {
             secondaryBackgroundColor,
             secondaryCtaColor,
             ctaBorderColor,
+            isSendingTransfer,
+            isGettingSensitiveInfoToMakeTransaction,
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
         const sendBorderColor = { borderColor: ctaBorderColor };
         const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
         const ctaTextColor = { color: secondaryCtaColor };
+        const isNotSending = !isSendingTransfer;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -453,6 +458,8 @@ class Send extends Component {
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 value={address}
+                                editable={!isSendingTransfer}
+                                selectTextOnFocus={!isSendingTransfer}
                             />
                         </View>
                         <View style={styles.fieldContainer}>
@@ -471,13 +478,15 @@ class Send extends Component {
                                 widget="denomination"
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
-                                denominationText={this.state.denomination}
+                                denominationText={denomination}
                                 onDenominationPress={(event) => this.onDenominationPress()}
                                 value={amount}
+                                editable={!isSendingTransfer}
+                                selectTextOnFocus={!isSendingTransfer}
                             />
                             <Text style={[styles.conversionText, textColor]}>
                                 {' '}
-                                {this.state.denomination === currencySymbol
+                                {denomination === currencySymbol
                                     ? this.getConversionTextFiat()
                                     : this.getConversionTextIota()}{' '}
                             </Text>
@@ -494,12 +503,10 @@ class Send extends Component {
                                                 marginRight: width / 50,
                                                 opacity: 0.8,
                                             },
-                                            { backgroundColor: this.state.maxColor },
+                                            { backgroundColor: maxColor },
                                         ]}
                                     />
-                                    <Text style={[styles.maxButtonText, { color: this.state.maxColor }]}>
-                                        {this.state.maxText}
-                                    </Text>
+                                    <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -519,12 +526,14 @@ class Send extends Component {
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 value={message}
+                                editable={!isSendingTransfer}
+                                selectTextOnFocus={!isSendingTransfer}
                             />
                         </View>
                     </View>
                     <View style={styles.midContainer}>
-                        {!this.props.isSendingTransfer &&
-                            !this.props.isGettingSensitiveInfoToMakeTransaction && (
+                        {!isSendingTransfer &&
+                            !isGettingSensitiveInfoToMakeTransaction && (
                                 <View style={styles.sendButtonContainer}>
                                     <TouchableOpacity
                                         onPress={(event) => {
@@ -546,13 +555,12 @@ class Send extends Component {
                                     </TouchableOpacity>
                                 </View>
                             )}
-                        {(this.props.isGettingSensitiveInfoToMakeTransaction || this.props.isSendingTransfer) &&
-                            !this.state.isModalVisible && (
+                        {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
+                            !isModalVisible && (
                                 <ActivityIndicator
                                     animating={
-                                        (this.props.isGettingSensitiveInfoToMakeTransaction ||
-                                            this.props.isSendingTransfer) &&
-                                        !this.state.isModalVisible
+                                        (isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
+                                        !isModalVisible
                                     }
                                     style={styles.activityIndicator}
                                     size="large"
@@ -580,7 +588,7 @@ class Send extends Component {
                         backdropTransitionOutTiming={200}
                         backdropColor={THEMES.getHSL(backgroundColor)}
                         style={{ alignItems: 'center', margin: 0 }}
-                        isVisible={this.state.isModalVisible}
+                        isVisible={isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
                     >
                         {this._renderModalContent()}
