@@ -112,6 +112,7 @@ class Disable2FA extends Component {
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 value={this.state.token}
+                                keyboardType={'numeric'}
                             />
                         </View>
                         <View style={styles.bottomContainer}>

@@ -35,7 +35,7 @@ import { setReady, clearTempData } from './tempAccount';
 import {
     generateAccountInfoErrorAlert,
     generateSyncingCompleteAlert,
-    generateInvalidResponseAlert,
+    generateSyncingErrorAlert,
     generateAccountDeletedAlert,
 } from '../actions/alerts';
 
@@ -221,12 +221,12 @@ export const fetchFullAccountInfoForFirstUse = (
     storeInKeychainPromise,
     navigator = null,
 ) => dispatch => {
-    const onError = () => {
+    const onError = err => {
         if (navigator) {
             navigator.pop({ animated: false });
         }
 
-        dispatch(generateAccountInfoErrorAlert());
+        dispatch(generateAccountInfoErrorAlert(err));
         dispatch(fullAccountInfoForFirstUseFetchError());
     };
 
@@ -239,17 +239,15 @@ export const fetchFullAccountInfoForFirstUse = (
             if (!isEmpty(unspentAddresses)) {
                 iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
                     if (err) {
-                        onError();
-                        console.log(err);
+                        onError(err);
                     } else {
                         storeInKeychainPromise(password, seed, accountName)
                             .then(() => {
                                 const payloadWithHashes = assign({}, data, { hashes });
                                 dispatch(fullAccountInfoForFirstUseFetchSuccess(payloadWithHashes));
                             })
-                            .catch(() => {
-                                onError();
-                                console.log(err);
+                            .catch(err => {
+                                onError(err);
                             });
                     }
                 });
@@ -258,21 +256,21 @@ export const fetchFullAccountInfoForFirstUse = (
                     .then(() => {
                         dispatch(fullAccountInfoForFirstUseFetchSuccess(assign({}, data, { hashes: [] })));
                     })
-                    .catch(() => {
-                        onError();
+                    .catch(err => {
+                        onError(err);
                     });
             }
         })
-        .catch(() => onError());
+        .catch(err => onError(err));
 };
 
 export const getFullAccountInfo = (seed, accountName, navigator = null) => {
     return dispatch => {
-        const onError = () => {
+        const onError = err => {
             if (navigator) {
                 navigator.pop({ animated: false });
             }
-            dispatch(generateAccountInfoErrorAlert());
+            dispatch(generateAccountInfoErrorAlert(err));
             dispatch(fullAccountInfoFetchError());
         };
 
@@ -284,8 +282,7 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
                 if (!isEmpty(unspentAddresses)) {
                     iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
                         if (err) {
-                            onError();
-                            console.log(err);
+                            onError(err);
                         }
                         const payloadWithHashes = assign({}, data, { hashes });
                         dispatch(fullAccountInfoFetchSuccess(payloadWithHashes));
@@ -294,14 +291,14 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
                     dispatch(fullAccountInfoFetchSuccess(assign({}, data, { hashes: [] })));
                 }
             })
-            .catch(() => onError());
+            .catch(err => onError(err));
     };
 };
 
 export const manuallySyncAccount = (seed, accountName) => {
     return dispatch => {
-        const onError = () => {
-            dispatch(generateInvalidResponseAlert());
+        const onError = err => {
+            dispatch(generateSyncingErrorAlert(err));
             return dispatch(manualSyncError());
         };
 
@@ -312,8 +309,7 @@ export const manuallySyncAccount = (seed, accountName) => {
                 if (!isEmpty(unspentAddresses)) {
                     iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
                         if (err) {
-                            onError();
-                            console.log(err);
+                            onError(err);
                         } else {
                             dispatch(generateSyncingCompleteAlert());
                             const payloadWithHashes = assign({}, data, { hashes });
@@ -325,7 +321,7 @@ export const manuallySyncAccount = (seed, accountName) => {
                     dispatch(manualSyncSuccess(assign({}, data, { hashes: [] })));
                 }
             })
-            .catch(() => onError());
+            .catch(err => onError(err));
     };
 };
 
@@ -458,8 +454,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
                     }
 
                     dispatch(accountInfoFetchError());
-                    dispatch(generateAccountInfoErrorAlert());
-                    console.log(err);
+                    dispatch(generateAccountInfoErrorAlert(err));
                 }
             });
     };
