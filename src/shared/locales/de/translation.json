@@ -340,7 +340,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Ich habe mein Seed gesichert",
         "reenter": "Du wirst jetzt aufgefordert deinen Seed erneut einzugeben.",
-        "reenterWarningOne": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DIESE AKTION KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN.",
