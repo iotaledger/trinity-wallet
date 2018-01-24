@@ -340,8 +340,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Я сохранил свой ключ (seed)",
         "reenter": "Сейчас у вас попросят повторно ввести ваш ключ (seed).",
-        "reenterWarningOne": "Если ваше устройство выйдет из строя, и вы не сохранили",
-        "reenterWarningTwo": "ваш ключ (seed), то потеряете ваши IOTA."
+        "reenterWarningOne": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ЭТО ДЕЙСТВИЕ НЕ МОЖЕТ БЫТЬ ОТМЕНЕНО.",
