@@ -42,11 +42,11 @@ const Colors = () => {
 
             <h1>History list full</h1>
             <nav className={listCSS.historyList}>
-                <a>
+                <a className={classNames(listCSS.received, listCSS.pending)}>
                     <div className={listCSS.full}>
                         <p>
                             <span>Received 12Mi</span>
-                            <strong>Confirmed</strong>
+                            <strong>Pending</strong>
                         </p>
                         <p>
                             <span>Message: Hello</span>
@@ -54,7 +54,7 @@ const Colors = () => {
                         </p>
                     </div>
                 </a>
-                <a>
+                <a className={classNames(listCSS.received, listCSS.confirmed)}>
                     <div className={listCSS.full}>
                         <p>
                             <span>Received 12Mi</span>
