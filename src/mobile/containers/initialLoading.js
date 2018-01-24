@@ -30,6 +30,7 @@ class InitialLoading extends Component {
     constructor() {
         super();
         console.ignoredYellowBox = ['Setting a timer']; // eslint-disable-line no-console
+        Text.defaultProps.allowFontScaling = false;
     }
 
     componentDidMount() {
