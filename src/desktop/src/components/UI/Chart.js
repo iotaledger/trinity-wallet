@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory';
 import { setCurrency, setTimeframe } from 'actions/marketData';
-import { hslToCSS } from 'themes/themes';
 import { getCurrencySymbol } from 'libs/currency';
 import imageChevron from 'images/chevron-down-white.png';
 import Button from 'components/UI/Button';
@@ -145,8 +144,8 @@ class Chart extends React.Component {
                     <svg>
                         <defs>
                             <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
-                                <stop stopColor={hslToCSS(settings.theme.body.background)} offset="0%" />
-                                <stop stopColor={hslToCSS(settings.theme.chart.color)} offset="100%" />
+                                <stop stopColor={settings.theme.body.background} offset="0%" />
+                                <stop stopColor={settings.theme.chart.color} offset="100%" />
                             </linearGradient>
                         </defs>
                     </svg>
