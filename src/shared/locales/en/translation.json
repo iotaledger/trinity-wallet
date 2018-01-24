@@ -60,8 +60,12 @@
         "wallet": "Wallet",
         "sent": "Sent",
         "received": "Received",
+        "sending": "Sending",
+        "receiving": "Receiving",
         "confirmed": "Confirmed",
-        "pending": "Pending"
+        "pending": "Pending",
+        "bundleHash": "Bundle Hash",
+        "addresses": "Addresses"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
