@@ -340,8 +340,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Eu tenho guardado minha seed",
         "reenter": "Agora você será solicitado a redigitar sua semente.",
-        "reenterWarningOne": "Se seu dispositivo falhar e você não guardou",
-        "reenterWarningTwo": "sua seed, você perderá seu IOTA."
+        "reenterWarningOne": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ESTA AÇÃO NÃO PODE SER REVERTIDA.",
