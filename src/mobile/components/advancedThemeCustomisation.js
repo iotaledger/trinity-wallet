@@ -207,7 +207,7 @@ class AdvancedThemeCustomisation extends React.Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.itemRight}>
-                            <Text style={[styles.titleTextRight, textColor]}>Apply</Text>
+                            <Text style={[styles.titleTextRight, textColor]}>{t('global:apply')}</Text>
                             <Image source={tickImagePath} style={styles.iconRight} />
                         </View>
                     </TouchableOpacity>

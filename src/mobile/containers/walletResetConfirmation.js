@@ -1,5 +1,5 @@
 import toUpper from 'lodash/toUpper';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, Image, BackHandler } from 'react-native';
