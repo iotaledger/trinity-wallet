@@ -340,8 +340,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Ho salvato il mio seme",
         "reenter": "Adesso ti sarà richiesto di re-immettere il tuo seme.",
-        "reenterWarningOne": "Se il tuo dispositivo si rompe e non hai salvato",
-        "reenterWarningTwo": "il tuo seme, perderai i tuoi IOTA."
+        "reenterWarningOne": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "QUESTA AZIONE NON PUÒ ESSERE ANNULLATA.",
