@@ -340,7 +340,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Jag har sparat min seed",
         "reenter": "Du kommer nu bli ombedd att upprepa din seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "Om din enhet går sönder och du glömt att spara din seed, kommer du förlora dina IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNA ÅTGÄRD KAN INTE ÅNGRAS.",
