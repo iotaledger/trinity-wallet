@@ -230,16 +230,16 @@ export const filterSpentAddresses = inputs => {
 };
 
 export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
-    console.log('SHOULD NOT GET CALLED');
     if (isNull(inputs)) {
         inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
     }
 
-    iota.api.getInputs(seed, { start: start, threshold: threshold }, (err, res) => {
+    iota.api.getInputs(seed, { start, threshold }, (err, res) => {
         if (err) {
             callback(err);
             return;
         }
+
         inputs.allBalance += res.inputs.reduce((sum, input) => sum + input.balance, 0);
         filterSpentAddresses(res.inputs)
             .then(filtered => {
