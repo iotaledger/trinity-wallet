@@ -9,7 +9,7 @@ import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
 import { MAX_SEED_LENGTH } from '../libs/util';
 import { prepareTransferArray } from '../libs/transfers';
 import { getSelectedAccount } from '../selectors/account';
-import { DEPTH, MIN_WEIGHT_MAGNITUDE } from '../config';
+import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
 /* eslint-disable no-console */
 
@@ -184,12 +184,13 @@ export const generateNewAddress = (seed, seedName, addresses) => {
 const makeTransfer = (seed, address, value, accountName, transfer, options = null) => (dispatch, getState) => {
     const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
     const addressData = selectedAccount.addresses;
-    let args = [seed, DEPTH, MIN_WEIGHT_MAGNITUDE, transfer];
+    let args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, transfer];
 
     if (options) {
         args = [...args, options];
     }
 
+    console.log(options);
     return iota.api.sendTransfer(...args, (error, success) => {
         if (!error) {
             dispatch(checkForNewAddress(accountName, addressData, success));
@@ -286,9 +287,8 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
 
         const getStartingIndex = () => {
             const addresses = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
-            const address = Object.keys(addresses).find(address => addresses[address].balance > 0);
-
-            return address ? address.index : 0;
+            const addr = Object.keys(addresses).find(address => addresses[address].balance > 0);
+            return addr ? addresses[addr].index : 0;
         };
 
         return getUnspentInputs(seed, getStartingIndex(), value, null, unspentInputs);
