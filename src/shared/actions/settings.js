@@ -15,31 +15,31 @@ export const ActionTypes = {
     CURRENCY_DATA_FETCH_REQUEST: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_REQUEST',
     CURRENCY_DATA_FETCH_SUCCESS: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_SUCCESS',
     CURRENCY_DATA_FETCH_ERROR: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_ERROR',
-    SET_RANDOMLY_SELECTED_NODE: 'IOTA/SETTINGS/SET_RANDOMLY_SELECTED_NODE',
+    SET_RANDOMLY_SELECTED_NODE: 'IOTA/SETTINGS/SET_RANDOMLY_SELECTED_NODE'
 };
 
 const currencyDataFetchRequest = () => ({
-    type: ActionTypes.CURRENCY_DATA_FETCH_REQUEST,
+    type: ActionTypes.CURRENCY_DATA_FETCH_REQUEST
 });
 
 const currencyDataFetchSuccess = payload => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
-    payload,
+    payload
 });
 
 const currencyDataFetchError = () => ({
-    type: ActionTypes.CURRENCY_DATA_FETCH_ERROR,
+    type: ActionTypes.CURRENCY_DATA_FETCH_ERROR
 });
 
 export const setRandomlySelectedNode = payload => ({
     type: ActionTypes.SET_RANDOMLY_SELECTED_NODE,
-    payload,
+    payload
 });
 
 export function setLocale(locale) {
     return {
         type: ActionTypes.SET_LOCALE,
-        payload: locale,
+        payload: locale
     };
 }
 
@@ -59,19 +59,19 @@ export function getCurrencyData(currency, withAlerts = false) {
                             generateAlert(
                                 'error',
                                 'Could not fetch',
-                                `Something went wrong while fetching conversion rates for ${currency}.`,
-                            ),
+                                `Something went wrong while fetching conversion rates for ${currency}.`
+                            )
                         );
                     }
-                },
+                }
             )
             .then(json => {
                 const conversionRate = get(json, `rates.${currency}`) || 1;
                 dispatch(
                     currencyDataFetchSuccess({
                         conversionRate,
-                        currency,
-                    }),
+                        currency
+                    })
                 );
 
                 if (withAlerts) {
@@ -79,8 +79,8 @@ export function getCurrencyData(currency, withAlerts = false) {
                         generateAlert(
                             'success',
                             'Conversion rates',
-                            `Successfully fetched latest conversion rates for ${currency}.`,
-                        ),
+                            `Successfully fetched latest conversion rates for ${currency}.`
+                        )
                     );
                 }
             });
@@ -90,7 +90,7 @@ export function getCurrencyData(currency, withAlerts = false) {
 export function setLanguage(language) {
     return {
         type: ActionTypes.SET_LANGUAGE,
-        payload: language,
+        payload: language
     };
 }
 
@@ -98,7 +98,7 @@ export const invalidServerError = () => {
     return showError({
         title: 'invalidServer_title',
         text: 'invalidServer_text',
-        translate: true,
+        translate: true
     });
 };
 
@@ -106,7 +106,7 @@ export function setFullNode(fullNode) {
     return dispatch => {
         dispatch({
             type: ActionTypes.SET_FULLNODE,
-            payload: fullNode,
+            payload: fullNode
         });
     };
 }
@@ -115,7 +115,7 @@ export function addCustomPoWNode(customNode) {
     return dispatch => {
         dispatch({
             type: ActionTypes.ADD_CUSTOM_POW_NODE,
-            payload: customNode,
+            payload: customNode
         });
     };
 }
@@ -124,7 +124,7 @@ export function addCustomNode(customNode) {
     return dispatch => {
         dispatch({
             type: ActionTypes.ADD_CUSTOM_NODE,
-            payload: customNode,
+            payload: customNode
         });
     };
 }
@@ -134,7 +134,7 @@ export function updateTheme(theme, themeName) {
         dispatch({
             type: ActionTypes.UPDATE_THEME,
             theme,
-            themeName,
+            themeName
         });
     };
 }

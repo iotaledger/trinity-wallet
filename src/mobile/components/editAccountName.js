@@ -10,22 +10,22 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
     },
     textFieldContainer: {
         flex: 1,
         alignItems: 'center',
-        paddingTop: height / 10,
+        paddingTop: height / 10
     },
     saveText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     saveButtonContainer: {
         flex: 2,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     bottomContainer: {
         flex: 1,
@@ -33,44 +33,44 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 9,
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
     },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end'
     },
     iconLeft: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20,
+        marginRight: width / 20
     },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iconRight: {
         width: width / 28,
-        height: width / 28,
+        height: width / 28
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        marginRight: width / 20,
-    },
+        marginRight: width / 20
+    }
 });
 
 export class EditAccountName extends Component {
@@ -79,14 +79,14 @@ export class EditAccountName extends Component {
         seedIndex: PropTypes.number.isRequired,
         accountName: PropTypes.string.isRequired,
         saveAccountName: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired
     };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            accountName: props.accountName,
+            accountName: props.accountName
         };
     }
 
@@ -106,7 +106,7 @@ export class EditAccountName extends Component {
                         <View style={styles.textFieldContainer}>
                             <CustomTextInput
                                 label={t('accountName')}
-                                onChangeText={(accountName) => this.setState({ accountName })}
+                                onChangeText={accountName => this.setState({ accountName })}
                                 containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -122,7 +122,7 @@ export class EditAccountName extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.props.backPress()}
+                            onPress={event => this.props.backPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>

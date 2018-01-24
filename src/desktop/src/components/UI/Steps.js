@@ -7,11 +7,11 @@ import css from './Steps.css';
 export default class Steps extends PureComponent {
     static propTypes = {
         steps: PropTypes.array,
-        currentStep: PropTypes.oneOf(['manual', 'clipboard', 'paper']).isRequired,
+        currentStep: PropTypes.oneOf(['manual', 'clipboard', 'paper']).isRequired
     };
 
     static defaultProps = {
-        steps: ['manual_copy', 'paper_wallet', 'copy_to_clipboard'],
+        steps: ['manual_copy', 'paper_wallet', 'copy_to_clipboard']
     };
 
     renderSteps(steps, currentStep) {
@@ -24,7 +24,7 @@ export default class Steps extends PureComponent {
             asUiElements.push(
                 <span {...isSelected(step) && { className: css.colorOverride }} key={k}>
                     {startCase(step)}
-                </span>,
+                </span>
             );
             k += 1;
             if (i < steps.length - 1) {

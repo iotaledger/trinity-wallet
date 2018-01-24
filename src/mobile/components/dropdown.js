@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     ListView,
     LayoutAnimation,
-    TouchableWithoutFeedback,
+    TouchableWithoutFeedback
 } from 'react-native';
 import Triangle from 'react-native-triangle';
 import THEMES from '../theme/themes';
@@ -22,41 +22,41 @@ const CustomLayoutSpring = {
     create: {
         type: LayoutAnimation.Types.spring,
         property: LayoutAnimation.Properties.scaleXY,
-        springDamping: 0.7,
+        springDamping: 0.7
     },
     update: {
         type: LayoutAnimation.Types.spring,
-        springDamping: 0.7,
-    },
+        springDamping: 0.7
+    }
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     dropdownContainer: {
         justifyContent: 'flex-start',
         paddingLeft: 2,
         paddingRight: 2,
-        paddingBottom: 2,
+        paddingBottom: 2
     },
     dropdownTitle: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 33,
         backgroundColor: 'transparent',
-        paddingLeft: width / 100,
+        paddingLeft: width / 100
     },
     dropdownItemContainer: {
         flex: 1,
         height: height / 22.4,
         alignItems: 'stretch',
         justifyContent: 'center',
-        paddingLeft: width / 100,
+        paddingLeft: width / 100
     },
     listView: {
         flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     dropdownItem: {
         fontSize: width / 23,
@@ -64,18 +64,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         textAlign: 'left',
         paddingTop: height / 100,
-        width: width / 3,
+        width: width / 3
     },
     dropdownButtonContainer: {
-        marginTop: height / 150,
+        marginTop: height / 150
     },
     dropdownInnerContainer: {
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 2
         },
         shadowRadius: 4,
-        shadowOpacity: 0.6,
+        shadowOpacity: 0.6
     },
     selected: {
         fontFamily: 'Lato-Light',
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         paddingBottom: height / 150,
         paddingLeft: width / 100,
-        flex: 1,
+        flex: 1
     },
     dropdownButton: {
         flexDirection: 'row',
@@ -91,22 +91,22 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderBottomWidth: 0.7,
         width: width / 3,
-        height: height / 22,
+        height: height / 22
     },
     additionalPadding: {
-        height: height / 78,
+        height: height / 78
     },
     triangle: {
         marginBottom: height / 80,
-        marginRight: width / 100,
-    },
+        marginRight: width / 100
+    }
 });
 
 export class Dropdown extends Component {
     static propTypes = {
         onRef: PropTypes.func,
         disableWhen: PropTypes.bool,
-        shadow: PropTypes.bool,
+        shadow: PropTypes.bool
     };
 
     constructor(props) {
@@ -114,7 +114,7 @@ export class Dropdown extends Component {
 
         this.state = {
             isDropdownOpen: false,
-            selectedOption: this.props.defaultOption,
+            selectedOption: this.props.defaultOption
         };
     }
 
@@ -132,7 +132,7 @@ export class Dropdown extends Component {
     onOptionPress(option) {
         this.setState({
             isDropdownOpen: false,
-            selectedOption: option,
+            selectedOption: option
         });
 
         const { saveSelection } = this.props;
@@ -146,7 +146,7 @@ export class Dropdown extends Component {
         const { isDropdownOpen } = this.state;
 
         this.setState({
-            isDropdownOpen: !isDropdownOpen,
+            isDropdownOpen: !isDropdownOpen
         });
     }
 
@@ -167,7 +167,7 @@ export class Dropdown extends Component {
             negativeColor,
             disableWhen,
             secondaryBackgroundColor,
-            shadow,
+            shadow
         } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
@@ -185,7 +185,7 @@ export class Dropdown extends Component {
                     style={[
                         styles.dropdownTitle,
                         { color: THEMES.getHSL(negativeColor) },
-                        isAndroid ? null : dropdownWidth,
+                        isAndroid ? null : dropdownWidth
                     ]}
                 >
                     {title}
@@ -202,7 +202,7 @@ export class Dropdown extends Component {
                             style={[
                                 styles.dropdownButton,
                                 dropdownWidth,
-                                { borderBottomColor: secondaryBackgroundColor },
+                                { borderBottomColor: secondaryBackgroundColor }
                             ]}
                         >
                             <Text numberOfLines={1} style={[styles.selected, { color: secondaryBackgroundColor }]}>
@@ -224,7 +224,7 @@ export class Dropdown extends Component {
                         overflow: 'hidden',
                         backgroundColor: 'transparent',
                         alignItems: 'flex-start',
-                        justifyContent: 'flex-start',
+                        justifyContent: 'flex-start'
                     }}
                 >
                     <View style={[styles.dropdownContainer, dropdownWidth]}>
@@ -243,7 +243,7 @@ export class Dropdown extends Component {
                                                         style={[
                                                             styles.dropdownItemContainer,
                                                             backgroundColor,
-                                                            dropdownWidth,
+                                                            dropdownWidth
                                                         ]}
                                                     >
                                                         <Text
@@ -251,7 +251,7 @@ export class Dropdown extends Component {
                                                             style={[
                                                                 styles.dropdownItem,
                                                                 dropdownWidth,
-                                                                { color: secondaryBackgroundColor },
+                                                                { color: secondaryBackgroundColor }
                                                             ]}
                                                         >
                                                             {rowData}
@@ -271,7 +271,7 @@ export class Dropdown extends Component {
                                                     style={[
                                                         styles.dropdownItemContainer,
                                                         backgroundColor,
-                                                        dropdownWidth,
+                                                        dropdownWidth
                                                     ]}
                                                 >
                                                     <Text
@@ -279,7 +279,7 @@ export class Dropdown extends Component {
                                                         style={[
                                                             styles.dropdownItem,
                                                             dropdownWidth,
-                                                            { color: secondaryBackgroundColor },
+                                                            { color: secondaryBackgroundColor }
                                                         ]}
                                                     >
                                                         {rowData}
@@ -304,7 +304,7 @@ const mapStateToProps = state => ({
     barColor: state.settings.theme.barColor,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
 });
 
 export default connect(mapStateToProps)(Dropdown);

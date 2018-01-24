@@ -23,7 +23,7 @@ class SaveYourSeed extends Component {
         backgroundColor: PropTypes.object.isRequired,
         extraColor: PropTypes.object.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired
     };
 
     componentDidMount() {
@@ -56,15 +56,15 @@ class SaveYourSeed extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
             },
-            animated: false,
+            animated: false
         });
     }
 
     onBackPress() {
         this.props.navigator.pop({
-            animated: false,
+            animated: false
         });
     }
 
@@ -74,9 +74,9 @@ class SaveYourSeed extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
             },
-            animated: false,
+            animated: false
         });
     }
     onPrintClick() {
@@ -85,9 +85,9 @@ class SaveYourSeed extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
             },
-            animated: false,
+            animated: false
         });
     }
     onCopyClick() {
@@ -96,9 +96,9 @@ class SaveYourSeed extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
             },
-            animated: false,
+            animated: false
         });
     }
 
@@ -122,7 +122,7 @@ class SaveYourSeed extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ paddingTop: height / 20 }}>
-                        <TouchableOpacity onPress={(event) => this.onWriteClick()}>
+                        <TouchableOpacity onPress={event => this.onWriteClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:manualCopy').toUpperCase()}
@@ -131,7 +131,7 @@ class SaveYourSeed extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={(event) => this.onPrintClick()}>
+                        <TouchableOpacity onPress={event => this.onPrintClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:paperWallet').toUpperCase()}
@@ -140,7 +140,7 @@ class SaveYourSeed extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={(event) => this.onCopyClick()}>
+                        <TouchableOpacity onPress={event => this.onCopyClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:copyToClipboard').toUpperCase()}
@@ -167,30 +167,30 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 22
     },
     midContainer: {
         flex: 4,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     bottomContainer: {
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
-        paddingBottom: height / 20,
+        paddingBottom: height / 20
     },
     optionButtonText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 25.3,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     optionButton: {
         borderWidth: 1.5,
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
         width: width / 1.36,
         height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
     },
     infoText: {
         fontFamily: 'Lato-Light',
@@ -207,37 +207,37 @@ const styles = StyleSheet.create({
         paddingTop: height / 10,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        paddingHorizontal: width / 9,
+        paddingHorizontal: width / 9
     },
     infoTextNormal: {
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         textAlign: 'left',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     infoTextBold: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
-    },
+        width: width / 5
+    }
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     extraColor: state.settings.theme.extraColor,
     onboardingComplete: state.account.onboardingComplete,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
 });
 
 const mapDispatchToProps = {
     setCopiedToClipboard,
-    generateAlert,
+    generateAlert
 };
 
 export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeed));

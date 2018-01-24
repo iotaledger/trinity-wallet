@@ -15,18 +15,18 @@ import {
     deleteAccount,
     manuallySyncAccount,
     update2FA,
-    seed2FA,
+    seed2FA
 } from 'iota-wallet-shared-modules/actions/account';
 import {
     getSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
+    getSelectedAccountNameViaSeedIndex
 } from 'iota-wallet-shared-modules/selectors/account';
 import {
     setFullNode,
     getCurrencyData,
     addCustomPoWNode,
     updateTheme,
-    setLanguage,
+    setLanguage
 } from 'iota-wallet-shared-modules/actions/settings';
 import whiteModeImagePath from 'iota-wallet-shared-modules/images/mode-white.png';
 import whiteThemeImagePath from 'iota-wallet-shared-modules/images/theme-white.png';
@@ -65,47 +65,47 @@ import keychain, {
     hasDuplicateSeed,
     getSeed,
     updateAccountNameInKeychain,
-    deleteFromKeychain,
+    deleteFromKeychain
 } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     titleText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
         width,
-        paddingHorizontal: width / 15,
+        paddingHorizontal: width / 15
     },
     icon: {
         width: width / 22,
         height: width / 22,
-        marginRight: width / 25,
+        marginRight: width / 25
     },
     settingsContainer: {
         flex: 40,
         justifyContent: 'center',
         alignItems: 'flex-start',
         zIndex: 1,
-        paddingVertical: height / 40,
+        paddingVertical: height / 40
     },
     advancedSettingsContainer: {
         flex: 1,
         alignItems: 'flex-start',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
     },
     modalContent: {
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     dropdownTitle: {
         fontSize: 16,
@@ -113,11 +113,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'Lato-Regular'
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        padding: 15
     },
     dropdownMessage: {
         fontSize: 14,
@@ -125,14 +125,14 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'Lato-Regular'
     },
     dropdownImage: {
         padding: 8,
         width: 36,
         height: 36,
-        alignSelf: 'center',
-    },
+        alignSelf: 'center'
+    }
 });
 
 class Settings extends Component {
@@ -180,7 +180,7 @@ class Settings extends Component {
         is2FAEnabled: PropTypes.bool.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         setLanguage: PropTypes.func.isRequired,
-        language: PropTypes.string.isRequired,
+        language: PropTypes.string.isRequired
     };
 
     constructor(props) {
@@ -189,7 +189,7 @@ class Settings extends Component {
         this.state = {
             isModalVisible: false,
             modalSetting: 'addNewSeed',
-            modalContent: <LogoutConfirmationModal />,
+            modalContent: <LogoutConfirmationModal />
         };
     }
 
@@ -212,7 +212,7 @@ class Settings extends Component {
             extraColor,
             ctaBorderColor,
             secondaryCtaColor,
-            language,
+            language
         } = this.props;
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -237,8 +237,8 @@ class Settings extends Component {
         const props = {
             mainSettings: {
                 t: this.props.t,
-                setSetting: (setting) => this.props.setSetting(setting),
-                setModalContent: (content) => this.setModalContent(content),
+                setSetting: setting => this.props.setSetting(setting),
+                setModalContent: content => this.setModalContent(content),
                 on2FASetupPress: () => this.on2FASetupPress(),
                 onThemePress: () => this.props.setSetting('themeCustomisation'),
                 onModePress: () => this.featureUnavailable(),
@@ -256,26 +256,26 @@ class Settings extends Component {
                 passwordImagePath,
                 twoFactorAuthImagePath,
                 advancedImagePath,
-                logoutImagePath,
+                logoutImagePath
             },
             advancedSettings: {
-                setSetting: (setting) => this.props.setSetting(setting),
+                setSetting: setting => this.props.setSetting(setting),
                 onResetWalletPress: () => this.onResetWalletPress(),
                 node: this.props.fullNode,
                 textColor: { color: secondaryBackgroundColor },
                 borderColor: { borderBottomColor: secondaryBackgroundColor },
                 arrowLeftImagePath,
                 addImagePath,
-                secondaryBackgroundColor,
+                secondaryBackgroundColor
             },
             accountManagement: {
-                setSetting: (setting) => this.props.setSetting(setting),
+                setSetting: setting => this.props.setSetting(setting),
                 onDeleteAccountPress: () => this.onDeleteAccountPress(),
                 textColor: { color: secondaryBackgroundColor },
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 arrowLeftImagePath,
                 keyImagePath,
-                addImagePath,
+                addImagePath
             },
             viewSeed: {
                 seedIndex: this.props.seedIndex,
@@ -286,23 +286,23 @@ class Settings extends Component {
                 borderColor: { borderColor: secondaryBackgroundColor },
                 textColor: { color: secondaryBackgroundColor },
                 secondaryBackgroundColor: secondaryBackgroundColor,
-                arrowLeftImagePath,
+                arrowLeftImagePath
             },
             viewAddresses: {
                 addressData: this.props.selectedAccount.addresses,
                 backPress: () => this.props.setSetting('accountManagement'),
-                arrowLeftImagePath,
+                arrowLeftImagePath
             },
             editAccountName: {
                 seedIndex: this.props.seedIndex,
                 accountName: this.props.selectedAccountName,
-                saveAccountName: (accountName) => this.saveAccountName(accountName),
+                saveAccountName: accountName => this.saveAccountName(accountName),
                 backPress: () => this.props.setSetting('accountManagement'),
                 negativeColor: negativeColor,
                 textColor: { color: secondaryBackgroundColor },
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 tickImagePath,
-                arrowLeftImagePath,
+                arrowLeftImagePath
             },
             deleteAccount: {
                 backPress: () => this.props.setSetting('accountManagement'),
@@ -316,7 +316,7 @@ class Settings extends Component {
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 borderColor: { borderColor: secondaryBackgroundColor },
                 tickImagePath,
-                arrowLeftImagePath,
+                arrowLeftImagePath
             },
             addNewAccount: {
                 addExistingSeed: () => this.props.setSetting('addExistingSeed'),
@@ -325,7 +325,7 @@ class Settings extends Component {
                 textColor: { color: secondaryBackgroundColor },
                 arrowLeftImagePath,
                 keyImagePath,
-                addImagePath,
+                addImagePath
             },
             addExistingSeed: {
                 seedCount: this.props.seedCount,
@@ -339,10 +339,10 @@ class Settings extends Component {
                 borderColor: { borderColor: secondaryBackgroundColor },
                 arrowLeftImagePath,
                 ctaBorderColor: ctaBorderColor,
-                secondaryCtaColor: secondaryCtaColor,
+                secondaryCtaColor: secondaryCtaColor
             },
             nodeSelection: {
-                setNode: (selectedNode) => {
+                setNode: selectedNode => {
                     changeIotaNode(selectedNode);
                     this.props.setFullNode(selectedNode);
                 },
@@ -352,25 +352,25 @@ class Settings extends Component {
                 textColor: { color: secondaryBackgroundColor },
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 tickImagePath,
-                arrowLeftImagePath,
+                arrowLeftImagePath
             },
             addCustomNode: {
-                setNode: (selectedNode) => {
+                setNode: selectedNode => {
                     changeIotaNode(selectedNode);
                     this.props.setFullNode(selectedNode);
                 },
                 nodes: this.props.availablePoWNodes,
                 onDuplicateNodeError: () => this.onDuplicateNodeError(),
-                checkNode: (cb) => checkNode(cb), // TODO: Try to get rid of the callback
+                checkNode: cb => checkNode(cb), // TODO: Try to get rid of the callback
                 currentNode: this.props.fullNode,
                 onAddNodeError: () => this.onAddNodeError(),
-                onAddNodeSuccess: (customNode) => this.onAddNodeSuccess(customNode),
+                onAddNodeSuccess: customNode => this.onAddNodeSuccess(customNode),
                 backPress: () => this.props.setSetting('advancedSettings'),
                 negativeColor: negativeColor,
                 textColor: { color: secondaryBackgroundColor },
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 arrowLeftImagePath,
-                addImagePath,
+                addImagePath
             },
             currencySelection: {
                 getCurrencyData: (currency, withAlerts) => this.props.getCurrencyData(currency, withAlerts),
@@ -382,7 +382,7 @@ class Settings extends Component {
                 isFetchingCurrencyData: this.props.isFetchingCurrencyData,
                 hasErrorFetchingCurrencyData: this.props.hasErrorFetchingCurrencyData,
                 tickImagePath,
-                arrowLeftImagePath,
+                arrowLeftImagePath
             },
             languageSelection: {
                 backPress: () => this.props.setSetting('mainSettings'),
@@ -390,11 +390,11 @@ class Settings extends Component {
                 tickImagePath,
                 arrowLeftImagePath,
                 language,
-                setLanguage: (lang) => this.props.setLanguage(lang),
+                setLanguage: lang => this.props.setLanguage(lang)
             },
             changePassword: {
                 password: this.props.password,
-                setPassword: (password) => this.props.setPassword(password),
+                setPassword: password => this.props.setPassword(password),
                 backPress: () => this.props.setSetting('mainSettings'),
                 generateAlert: this.props.generateAlert,
                 negativeColor: negativeColor,
@@ -402,7 +402,7 @@ class Settings extends Component {
                 borderColor: { borderColor: secondaryBackgroundColor },
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 tickImagePath,
-                arrowLeftImagePath,
+                arrowLeftImagePath
             },
             manualSync: {
                 t: this.props.t,
@@ -413,7 +413,7 @@ class Settings extends Component {
                 borderColor: { borderColor: secondaryBackgroundColor },
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 negativeColor: negativeColor,
-                arrowLeftImagePath,
+                arrowLeftImagePath
             },
             themeCustomisation: {
                 backPress: () => this.props.setSetting('mainSettings'),
@@ -424,7 +424,7 @@ class Settings extends Component {
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 tickImagePath,
-                arrowLeftImagePath,
+                arrowLeftImagePath
             },
             advancedThemeCustomisation: {
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
@@ -438,8 +438,8 @@ class Settings extends Component {
                 backPress: () => this.props.setSetting('themeCustomisation'),
                 textColor: { color: secondaryBackgroundColor },
                 tickImagePath,
-                arrowLeftImagePath,
-            },
+                arrowLeftImagePath
+            }
         };
 
         return props[child] || {};
@@ -463,9 +463,9 @@ class Settings extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                        generateAlert: this.props.generateAlert,
-                    },
-                },
+                        generateAlert: this.props.generateAlert
+                    }
+                }
             });
         } else {
             Navigation.startSingleScreenApp({
@@ -475,9 +475,9 @@ class Settings extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                        generateAlert: this.props.generateAlert,
-                    },
-                },
+                        generateAlert: this.props.generateAlert
+                    }
+                }
             });
         }
     }
@@ -487,7 +487,7 @@ class Settings extends Component {
 
         keychain
             .get()
-            .then((credentials) => {
+            .then(credentials => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.manuallySyncAccount(seed, selectedAccountName);
@@ -495,18 +495,18 @@ class Settings extends Component {
                     this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongExplanation'),
+                        t('global:somethingWentWrongExplanation')
                     );
                 }
             })
-            .catch((err) => console.error(err)); // eslint-disable-line no-console
+            .catch(err => console.error(err)); // eslint-disable-line no-console
     }
 
     onAddNodeError() {
         return this.props.generateAlert(
             'error',
             'Custom node could not be added',
-            'The node returned an invalid response.',
+            'The node returned an invalid response.'
         );
     }
 
@@ -524,7 +524,7 @@ class Settings extends Component {
         this.props.setAdditionalAccountInfo({
             addingAdditionalAccount: true,
             additionalAccountName: accountName,
-            seed,
+            seed
         });
 
         this.props.navigator.push({
@@ -532,10 +532,10 @@ class Settings extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
             },
             animated: false,
-            overrideBackPress: true,
+            overrideBackPress: true
         });
     }
 
@@ -547,7 +547,7 @@ class Settings extends Component {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:seedInvalidChars'),
-                t('addAdditionalSeed:seedInvalidCharsExplanation'),
+                t('addAdditionalSeed:seedInvalidCharsExplanation')
             );
         } else if (seed.length < MAX_SEED_LENGTH) {
             this.props.generateAlert(
@@ -555,25 +555,25 @@ class Settings extends Component {
                 t('addAdditionalSeed:seedTooShort'),
                 t('addAdditionalSeed:seedTooShortExplanation', {
                     maxLength: MAX_SEED_LENGTH,
-                    currentLength: seed.length,
-                }),
+                    currentLength: seed.length
+                })
             );
         } else if (!(accountName.length > 0)) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:noNickname'),
-                t('addAdditionalSeed:noNicknameExplanation'),
+                t('addAdditionalSeed:noNicknameExplanation')
             );
         } else if (seedNames.includes(accountName)) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
-                t('addAdditionalSeed:nameInUseExplanation'),
+                t('addAdditionalSeed:nameInUseExplanation')
             );
         } else {
             keychain
                 .get()
-                .then((credentials) => {
+                .then(credentials => {
                     if (isNull(credentials)) {
                         this.fetchAccountInfo(seed, accountName);
                     } else {
@@ -581,20 +581,20 @@ class Settings extends Component {
                             this.props.generateAlert(
                                 'error',
                                 t('addAdditionalSeed:nameInUse'),
-                                t('addAdditionalSeed:nameInUseExplanation'),
+                                t('addAdditionalSeed:nameInUseExplanation')
                             );
                         } else if (hasDuplicateSeed(credentials.data, seed)) {
                             this.props.generateAlert(
                                 'error',
                                 t('addAdditionalSeed:seedInUse'),
-                                t('addAdditionalSeed:seedInUseExplanation'),
+                                t('addAdditionalSeed:seedInUseExplanation')
                             );
                         } else {
                             this.fetchAccountInfo(seed, accountName);
                         }
                     }
                 })
-                .catch((err) => console.log(err)); // eslint-disable no-console
+                .catch(err => console.log(err)); // eslint-disable no-console
         }
     }
 
@@ -606,7 +606,7 @@ class Settings extends Component {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
-                t('addAdditionalSeed:nameInUseExplanation'),
+                t('addAdditionalSeed:nameInUseExplanation')
             );
         } else {
             // Update keychain
@@ -629,7 +629,7 @@ class Settings extends Component {
 
                     this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
                 })
-                .catch((err) => console.log(err)); // eslint-disable-line no-console
+                .catch(err => console.log(err)); // eslint-disable-line no-console
         }
     }
 
@@ -640,7 +640,7 @@ class Settings extends Component {
         return this.props.generateAlert(
             'error',
             t('global:unrecognisedPassword'),
-            t('global:unrecognisedPasswordExplanation'),
+            t('global:unrecognisedPasswordExplanation')
         );
     }
 
@@ -650,7 +650,7 @@ class Settings extends Component {
 
         deleteFromKeychain(seedIndex, password)
             .then(() => this.props.deleteAccount(selectedAccountName))
-            .catch((err) => console.error(err));
+            .catch(err => console.error(err));
     }
 
     setModalContent(modalSetting) {
@@ -673,7 +673,7 @@ class Settings extends Component {
 
         this.setState({
             modalSetting,
-            modalContent,
+            modalContent
         });
 
         this.showModal();
@@ -686,7 +686,7 @@ class Settings extends Component {
             return this.props.generateAlert(
                 'error',
                 t('global:cannotPerformAction'),
-                t('global:cannotPerformActionExplanation'),
+                t('global:cannotPerformActionExplanation')
             );
         }
 
@@ -706,12 +706,12 @@ class Settings extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                }
             },
             appStyle: {
-                orientation: 'portrait',
-            },
+                orientation: 'portrait'
+            }
         });
     }
 
@@ -724,13 +724,13 @@ class Settings extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
                 },
-                overrideBackPress: true,
+                overrideBackPress: true
             },
             appStyle: {
-                orientation: 'portrait',
-            },
+                orientation: 'portrait'
+            }
         });
     }
 
@@ -741,12 +741,12 @@ class Settings extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                }
             },
             appStyle: {
-                orientation: 'portrait',
-            },
+                orientation: 'portrait'
+            }
         });
         BackHandler.removeEventListener('homeBackPress');
     }
@@ -803,10 +803,10 @@ const mapDispatchToProps = {
     updateTheme,
     setAdditionalAccountInfo,
     update2FA,
-    setLanguage,
+    setLanguage
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     currentSetting: state.tempAccount.currentSetting,
@@ -835,9 +835,9 @@ const mapStateToProps = (state) => ({
     isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
     hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
-    language: state.settings.language,
+    language: state.settings.language
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(
-    connect(mapStateToProps, mapDispatchToProps)(Settings),
+    connect(mapStateToProps, mapDispatchToProps)(Settings)
 );

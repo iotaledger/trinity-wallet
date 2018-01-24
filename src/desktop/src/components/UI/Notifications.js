@@ -10,11 +10,11 @@ class Notifications extends React.PureComponent {
     static propTypes = {
         hideNotification: PropTypes.func.isRequired,
         notifications: PropTypes.object.isRequired,
-        t: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     static defaultProps = {
-        notifications: {},
+        notifications: {}
     };
 
     state = {};
@@ -51,11 +51,11 @@ class Notifications extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    notifications: state.notifications,
+    notifications: state.notifications
 });
 
 const mapDispatchToProps = {
-    hideNotification,
+    hideNotification
 };
 
 export default translate('notifications')(connect(mapStateToProps, mapDispatchToProps)(Notifications));

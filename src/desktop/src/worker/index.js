@@ -17,6 +17,6 @@ store.subscribe(() => worker.postMessage({ type: 'setState', payload: store.getS
 export const runTask = (type, payload) => {
     return worker.postMessage({
         type,
-        payload,
+        payload
     });
 };

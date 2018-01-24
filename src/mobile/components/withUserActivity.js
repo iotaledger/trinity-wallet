@@ -9,7 +9,7 @@ import { setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount'
 
 const mapDispatchToProps = {
     setUserActivity,
-    generateAlert,
+    generateAlert
 };
 
 export default () => C => {
@@ -38,7 +38,7 @@ export default () => C => {
 
     withUserActivity.propTypes = {
         setUserActivity: PropTypes.func.isRequired,
-        generateAlert: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired
     };
 
     return translate(['global'])(connect(null, mapDispatchToProps)(withUserActivity));

@@ -10,7 +10,7 @@ import {
     ListView,
     TouchableOpacity,
     Image,
-    BackHandler,
+    BackHandler
 } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
@@ -44,7 +44,7 @@ class NewSeedSetup extends Component {
         onboardingComplete: PropTypes.bool.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
-        ctaBorderColor: PropTypes.string.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired
     };
 
     constructor() {
@@ -52,7 +52,7 @@ class NewSeedSetup extends Component {
 
         this.state = {
             randomised: false,
-            infoTextColor: 'transparent',
+            infoTextColor: 'transparent'
         };
     }
 
@@ -79,12 +79,12 @@ class NewSeedSetup extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                }
             },
             appStyle: {
-                orientation: 'portrait',
-            },
+                orientation: 'portrait'
+            }
         });
     }
 
@@ -101,7 +101,7 @@ class NewSeedSetup extends Component {
                 screen: 'saveYourSeed',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
             });
         } else {
             this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
@@ -112,7 +112,7 @@ class NewSeedSetup extends Component {
         this.props.clearSeed();
         if (!this.props.account.onboardingComplete) {
             this.props.navigator.pop({
-                animated: false,
+                animated: false
             });
         } else {
             // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
@@ -155,7 +155,7 @@ class NewSeedSetup extends Component {
             negativeColor,
             secondaryBackgroundColor,
             secondaryCtaColor,
-            ctaBorderColor,
+            ctaBorderColor
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const viewOpacity = this.state.randomised ? 1 : 0.1;
@@ -171,7 +171,7 @@ class NewSeedSetup extends Component {
                         <View
                             style={[
                                 styles.generateButton,
-                                { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
+                                { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor }
                             ]}
                         >
                             <Text style={[styles.generateText, ctaTextColor]}>{t('pressForNewSeed')}</Text>
@@ -198,7 +198,7 @@ class NewSeedSetup extends Component {
                                             fontFamily: 'Lato-Bold',
                                             fontSize: width / 28.9,
                                             textAlign: 'center',
-                                            opacity: viewOpacity,
+                                            opacity: viewOpacity
                                         }}
                                     >
                                         {rowData}
@@ -218,7 +218,7 @@ class NewSeedSetup extends Component {
                                 fontFamily: 'Lato-Light',
                                 textAlign: 'center',
                                 fontSize: width / 27.6,
-                                backgroundColor: 'transparent',
+                                backgroundColor: 'transparent'
                             }}
                         >
                             {t('individualLetters')}
@@ -242,44 +242,44 @@ class NewSeedSetup extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 2.1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 22
     },
     midContainer: {
         flex: 5.55,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     bottomContainer: {
         flex: 0.75,
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        paddingBottom: height / 20
     },
     list: {
         justifyContent: 'center',
         alignItems: 'flex-start',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        paddingHorizontal: width / 20,
+        paddingHorizontal: width / 20
     },
     gridContainer: {
         //  flex: 1
     },
     tile: {
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     tileContainer: {
         width: width / 14.5,
         height: width / 14.5,
         justifyContent: 'center',
         alignItems: 'center',
-        margin: width / 80,
+        margin: width / 80
     },
     generateButton: {
         borderRadius: GENERAL.borderRadius,
@@ -287,24 +287,24 @@ const styles = StyleSheet.create({
         height: height / 16,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1.2,
+        borderWidth: 1.2
     },
     generateText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     buttonsContainer: {
         flex: 1,
         alignItems: 'flex-end',
         justifyContent: 'center',
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
     rightText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     leftButton: {
         borderColor: '#F7D002',
@@ -314,23 +314,23 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginRight: width / 14,
+        marginRight: width / 14
     },
     leftText: {
         color: '#F7D002',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
+        width: width / 5
     },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        backgroundColor: 'transparent',
-    },
+        backgroundColor: 'transparent'
+    }
 });
 
 const mapStateToProps = state => ({
@@ -342,14 +342,14 @@ const mapStateToProps = state => ({
     onboardingComplete: state.account.onboardingComplete,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     secondaryCtaColor: state.settings.theme.secondaryCtaColor,
-    ctaBorderColor: state.settings.theme.ctaBorderColor,
+    ctaBorderColor: state.settings.theme.ctaBorderColor
 });
 
 const mapDispatchToProps = {
     setSeed,
     clearSeed,
     randomiseSeed,
-    generateAlert,
+    generateAlert
 };
 
 export default translate(['newSeedSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup));

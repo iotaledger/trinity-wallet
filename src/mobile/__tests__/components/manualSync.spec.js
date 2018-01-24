@@ -18,13 +18,13 @@ const getProps = overrides =>
                     'manualSync:thisMayTake': 'This may take a while.',
                     'manualSync:syncingYourAccount': 'Syncing your account.',
                     'manualSync:syncAccount': 'SYNC ACCOUNT',
-                    'manualSync:pressToSync': 'Press the button below to sync your account.',
+                    'manualSync:pressToSync': 'Press the button below to sync your account.'
                 };
 
                 return translations[arg] ? translations[arg] : 'foo';
-            },
+            }
         },
-        overrides,
+        overrides
     );
 
 describe('Testing ManualSync component', () => {
@@ -71,7 +71,7 @@ describe('Testing ManualSync component', () => {
                         .find('Text')
                         .first()
                         .children()
-                        .text(),
+                        .text()
                 ).toBe('Press the button below to sync your account.');
             });
 
@@ -84,7 +84,7 @@ describe('Testing ManualSync component', () => {
                         .find('Text')
                         .at(1)
                         .children()
-                        .text(),
+                        .text()
                 ).toBe('This may take a while.');
             });
 
@@ -97,7 +97,7 @@ describe('Testing ManualSync component', () => {
                         .find('Text')
                         .at(2)
                         .children()
-                        .text(),
+                        .text()
                 ).toBe('You may notice your device slowing down.');
             });
 
@@ -110,13 +110,13 @@ describe('Testing ManualSync component', () => {
                         .find('Text')
                         .at(3)
                         .children()
-                        .text(),
+                        .text()
                 ).toBe('SYNC ACCOUNT');
             });
 
             it('should call prop method onManualSyncPress when first TouchableOpacityElement is onPress is triggered', () => {
                 const props = getProps({
-                    onManualSyncPress: jest.fn(),
+                    onManualSyncPress: jest.fn()
                 });
 
                 const wrapper = shallow(<ManualSync {...props} />);
@@ -127,7 +127,7 @@ describe('Testing ManualSync component', () => {
 
             it('should call prop method backPress when last TouchableOpacityElement is onPress is triggered', () => {
                 const props = getProps({
-                    backPress: jest.fn(),
+                    backPress: jest.fn()
                 });
 
                 const wrapper = shallow(<ManualSync {...props} />);
@@ -147,7 +147,7 @@ describe('Testing ManualSync component', () => {
                         .find('Text')
                         .first()
                         .children()
-                        .text(),
+                        .text()
                 ).toBe('Syncing your account.');
             });
 
@@ -160,7 +160,7 @@ describe('Testing ManualSync component', () => {
                         .find('Text')
                         .at(1)
                         .children()
-                        .text(),
+                        .text()
                 ).toBe('This may take a while.');
             });
 
@@ -173,7 +173,7 @@ describe('Testing ManualSync component', () => {
                         .find('Text')
                         .at(2)
                         .children()
-                        .text(),
+                        .text()
                 ).toBe('You may notice your device slowing down.');
             });
 

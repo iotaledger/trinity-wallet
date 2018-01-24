@@ -13,7 +13,7 @@ import {
     fetchPrice,
     setPollFor,
     getAccountInfo,
-    promoteTransfer,
+    promoteTransfer
 } from '../../shared/actions/polling';
 import { removeBundleFromUnconfirmedBundleTails } from '../../shared/actions/account';
 import keychain, { getSeed } from '../util/keychain';
@@ -43,7 +43,7 @@ export class Poll extends Component {
         fetchChartData: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         promoteTransfer: PropTypes.func.isRequired,
-        removeBundleFromUnconfirmedBundleTails: PropTypes.func.isRequired,
+        removeBundleFromUnconfirmedBundleTails: PropTypes.func.isRequired
     };
 
     static shouldPromote(latestTail) {
@@ -96,7 +96,7 @@ export class Poll extends Component {
             price: this.props.fetchPrice,
             chartData: this.props.fetchChartData,
             accountInfo: this.fetchLatestAccountInfo,
-            promotion: this.promote,
+            promotion: this.promote
         };
 
         // In case something messed up, reinitialize
@@ -108,13 +108,13 @@ export class Poll extends Component {
 
         keychain
             .get()
-            .then((credentials) => {
+            .then(credentials => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.getAccountInfo(seed, selectedAccountName);
                 }
             })
-            .catch((err) => console.error(err)); // eslint-disable-line no-console
+            .catch(err => console.error(err)); // eslint-disable-line no-console
     }
 
     startBackgroundProcesses() {
@@ -155,7 +155,7 @@ export class Poll extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,
@@ -170,7 +170,7 @@ const mapStateToProps = (state) => ({
     isFetchingLatestAccountInfoOnLogin: state.tempAccount.isFetchingLatestAccountInfoOnLogin,
     seedIndex: state.tempAccount.seedIndex,
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
-    unconfirmedBundleTails: state.account.unconfirmedBundleTails,
+    unconfirmedBundleTails: state.account.unconfirmedBundleTails
 });
 
 const mapDispatchToProps = {
@@ -180,7 +180,7 @@ const mapDispatchToProps = {
     setPollFor,
     getAccountInfo,
     promoteTransfer,
-    removeBundleFromUnconfirmedBundleTails,
+    removeBundleFromUnconfirmedBundleTails
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poll);

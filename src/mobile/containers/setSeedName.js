@@ -25,14 +25,14 @@ export class SetSeedName extends Component {
         navigator: PropTypes.object.isRequired,
         setSeedName: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        setAdditionalAccountInfo: PropTypes.func.isRequired
     };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            accountName: this.getDefaultAccountName(),
+            accountName: this.getDefaultAccountName()
         };
     }
 
@@ -43,10 +43,10 @@ export class SetSeedName extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
                 },
                 animated: false,
-                overrideBackPress: true,
+                overrideBackPress: true
             });
         } else {
             return this.props.navigator.push({
@@ -54,9 +54,9 @@ export class SetSeedName extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
                 },
-                animated: false,
+                animated: false
             });
         }
     }
@@ -65,10 +65,10 @@ export class SetSeedName extends Component {
         const { t } = this.props;
         const trimmedAccountName = trim(this.state.accountName);
 
-        const fetch = (accountName) => {
+        const fetch = accountName => {
             this.props.setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
-                additionalAccountName: accountName,
+                additionalAccountName: accountName
             });
 
             this.navigateTo('loading');
@@ -82,7 +82,7 @@ export class SetSeedName extends Component {
             } else {
                 keychain
                     .get()
-                    .then((credentials) => {
+                    .then(credentials => {
                         if (isEmpty(credentials)) {
                             return fetch(trimmedAccountName);
                         } else {
@@ -90,13 +90,13 @@ export class SetSeedName extends Component {
                                 return this.props.generateAlert(
                                     'error',
                                     t('addAdditionalSeed:nameInUse'),
-                                    t('addAdditionalSeed:nameInUseExplanation'),
+                                    t('addAdditionalSeed:nameInUseExplanation')
                                 );
                             } else if (hasDuplicateSeed(credentials.password, this.props.tempAccount.seed)) {
                                 return this.props.generateAlert(
                                     'error',
                                     t('addAdditionalSeed:seedInUse'),
-                                    t('addAdditionalSeed:seedInUseExplanation'),
+                                    t('addAdditionalSeed:seedInUseExplanation')
                                 );
                             }
 
@@ -107,7 +107,7 @@ export class SetSeedName extends Component {
                         this.props.generateAlert(
                             'error',
                             t('global:somethingWentWrong'),
-                            t('global:somethingWentWrongExplanation'),
+                            t('global:somethingWentWrongExplanation')
                         );
                     });
             }
@@ -115,14 +115,14 @@ export class SetSeedName extends Component {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:noNickname'),
-                t('addAdditionalSeed:noNicknameExplanation'),
+                t('addAdditionalSeed:noNicknameExplanation')
             );
         }
     }
 
     onBackPress() {
         this.props.navigator.pop({
-            animated: false,
+            animated: false
         });
     }
 
@@ -152,10 +152,10 @@ export class SetSeedName extends Component {
             screen,
             navigatorStyle: {
                 navBarHidden: true,
-                navBarTransparent: true,
+                navBarTransparent: true
             },
             animated: false,
-            overrideBackPress: true,
+            overrideBackPress: true
         });
     }
 
@@ -178,7 +178,7 @@ export class SetSeedName extends Component {
                             <View style={{ flex: 0.5 }} />
                             <CustomTextInput
                                 label={t('addAdditionalSeed:accountName')}
-                                onChangeText={(accountName) => this.setState({ accountName })}
+                                onChangeText={accountName => this.setState({ accountName })}
                                 containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'words'}
                                 autoCorrect={false}
@@ -221,62 +221,62 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 22
     },
     midContainer: {
         flex: 4.8,
         justifyContent: 'space-around',
         alignItems: 'center',
-        width,
+        width
     },
     bottomContainer: {
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        paddingBottom: height / 20
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 15,
+        paddingTop: height / 15
     },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
         paddingTop: height / 60,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     infoIcon: {
         width: width / 20,
-        height: width / 20,
+        height: width / 20
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
-    },
+        width: width / 5
+    }
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
 });
 
 const mapDispatchToProps = {
     setSeedName,
     generateAlert,
-    setAdditionalAccountInfo,
+    setAdditionalAccountInfo
 };
 
 export default translate(['setSeedName', 'global', 'addAdditionalSeed'])(
-    connect(mapStateToProps, mapDispatchToProps)(SetSeedName),
+    connect(mapStateToProps, mapDispatchToProps)(SetSeedName)
 );

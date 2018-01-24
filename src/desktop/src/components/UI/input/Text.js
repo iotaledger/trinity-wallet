@@ -6,7 +6,7 @@ export default class TextInput extends React.PureComponent {
     static propTypes = {
         value: PropTypes.string.isRequired,
         label: PropTypes.string,
-        onChange: PropTypes.func.isRequired,
+        onChange: PropTypes.func.isRequired
     };
 
     render() {

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import {
     getAccountInfo,
     getFullAccountInfo,
-    fetchFullAccountInfoForFirstUse,
+    fetchFullAccountInfoForFirstUse
 } from 'iota-wallet-shared-modules/actions/account';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
@@ -27,7 +27,7 @@ class Loading extends Component {
     constructor() {
         super();
         this.state = {
-            elipsis: '',
+            elipsis: ''
         };
     }
     componentDidMount() {
@@ -38,7 +38,7 @@ class Loading extends Component {
             selectedAccountName,
             seed,
             password,
-            navigator,
+            navigator
         } = this.props;
 
         this.animation.play();
@@ -63,7 +63,7 @@ class Loading extends Component {
                         additionalAccountName,
                         password,
                         storeSeedInKeychain,
-                        navigator,
+                        navigator
                     );
                 } else {
                     this.props.getAccountInfo(firstSeed, selectedAccountName, navigator);
@@ -84,12 +84,12 @@ class Loading extends Component {
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                    },
+                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                    }
                 },
                 appStyle: {
-                    orientation: 'portrait',
-                },
+                    orientation: 'portrait'
+                }
             });
         }
     }
@@ -113,7 +113,7 @@ class Loading extends Component {
             addingAdditionalAccount,
             negativeColor,
             backgroundColor,
-            secondaryBackgroundColor,
+            secondaryBackgroundColor
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const loadingAnimationPath =
@@ -178,37 +178,37 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         textAlign: 'center',
-        paddingBottom: height / 30,
+        paddingBottom: height / 30
     },
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 40,
+        paddingTop: height / 40
     },
     animationLoading: {
         justifyContent: 'center',
         width: width * 1.5,
-        height: width / 1.77 * 1.5,
+        height: width / 1.77 * 1.5
     },
     animationNewSeed: {
         justifyContent: 'center',
         width: width / 2.5,
-        height: width / 2.5,
+        height: width / 2.5
     },
     animationContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: height / 30,
-    },
+        padding: height / 30
+    }
 });
 
 const mapStateToProps = state => ({
@@ -221,7 +221,7 @@ const mapStateToProps = state => ({
     password: state.tempAccount.password,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
 });
 
 const mapDispatchToProps = {
@@ -229,7 +229,7 @@ const mapDispatchToProps = {
     setSetting,
     getAccountInfo,
     getFullAccountInfo,
-    fetchFullAccountInfoForFirstUse,
+    fetchFullAccountInfoForFirstUse
 };
 
 Loading.propTypes = {
@@ -241,7 +241,7 @@ Loading.propTypes = {
     fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
     selectedAccountName: PropTypes.string.isRequired,
     backgroundColor: PropTypes.object.isRequired,
-    negativeColor: PropTypes.object.isRequired,
+    negativeColor: PropTypes.object.isRequired
 };
 
 export default translate('loading')(connect(mapStateToProps, mapDispatchToProps)(Loading));

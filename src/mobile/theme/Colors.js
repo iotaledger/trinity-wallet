@@ -12,16 +12,16 @@ const BaseColors = {
     backgroundGreen: '#1a373e',
     backgroundGray: '#3B3B3B',
     backgroundBlack: '#1A1A1A',
-    backgroundDarkGreen: '#0b282f',
+    backgroundDarkGreen: '#0b282f'
 };
 
 export default {
     ...BaseColors,
     brand: {
-        primary: BaseColors.blueDarker,
+        primary: BaseColors.blueDarker
     },
     dropdown: {
         success: BaseColors.greenLight,
-        error: BaseColors.redDark,
-    },
+        error: BaseColors.redDark
+    }
 };
