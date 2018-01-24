@@ -17,7 +17,7 @@ const keychain = {
                         const payload = {
                             password: get(credentials, 'username'),
                             data: get(credentials, 'password'),
-                            service: get(credentials, 'service'),
+                            service: get(credentials, 'service')
                         };
 
                         resolve(payload);
@@ -39,7 +39,7 @@ const keychain = {
                 .then(() => resolve())
                 .catch(err => reject(err));
         });
-    },
+    }
 };
 
 export const storeSeedInKeychain = async (password, seed, name) => {
@@ -86,7 +86,7 @@ export const updateAccountNameInKeychain = async (replaceAtIndex, newAccountName
             if (i === replaceAtIndex) {
                 return {
                     ...d,
-                    name: newAccountName,
+                    name: newAccountName
                 };
             }
 

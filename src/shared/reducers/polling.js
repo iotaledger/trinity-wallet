@@ -48,100 +48,100 @@ const polling = (
         isFetchingChartData: false,
         isFetchingMarketData: false,
         isFetchingAccountInfo: false,
-        isPromoting: false,
+        isPromoting: false
     },
-    action,
+    action
 ) => {
     switch (action.type) {
         case ActionTypes.FETCH_PRICE_REQUEST:
             return {
                 ...state,
-                isFetchingPrice: true,
+                isFetchingPrice: true
             };
         case ActionTypes.FETCH_PRICE_SUCCESS:
             return {
                 ...state,
                 isFetchingPrice: false,
-                ...setNextPollIfSuccessful(state),
+                ...setNextPollIfSuccessful(state)
             };
         case ActionTypes.FETCH_PRICE_ERROR:
             return {
                 ...state,
                 isFetchingPrice: false,
-                ...setNextPollIfUnsuccessful(state),
+                ...setNextPollIfUnsuccessful(state)
             };
         case ActionTypes.FETCH_CHART_DATA_REQUEST:
             return {
                 ...state,
-                isFetchingChartData: true,
+                isFetchingChartData: true
             };
         case ActionTypes.FETCH_CHART_DATA_SUCCESS:
             return {
                 ...state,
                 isFetchingChartData: false,
-                ...setNextPollIfSuccessful(state),
+                ...setNextPollIfSuccessful(state)
             };
         case ActionTypes.FETCH_CHART_DATA_ERROR:
             return {
                 ...state,
                 isFetchingChartData: false,
-                ...setNextPollIfUnsuccessful(state),
+                ...setNextPollIfUnsuccessful(state)
             };
         case ActionTypes.FETCH_MARKET_DATA_REQUEST:
             return {
                 ...state,
-                isFetchingMarketData: true,
+                isFetchingMarketData: true
             };
         case ActionTypes.FETCH_MARKET_DATA_SUCCESS:
             return {
                 ...state,
                 isFetchingMarketData: false,
-                ...setNextPollIfSuccessful(state),
+                ...setNextPollIfSuccessful(state)
             };
         case ActionTypes.FETCH_MARKET_DATA_ERROR:
             return {
                 ...state,
                 isFetchingMarketData: false,
-                ...setNextPollIfUnsuccessful(state),
+                ...setNextPollIfUnsuccessful(state)
             };
         case ActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,
-                isFetchingAccountInfo: true,
+                isFetchingAccountInfo: true
             };
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 isFetchingAccountInfo: false,
-                ...setNextPollIfSuccessful(state),
+                ...setNextPollIfSuccessful(state)
             };
         case ActionTypes.ACCOUNT_INFO_FETCH_ERROR:
             return {
                 ...state,
                 isFetchingAccountInfo: false,
-                ...setNextPollIfUnsuccessful(state),
+                ...setNextPollIfUnsuccessful(state)
             };
         case ActionTypes.PROMOTE_TRANSACTION_REQUEST:
             return {
                 ...state,
-                isPromoting: true,
+                isPromoting: true
             };
         case ActionTypes.PROMOTE_TRANSACTION_SUCCESS:
             return {
                 ...state,
                 isPromoting: false,
-                ...setNextPollIfSuccessful(state),
+                ...setNextPollIfSuccessful(state)
             };
         case ActionTypes.PROMOTE_TRANSACTION_ERROR:
             return {
                 ...state,
                 isPromoting: false,
-                ...setNextPollIfUnsuccessful(state),
+                ...setNextPollIfUnsuccessful(state)
             };
         case ActionTypes.SET_POLL_FOR:
             return {
                 ...state,
-                pollFor: action.payload,
+                pollFor: action.payload
             };
         default:
             return state;

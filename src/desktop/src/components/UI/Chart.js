@@ -10,15 +10,15 @@ export default class Chart extends React.Component {
     static propTypes = {
         marketData: PropTypes.object.isRequired,
         setTimeframe: PropTypes.func.isRequired,
-        setCurrency: PropTypes.func.isRequired,
+        setCurrency: PropTypes.func.isRequired
     };
 
     static defaultProps = {
-        marketData: {},
+        marketData: {}
     };
 
     state = {
-        price: this.props.marketData.usdPrice,
+        price: this.props.marketData.usdPrice
     };
 
     componentWillMount() {
@@ -41,7 +41,7 @@ export default class Chart extends React.Component {
         const maxValue = Math.max(
             ...data.map(object => {
                 return object.y;
-            }),
+            })
         );
         return maxValue;
     }
@@ -52,7 +52,7 @@ export default class Chart extends React.Component {
         const minValue = Math.min(
             ...data.map(object => {
                 return object.y;
-            }),
+            })
         );
         return minValue;
     }
@@ -63,7 +63,7 @@ export default class Chart extends React.Component {
         const maxValue = Math.max(
             ...data.map(object => {
                 return object.x;
-            }),
+            })
         );
         return maxValue;
     }
@@ -76,7 +76,7 @@ export default class Chart extends React.Component {
             (minValue + (minValue + maxValue) / 2) / 2,
             (minValue + maxValue) / 2,
             (maxValue + (minValue + maxValue) / 2) / 2,
-            maxValue,
+            maxValue
         ];
     }
 
@@ -96,13 +96,13 @@ export default class Chart extends React.Component {
         '24h': '7d',
         '7d': '1m',
         '1m': '1h',
-        '1h': '24h',
+        '1h': '24h'
     };
 
     nextCurrency = {
         USD: 'BTC',
         BTC: 'ETH',
-        ETH: 'USD',
+        ETH: 'USD'
     };
 
     changeCurrency() {
@@ -149,17 +149,17 @@ export default class Chart extends React.Component {
                             style={{
                                 data: {
                                     stroke: 'url(#gradient)',
-                                    strokeWidth: 1.2,
-                                },
+                                    strokeWidth: 1.2
+                                }
                             }}
                             domain={{
                                 x: [-1, this.getMaxX() + 1],
-                                y: [this.getMinY(), this.getMaxY()],
+                                y: [this.getMinY(), this.getMaxY()]
                             }}
                             scale={{ x: 'time', y: 'linear' }}
                             animate={{
                                 duration: 1500,
-                                onLoad: { duration: 2000 },
+                                onLoad: { duration: 2000 }
                             }}
                         />
                         <VictoryAxis
@@ -168,13 +168,13 @@ export default class Chart extends React.Component {
                             style={{
                                 axis: { stroke: 'transparent' },
                                 tickLabels: { fill: 'white', fontSize: 9, fontFamily: 'Lato-Regular' },
-                                ticks: { padding: 0 },
+                                ticks: { padding: 0 }
                             }}
                             gridComponent={<Line type="grid" style={{ stroke: 'white', strokeWidth: 0.1 }} />}
                             tickLabelComponent={<VictoryLabel x={0} textAnchor="start" />}
                             tickValues={this.getTickValues()}
                             domain={{
-                                y: [this.getMinY(), this.getMaxY()],
+                                y: [this.getMinY(), this.getMaxY()]
                             }}
                         />
                     </VictoryChart>

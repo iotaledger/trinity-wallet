@@ -57,7 +57,7 @@ class Login extends Component {
         key2FA: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
-        migrate: PropTypes.func.isRequired,
+        migrate: PropTypes.func.isRequired
     };
 
     constructor() {
@@ -66,7 +66,7 @@ class Login extends Component {
         this.state = {
             isModalVisible: false,
             changingNode: false,
-            completing2FA: false,
+            completing2FA: false
         };
 
         this.onComplete2FA = this.onComplete2FA.bind(this);
@@ -159,7 +159,7 @@ class Login extends Component {
                         this.props.generateAlert(
                             'error',
                             t('global:unrecognisedPassword'),
-                            t('global:unrecognisedPasswordExplanation'),
+                            t('global:unrecognisedPasswordExplanation')
                         );
                     }
                 })
@@ -211,10 +211,10 @@ class Login extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
             },
             animated: false,
-            overrideBackPress: true,
+            overrideBackPress: true
         });
     }
 
@@ -227,12 +227,12 @@ class Login extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                }
             },
             appStyle: {
-                orientation: 'portrait',
-            },
+                orientation: 'portrait'
+            }
         });
     }
 
@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     modalContent: {
         justifyContent: 'space-between',
@@ -324,20 +324,20 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingVertical: height / 18,
-        width: width / 1.15,
+        width: width / 1.15
     },
     questionText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
-        paddingBottom: height / 40,
+        paddingBottom: height / 40
     },
     infoText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
-        paddingBottom: height / 16,
-    },
+        paddingBottom: height / 16
+    }
 });
 
 const mapStateToProps = state => ({
@@ -353,7 +353,7 @@ const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     is2FAEnabled: state.account.is2FAEnabled,
     key2FA: state.account.key2FA,
-    versions: state.app.versions,
+    versions: state.app.versions
 });
 
 const mapDispatchToProps = {
@@ -368,7 +368,7 @@ const mapDispatchToProps = {
     changeHomeScreenRoute,
     setSetting,
     setUserActivity,
-    migrate,
+    migrate
 };
 
 export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));

@@ -8,7 +8,7 @@ import { updatePersistedState } from '../shared/libs/util';
 
 export const persistConfig = {
     storage: AsyncStorage,
-    blacklist: ['alerts', 'tempAccount', 'keychain', 'polling', 'ui'],
+    blacklist: ['alerts', 'tempAccount', 'keychain', 'polling', 'ui']
 };
 
 const shouldMigrate = restoredState => {
@@ -28,8 +28,8 @@ const migrate = (state, restoredState) => {
         state.dispatch(
             setAppVersions({
                 version: getVersion(),
-                buildNumber: getBuildNumber(),
-            }),
+                buildNumber: getBuildNumber()
+            })
         );
 
         return initializeApp(state);
@@ -42,8 +42,8 @@ const migrate = (state, restoredState) => {
             state.dispatch(
                 setAppVersions({
                     version: getVersion(),
-                    buildNumber: getBuildNumber(),
-                }),
+                    buildNumber: getBuildNumber()
+                })
             );
 
             const persistor = createPersistor(state, persistConfig);

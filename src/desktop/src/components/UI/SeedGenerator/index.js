@@ -10,12 +10,12 @@ import css from './SeedGenerator.css';
 export default class SeedGenerator extends React.PureComponent {
     static propTypes = {
         seed: PropTypes.string,
-        onUpdatedSeed: PropTypes.func,
+        onUpdatedSeed: PropTypes.func
     };
 
     state = {
         seed: this.props.seed || null,
-        updateCounter: {},
+        updateCounter: {}
     };
 
     componentDidMount() {
@@ -25,7 +25,7 @@ export default class SeedGenerator extends React.PureComponent {
     componentWillReceiveProps(nextProps) {
         if (nextProps.seed !== this.props.seed) {
             this.setState(() => ({
-                seed: nextProps.seed,
+                seed: nextProps.seed
             }));
         }
     }
@@ -44,7 +44,7 @@ export default class SeedGenerator extends React.PureComponent {
             // we got a completely new seed, so reset the updateCounter for letters
             if (differenceCounter > 1) {
                 this.setState(() => ({
-                    updateCounter: {},
+                    updateCounter: {}
                 }));
             }
             return this.props.onUpdatedSeed(seed, previous);
@@ -66,12 +66,12 @@ export default class SeedGenerator extends React.PureComponent {
 
             const updateCounter = {
                 ...state.updateCounter,
-                [position]: (state.updateCounter[position] || 0) + 1,
+                [position]: (state.updateCounter[position] || 0) + 1
             };
 
             return {
                 seed,
-                updateCounter,
+                updateCounter
             };
         });
     };

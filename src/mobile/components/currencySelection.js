@@ -7,7 +7,7 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    TouchableWithoutFeedback,
+    TouchableWithoutFeedback
 } from 'react-native';
 import { width, height } from '../util/dimensions';
 import Dropdown from './dropdown';
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
     },
     bottomContainer: {
         flex: 1,
@@ -26,65 +26,65 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     innerContainer: {
         flex: 5,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 4,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end'
     },
     iconLeft: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20,
+        marginRight: width / 20
     },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iconRight: {
         width: width / 28,
-        height: width / 28,
+        height: width / 28
     },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
-        textAlign: 'center',
+        textAlign: 'center'
     },
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: height / 40,
+        marginTop: height / 40
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        marginRight: width / 20,
+        marginRight: width / 20
     },
     dropdownWidth: {
-        width: width / 2,
-    },
+        width: width / 2
+    }
 });
 
 export class CurrencySelection extends Component {
@@ -99,7 +99,7 @@ export class CurrencySelection extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.object.isRequired,
         tickImagePath: PropTypes.number.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired
     };
 
     componentWillReceiveProps(newProps) {

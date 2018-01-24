@@ -1,7 +1,7 @@
 const { Menu, ipcMain, dialog, shell } = require('electron');
 
 const state = {
-    authorised: false,
+    authorised: false
 };
 
 let language = {
@@ -32,11 +32,11 @@ let language = {
     logout: 'Logout',
     logoutConfirm: 'Are you sure you want to log out?',
     yes: 'Yes',
-    no: 'No',
+    no: 'No'
 };
 
 const initMenu = (app, getWindow) => {
-    const navigate = (path) => {
+    const navigate = path => {
         const mainWindow = getWindow('main');
         if (mainWindow) {
             mainWindow.webContents.send('menu', path);
@@ -50,70 +50,70 @@ const initMenu = (app, getWindow) => {
                 submenu: [
                     {
                         label: `${language.about} ${app.getName()}`,
-                        role: 'about',
+                        role: 'about'
                     },
                     {
                         label: language.settings,
                         submenu: [
                             {
                                 label: language.language,
-                                click: () => navigate('settings/language'),
+                                click: () => navigate('settings/language')
                             },
                             {
                                 label: language.currency,
-                                click: () => navigate('settings/currency'),
+                                click: () => navigate('settings/currency')
                             },
                             {
                                 label: language.theme,
-                                click: () => navigate('settings/theme'),
+                                click: () => navigate('settings/theme')
                             },
                             {
-                                type: 'separator',
+                                type: 'separator'
                             },
                             {
                                 label: language.twoFA,
                                 enabled: state.authorised,
-                                click: () => navigate('settings/twoFA'),
+                                click: () => navigate('settings/twoFA')
                             },
                             {
                                 label: language.changePassword,
                                 enabled: state.authorised,
-                                click: () => navigate('settings/changePassword'),
+                                click: () => navigate('settings/changePassword')
                             },
                             {
                                 label: language.advanced,
                                 enabled: state.authorised,
-                                click: () => navigate('settings/advanced'),
-                            },
-                        ],
+                                click: () => navigate('settings/advanced')
+                            }
+                        ]
                     },
                     {
-                        type: 'separator',
+                        type: 'separator'
                     },
                     {
                         label: `${language.hide} ${app.getName()}`,
-                        role: 'hide',
+                        role: 'hide'
                     },
                     {
                         label: language.hideOthers,
-                        role: 'hideothers',
+                        role: 'hideothers'
                     },
                     {
                         label: language.showAll,
-                        role: 'unhide',
+                        role: 'unhide'
                     },
                     {
-                        type: 'separator',
+                        type: 'separator'
                     },
                     {
                         label: language.quit,
                         accelerator: 'Command+Q',
                         click: function() {
                             app.quit();
-                        },
-                    },
-                ],
-            },
+                        }
+                    }
+                ]
+            }
         ];
 
         template.push({
@@ -125,8 +125,8 @@ const initMenu = (app, getWindow) => {
                 { label: language.cut, accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
                 { label: language.copy, accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
                 { label: language.paste, accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
-                { label: language.selectAll, accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
-            ],
+                { label: language.selectAll, accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' }
+            ]
         });
 
         if (state.authorised) {
@@ -135,22 +135,22 @@ const initMenu = (app, getWindow) => {
                 submenu: [
                     {
                         label: language.balance,
-                        click: () => navigate('balance'),
+                        click: () => navigate('balance')
                     },
                     {
                         label: language.send,
-                        click: () => navigate('send'),
+                        click: () => navigate('send')
                     },
                     {
                         label: language.receive,
-                        click: () => navigate('receive'),
+                        click: () => navigate('receive')
                     },
                     {
                         label: language.history,
-                        click: () => navigate('history'),
+                        click: () => navigate('history')
                     },
                     {
-                        type: 'separator',
+                        type: 'separator'
                     },
                     {
                         label: language.logout,
@@ -163,18 +163,18 @@ const initMenu = (app, getWindow) => {
                                         type: 'question',
                                         title: language.logout,
                                         message: language.logoutConfirm,
-                                        buttons: [language.yes, language.no],
+                                        buttons: [language.yes, language.no]
                                     },
-                                    (index) => {
+                                    index => {
                                         if (index === 0) {
                                             mainWindow.webContents.send('menu', 'logout');
                                         }
-                                    },
+                                    }
                                 );
                             }
-                        },
-                    },
-                ],
+                        }
+                    }
+                ]
             });
         }
 
@@ -186,9 +186,9 @@ const initMenu = (app, getWindow) => {
                     click: function() {
                         //TODO: Change to wallet documentation link
                         shell.openExternal('https://iota.readme.io/docs/what-is-iota');
-                    },
-                },
-            ],
+                    }
+                }
+            ]
         });
 
         const applicationMenu = Menu.buildFromTemplate(template);

@@ -3,7 +3,7 @@ import {
     getSelectedIndex,
     getSeedItems,
     getMostRecentSeedIndex,
-    getSelectedSeed,
+    getSelectedSeed
 } from '../selectors/seeds';
 import { securelyPersistSeeds, getSecurelyPersistedSeeds } from '../libs/util';
 import { iota } from '../libs/iota';
@@ -14,13 +14,13 @@ export const ActionTypes = {
     REMOVE_SEED: 'IOTA/SEEDS/REMOVE_SEED',
     PATCH_SEED: 'IOTA/SEEDS/PATCH_SEED',
     CLEAR: 'IOTA/SEEDS/CLEAR',
-    LOAD_SEEDS: 'IOTA/SEEDS/LOAD_SEEDS',
+    LOAD_SEEDS: 'IOTA/SEEDS/LOAD_SEEDS'
 };
 
 export const loadSeeds = seeds => {
     return {
         type: ActionTypes.LOAD_SEEDS,
-        payload: seeds,
+        payload: seeds
     };
 };
 
@@ -39,14 +39,14 @@ export const addSeed = seed => {
 
     return {
         type: ActionTypes.ADD_SEED,
-        payload: seed,
+        payload: seed
     };
 };
 
 export const selectSeed = index => {
     return {
         type: ActionTypes.SELECT_SEED,
-        payload: index,
+        payload: index
     };
 };
 
@@ -85,8 +85,8 @@ export const addAddress = address => {
         addresses.push(address);
         return dispatch(
             updateCurrentSeed({
-                addresses,
-            }),
+                addresses
+            })
         );
     };
 };
@@ -101,21 +101,21 @@ export const patchSeed = (index, values) => {
         type: ActionTypes.PATCH_SEED,
         payload: {
             index,
-            values,
-        },
+            values
+        }
     };
 };
 
 export const removeSeed = seed => {
     return {
         type: ActionTypes.REMOVE_SEED,
-        payload: seed,
+        payload: seed
     };
 };
 
 export const clearSeeds = () => {
     return {
-        type: ActionTypes.CLEAR,
+        type: ActionTypes.CLEAR
     };
 };
 
@@ -149,7 +149,7 @@ export const getNewAddressAsync = (seed, options) => {
         console.log('ADRCOUNT:', addressCount);
         const address = await iota.api.getNewAddressAsync(
             seed,
-            Object.assign({}, options, { checksum: true, index: addressCount }),
+            Object.assign({}, options, { checksum: true, index: addressCount })
         );
         dispatch(addAddress(address));
         console.log('NEW ADDRESS:', address);

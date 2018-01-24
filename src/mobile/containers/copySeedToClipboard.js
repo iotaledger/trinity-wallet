@@ -22,7 +22,7 @@ class CopySeedToClipboard extends Component {
         setCopiedToClipboard: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        secondaryCtaColor: PropTypes.string.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired
     };
 
     constructor() {
@@ -42,7 +42,7 @@ class CopySeedToClipboard extends Component {
         this.props.setCopiedToClipboard(true);
 
         this.props.navigator.pop({
-            animated: false,
+            animated: false
         });
     }
 
@@ -79,7 +79,7 @@ class CopySeedToClipboard extends Component {
             ctaColor,
             secondaryBackgroundColor,
             secondaryCtaColor,
-            ctaBorderColor,
+            ctaBorderColor
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
@@ -105,7 +105,7 @@ class CopySeedToClipboard extends Component {
                         <View
                             style={[
                                 styles.copyButton,
-                                { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
+                                { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor }
                             ]}
                         >
                             <Text style={[styles.copyText, ctaTextColor]}>{t('copyToClipboard').toUpperCase()}</Text>
@@ -131,24 +131,24 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 0.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
-        paddingHorizontal: width / 20,
+        paddingHorizontal: width / 20
     },
     midContainer: {
         flex: 4.6,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     bottomContainer: {
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'flex-end',
+        alignItems: 'flex-end'
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
         fontSize: width / 25.3,
         textAlign: 'center',
         paddingHorizontal: width / 20,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     optionButton: {
         borderColor: '#8BD4FF',
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
     },
     infoTextNormal: {
         paddingTop: height / 12,
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        paddingHorizontal: width / 5,
+        paddingHorizontal: width / 5
     },
     infoTextBold: {
         fontFamily: 'Lato-Bold',
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
         paddingTop: height / 80,
-        paddingBottom: height / 40,
+        paddingBottom: height / 40
     },
     doneButton: {
         borderWidth: 1.2,
@@ -190,16 +190,16 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginBottom: height / 20,
+        marginBottom: height / 20
     },
     doneText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
+        width: width / 5
     },
     copyButton: {
         borderRadius: GENERAL.borderRadius,
@@ -207,13 +207,13 @@ const styles = StyleSheet.create({
         height: height / 12,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1.2,
+        borderWidth: 1.2
     },
     copyText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 29.6,
-        backgroundColor: 'transparent',
-    },
+        backgroundColor: 'transparent'
+    }
 });
 
 const mapStateToProps = state => ({
@@ -224,14 +224,14 @@ const mapStateToProps = state => ({
     ctaColor: state.settings.theme.ctaColor,
     secondaryCtaColor: state.settings.theme.secondaryCtaColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    ctaBorderColor: state.settings.theme.ctaBorderColor,
+    ctaBorderColor: state.settings.theme.ctaBorderColor
 });
 
 const mapDispatchToProps = {
     setCopiedToClipboard,
-    generateAlert,
+    generateAlert
 };
 
 export default translate(['copyToClipboard', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(CopySeedToClipboard),
+    connect(mapStateToProps, mapDispatchToProps)(CopySeedToClipboard)
 );

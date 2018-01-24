@@ -15,19 +15,19 @@ class LightServerSetup extends React.PureComponent {
         setFullNode: PropTypes.func.isRequired,
         fullNode: PropTypes.string.isRequired,
         history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
+            push: PropTypes.func.isRequired
         }).isRequired,
-        t: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     state = {
-        fullNode: this.props.fullNode,
+        fullNode: this.props.fullNode
     };
 
     onCustomServerChange = e => {
         const { target: { value: customServer } } = e;
         this.setState(() => ({
-            customServer,
+            customServer
         }));
     };
 
@@ -52,7 +52,7 @@ class LightServerSetup extends React.PureComponent {
     setServer = server => {
         this.setState(() => ({
             fullNode: server,
-            customServer: null,
+            customServer: null
         }));
     };
 
@@ -90,12 +90,12 @@ class LightServerSetup extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    fullNode: state.settings.fullNode,
+    fullNode: state.settings.fullNode
 });
 
 const mapDispatchToProps = {
     addCustomNode,
-    setFullNode,
+    setFullNode
 };
 
 export default translate('lightserver')(connect(mapStateToProps, mapDispatchToProps)(LightServerSetup));

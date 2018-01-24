@@ -19,13 +19,13 @@ import {
     updateUnconfirmedBundleTails,
     removeBundleFromUnconfirmedBundleTails,
     setPendingTransactionTailsHashesForAccount,
-    updateTransfers,
+    updateTransfers
 } from './account';
 import { getFirstConsistentTail, isWithinADay } from '../libs/promoter';
 import {
     getSelectedAccount,
     getExistingUnspentAddressesHashes,
-    getPendingTxTailsHashesForSelectedAccount,
+    getPendingTxTailsHashesForSelectedAccount
 } from '../selectors/account';
 import { iota } from '../libs/iota';
 import {
@@ -39,7 +39,7 @@ import {
     getTransactionsObjects,
     getHashesWithPersistence,
     getConfirmedTxTailsHashes,
-    getBundlesWithPersistence,
+    getBundlesWithPersistence
 } from '../libs/accountUtils';
 import { rearrangeObjectKeys } from '../libs/util';
 
@@ -59,88 +59,88 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_ERROR',
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/POLLING/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
-    PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
+    PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR'
 };
 
 const fetchPriceRequest = () => ({
-    type: ActionTypes.FETCH_PRICE_REQUEST,
+    type: ActionTypes.FETCH_PRICE_REQUEST
 });
 
 const fetchPriceSuccess = () => ({
-    type: ActionTypes.FETCH_PRICE_SUCCESS,
+    type: ActionTypes.FETCH_PRICE_SUCCESS
 });
 
 const fetchPriceError = () => ({
-    type: ActionTypes.FETCH_PRICE_ERROR,
+    type: ActionTypes.FETCH_PRICE_ERROR
 });
 
 const fetchChartDataRequest = () => ({
-    type: ActionTypes.FETCH_CHART_DATA_REQUEST,
+    type: ActionTypes.FETCH_CHART_DATA_REQUEST
 });
 
 const fetchChartDataSuccess = () => ({
-    type: ActionTypes.FETCH_CHART_DATA_SUCCESS,
+    type: ActionTypes.FETCH_CHART_DATA_SUCCESS
 });
 
 const fetchChartDataError = () => ({
-    type: ActionTypes.FETCH_CHART_DATA_ERROR,
+    type: ActionTypes.FETCH_CHART_DATA_ERROR
 });
 
 const fetchMarketDataRequest = () => ({
-    type: ActionTypes.FETCH_MARKET_DATA_REQUEST,
+    type: ActionTypes.FETCH_MARKET_DATA_REQUEST
 });
 
 const fetchMarketDataSuccess = () => ({
-    type: ActionTypes.FETCH_MARKET_DATA_SUCCESS,
+    type: ActionTypes.FETCH_MARKET_DATA_SUCCESS
 });
 
 const fetchMarketDataError = () => ({
-    type: ActionTypes.FETCH_MARKET_DATA_ERROR,
+    type: ActionTypes.FETCH_MARKET_DATA_ERROR
 });
 
 const accountInfoFetchRequest = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
+    type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST
 });
 
-const accountInfoFetchSuccess = (payload) => ({
+const accountInfoFetchSuccess = payload => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
-    payload,
+    payload
 });
 
 const accountInfoFetchError = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
+    type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR
 });
 
 const promoteTransactionRequest = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+    type: ActionTypes.PROMOTE_TRANSACTION_REQUEST
 });
 
 const promoteTransactionSuccess = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS,
+    type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS
 });
 
 const promoteTransactionError = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
+    type: ActionTypes.PROMOTE_TRANSACTION_ERROR
 });
 
-export const setPollFor = (payload) => ({
+export const setPollFor = payload => ({
     type: ActionTypes.SET_POLL_FOR,
-    payload,
+    payload
 });
 
 // TODO: Do not call fetch again for market data api calls.
 // Instead just directly dispatch
 export const fetchMarketData = () => {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(fetchMarketDataRequest());
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD')
             .then(
-                (response) => response.json(),
+                response => response.json(),
                 () => {
                     dispatch(fetchMarketDataError());
-                },
+                }
             )
-            .then((json) => {
+            .then(json => {
                 dispatch(setMarketData(json));
                 dispatch(fetchMarketDataSuccess());
             });
@@ -148,11 +148,11 @@ export const fetchMarketData = () => {
 };
 
 export const fetchPrice = () => {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(fetchPriceRequest());
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,EUR,BTC,ETH')
-            .then((response) => response.json(), () => dispatch(fetchPriceError()))
-            .then((json) => {
+            .then(response => response.json(), () => dispatch(fetchPriceError()))
+            .then(json => {
                 dispatch(setPrice(json));
                 dispatch(fetchPriceSuccess());
             });
@@ -160,7 +160,7 @@ export const fetchPrice = () => {
 };
 
 export const fetchChartData = () => {
-    return (dispatch) => {
+    return dispatch => {
         const currencies = ['USD', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
 
@@ -168,18 +168,18 @@ export const fetchChartData = () => {
         currencies.forEach((currency, i) => {
             timeframes.forEach((timeframe, j) => {
                 const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
-                    timeframe,
+                    timeframe
                 )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeframe)}`;
                 return fetch(url)
                     .then(
-                        (response) => response.json(),
+                        response => response.json(),
                         () => {
                             if (i === currencies.length - 1 && j === timeframes.length - 1) {
                                 dispatch(fetchChartDataError());
                             }
-                        },
+                        }
                     )
-                    .then((json) => {
+                    .then(json => {
                         if (json) {
                             dispatch(setChartData(json, currency, timeframe));
                         }
@@ -219,12 +219,12 @@ export const getAccountInfo = (seed, accountName) => {
 
         const existingHashes = getExistingUnspentAddressesHashes(
             accountName,
-            getState().account.unspentAddressesHashes,
+            getState().account.unspentAddressesHashes
         );
 
         const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
             accountName,
-            getState().account.pendingTxTailsHashes,
+            getState().account.pendingTxTailsHashes
         );
 
         let payload = {
@@ -233,7 +233,7 @@ export const getAccountInfo = (seed, accountName) => {
             addresses: selectedAccount.addresses,
             unspentAddressesHashes: existingHashes,
             pendingTxTailsHashes,
-            transfers: selectedAccount.transfers,
+            transfers: selectedAccount.transfers
         };
 
         const checkConfirmationForPendingTxsAndLatestAddresses = () => {
@@ -248,15 +248,15 @@ export const getAccountInfo = (seed, accountName) => {
                 .then(({ states, hashes }) => {
                     return getConfirmedTxTailsHashes(states, hashes);
                 })
-                .then((confirmedHashes) => {
+                .then(confirmedHashes => {
                     console.log('Confirmed hashes');
                     if (!isEmpty(confirmedHashes)) {
                         payload = assign({}, payload, {
                             transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
                             pendingTxTailsHashes: filter(
                                 payload.pendingTxTailsHashes,
-                                (tx) => !includes(confirmedHashes, tx),
-                            ),
+                                tx => !includes(confirmedHashes, tx)
+                            )
                         });
                     }
 
@@ -265,12 +265,12 @@ export const getAccountInfo = (seed, accountName) => {
         };
 
         return checkConfirmationForPendingTxsAndLatestAddresses()
-            .then((addressData) => {
+            .then(addressData => {
                 payload = merge({}, payload, { addresses: addressData });
 
                 return getTotalBalance(Object.keys(payload.addresses));
             })
-            .then((balance) => {
+            .then(balance => {
                 payload = assign({}, payload, { balance });
 
                 const unspentAddresses = getUnspentAddresses(payload.addresses);
@@ -280,41 +280,41 @@ export const getAccountInfo = (seed, accountName) => {
 
                 return getTransactionHashes(unspentAddresses);
             })
-            .then((latestHashes) => {
+            .then(latestHashes => {
                 const hasNewHashes = size(latestHashes) > size(existingHashes);
 
                 if (hasNewHashes) {
                     const diff = difference(latestHashes, existingHashes);
 
                     payload = assign({}, payload, {
-                        unspentAddressesHashes: union(existingHashes, latestHashes),
+                        unspentAddressesHashes: union(existingHashes, latestHashes)
                     });
                     return getTransactionsObjects(diff);
                 }
 
                 throw new Error('intentionally break chain');
             })
-            .then((txs) => {
-                const tailTxs = filter(txs, (t) => t.currentIndex === 0);
+            .then(txs => {
+                const tailTxs = filter(txs, t => t.currentIndex === 0);
 
-                return getHashesWithPersistence(map(tailTxs, (t) => t.hash));
+                return getHashesWithPersistence(map(tailTxs, t => t.hash));
             })
             .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
-            .then((bundles) => {
+            .then(bundles => {
                 const updatedTransfers = [...payload.transfers, ...bundles];
                 const updatedTransfersWithFormatting = formatTransfers(
                     updatedTransfers,
-                    Object.keys(payload.addresses),
+                    Object.keys(payload.addresses)
                 );
 
                 payload = assign({}, payload, {
                     transfers: updatedTransfersWithFormatting,
-                    pendingTxTailsHashes: union(payload.pendingTxTailsHashes, getPendingTxTailsHashes(bundles)), // Update pending transfers copy with new transfers.
+                    pendingTxTailsHashes: union(payload.pendingTxTailsHashes, getPendingTxTailsHashes(bundles)) // Update pending transfers copy with new transfers.
                 });
 
                 return dispatch(accountInfoFetchSuccess(payload));
             })
-            .catch((err) => {
+            .catch(err => {
                 if (err && err.message === 'intentionally break chain') {
                     dispatch(accountInfoFetchSuccess(payload));
                 } else {
@@ -335,16 +335,16 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
 
     const alertArguments = (title, message, status = 'success') => [status, title, message];
 
-    const promote = (tail) => {
+    const promote = tail => {
         const spamTransfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }];
 
-        return iota.api.promoteTransaction(tail.hash, 3, 14, spamTransfer, { interrupt: false, delay: 0 }, (err) => {
+        return iota.api.promoteTransaction(tail.hash, 3, 14, spamTransfer, { interrupt: false, delay: 0 }, err => {
             if (err) {
                 console.log(err);
                 if (err.message.indexOf('Inconsistent subtangle') > -1) {
-                    consistentTails = filter(consistentTails, (t) => t.hash !== tail.hash);
+                    consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
 
-                    return getFirstConsistentTail(consistentTails, 0).then((consistentTail) => {
+                    return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
                         if (!consistentTail) {
                             return dispatch(promoteTransactionError());
                         }
@@ -357,7 +357,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
             }
 
             dispatch(
-                generateAlert(...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`)),
+                generateAlert(...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`))
             );
 
             const existingBundlesInStore = getState().account.unconfirmedBundleTails;
@@ -373,7 +373,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
             return dispatch(promoteTransactionError());
         }
 
-        const tailsFromLatestTransactionObjects = filter(txs, (t) => {
+        const tailsFromLatestTransactionObjects = filter(txs, t => {
             const attachmentTimestamp = get(t, 'attachmentTimestamp');
             const hasMadeReattachmentWithinADay = isWithinADay(attachmentTimestamp);
 
@@ -383,26 +383,26 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
         if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
             dispatch(
                 updateUnconfirmedBundleTails({
-                    [bundle]: map(tailsFromLatestTransactionObjects, (t) => ({ ...t, account: txAccount })),
-                }),
+                    [bundle]: map(tailsFromLatestTransactionObjects, t => ({ ...t, account: txAccount }))
+                })
             );
 
             // Assign updated tails to the local copy
             allTails = tailsFromLatestTransactionObjects;
         }
 
-        return iota.api.getLatestInclusion(map(allTails, (t) => t.hash), (err, states) => {
+        return iota.api.getLatestInclusion(map(allTails, t => t.hash), (err, states) => {
             if (err) {
                 return dispatch(promoteTransactionError());
             }
 
-            if (some(states, (state) => state)) {
+            if (some(states, state => state)) {
                 dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
 
                 return dispatch(promoteTransactionSuccess()); // In case the transaction is approved, no need to go further and promote it.
             }
 
-            return getFirstConsistentTail(consistentTails, 0).then((consistentTail) => {
+            return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
                 if (!consistentTail) {
                     // Grab hash from the top tail to replay
                     const topTx = head(allTails);
@@ -417,13 +417,13 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                             generateAlert(
                                 ...alertArguments(
                                     'Autoreattaching to Tangle',
-                                    `Reattaching transaction with hash ${txHash}`,
-                                ),
-                            ),
+                                    `Reattaching transaction with hash ${txHash}`
+                                )
+                            )
                         );
 
-                        const newTxsWithAccount = map(newTxs, (t) => ({ ...t, account: txAccount }));
-                        const newTail = filter(newTxsWithAccount, (t) => t.currentIndex === 0);
+                        const newTxsWithAccount = map(newTxs, t => ({ ...t, account: txAccount }));
+                        const newTail = filter(newTxsWithAccount, t => t.currentIndex === 0);
                         // Update local copy for all tails
                         allTails = concat([], newTail, allTails);
 
@@ -436,23 +436,23 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                         const existingTransfers = selectedAccountInfo.transfers;
                         const existingPendingTxTailHashes = getPendingTxTailsHashesForSelectedAccount(
                             txAccount,
-                            getState().account.pendingTxTailsHashes,
+                            getState().account.pendingTxTailsHashes
                         );
 
-                        const newTransferBundleWithPersistenceAndTransferValue = map(newTxs, (bundle) => ({
+                        const newTransferBundleWithPersistenceAndTransferValue = map(newTxs, bundle => ({
                             ...bundle,
-                            ...{ transferValue: bundle.value, persistence: false },
+                            ...{ transferValue: bundle.value, persistence: false }
                         }));
                         const updatedTransfers = [
                             ...[newTransferBundleWithPersistenceAndTransferValue],
-                            ...existingTransfers,
+                            ...existingTransfers
                         ];
 
                         dispatch(
                             setPendingTransactionTailsHashesForAccount({
                                 accountName: txAccount,
-                                pendingTxTailsHashes: union(existingPendingTxTailHashes, newTail),
-                            }),
+                                pendingTxTailsHashes: union(existingPendingTxTailHashes, newTail)
+                            })
                         );
                         dispatch(updateTransfers(txAccount, updatedTransfers));
 

@@ -9,7 +9,7 @@ export default class Confirm extends React.PureComponent {
         category: PropTypes.oneOf(['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'extra']),
         translations: PropTypes.object.isRequired,
         onCancel: PropTypes.func.isRequired,
-        onConfirm: PropTypes.func.isRequired,
+        onConfirm: PropTypes.func.isRequired
     };
 
     render() {

@@ -26,19 +26,19 @@ class Settings extends React.PureComponent {
         t: PropTypes.func.isRequired,
         location: PropTypes.object,
         history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
+            push: PropTypes.func.isRequired
         }).isRequired,
         tempAccount: PropTypes.object,
-        showNotification: PropTypes.func.isRequired,
+        showNotification: PropTypes.func.isRequired
     };
 
     state = {
-        modalLogout: false,
+        modalLogout: false
     };
 
     toggleLogout = () => {
         this.setState({
-            modalLogout: !this.state.modalLogout,
+            modalLogout: !this.state.modalLogout
         });
     };
 
@@ -52,7 +52,7 @@ class Settings extends React.PureComponent {
         return this.props.showNotification({
             timeout: 2000,
             title: t('global:notAvailable'),
-            text: t('global:notAvailableExplanation'),
+            text: t('global:notAvailableExplanation')
         });
     };
 
@@ -102,7 +102,7 @@ class Settings extends React.PureComponent {
                         translations={{
                             title: t('logoutConfirmationModal:logoutConfirmation'),
                             confirm: t('global:yes'),
-                            cancel: t('global:no'),
+                            cancel: t('global:no')
                         }}
                         onCancel={this.toggleLogout}
                         onConfirm={this.doLogout}
@@ -130,12 +130,12 @@ class Settings extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
-    tempAccount: state.tempAccount,
+const mapStateToProps = state => ({
+    tempAccount: state.tempAccount
 });
 
 const mapDispatchToProps = {
-    showNotification,
+    showNotification
 };
 
 export default translate('settings')(connect(mapStateToProps, mapDispatchToProps)(Settings));

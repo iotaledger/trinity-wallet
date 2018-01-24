@@ -6,12 +6,12 @@ export const DetectNavbar = isAndroid
     ? {
           hasSoftKeys() {
               return NativeModules.RNDetectNavbarAndroid.hasSoftKeys();
-          },
+          }
       }
     : {
           hasSoftKeys() {
               return false;
-          },
+          }
       };
 
 global.height = DetectNavbar.hasSoftKeys()

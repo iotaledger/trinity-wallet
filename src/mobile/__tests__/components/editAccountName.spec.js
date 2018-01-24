@@ -7,7 +7,7 @@ import { EditAccountName } from '../../components/editAccountName';
 
 jest.mock('react-native-device-info');
 
-const getProps = (overrides) =>
+const getProps = overrides =>
     assign(
         {},
         {
@@ -15,9 +15,9 @@ const getProps = (overrides) =>
             seedIndex: 0,
             accountName: 'foo',
             saveAccountName: noop,
-            backPress: noop,
+            backPress: noop
         },
-        overrides,
+        overrides
     );
 
 describe('Testing EditAccountName component', () => {
@@ -61,7 +61,7 @@ describe('Testing EditAccountName component', () => {
         describe('when onPress prop of second TouchableOpacity is triggered', () => {
             it('should call prop method saveAccountName with trimmed accountName state prop', () => {
                 const props = getProps({
-                    saveAccountName: jest.fn(),
+                    saveAccountName: jest.fn()
                 });
 
                 const wrapper = shallow(<EditAccountName {...props} />);
@@ -75,7 +75,7 @@ describe('Testing EditAccountName component', () => {
         describe('when onSubmitEditing prop of second TextField component is triggered', () => {
             it('should call prop method saveAccountName with trimmed accountName state prop', () => {
                 const props = getProps({
-                    saveAccountName: jest.fn(),
+                    saveAccountName: jest.fn()
                 });
 
                 const wrapper = shallow(<EditAccountName {...props} />);

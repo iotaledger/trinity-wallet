@@ -14,13 +14,13 @@ export const ActionTypes = {
     SET_CHART_DATA: 'IOTA/MARKET_DATA/SET_CHART_DATA',
     SET_STATISTICS: 'IOTA/MARKET_DATA/SET_STATISTICS',
     SET_CURRENCY: 'IOTA/MARKET_DATA/SET_CURRENCY',
-    SET_PRICE: 'IOTA/MARKET_DATA/SET_PRICE',
+    SET_PRICE: 'IOTA/MARKET_DATA/SET_PRICE'
 };
 
 export function setTimeframe(timeframe) {
     return {
         type: ActionTypes.SET_TIMEFRAME,
-        payload: timeframe,
+        payload: timeframe
     };
 }
 
@@ -41,14 +41,14 @@ export function setMarketData(data) {
         usdPrice,
         mcap,
         volume,
-        change24h,
+        change24h
     };
 }
 
 export function setCurrency(currency) {
     return {
         type: ActionTypes.SET_CURRENCY,
-        payload: currency,
+        payload: currency
     };
 }
 
@@ -63,7 +63,7 @@ export function setPrice(data) {
         usd: usdPrice,
         eur: eurPrice,
         btc: btcPrice,
-        eth: ethPrice,
+        eth: ethPrice
     };
 }
 
@@ -110,7 +110,7 @@ export function getChartData() {
         currencies.forEach(currency => {
             timeframes.forEach(timeframe => {
                 const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
-                    timeframe,
+                    timeframe
                 )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeframe)}`;
                 return fetch(url)
                     .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
@@ -135,7 +135,7 @@ export function setChartData(json, currency, timeframe) {
             const y = get(response, `[${i}].close`);
             data[i] = {
                 x: i,
-                y: parseFloat(y),
+                y: parseFloat(y)
             };
         }
 
@@ -143,7 +143,7 @@ export function setChartData(json, currency, timeframe) {
             type: ActionTypes.SET_CHART_DATA,
             data: data,
             currency: currency,
-            timeframe: timeframe,
+            timeframe: timeframe
         };
     }
 
@@ -151,7 +151,7 @@ export function setChartData(json, currency, timeframe) {
         type: ActionTypes.SET_CHART_DATA,
         data: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
         currency: currency,
-        timeframe: timeframe,
+        timeframe: timeframe
     };
 }
 

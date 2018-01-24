@@ -4,12 +4,12 @@ import { ActionTypes } from '../actions/keychain';
 const initialState = {
     isGettingSensitiveInfo: {
         receive: {
-            addressGeneration: false,
+            addressGeneration: false
         },
         send: {
-            makeTransaction: false,
-        },
-    },
+            makeTransaction: false
+        }
+    }
 };
 
 export default (state = initialState, action) => {
@@ -19,9 +19,9 @@ export default (state = initialState, action) => {
                 ...state,
                 isGettingSensitiveInfo: merge({}, state.isGettingSensitiveInfo, {
                     [action.screen]: {
-                        [action.purpose]: true,
-                    },
-                }),
+                        [action.purpose]: true
+                    }
+                })
             };
         case ActionTypes.IS_GETTING_SENSITIVE_INFO_SUCCESS:
         case ActionTypes.IS_GETTING_SENSITIVE_INFO_ERROR:
@@ -29,9 +29,9 @@ export default (state = initialState, action) => {
                 ...state,
                 isGettingSensitiveInfo: merge({}, state.isGettingSensitiveInfo, {
                     [action.screen]: {
-                        [action.purpose]: false,
-                    },
-                }),
+                        [action.purpose]: false
+                    }
+                })
             };
         default:
             return state;

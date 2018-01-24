@@ -28,14 +28,14 @@ class Disable2FA extends Component {
         backgroundColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         set2FAStatus: PropTypes.func.isRequired,
-        set2FAKey: PropTypes.func.isRequired,
+        set2FAKey: PropTypes.func.isRequired
     };
 
     constructor() {
         super();
 
         this.state = {
-            token: '',
+            token: ''
         };
 
         this.goBack = this.goBack.bind(this);
@@ -51,7 +51,7 @@ class Disable2FA extends Component {
             this.props.generateAlert(
                 'success',
                 '2FA is now disabled',
-                'You have succesfully disabled Two Factor Authentication.',
+                'You have succesfully disabled Two Factor Authentication.'
             );
         }, 300);
     }
@@ -63,9 +63,9 @@ class Disable2FA extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
-            },
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                }
+            }
         });
     }
 
@@ -77,18 +77,18 @@ class Disable2FA extends Component {
 
         const onboardingButtonsOverride = {
             rightButton: {
-                borderColor: COLORS.red,
+                borderColor: COLORS.red
             },
             rightText: {
                 color: COLORS.red,
-                fontFamily: Fonts.secondary,
+                fontFamily: Fonts.secondary
             },
             leftButton: {
-                borderColor: THEMES.getHSL(negativeColor),
+                borderColor: THEMES.getHSL(negativeColor)
             },
             leftText: {
-                color: THEMES.getHSL(negativeColor),
-            },
+                color: THEMES.getHSL(negativeColor)
+            }
         };
 
         return (
@@ -103,7 +103,7 @@ class Disable2FA extends Component {
                             <Text style={[styles.generalText, textColor]}>Enter your token to disable 2FA</Text>
                             <CustomTextInput
                                 label="Token"
-                                onChangeText={(token) => this.setState({ token })}
+                                onChangeText={token => this.setState({ token })}
                                 containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -135,30 +135,30 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topWrapper: {
         flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
+        paddingTop: height / 16
     },
     midWrapper: {
         flex: 1.6,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     bottomContainer: {
         flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        paddingBottom: height / 20
     },
     generalText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         paddingBottom: height / 10,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     questionText: {
         fontFamily: Fonts.secondary,
@@ -167,19 +167,19 @@ const styles = StyleSheet.create({
         paddingLeft: width / 7,
         paddingRight: width / 7,
         paddingTop: height / 25,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
-    },
+        width: width / 5
+    }
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
     key2FA: state.account.key2FA,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
 });
 
 const mapDispatchToProps = {
@@ -189,9 +189,9 @@ const mapDispatchToProps = {
     clearTempData,
     generateAlert,
     set2FAKey,
-    set2FAStatus,
+    set2FAStatus
 };
 
 export default translate(['resetWalletRequirePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(Disable2FA),
+    connect(mapStateToProps, mapDispatchToProps)(Disable2FA)
 );

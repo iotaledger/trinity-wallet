@@ -35,14 +35,14 @@ class WalletResetRequirePassword extends Component {
         generateAlert: PropTypes.func.isRequired,
         backgroundColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired
     };
 
     constructor() {
         super();
 
         this.state = {
-            password: '',
+            password: ''
         };
 
         this.goBack = this.goBack.bind(this);
@@ -68,12 +68,12 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                }
             },
             appStyle: {
-                orientation: 'portrait',
-            },
+                orientation: 'portrait'
+            }
         });
     }
 
@@ -88,13 +88,13 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
                 },
-                overrideBackPress: true,
+                overrideBackPress: true
             },
             appStyle: {
-                orientation: 'portrait',
-            },
+                orientation: 'portrait'
+            }
         });
     }
 
@@ -114,18 +114,18 @@ class WalletResetRequirePassword extends Component {
                     this.props.setPassword('');
                     this.props.resetWallet();
                 })
-                .catch((error) => {
+                .catch(error => {
                     this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongExplanation'),
+                        t('global:somethingWentWrongExplanation')
                     );
                 });
         } else {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
-                t('global:unrecognisedPasswordExplanation'),
+                t('global:unrecognisedPasswordExplanation')
             );
         }
     }
@@ -139,18 +139,18 @@ class WalletResetRequirePassword extends Component {
 
         const onboardingButtonsOverride = {
             rightButton: {
-                borderColor: COLORS.red,
+                borderColor: COLORS.red
             },
             rightText: {
                 color: COLORS.red,
-                fontFamily: Fonts.secondary,
+                fontFamily: Fonts.secondary
             },
             leftButton: {
-                borderColor: THEMES.getHSL(negativeColor),
+                borderColor: THEMES.getHSL(negativeColor)
             },
             leftText: {
-                color: THEMES.getHSL(negativeColor),
-            },
+                color: THEMES.getHSL(negativeColor)
+            }
         };
 
         return (
@@ -164,7 +164,7 @@ class WalletResetRequirePassword extends Component {
                         <View style={styles.midWrapper}>
                             <CustomTextInput
                                 label={t('global:password')}
-                                onChangeText={(password) => this.setState({ password })}
+                                onChangeText={password => this.setState({ password })}
                                 value={this.state.password}
                                 containerStyle={{ width: width / 1.4 }}
                                 autoCapitalize={'none'}
@@ -199,48 +199,48 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topWrapper: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 22
     },
     midWrapper: {
         flex: 3.7,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        paddingBottom: height / 20
     },
     generalText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         paddingBottom: height / 10,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
+        width: width / 5
     },
     buttonsContainer: {
         alignItems: 'flex-end',
         justifyContent: 'center',
-        flexDirection: 'row',
-    },
+        flexDirection: 'row'
+    }
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     password: state.tempAccount.password,
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
 });
 
 const mapDispatchToProps = {
@@ -249,9 +249,9 @@ const mapDispatchToProps = {
     setOnboardingComplete,
     clearTempData,
     setPassword,
-    generateAlert,
+    generateAlert
 };
 
 export default translate(['resetWalletRequirePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(WalletResetRequirePassword),
+    connect(mapStateToProps, mapDispatchToProps)(WalletResetRequirePassword)
 );
