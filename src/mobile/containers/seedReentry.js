@@ -24,14 +24,14 @@ class SeedReentry extends Component {
         t: PropTypes.func.isRequired,
         negativeColor: PropTypes.object.isRequired,
         backgroundColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired
     };
 
     constructor() {
         super();
 
         this.state = {
-            seed: '',
+            seed: ''
         };
     }
 
@@ -43,9 +43,9 @@ class SeedReentry extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
                 },
-                animated: false,
+                animated: false
             });
         } else {
             this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
@@ -54,7 +54,7 @@ class SeedReentry extends Component {
 
     onBackPress() {
         this.props.navigator.pop({
-            animated: false,
+            animated: false
         });
     }
 
@@ -80,7 +80,7 @@ class SeedReentry extends Component {
                                 <View style={{ flex: 0.5 }} />
                                 <CustomTextInput
                                     label={t('global:seed')}
-                                    onChangeText={(seed) => this.setState({ seed: seed.toUpperCase() })}
+                                    onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                                     containerStyle={{ width: width / 1.36 }}
                                     maxLength={MAX_SEED_LENGTH}
                                     autoCapitalize={'none'}
@@ -125,60 +125,60 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 0.5,
-        paddingTop: height / 22,
+        paddingTop: height / 22
     },
     midContainer: {
         flex: 3.7,
         alignItems: 'center',
         justifyContent: 'space-between',
-        width,
+        width
     },
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        paddingBottom: height / 20
     },
     logoContainer: {
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 15,
+        paddingTop: height / 15
     },
     title: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     warningText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 70,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
+        width: width / 5
     },
     qrImage: {
         height: width / 28,
         width: width / 28,
-        marginRight: width / 100,
+        marginRight: width / 100
     },
     qrButton: {
         flexDirection: 'row',
@@ -188,37 +188,37 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: GENERAL.borderRadius,
         width: width / 6,
-        height: height / 16,
+        height: height / 16
     },
     qrText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     textFieldContainer: {
         flex: 1,
-        paddingRight: width / 30,
+        paddingRight: width / 30
     },
     textField: {
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'Inconsolata-Bold'
     },
     qrButtonContainer: {
         justifyContent: 'flex-end',
         alignItems: 'center',
-        paddingBottom: height / 90,
-    },
+        paddingBottom: height / 90
+    }
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
 });
 
 const mapDispatchToProps = {
-    generateAlert,
+    generateAlert
 };
 
 export default translate(['seedReentry', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SeedReentry));

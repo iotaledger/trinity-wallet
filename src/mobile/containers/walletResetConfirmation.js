@@ -41,9 +41,9 @@ class WalletResetConfirmation extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
             },
-            animated: false,
+            animated: false
         });
     }
 
@@ -55,12 +55,12 @@ class WalletResetConfirmation extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                }
             },
             appStyle: {
-                orientation: 'portrait',
-            },
+                orientation: 'portrait'
+            }
         });
     }
 
@@ -122,78 +122,78 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topWrapper: {
         flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 22
     },
     midWrapper: {
         flex: 2.1,
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
     },
     bottomWrapper: {
         flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        paddingBottom: height / 20
     },
     subHeaderWrapper: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: width / 10,
+        paddingHorizontal: width / 10
     },
     subHeaderText: {
         fontSize: width / 22.7,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     infoText: {
         fontSize: width / 27.6,
         textAlign: 'justify',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     infoTextLight: {
         fontFamily: Fonts.tertiary,
         fontSize: width / 27.6,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     infoTextRegular: {
         fontSize: width / 27.6,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     infoIcon: {
         width: width / 20,
-        height: width / 20,
+        height: width / 20
     },
     confirmationTextWrapper: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     confirmationText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
-    },
+        width: width / 5
+    }
 });
 
 WalletResetConfirmation.propTypes = {
-    navigator: PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
 });
 
 export default translate(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation));

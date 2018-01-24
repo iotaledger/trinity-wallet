@@ -4,7 +4,7 @@ import { defaultNode, nodes } from '../config';
 export const iota = new IOTA({ provider: defaultNode });
 
 console.log(iota.provider);
-export const changeIotaNode = (provider) => iota.changeNode({ provider });
+export const changeIotaNode = provider => iota.changeNode({ provider });
 
 export const getRandomNode = () => {
     const x = Math.floor(Math.random() * nodes.length);
@@ -12,7 +12,7 @@ export const getRandomNode = () => {
     return nodes[x];
 };
 
-export const convertFromTrytes = (trytes) => {
+export const convertFromTrytes = trytes => {
     trytes = trytes.replace(/9+$/, '');
     const message = iota.utils.fromTrytes(trytes);
     if (trytes === '') {
@@ -21,7 +21,7 @@ export const convertFromTrytes = (trytes) => {
     return message;
 };
 
-export const getBalances = (addresses) => {
+export const getBalances = addresses => {
     iota.api.getBalances(addresses, 1, (error, success) => {
         if (!error) {
             console.log(success);
@@ -31,7 +31,7 @@ export const getBalances = (addresses) => {
     });
 };
 
-export const checkNode = (cb) => {
+export const checkNode = cb => {
     iota.api.getNodeInfo((error, success) => {
         if (error) {
             cb(error);
@@ -42,7 +42,7 @@ export const checkNode = (cb) => {
     });
 };
 
-export const getChecksum = (seed) => {
+export const getChecksum = seed => {
     return iota.utils.addChecksum(seed, 3, false).substr(-3);
 };
 

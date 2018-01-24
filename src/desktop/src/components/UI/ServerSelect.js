@@ -10,7 +10,7 @@ class ServerSelect extends React.PureComponent {
         fullNode: PropTypes.string,
         onChange: PropTypes.func,
         setFullNode: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     state = {};
@@ -46,11 +46,11 @@ class ServerSelect extends React.PureComponent {
 
 const mapStateToProps = (state, ownProps) => ({
     fullNode: ownProps.fullNode || state.settings.fullNode,
-    availableNodes: state.settings.availableNodes,
+    availableNodes: state.settings.availableNodes
 });
 
 const mapDispatchToProps = {
-    setFullNode,
+    setFullNode
 };
 
 export default translate('lightserver')(connect(mapStateToProps, mapDispatchToProps)(ServerSelect));

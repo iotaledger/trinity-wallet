@@ -10,8 +10,8 @@ const PromisifiedIOTA = (...args) => {
         api: Promise.promisifyAll(iota.api),
         multisig: Object.assign(iota.multisig, {
             initiateTransferAsync: Promise.promisify(iota.multisig.initiateTransfer),
-            addSignatureAsync: Promise.promisify(iota.multisig.addSignature),
-        }),
+            addSignatureAsync: Promise.promisify(iota.multisig.addSignature)
+        })
     });
 };
 

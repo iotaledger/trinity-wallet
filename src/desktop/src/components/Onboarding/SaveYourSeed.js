@@ -29,7 +29,7 @@ class SaveYourSeed extends PureComponent {
     static propTypes = {
         showNotification: PropTypes.func.isRequired,
         seed: PropTypes.string,
-        t: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     render() {
@@ -57,8 +57,9 @@ class SaveYourSeed extends PureComponent {
                                         type: 'success',
                                         title: 'Seed copied to clipboard!',
                                         text:
-                                            'Copy your seed to a password manager and do not store the seed in plain text. The seed will stay in your clipboard for 60 seconds',
-                                    })}
+                                            'Copy your seed to a password manager and do not store the seed in plain text. The seed will stay in your clipboard for 60 seconds'
+                                    })
+                                }
                             >
                                 {t('optionC')}
                             </Button>
@@ -83,12 +84,12 @@ class SaveYourSeed extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seed: getSelectedSeed(state).seed,
+    seed: getSelectedSeed(state).seed
 });
 
 const mapDispatchToProps = {
     clearSeeds,
-    showNotification,
+    showNotification
 };
 
 export default translate(['saveYourSeed', 'saveYourSeed2'])(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeed));

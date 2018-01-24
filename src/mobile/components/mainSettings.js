@@ -8,11 +8,11 @@ import { selectLocale } from '../components/locale';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 10,
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end'
     },
     bottomContainer: {
         flex: 1,
@@ -20,56 +20,56 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'flex-end'
     },
     itemContainer: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     innerItemContainerLeft: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     innerItemContainerRight: {
         flex: 2.3,
         justifyContent: 'center',
-        alignItems: 'flex-start',
+        alignItems: 'flex-start'
     },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
         width,
-        paddingHorizontal: width / 15,
+        paddingHorizontal: width / 15
     },
     icon: {
         width: width / 22,
         height: width / 22,
-        marginRight: width / 25,
+        marginRight: width / 25
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     separator: {
         borderBottomWidth: height / 1500,
         width: width / 1.16,
-        alignSelf: 'center',
+        alignSelf: 'center'
     },
     separatorContainer: {
         flex: 0.5,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     settingText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         marginLeft: width / 12,
         width: width / 2.2,
-        backgroundColor: 'transparent',
-    },
+        backgroundColor: 'transparent'
+    }
 });
 
 const MainSettings = props => (
@@ -214,7 +214,7 @@ MainSettings.propTypes = {
     setModalContent: PropTypes.func.isRequired,
     on2FASetupPress: PropTypes.func.isRequired,
     onThemePress: PropTypes.func.isRequired,
-    t: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired
 };
 
 export default MainSettings;

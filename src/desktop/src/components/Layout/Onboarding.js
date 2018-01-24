@@ -19,7 +19,7 @@ import css from './Onboarding.css';
 export default withRouter(
     class Onboarding extends React.PureComponent {
         static propTypes = {
-            location: PropTypes.object,
+            location: PropTypes.object
         };
 
         render() {
@@ -54,5 +54,5 @@ export default withRouter(
                 </TransitionGroup>
             );
         }
-    },
+    }
 );

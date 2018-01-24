@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
     },
     bottomContainer: {
         flex: 1,
@@ -23,47 +23,47 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 9,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end'
     },
     iconLeft: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20,
+        marginRight: width / 20
     },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iconRight: {
         width: width / 28,
-        height: width / 28,
+        height: width / 28
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        marginRight: width / 20,
+        marginRight: width / 20
     },
     dropdownWidth: {
-        width: width / 1.5,
-    },
+        width: width / 1.5
+    }
 });
 
 const currentLocale = i18next.language;
@@ -73,7 +73,7 @@ class LanguageSelection extends Component {
     static propTypes = {
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        setLanguage: PropTypes.func.isRequired,
+        setLanguage: PropTypes.func.isRequired
     };
 
     constructor() {
@@ -98,7 +98,7 @@ class LanguageSelection extends Component {
             secondaryBackgroundColor,
             arrowLeftImagePath,
             tickImagePath,
-            language,
+            language
         } = this.props;
 
         return (
@@ -113,14 +113,14 @@ class LanguageSelection extends Component {
                     <View style={styles.topContainer}>
                         <View style={{ flex: 0.4 }} />
                         <Dropdown
-                            onRef={(c) => {
+                            onRef={c => {
                                 this.dropdown = c;
                             }}
                             title={language}
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={language}
                             options={I18N_LOCALE_LABELS}
-                            saveSelection={(language) => {
+                            saveSelection={language => {
                                 this.languageSelected = language;
                             }}
                             background

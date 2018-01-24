@@ -38,7 +38,7 @@ class PaperWallet extends Component {
                     : blackCheckboxCheckedImagePath,
             showIotaLogo: true,
             iotaLogoVisibility: 'visible',
-            pressedPrint: false,
+            pressedPrint: false
         };
 
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
@@ -52,7 +52,7 @@ class PaperWallet extends Component {
             // Doesn't convert to PDF for android.
             if (isIOS) {
                 Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then(item =>
-                    item.forEach(item => RNFS.unlink(item.path)),
+                    item.forEach(item => RNFS.unlink(item.path))
                 );
             }
         }
@@ -61,7 +61,7 @@ class PaperWallet extends Component {
     onNavigatorEvent(event) {
         if (event.id === 'willAppear') {
             this.props.navigator.toggleNavBar({
-                to: 'hidden',
+                to: 'hidden'
             });
         }
     }
@@ -202,12 +202,12 @@ class PaperWallet extends Component {
         </html>`,
             fileName: 'paperWallet',
             base64: true,
-            fonts: ['iota-wallet-shared-modules/custom-fonts/Inconsolata-Bold.ttf'],
+            fonts: ['iota-wallet-shared-modules/custom-fonts/Inconsolata-Bold.ttf']
         };
 
         try {
             this.props.navigator.toggleNavBar({
-                to: 'shown',
+                to: 'shown'
             });
             if (isAndroid) {
                 await RNPrint.printhtml(options.html);
@@ -243,13 +243,13 @@ class PaperWallet extends Component {
             this.setState({
                 checkboxImage: checkboxUncheckedImagePath,
                 showIotaLogo: false,
-                iotaLogoVisibility: 'hidden',
+                iotaLogoVisibility: 'hidden'
             });
         } else {
             this.setState({
                 checkboxImage: checkboxCheckedImagePath,
                 showIotaLogo: true,
-                iotaLogoVisibility: 'visible',
+                iotaLogoVisibility: 'visible'
             });
         }
     }
@@ -270,7 +270,7 @@ class PaperWallet extends Component {
             ctaColor,
             secondaryBackgroundColor,
             secondaryCtaColor,
-            ctaBorderColor,
+            ctaBorderColor
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const checksum = getChecksum(this.props.tempAccount.seed);
@@ -407,7 +407,7 @@ class PaperWallet extends Component {
                             <View
                                 style={[
                                     styles.printButton,
-                                    { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
+                                    { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor }
                                 ]}
                             >
                                 <Text style={[styles.printText, ctaTextColor]}>{t('printWallet')}</Text>
@@ -431,25 +431,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
-        paddingHorizontal: width / 20,
+        paddingHorizontal: width / 20
     },
     midContainer: {
         flex: 3.8,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 14,
+        paddingTop: height / 14
     },
     bottomContainer: {
         justifyContent: 'flex-end',
         flexDirection: 'row',
-        alignItems: 'flex-end',
+        alignItems: 'flex-end'
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -457,7 +457,7 @@ const styles = StyleSheet.create({
         fontSize: width / 25.3,
         textAlign: 'center',
         paddingHorizontal: width / 20,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     optionButton: {
         borderColor: '#8BD4FF',
@@ -466,7 +466,7 @@ const styles = StyleSheet.create({
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
     },
     infoText: {
         fontFamily: 'Lato-Light',
@@ -474,19 +474,19 @@ const styles = StyleSheet.create({
         paddingTop: height / 8,
         paddingHorizontal: width / 8,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     infoTextNormal: {
         fontFamily: 'Lato-Light',
         fontSize: width / 29,
         textAlign: 'left',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     infoTextBold: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 29,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     doneButton: {
         borderWidth: 1.2,
@@ -495,16 +495,16 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginBottom: height / 20,
+        marginBottom: height / 20
     },
     doneText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
+        width: width / 5
     },
     printButton: {
         borderRadius: GENERAL.borderRadius,
@@ -512,12 +512,12 @@ const styles = StyleSheet.create({
         height: height / 16,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1.2,
+        borderWidth: 1.2
     },
     printText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     paperWalletContainer: {
         width: width / 1.1,
@@ -527,7 +527,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         paddingHorizontal: width / 30,
-        paddingVertical: height / 50,
+        paddingVertical: height / 50
     },
     seedBox: {
         borderColor: 'black',
@@ -535,14 +535,14 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadiusLarge,
         width: width / 3.4,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     seedBoxTextContainer: {
         width: width / 1.65,
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingTop: height / 100,
+        paddingTop: height / 100
     },
     seedBoxTextLeft: {
         color: 'black',
@@ -552,7 +552,7 @@ const styles = StyleSheet.create({
         letterSpacing: 2,
         backgroundColor: 'transparent',
         paddingRight: width / 70,
-        paddingVertical: 1,
+        paddingVertical: 1
     },
     seedBoxTextRight: {
         color: 'black',
@@ -561,17 +561,17 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         letterSpacing: 2,
         backgroundColor: 'transparent',
-        paddingVertical: 1,
+        paddingVertical: 1
     },
     arrow: {
         width: width / 4,
-        height: height / 160,
+        height: height / 160
     },
     paperWalletTextContainer: {
         width: width / 5,
         height: height / 6,
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     paperWalletText: {
         color: 'black',
@@ -579,31 +579,31 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         textAlign: 'center',
         backgroundColor: 'transparent',
-        paddingBottom: height / 80,
+        paddingBottom: height / 80
     },
     paperWalletLogo: {
         resizeMode: 'contain',
         width: width / 7,
         height: height / 18,
-        paddingBottom: height / 20,
+        paddingBottom: height / 20
     },
     checkboxContainer: {
         height: height / 15,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 50,
+        paddingTop: height / 50
     },
     checkbox: {
         width: width / 30,
-        height: width / 30,
+        height: width / 30
     },
     checkboxText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         color: 'white',
         backgroundColor: 'transparent',
-        paddingLeft: width / 80,
+        paddingLeft: width / 80
     },
     checksum: {
         width: width / 12,
@@ -612,13 +612,13 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: height / 1000,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     checksumText: {
         fontSize: width / 37.6,
         color: 'black',
-        fontFamily: 'Lato-Regular',
-    },
+        fontFamily: 'Lato-Regular'
+    }
 });
 
 const mapStateToProps = state => ({
@@ -628,7 +628,7 @@ const mapStateToProps = state => ({
     ctaColor: state.settings.theme.ctaColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
-    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
+    secondaryCtaColor: state.settings.theme.secondaryCtaColor
 });
 
 export default translate(['paperWallet', 'global'])(connect(mapStateToProps)(PaperWallet));

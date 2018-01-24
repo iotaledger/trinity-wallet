@@ -2,7 +2,7 @@ import i18next from '../i18next.js';
 
 export const ActionTypes = {
     SHOW: 'IOTA/ALERTS/SHOW',
-    HIDE: 'IOTA/ALERTS/HIDE',
+    HIDE: 'IOTA/ALERTS/HIDE'
 };
 
 const generate = (category, title, message, closeInterval = 5500) => ({
@@ -10,7 +10,7 @@ const generate = (category, title, message, closeInterval = 5500) => ({
     category,
     title,
     message,
-    closeInterval,
+    closeInterval
 });
 
 const dispose = () => ({ type: ActionTypes.HIDE });
@@ -24,8 +24,8 @@ export const generateAccountInfoErrorAlert = () => dispatch =>
             'error',
             i18next.t('global:invalidResponse'),
             i18next.t('global:invalidResponseFetchingAccount'),
-            9000,
-        ),
+            9000
+        )
     );
 export const generateSyncingCompleteAlert = () => dispatch => {
     dispatch(
@@ -33,19 +33,19 @@ export const generateSyncingCompleteAlert = () => dispatch => {
             'success',
             i18next.t('settings:syncingComplete'),
             i18next.t('settings:syncingCompleteExplanation'),
-            9000,
-        ),
+            9000
+        )
     );
 };
 
 export const generateAccountDeletedAlert = () => dispatch =>
     dispatch(
-        generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation')),
+        generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation'))
     );
 
 export const generateInvalidResponseAlert = () => dispatch =>
     dispatch(
-        generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation')),
+        generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation'))
     );
 
 export const disposeOffAlert = () => dispatch => dispatch(dispose());

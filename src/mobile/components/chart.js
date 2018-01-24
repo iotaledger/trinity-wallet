@@ -17,17 +17,17 @@ const styles = StyleSheet.create({
         borderWidth: height / 2000,
         borderRadius: GENERAL.borderRadiusSmall,
         paddingHorizontal: width / 40,
-        paddingVertical: height / 110,
+        paddingVertical: height / 110
     },
     button: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     topContainer: {
         flex: 1,
@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         alignItems: 'center',
         zIndex: 1,
-        paddingVertical: height / 70,
+        paddingVertical: height / 70
     },
     priceContainer: {
         flex: 8,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     chartContainer: {
         flex: 5,
@@ -47,36 +47,36 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
-        paddingLeft: width / 8,
+        paddingLeft: width / 8
     },
     marketDataContainer: {
         flex: 1,
         flexDirection: 'row',
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     buttonText: {
         fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 35,
+        fontSize: width / 35
     },
     iotaPrice: {
         fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 24,
+        fontSize: width / 24
     },
     marketFigure: {
         fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 37.6,
+        fontSize: width / 37.6
     },
     marketFigureTitle: {
-        fontWeight: 'bold',
-    },
+        fontWeight: 'bold'
+    }
 });
 
-const getChartCurrencySymbol = (currency) => {
+const getChartCurrencySymbol = currency => {
     if (currency === 'BTC') {
         return isAndroid ? '฿' : '₿';
     } else if (currency === 'ETH') {
@@ -92,14 +92,14 @@ const timeframeFromCurrent = {
     '24h': '7d',
     '7d': '1m',
     '1m': '1h',
-    '1h': '24h',
+    '1h': '24h'
 };
 
 const nextCurrency = {
     USD: 'EUR',
     EUR: 'BTC',
     BTC: 'ETH',
-    ETH: 'USD',
+    ETH: 'USD'
 };
 
 class Chart extends Component {
@@ -107,7 +107,7 @@ class Chart extends Component {
         super(props);
 
         this.state = {
-            price: props.marketData.usdPrice,
+            price: props.marketData.usdPrice
         };
     }
 
@@ -142,9 +142,9 @@ class Chart extends Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map((object) => {
+            ...data.map(object => {
                 return object.y;
-            }),
+            })
         );
         return maxValue;
     }
@@ -153,9 +153,9 @@ class Chart extends Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const minValue = Math.min(
-            ...data.map((object) => {
+            ...data.map(object => {
                 return object.y;
-            }),
+            })
         );
         return minValue;
     }
@@ -164,9 +164,9 @@ class Chart extends Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map((object) => {
+            ...data.map(object => {
                 return object.x;
-            }),
+            })
         );
         return maxValue;
     }
@@ -179,7 +179,7 @@ class Chart extends Component {
             (minValue + (minValue + maxValue) / 2) / 2,
             (minValue + maxValue) / 2,
             (maxValue + (minValue + maxValue) / 2) / 2,
-            maxValue,
+            maxValue
         ];
     }
 
@@ -251,28 +251,28 @@ class Chart extends Component {
                             style={{
                                 data: {
                                     stroke: 'url(#gradient)',
-                                    strokeWidth: 1.2,
-                                },
+                                    strokeWidth: 1.2
+                                }
                             }}
                             domain={{
                                 x: [-1, this.getMaxX() + 1],
-                                y: [this.getMinY(), this.getMaxY()],
+                                y: [this.getMinY(), this.getMaxY()]
                             }}
                             scale={{ x: 'time', y: 'linear' }}
                             animate={{
-                                duration: 450,
+                                duration: 450
                             }}
                         />
                         <VictoryAxis
                             dependentAxis
-                            tickFormat={(x) => this.getPriceFormat(x)}
+                            tickFormat={x => this.getPriceFormat(x)}
                             style={{
                                 axis: { stroke: 'transparent' },
                                 tickLabels: {
                                     fill: secondaryBackgroundColor,
                                     fontSize: width / 44,
-                                    fontFamily: 'Lato-Regular',
-                                },
+                                    fontFamily: 'Lato-Regular'
+                                }
                             }}
                             gridComponent={
                                 <Line type={'grid'} style={{ stroke: secondaryBackgroundColor, strokeWidth: 0.1 }} />
@@ -280,7 +280,7 @@ class Chart extends Component {
                             tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
                             tickValues={this.getTickValues()}
                             domain={{
-                                y: [this.getMinY(), this.getMaxY()],
+                                y: [this.getMinY(), this.getMaxY()]
                             }}
                         />
                     </VictoryChart>

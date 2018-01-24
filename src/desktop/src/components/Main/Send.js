@@ -23,31 +23,31 @@ class Send extends React.PureComponent {
         settings: PropTypes.object.isRequired,
         showError: PropTypes.func.isRequired,
         sendTransaction: PropTypes.func.isRequired,
-        sendTransferRequest: PropTypes.func.isRequired,
+        sendTransferRequest: PropTypes.func.isRequired
     };
 
     state = {
         address: '',
         amount: '0',
         message: '',
-        isModalVisible: false,
+        isModalVisible: false
     };
 
     onAddressChange = value => {
         this.setState(() => ({
-            address: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase(),
+            address: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase()
         }));
     };
 
     onAmountChange = value => {
         this.setState(() => ({
-            amount: value,
+            amount: value
         }));
     };
 
     onMessageChange = value => {
         this.setState(() => ({
-            message: value,
+            message: value
         }));
     };
 
@@ -59,7 +59,7 @@ class Send extends React.PureComponent {
             return showError({
                 title: 'send:invalidAddress',
                 text: 'send:invalidAddressExplanation1',
-                translate: true,
+                translate: true
             });
         }
 
@@ -67,7 +67,7 @@ class Send extends React.PureComponent {
             return showError({
                 title: 'send:invalidAddress',
                 text: 'send:invalidAddressExplanation2',
-                translate: true,
+                translate: true
             });
         }
 
@@ -75,7 +75,7 @@ class Send extends React.PureComponent {
             return showError({
                 title: 'send:invalidAddress',
                 text: 'send:invalidAddressExplanation3',
-                translate: true,
+                translate: true
             });
         }
 
@@ -83,7 +83,7 @@ class Send extends React.PureComponent {
             return showError({
                 title: 'send:notEnoughFunds',
                 text: 'send:notEnoughFundsExplanation',
-                translate: true,
+                translate: true
             });
         }
 
@@ -92,7 +92,7 @@ class Send extends React.PureComponent {
 
     toggleConfirmation = () => {
         this.setState({
-            isModalVisible: !this.state.isModalVisible,
+            isModalVisible: !this.state.isModalVisible
         });
     };
 
@@ -176,13 +176,13 @@ class Send extends React.PureComponent {
 const mapStateToProps = state => ({
     settings: state.settings,
     account: state.account,
-    seeds: state.seeds,
+    seeds: state.seeds
 });
 
 const mapDispatchToProps = {
     showError,
     sendTransaction,
-    sendTransferRequest,
+    sendTransferRequest
 };
 
 export default translate('send')(connect(mapStateToProps, mapDispatchToProps)(Send));

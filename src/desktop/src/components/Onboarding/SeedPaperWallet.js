@@ -11,7 +11,7 @@ import css from 'components/Onboarding/SeedPaperWallet.css';
 class SeedPaperWallet extends PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
-        seed: PropTypes.string,
+        seed: PropTypes.string
     };
 
     print = () => {
@@ -46,7 +46,7 @@ class SeedPaperWallet extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seed: getSelectedSeed(state).seed,
+    seed: getSelectedSeed(state).seed
 });
 
 export default translate('saveYourSeed4')(connect(mapStateToProps)(SeedPaperWallet));

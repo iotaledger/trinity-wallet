@@ -124,7 +124,7 @@ const _renameObjectKeys = (object, keyMap) =>
             result[k] = value;
             return result;
         },
-        {},
+        {}
     );
 
 const _renameArrayKeys = (list, keyMap) => map(list, object => _renameObjectKeys(object, keyMap));

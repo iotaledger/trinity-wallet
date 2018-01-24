@@ -53,7 +53,7 @@ export default function registerScreens(store, Provider) {
         'walletResetRequirePassword',
         () => getGenerator(WalletResetRequirePassword),
         store,
-        Provider,
+        Provider
     );
     Navigation.registerComponent('onboardingComplete', () => getGenerator(OnboardingComplete), store, Provider);
     Navigation.registerComponent('setSeedName', () => getGenerator(SetSeedName), store, Provider);
@@ -64,7 +64,7 @@ export default function registerScreens(store, Provider) {
         'twoFactorSetupEnterToken',
         () => getGenerator(TwoFactorSetupEnterToken),
         store,
-        Provider,
+        Provider
     );
     Navigation.registerComponent('disable2FA', () => getGenerator(Disable2FA), store, Provider);
 }

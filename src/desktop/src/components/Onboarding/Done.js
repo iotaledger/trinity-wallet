@@ -11,9 +11,9 @@ class Done extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
+            push: PropTypes.func.isRequired
         }).isRequired,
-        setOnboardingCompletionStatus: PropTypes.func.isRequired,
+        setOnboardingCompletionStatus: PropTypes.func.isRequired
     };
 
     onRequestNext = () => {
@@ -45,7 +45,7 @@ class Done extends React.PureComponent {
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
-    setOnboardingCompletionStatus,
+    setOnboardingCompletionStatus
 };
 
 export default translate('onboardingComplete')(connect(mapStateToProps, mapDispatchToProps)(Done));

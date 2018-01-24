@@ -14,11 +14,11 @@ import { iota } from '../libs/iota';
 import { getBundleTailsForSentTransfers } from './promoter';
 import { getAllAddresses } from './addresses';
 
-export const formatFullAddressData = (data) => {
+export const formatFullAddressData = data => {
     const addresses = data.addresses;
     const addressData = Object.assign(
         {},
-        ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } })),
+        ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } }))
     );
 
     for (let i = 0; i < data.inputs.length; i++) {
@@ -31,9 +31,9 @@ export const markAddressSpend = (transfers, addressData) => {
     const addresses = Object.keys(addressData);
 
     // Iterate over all bundles and sort them between incoming and outgoing transfers
-    transfers.forEach((bundle) => {
+    transfers.forEach(bundle => {
         // Iterate over every bundle entry
-        bundle.forEach((bundleEntry) => {
+        bundle.forEach(bundleEntry => {
             // If bundle address in the list of addresses associated with the seed
             // mark the address as sent
             if (addresses.indexOf(bundleEntry.address) > -1) {
@@ -86,10 +86,10 @@ export const formatTransfers = (transfers, addresses) => {
 
 export const addTransferValues = (transfers, addresses) => {
     // Add transaction value property to each transaction object
-    return transfers.map((arr) => {
+    return transfers.map(arr => {
         /* eslint-disable no-param-reassign */
         arr[0].transferValue = 0;
-        arr.map((obj) => {
+        arr.map(obj => {
             if (addresses.includes(obj.address)) {
                 arr[0].transferValue += obj.value;
             }
@@ -102,16 +102,16 @@ export const addTransferValues = (transfers, addresses) => {
     });
 };
 
-export const calculateBalance = (data) => {
+export const calculateBalance = data => {
     let balance = 0;
     if (Object.keys(data).length > 0) {
-        const balanceArray = Object.values(data).map((x) => x.balance);
+        const balanceArray = Object.values(data).map(x => x.balance);
         balance = balanceArray.reduce((a, b) => a + b);
     }
     return balance;
 };
 
-export const deduplicateTransferBundles = (transfers) => {
+export const deduplicateTransferBundles = transfers => {
     const deduplicate = (res, transfer) => {
         const top = transfer[0];
         const bundle = top.bundle;
@@ -138,12 +138,12 @@ export const deduplicateTransferBundles = (transfers) => {
     };
 
     const aggregated = reduce(transfers, deduplicate, {});
-    return map(aggregated, (v) => v);
+    return map(aggregated, v => v);
 };
 
-export const getUnspentAddresses = (addressData) => {
+export const getUnspentAddresses = addressData => {
     const addresses = Object.keys(addressData);
-    const addressesSpendStatus = Object.values(addressData).map((x) => x.spent);
+    const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
 
     const unspentAddresses = [];
 
@@ -156,25 +156,25 @@ export const getUnspentAddresses = (addressData) => {
     return unspentAddresses;
 };
 
-export const filterSpentAddresses = (inputs) => {
+export const filterSpentAddresses = inputs => {
     return new Promise((resolve, reject) => {
         // Find transaction objects for addresses
-        iota.api.findTransactionObjects({ addresses: inputs.map((input) => input.address) }, (err, txs) => {
+        iota.api.findTransactionObjects({ addresses: inputs.map(input => input.address) }, (err, txs) => {
             if (err) {
                 reject(err);
             }
             // Filter out receive transactions
-            txs = txs.filter((tx) => tx.value < 0);
+            txs = txs.filter(tx => tx.value < 0);
             if (txs.length > 0) {
                 // Get bundle hashes
-                const bundles = txs.map((tx) => tx.bundle);
+                const bundles = txs.map(tx => tx.bundle);
                 // Find transaction objects for bundle hashes
                 iota.api.findTransactionObjects({ bundles: bundles }, (err, txs) => {
                     if (err) {
                         reject(err);
                     }
-                    let hashes = txs.filter((tx) => tx.currentIndex === 0);
-                    hashes = hashes.map((tx) => tx.hash);
+                    let hashes = txs.filter(tx => tx.currentIndex === 0);
+                    hashes = hashes.map(tx => tx.hash);
                     iota.api.getLatestInclusion(hashes, (err, states) => {
                         if (err) {
                             reject(err);
@@ -183,10 +183,10 @@ export const filterSpentAddresses = (inputs) => {
                         const confirmedHashes = hashes.filter((hash, i) => states[i]);
                         // Filter unconfirmed hashes
                         const unconfirmedHashes = hashes
-                            .filter((hash) => confirmedHashes.indexOf(hash) === -1)
-                            .map((hash) => ({ hash, validate: true }));
+                            .filter(hash => confirmedHashes.indexOf(hash) === -1)
+                            .map(hash => ({ hash, validate: true }));
                         const getBundles = confirmedHashes.concat(unconfirmedHashes).map(
-                            (hash) =>
+                            hash =>
                                 new Promise((resolve, reject) => {
                                     iota.api.traverseBundle(
                                         typeof hash == 'string' ? hash : hash.hash,
@@ -197,28 +197,28 @@ export const filterSpentAddresses = (inputs) => {
                                                 reject(err);
                                             }
                                             resolve(typeof hash === 'string' ? bundle : { bundle, validate: true });
-                                        },
+                                        }
                                     );
-                                }),
+                                })
                         );
                         resolve(
                             Promise.all(getBundles)
-                                .then((bundles) => {
+                                .then(bundles => {
                                     bundles = bundles
-                                        .filter((bundle) => {
+                                        .filter(bundle => {
                                             if (bundle.validate) {
                                                 return iota.utils.isBundle(bundle.bundle);
                                             }
                                             return true;
                                         })
-                                        .map((bundle) => (bundle.hasOwnProperty('validate') ? bundle.bundle : bundle));
+                                        .map(bundle => (bundle.hasOwnProperty('validate') ? bundle.bundle : bundle));
                                     const blacklist = bundles
                                         .reduce((a, b) => a.concat(b), [])
-                                        .filter((tx) => tx.value < 0)
-                                        .map((tx) => tx.address);
-                                    return inputs.filter((input) => blacklist.indexOf(input.address) === -1);
+                                        .filter(tx => tx.value < 0)
+                                        .map(tx => tx.address);
+                                    return inputs.filter(input => blacklist.indexOf(input.address) === -1);
                                 })
-                                .catch((err) => reject(err)),
+                                .catch(err => reject(err))
                         );
                     });
                 });
@@ -242,7 +242,7 @@ export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
         }
         inputs.allBalance += res.inputs.reduce((sum, input) => sum + input.balance, 0);
         filterSpentAddresses(res.inputs)
-            .then((filtered) => {
+            .then(filtered => {
                 const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
                 const diff = threshold - collected;
                 if (diff > 0) {
@@ -255,25 +255,25 @@ export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
                         {
                             inputs: inputs.inputs.concat(filtered),
                             totalBalance: inputs.totalBalance + collected,
-                            allBalance: inputs.allBalance,
+                            allBalance: inputs.allBalance
                         },
-                        callback,
+                        callback
                     );
                 } else {
                     callback(null, {
                         inputs: inputs.inputs.concat(filtered),
                         totalBalance: inputs.totalBalance + collected,
-                        allBalance: inputs.allBalance,
+                        allBalance: inputs.allBalance
                     });
                 }
             })
-            .catch((err) => callback(err));
+            .catch(err => callback(err));
     });
 };
 
-export const getPendingTxTailsHashes = (transfers) => {
+export const getPendingTxTailsHashes = transfers => {
     const grabTails = (res, val) => {
-        each(val, (v) => {
+        each(val, v => {
             if (!v.persistence && v.currentIndex === 0) {
                 res.push(v.hash);
             }
@@ -286,8 +286,8 @@ export const getPendingTxTailsHashes = (transfers) => {
 };
 
 export const markTransfersConfirmed = (transfers, tailHashes) => {
-    return map(transfers, (txObjects) =>
-        map(txObjects, (tx) => {
+    return map(transfers, txObjects =>
+        map(txObjects, tx => {
             const isTail = tx.currentIndex === 0;
             const hash = tx.hash;
             const isUnconfirmed = !tx.persistence;
@@ -297,7 +297,7 @@ export const markTransfersConfirmed = (transfers, tailHashes) => {
             }
 
             return tx;
-        }),
+        })
     );
 };
 
@@ -317,7 +317,7 @@ export const organizeAccountInfo = (accountName, data) => {
         addresses: addressDataWithSpentFlag,
         balance,
         unconfirmedBundleTails,
-        pendingTxTailsHashes,
+        pendingTxTailsHashes
     };
 };
 
@@ -334,7 +334,7 @@ export const getTotalBalance = (addresses, threshold = 1) => {
                         res = res + val;
                         return res;
                     },
-                    0,
+                    0
                 );
 
                 resolve(totalBalance);
@@ -355,7 +355,7 @@ export const getLatestAddresses = (seed, index) => {
                         obj[x.address] = { balance: x.balance, spent: false };
                         return obj;
                     },
-                    {},
+                    {}
                 );
 
                 resolve(addresses);
@@ -364,7 +364,7 @@ export const getLatestAddresses = (seed, index) => {
     });
 };
 
-export const getTransactionHashes = (addresses) => {
+export const getTransactionHashes = addresses => {
     return new Promise((resolve, reject) => {
         iota.api.findTransactions({ addresses }, (err, hashes) => {
             if (err) {
@@ -376,7 +376,7 @@ export const getTransactionHashes = (addresses) => {
     });
 };
 
-export const getTransactionsObjects = (hashes) => {
+export const getTransactionsObjects = hashes => {
     return new Promise((resolve, reject) => {
         iota.api.getTransactionsObjects(hashes, (err, txs) => {
             if (err) {
@@ -388,7 +388,7 @@ export const getTransactionsObjects = (hashes) => {
     });
 };
 
-export const getHashesWithPersistence = (hashes) => {
+export const getHashesWithPersistence = hashes => {
     return new Promise((resolve, reject) => {
         iota.api.getLatestInclusion(hashes, (err, states) => {
             if (err) {
@@ -406,7 +406,7 @@ export const getBundleWithPersistence = (tailTxHash, persistence) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(map(bundle, (tx) => assign({}, tx, { persistence })));
+                resolve(map(bundle, tx => assign({}, tx, { persistence })));
             }
         });
     });
@@ -417,8 +417,8 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
         hashes,
         (promise, hash, idx) => {
             return promise
-                .then((result) => {
-                    return getBundleWithPersistence(hash, inclusionStates[idx]).then((bundle) => {
+                .then(result => {
+                    return getBundleWithPersistence(hash, inclusionStates[idx]).then(bundle => {
                         result.push(bundle);
 
                         return result;
@@ -426,7 +426,7 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
                 })
                 .catch(console.error);
         },
-        Promise.resolve([]),
+        Promise.resolve([])
     );
 };
 
@@ -461,7 +461,7 @@ export const getBundle = (tailTx, allBundleObjects) => {
     return bundle;
 };
 
-export const findTransactionObjects = (input) => {
+export const findTransactionObjects = input => {
     return new Promise((resolve, reject) => {
         iota.api.findTransactionObjects(input, (err, txObjects) => {
             if (err) {
@@ -473,7 +473,7 @@ export const findTransactionObjects = (input) => {
     });
 };
 
-export const getLatestInclusion = (hashes) => {
+export const getLatestInclusion = hashes => {
     return new Promise((resolve, reject) => {
         iota.api.getLatestInclusion(hashes, (err, states) => {
             if (err) {
@@ -499,7 +499,7 @@ export const getBalances = (addresses, threshold = 100) => {
 
 export const withHealthCheck = () => {
     return new Promise((resolve, reject) => {
-        iota.api.getNodeInfo((err) => {
+        iota.api.getNodeInfo(err => {
             if (err) {
                 reject(err);
             } else {
@@ -523,7 +523,7 @@ export const getAccountData = (seed, accountName) => {
             addresses: [],
             transfers: [],
             inputs: [],
-            balance: 0,
+            balance: 0
         };
 
         const pushIfNotExists = (pushTo, value) => {
@@ -536,29 +536,29 @@ export const getAccountData = (seed, accountName) => {
 
         withHealthCheck()
             .then(() => getAllAddresses(seed))
-            .then((addresses) => {
+            .then(addresses => {
                 data.latestAddress = addresses[addresses.length - 1];
                 data.addresses = addresses.slice(0, -1);
 
                 return findTransactionObjects({ addresses: data.addresses });
             })
-            .then((txObjects) => {
-                each(txObjects, (tx) => pushIfNotExists(allBundleHashes, tx.bundle)); // Grab all bundle hashes
+            .then(txObjects => {
+                each(txObjects, tx => pushIfNotExists(allBundleHashes, tx.bundle)); // Grab all bundle hashes
 
                 return findTransactionObjects({ bundles: allBundleHashes });
             })
-            .then((bundleObjects) => {
+            .then(bundleObjects => {
                 allBundleObjects = bundleObjects;
 
-                each(allBundleObjects, (tx) => {
+                each(allBundleObjects, tx => {
                     if (tx.currentIndex === 0) {
                         pushIfNotExists(tailTransactions, tx); // Keep a copy of all tail transactions to check confirmations
                     }
                 });
 
-                return getLatestInclusion(map(tailTransactions, (t) => t.hash));
+                return getLatestInclusion(map(tailTransactions, t => t.hash));
             })
-            .then((states) => {
+            .then(states => {
                 const allTxsAsObjects = reduce(
                     tailTransactions,
                     (res, v, i) => {
@@ -569,17 +569,17 @@ export const getAccountData = (seed, accountName) => {
 
                         if (states[i]) {
                             res.confirmed[v.bundle] = Object.assign({}, v, {
-                                persistence: true,
+                                persistence: true
                             });
                         } else {
                             res.unconfirmed[v.bundle] = Object.assign({}, v, {
-                                persistence: false,
+                                persistence: false
                             });
                         }
 
                         return res;
                     },
-                    {},
+                    {}
                 );
 
                 // Get rid of transactions duplicates that are already confirmed
@@ -588,11 +588,11 @@ export const getAccountData = (seed, accountName) => {
                 });
 
                 const finalTailTxs = [
-                    ...map(allTxsAsObjects.confirmed, (t) => t),
-                    ...map(deduplicatedUnconfirmedTxs, (t) => t),
+                    ...map(allTxsAsObjects.confirmed, t => t),
+                    ...map(deduplicatedUnconfirmedTxs, t => t)
                 ];
 
-                each(finalTailTxs, (tx) => {
+                each(finalTailTxs, tx => {
                     const bundle = getBundle(tx, allBundleObjects);
 
                     if (iota.utils.isBundle(bundle)) {
@@ -604,7 +604,7 @@ export const getAccountData = (seed, accountName) => {
 
                 return getBalances(data.addresses);
             })
-            .then((balances) => {
+            .then(balances => {
                 each(balances.balances, (balance, idx) => {
                     const balanceAsNumber = parseInt(balance);
                     data.balance += balanceAsNumber;
@@ -614,7 +614,7 @@ export const getAccountData = (seed, accountName) => {
                             address: data.addresses[idx],
                             keyIndex: idx,
                             security: 2,
-                            balance: balanceAsNumber,
+                            balance: balanceAsNumber
                         });
                     }
                 });
@@ -622,6 +622,6 @@ export const getAccountData = (seed, accountName) => {
                 const payload = organizeAccountInfo(accountName, data);
                 resolve(payload);
             })
-            .catch((err) => reject(err));
+            .catch(err => reject(err));
     });
 };

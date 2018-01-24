@@ -11,7 +11,7 @@ import {
     TouchableOpacity,
     Clipboard,
     TouchableWithoutFeedback,
-    Keyboard,
+    Keyboard
 } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
@@ -19,12 +19,12 @@ import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-module
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import {
     getSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
+    getSelectedAccountNameViaSeedIndex
 } from 'iota-wallet-shared-modules/selectors/account';
 import {
     getFromKeychainRequest,
     getFromKeychainSuccess,
-    getFromKeychainError,
+    getFromKeychainError
 } from 'iota-wallet-shared-modules/actions/keychain';
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
@@ -55,7 +55,7 @@ class Receive extends Component {
         ctaColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        secondaryCtaColor: PropTypes.string.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired
     };
 
     constructor() {
@@ -63,7 +63,7 @@ class Receive extends Component {
 
         this.state = {
             dataSource: ds.cloneWithRows([]),
-            message: '',
+            message: ''
         };
 
         this.onGeneratePress = this.onGeneratePress.bind(this);
@@ -104,7 +104,7 @@ class Receive extends Component {
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
         return keychain
             .get()
-            .then((credentials) => {
+            .then(credentials => {
                 this.props.getFromKeychainSuccess('receive', 'addressGeneration');
 
                 if (get(credentials, 'data')) {
@@ -157,7 +157,7 @@ class Receive extends Component {
             negativeColor,
             secondaryBackgroundColor,
             secondaryCtaColor,
-            ctaBorderColor,
+            ctaBorderColor
         } = this.props;
         const message = this.state.message;
         const textColor = { color: secondaryBackgroundColor };
@@ -188,7 +188,7 @@ class Receive extends Component {
                                 style={[
                                     styles.receiveAddressContainer,
                                     receiveAddressContainerBackgroundColor,
-                                    opacity,
+                                    opacity
                                 ]}
                             >
                                 <Text style={[styles.receiveAddressText, textColor]}>
@@ -210,7 +210,7 @@ class Receive extends Component {
                                 style={[
                                     styles.receiveAddressContainer,
                                     receiveAddressContainerBackgroundColor,
-                                    opacity,
+                                    opacity
                                 ]}
                             >
                                 <Text style={[styles.receiveAddressText, textColor]}>{Array(19).join(' ')}</Text>
@@ -219,11 +219,11 @@ class Receive extends Component {
                     )}
                     <View style={{ flex: 0.05 }} />
                     <CustomTextInput
-                        onRef={(c) => {
+                        onRef={c => {
                             this.messageField = c;
                         }}
                         label={t('message')}
-                        onChangeText={(message) => this.setState({ message })}
+                        onChangeText={message => this.setState({ message })}
                         containerStyle={{ width: width / 1.36 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
@@ -248,7 +248,7 @@ class Receive extends Component {
                                         style={[
                                             styles.generateButton,
                                             { backgroundColor: THEMES.getHSL(ctaColor) },
-                                            generateBorderColor,
+                                            generateBorderColor
                                         ]}
                                     >
                                         <Text style={[styles.generateText, ctaTextColor]}>
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     receiveAddressContainer: {
         borderRadius: GENERAL.borderRadius,
@@ -307,13 +307,13 @@ const styles = StyleSheet.create({
         paddingTop: width / 30,
         paddingHorizontal: width / 30,
         paddingBottom: isAndroid ? width / 22 : width / 30,
-        width: width / 1.36,
+        width: width / 1.36
     },
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        height: height / 5,
+        height: height / 5
     },
     receiveAddressText: {
         fontFamily: 'Inconsolata-Bold',
@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         textAlign: 'center',
         height: width / 20,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     generateButton: {
         borderRadius: GENERAL.borderRadius,
@@ -329,13 +329,13 @@ const styles = StyleSheet.create({
         height: height / 13,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1.5,
+        borderWidth: 1.5
     },
     generateText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
-        color: 'white',
+        color: 'white'
     },
     qrContainer: {
         borderRadius: GENERAL.borderRadius,
@@ -345,11 +345,11 @@ const styles = StyleSheet.create({
         width: width / 2.2,
         alignItems: 'center',
         justifyContent: 'center',
-        height: width / 2.2,
+        height: width / 2.2
     },
     removeButtonContainer: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     removeButton: {
         borderWidth: 1.5,
@@ -358,16 +358,16 @@ const styles = StyleSheet.create({
         height: height / 17,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     removeText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
-        backgroundColor: 'transparent',
-    },
+        backgroundColor: 'transparent'
+    }
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     isSyncing: state.tempAccount.isSyncing,
@@ -379,7 +379,7 @@ const mapStateToProps = (state) => ({
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     secondaryCtaColor: state.settings.theme.secondaryCtaColor,
-    ctaBorderColor: state.settings.theme.ctaBorderColor,
+    ctaBorderColor: state.settings.theme.ctaBorderColor
 });
 
 const mapDispatchToProps = {
@@ -388,7 +388,7 @@ const mapDispatchToProps = {
     generateAlert,
     getFromKeychainRequest,
     getFromKeychainSuccess,
-    getFromKeychainError,
+    getFromKeychainError
 };
 
 export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));

@@ -20,21 +20,21 @@ class Login extends React.Component {
     static propTypes = {
         t: PropTypes.func.isRequired,
         history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
+            push: PropTypes.func.isRequired
         }).isRequired,
         account: PropTypes.shape({
-            firstUse: PropTypes.bool.isRequired,
+            firstUse: PropTypes.bool.isRequired
         }).isRequired,
         tempAccount: PropTypes.object.isRequired,
         loadSeeds: PropTypes.func.isRequired,
         showError: PropTypes.func.isRequired,
         clearTempData: PropTypes.func.isRequired,
-        clearSeeds: PropTypes.func.isRequired,
+        clearSeeds: PropTypes.func.isRequired
     };
 
     state = {
         loading: false,
-        password: '',
+        password: ''
     };
 
     componentDidMount() {
@@ -47,7 +47,7 @@ class Login extends React.Component {
         const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
         if (ready) {
             this.setState({
-                loading: false,
+                loading: false
             });
             this.props.history.push('/balance');
 
@@ -55,9 +55,9 @@ class Login extends React.Component {
         }
     }
 
-    setPassword = (password) => {
+    setPassword = password => {
         this.setState({
-            password: password,
+            password: password
         });
     };
 
@@ -71,7 +71,7 @@ class Login extends React.Component {
         }
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = e => {
         e.preventDefault();
         const { password } = this.state;
         const { t, loadSeeds, showError } = this.props;
@@ -83,7 +83,7 @@ class Login extends React.Component {
         } catch (err) {
             showError({
                 title: t('global:unrecognisedPassword'),
-                text: t('global:unrecognisedPasswordExplanation'),
+                text: t('global:unrecognisedPasswordExplanation')
             });
         }
 
@@ -92,7 +92,7 @@ class Login extends React.Component {
             const seed = seeds.items[seeds.selectedSeedIndex];
 
             this.setState({
-                loading: true,
+                loading: true
             });
 
             //TODO: Fix iota.api call freeze. Do API calls in a worker/electron main?
@@ -131,9 +131,9 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     account: state.account,
-    tempAccount: state.tempAccount,
+    tempAccount: state.tempAccount
 });
 
 const mapDispatchToProps = {
@@ -141,7 +141,7 @@ const mapDispatchToProps = {
     loadSeeds,
     clearTempData,
     clearSeeds,
-    setFirstUse,
+    setFirstUse
 };
 
 export default translate('login')(connect(mapStateToProps, mapDispatchToProps)(Login));

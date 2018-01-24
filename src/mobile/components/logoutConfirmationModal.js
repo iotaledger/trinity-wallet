@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        width: width / 1.15,
+        width: width / 1.15
     },
     questionText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
-        paddingBottom: height / 16,
-    },
+        paddingBottom: height / 16
+    }
 });
 
 class LogoutConfirmationModal extends Component {

@@ -15,7 +15,7 @@ import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 class WriteSeedDown extends Component {
     onDonePress() {
         this.props.navigator.pop({
-            animated: false,
+            animated: false
         });
     }
 
@@ -53,7 +53,7 @@ class WriteSeedDown extends Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={(event) => this.onDonePress()}>
+                    <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={[styles.doneButton, positiveColorBorder]}>
                             <Text style={[styles.doneText, positiveColorText]}>{t('global:done')}</Text>
                         </View>
@@ -68,23 +68,23 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 22
     },
     midContainer: {
         flex: 4.5,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     bottomContainer: {
         justifyContent: 'flex-end',
         flexDirection: 'row',
-        alignItems: 'flex-end',
+        alignItems: 'flex-end'
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         fontSize: width / 25.3,
         textAlign: 'center',
         paddingHorizontal: width / 20,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     optionButton: {
         borderColor: '#8BD4FF',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
     },
     infoText: {
         color: 'white',
@@ -112,19 +112,19 @@ const styles = StyleSheet.create({
         marginBottom: height / 30,
         paddingHorizontal: width / 7,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     infoTextNormal: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'left',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     infoTextBold: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     doneButton: {
         borderWidth: 1.2,
@@ -133,16 +133,16 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginBottom: height / 20,
+        marginBottom: height / 20
     },
     doneText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
+        width: width / 5
     },
     seedBox: {
         borderColor: 'white',
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
         width: width / 1.65,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: height / 80,
+        paddingVertical: height / 80
     },
     seedBoxTextContainer: {
         width: width / 1.65,
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'center',
         paddingTop: height / 160,
-        paddingLeft: width / 70,
+        paddingLeft: width / 70
     },
     seedBoxTextLeft: {
         color: 'white',
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         letterSpacing: 8,
         backgroundColor: 'transparent',
         paddingRight: width / 70,
-        paddingVertical: 2,
+        paddingVertical: 2
     },
     seedBoxTextRight: {
         color: 'white',
@@ -178,11 +178,11 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         letterSpacing: 8,
         backgroundColor: 'transparent',
-        paddingVertical: 2,
+        paddingVertical: 2
     },
     arrow: {
         width: width / 2,
-        height: height / 80,
+        height: height / 80
     },
     checksum: {
         width: width / 8,
@@ -192,20 +192,20 @@ const styles = StyleSheet.create({
         borderWidth: height / 1000,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: height / 30,
+        marginTop: height / 30
     },
     checksumText: {
         fontSize: width / 29.6,
         color: 'white',
-        fontFamily: 'Lato-Regular',
-    },
+        fontFamily: 'Lato-Regular'
+    }
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
 });
 
 export default translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown));
