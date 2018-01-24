@@ -340,6 +340,7 @@ class Settings extends Component {
                 arrowLeftImagePath,
                 ctaBorderColor: ctaBorderColor,
                 secondaryCtaColor: secondaryCtaColor,
+                generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
             },
             nodeSelection: {
                 setNode: (selectedNode) => {
