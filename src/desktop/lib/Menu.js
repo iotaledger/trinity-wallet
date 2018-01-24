@@ -24,7 +24,7 @@ let language = {
     copy: 'Copy',
     paste: 'Paste',
     selectAll: 'Select All',
-    account: 'Account',
+    wallet: 'Wallet',
     balance: 'Balance',
     send: 'Send',
     receive: 'Receive',
@@ -131,7 +131,7 @@ const initMenu = (app, getWindow) => {
 
         if (state.authorised) {
             template.push({
-                label: language.account,
+                label: language.wallet,
                 submenu: [
                     {
                         label: language.balance,
@@ -166,7 +166,7 @@ const initMenu = (app, getWindow) => {
                                         buttons: [language.yes, language.no],
                                     },
                                     (index) => {
-                                        if (index === 0) {
+                                        if (index === 1) {
                                             mainWindow.webContents.send('menu', 'logout');
                                         }
                                     },
