@@ -190,7 +190,6 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
         args = [...args, options];
     }
 
-    console.log(options);
     return iota.api.sendTransfer(...args, (error, success) => {
         if (!error) {
             dispatch(checkForNewAddress(accountName, addressData, success));
@@ -205,7 +204,6 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
             );
             dispatch(sendTransferSuccess({ address, value }));
         } else {
-            console.log('ERR', error);
             dispatch(sendTransferError());
             const alerts = {
                 attachToTangle: [
@@ -343,12 +341,12 @@ export const randomiseSeed = randomBytesFn => {
                 });
                 dispatch(setSeed(seed));
             } else {
-                console.log(error);
                 dispatch(
                     generateAlert(
                         'error',
                         i18next.t('global:somethingWentWrong'),
                         i18next.t('global:somethingWentWrongExplanation'),
+                        error,
                     ),
                 );
             }

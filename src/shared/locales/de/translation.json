@@ -355,8 +355,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Ich habe mein Seed gesichert",
         "reenter": "Du wirst jetzt aufgefordert deinen Seed erneut einzugeben.",
-        "reenterWarningOne": "Wenn dein Gerät kaputt geht und dein Seed ist nicht",
-        "reenterWarningTwo": "gesichert, dann wirst du deine IOTAs verlieren."
+        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DIESE AKTION KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN.",
