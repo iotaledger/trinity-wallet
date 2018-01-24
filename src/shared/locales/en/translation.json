@@ -57,7 +57,11 @@
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "sent": "Sent",
+        "received": "Received",
+        "confirmed": "Confirmed",
+        "pending": "Pending"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -312,6 +316,9 @@
     "advancedThemeCustomisation": {
         "background": "Background",
         "frame": "Frame"
+    },
+    "themeCustomisation": {
+        "theme": "Theme"
     },
     "currencySelection": {
         "currency": "Currency"
