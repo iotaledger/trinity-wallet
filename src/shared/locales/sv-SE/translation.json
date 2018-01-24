@@ -156,7 +156,7 @@
         "seedCleared": "Seed rensad",
         "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhet.",
         "mustSaveYourSeed": "Du måste spara din seed med ",
-        "atLeastOne": "åtminstone en ",
+        "atLeastOne": "åtminstone ett",
         "ofTheOptions": "av alternativen som anges nedan."
     },
     "seedReentry": {
@@ -199,7 +199,7 @@
         "youCanAdd": "Du kan lägga till fler seeds i inställningsmenyn."
     },
     "settings": {
-        "transferSending": "Skickar",
+        "transferSending": "Överföring pågår",
         "transferSendingExplanation": "Vänta tills din överföring har skickats.",
         "generatingAddress": "Genererar mottagaradress",
         "generatingAddressExplanation": "Vänligen vänta tills din adress har genererats.",
@@ -261,7 +261,7 @@
     },
     "welcome": {
         "thankYou": "Tack för att du använder IOTA plånboken.",
-        "weWillSpend": "Vi kommer att tillbringa de närmaste minuterna åt att konfigurera din plånbok.",
+        "weWillSpend": "Vi kommer att tillbringa de närmsta minuterna åt att konfigurera din plånbok.",
         "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig till att följa hela processen."
     },
     "writeSeedDown": {
