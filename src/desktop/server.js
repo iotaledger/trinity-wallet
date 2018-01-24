@@ -16,9 +16,9 @@ app.use(
         noInfo: false,
         publicPath: config.output.publicPath,
         stats: {
-            colors: true,
-        },
-    }),
+            colors: true
+        }
+    })
 );
 
 app.use(webpackHotMiddleware(compiler));

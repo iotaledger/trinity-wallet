@@ -27,7 +27,7 @@ class SaveSeedConfirmation extends Component {
                     : blackCheckboxUncheckedImagePath,
             hasSavedSeed: false,
             iotaLogoVisibility: 'hidden',
-            showCheckbox: false,
+            showCheckbox: false
         };
     }
 
@@ -43,9 +43,9 @@ class SaveSeedConfirmation extends Component {
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
-                navBarTransparent: true,
+                navBarTransparent: true
             },
-            animated: false,
+            animated: false
         });
     }
 
@@ -55,9 +55,9 @@ class SaveSeedConfirmation extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
             },
-            animated: false,
+            animated: false
         });
     }
 
@@ -72,13 +72,13 @@ class SaveSeedConfirmation extends Component {
             this.setState({
                 checkboxImage: checkboxUncheckedImagePath,
                 hasSavedSeed: false,
-                iotaLogoVisibility: 'hidden',
+                iotaLogoVisibility: 'hidden'
             });
         } else {
             this.setState({
                 checkboxImage: checkboxCheckedImagePath,
                 hasSavedSeed: true,
-                iotaLogoVisibility: 'visible',
+                iotaLogoVisibility: 'visible'
             });
         }
     }
@@ -107,7 +107,7 @@ class SaveSeedConfirmation extends Component {
                         {this.state.showCheckbox && (
                             <TouchableOpacity
                                 style={styles.checkboxContainer}
-                                onPress={(event) => this.onCheckboxPress()}
+                                onPress={event => this.onCheckboxPress()}
                             >
                                 <Image source={this.state.checkboxImage} style={styles.checkbox} />
                                 <Text style={[styles.checkboxText, textColor]}>
@@ -146,32 +146,32 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     topContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 22
     },
     midContainer: {
         flex: 3,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     topMidContainer: {
         flex: 1.8,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     bottomMidContainer: {
         flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        paddingBottom: height / 20
     },
     backButton: {
         borderWidth: 1.2,
@@ -179,52 +179,52 @@ const styles = StyleSheet.create({
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
     },
     backText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
+        width: width / 5
     },
     infoTextContainer: {
         paddingHorizontal: width / 15,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     infoTextLight: {
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
-        textAlign: 'center',
+        textAlign: 'center'
     },
     checkboxContainer: {
         height: height / 15,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 50,
+        paddingTop: height / 50
     },
     checkbox: {
         width: width / 20,
-        height: width / 20,
+        height: width / 20
     },
     checkboxText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         color: 'white',
         backgroundColor: 'transparent',
-        marginLeft: width / 40,
-    },
+        marginLeft: width / 40
+    }
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
 });
 
 export default translate(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation));

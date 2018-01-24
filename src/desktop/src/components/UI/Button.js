@@ -9,11 +9,11 @@ export default class Button extends React.PureComponent {
         children: PropTypes.node,
         className: PropTypes.string,
         variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'extra']).isRequired,
-        to: PropTypes.string,
+        to: PropTypes.string
     };
 
     static defaultProps = {
-        variant: 'primary',
+        variant: 'primary'
     };
 
     render() {

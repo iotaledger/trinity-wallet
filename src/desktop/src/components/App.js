@@ -19,19 +19,19 @@ class App extends React.Component {
     static propTypes = {
         t: PropTypes.func.isRequired,
         history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
+            push: PropTypes.func.isRequired
         }).isRequired,
         settings: PropTypes.shape({
             locale: PropTypes.string.isRequired,
-            fullNode: PropTypes.string.isRequired,
+            fullNode: PropTypes.string.isRequired
         }).isRequired,
         app: PropTypes.shape({
-            isOnboardingCompleted: PropTypes.bool.isRequired,
-        }).isRequired,
+            isOnboardingCompleted: PropTypes.bool.isRequired
+        }).isRequired
     };
 
     state = {
-        initialized: false,
+        initialized: false
     };
 
     componentWillMount() {
@@ -39,9 +39,9 @@ class App extends React.Component {
             setTimeout(
                 () =>
                     this.setState(() => ({
-                        initialized: true,
+                        initialized: true
                     })),
-                3200,
+                3200
             );
         });
     }
@@ -76,7 +76,7 @@ class App extends React.Component {
 
     componentDidCatch(error) {
         this.setState(() => ({
-            error,
+            error
         }));
     }
 
@@ -98,10 +98,10 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     settings: state.settings,
     tempAccount: state.tempAccount,
-    app: state.app,
+    app: state.app
 });
 
 export default withRouter(translate('onboardingComplete')(connect(mapStateToProps)(App)));

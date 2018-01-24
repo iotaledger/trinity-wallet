@@ -7,13 +7,13 @@ let state = {};
 const actions = {
     generateNewAddress,
     getAccountInfo,
-    getFullAccountInfo,
+    getFullAccountInfo
 };
 
-const dispatch = (action) => {
+const dispatch = action => {
     self.postMessage({
         type: 'dispatch',
-        action,
+        action
     });
 };
 

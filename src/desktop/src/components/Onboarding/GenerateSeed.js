@@ -16,19 +16,19 @@ class GenerateSeed extends React.PureComponent {
         t: PropTypes.func.isRequired,
         addAndSelectSeed: PropTypes.func.isRequired,
         history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
+            push: PropTypes.func.isRequired
         }).isRequired,
         showError: PropTypes.func.isRequired,
-        clearSeeds: PropTypes.func.isRequired,
+        clearSeeds: PropTypes.func.isRequired
     };
 
     state = {
-        seed: null,
+        seed: null
     };
 
     onUpdatedSeed = seed => {
         this.setState(() => ({
-            seed,
+            seed
         }));
     };
 
@@ -40,7 +40,7 @@ class GenerateSeed extends React.PureComponent {
             return showError({
                 title: 'seedReentry:incorrectSeed',
                 text: 'seedReentry:incorrectSeedExplanation',
-                translate: true,
+                translate: true
             });
         }
         clearSeeds(seed);
@@ -58,7 +58,7 @@ class GenerateSeed extends React.PureComponent {
     generateNewSeed = () => {
         const newSeed = createRandomSeed();
         this.setState(() => ({
-            seed: newSeed,
+            seed: newSeed
         }));
     };
 
@@ -89,13 +89,13 @@ class GenerateSeed extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seed: getSelectedSeed(state).seed,
+    seed: getSelectedSeed(state).seed
 });
 
 const mapDispatchToProps = {
     addAndSelectSeed,
     clearSeeds,
-    showError,
+    showError
 };
 
 export default translate('newSeedSetup')(connect(mapStateToProps, mapDispatchToProps)(GenerateSeed));

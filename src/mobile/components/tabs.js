@@ -18,22 +18,22 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 2
         },
         shadowOpacity: 1.0,
-        shadowColor: 'black',
-    },
+        shadowColor: 'black'
+    }
 });
 
 class Tabs extends Component {
     render() {
         const { children, onPress, currentRoute } = this.props;
 
-        const childComponents = Children.map(children, (child) =>
+        const childComponents = Children.map(children, child =>
             cloneElement(child, {
                 onPress: () => onPress(child.props.name),
-                isActive: child.props.name === currentRoute,
-            }),
+                isActive: child.props.name === currentRoute
+            })
         );
 
         const tabContainer = (
@@ -63,11 +63,11 @@ class Tabs extends Component {
 Tabs.propTypes = {
     children: PropTypes.node.isRequired,
     onPress: PropTypes.func.isRequired,
-    currentRoute: PropTypes.string.isRequired,
+    currentRoute: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => ({
-    currentRoute: state.home.childRoute,
+const mapStateToProps = state => ({
+    currentRoute: state.home.childRoute
 });
 
 export default connect(mapStateToProps)(Tabs);

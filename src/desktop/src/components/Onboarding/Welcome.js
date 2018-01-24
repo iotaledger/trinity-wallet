@@ -8,7 +8,7 @@ import css from '../Layout/Onboarding.css';
 
 class Welcome extends React.PureComponent {
     static propTypes = {
-        t: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     // state = { modalOpen: false };

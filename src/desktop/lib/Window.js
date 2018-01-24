@@ -1,6 +1,6 @@
 const { ipcRenderer: ipc } = require('electron');
 
-const capitalize = (string) => {
+const capitalize = string => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
@@ -8,11 +8,11 @@ const Electron = {
     updateMenu: (attribute, value) => {
         ipc.send('menu.update', {
             attribute: attribute,
-            value: value,
+            value: value
         });
     },
 
-    changeLanguage: (t) => {
+    changeLanguage: t => {
         ipc.send('menu.language', {
             about: 'About',
             settings: capitalize(t('home:settings')),
@@ -41,7 +41,7 @@ const Electron = {
             logout: t('settings:logout'),
             logoutConfirm: t('logoutConfirmationModal:logoutConfirmation'),
             yes: t('global:no'),
-            no: t('global:yes'),
+            no: t('global:yes')
         });
     },
 
@@ -50,7 +50,7 @@ const Electron = {
         if (!listeners) {
             listeners = this._eventListeners[event] = [];
             ipc.on(event, (e, args) => {
-                listeners.forEach((call) => {
+                listeners.forEach(call => {
                     call(args);
                 });
             });
@@ -67,7 +67,7 @@ const Electron = {
         });
     },
 
-    _eventListeners: {},
+    _eventListeners: {}
 };
 
 global.Electron = Electron;

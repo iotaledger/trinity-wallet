@@ -9,7 +9,7 @@ import GENERAL from '../theme/general';
 const styles = StyleSheet.create({
     fieldContainer: {
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     innerContainer: {
         flexDirection: 'row',
@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingTop: height / 23,
         paddingBottom: height / 30,
-        paddingHorizontal: width / 17,
+        paddingHorizontal: width / 17
     },
     icon: {
         width: height / 24,
-        height: height / 24,
+        height: height / 24
     },
     iconContainer: {
         width: height / 24,
@@ -34,33 +34,33 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         position: 'absolute',
         top: height / 24,
-        left: width / 17,
+        left: width / 17
     },
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     banner: {
         borderTopLeftRadius: 6,
         borderTopRightRadius: 6,
         height: height / 24,
         alignItems: 'center',
-        width: width / 1.36,
-    },
+        width: width / 1.36
+    }
 });
 
 class InfoBox extends Component {
     static propTypes = {
         secondaryBackgroundColor: PropTypes.string,
         containerStyle: PropTypes.object,
-        backgroundColor: PropTypes.string,
+        backgroundColor: PropTypes.string
     };
 
     static defaultProps = {
-        secondaryBackgroundColor: 'white',
+        secondaryBackgroundColor: 'white'
     };
 
     render() {

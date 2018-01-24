@@ -9,7 +9,7 @@ class BorderShadow extends Component {
 
         const linear = key => [
             <Stop offset="0" stopColor={color} stopOpacity={opacity} key={`${key}Linear0`} />,
-            <Stop offset="1" stopColor={color} stopOpacity="0" key={`${key}Linear1`} />,
+            <Stop offset="1" stopColor={color} stopOpacity="0" key={`${key}Linear1`} />
         ];
 
         const lineWidth = border;
@@ -72,7 +72,7 @@ BorderShadow.defaultProps = {
     border: 0,
     opacity: 1,
     inset: false,
-    style: {},
+    style: {}
 };
 
 BorderShadow.propTypes = {
@@ -83,7 +83,7 @@ BorderShadow.propTypes = {
     opacity: PropTypes.number,
     inset: PropTypes.bool,
     style: PropTypes.object,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired
 };
 
 export default BorderShadow;

@@ -7,7 +7,7 @@ export const prepareTransferArray = (address, value, message, tag = DEFAULT_TAG)
             address,
             value,
             message: iota.utils.toTrytes(message),
-            tag: iota.utils.toTrytes(tag),
-        },
+            tag: iota.utils.toTrytes(tag)
+        }
     ];
 };

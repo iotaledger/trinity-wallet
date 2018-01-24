@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Lato-Regular',
         textAlign: 'center',
-        fontSize: width / 23,
+        fontSize: width / 23
     },
     closeButton: {
         flexDirection: 'row',
@@ -22,32 +22,32 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
-        borderWidth: 1.2,
+        borderWidth: 1.2
     },
     closeButtonText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 29.6,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     modalContent: {
         alignItems: 'center',
-        justifyContent: 'center',
-    },
+        justifyContent: 'center'
+    }
 });
 
 class QRScanner extends Component {
     static async requestCameraPermission() {
         await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA, {
             title: 'QR Scanner permission',
-            message: 'The wallet needs access to your camera to scan a QR code.',
+            message: 'The wallet needs access to your camera to scan a QR code.'
         });
     }
 
     static propTypes = {
         t: PropTypes.func.isRequired,
         onQRRead: PropTypes.func.isRequired,
-        hideModal: PropTypes.func.isRequired,
+        hideModal: PropTypes.func.isRequired
     };
 
     componentWillMount() {
@@ -64,7 +64,7 @@ class QRScanner extends Component {
                 <View style={{ alignItems: 'center', backgroundColor }}>
                     <View style={{ height: height / 12 }} />
                     <Text style={styles.qrInfoText}>{t('scan')}</Text>
-                    <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
+                    <QRCodeScanner onRead={data => this.props.onQRRead(data.data)} />
                     <View style={{ paddingBottom: height / 15 }}>
                         <TouchableOpacity
                             style={[styles.closeButton, { backgroundColor: ctaColor }, { borderColor: ctaBorderColor }]}

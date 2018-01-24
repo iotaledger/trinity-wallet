@@ -15,14 +15,14 @@ class SeedName extends React.PureComponent {
         renameCurrentSeed: PropTypes.func.isRequired,
         history: PropTypes.object.isRequired,
         seed: PropTypes.shape({
-            name: PropTypes.string,
+            name: PropTypes.string
         }).isRequired,
         t: PropTypes.func.isRequired,
-        showError: PropTypes.func.isRequired,
+        showError: PropTypes.func.isRequired
     };
 
     state = {
-        name: this.props.seed.name || '',
+        name: this.props.seed.name || ''
     };
 
     onRequestNext = () => {
@@ -31,7 +31,7 @@ class SeedName extends React.PureComponent {
         if (!name.length) {
             showError({
                 title: t('addAdditionalSeed:noNickname'),
-                text: t('addAdditionalSeed:noNicknameExplanation'),
+                text: t('addAdditionalSeed:noNicknameExplanation')
             });
             return;
         }
@@ -45,7 +45,7 @@ class SeedName extends React.PureComponent {
 
     setName = name => {
         this.setState(() => ({
-            name: name,
+            name: name
         }));
     };
 
@@ -75,12 +75,12 @@ class SeedName extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seed: getSelectedSeed(state),
+    seed: getSelectedSeed(state)
 });
 
 const mapDispatchToProps = {
     showError,
-    renameCurrentSeed,
+    renameCurrentSeed
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate('nameYourSeed')(SeedName));

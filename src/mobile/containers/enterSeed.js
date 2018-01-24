@@ -23,11 +23,11 @@ class EnterSeed extends React.Component {
 
         this.state = {
             seed: '',
-            isModalVisible: false,
+            isModalVisible: false
         };
     }
 
-    handleKeyPress = (event) => {
+    handleKeyPress = event => {
         if (event.key == 'Enter') {
             Keyboard.dismiss();
         }
@@ -41,7 +41,7 @@ class EnterSeed extends React.Component {
             this.props.generateAlert(
                 'error',
                 t('seedTooShort'),
-                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: this.state.seed.length }),
+                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: this.state.seed.length })
             );
         } else if (this.state.seed.length == MAX_SEED_LENGTH) {
             this.props.setSeed(this.state.seed);
@@ -50,16 +50,16 @@ class EnterSeed extends React.Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: COLORS.backgroundGreen,
+                    screenBackgroundColor: COLORS.backgroundGreen
                 },
-                animated: false,
+                animated: false
             });
         }
     }
 
     onBackPress() {
         this.props.navigator.pop({
-            animated: false,
+            animated: false
         });
     }
     onQRPress() {
@@ -68,7 +68,7 @@ class EnterSeed extends React.Component {
 
     onQRRead(data) {
         this.setState({
-            seed: data,
+            seed: data
         });
         this._hideModal();
     }
@@ -81,7 +81,7 @@ class EnterSeed extends React.Component {
         <QRScanner
             backgroundColor={COLORS.backgroundGreen}
             ctaColor={COLORS.greenLight}
-            onQRRead={(data) => this.onQRRead(data)}
+            onQRRead={data => this.onQRRead(data)}
             hideModal={() => this._hideModal()}
             secondaryCtaColor="white"
         />
@@ -115,7 +115,7 @@ class EnterSeed extends React.Component {
                         <View style={{ flex: 0.5 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={(seed) => this.setState({ seed: seed.toUpperCase() })}
+                            onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'characters'}
                             autoCorrect={false}
@@ -183,54 +183,54 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
+        backgroundColor: COLORS.backgroundGreen
     },
     topContainer: {
         flex: 1,
-        paddingTop: height / 22,
+        paddingTop: height / 22
     },
     midContainer: {
         flex: 5,
         alignItems: 'center',
         width,
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
     },
     bottomContainer: {
         flex: 0.8,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        paddingBottom: height / 20
     },
     logoContainer: {
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     titleContainer: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     warningText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
         textAlign: 'justify',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5,
+        width: width / 5
     },
     infoIcon: {
         width: width / 20,
-        height: width / 20,
+        height: width / 20
     },
     checksum: {
         width: width / 8,
@@ -238,24 +238,24 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadiusSmall,
         backgroundColor: 'rgba(255, 255, 255, 0.04)',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     checksumText: {
         fontSize: width / 29.6,
         color: 'white',
-        fontFamily: 'Lato-Regular',
-    },
+        fontFamily: 'Lato-Regular'
+    }
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     marketData: state.marketData,
     tempAccount: state.tempAccount,
-    account: state.account,
+    account: state.account
 });
 
 const mapDispatchToProps = {
     setSeed,
-    generateAlert,
+    generateAlert
 };
 
 export default translate(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));

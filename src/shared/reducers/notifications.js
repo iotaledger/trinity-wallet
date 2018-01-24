@@ -7,12 +7,12 @@ export default (state = initialState, action) => {
         case ActionTypes.ADD:
             return {
                 ...state,
-                [action.payload.id]: action.payload,
+                [action.payload.id]: action.payload
             };
 
         case ActionTypes.REMOVE:
             const notifications = {
-                ...state,
+                ...state
             };
 
             delete notifications[action.payload];

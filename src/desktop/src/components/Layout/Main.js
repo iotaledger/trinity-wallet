@@ -11,7 +11,7 @@ import Settings from 'components/Settings/Index';
 export default withRouter(
     class Main extends React.PureComponent {
         static propTypes = {
-            location: PropTypes.object,
+            location: PropTypes.object
         };
 
         render() {
@@ -28,5 +28,5 @@ export default withRouter(
                 </Switch>
             );
         }
-    },
+    }
 );

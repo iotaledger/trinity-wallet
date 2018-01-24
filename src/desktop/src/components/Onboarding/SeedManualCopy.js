@@ -9,7 +9,7 @@ import BoxedSeed from '../UI/BoxedSeed';
 class SeedManualCopy extends PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
-        seed: PropTypes.string,
+        seed: PropTypes.string
     };
 
     render() {
@@ -28,7 +28,7 @@ class SeedManualCopy extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seed: getSelectedSeed(state).seed,
+    seed: getSelectedSeed(state).seed
 });
 
 export default translate('saveYourSeed2')(connect(mapStateToProps)(SeedManualCopy));

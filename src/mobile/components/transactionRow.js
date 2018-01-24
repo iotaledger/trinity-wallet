@@ -19,56 +19,56 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         width: width / 1.2,
         height: height / 10,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     title: {
         justifyContent: 'space-between',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 29.6,
+        fontSize: width / 29.6
     },
     message: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
-        fontSize: width / 31.8,
+        fontSize: width / 31.8
     },
     messageTitle: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Bold',
         fontSize: width / 31.8,
-        paddingRight: width / 70,
+        paddingRight: width / 70
     },
     modalBundleTitle: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Bold',
         fontSize: width / 31.8,
-        paddingTop: height / 50,
+        paddingTop: height / 50
     },
     hash: {
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Regular',
-        fontSize: width / 31.8,
+        fontSize: width / 31.8
     },
     bundleHash: {
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Regular',
         fontSize: width / 31.8,
-        marginTop: 2,
+        marginTop: 2
     },
     status: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 31.8,
+        fontSize: width / 31.8
     },
     modalTimestamp: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 31.8,
+        fontSize: width / 31.8
     },
     timestamp: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 31.8,
+        fontSize: width / 31.8
     },
     modalContent: {
         width: width / 1.15,
@@ -76,20 +76,20 @@ const styles = StyleSheet.create({
         padding: width / 25,
         justifyContent: 'center',
         borderRadius: GENERAL.borderRadius,
-        borderWidth: 2,
+        borderWidth: 2
     },
     modalStatus: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
-        paddingRight: width / 25,
+        paddingRight: width / 25
     },
     modalValue: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
-        textAlign: 'right',
-    },
+        textAlign: 'right'
+    }
 });
 
 /* eslint-disable no-nested-ternary */
@@ -107,14 +107,14 @@ class TransactionRow extends Component {
         borderColor: PropTypes.object.isRequired,
         addresses: PropTypes.array.isRequired,
         copyBundleHash: PropTypes.func.isRequired,
-        copyAddress: PropTypes.func.isRequired,
+        copyAddress: PropTypes.func.isRequired
     };
 
     constructor() {
         super();
 
         this.state = {
-            isModalVisible: false,
+            isModalVisible: false
         };
     }
 
@@ -134,7 +134,7 @@ class TransactionRow extends Component {
                                     backgroundColor: 'transparent',
                                     fontFamily: 'Lato-Regular',
                                     fontSize: width / 29.6,
-                                    color: titleColour,
+                                    color: titleColour
                                 }}
                             >
                                 {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(transfer.value), 1)}{' '}
@@ -146,7 +146,7 @@ class TransactionRow extends Component {
                                         styles.modalStatus,
                                         { color: this.props.positiveColor },
                                         !isReceived && { color: this.props.negativeColor },
-                                        !hasPersistence && { color: this.props.pendingColor },
+                                        !hasPersistence && { color: this.props.pendingColor }
                                     ]}
                                 >
                                     {hasPersistence ? (isReceived ? 'Received' : 'Sent') : 'Pending'}
@@ -171,7 +171,7 @@ class TransactionRow extends Component {
                         <Text style={[styles.modalBundleTitle, textColor]}>Addresses:</Text>
                         <ListView
                             dataSource={ds.cloneWithRows(this.props.rowData)}
-                            renderRow={(rowData) => (
+                            renderRow={rowData => (
                                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 2 }}>
                                     <TouchableOpacity
                                         onPress={() => this.props.copyAddress(rowData.address)}
@@ -213,7 +213,7 @@ class TransactionRow extends Component {
             borderColor,
             pendingColor,
             addresses,
-            rowData,
+            rowData
         } = this.props;
         const isReceived = isReceivedTransfer(rowData, addresses);
         const transfer = getRelevantTransfer(rowData, addresses);
@@ -237,7 +237,7 @@ class TransactionRow extends Component {
                                 flexDirection: 'row',
                                 flex: 1,
                                 justifyContent: 'space-between',
-                                alignItems: 'flex-start',
+                                alignItems: 'flex-start'
                             }}
                         >
                             <Text
@@ -247,7 +247,7 @@ class TransactionRow extends Component {
                                     fontFamily: 'Lato-Regular',
                                     fontSize: width / 31.8,
                                     marginBottom: width / 100,
-                                    color: titleColour,
+                                    color: titleColour
                                 }}
                             >
                                 {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(transfer.value), 1)}{' '}
@@ -258,7 +258,7 @@ class TransactionRow extends Component {
                                     styles.status,
                                     { color: positiveColor },
                                     !isReceived && { color: positiveColor },
-                                    !hasPersistence && { color: pendingColor },
+                                    !hasPersistence && { color: pendingColor }
                                 ]}
                             >
                                 {hasPersistence ? (isReceived ? 'Received' : 'Sent') : 'Pending'}
@@ -269,7 +269,7 @@ class TransactionRow extends Component {
                                 flexDirection: 'row',
                                 flex: 1,
                                 justifyContent: 'space-between',
-                                alignItems: 'flex-end',
+                                alignItems: 'flex-end'
                             }}
                         >
                             <View
@@ -277,7 +277,7 @@ class TransactionRow extends Component {
                                     flexDirection: 'row',
                                     flex: 1,
                                     justifyContent: 'flex-start',
-                                    alignItems: 'center',
+                                    alignItems: 'center'
                                 }}
                             >
                                 <Text style={[styles.messageTitle, textColor]}>Message:</Text>

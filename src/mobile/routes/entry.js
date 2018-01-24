@@ -14,13 +14,13 @@ const renderInitialScreen = () => {
             screen: 'initialLoading',
             navigatorStyle: {
                 navBarHidden: true,
-                navBarTransparent: true,
+                navBarTransparent: true
             },
-            overrideBackPress: true,
+            overrideBackPress: true
         },
         appStyle: {
-            orientation: 'portrait',
-        },
+            orientation: 'portrait'
+        }
     });
 };
 

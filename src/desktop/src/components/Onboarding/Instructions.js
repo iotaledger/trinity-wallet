@@ -7,7 +7,7 @@ import Button from '../UI/Button';
 export default translate('welcome1')(
     class Instruction extends React.PureComponent {
         static propTypes = {
-            t: PropTypes.func.isRequired,
+            t: PropTypes.func.isRequired
         };
 
         render() {
@@ -32,5 +32,5 @@ export default translate('welcome1')(
                 </Template>
             );
         }
-    },
+    }
 );

@@ -14,9 +14,9 @@ const getProps = overrides =>
             negativeColor: 'black',
             onRef: noop,
             options: [],
-            disableWhen: false,
+            disableWhen: false
         },
-        overrides,
+        overrides
     );
 
 describe('Testing Dropdown component', () => {
@@ -34,7 +34,7 @@ describe('Testing Dropdown component', () => {
         describe('when onRef prop is defined', () => {
             it('should call onRef with instance', () => {
                 const props = getProps({
-                    onRef: jest.fn(),
+                    onRef: jest.fn()
                 });
                 const wrapper = shallow(<Dropdown {...props} />);
                 const instance = wrapper.instance();
@@ -48,7 +48,7 @@ describe('Testing Dropdown component', () => {
         describe('when onRef prop is defined', () => {
             it('should call onRef with null', () => {
                 const props = getProps({
-                    onRef: jest.fn(),
+                    onRef: jest.fn()
                 });
                 const wrapper = shallow(<Dropdown {...props} />);
                 wrapper.unmount();

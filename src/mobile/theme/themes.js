@@ -13,7 +13,7 @@ const themes = {
         secondaryCtaColor: 'white',
         ctaBorderColor: 'transparent',
         pendingColor: '#f75602',
-        chartLineColor: '#FFA25B',
+        chartLineColor: '#FFA25B'
     },
     Grey: {
         backgroundColor: tinycolor(`#313131`).toHsl(),
@@ -27,7 +27,7 @@ const themes = {
         secondaryCtaColor: 'white',
         ctaBorderColor: 'transparent',
         pendingColor: '#f75602',
-        chartLineColor: '#FFA25B',
+        chartLineColor: '#FFA25B'
     },
     Blue: {
         backgroundColor: tinycolor(`#20303f`).toHsl(),
@@ -41,7 +41,7 @@ const themes = {
         secondaryCtaColor: 'white',
         ctaBorderColor: 'transparent',
         pendingColor: '#f75602',
-        chartLineColor: '#FFA25B',
+        chartLineColor: '#FFA25B'
     },
     Light: {
         backgroundColor: tinycolor(`white`).toHsl(),
@@ -55,7 +55,7 @@ const themes = {
         secondaryCtaColor: 'black',
         ctaBorderColor: 'black',
         pendingColor: '#f75602',
-        chartLineColor: 'black',
+        chartLineColor: 'black'
     },
     Dark: {
         backgroundColor: tinycolor(`black`).toHsl(),
@@ -69,8 +69,8 @@ const themes = {
         secondaryCtaColor: 'white',
         ctaBorderColor: 'white',
         pendingColor: '#f75602',
-        chartLineColor: 'white',
-    },
+        chartLineColor: 'white'
+    }
     /* Custom: {
         backgroundColor: tinycolor(`#1a373e`).toHsl(),
         barColor: tinycolor(`#0b282f`).toHsl(),
@@ -87,11 +87,11 @@ const themes = {
     }, */
 };
 
-const getHSL = (color) => {
+const getHSL = color => {
     return tinycolor(color).toHslString();
 };
 
 export default {
     themes,
-    getHSL,
+    getHSL
 };
