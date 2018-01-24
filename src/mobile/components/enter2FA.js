@@ -104,6 +104,7 @@ class Enter2FA extends Component {
                             onChangeText={this.handleChange2FAToken}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
+                            keyboardType={'numeric'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"

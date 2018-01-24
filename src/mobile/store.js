@@ -8,10 +8,10 @@ import { updatePersistedState } from '../shared/libs/util';
 
 export const persistConfig = {
     storage: AsyncStorage,
-    blacklist: ['alerts', 'tempAccount', 'keychain', 'polling', 'ui'],
+    blacklist: ['tempAccount', 'keychain', 'polling', 'ui'],
 };
 
-const shouldMigrate = restoredState => {
+const shouldMigrate = (restoredState) => {
     const restoredVersion = get(restoredState, 'app.versions.version');
     const restoredBuildNumber = get(restoredState, 'app.versions.buildNumber');
 
