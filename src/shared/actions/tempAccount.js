@@ -226,7 +226,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
     });
 };
 
-export const sendTransaction = (seed, address, value, message, accountName) => {
+export const prepareTransfer = (seed, address, value, message, accountName) => {
     return (dispatch, getState) => {
         dispatch(sendTransferRequest());
 

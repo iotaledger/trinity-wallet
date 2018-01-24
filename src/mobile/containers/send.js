@@ -25,7 +25,7 @@ import {
     getFromKeychainSuccess,
     getFromKeychainError,
 } from 'iota-wallet-shared-modules/actions/keychain';
-import { sendTransaction } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { prepareTransfer } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import {
     getBalanceForSelectedAccountViaSeedIndex,
@@ -60,7 +60,7 @@ class Send extends Component {
         conversionRate: PropTypes.number.isRequired,
         usdPrice: PropTypes.number.isRequired,
         isGettingSensitiveInfoToMakeTransaction: PropTypes.bool.isRequired,
-        sendTransaction: PropTypes.func.isRequired,
+        prepareTransfer: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         getFromKeychainRequest: PropTypes.func.isRequired,
         getFromKeychainSuccess: PropTypes.func.isRequired,
@@ -236,7 +236,7 @@ class Send extends Component {
 
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
-                    this.props.sendTransaction(seed, address, value, message, selectedAccountName);
+                    this.props.prepareTransfer(seed, address, value, message, selectedAccountName);
                 }
             })
             .catch(() => this.props.getFromKeychainError('send', 'makeTransaction'));
@@ -695,7 +695,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    sendTransaction,
+    prepareTransfer,
     generateAlert,
     getFromKeychainRequest,
     getFromKeychainSuccess,
