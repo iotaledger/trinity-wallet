@@ -235,7 +235,7 @@ export const themes = {
         bar: {
             color: tinycolor('#FAFAFA').toHsl(),
             background: tinycolor('#141414').toHsl(),
-            secondary: tinycolor('#141414').toHsl(),
+            secondary: tinycolor('#FAFAFA').toHsl(),
         },
         positive: {
             color: tinycolor('#009f3f').toHsl(),

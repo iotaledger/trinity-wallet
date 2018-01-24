@@ -18,13 +18,13 @@ class ThemePicker extends React.PureComponent {
         return (
             <div>
                 <Select
-                    defaultValue="en"
+                    value={this.props.themeName}
                     onChange={(e) => {
                         this.props.updateTheme(themes[e.target.value], e.target.value);
                     }}
                 >
                     {Object.keys(themes).map((themeName) => (
-                        <option selected={themeName === this.props.themeName} key={themeName} value={themeName}>
+                        <option key={themeName} value={themeName}>
                             {themeName}
                         </option>
                     ))}

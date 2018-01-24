@@ -1,6 +1,6 @@
 export const icons = {
-    iota: '',
-    wallet: '',
-    camera: '',
-    eye: '',
+    iota: '💥',
+    wallet: '💰',
+    camera: '📷',
+    eye: '👁',
 };
