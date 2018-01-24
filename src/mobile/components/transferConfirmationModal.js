@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 import { View, Text, StyleSheet } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons';
 import GENERAL from '../theme/general';
