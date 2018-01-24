@@ -33,7 +33,7 @@ const reducers = combineReducers({
     home,
     keychain,
     polling,
-    ui
+    ui,
 });
 
 const rootReducer = (state, action) => {
@@ -51,8 +51,8 @@ const store = createStore(
     compose(
         applyMiddleware(...middleware),
         autoRehydrate(),
-        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f
-    )
+        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
+    ),
 );
 
 export { persistStore, getStoredState, purgeStoredState, createPersistor };

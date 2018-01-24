@@ -8,15 +8,15 @@ export default class UserInactivity extends Component {
         checkInterval: PropTypes.number,
         children: PropTypes.node.isRequired,
         style: ViewPropTypes.style,
-        onInactivity: PropTypes.func.isRequired
+        onInactivity: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
         timeForInactivity: 10000,
         checkInterval: 2000,
         style: {
-            flex: 1
-        }
+            flex: 1,
+        },
     };
 
     state = {};
@@ -30,7 +30,7 @@ export default class UserInactivity extends Component {
             onStartShouldSetPanResponderCapture: () => false,
             onMoveShouldSetPanResponderCapture: () => false,
             onPanResponderTerminationRequest: () => true,
-            onShouldBlockNativeResponder: () => false
+            onShouldBlockNativeResponder: () => false,
         });
 
         this.maybeStartWatchingForInactivity();
@@ -64,11 +64,11 @@ export default class UserInactivity extends Component {
         const timeWentInactive = new Date();
         this.setState(
             {
-                timeWentInactive
+                timeWentInactive,
             },
             () => {
                 this.props.onInactivity(timeWentInactive);
-            }
+            },
         );
         clearInterval(this.inactivityTimer);
         this.inactivityTimer = null;

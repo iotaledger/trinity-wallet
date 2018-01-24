@@ -4,7 +4,7 @@ import css from './Infobox.css';
 
 export default class Infobox extends React.PureComponent {
     static propTypes = {
-        children: PropTypes.node.isRequired
+        children: PropTypes.node.isRequired,
     };
 
     render() {

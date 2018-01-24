@@ -13,11 +13,11 @@ import { width, height } from '../util/dimensions';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
     },
     topContainer: {
         flex: 10,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     bottomContainer: {
         flex: 1,
@@ -25,50 +25,50 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     itemContainer: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
         width,
-        paddingHorizontal: width / 15
+        paddingHorizontal: width / 15,
     },
     icon: {
         width: width / 22,
         height: width / 22,
-        marginRight: width / 25
+        marginRight: width / 25,
     },
     backIcon: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     separator: {
         borderBottomWidth: 0.3,
         width: width / 1.16,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     separatorContainer: {
         flex: 0.5,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     settingText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         marginLeft: width / 12,
         width: width / 2.4,
-        backgroundColor: 'transparent'
-    }
+        backgroundColor: 'transparent',
+    },
 });
 
 /* eslint-disable react/prefer-stateless-function */
@@ -80,7 +80,7 @@ class AdvancedSettings extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         setSetting: PropTypes.func.isRequired,
         onDeleteAccountPress: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     render() {

@@ -8,7 +8,7 @@ const Electron = {
     updateMenu: (attribute, value) => {
         ipc.send('menu.update', {
             attribute: attribute,
-            value: value
+            value: value,
         });
     },
 
@@ -41,7 +41,7 @@ const Electron = {
             logout: t('settings:logout'),
             logoutConfirm: t('logoutConfirmationModal:logoutConfirmation'),
             yes: t('global:no'),
-            no: t('global:yes')
+            no: t('global:yes'),
         });
     },
 
@@ -67,7 +67,7 @@ const Electron = {
         });
     },
 
-    _eventListeners: {}
+    _eventListeners: {},
 };
 
 global.Electron = Electron;

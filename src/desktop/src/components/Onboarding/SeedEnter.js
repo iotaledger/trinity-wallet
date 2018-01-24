@@ -16,23 +16,23 @@ class SeedEnter extends React.PureComponent {
         addAndSelectSeed: PropTypes.func.isRequired,
         clearSeeds: PropTypes.func.isRequired,
         history: PropTypes.shape({
-            push: PropTypes.func.isRequired
+            push: PropTypes.func.isRequired,
         }).isRequired,
         selectedSeed: PropTypes.shape({
-            seed: PropTypes.string
+            seed: PropTypes.string,
         }).isRequired,
         showError: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     state = {
         seed: '',
-        seedValid: this.props.selectedSeed.seed
+        seedValid: this.props.selectedSeed.seed,
     };
 
     onChange = value => {
         this.setState(() => ({
-            seed: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase()
+            seed: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase(),
         }));
     };
 
@@ -47,7 +47,7 @@ class SeedEnter extends React.PureComponent {
         if (!isValidSeed(seed)) {
             showError({
                 title: t('seedReentry:incorrectSeed'),
-                text: t('enterSeed:seedTooShort')
+                text: t('enterSeed:seedTooShort'),
             });
             return;
         }
@@ -66,13 +66,13 @@ class SeedEnter extends React.PureComponent {
 
     openScanner = () => {
         this.setState(() => ({
-            showScanner: true
+            showScanner: true,
         }));
     };
 
     closeScanner = () => {
         this.setState(() => ({
-            showScanner: false
+            showScanner: false,
         }));
     };
 
@@ -107,13 +107,13 @@ class SeedEnter extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    selectedSeed: getSelectedSeed(state)
+    selectedSeed: getSelectedSeed(state),
 });
 
 const mapDispatchToProps = {
     showError,
     addAndSelectSeed,
-    clearSeeds
+    clearSeeds,
 };
 
 export default translate('enterSeed')(connect(mapStateToProps, mapDispatchToProps)(SeedEnter));

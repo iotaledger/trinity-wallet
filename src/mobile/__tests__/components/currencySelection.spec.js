@@ -21,9 +21,9 @@ const getProps = overrides =>
             secondaryBackgroundColor: 'white',
             negativeColor: {},
             tickImagePath: 0,
-            arrowLeftImagePath: 0
+            arrowLeftImagePath: 0,
         },
-        overrides
+        overrides,
     );
 
 describe('Testing CurrencySelection component', () => {
@@ -77,13 +77,13 @@ describe('Testing CurrencySelection component', () => {
         describe('when isFetchingCurrencyData is true', () => {
             it('should not call prop method backPress when isFetchingCurrencyData is true in the newProps', () => {
                 const props = getProps({
-                    backPress: jest.fn()
+                    backPress: jest.fn(),
                 });
 
                 const wrapper = shallow(<CurrencySelection {...props} />);
 
                 wrapper.setProps({
-                    isFetchingCurrencyData: true
+                    isFetchingCurrencyData: true,
                 });
 
                 expect(props.backPress).toHaveBeenCalledTimes(0);
@@ -91,13 +91,13 @@ describe('Testing CurrencySelection component', () => {
 
             it('should not call prop method backPress when isFetchingCurrencyData is false in the newProps but hasErrorFetchingCurrencyData is true', () => {
                 const props = getProps({
-                    backPress: jest.fn()
+                    backPress: jest.fn(),
                 });
 
                 const wrapper = shallow(<CurrencySelection {...props} />);
                 wrapper.setProps({
                     isFetchingCurrencyData: false,
-                    hasErrorFetchingCurrencyData: true
+                    hasErrorFetchingCurrencyData: true,
                 });
 
                 expect(props.backPress).toHaveBeenCalledTimes(0);
@@ -105,13 +105,13 @@ describe('Testing CurrencySelection component', () => {
 
             it('should call prop method backPress when isFetchingCurrencyData and hasErrorFetchingCurrencyData are false in the newProps', () => {
                 const props = getProps({
-                    backPress: jest.fn()
+                    backPress: jest.fn(),
                 });
 
                 const wrapper = shallow(<CurrencySelection {...props} />);
                 wrapper.setProps({
                     isFetchingCurrencyData: false,
-                    hasErrorFetchingCurrencyData: false
+                    hasErrorFetchingCurrencyData: false,
                 });
 
                 expect(props.backPress).toHaveBeenCalledTimes(1);

@@ -7,7 +7,7 @@ const BrowserWindow = electron.BrowserWindow;
 const devMode = process.env.NODE_ENV === 'development';
 
 const windows = {
-    main: null
+    main: null,
 };
 
 function createWindow() {
@@ -16,8 +16,8 @@ function createWindow() {
         height: 768,
         webPreferences: {
             nodeIntegration: true,
-            preload: path.join(__dirname, 'lib/window.js')
-        }
+            preload: path.join(__dirname, 'lib/window.js'),
+        },
     });
 
     const url = devMode ? 'http://localhost:1074/' : 'file://' + __dirname + '/dist/index.html';
@@ -30,7 +30,7 @@ function createWindow() {
         const {
             default: installExtension,
             REACT_DEVELOPER_TOOLS,
-            REDUX_DEVTOOLS
+            REDUX_DEVTOOLS,
         } = require('electron-devtools-installer');
 
         installExtension(REACT_DEVELOPER_TOOLS);

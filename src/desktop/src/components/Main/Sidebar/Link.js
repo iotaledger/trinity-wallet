@@ -9,7 +9,7 @@ export default class Link extends React.PureComponent {
         children: PropTypes.node,
         image: PropTypes.string,
         label: PropTypes.string,
-        to: PropTypes.string
+        to: PropTypes.string,
     };
 
     render() {

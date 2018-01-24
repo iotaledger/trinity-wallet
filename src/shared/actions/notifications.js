@@ -2,7 +2,7 @@ import { guid } from '../libs/util';
 
 export const ActionTypes = {
     ADD: 'IOTA/NOTIFICATION/ADD',
-    REMOVE: 'IOTA/NOTIFICATION/REMOVE'
+    REMOVE: 'IOTA/NOTIFICATION/REMOVE',
 };
 
 export function showNotification(notification) {
@@ -26,8 +26,8 @@ export function showNotification(notification) {
                 title,
                 text,
                 translate,
-                translationScope
-            }
+                translationScope,
+            },
         });
 
         if (timeout) {
@@ -39,7 +39,7 @@ export function showNotification(notification) {
 export const hideNotification = id => {
     return {
         type: ActionTypes.REMOVE,
-        payload: id
+        payload: id,
     };
 };
 
@@ -48,8 +48,8 @@ export const showError = notification => {
         dispatch(
             showNotification({
                 ...notification,
-                type: 'error'
-            })
+                type: 'error',
+            }),
         );
     };
 };

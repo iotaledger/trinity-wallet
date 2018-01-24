@@ -10,7 +10,7 @@ import {
     TouchableOpacity,
     Keyboard,
     TouchableWithoutFeedback,
-    AppState
+    AppState,
 } from 'react-native';
 import Fonts from '../theme/Fonts';
 import Seedbox from '../components/seedBox';
@@ -23,45 +23,45 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     generalText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 23,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     topContainer: {
         flex: 9,
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     passwordTextContainer: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     textFieldContainer: {
         flex: 2,
         justifyContent: 'flex-start',
-        paddingTop: height / 20
+        paddingTop: height / 20,
     },
     viewButtonContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     seedBoxContainer: {
         flex: 3.5,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     hideButtonContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     bottomContainer: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     item: {
         flexDirection: 'row',
@@ -69,17 +69,17 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-start',
         width,
-        paddingHorizontal: width / 15
+        paddingHorizontal: width / 15,
     },
     icon: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     viewButton: {
         borderWidth: 1.5,
@@ -88,13 +88,13 @@ const styles = StyleSheet.create({
         height: height / 17,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     viewText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
-        backgroundColor: 'transparent'
-    }
+        backgroundColor: 'transparent',
+    },
 });
 
 class ViewSeed extends Component {
@@ -108,7 +108,7 @@ class ViewSeed extends Component {
         arrowLeftImagePath: PropTypes.number.isRequired,
         onWrongPassword: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired
+        backPress: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -118,7 +118,7 @@ class ViewSeed extends Component {
             password: '',
             showSeed: false,
             seed: '',
-            appState: AppState.currentState
+            appState: AppState.currentState,
         };
 
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
@@ -171,7 +171,7 @@ class ViewSeed extends Component {
         this.setState({
             seed: '',
             showSeed: false,
-            password: ''
+            password: '',
         });
     }
 

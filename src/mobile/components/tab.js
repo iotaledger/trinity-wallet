@@ -7,12 +7,12 @@ const styles = StyleSheet.create({
     button: {
         width: width / 5,
         justifyContent: 'flex-end',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     icon: {
         paddingTop: height / 40,
         height: width / 15,
-        width: width / 15
+        width: width / 15,
     },
     iconTitle: {
         fontWeight: 'bold',
@@ -20,14 +20,14 @@ const styles = StyleSheet.create({
         paddingTop: height / 80,
         fontFamily: 'Lato-Regular',
         fontSize: width / 40.5,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     fullyOpaque: {
-        opacity: 1
+        opacity: 1,
     },
     partiallyOpaque: {
-        opacity: 0.4
-    }
+        opacity: 0.4,
+    },
 });
 
 /* eslint-disable react/prefer-stateless-function */
@@ -35,7 +35,7 @@ class Tab extends Component {
     static propTypes = {
         icon: PropTypes.number.isRequired,
         textColor: PropTypes.object.isRequired,
-        text: PropTypes.string.isRequired
+        text: PropTypes.string.isRequired,
     };
 
     render() {

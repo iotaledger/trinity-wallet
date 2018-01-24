@@ -14,9 +14,9 @@ class Welcome extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: COLORS.backgroundGreen
+                screenBackgroundColor: COLORS.backgroundGreen,
             },
-            animated: false
+            animated: false,
         });
     }
 
@@ -53,23 +53,23 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22
+        paddingTop: height / 22,
     },
     midContainer: {
         flex: 2,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     bottomContainer: {
         flex: 1.5,
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     nextButton: {
         borderColor: '#9DFFAF',
@@ -79,21 +79,21 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginBottom: height / 20
+        marginBottom: height / 20,
     },
     nextText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     infoTextContainer: {
         paddingHorizontal: width / 15,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     infoTextLight: {
         color: 'white',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
-        textAlign: 'center'
+        textAlign: 'center',
     },
     infoTextRegular: {
         color: 'white',
@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
-        textAlign: 'center'
-    }
+        textAlign: 'center',
+    },
 });
 
 export default translate(['welcome', 'global'])(Welcome);

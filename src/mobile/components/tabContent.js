@@ -16,7 +16,7 @@ const routeToComponent = {
     send: Send,
     receive: Receive,
     history: History,
-    settings: Settings
+    settings: Settings,
 };
 
 class TabContent extends Component {
@@ -42,22 +42,22 @@ class TabContent extends Component {
 
 const mapStateToProps = state => ({
     currentRoute: state.home.childRoute,
-    isTopBarActive: state.home.isTopBarActive
+    isTopBarActive: state.home.isTopBarActive,
 });
 
 const mapDispatchToProps = {
-    toggleTopBarDisplay
+    toggleTopBarDisplay,
 };
 
 TabContent.propTypes = {
     navigator: PropTypes.object.isRequired,
     currentRoute: PropTypes.oneOf(Object.keys(routeToComponent)),
     isTopBarActive: PropTypes.bool.isRequired,
-    toggleTopBarDisplay: PropTypes.func.isRequired
+    toggleTopBarDisplay: PropTypes.func.isRequired,
 };
 
 TabContent.defaultProps = {
-    currentRoute: 'balance'
+    currentRoute: 'balance',
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TabContent);

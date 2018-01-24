@@ -5,7 +5,7 @@ import LanguageSelect from 'components/UI/LanguageSelect';
 
 class Language extends React.PureComponent {
     static propTypes = {
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     render() {

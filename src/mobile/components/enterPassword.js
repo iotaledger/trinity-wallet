@@ -14,32 +14,32 @@ const styles = StyleSheet.create({
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22
+        paddingTop: height / 22,
     },
     midContainer: {
         flex: 4.8,
         alignItems: 'center',
-        paddingTop: height / 5
+        paddingTop: height / 5,
     },
     bottomContainer: {
         flex: 0.7,
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 8
+        paddingTop: height / 8,
     },
     title: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     loginButton: {
         borderWidth: 1.2,
@@ -48,18 +48,18 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginBottom: height / 20
+        marginBottom: height / 20,
     },
     loginText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
-        backgroundColor: 'transparent'
-    }
+        backgroundColor: 'transparent',
+    },
 });
 
 class EnterPassword extends Component {
     state = {
-        password: ''
+        password: '',
     };
 
     handleChangeText = password => this.setState({ password });
@@ -117,7 +117,7 @@ EnterPassword.propTypes = {
     positiveColor: PropTypes.object.isRequired,
     textColor: PropTypes.object.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.object.isRequired
+    negativeColor: PropTypes.object.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPassword);

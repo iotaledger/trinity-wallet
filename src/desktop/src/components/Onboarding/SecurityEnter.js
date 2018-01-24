@@ -17,15 +17,15 @@ class SecurityEnter extends React.PureComponent {
         t: PropTypes.func.isRequired,
         clearSeeds: PropTypes.func.isRequired,
         history: PropTypes.shape({
-            push: PropTypes.func.isRequired
+            push: PropTypes.func.isRequired,
         }).isRequired,
         seeds: PropTypes.object,
-        showError: PropTypes.func.isRequired
+        showError: PropTypes.func.isRequired,
     };
 
     state = {
         password: '',
-        passwordConfirm: ''
+        passwordConfirm: '',
     };
 
     onRequestNext = e => {
@@ -36,14 +36,14 @@ class SecurityEnter extends React.PureComponent {
         if (password !== passwordConfirm) {
             return showError({
                 title: t('changePassword:passwordsDoNotMatch'),
-                text: t('changePassword:passwordsDoNotMatchExplanation')
+                text: t('changePassword:passwordsDoNotMatchExplanation'),
             });
         }
 
         if (!isValidPassword(password)) {
             return showError({
                 title: t('changePassword:passwordTooShort'),
-                text: t('changePassword:passwordTooShortExplanation')
+                text: t('changePassword:passwordTooShortExplanation'),
             });
         }
 
@@ -54,13 +54,13 @@ class SecurityEnter extends React.PureComponent {
 
     updatePassword = value => {
         this.setState(() => ({
-            password: value
+            password: value,
         }));
     };
 
     confirmPassword = value => {
         this.setState(() => ({
-            passwordConfirm: value
+            passwordConfirm: value,
         }));
     };
 
@@ -98,13 +98,13 @@ class SecurityEnter extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seeds: seedsSelector(state)
+    seeds: seedsSelector(state),
 });
 
 const mapDispatchToProps = {
     addAndSelectSeed,
     clearSeeds,
-    showError
+    showError,
 };
 
 export default translate('setPassword')(connect(mapStateToProps, mapDispatchToProps)(SecurityEnter));

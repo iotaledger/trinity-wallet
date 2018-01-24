@@ -10,11 +10,11 @@ class Alerts extends React.PureComponent {
     static propTypes = {
         disposeOffAlert: PropTypes.func.isRequired,
         alerts: PropTypes.object.isRequired,
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
-        notifications: {}
+        notifications: {},
     };
 
     state = {};
@@ -39,11 +39,11 @@ class Alerts extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    alerts: state.alerts
+    alerts: state.alerts,
 });
 
 const mapDispatchToProps = {
-    disposeOffAlert
+    disposeOffAlert,
 };
 
 export default translate('alerts')(connect(mapStateToProps, mapDispatchToProps)(Alerts));

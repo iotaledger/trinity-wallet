@@ -20,7 +20,7 @@ class Receive extends React.PureComponent {
         t: PropTypes.func.isRequired,
         account: PropTypes.object.isRequired,
         tempAccount: PropTypes.object.isRequired,
-        seeds: PropTypes.object
+        seeds: PropTypes.object,
     };
 
     state = {};
@@ -71,13 +71,13 @@ class Receive extends React.PureComponent {
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
-    seeds: state.seeds
+    seeds: state.seeds,
 });
 
 const mapDispatchToProps = {
     generateNewAddressRequest,
     generateNewAddressError,
-    generateNewAddressSuccess
+    generateNewAddressSuccess,
 };
 
 export default translate('receive')(connect(mapStateToProps, mapDispatchToProps)(Receive));

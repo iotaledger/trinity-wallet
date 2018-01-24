@@ -11,7 +11,7 @@ module.exports = {
         path: path.join(__dirname, '..', 'dist'),
         pathinfo: true,
         filename: 'bundle.js',
-        publicPath: '/'
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -20,9 +20,9 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'babel-loader'
-                    }
-                ]
+                        loader: 'babel-loader',
+                    },
+                ],
             },
             {
                 test: /\.css$/,
@@ -39,18 +39,18 @@ module.exports = {
                                     importLoaders: 1,
                                     localIdentName:
                                         process.env.NODE_ENV === 'production' ? '[hash:base64]' : '[name]__[local]',
-                                    sourceMap: true
-                                }
+                                    sourceMap: true,
+                                },
                             },
                             {
                                 loader: 'postcss-loader',
                                 options: {
-                                    sourceMap: true
-                                }
-                            }
-                        ]
-                    })
-                )
+                                    sourceMap: true,
+                                },
+                            },
+                        ],
+                    }),
+                ),
             },
             {
                 test: /\.(png|jpg|jpeg|svg|ttf)$/,
@@ -59,30 +59,30 @@ module.exports = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            name: 'images/[hash:8].[ext]'
-                        }
-                    }
-                ]
+                            name: 'images/[hash:8].[ext]',
+                        },
+                    },
+                ],
             },
             {
                 test: /\.workers?\.js$/,
-                use: { loader: 'worker-loader' }
-            }
-        ]
+                use: { loader: 'worker-loader' },
+            },
+        ],
     },
     resolve: {
-        modules: ['node_modules', path.resolve(__dirname, '..', 'src'), path.resolve(__dirname, '..', '..', 'shared')]
+        modules: ['node_modules', path.resolve(__dirname, '..', 'src'), path.resolve(__dirname, '..', '..', 'shared')],
     },
     plugins: [
         new CaseSensitivePathsPlugin(),
         new ExtractTextPlugin({
             filename: 'css/[name].css',
-            allChunks: false
+            allChunks: false,
         }),
         new HtmlWebpackPlugin({
             title: 'IOTA Light Wallet',
             inject: false,
-            template: __dirname + '/index.html'
-        })
-    ]
+            template: __dirname + '/index.html',
+        }),
+    ],
 };

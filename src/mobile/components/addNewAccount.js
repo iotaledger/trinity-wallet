@@ -8,13 +8,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'stretch',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     titleText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     item: {
         flexDirection: 'row',
@@ -22,22 +22,22 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-start',
         width,
-        paddingHorizontal: width / 15
+        paddingHorizontal: width / 15,
     },
     icon: {
         width: width / 22,
         height: width / 22,
-        marginRight: width / 25
+        marginRight: width / 25,
     },
     backIcon: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     itemContainer: {
         flex: 1,
-        justifyContent: 'center'
-    }
+        justifyContent: 'center',
+    },
 });
 
 class AddNewAccount extends Component {
@@ -49,7 +49,7 @@ class AddNewAccount extends Component {
         t: PropTypes.func.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         addImagePath: PropTypes.number.isRequired,
-        keyImagePath: PropTypes.number.isRequired
+        keyImagePath: PropTypes.number.isRequired,
     };
 
     onNewSeedPress() {

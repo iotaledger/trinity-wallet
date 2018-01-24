@@ -15,40 +15,40 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingVertical: height / 30,
         width: width / 1.15,
-        paddingHorizontal: width / 20
+        paddingHorizontal: width / 20,
     },
     textContainer: {
         alignItems: 'flex-start',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
-        fontSize: width / 31.8
+        fontSize: width / 31.8,
     },
     regularText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
-        fontSize: width / 31.8
+        fontSize: width / 31.8,
     },
     middleText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
         fontSize: width / 31.8,
-        paddingBottom: height / 80
+        paddingBottom: height / 80,
     },
     addressText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
         marginBottom: height / 30,
-        marginTop: height / 70
+        marginTop: height / 70,
     },
     iotaText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 27.6
-    }
+        fontSize: width / 27.6,
+    },
 });
 
 class TransferConfirmationModal extends Component {
@@ -61,7 +61,7 @@ class TransferConfirmationModal extends Component {
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
         amount: PropTypes.string.isRequired,
-        denomination: PropTypes.string.isRequired
+        denomination: PropTypes.string.isRequired,
     };
 
     onSendPress() {

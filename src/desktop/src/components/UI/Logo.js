@@ -9,7 +9,7 @@ export default class Logo extends React.PureComponent {
     static propTypes = {
         size: PropTypes.number,
         animate: PropTypes.bool,
-        loop: PropTypes.bool
+        loop: PropTypes.bool,
     };
 
     render() {
@@ -18,7 +18,7 @@ export default class Logo extends React.PureComponent {
         const options = {
             loop: loop,
             autoplay: true,
-            animationData: loading
+            animationData: loading,
         };
 
         return (

@@ -35,7 +35,7 @@ const SETTINGS_COMPONENTS = {
     changePassword: ChangePassword,
     manualSync: ManualSync,
     themeCustomisation: ThemeCustomisation,
-    advancedThemeCustomisation: AdvancedThemeCustomisation
+    advancedThemeCustomisation: AdvancedThemeCustomisation,
 };
 
 const SettingsContent = ({ component, ...props }) => {
@@ -45,7 +45,7 @@ const SettingsContent = ({ component, ...props }) => {
 };
 
 SettingsContent.propTypes = {
-    component: PropTypes.oneOf(Object.keys(SETTINGS_COMPONENTS)).isRequired // TODO: oneOfType
+    component: PropTypes.oneOf(Object.keys(SETTINGS_COMPONENTS)).isRequired, // TODO: oneOfType
 };
 
 export default SettingsContent;

@@ -8,7 +8,7 @@ export default class Letter extends React.PureComponent {
         index: PropTypes.number,
         value: PropTypes.string,
         onClick: PropTypes.func,
-        updated: PropTypes.number.isRequired
+        updated: PropTypes.number.isRequired,
     };
 
     render() {
