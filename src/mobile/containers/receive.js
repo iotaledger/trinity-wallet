@@ -119,15 +119,6 @@ class Receive extends Component {
         return 1;
     }
 
-    getQrOpacity() {
-        const { receiveAddress } = this.props;
-        if (receiveAddress === ' ' && isAndroid) {
-            return 0.1;
-        }
-
-        return 1;
-    }
-
     resetAddress() {
         const { receiveAddress } = this.props;
         if (receiveAddress) {
@@ -157,7 +148,7 @@ class Receive extends Component {
         const ctaTextColor = { color: secondaryCtaColor };
         const generateBorderColor = { borderColor: ctaBorderColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
-        const opacity = { opacity: this.getQrOpacity() };
+        const opacity = { opacity: this.getOpacity() };
         const isWhite = secondaryBackgroundColor === 'white';
         const receiveAddressContainerBackgroundColor = isWhite
             ? { backgroundColor: 'rgba(255, 255, 255, 0.05)' }
@@ -167,7 +158,7 @@ class Receive extends Component {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.4 }} />
-                    <View style={[styles.qrContainer, opacity, qrBorder]}>
+                    <View style={[styles.qrContainer, qrBorder, opacity]}>
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
                             size={width / 2.8}
@@ -199,13 +190,7 @@ class Receive extends Component {
                     {receiveAddress.length <= 1 && (
                         // Place holder
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                            <View
-                                style={[
-                                    styles.receiveAddressContainer,
-                                    receiveAddressContainerBackgroundColor,
-                                    opacity,
-                                ]}
-                            >
+                            <View style={[styles.receiveAddressContainer, receiveAddressContainerBackgroundColor]}>
                                 <Text style={[styles.receiveAddressText, textColor]}>{Array(19).join(' ')}</Text>
                             </View>
                         </TouchableOpacity>

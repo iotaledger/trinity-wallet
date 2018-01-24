@@ -17,7 +17,13 @@ import {
     Keyboard,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { round, VALID_SEED_REGEX, ADDRESS_LENGTH, parse } from 'iota-wallet-shared-modules/libs/util';
+import {
+    round,
+    VALID_SEED_REGEX,
+    ADDRESS_LENGTH,
+    parse,
+    VALID_ADDRESS_WITH_CHECKSUM_REGEX,
+} from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import keychain, { getSeed } from '../util/keychain';
 import {
@@ -175,16 +181,16 @@ class Send extends Component {
     }
 
     renderInvalidAddressErrors(address) {
-        const { t } = this.props;
+        const { t, generateAlert } = this.props;
         const props = ['error', t('invalidAddress')];
 
         if (size(address) !== 90) {
-            return this.props.generateAlert(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
+            return generateAlert(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
         } else if (address.match(VALID_SEED_REGEX) === null) {
-            return this.props.generateAlert(...props, t('invalidAddressExplanation2'));
+            return generateAlert(...props, t('invalidAddressExplanation2'));
         }
 
-        return this.props.generateAlert(...props, t('invalidAddressExplanation3'));
+        return generateAlert(...props, t('invalidAddressExplanation3'));
     }
 
     onSendPress() {
@@ -339,7 +345,9 @@ class Send extends Component {
     }
 
     onQRRead(data) {
-        if (data.match(/{/)) {
+        const { generateAlert } = this.props;
+        const dataString = data.toString();
+        if (dataString.match(/{/)) {
             // For codes containing JSON (iotaledger and Trinity)
             data = JSON.parse(data);
             this.setState({
@@ -350,20 +358,24 @@ class Send extends Component {
                     message: data.message,
                 });
             }
-        }
-        if (data.match(/iota\:/)) {
+        } else if (dataString.match(/iota\:/)) {
             // For codes with iota: at the front (TheTangle.org)
             data = data.substring(5);
             this.setState({
                 address: data,
             });
-        } else {
+        } else if (dataString.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.setState({
                 address: data,
             });
+        } else {
+            generateAlert(
+                'error',
+                'Incorrect address format',
+                'Valid addresses should be 90 characters and contain only A-Z or 9.',
+            );
         }
-
         this._hideModal();
     }
 
