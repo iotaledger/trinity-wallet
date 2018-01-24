@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     modalContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     modalContent: {
         borderRadius: GENERAL.borderRadius,
@@ -21,47 +21,47 @@ const styles = StyleSheet.create({
         paddingTop: height / 50,
         width: width / 1.15,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     unitsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     denominationText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 29.6,
-        paddingVertical: width / 40
+        paddingVertical: width / 40,
     },
     titleText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 25.9,
-        paddingVertical: width / 18
+        paddingVertical: width / 18,
     },
     numberText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
         fontSize: width / 29.6,
-        paddingVertical: width / 40
+        paddingVertical: width / 40,
     },
     line: {
         borderWidth: 0.25,
         width: 0.5,
         height: width / 2.3,
-        marginHorizontal: width / 75
+        marginHorizontal: width / 75,
     },
     iotaIcon: {
         width: width / 10,
-        height: width / 10
+        height: width / 10,
     },
     iotaText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 34.5,
-        paddingTop: width / 80
-    }
+        paddingTop: width / 80,
+    },
 });
 
 /* eslint-disable react/prefer-stateless-function */
@@ -72,7 +72,7 @@ class UnitInfoModal extends Component {
         textColor: PropTypes.object.isRequired,
         secondaryBarColor: PropTypes.string.isRequired,
         hideModal: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     render() {

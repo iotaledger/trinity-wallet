@@ -22,37 +22,37 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     topWrapper: {
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
-        width
+        width,
     },
     midWrapper: {
         flex: 2,
         alignItems: 'center',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     bottomWrapper: {
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20
+        paddingBottom: height / 20,
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        marginBottom: height / 8
+        marginBottom: height / 8,
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
-    }
+        width: width / 5,
+    },
 });
 
 class TwoFactorSetupEnterToken extends Component {
@@ -62,7 +62,7 @@ class TwoFactorSetupEnterToken extends Component {
         generateAlert: PropTypes.func.isRequired,
         set2FAStatus: PropTypes.func.isRequired,
         set2FAKey: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -72,7 +72,7 @@ class TwoFactorSetupEnterToken extends Component {
         this.check2FA = this.check2FA.bind(this);
         this.state = {
             code: '',
-            authkey: authenticator.generateKey()
+            authkey: authenticator.generateKey(),
         };
     }
 
@@ -85,7 +85,7 @@ class TwoFactorSetupEnterToken extends Component {
 
     goBack() {
         this.props.navigator.pop({
-            animated: false
+            animated: false,
         });
         this.props.set2FAKey('');
     }
@@ -98,9 +98,9 @@ class TwoFactorSetupEnterToken extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
-                }
-            }
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
+            },
         });
     }
 
@@ -113,7 +113,7 @@ class TwoFactorSetupEnterToken extends Component {
                 this.props.generateAlert(
                     'success',
                     '2FA is now enabled',
-                    'You have succesfully enabled Two Factor Authentication.'
+                    'You have succesfully enabled Two Factor Authentication.',
                 );
             }, 300);
         } else {
@@ -167,7 +167,7 @@ class TwoFactorSetupEnterToken extends Component {
 const mapDispatchToProps = {
     set2FAStatus,
     set2FAKey,
-    generateAlert
+    generateAlert,
 };
 
 const mapStateToProps = state => ({
@@ -175,7 +175,7 @@ const mapStateToProps = state => ({
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    key2FA: state.account.key2FA
+    key2FA: state.account.key2FA,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken);

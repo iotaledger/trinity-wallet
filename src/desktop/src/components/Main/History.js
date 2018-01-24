@@ -9,7 +9,7 @@ import HistoryList from 'components/UI/HistoryList';
 class HistoryView extends React.PureComponent {
     static propTypes = {
         account: PropTypes.object.isRequired,
-        seed: PropTypes.object.isRequired
+        seed: PropTypes.object.isRequired,
     };
 
     render() {
@@ -34,7 +34,7 @@ class HistoryView extends React.PureComponent {
 
 const mapStateToProps = state => ({
     account: state.account,
-    seed: getSelectedSeed(state)
+    seed: getSelectedSeed(state),
 });
 
 const mapDispatchToProps = {};

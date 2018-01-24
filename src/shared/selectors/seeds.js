@@ -4,12 +4,12 @@ export const seedsSelector = state => state.seeds;
 
 export const getSelectedSeed = createSelector(
     seedsSelector,
-    ({ items, selectedSeedIndex }) => items[selectedSeedIndex] || {}
+    ({ items, selectedSeedIndex }) => items[selectedSeedIndex] || {},
 );
 
 export const selectedSeedSelector = createSelector(
     seedsSelector,
-    ({ items, selectedSeedIndex }) => items[selectedSeedIndex] || {}
+    ({ items, selectedSeedIndex }) => items[selectedSeedIndex] || {},
 );
 
 export const getSelectedIndex = createSelector(seedsSelector, ({ selectedSeedIndex }) => selectedSeedIndex);
@@ -22,5 +22,5 @@ export const seedItemsSelector = createSelector(seedsSelector, ({ items }) => it
 
 export const getMostRecentSeedIndex = createSelector(
     getSeedItems,
-    items => (items.length === 0 ? 0 : items.length - 1)
+    items => (items.length === 0 ? 0 : items.length - 1),
 );

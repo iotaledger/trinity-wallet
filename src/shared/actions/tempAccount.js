@@ -38,117 +38,117 @@ export const ActionTypes = {
     CLEAR_SEED: 'IOTA/TEMP_ACCOUNT/CLEAR_SEED',
     SET_SETTING: 'IOTA/TEMP_ACCOUNT/SET_SETTING',
     SET_USER_ACTIVITY: 'IOTA/TEMP_ACCOUNT/SET_USER_ACTIVITY',
-    SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/TEMP_ACCOUNT/SET_ADDITIONAL_ACCOUNT_INFO'
+    SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/TEMP_ACCOUNT/SET_ADDITIONAL_ACCOUNT_INFO',
 };
 
 export const getTransfersRequest = () => ({
-    type: ActionTypes.GET_TRANSFERS_REQUEST
+    type: ActionTypes.GET_TRANSFERS_REQUEST,
 });
 
 export const getTransfersSuccess = payload => ({
     type: ActionTypes.GET_TRANSFERS_SUCCESS,
-    payload
+    payload,
 });
 
 export const getTransfersError = () => ({
-    type: ActionTypes.GET_TRANSFERS_ERROR
+    type: ActionTypes.GET_TRANSFERS_ERROR,
 });
 
 export const setCopiedToClipboard = payload => ({
     type: ActionTypes.SET_COPIED_TO_CLIPBOARD,
-    payload
+    payload,
 });
 
 export const setReceiveAddress = payload => ({
     type: ActionTypes.SET_RECEIVE_ADDRESS,
-    payload
+    payload,
 });
 
 export const setUsedSeedToLogin = () => ({
     type: ActionTypes.SET_USED_SEED_TO_LOGIN,
-    payload: true
+    payload: true,
 });
 
 export const setSeedIndex = payload => ({
     type: ActionTypes.SET_SEED_INDEX,
-    payload
+    payload,
 });
 
 export const generateNewAddressRequest = () => ({
-    type: ActionTypes.GENERATE_NEW_ADDRESS_REQUEST
+    type: ActionTypes.GENERATE_NEW_ADDRESS_REQUEST,
 });
 
 export const generateNewAddressSuccess = payload => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_SUCCESS,
-    payload
+    payload,
 });
 
 export const generateNewAddressError = () => ({
-    type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR
+    type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
 });
 
 export const manualSyncRequest = () => ({
-    type: ActionTypes.MANUAL_SYNC_REQUEST
+    type: ActionTypes.MANUAL_SYNC_REQUEST,
 });
 
 export const manualSyncSuccess = () => ({
-    type: ActionTypes.MANUAL_SYNC_SUCCESS
+    type: ActionTypes.MANUAL_SYNC_SUCCESS,
 });
 
 export const manualSyncError = () => ({
-    type: ActionTypes.MANUAL_SYNC_ERROR
+    type: ActionTypes.MANUAL_SYNC_ERROR,
 });
 
 export const sendTransferRequest = () => ({
-    type: ActionTypes.SEND_TRANSFER_REQUEST
+    type: ActionTypes.SEND_TRANSFER_REQUEST,
 });
 
 export const sendTransferSuccess = payload => ({
     type: ActionTypes.SEND_TRANSFER_SUCCESS,
-    payload
+    payload,
 });
 
 export const sendTransferError = () => ({
-    type: ActionTypes.SEND_TRANSFER_ERROR
+    type: ActionTypes.SEND_TRANSFER_ERROR,
 });
 
 export const setReady = () => ({
     type: ActionTypes.SET_READY,
-    payload: true
+    payload: true,
 });
 
 export const setSeed = payload => ({
     type: ActionTypes.SET_SEED,
-    payload
+    payload,
 });
 
 export const clearSeed = () => ({
     type: ActionTypes.CLEAR_SEED,
-    payload: Array(82).join(' ')
+    payload: Array(82).join(' '),
 });
 
 export const setSetting = payload => ({
     type: ActionTypes.SET_SETTING,
-    payload
+    payload,
 });
 
 export const clearTempData = () => ({
-    type: ActionTypes.CLEAR_TEMP_DATA
+    type: ActionTypes.CLEAR_TEMP_DATA,
 });
 
 export const setPassword = payload => ({
     type: ActionTypes.SET_PASSWORD,
-    payload
+    payload,
 });
 
 export const setSeedName = payload => ({
     type: ActionTypes.SET_SEED_NAME,
-    payload
+    payload,
 });
 
 export const setAdditionalAccountInfo = payload => ({
     type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
-    payload
+    payload,
 });
 
 export const generateNewAddress = (seed, seedName, addresses) => {
@@ -199,8 +199,8 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
                     'success',
                     i18next.t('global:transferSent'),
                     i18next.t('global:transferSentMessage'),
-                    100000
-                )
+                    100000,
+                ),
             );
             dispatch(sendTransferSuccess({ address, value }));
         } else {
@@ -210,13 +210,13 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
                 attachToTangle: [
                     i18next.t('global:attachToTangleUnavailable'),
                     i18next.t('global:attachToTangleUnavailableExplanation'),
-                    100000
+                    100000,
                 ],
                 default: [
                     i18next.t('global:invalidResponse'),
                     i18next.t('global:invalidResponseSendingTransfer'),
-                    100000
-                ]
+                    100000,
+                ],
             };
 
             const args =
@@ -240,7 +240,7 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
         const verifyAndSend = (filtered, expectedOutputsLength, inputs) => {
             if (filtered.length !== expectedOutputsLength) {
                 return dispatch(
-                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError'))
+                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                 );
             }
 
@@ -255,7 +255,7 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
 
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
-                    100000
+                    100000,
                 );
             }
 
@@ -266,13 +266,13 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                         'error',
                         i18next.t('global:balanceError'),
                         i18next.t('global:balanceErrorMessage'),
-                        20000
-                    )
+                        20000,
+                    ),
                 );
             } else if (get(inputs, 'totalBalance') < value) {
                 dispatch(sendTransferError());
                 return dispatch(
-                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError'), 20000)
+                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError'), 20000),
                 );
             }
 
@@ -280,7 +280,7 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
 
             // Check to make sure user is not sending to an already used address
             return filterSpentAddresses(outputsToCheck).then(filtered =>
-                verifyAndSend(filtered, outputsToCheck.length, get(inputs, 'inputs'))
+                verifyAndSend(filtered, outputsToCheck.length, get(inputs, 'inputs')),
             );
         };
 
@@ -348,8 +348,8 @@ export const randomiseSeed = randomBytesFn => {
                     generateAlert(
                         'error',
                         i18next.t('global:somethingWentWrong'),
-                        i18next.t('global:somethingWentWrongExplanation')
-                    )
+                        i18next.t('global:somethingWentWrongExplanation'),
+                    ),
                 );
             }
         });
@@ -359,6 +359,6 @@ export const randomiseSeed = randomBytesFn => {
 export function setUserActivity(payload) {
     return {
         type: ActionTypes.SET_USER_ACTIVITY,
-        payload
+        payload,
     };
 }

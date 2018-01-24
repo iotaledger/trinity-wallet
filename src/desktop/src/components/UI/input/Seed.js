@@ -13,17 +13,17 @@ export default class SeedInout extends React.PureComponent {
         seed: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         closeLabel: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired
+        onChange: PropTypes.func.isRequired,
     };
 
     state = {
-        showScanner: false
+        showScanner: false,
     };
 
     onScanEvent = address => {
         if (address !== null) {
             this.setState(() => ({
-                showScanner: false
+                showScanner: false,
             }));
             this.props.onChange(address);
         }
@@ -36,14 +36,14 @@ export default class SeedInout extends React.PureComponent {
     closeScanner = e => {
         e.preventDefault();
         this.setState(() => ({
-            showScanner: false
+            showScanner: false,
         }));
     };
 
     openScanner = e => {
         e.preventDefault();
         this.setState(() => ({
-            showScanner: true
+            showScanner: true,
         }));
     };
 

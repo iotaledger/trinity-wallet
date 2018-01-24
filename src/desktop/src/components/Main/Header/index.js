@@ -13,7 +13,7 @@ class Header extends React.PureComponent {
         selectedSeedIndex: PropTypes.number,
         selectSeed: PropTypes.func.isRequired,
         account: PropTypes.object.isRequired,
-        seed: PropTypes.object.isRequired
+        seed: PropTypes.object.isRequired,
     };
 
     render() {
@@ -51,11 +51,11 @@ const mapStateToProps = state => ({
     account: state.account,
     seeds: getSeedItems(state),
     seed: getSelectedSeed(state),
-    selectedSeedIndex: getSelectedIndex(state)
+    selectedSeedIndex: getSelectedIndex(state),
 });
 
 const mapDispatchToProps = {
-    selectSeed
+    selectSeed,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -31,7 +31,7 @@ class SetPassword extends Component {
         clearSeed: PropTypes.func.isRequired,
         increaseSeedCount: PropTypes.func.isRequired,
         addAccountName: PropTypes.func.isRequired,
-        generateAlert: PropTypes.func.isRequired
+        generateAlert: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -39,7 +39,7 @@ class SetPassword extends Component {
 
         this.state = {
             password: '',
-            reentry: ''
+            reentry: '',
         };
     }
 
@@ -59,10 +59,10 @@ class SetPassword extends Component {
                         navigatorStyle: {
                             navBarHidden: true,
                             navBarTransparent: true,
-                            screenBackgroundColor: COLORS.backgroundGreen
+                            screenBackgroundColor: COLORS.backgroundGreen,
                         },
                         animated: false,
-                        overrideBackPress: true
+                        overrideBackPress: true,
                     });
                 })
                 .catch(err => console.error(err));
@@ -76,7 +76,7 @@ class SetPassword extends Component {
                         return ifNoKeychainDuplicates(
                             this.state.password,
                             this.props.tempAccount.seed,
-                            this.props.tempAccount.seedName
+                            this.props.tempAccount.seedName,
                         );
                     }
 
@@ -84,27 +84,27 @@ class SetPassword extends Component {
                         return this.props.generateAlert(
                             'error',
                             t('addAdditionalSeed:nameInUse'),
-                            t('addAdditionalSeed:nameInUseExplanation')
+                            t('addAdditionalSeed:nameInUseExplanation'),
                         );
                     } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
                         return this.props.generateAlert(
                             'error',
                             t('addAdditionalSeed:seedInUse'),
-                            t('addAdditionalSeed:seedInUseExplanation')
+                            t('addAdditionalSeed:seedInUseExplanation'),
                         );
                     }
 
                     return ifNoKeychainDuplicates(
                         this.state.password,
                         this.props.tempAccount.seed,
-                        this.props.tempAccount.seedName
+                        this.props.tempAccount.seedName,
                     );
                 })
                 .catch(() => {
                     this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongExplanation')
+                        t('global:somethingWentWrongExplanation'),
                     );
                 });
         } else if (
@@ -116,8 +116,8 @@ class SetPassword extends Component {
                 t('passwordTooShort'),
                 t('passwordTooShortExplanation', {
                     minLength: MIN_PASSWORD_LENGTH,
-                    currentLength: this.state.password.length
-                })
+                    currentLength: this.state.password.length,
+                }),
             );
         } else if (!(this.state.password === this.state.reentry)) {
             this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
@@ -126,7 +126,7 @@ class SetPassword extends Component {
 
     onBackPress() {
         this.props.navigator.pop({
-            animated: false
+            animated: false,
         });
     }
 
@@ -224,30 +224,30 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22
+        paddingTop: height / 22,
     },
     midContainer: {
         flex: 3.7,
         justifyContent: 'space-around',
         alignItems: 'center',
-        width
+        width,
     },
     textfieldsContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        flex: 1
+        flex: 1,
     },
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20
+        paddingBottom: height / 20,
     },
     infoTextContainer: {
         borderColor: 'white',
@@ -259,19 +259,19 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
         paddingVertical: height / 35,
-        marginTop: height / 25
+        marginTop: height / 25,
     },
     infoTextWrapper: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     warningText: {
         color: 'white',
@@ -279,14 +279,14 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textAlign: 'justify',
         paddingTop: height / 70,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     greetingText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     questionText: {
         color: 'white',
@@ -295,20 +295,20 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingHorizontal: width / 7,
         paddingTop: height / 25,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoIcon: {
         width: width / 20,
-        height: width / 20
+        height: width / 20,
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
-    }
+        width: width / 5,
+    },
 });
 
 const mapStateToProps = state => ({
-    tempAccount: state.tempAccount
+    tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = {
@@ -317,9 +317,9 @@ const mapDispatchToProps = {
     clearSeed,
     increaseSeedCount,
     addAccountName,
-    generateAlert
+    generateAlert,
 };
 
 export default translate(['setPassword', 'global', 'addAdditionalSeed'])(
-    connect(mapStateToProps, mapDispatchToProps)(SetPassword)
+    connect(mapStateToProps, mapDispatchToProps)(SetPassword),
 );

@@ -2,11 +2,11 @@ import moment from 'moment';
 
 export const formatTimeAs = {
     twelveHours: time => moment(time).format('h:mm a'),
-    hoursMinutesDayMonthYear: time => moment(time).format('hh:mm DD/MM/YYYY')
+    hoursMinutesDayMonthYear: time => moment(time).format('hh:mm DD/MM/YYYY'),
 };
 
 export const formatDayAs = {
-    dayMonthYear: day => moment(day).format('DD/MM/YYYY')
+    dayMonthYear: day => moment(day).format('DD/MM/YYYY'),
 };
 
 export const isToday = day => moment().isSame(moment(day), 'day');

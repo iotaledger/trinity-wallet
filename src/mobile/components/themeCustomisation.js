@@ -14,18 +14,18 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width
+        width,
     },
     themeSelectorContainer: {
         width: width / 1.3,
         height: height / 13,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        zIndex: 2
+        zIndex: 2,
     },
     themeSelector: {
         justifyContent: 'flex-start',
-        zIndex: 2
+        zIndex: 2,
     },
     demoContainer: {
         paddingTop: height / 44,
@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
         zIndex: 1,
         shadowOffset: {
             width: 0,
-            height: 4
+            height: 4,
         },
         shadowRadius: 4,
-        shadowOpacity: 0.6
+        shadowOpacity: 0.6,
     },
     bottomContainer: {
         flex: 1,
@@ -52,44 +52,44 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     topContainer: {
         flex: 9,
         justifyContent: 'flex-start',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     iconLeft: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iconRight: {
         width: width / 28,
-        height: width / 28
+        height: width / 28,
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     advancedButton: {
         borderWidth: 1.5,
@@ -101,12 +101,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         position: 'absolute',
         bottom: height / 80,
-        zIndex: 3
+        zIndex: 3,
     },
     advancedText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     frameBar: {
         width: width / 1.5,
@@ -117,34 +117,34 @@ const styles = StyleSheet.create({
         opacity: 0.98,
         shadowOffset: {
             width: 0,
-            height: 1
+            height: 1,
         },
         shadowRadius: 4,
         shadowOpacity: 1.0,
-        zIndex: 1
+        zIndex: 1,
     },
     frameBarTitle: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 24.4,
         color: '#ffffff',
-        zIndex: 1
+        zIndex: 1,
     },
     chevronWrapper: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     chevron: {
         height: width / 20,
         width: width / 20,
         position: 'absolute',
-        right: width / 30
+        right: width / 30,
     },
     buttonsContainer: {
         alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginTop: height / 35,
-        width: width / 1.5
+        width: width / 1.5,
     },
     button: {
         borderWidth: 1.2,
@@ -152,12 +152,12 @@ const styles = StyleSheet.create({
         width: width / 3.4,
         height: height / 15,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     buttonText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 25.9,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     ctaButton: {
         borderRadius: GENERAL.borderRadius,
@@ -165,14 +165,14 @@ const styles = StyleSheet.create({
         height: height / 15,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 1.2
+        borderWidth: 1.2,
     },
     ctaText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 29.6,
-        backgroundColor: 'transparent'
-    }
+        backgroundColor: 'transparent',
+    },
 });
 
 class ThemeCustomisation extends Component {
@@ -184,7 +184,7 @@ class ThemeCustomisation extends Component {
         theme: PropTypes.object.isRequired,
         themeName: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        backPress: PropTypes.func.isRequired
+        backPress: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -193,7 +193,7 @@ class ThemeCustomisation extends Component {
         this.state = {
             theme: props.theme,
             themeName: props.themeName,
-            themes: Object.keys(THEMES.themes)
+            themes: Object.keys(THEMES.themes),
         };
     }
 
@@ -217,7 +217,7 @@ class ThemeCustomisation extends Component {
             extraColor,
             secondaryBackgroundColor,
             secondaryCtaColor,
-            ctaBorderColor
+            ctaBorderColor,
         } = this.state.theme;
         const { arrowLeftImagePath, tickImagePath } = this.props;
         const chevronDownImagePath =
@@ -260,8 +260,8 @@ class ThemeCustomisation extends Component {
                                 {
                                     backgroundColor: THEMES.getHSL(backgroundColor),
                                     shadowColor: 'black',
-                                    borderColor: secondaryBackgroundColor
-                                }
+                                    borderColor: secondaryBackgroundColor,
+                                },
                             ]}
                         >
                             <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: height / 44 }}>
@@ -269,7 +269,7 @@ class ThemeCustomisation extends Component {
                                     style={{
                                         fontFamily: 'Lato-Regular',
                                         fontSize: width / 29.6,
-                                        color: secondaryBackgroundColor
+                                        color: secondaryBackgroundColor,
                                     }}
                                 >
                                     MOCKUP
@@ -280,8 +280,8 @@ class ThemeCustomisation extends Component {
                                     styles.frameBar,
                                     {
                                         backgroundColor: THEMES.getHSL(backgroundColor),
-                                        shadowColor: 'black'
-                                    }
+                                        shadowColor: 'black',
+                                    },
                                 ]}
                             >
                                 <Text style={[styles.frameBarTitle, { color: secondaryBackgroundColor }]}>
@@ -308,7 +308,7 @@ class ThemeCustomisation extends Component {
                                 <View
                                     style={[
                                         styles.ctaButton,
-                                        { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor }
+                                        { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
                                     ]}
                                 >
                                     <Text style={[styles.ctaText, { color: secondaryCtaColor }]}>SEND</Text>

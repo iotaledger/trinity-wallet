@@ -7,7 +7,7 @@ export default class MessageInput extends React.PureComponent {
     static propTypes = {
         message: PropTypes.string.isRequired,
         label: PropTypes.string,
-        onChange: PropTypes.func.isRequired
+        onChange: PropTypes.func.isRequired,
     };
 
     render() {

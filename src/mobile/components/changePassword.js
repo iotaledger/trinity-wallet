@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     bottomContainer: {
         flex: 1,
@@ -23,16 +23,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     topContainer: {
         flex: 9,
         justifyContent: 'space-around',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     logo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     infoTextWrapper: {
         borderWidth: 1,
@@ -42,58 +42,58 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: width / 40,
         borderStyle: 'dotted',
-        paddingVertical: height / 50
+        paddingVertical: height / 50,
     },
     infoText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 60,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoIcon: {
         width: width / 20,
-        height: width / 20
+        height: width / 20,
     },
     textField: {
-        fontFamily: Fonts.tertiary
+        fontFamily: Fonts.tertiary,
     },
     textFieldContainer: {
         width: width / 1.36,
-        paddingTop: height / 90
+        paddingTop: height / 90,
     },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     iconLeft: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iconRight: {
         width: width / 28,
-        height: width / 28
+        height: width / 28,
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        marginRight: width / 20
-    }
+        marginRight: width / 20,
+    },
 });
 
 class ChangePassword extends Component {
@@ -108,7 +108,7 @@ class ChangePassword extends Component {
         arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.object.isRequired,
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -117,7 +117,7 @@ class ChangePassword extends Component {
         this.state = {
             currentPassword: '',
             newPassword: '',
-            confirmedNewPassword: ''
+            confirmedNewPassword: '',
         };
     }
 
@@ -171,7 +171,7 @@ class ChangePassword extends Component {
         this.setState({
             currentPassword: '',
             newPassword: '',
-            confirmedNewPassword: ''
+            confirmedNewPassword: '',
         });
     }
 
@@ -194,7 +194,7 @@ class ChangePassword extends Component {
             onSubmitEditing,
             value,
             secondaryBackgroundColor,
-            negativeColor
+            negativeColor,
         };
 
         return <CustomTextInput {...props} />;
@@ -239,7 +239,7 @@ class ChangePassword extends Component {
                             t('currentPassword'),
                             password => this.setState({ currentPassword: password }),
                             'next',
-                            () => this.newPassword.focus()
+                            () => this.newPassword.focus(),
                         )}
                         {this.renderTextField(
                             c => {
@@ -249,7 +249,7 @@ class ChangePassword extends Component {
                             t('newPassword'),
                             password => this.setState({ newPassword: password }),
                             'next',
-                            () => this.confirmedNewPassword.focus()
+                            () => this.confirmedNewPassword.focus(),
                         )}
                         {this.renderTextField(
                             c => {
@@ -259,7 +259,7 @@ class ChangePassword extends Component {
                             t('confirmPassword'),
                             password => this.setState({ confirmedNewPassword: password }),
                             'done',
-                            () => this.changePassword()
+                            () => this.changePassword(),
                         )}
                         <View style={{ flex: 0.2 }} />
                     </View>
@@ -282,7 +282,7 @@ class ChangePassword extends Component {
                                         top: height / 55,
                                         bottom: height / 55,
                                         left: width / 55,
-                                        right: width / 55
+                                        right: width / 55,
                                     }}
                                 >
                                     <View style={styles.itemRight}>

@@ -15,11 +15,11 @@ export default class AddressInput extends React.PureComponent {
         settings: PropTypes.object.isRequired,
         label: PropTypes.string.isRequired,
         labelMax: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired
+        onChange: PropTypes.func.isRequired,
     };
 
     state = {
-        unit: 'Mi'
+        unit: 'Mi',
     };
 
     onChange = value => {
@@ -65,7 +65,7 @@ export default class AddressInput extends React.PureComponent {
         const index = units.indexOf(this.state.unit) + 1;
 
         this.setState({
-            unit: index === units.length ? units[0] : units[index]
+            unit: index === units.length ? units[0] : units[index],
         });
     };
 

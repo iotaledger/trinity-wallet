@@ -16,13 +16,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular'
+        fontFamily: 'Lato-Regular',
     },
     dropdownTextContainer: {
         flex: 1,
         paddingLeft: width / 20,
         paddingRight: width / 15,
-        paddingVertical: height / 30
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
         fontSize: width / 29.6,
@@ -31,25 +31,25 @@ const styles = StyleSheet.create({
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        paddingTop: height / 60
+        paddingTop: height / 60,
     },
     dropdownImage: {
         marginLeft: width / 25,
         width: width / 12,
         height: width / 12,
-        alignSelf: 'center'
-    }
+        alignSelf: 'center',
+    },
 });
 
 class StatefulDropdownAlert extends Component {
     static propTypes = {
         alerts: PropTypes.object.isRequired,
         disposeOffAlert: PropTypes.func.isRequired,
-        closeInterval: PropTypes.number
+        closeInterval: PropTypes.number,
     };
 
     static defaultProps = {
-        closeInterval: 5500
+        closeInterval: 5500,
     };
 
     componentWillReceiveProps(newProps) {

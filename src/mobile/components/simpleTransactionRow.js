@@ -18,18 +18,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: height / 40,
         alignItems: 'center',
-        paddingHorizontal: width / 10
+        paddingHorizontal: width / 10,
     },
     icon: {
         width: width / 35,
-        height: width / 35
+        height: width / 35,
     },
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Bold',
         fontSize: width / 32,
-        fontWeight: '400'
-    }
+        fontWeight: '400',
+    },
 });
 
 /* eslint-disable react/prefer-stateless-function */
@@ -39,7 +39,7 @@ class SimpleTransactionRow extends Component {
         addresses: PropTypes.array.isRequired,
         negativeColor: PropTypes.string.isRequired,
         extraColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     render() {

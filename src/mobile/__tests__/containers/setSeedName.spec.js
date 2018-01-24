@@ -9,17 +9,17 @@ const getProps = overrides =>
         {},
         {
             account: {
-                onboardingComplete: false
+                onboardingComplete: false,
             },
             navigator: {
-                push: noop
+                push: noop,
             },
             setSeedName: noop,
             t: () => 'foo',
             generateAlert: noop,
-            setAdditionalAccountInfo: noop
+            setAdditionalAccountInfo: noop,
         },
-        overrides
+        overrides,
     );
 
 describe('Testing SetSeedName component', () => {
@@ -28,7 +28,7 @@ describe('Testing SetSeedName component', () => {
             describe('onDonePress', () => {
                 it('should call setSeedName prop method with trimmed accountName state prop', () => {
                     const props = getProps({
-                        setSeedName: jest.fn()
+                        setSeedName: jest.fn(),
                     });
 
                     const wrapper = shallow(<SetSeedName {...props} />);

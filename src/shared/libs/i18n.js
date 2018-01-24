@@ -28,7 +28,7 @@ export const I18N_LOCALES = [
     'tr',
     'ur',
     'zh_CN',
-    'zh_TW'
+    'zh_TW',
 ];
 
 export const I18N_LOCALE_LABELS = [
@@ -60,7 +60,7 @@ export const I18N_LOCALE_LABELS = [
     'Türkçe - Turkish',
     'اردو - Urdu',
     '中文 (简体) - Chinese (Simplified)',
-    '中文 (繁體) - Chinese (Traditional)'
+    '中文 (繁體) - Chinese (Traditional)',
 ];
 
 export const getLocaleFromLabel = label => {

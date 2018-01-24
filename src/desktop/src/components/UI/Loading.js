@@ -5,7 +5,7 @@ import css from './Loading.css';
 
 export default class Loading extends React.PureComponent {
     static propTypes = {
-        loop: PropTypes.bool
+        loop: PropTypes.bool,
     };
 
     render() {

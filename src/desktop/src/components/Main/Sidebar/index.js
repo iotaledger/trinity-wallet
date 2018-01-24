@@ -9,12 +9,12 @@ const images = {
     send: require('images/send-white.png'),
     receive: require('images/receive-white.png'),
     history: require('images/history-white.png'),
-    settings: require('images/settings-white.png')
+    settings: require('images/settings-white.png'),
 };
 
 class Sidebar extends React.PureComponent {
     static propTypes = {
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
     render() {
         // eslint-disable-next-line

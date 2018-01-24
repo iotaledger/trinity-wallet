@@ -22,54 +22,54 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     topWrapper: {
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
-        width
+        width,
     },
     midWrapper: {
         flex: 2,
         alignItems: 'center',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     bottomWrapper: {
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20
+        paddingBottom: height / 20,
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        marginBottom: height / 15
+        marginBottom: height / 15,
     },
     infoText: {
         fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 60,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoTextLight: {
         fontFamily: Fonts.tertiary,
         fontSize: width / 27.6,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     qrContainer: {
         backgroundColor: 'white',
         borderRadius: GENERAL.borderRadiusLarge,
         padding: width / 30,
-        marginBottom: height / 25
-    }
+        marginBottom: height / 25,
+    },
 });
 
 class TwoFactorSetupAddKey extends Component {
@@ -79,7 +79,7 @@ class TwoFactorSetupAddKey extends Component {
         generateAlert: PropTypes.func.isRequired,
         set2FAKey: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        navigator: PropTypes.object.isRequired
+        navigator: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -88,7 +88,7 @@ class TwoFactorSetupAddKey extends Component {
         this.navigateToEnterToken = this.navigateToEnterToken.bind(this);
         this.state = {
             code: '',
-            authkey: authenticator.generateKey()
+            authkey: authenticator.generateKey(),
         };
     }
 
@@ -105,7 +105,7 @@ class TwoFactorSetupAddKey extends Component {
             this.props.generateAlert(
                 'success',
                 'Key copied to clipboard',
-                'Your 2FA key has been copied to the clipboard.'
+                'Your 2FA key has been copied to the clipboard.',
             );
         }
     }
@@ -118,9 +118,9 @@ class TwoFactorSetupAddKey extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
-                }
-            }
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
+            },
         });
     }
 
@@ -132,9 +132,9 @@ class TwoFactorSetupAddKey extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
-            animated: false
+            animated: false,
         });
     }
 
@@ -184,13 +184,13 @@ class TwoFactorSetupAddKey extends Component {
 const mapDispatchToProps = {
     set2FAStatus,
     set2FAKey,
-    generateAlert
+    generateAlert,
 };
 const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey);

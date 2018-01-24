@@ -4,9 +4,9 @@ const config = require('./config.base');
 config.plugins = [
     new webpack.optimize.UglifyJsPlugin({
         compressor: {
-            warnings: false
-        }
-    })
+            warnings: false,
+        },
+    }),
 ].concat(config.plugins);
 
 // config.node = {

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: height / 80,
-        marginTop: height / 60
+        marginTop: height / 60,
     },
     seedBoxTextContainer: {
         width: width / 1.65,
@@ -24,26 +24,26 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'center',
         paddingTop: height / 160,
-        paddingLeft: width / 30
+        paddingLeft: width / 30,
     },
     seedBoxTextLeft: {
         fontFamily: 'Inconsolata-Bold',
         fontSize: width / 25,
         textAlign: 'justify',
         backgroundColor: 'transparent',
-        paddingVertical: 2
+        paddingVertical: 2,
     },
     seedBoxTextRight: {
         fontFamily: 'Inconsolata-Bold',
         fontSize: width / 25,
         textAlign: 'justify',
         backgroundColor: 'transparent',
-        paddingVertical: 2
+        paddingVertical: 2,
     },
     arrow: {
         width: width / 1.9,
-        height: height / 80
-    }
+        height: height / 80,
+    },
 });
 
 /* eslint-disable react/prefer-stateless-function */
@@ -52,7 +52,7 @@ class SeedBox extends Component {
         seed: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        borderColor: PropTypes.object.isRequired
+        borderColor: PropTypes.object.isRequired,
     };
 
     render() {

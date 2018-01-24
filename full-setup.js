@@ -9,7 +9,7 @@ if (os.type() === 'Linux') {
     cmd.get('cd src/desktop && yarn && cd ../shared && yarn && cd ../mobile && yarn && cd ios && pod install', function(
         err,
         data,
-        stderr
+        stderr,
     ) {
         console.log(data);
     });

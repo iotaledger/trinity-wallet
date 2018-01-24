@@ -19,9 +19,9 @@ const getProps = overrides =>
             setModalContent: noop,
             on2FASetupPress: noop,
             onThemePress: noop,
-            t: arg => arg
+            t: arg => arg,
         },
-        overrides
+        overrides,
     );
 
 describe('Testing MainSettings component', () => {
@@ -93,12 +93,12 @@ describe('Testing MainSettings component', () => {
             { func: 'on2FASetupPress', calledWith: null },
             { func: 'setSetting', calledWith: 'changePassword' },
             { func: 'setSetting', calledWith: 'advancedSettings' },
-            { func: 'setModalContent', calledWith: 'logoutConfirmation' }
+            { func: 'setModalContent', calledWith: 'logoutConfirmation' },
         ].forEach((item, idx) => {
             describe(`when TouchableOpacity component prop onPress on index ${idx + 1} is triggered`, () => {
                 it(`should call prop method ${item.func}`, () => {
                     const props = getProps({
-                        [item.func]: jest.fn()
+                        [item.func]: jest.fn(),
                     });
 
                     const wrapper = shallow(<MainSettings {...props} />);

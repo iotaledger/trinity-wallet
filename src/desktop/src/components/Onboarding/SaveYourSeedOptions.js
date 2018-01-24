@@ -16,17 +16,17 @@ class SaveYourSeedOptions extends PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         seed: PropTypes.string,
-        match: PropTypes.object.isRequired
+        match: PropTypes.object.isRequired,
     };
 
     state = {
-        type: this.props.match.params.type
+        type: this.props.match.params.type,
     };
 
     changeType = (e, type) => {
         e.preventDefault();
         this.setState(() => ({
-            type: type
+            type: type,
         }));
     };
 
@@ -81,11 +81,11 @@ class SaveYourSeedOptions extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seed: getSelectedSeed(state).seed
+    seed: getSelectedSeed(state).seed,
 });
 
 const mapDispatchToProps = {
-    clearSeeds
+    clearSeeds,
 };
 
 export default translate('saveYourSeed')(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeedOptions));

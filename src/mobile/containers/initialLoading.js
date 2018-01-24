@@ -24,7 +24,7 @@ class InitialLoading extends Component {
         navigator: PropTypes.object.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
         backgroundColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -48,10 +48,10 @@ class InitialLoading extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 animated: false,
-                overrideBackPress: true
+                overrideBackPress: true,
             });
         } else {
             this.props.navigator.push({
@@ -59,9 +59,9 @@ class InitialLoading extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor)
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
-                animated: false
+                animated: false,
             });
         }
     }
@@ -104,41 +104,41 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     logoContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        flex: 1
+        flex: 1,
     },
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 33.75
+        fontSize: width / 33.75,
     },
     textContainer: {
         justifyContent: 'flex-end',
-        paddingBottom: height / 15
+        paddingBottom: height / 15,
     },
     logo: {
         width: width / 4,
-        height: width / 4
+        height: width / 4,
     },
     animation: {
         justifyContent: 'center',
         width: width * 1.5,
-        height: width / 1.77 * 1.5
+        height: width / 1.77 * 1.5,
     },
     animationContainer: {
-        paddingTop: height / 40
-    }
+        paddingTop: height / 40,
+    },
 });
 
 const mapStateToProps = state => ({
     onboardingComplete: state.account.onboardingComplete,
     backgroundColor: state.settings.theme.backgroundColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    language: state.settings.language
+    language: state.settings.language,
 });
 
 export default connect(mapStateToProps, null)(InitialLoading);

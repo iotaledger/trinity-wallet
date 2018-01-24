@@ -13,7 +13,7 @@ describe('Reducer: polling', () => {
             isFetchingChartData: false,
             isFetchingMarketData: false,
             isFetchingAccountInfo: false,
-            isPromoting: false
+            isPromoting: false,
         };
 
         expect(reducer(undefined, {})).to.eql(initialState);
@@ -21,16 +21,16 @@ describe('Reducer: polling', () => {
 
     it('FETCH_PRICE_REQUEST should set isFetchingPrice to true', () => {
         const initialState = {
-            isFetchingPrice: false
+            isFetchingPrice: false,
         };
 
         const action = {
-            type: ActionTypes.FETCH_PRICE_REQUEST
+            type: ActionTypes.FETCH_PRICE_REQUEST,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingPrice: true
+            isFetchingPrice: true,
         };
 
         expect(newState).to.eql(expectedState);
@@ -39,16 +39,16 @@ describe('Reducer: polling', () => {
     it('FETCH_PRICE_SUCCESS should set isFetchingPrice to false', () => {
         const initialState = {
             isFetchingPrice: true,
-            allPollingServices: []
+            allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.FETCH_PRICE_SUCCESS
+            type: ActionTypes.FETCH_PRICE_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingPrice: false
+            isFetchingPrice: false,
         };
 
         expect(newState.isFetchingPrice).to.eql(expectedState.isFetchingPrice);
@@ -57,16 +57,16 @@ describe('Reducer: polling', () => {
     it('FETCH_PRICE_ERROR should set isFetchingPrice to false', () => {
         const initialState = {
             isFetchingPrice: true,
-            allPollingServices: []
+            allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.FETCH_PRICE_ERROR
+            type: ActionTypes.FETCH_PRICE_ERROR,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingPrice: false
+            isFetchingPrice: false,
         };
 
         expect(newState.isFetchingPrice).to.eql(expectedState.isFetchingPrice);
@@ -74,16 +74,16 @@ describe('Reducer: polling', () => {
 
     it('FETCH_CHART_DATA_REQUEST should set isFetchingChartData to true', () => {
         const initialState = {
-            isFetchingChartData: false
+            isFetchingChartData: false,
         };
 
         const action = {
-            type: ActionTypes.FETCH_CHART_DATA_REQUEST
+            type: ActionTypes.FETCH_CHART_DATA_REQUEST,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingChartData: true
+            isFetchingChartData: true,
         };
 
         expect(newState).to.eql(expectedState);
@@ -92,16 +92,16 @@ describe('Reducer: polling', () => {
     it('FETCH_CHART_DATA_SUCCESS should set isFetchingChartData to false', () => {
         const initialState = {
             isFetchingChartData: true,
-            allPollingServices: []
+            allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.FETCH_CHART_DATA_SUCCESS
+            type: ActionTypes.FETCH_CHART_DATA_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingChartData: false
+            isFetchingChartData: false,
         };
 
         expect(newState.isFetchingChartData).to.eql(expectedState.isFetchingChartData);
@@ -110,16 +110,16 @@ describe('Reducer: polling', () => {
     it('FETCH_CHART_DATA_ERROR should set isFetchingChartData to false', () => {
         const initialState = {
             isFetchingChartData: true,
-            allPollingServices: []
+            allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.FETCH_CHART_DATA_ERROR
+            type: ActionTypes.FETCH_CHART_DATA_ERROR,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingChartData: false
+            isFetchingChartData: false,
         };
 
         expect(newState.isFetchingChartData).to.eql(expectedState.isFetchingChartData);
@@ -127,16 +127,16 @@ describe('Reducer: polling', () => {
 
     it('FETCH_MARKET_DATA_REQUEST should set isFetchingMarketData to true', () => {
         const initialState = {
-            isFetchingMarketData: false
+            isFetchingMarketData: false,
         };
 
         const action = {
-            type: ActionTypes.FETCH_MARKET_DATA_REQUEST
+            type: ActionTypes.FETCH_MARKET_DATA_REQUEST,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingMarketData: true
+            isFetchingMarketData: true,
         };
 
         expect(newState).to.eql(expectedState);
@@ -145,16 +145,16 @@ describe('Reducer: polling', () => {
     it('FETCH_MARKET_DATA_SUCCESS should set isFetchingMarketData to false', () => {
         const initialState = {
             isFetchingMarketData: true,
-            allPollingServices: []
+            allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.FETCH_MARKET_DATA_SUCCESS
+            type: ActionTypes.FETCH_MARKET_DATA_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingMarketData: false
+            isFetchingMarketData: false,
         };
 
         expect(newState.isFetchingMarketData).to.eql(expectedState.isFetchingMarketData);
@@ -163,16 +163,16 @@ describe('Reducer: polling', () => {
     it('FETCH_MARKET_DATA_ERROR should set isFetchingMarketData to false', () => {
         const initialState = {
             isFetchingMarketData: true,
-            allPollingServices: []
+            allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.FETCH_MARKET_DATA_ERROR
+            type: ActionTypes.FETCH_MARKET_DATA_ERROR,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingMarketData: false
+            isFetchingMarketData: false,
         };
 
         expect(newState.isFetchingMarketData).to.eql(expectedState.isFetchingMarketData);
@@ -180,16 +180,16 @@ describe('Reducer: polling', () => {
 
     it('ACCOUNT_INFO_FETCH_REQUEST should set isFetchingAccountInfo to true', () => {
         const initialState = {
-            isFetchingAccountInfo: false
+            isFetchingAccountInfo: false,
         };
 
         const action = {
-            type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST
+            type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingAccountInfo: true
+            isFetchingAccountInfo: true,
         };
 
         expect(newState).to.eql(expectedState);
@@ -198,16 +198,16 @@ describe('Reducer: polling', () => {
     it('ACCOUNT_INFO_FETCH_SUCCESS should set isFetchingAccountInfo to false', () => {
         const initialState = {
             isFetchingAccountInfo: true,
-            allPollingServices: []
+            allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS
+            type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingAccountInfo: false
+            isFetchingAccountInfo: false,
         };
 
         expect(newState.isFetchingAccountInfo).to.eql(expectedState.isFetchingAccountInfo);
@@ -216,16 +216,16 @@ describe('Reducer: polling', () => {
     it('ACCOUNT_INFO_FETCH_ERROR should set isFetchingAccountInfo to false', () => {
         const initialState = {
             isFetchingAccountInfo: true,
-            allPollingServices: []
+            allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR
+            type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isFetchingAccountInfo: false
+            isFetchingAccountInfo: false,
         };
 
         expect(newState.isFetchingAccountInfo).to.eql(expectedState.isFetchingAccountInfo);
@@ -233,16 +233,16 @@ describe('Reducer: polling', () => {
 
     it('PROMOTE_TRANSACTION_REQUEST should set isPromoting to true', () => {
         const initialState = {
-            isPromoting: false
+            isPromoting: false,
         };
 
         const action = {
-            type: ActionTypes.PROMOTE_TRANSACTION_REQUEST
+            type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isPromoting: true
+            isPromoting: true,
         };
 
         expect(newState).to.eql(expectedState);
@@ -251,16 +251,16 @@ describe('Reducer: polling', () => {
     it('PROMOTE_TRANSACTION_SUCCESS should set isPromoting to false', () => {
         const initialState = {
             isPromoting: true,
-            allPollingServices: []
+            allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS
+            type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isPromoting: false
+            isPromoting: false,
         };
 
         expect(newState.isPromoting).to.eql(expectedState.isPromoting);
@@ -269,16 +269,16 @@ describe('Reducer: polling', () => {
     it('PROMOTE_TRANSACTION_ERROR should set isPromoting to false', () => {
         const initialState = {
             isPromoting: true,
-            allPollingServices: []
+            allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.PROMOTE_TRANSACTION_ERROR
+            type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isPromoting: false
+            isPromoting: false,
         };
 
         expect(newState.isPromoting).to.eql(expectedState.isPromoting);
@@ -286,17 +286,17 @@ describe('Reducer: polling', () => {
 
     it('SET_POLL_FOR should set pollFor to payload in action', () => {
         const initialState = {
-            pollFor: 'foo'
+            pollFor: 'foo',
         };
 
         const action = {
             type: ActionTypes.SET_POLL_FOR,
-            payload: 'baz'
+            payload: 'baz',
         };
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            pollFor: 'baz'
+            pollFor: 'baz',
         };
 
         expect(newState).to.eql(expectedState);
@@ -308,7 +308,7 @@ describe('Reducer: polling', () => {
         beforeEach(() => {
             state = {
                 allPollingServices: ['marketData', 'price', 'chartData', 'accountInfo', 'promotion'],
-                pollFor: 'marketData'
+                pollFor: 'marketData',
             };
         });
 
@@ -340,7 +340,7 @@ describe('Reducer: polling', () => {
             state = {
                 allPollingServices: ['marketData', 'price', 'chartData', 'accountInfo', 'promotion'],
                 pollFor: 'marketData',
-                retryCount: 0
+                retryCount: 0,
             };
         });
 
