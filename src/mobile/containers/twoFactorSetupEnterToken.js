@@ -140,6 +140,7 @@ class TwoFactorSetupEnterToken extends Component {
                         <Text style={[styles.subHeaderText, textColor]}>Enter the token from your 2FA app</Text>
                         <CustomTextInput
                             label="Token"
+                            keyboardType={'numeric'}
                             onChangeText={(code) => this.setState({ code })}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
