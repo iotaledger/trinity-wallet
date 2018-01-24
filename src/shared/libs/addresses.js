@@ -60,8 +60,7 @@ const getRelevantAddresses = (resolve, reject, seed, opts, allAddresses) => {
                     const newOpts = assign({}, opts, { index: opts.total + opts.index });
                     getRelevantAddresses(resolve, reject, seed, newOpts, allAddresses);
                 } else {
-                    // Last ten addresses that were generated are fresh
-                    // Traverse backwards for deposit address
+                    // Traverse backwards to remove all unused addresses
                     new Promise((res, rej) => {
                         const lastAddressIndex = size(allAddresses) - 1;
                         removeUnusedAddresses(res, rej, lastAddressIndex, allAddresses.slice());
