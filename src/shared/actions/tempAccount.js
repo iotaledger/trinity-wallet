@@ -152,7 +152,7 @@ export const setAdditionalAccountInfo = (payload) => ({
 });
 
 export const generateNewAddress = (seed, seedName, addresses) => {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(generateNewAddressRequest());
         let index = 0;
 
@@ -184,8 +184,18 @@ export const generateNewAddress = (seed, seedName, addresses) => {
 const makeTransfer = (seed, address, value, accountName, transfer, options = null) => (dispatch, getState) => {
     const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
     const addressData = selectedAccount.addresses;
+    let args = [
+        seed,
+        DEPTH,
+        MIN_WEIGHT_MAGNITUDE,
+        transfer
+    ];
 
-    return iota.api.sendTransfer(seed, DEPTH, MIN_WEIGHT_MAGNITUDE, transfer, options, (error, success) => {
+    if (options) {
+        args = [...args, options];
+    }
+
+    return iota.api.sendTransfer(...args, (error, success) => {
         if (!error) {
             dispatch(checkForNewAddress(accountName, addressData, success));
             dispatch(updateAccountInfo(accountName, success, value));
@@ -199,6 +209,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
             );
             dispatch(sendTransferSuccess({ address, value }));
         } else {
+            console.log('ERR', error);
             dispatch(sendTransferError());
             const alerts = {
                 attachToTangle: [
