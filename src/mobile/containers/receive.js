@@ -209,7 +209,7 @@ class Receive extends Component {
                         value={message}
                         negativeColor={negativeColor}
                     />
-                    <View style={{ flex: 0.5 }} />
+                    <View style={{ flex: 0.35 }} />
                     {receiveAddress === ' ' &&
                         (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
                             <View style={{ flex: 0.7, justifyContent: 'center' }}>
@@ -248,7 +248,7 @@ class Receive extends Component {
                     {receiveAddress.length > 1 &&
                         message.length >= 1 && (
                             <View style={{ flex: 0.7 }}>
-                                <View style={{ flex: 0.2 }} />
+                                <View style={{ flex: 0.1 }} />
                                 <TouchableOpacity
                                     onPress={() => {
                                         // Check if there's already a network call in progress.
@@ -261,10 +261,11 @@ class Receive extends Component {
                                         <Text style={[styles.removeText, textColor]}>{t('removeMessage')}</Text>
                                     </View>
                                 </TouchableOpacity>
+                                <View style={{ flex: 0.2 }} />
                             </View>
                         )}
                     {receiveAddress.length > 1 && message.length === 0 && <View style={{ flex: 0.7 }} />}
-                    <View style={{ flex: 0.5 }} />
+                    <View style={{ flex: 0.65 }} />
                 </View>
             </TouchableWithoutFeedback>
         );
