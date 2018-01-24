@@ -416,6 +416,7 @@ const styles = StyleSheet.create({
     chevronWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: height / 120,
         paddingRight: width / 18,
     },
     chevron: {
@@ -430,6 +431,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingLeft: width / 18,
+        paddingTop: height / 120,
     },
     disabled: {
         color: '#a9a9a9',

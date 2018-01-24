@@ -89,7 +89,7 @@ class NotificationLog extends Component {
             hideModal,
         } = this.props;
         const lineBorder = { borderBottomColor: secondaryBarColor };
-        const trimmedLog = notificationLog.reverse().splice(0, 10);
+        const trimmedLog = notificationLog.reverse().slice(0, 10);
 
         return (
             <TouchableOpacity style={styles.modalContainer} onPress={() => hideModal()}>
