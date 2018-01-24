@@ -340,8 +340,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "我已经保存了我的种子",
         "reenter": "现在, 您将被要求重新输入您的种子。",
-        "reenterWarningOne": "如果设备出现故障且您未保存",
-        "reenterWarningTwo": "您的种子, 您将会丢失您的IOTA。"
+        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",
