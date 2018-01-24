@@ -340,8 +340,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Έχω αποθηκεύσει το σπόρο μου",
         "reenter": "Τώρα θα σας ζητηθεί να επανεισάγετε το σπόρο σας.",
-        "reenterWarningOne": "Αν η συσκευή σας αποτύχει και δεν έχετε αποθηκεύσει",
-        "reenterWarningTwo": "το σπόρο σας, θα χάσετε τα ΙΟΤΑ σας."
+        "reenterWarningOne": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ΑΥΤΗ Η ΕΝΕΡΓΕΙΑ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΑΝΑΙΡΕΘΕΙ.",
