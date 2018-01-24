@@ -249,7 +249,6 @@ export const getAccountInfo = (seed, accountName) => {
                     return getConfirmedTxTailsHashes(states, hashes);
                 })
                 .then(confirmedHashes => {
-                    console.log('Confirmed hashes');
                     if (!isEmpty(confirmedHashes)) {
                         payload = assign({}, payload, {
                             transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
