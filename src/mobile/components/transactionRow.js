@@ -7,6 +7,7 @@ import { convertFromTrytes, isReceivedTransfer, getRelevantTransfer } from 'iota
 import Modal from 'react-native-modal';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { translate } from 'react-i18next';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -137,8 +138,8 @@ class TransactionRow extends Component {
                                     color: titleColour,
                                 }}
                             >
-                                {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(transfer.value), 1)}{' '}
-                                {formatUnit(transfer.value)}
+                                {isReceived ? t('global:receive') : t('global:send')}{' '}
+                                {round(formatValue(transfer.value), 1)} {formatUnit(transfer.value)}
                             </Text>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Text
@@ -214,6 +215,7 @@ class TransactionRow extends Component {
             pendingColor,
             addresses,
             rowData,
+            t,
         } = this.props;
         const isReceived = isReceivedTransfer(rowData, addresses);
         const transfer = getRelevantTransfer(rowData, addresses);
@@ -250,8 +252,8 @@ class TransactionRow extends Component {
                                     color: titleColour,
                                 }}
                             >
-                                {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(transfer.value), 1)}{' '}
-                                {formatUnit(transfer.value)}
+                                {isReceived ? t('global:receive') : t('global:send')}{' '}
+                                {round(formatValue(transfer.value), 1)} {formatUnit(transfer.value)}
                             </Text>
                             <Text
                                 style={[
@@ -261,7 +263,9 @@ class TransactionRow extends Component {
                                     !hasPersistence && { color: pendingColor },
                                 ]}
                             >
-                                {hasPersistence ? (isReceived ? 'Received' : 'Sent') : 'Pending'}
+                                {hasPersistence
+                                    ? isReceived ? t('global:received') : t('global:sent')
+                                    : t('global:pending')}
                             </Text>
                         </View>
                         <View
@@ -313,4 +317,4 @@ class TransactionRow extends Component {
     }
 }
 
-export default TransactionRow;
+export default translate('global')(TransactionRow);
