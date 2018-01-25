@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const getChartCurrencySymbol = (currency) => {
+const getChartCurrencySymbol = currency => {
     if (currency === 'BTC') {
         return isAndroid ? '฿' : '₿';
     } else if (currency === 'ETH') {
@@ -142,7 +142,7 @@ class Chart extends Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map((object) => {
+            ...data.map(object => {
                 return object.y;
             }),
         );
@@ -153,7 +153,7 @@ class Chart extends Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const minValue = Math.min(
-            ...data.map((object) => {
+            ...data.map(object => {
                 return object.y;
             }),
         );
@@ -164,7 +164,7 @@ class Chart extends Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map((object) => {
+            ...data.map(object => {
                 return object.x;
             }),
         );
@@ -265,7 +265,7 @@ class Chart extends Component {
                         />
                         <VictoryAxis
                             dependentAxis
-                            tickFormat={(x) => this.getPriceFormat(x)}
+                            tickFormat={x => this.getPriceFormat(x)}
                             style={{
                                 axis: { stroke: 'transparent' },
                                 tickLabels: {

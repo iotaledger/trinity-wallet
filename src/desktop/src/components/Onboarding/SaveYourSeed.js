@@ -58,7 +58,8 @@ class SaveYourSeed extends PureComponent {
                                         title: 'Seed copied to clipboard!',
                                         text:
                                             'Copy your seed to a password manager and do not store the seed in plain text. The seed will stay in your clipboard for 60 seconds',
-                                    })}
+                                    })
+                                }
                             >
                                 {t('optionC')}
                             </Button>
