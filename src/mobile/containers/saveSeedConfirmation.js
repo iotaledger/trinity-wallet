@@ -32,7 +32,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     componentDidMount() {
-        this.timeout = setTimeout(this.onTimerComplete.bind(this), 5000);
+        this.timeout = setTimeout(this.onTimerComplete.bind(this), 3000);
     }
 
     onTimerComplete() {
