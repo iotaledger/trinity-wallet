@@ -7,6 +7,7 @@ export const nodes = [
     'http://astra2261.startdedicated.net:14265',
     'https://www.veriti.io',
     'http://148.251.181.105:14265',
+    'http://nodes.iota.fm:80',
 ];
 
 export const DEFAULT_DEPTH = 4;
