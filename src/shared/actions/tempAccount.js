@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
-import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
+import { getStartingSearchIndexForAddress, filterSpentAddresses, getUnspentInputs } from '../libs/transfers';
 import { MAX_SEED_LENGTH } from '../libs/util';
 import { prepareTransferArray } from '../libs/transfers';
 import { getSelectedAccount } from '../selectors/account';
@@ -260,6 +260,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
         };
 
         const unspentInputs = (err, inputs) => {
+            console.log('Inputs', inputs);
             if (err && err.message !== 'Not enough balance') {
                 dispatch(sendTransferError());
 
@@ -294,13 +295,11 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             );
         };
 
-        const getStartingIndex = () => {
-            const addresses = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
-            const addr = Object.keys(addresses).find(address => addresses[address].balance > 0);
-            return addr ? addresses[addr].index : 0;
-        };
+        const addressData = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
 
-        return getUnspentInputs(seed, getStartingIndex(), value, null, unspentInputs);
+        const startIndex = getStartingSearchIndexForAddress(addressData);
+
+        return getUnspentInputs(addressData, startIndex, value, null, unspentInputs);
     };
 };
 
