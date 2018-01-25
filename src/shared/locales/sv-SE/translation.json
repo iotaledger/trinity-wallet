@@ -58,7 +58,7 @@
         "attachToTangleUnavailable": "Fastsättning på Tangle otillgänglig",
         "attachToTangleUnavailableExplanation": "Fäst på Tangle är otillgänglig på din valda nod.",
         "wallet": "Plånbok",
-        "pressBackAgain": "Press back again to close the app"
+        "pressBackAgain": "Tryck tillbaka igen för att stänga appen"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
