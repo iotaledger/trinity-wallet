@@ -57,7 +57,8 @@
         "cannotPerformActionExplanation": "Pojdite v napredne nastavitve za ponastavitev denarnice.",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
