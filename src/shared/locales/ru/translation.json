@@ -57,7 +57,8 @@
         "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса настроек кошелька.",
         "attachToTangleUnavailable": "Привязка к Tangle недоступна",
         "attachToTangleUnavailableExplanation": "Привязка к Tangle недоступна на выбранном узле.",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
