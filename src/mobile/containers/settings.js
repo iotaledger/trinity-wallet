@@ -181,6 +181,7 @@ class Settings extends Component {
         secondaryCtaColor: PropTypes.string.isRequired,
         setLanguage: PropTypes.func.isRequired,
         language: PropTypes.string.isRequired,
+        secondaryBarColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -213,6 +214,7 @@ class Settings extends Component {
             ctaBorderColor,
             secondaryCtaColor,
             language,
+            secondaryBarColor,
         } = this.props;
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -427,6 +429,7 @@ class Settings extends Component {
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 tickImagePath,
                 arrowLeftImagePath,
+                secondaryBarColor,
             },
             advancedThemeCustomisation: {
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
@@ -838,6 +841,7 @@ const mapStateToProps = state => ({
     hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
     language: state.settings.language,
+    secondaryBarColor: state.settings.theme.secondaryBarColor,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(
