@@ -11,6 +11,8 @@
         "transferErrorMessage": "Une erreur s'est produite lors du transfert. Veuillez réessayer.",
         "transferSent": "Transfert effectué",
         "transferSentMessage": "Votre transfert a été envoyé sur le Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Réutilisation de clé",
         "keyReuseError": "Vous ne pouvez pas effectuer de transfert vers une adresse qui a déjà été débitée.",
         "invalidResponse": "Réponse non valide",
