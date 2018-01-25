@@ -80,7 +80,7 @@ class SeedReentry extends Component {
                                 <View style={{ flex: 0.5 }} />
                                 <CustomTextInput
                                     label={t('global:seed')}
-                                    onChangeText={(seed) => this.setState({ seed: seed.toUpperCase() })}
+                                    onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                                     containerStyle={{ width: width / 1.36 }}
                                     maxLength={MAX_SEED_LENGTH}
                                     autoCapitalize={'none'}
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,

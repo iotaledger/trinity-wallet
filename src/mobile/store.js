@@ -11,7 +11,7 @@ export const persistConfig = {
     blacklist: ['tempAccount', 'keychain', 'polling', 'ui'],
 };
 
-const shouldMigrate = (restoredState) => {
+const shouldMigrate = restoredState => {
     const restoredVersion = get(restoredState, 'app.versions.version');
     const restoredBuildNumber = get(restoredState, 'app.versions.buildNumber');
 
