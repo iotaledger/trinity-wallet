@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import assign from 'lodash/assign';
 import each from 'lodash/each';
 import get from 'lodash/get';
@@ -321,7 +322,8 @@ export const organizeAccountInfo = (accountName, data) => {
     };
 };
 
-export const getTotalBalance = (addresses, threshold = 1) => {
+export const getTotalBalanceWithLatestAddressData = (addressData, threshold = 1) => {
+    const addresses = Object.keys(addressData);
     return new Promise((resolve, reject) => {
         iota.api.getBalances(addresses, threshold, (err, data) => {
             if (err) {
@@ -337,7 +339,12 @@ export const getTotalBalance = (addresses, threshold = 1) => {
                     0,
                 );
 
-                resolve(totalBalance);
+                const addressesDataClone = cloneDeep(addressData);
+                each(addresses, (address, idx) => {
+                    addressesDataClone[address] = { ...get(addressesDataClone, `${address}`, { balance: data[idx] }) };
+                });
+
+                resolve({ balance: totalBalance, addressData: addressesDataClone });
             }
         });
     });
