@@ -88,22 +88,10 @@ class Home extends Component {
     componentDidMount() {
         BackHandler.addEventListener('homeBackPress', () => {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
-                Navigation.startSingleScreenApp({
-                    screen: {
-                        screen: 'login',
-                        navigatorStyle: {
-                            navBarHidden: true,
-                            navBarTransparent: true,
-                        },
-                        overrideBackPress: true,
-                    },
-                    appStyle: {
-                        orientation: 'portrait',
-                    },
-                });
+                BackHandler.exitApp();
             }
             this.lastBackPressed = Date.now();
-            ToastAndroid.show('Press back again to log out', ToastAndroid.SHORT);
+            ToastAndroid.show('Press back again to close the app', ToastAndroid.SHORT);
             return true;
         });
     }
