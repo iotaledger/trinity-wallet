@@ -11,6 +11,8 @@
         "transferErrorMessage": "Transferinizi gönderirken bir şeyler yanlış gitti. lütfen tekrar deneyin.",
         "transferSent": "Transfer Gönder",
         "transferSentMessage": "Transferiniz Tangle a gönderildi.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Anahtar tekrar kullanımı",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Geçersiz yanıt",
