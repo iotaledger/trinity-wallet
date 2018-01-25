@@ -1,28 +1,129 @@
-import React from 'react';
-import { TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView, ScrollView } from 'react-native';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { TouchableOpacity, View, Text, StyleSheet, ListView, ScrollView } from 'react-native';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import { convertFromTrytes, isReceivedTransfer, getRelevantTransfer } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
 import GENERAL from '../theme/general';
-
 import { width, height } from '../util/dimensions';
+
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
-class TransactionRow extends React.Component {
-    constructor(props) {
-        super(props);
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingVertical: height / 60,
+        paddingHorizontal: width / 30,
+        borderWidth: 0.5,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 1.2,
+        height: height / 10,
+        justifyContent: 'center',
+    },
+    title: {
+        justifyContent: 'space-between',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 29.6,
+    },
+    message: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 31.8,
+    },
+    messageTitle: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 31.8,
+        paddingRight: width / 70,
+    },
+    modalBundleTitle: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 31.8,
+        paddingTop: height / 50,
+    },
+    hash: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Inconsolata-Regular',
+        fontSize: width / 31.8,
+    },
+    bundleHash: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Inconsolata-Regular',
+        fontSize: width / 31.8,
+        marginTop: 2,
+    },
+    status: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 31.8,
+    },
+    modalTimestamp: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 31.8,
+    },
+    timestamp: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 31.8,
+    },
+    modalContent: {
+        width: width / 1.15,
+        maxHeight: height / 1.05,
+        padding: width / 25,
+        justifyContent: 'center',
+        borderRadius: GENERAL.borderRadius,
+        borderWidth: 2,
+    },
+    modalStatus: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 31.8,
+        paddingRight: width / 25,
+    },
+    modalValue: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 27.6,
+        textAlign: 'right',
+    },
+});
+
+/* eslint-disable no-nested-ternary */
+// FIXME: Remove nested ternary
+class TransactionRow extends Component {
+    static propTypes = {
+        backgroundColor: PropTypes.string.isRequired,
+        positiveColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
+        pendingColor: PropTypes.string.isRequired,
+        rowData: PropTypes.array.isRequired,
+        extraColor: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        borderColor: PropTypes.object.isRequired,
+        addresses: PropTypes.array.isRequired,
+        copyBundleHash: PropTypes.func.isRequired,
+        copyAddress: PropTypes.func.isRequired,
+    };
+
+    constructor() {
+        super();
+
         this.state = {
             isModalVisible: false,
         };
     }
 
-    _showModal = () => this.setState({ isModalVisible: true });
+    showModal = () => this.setState({ isModalVisible: true });
 
-    _hideModal = () => this.setState({ isModalVisible: false });
+    hideModal = () => this.setState({ isModalVisible: false });
 
-    _renderModalContent = (transfer, titleColour, isReceived, hasPersistence, textColor, borderColor) => (
-        <TouchableOpacity style={{ width, height, alignItems: 'center' }} onPress={() => this._hideModal()}>
+    renderModalContent = (transfer, titleColour, isReceived, hasPersistence, textColor, borderColor) => (
+        <TouchableOpacity style={{ width, height, alignItems: 'center' }} onPress={() => this.hideModal()}>
             <View style={{ flex: 1, justifyContent: 'center', width: width / 1.15 }}>
                 <View style={[styles.modalContent, borderColor, { backgroundColor: this.props.backgroundColor }]}>
                     <ScrollView>
@@ -70,7 +171,7 @@ class TransactionRow extends React.Component {
                         <Text style={[styles.modalBundleTitle, textColor]}>Addresses:</Text>
                         <ListView
                             dataSource={ds.cloneWithRows(this.props.rowData)}
-                            renderRow={(rowData, sectionId) => (
+                            renderRow={rowData => (
                                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 2 }}>
                                     <TouchableOpacity
                                         onPress={() => this.props.copyAddress(rowData.address)}
@@ -126,8 +227,9 @@ class TransactionRow extends React.Component {
             secondaryBackgroundColor === 'white'
                 ? { backgroundColor: 'rgba(255, 255, 255, 0.08)' }
                 : { backgroundColor: 'transparent' };
+
         return (
-            <TouchableOpacity onPress={() => this._showModal(transfer)}>
+            <TouchableOpacity onPress={() => this.showModal(transfer)}>
                 <View style={{ flex: 1, alignItems: 'center' }}>
                     <View style={[styles.container, containerBorderColor, containerBackgroundColor]}>
                         <View
@@ -202,102 +304,13 @@ class TransactionRow extends React.Component {
                     backdropOpacity={0.6}
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
-                    onBackButtonPress={() => this._hideModal()}
+                    onBackButtonPress={() => this.hideModal()}
                 >
-                    {this._renderModalContent(
-                        transfer,
-                        titleColour,
-                        isReceived,
-                        hasPersistence,
-                        textColor,
-                        borderColor,
-                    )}
+                    {this.renderModalContent(transfer, titleColour, isReceived, hasPersistence, textColor, borderColor)}
                 </Modal>
             </TouchableOpacity>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingVertical: height / 60,
-        paddingHorizontal: width / 30,
-        borderWidth: 0.5,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 1.2,
-        height: height / 10,
-        justifyContent: 'center',
-    },
-    title: {
-        justifyContent: 'space-between',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 29.6,
-    },
-    message: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 31.8,
-    },
-    messageTitle: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 31.8,
-        paddingRight: width / 70,
-    },
-    modalBundleTitle: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 31.8,
-        paddingTop: height / 50,
-    },
-    hash: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Inconsolata-Regular',
-        fontSize: width / 31.8,
-    },
-    bundleHash: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Inconsolata-Regular',
-        fontSize: width / 31.8,
-        marginTop: 2,
-    },
-    status: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 31.8,
-    },
-    modalTimestamp: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 31.8,
-    },
-    timestamp: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 31.8,
-    },
-    modalContent: {
-        width: width / 1.15,
-        maxHeight: height / 1.05,
-        padding: width / 25,
-        justifyContent: 'center',
-        borderRadius: GENERAL.borderRadius,
-        borderWidth: 2,
-    },
-    modalStatus: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 31.8,
-        paddingRight: width / 20,
-    },
-    modalValue: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 27.6,
-        textAlign: 'right',
-    },
-});
-
-module.exports = TransactionRow;
+export default TransactionRow;

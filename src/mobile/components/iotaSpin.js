@@ -26,12 +26,12 @@ export default class IotaSpin extends Component {
         Animated.parallel([
             Animated.timing(this.state.spin, {
                 toValue: 1,
-                duration: duration,
+                duration,
                 easing: this.state.ease,
             }),
             Animated.timing(this.state.scale, {
                 toValue: 1,
-                duration: duration,
+                duration,
                 easing: this.state.ease,
             }),
         ]).start(() => this.animateOut());
@@ -42,12 +42,12 @@ export default class IotaSpin extends Component {
         Animated.parallel([
             Animated.timing(this.state.spin, {
                 toValue: 0,
-                duration: duration,
+                duration,
                 easing: this.state.ease,
             }),
             Animated.timing(this.state.scale, {
                 toValue: 0,
-                duration: duration,
+                duration,
                 easing: this.state.ease,
             }),
         ]).start(() => this.animateIn());

@@ -1,70 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { width, height } from '../util/dimensions';
 import { translate } from 'react-i18next';
-
-class AddNewAccount extends Component {
-    static propTypes = {
-        addExistingSeed: PropTypes.func.isRequired,
-        addNewSeed: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired,
-        textColor: PropTypes.object.isRequired,
-    };
-
-    onNewSeedPress() {
-        this.props.addNewSeed();
-    }
-
-    onExistingSeedPress() {
-        this.props.addExistingSeed();
-    }
-
-    render() {
-        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, addImagePath, keyImagePath } = this.props;
-
-        return (
-            <View style={styles.container}>
-                <View style={{ flex: 9, justifyContent: 'flex-start' }}>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={event => this.onExistingSeedPress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Image source={keyImagePath} style={styles.icon} />
-                                <Text style={[styles.titleText, textColor]}>{t('useExistingSeed')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={event => this.onNewSeedPress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Image source={addImagePath} style={styles.icon} />
-                                <Text style={[styles.titleText, textColor]}>{t('createNewSeed')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ flex: 7 }} />
-                </View>
-                <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <TouchableOpacity
-                        onPress={event => this.props.backPress()}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Image source={arrowLeftImagePath} style={styles.backIcon} />
-                            <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        );
-    }
-}
+import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -101,5 +39,71 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+
+class AddNewAccount extends Component {
+    static propTypes = {
+        addExistingSeed: PropTypes.func.isRequired,
+        addNewSeed: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+        textColor: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        addImagePath: PropTypes.number.isRequired,
+        keyImagePath: PropTypes.number.isRequired,
+    };
+
+    onNewSeedPress() {
+        this.props.addNewSeed();
+    }
+
+    onExistingSeedPress() {
+        this.props.addExistingSeed();
+    }
+
+    render() {
+        const { t, textColor, arrowLeftImagePath, addImagePath, keyImagePath } = this.props;
+
+        return (
+            <View style={styles.container}>
+                <View style={{ flex: 9, justifyContent: 'flex-start' }}>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.onExistingSeedPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Image source={keyImagePath} style={styles.icon} />
+                                <Text style={[styles.titleText, textColor]}>{t('useExistingSeed')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.onNewSeedPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Image source={addImagePath} style={styles.icon} />
+                                <Text style={[styles.titleText, textColor]}>{t('createNewSeed')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 7 }} />
+                </View>
+                <View style={{ flex: 1, justifyContent: 'center' }}>
+                    <TouchableOpacity
+                        onPress={() => this.props.backPress()}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Image source={arrowLeftImagePath} style={styles.backIcon} />
+                            <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        );
+    }
+}
 
 export default translate(['addNewAccount', 'global'])(AddNewAccount);
