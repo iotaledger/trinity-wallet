@@ -11,6 +11,8 @@
         "transferErrorMessage": "Κάτι πήγε στραβά κατά την αποστολή της μεταφοράς σας. Παρακαλώ δοκιμάστε ξανά.",
         "transferSent": "Μεταφορά απεστάλει",
         "transferSentMessage": "Η μεταφορά σας έχει αποσταλεί στο Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Επαναχρησιμοποίηση κλειδιού",
         "keyReuseError": "Δεν μπορείτε να στείλετε σε μια διεύθυνση από όπου έχει ήδη γίνει δαπάνη.",
         "invalidResponse": "Μη έγκυρη απόκριση",
