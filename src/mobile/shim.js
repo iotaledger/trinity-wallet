@@ -28,7 +28,7 @@ if (require('./package.json').dependencies['react-native-crypto']) {
         algos.sha256 = {
             sign: 'ecdsa',
             hash: 'sha256',
-            id: new Buffer('')
+            id: new Buffer(''),
         };
     }
 
