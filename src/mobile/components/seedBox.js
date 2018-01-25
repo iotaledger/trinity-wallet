@@ -1,15 +1,60 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, Image, StyleSheet } from 'react-native';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import { TextWithLetterSpacing } from './textWithLetterSpacing';
 import whiteArrowImagePath from 'iota-wallet-shared-modules/images/arrow-white.png';
 import blackArrowImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
-
+import TextWithLetterSpacing from './textWithLetterSpacing';
 import GENERAL from '../theme/general';
-
 import { width, height } from '../util/dimensions';
 
-class SeedBox extends React.Component {
+const styles = StyleSheet.create({
+    seedBox: {
+        borderWidth: 1,
+        borderRadius: GENERAL.borderRadiusLarge,
+        width: width / 1.65,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: height / 80,
+        marginTop: height / 60,
+    },
+    seedBoxTextContainer: {
+        width: width / 1.65,
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        paddingTop: height / 160,
+        paddingLeft: width / 30,
+    },
+    seedBoxTextLeft: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 25,
+        textAlign: 'justify',
+        backgroundColor: 'transparent',
+        paddingVertical: 2,
+    },
+    seedBoxTextRight: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 25,
+        textAlign: 'justify',
+        backgroundColor: 'transparent',
+        paddingVertical: 2,
+    },
+    arrow: {
+        width: width / 1.9,
+        height: height / 80,
+    },
+});
+
+/* eslint-disable react/prefer-stateless-function */
+class SeedBox extends Component {
+    static propTypes = {
+        seed: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        borderColor: PropTypes.object.isRequired,
+    };
+
     render() {
         const { textColor, secondaryBackgroundColor } = this.props;
         const arrowImagePath = secondaryBackgroundColor === 'white' ? whiteArrowImagePath : blackArrowImagePath;
@@ -113,42 +158,4 @@ class SeedBox extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    seedBox: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.65,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: height / 80,
-        marginTop: height / 60,
-    },
-    seedBoxTextContainer: {
-        width: width / 1.65,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        paddingTop: height / 160,
-        paddingLeft: width / 30,
-    },
-    seedBoxTextLeft: {
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 25,
-        textAlign: 'justify',
-        backgroundColor: 'transparent',
-        paddingVertical: 2,
-    },
-    seedBoxTextRight: {
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 25,
-        textAlign: 'justify',
-        backgroundColor: 'transparent',
-        paddingVertical: 2,
-    },
-    arrow: {
-        width: width / 1.9,
-        height: height / 80,
-    },
-});
-
-module.exports = SeedBox;
+export default SeedBox;
