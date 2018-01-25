@@ -420,6 +420,7 @@ class Settings extends Component {
                 backPress: () => this.props.setSetting('mainSettings'),
                 onAdvancedPress: () => this.props.setSetting('advancedThemeCustomisation'),
                 backgroundColor: backgroundColor,
+                barColor: barColor,
                 theme: this.props.theme,
                 themeName: this.props.themeName,
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
