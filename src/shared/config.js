@@ -8,3 +8,7 @@ export const nodes = [
     'https://www.veriti.io',
     'http://148.251.181.105:14265',
 ];
+
+export const DEFAULT_DEPTH = 4;
+export const DEFAULT_MIN_WEIGHT_MAGNITUDE = 14;
+export const DEFAULT_TAG = 'IOTA';
