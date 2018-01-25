@@ -218,6 +218,7 @@ class ThemeCustomisation extends Component {
             secondaryBackgroundColor,
             secondaryCtaColor,
             ctaBorderColor,
+            barColor,
         } = this.state.theme;
         const { arrowLeftImagePath, tickImagePath } = this.props;
         const chevronDownImagePath =
@@ -279,7 +280,7 @@ class ThemeCustomisation extends Component {
                                 style={[
                                     styles.frameBar,
                                     {
-                                        backgroundColor: THEMES.getHSL(backgroundColor),
+                                        backgroundColor: THEMES.getHSL(barColor),
                                         shadowColor: 'black',
                                     },
                                 ]}
