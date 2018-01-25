@@ -219,6 +219,7 @@ class ThemeCustomisation extends Component {
             secondaryCtaColor,
             ctaBorderColor,
             barColor,
+            secondaryBarColor,
         } = this.state.theme;
         const { arrowLeftImagePath, tickImagePath } = this.props;
         const chevronDownImagePath =
@@ -285,9 +286,7 @@ class ThemeCustomisation extends Component {
                                     },
                                 ]}
                             >
-                                <Text style={[styles.frameBarTitle, { color: secondaryBackgroundColor }]}>
-                                    MAIN ACCOUNT
-                                </Text>
+                                <Text style={[styles.frameBarTitle, { color: secondaryBarColor }]}>MAIN ACCOUNT</Text>
                                 <Image style={styles.chevron} source={chevronDownImagePath} />
                             </View>
                             <View style={styles.buttonsContainer}>
