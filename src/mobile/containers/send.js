@@ -677,7 +677,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'Lato-Regular',
         fontSize: width / 29.6,
         textAlign: 'center',
         backgroundColor: 'transparent',
