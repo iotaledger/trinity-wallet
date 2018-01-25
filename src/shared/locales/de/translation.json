@@ -11,6 +11,8 @@
         "transferErrorMessage": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
         "transferSent": "Transaktion gesendet",
         "transferSentMessage": "Deine Transaktion wurde an den Tangle gesendet.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Key Wiederverwendung",
         "keyReuseError": "Du kannst an diese Adresse nicht senden, da von ihr bereits eine andere Transaktion ausgegangen ist.",
         "invalidResponse": "Ungültige Antwort",
