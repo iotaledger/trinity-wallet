@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { width, height } from '../util/dimensions';
-import CustomTextInput from '../components/customTextInput';
 import { translate } from 'react-i18next';
-import THEMES from '../theme/themes';
+import { width, height } from '../util/dimensions';
+import CustomTextInput from './customTextInput';
 
 const styles = StyleSheet.create({
     container: {
@@ -71,6 +70,13 @@ class AddCustomNode extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
+        setNode: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+        onAddNodeError: PropTypes.func.isRequired,
+        onAddNodeSuccess: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        addImagePath: PropTypes.number.isRequired,
     };
 
     constructor() {
@@ -96,7 +102,7 @@ class AddCustomNode extends Component {
 
         if (!nodes.includes(customNode)) {
             setNode(customNode);
-            checkNode((error, success) => {
+            checkNode(error => {
                 if (error) {
                     onAddNodeError();
                     setNode(currentNode);
@@ -112,8 +118,6 @@ class AddCustomNode extends Component {
 
     render() {
         const {
-            node,
-            nodes,
             backPress,
             t,
             secondaryBackgroundColor,
@@ -130,8 +134,7 @@ class AddCustomNode extends Component {
                         <View style={{ flex: 0.3 }} />
                         <CustomTextInput
                             label={t('customNode')}
-                            negativeColor={negativeColor}
-                            onChangeText={(customNode) => this.setState({ customNode })}
+                            onChangeText={customNode => this.setState({ customNode })}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}

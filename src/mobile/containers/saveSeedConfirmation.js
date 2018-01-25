@@ -99,10 +99,7 @@ class SaveSeedConfirmation extends Component {
                         <View style={styles.infoTextContainer}>
                             <Text style={[styles.infoTextLight, textColor]}>{t('saveSeedConfirmation:reenter')}</Text>
                             <Text style={[styles.infoTextLight, textColor]}>
-                                {t('saveSeedConfirmation:reenterWarningOne')}
-                            </Text>
-                            <Text style={[styles.infoTextLight, textColor]}>
-                                {t('saveSeedConfirmation:reenterWarningTwo')}
+                                {t('saveSeedConfirmation:reenterWarning')}
                             </Text>
                         </View>
                     </View>
