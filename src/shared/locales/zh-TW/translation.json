@@ -11,6 +11,8 @@
         "transferErrorMessage": "交易傳送時發生錯誤，請再試一次",
         "transferSent": "交易送出",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "重新使用加密鑰匙",
         "keyReuseError": "您不能發送到已用過的位址。",
         "invalidResponse": "無效的回應",
