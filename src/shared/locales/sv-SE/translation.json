@@ -189,7 +189,7 @@
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
-        "passwordTooShortExplanation": "Ditt lösenord måste vara minst ${MIN_PASSWORD_LENGTH} tecken. Det är för närvarande ${this.state.password.length} tecken lång. Vänligen försök igen.",
+        "passwordTooShortExplanation": "Ditt lösenord måste vara minst {{minLength}} tecken. Det är för närvarande {{currentLength}} tecken långt. Vänligen försök igen.",
         "passwordMismatch": "Lösenorden matchar inte",
         "passwordMismatchExplanation": "De lösenord du har angett stämmer inte överens. Vänligen försök igen.",
         "nowWeNeedTo": "Nu behöver vi sätta ett lösenord.",
