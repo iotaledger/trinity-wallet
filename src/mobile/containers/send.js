@@ -95,6 +95,7 @@ class Send extends Component {
             maxPressed: false,
             maxColor: props.secondaryBackgroundColor,
             maxText: 'SEND MAX',
+            sending: false,
         };
     }
 
@@ -107,8 +108,12 @@ class Send extends Component {
             KeepAwake.activate();
         } else if (this.props.isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
-            this.setState({ message: '', amount: '', address: '' });
+            this.setState({ message: '', amount: '', address: '', sending: false });
         }
+    }
+
+    setSendingTransferFlag() {
+        this.setState({ sending: true });
     }
 
     onDenominationPress() {
@@ -128,9 +133,9 @@ class Send extends Component {
     }
 
     onMaxPress() {
-        const { isSendingTransfer } = this.props;
+        const { sending } = this.state;
         const max = (this.props.balance / this.getUnitMultiplier()).toString();
-        if (!isSendingTransfer) {
+        if (!sending) {
             this.setState({
                 amount: max,
                 maxPressed: true,
@@ -319,6 +324,7 @@ class Send extends Component {
                         backgroundColor={THEMES.getHSL(this.props.barColor)}
                         borderColor={{ borderColor: secondaryBackgroundColor }}
                         textColor={{ color: secondaryBackgroundColor }}
+                        setSendingTransferFlag={() => this.setSendingTransferFlag()}
                     />
                 );
                 this.setState({
@@ -415,7 +421,7 @@ class Send extends Component {
     }
 
     render() {
-        const { amount, address, message, isModalVisible, denomination, maxColor, maxText } = this.state;
+        const { amount, address, message, isModalVisible, denomination, maxColor, maxText, sending } = this.state;
         const {
             t,
             ctaColor,
@@ -456,8 +462,8 @@ class Send extends Component {
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 value={address}
-                                editable={!isSendingTransfer}
-                                selectTextOnFocus={!isSendingTransfer}
+                                editable={!sending}
+                                selectTextOnFocus={!sending}
                             />
                         </View>
                         <View style={styles.fieldContainer}>
@@ -479,8 +485,8 @@ class Send extends Component {
                                 denominationText={denomination}
                                 onDenominationPress={event => this.onDenominationPress()}
                                 value={amount}
-                                editable={!isSendingTransfer}
-                                selectTextOnFocus={!isSendingTransfer}
+                                editable={!sending}
+                                selectTextOnFocus={!sending}
                             />
                             <Text style={[styles.conversionText, textColor]}>
                                 {' '}
@@ -524,8 +530,8 @@ class Send extends Component {
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 value={message}
-                                editable={!isSendingTransfer}
-                                selectTextOnFocus={!isSendingTransfer}
+                                editable={!sending}
+                                selectTextOnFocus={!sending}
                             />
                         </View>
                     </View>
