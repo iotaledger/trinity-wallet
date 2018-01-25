@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        paddingTop: height / 30,
+        lineHeight: height / 14,
         textAlign: 'center',
     },
     checkboxContainer: {
