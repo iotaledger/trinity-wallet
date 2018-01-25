@@ -57,7 +57,8 @@
         "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
         "attachToTangleUnavailable": "Fastsättning på Tangle otillgänglig",
         "attachToTangleUnavailableExplanation": "Fäst på Tangle är otillgänglig på din valda nod.",
-        "wallet": "Plånbok"
+        "wallet": "Plånbok",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
