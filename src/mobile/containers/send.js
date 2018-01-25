@@ -428,11 +428,9 @@ class Send extends Component {
             isGettingSensitiveInfoToMakeTransaction,
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
-        const borderColor = { borderColor: secondaryBackgroundColor };
         const sendBorderColor = { borderColor: ctaBorderColor };
         const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
         const ctaTextColor = { color: secondaryCtaColor };
-        const isNotSending = !isSendingTransfer;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
