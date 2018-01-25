@@ -92,7 +92,7 @@ class Home extends Component {
                 RNExitApp.exitApp();
             }
             this.lastBackPressed = Date.now();
-            ToastAndroid.show('Press back again to close the app', ToastAndroid.SHORT);
+            ToastAndroid.show(t('global:pressBackAgain'), ToastAndroid.SHORT);
             return true;
         });
     }
