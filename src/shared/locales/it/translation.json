@@ -11,6 +11,8 @@
         "transferErrorMessage": "Qualcosa è andato storto nell'invio del trasferimento. Prova di nuovo.",
         "transferSent": "Trasferimento inviato",
         "transferSentMessage": "Il trasferimento è stato inviato al Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Riutilizzo di chiave",
         "keyReuseError": "Non è possibile inviare a un indirizzo che è già stato usato per una spesa.",
         "invalidResponse": "Risposta non valida",
