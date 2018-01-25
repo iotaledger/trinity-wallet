@@ -11,6 +11,8 @@
         "transferErrorMessage": "Terjadi kesalahan saat pengiriman. Silakan coba lagi.",
         "transferSent": "Sudah terkirim",
         "transferSentMessage": "Transfer anda telah dikirim ke Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Kunci kembali digunakan",
         "keyReuseError": "Anda tidak dapat mengirim ke alamat yang telah melakukan pengeluaran.",
         "invalidResponse": "Respon tidak sah",

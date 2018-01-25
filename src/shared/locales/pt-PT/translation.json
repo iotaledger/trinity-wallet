@@ -11,6 +11,8 @@
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transferência concluída",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Reutilização da chave",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Resposta inválida",
