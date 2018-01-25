@@ -6,6 +6,7 @@ import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
 import { translate } from 'react-i18next';
+import { iota } from 'iota-wallet-shared-modules/libs/iota';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -24,10 +25,19 @@ class ViewAddresses extends Component {
         return this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
+    addChecksums(data) {
+        addressesWithChecksums = data.map((item) => iota.utils.addChecksum(item[0], 9, true));
+        for (var i = 0; i < data.length; i++) {
+            data[i][0] = addressesWithChecksums[i];
+        }
+        return data;
+    }
+
     render() {
         const { secondaryBackgroundColor, arrowLeftImagePath, t } = this.props;
         let addressData = Object.entries(this.props.addressData);
         addressData = addressData.reverse();
+        addressData = this.addChecksums(addressData);
         const textColor = { color: secondaryBackgroundColor };
 
         return (
