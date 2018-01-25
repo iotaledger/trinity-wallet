@@ -11,6 +11,8 @@
         "transferErrorMessage": "发送交易信息出错，请重试。",
         "transferSent": "交易已发出",
         "transferSentMessage": "您的交易信息已经发送给Tangle",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "密钥重用",
         "keyReuseError": "您不能发送到发起付款的地址。",
         "invalidResponse": "无效响应",
