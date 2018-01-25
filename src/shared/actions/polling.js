@@ -449,7 +449,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                         dispatch(
                             setPendingTransactionTailsHashesForAccount({
                                 accountName: txAccount,
-                                pendingTxTailsHashes: union(existingPendingTxTailHashes, newTail),
+                                pendingTxTailsHashes: union(existingPendingTxTailHashes, map(newTail, tx => tx.hash)),
                             }),
                         );
                         dispatch(updateTransfers(txAccount, updatedTransfers));
