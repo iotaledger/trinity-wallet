@@ -35,7 +35,7 @@ class Send extends React.PureComponent {
     };
 
     componentWillMount() {
-        if (this.props.deepLinks.amount !== 0) {
+        if (this.props.deepLinks.address !== '') {
             const { amount, message, address } = this.props.deepLinks;
             this.state.amount = amount;
             this.state.address = address;
@@ -43,19 +43,19 @@ class Send extends React.PureComponent {
         }
     }
 
-    onAddressChange = value => {
+    onAddressChange = (value) => {
         this.setState(() => ({
             address: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase(),
         }));
     };
 
-    onAmountChange = value => {
+    onAmountChange = (value) => {
         this.setState(() => ({
             amount: value,
         }));
     };
 
-    onMessageChange = value => {
+    onMessageChange = (value) => {
         this.setState(() => ({
             message: value,
         }));
@@ -183,7 +183,7 @@ class Send extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     settings: state.settings,
     account: state.account,
     seeds: state.seeds,
