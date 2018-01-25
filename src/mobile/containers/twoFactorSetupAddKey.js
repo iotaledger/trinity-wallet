@@ -186,7 +186,7 @@ const mapDispatchToProps = {
     set2FAKey,
     generateAlert,
 };
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
