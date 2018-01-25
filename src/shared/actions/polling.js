@@ -207,7 +207,6 @@ export const fetchChartData = () => {
  *   @method getAccountInfo
  *   @param {string} seed
  *   @param {string} accountName
- *   @param {object} [navigator=null]
  *   @returns {function} dispatch
  **/
 
