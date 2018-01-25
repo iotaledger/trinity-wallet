@@ -97,7 +97,7 @@ class Receive extends Component {
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
         return keychain
             .get()
-            .then((credentials) => {
+            .then(credentials => {
                 this.props.getFromKeychainSuccess('receive', 'addressGeneration');
 
                 if (get(credentials, 'data')) {
@@ -212,11 +212,11 @@ class Receive extends Component {
                     )}
                     <View style={{ flex: 0.05 }} />
                     <CustomTextInput
-                        onRef={(c) => {
+                        onRef={c => {
                             this.messageField = c;
                         }}
                         label={t('message')}
-                        onChangeText={(message) => this.setState({ message })}
+                        onChangeText={message => this.setState({ message })}
                         containerStyle={{ width: width / 1.36 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
@@ -360,7 +360,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     isSyncing: state.tempAccount.isSyncing,
