@@ -32,7 +32,8 @@ class SeedCopyToClipboard extends React.PureComponent {
                                 showNotification({
                                     type: 'success',
                                     title: 'Seed copied to clipboard!',
-                                })}
+                                })
+                            }
                         >
                             {t('copyToClipboard:copyToClipboard')}
                         </Button>
