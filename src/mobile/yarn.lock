@@ -3331,7 +3331,7 @@ iota-wallet-shared-modules@../shared/:
     bluebird "^3.5.1"
     i18next "^10.2.2"
     i18next-browser-languagedetector "^2.1.0"
-    iota.lib.js "^0.4.6"
+    iota.lib.js "https://github.com/rajivshah3/iota.lib.js#rn-hotfix"
     lodash "^4.17.4"
     moment "^2.19.1"
     redux "^3.7.2"
@@ -3339,9 +3339,9 @@ iota-wallet-shared-modules@../shared/:
     redux-thunk "^2.2.0"
     reselect "^3.0.1"
 
-iota.lib.js@^0.4.6:
+iota.lib.js@^0.4.6, "iota.lib.js@https://github.com/rajivshah3/iota.lib.js#rn-hotfix":
   version "0.4.6"
-  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.4.6.tgz#47afdc03d57c7f55d2f58f068db492df6bc6e9bb"
+  resolved "https://github.com/rajivshah3/iota.lib.js#05feb30ad8ab4ab2c40718e83d1e70c6570125ca"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
@@ -5294,6 +5294,10 @@ react-native-drawer-layout@1.3.2:
   resolved "git+https://git@github.com/rajivshah3/react-native-dropdownalert#4e6355398d74b64210acac23cd69a2aace3e1bfd"
   dependencies:
     prop-types "15.5.10"
+
+react-native-exit-app@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-exit-app/-/react-native-exit-app-1.0.0.tgz#a2fbb121d902e6967cd8a365fe8453e5c4bc3172"
 
 react-native-extra-dimensions-android@^0.21.0:
   version "0.21.0"

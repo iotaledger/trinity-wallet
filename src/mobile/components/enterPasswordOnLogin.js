@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard, BackHandler } from 'react-native';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import OnboardingButtons from './onboardingButtons';
 import CustomTextInput from './customTextInput';
+import RNExitApp from 'react-native-exit-app';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -62,6 +63,17 @@ class EnterPasswordOnLogin extends Component {
     state = {
         password: '',
     };
+
+    componentDidMount() {
+        BackHandler.addEventListener('loginBackPress', () => {
+            RNExitApp.exitApp();
+            return true;
+        });
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('loginBackPress');
+    }
 
     handleChangeText = (password) => this.setState({ password });
 
