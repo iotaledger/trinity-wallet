@@ -15,6 +15,8 @@ import { iota } from './iota';
  *   @param {array} finalAddresses
  **/
 const removeUnusedAddresses = (resolve, reject, index, finalAddresses) => {
+    console.log('Final addresses', finalAddresses.length);
+    console.log('Start index', index);
     if (!finalAddresses[index]) {
         resolve(finalAddresses);
         return;
@@ -28,6 +30,7 @@ const removeUnusedAddresses = (resolve, reject, index, finalAddresses) => {
             if (size(hashes)) {
                 resolve(finalAddresses);
             } else {
+                console.log('Final addresses after', finalAddresses.slice(0, index).length);
                 removeUnusedAddresses(resolve, reject, index - 1, finalAddresses.slice(0, index));
             }
         }
