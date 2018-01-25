@@ -11,6 +11,8 @@
         "transferErrorMessage": "送金中に問題が発生しました。もう一度やり直してください。",
         "transferSent": "送金完了",
         "transferSentMessage": "送金情報がTangleに送られました。",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "キーの再使用",
         "keyReuseError": "一度支払いに使われたアドレスに送金することはできません。",
         "invalidResponse": "無効な応答",
