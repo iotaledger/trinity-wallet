@@ -1,11 +1,10 @@
-import React from 'react';
-import { View, Text, TextInput, StyleSheet, Image } from 'react-native';
+import React, { Component } from 'react';
+import { View, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 
 const styles = StyleSheet.create({
     fieldContainer: {
@@ -26,16 +25,16 @@ const styles = StyleSheet.create({
     icon: {
         width: height / 24,
         height: height / 24,
-        position: 'absolute',
-        top: height / 48,
-        left: width / 17,
-        justifyContent: 'flex-end',
     },
     iconContainer: {
         width: height / 24,
         height: height / 48,
         borderBottomLeftRadius: height / 24,
         borderBottomRightRadius: height / 24,
+        justifyContent: 'flex-end',
+        position: 'absolute',
+        top: height / 24,
+        left: width / 17,
     },
     infoText: {
         color: 'white',
@@ -45,15 +44,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     banner: {
-        borderTopLeftRadius: GENERAL.borderRadiusSmall,
-        borderTopRightRadius: GENERAL.borderRadiusSmall,
+        borderTopLeftRadius: 6,
+        borderTopRightRadius: 6,
         height: height / 24,
         alignItems: 'center',
         width: width / 1.36,
     },
 });
 
-class InfoBox extends React.Component {
+class InfoBox extends Component {
     static propTypes = {
         secondaryBackgroundColor: PropTypes.string,
         containerStyle: PropTypes.object,
@@ -81,9 +80,9 @@ class InfoBox extends React.Component {
         return (
             <View style={styles.fieldContainer}>
                 <View style={[styles.banner, bannerBackgroundColor]} />
-                <Image source={infoImagePath} style={styles.icon}>
-                    <View style={[styles.iconContainer, iconContainerBackgroundColor]} />
-                </Image>
+                <View style={[styles.iconContainer, iconContainerBackgroundColor]}>
+                    <Image source={infoImagePath} style={styles.icon} />
+                </View>
                 <View style={[styles.innerContainer, innerContainerBackgroundColor]}>{text}</View>
             </View>
         );

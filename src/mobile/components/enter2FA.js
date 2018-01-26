@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
 import CustomTextInput from '../components/customTextInput';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
-import OnboardingButtons from '../components/onboardingButtons';
+import OnboardingButtons from './onboardingButtons';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -71,7 +70,7 @@ class Enter2FA extends Component {
         token2FA: '',
     };
 
-    handleChange2FAToken = (token2FA) => this.setState({ token2FA });
+    handleChange2FAToken = token2FA => this.setState({ token2FA });
 
     handleDonePress = () => {
         const { token2FA } = this.state;
@@ -105,6 +104,7 @@ class Enter2FA extends Component {
                             onChangeText={this.handleChange2FAToken}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
+                            keyboardType={'numeric'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"

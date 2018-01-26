@@ -7,7 +7,9 @@ import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
 import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
 import { MAX_SEED_LENGTH } from '../libs/util';
+import { prepareTransferArray } from '../libs/transfers';
 import { getSelectedAccount } from '../selectors/account';
+import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
 /* eslint-disable no-console */
 
@@ -179,74 +181,96 @@ export const generateNewAddress = (seed, seedName, addresses) => {
     };
 };
 
-export const sendTransaction = (seed, address, value, message, accountName) => {
+const makeTransfer = (seed, address, value, accountName, transfer, options = null) => (dispatch, getState) => {
+    const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+    const addressData = selectedAccount.addresses;
+    let args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, transfer];
+
+    if (options) {
+        args = [...args, options];
+    }
+
+    return iota.api.sendTransfer(...args, (error, success) => {
+        if (!error) {
+            dispatch(checkForNewAddress(accountName, addressData, success));
+            dispatch(updateAccountInfo(accountName, success, value));
+            if (value === 0) {
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('global:messageSent'),
+                        i18next.t('global:messageSentMessage'),
+                        100000,
+                    ),
+                );
+            } else {
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('global:transferSent'),
+                        i18next.t('global:transferSentMessage'),
+                        100000,
+                    ),
+                );
+            }
+            dispatch(sendTransferSuccess({ address, value }));
+        } else {
+            dispatch(sendTransferError());
+            const alerts = {
+                attachToTangle: [
+                    i18next.t('global:attachToTangleUnavailable'),
+                    i18next.t('global:attachToTangleUnavailableExplanation'),
+                    100000,
+                ],
+                default: [
+                    i18next.t('global:invalidResponse'),
+                    i18next.t('global:invalidResponseSendingTransfer'),
+                    100000,
+                ],
+            };
+
+            const args =
+                error.message.indexOf('attachToTangle is not available') > -1 ? alerts.attachToTangle : alerts.default;
+
+            dispatch(generateAlert('error', ...args));
+        }
+    });
+};
+
+export const prepareTransfer = (seed, address, value, message, accountName) => {
     return (dispatch, getState) => {
         dispatch(sendTransferRequest());
 
-        const verifyAndSend = (filtered, expectedOutputsLength, transfer, inputs) => {
+        const transfer = prepareTransferArray(address, value, message);
+
+        if (value === 0) {
+            return dispatch(makeTransfer(seed, address, value, accountName, transfer));
+        }
+
+        const verifyAndSend = (filtered, expectedOutputsLength, inputs) => {
             if (filtered.length !== expectedOutputsLength) {
                 return dispatch(
                     generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                 );
             }
 
-            const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-            const addressData = selectedAccount.addresses;
-
             const options = { inputs };
 
-            // Send transfer with depth 4 and minWeightMagnitude 14
-            return iota.api.sendTransfer(seed, 4, 14, transfer, options, (error, success) => {
-                if (!error) {
-                    dispatch(checkForNewAddress(accountName, addressData, success));
-                    dispatch(updateAccountInfo(accountName, success, value));
-                    dispatch(
-                        generateAlert(
-                            'success',
-                            i18next.t('global:transferSent'),
-                            i18next.t('global:transferSentMessage'),
-                            100000,
-                        ),
-                    );
-                    dispatch(sendTransferSuccess({ address, value }));
-                } else {
-                    console.log(error);
-                    dispatch(sendTransferError());
-                    const alerts = {
-                        attachToTangle: [
-                            i18next.t('global:attachToTangleUnavailable'),
-                            i18next.t('global:attachToTangleUnavailableExplanation'),
-                            100000,
-                        ],
-                        default: [
-                            i18next.t('global:invalidResponse'),
-                            i18next.t('global:invalidResponseSendingTransfer'),
-                            100000,
-                        ],
-                    };
-
-                    const args =
-                        error.message.indexOf('attachToTangle is not available') > -1
-                            ? alerts.attachToTangle
-                            : alerts.default;
-
-                    dispatch(generateAlert('error', ...args));
-                }
-            });
+            return dispatch(makeTransfer(seed, address, value, accountName, transfer, options));
         };
 
         const unspentInputs = (err, inputs) => {
             if (err && err.message !== 'Not enough balance') {
                 dispatch(sendTransferError());
-                console.log(err);
+
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     100000,
                 );
             }
+
             if (get(inputs, 'allBalance') < value) {
                 dispatch(sendTransferError());
-                console.log(err);
                 return dispatch(
                     generateAlert(
                         'error',
@@ -257,35 +281,23 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                 );
             } else if (get(inputs, 'totalBalance') < value) {
                 dispatch(sendTransferError());
-                console.log(err);
                 return dispatch(
                     generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError'), 20000),
                 );
             }
 
-            const tag = 'IOTA';
-            const transfer = [
-                {
-                    address: address,
-                    value: value,
-                    message: iota.utils.toTrytes(message),
-                    tag: iota.utils.toTrytes(tag),
-                },
-            ];
-
             const outputsToCheck = transfer.map(t => ({ address: iota.utils.noChecksum(t.address) }));
 
             // Check to make sure user is not sending to an already used address
             return filterSpentAddresses(outputsToCheck).then(filtered =>
-                verifyAndSend(filtered, outputsToCheck.length, transfer, get(inputs, 'inputs')),
+                verifyAndSend(filtered, outputsToCheck.length, get(inputs, 'inputs')),
             );
         };
 
         const getStartingIndex = () => {
             const addresses = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
-            const address = Object.keys(addresses).find(address => addresses[address].balance > 0);
-
-            return address ? address.index : 0;
+            const addr = Object.keys(addresses).find(address => addresses[address].balance > 0);
+            return addr ? addresses[addr].index : 0;
         };
 
         return getUnspentInputs(seed, getStartingIndex(), value, null, unspentInputs);
@@ -340,12 +352,12 @@ export const randomiseSeed = randomBytesFn => {
                 });
                 dispatch(setSeed(seed));
             } else {
-                console.log(error);
                 dispatch(
                     generateAlert(
                         'error',
                         i18next.t('global:somethingWentWrong'),
                         i18next.t('global:somethingWentWrongExplanation'),
+                        error,
                     ),
                 );
             }
