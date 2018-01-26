@@ -32,7 +32,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     componentDidMount() {
-        this.timeout = setTimeout(this.onTimerComplete.bind(this), 5000);
+        this.timeout = setTimeout(this.onTimerComplete.bind(this), 3000);
     }
 
     onTimerComplete() {
@@ -107,7 +107,7 @@ class SaveSeedConfirmation extends Component {
                         {this.state.showCheckbox && (
                             <TouchableOpacity
                                 style={styles.checkboxContainer}
-                                onPress={(event) => this.onCheckboxPress()}
+                                onPress={event => this.onCheckboxPress()}
                             >
                                 <Image source={this.state.checkboxImage} style={styles.checkbox} />
                                 <Text style={[styles.checkboxText, textColor]}>
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        paddingTop: height / 30,
+        lineHeight: height / 14,
         textAlign: 'center',
     },
     checkboxContainer: {
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,

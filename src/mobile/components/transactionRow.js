@@ -175,7 +175,7 @@ class TransactionRow extends Component {
                         <Text style={[styles.modalBundleTitle, textColor]}>{t('addresses')}:</Text>
                         <ListView
                             dataSource={ds.cloneWithRows(this.props.rowData)}
-                            renderRow={(rowData) => (
+                            renderRow={rowData => (
                                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 2 }}>
                                     <TouchableOpacity
                                         onPress={() => this.props.copyAddress(rowData.address)}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { AsyncStorage, StyleSheet, View, Text } from 'react-native';
+import { AsyncStorage, StyleSheet, View, Text, BackHandler } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import LottieView from 'lottie-react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
@@ -30,15 +30,22 @@ class InitialLoading extends Component {
     constructor() {
         super();
         console.ignoredYellowBox = ['Setting a timer']; // eslint-disable-line no-console
+        Text.defaultProps.allowFontScaling = false;
     }
 
     componentDidMount() {
         this.animation.play();
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
+
+        BackHandler.addEventListener('backPress', () => {
+            BackHandler.exitApp();
+            return true;
+        });
     }
     componentWillMount() {
         const { language } = this.props;
         i18next.changeLanguage(getLocaleFromLabel(language));
+        BackHandler.removeEventListener('backPress');
     }
     onLoaded() {
         if (!this.props.onboardingComplete) {
@@ -68,7 +75,7 @@ class InitialLoading extends Component {
 
     clearKeychain() {
         if (isIOS) {
-            keychain.clear().catch((err) => console.error(err)); // eslint-disable-line no-console
+            keychain.clear().catch(err => console.error(err)); // eslint-disable-line no-console
         }
     }
 
@@ -84,7 +91,7 @@ class InitialLoading extends Component {
                 <View style={styles.logoContainer}>
                     <View style={styles.animationContainer}>
                         <LottieView
-                            ref={(animation) => {
+                            ref={animation => {
                                 this.animation = animation;
                             }}
                             source={welcomeAnimationPath}
@@ -134,7 +141,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     onboardingComplete: state.account.onboardingComplete,
     backgroundColor: state.settings.theme.backgroundColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,

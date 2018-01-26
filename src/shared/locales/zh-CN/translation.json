@@ -11,6 +11,8 @@
         "transferErrorMessage": "发送交易信息出错，请重试。",
         "transferSent": "交易已发出",
         "transferSentMessage": "您的交易信息已经发送给Tangle",
+        "messageSent": "消息已发送",
+        "messageSentMessage": "您的消息已经发送给Tangle。",
         "keyReuse": "密钥重用",
         "keyReuseError": "您不能发送到发起付款的地址。",
         "invalidResponse": "无效响应",
@@ -55,7 +57,8 @@
         "cannotPerformActionExplanation": "转到高级设置以重置钱包。",
         "attachToTangleUnavailable": "无法连接到Tangle",
         "attachToTangleUnavailableExplanation": "连接到Tangle的功能在选定的节点上无法使用",
-        "wallet": "钱包"
+        "wallet": "钱包",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -103,7 +106,8 @@
         "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
-        "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
+        "seedExplanation":
+            "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
         "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
@@ -186,7 +190,8 @@
     },
     "setPassword": {
         "passwordTooShort": "密码太短",
-        "passwordTooShortExplanation": "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
+        "passwordTooShortExplanation":
+            "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
         "passwordMismatch": "密码不相符",
         "passwordMismatchExplanation": "您输入的密码不匹配。请再试一次。",
         "nowWeNeedTo": "现在我们需要设置一个密码。",
@@ -340,8 +345,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "我已经保存了我的种子",
         "reenter": "现在, 您将被要求重新输入您的种子。",
-        "reenterWarningOne": "如果设备出现故障且您未保存",
-        "reenterWarningTwo": "您的种子, 您将会丢失您的IOTA。"
+        "reenterWarning": "如果您的设备故障而您没有保存你的种子, 你将失去你的IOTA。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",

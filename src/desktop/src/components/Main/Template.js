@@ -43,7 +43,7 @@ export default class Template extends React.Component {
                 <Header />
                 <main>
                     <Sidebar />
-                    {React.Children.map(children, (child) => {
+                    {React.Children.map(children, child => {
                         if (child.type === Content) {
                             return child;
                         }

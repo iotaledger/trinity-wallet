@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, BackHandler, ToastAndroid } from 'react-native';
+import RNExitApp from 'react-native-exit-app';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import UserInactivity from '../components/userInactivity';
@@ -88,22 +89,10 @@ class Home extends Component {
     componentDidMount() {
         BackHandler.addEventListener('homeBackPress', () => {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
-                Navigation.startSingleScreenApp({
-                    screen: {
-                        screen: 'login',
-                        navigatorStyle: {
-                            navBarHidden: true,
-                            navBarTransparent: true,
-                        },
-                        overrideBackPress: true,
-                    },
-                    appStyle: {
-                        orientation: 'portrait',
-                    },
-                });
+                RNExitApp.exitApp();
             }
             this.lastBackPressed = Date.now();
-            ToastAndroid.show('Press back again to log out', ToastAndroid.SHORT);
+            ToastAndroid.show(t('global:pressBackAgain'), ToastAndroid.SHORT);
             return true;
         });
     }
@@ -112,7 +101,7 @@ class Home extends Component {
         BackHandler.removeEventListener('homeBackPress');
     }
 
-    onLoginPress = (password) => {
+    onLoginPress = password => {
         const { t, tempAccount } = this.props;
 
         if (!password) {
@@ -186,7 +175,7 @@ class Home extends Component {
 
         return (
             <UserInactivity
-                ref={(c) => {
+                ref={c => {
                     this.userInactivity = c;
                 }}
                 timeForInactivity={180000}
@@ -204,7 +193,7 @@ class Home extends Component {
                                 </View>
                                 <View style={styles.bottomContainer}>
                                     <Tabs
-                                        onPress={(name) => this.props.changeHomeScreenRoute(name)}
+                                        onPress={name => this.props.changeHomeScreenRoute(name)}
                                         barColor={THEMES.getHSL(barColor)}
                                     >
                                         <Tab
@@ -263,7 +252,7 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     settings: state.settings,
     account: state.account,
