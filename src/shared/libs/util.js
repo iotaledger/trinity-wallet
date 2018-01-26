@@ -13,6 +13,8 @@ export const ADDRESS_LENGTH = 90;
 
 export const VALID_SEED_REGEX = /^[A-Z9]+$/;
 
+export const VALID_ADDRESS_WITH_CHECKSUM_REGEX = /^[A-Z9]{90}$/;
+
 export const formatValue = value => {
     var negative = false;
     if (value < 0) {

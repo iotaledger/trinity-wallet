@@ -36,7 +36,7 @@ let language = {
 };
 
 const initMenu = (app, getWindow) => {
-    const navigate = (path) => {
+    const navigate = path => {
         const mainWindow = getWindow('main');
         if (mainWindow) {
             mainWindow.webContents.send('menu', path);
@@ -165,7 +165,7 @@ const initMenu = (app, getWindow) => {
                                         message: language.logoutConfirm,
                                         buttons: [language.yes, language.no],
                                     },
-                                    (index) => {
+                                    index => {
                                         if (index === 0) {
                                             mainWindow.webContents.send('menu', 'logout');
                                         }
