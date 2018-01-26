@@ -112,7 +112,18 @@ class Receive extends Component {
 
     getOpacity() {
         const { receiveAddress } = this.props;
-        if (receiveAddress === ' ') {
+        if (receiveAddress === ' ' && !isAndroid) {
+            return 0.1;
+        } else if (receiveAddress === ' ' && isAndroid) {
+            return 0.05;
+        }
+
+        return 1;
+    }
+
+    getQrOpacity() {
+        const { receiveAddress } = this.props;
+        if (receiveAddress === ' ' && isAndroid) {
             return 0.1;
         }
 
@@ -149,6 +160,7 @@ class Receive extends Component {
         const generateBorderColor = { borderColor: ctaBorderColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
         const opacity = { opacity: this.getOpacity() };
+        const qrOpacity = { opacity: this.getQrOpacity() };
         const isWhite = secondaryBackgroundColor === 'white';
         const receiveAddressContainerBackgroundColor = isWhite
             ? { backgroundColor: 'rgba(255, 255, 255, 0.05)' }
@@ -163,6 +175,7 @@ class Receive extends Component {
                             value={JSON.stringify({ address: receiveAddress, message })}
                             size={width / 2.8}
                             color={'black'}
+                            backgroundColor={'transparent'}
                         />
                     </View>
                     <View style={{ flex: 0.25 }} />
