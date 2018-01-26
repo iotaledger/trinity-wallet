@@ -1,4 +1,5 @@
-import React from 'react';
+import noop from 'lodash/noop';
+import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
@@ -9,13 +10,75 @@ import GENERAL from '../theme/general';
 const chartWidth = width * 0.98;
 const chartHeight = height * 0.38;
 
+const styles = StyleSheet.create({
+    buttonContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        borderWidth: height / 2000,
+        borderRadius: GENERAL.borderRadiusSmall,
+        paddingHorizontal: width / 40,
+        paddingVertical: height / 110,
+    },
+    button: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
+    topContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: 'transparent',
+        alignItems: 'center',
+        zIndex: 1,
+        paddingVertical: height / 70,
+    },
+    priceContainer: {
+        flex: 8,
+        alignItems: 'center',
+    },
+    chartContainer: {
+        flex: 5,
+        width: width / 1.15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 0,
+        paddingLeft: width / 8,
+    },
+    marketDataContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: 'transparent',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    buttonText: {
+        fontWeight: 'normal',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 35,
+    },
+    iotaPrice: {
+        fontWeight: 'normal',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 24,
+    },
+    marketFigure: {
+        fontWeight: 'normal',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 37.6,
+    },
+    marketFigureTitle: {
+        fontWeight: 'bold',
+    },
+});
+
 const getChartCurrencySymbol = currency => {
     if (currency === 'BTC') {
-        if (isAndroid) {
-            return '฿';
-        } else {
-            return '₿';
-        }
+        return isAndroid ? '฿' : '₿';
     } else if (currency === 'ETH') {
         return 'Ξ';
     } else if (currency === 'EUR') {
@@ -39,7 +102,7 @@ const nextCurrency = {
     ETH: 'USD',
 };
 
-class Chart extends React.Component {
+class Chart extends Component {
     constructor(props) {
         super(props);
 
@@ -51,17 +114,15 @@ class Chart extends React.Component {
     componentWillMount() {
         switch (this.props.marketData.currency) {
             case 'USD':
-                this.setState({ price: this.props.marketData.usdPrice });
-                break;
+                return this.setState({ price: this.props.marketData.usdPrice });
             case 'EUR':
-                this.setState({ price: this.props.marketData.eurPrice });
-                break;
+                return this.setState({ price: this.props.marketData.eurPrice });
             case 'BTC':
-                this.setState({ price: this.props.marketData.btcPrice });
-                break;
+                return this.setState({ price: this.props.marketData.btcPrice });
             case 'ETH':
-                this.setState({ price: this.props.marketData.ethPrice });
-                break;
+                return this.setState({ price: this.props.marketData.ethPrice });
+            default:
+                return noop;
         }
     }
 
@@ -144,7 +205,7 @@ class Chart extends React.Component {
                 <View style={styles.topContainer}>
                     <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
-                            onPress={event => this.changeCurrency()}
+                            onPress={() => this.changeCurrency()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
@@ -160,7 +221,7 @@ class Chart extends React.Component {
                     </View>
                     <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
-                            onPress={event => this.changeTimeframe()}
+                            onPress={() => this.changeTimeframe()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
@@ -241,70 +302,4 @@ class Chart extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    buttonContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        borderWidth: height / 2000,
-        borderRadius: GENERAL.borderRadiusSmall,
-        paddingHorizontal: width / 40,
-        paddingVertical: height / 110,
-    },
-    button: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-    },
-    topContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        backgroundColor: 'transparent',
-        alignItems: 'center',
-        zIndex: 1,
-        paddingVertical: height / 70,
-    },
-    priceContainer: {
-        flex: 8,
-        alignItems: 'center',
-    },
-    chartContainer: {
-        flex: 5,
-        width: width / 1.15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: 0,
-        paddingLeft: width / 8,
-    },
-    marketDataContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        backgroundColor: 'transparent',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    buttonText: {
-        fontWeight: 'normal',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 35,
-    },
-    iotaPrice: {
-        fontWeight: 'normal',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 24,
-    },
-    marketFigure: {
-        fontWeight: 'normal',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 37.6,
-    },
-    marketFigureTitle: {
-        fontWeight: 'bold',
-    },
-});
-
-module.exports = Chart;
+export default Chart;

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { isAndroid } from '../util/device';
-import COLORS from '../theme/Colors';
 import BorderShadow from './borderShadow';
 
 import { width, height } from '../util/dimensions';
