@@ -189,13 +189,13 @@ class Receive extends Component {
                                 ]}
                             >
                                 <Text style={[styles.receiveAddressText, textColor]}>
-                                    {receiveAddress.substring(0, 27)}
+                                    {receiveAddress.substring(0, 30)}
                                 </Text>
                                 <Text style={[styles.receiveAddressText, textColor]}>
-                                    {receiveAddress.substring(27, 54)}
+                                    {receiveAddress.substring(30, 60)}
                                 </Text>
                                 <Text style={[styles.receiveAddressText, textColor]}>
-                                    {receiveAddress.substring(54, 81)}
+                                    {receiveAddress.substring(60, 90)}
                                 </Text>
                             </View>
                         </TouchableOpacity>
@@ -214,7 +214,7 @@ class Receive extends Component {
                         }}
                         label={t('message')}
                         onChangeText={message => this.setState({ message })}
-                        containerStyle={{ width: width / 1.36 }}
+                        containerStyle={{ width: width / 1.28 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
                         returnKeyType="done"
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
         paddingTop: width / 30,
         paddingHorizontal: width / 30,
         paddingBottom: isAndroid ? width / 22 : width / 30,
-        width: width / 1.36,
+        width: width / 1.28,
     },
     activityIndicator: {
         flex: 1,
