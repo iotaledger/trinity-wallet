@@ -57,7 +57,8 @@
         "cannotPerformActionExplanation": "转到高级设置以重置钱包。",
         "attachToTangleUnavailable": "无法连接到Tangle",
         "attachToTangleUnavailableExplanation": "连接到Tangle的功能在选定的节点上无法使用",
-        "wallet": "钱包"
+        "wallet": "钱包",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
