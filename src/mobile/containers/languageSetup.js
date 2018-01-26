@@ -121,7 +121,7 @@ class LanguageSetup extends Component {
                                 saveSelection={language => this.clickDropdownItem(language)}
                             />
                         </View>
-                        <View style={styles.bottomContainer}>
+                        <View style={styles.bottomContainer} testID="next">
                             <TouchableOpacity onPress={() => this.onNextPress()}>
                                 <View style={styles.nextButton}>
                                     <Text style={styles.nextText}>{t('global:next')}</Text>
