@@ -471,6 +471,9 @@ class Settings extends Component {
                         generateAlert: this.props.generateAlert,
                     },
                 },
+                appStyle: {
+                    orientation: 'portrait',
+                },
             });
         } else {
             Navigation.startSingleScreenApp({
@@ -482,6 +485,9 @@ class Settings extends Component {
                         screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                         generateAlert: this.props.generateAlert,
                     },
+                },
+                appStyle: {
+                    orientation: 'portrait',
                 },
             });
         }
