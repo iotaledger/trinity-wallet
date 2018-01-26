@@ -10,7 +10,7 @@ const actions = {
     getFullAccountInfo,
 };
 
-const dispatch = (action) => {
+const dispatch = action => {
     self.postMessage({
         type: 'dispatch',
         action,

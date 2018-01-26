@@ -38,7 +38,7 @@ class Alerts extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     alerts: state.alerts,
 });
 

@@ -25,7 +25,7 @@ export default class Modal extends React.Component {
         window.removeEventListener('keydown', this.onKeyDown, false);
     }
 
-    onKeyDown = (e) => {
+    onKeyDown = e => {
         if (e.which === 27 && this.props.isOpen) {
             this.close();
         }
@@ -43,7 +43,7 @@ export default class Modal extends React.Component {
         }
     };
 
-    onStateChange = (newState) => {
+    onStateChange = newState => {
         if (typeof this.props.onStateChange === 'function') {
             return this.props.onStateChange(newState);
         }
@@ -63,7 +63,7 @@ export default class Modal extends React.Component {
 
         return ReactDOM.createPortal(
             <div
-                ref={(node) => {
+                ref={node => {
                     this.backdropEl = node;
                 }}
                 className={classNames(css.backdrop, css[className], isConfirm ? css.confirm : null)}

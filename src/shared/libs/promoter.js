@@ -5,7 +5,7 @@ import transform from 'lodash/transform';
 import { isMinutesAgo, convertUnixTimeToJSDate, isValid } from '../libs/dateUtils';
 import { iota } from '../libs/iota';
 
-export const isAboveMaxDepth = (timestamp) => {
+export const isAboveMaxDepth = timestamp => {
     return timestamp < Date.now() && Date.now() - parseInt(timestamp) < 11 * 60 * 1000;
 };
 
@@ -16,7 +16,7 @@ export const getFirstConsistentTail = (tails, idx) => {
 
     return iota.api
         .isPromotable(get(tails[idx], 'hash'))
-        .then((state) => {
+        .then(state => {
             if (state && isAboveMaxDepth(get(tails[idx], 'attachmentTimestamp'))) {
                 return tails[idx];
             }
@@ -27,7 +27,7 @@ export const getFirstConsistentTail = (tails, idx) => {
         .catch(() => false);
 };
 
-export const isWithinADayAndTenMinutesAgo = (timestamp) => {
+export const isWithinADayAndTenMinutesAgo = timestamp => {
     const dateObject = convertUnixTimeToJSDate(timestamp);
 
     if (isValid(dateObject.format())) {
@@ -40,7 +40,7 @@ export const isWithinADayAndTenMinutesAgo = (timestamp) => {
     );
 };
 
-export const isWithinADay = (timestamp) => {
+export const isWithinADay = timestamp => {
     const dateObject = convertUnixTimeToJSDate(timestamp);
 
     if (isValid(dateObject.format())) {
@@ -50,7 +50,7 @@ export const isWithinADay = (timestamp) => {
     return !isMinutesAgo(convertUnixTimeToJSDate(timestamp / 1000), 1440);
 };
 
-export const isTenMinutesAgo = (timestamp) => {
+export const isTenMinutesAgo = timestamp => {
     const dateObject = convertUnixTimeToJSDate(timestamp);
 
     if (isValid(dateObject.format())) {
@@ -60,7 +60,7 @@ export const isTenMinutesAgo = (timestamp) => {
     return isMinutesAgo(convertUnixTimeToJSDate(timestamp / 1000), 10);
 };
 
-export const isADayAgo = (timestamp) => {
+export const isADayAgo = timestamp => {
     const dateObject = convertUnixTimeToJSDate(timestamp);
 
     if (isValid(dateObject.format())) {
@@ -75,7 +75,7 @@ export const getBundleTailsForSentTransfers = (transfers, addresses, account) =>
     const sentTransfers = get(categorizedTransfers, 'sent');
 
     const grabTails = (payload, val) => {
-        each(val, (v) => {
+        each(val, v => {
             const attachmentTimestamp = get(v, 'attachmentTimestamp');
 
             // Pick all those transaction that were replayed within twenty-four hours
