@@ -219,6 +219,8 @@ class ThemeCustomisation extends Component {
             secondaryBackgroundColor,
             secondaryCtaColor,
             ctaBorderColor,
+            barColor,
+            secondaryBarColor,
         } = this.state.theme;
         const { arrowLeftImagePath, tickImagePath, t } = this.props;
         const chevronDownImagePath =
@@ -236,7 +238,7 @@ class ThemeCustomisation extends Component {
                     <View style={styles.topContainer}>
                         <View style={{ zIndex: 2 }}>
                             <Dropdown
-                                onRef={(c) => {
+                                onRef={c => {
                                     this.dropdown = c;
                                 }}
                                 title={t('theme')}
@@ -245,7 +247,7 @@ class ThemeCustomisation extends Component {
                                 shadow
                                 defaultOption={themeName}
                                 options={themes}
-                                saveSelection={(t) => {
+                                saveSelection={t => {
                                     const newTHEMES = cloneDeep(THEMES);
                                     let newTheme = newTHEMES.themes[t];
                                     if (t === 'Custom' && this.props.themeName === 'Custom') {
@@ -280,12 +282,12 @@ class ThemeCustomisation extends Component {
                                 style={[
                                     styles.frameBar,
                                     {
-                                        backgroundColor: THEMES.getHSL(backgroundColor),
+                                        backgroundColor: THEMES.getHSL(barColor),
                                         shadowColor: 'black',
                                     },
                                 ]}
                             >
-                                <Text style={[styles.frameBarTitle, { color: secondaryBackgroundColor }]}>
+                                <Text style={[styles.frameBarTitle, { color: secondaryBarColor }]}>
                                     {t('global:mainWallet')}
                                 </Text>
                                 <Image style={styles.chevron} source={chevronDownImagePath} />

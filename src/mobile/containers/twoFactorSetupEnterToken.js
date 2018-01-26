@@ -140,8 +140,7 @@ class TwoFactorSetupEnterToken extends Component {
                         <Text style={[styles.subHeaderText, textColor]}>Enter the token from your 2FA app</Text>
                         <CustomTextInput
                             label="Token"
-                            keyboardType={'numeric'}
-                            onChangeText={(code) => this.setState({ code })}
+                            onChangeText={code => this.setState({ code })}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
@@ -171,7 +170,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
