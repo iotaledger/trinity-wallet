@@ -33,7 +33,7 @@ class Login extends React.Component {
         showError: PropTypes.func.isRequired,
         clearTempData: PropTypes.func.isRequired,
         clearSeeds: PropTypes.func.isRequired,
-        sendAmount: PropTypes.func.isRequired,
+        deepLinks: PropTypes.object.isRequired
     };
 
     state = {
@@ -48,22 +48,22 @@ class Login extends React.Component {
         this.props.clearTempData();
         this.props.clearSeeds();
         Electron.updateMenu('authorised', false);
-        let regexAddress = /\:\/\/(.*?)\/\?/;
-        let regexAmount = /amount=(.*?)\&/;
-        let regexMessage = /message=([^\n\r]*)/;
-        ipcRenderer.on('url-params', (e, data) => {
-            let address = data.match(regexAddress);
-            if (address !== null) {
-                let amount = data.match(regexAmount);
-                let message = data.match(regexMessage);
-                this.setState({
-                    address: address[1],
-                    amount: amount[1],
-                    message: message[1],
-                });
-                this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
-            }
-        });
+        // let regexAddress = /\:\/\/(.*?)\/\?/;
+        // let regexAmount = /amount=(.*?)\&/;
+        // let regexMessage = /message=([^\n\r]*)/;
+        // ipcRenderer.on('url-params', (e, data) => {
+        //     let address = data.match(regexAddress);
+        //     if (address !== null) {
+        //         let amount = data.match(regexAmount);
+        //         let message = data.match(regexMessage);
+        //         this.setState({
+        //             address: address[1],
+        //             amount: amount[1],
+        //             message: message[1],
+        //         });
+        //         this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
+        //     }
+        // });
     }
 
     componentWillReceiveProps(newProps) {
@@ -72,11 +72,11 @@ class Login extends React.Component {
             this.setState({
                 loading: false,
             });
-            if (!this.state.amount) {
+            if (this.props.deepLinks.address === '') {
                 Electron.updateMenu('authorised', true);
                 this.props.history.push('/balance');
             } else {
-                if (this.state.address.length === ADDRESS_LENGTH) {
+                if (this.props.deepLinks.address.length === ADDRESS_LENGTH) {
                     this.props.history.push('/send');
                 } else {
                     const { showError } = this.props;
@@ -168,6 +168,7 @@ class Login extends React.Component {
 const mapStateToProps = state => ({
     account: state.account,
     tempAccount: state.tempAccount,
+    deepLinks: state.deepLinks
 });
 
 const mapDispatchToProps = {
