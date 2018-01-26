@@ -37,8 +37,9 @@ Seed generation is performed during new seed set up. The user can generate a com
 Trinity seed generation follows a simple algorithm:
 ```
 do {
-randomByte = getRandomByte() // randomByte will be from 0 to 255 } while (randomByte > 243) // Keep generating until the number
- → is 243 or less charIndex = randomByte % 27
+randomByte = getRandomByte() // randomByte will be from 0 to 255
+} while (randomByte > 243) // Keep generating until the number is 243 or less
+charIndex = randomByte % 27
  ```
 
  For an IOTA seed, it is necessary to generate a set of 27 possible characters. A simple way of producing the necessary characters is to return the remainder from dividing a random byte of data's numeric value (0-255) by 27. And then using this to index the string of possible characters: `ABCDEFGHIJKLMNOPQRSTUVWXYZ9`. By using a number range evenly divisible by the divisor it is possible to avoid bias i.e. restricting the range from 0 to 243.
