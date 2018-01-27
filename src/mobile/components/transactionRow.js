@@ -7,6 +7,7 @@ import { convertFromTrytes, isReceivedTransfer, getRelevantTransfer } from 'iota
 import Modal from 'react-native-modal';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { translate } from 'react-i18next';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -108,6 +109,7 @@ class TransactionRow extends Component {
         addresses: PropTypes.array.isRequired,
         copyBundleHash: PropTypes.func.isRequired,
         copyAddress: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -122,7 +124,7 @@ class TransactionRow extends Component {
 
     hideModal = () => this.setState({ isModalVisible: false });
 
-    renderModalContent = (transfer, titleColour, isReceived, hasPersistence, textColor, borderColor) => (
+    renderModalContent = (transfer, titleColour, isReceived, hasPersistence, textColor, borderColor, t) => (
         <TouchableOpacity style={{ width, height, alignItems: 'center' }} onPress={() => this.hideModal()}>
             <View style={{ flex: 1, justifyContent: 'center', width: width / 1.15 }}>
                 <View style={[styles.modalContent, borderColor, { backgroundColor: this.props.backgroundColor }]}>
@@ -137,8 +139,8 @@ class TransactionRow extends Component {
                                     color: titleColour,
                                 }}
                             >
-                                {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(transfer.value), 1)}{' '}
-                                {formatUnit(transfer.value)}
+                                {isReceived ? t('home:receive') : t('global:send')}{' '}
+                                {round(formatValue(transfer.value), 1)} {formatUnit(transfer.value)}
                             </Text>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Text
@@ -149,14 +151,16 @@ class TransactionRow extends Component {
                                         !hasPersistence && { color: this.props.pendingColor },
                                     ]}
                                 >
-                                    {hasPersistence ? (isReceived ? 'Received' : 'Sent') : 'Pending'}
+                                    {hasPersistence
+                                        ? isReceived ? t('global:received') : t('global:sent')
+                                        : t('global:pending')}
                                 </Text>
                                 <Text style={[styles.modalTimestamp, textColor]}>
                                     {formatModalTime(convertUnixTimeToJSDate(transfer.timestamp))}
                                 </Text>
                             </View>
                         </View>
-                        <Text style={[styles.modalBundleTitle, textColor]}>Bundle Hash:</Text>
+                        <Text style={[styles.modalBundleTitle, textColor]}>{t('bundleHash')}:</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <TouchableOpacity
                                 onPress={() => this.props.copyBundleHash(transfer.bundle)}
@@ -168,7 +172,7 @@ class TransactionRow extends Component {
                                 <View style={{ flex: 1 }} />
                             </TouchableOpacity>
                         </View>
-                        <Text style={[styles.modalBundleTitle, textColor]}>Addresses:</Text>
+                        <Text style={[styles.modalBundleTitle, textColor]}>{t('addresses')}:</Text>
                         <ListView
                             dataSource={ds.cloneWithRows(this.props.rowData)}
                             renderRow={rowData => (
@@ -192,7 +196,7 @@ class TransactionRow extends Component {
                             renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                             enableEmptySections
                         />
-                        <Text style={[styles.modalBundleTitle, textColor]}>Message:</Text>
+                        <Text style={[styles.modalBundleTitle, textColor]}>{t('send:message')}:</Text>
                         <Text style={[styles.hash, textColor]}>
                             {convertFromTrytes(transfer.signatureMessageFragment)}
                         </Text>
@@ -214,6 +218,7 @@ class TransactionRow extends Component {
             pendingColor,
             addresses,
             rowData,
+            t,
         } = this.props;
         const isReceived = isReceivedTransfer(rowData, addresses);
         const transfer = getRelevantTransfer(rowData, addresses);
@@ -250,8 +255,8 @@ class TransactionRow extends Component {
                                     color: titleColour,
                                 }}
                             >
-                                {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(transfer.value), 1)}{' '}
-                                {formatUnit(transfer.value)}
+                                {isReceived ? t('home:receive') : t('global:send')}{' '}
+                                {round(formatValue(transfer.value), 1)} {formatUnit(transfer.value)}
                             </Text>
                             <Text
                                 style={[
@@ -261,7 +266,9 @@ class TransactionRow extends Component {
                                     !hasPersistence && { color: pendingColor },
                                 ]}
                             >
-                                {hasPersistence ? (isReceived ? 'Received' : 'Sent') : 'Pending'}
+                                {hasPersistence
+                                    ? isReceived ? t('global:received') : t('global:sent')
+                                    : t('global:pending')}
                             </Text>
                         </View>
                         <View
@@ -280,7 +287,7 @@ class TransactionRow extends Component {
                                     alignItems: 'center',
                                 }}
                             >
-                                <Text style={[styles.messageTitle, textColor]}>Message:</Text>
+                                <Text style={[styles.messageTitle, textColor]}>{t('send:message')}:</Text>
                                 <Text style={[styles.message, textColor]} numberOfLines={1}>
                                     {convertFromTrytes(transfer.signatureMessageFragment)}
                                 </Text>
@@ -306,11 +313,19 @@ class TransactionRow extends Component {
                     isVisible={this.state.isModalVisible}
                     onBackButtonPress={() => this.hideModal()}
                 >
-                    {this.renderModalContent(transfer, titleColour, isReceived, hasPersistence, textColor, borderColor)}
+                    {this.renderModalContent(
+                        transfer,
+                        titleColour,
+                        isReceived,
+                        hasPersistence,
+                        textColor,
+                        borderColor,
+                        t,
+                    )}
                 </Modal>
             </TouchableOpacity>
         );
     }
 }
 
-export default TransactionRow;
+export default translate(['global', 'send', 'home'])(TransactionRow);
