@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text, Image, StatusBar } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons';
 import COLORS from '../theme/Colors';
@@ -59,13 +59,19 @@ class WalletSetup extends Component {
                         text={
                             <View>
                                 <Text style={styles.infoText}>{t('seedExplanation')}</Text>
-                                <Text style={styles.infoText}>
-                                    <Text style={styles.infoTextLight}>{t('explanation1')}</Text>
-                                    <Text style={styles.infoTextRegular}>{t('explanation2')}</Text>
-                                    <Text style={styles.infoTextLight}>{t('explanation3')}</Text>
-                                    <Text style={styles.infoTextRegular}>{t('explanation4')}</Text>
-                                    <Text style={styles.infoTextLight}>{t('explanation5')}</Text>
-                                </Text>
+                                <Trans i18nKey="walletSetup:explanation">
+                                    <Text style={styles.infoText}>
+                                        <Text style={styles.infoTextLight}>
+                                            You can use it to access your funds from
+                                        </Text>
+                                        <Text style={styles.infoTextRegular}> any wallet</Text>
+                                        <Text style={styles.infoTextLight}>, on</Text>
+                                        <Text style={styles.infoTextRegular}> any device</Text>
+                                        <Text style={styles.infoTextLight}>
+                                            . But if you lose your seed, you also lose your IOTA.
+                                        </Text>
+                                    </Text>
+                                </Trans>
                                 <Text style={styles.infoText}>{t('keepSafe')}</Text>
                             </View>
                         }
