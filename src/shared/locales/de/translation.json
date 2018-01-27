@@ -104,7 +104,7 @@
     "enterSeed": {
         "invalidCharacters": "Seed enthält ungültige Zeichen",
         "invalidCharactersExplanation": "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed enthält ungültige Zeichen. Bitte versuche es erneut.",
-        "seedTooShort": "Seed ist zu kurz",
+        "seedTooShort": "Der Seed ist zu kurz",
         "seedTooShortExplanation": "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "seedExplanation": "Seeds sollten {{maxLength}} Zeichen lang sein und aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als {{maxLength}} Zeichen ist.",
         "neverShare": "TEILE DEINEN SEED MIT NIEMANDEM"
@@ -164,7 +164,7 @@
     },
     "seedReentry": {
         "incorrectSeed": "Ungültiger Seed",
-        "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch mal.",
+        "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch einmal.",
         "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, dass du deinen Seed gesichert hast.",
         "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und sichere ihn."
     },
@@ -219,7 +219,7 @@
         "reset": "Wallet zurücksetzen",
         "syncingComplete": "Synchronisierung abgeschlossen",
         "syncingCompleteExplanation": "Dein Konto wurde erfolgreich synchronisiert.",
-        "nicknameChanged": "Konto-Name geändert",
+        "nicknameChanged": "Kontoname geändert",
         "nicknameChangedExplanation": "Der Name des Kontos wurde geändert.",
         "accountDeleted": "Konto gelöscht",
         "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet gelöscht.",
