@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
@@ -39,8 +39,11 @@ class WriteSeedDown extends Component {
                         <Text style={styles.infoTextNormal}>
                             {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
                         </Text>
-                        <Text style={styles.infoTextBold}>{` ${t('writeSeedDown:tripleCheck')} `}</Text>
-                        <Text style={styles.infoTextNormal}>{t('writeSeedDown:thatTheyAreCorrect')}</Text>
+                        <Trans i18nKey="writeDownYourSeed">
+                            <Text style={styles.infoTextNormal}> Write down your seed and checksum and </Text>
+                            <Text style={styles.infoTextBold}>triple check</Text>
+                            <Text style={styles.infoTextNormal}> that they are correct.</Text>
+                        </Trans>
                     </Text>
                     <Seedbox
                         secondaryBackgroundColor={secondaryBackgroundColor}
