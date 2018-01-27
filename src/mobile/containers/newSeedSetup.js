@@ -167,7 +167,11 @@ class NewSeedSetup extends Component {
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
                     <View style={{ flex: 150 }} />
-                    <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
+                    <TouchableOpacity
+                        onPress={event => this.onGeneratePress()}
+                        style={{ paddingTop: height / 30 }}
+                        testID="newSeedSetup-newSeed"
+                    >
                         <View
                             style={[
                                 styles.generateButton,
@@ -231,6 +235,8 @@ class NewSeedSetup extends Component {
                         onRightButtonPress={() => this.onNextPress()}
                         leftText={t('global:back')}
                         rightText={t('global:next')}
+                        leftButtonTestID="newSeedSetup-back"
+                        rightButtonTestID="newSeedSetup-next"
                     />
                 </View>
                 <StatefulDropdownAlert />

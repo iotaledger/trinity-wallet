@@ -37,7 +37,7 @@ class Welcome extends Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onNextPress()}>
+                    <TouchableOpacity onPress={() => this.onNextPress()} testID="welcome-next">
                         <View style={styles.nextButton}>
                             <Text style={styles.nextText}>{t('global:next')}</Text>
                         </View>
