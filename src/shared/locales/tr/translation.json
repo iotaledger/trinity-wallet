@@ -58,7 +58,8 @@
         "cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin.",
         "attachToTangleUnavailable": "Tangle kullanılmayacak şekilde ekle",
         "attachToTangleUnavailableExplanation": "Seçilen düğümünüzde Tangle eklentisi mevcut değil.",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",

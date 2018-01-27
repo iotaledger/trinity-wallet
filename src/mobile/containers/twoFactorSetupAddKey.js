@@ -121,6 +121,9 @@ class TwoFactorSetupAddKey extends Component {
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
             },
+            appStyle: {
+                orientation: 'portrait',
+            },
         });
     }
 
@@ -135,6 +138,9 @@ class TwoFactorSetupAddKey extends Component {
                 screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
+            appStyle: {
+                orientation: 'portrait',
+            },
         });
     }
 
