@@ -2,43 +2,43 @@
 
 # A list of devices you want to take the screenshots from
  devices([
-#   "iPhone 6",
+   "iPhone 6",
 #   "iPhone 6 Plus",
 #   "iPhone 5s",
 #   "iPhone 7",
-   "iPhone X"
+#   "iPhone X"
  ])
 
 languages([
    "en-UK",
-#   "ar_SA",
-#   "da_DK",
-#   "de-DE",
-#   "el_GR",
-#   "es_ES",
-#   "es_MX",
-#   "fi_FI",
-#   "fr_FR",
-#   "he_IL",
-#   "hi_IN",
-#   "id_ID",
-#   "it-IT",
-#   "ja_JP",
-#   "ko_KR",
-#   "lv_LV",
-#   "nl_NL",
-#   "nb_NO",
-#   "pl_PL",
-#   "pt_PT",
-#   "pt_BR",
-#   "ro_RO",
-#   "ru_RU",
-#   "sl_SI",
-#   "sv_SE",
-#   "tr_TR",
-#   "ur_PK",
+   "ar_SA",
+   "da_DK",
+   "de-DE",
+   "el_GR",
+   "es_ES",
+   "es_MX",
+   "fi_FI",
+   "fr_FR",
+   "he_IL",
+   "hi_IN",
+   "id_ID",
+   "it-IT",
+   "ja_JP",
+   "ko_KR",
+   "lv_LV",
+   "nl_NL",
+   "nb_NO",
+   "pl_PL",
+   "pt_PT",
+   "pt_BR",
+   "ro_RO",
+   "ru_RU",
+   "sl_SI",
+   "sv_SE",
+   "tr_TR",
+   "ur_PK",
    "zh_Hans_CN",
-#   "zh_Hant_TW"
+   "zh_Hant_TW"
    
  ])
 
