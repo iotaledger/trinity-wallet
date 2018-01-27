@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import PropTypes from 'prop-types';
@@ -114,11 +114,13 @@ class SaveYourSeed extends Component {
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
-                    <Text style={[styles.infoText, textColor]}>
-                        <Text style={styles.infoTextNormal}>{t('mustSaveYourSeed')}</Text>
-                        <Text style={styles.infoTextBold}>{t('atLeastOne')}</Text>
-                        <Text style={styles.infoTextNormal}>{t('ofTheOptions')}</Text>
-                    </Text>
+                    <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
+                        <Text style={[styles.infoText, textColor]}>
+                            <Text style={styles.infoTextNormal}>You must save your seed with </Text>
+                            <Text style={styles.infoTextBold}>at least one</Text>
+                            <Text style={styles.infoTextNormal}> of the options listed below.</Text>
+                        </Text>
+                    </Trans>
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ paddingTop: height / 20 }}>
