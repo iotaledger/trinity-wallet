@@ -33,7 +33,7 @@ import {
     getPendingTxTailsHashes,
     formatTransfers,
     markTransfersConfirmed,
-    getTotalBalance,
+    getTotalBalanceWithLatestAddressData,
     getLatestAddresses,
     getTransactionHashes,
     getTransactionsObjects,
@@ -266,12 +266,13 @@ export const getAccountInfo = (seed, accountName) => {
             .then(addressData => {
                 payload = merge({}, payload, { addresses: addressData });
 
-                return getTotalBalance(Object.keys(payload.addresses));
+                return getTotalBalanceWithLatestAddressData(payload.addresses);
             })
-            .then(balance => {
-                payload = assign({}, payload, { balance });
+            .then(({ balance, addressData }) => {
+                payload = merge({}, payload, { balance, addresses: addressData });
 
                 const unspentAddresses = getUnspentAddresses(payload.addresses);
+
                 if (isEmpty(unspentAddresses)) {
                     throw new Error('intentionally break chain');
                 }
@@ -448,7 +449,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                         dispatch(
                             setPendingTransactionTailsHashesForAccount({
                                 accountName: txAccount,
-                                pendingTxTailsHashes: union(existingPendingTxTailHashes, newTail),
+                                pendingTxTailsHashes: union(existingPendingTxTailHashes, map(newTail, tx => tx.hash)),
                             }),
                         );
                         dispatch(updateTransfers(txAccount, updatedTransfers));
