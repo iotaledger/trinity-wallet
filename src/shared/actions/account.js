@@ -19,7 +19,7 @@ import {
     formatFullAddressData,
     calculateBalance,
     getUnspentAddresses,
-    getTotalBalance,
+    getTotalBalanceWithLatestAddressData,
     getLatestAddresses,
     getTransactionHashes,
     getTransactionsObjects,
@@ -398,10 +398,10 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             .then(addressData => {
                 payload = merge({}, payload, { addresses: addressData });
 
-                return getTotalBalance(Object.keys(payload.addresses));
+                return getTotalBalanceWithLatestAddressData(payload.addresses);
             })
-            .then(balance => {
-                payload = assign({}, payload, { balance });
+            .then(({ balance, addressData }) => {
+                payload = merge({}, payload, { balance, addresses: addressData });
 
                 const unspentAddresses = getUnspentAddresses(payload.addresses);
 
