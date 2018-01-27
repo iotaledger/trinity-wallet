@@ -48,22 +48,6 @@ class Login extends React.Component {
         this.props.clearTempData();
         this.props.clearSeeds();
         Electron.updateMenu('authorised', false);
-        // let regexAddress = /\:\/\/(.*?)\/\?/;
-        // let regexAmount = /amount=(.*?)\&/;
-        // let regexMessage = /message=([^\n\r]*)/;
-        // ipcRenderer.on('url-params', (e, data) => {
-        //     let address = data.match(regexAddress);
-        //     if (address !== null) {
-        //         let amount = data.match(regexAmount);
-        //         let message = data.match(regexMessage);
-        //         this.setState({
-        //             address: address[1],
-        //             amount: amount[1],
-        //             message: message[1],
-        //         });
-        //         this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
-        //     }
-        // });
     }
 
     componentWillReceiveProps(newProps) {
