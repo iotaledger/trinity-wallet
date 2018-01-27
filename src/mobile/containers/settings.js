@@ -181,6 +181,7 @@ class Settings extends Component {
         secondaryCtaColor: PropTypes.string.isRequired,
         setLanguage: PropTypes.func.isRequired,
         language: PropTypes.string.isRequired,
+        secondaryBarColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -213,6 +214,7 @@ class Settings extends Component {
             ctaBorderColor,
             secondaryCtaColor,
             language,
+            secondaryBarColor,
         } = this.props;
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -340,6 +342,7 @@ class Settings extends Component {
                 arrowLeftImagePath,
                 ctaBorderColor: ctaBorderColor,
                 secondaryCtaColor: secondaryCtaColor,
+                generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
             },
             nodeSelection: {
                 setNode: selectedNode => {
@@ -419,12 +422,14 @@ class Settings extends Component {
                 backPress: () => this.props.setSetting('mainSettings'),
                 onAdvancedPress: () => this.props.setSetting('advancedThemeCustomisation'),
                 backgroundColor: backgroundColor,
+                barColor: barColor,
                 theme: this.props.theme,
                 themeName: this.props.themeName,
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 tickImagePath,
                 arrowLeftImagePath,
+                secondaryBarColor,
             },
             advancedThemeCustomisation: {
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
@@ -466,6 +471,9 @@ class Settings extends Component {
                         generateAlert: this.props.generateAlert,
                     },
                 },
+                appStyle: {
+                    orientation: 'portrait',
+                },
             });
         } else {
             Navigation.startSingleScreenApp({
@@ -477,6 +485,9 @@ class Settings extends Component {
                         screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                         generateAlert: this.props.generateAlert,
                     },
+                },
+                appStyle: {
+                    orientation: 'portrait',
                 },
             });
         }
@@ -836,6 +847,7 @@ const mapStateToProps = state => ({
     hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
     language: state.settings.language,
+    secondaryBarColor: state.settings.theme.secondaryBarColor,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(
