@@ -102,6 +102,7 @@ class LanguageSetup extends Component {
                         this.dropdown.closeDropdown();
                     }
                 }}
+                accessible={false}
             >
                 <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
                     <View style={styles.container}>
@@ -121,8 +122,8 @@ class LanguageSetup extends Component {
                                 saveSelection={language => this.clickDropdownItem(language)}
                             />
                         </View>
-                        <View style={styles.bottomContainer} testID="next">
-                            <TouchableOpacity onPress={() => this.onNextPress()}>
+                        <View style={styles.bottomContainer}>
+                            <TouchableOpacity onPress={() => this.onNextPress()} testID="languageSetup-next">
                                 <View style={styles.nextButton}>
                                     <Text style={styles.nextText}>{t('global:next')}</Text>
                                 </View>

@@ -21,6 +21,8 @@ import InfoBox from '../components/infoBox';
 
 const MIN_PASSWORD_LENGTH = 12;
 
+console.ignoredYellowBox = true;
+
 class SetPassword extends Component {
     static propTypes = {
         tempAccount: PropTypes.object.isRequired,
@@ -136,7 +138,7 @@ class SetPassword extends Component {
 
         return (
             <View>
-                <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss}>
+                <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -163,6 +165,7 @@ class SetPassword extends Component {
                                 onSubmitEditing={() => this.reentry.focus()}
                                 secondaryBackgroundColor="white"
                                 secureTextEntry
+                                testID="setPassword-passwordbox"
                             />
                             <View style={{ flex: 0.2 }} />
                             <CustomTextInput
@@ -179,6 +182,7 @@ class SetPassword extends Component {
                                 onSubmitEditing={() => this.onDonePress()}
                                 secondaryBackgroundColor="white"
                                 secureTextEntry
+                                testID="setPassword-reentrybox"
                             />
                             <View style={{ flex: 0.3 }} />
                         </View>
