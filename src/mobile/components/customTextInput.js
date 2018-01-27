@@ -60,6 +60,7 @@ class CustomTextInput extends React.Component {
         denominationText: PropTypes.string,
         onQRPress: PropTypes.func,
         negativeColor: PropTypes.object,
+        testID: PropTypes.string,
     };
 
     static defaultProps = {
@@ -147,6 +148,7 @@ class CustomTextInput extends React.Component {
             secondaryBackgroundColor,
             negativeColor,
             onRef,
+            testID,
             ...restProps
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
@@ -160,7 +162,7 @@ class CustomTextInput extends React.Component {
         return (
             <View style={[styles.fieldContainer, containerStyle]}>
                 <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>
-                <View style={[styles.innerContainer, innerContainerBackgroundColor]}>
+                <View style={[styles.innerContainer, innerContainerBackgroundColor]} testID={testID}>
                     <TextInput
                         {...restProps}
                         ref={onRef}
