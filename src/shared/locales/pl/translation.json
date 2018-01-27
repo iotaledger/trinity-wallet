@@ -58,7 +58,8 @@
         "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
         "attachToTangleUnavailable": "Dołączenie do Tangle niedostępne",
         "attachToTangleUnavailableExplanation": "Dołączenie do sieci Tangle niedostępne na wybranym serwerze.",
-        "wallet": "Portfel"
+        "wallet": "Portfel",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",

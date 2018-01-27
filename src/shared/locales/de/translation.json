@@ -58,7 +58,8 @@
         "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
         "attachToTangleUnavailable": "Anhängen an den Tangle nicht möglich",
         "attachToTangleUnavailableExplanation": "Anhängen an den Tangle ist mit dem ausgewählten Node nicht möglich.",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
