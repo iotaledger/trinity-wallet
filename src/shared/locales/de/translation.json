@@ -58,6 +58,14 @@
         "attachToTangleUnavailable": "Anhängen an den Tangle nicht möglich",
         "attachToTangleUnavailableExplanation": "Anhängen an den Tangle ist mit dem ausgewählten Server nicht möglich.",
         "wallet": "Wallet",
+        "sent": "Sent",
+        "received": "Received",
+        "sending": "Sending",
+        "receiving": "Receiving",
+        "confirmed": "Confirmed",
+        "pending": "Pending",
+        "bundleHash": "Bundle Hash",
+        "addresses": "Addresses",
         "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden"
     },
     "addAdditionalSeed": {
@@ -158,9 +166,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed gelöscht",
         "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht.",
-        "mustSaveYourSeed": "Du musst deinen Seed mit ",
-        "atLeastOne": "mindestens einer ",
-        "ofTheOptions": "von den aufgeführten Optionen speichern."
+        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Ungültiger Seed",
@@ -238,13 +244,7 @@
         "selectAll": "Alle auswählen"
     },
     "resetWalletConfirmation": {
-        "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
-        "warning1": "Alle deine Wallet-Daten, einschließlich deiner ",
-        "warning2": " Seeds, Passwörter,",
-        "warning3": " und",
-        "warning4": " anderer Kontoinformationen",
-        "warning5": " werden verloren gehen.",
-        "areYouSure": "Bist du sicher, dass du fortfahren möchtest?"
+        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein um das Wallet zurückzusetzen.",
@@ -255,11 +255,7 @@
         "okay": "Okay. Lass uns dein Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
-        "explanation1": "Du kannst ihn verwenden um auf dein Guthaben zuzugreifen von",
-        "explanation2": " jedem Wallet",
-        "explanation3": "auf",
-        "explanation4": " jedem Gerät",
-        "explanation5": ". Aber wenn du deinen Seed verlierst, verlierst du auch deine IOTA.",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
@@ -268,9 +264,8 @@
         "reminder": "Wir raten dazu, den Prozess vollständig zu durchlaufen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Dein Seed ist {{maxSeedLength}} Zeichen lang, von links nach rechts. Bitte schreibe deinen Seed und die Checksumme auf und",
-        "tripleCheck": "prüfe dreimal",
-        "thatTheyAreCorrect": "ob diese korrekt sind."
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
@@ -301,6 +296,9 @@
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
         "frame": "Rahmen"
+    },
+    "themeCustomisation": {
+        "theme": "Theme"
     },
     "currencySelection": {
         "currency": "Währung"
@@ -347,11 +345,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DIESE AKTION KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN.",
-        "infoTextOne": "All deine Wallet-Daten, einschließlich deiner",
-        "infoTextTwo": "Seeds, deinem Passwort",
-        "infoTextThree": "und",
-        "infoTextFour": "anderer Kontoinformationen",
-        "infoTextFive": "werden verloren gehen."
+        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",
