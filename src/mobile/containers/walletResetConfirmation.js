@@ -89,7 +89,7 @@ class WalletResetConfirmation extends Component {
                     </View>
                     <InfoBox
                         text={
-                            <Trans i18nKey="walletResetConfirmation:infoText">
+                            <Trans i18nKey="walletResetConfirmation:warning">
                                 <Text style={[styles.infoText, textColor]}>
                                     <Text style={styles.infoTextLight}>All of your wallet data including your </Text>
                                     <Text style={styles.infoTextRegular}>seeds, password,</Text>
