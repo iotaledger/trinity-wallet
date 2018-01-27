@@ -71,7 +71,22 @@ const themes = {
         pendingColor: '#f75602',
         chartLineColor: 'white',
     },
-    /* Custom: {
+};
+/* Simple: {
+        backgroundColor: tinycolor(`#D9D9D9`).toHsl(),
+        barColor: tinycolor(`#1A1A1A`).toHsl(),
+        ctaColor: tinycolor(`#009f3f`).toHsl(),
+        positiveColor: tinycolor(`#9DFFAF`).toHsl(),
+        negativeColor: tinycolor(`#57A2CB`).toHsl(),
+        extraColor: tinycolor(`#88D4FF`).toHsl(),
+        secondaryBarColor: 'white',
+        secondaryBackgroundColor: 'black',
+        secondaryCtaColor: 'white',
+        ctaBorderColor: 'transparent',
+        pendingColor: '#f75602',
+        chartLineColor: 'black',
+    }, */
+/* Custom: {
         backgroundColor: tinycolor(`#1a373e`).toHsl(),
         barColor: tinycolor(`#0b282f`).toHsl(),
         ctaColor: tinycolor(`#009f3f`).toHsl(),
@@ -85,7 +100,6 @@ const themes = {
         pendingColor: '#f75602',
         chartLineColor: 'white',
     }, */
-};
 
 const getHSL = color => {
     return tinycolor(color).toHslString();

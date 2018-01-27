@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import assign from 'lodash/assign';
 import each from 'lodash/each';
 import get from 'lodash/get';
@@ -28,9 +29,11 @@ export const formatFullAddressData = data => {
 };
 
 export const markAddressSpend = (transfers, addressData) => {
-    const addresses = Object.keys(addressData);
+    const addressDataClone = cloneDeep(addressData);
+    const addresses = Object.keys(addressDataClone);
 
-    // Iterate over all bundles and sort them between incoming and outgoing transfers
+    // Iterate over all bundles and sort them between incoming
+    // and outgoing transfers
     transfers.forEach(bundle => {
         // Iterate over every bundle entry
         bundle.forEach(bundleEntry => {
@@ -42,13 +45,13 @@ export const markAddressSpend = (transfers, addressData) => {
                 // check if sent transaction
                 if (bundleEntry.value < 0 && !isRemainder) {
                     // Mark address as spent
-                    addressData[bundleEntry.address].spent = true;
+                    addressDataClone[bundleEntry.address].spent = true;
                 }
             }
         });
     });
 
-    return addressData;
+    return addressDataClone;
 };
 
 export const sortWithProp = (array, prop) => {
@@ -321,7 +324,8 @@ export const organizeAccountInfo = (accountName, data) => {
     };
 };
 
-export const getTotalBalance = (addresses, threshold = 1) => {
+export const getTotalBalanceWithLatestAddressData = (addressData, threshold = 1) => {
+    const addresses = Object.keys(addressData);
     return new Promise((resolve, reject) => {
         iota.api.getBalances(addresses, threshold, (err, data) => {
             if (err) {
@@ -337,7 +341,12 @@ export const getTotalBalance = (addresses, threshold = 1) => {
                     0,
                 );
 
-                resolve(totalBalance);
+                const addressesDataClone = cloneDeep(addressData);
+                each(addresses, (address, idx) => {
+                    addressesDataClone[address] = { ...get(addressesDataClone, `${address}`, { balance: data[idx] }) };
+                });
+
+                resolve({ balance: totalBalance, addressData: addressesDataClone });
             }
         });
     });
