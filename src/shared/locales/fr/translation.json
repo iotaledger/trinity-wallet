@@ -62,10 +62,10 @@
         "received": "Received",
         "sending": "Sending",
         "receiving": "Receiving",
-        "confirmed": "Confirmed",
-        "pending": "Pending",
+        "confirmed": "Confirmé",
+        "pending": "En cours",
         "bundleHash": "Bundle Hash",
-        "addresses": "Addresses",
+        "addresses": "Adresses",
         "pressBackAgain": "Press back again to close the app",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -299,7 +299,7 @@
         "frame": "Contours"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Thème"
     },
     "currencySelection": {
         "currency": "Devise"
