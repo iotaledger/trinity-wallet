@@ -62,10 +62,10 @@
         "received": "Received",
         "sending": "Sending",
         "receiving": "Receiving",
-        "confirmed": "Confirmed",
-        "pending": "Pending",
+        "confirmed": "承認済み",
+        "pending": "ペンディング中",
         "bundleHash": "Bundle Hash",
-        "addresses": "Addresses",
+        "addresses": "アドレス",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -299,7 +299,7 @@
         "frame": "フレーム"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "テーマ"
     },
     "currencySelection": {
         "currency": "通貨"
