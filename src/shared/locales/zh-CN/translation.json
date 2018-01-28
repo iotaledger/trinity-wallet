@@ -66,7 +66,11 @@
         "pending": "Pending",
         "bundleHash": "Bundle Hash",
         "addresses": "Addresses",
-        "pressBackAgain": "再次按返回关闭应用程序"
+        "pressBackAgain": "再次按返回关闭应用程序",
+        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autopromoting": "Autopromoting transfer",
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -242,9 +246,6 @@
         "copy": "复制",
         "paste": "粘贴",
         "selectAll": "全选"
-    },
-    "resetWalletConfirmation": {
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
