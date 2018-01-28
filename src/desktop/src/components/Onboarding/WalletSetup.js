@@ -19,13 +19,7 @@ class WalletSetup extends React.PureComponent {
                     <p>{t('walletSetup:doYouAlreadyHaveASeed')}</p>
                     <Infobox>
                         <p>{t('walletSetup:seedExplanation')}</p>
-                        <p>
-                            {t('walletSetup:explanation1')}
-                            <strong>{t('walletSetup:explanation2')}</strong>
-                            {t('walletSetup:explanation3')}
-                            <strong>{t('walletSetup:explanation4')}</strong>
-                            {t('walletSetup:explanation5')}
-                        </p>
+                        <p>{t('walletSetup:explanation')}</p>
                         <p>
                             <strong>{t('walletSetup:keepSafe')}</strong>
                         </p>
