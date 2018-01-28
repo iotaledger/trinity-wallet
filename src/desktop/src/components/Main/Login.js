@@ -17,7 +17,6 @@ import Loading from 'components/UI/Loading';
 import css from 'components/Layout/Onboarding.css';
 import { setTimeout } from 'timers';
 import { ipcRenderer } from 'electron';
-import { ADDRESS_LENGTH } from 'libs/util';
 
 class Login extends React.Component {
     static propTypes = {
@@ -45,6 +44,7 @@ class Login extends React.Component {
     };
 
     componentDidMount() {
+        console.log(this.props.history);
         this.props.clearTempData();
         this.props.clearSeeds();
         Electron.updateMenu('authorised', false);
@@ -56,20 +56,11 @@ class Login extends React.Component {
             this.setState({
                 loading: false,
             });
+            Electron.updateMenu('authorised', true);
             if (this.props.deepLinks.address === '') {
-                Electron.updateMenu('authorised', true);
                 this.props.history.push('/balance');
             } else {
-                if (this.props.deepLinks.address.length === ADDRESS_LENGTH) {
-                    this.props.history.push('/send');
-                } else {
-                    const { showError } = this.props;
-                    showError({
-                        title: 'send:invalidAddress',
-                        text: 'send:invalidAddressExplanation1',
-                        translate: true,
-                    });
-                }
+                this.props.history.push('/send');
             }
         }
     }
@@ -161,7 +152,7 @@ const mapDispatchToProps = {
     clearTempData,
     clearSeeds,
     setFirstUse,
-    sendAmount,
+    sendAmount
 };
 
 export default translate('login')(connect(mapStateToProps, mapDispatchToProps)(Login));

@@ -8,11 +8,13 @@ import store from 'store';
 import { sendAmount } from 'actions/deepLinks';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
+import { showError } from 'actions/notifications';
 import Loading from 'components/UI/Loading';
 import Onboarding from 'components/Layout/Onboarding';
 import Main from 'components/Layout/Main';
 import Notifications from 'components/UI/Notifications';
 import Alerts from 'components/UI/Alerts';
+import { ADDRESS_LENGTH } from 'libs/util';
 
 import './App.css';
 import {ipcRenderer} from "electron";
@@ -33,6 +35,8 @@ class App extends React.Component {
         tempAccount: PropTypes.shape({
             ready: PropTypes.bool.isRequired}).isRequired,
         sendAmount: PropTypes.func.isRequired,
+        showError: PropTypes.func.isRequired
+
 
     };
 
@@ -53,8 +57,14 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({
+            address: '',
+            amount: 0,
+            message: '',
+        });
+
+        this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
         ipcRenderer.on('url-params', (e, data) => {
-            console.log(this.props.tempAccount.ready);
             let regexAddress = /\:\/\/(.*?)\/\?/;
             let regexAmount = /amount=(.*?)\&/;
             let regexMessage = /message=([^\n\r]*)/;
@@ -62,14 +72,24 @@ class App extends React.Component {
             if (address !== null) {
                 let amount = data.match(regexAmount);
                 let message = data.match(regexMessage);
-                this.setState({
-                    address: address[1],
-                    amount: amount[1],
-                    message: message[1],
-                });
-                this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
-                if(this.props.tempAccount.ready === true) {
-                    this.props.history.push('/send');
+                if (address[1].length !== ADDRESS_LENGTH) {
+                    const { showError } = this.props;
+                    showError({
+                        title: 'send:invalidAddress',
+                        text: 'send:invalidAddressExplanation1',
+                        translate: true,
+                    });
+                    this.props.sendAmount(0, '', '');
+                } else {
+                    this.setState({
+                        address: address[1],
+                        amount: amount[1],
+                        message: message[1],
+                    });
+                    this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
+                    if(this.props.tempAccount.ready === true) {
+                        this.props.history.push('/send');
+                    }
                 }
             }
         });
@@ -134,6 +154,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     sendAmount,
+    showError
 };
 
 export default withRouter(translate('onboardingComplete')(connect(mapStateToProps, mapDispatchToProps)(App)));
