@@ -22,7 +22,7 @@ class Send extends React.PureComponent {
         seeds: PropTypes.object.isRequired,
         settings: PropTypes.object.isRequired,
         showError: PropTypes.func.isRequired,
-        sendTransaction: PropTypes.func.isRequired,
+        sendTransaction: PropTypes.func,
         sendTransferRequest: PropTypes.func.isRequired,
         deepLinks: PropTypes.object.isRequired,
     };
@@ -34,13 +34,26 @@ class Send extends React.PureComponent {
         isModalVisible: false,
     };
 
-    componentWillMount() {
-        if (this.props.deepLinks.address !== '') {
-            const { amount, message, address } = this.props.deepLinks;
+    componentWillReceiveProps(props) {
+        if (props.deepLinks.address !== '') {
+            const { amount, message, address } = props.deepLinks;
             this.state.amount = amount;
             this.state.address = address;
             this.state.message = message;
+        } else {
+            this.state.amount = 0;
+            this.state.address = '';
+            this.state.message = '';
         }
+    }
+
+    componentWillMount() {
+        // if (this.props.deepLinks.address !== '') {
+        //     const { amount, message, address } = this.props.deepLinks;
+        //     this.state.amount = amount;
+        //     this.state.address = address;
+        //     this.state.message = message;
+        // }
     }
 
     onAddressChange = (value) => {
