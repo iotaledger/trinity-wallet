@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, BackHandler, ToastAndroid } from 'react-native';
+import RNExitApp from 'react-native-exit-app';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import UserInactivity from '../components/userInactivity';
@@ -28,7 +29,6 @@ import Tabs from '../components/tabs';
 import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
 import EnterPassword from '../components/enterPassword';
-import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -89,22 +89,10 @@ class Home extends Component {
     componentDidMount() {
         BackHandler.addEventListener('homeBackPress', () => {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
-                Navigation.startSingleScreenApp({
-                    screen: {
-                        screen: 'login',
-                        navigatorStyle: {
-                            navBarHidden: true,
-                            navBarTransparent: true,
-                        },
-                        overrideBackPress: true,
-                    },
-                    appStyle: {
-                        orientation: 'portrait',
-                    },
-                });
+                RNExitApp.exitApp();
             }
             this.lastBackPressed = Date.now();
-            ToastAndroid.show('Press back again to log out', ToastAndroid.SHORT);
+            ToastAndroid.show(t('global:pressBackAgain'), ToastAndroid.SHORT);
             return true;
         });
     }
@@ -194,78 +182,71 @@ class Home extends Component {
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
-                <GestureRecognizer
-                    onSwipeLeft={state => this.onSwipeLeft(state)}
-                    onSwipeRight={state => this.onSwipeRight(state)}
-                    config={config}
-                    style={{ flex: 1 }}
-                >
-                    <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
-                        <DynamicStatusBar textColor={secondaryBarColor} />
-                        {!inactive &&
-                            !minimised && (
-                                <View style={{ flex: 1 }}>
-                                    <View style={styles.topContainer} />
-                                    <View style={styles.midContainer}>
-                                        <TabContent navigator={navigator} />
-                                    </View>
-                                    <View style={styles.bottomContainer}>
-                                        <Tabs
-                                            onPress={name => this.props.changeHomeScreenRoute(name)}
-                                            barColor={THEMES.getHSL(barColor)}
-                                        >
-                                            <Tab
-                                                name="balance"
-                                                icon={balanceImagePath}
-                                                textColor={barTextColor}
-                                                text={t('home:balance')}
-                                            />
-                                            <Tab
-                                                name="send"
-                                                icon={sendImagePath}
-                                                textColor={barTextColor}
-                                                text={t('home:send')}
-                                            />
-                                            <Tab
-                                                name="receive"
-                                                icon={receiveImagePath}
-                                                textColor={barTextColor}
-                                                text={t('home:receive')}
-                                            />
-                                            <Tab
-                                                name="history"
-                                                icon={historyImagePath}
-                                                textColor={barTextColor}
-                                                text={t('home:history')}
-                                            />
-                                            <Tab
-                                                name="settings"
-                                                icon={settingsImagePath}
-                                                textColor={barTextColor}
-                                                text={t('home:settings')}
-                                            />
-                                        </Tabs>
-                                    </View>
-                                    <TopBar />
+                <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
+                    <DynamicStatusBar textColor={secondaryBarColor} />
+                    {!inactive &&
+                        !minimised && (
+                            <View style={{ flex: 1 }}>
+                                <View style={styles.topContainer} />
+                                <View style={styles.midContainer}>
+                                    <TabContent navigator={navigator} />
                                 </View>
-                            )}
-                        {inactive && (
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                <EnterPassword
-                                    onLoginPress={this.onLoginPress}
-                                    backgroundColor={backgroundColor}
-                                    negativeColor={negativeColor}
-                                    positiveColor={positiveColor}
-                                    secondaryBackgroundColor={secondaryBackgroundColor}
-                                    textColor={textColor}
-                                />
+                                <View style={styles.bottomContainer}>
+                                    <Tabs
+                                        onPress={name => this.props.changeHomeScreenRoute(name)}
+                                        barColor={THEMES.getHSL(barColor)}
+                                    >
+                                        <Tab
+                                            name="balance"
+                                            icon={balanceImagePath}
+                                            textColor={barTextColor}
+                                            text={t('home:balance')}
+                                        />
+                                        <Tab
+                                            name="send"
+                                            icon={sendImagePath}
+                                            textColor={barTextColor}
+                                            text={t('home:send')}
+                                        />
+                                        <Tab
+                                            name="receive"
+                                            icon={receiveImagePath}
+                                            textColor={barTextColor}
+                                            text={t('home:receive')}
+                                        />
+                                        <Tab
+                                            name="history"
+                                            icon={historyImagePath}
+                                            textColor={barTextColor}
+                                            text={t('home:history')}
+                                        />
+                                        <Tab
+                                            name="settings"
+                                            icon={settingsImagePath}
+                                            textColor={barTextColor}
+                                            text={t('home:settings')}
+                                        />
+                                    </Tabs>
+                                </View>
+                                <TopBar />
                             </View>
                         )}
-                        {minimised && <View />}
-                        <Poll />
-                        <StatefulDropdownAlert />
-                    </View>
-                </GestureRecognizer>
+                    {inactive && (
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <EnterPassword
+                                onLoginPress={this.onLoginPress}
+                                backgroundColor={backgroundColor}
+                                negativeColor={negativeColor}
+                                positiveColor={positiveColor}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                textColor={textColor}
+                            />
+                        </View>
+                    )}
+                    {minimised && <View />}
+                    <Poll />
+                    <StatefulDropdownAlert />
+                </View>
             </UserInactivity>
         );
     }

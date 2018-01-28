@@ -10,7 +10,8 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getBalanceForSelectedAccountViaSeedIndex } from '../../shared/selectors/account';
+import { clearLog } from 'iota-wallet-shared-modules/actions/alerts';
+import { getBalanceForSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import {
     View,
     Text,
@@ -22,18 +23,29 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-import { setPollFor } from '../../shared/actions/polling';
+import { setPollFor } from 'iota-wallet-shared-modules/actions/polling';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import THEMES from '../theme/themes';
+import NotificationLog from '../components/notificationLog';
+import Modal from 'react-native-modal';
 import blackChevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up-black.png';
 import blackChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-black.png';
 import whiteChevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up-white.png';
 import whiteChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-white.png';
+import whiteNotificationImagePath from 'iota-wallet-shared-modules/images/notification-white.png';
+import blackNotificationImagePath from 'iota-wallet-shared-modules/images/notification-black.png';
 import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 
 const { height, width } = Dimensions.get('window');
 
 class TopBar extends Component {
+    constructor() {
+        super();
+        this.state = {
+            isModalVisible: false,
+        };
+    }
+
     static getIconPath(isActive, chevronUpImagePath, chevronDownImagePath) {
         if (isActive) {
             return {
@@ -64,6 +76,8 @@ class TopBar extends Component {
         barColor: PropTypes.object.isRequired,
         setPollFor: PropTypes.func.isRequired,
         secondaryBarColor: PropTypes.string.isRequired,
+        notificationLog: PropTypes.array.isRequired,
+        clearLog: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -88,6 +102,10 @@ class TopBar extends Component {
                 this.props.toggleTopBarDisplay();
             }
         }
+    }
+
+    _hideModal() {
+        this.setState({ isModalVisible: false });
     }
 
     shouldDisable() {
@@ -260,21 +278,32 @@ class TopBar extends Component {
     }
 
     render() {
-        const { seedIndex, seedNames, isTopBarActive, secondaryBarColor } = this.props;
-        const chevronUpImagePath = secondaryBarColor === 'white' ? whiteChevronUpImagePath : blackChevronUpImagePath;
-        const chevronDownImagePath =
-            secondaryBarColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
+        const {
+            seedIndex,
+            seedNames,
+            isTopBarActive,
+            secondaryBarColor,
+            backgroundColor,
+            notificationLog,
+            clearLog,
+        } = this.props;
+        const isWhite = secondaryBarColor === 'white';
+        const chevronUpImagePath = isWhite ? whiteChevronUpImagePath : blackChevronUpImagePath;
+        const chevronDownImagePath = isWhite ? whiteChevronDownImagePath : blackChevronDownImagePath;
+        const notificationImagePath = isWhite ? whiteNotificationImagePath : blackNotificationImagePath;
 
         const iconProps = TopBar.getIconPath(isTopBarActive, chevronDownImagePath, chevronUpImagePath);
         const children = this.renderTitles();
         const hasMultipleSeeds = size(this.filterSeedTitles(seedNames, seedIndex));
         const shouldDisable = this.shouldDisable();
+        const hasNotifications = notificationLog.length > 0;
 
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
                     if (!shouldDisable) {
                         this.props.toggleTopBarDisplay();
+                        this.setState({ isModalVisible: false });
                     }
                 }}
             >
@@ -289,6 +318,18 @@ class TopBar extends Component {
                 >
                     <DynamicStatusBar textColor={secondaryBarColor} />
                     <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+                        {(hasNotifications && (
+                            <TouchableOpacity
+                                style={styles.notificationContainer}
+                                onPress={() => this.setState({ isModalVisible: true })}
+                            >
+                                <Image style={styles.notification} source={notificationImagePath} />
+                            </TouchableOpacity>
+                        )) || (
+                            <View style={styles.notificationContainer}>
+                                <View style={styles.notification} />
+                            </View>
+                        )}
                         <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                         <View style={styles.chevronWrapper}>
                             {hasMultipleSeeds ? (
@@ -301,10 +342,33 @@ class TopBar extends Component {
                                     {...iconProps}
                                 />
                             ) : (
-                                <View />
+                                <View style={styles.chevron} />
                             )}
                         </View>
                     </View>
+                    <Modal
+                        animationIn={'bounceInUp'}
+                        animationOut={'bounceOut'}
+                        animationInTiming={1000}
+                        animationOutTiming={200}
+                        backdropTransitionInTiming={500}
+                        backdropTransitionOutTiming={200}
+                        backdropColor={THEMES.getHSL(backgroundColor)}
+                        style={{ alignItems: 'center', margin: 0 }}
+                        isVisible={this.state.isModalVisible}
+                        onBackButtonPress={() => this._hideModal()}
+                        onBackdropPress={() => this._hideModal()}
+                    >
+                        <NotificationLog
+                            backgroundColor={THEMES.getHSL(this.props.barColor)}
+                            hideModal={() => this._hideModal()}
+                            textColor={{ color: secondaryBarColor }}
+                            borderColor={{ borderColor: secondaryBarColor }}
+                            secondaryBarColor={secondaryBarColor}
+                            notificationLog={notificationLog}
+                            clearLog={clearLog}
+                        />
+                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -352,13 +416,22 @@ const styles = StyleSheet.create({
     chevronWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: height / 120,
+        paddingRight: width / 18,
     },
     chevron: {
-        height: width / 20,
-        width: width / 20,
-        position: 'absolute',
-        top: 0,
-        right: width / 20,
+        height: width / 17,
+        width: width / 17,
+    },
+    notification: {
+        height: width / 17,
+        width: width / 17,
+    },
+    notificationContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingLeft: width / 18,
+        paddingTop: height / 120,
     },
     disabled: {
         color: '#a9a9a9',
@@ -397,6 +470,8 @@ const mapStateToProps = state => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     barColor: state.settings.theme.barColor,
     secondaryBarColor: state.settings.theme.secondaryBarColor,
+    backgroundColor: state.settings.theme.backgroundColor,
+    notificationLog: state.alerts.notificationLog,
 });
 
 const mapDispatchToProps = {
@@ -404,6 +479,7 @@ const mapDispatchToProps = {
     setSeedIndex,
     setReceiveAddress,
     setPollFor,
+    clearLog,
 };
 
 export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));

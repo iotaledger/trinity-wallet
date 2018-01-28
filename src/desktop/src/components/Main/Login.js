@@ -65,7 +65,7 @@ class Login extends React.Component {
         }
     }
 
-    setPassword = (password) => {
+    setPassword = password => {
         this.setState({
             password: password,
         });
@@ -81,7 +81,7 @@ class Login extends React.Component {
         }
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = e => {
         e.preventDefault();
         const { password } = this.state;
         const { t, loadSeeds, showError } = this.props;
@@ -148,7 +148,7 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     account: state.account,
     tempAccount: state.tempAccount,
 });

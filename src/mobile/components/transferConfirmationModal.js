@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 import { View, Text, StyleSheet } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons';
 import GENERAL from '../theme/general';
@@ -62,13 +62,16 @@ class TransferConfirmationModal extends Component {
         borderColor: PropTypes.object.isRequired,
         amount: PropTypes.string.isRequired,
         denomination: PropTypes.string.isRequired,
+        setSendingTransferFlag: PropTypes.func.isRequired,
     };
 
     onSendPress() {
-        this.props.hideModal(() => {
+        const { hideModal, setSendingTransferFlag, sendTransfer } = this.props;
+        hideModal(() => {
+            setSendingTransferFlag();
             this.timeout = setTimeout(() => {
-                this.props.sendTransfer();
-            }, 250);
+                sendTransfer();
+            }, 300);
         });
     }
 

@@ -3,6 +3,8 @@ import i18next from '../i18next.js';
 export const ActionTypes = {
     SHOW: 'IOTA/ALERTS/SHOW',
     HIDE: 'IOTA/ALERTS/HIDE',
+    UPDATE_LOG: 'IOTA/ALERTS/UPDATE_LOG',
+    CLEAR_LOG: 'IOTA/ALERTS/CLEAR_LOG',
 };
 
 const generate = (category, title, message, closeInterval = 5500) => ({
@@ -15,10 +17,14 @@ const generate = (category, title, message, closeInterval = 5500) => ({
 
 const dispose = () => ({ type: ActionTypes.HIDE });
 
-export const generateAlert = (category, title, message, closeInterval) => dispatch =>
+export const generateAlert = (category, title, message, closeInterval, err) => dispatch => {
     dispatch(generate(category, title, message, closeInterval));
+    if (err) {
+        dispatch(prepareLogUpdate(err));
+    }
+};
 
-export const generateAccountInfoErrorAlert = () => dispatch =>
+export const generateAccountInfoErrorAlert = err => dispatch => {
     dispatch(
         generateAlert(
             'error',
@@ -27,6 +33,9 @@ export const generateAccountInfoErrorAlert = () => dispatch =>
             9000,
         ),
     );
+    dispatch(prepareLogUpdate(err));
+};
+
 export const generateSyncingCompleteAlert = () => dispatch => {
     dispatch(
         generateAlert(
@@ -43,9 +52,26 @@ export const generateAccountDeletedAlert = () => dispatch =>
         generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation')),
     );
 
-export const generateInvalidResponseAlert = () => dispatch =>
+export const generateSyncingErrorAlert = err => dispatch => {
     dispatch(
-        generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation')),
+        generateAlert('error', i18next.t('settings:invalidResponse'), i18next.t('settings:invalidResponseExplanation')),
     );
+    dispatch(prepareLogUpdate(err));
+};
 
 export const disposeOffAlert = () => dispatch => dispatch(dispose());
+
+export const prepareLogUpdate = err => dispatch => {
+    const time = Date.now();
+    const error = { error: err.toString(), time: time };
+    dispatch(updateLog(error));
+};
+
+export const updateLog = logItem => ({
+    type: ActionTypes.UPDATE_LOG,
+    logItem,
+});
+
+export const clearLog = () => ({
+    type: ActionTypes.CLEAR_LOG,
+});
