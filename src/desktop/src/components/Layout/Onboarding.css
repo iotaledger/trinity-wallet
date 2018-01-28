@@ -49,8 +49,8 @@
             flex-direction: column;
             justify-content: center;
 
-            > div > p {
-                margin-bottom: 50px;
+            > div > p + div {
+                margin-top: 50px;
             }
         }
 

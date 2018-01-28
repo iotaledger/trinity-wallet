@@ -42,7 +42,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map((object) => {
+            ...data.map(object => {
                 return object.y;
             }),
         );
@@ -53,7 +53,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const minValue = Math.min(
-            ...data.map((object) => {
+            ...data.map(object => {
                 return object.y;
             }),
         );
@@ -64,7 +64,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map((object) => {
+            ...data.map(object => {
                 return object.x;
             }),
         );
@@ -85,6 +85,7 @@ class Chart extends React.Component {
 
     getPriceFormat(x) {
         const { marketData } = this.props;
+        x = parseFloat(x);
 
         if (marketData.currency === 'USD') {
             return x.toFixed(3);
@@ -170,7 +171,7 @@ class Chart extends React.Component {
                         />
                         <VictoryAxis
                             dependentAxis
-                            tickFormat={(x) => this.getPriceFormat(x)}
+                            tickFormat={x => this.getPriceFormat(x)}
                             style={{
                                 axis: { stroke: 'transparent' },
                                 tickLabels: { fill: 'white', fontSize: 9, fontFamily: 'Lato-Regular' },
@@ -195,7 +196,7 @@ class Chart extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     marketData: state.marketData,
     settings: state.settings,
 });
