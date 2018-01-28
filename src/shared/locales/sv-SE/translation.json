@@ -58,19 +58,19 @@
         "attachToTangleUnavailable": "Fastsättning på Tangle otillgänglig",
         "attachToTangleUnavailableExplanation": "Fäst på Tangle är otillgänglig på din valda nod.",
         "wallet": "Plånbok",
-        "sent": "Sent",
-        "received": "Received",
-        "sending": "Sending",
-        "receiving": "Receiving",
-        "confirmed": "Confirmed",
-        "pending": "Pending",
-        "bundleHash": "Bundle Hash",
-        "addresses": "Addresses",
+        "sent": "Skickat",
+        "received": "Mottaget",
+        "sending": "Skickar",
+        "receiving": "Tar emot",
+        "confirmed": "Bekräftat",
+        "pending": "Väntar",
+        "bundleHash": "Hashbunt",
+        "addresses": "Adresser",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
-        "autoreattaching": "Autoreattaching to Tangle",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autoreattaching": "Auto-fastsättning till Tangle",
+        "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
+        "autopromoting": "Auto-promotar överföring",
+        "autopromotingExplanation": "Promotar transaktion med hashen {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -170,7 +170,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed rensad",
         "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhet.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>Du måste spara din seed med</0><1>minst ett</1><2> av alternativen listade nedan.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Felaktig seed",
