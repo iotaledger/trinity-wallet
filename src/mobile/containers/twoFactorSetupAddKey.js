@@ -121,6 +121,9 @@ class TwoFactorSetupAddKey extends Component {
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
             },
+            appStyle: {
+                orientation: 'portrait',
+            },
         });
     }
 
@@ -135,6 +138,9 @@ class TwoFactorSetupAddKey extends Component {
                 screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
+            appStyle: {
+                orientation: 'portrait',
+            },
         });
     }
 
@@ -186,7 +192,7 @@ const mapDispatchToProps = {
     set2FAKey,
     generateAlert,
 };
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,

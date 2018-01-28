@@ -70,7 +70,7 @@ class Enter2FA extends Component {
         token2FA: '',
     };
 
-    handleChange2FAToken = (token2FA) => this.setState({ token2FA });
+    handleChange2FAToken = token2FA => this.setState({ token2FA });
 
     handleDonePress = () => {
         const { token2FA } = this.state;
@@ -104,6 +104,7 @@ class Enter2FA extends Component {
                             onChangeText={this.handleChange2FAToken}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
+                            keyboardType={'numeric'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"

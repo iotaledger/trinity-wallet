@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const TextWithLetterSpacing = (props) => {
+const TextWithLetterSpacing = props => {
     const { children, spacing, viewStyle, textStyle } = props;
     const letters = children.split('');
 
@@ -30,7 +30,7 @@ TextWithLetterSpacing.propTypes = {
     children: PropTypes.string.isRequired,
     spacing: PropTypes.number.isRequired,
     viewStyle: PropTypes.object,
-    textStyle: PropTypes.object,
+    textStyle: PropTypes.array,
 };
 
 export default TextWithLetterSpacing;

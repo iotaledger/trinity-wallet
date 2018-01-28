@@ -27,7 +27,7 @@ class EnterSeed extends React.Component {
         };
     }
 
-    handleKeyPress = (event) => {
+    handleKeyPress = event => {
         if (event.key == 'Enter') {
             Keyboard.dismiss();
         }
@@ -67,9 +67,18 @@ class EnterSeed extends React.Component {
     }
 
     onQRRead(data) {
-        this.setState({
-            seed: data,
-        });
+        const dataString = data.toString();
+        if (dataString.length == 81 && dataString.match(VALID_SEED_REGEX)) {
+            this.setState({
+                seed: data,
+            });
+        } else {
+            this.props.generateAlert(
+                'error',
+                'Incorrect seed format',
+                'Valid seeds should be 81 characters and contain only A-Z or 9.',
+            );
+        }
         this._hideModal();
     }
 
@@ -81,7 +90,7 @@ class EnterSeed extends React.Component {
         <QRScanner
             backgroundColor={COLORS.backgroundGreen}
             ctaColor={COLORS.greenLight}
-            onQRRead={(data) => this.onQRRead(data)}
+            onQRRead={data => this.onQRRead(data)}
             hideModal={() => this._hideModal()}
             secondaryCtaColor="white"
         />
@@ -115,7 +124,7 @@ class EnterSeed extends React.Component {
                         <View style={{ flex: 0.5 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={(seed) => this.setState({ seed: seed.toUpperCase() })}
+                            onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'characters'}
                             autoCorrect={false}
@@ -247,7 +256,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     marketData: state.marketData,
     tempAccount: state.tempAccount,
     account: state.account,

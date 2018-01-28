@@ -138,7 +138,7 @@ class AdvancedThemeCustomisation extends React.Component {
                             style={styles.sliderRow}
                             gradientSteps={40}
                             value={this.state.backgroundColor.h}
-                            onValueChange={(h) =>
+                            onValueChange={h =>
                                 this.setState({ backgroundColor: { ...this.state.backgroundColor, h } })
                             }
                         />
@@ -147,7 +147,7 @@ class AdvancedThemeCustomisation extends React.Component {
                             gradientSteps={20}
                             value={this.state.backgroundColor.s}
                             color={this.state.backgroundColor}
-                            onValueChange={(s) =>
+                            onValueChange={s =>
                                 this.setState({ backgroundColor: { ...this.state.backgroundColor, s } })
                             }
                         />
@@ -156,7 +156,7 @@ class AdvancedThemeCustomisation extends React.Component {
                             gradientSteps={20}
                             value={this.state.backgroundColor.l}
                             color={this.state.backgroundColor}
-                            onValueChange={(l) =>
+                            onValueChange={l =>
                                 this.setState({ backgroundColor: { ...this.state.backgroundColor, l } })
                             }
                         />
@@ -174,21 +174,21 @@ class AdvancedThemeCustomisation extends React.Component {
                             style={styles.sliderRow}
                             gradientSteps={40}
                             value={this.state.barColor.h}
-                            onValueChange={(h) => this.setState({ barColor: { ...this.state.barColor, h } })}
+                            onValueChange={h => this.setState({ barColor: { ...this.state.barColor, h } })}
                         />
                         <SaturationSlider
                             style={styles.sliderRow}
                             gradientSteps={20}
                             value={this.state.barColor.s}
                             color={this.state.barColor}
-                            onValueChange={(s) => this.setState({ barColor: { ...this.state.barColor, s } })}
+                            onValueChange={s => this.setState({ barColor: { ...this.state.barColor, s } })}
                         />
                         <LightnessSlider
                             style={styles.sliderRow}
                             gradientSteps={20}
                             value={this.state.barColor.l}
                             color={this.state.barColor}
-                            onValueChange={(l) => this.setState({ barColor: { ...this.state.barColor, l } })}
+                            onValueChange={l => this.setState({ barColor: { ...this.state.barColor, l } })}
                         />
                     </View>
                 </View>
@@ -199,7 +199,7 @@ class AdvancedThemeCustomisation extends React.Component {
                     >
                         <View style={styles.itemLeft}>
                             <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                            <Text style={[styles.titleTextLeft, textColor]}>Back</Text>
+                            <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -207,7 +207,7 @@ class AdvancedThemeCustomisation extends React.Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.itemRight}>
-                            <Text style={[styles.titleTextRight, textColor]}>Apply</Text>
+                            <Text style={[styles.titleTextRight, textColor]}>{t('global:apply')}</Text>
                             <Image source={tickImagePath} style={styles.iconRight} />
                         </View>
                     </TouchableOpacity>

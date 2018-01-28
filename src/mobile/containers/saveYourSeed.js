@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import PropTypes from 'prop-types';
@@ -114,15 +114,17 @@ class SaveYourSeed extends Component {
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
-                    <Text style={[styles.infoText, textColor]}>
-                        <Text style={styles.infoTextNormal}>{t('mustSaveYourSeed')}</Text>
-                        <Text style={styles.infoTextBold}>{t('atLeastOne')}</Text>
-                        <Text style={styles.infoTextNormal}>{t('ofTheOptions')}</Text>
-                    </Text>
+                    <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
+                        <Text style={[styles.infoText, textColor]}>
+                            <Text style={styles.infoTextNormal}>You must save your seed with </Text>
+                            <Text style={styles.infoTextBold}>at least one</Text>
+                            <Text style={styles.infoTextNormal}> of the options listed below.</Text>
+                        </Text>
+                    </Trans>
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ paddingTop: height / 20 }}>
-                        <TouchableOpacity onPress={(event) => this.onWriteClick()}>
+                        <TouchableOpacity onPress={event => this.onWriteClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:manualCopy').toUpperCase()}
@@ -131,7 +133,7 @@ class SaveYourSeed extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={(event) => this.onPrintClick()}>
+                        <TouchableOpacity onPress={event => this.onPrintClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:paperWallet').toUpperCase()}
@@ -140,7 +142,7 @@ class SaveYourSeed extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={(event) => this.onCopyClick()}>
+                        <TouchableOpacity onPress={event => this.onCopyClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:copyToClipboard').toUpperCase()}
@@ -227,7 +229,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     extraColor: state.settings.theme.extraColor,

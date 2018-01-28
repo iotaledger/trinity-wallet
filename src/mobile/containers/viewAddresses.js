@@ -6,6 +6,7 @@ import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
 import { translate } from 'react-i18next';
+import { iota } from 'iota-wallet-shared-modules/libs/iota';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -18,14 +19,25 @@ class ViewAddresses extends Component {
     };
 
     copy(address) {
+        const { t } = this.props;
+
         Clipboard.setString(address);
         return this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
+    }
+
+    addChecksums(data) {
+        addressesWithChecksums = data.map(item => iota.utils.addChecksum(item[0], 9, true));
+        for (var i = 0; i < data.length; i++) {
+            data[i][0] = addressesWithChecksums[i];
+        }
+        return data;
     }
 
     render() {
         const { secondaryBackgroundColor, arrowLeftImagePath, t } = this.props;
         let addressData = Object.entries(this.props.addressData);
         addressData = addressData.reverse();
+        addressData = this.addChecksums(addressData);
         const textColor = { color: secondaryBackgroundColor };
 
         return (
@@ -67,7 +79,7 @@ class ViewAddresses extends Component {
                 <View style={{ flex: 0.2 }} />
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity
-                        onPress={(event) => this.props.backPress()}
+                        onPress={event => this.props.backPress()}
                         style={{ flex: 1 }}
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
@@ -145,7 +157,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
