@@ -59,16 +59,16 @@
         "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible pour le node sélectionné.",
         "wallet": "Wallet",
         "sent": "Envoyé",
-        "received": "Received",
+        "received": "Reçu",
         "sending": "Envoi en cours",
-        "receiving": "Receiving",
+        "receiving": "En cours de réception",
         "confirmed": "Confirmé",
         "pending": "En cours",
         "bundleHash": "Hash du Paquet",
         "addresses": "Adresses",
-        "pressBackAgain": "Press back again to close the app",
-        "autoreattaching": "Autoreattaching to Tangle",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "pressBackAgain": "Appuyez sur le bouton retour pour fermer l'application",
+        "autoreattaching": "Rattachement automatique au Tangle",
+        "autoreattachingExplanation": "Rattachement de la transaction de hash {{hash}}",
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
@@ -265,7 +265,7 @@
         "reminder": "Vous pourriez être tenté de brûler certaines étapes, mais il est impératif de suivre la procédure complète."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "yourSeedIs": "Votre seed se lit de gauche à droite et comporte {{maxSeedLength}} caractères.",
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
