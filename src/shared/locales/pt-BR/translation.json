@@ -266,7 +266,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Sua seed é {{maxSeedLength}} caracteres lidos da esquerda para a direita.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed": "<0>Anote suas seed e soma de verificação e </0><1>tenha certeza</1><2> que elas estão corretas.</2>"
     },
     "history": {
         "bundleHashCopied": "Pacote hash copiado",
@@ -346,7 +346,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "ESTA AÇÃO NÃO PODE SER REVERTIDA.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>Todos os seus dados da carteira, incluindo suas </0><1>seeds, senhas,</1><2> e </2><3>outras informações da conta</3><4> serão perdidas.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Você está prestes a enviar {{contents}} para o endereço",
