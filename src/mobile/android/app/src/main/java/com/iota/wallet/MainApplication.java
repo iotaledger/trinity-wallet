@@ -10,7 +10,6 @@ import com.corbt.keepawake.KCKeepAwakePackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.horcrux.svg.SvgPackage;
-import com.jadsonlourenco.RNShakeEvent.RNShakeEventPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.oblador.keychain.KeychainPackage;
@@ -19,6 +18,7 @@ import com.reactnativenavigation.NavigationApplication;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.rnfs.RNFSPackage;
 import com.rnprint.RNPrint.RNPrintPackage;
+import com.github.wumke.RNExitApp.RNExitAppPackage;
 
 import org.iota.mobile.IOTAMobilePackage;
 
@@ -53,18 +53,18 @@ public class MainApplication extends NavigationApplication {
             new SvgPackage(),
             new MainReactPackage(),
             new RNDeviceInfo(),
-            new RNShakeEventPackage(),
             new RNOSModule(),
             new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
-	        new RCTCameraPackage(),
-	        new RNFSPackage(),
+	          new RCTCameraPackage(),
+	          new RNFSPackage(),
             new ExtraDimensionsPackage(),
             new RNDetectNavbarAndroidPackage(),
             new KCKeepAwakePackage(),
             new KeychainPackage(),
             new LottiePackage(),
-            new IOTAMobilePackage()
+            new IOTAMobilePackage(),
+            new RNExitAppPackage()
     );
   }
 
