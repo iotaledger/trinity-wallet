@@ -12,7 +12,7 @@
         "transferSent": "Transfert effectué",
         "transferSentMessage": "Votre transfert a été envoyé sur le Tangle.",
         "messageSent": "Message envoyé",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
+        "messageSentMessage": "Votre message a été envoyé sur le Tangle.",
         "keyReuse": "Réutilisation de clé",
         "keyReuseError": "Vous ne pouvez pas effectuer de transfert vers une adresse qui a déjà été débitée.",
         "invalidResponse": "Réponse non valide",
@@ -69,8 +69,8 @@
         "pressBackAgain": "Appuyez sur le bouton retour pour fermer l'application",
         "autoreattaching": "Rattachement automatique au Tangle",
         "autoreattachingExplanation": "Rattachement de la transaction de hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autopromoting": "Promotion automatique du transfert",
+        "autopromotingExplanation": "Promotion de la transaction de hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -266,7 +266,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Votre seed se lit de gauche à droite et comporte {{maxSeedLength}} caractères.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed": "<0>Notez votre seed et le code de vérification et </0><1>vérifiez à plusieurs reprises</1><2> qu’ils sont corrects.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
