@@ -58,7 +58,19 @@
         "attachToTangleUnavailable": "无法连接到Tangle",
         "attachToTangleUnavailableExplanation": "连接到Tangle的功能在选定的节点上无法使用",
         "wallet": "钱包",
-        "pressBackAgain": "再次按返回关闭应用程序"
+        "sent": "Sent",
+        "received": "Received",
+        "sending": "Sending",
+        "receiving": "Receiving",
+        "confirmed": "已确认",
+        "pending": "等待确认",
+        "bundleHash": "Bundle Hash",
+        "addresses": "地址",
+        "pressBackAgain": "再次按返回关闭应用程序",
+        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autopromoting": "Autopromoting transfer",
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -158,9 +170,7 @@
     "saveYourSeed": {
         "seedCleared": "种子已清除",
         "seedClearedExplanation": "为了安全，种子码已从剪贴板中清除。",
-        "mustSaveYourSeed": "您必须将您的种子保存 ",
-        "atLeastOne": "至少一个 ",
-        "ofTheOptions": "从下列选项中选择。"
+        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "错误的种子",
@@ -237,15 +247,6 @@
         "paste": "粘贴",
         "selectAll": "全选"
     },
-    "resetWalletConfirmation": {
-        "thisAction": "本操作无法撤销。",
-        "warning1": "所有您的钱包数据, 包括您的 ",
-        "warning2": " 种子，密码,",
-        "warning3": " 和",
-        "warning4": " 其他账户信息",
-        "warning5": " 将会丢失。",
-        "areYouSure": "是否确定继续？"
-    },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
         "cancel": "取消",
@@ -255,11 +256,7 @@
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-        "explanation1": "您可以用它来访问您的资金，从",
-        "explanation2": " 任何钱包",
-        "explanation3": "，在",
-        "explanation4": " 任何设备上",
-        "explanation5": "。但是, 如果你丢失了你的种子, 你也会丢失您的IOTA。",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "请您保管好你的种子."
     },
     "welcome": {
@@ -268,9 +265,8 @@
         "reminder": "您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "你的种子是从左向右读的{{maxSeedLength}} 个字符。请记下您的种子和校验和",
-        "tripleCheck": "第三次检查",
-        "thatTheyAreCorrect": "以确保它们是正确的。"
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "绑定哈希值已复制",
@@ -301,6 +297,9 @@
     "advancedThemeCustomisation": {
         "background": "背景",
         "frame": "框架"
+    },
+    "themeCustomisation": {
+        "theme": "主题"
     },
     "currencySelection": {
         "currency": "货币"
@@ -347,11 +346,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",
-        "infoTextOne": "所有您的钱包数据, 包括您的",
-        "infoTextTwo": "种子，密码",
-        "infoTextThree": "和",
-        "infoTextFour": "其他账户信息",
-        "infoTextFive": "将会丢失。"
+        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "您将发送{{contents}} 到地址",

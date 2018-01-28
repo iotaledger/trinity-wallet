@@ -58,7 +58,19 @@
         "attachToTangleUnavailable": "Dołączenie do Tangle niedostępne",
         "attachToTangleUnavailableExplanation": "Dołączenie do sieci Tangle niedostępne na wybranym serwerze.",
         "wallet": "Portfel",
-        "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację"
+        "sent": "Sent",
+        "received": "Received",
+        "sending": "Sending",
+        "receiving": "Receiving",
+        "confirmed": "Confirmed",
+        "pending": "Pending",
+        "bundleHash": "Bundle Hash",
+        "addresses": "Addresses",
+        "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
+        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autopromoting": "Autopromoting transfer",
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -158,9 +170,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed wyczyszczony",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
-        "mustSaveYourSeed": "Musisz zapisać swojego seeda z ",
-        "atLeastOne": "co najmniej jeden ",
-        "ofTheOptions": "z opcji wymienionych poniżej."
+        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Nieprawidłowy seed",
@@ -237,15 +247,6 @@
         "paste": "Wklej",
         "selectAll": "Zaznacz wszystko"
     },
-    "resetWalletConfirmation": {
-        "thisAction": "Tej akcji nie można cofnąć.",
-        "warning1": "Wszystkie dane twojego portfela w tym także twoje ",
-        "warning2": " seeedy, hasła,",
-        "warning3": " oraz",
-        "warning4": " inne informacje o koncie",
-        "warning5": " zostaną utracone.",
-        "areYouSure": "Czy na pewno chcesz kontynuować?"
-    },
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź hasło, aby zresetować swój portfel.",
         "cancel": "ANULUJ",
@@ -255,11 +256,7 @@
         "okay": "Okay. Ustawmy twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
         "seedExplanation": "SEED jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składa się on z ciągu 81 znaków.",
-        "explanation1": "Używa sie go w celu uzyskania dostępu do swoich środków z",
-        "explanation2": " każdego portfela ",
-        "explanation3": ", na",
-        "explanation4": " dowolnym urządzeniu",
-        "explanation5": ". Ale jeśli utracisz swojego seeda, utracisz również swoje IOTA.",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seed'a."
     },
     "welcome": {
@@ -268,9 +265,8 @@
         "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Twój seed zawiera {{maxSeedLength}} znaków czytany od lewej do prawej. Zapisz seeda oraz sumę kontrolną i",
-        "tripleCheck": "sprawdź trzykrotnie",
-        "thatTheyAreCorrect": "że są one poprawne."
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash skopiowany",
@@ -301,6 +297,9 @@
     "advancedThemeCustomisation": {
         "background": "Tło",
         "frame": "Ramka"
+    },
+    "themeCustomisation": {
+        "theme": "Motyw"
     },
     "currencySelection": {
         "currency": "Waluta"
@@ -342,16 +341,12 @@
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Zapisałem swojego seeda",
-        "reenter": "Teraz będziesz poproszony\/a o ponowne wprowadzenie swojego seeda.",
+        "reenter": "Teraz będziesz poproszony/a o ponowne wprowadzenie swojego seeda.",
         "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego seed'a, stracisz swoje środki IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TEJ CZYNNOŚCI NIE MOŻNA COFNĄĆ.",
-        "infoTextOne": "Wszystkie twoje portfele w tym także twoje",
-        "infoTextTwo": "seeedy, hasła",
-        "infoTextThree": "oraz",
-        "infoTextFour": "inne informacje o koncie",
-        "infoTextFive": "zostaną utracone."
+        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Masz zamiar wysłać {{contents}} na ten adres",
