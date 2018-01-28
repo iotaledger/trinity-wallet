@@ -77,11 +77,13 @@ app.on('activate', () => {
 
 app.setAsDefaultProtocolClient('iota');
 app.on('open-url', function(event, url) {
-    event.preventDefault();
-    let deeplinkingUrl = url;
-    console.log('test main' + url);
-    windows.main.webContents.send('url-params', url);
-    logEverywhere('open-url# ' + deeplinkingUrl);
+    setTimeout( ()=> {
+        event.preventDefault();
+        let deeplinkingUrl = url;
+        console.log('test main' + url);
+        windows.main.webContents.send('url-params', url);
+        logEverywhere('open-url# ' + deeplinkingUrl);
+    });
 });
 
 function logEverywhere(s) {
