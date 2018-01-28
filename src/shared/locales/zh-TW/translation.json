@@ -62,10 +62,10 @@
         "received": "Received",
         "sending": "Sending",
         "receiving": "Receiving",
-        "confirmed": "Confirmed",
-        "pending": "Pending",
+        "confirmed": "已確認",
+        "pending": "檢測中",
         "bundleHash": "Bundle Hash",
-        "addresses": "Addresses",
+        "addresses": "位址",
         "pressBackAgain": "Press back again to close the app",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -299,7 +299,7 @@
         "frame": "邊框"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "佈景主題"
     },
     "currencySelection": {
         "currency": "貨幣"
