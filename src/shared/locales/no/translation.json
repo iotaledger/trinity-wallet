@@ -70,7 +70,7 @@
         "autoreattaching": "Retilknytter automatisk",
         "autoreattachingExplanation": "Retiljknytter transaksjon med hash-{{hash}}",
         "autopromoting": "Sender hjelpetransaksjoner",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autopromotingExplanation": "Sende hjelpetransaksjoner for {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -83,8 +83,8 @@
         "accountName": "Kontonavn",
         "noNickname": "Ingen kontonavn angitt",
         "noNicknameExplanation": "Vennligst skriv inn et kontonavn for hovednøkkelen.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUse": "Nøkkel er allerede i bruk",
+        "seedInUseExplanation": "Denne nøkkelen er allerede tilknyttet din lommebok. Bruk en annen."
     },
     "changePassword": {
         "oops": "Au da. Noe gikk galt",
@@ -137,7 +137,7 @@
         "enterPassword": "Skriv inn passord.",
         "useSeed": "BRUK HOVEDNØKKEL",
         "login": "LOGG INN",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Vil du forsøke en annen node?"
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
@@ -163,14 +163,14 @@
     "receive": {
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "NY ADRESSE",
         "message": "Valgfri melding",
         "removeMessage": "FJERN MELDINGEN"
     },
     "saveYourSeed": {
         "seedCleared": "Hovednøkkel er fjernet",
         "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstaven for din sikkerhet.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>Du må lagre din nøkkel med</0> <1>minst én</1> <2>av alternativene nedenfor.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Feil hovednøkkel",
@@ -183,8 +183,8 @@
         "invalidAddressExplanation1": "Adressen bør være {{maxLength}} tegn og ha kontrolltegn.",
         "invalidAddressExplanation2": "Adressen inneholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressens kontrolltegn stemmer ikke.",
-        "notEnoughFunds": "Insufficient funds",
-        "notEnoughFundsExplanation": "Du har ikke nok IOTA til å fullføre denne overføringen.",
+        "notEnoughFunds": "Ikke nok penger",
+        "notEnoughFundsExplanation": "Du har ikke nok IOTA til å gjøre denne overføringen.",
         "keyReuse": "Privatnøkkelen er brukt før",
         "keyReuseExplanation": "Adressen du prøver å sende til er allerede brukt. Prøv en annen adresse.",
         "recipientAddress": "Mottakeradresse",
@@ -220,7 +220,7 @@
         "theme": "Tema",
         "currency": "Valuta",
         "language": "Språk",
-        "accountManagement": "Account management",
+        "accountManagement": "Konto administrasjon",
         "addNewSeed": "Legg til ny hovednøkkel",
         "twoFA": "To-faktor autentisering",
         "changePassword": "Endre passord",
@@ -235,20 +235,20 @@
         "accountDeletedExplanation": "Kontoen er fjernet fra lommeboken.",
         "cannotPerformAction": "Kan ikke utføre handling",
         "cannotPerformActionExplanation": "Gå til avanserte innstillinger for å tilbakestille lommeboken.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
+        "poorConnection": "Dårlig forbindelse",
+        "poorConnectionExplanation": "Kan ikke endre valuta på grunn av en dårlig forbindelse.",
+        "hide": "Skjul",
+        "hideOthers": "Skjul andre",
+        "showAll": "Vis alle",
+        "quit": "Avslutt",
+        "edit": "Rediger",
+        "cut": "Klipp ut",
+        "copy": "Kopier",
+        "paste": "Lim inn",
+        "selectAll": "Velg alt"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
         "cancel": "AVBRYT",
         "reset": "TILBAKESTILL"
     },
@@ -256,7 +256,7 @@
         "okay": "OK. La oss sette opp lommeboken din!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøkkel du ønsker å bruke?",
         "seedExplanation": "IOTA hovednøkkel er som et brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>Du kan bruke den til å få tilgang til midler fra</0> <1>enhver lommebok</1> <2>, på</2> <3>enhver enhet</3> <4>. Men hvis du mister din nøkkel, du også miste din IOTA.</4></0>",
         "keepSafe": "Vennligst sikre din hovednøkkel godt."
     },
     "welcome": {
