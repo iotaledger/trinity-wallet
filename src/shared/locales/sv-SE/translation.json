@@ -256,7 +256,7 @@
         "okay": "Okej. Låt oss sammanställa din plånbok!",
         "doYouAlreadyHaveASeed": "Har du redan en seed som du vill använda?",
         "seedExplanation": "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>Du kan använda det för att komma åt dina tillgångar från</0><1> valfri plånbok</1><2>, samt</2><3> valfri apparat</3><4>. Förlorar du din seed, kommer du samtidigt förlora dina IOTA.</4></0>",
         "keepSafe": "Vänligen förvara din seed säkert."
     },
     "welcome": {
@@ -265,8 +265,8 @@
         "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig till att följa hela processen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "yourSeedIs": "Din seed är {{maxSeedLength}} tecken lästa från vänster till höger.",
+        "writeDownYourSeed": "<0> Skriv ner din seed och checksumma och </0><1>dubbelkolla</1><2> att det stämmer.</2>"
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
@@ -346,7 +346,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNA ÅTGÄRD KAN INTE ÅNGRAS.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>All data i din plånbok inklusive dina </0><1>seeds, lösenord,</1><2> och </2><3>annan kontoinformation</3><4> kommer att förloras.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Du kommer att skicka {{contents}} till adressen",
