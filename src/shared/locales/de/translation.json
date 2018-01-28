@@ -66,7 +66,11 @@
         "pending": "Pending",
         "bundleHash": "Bundle Hash",
         "addresses": "Addresses",
-        "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden"
+        "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
+        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autopromoting": "Autopromoting transfer",
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -242,9 +246,6 @@
         "copy": "Kopieren",
         "paste": "Einfügen",
         "selectAll": "Alle auswählen"
-    },
-    "resetWalletConfirmation": {
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein um das Wallet zurückzusetzen.",
