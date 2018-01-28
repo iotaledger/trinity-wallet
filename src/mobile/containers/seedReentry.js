@@ -80,7 +80,7 @@ class SeedReentry extends Component {
                                 <View style={{ flex: 0.5 }} />
                                 <CustomTextInput
                                     label={t('global:seed')}
-                                    onChangeText={(seed) => this.setState({ seed: seed.toUpperCase() })}
+                                    onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                                     containerStyle={{ width: width / 1.36 }}
                                     maxLength={MAX_SEED_LENGTH}
                                     autoCapitalize={'none'}
@@ -96,8 +96,10 @@ class SeedReentry extends Component {
                                 <InfoBox
                                     text={
                                         <View>
-                                            <Text style={[styles.infoText, textColor]}>{t('thisIsACheck')}</Text>
-                                            <Text style={[styles.infoText, textColor]}>{t('ifYouHaveNotSaved')}</Text>
+                                            <Text style={[styles.infoTextTop, textColor]}>{t('thisIsACheck')}</Text>
+                                            <Text style={[styles.infoTextBottom, textColor]}>
+                                                {t('ifYouHaveNotSaved')}
+                                            </Text>
                                         </View>
                                     }
                                     secondaryBackgroundColor={secondaryBackgroundColor}
@@ -158,10 +160,17 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    infoText: {
+    infoTextTop: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'center',
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    infoTextBottom: {
+        paddingTop: height / 60,
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
@@ -210,7 +219,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,

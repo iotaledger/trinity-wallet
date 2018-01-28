@@ -99,7 +99,7 @@ class DeleteAccount extends Component {
         };
     }
 
-    _showModal = (data) => this.setState({ isModalVisible: true });
+    _showModal = data => this.setState({ isModalVisible: true });
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
@@ -188,7 +188,7 @@ class DeleteAccount extends Component {
                                 <Text style={[styles.infoText, textColor]}>{t('enterPassword')}</Text>
                                 <CustomTextInput
                                     label={t('global:password')}
-                                    onChangeText={(password) => this.setState({ password })}
+                                    onChangeText={password => this.setState({ password })}
                                     containerStyle={{ width: width / 1.36 }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
@@ -206,7 +206,7 @@ class DeleteAccount extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={(event) => this.onBackPress()}
+                            onPress={event => this.onBackPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>

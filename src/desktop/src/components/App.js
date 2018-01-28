@@ -102,7 +102,7 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     settings: state.settings,
     tempAccount: state.tempAccount,
     app: state.app,
