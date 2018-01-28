@@ -64,13 +64,13 @@
         "receiving": "Recebendo",
         "confirmed": "Confirmado",
         "pending": "Pendente",
-        "bundleHash": "Bundle Hash",
-        "addresses": "Addresses",
+        "bundleHash": "Pacote Hash",
+        "addresses": "Endereços",
         "pressBackAgain": "Toque novamente para fechar o app",
-        "autoreattaching": "Autoreattaching to Tangle",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autoreattaching": "Anexando automaticamente ao Tangle",
+        "autoreattachingExplanation": "Anexando transação automaticamente com hash {{hash}}",
+        "autopromoting": "Promovendo transferência automaticamente",
+        "autopromotingExplanation": "Promovendo transação com hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -170,7 +170,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed removida",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida do clipboard.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>Você precisa salvar sua seed com </0><1>pelo menos uma</1><2> das opções listadas abaixo.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorreta",
@@ -256,7 +256,7 @@
         "okay": "Ok. Vamos configurar a sua carteira!",
         "doYouAlreadyHaveASeed": "Já possui uma seed que gostaria de utilizar?",
         "seedExplanation": "A seed IOTA representa, simultaneamente, o nome do utilizador e a senha da sua conta, combinados numa sequência de 81 caracteres.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>Voce pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder a sua seed, também perderá as suas IOTAS.</4></0>",
         "keepSafe": "Por favor, mantenha a sua seed protegida e segura."
     },
     "welcome": {
@@ -265,7 +265,7 @@
         "reminder": "Você pode se sentir tentado a ignorar alguns passos, mas aconselhamos que conclua o processo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "yourSeedIs": "Sua seed é {{maxSeedLength}} caracteres lidos da esquerda para a direita.",
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
