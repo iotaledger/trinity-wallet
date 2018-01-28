@@ -62,10 +62,10 @@
         "received": "Received",
         "sending": "Sending",
         "receiving": "Receiving",
-        "confirmed": "Confirmed",
-        "pending": "Pending",
+        "confirmed": "확인됨",
+        "pending": "보류",
         "bundleHash": "Bundle Hash",
-        "addresses": "Addresses",
+        "addresses": "주소",
         "pressBackAgain": "Press back again to close the app",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -299,7 +299,7 @@
         "frame": "Frame"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "테마"
     },
     "currencySelection": {
         "currency": "통화"
