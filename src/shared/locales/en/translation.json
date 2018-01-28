@@ -68,7 +68,11 @@
         "pending": "Pending",
         "bundleHash": "Bundle Hash",
         "addresses": "Addresses",
-        "pressBackAgain": "Press back again to close the app"
+        "pressBackAgain": "Press back again to close the app",
+        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autoreattaching": "Autopromoting transfer",
+        "autoreattachingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
