@@ -355,7 +355,12 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
             }
 
             dispatch(
-                generateAlert(...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`)),
+                generateAlert(
+                    ...alertArguments(
+                        i18next.t('global:autopromoting'),
+                        i18next.t('global:autopromotingExplanation', { hash: tail.hash }),
+                    ),
+                ),
             );
 
             const existingBundlesInStore = getState().account.unconfirmedBundleTails;
@@ -414,8 +419,8 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                         dispatch(
                             generateAlert(
                                 ...alertArguments(
-                                    'Autoreattaching to Tangle',
-                                    `Reattaching transaction with hash ${txHash}`,
+                                    i18next.t('global:autoreattaching'),
+                                    i18next.t('global:autoreattachingExplanation', { hash: txHash }),
                                 ),
                             ),
                         );
