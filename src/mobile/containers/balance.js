@@ -3,7 +3,6 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, ListView, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
@@ -22,20 +21,14 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 class Balance extends Component {
     static propTypes = {
         marketData: PropTypes.object.isRequired,
-        isSendingTransfer: PropTypes.bool.isRequired,
-        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        isSyncing: PropTypes.bool.isRequired,
         seedIndex: PropTypes.number.isRequired,
         balance: PropTypes.number.isRequired,
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
         settings: PropTypes.object.isRequired,
-        setCurrency: PropTypes.func.isRequired,
-        setTimeframe: PropTypes.func.isRequired,
         extraColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        chartLineColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -79,14 +72,9 @@ class Balance extends Component {
             marketData,
             transfers,
             addresses,
-            isSendingTransfer,
-            isGeneratingReceiveAddress,
-            isSyncing,
             negativeColor,
             extraColor,
             secondaryBackgroundColor,
-            chartLineColor,
-            themeName,
         } = this.props;
 
         const shortenedBalance =
@@ -103,7 +91,7 @@ class Balance extends Component {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     <View style={styles.balanceContainer}>
-                        <Text style={[styles.iotaBalance, textColor]} onPress={event => this.onBalanceClick()}>
+                        <Text style={[styles.iotaBalance, textColor]} onPress={(event) => this.onBalanceClick()}>
                             {this.state.balanceIsShort ? shortenedBalance : formatValue(balance)} {formatUnit(balance)}
                         </Text>
                         <Text style={[styles.fiatBalance, textColor]}>
@@ -115,7 +103,7 @@ class Balance extends Component {
                         {hasTransactions ? (
                             <ListView
                                 dataSource={ds.cloneWithRows(recentTransactions)}
-                                renderRow={dataSource => (
+                                renderRow={(dataSource) => (
                                     <SimpleTransactionRow
                                         negativeColor={THEMES.getHSL(negativeColor)}
                                         extraColor={THEMES.getHSL(extraColor)}
@@ -138,19 +126,7 @@ class Balance extends Component {
                         <View style={[styles.line, lineBorder]} />
                     </View>
                     <View style={styles.chartContainer}>
-                        <Chart
-                            isSendingTransfer={isSendingTransfer}
-                            isGeneratingReceiveAddress={isGeneratingReceiveAddress}
-                            isSyncing={isSyncing}
-                            marketData={marketData}
-                            setCurrency={currency => this.props.setCurrency(currency)}
-                            setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
-                            secondaryBackgroundColor={secondaryBackgroundColor}
-                            textColor={{ color: secondaryBackgroundColor }}
-                            borderColor={{ borderColor: secondaryBackgroundColor }}
-                            chartLineColor={chartLineColor}
-                            themeName={themeName}
-                        />
+                        <Chart />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -222,16 +198,6 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     negativeColor: settings.theme.negativeColor,
     extraColor: settings.theme.extraColor,
     secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
-    chartLineColor: settings.theme.chartLineColor,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setCurrency: currency => {
-        dispatch(setCurrency(currency));
-    },
-    setTimeframe: timeframe => {
-        dispatch(setTimeframe(timeframe));
-    },
-});
-
-export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Balance));
+export default translate(['global'])(connect(mapStateToProps)(Balance));
