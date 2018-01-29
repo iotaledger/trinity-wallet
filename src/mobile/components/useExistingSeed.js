@@ -236,7 +236,7 @@ class UseExistingSeed extends React.Component {
                         </View>
                         <View style={{ flex: 0.4 }} />
                         <CustomTextInput
-                            label="Seed"
+                            label={t('global:seed')}
                             onChangeText={value => this.setState({ seed: value.toUpperCase() })}
                             containerStyle={{ width: width / 1.4 }}
                             autoCapitalize={'none'}
