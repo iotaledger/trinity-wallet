@@ -170,7 +170,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed gelöscht",
         "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht.",
-        "mustSaveYourSeed": "<0><0>Du musst deinen Seed mit</0><1>mindestens einer</1><2> der unten aufgelisteten Optionen sichern.</2></0>"
+        "mustSaveYourSeed": "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der unten aufgelisteten Optionen sichern.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Ungültiger Seed",
@@ -212,7 +212,7 @@
         "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
     "settings": {
-        "transferSending": "Sende Überweisung",
+        "transferSending": "Sende Überweisung...",
         "transferSendingExplanation": "Bitte warte bis deine Überweisung gesendet wurde.",
         "generatingAddress": "Erzeuge Empfangsadresse",
         "generatingAddressExplanation": "Bitte warte bis deine Adresse erzeugt wurde.",
