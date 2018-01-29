@@ -151,7 +151,7 @@
         "individualLetters": "Naciśnij poszczególne litery żeby dokonać ich losowego wyboru."
     },
     "onboardingComplete": {
-        "walletReady": "Portfel jest teraz skonfigurowany i gotowy do użycia. W przypadku konieczności wprowadzenia zmian w przyszłości, skorzystaj z menu ustawień."
+        "walletReady": "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
     },
     "paperWallet": {
         "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopie twojego seeda.",
