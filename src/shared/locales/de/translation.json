@@ -248,7 +248,7 @@
         "selectAll": "Alle auswählen"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Gib dein Passwort ein um das Wallet zurückzusetzen.",
+        "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
         "cancel": "ABBRECHEN",
         "reset": "ZURÜCKSETZEN"
     },
@@ -270,7 +270,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
-        "bundleHashCopiedExplanation": "Dein Bundel-Hash wurde in die Zwischenablage kopiert.",
+        "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert."
     },
@@ -290,7 +290,7 @@
         "createNewSeed": "Neuen Seed erstellen"
     },
     "advancedSettings": {
-        "selectNode": "Node auswählen",
+        "selectNode": "Server auswählen",
         "addCustomNode": "Benutzerdefinierten Server hinzufügen",
         "manualSync": "Manuell synchronisieren"
     },
