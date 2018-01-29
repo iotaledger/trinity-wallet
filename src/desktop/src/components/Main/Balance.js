@@ -9,7 +9,7 @@ import { getCurrencySymbol } from 'libs/currency';
 import { getAccountInfoAsync, getNewAddressAsync } from 'actions/seeds';
 import Template, { Content } from 'components/Main/Template';
 import HistoryList from 'components/UI/HistoryList';
-import Chart from 'components/UI/Chart';
+import Chart from 'ui/components/Chart';
 import css from 'components/Main/Balance.css';
 
 class Balance extends React.Component {
