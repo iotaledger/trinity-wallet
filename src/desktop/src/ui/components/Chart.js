@@ -21,15 +21,15 @@ class Chart extends PureComponent {
             volume: PropTypes.string.isRequired,
             change24h: PropTypes.string.isRequired,
             mcap: PropTypes.string.isRequired,
-        }),
+        }).isRequired,
         /* Chart data */
         chartData: PropTypes.shape({
             data: PropTypes.array.isRequired,
             timeframe: PropTypes.string.isRequired,
-            yAxis: {
+            yAxis: PropTypes.shape({
                 ticks: PropTypes.array.isRequired,
-            },
-        }),
+            }),
+        }).isRequired,
         /* Change chart currency */
         setCurrency: PropTypes.func.isRequired,
         /* Change chart time frame */

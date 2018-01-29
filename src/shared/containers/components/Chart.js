@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
-import { setCurrency, setTimeframe } from 'actions/marketData';
-import { getCurrencySymbol } from 'libs/currency';
+import { setCurrency, setTimeframe } from '../../actions/marketData';
+import { getCurrencySymbol } from '../../libs/currency';
 
 /**
  * Chart component container
