@@ -42,6 +42,7 @@ import {
     getBundlesWithPersistence,
 } from '../libs/accountUtils';
 import { rearrangeObjectKeys } from '../libs/util';
+import i18next from '../i18next.js';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
