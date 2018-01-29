@@ -87,6 +87,7 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
     }
     componentDidMount() {
+        const { t } = this.props;
         BackHandler.addEventListener('homeBackPress', () => {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
                 RNExitApp.exitApp();
