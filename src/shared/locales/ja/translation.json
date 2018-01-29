@@ -67,8 +67,8 @@
         "bundleHash": "バンドル ハッシュ",
         "addresses": "アドレス",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
-        "autoreattaching": "Tangleに自動リアタッチする。",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autoreattaching": "Tangleに自動リアタッチ",
+        "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションをリアタッチ",
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
