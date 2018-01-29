@@ -64,13 +64,13 @@
         "receiving": "Ricezione",
         "confirmed": "Confermato",
         "pending": "In attesa",
-        "bundleHash": "Bundle Hash",
+        "bundleHash": "Hash del pacchetto",
         "addresses": "Indirizzi",
-        "pressBackAgain": "Press back again to close the app",
-        "autoreattaching": "Autoreattaching to Tangle",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "pressBackAgain": "Premi di nuovo Indietro per chiudere la app",
+        "autoreattaching": "Ricollegamento automatico al Tangle",
+        "autoreattachingExplanation": "Ricollegamento della transazione con hash {{hash}}",
+        "autopromoting": "Promozione automatica del trasferimento",
+        "autopromotingExplanation": "Promozione della transazione con hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -266,7 +266,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Il tuo seme sono {{maxSeedLength}} caratteri letti da sinistra a destra.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed": "<0>Trascrivi il tuo seme e la checksum e </0><1>verifica tre volte</1><2> di averli trascritti correttamente.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash del pacchetto copiato",
@@ -342,11 +342,11 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Ho salvato il mio seme",
         "reenter": "Adesso ti sarà richiesto di re-immettere il tuo seme.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "Se il tuo dispositivo si rompe e non hai trascritto il tuo seme, perderai i tuoi IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "QUESTA AZIONE NON PUÒ ESSERE ANNULLATA.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>Tutti i dati nel tuo portafoglio tra cui </0> <1>i semi, le password</1><2> e </2><3>altre informazioni sul conto</3><4> andranno persi.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",
