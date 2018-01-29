@@ -170,7 +170,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed wyczyszczony",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
-        "mustSaveYourSeed": "<0><0>Ziarno należy zapisać z </0><1>co najmniej jedną</1><2> z poniższych opcji</2></0>"
+        "mustSaveYourSeed": "<0><0>Zapisz ziarno wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Nieprawidłowy seed",
@@ -256,7 +256,7 @@
         "okay": "Okay. Ustawmy twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
         "seedExplanation": "SEED jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składa się on z ciągu 81 znaków.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli zgubisz ziarno, stracisz swoje IOTA.</4></0>",
         "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seed'a."
     },
     "welcome": {
