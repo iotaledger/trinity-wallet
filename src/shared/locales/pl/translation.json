@@ -64,8 +64,8 @@
         "receiving": "Odbieranie...",
         "confirmed": "Potwierdzono",
         "pending": "Oczekuje",
-        "bundleHash": "Bundle Hash",
-        "addresses": "Addresses",
+        "bundleHash": "Hash pakietu",
+        "addresses": "Adresy",
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -212,7 +212,7 @@
         "youCanAdd": "Można dodać więcej seedów w menu Ustawienia."
     },
     "settings": {
-        "transferSending": "Wysyłanie transferu",
+        "transferSending": "W trakcie transferu",
         "transferSendingExplanation": "Proszę poczekać na wysłanie twojego transferu.",
         "generatingAddress": "Generowanie adresu odbiorczego",
         "generatingAddressExplanation": "Proszę poczekać na wygenerowanie twojego adresu.",
