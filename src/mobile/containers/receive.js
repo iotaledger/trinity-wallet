@@ -112,7 +112,18 @@ class Receive extends Component {
 
     getOpacity() {
         const { receiveAddress } = this.props;
-        if (receiveAddress === ' ') {
+        if (receiveAddress === ' ' && !isAndroid) {
+            return 0.1;
+        } else if (receiveAddress === ' ' && isAndroid) {
+            return 0.05;
+        }
+
+        return 1;
+    }
+
+    getQrOpacity() {
+        const { receiveAddress } = this.props;
+        if (receiveAddress === ' ' && isAndroid) {
             return 0.1;
         }
 
@@ -149,6 +160,7 @@ class Receive extends Component {
         const generateBorderColor = { borderColor: ctaBorderColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
         const opacity = { opacity: this.getOpacity() };
+        const qrOpacity = { opacity: this.getQrOpacity() };
         const isWhite = secondaryBackgroundColor === 'white';
         const receiveAddressContainerBackgroundColor = isWhite
             ? { backgroundColor: 'rgba(255, 255, 255, 0.05)' }
@@ -163,6 +175,7 @@ class Receive extends Component {
                             value={JSON.stringify({ address: receiveAddress, message })}
                             size={width / 2.8}
                             color={'black'}
+                            backgroundColor={'transparent'}
                         />
                     </View>
                     <View style={{ flex: 0.25 }} />
@@ -176,13 +189,13 @@ class Receive extends Component {
                                 ]}
                             >
                                 <Text style={[styles.receiveAddressText, textColor]}>
-                                    {receiveAddress.substring(0, 27)}
+                                    {receiveAddress.substring(0, 30)}
                                 </Text>
                                 <Text style={[styles.receiveAddressText, textColor]}>
-                                    {receiveAddress.substring(27, 54)}
+                                    {receiveAddress.substring(30, 60)}
                                 </Text>
                                 <Text style={[styles.receiveAddressText, textColor]}>
-                                    {receiveAddress.substring(54, 81)}
+                                    {receiveAddress.substring(60, 90)}
                                 </Text>
                             </View>
                         </TouchableOpacity>
@@ -201,7 +214,7 @@ class Receive extends Component {
                         }}
                         label={t('message')}
                         onChangeText={message => this.setState({ message })}
-                        containerStyle={{ width: width / 1.36 }}
+                        containerStyle={{ width: width / 1.28 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
                         returnKeyType="done"
@@ -285,7 +298,7 @@ const styles = StyleSheet.create({
         paddingTop: width / 30,
         paddingHorizontal: width / 30,
         paddingBottom: isAndroid ? width / 22 : width / 30,
-        width: width / 1.36,
+        width: width / 1.28,
     },
     activityIndicator: {
         flex: 1,
