@@ -8,6 +8,7 @@ import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png
 import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
 import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
 import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
+import { translate } from 'react-i18next';
 
 import { width, height } from '../util/dimensions';
 
@@ -43,7 +44,7 @@ class SimpleTransactionRow extends Component {
     };
 
     render() {
-        const { rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor } = this.props;
+        const { rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor, t } = this.props;
         const transfer = getRelevantTransfer(rowData, addresses);
         const isReceived = isReceivedTransfer(rowData, addresses);
         const sign = isReceived ? '+' : '-';
@@ -65,8 +66,8 @@ class SimpleTransactionRow extends Component {
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
                     <Text style={[styles.text, { color: titleColour }]}>
                         {isReceived
-                            ? rowData[0].persistence ? 'Received' : 'Receiving'
-                            : rowData[0].persistence ? 'Sent' : 'Sending'}
+                            ? rowData[0].persistence ? t('received') : t('receiving')
+                            : rowData[0].persistence ? t('sent') : t('sending')}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>
@@ -79,4 +80,4 @@ class SimpleTransactionRow extends Component {
     }
 }
 
-export default SimpleTransactionRow;
+export default translate('global')(SimpleTransactionRow);

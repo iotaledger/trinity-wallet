@@ -169,22 +169,24 @@ class UseExistingSeed extends React.Component {
     }
 
     getDefaultAccountName() {
-        if (this.props.seedCount === 0) {
-            return 'MAIN ACCOUNT';
-        } else if (this.props.seedCount === 1) {
-            return 'SECOND ACCOUNT';
-        } else if (this.props.seedCount === 2) {
-            return 'THIRD ACCOUNT';
-        } else if (this.props.seedCount === 3) {
-            return 'FOURTH ACCOUNT';
-        } else if (this.props.seedCount === 4) {
-            return 'FIFTH ACCOUNT';
-        } else if (this.props.seedCount === 5) {
-            return 'SIXTH ACCOUNT';
-        } else if (this.props.seedCount === 6) {
-            return 'OTHER ACCOUNT';
+        const { t } = this.props;
+        if (this.props.account.seedCount === 0) {
+            return t('global:mainWallet');
+        } else if (this.props.account.seedCount === 1) {
+            return t('global:secondWallet');
+        } else if (this.props.account.seedCount === 2) {
+            return t('global:thirdWallet');
+        } else if (this.props.account.seedCount === 3) {
+            return t('global:fourthWallet');
+        } else if (this.props.account.seedCount === 4) {
+            return t('global:fifthWallet');
+        } else if (this.props.account.seedCount === 5) {
+            return t('global:sixthWallet');
+        } else if (this.props.account.seedCount === 6) {
+            return t('global:otherWallet');
+        } else {
+            return '';
         }
-        return '';
     }
 
     getChecksumValue() {
