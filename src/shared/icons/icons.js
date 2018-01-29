@@ -3,4 +3,5 @@ export const icons = {
     wallet: '💰',
     camera: '📷',
     eye: '👁',
+    chevron: '🔻',
 };

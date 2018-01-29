@@ -21,9 +21,9 @@
         button {
             line-height: 18px;
             display: block;
-            img {
-                height: 8px;
-                width: 8px;
+            span {
+                position: relative;
+                bottom: 1px;
                 margin-right: 8px;
             }
         }
