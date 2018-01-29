@@ -77,7 +77,7 @@
         "seedInvalidCharsExplanation": "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seed musi zawierać co najmniej {{maxLength}} znaków. Twój Seed ma {{currentLength}} znaków. Proszę spróbować ponownie.",
-        "nameInUse": "Ta nazwa konta jest już w użyciu",
+        "nameInUse": "Konto o tej nazwie już istnieje",
         "nameInUseExplanation": "Użyj unikalnej nazwy konta dla ziarna.",
         "enterAccountName": "Wprowadź nazwę konta.",
         "accountName": "Nazwa konta",
