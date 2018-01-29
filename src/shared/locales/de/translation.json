@@ -328,7 +328,7 @@
         "pressToSync": "Drücke die Schaltfläche unten, um dein Konto zu synchronisieren.",
         "thisMayTake": "Dies kann eine Weile dauern.",
         "youMayNotice": "Dein Gerät könnte dabei langsamer werden.",
-        "syncAccount": "KONTO SYNCHRONISIEREN",
+        "syncAccount": "SYNCHRONISIEREN",
         "syncingYourAccount": "Konto wird synchronisiert."
     },
     "useExistingSeed": {
