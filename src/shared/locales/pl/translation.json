@@ -266,7 +266,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Twoje ziarno jest {{maxSeedLength}}-znakowe, czytane od lewej do prawej.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed": "<0> Spisz ziarno i sumę kontrolną i </0><1>upewnij się trzy razy</1><2> czy są poprawne.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash skopiowany",
@@ -346,7 +346,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TEJ CZYNNOŚCI NIE MOŻNA COFNĄĆ.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>Wszystkie dane portfela, w tym </0><1>ziarna, hasło</1><2> i </2><3>pozostałe dane konta</3><4>, zostaną utracone.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Masz zamiar wysłać {{contents}} na ten adres",
