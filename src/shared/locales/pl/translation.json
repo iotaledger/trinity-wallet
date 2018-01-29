@@ -97,7 +97,7 @@
         "passwordsDoNotMatchExplanation": "Hasła się różnią. Proszę spróbować jeszcze raz.",
         "passwordTooShort": "Hasło jest zbyt krótkie",
         "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej 12 znaków. Spróbuj ponownie.",
-        "oldPassword": "Nie można ustawić starego hasła",
+        "oldPassword": "Nie możesz użyć ponownie starego hasła",
         "oldPasswordExplanation": "Nie można ponownie użyć starego hasła. Proszę spróbować z nowym hasłem.",
         "ensureStrongPassword": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "currentPassword": "Obecne hasło",
