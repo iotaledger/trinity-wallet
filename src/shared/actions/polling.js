@@ -42,6 +42,7 @@ import {
     getBundlesWithPersistence,
 } from '../libs/accountUtils';
 import { rearrangeObjectKeys } from '../libs/util';
+import i18next from '../i18next.js';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
@@ -355,7 +356,12 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
             }
 
             dispatch(
-                generateAlert(...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`)),
+                generateAlert(
+                    ...alertArguments(
+                        i18next.t('global:autopromoting'),
+                        i18next.t('global:autopromotingExplanation', { hash: tail.hash }),
+                    ),
+                ),
             );
 
             const existingBundlesInStore = getState().account.unconfirmedBundleTails;
@@ -414,8 +420,8 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                         dispatch(
                             generateAlert(
                                 ...alertArguments(
-                                    'Autoreattaching to Tangle',
-                                    `Reattaching transaction with hash ${txHash}`,
+                                    i18next.t('global:autoreattaching'),
+                                    i18next.t('global:autoreattachingExplanation', { hash: txHash }),
                                 ),
                             ),
                         );
