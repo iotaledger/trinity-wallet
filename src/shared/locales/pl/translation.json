@@ -61,16 +61,16 @@
         "sent": "Wysłano",
         "received": "Odebrano",
         "sending": "Wysyłanie...",
-        "receiving": "Odbieranie...",
+        "receiving": "Odbieranie",
         "confirmed": "Potwierdzono",
         "pending": "Oczekuje",
         "bundleHash": "Hash pakietu",
         "addresses": "Adresy",
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
-        "autoreattaching": "Autoreattaching to Tangle",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autoreattaching": "Automatyczne ponawianie wiązania do Tangle",
+        "autoreattachingExplanation": "Ponowne wiązanie transakcji z haszem {{hash}}",
+        "autopromoting": "Automatyczne promowanie transferu",
+        "autopromotingExplanation": "Promowanie transakcji z haszem {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -170,7 +170,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed wyczyszczony",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>Należy zapisać seeda z </0><1>co najmniej jedną</1><2> z poniższych opcji</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Nieprawidłowy seed",
