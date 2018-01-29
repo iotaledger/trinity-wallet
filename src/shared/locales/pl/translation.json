@@ -20,7 +20,7 @@
         "invalidResponsePollingExplanation": "Węzeł zwrócił błędną odpowiedź podczas połączenia.",
         "invalidResponseFetchingAccount": "Węzeł zwrócił błędną odpowiedź podczas pobierania informacji o Twoim koncie.",
         "invalidResponseSendingTransfer": "Węzeł zwrócił błędną odpowiedź podczas realizowania transferu.",
-        "seed": "Seed",
+        "seed": "Ziarno",
         "back": "WSTECZ",
         "backLowercase": "Wstecz",
         "done": "GOTOWE",
