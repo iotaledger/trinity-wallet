@@ -54,7 +54,7 @@
         "somethingWentWrongExplanation": "Uruchom ponownie aplikację.",
         "node": "Serwer",
         "cannotPerformAction": "Nie można wykonać akcji",
-        "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
+        "cannotPerformActionExplanation": "Aby zresetować portfel, przejdź do ustawień zaawansowanych.",
         "attachToTangleUnavailable": "Dowiązanie do sieci Tangle niedostępne",
         "attachToTangleUnavailableExplanation": "Dowiązanie do sieci Tangle nie jest dostępne na wybranym węźle.",
         "wallet": "Portfel",
@@ -110,7 +110,7 @@
         "seedCopied": "Ziarno skopiowane do schowka",
         "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"Gotowe\", lub po upływie 60 sekund.",
         "clickToCopy": "Kliknij poniższy przycisk, aby skopiować ziarno do menedżera haseł.",
-        "doNotStore": "Nie przechowuj swojego seeda w formie zwykłego tekstu.",
+        "doNotStore": "Nie zapisuj ziarna jawnym tekstem.",
         "copyToClipboard": "Kopiuj do schowka"
     },
     "enterSeed": {
@@ -176,7 +176,7 @@
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "thisIsACheck": "To jest test w celu upewnienia się że zapisałeś swojego seeda.",
-        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego seeda, proszę wrócić do poprzedniego ekranu i to wykonać."
+        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego ziarna, wróć do poprzedniego ekranu i zrób to."
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -234,7 +234,7 @@
         "accountDeleted": "Konto usunięte",
         "accountDeletedExplanation": "Twoje konto zostało usunięte z portfela.",
         "cannotPerformAction": "Nie można wykonać akcji",
-        "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
+        "cannotPerformActionExplanation": "Aby zresetować portfel, przejdź do ustawień zaawansowanych.",
         "poorConnection": "Słabe połączenie",
         "poorConnectionExplanation": "Nie można zmienić waluty ze względu na słabe połączenie.",
         "hide": "Ukryj",
@@ -248,13 +248,13 @@
         "selectAll": "Zaznacz wszystko"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Wprowadź hasło, aby zresetować swój portfel.",
+        "enterPassword": "Wprowadź hasło, aby zresetować portfel.",
         "cancel": "ANULUJ",
         "reset": "RESET"
     },
     "walletSetup": {
         "okay": "Okay. Ustawmy twój portfel!",
-        "doYouAlreadyHaveASeed": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
+        "doYouAlreadyHaveASeed": "Czy posiadasz ziarno, którego chciałbyś użyć?",
         "seedExplanation": "SEED jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składa się on z ciągu 81 znaków.",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli zgubisz ziarno, stracisz swoje IOTA.</4></0>",
         "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seed'a."
@@ -322,7 +322,7 @@
         "areYouSure": "Czy na pewno chcesz usunąć konto?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
         "thisAction": "Tej akcji nie można cofnąć.",
-        "enterPassword": "Wprowadź hasło, aby usunąć to konto."
+        "enterPassword": "Wprowadź hasło, aby usunąć konto."
     },
     "manualSync": {
         "pressToSync": "Naciśnij poniższy przycisk, aby zsynchronizować swoje konto.",
@@ -332,17 +332,17 @@
         "syncingYourAccount": "Synchronizacja twojego konta."
     },
     "useExistingSeed": {
-        "title": "Wprowadź seeda oraz nazwę konta."
+        "title": "Wprowadź ziarno i nazwę konta."
     },
     "viewSeed": {
-        "enterPassword": "Wprowadź hasło, aby wyświetlić swojego seeda.",
+        "enterPassword": "Wprowadź hasło, aby wyświetlić ziarno.",
         "viewSeed": "POKAŻ SEEDA",
-        "hideSeed": "UKRYJ SEEDA"
+        "hideSeed": "UKRYJ ZIARNO"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "Zapisałem swojego seeda",
+        "alreadyHave": "Zapisałem swoje ziarno",
         "reenter": "Teraz będziesz poproszony/a o ponowne wprowadzenie swojego seeda.",
-        "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego seed'a, stracisz swoje środki IOTA."
+        "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu a nie zapisałeś swojego ziarna, stracisz swoje środki IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TEJ CZYNNOŚCI NIE MOŻNA COFNĄĆ.",
