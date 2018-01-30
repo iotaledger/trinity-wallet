@@ -297,7 +297,9 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
 
         const addressData = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
 
+        console.log('Address Data', addressData);
         const startIndex = getStartingSearchIndexForAddress(addressData);
+        console.log('start index', startIndex);
 
         return getUnspentInputs(addressData, startIndex, value, null, unspentInputs);
     };

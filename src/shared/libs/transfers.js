@@ -5,6 +5,17 @@ import isNull from 'lodash/isNull';
 import { DEFAULT_TAG, DEFAULT_SECURITY } from '../config';
 import { iota } from './iota';
 
+/**
+ *   Returns a single transfer array
+ *   Converts message and tag to trytes. Basically preparing an array of transfer objects before making a transfer.
+ *
+ *   @method prepareTransferArray
+ *   @param {string} address
+ *   @param {number} value
+ *   @param {string} message
+ *   @param {string} [tag='IOTA']
+ *   @returns {array} Transfer object
+ **/
 export const prepareTransferArray = (address, value, message, tag = DEFAULT_TAG) => {
     return [
         {
@@ -16,6 +27,18 @@ export const prepareTransferArray = (address, value, message, tag = DEFAULT_TAG)
     ];
 };
 
+/**
+ *   Returns associated addresses with a seed
+ *   Generates addresses in batches and upon each execution increase the index to fetch the next batch
+ *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
+ *
+ *   @method prepareTransferArray
+ *   @param {string} address
+ *   @param {number} value
+ *   @param {string} message
+ *   @param {string} [tag='IOTA']
+ *   @returns {array} Transfer object
+ **/
 const prepareInputs = (addressData, start, threshold, security = DEFAULT_SECURITY) => {
     const addresses = keys(addressData).slice(start);
     const inputs = [];
@@ -122,7 +145,6 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
 
     const preparedInputs = prepareInputs(addressData, start, threshold);
 
-    console.log('PREPARED INPUTS', preparedInputs);
     inputs.allBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
     filterSpentAddresses(preparedInputs.inputs)
         .then(filtered => {
@@ -158,5 +180,5 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
 export const getStartingSearchIndexForAddress = addressData => {
     const address = Object.keys(addressData).find(address => addressData[address].balance > 0);
 
-    return address ? addressData[addressData].index : 0;
+    return address ? addressData[address].index : 0;
 };
