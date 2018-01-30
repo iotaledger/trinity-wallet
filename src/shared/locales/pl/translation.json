@@ -47,7 +47,7 @@
         "no": "NIE",
         "password": "Hasło",
         "unrecognisedPassword": "Nierozpoznane hasło",
-        "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
+        "unrecognisedPasswordExplanation": "Nieprawidłowe hasło. Spróbuj ponownie.",
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
         "somethingWentWrong": "Coś poszło nie tak",
@@ -106,7 +106,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Ziarno porzucone",
-        "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
+        "seedClearedExplanation": "Ziarno zostało usunięte ze schowka dla Twojego bezpieczeństwa.",
         "seedCopied": "Ziarno skopiowane do schowka",
         "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"Gotowe\", lub po upływie 60 sekund.",
         "clickToCopy": "Kliknij poniższy przycisk, aby skopiować ziarno do menedżera haseł.",
@@ -169,7 +169,7 @@
     },
     "saveYourSeed": {
         "seedCleared": "Ziarno porzucone",
-        "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
+        "seedClearedExplanation": "Ziarno zostało usunięte ze schowka dla Twojego bezpieczeństwa.",
         "mustSaveYourSeed": "<0><0>Zapisz ziarno wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji</2></0>"
     },
     "seedReentry": {
@@ -201,7 +201,7 @@
         "passwordTooShort": "Hasło jest zbyt krótkie",
         "passwordTooShortExplanation": "Hasło musi mieć przynajmniej ${MIN_PASSWORD_LENGTH} znaków. Obecna długość to ${this.state.password.length} znaków. Proszę spróbować ponownie.",
         "passwordMismatch": "Hasła nie są zgodne",
-        "passwordMismatchExplanation": "Wpisane hasła nie są takie same. Proszę spróbować ponownie.",
+        "passwordMismatchExplanation": "Wpisane hasła różnią się. Spróbuj ponownie.",
         "nowWeNeedTo": "Teraz musimy ustawić hasło.",
         "anEncryptedCopy": "Zaszyfrowana kopia ziarna zostanie zapisana na tym urządzeniu. Użyj hasła, aby uzyskać dostęp do portfela.",
         "ensure": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
@@ -255,7 +255,7 @@
     "walletSetup": {
         "okay": "W porządku. Ustawmy Twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz ziarno, którego chciałbyś użyć?",
-        "seedExplanation": "SEED jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składa się on z ciągu 81 znaków.",
+        "seedExplanation": "Ziarno IOTA jest jak połączenie Twojej nazwy użytkownika i hasła do konta w jeden ciąg długości 81 znaków.",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli zgubisz ziarno, stracisz swoje IOTA.</4></0>",
         "keepSafe": "Dbaj o bezpieczeństwo swojego ziarna."
     },
