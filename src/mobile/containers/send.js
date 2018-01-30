@@ -84,6 +84,8 @@ class Send extends Component {
     constructor(props) {
         super(props);
 
+        const { t } = props;
+
         this.state = {
             denomination: 'i',
             amount: '',
@@ -94,7 +96,7 @@ class Send extends Component {
             modalContent: '',
             maxPressed: false,
             maxColor: props.secondaryBackgroundColor,
-            maxText: 'SEND MAX',
+            maxText: t('send:sendMax'),
             sending: false,
         };
     }
@@ -134,18 +136,20 @@ class Send extends Component {
 
     onMaxPress() {
         const { sending } = this.state;
+        const { t } = this.props;
         const max = (this.props.balance / this.getUnitMultiplier()).toString();
         if (!sending) {
             this.setState({
                 amount: max,
                 maxPressed: true,
                 maxColor: '#FF6C69',
-                maxText: 'MAXIMUM amount selected',
+                maxText: t('send:maxSelected'),
             });
         }
     }
 
     onAmountType(amount) {
+        const { t } = this.props;
         if (amount === (this.props.balance / this.getUnitMultiplier()).toString()) {
             this.onMaxPress();
         } else {
@@ -153,7 +157,7 @@ class Send extends Component {
                 amount,
                 maxPressed: false,
                 maxColor: this.props.secondaryBackgroundColor,
-                maxText: 'SEND MAX',
+                maxText: t('send:sendMax'),
             });
         }
     }
