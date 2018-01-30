@@ -1,8 +1,8 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "CANCEL",
-        "continue?": "Are you sure you want to continue?",
+        "send": "Gửi",
+        "cancel": "Huỷ Bỏ",
+        "continue?": "Bạn có muốn tiếp tục không?",
         "noTransactions": "NO RECENT HISTORY",
         "qr": "QR",
         "balanceError": "Not enough balance",
