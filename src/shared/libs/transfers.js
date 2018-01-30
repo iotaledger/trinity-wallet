@@ -28,16 +28,15 @@ export const prepareTransferArray = (address, value, message, tag = DEFAULT_TAG)
 };
 
 /**
- *   Returns associated addresses with a seed
- *   Generates addresses in batches and upon each execution increase the index to fetch the next batch
- *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
+ *   Prepares inputs for sending transfer from locally stored address related information
+ *   Starts from the search index (start) and stops when the threshold is reached
  *
- *   @method prepareTransferArray
- *   @param {string} address
- *   @param {number} value
- *   @param {string} message
- *   @param {string} [tag='IOTA']
- *   @returns {array} Transfer object
+ *   @method prepareInputs
+ *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *   @param {number} start - Index to start the search from
+ *   @param {number} threshold - Maximum value (balance) to stop the search
+ *   @param {number} [security= 2]
+ *   @returns {object} inputs, totalBalance
  **/
 const prepareInputs = (addressData, start, threshold, security = DEFAULT_SECURITY) => {
     const addresses = keys(addressData).slice(start);
@@ -177,6 +176,15 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
         .catch(err => callback(err));
 };
 
+/**
+ *   Finds the first address with balance from locally stored addresses related info.
+ *   Returns index associated with the address
+ *   Returns 0 if no address with balance is found.
+ *
+ *   @method getStartingSearchIndexForAddress
+ *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *   @returns {number} index
+ **/
 export const getStartingSearchIndexForAddress = addressData => {
     const address = Object.keys(addressData).find(address => addressData[address].balance > 0);
 
