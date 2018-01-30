@@ -4,6 +4,7 @@ import each from 'lodash/each';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import isNull from 'lodash/isNull';
+import size from 'lodash/size';
 import { DEFAULT_TAG, DEFAULT_SECURITY } from '../config';
 import { iota } from './iota';
 
@@ -80,6 +81,8 @@ export const filterSpentAddresses = inputs => {
             if (err) {
                 reject(err);
             } else {
+                console.log('Were spent false', wereSpent);
+                console.log('Addresses', addresses);
                 resolve(filter(inputs, (input, idx) => !wereSpent[idx]));
             }
         });
@@ -104,15 +107,23 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
     }
 
     const preparedInputs = prepareInputs(addressData, start, threshold);
-
+    console.log('Prepared inputs', preparedInputs);
     inputs.allBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
     filterSpentAddresses(preparedInputs.inputs)
         .then(filtered => {
+            console.log('Filtered', filtered);
             const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
-            const diff = threshold - collected;
+            console.log('Collected', collected);
 
-            if (diff > 0) {
+            const diff = threshold - collected;
+            const hasInputs = size(filtered);
+            console.log('Diff', diff);
+
+            if (hasInputs && diff > 0) {
+                console.log('Diff greater', preparedInputs);
                 const ordered = preparedInputs.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
+                console.log('Ordered', ordered);
+
                 const end = ordered[0].keyIndex;
 
                 getUnspentInputs(
@@ -134,7 +145,10 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
                 });
             }
         })
-        .catch(err => callback(err));
+        .catch(err => {
+            console.log('What error are you', err);
+            callback(err);
+        });
 };
 
 /**
@@ -162,8 +176,10 @@ export const getStartingSearchIndexForAddress = addressData => {
 export const shouldAllowSendingToAddress = (addresses, callback) => {
     iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
         if (err) {
+            console.log('Inside ', err);
             callback(err);
         } else {
+            console.log('Should allow sending', wereSpent);
             const spentAddresses = filter(addresses, (address, idx) => wereSpent[idx]);
             callback(null, !spentAddresses.length);
         }
