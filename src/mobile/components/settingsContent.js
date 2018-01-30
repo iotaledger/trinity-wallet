@@ -17,6 +17,7 @@ import ChangePassword from './changePassword';
 import ManualSync from './manualSync';
 import ThemeCustomisation from './themeCustomisation';
 import AdvancedThemeCustomisation from './advancedThemeCustomisation';
+import SnapshotTransition from './snapshotTransition';
 
 const SETTINGS_COMPONENTS = {
     mainSettings: MainSettings,
@@ -36,6 +37,7 @@ const SETTINGS_COMPONENTS = {
     manualSync: ManualSync,
     themeCustomisation: ThemeCustomisation,
     advancedThemeCustomisation: AdvancedThemeCustomisation,
+    snapshotTransition: SnapshotTransition,
 };
 
 const SettingsContent = ({ component, ...props }) => {

@@ -22,6 +22,10 @@ const initialState = {
     addingAdditionalAccount: false,
     additionalAccountName: '',
     isFetchingLatestAccountInfoOnLogin: false,
+    isTransitioning: false,
+    transitionBalance: 0,
+    transitionAddresses: [],
+    isCheckingBalance: false,
 };
 
 export default (state = initialState, action) => {
@@ -199,6 +203,27 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload,
+            };
+        case ActionTypes.SNAPSHOT_TRANSITION_REQUEST:
+            return {
+                ...state,
+                isTransitioning: true,
+            };
+        case ActionTypes.SNAPSHOT_TRANSITION_SUCCESS:
+            return {
+                ...state,
+                isTransitioning: false,
+            };
+        case ActionTypes.BALANCE_CHECK_REQUEST:
+            return {
+                ...state,
+                transitionBalance: action.payload,
+                isCheckingBalance: true,
+            };
+        case ActionTypes.BALANCE_CHECK_SUCCESS:
+            return {
+                ...state,
+                isCheckingBalance: false,
             };
         default:
             return state;
