@@ -73,7 +73,7 @@
         "autopromotingExplanation": "Promowanie transakcji z haszem {{hash}}"
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
+        "seedInvalidChars": "Ziarno zawiera nieprawidłowe znaki",
         "seedInvalidCharsExplanation": "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seed musi zawierać co najmniej {{maxLength}} znaków. Twój Seed ma {{currentLength}} znaków. Proszę spróbować ponownie.",
@@ -82,8 +82,8 @@
         "enterAccountName": "Wprowadź nazwę konta.",
         "accountName": "Nazwa konta",
         "noNickname": "Nie wprowadzono nazwy konta",
-        "noNicknameExplanation": "Wpisz nazwę konta dla twojego seeda.",
-        "seedInUse": "Seed jest już w użyciu",
+        "noNicknameExplanation": "Wpisz nazwę konta dla Twojego ziarna.",
+        "seedInUse": "Ziarno jest już w użyciu",
         "seedInUseExplanation": "Ten seed jest już powiązany z Twoim portfelem. Proszę użyj innego."
     },
     "changePassword": {
@@ -147,8 +147,8 @@
     "newSeedSetup": {
         "seedNotGenerated": "Seed nie został wygenerowany",
         "seedNotGeneratedExplanation": "Kliknij przycisk generowania nowego ziarna.",
-        "pressForNewSeed": "WYGENERUJ NOWEGO SEEDa",
-        "individualLetters": "Naciśnij poszczególne litery żeby dokonać ich losowego wyboru."
+        "pressForNewSeed": "WYGENERUJ NOWE ZIARNO",
+        "individualLetters": "Naciśnij poszczególne litery, aby wylosować ponownie."
     },
     "onboardingComplete": {
         "walletReady": "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
@@ -168,7 +168,7 @@
         "removeMessage": "USUŃ WIADOMOŚĆ"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed wyczyszczony",
+        "seedCleared": "Ziarno porzucone",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "mustSaveYourSeed": "<0><0>Zapisz ziarno wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji</2></0>"
     },
@@ -193,7 +193,7 @@
         "message": "Wiadomość",
         "send": "WYŚLIJ",
         "invalidAmount": "Wprowadzono niepoprawną ilość",
-        "invalidAmountExplanation": "Proszę wprowadzić numeryczną wartość transakcji.",
+        "invalidAmountExplanation": "Wprowadź numeryczną wartość transakcji.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
         "iotaUnits": "Jednostki IOTA"
     },
@@ -213,9 +213,9 @@
     },
     "settings": {
         "transferSending": "W trakcie transferu",
-        "transferSendingExplanation": "Proszę poczekać na wysłanie twojego transferu.",
+        "transferSendingExplanation": "Proszę czekać na realizację transferu.",
         "generatingAddress": "Generowanie adresu odbiorczego",
-        "generatingAddressExplanation": "Proszę poczekać na wygenerowanie twojego adresu.",
+        "generatingAddressExplanation": "Proszę czekać na wygenerowanie adresu.",
         "mode": "Tryb",
         "theme": "Motyw",
         "currency": "Waluta",
@@ -257,7 +257,7 @@
         "doYouAlreadyHaveASeed": "Czy posiadasz ziarno, którego chciałbyś użyć?",
         "seedExplanation": "SEED jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składa się on z ciągu 81 znaków.",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli zgubisz ziarno, stracisz swoje IOTA.</4></0>",
-        "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seed'a."
+        "keepSafe": "Dbaj o bezpieczeństwo swojego ziarna."
     },
     "welcome": {
         "thankYou": "Dziękujemy za pobranie portfela IOTA.",
@@ -308,7 +308,7 @@
         "logoutConfirmation": "Czy na pewno chcesz się wylogować?"
     },
     "qrScanner": {
-        "scan": "Zeskanuj swój kod QR"
+        "scan": "Zeskanuj kod QR"
     },
     "unitInfoModal": {
         "unitSystem": "JEDNOSTKA MIARY",
