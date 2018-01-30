@@ -58,19 +58,19 @@
         "attachToTangleUnavailable": "无法连接到Tangle",
         "attachToTangleUnavailableExplanation": "连接到Tangle的功能在选定的节点上无法使用",
         "wallet": "钱包",
-        "sent": "Sent",
-        "received": "Received",
-        "sending": "Sending",
-        "receiving": "Receiving",
+        "sent": "发送",
+        "received": "收到",
+        "sending": "发送",
+        "receiving": "接收",
         "confirmed": "已确认",
         "pending": "等待确认",
-        "bundleHash": "Bundle Hash",
+        "bundleHash": "捆绑哈希",
         "addresses": "地址",
         "pressBackAgain": "再次按返回关闭应用程序",
-        "autoreattaching": "Autoreattaching to Tangle",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autoreattaching": "自动附加到纠缠",
+        "autoreattachingExplanation": "使用哈希{{hash}} 的重新事务",
+        "autopromoting": "自动提示转移",
+        "autopromotingExplanation": "使用哈希{{hash}} 促进事务"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -170,7 +170,7 @@
     "saveYourSeed": {
         "seedCleared": "种子已清除",
         "seedClearedExplanation": "为了安全，种子码已从剪贴板中清除。",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0> <0> 您必须使用 </0> <1> 至少用下面列出的选项的 </1> <2> 保存种子. </2> </0>"
     },
     "seedReentry": {
         "incorrectSeed": "错误的种子",
@@ -256,7 +256,7 @@
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
         "keepSafe": "请您保管好你的种子."
     },
     "welcome": {
@@ -265,8 +265,8 @@
         "reminder": "您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "yourSeedIs": "你的种子是从左向右读的{{maxSeedLength}} 字符。",
+        "writeDownYourSeed": "<0> 记下种子和校验和 </0><1> 三重检查 </1><2> 他们是正确的. </2>"
     },
     "history": {
         "bundleHashCopied": "绑定哈希值已复制",
@@ -346,7 +346,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会迷路。</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "您将发送{{contents}} 到地址",
