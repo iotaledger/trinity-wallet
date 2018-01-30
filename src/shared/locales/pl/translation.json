@@ -87,14 +87,14 @@
         "seedInUseExplanation": "Ten seed jest już powiązany z Twoim portfelem. Proszę użyj innego."
     },
     "changePassword": {
-        "oops": "Ups. Coś poszło nie tak",
-        "oopsExplanation": "Wygląda na to, coś poszło nie tak podczas aktualizacji hasła. Proszę spróbować ponownie.",
+        "oops": "Ups! Coś poszło nie tak",
+        "oopsExplanation": "Wygląda na to, że coś poszło nie tak podczas aktualizacji hasła. Spróbuj ponownie.",
         "passwordUpdated": "Hasło zaktualizowane",
         "passwordUpdatedExplanation": "Twoje hasło zostało pomyślnie zaktualizowane.",
         "incorrectPassword": "Nieprawidłowe hasło",
         "incorrectPasswordExplanation": "Podane hasło jest nieprawidłowe. Spróbuj ponownie.",
         "passwordsDoNotMatch": "Hasła nie są zgodne",
-        "passwordsDoNotMatchExplanation": "Hasła się różnią. Proszę spróbować jeszcze raz.",
+        "passwordsDoNotMatchExplanation": "Hasła nie są zgodne. Spróbuj jeszcze raz.",
         "passwordTooShort": "Hasło jest zbyt krótkie",
         "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej 12 znaków. Spróbuj ponownie.",
         "oldPassword": "Nie możesz użyć ponownie starego hasła",
@@ -119,7 +119,7 @@
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
         "seedExplanation": "Seed powinien składać się z {{maxLength}} znaków i powinien zawierać wielkie litery A-Z lub cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
-        "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA"
+        "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO ZIARNA"
     },
     "home": {
         "balance": "SALDO",
@@ -140,13 +140,13 @@
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?"
     },
     "loading": {
-        "loadingFirstTime": "Ładowanie seeda po raz pierwszy.",
+        "loadingFirstTime": "Ładowanie ziarna po raz pierwszy.",
         "thisMayTake": "To może chwilę potrwać.",
         "youMayNotice": "Możesz zaobserwować spowolnienie twojego urządzenia."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed nie został wygenerowany",
-        "seedNotGeneratedExplanation": "Kliknij przycisk generowania nowego Seeda.",
+        "seedNotGeneratedExplanation": "Kliknij przycisk generowania nowego ziarna.",
         "pressForNewSeed": "WYGENERUJ NOWEGO SEEDa",
         "individualLetters": "Naciśnij poszczególne litery żeby dokonać ich losowego wyboru."
     },
@@ -156,7 +156,7 @@
     "paperWallet": {
         "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopię ziarna.",
         "storeSafely": "Przechowuj go bezpiecznie.",
-        "neverShare": "Nigdy nie udostępniaj nikomu swojego seeda.",
+        "neverShare": "Nigdy nie udostępniaj nikomu swojego ziarna.",
         "iotaLogo": "Logo IOTA",
         "printWallet": "WYDRUKUJ PAPIEROWY PORTFEL"
     },
@@ -253,7 +253,7 @@
         "reset": "RESET"
     },
     "walletSetup": {
-        "okay": "Okay. Ustawmy twój portfel!",
+        "okay": "W porządku. Ustawmy Twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz ziarno, którego chciałbyś użyć?",
         "seedExplanation": "SEED jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składa się on z ciągu 81 znaków.",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli zgubisz ziarno, stracisz swoje IOTA.</4></0>",
