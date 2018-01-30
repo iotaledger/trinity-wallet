@@ -74,9 +74,9 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ziarno zawiera nieprawidłowe znaki",
-        "seedInvalidCharsExplanation": "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
-        "seedTooShort": "Seed jest zbyt krótki",
-        "seedTooShortExplanation": "Seed musi zawierać co najmniej {{maxLength}} znaków. Twój Seed ma {{currentLength}} znaków. Proszę spróbować ponownie.",
+        "seedInvalidCharsExplanation": "Ziarno może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twoje ziarno zawiera nieprawidłowe znaki. Spróbuj ponownie.",
+        "seedTooShort": "Ziarno jest zbyt krótkie",
+        "seedTooShortExplanation": "Ziarno musi zawierać {{maxLength}} znaków. Twoje ziarno jest aktualnie {{currentLength}}-znakowe. Spróbuj ponownie.",
         "nameInUse": "Konto o tej nazwie już istnieje",
         "nameInUseExplanation": "Użyj unikalnej nazwy konta dla ziarna.",
         "enterAccountName": "Wprowadź nazwę konta.",
@@ -114,11 +114,11 @@
         "copyToClipboard": "Kopiuj do schowka"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
-        "invalidCharactersExplanation": "Seed może składać się tylko z wielkich liter A-Z i oraz cyfr 9. Twój Seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
-        "seedTooShort": "Seed jest zbyt krótki",
-        "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
-        "seedExplanation": "Seed powinien składać się z {{maxLength}} znaków i powinien zawierać wielkie litery A-Z lub cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
+        "invalidCharacters": "Ziarno zawiera nieprawidłowe znaki",
+        "invalidCharactersExplanation": "Ziarno może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twoje ziarno zawiera nieprawidłowe znaki. Spróbuj ponownie.",
+        "seedTooShort": "Ziarno jest zbyt krótkie",
+        "seedTooShortExplanation": "Ziarno musi zawierać {{maxLength}} znaków. Twoje ziarno jest aktualnie {{currentLength}}-znakowe. Spróbuj ponownie.",
+        "seedExplanation": "Ziarno powinno składać się z {{maxLength}} znaków i zawierać wielkie litery A-Z oraz cyfry 9. Ziarno nie może być dłuższe niż {{maxLength}} znaków.",
         "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO ZIARNA"
     },
     "home": {
@@ -145,7 +145,7 @@
         "youMayNotice": "Możesz zaobserwować spowolnienie twojego urządzenia."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed nie został wygenerowany",
+        "seedNotGenerated": "Nie wygenerowano ziarna",
         "seedNotGeneratedExplanation": "Kliknij przycisk generowania nowego ziarna.",
         "pressForNewSeed": "WYGENERUJ NOWE ZIARNO",
         "individualLetters": "Naciśnij poszczególne litery, aby wylosować ponownie."
@@ -186,7 +186,7 @@
         "notEnoughFunds": "Brak wystarczających środków",
         "notEnoughFundsExplanation": "Nie masz wystarczająco dużo IOTA, aby zakończyć ten transfer.",
         "keyReuse": "Ponowne użycie klucza",
-        "keyReuseExplanation": "Adres na który próbujesz wysłać został już wcześniej użyty. Spróbuj użyć innego adresu.",
+        "keyReuseExplanation": "Adres na który próbujesz wysłać został już wcześniej użyty. Spróbuj innego adresu.",
         "recipientAddress": "Adres odbiorcy",
         "amount": "Ilość",
         "max": "MAX",
@@ -270,7 +270,7 @@
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
-        "bundleHashCopiedExplanation": "Bundle hash został skopiowany do schowka.",
+        "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Adres został skopiowany do schowka."
     },
@@ -328,8 +328,8 @@
         "pressToSync": "Naciśnij poniższy przycisk, aby zsynchronizować swoje konto.",
         "thisMayTake": "To może chwilę potrwać.",
         "youMayNotice": "Możesz zaobserwować spowolnienie twojego urządzenia.",
-        "syncAccount": "SYNCHRONIZACJA KONT",
-        "syncingYourAccount": "Synchronizacja twojego konta."
+        "syncAccount": "SYNCHRONIZUJ KONTO",
+        "syncingYourAccount": "Synchronizacja Twojego konta."
     },
     "useExistingSeed": {
         "title": "Wprowadź ziarno i nazwę konta."
