@@ -11,7 +11,7 @@
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
-        "messageSent": "Message sent",
+        "messageSent": "메시지 전송됨",
         "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "키 재사용",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
