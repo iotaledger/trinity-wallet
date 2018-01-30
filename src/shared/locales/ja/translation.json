@@ -69,7 +69,7 @@
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "autoreattaching": "Tangleに自動リアタッチ",
         "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションをリアタッチ",
-        "autopromoting": "Autopromoting transfer",
+        "autopromoting": "自動促進転送",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
