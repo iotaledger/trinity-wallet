@@ -260,7 +260,6 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
         };
 
         const unspentInputs = (err, inputs) => {
-            console.log('Inputs', inputs);
             if (err && err.message !== 'Not enough balance') {
                 dispatch(sendTransferError());
 
@@ -297,9 +296,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
 
         const addressData = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
 
-        console.log('Address Data', addressData);
         const startIndex = getStartingSearchIndexForAddress(addressData);
-        console.log('start index', startIndex);
 
         return getUnspentInputs(addressData, startIndex, value, null, unspentInputs);
     };
