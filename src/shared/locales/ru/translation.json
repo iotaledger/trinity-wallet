@@ -64,12 +64,12 @@
         "receiving": "Получение",
         "confirmed": "Подтверждено",
         "pending": "Ожидание",
-        "bundleHash": "Bundle Hash",
+        "bundleHash": "Пакет данных",
         "addresses": "Адресов",
         "pressBackAgain": "Press back again to close the app",
-        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattaching": "Автообновление в Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
+        "autopromoting": "Передача автопромотирования",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
@@ -163,14 +163,14 @@
     "receive": {
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "НОВЫЙ АДРЕС",
         "message": "Сообщение (опционально)",
         "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ"
     },
     "saveYourSeed": {
         "seedCleared": "Ключ очищен",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0> <0> Вы должны сохранить свое семя с </ 0> <1> как минимум одним </ 1> <2> из перечисленных ниже опций. </ 2> </ 0>"
     },
     "seedReentry": {
         "incorrectSeed": "Неверный ключ",
