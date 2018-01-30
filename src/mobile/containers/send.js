@@ -84,7 +84,7 @@ class Send extends Component {
     constructor(props) {
         super(props);
 
-        const { t } = props;
+        const { t } = this.props;
 
         this.state = {
             denomination: 'i',
