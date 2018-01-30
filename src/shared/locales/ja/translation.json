@@ -70,7 +70,7 @@
         "autoreattaching": "Tangleに自動リアタッチ",
         "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションをリアタッチ",
         "autopromoting": "自動促進転送",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -170,7 +170,7 @@
     "saveYourSeed": {
         "seedCleared": "Seedが消去されました",
         "seedClearedExplanation": "コピーされたSeedをクリップボードから削除しました。",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>Seedを保存しましょう。</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seedが違います。",
@@ -256,7 +256,7 @@
         "okay": "それではウォレットの設定を行いましょう。",
         "doYouAlreadyHaveASeed": "IOTAのSeedはすでにお持ちでしょうか？",
         "seedExplanation": "IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>同じSeedを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>Seedを紛失すると、口座とその預金にもアクセスできなくなります。</4></0>",
         "keepSafe": "Seedは安全に保管してください。"
     },
     "welcome": {
@@ -265,8 +265,8 @@
         "reminder": "いくつかの手順を飛ばすのも可能ではありますが、全ての手順を踏むことをお勧めします。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "yourSeedIs": "Seedは左から右に読む{{maxSeedLength}}文字です。",
+        "writeDownYourSeed": "<0>Seedとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>して下さい。</2>"
     },
     "history": {
         "bundleHashCopied": "バンドルハッシュをコピーしました。",
