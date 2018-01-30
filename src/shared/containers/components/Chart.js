@@ -86,6 +86,8 @@ export default function withChartData(ChartComponent) {
         }
     }
 
+    ChartData.displayName = `withChartData(${ChartComponent.displayName || ChartComponent.name})`;
+
     const mapStateToProps = (state) => ({
         marketData: state.marketData,
         theme: state.settings.theme,
