@@ -199,7 +199,7 @@
     },
     "setPassword": {
         "passwordTooShort": "Hasło jest zbyt krótkie",
-        "passwordTooShortExplanation": "Hasło musi mieć przynajmniej ${MIN_PASSWORD_LENGTH} znaków. Obecna długość to ${this.state.password.length} znaków. Proszę spróbować ponownie.",
+        "passwordTooShortExplanation": "Hasło musi mieć co najmniej {{minLength}} znaków. Obecnie jest {{currentLength}}-znakowe. Spróbuj ponownie.",
         "passwordMismatch": "Hasła nie są zgodne",
         "passwordMismatchExplanation": "Wpisane hasła różnią się. Spróbuj ponownie.",
         "nowWeNeedTo": "Teraz musimy ustawić hasło.",
@@ -228,9 +228,9 @@
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
         "syncingComplete": "Synchronizacja zakończona",
-        "syncingCompleteExplanation": "Twoje konto zostało pomyślnie zsynchronizowane.",
+        "syncingCompleteExplanation": "Konto zostało pomyślnie zsynchronizowane.",
         "nicknameChanged": "Zmieniono nazwę konta",
-        "nicknameChangedExplanation": "Nazwa twojego konta została zmieniona.",
+        "nicknameChangedExplanation": "Nazwa Twojego konta została zmieniona.",
         "accountDeleted": "Konto usunięte",
         "accountDeletedExplanation": "Twoje konto zostało usunięte z portfela.",
         "cannotPerformAction": "Nie można wykonać akcji",
@@ -320,7 +320,7 @@
     },
     "deleteAccount": {
         "areYouSure": "Czy na pewno chcesz usunąć konto?",
-        "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
+        "yourSeedWillBeRemoved": "Twoje ziarno oraz historia transakcji zostaną usunięte.",
         "thisAction": "Tej czynności nie można cofnąć.",
         "enterPassword": "Wprowadź hasło, aby usunąć konto."
     },
