@@ -226,7 +226,7 @@
         "changePassword": "パスワード変更",
         "advanced": "詳細設定",
         "logout": "ログアウト",
-        "reset": "ウォレットをリセットします。",
+        "reset": "ウォレットをリセット",
         "syncingComplete": "同期が完了しました。",
         "syncingCompleteExplanation": "アカウントは正常に同期しました。",
         "nicknameChanged": "アカウント名が変更されました。",
