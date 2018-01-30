@@ -86,7 +86,7 @@ const account = (
                     ...state.accountInfo,
                     [action.seedName]: {
                         ...state.accountInfo[action.seedName],
-                        addresses: action.addresses,
+                        addresses: merge({}, state.accountInfo.addresses, action.payload),
                     },
                 },
             };
