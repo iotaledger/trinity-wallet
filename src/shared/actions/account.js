@@ -37,7 +37,10 @@ import {
     generateSyncingCompleteAlert,
     generateSyncingErrorAlert,
     generateAccountDeletedAlert,
+    generateAlert,
+    generateTransitionErrorAlert,
 } from '../actions/alerts';
+import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -537,5 +540,79 @@ export const set2FAStatus = payload => ({
 
 export const set2FAKey = payload => ({
     type: ActionTypes.SET_2FA_KEY,
+    payload,
+});
+
+export const transitionForSnapshot = (seed, accountName) => (dispatch, getState) => {
+    dispatch(snapshotTransitionRequest());
+
+    const currentAddresses = Object.keys(getSelectedAccount(accountName, getState().account.accountInfo.addresses));
+
+    if (currentAddresses.length > 0) {
+        const attachToTangleBundle = createAttachToTangleBundle(seed, currentAddresses);
+
+        const args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, attachToTangleBundle];
+        iota.api.sendTransfer(...args, error => {
+            if (!error) {
+                dispatch(getBalanceForCheck());
+            } else {
+                dispatch(generateTransitionErrorAlert());
+            }
+        });
+    } else {
+        generateAddressesAndGetBalance(seed, 0);
+    }
+};
+
+const generateAddressesAndGetBalance = (seed, index) => {
+    const options = {
+        index: index,
+        total: 10,
+        returnAll: true,
+        security: 2,
+    };
+    iota.api.getNewAddress(seed, options, (error, addresses) => {
+        if (error) {
+            console.log(error);
+        } else {
+            getBalanceForCheck(addresses);
+        }
+    });
+};
+
+export const createAttachToTangleBundle = (seed, addresses) => {
+    const transfers = [];
+    for (let i = 0; i < addresses.length; i++) {
+        transfers.push({
+            address: addresses[i],
+            value: 0,
+        });
+    }
+    return transfers;
+};
+
+export const getBalanceForCheck = addresses => dispatch => {
+    iota.api.getBalances(addresses, 1, (error, success) => {
+        if (!error) {
+            const balances = success.balances.map(a => Number(a));
+            const balance = balances.reduce((a, b) => a + b, 0);
+            dispatch(balanceCheckRequest(balance));
+        } else {
+            console.log(error);
+        }
+    });
+};
+
+export const balanceCheckRequest = payload => ({
+    type: ActionTypes.BALANCE_CHECK_REQUEST,
+    payload,
+});
+
+export const snapshotTransitionRequest = () => ({
+    type: ActionTypes.SNAPSHOT_TRANSITION_REQUEST,
+});
+
+export const snapshotTransitionSuccess = payload => ({
+    type: ActionTypes.SNAPSHOT_TRANSITION_SUCCESS,
     payload,
 });
