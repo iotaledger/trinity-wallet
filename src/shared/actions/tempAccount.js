@@ -215,8 +215,6 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
             }
             dispatch(sendTransferSuccess({ address, value }));
         } else {
-            console.log('ERRROR', error);
-
             dispatch(sendTransferError());
             const alerts = {
                 attachToTangle: [
@@ -282,7 +280,6 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
 
         const unspentInputs = (err, inputs) => {
             if (err) {
-                console.log('Err', err);
                 dispatch(sendTransferError());
 
                 return dispatch(
@@ -291,7 +288,6 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 );
             }
 
-            console.log('Inputs', inputs);
             return makeTransferWithBalanceCheck(inputs);
         };
 
@@ -304,7 +300,6 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
         // Omit input preparation in case the address is already spent from.
         return shouldAllowSendingToAddress([address], (err, shouldAllowSending) => {
             if (err) {
-                console.log('Should allow sending to address', shouldAllowSending);
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     100000,
