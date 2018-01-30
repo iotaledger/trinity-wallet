@@ -16,7 +16,7 @@
         "keyReuse": "Ponowne użycie klucza",
         "keyReuseError": "Nie możesz wysłać na adres, który został już obciążony.",
         "invalidResponse": "Błędna odpowiedź",
-        "invalidResponseExplanation": "Węzeł zwrócił błędną odpowiedź.",
+        "invalidResponseExplanation": "Serwer zwrócił błędną odpowiedź.",
         "invalidResponsePollingExplanation": "Węzeł zwrócił błędną odpowiedź podczas połączenia.",
         "invalidResponseFetchingAccount": "Węzeł zwrócił błędną odpowiedź podczas pobierania informacji o Twoim koncie.",
         "invalidResponseSendingTransfer": "Węzeł zwrócił błędną odpowiedź podczas realizowania transferu.",
@@ -158,7 +158,7 @@
         "storeSafely": "Przechowuj go bezpiecznie.",
         "neverShare": "Nigdy nie udostępniaj nikomu swojego ziarna.",
         "iotaLogo": "Logo IOTA",
-        "printWallet": "WYDRUKUJ PAPIEROWY PORTFEL"
+        "printWallet": "DRUKUJ PAPIEROWY PORTFEL"
     },
     "receive": {
         "addressCopied": "Adres skopiowany",
@@ -173,7 +173,7 @@
         "mustSaveYourSeed": "<0><0>Zapisz ziarno wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Nieprawidłowy seed",
+        "incorrectSeed": "Nieprawidłowe ziarno",
         "incorrectSeedExplanation": "Wprowadzone ziarno jest nieprawidłowe. Spróbuj ponownie.",
         "thisIsACheck": "To jest test w celu upewnienia się, że zapisałeś ziarno.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego ziarna, wróć do poprzedniego ekranu i zrób to."
