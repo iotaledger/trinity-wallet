@@ -15,7 +15,7 @@ import {
     deleteAccount,
     manuallySyncAccount,
     update2FA,
-    seed2FA,
+    transitionForSnapshot,
 } from 'iota-wallet-shared-modules/actions/account';
 import {
     getSelectedAccountViaSeedIndex,
@@ -182,6 +182,10 @@ class Settings extends Component {
         setLanguage: PropTypes.func.isRequired,
         language: PropTypes.string.isRequired,
         secondaryBarColor: PropTypes.string.isRequired,
+        isTransitioning: PropTypes.bool.isRequired,
+        transitionForSnapshot: PropTypes.func.isRequired,
+        transitionBalance: PropTypes.number.isRequired,
+        transitionAddresses: PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -215,26 +219,28 @@ class Settings extends Component {
             secondaryCtaColor,
             language,
             secondaryBarColor,
+            selectedAccountName,
+            seedIndex,
+            transitionBalance,
+            transitionAddresses,
+            isCheckingBalance,
+            isTransitioning,
+            selectedAccount,
         } = this.props;
-        const arrowLeftImagePath =
-            secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
-        const tickImagePath = secondaryBackgroundColor === 'white' ? whiteTickImagePath : blackTickImagePath;
-        const modeImagePath = secondaryBackgroundColor === 'white' ? whiteModeImagePath : blackModeImagePath;
-        const themeImagePath = secondaryBackgroundColor === 'white' ? whiteThemeImagePath : blackThemeImagePath;
-        const currencyImagePath =
-            secondaryBackgroundColor === 'white' ? whiteCurrencyImagePath : blackCurrencyImagePath;
-        const languageImagePath =
-            secondaryBackgroundColor === 'white' ? whiteLanguageImagePath : blackLanguageImagePath;
-        const accountImagePath = secondaryBackgroundColor === 'white' ? whiteAccountImagePath : blackAccountImagePath;
-        const passwordImagePath =
-            secondaryBackgroundColor === 'white' ? whitePasswordImagePath : blackPasswordImagePath;
-        const twoFactorAuthImagePath =
-            secondaryBackgroundColor === 'white' ? whiteTwoFactorAuthImagePath : blackTwoFactorAuthImagePath;
-        const advancedImagePath =
-            secondaryBackgroundColor === 'white' ? whiteAdvancedImagePath : blackAdvancedImagePath;
-        const logoutImagePath = secondaryBackgroundColor === 'white' ? whiteLogoutImagePath : blackLogoutImagePath;
-        const keyImagePath = secondaryBackgroundColor === 'white' ? whiteKeyImagePath : blackKeyImagePath;
-        const addImagePath = secondaryBackgroundColor === 'white' ? whiteAddImagePath : blackAddImagePath;
+        const isWhite = secondaryBackgroundColor === 'white';
+        const arrowLeftImagePath = isWhite ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
+        const tickImagePath = isWhite ? whiteTickImagePath : blackTickImagePath;
+        const modeImagePath = isWhite ? whiteModeImagePath : blackModeImagePath;
+        const themeImagePath = isWhite ? whiteThemeImagePath : blackThemeImagePath;
+        const currencyImagePath = isWhite ? whiteCurrencyImagePath : blackCurrencyImagePath;
+        const languageImagePath = isWhite ? whiteLanguageImagePath : blackLanguageImagePath;
+        const accountImagePath = isWhite ? whiteAccountImagePath : blackAccountImagePath;
+        const passwordImagePath = isWhite ? whitePasswordImagePath : blackPasswordImagePath;
+        const twoFactorAuthImagePath = isWhite ? whiteTwoFactorAuthImagePath : blackTwoFactorAuthImagePath;
+        const advancedImagePath = isWhite ? whiteAdvancedImagePath : blackAdvancedImagePath;
+        const logoutImagePath = isWhite ? whiteLogoutImagePath : blackLogoutImagePath;
+        const keyImagePath = isWhite ? whiteKeyImagePath : blackKeyImagePath;
+        const addImagePath = isWhite ? whiteAddImagePath : blackAddImagePath;
 
         const props = {
             mainSettings: {
@@ -274,7 +280,7 @@ class Settings extends Component {
                 setSetting: setting => this.props.setSetting(setting),
                 onDeleteAccountPress: () => this.onDeleteAccountPress(),
                 textColor: { color: secondaryBackgroundColor },
-                secondaryBackgroundColor: secondaryBackgroundColor,
+                secondaryBackgroundColor,
                 arrowLeftImagePath,
                 keyImagePath,
                 addImagePath,
@@ -284,10 +290,10 @@ class Settings extends Component {
                 password: this.props.password,
                 backPress: () => this.props.setSetting('accountManagement'),
                 onWrongPassword: () => this.onWrongPassword(),
-                negativeColor: negativeColor,
+                negativeColor,
                 borderColor: { borderColor: secondaryBackgroundColor },
                 textColor: { color: secondaryBackgroundColor },
-                secondaryBackgroundColor: secondaryBackgroundColor,
+                secondaryBackgroundColor,
                 arrowLeftImagePath,
             },
             viewAddresses: {
@@ -300,9 +306,9 @@ class Settings extends Component {
                 accountName: this.props.selectedAccountName,
                 saveAccountName: accountName => this.saveAccountName(accountName),
                 backPress: () => this.props.setSetting('accountManagement'),
-                negativeColor: negativeColor,
+                negativeColor,
                 textColor: { color: secondaryBackgroundColor },
-                secondaryBackgroundColor: secondaryBackgroundColor,
+                secondaryBackgroundColor,
                 tickImagePath,
                 arrowLeftImagePath,
             },
@@ -312,10 +318,10 @@ class Settings extends Component {
                 onWrongPassword: () => this.onWrongPassword(),
                 deleteAccount: () => this.deleteAccount(),
                 currentAccountName: this.props.selectedAccountName,
-                negativeColor: negativeColor,
-                backgroundColor: backgroundColor,
+                negativeColor,
+                backgroundColor,
                 textColor: { color: secondaryBackgroundColor },
-                secondaryBackgroundColor: secondaryBackgroundColor,
+                secondaryBackgroundColor,
                 borderColor: { borderColor: secondaryBackgroundColor },
                 tickImagePath,
                 arrowLeftImagePath,
@@ -333,15 +339,15 @@ class Settings extends Component {
                 seedCount: this.props.seedCount,
                 addAccount: (seed, accountName) => this.addExistingSeed(seed, accountName),
                 backPress: () => this.props.setSetting('addNewAccount'),
-                negativeColor: negativeColor,
-                backgroundColor: backgroundColor,
-                ctaColor: ctaColor,
+                negativeColor,
+                backgroundColor,
+                ctaColor,
                 textColor: { color: secondaryBackgroundColor },
-                secondaryBackgroundColor: secondaryBackgroundColor,
+                secondaryBackgroundColor,
                 borderColor: { borderColor: secondaryBackgroundColor },
                 arrowLeftImagePath,
-                ctaBorderColor: ctaBorderColor,
-                secondaryCtaColor: secondaryCtaColor,
+                ctaBorderColor,
+                secondaryCtaColor,
                 generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
             },
             nodeSelection: {
@@ -353,7 +359,7 @@ class Settings extends Component {
                 nodes: this.props.availablePoWNodes,
                 backPress: () => this.props.setSetting('advancedSettings'),
                 textColor: { color: secondaryBackgroundColor },
-                secondaryBackgroundColor: secondaryBackgroundColor,
+                secondaryBackgroundColor,
                 tickImagePath,
                 arrowLeftImagePath,
             },
@@ -369,9 +375,9 @@ class Settings extends Component {
                 onAddNodeError: () => this.onAddNodeError(),
                 onAddNodeSuccess: customNode => this.onAddNodeSuccess(customNode),
                 backPress: () => this.props.setSetting('advancedSettings'),
-                negativeColor: negativeColor,
+                negativeColor,
                 textColor: { color: secondaryBackgroundColor },
-                secondaryBackgroundColor: secondaryBackgroundColor,
+                secondaryBackgroundColor,
                 arrowLeftImagePath,
                 addImagePath,
             },
@@ -400,10 +406,10 @@ class Settings extends Component {
                 setPassword: password => this.props.setPassword(password),
                 backPress: () => this.props.setSetting('mainSettings'),
                 generateAlert: this.props.generateAlert,
-                negativeColor: negativeColor,
+                negativeColor,
                 textColor: { color: secondaryBackgroundColor },
                 borderColor: { borderColor: secondaryBackgroundColor },
-                secondaryBackgroundColor: secondaryBackgroundColor,
+                secondaryBackgroundColor,
                 tickImagePath,
                 arrowLeftImagePath,
             },
@@ -414,19 +420,38 @@ class Settings extends Component {
                 isSyncing: this.props.isSyncing,
                 textColor: { color: secondaryBackgroundColor },
                 borderColor: { borderColor: secondaryBackgroundColor },
-                secondaryBackgroundColor: secondaryBackgroundColor,
-                negativeColor: negativeColor,
+                secondaryBackgroundColor,
+                negativeColor,
                 arrowLeftImagePath,
+            },
+            snapshotTransition: {
+                t: this.props.t,
+                backPress: () => this.props.setSetting('advancedSettings'),
+                isTransitioning,
+                textColor: { color: secondaryBackgroundColor },
+                borderColor: { borderColor: secondaryBackgroundColor },
+                secondaryBackgroundColor,
+                negativeColor,
+                arrowLeftImagePath,
+                transitionBalance,
+                transitionAddresses,
+                isCheckingBalance,
+                transitionForSnapshot: (seed, accountName, addresses) =>
+                    this.props.transitionForSnapshot(seed, accountName, addresses),
+                selectedAccountName,
+                seedIndex,
+                backgroundColor: { backgroundColor: THEMES.getHSL(backgroundColor) },
+                addresses: Object.keys(selectedAccount.addresses),
             },
             themeCustomisation: {
                 backPress: () => this.props.setSetting('mainSettings'),
                 onAdvancedPress: () => this.props.setSetting('advancedThemeCustomisation'),
-                backgroundColor: backgroundColor,
-                barColor: barColor,
+                backgroundColor,
+                barColor,
                 theme: this.props.theme,
                 themeName: this.props.themeName,
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
-                secondaryBackgroundColor: secondaryBackgroundColor,
+                secondaryBackgroundColor,
                 tickImagePath,
                 arrowLeftImagePath,
                 secondaryBarColor,
@@ -434,12 +459,12 @@ class Settings extends Component {
             advancedThemeCustomisation: {
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
                 theme: this.props.theme,
-                backgroundColor: backgroundColor,
-                barColor: barColor,
-                ctaColor: ctaColor,
-                positiveColor: positiveColor,
-                negativeColor: negativeColor,
-                extraColor: extraColor,
+                backgroundColor,
+                barColor,
+                ctaColor,
+                positiveColor,
+                negativeColor,
+                extraColor,
                 backPress: () => this.props.setSetting('themeCustomisation'),
                 textColor: { color: secondaryBackgroundColor },
                 tickImagePath,
@@ -815,6 +840,7 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo,
     update2FA,
     setLanguage,
+    transitionForSnapshot,
 };
 
 const mapStateToProps = state => ({
@@ -848,6 +874,10 @@ const mapStateToProps = state => ({
     ctaBorderColor: state.settings.theme.ctaBorderColor,
     language: state.settings.language,
     secondaryBarColor: state.settings.theme.secondaryBarColor,
+    isTransitioning: state.tempAccount.isTransitioning,
+    transitionBalance: state.tempAccount.transitionBalance,
+    transitionAddresses: state.tempAccount.transitionAddresses,
+    isCheckingBalance: state.tempAccount.isCheckingBalance,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(
