@@ -6,7 +6,7 @@
         "noTransactions": "BRAK OSTATNIEJ HISTORII",
         "qr": "Kod QR",
         "balanceError": "Brak wystarczających środków",
-        "balanceErrorMessage": "Nie masz wystarczającej ilości IOTA, aby ukończyć ten transfer.",
+        "balanceErrorMessage": "Nie masz wystarczających środków IOTA, aby ukończyć ten transfer.",
         "transferError": "Błąd transferu",
         "transferErrorMessage": "Coś poszło nie tak podczas przetwarzania transferu. Spróbuj ponownie.",
         "transferSent": "Transfer zrealizowany",
@@ -14,7 +14,7 @@
         "messageSent": "Wiadomość wysłana",
         "messageSentMessage": "Twoja wiadomość została wysłana do sieci Tangle.",
         "keyReuse": "Ponowne użycie klucza",
-        "keyReuseError": "Nie można wysłać na adres, który został już obciążony.",
+        "keyReuseError": "Nie możesz wysłać na adres, który został już obciążony.",
         "invalidResponse": "Błędna odpowiedź",
         "invalidResponseExplanation": "Węzeł zwrócił błędną odpowiedź.",
         "invalidResponsePollingExplanation": "Węzeł zwrócił błędną odpowiedź podczas połączenia.",
@@ -84,7 +84,7 @@
         "noNickname": "Nie wprowadzono nazwy konta",
         "noNicknameExplanation": "Wpisz nazwę konta dla Twojego ziarna.",
         "seedInUse": "Ziarno jest już w użyciu",
-        "seedInUseExplanation": "Ten seed jest już powiązany z Twoim portfelem. Proszę użyj innego."
+        "seedInUseExplanation": "To ziarno jest już powiązane z Twoim portfelem. Użyj innego."
     },
     "changePassword": {
         "oops": "Ups! Coś poszło nie tak",
@@ -98,7 +98,7 @@
         "passwordTooShort": "Hasło jest zbyt krótkie",
         "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej 12 znaków. Spróbuj ponownie.",
         "oldPassword": "Nie możesz użyć ponownie starego hasła",
-        "oldPasswordExplanation": "Nie można ponownie użyć starego hasła. Proszę spróbować z nowym hasłem.",
+        "oldPasswordExplanation": "Nie możesz ponownie użyć starego hasła. Spróbuj podać nowe hasło.",
         "ensureStrongPassword": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "currentPassword": "Bieżące hasło",
         "newPassword": "Nowe hasło",
@@ -108,7 +108,7 @@
         "seedCleared": "Ziarno porzucone",
         "seedClearedExplanation": "Ziarno zostało usunięte ze schowka dla Twojego bezpieczeństwa.",
         "seedCopied": "Ziarno skopiowane do schowka",
-        "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"Gotowe\", lub po upływie 60 sekund.",
+        "seedCopiedExplanation": "Ziarno zostanie porzucone po naciśnięciu \"GOTOWE\" lub po upływie 60 sekund.",
         "clickToCopy": "Kliknij poniższy przycisk, aby skopiować ziarno do menedżera haseł.",
         "doNotStore": "Nie zapisuj ziarna jawnym tekstem.",
         "copyToClipboard": "Kopiuj do schowka"
@@ -133,16 +133,16 @@
     },
     "login": {
         "emptyPassword": "Puste hasło",
-        "emptyPasswordExplanation": "Należy wprowadzić hasło, aby się zalogować. Proszę spróbować ponownie.",
+        "emptyPasswordExplanation": "Musisz podać hasło, aby się zalogować. Spróbuj ponownie.",
         "enterPassword": "Wprowadź swoje hasło.",
-        "useSeed": "UŻYJ SEEDA",
+        "useSeed": "UŻYJ ZIARNA",
         "login": "ZALOGUJ",
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?"
     },
     "loading": {
         "loadingFirstTime": "Ładowanie ziarna po raz pierwszy.",
         "thisMayTake": "To może chwilę potrwać.",
-        "youMayNotice": "Możesz zaobserwować spowolnienie twojego urządzenia."
+        "youMayNotice": "Możesz zaobserwować spowolnienie Twojego urządzenia."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Nie wygenerowano ziarna",
@@ -174,8 +174,8 @@
     },
     "seedReentry": {
         "incorrectSeed": "Nieprawidłowy seed",
-        "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
-        "thisIsACheck": "To jest test w celu upewnienia się że zapisałeś swojego seeda.",
+        "incorrectSeedExplanation": "Wprowadzone ziarno jest nieprawidłowe. Spróbuj ponownie.",
+        "thisIsACheck": "To jest test w celu upewnienia się, że zapisałeś ziarno.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego ziarna, wróć do poprzedniego ekranu i zrób to."
     },
     "send": {
@@ -184,7 +184,7 @@
         "invalidAddressExplanation2": "Adres zawiera nieprawidłowe znaki.",
         "invalidAddressExplanation3": "Adres zawiera nieprawidłową sumę kontrolną.",
         "notEnoughFunds": "Brak wystarczających środków",
-        "notEnoughFundsExplanation": "Nie masz wystarczająco dużo IOTA, aby zakończyć ten transfer.",
+        "notEnoughFundsExplanation": "Nie masz wystarczających środków IOTA, aby ukończyć ten transfer.",
         "keyReuse": "Ponowne użycie klucza",
         "keyReuseExplanation": "Adres na który próbujesz wysłać został już wcześniej użyty. Spróbuj innego adresu.",
         "recipientAddress": "Adres odbiorcy",
@@ -208,8 +208,8 @@
         "retypePassword": "Wpisz hasło ponownie"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Możesz używać wielu seedów w tym portfelu. Każdy seed wymaga osobnej nazwy konta.",
-        "youCanAdd": "Można dodać więcej seedów w menu Ustawienia."
+        "canUseMultipleSeeds": "Możesz używać wielu ziaren w tym portfelu. Każde ziarno wymaga osobnej nazwy konta.",
+        "youCanAdd": "Możesz dodać więcej ziaren w menu ustawień."
     },
     "settings": {
         "transferSending": "W trakcie transferu",
@@ -222,7 +222,7 @@
         "language": "Język",
         "accountManagement": "Zarządzanie kontem",
         "addNewSeed": "Dodaj nowe ziarno",
-        "twoFA": "Uwierzytelnienie dwuetapowe",
+        "twoFA": "Uwierzytelnianie dwuskładnikowe",
         "changePassword": "Zmień hasło",
         "advanced": "Ustawienia zaawansowane",
         "logout": "Wyloguj",
@@ -261,7 +261,7 @@
     },
     "welcome": {
         "thankYou": "Dziękujemy za pobranie portfela IOTA.",
-        "weWillSpend": "Kilka następnych minut spędzimy na Konfiguracji portfela.",
+        "weWillSpend": "Kilka następnych minut spędzimy na konfiguracji portfela.",
         "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces."
     },
     "writeSeedDown": {
@@ -275,8 +275,8 @@
         "addressCopiedExplanation": "Adres został skopiowany do schowka."
     },
     "accountManagement": {
-        "viewSeed": "Podgląd seeda",
-        "viewAddresses": "Podgląd adresów",
+        "viewSeed": "Pokaż ziarno",
+        "viewAddresses": "Pokaż adresy",
         "editAccountName": "Edytuj nazwę konta",
         "deleteAccount": "Usuń konto",
         "addNewAccount": "Dodaj nowe konto"
@@ -286,7 +286,7 @@
         "add": "Dodaj"
     },
     "addNewAccount": {
-        "useExistingSeed": "Użyj istniejącego seeda",
+        "useExistingSeed": "Użyj istniejącego ziarna",
         "createNewSeed": "Generuj nowe ziarno"
     },
     "advancedSettings": {
@@ -321,13 +321,13 @@
     "deleteAccount": {
         "areYouSure": "Czy na pewno chcesz usunąć konto?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
-        "thisAction": "Tej akcji nie można cofnąć.",
+        "thisAction": "Tej czynności nie można cofnąć.",
         "enterPassword": "Wprowadź hasło, aby usunąć konto."
     },
     "manualSync": {
         "pressToSync": "Naciśnij poniższy przycisk, aby zsynchronizować swoje konto.",
         "thisMayTake": "To może chwilę potrwać.",
-        "youMayNotice": "Możesz zaobserwować spowolnienie twojego urządzenia.",
+        "youMayNotice": "Możesz zaobserwować spowolnienie Twojego urządzenia.",
         "syncAccount": "SYNCHRONIZUJ KONTO",
         "syncingYourAccount": "Synchronizacja Twojego konta."
     },
@@ -336,12 +336,12 @@
     },
     "viewSeed": {
         "enterPassword": "Wprowadź hasło, aby wyświetlić ziarno.",
-        "viewSeed": "POKAŻ SEEDA",
+        "viewSeed": "POKAŻ ZIARNO",
         "hideSeed": "UKRYJ ZIARNO"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Zapisałem swoje ziarno",
-        "reenter": "Teraz będziesz poproszony/a o ponowne wprowadzenie swojego seeda.",
+        "reenter": "Teraz poprosimy Cię o ponowne wprowadzenie ziarna.",
         "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu a nie zapisałeś swojego ziarna, stracisz swoje środki IOTA."
     },
     "walletResetConfirmation": {
@@ -349,7 +349,7 @@
         "warning": "<0><0>Wszystkie dane portfela, w tym </0><1>ziarna, hasło</1><2> i </2><3>pozostałe dane konta</3><4>, zostaną utracone.</4></0>"
     },
     "transferConfirmation": {
-        "youAreAbout": "Masz zamiar wysłać {{contents}} na ten adres",
+        "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",
         "aMessage": "wiadomość"
     }
 }
