@@ -3,16 +3,16 @@
         "send": "보내기",
         "cancel": "취소",
         "continue?": "계속하시겠습니까?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "최근 기록 없음",
         "qr": "QR",
-        "balanceError": "Not enough balance",
+        "balanceError": "잔고 부족",
         "balanceErrorMessage": "거래를 완료를 하기 위해서는 현재 IOTA 잔액이 충분하지 않습니다.",
         "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
-        "messageSent": "Message sent",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
+        "messageSent": "메시지 전송됨",
+        "messageSentMessage": "당신의 메시지가 탱글로 전송되었습니다.",
         "keyReuse": "키 재사용",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "잘못된 응답",
@@ -24,7 +24,7 @@
         "back": "뒤로",
         "backLowercase": "뒤로가기",
         "done": "완료",
-        "doneLowercase": "Done",
+        "doneLowercase": "완료",
         "next": "다음",
         "apply": "Apply",
         "save": "저장하기",
@@ -163,7 +163,7 @@
     "receive": {
         "addressCopied": "주소가 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "새 주소",
         "message": "선택 정보 입력",
         "removeMessage": "메시지 삭제하기"
     },
@@ -183,7 +183,7 @@
         "invalidAddressExplanation1": "주소는 {{maxLength}} 글자 수를 포함해야하고 체크섬을 포함해야 합니다.",
         "invalidAddressExplanation2": "주소에 유효하지 않은 문자가 포함되어 있습니다.",
         "invalidAddressExplanation3": "주소에 유효하지 않은 체크섬이 포함되어 있습니다.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "잔액 부족",
         "notEnoughFundsExplanation": "거래를 완료를 하기 위해서는 현재 IOTA 잔액이 충분하지 않습니다.",
         "keyReuse": "키 재사용",
         "keyReuseExplanation": "입력한 주소는 이미 사용되었습니다. 다른 주소를 사용하십시오.",
@@ -220,7 +220,7 @@
         "theme": "테마",
         "currency": "통화",
         "language": "언어",
-        "accountManagement": "Account management",
+        "accountManagement": "계정 관리",
         "addNewSeed": "새 씨드 추가하기",
         "twoFA": "2단계 인증",
         "changePassword": "비밀번호 변경하기",
@@ -235,7 +235,7 @@
         "accountDeletedExplanation": "지갑에서 귀하의 계정이 삭제되었습니다.",
         "cannotPerformAction": "작업 수행할 수 없음",
         "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오.",
-        "poorConnection": "Poor connection",
+        "poorConnection": "연결 상태 불량",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "숨기기",
         "hideOthers": "Others 숨기기",
@@ -275,24 +275,24 @@
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
+        "viewSeed": "시드 보기",
+        "viewAddresses": "주소 보기",
         "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "deleteAccount": "계정 삭제",
+        "addNewAccount": "새 계정 추가"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "커스텀 노드",
+        "add": "추가"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "기존 시드 사용",
+        "createNewSeed": "새 시드 만들기"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "노드 선택",
+        "addCustomNode": "커스텀 노드 추가",
+        "manualSync": "수동 동기화"
     },
     "advancedThemeCustomisation": {
         "background": "Background",
