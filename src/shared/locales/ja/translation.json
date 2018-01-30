@@ -141,7 +141,7 @@
     },
     "loading": {
         "loadingFirstTime": "初めてのSeedを読み込んでいます。",
-        "thisMayTake": "これは時間がかかる場合があります。",
+        "thisMayTake": "少々お待ち下さい。",
         "youMayNotice": "あなたのデバイスが遅くなることがあります。"
     },
     "newSeedSetup": {
