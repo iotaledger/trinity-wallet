@@ -102,7 +102,7 @@
         "ensureStrongPassword": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
         "currentPassword": "現在のパスワード",
         "newPassword": "新しいパスワード",
-        "confirmPassword": "新しいパスワードを承認"
+        "confirmPassword": "新しいパスワードを確認"
     },
     "copyToClipboard": {
         "seedCleared": "Seedを消去しました。",
