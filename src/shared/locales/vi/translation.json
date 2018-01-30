@@ -100,9 +100,9 @@
         "oldPassword": "Không thể dùng mật khẩu cũ",
         "oldPasswordExplanation": "Bạn không thể dùng mật khẩu cũ lúc tạo mật khẩu mới. Xin vui lòng thử lại với một mật khẩu mới.",
         "ensureStrongPassword": "Hãy kiểm tra bạn dùng mật khẩu mạnh với ít nhất 12 ký tự.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "Mật Khẩu Hiện Tại",
+        "newPassword": "Mật Khẩu Mới",
+        "confirmPassword": "Xác Nhận Mật Khẩu Mới"
     },
     "copyToClipboard": {
         "seedCleared": "Seed cleared",
