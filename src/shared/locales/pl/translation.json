@@ -154,7 +154,7 @@
         "walletReady": "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
     },
     "paperWallet": {
-        "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopię ziarna.",
+        "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopie Twojego seeda.",
         "storeSafely": "Przechowuj go bezpiecznie.",
         "neverShare": "Nigdy nie udostępniaj nikomu swojego ziarna.",
         "iotaLogo": "Logo IOTA",
@@ -176,7 +176,7 @@
         "incorrectSeed": "Nieprawidłowe ziarno",
         "incorrectSeedExplanation": "Wprowadzone ziarno jest nieprawidłowe. Spróbuj ponownie.",
         "thisIsACheck": "To jest test w celu upewnienia się, że zapisałeś ziarno.",
-        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego ziarna, wróć do poprzedniego ekranu i zrób to."
+        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego seeda, proszę cofnij się i to zrób."
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -193,7 +193,7 @@
         "message": "Wiadomość",
         "send": "WYŚLIJ",
         "invalidAmount": "Wprowadzono niepoprawną ilość",
-        "invalidAmountExplanation": "Wprowadź numeryczną wartość transakcji.",
+        "invalidAmountExplanation": "Proszę wprowadzić numeryczną wartość transakcji.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
         "iotaUnits": "Jednostki IOTA"
     },
@@ -255,7 +255,7 @@
     "walletSetup": {
         "okay": "W porządku. Ustawmy Twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz ziarno, którego chciałbyś użyć?",
-        "seedExplanation": "Ziarno IOTA jest jak połączenie Twojej nazwy użytkownika i hasła do konta w jeden ciąg długości 81 znaków.",
+        "seedExplanation": "SEED IOTA jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składającego się z ciągu 81 znaków.",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli zgubisz ziarno, stracisz swoje IOTA.</4></0>",
         "keepSafe": "Dbaj o bezpieczeństwo swojego ziarna."
     },
@@ -335,7 +335,7 @@
         "title": "Wprowadź ziarno i nazwę konta."
     },
     "viewSeed": {
-        "enterPassword": "Wprowadź hasło, aby wyświetlić ziarno.",
+        "enterPassword": "Wprowadź hasło, aby wyświetlić swój seed.",
         "viewSeed": "POKAŻ ZIARNO",
         "hideSeed": "UKRYJ ZIARNO"
     },
