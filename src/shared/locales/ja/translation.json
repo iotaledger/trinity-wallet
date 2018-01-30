@@ -336,13 +336,13 @@
     },
     "viewSeed": {
         "enterPassword": "Seedを閲覧するにはパスワードを入力して下さい。",
-        "viewSeed": "Seedを見る",
-        "hideSeed": "Seedを隠す"
+        "viewSeed": "Seedを見る。",
+        "hideSeed": "Seedを隠す。"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "私はSeedを保管しました。",
+        "alreadyHave": "私はSeedを安全に保管しました。",
         "reenter": "Seedを再入力するよう求められます。",
-        "reenterWarning": "お使いのデバイスが失敗し、seedを保存していない場合、IOTAを失います。"
+        "reenterWarning": "お使いのデバイスが失敗し、Seedがきちんと保存されていない場合、IOTAを失います。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "この操作は元に戻せません。",
