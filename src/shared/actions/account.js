@@ -31,13 +31,12 @@ import {
     getPendingTxTailsHashes,
     getAccountData,
 } from '../libs/accountUtils';
-import { setReady, clearTempData } from './tempAccount';
+import { setReady, clearTempData, balanceCheckRequest, snapshotTransitionRequest } from './tempAccount';
 import {
     generateAccountInfoErrorAlert,
     generateSyncingCompleteAlert,
     generateSyncingErrorAlert,
     generateAccountDeletedAlert,
-    generateAlert,
     generateTransitionErrorAlert,
 } from '../actions/alerts';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
@@ -543,41 +542,45 @@ export const set2FAKey = payload => ({
     payload,
 });
 
-export const transitionForSnapshot = (seed, accountName) => (dispatch, getState) => {
-    dispatch(snapshotTransitionRequest());
+export const transitionForSnapshot = (seed, accountName, addresses) => {
+    return dispatch => {
+        if (addresses.length > 0) {
+            const attachToTangleBundle = createAttachToTangleBundle(seed, addresses);
 
-    const currentAddresses = Object.keys(getSelectedAccount(accountName, getState().account.accountInfo.addresses));
-
-    if (currentAddresses.length > 0) {
-        const attachToTangleBundle = createAttachToTangleBundle(seed, currentAddresses);
-
-        const args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, attachToTangleBundle];
-        iota.api.sendTransfer(...args, error => {
-            if (!error) {
-                dispatch(getBalanceForCheck());
-            } else {
-                dispatch(generateTransitionErrorAlert());
-            }
-        });
-    } else {
-        generateAddressesAndGetBalance(seed, 0);
-    }
+            const args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, attachToTangleBundle];
+            iota.api.sendTransfer(...args, error => {
+                if (!error) {
+                    dispatch(getBalanceForCheck());
+                } else {
+                    dispatch(generateTransitionErrorAlert());
+                }
+            });
+        } else {
+            dispatch(snapshotTransitionRequest());
+            setTimeout(() => {
+                dispatch(generateAddressesAndGetBalance(seed, 0));
+            });
+        }
+    };
 };
 
-const generateAddressesAndGetBalance = (seed, index) => {
-    const options = {
-        index: index,
-        total: 10,
-        returnAll: true,
-        security: 2,
+export const generateAddressesAndGetBalance = (seed, index) => {
+    return dispatch => {
+        const options = {
+            index: index,
+            total: 10,
+            returnAll: true,
+            security: 2,
+        };
+        iota.api.getNewAddress(seed, options, (error, addresses) => {
+            if (error) {
+                console.log(error);
+            } else {
+                dispatch(getBalanceForCheck(addresses));
+                console.log(addresses);
+            }
+        });
     };
-    iota.api.getNewAddress(seed, options, (error, addresses) => {
-        if (error) {
-            console.log(error);
-        } else {
-            getBalanceForCheck(addresses);
-        }
-    });
 };
 
 export const createAttachToTangleBundle = (seed, addresses) => {
@@ -591,28 +594,17 @@ export const createAttachToTangleBundle = (seed, addresses) => {
     return transfers;
 };
 
-export const getBalanceForCheck = addresses => dispatch => {
-    iota.api.getBalances(addresses, 1, (error, success) => {
-        if (!error) {
-            const balances = success.balances.map(a => Number(a));
-            const balance = balances.reduce((a, b) => a + b, 0);
-            dispatch(balanceCheckRequest(balance));
-        } else {
-            console.log(error);
-        }
-    });
+export const getBalanceForCheck = addresses => {
+    return dispatch => {
+        iota.api.getBalances(addresses, 1, (error, success) => {
+            if (!error) {
+                const balances = success.balances.map(a => Number(a));
+                const balance = balances.reduce((a, b) => a + b, 0);
+                console.log(balance);
+                dispatch(balanceCheckRequest(balance));
+            } else {
+                console.log(error);
+            }
+        });
+    };
 };
-
-export const balanceCheckRequest = payload => ({
-    type: ActionTypes.BALANCE_CHECK_REQUEST,
-    payload,
-});
-
-export const snapshotTransitionRequest = () => ({
-    type: ActionTypes.SNAPSHOT_TRANSITION_REQUEST,
-});
-
-export const snapshotTransitionSuccess = payload => ({
-    type: ActionTypes.SNAPSHOT_TRANSITION_SUCCESS,
-    payload,
-});
