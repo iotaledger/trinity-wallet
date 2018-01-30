@@ -265,7 +265,7 @@
         "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Twoje ziarno jest {{maxSeedLength}}-znakowe, czytane od lewej do prawej.",
+        "yourSeedIs": "Twoje ziarno ma {{maxSeedLength}} znaków, czytane od lewej do prawej.",
         "writeDownYourSeed": "<0> Spisz ziarno i sumę kontrolną i </0><1>trzykrotnie upewnij się</1><2> czy są poprawne.</2>"
     },
     "history": {
