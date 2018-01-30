@@ -4,7 +4,6 @@ import each from 'lodash/each';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import isNull from 'lodash/isNull';
-import isArray from 'lodash/isArray';
 import { DEFAULT_TAG, DEFAULT_SECURITY } from '../config';
 import { iota } from './iota';
 
@@ -67,6 +66,13 @@ const prepareInputs = (addressData, start, threshold, security = DEFAULT_SECURIT
     return { inputs, totalBalance };
 };
 
+/**
+ *   Communicates with ledger and checks if the addresses are spent from.
+ *
+ *   @method filterSpentAddresses
+ *   @param {array} inputs - Array or objects containing balance, keyIndex and address props.
+ *   @returns {Promise} - A promise that resolves all inputs with unspent addresses.
+ **/
 export const filterSpentAddresses = inputs => {
     return new Promise((resolve, reject) => {
         const addresses = map(inputs, input => input.address);
@@ -74,12 +80,24 @@ export const filterSpentAddresses = inputs => {
             if (err) {
                 reject(err);
             } else {
-                resolve(filter(addresses, (address, idx) => !wereSpent[idx]));
+                resolve(filter(inputs, (input, idx) => !wereSpent[idx]));
             }
         });
     });
 };
 
+/**
+ *   Prepares inputs from addresses related info and filters out addresses that are already spent.
+ *   Returns an object with all inputs with addresses that are unspent, total computed balance and
+ *   balance associated with all addresses.
+ *
+ *   @method getUnspentInputs
+ *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *   @param {number} start - Index to start the search from
+ *   @param {number} threshold - Maximum value (balance) to stop the search
+ *   @param {object} inputs - Could be initialized with null. In case its null default inputs would be defined.
+ *   @param {function} callback
+ **/
 export const getUnspentInputs = (addressData, start, threshold, inputs, callback) => {
     if (isNull(inputs)) {
         inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
@@ -134,6 +152,13 @@ export const getStartingSearchIndexForAddress = addressData => {
     return address ? addressData[address].index : 0;
 };
 
+/**
+ *   Communicates with ledger and checks if the addresses are spent from.
+ *
+ *   @method shouldAllowSendingToAddress
+ *   @param {array} addresses - Could also accept an address as string since wereAddressesSpentFrom casts it internally
+ *   @param {function} callback
+ **/
 export const shouldAllowSendingToAddress = (addresses, callback) => {
     iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
         if (err) {
