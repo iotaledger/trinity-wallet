@@ -59,9 +59,9 @@
         "attachToTangleUnavailableExplanation": "選択したノードではTangleにアタッチ出来ません。",
         "wallet": "ウォレット",
         "sent": "送金済",
-        "received": "着金済",
+        "received": "受取済",
         "sending": "送金中",
-        "receiving": "着金中",
+        "receiving": "受取中",
         "confirmed": "承認済み",
         "pending": "ペンディング中",
         "bundleHash": "バンドル ハッシュ",
@@ -69,7 +69,7 @@
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "autoreattaching": "Tangleに自動リアタッチ",
         "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションをリアタッチ",
-        "autopromoting": "送金を自動促進する。",
+        "autopromoting": "送金を自動促進",
         "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進"
     },
     "addAdditionalSeed": {
@@ -83,8 +83,8 @@
         "accountName": "アカウント名",
         "noNickname": "アカウント名が入力されていません。",
         "noNicknameExplanation": "Seedのアカウント名を入力して下さい。",
-        "seedInUse": "このseedはすでに使われています。",
-        "seedInUseExplanation": "このseedは既にウォレットにリンクされています。違うseedをご使用下さい。"
+        "seedInUse": "このSeedはすでに使われています。",
+        "seedInUseExplanation": "このSeedは既にウォレットにリンクされています。違うSeedをご使用下さい。"
     },
     "changePassword": {
         "oops": "不具合が発生しました。",
@@ -107,7 +107,7 @@
     "copyToClipboard": {
         "seedCleared": "Seedを消去しました。",
         "seedClearedExplanation": "安全のために、Seedをクリップボードから消去しました。",
-        "seedCopied": "Seedをクリップボードにコピーしました",
+        "seedCopied": "Seedをクリップボードにコピーしました。",
         "seedCopiedExplanation": "\"完了\"を押す、または60秒後にはSeedは消去されます。",
         "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。",
         "doNotStore": "Seedをプレーンテキストで保存するのはやめましょう。",
