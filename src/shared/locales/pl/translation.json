@@ -55,7 +55,7 @@
         "node": "Serwer",
         "cannotPerformAction": "Nie można wykonać akcji",
         "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
-        "attachToTangleUnavailable": "Dołączenie do Tangle niedostępne",
+        "attachToTangleUnavailable": "Dowiązanie do sieci Tangle niedostępne",
         "attachToTangleUnavailableExplanation": "Dowiązanie do sieci Tangle nie jest dostępne na wybranym węźle.",
         "wallet": "Portfel",
         "sent": "Wysłano",
@@ -67,7 +67,7 @@
         "bundleHash": "Hash pakietu",
         "addresses": "Adresy",
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
-        "autoreattaching": "Automatyczne ponawianie wiązania do Tangle",
+        "autoreattaching": "Automatyczne ponawianie wiązania do sieci Tangle",
         "autoreattachingExplanation": "Ponowne wiązanie transakcji z haszem {{hash}}",
         "autopromoting": "Automatyczne promowanie transferu",
         "autopromotingExplanation": "Promowanie transakcji z haszem {{hash}}"
@@ -100,16 +100,16 @@
         "oldPassword": "Nie możesz użyć ponownie starego hasła",
         "oldPasswordExplanation": "Nie można ponownie użyć starego hasła. Proszę spróbować z nowym hasłem.",
         "ensureStrongPassword": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
-        "currentPassword": "Obecne hasło",
+        "currentPassword": "Bieżące hasło",
         "newPassword": "Nowe hasło",
         "confirmPassword": "Potwierdź nowe hasło"
     },
     "copyToClipboard": {
         "seedCleared": "Ziarno porzucone",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
-        "seedCopied": "Seed skopiowany do schowka",
+        "seedCopied": "Ziarno skopiowane do schowka",
         "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"Gotowe\", lub po upływie 60 sekund.",
-        "clickToCopy": "Kliknij przycisk poniżej i skopiuj swojego Seeda do Menedżera haseł.",
+        "clickToCopy": "Kliknij poniższy przycisk, aby skopiować ziarno do menedżera haseł.",
         "doNotStore": "Nie przechowuj swojego seeda w formie zwykłego tekstu.",
         "copyToClipboard": "Kopiuj do schowka"
     },
@@ -154,7 +154,7 @@
         "walletReady": "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
     },
     "paperWallet": {
-        "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopie twojego seeda.",
+        "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopię ziarna.",
         "storeSafely": "Przechowuj go bezpiecznie.",
         "neverShare": "Nigdy nie udostępniaj nikomu swojego seeda.",
         "iotaLogo": "Logo IOTA",
@@ -203,7 +203,7 @@
         "passwordMismatch": "Hasła nie są zgodne",
         "passwordMismatchExplanation": "Wpisane hasła nie są takie same. Proszę spróbować ponownie.",
         "nowWeNeedTo": "Teraz musimy ustawić hasło.",
-        "anEncryptedCopy": "Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu. Będziesz korzystał z tego hasła w celu uzyskania dostępu do swojego portfela w przyszłości.",
+        "anEncryptedCopy": "Zaszyfrowana kopia ziarna zostanie zapisana na tym urządzeniu. Użyj hasła, aby uzyskać dostęp do portfela.",
         "ensure": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "retypePassword": "Wpisz hasło ponownie"
     },
@@ -223,7 +223,7 @@
         "accountManagement": "Zarządzanie kontem",
         "addNewSeed": "Dodaj nowe ziarno",
         "twoFA": "Uwierzytelnienie dwuetapowe",
-        "changePassword": "Zmiana hasła",
+        "changePassword": "Zmień hasło",
         "advanced": "Ustawienia zaawansowane",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
@@ -269,7 +269,7 @@
         "writeDownYourSeed": "<0> Spisz ziarno i sumę kontrolną i </0><1>trzykrotnie upewnij się</1><2> czy są poprawne.</2>"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash skopiowany",
+        "bundleHashCopied": "Hash pakietu skopiowany",
         "bundleHashCopiedExplanation": "Bundle hash został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Adres został skopiowany do schowka."
@@ -287,7 +287,7 @@
     },
     "addNewAccount": {
         "useExistingSeed": "Użyj istniejącego seeda",
-        "createNewSeed": "Stwórz nowego seeda"
+        "createNewSeed": "Generuj nowe ziarno"
     },
     "advancedSettings": {
         "selectNode": "Wybierz serwer",
@@ -319,7 +319,7 @@
         "one": "Jeden"
     },
     "deleteAccount": {
-        "areYouSure": "Czy jesteś pewien że chcesz usunąć to konto?",
+        "areYouSure": "Czy na pewno chcesz usunąć konto?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
         "thisAction": "Tej akcji nie można cofnąć.",
         "enterPassword": "Wprowadź hasło, aby usunąć to konto."
