@@ -81,8 +81,6 @@ export const filterSpentAddresses = inputs => {
             if (err) {
                 reject(err);
             } else {
-                console.log('Were spent false', wereSpent);
-                console.log('Addresses', addresses);
                 resolve(filter(inputs, (input, idx) => !wereSpent[idx]));
             }
         });
@@ -107,23 +105,17 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
     }
 
     const preparedInputs = prepareInputs(addressData, start, threshold);
-    console.log('Prepared inputs', preparedInputs);
     inputs.allBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
+
     filterSpentAddresses(preparedInputs.inputs)
         .then(filtered => {
-            console.log('Filtered', filtered);
             const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
-            console.log('Collected', collected);
 
             const diff = threshold - collected;
             const hasInputs = size(filtered);
-            console.log('Diff', diff);
 
             if (hasInputs && diff > 0) {
-                console.log('Diff greater', preparedInputs);
                 const ordered = preparedInputs.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
-                console.log('Ordered', ordered);
-
                 const end = ordered[0].keyIndex;
 
                 getUnspentInputs(
@@ -145,10 +137,7 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
                 });
             }
         })
-        .catch(err => {
-            console.log('What error are you', err);
-            callback(err);
-        });
+        .catch(err => callback(err));
 };
 
 /**
@@ -176,10 +165,8 @@ export const getStartingSearchIndexForAddress = addressData => {
 export const shouldAllowSendingToAddress = (addresses, callback) => {
     iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
         if (err) {
-            console.log('Inside ', err);
             callback(err);
         } else {
-            console.log('Should allow sending', wereSpent);
             const spentAddresses = filter(addresses, (address, idx) => wereSpent[idx]);
             callback(null, !spentAddresses.length);
         }
