@@ -286,8 +286,8 @@
         "add": "追加"
     },
     "addNewAccount": {
-        "useExistingSeed": "既存のseedを使用",
-        "createNewSeed": "新しいseedを作成"
+        "useExistingSeed": "既存のSeedを使用",
+        "createNewSeed": "新しいSeedを作成"
     },
     "advancedSettings": {
         "selectNode": "ノードを選択",
@@ -320,7 +320,7 @@
     },
     "deleteAccount": {
         "areYouSure": "このアカウントを削除しますか？",
-        "yourSeedWillBeRemoved": "seedとトランザクションの履歴を削除します。",
+        "yourSeedWillBeRemoved": "Seedとトランザクションの履歴を削除します。",
         "thisAction": "この操作は元に戻せません。",
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
     },
@@ -340,7 +340,7 @@
         "hideSeed": "Seedを隠す"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "私はSeedを保管しました",
+        "alreadyHave": "私はSeedを保管しました。",
         "reenter": "Seedを再入力するよう求められます。",
         "reenterWarning": "お使いのデバイスが失敗し、seedを保存していない場合、IOTAを失います。"
     },
