@@ -30,7 +30,7 @@
         "save": "Zapisz",
         "close": "ZAMKNIJ",
         "continue": "Kontynuuj",
-        "manualCopy": "Spisz ziarno",
+        "manualCopy": "Zanotuj seed",
         "paperWallet": "Drukuj wersję papierową",
         "copyToClipboard": "Dodaj do menedżera haseł",
         "notAvailable": "Ta funkcja nie jest dostępna",
@@ -47,7 +47,7 @@
         "no": "NIE",
         "password": "Hasło",
         "unrecognisedPassword": "Nierozpoznane hasło",
-        "unrecognisedPasswordExplanation": "Nieprawidłowe hasło. Spróbuj ponownie.",
+        "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
         "somethingWentWrong": "Coś poszło nie tak",
@@ -55,7 +55,7 @@
         "node": "Serwer",
         "cannotPerformAction": "Nie można wykonać akcji",
         "cannotPerformActionExplanation": "Aby zresetować portfel, przejdź do ustawień zaawansowanych.",
-        "attachToTangleUnavailable": "Dowiązanie do sieci Tangle niedostępne",
+        "attachToTangleUnavailable": "Dołączenie do sieci Tangle niedostępne",
         "attachToTangleUnavailableExplanation": "Dowiązanie do sieci Tangle nie jest dostępne na wybranym węźle.",
         "wallet": "Portfel",
         "sent": "Wysłano",
@@ -145,7 +145,7 @@
         "youMayNotice": "Możesz zaobserwować spowolnienie Twojego urządzenia."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Nie wygenerowano ziarna",
+        "seedNotGenerated": "Seed nie został wygenerowany",
         "seedNotGeneratedExplanation": "Kliknij przycisk generowania nowego ziarna.",
         "pressForNewSeed": "WYGENERUJ NOWE ZIARNO",
         "individualLetters": "Naciśnij poszczególne litery, aby wylosować ponownie."
