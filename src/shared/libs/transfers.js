@@ -1,7 +1,10 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
 import each from 'lodash/each';
+import map from 'lodash/map';
+import filter from 'lodash/filter';
 import isNull from 'lodash/isNull';
+import isArray from 'lodash/isArray';
 import { DEFAULT_TAG, DEFAULT_SECURITY } from '../config';
 import { iota } from './iota';
 
@@ -66,72 +69,12 @@ const prepareInputs = (addressData, start, threshold, security = DEFAULT_SECURIT
 
 export const filterSpentAddresses = inputs => {
     return new Promise((resolve, reject) => {
-        // Find transaction objects for addresses
-        iota.api.findTransactionObjects({ addresses: inputs.map(input => input.address) }, (err, txs) => {
+        const addresses = map(inputs, input => input.address);
+        iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
             if (err) {
                 reject(err);
-            }
-            // Filter out receive transactions
-            txs = txs.filter(tx => tx.value < 0);
-            if (txs.length > 0) {
-                // Get bundle hashes
-                const bundles = txs.map(tx => tx.bundle);
-                // Find transaction objects for bundle hashes
-                iota.api.findTransactionObjects({ bundles: bundles }, (err, txs) => {
-                    if (err) {
-                        reject(err);
-                    }
-                    let hashes = txs.filter(tx => tx.currentIndex === 0);
-                    hashes = hashes.map(tx => tx.hash);
-                    iota.api.getLatestInclusion(hashes, (err, states) => {
-                        if (err) {
-                            reject(err);
-                        }
-                        // Filter confirmed hashes
-                        const confirmedHashes = hashes.filter((hash, i) => states[i]);
-                        // Filter unconfirmed hashes
-                        const unconfirmedHashes = hashes
-                            .filter(hash => confirmedHashes.indexOf(hash) === -1)
-                            .map(hash => ({ hash, validate: true }));
-                        const getBundles = confirmedHashes.concat(unconfirmedHashes).map(
-                            hash =>
-                                new Promise((resolve, reject) => {
-                                    iota.api.traverseBundle(
-                                        typeof hash == 'string' ? hash : hash.hash,
-                                        null,
-                                        [],
-                                        (err, bundle) => {
-                                            if (err) {
-                                                reject(err);
-                                            }
-                                            resolve(typeof hash === 'string' ? bundle : { bundle, validate: true });
-                                        },
-                                    );
-                                }),
-                        );
-                        resolve(
-                            Promise.all(getBundles)
-                                .then(bundles => {
-                                    bundles = bundles
-                                        .filter(bundle => {
-                                            if (bundle.validate) {
-                                                return iota.utils.isBundle(bundle.bundle);
-                                            }
-                                            return true;
-                                        })
-                                        .map(bundle => (bundle.hasOwnProperty('validate') ? bundle.bundle : bundle));
-                                    const blacklist = bundles
-                                        .reduce((a, b) => a.concat(b), [])
-                                        .filter(tx => tx.value < 0)
-                                        .map(tx => tx.address);
-                                    return inputs.filter(input => blacklist.indexOf(input.address) === -1);
-                                })
-                                .catch(err => reject(err)),
-                        );
-                    });
-                });
             } else {
-                resolve(inputs);
+                resolve(filter(addresses, (address, idx) => !wereSpent[idx]));
             }
         });
     });
@@ -189,4 +132,15 @@ export const getStartingSearchIndexForAddress = addressData => {
     const address = Object.keys(addressData).find(address => addressData[address].balance > 0);
 
     return address ? addressData[address].index : 0;
+};
+
+export const shouldAllowSendingToAddress = (addresses, callback) => {
+    iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
+        if (err) {
+            callback(err);
+        } else {
+            const spentAddresses = filter(addresses, (address, idx) => wereSpent[idx]);
+            callback(null, !spentAddresses.length);
+        }
+    });
 };
