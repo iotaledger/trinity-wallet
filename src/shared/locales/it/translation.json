@@ -3,7 +3,7 @@
         "send": "INVIA",
         "cancel": "ANNULLA",
         "continue?": "Sei sicuro di voler continuare?",
-        "noTransactions": "NIENTE NELLO STORICO RECENTE",
+        "noTransactions": "NIENTE NELLA CRONOLOGIA RECENTE",
         "qr": "QR",
         "balanceError": "Saldo insufficiente",
         "balanceErrorMessage": "Non hai abbastanza IOTA per completare questo trasferimento.",
@@ -125,7 +125,7 @@
         "balance": "SALDO",
         "send": "INVIA",
         "receive": "RICEVI",
-        "history": "STORICO",
+        "history": "CRONOLOGIA",
         "settings": "IMPOSTAZIONI"
     },
     "languageSetup": {
@@ -196,7 +196,7 @@
         "invalidAmountExplanation": "Si prega di inserire un valore numerico per l'importo della transazione.",
         "maximumSelected": "Selezionato importo MASSIMO",
         "iotaUnits": "Unità di IOTA",
-        "sendMax": "SEND MAX"
+        "sendMax": "INVIA MASSIMO"
     },
     "setPassword": {
         "passwordTooShort": "La password è troppo corta",
@@ -321,7 +321,7 @@
     },
     "deleteAccount": {
         "areYouSure": "Sei sicuro di voler eliminare questo account?",
-        "yourSeedWillBeRemoved": "Il tuo seme e lo storico delle transazioni saranno rimossi.",
+        "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
         "thisAction": "Questa azione non può essere annullata.",
         "enterPassword": "Immetti la tua password per cancellare il conto."
     },
