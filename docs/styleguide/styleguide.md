@@ -227,9 +227,9 @@ The color scheme consists of following mandatory sets and colors:
     - `color` - **required**, the body (text, icon, label) color
     - `background` - **required**, the background color
     - `secondary` - **required**, accent color used for info block background, dividers and borders
-
-- `positive`, `secondary`, `negative`,  `highlight`, `extra`, - accent color sets used by their name meaning. Possible colors to be defined:
+- `primary`, `secondary`, `positive`, `negative`, `highlight`, `extra` - accent color sets used by their name meaning. Possible colors to be defined:
     - `color` - **required**; the accent color
+    - `hover` - **required**; the accent colors hover state
     - `background` - optional; used when the accent color is a background. Defaults to the accent color itself.
     - `body` - optional; used for content when the accent color is it's background. Defaults to `body.color`.
 - `input` - colors for input elements:
@@ -237,7 +237,6 @@ The color scheme consists of following mandatory sets and colors:
     - `background` - **required**; tbackground color of input elements
     - `secondary` - optional; used for icons and links inside input elements. Defaults to `input.color`.
     - `border` - optional; border color of input elements. Defaults to `input.background` (no visible border).
-- `hover.color` - **required**; color for element (buttons, list items) hover state
 - `chart.color` - **required**; chart line color.
 
 ### WIP: Styleguide
