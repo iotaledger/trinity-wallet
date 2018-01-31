@@ -16,6 +16,8 @@ import {
     manuallySyncAccount,
     update2FA,
     transitionForSnapshot,
+    generateAddressesAndGetBalance,
+    completeSnapshotTransition,
 } from 'iota-wallet-shared-modules/actions/account';
 import {
     getSelectedAccountViaSeedIndex,
@@ -186,6 +188,11 @@ class Settings extends Component {
         transitionForSnapshot: PropTypes.func.isRequired,
         transitionBalance: PropTypes.number.isRequired,
         transitionAddresses: PropTypes.array.isRequired,
+        generateAddressesAndGetBalance: PropTypes.func.isRequired,
+        balanceCheckToggle: PropTypes.bool.isRequired,
+        isSendingTransfer: PropTypes.bool.isRequired,
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        isFetchingAccountInfo: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -223,9 +230,12 @@ class Settings extends Component {
             seedIndex,
             transitionBalance,
             transitionAddresses,
-            isCheckingBalance,
+            balanceCheckToggle,
             isTransitioning,
             selectedAccount,
+            transitionForSnapshot,
+            generateAddressesAndGetBalance,
+            completeSnapshotTransition,
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
         const arrowLeftImagePath = isWhite ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -432,16 +442,20 @@ class Settings extends Component {
                 borderColor: { borderColor: secondaryBackgroundColor },
                 secondaryBackgroundColor,
                 negativeColor,
+                backgroundColor: THEMES.getHSL(backgroundColor),
                 arrowLeftImagePath,
                 transitionBalance,
                 transitionAddresses,
-                isCheckingBalance,
-                transitionForSnapshot: (seed, accountName, addresses) =>
-                    this.props.transitionForSnapshot(seed, accountName, addresses),
-                selectedAccountName,
+                balanceCheckToggle,
                 seedIndex,
-                backgroundColor: { backgroundColor: THEMES.getHSL(backgroundColor) },
+                selectedAccountName,
                 addresses: Object.keys(selectedAccount.addresses),
+                transitionForSnapshot: (seed, addresses) => transitionForSnapshot(seed, addresses),
+                generateAddressesAndGetBalance: (seed, index) => generateAddressesAndGetBalance(seed, index),
+                completeSnapshotTransition: (seed, accountName, addresses) =>
+                    completeSnapshotTransition(seed, accountName, addresses),
+                shouldPreventAction: () => this.shouldPreventAction(),
+                generateAlert: (success, title, message) => this.props.generateAlert(success, title, message),
             },
             themeCustomisation: {
                 backPress: () => this.props.setSetting('mainSettings'),
@@ -518,24 +532,43 @@ class Settings extends Component {
         }
     }
 
+    shouldPreventAction() {
+        const {
+            isTransitioning,
+            isSendingTransfer,
+            isGeneratingReceiveAddress,
+            isFetchingAccountInfo,
+            isSyncing,
+        } = this.props;
+
+        const isAlreadyDoingSomeHeavyLifting =
+            isSendingTransfer || isGeneratingReceiveAddress || isTransitioning || isFetchingAccountInfo || isSyncing;
+
+        return isAlreadyDoingSomeHeavyLifting;
+    }
+
     onManualSyncPress() {
         const { seedIndex, selectedAccountName, t } = this.props;
 
-        keychain
-            .get()
-            .then(credentials => {
-                if (get(credentials, 'data')) {
-                    const seed = getSeed(credentials.data, seedIndex);
-                    this.props.manuallySyncAccount(seed, selectedAccountName);
-                } else {
-                    this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongExplanation'),
-                    );
-                }
-            })
-            .catch(err => console.error(err)); // eslint-disable-line no-console
+        if (!this.shouldPreventAction()) {
+            keychain
+                .get()
+                .then(credentials => {
+                    if (get(credentials, 'data')) {
+                        const seed = getSeed(credentials.data, seedIndex);
+                        this.props.manuallySyncAccount(seed, selectedAccountName);
+                    } else {
+                        this.props.generateAlert(
+                            'error',
+                            t('global:somethingWentWrong'),
+                            t('global:somethingWentWrongExplanation'),
+                        );
+                    }
+                })
+                .catch(err => console.error(err)); // eslint-disable-line no-console
+        } else {
+            this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
+        }
     }
 
     onAddNodeError() {
@@ -841,6 +874,8 @@ const mapDispatchToProps = {
     update2FA,
     setLanguage,
     transitionForSnapshot,
+    generateAddressesAndGetBalance,
+    completeSnapshotTransition,
 };
 
 const mapStateToProps = state => ({
@@ -877,7 +912,10 @@ const mapStateToProps = state => ({
     isTransitioning: state.tempAccount.isTransitioning,
     transitionBalance: state.tempAccount.transitionBalance,
     transitionAddresses: state.tempAccount.transitionAddresses,
-    isCheckingBalance: state.tempAccount.isCheckingBalance,
+    balanceCheckToggle: state.tempAccount.balanceCheckToggle,
+    isSendingTransfer: state.tempAccount.isSendingTransfer,
+    isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
+    isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(

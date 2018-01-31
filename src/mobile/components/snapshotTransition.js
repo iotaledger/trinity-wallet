@@ -3,6 +3,7 @@ import Modal from 'react-native-modal';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from './onboardingButtons';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
@@ -10,6 +11,16 @@ import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
+    modalContent: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderRadius: GENERAL.borderRadius,
+        borderWidth: 2,
+        borderColor: 'rgba(255, 255, 255, 0.8)',
+        paddingVertical: height / 30,
+        width: width / 1.15,
+        paddingHorizontal: width / 20,
+    },
     container: {
         flex: 1,
         alignItems: 'center',
@@ -61,9 +72,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'transparent',
     },
-    transitionButtonText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
+    buttonInfoText: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     infoText: {
@@ -73,11 +84,23 @@ const styles = StyleSheet.create({
         paddingTop: height / 30,
         textAlign: 'center',
     },
+    buttonQuestionText: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 27.6,
+        backgroundColor: 'transparent',
+        paddingTop: height / 60,
+    },
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: height / 40,
+    },
+    textContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: width / 1.25,
+        paddingBottom: height / 30,
     },
 });
 
@@ -90,43 +113,98 @@ class SnapshotTransition extends Component {
         t: PropTypes.func.isRequired,
         borderColor: PropTypes.object.isRequired,
         transitionForSnapshot: PropTypes.func.isRequired,
-        selectedAccountName: PropTypes.string.isRequired,
         seedIndex: PropTypes.number.isRequired,
         transitionBalance: PropTypes.number.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
-        isCheckingBalance: PropTypes.bool.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        balanceCheckToggle: PropTypes.bool.isRequired,
+        generateAddressesAndGetBalance: PropTypes.func.isRequired,
+        transitionAddresses: PropTypes.array.isRequired,
+        completeSnapshotTransition: PropTypes.func.isRequired,
+        selectedAccountName: PropTypes.string.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        addresses: PropTypes.array.isRequired,
+        shouldPreventAction: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
         this.state = {
             isModalVisible: false,
+            isAttachingToTangle: false,
         };
     }
 
     componentWillReceiveProps(newProps) {
-        const { isCheckingBalance } = this.props;
-        if (!isCheckingBalance && newProps.isCheckingBalance) {
+        const { balanceCheckToggle, isTransitioning } = this.props;
+        if (balanceCheckToggle !== newProps.balanceCheckToggle) {
             this.showModal();
-            console.log('balance');
+        }
+        if (isTransitioning && !newProps.isTransitioning) {
+            this.hideModal();
+            this.setState({ isAttachingToTangle: false });
         }
     }
 
-    onSnapshotTransititionPress() {
-        const { transitionForSnapshot, selectedAccountName, seedIndex, addresses } = this.props;
-        keychain
-            .get()
-            .then(credentials => {
-                const data = get(credentials, 'data');
+    onBalanceCompletePress() {
+        this.hideModal();
+        this.setState({ isAttachingToTangle: true });
+        const { completeSnapshotTransition, seedIndex, transitionAddresses, selectedAccountName } = this.props;
+        setTimeout(() => {
+            keychain
+                .get()
+                .then(credentials => {
+                    const data = get(credentials, 'data');
+                    if (!data) {
+                        throw new Error('Error');
+                    } else {
+                        const seed = getSeed(data, seedIndex);
+                        completeSnapshotTransition(seed, selectedAccountName, transitionAddresses);
+                    }
+                })
+                .catch(err => console.error(err));
+        }, 300);
+    }
 
-                if (!data) {
-                    throw new Error('Error');
-                } else {
-                    const seed = getSeed(data, seedIndex);
-                    transitionForSnapshot(seed, selectedAccountName, addresses);
-                }
-            })
-            .catch(err => console.error(err));
+    onBalanceIncompletePress() {
+        this.hideModal();
+
+        const { generateAddressesAndGetBalance, transitionAddresses, seedIndex } = this.props;
+        const currentIndex = transitionAddresses.length;
+        setTimeout(() => {
+            keychain
+                .get()
+                .then(credentials => {
+                    const data = get(credentials, 'data');
+                    if (!data) {
+                        throw new Error('Error');
+                    } else {
+                        const seed = getSeed(data, seedIndex);
+                        generateAddressesAndGetBalance(seed, currentIndex);
+                    }
+                })
+                .catch(err => console.error(err));
+        }, 300);
+    }
+
+    onSnapshotTransititionPress() {
+        const { transitionForSnapshot, seedIndex, addresses, shouldPreventAction } = this.props;
+
+        if (!shouldPreventAction()) {
+            keychain
+                .get()
+                .then(credentials => {
+                    const data = get(credentials, 'data');
+                    if (!data) {
+                        throw new Error('Error');
+                    } else {
+                        const seed = getSeed(data, seedIndex);
+                        transitionForSnapshot(seed, addresses);
+                    }
+                })
+                .catch(err => console.error(err));
+        } else {
+            this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
+        }
     }
 
     showModal = () => this.setState({ isModalVisible: true });
@@ -137,19 +215,17 @@ class SnapshotTransition extends Component {
         const { transitionBalance, t, backgroundColor, borderColor, textColor } = this.props;
 
         return (
-            <View
-                style={[
-                    { width: width / 1.15, alignItems: 'center' },
-                    { backgroundColor: THEMES.getHSL(backgroundColor) },
-                ]}
-            >
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
-                    <Text style={[styles.questionText, textColor]}>Detected balance: {transitionBalance}</Text>
-                    <Text style={[styles.questionText, textColor]}>Is this correct?</Text>
-
+                    <View style={styles.textContainer}>
+                        <Text style={[styles.buttonInfoText, textColor]}>
+                            Detected balance: {round(formatValue(transitionBalance), 1)} {formatUnit(transitionBalance)}
+                        </Text>
+                        <Text style={[styles.buttonQuestionText, textColor]}>Is this correct?</Text>
+                    </View>
                     <OnboardingButtons
-                        // onLeftButtonPress={() => )}
-                        // onRightButtonPress={() => this.props.logout()}
+                        onLeftButtonPress={() => this.onBalanceIncompletePress()}
+                        onRightButtonPress={() => this.onBalanceCompletePress()}
                         leftText={t('global:no')}
                         rightText={t('global:yes')}
                     />
@@ -169,6 +245,7 @@ class SnapshotTransition extends Component {
             negativeColor,
             t,
         } = this.props;
+        const { isAttachingToTangle } = this.state;
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
@@ -190,18 +267,33 @@ class SnapshotTransition extends Component {
                             </View>
                         </View>
                     )}
-                    {isTransitioning && (
-                        <View style={styles.innerContainer}>
-                            <Text style={[styles.infoText, textColor]}>Transitioning for the snapshot</Text>
-                            <Text style={[styles.infoText, textColor]}>Please wait...</Text>
-                            <ActivityIndicator
-                                animating={isTransitioning}
-                                style={styles.activityIndicator}
-                                size="large"
-                                color={THEMES.getHSL(negativeColor)}
-                            />
-                        </View>
-                    )}
+                    {isTransitioning &&
+                        !isAttachingToTangle && (
+                            <View style={styles.innerContainer}>
+                                <Text style={[styles.infoText, textColor]}>Transitioning for the snapshot</Text>
+                                <Text style={[styles.infoText, textColor]}>Please wait...</Text>
+                                <ActivityIndicator
+                                    animating={isTransitioning}
+                                    style={styles.activityIndicator}
+                                    size="large"
+                                    color={THEMES.getHSL(negativeColor)}
+                                />
+                            </View>
+                        )}
+                    {isTransitioning &&
+                        isAttachingToTangle && (
+                            <View style={styles.innerContainer}>
+                                <Text style={[styles.infoText, textColor]}>Attaching addresses to Tangle</Text>
+                                <Text style={[styles.infoText, textColor]}>This may take a while</Text>
+                                <Text style={[styles.infoText, textColor]}>Please wait...</Text>
+                                <ActivityIndicator
+                                    animating={isTransitioning}
+                                    style={styles.activityIndicator}
+                                    size="large"
+                                    color={THEMES.getHSL(negativeColor)}
+                                />
+                            </View>
+                        )}
                 </View>
                 <View style={styles.bottomContainer}>
                     {!isTransitioning && (
