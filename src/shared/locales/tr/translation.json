@@ -195,7 +195,8 @@
         "invalidAmount": "Yanlış tutar girildi",
         "invalidAmountExplanation": "Lütfen sayısal bir transfer tutarı girin.",
         "maximumSelected": "En fazla tutar seçildi",
-        "iotaUnits": "Iota birimleri"
+        "iotaUnits": "Iota birimleri",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Parola çok kısa",

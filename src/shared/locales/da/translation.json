@@ -195,7 +195,8 @@
         "invalidAmount": "Forkert beløb indtastet",
         "invalidAmountExplanation": "Indtast venligst en numerisk værdi som transaktionsbeløbet.",
         "maximumSelected": "MAKSIMALT beløb valgt",
-        "iotaUnits": "IOTA-enheder"
+        "iotaUnits": "IOTA-enheder",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Adgangskoden er for kort",
