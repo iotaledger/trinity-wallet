@@ -108,8 +108,8 @@
         "seedCleared": "Từ khoá đã xoá",
         "seedClearedExplanation": "Từ khoá đã được xoá khỏi bộ nhớ tạm để bảo mật.",
         "seedCopied": "Đã sao chép từ khoá từ bộ nhớ tạm",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager.",
+        "seedCopiedExplanation": "Từ khoá sẽ bị xoá sau khi bạn nhấn nút \"XONG\" hoặc sau khi 60 giây trôi qua.",
+        "clickToCopy": "Nhấn vào nút bên dưới và sao chép từ khoá vào chương trình quản lý mật khẩu.",
         "doNotStore": "Do not store your seed in plain text.",
         "copyToClipboard": "Copy to clipboard"
     },
