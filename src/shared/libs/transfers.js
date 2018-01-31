@@ -154,14 +154,25 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
  *   Returns index associated with the address
  *   Returns 0 if no address with balance is found.
  *
- *   @method getStartingSearchIndexForAddress
+ *   @method getStartingSearchIndexToPrepareInputs
  *   @param {object} addressData - Addresses dictionary with balance and spend status
  *   @returns {number} index
  **/
-export const getStartingSearchIndexForAddress = addressData => {
+export const getStartingSearchIndexToPrepareInputs = addressData => {
     const address = Object.keys(addressData).find(address => addressData[address].balance > 0);
 
     return address ? addressData[address].index : 0;
+};
+
+/**
+ *   Find the last address index from address data.
+ *
+ *   @method getStartingSearchIndexToFetchLatestAddresses
+ *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *   @returns {number} index
+ **/
+export const getStartingSearchIndexToFetchLatestAddresses = addressData => {
+    return Object.keys(addressData).length ? Object.keys(addressData).length - 1 : 0;
 };
 
 /**
