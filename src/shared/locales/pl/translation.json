@@ -135,7 +135,7 @@
         "emptyPassword": "Puste hasło",
         "emptyPasswordExplanation": "Musisz podać hasło, aby się zalogować. Spróbuj ponownie.",
         "enterPassword": "Wprowadź swoje hasło.",
-        "useSeed": "UŻYJ SEEDA",
+        "useSeed": "UŻYJ SEED'a",
         "login": "ZALOGUJ",
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?"
     },
@@ -196,7 +196,7 @@
         "invalidAmountExplanation": "Proszę wprowadzić numeryczną wartość transakcji.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
         "iotaUnits": "Jednostki IOTA",
-        "sendMax": "SEND MAX"
+        "sendMax": "Wyślij wszystko"
     },
     "setPassword": {
         "passwordTooShort": "Hasło jest zbyt krótkie",
@@ -257,7 +257,7 @@
         "okay": "W porządku. Ustawmy Twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz ziarno, którego chciałbyś użyć?",
         "seedExplanation": "Ziarno IOTA jest jak połączenie Twojej nazwy użytkownika i hasła do konta w jeden ciąg długości 81 znaków.",
-        "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz SEEDa, stracisz swoje IOTY.</4></0>",
+        "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed'a, stracisz swoje IOTY.</4></0>",
         "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seed'a."
     },
     "welcome": {
@@ -266,8 +266,8 @@
         "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Twoje ziarno ma {{maxSeedLength}} znaków, czytane od lewej do prawej.",
-        "writeDownYourSeed": "<0> Zapisz SEEDa i sumę kontrolną i </0><1>trzykrotnie upewnij się</1><2> czy są poprawne.</2>"
+        "yourSeedIs": "Twój seed ma {{maxSeedLength}} znaków, czytane od lewej do prawej.",
+        "writeDownYourSeed": "<0> Zapisz seed i sumę kontrolną i </0><1>trzykrotnie upewnij się</1><2> czy są poprawne.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
@@ -347,7 +347,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TEJ CZYNNOŚCI NIE MOŻNA COFNĄĆ.",
-        "warning": "<0><0>Wszystkie dane portfela, w tym </0><1>SEED, hasło</1><2> i </2><3>pozostałe dane konta</3><4>, zostaną utracone.</4></0>"
+        "warning": "<0><0>Wszystkie dane portfela, w tym </0><1>seed, hasło</1><2> i </2><3>pozostałe dane konta</3><4>, zostaną utracone.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",
