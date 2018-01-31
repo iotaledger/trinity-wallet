@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-import { isReceivedTransfer, getRelevantTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { extractTailTransferFromBundle } from 'iota-wallet-shared-modules/libs/transfers';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
 import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
@@ -45,7 +46,7 @@ class SimpleTransactionRow extends Component {
 
     render() {
         const { rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor, t } = this.props;
-        const transfer = getRelevantTransfer(rowData, addresses);
+        const transfer = extractTailTransferFromBundle(rowData);
         const isReceived = isReceivedTransfer(rowData, addresses);
         let sign = isReceived ? '+' : '-';
         sign = transfer.value === 0 ? '' : sign;

@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import isNull from 'lodash/isNull';
 import size from 'lodash/size';
+import reduce from 'lodash/reduce';
 import { DEFAULT_TAG, DEFAULT_SECURITY } from '../config';
 import { iota } from './iota';
 
@@ -179,4 +180,23 @@ export const shouldAllowSendingToAddress = (addresses, callback) => {
             callback(null, !spentAddresses.length);
         }
     });
+};
+
+/**
+ *   Accepts a transfer bundle and returns the tail object
+ *
+ *   @method extractTailTransferFromBundle
+ *   @param {array} bundle - Array of transfer objects
+ *   @returns {object} transfer object
+ **/
+export const extractTailTransferFromBundle = bundle => {
+    const extractTail = (res, tx) => {
+        if (tx.currentIndex === 0) {
+            res = tx;
+        }
+
+        return res;
+    };
+
+    return reduce(bundle, extractTail, {});
 };

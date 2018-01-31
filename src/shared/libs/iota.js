@@ -62,18 +62,3 @@ export const isReceivedTransfer = (bundle, addresses) => {
         }
     }
 };
-
-export const getRelevantTransfer = (bundle, addresses) => {
-    for (let i = 0; i < bundle.length; i++) {
-        if (addresses.indexOf(bundle[i].address) > -1) {
-            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
-            if (bundle[i].value < 0 && !isRemainder) {
-                return bundle[0];
-            } else if (bundle[i].value >= 0 && !isRemainder) {
-                return bundle[i];
-            }
-        } else if (bundle[0].value === 0) {
-            return bundle[0];
-        }
-    }
-};
