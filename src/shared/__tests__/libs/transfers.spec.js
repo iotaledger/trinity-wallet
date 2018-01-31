@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { prepareTransferArray, prepareInputs } from '../../libs/transfers';
 
-describe.only('libs: transfers', () => {
+describe('libs: transfers', () => {
     describe('#prepareTransferArray', () => {
         let args;
 
@@ -64,6 +64,117 @@ describe.only('libs: transfers', () => {
 
             const result = prepareInputs(addressesData, 0, 3); // Threshold -> 3
             expect(result.totalBalance).to.equal(3);
+        });
+
+        it('should have totalBalance always greater than or equal to threshold if total balances on addresses in greater than or equal to threshold', () => {
+            const payloads = [
+                {
+                    data: {
+                        foo: { index: 0, balance: 1 },
+                        baz: { index: 1, balance: 0 },
+                        bar: { index: 2, balance: 8 },
+                    },
+                    threshold: 3,
+                },
+                {
+                    data: {
+                        foo: { index: 0, balance: 10 },
+                        baz: { index: 1, balance: 20 },
+                        bar: { index: 2, balance: 8 },
+                    },
+                    threshold: 10,
+                },
+                {
+                    data: {
+                        foo: { index: 0, balance: 100 },
+                        baz: { index: 1, balance: 20 },
+                        bar: { index: 2, balance: 8 },
+                    },
+                    threshold: 100,
+                },
+            ];
+
+            payloads.forEach(payload => {
+                const result = prepareInputs(payload.data, 0, payload.threshold);
+                expect(result.totalBalance >= payload.threshold).to.equal(true);
+            });
+        });
+
+        it('should have totalBalance always less than threshold if total balances on addresses in less than threshold', () => {
+            const payloads = [
+                {
+                    data: {
+                        foo: { index: 0, balance: 1 },
+                        baz: { index: 1, balance: 0 },
+                        bar: { index: 2, balance: 0 },
+                    },
+                    threshold: 3,
+                },
+                {
+                    data: {
+                        foo: { index: 0, balance: 10 },
+                        baz: { index: 1, balance: 20 },
+                        bar: { index: 2, balance: 8 },
+                    },
+                    threshold: 100,
+                },
+                {
+                    data: {
+                        foo: { index: 0, balance: 100 },
+                        baz: { index: 1, balance: 20 },
+                        bar: { index: 2, balance: 8 },
+                    },
+                    threshold: 500,
+                },
+            ];
+
+            payloads.forEach(payload => {
+                const result = prepareInputs(payload.data, 0, payload.threshold);
+                expect(result.totalBalance < payload.threshold).to.equal(true);
+            });
+        });
+
+        it('should not include addresses with indexes smaller than start passed as second argument', () => {
+            const payloads = [
+                {
+                    data: {
+                        foo: { index: 0, balance: 1 },
+                        baz: { index: 1, balance: 0 },
+                        bar: { index: 2, balance: 0 },
+                    },
+                    threshold: 3,
+                },
+                {
+                    data: {
+                        foo: { index: 0, balance: 10 },
+                        baz: { index: 1, balance: 20 },
+                        bar: { index: 2, balance: 8 },
+                    },
+                    threshold: 100,
+                },
+                {
+                    data: {
+                        foo: { index: 0, balance: 100 },
+                        baz: { index: 1, balance: 20 },
+                        bar: { index: 2, balance: 8 },
+                    },
+                    threshold: 500,
+                },
+            ];
+
+            payloads.forEach(payload => {
+                const result = prepareInputs(payload.data, 1, payload.threshold);
+                result.inputs.forEach(input => {
+                    expect(input.keyIndex).to.not.equal(0);
+                });
+            });
+
+            payloads.forEach(payload => {
+                const result = prepareInputs(payload.data, 2, payload.threshold);
+                result.inputs.forEach(input => {
+                    expect(input.keyIndex === 0 || input.keyIndex === 1).to.not.equal(true);
+                });
+            });
         });
     });
 });
