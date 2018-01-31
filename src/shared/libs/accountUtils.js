@@ -10,6 +10,7 @@ import has from 'lodash/has';
 import omitBy from 'lodash/omitBy';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
 import { iota } from '../libs/iota';
 import { getBundleTailsForSentTransfers } from './promoter';
 import { getAllAddresses } from './addresses';
@@ -330,6 +331,26 @@ export const getConfirmedTxTailsHashes = (states, hashes) => {
     return new Promise((resolve, reject) => resolve(confirmedHashes));
 };
 
+/**
+ *   Takes in account object, filter unspent addresses from all addresses, fetch transaction hashes associated with those and
+ *   assigns them to the account object.
+ *
+ *   @method mapUnspentAddressesHashesToAccount
+ *   @param {object} account [addresses: {}, transfers: [], balance: 0, pendingTxTailsHashes: {}, unconfirmedBundleTails: {}]
+ *   @returns {Promise} - Resolves account argument by assigning hashes (Transaction hashes associated with unspent addresses)
+ **/
+export const mapUnspentAddressesHashesToAccount = account => {
+    const unspentAddresses = getUnspentAddresses(account.addresses);
+
+    if (isEmpty(unspentAddresses)) {
+        return Promise.resolve(assign({}, account, { hashes: [] }));
+    }
+
+    return iota.api
+        .findTransactionsAsync({ addresses: unspentAddresses })
+        .then(hashes => assign({}, account, { hashes }));
+};
+
 export const getBundle = (tailTx, allBundleObjects) => {
     if (tailTx.currentIndex === tailTx.lastIndex) {
         return [tailTx];
@@ -355,6 +376,25 @@ export const getBundle = (tailTx, allBundleObjects) => {
     return bundle;
 };
 
+/**
+ *   Gets seed associated information from the ledger.
+ *   - Communicates with node by checking its information. (getNodeInfoAsync)
+ *   - Get all used addresses (addresses with transactions) from the ledger. (getAllAddresses)
+ *   - Get all transaction objects associated with the addresses. (findTransactionObjectsAsync({ addresses }))
+ *   - Grab all bundle hashes and get transaction objects associated with those. (findTransactionObjectsAsync({ bundles }))
+ *   - Get confirmation states from all transactions from the ledger. (getLatestInclusionAsync)
+ *   - Map confirmations on transaction objects.
+ *   - Remove duplicates (reattachments) for confirmed transfers - A neat trick to avoid expensive bundle creation for reattachments.
+ *   - Get balances associated with addresses. (getBalancesAsync)
+ *   - Set balance
+ *   - Prepare inputs from balances and all addresses.
+ *   - Organize account info - Formats and transform account objects.
+ *
+ *   @method getAccountData
+ *   @param {string} seed
+ *   @param {string} accountName - Account name selected by the user.
+ *   @returns {Promise} - Account object [addresses: {}, transfers: [], balance: 0, pendingTxTailsHashes: {}, unconfirmedBundleTails: {} ]
+ **/
 export const getAccountData = (seed, accountName) => {
     const tailTransactions = [];
     const allBundleHashes = [];

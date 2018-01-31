@@ -30,6 +30,7 @@ import {
     markAddressSpend,
     getPendingTxTailsHashes,
     getAccountData,
+    mapUnspentAddressesHashesToAccount,
 } from '../libs/accountUtils';
 import { setReady, clearTempData } from './tempAccount';
 import {
@@ -233,95 +234,48 @@ export const fetchFullAccountInfoForFirstUse = (
     dispatch(fullAccountInfoForFirstUseFetchRequest());
     getAccountData(seed, accountName)
         .then(data => {
-            dispatch(clearTempData()); // Clean up partial state for reducer anyways.
-
-            const unspentAddresses = getUnspentAddresses(data.addresses);
-            if (!isEmpty(unspentAddresses)) {
-                iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
-                    if (err) {
-                        onError(err);
-                    } else {
-                        storeInKeychainPromise(password, seed, accountName)
-                            .then(() => {
-                                const payloadWithHashes = assign({}, data, { hashes });
-                                dispatch(fullAccountInfoForFirstUseFetchSuccess(payloadWithHashes));
-                            })
-                            .catch(err => {
-                                onError(err);
-                            });
-                    }
-                });
-            } else {
-                storeInKeychainPromise(password, seed, accountName)
-                    .then(() => {
-                        dispatch(fullAccountInfoForFirstUseFetchSuccess(assign({}, data, { hashes: [] })));
-                    })
-                    .catch(err => {
-                        onError(err);
-                    });
-            }
+            dispatch(clearTempData()); // Clean up partial state for reducer.
+            return mapUnspentAddressesHashesToAccount(data);
+        })
+        .then(dataWithUnspentAddressesHashes => {
+            storeInKeychainPromise(password, seed, accountName)
+                .then(() => dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithUnspentAddressesHashes)))
+                .catch(err => onError(err));
         })
         .catch(err => onError(err));
 };
 
 export const getFullAccountInfo = (seed, accountName, navigator = null) => {
     return dispatch => {
-        const onError = err => {
-            if (navigator) {
-                navigator.pop({ animated: false });
-            }
-            dispatch(generateAccountInfoErrorAlert(err));
-            dispatch(fullAccountInfoFetchError());
-        };
-
         dispatch(fullAccountInfoFetchRequest());
         getAccountData(seed, accountName)
-            .then(data => {
-                const unspentAddresses = getUnspentAddresses(data.addresses);
-
-                if (!isEmpty(unspentAddresses)) {
-                    iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
-                        if (err) {
-                            onError(err);
-                        }
-                        const payloadWithHashes = assign({}, data, { hashes });
-                        dispatch(fullAccountInfoFetchSuccess(payloadWithHashes));
-                    });
-                } else {
-                    dispatch(fullAccountInfoFetchSuccess(assign({}, data, { hashes: [] })));
+            .then(data => mapUnspentAddressesHashesToAccount(data))
+            .then(dataWithUnspentAddressesHashes =>
+                dispatch(fullAccountInfoFetchSuccess(dataWithUnspentAddressesHashes)),
+            )
+            .catch(err => {
+                if (navigator) {
+                    navigator.pop({ animated: false });
                 }
-            })
-            .catch(err => onError(err));
+                dispatch(generateAccountInfoErrorAlert(err));
+                dispatch(fullAccountInfoFetchError());
+            });
     };
 };
 
 export const manuallySyncAccount = (seed, accountName) => {
     return dispatch => {
-        const onError = err => {
-            dispatch(generateSyncingErrorAlert(err));
-            return dispatch(manualSyncError());
-        };
-
         dispatch(manualSyncRequest());
         getAccountData(seed, accountName)
-            .then(data => {
-                const unspentAddresses = getUnspentAddresses(data.addresses);
-                if (!isEmpty(unspentAddresses)) {
-                    iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
-                        if (err) {
-                            onError(err);
-                        } else {
-                            dispatch(generateSyncingCompleteAlert());
-                            const payloadWithHashes = assign({}, data, { hashes });
-                            dispatch(manualSyncSuccess(payloadWithHashes));
-                        }
-                    });
-                } else {
-                    dispatch(generateSyncingCompleteAlert());
-                    dispatch(manualSyncSuccess(assign({}, data, { hashes: [] })));
-                }
+            .then(data => mapUnspentAddressesHashesToAccount(data))
+            .then(dataWithUnspentAddressesHashes => {
+                dispatch(generateSyncingCompleteAlert());
+                dispatch(manualSyncSuccess(dataWithUnspentAddressesHashes));
             })
-            .catch(err => onError(err));
+            .catch(err => {
+                dispatch(generateSyncingErrorAlert(err));
+                dispatch(manualSyncError());
+            });
     };
 };
 
