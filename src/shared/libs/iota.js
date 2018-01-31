@@ -72,6 +72,8 @@ export const getRelevantTransfer = (bundle, addresses) => {
             } else if (bundle[i].value >= 0 && !isRemainder) {
                 return bundle[i];
             }
+        } else if (bundle[0].value === 0) {
+            return bundle[0];
         }
     }
 };

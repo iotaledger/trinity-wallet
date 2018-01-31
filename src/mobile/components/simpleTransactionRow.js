@@ -47,7 +47,8 @@ class SimpleTransactionRow extends Component {
         const { rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor, t } = this.props;
         const transfer = getRelevantTransfer(rowData, addresses);
         const isReceived = isReceivedTransfer(rowData, addresses);
-        const sign = isReceived ? '+' : '-';
+        let sign = isReceived ? '+' : '-';
+        sign = transfer.value === 0 ? '' : sign;
         const titleColour = isReceived ? extraColor : negativeColor;
         const sendImagePath = secondaryBackgroundColor === 'white' ? whiteSendImagePath : blackSendImagePath;
         const receiveImagePath = secondaryBackgroundColor === 'white' ? whiteReceiveImagePath : blackReceiveImagePath;
