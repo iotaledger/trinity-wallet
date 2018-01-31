@@ -11,8 +11,8 @@
         "transferErrorMessage": "Что-то пошло не так при отправке вашего перевода. Пожалуйста, повторите попытку.",
         "transferSent": "Перевод отправлен",
         "transferSentMessage": "Ваш перевод отправлен в Tangle.",
-        "messageSent": "Message sent",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
+        "messageSent": "Сообщение отправлено",
+        "messageSentMessage": "Ваше сообщение отправлено в Tangle.",
         "keyReuse": "Повторное использование адреса для отправки",
         "keyReuseError": "Вы не можете сделать перевод на адрес, с которого уже был осуществлён вывод.",
         "invalidResponse": "Неправильный отклик",
@@ -57,20 +57,20 @@
         "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса настроек кошелька.",
         "attachToTangleUnavailable": "Привязка к Tangle недоступна",
         "attachToTangleUnavailableExplanation": "Привязка к Tangle недоступна на выбранном узле.",
-        "wallet": "Wallet",
-        "sent": "Sent",
-        "received": "Received",
-        "sending": "Sending",
-        "receiving": "Receiving",
+        "wallet": "Кошелёк",
+        "sent": "Отправлено",
+        "received": "Получено",
+        "sending": "Отправка",
+        "receiving": "Получение",
         "confirmed": "Подтверждено",
         "pending": "Ожидание",
-        "bundleHash": "Bundle Hash",
+        "bundleHash": "Пакет данных",
         "addresses": "Адресов",
-        "pressBackAgain": "Press back again to close the app",
-        "autoreattaching": "Autoreattaching to Tangle",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "pressBackAgain": "Снова нажмите снова, чтобы закрыть приложение",
+        "autoreattaching": "Автообновление в Tangle",
+        "autoreattachingExplanation": "Повторное присоединение транзакций с хэш {{hash}}",
+        "autopromoting": "Передача автопромотирования",
+        "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -163,14 +163,14 @@
     "receive": {
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "НОВЫЙ АДРЕС",
         "message": "Сообщение (опционально)",
         "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ"
     },
     "saveYourSeed": {
         "seedCleared": "Ключ очищен",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0> <0> Вы должны сохранить свое семя с </ 0> <1> как минимум одним </ 1> <2> из перечисленных ниже опций. </ 2> </ 0>"
     },
     "seedReentry": {
         "incorrectSeed": "Неверный ключ",
@@ -195,7 +195,8 @@
         "invalidAmount": "Указана неверная сумма",
         "invalidAmountExplanation": "Пожалуйста, введите числовое значение для суммы перевода.",
         "maximumSelected": "Выбрана МАКСИМАЛЬНАЯ сумма",
-        "iotaUnits": "IOTA единицы"
+        "iotaUnits": "IOTA единицы",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Слишком короткий пароль",
@@ -256,7 +257,7 @@
         "okay": "Хорошо, давайте настроим ваш кошелек!",
         "doYouAlreadyHaveASeed": "У вас уже есть ключ (seed), который вы хотели бы использовать?",
         "seedExplanation": "Ключ (seed) IOTA, комбинация длиной 81 символ, представляет собой одновременно и имя пользователя, и пароль к вашему счету.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0> <0> Вы можете использовать его для получения доступа к вашим средствам </ 0> <1> любой кошелек </ 1> <2>, на </ 2> <3> любое устройство </ 3> <4 >. Но если вы потеряете ваши семена, вы также потеряете ваш IOTA. </ 4> </ 0>",
         "keepSafe": "Пожалуйста, храните ваш ключ в безопасности."
     },
     "welcome": {
@@ -265,8 +266,8 @@
         "reminder": "Возможно, вы захотите пропустить некоторые шаги, но мы настоятельно рекомендуем пройти их все."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "yourSeedIs": "Ваш семенной - {{maxSeedLength}} символ, читающий слева направо.",
+        "writeDownYourSeed": "<0> Запишите ваши семена и контрольной суммы и </ 0> <1> тройная проверка </ 1> <2> что они верны. </ 2>"
     },
     "history": {
         "bundleHashCopied": "Хэш пакет скопирован",
@@ -342,11 +343,11 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Я сохранил свой ключ (seed)",
         "reenter": "Сейчас у вас попросят повторно ввести ваш ключ (seed).",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "Если ваше устройство выйдет из строя, и вы не сохранили свой пароль, то вы потеряете свои IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ЭТО ДЕЙСТВИЕ НЕ МОЖЕТ БЫТЬ ОТМЕНЕНО.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>Все данные вашего кошелька, включая </0><1> пароль,</1><2> and </2><3>\nдругая информация учетной записи</3><4> будут потеряны.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Вы собираетесь отправить {{contents}} на адрес",
