@@ -252,10 +252,7 @@ class Send extends Component {
                     this.props.prepareTransfer(seed, address, value, message, selectedAccountName);
                 }
             })
-            .catch(err => {
-                console.log('Err', err);
-                this.props.getFromKeychainError('send', 'makeTransaction');
-            });
+            .catch(() => this.props.getFromKeychainError('send', 'makeTransaction'));
     }
 
     getUnitMultiplier() {
