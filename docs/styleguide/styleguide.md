@@ -8,11 +8,11 @@ The goal of this documentation is to comprehensively define best practice for th
    1. [Formatting](#formatting)
    1. [Documentation](#documentation)
    1. [Design patterns](#design-patterns)
-      1. [Presentational components](#containers)
-      1. [Container components](#containers)
+      1. [Presentational components](#presentational-components)
+      1. [Container components](#container-components)
    1. [State](#state)
-      1. [Reducers](#Reducers)
-      1. [Actions](#Actions)
+      1. [Reducers](#reducers)
+      1. [Actions](#actions)
 
 ### Assets and themes
    1. [Assets](#assets)
@@ -30,16 +30,18 @@ The goal of this documentation is to comprehensively define best practice for th
 - **Component Naming**: Use the filename as the component name. Do not use `displayName` for naming components.
 - **Reference Naming**: Use PascalCase for React components and camelCase for their instances.
 - **Props Naming**: Always use camelCase for prop names.
-```javascript
+
+```jsx
 // Component names match filenames in PascalCase
 import HistoryList from 'components/HistoryList';
-// Props names in camelca 
-<HistoryList historyItems={items}/ >
+// Props names in camelCase
+<HistoryList historyItems={items} />
 // Reference names in camelCase
 const historyList = <HistoryList />;
 ```
 - **Container Naming:** Provide the passed-in component's name and the containers name as the displayName on the generated component.
-```javascript
+
+```jsx
 export default function withChartData(ChartComponent) {
     class ChartData extends React.Component {
         render() {
@@ -55,7 +57,7 @@ export default function withChartData(ChartComponent) {
 ```
 
 ## Formatting
-Follow the alignment, spacing, ordering and quote usage rules described in detail in [Airbnb React Style Guide](https://github.com/airbnb/javascript) and defined in Eslint configuration of the wallet. Run `eslint src/desktop/src/` or `eslint src/mobile/src/` to check for formatting errors.
+Follow the code structure, formatting and overall best practice described in detail in [Airbnb React Style Guide](https://github.com/airbnb/javascript) and defined in Eslint configuration of the wallet. Run `eslint src/desktop/src/` or `eslint src/mobile/src/` to check for formatting errors.
 
 ## Documentation
 All React components and containers should have a general description (purpose, functionality) and the description of it's propTypes in [JSDoc](http://usejsdoc.org/]) format:
@@ -84,7 +86,8 @@ The application follows higher-order component pattern by splitting platform (mo
 - Presentational components are concerned only with the UI output. They are not bound to the redux state and have no external dependencies (except UI libraries and helpers).
 - Presentational components are split between desktop and mobile.
 - By default presentational components should be implemented as stateless functional components without internal state. The exception are components dealing with non-persistent visual state (e.g. a password input toggle for hidden/visible characters).
-```javascript
+
+```jsx
 import React, { PureComponent } from 'react';
 import withPriceData from 'containers/components/Price';
 
@@ -116,8 +119,9 @@ For a full example, see the components located at `/src/desktop/src/ui/` or `/sr
 - Container components should be resuable for desktop and mobile.
 - Container component render function holds only the presentational component passed as a prop to the container.
 
-```javascript
+```jsx
 import React from 'react';
+import { connect } from 'react-redux';
 
 /**
  * Description of the Price container
@@ -162,7 +166,8 @@ For a full example, see the containers located at `/src/shared/containers/`.
 - Expose handlers as named exports for unit testing.
 - Use constants instead of inline strings for action types.
 - Always define an `initialState` variable.
-```js
+
+```javascript
 import { ActionTypes } from '../actions/account';
 
 const initialState = {};
