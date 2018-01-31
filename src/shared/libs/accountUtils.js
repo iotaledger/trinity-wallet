@@ -356,117 +356,117 @@ export const getBundle = (tailTx, allBundleObjects) => {
 };
 
 export const getAccountData = (seed, accountName) => {
-    return new Promise((resolve, reject) => {
-        const tailTransactions = [];
-        const allBundleHashes = [];
+    const tailTransactions = [];
+    const allBundleHashes = [];
 
-        let allBundleObjects = [];
+    let allBundleObjects = [];
 
-        const transfers = [];
+    const transfers = [];
 
-        const data = {
-            addresses: [],
-            transfers: [],
-            inputs: [],
-            balance: 0,
-        };
+    const data = {
+        addresses: [],
+        transfers: [],
+        inputs: [],
+        balance: 0,
+    };
 
-        const pushIfNotExists = (pushTo, value) => {
-            const isTrue = isObject(value) ? find(pushTo, { hash: value.hash }) : includes(pushTo, value);
+    const pushIfNotExists = (pushTo, value) => {
+        const isTrue = isObject(value) ? find(pushTo, { hash: value.hash }) : includes(pushTo, value);
 
-            if (!isTrue) {
-                pushTo.push(value);
-            }
-        };
+        if (!isTrue) {
+            pushTo.push(value);
+        }
+    };
 
-        iota.api
-            .getNodeInfoAsync()
-            .then(() => getAllAddresses(seed))
-            .then(addresses => {
-                data.addresses = addresses;
+    return iota.api
+        .getNodeInfoAsync()
+        .then(() => getAllAddresses(seed))
+        .then(addresses => {
+            data.addresses = addresses;
 
-                return iota.api.findTransactionObjectsAsync({ addresses: data.addresses });
-            })
-            .then(txObjects => {
-                each(txObjects, tx => pushIfNotExists(allBundleHashes, tx.bundle)); // Grab all bundle hashes
+            return iota.api.findTransactionObjectsAsync({ addresses: data.addresses });
+        })
+        .then(txObjects => {
+            each(txObjects, tx => pushIfNotExists(allBundleHashes, tx.bundle)); // Grab all bundle hashes
 
-                return iota.api.findTransactionObjectsAsync({ bundles: allBundleHashes });
-            })
-            .then(bundleObjects => {
-                allBundleObjects = bundleObjects;
+            return iota.api.findTransactionObjectsAsync({ bundles: allBundleHashes });
+        })
+        .then(bundleObjects => {
+            allBundleObjects = bundleObjects;
 
-                each(allBundleObjects, tx => {
-                    if (tx.currentIndex === 0) {
-                        pushIfNotExists(tailTransactions, tx); // Keep a copy of all tail transactions to check confirmations
+            each(allBundleObjects, tx => {
+                if (tx.currentIndex === 0) {
+                    pushIfNotExists(tailTransactions, tx); // Keep a copy of all tail transactions to check confirmations
+                }
+            });
+
+            return iota.api.getLatestInclusionAsync(map(tailTransactions, t => t.hash));
+        })
+        .then(states => {
+            const allTxsAsObjects = reduce(
+                tailTransactions,
+                (res, v, i) => {
+                    if (i === 0) {
+                        res.confirmed = {};
+                        res.unconfirmed = {};
                     }
-                });
 
-                return iota.api.getLatestInclusionAsync(map(tailTransactions, t => t.hash));
-            })
-            .then(states => {
-                const allTxsAsObjects = reduce(
-                    tailTransactions,
-                    (res, v, i) => {
-                        if (i === 0) {
-                            res.confirmed = {};
-                            res.unconfirmed = {};
-                        }
-
-                        if (states[i]) {
-                            res.confirmed[v.bundle] = Object.assign({}, v, {
-                                persistence: true,
-                            });
-                        } else {
-                            res.unconfirmed[v.bundle] = Object.assign({}, v, {
-                                persistence: false,
-                            });
-                        }
-
-                        return res;
-                    },
-                    {},
-                );
-
-                // Get rid of transactions duplicates that are already confirmed
-                const deduplicatedUnconfirmedTxs = omitBy(allTxsAsObjects.unconfirmed, (value, key) => {
-                    return has(allTxsAsObjects.confirmed, key);
-                });
-
-                const finalTailTxs = [
-                    ...map(allTxsAsObjects.confirmed, t => t),
-                    ...map(deduplicatedUnconfirmedTxs, t => t),
-                ];
-
-                each(finalTailTxs, tx => {
-                    const bundle = getBundle(tx, allBundleObjects);
-
-                    if (iota.utils.isBundle(bundle)) {
-                        transfers.push(bundle);
-                    }
-                });
-
-                data.transfers = transfers;
-
-                return iota.api.getBalancesAsync(data.addresses, DEFAULT_BALANCES_THRESHOLD);
-            })
-            .then(balances => {
-                each(balances.balances, (balance, idx) => {
-                    const balanceAsNumber = parseInt(balance);
-                    data.balance += balanceAsNumber;
-
-                    if (balanceAsNumber > 0) {
-                        data.inputs.push({
-                            address: data.addresses[idx],
-                            keyIndex: idx,
-                            security: 2,
-                            balance: balanceAsNumber,
+                    if (states[i]) {
+                        res.confirmed[v.bundle] = Object.assign({}, v, {
+                            persistence: true,
+                        });
+                    } else {
+                        res.unconfirmed[v.bundle] = Object.assign({}, v, {
+                            persistence: false,
                         });
                     }
-                });
 
-                const payload = organizeAccountInfo(accountName, data);
-                resolve(payload);
-            })
-            .catch(err => reject(err));
-    });
+                    return res;
+                },
+                {},
+            );
+
+            // Get rid of transactions duplicates that are already confirmed
+            const deduplicatedUnconfirmedTxs = omitBy(allTxsAsObjects.unconfirmed, (value, key) => {
+                return has(allTxsAsObjects.confirmed, key);
+            });
+
+            const finalTailTxs = [
+                ...map(allTxsAsObjects.confirmed, t => t),
+                ...map(deduplicatedUnconfirmedTxs, t => t),
+            ];
+
+            each(finalTailTxs, tx => {
+                const bundle = getBundle(tx, allBundleObjects);
+
+                if (iota.utils.isBundle(bundle)) {
+                    transfers.push(bundle);
+                }
+            });
+
+            data.transfers = transfers;
+
+            return iota.api.getBalancesAsync(data.addresses, DEFAULT_BALANCES_THRESHOLD);
+        })
+        .then(balances => {
+            each(balances.balances, (balance, idx) => {
+                const balanceAsNumber = parseInt(balance);
+                data.balance += balanceAsNumber;
+
+                if (balanceAsNumber > 0) {
+                    data.inputs.push({
+                        address: data.addresses[idx],
+                        keyIndex: idx,
+                        security: 2,
+                        balance: balanceAsNumber,
+                    });
+                }
+            });
+
+            return organizeAccountInfo(accountName, data);
+        });
+};
+
+export const syncAccount = (seed, accountName, existingAccountState) => {
+    return null;
 };

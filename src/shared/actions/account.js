@@ -371,6 +371,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             const addressSearchIndex = Object.keys(payload.addresses).length
                 ? Object.keys(payload.addresses).length - 1
                 : 0;
+
             if (isEmpty(pendingTxTailsHashes)) {
                 return Promise.resolve(getLatestAddresses(seed, addressSearchIndex));
             }
