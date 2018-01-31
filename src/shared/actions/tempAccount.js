@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
-import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
+import { getStartingSearchIndexForAddress, getUnspentInputs, shouldAllowSendingToAddress } from '../libs/transfers';
 import { MAX_SEED_LENGTH } from '../libs/util';
 import { prepareTransferArray } from '../libs/transfers';
 import { getSelectedAccount } from '../selectors/account';
@@ -247,28 +247,10 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             return dispatch(makeTransfer(seed, address, value, accountName, transfer));
         }
 
-        const verifyAndSend = (filtered, expectedOutputsLength, inputs) => {
-            if (filtered.length !== expectedOutputsLength) {
-                return dispatch(
-                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
-                );
-            }
-
-            const options = { inputs };
-
-            return dispatch(makeTransfer(seed, address, value, accountName, transfer, options));
-        };
-
-        const unspentInputs = (err, inputs) => {
-            if (err && err.message !== 'Not enough balance') {
-                dispatch(sendTransferError());
-
-                return dispatch(
-                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
-                    100000,
-                );
-            }
-
+        const makeTransferWithBalanceCheck = inputs => {
+            // allBalance -> total balance associated with addresses.
+            // Contains balance from addresses regardless of the fact they are spent from.
+            // Less than the value user is about to send to -> Not enough balance.
             if (get(inputs, 'allBalance') < value) {
                 dispatch(sendTransferError());
                 return dispatch(
@@ -279,6 +261,11 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                         20000,
                     ),
                 );
+
+                // totalBalance -> balance after filtering out addresses that are spent.
+                // Contains balance from those addresses only that are not spent from.
+                // Less than value user is about to send to -> Has already spent from addresses and the txs aren't confirmed.
+                // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
             } else if (get(inputs, 'totalBalance') < value) {
                 dispatch(sendTransferError());
                 return dispatch(
@@ -286,21 +273,48 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 );
             }
 
-            const outputsToCheck = transfer.map(t => ({ address: iota.utils.noChecksum(t.address) }));
-
-            // Check to make sure user is not sending to an already used address
-            return filterSpentAddresses(outputsToCheck).then(filtered =>
-                verifyAndSend(filtered, outputsToCheck.length, get(inputs, 'inputs')),
+            return dispatch(
+                makeTransfer(seed, address, value, accountName, transfer, { inputs: get(inputs, 'inputs') }),
             );
         };
 
-        const getStartingIndex = () => {
-            const addresses = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
-            const addr = Object.keys(addresses).find(address => addresses[address].balance > 0);
-            return addr ? addresses[addr].index : 0;
+        const unspentInputs = (err, inputs) => {
+            if (err) {
+                dispatch(sendTransferError());
+
+                return dispatch(
+                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
+                    100000,
+                );
+            }
+
+            return makeTransferWithBalanceCheck(inputs);
         };
 
-        return getUnspentInputs(seed, getStartingIndex(), value, null, unspentInputs);
+        const addressData = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
+
+        const startIndex = getStartingSearchIndexForAddress(addressData);
+
+        // Make sure that the address a user is about to send to is not already used.
+        // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
+        // Omit input preparation in case the address is already spent from.
+        return shouldAllowSendingToAddress([address], (err, shouldAllowSending) => {
+            if (err) {
+                return dispatch(
+                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
+                    100000,
+                );
+            }
+
+            return shouldAllowSending
+                ? getUnspentInputs(addressData, startIndex, value, null, unspentInputs)
+                : (() => {
+                      dispatch(sendTransferError());
+                      return dispatch(
+                          generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
+                      );
+                  })();
+        });
     };
 };
 
