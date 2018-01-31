@@ -1,3 +1,4 @@
+import union from 'lodash/union';
 import { ActionTypes } from '../actions/tempAccount';
 import { ActionTypes as AccountActionTypes } from '../actions/account';
 
@@ -25,7 +26,7 @@ const initialState = {
     isTransitioning: false,
     transitionBalance: 0,
     transitionAddresses: [],
-    isCheckingBalance: false,
+    balanceCheckToggle: false,
 };
 
 export default (state = initialState, action) => {
@@ -213,17 +214,30 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isTransitioning: false,
+                transitionBalance: 0,
+                transitionAddresses: [],
             };
-        case ActionTypes.BALANCE_CHECK_REQUEST:
+        case ActionTypes.SNAPSHOT_TRANSITION_ERROR:
             return {
                 ...state,
-                transitionBalance: action.payload,
-                isCheckingBalance: true,
+                isTransitioning: false,
+                transitionBalance: 0,
+                transitionAddresses: [],
             };
-        case ActionTypes.BALANCE_CHECK_SUCCESS:
+        case ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE:
             return {
                 ...state,
-                isCheckingBalance: false,
+                balanceCheckToggle: !state.balanceCheckToggle,
+            };
+        case ActionTypes.UPDATE_TRANSITION_BALANCE:
+            return {
+                ...state,
+                transitionBalance: state.transitionBalance + action.payload,
+            };
+        case ActionTypes.UPDATE_TRANSITION_ADDRESSES:
+            return {
+                ...state,
+                transitionAddresses: union(state.transitionAddresses, action.payload),
             };
         default:
             return state;
