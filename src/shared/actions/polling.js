@@ -1,17 +1,13 @@
-import assign from 'lodash/assign';
 import get from 'lodash/get';
 import head from 'lodash/head';
 import clone from 'lodash/clone';
 import concat from 'lodash/concat';
 import merge from 'lodash/merge';
-import difference from 'lodash/difference';
-import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import union from 'lodash/union';
 import size from 'lodash/size';
 import some from 'lodash/some';
-import includes from 'lodash/includes';
 import { getUrlTimeFormat, getUrlNumberFormat, setPrice, setChartData, setMarketData } from './marketData';
 import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
 import {
@@ -28,19 +24,7 @@ import {
     getPendingTxTailsHashesForSelectedAccount,
 } from '../selectors/account';
 import { iota } from '../libs/iota';
-import {
-    getUnspentAddresses,
-    getPendingTxTailsHashes,
-    formatTransfers,
-    markTransfersConfirmed,
-    getTotalBalanceWithLatestAddressData,
-    getLatestAddresses,
-    getTransactionHashes,
-    getTransactionsObjects,
-    getHashesWithPersistence,
-    getConfirmedTxTailsHashes,
-    getBundlesWithPersistence,
-} from '../libs/accountUtils';
+import { syncAccount } from '../libs/accountUtils';
 import { rearrangeObjectKeys } from '../libs/util';
 import i18next from '../i18next.js';
 
@@ -216,18 +200,16 @@ export const getAccountInfo = (seed, accountName) => {
         dispatch(accountInfoFetchRequest());
 
         const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-
         const existingHashes = getExistingUnspentAddressesHashes(
             accountName,
             getState().account.unspentAddressesHashes,
         );
-
         const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
             accountName,
             getState().account.pendingTxTailsHashes,
         );
 
-        let payload = {
+        const existingAccountData = {
             accountName,
             balance: selectedAccount.balance,
             addresses: selectedAccount.addresses,
@@ -236,92 +218,11 @@ export const getAccountInfo = (seed, accountName) => {
             transfers: selectedAccount.transfers,
         };
 
-        const checkConfirmationForPendingTxsAndLatestAddresses = () => {
-            const addressSearchIndex = Object.keys(payload.addresses).length
-                ? Object.keys(payload.addresses).length - 1
-                : 0;
-
-            if (isEmpty(pendingTxTailsHashes)) {
-                return Promise.resolve(getLatestAddresses(seed, addressSearchIndex));
-            }
-
-            return Promise.resolve(getHashesWithPersistence(pendingTxTailsHashes))
-                .then(({ states, hashes }) => {
-                    return getConfirmedTxTailsHashes(states, hashes);
-                })
-                .then(confirmedHashes => {
-                    if (!isEmpty(confirmedHashes)) {
-                        payload = assign({}, payload, {
-                            transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
-                            pendingTxTailsHashes: filter(
-                                payload.pendingTxTailsHashes,
-                                tx => !includes(confirmedHashes, tx),
-                            ),
-                        });
-                    }
-
-                    return Promise.resolve(getLatestAddresses(seed, addressSearchIndex));
-                });
-        };
-
-        return checkConfirmationForPendingTxsAndLatestAddresses()
-            .then(addressData => {
-                payload = merge({}, payload, { addresses: addressData });
-
-                return getTotalBalanceWithLatestAddressData(payload.addresses);
-            })
-            .then(({ balance, addressData }) => {
-                payload = merge({}, payload, { balance, addresses: addressData });
-
-                const unspentAddresses = getUnspentAddresses(payload.addresses);
-
-                if (isEmpty(unspentAddresses)) {
-                    throw new Error('intentionally break chain');
-                }
-
-                return getTransactionHashes(unspentAddresses);
-            })
-            .then(latestHashes => {
-                const hasNewHashes = size(latestHashes) > size(existingHashes);
-
-                if (hasNewHashes) {
-                    const diff = difference(latestHashes, existingHashes);
-
-                    payload = assign({}, payload, {
-                        unspentAddressesHashes: union(existingHashes, latestHashes),
-                    });
-                    return getTransactionsObjects(diff);
-                }
-
-                throw new Error('intentionally break chain');
-            })
-            .then(txs => {
-                const tailTxs = filter(txs, t => t.currentIndex === 0);
-
-                return getHashesWithPersistence(map(tailTxs, t => t.hash));
-            })
-            .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
-            .then(bundles => {
-                const updatedTransfers = [...payload.transfers, ...bundles];
-                const updatedTransfersWithFormatting = formatTransfers(
-                    updatedTransfers,
-                    Object.keys(payload.addresses),
-                );
-
-                payload = assign({}, payload, {
-                    transfers: updatedTransfersWithFormatting,
-                    pendingTxTailsHashes: union(payload.pendingTxTailsHashes, getPendingTxTailsHashes(bundles)), // Update pending transfers copy with new transfers.
-                });
-
-                return dispatch(accountInfoFetchSuccess(payload));
-            })
+        return syncAccount(seed, existingAccountData)
+            .then(newAccountData => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch(err => {
-                if (err && err.message === 'intentionally break chain') {
-                    dispatch(accountInfoFetchSuccess(payload));
-                } else {
-                    dispatch(accountInfoFetchError());
-                    dispatch(generateAccountInfoErrorAlert(err));
-                }
+                dispatch(accountInfoFetchError());
+                dispatch(generateAccountInfoErrorAlert(err));
             });
     };
 };
