@@ -74,7 +74,8 @@ export class Poll extends Component {
             props.isSendingTransfer ||
             props.isGeneratingReceiveAddress ||
             props.isFetchingLatestAccountInfoOnLogin || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
-            props.addingAdditionalAccount;
+            props.addingAdditionalAccount ||
+            props.isTransitioning;
 
         const isAlreadyPollingSomething =
             props.isFetchingPrice ||
@@ -171,6 +172,7 @@ const mapStateToProps = state => ({
     seedIndex: state.tempAccount.seedIndex,
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     unconfirmedBundleTails: state.account.unconfirmedBundleTails,
+    isTransitioning: state.tempAccount.isTransitioning,
 });
 
 const mapDispatchToProps = {

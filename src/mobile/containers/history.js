@@ -49,7 +49,7 @@ class History extends Component {
         const props = this.props;
 
         const isAlreadyDoingSomeHeavyLifting =
-            props.isSyncing || props.isSendingTransfer || props.isGeneratingReceiveAddress;
+            props.isSyncing || props.isSendingTransfer || props.isGeneratingReceiveAddress || props.isTransitioning;
 
         const isAlreadyFetchingAccountInfo = props.isFetchingAccountInfo;
 
@@ -210,6 +210,7 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     isGeneratingReceiveAddress: tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: tempAccount.isSendingTransfer,
     isSyncing: tempAccount.isSyncing,
+    isTransitioning: tempAccount.isTransitioning,
 });
 
 const mapDispatchToProps = {

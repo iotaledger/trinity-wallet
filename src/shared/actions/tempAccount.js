@@ -38,17 +38,24 @@ export const ActionTypes = {
     SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/TEMP_ACCOUNT/SET_ADDITIONAL_ACCOUNT_INFO',
     SNAPSHOT_TRANSITION_REQUEST: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_REQUEST',
     SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_SUCCESS',
-    BALANCE_CHECK_REQUEST: 'IOTA/TEMP_ACCOUNT/BALANCE_CHECK_REQUEST',
-    BALANCE_CHECK_SUCCESS: 'IOTA/TEMP_ACCOUNT/BALANCE_CHECK_SUCCESS',
+    SNAPSHOT_TRANSITION_ERROR: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_ERROR',
+    UPDATE_TRANSITION_BALANCE: 'IOTA/TEMP_ACCOUNT/UPDATE_TRANSITION_BALANCE',
+    SWITCH_BALANCE_CHECK_TOGGLE: 'IOTA/TEMP_ACCOUNT/SWITCH_BALANCE_CHECK_TOGGLE',
+    UPDATE_TRANSITION_ADDRESSES: 'IOTA/TEMP_ACCOUNT/UPDATE_TRANSITION_ADDRESSES',
 };
 
-export const balanceCheckRequest = payload => ({
-    type: ActionTypes.BALANCE_CHECK_REQUEST,
+export const updateTransitionAddresses = payload => ({
+    type: ActionTypes.UPDATE_TRANSITION_ADDRESSES,
     payload,
 });
 
-export const balanceCheckSuccess = () => ({
-    type: ActionTypes.BALANCE_CHECK_SUCCESS,
+export const updateTransitionBalance = payload => ({
+    type: ActionTypes.UPDATE_TRANSITION_BALANCE,
+    payload,
+});
+
+export const switchBalanceCheckToggle = () => ({
+    type: ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE,
 });
 
 export const snapshotTransitionRequest = () => ({
@@ -58,6 +65,10 @@ export const snapshotTransitionRequest = () => ({
 export const snapshotTransitionSuccess = payload => ({
     type: ActionTypes.SNAPSHOT_TRANSITION_SUCCESS,
     payload,
+});
+
+export const snapshotTransitionError = () => ({
+    type: ActionTypes.SNAPSHOT_TRANSITION_ERROR,
 });
 
 export const getTransfersRequest = () => ({
