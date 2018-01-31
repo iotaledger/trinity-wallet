@@ -3,14 +3,18 @@ The goal of this documentation is to comprehensively define best practice for th
 
 ## Table of Contents
 
+### Codebase
    1. [Naming](#naming)
    1. [Formatting](#formatting)
    1. [Documentation](#documentation)
    1. [Design patterns](#design-patterns)
       1. [Presentational components](#containers)
       1. [Container components](#containers)
-   1. State[#state]
-      1. [Reducers](#Reducers) 
+   1. [State](#state)
+      1. [Reducers](#Reducers)
+      1. [Actions](#Actions)
+
+### Assets and themes
    1. [Assets](#assets)
       1. [Icons](#icons)
       1. [Animations](#animations)
@@ -44,14 +48,14 @@ export default function withChartData(ChartComponent) {
         }
     }
     // Set displayName containing wrapped component's name
-    ChartData.displayName = `withChartData(${ChartComponent.displayName || ChartComponent.name})`;
+    ChartData.displayName = `withChartData(${ChartComponent.name})`;
     
     return ChartData;
 }
 ```
 
 ## Formatting
-Follow the alignment, spacing, ordering and quote usage rules described in detail in [Airbnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react#alignment) and defined in Eslint configuration of the wallet. Run `eslint src/desktop/src/` or `eslint src/mobile/src/` to check for formatting errors.
+Follow the alignment, spacing, ordering and quote usage rules described in detail in [Airbnb React Style Guide](https://github.com/airbnb/javascript) and defined in Eslint configuration of the wallet. Run `eslint src/desktop/src/` or `eslint src/mobile/src/` to check for formatting errors.
 
 ## Documentation
 All React components and containers should have a general description (purpose, functionality) and the description of it's propTypes in [JSDoc](http://usejsdoc.org/]) format:
@@ -73,13 +77,38 @@ export default class Button extends React.Component {
 }
 ```
 ## Design patterns
-The application follows higher-order component pattern by splitting platform (mobile and desktop) dependent presentational components and shared platform independent container components:
+The application follows higher-order component pattern by splitting platform (mobile and desktop) dependent presentational components and shared platform independent container components.
 
 ### Presentational components
 
 - Presentational components are concerned only with the UI output. They are not bound to the redux state and have no external dependencies (except UI libraries and helpers).
 - Presentational components are split between desktop and mobile.
 - By default presentational components should be implemented as stateless functional components without internal state. The exception are components dealing with non-persistent visual state (e.g. a password input toggle for hidden/visible characters).
+```javascript
+import React, { PureComponent } from 'react';
+import withPriceData from 'containers/components/Price';
+
+/**
+ * Description of the Price component
+ */
+class Price extends PureComponent {
+
+    static propTypes = {
+       /* Current market price */
+       price: PropTypes.number.isRequired,
+    };
+    
+    render() {
+        return (
+            <h1>{this.props.price}</h1>
+        );
+    }
+}
+
+export default withPriceData(Price);
+
+```
+For a full example, see the components located at `/src/desktop/src/ui/` or `/src/mobile/src/ui/`.
 
 ### Container components
 
@@ -87,7 +116,46 @@ The application follows higher-order component pattern by splitting platform (mo
 - Container components should be resuable for desktop and mobile.
 - Container component render function holds only the presentational component passed as a prop to the container.
 
-## State
+```javascript
+import React from 'react';
+
+/**
+ * Description of the Price container
+ * @ignore
+ */
+export default function withPriceData(PriceComponent) {
+    class PriceData extends React.Component {
+        static propTypes = {
+            marketData: PropTypes.object.isRequired,
+        };
+
+        preparePrice(marketData){
+           //[...] 
+        }
+
+        render() {
+
+            const priceProps = {
+                price: this.preparePrice(this.props.marketData)
+            };
+
+            return <PriceComponent {...priceProps} />;
+        }
+    }
+
+    PriceData.displayName = `withPriceData(${PriceComponent.name})`;
+
+    const mapStateToProps = (state) => ({
+        marketData: state.marketData
+    });
+
+    return connect(mapStateToProps)(PriceData));
+}
+```
+For a full example, see the containers located at `/src/shared/containers/`.
+
+## WIP: State
+[WIP]
 
 ### Reducers
 - Expose reducers as the default export.
@@ -124,6 +192,8 @@ export default (state = initialState, action) => {
 ```
 - Blacklist reducer in case the state does not need to be persisted to local storage.
 
+### Actions
+[WIP]
 
 ## Assets
 All following static assets should be shared between desktop and mobile, stored at `/src/shared/assets/`.
@@ -145,7 +215,7 @@ All animations used in the wallet should be made using [Lottie](http://airbnb.io
 
 A theme consists of a color scheme used by the UI of the mobile and desktop wallets. All themes are located in separate js files at `/src/shared/themes/`.
 
-### Color meaning and usage
+### WIP: Color meaning and usage
 
 The color scheme consists of following mandatory sets and colors:
 - `body`, `bar` - base color sets used for the application and secondary navigation. Both sets have three colors required: 
@@ -165,9 +235,9 @@ The color scheme consists of following mandatory sets and colors:
 - `hover.color` - **required**; color for element (buttons, list items) hover state
 - `chart.color` - **required**; chart line color.
 
-### Styleguide
+### WIP: Styleguide
 
-When updating or creating a new theme, it should be checked for contrast and readability against the Styleguide containing all main UI elements.
+When updating or creating a new UI component or theme, it should be checked for contrast and readability against the Styleguide containing all main UI elements.
 
 To launch the styleguide, inside wallets root directory run:
 ```
