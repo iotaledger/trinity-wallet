@@ -195,7 +195,8 @@
         "invalidAmount": "输入的金额不正确",
         "invalidAmountExplanation": "请输入交易记录金额的数值。",
         "maximumSelected": "已选择最大金额",
-        "iotaUnits": "IOTA 单位"
+        "iotaUnits": "IOTA 单位",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "密码太短",

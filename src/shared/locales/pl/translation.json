@@ -30,12 +30,12 @@
         "save": "Zapisz",
         "close": "ZAMKNIJ",
         "continue": "Kontynuuj",
-        "manualCopy": "Spisz ziarno",
+        "manualCopy": "Zanotuj seeda",
         "paperWallet": "Drukuj wersję papierową",
         "copyToClipboard": "Dodaj do menedżera haseł",
         "notAvailable": "Ta funkcja nie jest dostępna",
         "notAvailableExplanation": "Zostanie dodana w późniejszym etapie.",
-        "enterSeed": "Wprowadź ziarno.",
+        "enterSeed": "Proszę wpisz swój seed.",
         "mainWallet": "KONTO GŁÓWNE",
         "secondWallet": "DRUGIE KONTO",
         "thirdWallet": "TRZECIE KONTO",
@@ -78,7 +78,7 @@
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój Seed ma obecnie {{currentLength}} znaków. Proszę spróbować ponownie.",
         "nameInUse": "Konto o tej nazwie już istnieje",
-        "nameInUseExplanation": "Wybierz unikalną nazwę konta dla ziarna.",
+        "nameInUseExplanation": "Proszę użyć unikalnej nazwy konta dla Twojego seeda.",
         "enterAccountName": "Wprowadź nazwę konta.",
         "accountName": "Nazwa konta",
         "noNickname": "Nie wprowadzono nazwy konta",
@@ -105,12 +105,12 @@
         "confirmPassword": "Potwierdź nowe hasło"
     },
     "copyToClipboard": {
-        "seedCleared": "Ziarno porzucone",
+        "seedCleared": "Seed wyczyszczony",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "seedCopied": "Seed skopiowany do schowka",
         "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"Gotowe\", lub po upływie 60 sekund.",
-        "clickToCopy": "Kliknij poniższy przycisk, aby skopiować ziarno do menedżera haseł.",
-        "doNotStore": "Nie zapisuj ziarna jawnym tekstem.",
+        "clickToCopy": "Kliknij przycisk poniżej i skopiuj swojego seeda do menedżera haseł.",
+        "doNotStore": "Nie przechowuj swojego seeda w formie zwykłego tekstu.",
         "copyToClipboard": "Kopiuj do schowka"
     },
     "enterSeed": {
@@ -119,7 +119,7 @@
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
         "seedExplanation": "Seed powinien składać się z {{maxLength}} znaków i powinien zawierać wielkie litery A-Z lub cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
-        "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO ZIARNA"
+        "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA"
     },
     "home": {
         "balance": "SALDO",
@@ -173,10 +173,10 @@
         "mustSaveYourSeed": "<0><0>Zapisz SEEDa wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Nieprawidłowe ziarno",
+        "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "thisIsACheck": "To jest test w celu upewnienia się że zapisałeś swój seed.",
-        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego ziarna, wróć do poprzedniego ekranu i zrób to."
+        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego seeda, proszę cofnij się i to zrób."
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -195,7 +195,8 @@
         "invalidAmount": "Wprowadzono niepoprawną ilość",
         "invalidAmountExplanation": "Proszę wprowadzić numeryczną wartość transakcji.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
-        "iotaUnits": "Jednostki IOTA"
+        "iotaUnits": "Jednostki IOTA",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Hasło jest zbyt krótkie",
@@ -286,7 +287,7 @@
         "add": "Dodaj"
     },
     "addNewAccount": {
-        "useExistingSeed": "Użyj istniejącego serwera",
+        "useExistingSeed": "Użyj istniejącego seeda",
         "createNewSeed": "Stwórz nowy seed"
     },
     "advancedSettings": {
@@ -337,10 +338,10 @@
     "viewSeed": {
         "enterPassword": "Wprowadź hasło, aby wyświetlić swój seed.",
         "viewSeed": "POKAŻ SEED",
-        "hideSeed": "UKRYJ ZIARNO"
+        "hideSeed": "UKRYJ SEEDA"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "Zapisałem swoje ziarno",
+        "alreadyHave": "Zapisałem swojego seeda",
         "reenter": "Teraz będziesz poproszony/a o ponowne wprowadzenie swojego seeda.",
         "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego seed'a, stracisz swoje środki IOTA."
     },
