@@ -195,7 +195,8 @@
         "invalidAmount": "Jumlah nilai salah",
         "invalidAmountExplanation": "Silakan masukkan nilai numerik untuk jumlah transaksi.",
         "maximumSelected": "Jumlah MAKSIMUM dipilih",
-        "iotaUnits": "Unit IOTA"
+        "iotaUnits": "Unit IOTA",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Kata sandi terlalu singkat",
