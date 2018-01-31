@@ -115,21 +115,21 @@
     },
     "enterSeed": {
         "invalidCharacters": "Từ khoá chứa ký tự không hợp lệ",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "invalidCharactersExplanation": "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
+        "seedTooShort": "Từ khoá quá ngắn",
+        "seedTooShortExplanation": "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
+        "seedExplanation": "Từ khoá có tối đa {{maxLength}} ký tự, và bao gồm chữ viết hoa A-Z, hoặc số 9. Bạn không thể dùng từ khoá dài hơn {{maxLength}} ký tự.",
+        "neverShare": "ĐỪNG BAO GIỜ CHIA SẺ TỪ KHOÁ CHO NGƯỜI KHÁC BIẾT"
     },
     "home": {
-        "balance": "BALANCE",
-        "send": "SEND",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "balance": "THANH TOÁN",
+        "send": "GỬI",
+        "receive": "NHẬN",
+        "history": "BẢN GHI",
+        "settings": "CÀI ĐẶT"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "Ngôn Ngữ"
     },
     "login": {
         "emptyPassword": "Empty password",
