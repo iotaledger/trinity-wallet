@@ -143,7 +143,7 @@ class Send extends Component {
                 amount: max,
                 maxPressed: true,
                 maxColor: '#FF6C69',
-                maxText: t('send:maxSelected'),
+                maxText: t('send:maximumSelected'),
             });
         }
     }
