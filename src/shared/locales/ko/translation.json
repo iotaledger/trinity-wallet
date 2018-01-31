@@ -295,7 +295,7 @@
         "manualSync": "수동 동기화"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
+        "background": "배경",
         "frame": "Frame"
     },
     "themeCustomisation": {
@@ -328,7 +328,7 @@
         "pressToSync": "Press the button below to sync your account.",
         "thisMayTake": "시간이 조금 걸릴 수 있습니다.",
         "youMayNotice": "당신의 디바이스가 느려지는 것을 감지할 수도 있습니다.",
-        "syncAccount": "SYNC ACCOUNT",
+        "syncAccount": "계정 동기화",
         "syncingYourAccount": "Syncing your account."
     },
     "useExistingSeed": {
