@@ -195,7 +195,8 @@
         "invalidAmount": "잘못된 금액이 입력됨",
         "invalidAmountExplanation": "거래 금액을 위한 숫자 값을 입력하십시오.",
         "maximumSelected": "최대 금액 선택됨",
-        "iotaUnits": "IOTA 단위"
+        "iotaUnits": "IOTA 단위",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "비밀번호가 너무 짧습니다.",
