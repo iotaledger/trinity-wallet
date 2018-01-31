@@ -195,7 +195,8 @@
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
         "maximumSelected": "Selecionado o montante MÁXIMO",
-        "iotaUnits": "Unidades IOTA"
+        "iotaUnits": "Unidades IOTA",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "A palavra-passe é demasiado curta",

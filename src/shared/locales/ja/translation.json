@@ -195,7 +195,8 @@
         "invalidAmount": "不適切な金額が入力されました。",
         "invalidAmountExplanation": "取引金額の数値を入力して下さい。",
         "maximumSelected": "設定した最大額",
-        "iotaUnits": "IOTA（単位）"
+        "iotaUnits": "IOTA（単位）",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "パスワードが短すぎます。",

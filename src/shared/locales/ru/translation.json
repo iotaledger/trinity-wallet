@@ -195,7 +195,8 @@
         "invalidAmount": "Указана неверная сумма",
         "invalidAmountExplanation": "Пожалуйста, введите числовое значение для суммы перевода.",
         "maximumSelected": "Выбрана МАКСИМАЛЬНАЯ сумма",
-        "iotaUnits": "IOTA единицы"
+        "iotaUnits": "IOTA единицы",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Слишком короткий пароль",
