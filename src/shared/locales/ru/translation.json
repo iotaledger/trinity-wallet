@@ -196,7 +196,7 @@
         "invalidAmountExplanation": "Пожалуйста, введите числовое значение для суммы перевода.",
         "maximumSelected": "Выбрана МАКСИМАЛЬНАЯ сумма",
         "iotaUnits": "IOTA единицы",
-        "sendMax": "SEND MAX"
+        "sendMax": "Максимальный перевод"
     },
     "setPassword": {
         "passwordTooShort": "Слишком короткий пароль",
