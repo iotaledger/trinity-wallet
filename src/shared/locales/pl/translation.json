@@ -135,7 +135,7 @@
         "emptyPassword": "Puste hasło",
         "emptyPasswordExplanation": "Musisz podać hasło, aby się zalogować. Spróbuj ponownie.",
         "enterPassword": "Wprowadź swoje hasło.",
-        "useSeed": "UŻYJ SEEDA",
+        "useSeed": "UŻYJ SEED'a",
         "login": "ZALOGUJ",
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?"
     },
@@ -196,7 +196,7 @@
         "invalidAmountExplanation": "Proszę wprowadzić numeryczną wartość transakcji.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
         "iotaUnits": "Jednostki IOTA",
-        "sendMax": "SEND MAX"
+        "sendMax": "Wyślij wszystko"
     },
     "setPassword": {
         "passwordTooShort": "Hasło jest zbyt krótkie",
@@ -267,7 +267,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Twoje ziarno ma {{maxSeedLength}} znaków, czytane od lewej do prawej.",
-        "writeDownYourSeed": "<0> Zapisz SEEDa i sumę kontrolną i </0><1>trzykrotnie upewnij się</1><2> czy są poprawne.</2>"
+        "writeDownYourSeed": "<0> Zapisz seed i sumę kontrolną i </0><1>trzykrotnie upewnij się</1><2> czy są poprawne.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
