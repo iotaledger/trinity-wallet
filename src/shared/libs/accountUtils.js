@@ -13,6 +13,7 @@ import includes from 'lodash/includes';
 import { iota } from '../libs/iota';
 import { getBundleTailsForSentTransfers } from './promoter';
 import { getAllAddresses } from './addresses';
+import { DEFAULT_BALANCES_THRESHOLD } from '../config';
 
 export const formatFullAddressData = data => {
     const addresses = data.addresses;
@@ -354,54 +355,6 @@ export const getBundle = (tailTx, allBundleObjects) => {
     return bundle;
 };
 
-export const findTransactionObjects = input => {
-    return new Promise((resolve, reject) => {
-        iota.api.findTransactionObjects(input, (err, txObjects) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(txObjects);
-            }
-        });
-    });
-};
-
-export const getLatestInclusion = hashes => {
-    return new Promise((resolve, reject) => {
-        iota.api.getLatestInclusion(hashes, (err, states) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(states);
-            }
-        });
-    });
-};
-
-export const getBalances = (addresses, threshold = 100) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getBalances(addresses, threshold, (err, balances) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(balances);
-            }
-        });
-    });
-};
-
-export const withHealthCheck = () => {
-    return new Promise((resolve, reject) => {
-        iota.api.getNodeInfo(err => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve();
-            }
-        });
-    });
-};
-
 export const getAccountData = (seed, accountName) => {
     return new Promise((resolve, reject) => {
         const tailTransactions = [];
@@ -426,17 +379,18 @@ export const getAccountData = (seed, accountName) => {
             }
         };
 
-        withHealthCheck()
+        iota.api
+            .getNodeInfoAsync()
             .then(() => getAllAddresses(seed))
             .then(addresses => {
                 data.addresses = addresses;
 
-                return findTransactionObjects({ addresses: data.addresses });
+                return iota.api.findTransactionObjectsAsync({ addresses: data.addresses });
             })
             .then(txObjects => {
                 each(txObjects, tx => pushIfNotExists(allBundleHashes, tx.bundle)); // Grab all bundle hashes
 
-                return findTransactionObjects({ bundles: allBundleHashes });
+                return iota.api.findTransactionObjectsAsync({ bundles: allBundleHashes });
             })
             .then(bundleObjects => {
                 allBundleObjects = bundleObjects;
@@ -447,7 +401,7 @@ export const getAccountData = (seed, accountName) => {
                     }
                 });
 
-                return getLatestInclusion(map(tailTransactions, t => t.hash));
+                return iota.api.getLatestInclusionAsync(map(tailTransactions, t => t.hash));
             })
             .then(states => {
                 const allTxsAsObjects = reduce(
@@ -493,7 +447,7 @@ export const getAccountData = (seed, accountName) => {
 
                 data.transfers = transfers;
 
-                return getBalances(data.addresses);
+                return iota.api.getBalancesAsync(data.addresses, DEFAULT_BALANCES_THRESHOLD);
             })
             .then(balances => {
                 each(balances.balances, (balance, idx) => {
