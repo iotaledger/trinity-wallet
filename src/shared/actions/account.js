@@ -9,16 +9,13 @@ import {
     getPendingTxTailsHashesForSelectedAccount,
 } from '../selectors/account';
 import {
-    formatTransfers,
-    formatFullAddressData,
-    calculateBalance,
     getUnspentAddresses,
     markAddressSpend,
     syncAccount,
     getAccountData,
     mapUnspentAddressesHashesToAccount,
 } from '../libs/accountUtils';
-import { setReady, clearTempData } from './tempAccount';
+import { clearTempData } from './tempAccount';
 import {
     generateAccountInfoErrorAlert,
     generateSyncingCompleteAlert,
@@ -182,19 +179,6 @@ export const updateAccountInfoAfterSpending = payload => ({
     type: ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING,
     payload,
 });
-
-export const getAccountInfoNewSeedAsync = (seed, seedName) => {
-    return async dispatch => {
-        const address = await iota.api.getNewAddressAsync(seed);
-        //console.log('ADDRESS:', address);
-        const accountData = await iota.api.getAccountDataAsync(seed);
-        //console.log('ACCOUNT', accountData);
-        const addressData = formatFullAddressData(accountData);
-        const balance = calculateBalance(addressData);
-        const transfers = formatTransfers(accountData.transfers, accountData.addresses);
-        dispatch(setReady());
-    };
-};
 
 export const setPendingTransactionTailsHashesForAccount = payload => ({
     type: ActionTypes.SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT,
