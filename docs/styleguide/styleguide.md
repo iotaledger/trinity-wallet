@@ -1,5 +1,5 @@
 # Trinity codebase and UI styleguide
-The goal of this documentation is to comprehensively define best practice for the Trinity UI component codebase and styling.
+The goal of this documentation is to comprehensively define best practice for the Trinity codebase and user interface styling.
 
 ## Table of Contents
 
