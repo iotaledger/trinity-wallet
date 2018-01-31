@@ -229,7 +229,6 @@ class TransactionRow extends Component {
         } = this.props;
         const isReceived = isReceivedTransfer(rowData, addresses);
         const transfer = extractTailTransferFromBundle(rowData);
-        console.log('Transfer', transfer);
         const hasPersistence = rowData[0].persistence;
         const titleColour = isReceived ? extraColor : negativeColor;
         const containerBorderColor =
