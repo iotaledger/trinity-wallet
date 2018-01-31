@@ -14,7 +14,7 @@
         "messageSent": "메시지 전송됨",
         "messageSentMessage": "당신의 메시지가 탱글로 전송되었습니다.",
         "keyReuse": "키 재사용",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuseError": "출금에 사용한 기록이 있는 주소로는 전송할 수 없습니다.",
         "invalidResponse": "잘못된 응답",
         "invalidResponseExplanation": "노드가 잘못된 응답을 보냈습니다.",
         "invalidResponsePollingExplanation": "노드가 폴링 중 잘못된 응답을 보냈습니다.",
@@ -26,7 +26,7 @@
         "done": "완료",
         "doneLowercase": "완료",
         "next": "다음",
-        "apply": "Apply",
+        "apply": "적용",
         "save": "저장하기",
         "close": "닫기",
         "continue": "계속 하기",
@@ -311,12 +311,12 @@
         "scan": "Scan your QR code"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "단위",
+        "trillion": "조",
+        "billion": "십억",
+        "million": "백만",
+        "thousand": "천",
+        "one": "일"
     },
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete this account?",
