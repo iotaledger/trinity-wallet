@@ -487,7 +487,7 @@ export const hasNewTransfers = (existingHashes, newHashes) => size(newHashes) > 
 export const syncTransfers = (diff, existingAccountState) => {
     const existingAccountStateCopy = cloneDeep(existingAccountState);
 
-    let { transfers, addresses, pendingTxTailsHashes } = existingAccountStateCopy;
+    let { transfers, pendingTxTailsHashes } = existingAccountStateCopy;
 
     return iota.api
         .getTransactionsObjectsAsync(diff)
@@ -501,7 +501,7 @@ export const syncTransfers = (diff, existingAccountState) => {
         .then(bundles => {
             const updatedTransfers = [...transfers, ...bundles];
 
-            transfers = formatTransfers(updatedTransfers, keys(addresses));
+            transfers = formatTransfers(updatedTransfers, keys(existingAccountStateCopy.addresses));
 
             // Update pending transfers copy with new transfers
             pendingTxTailsHashes = union(pendingTxTailsHashes, getPendingTxTailsHashes(bundles));
