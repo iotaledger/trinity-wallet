@@ -195,7 +195,8 @@
         "invalidAmount": "Felaktigt belopp angivet",
         "invalidAmountExplanation": "Ange ett numeriskt värde för transaktionsbeloppet.",
         "maximumSelected": "MAXIMALA belopp valt",
-        "iotaUnits": "IOTA enheter"
+        "iotaUnits": "IOTA enheter",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
