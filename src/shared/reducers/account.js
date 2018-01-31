@@ -139,7 +139,7 @@ const account = (
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.hashes,
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
                 pendingTxTailsHashes: {
                     ...state.pendingTxTailsHashes,
@@ -154,7 +154,7 @@ const account = (
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.hashes,
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
                 pendingTxTailsHashes: {
                     ...state.pendingTxTailsHashes,
@@ -170,7 +170,7 @@ const account = (
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.hashes,
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
                 pendingTxTailsHashes: {
                     ...state.pendingTxTailsHashes,
