@@ -195,7 +195,8 @@
         "invalidAmount": "錯誤數額填入",
         "invalidAmountExplanation": "交易金額請填入數值",
         "maximumSelected": "已選定最大的數額",
-        "iotaUnits": "IOTA單位"
+        "iotaUnits": "IOTA單位",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
