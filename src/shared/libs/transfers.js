@@ -41,10 +41,18 @@ export const prepareTransferArray = (address, value, message, tag = DEFAULT_TAG)
  *   @param {number} [security= 2]
  *   @returns {object} inputs, totalBalance
  **/
-const prepareInputs = (addressData, start, threshold, security = DEFAULT_SECURITY) => {
-    const addresses = keys(addressData).slice(start);
+export const prepareInputs = (addressData, start, threshold, security = DEFAULT_SECURITY) => {
     const inputs = [];
     let totalBalance = 0;
+
+    // Return prematurely in case threshold is zero
+    // This check prevents adding input on the first iteration
+    // if address data has addresses with balance.
+    if (!threshold) {
+        return { inputs, totalBalance };
+    }
+
+    const addresses = keys(addressData).slice(start);
 
     each(addresses, address => {
         const balance = get(addressData, `${address}.balance`);
