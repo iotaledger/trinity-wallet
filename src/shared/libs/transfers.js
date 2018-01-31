@@ -16,7 +16,7 @@ import { iota } from './iota';
  *   @param {string} address
  *   @param {number} value
  *   @param {string} message
- *   @param {string} [tag='IOTA']
+ *   @param {string} [tag='TRINITY']
  *   @returns {array} Transfer object
  **/
 export const prepareTransferArray = (address, value, message, tag = DEFAULT_TAG) => {
@@ -25,7 +25,7 @@ export const prepareTransferArray = (address, value, message, tag = DEFAULT_TAG)
             address,
             value,
             message: iota.utils.toTrytes(message),
-            tag: iota.utils.toTrytes(tag),
+            tag,
         },
     ];
 };
