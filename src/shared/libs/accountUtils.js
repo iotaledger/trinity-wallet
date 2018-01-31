@@ -1,6 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 import assign from 'lodash/assign';
 import each from 'lodash/each';
+import difference from 'lodash/difference';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
@@ -10,10 +11,14 @@ import has from 'lodash/has';
 import omitBy from 'lodash/omitBy';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
+import keys from 'lodash/keys';
 import isEmpty from 'lodash/isEmpty';
+import size from 'lodash/size';
+import union from 'lodash/union';
 import { iota } from '../libs/iota';
 import { getBundleTailsForSentTransfers } from './promoter';
 import { getAllAddresses } from './addresses';
+import { getStartingSearchIndexToFetchLatestAddresses } from './transfers';
 import { DEFAULT_BALANCES_THRESHOLD } from '../config';
 
 export const formatFullAddressData = data => {
@@ -115,6 +120,16 @@ export const calculateBalance = data => {
     return balance;
 };
 
+export const accumulateBalance = balances =>
+    reduce(
+        balances,
+        (res, val) => {
+            res = res + val;
+            return res;
+        },
+        0,
+    );
+
 export const deduplicateTransferBundles = transfers => {
     const deduplicate = (res, transfer) => {
         const top = transfer[0];
@@ -210,32 +225,14 @@ export const organizeAccountInfo = (accountName, data) => {
     };
 };
 
-export const getTotalBalanceWithLatestAddressData = (addressData, threshold = 1) => {
-    const addresses = Object.keys(addressData);
-    return new Promise((resolve, reject) => {
-        iota.api.getBalances(addresses, threshold, (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                const newBalances = map(data.balances, Number);
-                const totalBalance = reduce(
-                    newBalances,
-                    (res, val) => {
-                        res = res + val;
-                        return res;
-                    },
-                    0,
-                );
+export const mapBalancesToAddresses = (addressData, balances) => {
+    const addressesDataClone = cloneDeep(addressData);
 
-                const addressesDataClone = cloneDeep(addressData);
-                each(addresses, (address, idx) => {
-                    addressesDataClone[address] = { ...get(addressesDataClone, `${address}`, { balance: data[idx] }) };
-                });
-
-                resolve({ balance: totalBalance, addressData: addressesDataClone });
-            }
-        });
+    each(keys(addressData), (address, idx) => {
+        addressesDataClone[address] = { ...get(addressesDataClone, `${address}`, { balance: balances[idx] }) };
     });
+
+    return addressesDataClone;
 };
 
 export const getLatestAddresses = (seed, index) => {
@@ -254,30 +251,6 @@ export const getLatestAddresses = (seed, index) => {
                 );
 
                 resolve(addresses);
-            }
-        });
-    });
-};
-
-export const getTransactionHashes = addresses => {
-    return new Promise((resolve, reject) => {
-        iota.api.findTransactions({ addresses }, (err, hashes) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(hashes);
-            }
-        });
-    });
-};
-
-export const getTransactionsObjects = hashes => {
-    return new Promise((resolve, reject) => {
-        iota.api.getTransactionsObjects(hashes, (err, txs) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(txs);
             }
         });
     });
@@ -325,30 +298,32 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
     );
 };
 
-export const getConfirmedTxTailsHashes = (states, hashes) => {
-    const confirmedHashes = filter(hashes, (hash, idx) => states[idx]);
-
-    return new Promise((resolve, reject) => resolve(confirmedHashes));
-};
-
 /**
  *   Takes in account object, filter unspent addresses from all addresses, fetch transaction hashes associated with those and
  *   assigns them to the account object.
  *
  *   @method mapUnspentAddressesHashesToAccount
- *   @param {object} account [addresses: {}, transfers: [], balance: 0, pendingTxTailsHashes: {}, unconfirmedBundleTails: {}]
- *   @returns {Promise} - Resolves account argument by assigning hashes (Transaction hashes associated with unspent addresses)
+ *   @param {object} account [
+ *     addresses: {},
+ *     transfers: [],
+ *     balance: 0,
+ *     pendingTxTailsHashes: {},
+ *     unconfirmedBundleTails: {} // (optional),
+ *     accountName; 'foo // (optional)
+ *   ]
+ *
+ *   @returns {Promise} - Resolves account argument by assigning unspentAddressesHashes (Transaction hashes associated with unspent addresses)
  **/
 export const mapUnspentAddressesHashesToAccount = account => {
     const unspentAddresses = getUnspentAddresses(account.addresses);
 
     if (isEmpty(unspentAddresses)) {
-        return Promise.resolve(assign({}, account, { hashes: [] }));
+        return Promise.resolve(assign({}, account, { unspentAddresses: [] }));
     }
 
     return iota.api
         .findTransactionsAsync({ addresses: unspentAddresses })
-        .then(hashes => assign({}, account, { hashes }));
+        .then(hashes => assign({}, account, { unspentAddresses: hashes }));
 };
 
 export const getBundle = (tailTx, allBundleObjects) => {
@@ -507,6 +482,76 @@ export const getAccountData = (seed, accountName) => {
         });
 };
 
-export const syncAccount = (seed, accountName, existingAccountState) => {
-    return null;
+export const hasNewTransfers = (existingHashes, newHashes) => size(newHashes) > size(existingHashes);
+
+export const syncTransfers = (diff, existingAccountState) => {
+    const existingAccountStateCopy = cloneDeep(existingAccountState);
+
+    let { transfers, addresses, pendingTxTailsHashes } = existingAccountStateCopy;
+
+    return iota.api
+        .getTransactionsObjectsAsync(diff)
+        .then(txs => {
+            const tailTxs = filter(txs, t => t.currentIndex === 0);
+            const tailTxsHashes = tx => tx.hash;
+
+            return getHashesWithPersistence(map(tailTxs, tailTxsHashes));
+        })
+        .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
+        .then(bundles => {
+            const updatedTransfers = [...transfers, ...bundles];
+
+            transfers = formatTransfers(updatedTransfers, keys(addresses));
+
+            // Update pending transfers copy with new transfers
+            pendingTxTailsHashes = union(pendingTxTailsHashes, getPendingTxTailsHashes(bundles));
+
+            return getHashesWithPersistence(pendingTxTailsHashes);
+        })
+        .then(({ states, hashes }) => {
+            const confirmedHashes = filter(hashes, (hash, idx) => states[idx]);
+
+            if (isEmpty(confirmedHashes)) {
+                return { transfers, pendingTxTailsHashes };
+            }
+
+            const alreadyConfirmed = tx => !includes(confirmedHashes, tx);
+
+            return {
+                transfers: markTransfersConfirmed(transfers, confirmedHashes),
+                pendingTxTailsHashes: filter(pendingTxTailsHashes, alreadyConfirmed),
+            };
+        });
+};
+
+export const syncAccount = (seed, existingAccountState) => {
+    const existingAccountStateCopy = cloneDeep(existingAccountState);
+    let { balance, addresses, unspentAddressesHashes } = existingAccountStateCopy;
+
+    const addressSearchIndex = getStartingSearchIndexToFetchLatestAddresses(addresses);
+
+    return getLatestAddresses(seed, addressSearchIndex)
+        .then(newAddressesObjects => {
+            addresses = { ...addresses, ...newAddressesObjects };
+
+            return iota.api.getBalancesAsync(addresses, DEFAULT_BALANCES_THRESHOLD);
+        })
+        .then(({ balances }) => {
+            const newBalances = map(balances, Number);
+            addresses = mapBalancesToAddresses(addresses, newBalances);
+            balance = accumulateBalance(newBalances);
+
+            return mapUnspentAddressesHashesToAccount(existingAccountStateCopy);
+        })
+        .then(newUnspentAddressesHashes => {
+            if (hasNewTransfers(unspentAddressesHashes, newUnspentAddressesHashes)) {
+                return syncTransfers(difference(newUnspentAddressesHashes, unspentAddressesHashes));
+            }
+        })
+        .then(({ transfers, pendingTxTailsHashes }) => {
+            existingAccountStateCopy.transfers = transfers;
+            existingAccountStateCopy.pendingTxTailsHashes = pendingTxTailsHashes;
+
+            return existingAccountStateCopy;
+        });
 };
