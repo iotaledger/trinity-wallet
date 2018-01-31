@@ -1,4 +1,4 @@
-# Trinity UI codebase and styleguide
+# Trinity codebase and UI styleguide
 The goal of this documentation is to comprehensively define best practice for the Trinity UI component codebase and styling.
 
 ## Table of Contents
@@ -60,7 +60,7 @@ export default function withChartData(ChartComponent) {
 Follow the code structure, formatting and overall best practice described in detail in [Airbnb React Style Guide](https://github.com/airbnb/javascript) and defined in Eslint configuration of the wallet. Run `eslint src/desktop/src/` or `eslint src/mobile/src/` to check for formatting errors.
 
 ## Documentation
-All React components and containers should have a general description (purpose, functionality) and the description of it's propTypes in [JSDoc](http://usejsdoc.org/]) format:
+All React components and containers should have a general description (purpose, functionality) and the description of it's propTypes in [JSDoc](http://usejsdoc.org) format:
 
 ```javascript
 import React from 'react'
