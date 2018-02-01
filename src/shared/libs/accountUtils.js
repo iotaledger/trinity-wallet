@@ -1,6 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 import assign from 'lodash/assign';
 import each from 'lodash/each';
+import isArray from 'lodash/isArray';
 import difference from 'lodash/difference';
 import get from 'lodash/get';
 import map from 'lodash/map';
@@ -534,14 +535,43 @@ export const getAccountData = (seed, accountName) => {
         });
 };
 
-export const hasNewTransfers = (existingHashes, newHashes) => size(newHashes) > size(existingHashes);
+/**
+ *   Checks if there is a difference between local transaction hashes and ledger's transaction hashes.
+ *
+ *   @method hasNewTransfers
+ *   @param {array} existingHashes
+ *   @param {array} newHashes
+ *
+ *   @returns {boolean}
+ **/
+export const hasNewTransfers = (existingHashes, newHashes) =>
+    isArray(existingHashes) && isArray(newHashes) && size(newHashes) > size(existingHashes);
 
+/**
+ *   Calls getHashesWithPersistence to get latest inclusion states with hashes.
+ *   Filter confirmed hashes.
+ *
+ *   @method getConfirmedTransactionHashes
+ *   @param {array} pendingTxTailHashes
+ *
+ *   @returns {Promise<array>}
+ **/
 export const getConfirmedTransactionHashes = pendingTxTailHashes => {
     return getHashesWithPersistence(pendingTxTailHashes).then(({ states, hashes }) =>
         filter(hashes, (hash, idx) => states[idx]),
     );
 };
 
+/**
+ *   Get transaction objects associated with hashes, assign persistence by calling inclusion states
+ *   Resolves formatted transfers.
+ *
+ *   @method syncTransfers
+ *   @param {array} diff
+ *   @param {object} existingAccountState - Account object
+ *
+ *   @returns {Promise<array>} - Resolves updated transfers
+ **/
 export const syncTransfers = (diff, existingAccountState) => {
     const existingAccountStateCopy = cloneDeep(existingAccountState);
 
@@ -561,6 +591,25 @@ export const syncTransfers = (diff, existingAccountState) => {
         });
 };
 
+/**
+ *   Aims to update cached state with the ledger's.
+ *   - Grab search index for checking latest addresses and update address data dictionary.
+ *   - Grab balances against latest addresses.
+ *   - Assign new balances to latest addresses.
+ *   - Grab unspentAddressesHashes by filtering unspent addresses and checking for their hashes.
+ *   - Checks for new transfers by comparing old unspentAddressesHashes with newUnspentAddressesHashes.
+ *   - Sync transfers by calling syncTransfers.
+ *   - Update transfers, addresses by marking addresses as spent.
+ *   - Recompute, filter latest pending tail hashes from latest transfer objects and update pendingTxTailHashes in state.
+ *   - Check confirmation states for pending tail hashes.
+ *   - Update those transfer objects with persistence true.
+ *
+ *   @method syncAccount
+ *   @param {string} seed
+ *   @param {object} existingAccountState - Account object
+ *
+ *   @returns {Promise<object>} - Resolved a new updated account state object.
+ **/
 export const syncAccount = (seed, existingAccountState) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
@@ -577,7 +626,6 @@ export const syncAccount = (seed, existingAccountState) => {
         .then(({ balances, addresses }) => {
             const newBalances = map(balances, Number);
 
-            // Runs through
             thisStateCopy.addresses = mapBalancesToAddresses(thisStateCopy.addresses, newBalances, addresses);
 
             thisStateCopy.balance = accumulateBalance(newBalances);
@@ -600,7 +648,6 @@ export const syncAccount = (seed, existingAccountState) => {
             thisStateCopy.transfers = updatedTransfers;
             thisStateCopy.addresses = markAddressSpend(thisStateCopy.transfers, thisStateCopy.addresses);
 
-            // Set new pendingTxTailHashes
             thisStateCopy.pendingTxTailsHashes = getPendingTxTailsHashes(thisStateCopy.transfers);
 
             return getConfirmedTransactionHashes(thisStateCopy.pendingTxTailsHashes);
@@ -619,6 +666,17 @@ export const syncAccount = (seed, existingAccountState) => {
         });
 };
 
+/**
+ *   Aims to update local account information after a spend.
+ *
+ *   @method syncAccount
+ *   @param {string} name
+ *   @param {array} newTransfer
+ *   @param {object} existingAccountState - Account object
+ *   @param {boolean} isValueTransfer
+ *
+ *   @returns {Promise<object>} - Resolved a new updated account state object.
+ **/
 export const updateAccount = (name, newTransfer, existingAccountState, isValueTransfer) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
