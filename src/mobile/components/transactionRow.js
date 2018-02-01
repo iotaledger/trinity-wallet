@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, View, Text, StyleSheet, ListView, ScrollView } from 'react-native';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
-import { convertFromTrytes, isReceivedTransfer, getRelevantTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { convertFromTrytes, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { extractTailTransferFromBundle } from 'iota-wallet-shared-modules/libs/transfers';
 import Modal from 'react-native-modal';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
@@ -227,7 +228,7 @@ class TransactionRow extends Component {
             t,
         } = this.props;
         const isReceived = isReceivedTransfer(rowData, addresses);
-        const transfer = getRelevantTransfer(rowData, addresses);
+        const transfer = extractTailTransferFromBundle(rowData);
         const hasPersistence = rowData[0].persistence;
         const titleColour = isReceived ? extraColor : negativeColor;
         const containerBorderColor =
