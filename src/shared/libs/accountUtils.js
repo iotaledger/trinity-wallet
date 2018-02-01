@@ -313,9 +313,8 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
  *     transfers: [],
  *     balance: 0,
  *     pendingTxTailsHashes: {},
- *     inputs: [], // (optional)
- *     unconfirmedBundleTails: {} // (optional),
- *     accountName; 'foo' // (optional)
+ *     unconfirmedBundleTails: {} // optional,
+ *     accountName; 'foo' // optional
  *   ]
  *
  *   @returns {Promise} - Resolves account argument by assigning unspentAddressesHashes (Transaction hashes associated with unspent addresses)
@@ -391,7 +390,6 @@ export const getAccountData = (seed, accountName) => {
     const data = {
         addresses: [],
         transfers: [],
-        inputs: [],
         balance: 0,
     };
 
@@ -474,19 +472,7 @@ export const getAccountData = (seed, accountName) => {
             return iota.api.getBalancesAsync(data.addresses, DEFAULT_BALANCES_THRESHOLD);
         })
         .then(balances => {
-            each(balances.balances, (balance, idx) => {
-                const balanceAsNumber = parseInt(balance);
-                data.balance += balanceAsNumber;
-
-                if (balanceAsNumber > 0) {
-                    data.inputs.push({
-                        address: data.addresses[idx],
-                        keyIndex: idx,
-                        security: 2,
-                        balance: balanceAsNumber,
-                    });
-                }
-            });
+            data.balance = accumulateBalance(map(balances.balances, Number));
 
             return organizeAccountInfo(accountName, data);
         });
