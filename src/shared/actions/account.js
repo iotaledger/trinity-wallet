@@ -1,7 +1,7 @@
 import assign from 'lodash/assign';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
-import tail from 'lodash/map';
+import takeRight from 'lodash/takeRight';
 import get from 'lodash/get';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
@@ -582,7 +582,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
             if (!error) {
                 const allBalances = success.balances.map(a => Number(a));
                 const balance = allBalances.reduce((a, b) => a + b, 0);
-                const lastAddressBalance = tail(allBalances.filter(balance => balance > 0));
+                const lastAddressBalance = takeRight(allBalances.filter(balance => balance > 0));
                 const lastIndexWithBalance = allBalances.lastIndexOf(lastAddressBalance.pop());
                 const relevantBalances = allBalances.slice(0, lastIndexWithBalance + 1);
                 const relevantAddresses = addresses.slice(0, lastIndexWithBalance + 1);
