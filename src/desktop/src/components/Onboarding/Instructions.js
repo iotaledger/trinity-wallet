@@ -15,17 +15,17 @@ export default translate('welcome1')(
             return (
                 <Template>
                     <Content>
-                        <p>{t('welcome:thankYou')}</p>
+                        <h2>{t('welcome:thankYou')}</h2>
                         <p>{t('welcome:weWillSpend')}</p>
                         <p>
                             <strong>{t('welcome:reminder')}</strong>
                         </p>
                     </Content>
                     <Footer>
-                        <Button to="/" variant="secondary">
+                        <Button to="/" className="outline" variant="highlight">
                             {t('global:back')}
                         </Button>
-                        <Button to="/wallet-setup" variant="success">
+                        <Button to="/wallet-setup" className="outline" variant="primary">
                             {t('global:next')}
                         </Button>
                     </Footer>

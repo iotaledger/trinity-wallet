@@ -20,9 +20,6 @@ export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_REQUEST',
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_ERROR',
-    MANUAL_SYNC_REQUEST: 'IOTA/TEMP_ACCOUNT/MANUAL_SYNC_REQUEST',
-    MANUAL_SYNC_SUCCESS: 'IOTA/TEMP_ACCOUNT/MANUAL_SYNC_SUCCESS',
-    MANUAL_SYNC_ERROR: 'IOTA/TEMP_ACCOUNT/MANUAL_SYNC_ERROR',
     SEND_TRANSFER_REQUEST: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_REQUEST',
     SEND_TRANSFER_SUCCESS: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_SUCCESS',
     SEND_TRANSFER_ERROR: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_ERROR',
@@ -39,7 +36,40 @@ export const ActionTypes = {
     SET_SETTING: 'IOTA/TEMP_ACCOUNT/SET_SETTING',
     SET_USER_ACTIVITY: 'IOTA/TEMP_ACCOUNT/SET_USER_ACTIVITY',
     SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/TEMP_ACCOUNT/SET_ADDITIONAL_ACCOUNT_INFO',
+    SNAPSHOT_TRANSITION_REQUEST: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_REQUEST',
+    SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_SUCCESS',
+    SNAPSHOT_TRANSITION_ERROR: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_ERROR',
+    UPDATE_TRANSITION_BALANCE: 'IOTA/TEMP_ACCOUNT/UPDATE_TRANSITION_BALANCE',
+    SWITCH_BALANCE_CHECK_TOGGLE: 'IOTA/TEMP_ACCOUNT/SWITCH_BALANCE_CHECK_TOGGLE',
+    UPDATE_TRANSITION_ADDRESSES: 'IOTA/TEMP_ACCOUNT/UPDATE_TRANSITION_ADDRESSES',
 };
+
+export const updateTransitionAddresses = payload => ({
+    type: ActionTypes.UPDATE_TRANSITION_ADDRESSES,
+    payload,
+});
+
+export const updateTransitionBalance = payload => ({
+    type: ActionTypes.UPDATE_TRANSITION_BALANCE,
+    payload,
+});
+
+export const switchBalanceCheckToggle = () => ({
+    type: ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE,
+});
+
+export const snapshotTransitionRequest = () => ({
+    type: ActionTypes.SNAPSHOT_TRANSITION_REQUEST,
+});
+
+export const snapshotTransitionSuccess = payload => ({
+    type: ActionTypes.SNAPSHOT_TRANSITION_SUCCESS,
+    payload,
+});
+
+export const snapshotTransitionError = () => ({
+    type: ActionTypes.SNAPSHOT_TRANSITION_ERROR,
+});
 
 export const getTransfersRequest = () => ({
     type: ActionTypes.GET_TRANSFERS_REQUEST,
@@ -85,18 +115,6 @@ export const generateNewAddressSuccess = payload => ({
 
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
-});
-
-export const manualSyncRequest = () => ({
-    type: ActionTypes.MANUAL_SYNC_REQUEST,
-});
-
-export const manualSyncSuccess = () => ({
-    type: ActionTypes.MANUAL_SYNC_SUCCESS,
-});
-
-export const manualSyncError = () => ({
-    type: ActionTypes.MANUAL_SYNC_ERROR,
 });
 
 export const sendTransferRequest = () => ({

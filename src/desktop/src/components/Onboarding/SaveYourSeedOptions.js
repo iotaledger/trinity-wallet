@@ -44,13 +44,13 @@ class SaveYourSeedOptions extends PureComponent {
                                 {t('saveYourSeed:ofTheOptions')}
                             </p>
                             <nav>
-                                <Button onClick={e => this.changeType(e, 'manual')} variant="extra">
+                                <Button onClick={(e) => this.changeType(e, 'manual')} variant="secondary">
                                     {t('global:manualCopy')}
                                 </Button>
-                                <Button onClick={e => this.changeType(e, 'paper')} variant="extra">
+                                <Button onClick={(e) => this.changeType(e, 'paper')} variant="secondary">
                                     {t('global:paperWallet')}
                                 </Button>
-                                <Button onClick={e => this.changeType(e, 'clipboard')} variant="extra">
+                                <Button onClick={(e) => this.changeType(e, 'clipboard')} variant="secondary">
                                     {t('copyToClipboard:copyToClipboard')}
                                 </Button>
                             </nav>
@@ -67,11 +67,16 @@ class SaveYourSeedOptions extends PureComponent {
                     </div>
                 </Content>
                 <Footer>
-                    <Button to="/seed/generate" variant="secondary">
+                    <Button to="/seed/generate" className="outline" variant="highlight">
                         {t('global:back')}
                     </Button>
                     {/* TODO: Remove the console log and think of a solution when to actually clear the seeds */}
-                    <Button to="/seed/enter" onClick={() => console.log('CLEAR SEEDS HERE')} variant="success">
+                    <Button
+                        to="/seed/enter"
+                        onClick={() => console.log('CLEAR SEEDS HERE')}
+                        className="outline"
+                        variant="primary"
+                    >
                         {t('global:done')}
                     </Button>
                 </Footer>
@@ -80,7 +85,7 @@ class SaveYourSeedOptions extends PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     seed: getSelectedSeed(state).seed,
 });
 
