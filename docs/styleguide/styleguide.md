@@ -224,19 +224,20 @@ A theme consists of a color scheme used by the UI of the mobile and desktop wall
 
 The color scheme consists of following mandatory sets and colors:
 - `body`, `bar` - base color sets used for the application and secondary navigation. Both sets have three colors required: 
-    - `color` - **required**, the body (text, icon, label) color
-    - `background` - **required**, the background color
-    - `secondary` - **required**, accent color used for info block background, dividers and borders
+    - `color` - **required**, the body color. Used for text, icons.
+    - `bg` - **required**, the background color.
+    - `alt` - **required**, accent color used for info block background, dividers and borders.
 - `primary`, `secondary`, `positive`, `negative`, `highlight`, `extra` - accent color sets used by their name meaning. Possible colors to be defined:
-    - `color` - **required**; the accent color
-    - `hover` - **required**; the accent colors hover state
-    - `background` - optional; used when the accent color is a background. Defaults to the accent color itself.
+    - `color` - **required**; the accent color itself.
+    - `hover` - **required**; the accent colors hover state.
     - `body` - optional; used for content when the accent color is it's background. Defaults to `body.color`.
 - `input` - colors for input elements:
     - `color` - **required**; text color of input elements
-    - `background` - **required**; tbackground color of input elements
-    - `secondary` - optional; used for icons and links inside input elements. Defaults to `input.color`.
-    - `border` - optional; border color of input elements. Defaults to `input.background` (no visible border).
+    - `bg` - **required**; background color of input elements
+    - `alt` - optional; used for icons and links inside input elements. Defaults to `input.color`.
+- `label` - input element label color:
+    - `color` - **required**; label color
+    - `hover` - **required**; active input element label color
 - `chart.color` - **required**; chart line color.
 
 ### WIP: Styleguide
