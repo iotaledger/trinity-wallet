@@ -25,13 +25,18 @@ class Theme extends PureComponent {
                 return;
             }
             document.documentElement.style.setProperty(`--${colorName}`, color.color);
-            document.documentElement.style.setProperty(`--${colorName}-bg`, color.background || color.color);
-            document.documentElement.style.setProperty(
-                `--${colorName}-border`,
-                color.border || color.background || color.color,
-            );
-            document.documentElement.style.setProperty(`--${colorName}-secondary`, color.secondary || color.color);
-            document.documentElement.style.setProperty(`--${colorName}-body`, color.body || theme.body.color);
+            if (color.background) {
+                document.documentElement.style.setProperty(`--${colorName}-bg`, color.background);
+            }
+            if (color.hover) {
+                document.documentElement.style.setProperty(`--${colorName}-hover`, color.hover);
+            }
+            if (color.secondary) {
+                document.documentElement.style.setProperty(`--${colorName}-secondary`, color.secondary);
+            }
+            if (color.body) {
+                document.documentElement.style.setProperty(`--${colorName}-body`, color.body);
+            }
         });
     }
 

@@ -6,7 +6,7 @@ import Button from 'components/UI/Button';
 export default class Confirm extends React.PureComponent {
     static propTypes = {
         isOpen: PropTypes.bool.isRequired,
-        category: PropTypes.oneOf(['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'extra']),
+        category: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'highlight', 'extra']),
         translations: PropTypes.object.isRequired,
         onCancel: PropTypes.func.isRequired,
         onConfirm: PropTypes.func.isRequired,
@@ -23,7 +23,7 @@ export default class Confirm extends React.PureComponent {
                     <Button onClick={this.props.onCancel} variant="secondary">
                         {translations.cancel}
                     </Button>
-                    <Button onClick={this.props.onConfirm} variant="primary">
+                    <Button onClick={this.props.onConfirm} variant="positive">
                         {translations.confirm}
                     </Button>
                 </footer>
