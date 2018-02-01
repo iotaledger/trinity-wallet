@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { prepareTransferArray, prepareInputs } from '../../libs/transfers';
+import { prepareTransferArray, prepareInputs, extractTailTransferFromBundle } from '../../libs/transfers';
 
 describe('libs: transfers', () => {
     describe('#prepareTransferArray', () => {
@@ -174,6 +174,36 @@ describe('libs: transfers', () => {
                 result.inputs.forEach(input => {
                     expect(input.keyIndex === 0 || input.keyIndex === 1).to.not.equal(true);
                 });
+            });
+        });
+    });
+
+    describe('#extractTailTransferFromBundle', () => {
+        describe('when not passed a valid bundle', () => {
+            it('should always return an object', () => {
+                const args = [undefined, null, [], {}, 'foo', 0];
+
+                args.forEach(arg => {
+                    const result = extractTailTransferFromBundle(arg);
+                    expect(typeof result).to.equal('object');
+                    expect(Array.isArray(result)).to.equal(false);
+                    expect(result === null).to.equal(false);
+                    expect(result === undefined).to.equal(false);
+                });
+            });
+        });
+
+        describe('when passed a valid bundle', () => {
+            it('should return an object with currentIndex prop equals 0', () => {
+                const bundle = Array.from(Array(5), (x, idx) => ({ currentIndex: idx }));
+
+                expect(extractTailTransferFromBundle(bundle)).to.eql({ currentIndex: 0 });
+            });
+
+            it('should return an empty object if there is no item with prop currentIndex 0', () => {
+                const bundle = Array.from(Array(5), (x, idx) => ({ currentIndex: idx + 1 }));
+
+                expect(extractTailTransferFromBundle(bundle)).to.eql({});
             });
         });
     });
