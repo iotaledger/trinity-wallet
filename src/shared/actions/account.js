@@ -643,7 +643,7 @@ export const generateAddressesAndGetBalance = (seed, index) => {
     return dispatch => {
         const options = {
             index: index,
-            total: 6,
+            total: 20,
             returnAll: true,
             security: 2,
         };
