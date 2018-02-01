@@ -177,7 +177,8 @@ export const getStartingSearchIndexToPrepareInputs = addressData => {
  *   @returns {number} index
  **/
 export const getStartingSearchIndexToFetchLatestAddresses = addressData => {
-    return Object.keys(addressData).length ? Object.keys(addressData).length - 1 : 0;
+    const addresses = Object.keys(addressData);
+    return addresses.length ? addresses.length - 1 : 0;
 };
 
 /**
