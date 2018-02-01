@@ -141,12 +141,12 @@
     },
     "loading": {
         "loadingFirstTime": "Đang tải từ khoá lần đầu tiên.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "thisMayTake": "Có thể kéo dài hơi lâu.",
+        "youMayNotice": "Bạn có thể thấy máy của bạn chậm lại."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "seedNotGenerated": "Từ khoá chưa được tạo ra",
+        "seedNotGeneratedExplanation": "Xin vui lòng nhấn nút Tạo Từ Khoá Mới.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
         "individualLetters": "Press individual letters to randomise them."
     },
