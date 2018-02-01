@@ -11,7 +11,7 @@ import { Keyboard } from 'react-native';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import OnboardingButtons from '../components/onboardingButtons';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { setSeedName, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
+import { setSeedName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { width, height } from '../util/dimensions';
 import keychain, { hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
 import THEMES from '../theme/themes';
