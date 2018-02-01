@@ -304,6 +304,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
         // Omit input preparation in case the address is already spent from.
         return shouldAllowSendingToAddress([address], (err, shouldAllowSending) => {
             if (err) {
+                console.log('Err', err);
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     100000,
