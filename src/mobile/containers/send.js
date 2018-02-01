@@ -32,6 +32,13 @@ import {
     getFromKeychainError,
 } from 'iota-wallet-shared-modules/actions/keychain';
 import { prepareTransfer } from 'iota-wallet-shared-modules/actions/tempAccount';
+import {
+    setSendAddressField,
+    setSendAmountField,
+    setSendMessageField,
+    clearSendFields,
+    setSendDenomination,
+} from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import {
     getBalanceForSelectedAccountViaSeedIndex,
@@ -51,13 +58,13 @@ import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import { width, height } from '../util/dimensions';
 
-let sentDenomination = '';
 let currencySymbol = '';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class Send extends Component {
     static propTypes = {
+        t: PropTypes.func.isRequired,
         currency: PropTypes.string.isRequired,
         balance: PropTypes.number.isRequired,
         isSyncing: PropTypes.bool.isRequired,
@@ -78,8 +85,19 @@ class Send extends Component {
         negativeColor: PropTypes.object.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
+        secondaryBarColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
         ctaBorderColor: PropTypes.string.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
+        address: PropTypes.string.isRequired,
+        amount: PropTypes.string.isRequired,
+        message: PropTypes.string.isRequired,
+        setSendAddressField: PropTypes.func.isRequired,
+        setSendAmountField: PropTypes.func.isRequired,
+        setSendMessageField: PropTypes.func.isRequired,
+        clearSendFields: PropTypes.func.isRequired,
+        setSendDenomination: PropTypes.func.isRequired,
+        denomination: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -88,10 +106,6 @@ class Send extends Component {
         const { t } = this.props;
 
         this.state = {
-            denomination: 'i',
-            amount: '',
-            address: '',
-            message: '',
             dataSource: ds.cloneWithRows([]),
             selectedSetting: '',
             modalContent: '',
@@ -111,7 +125,8 @@ class Send extends Component {
             KeepAwake.activate();
         } else if (this.props.isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
-            this.setState({ message: '', amount: '', address: '', sending: false });
+            this.props.clearSendFields();
+            this.props.setSendDenomination('i');
         }
     }
 
@@ -120,16 +135,15 @@ class Send extends Component {
     }
 
     onDenominationPress() {
-        const { secondaryBackgroundColor } = this.props;
-        const { denomination } = this.state;
+        const { secondaryBackgroundColor, denomination } = this.props;
         const availableDenominations = ['i', 'Ki', 'Mi', 'Gi', 'Ti', currencySymbol];
         const indexOfDenomination = availableDenominations.indexOf(denomination);
         const nextDenomination =
             indexOfDenomination === -1
                 ? availableDenominations[indexOfDenomination + 2]
                 : availableDenominations[indexOfDenomination + 1];
+        this.props.setSendDenomination(nextDenomination);
         this.setState({
-            denomination: nextDenomination,
             maxPressed: false,
             maxColor: secondaryBackgroundColor,
         });
@@ -140,8 +154,8 @@ class Send extends Component {
         const { t } = this.props;
         const max = (this.props.balance / this.getUnitMultiplier()).toString();
         if (!sending) {
+            this.props.setSendAmountField(max);
             this.setState({
-                amount: max,
                 maxPressed: true,
                 maxColor: '#FF6C69',
                 maxText: t('send:maximumSelected'),
@@ -154,8 +168,8 @@ class Send extends Component {
         if (amount === (this.props.balance / this.getUnitMultiplier()).toString()) {
             this.onMaxPress();
         } else {
+            this.props.setSendAmountField(amount);
             this.setState({
-                amount,
                 maxPressed: false,
                 maxColor: this.props.secondaryBackgroundColor,
                 maxText: t('send:sendMax'),
@@ -185,7 +199,8 @@ class Send extends Component {
     }
 
     enoughBalance() {
-        if (parseFloat(this.state.amount) * this.getUnitMultiplier() > this.props.balance) {
+        const { amount, balance } = this.props;
+        if (parseFloat(amount) * this.getUnitMultiplier() > balance) {
             return false;
         } else {
             return true;
@@ -206,9 +221,7 @@ class Send extends Component {
     }
 
     onSendPress() {
-        const { t } = this.props;
-        const address = this.state.address;
-        const amount = this.state.amount;
+        const { t, amount, address, message } = this.props;
 
         const addressIsValid = this.isValidAddress(address);
         const enoughBalance = this.enoughBalance();
@@ -223,7 +236,7 @@ class Send extends Component {
         }
 
         if (!addressIsValid) {
-            this.renderInvalidAddressErrors(address);
+            this.renderInvalidAddressErrors();
         }
 
         if (!amountIsValid) {
@@ -232,7 +245,7 @@ class Send extends Component {
     }
 
     sendTransfer() {
-        const { t, seedIndex, selectedAccountName, isSyncing, isTransitioning } = this.props;
+        const { t, seedIndex, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
 
         if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
@@ -248,13 +261,7 @@ class Send extends Component {
             return;
         }
 
-        sentDenomination = this.state.denomination;
-
-        const address = this.state.address;
-        const value = parseInt(parseFloat(this.state.amount) * this.getUnitMultiplier(), 10);
-
-        const message = this.state.message;
-
+        const value = parseInt(parseFloat(amount) * this.getUnitMultiplier(), 10);
         this.props.getFromKeychainRequest('send', 'makeTransaction');
         keychain
             .get()
@@ -270,8 +277,9 @@ class Send extends Component {
     }
 
     getUnitMultiplier() {
+        const { usdPrice, conversionRate, denomination } = this.props;
         let multiplier = 1;
-        switch (this.state.denomination) {
+        switch (denomination) {
             case 'i':
                 break;
             case 'Ki':
@@ -287,7 +295,9 @@ class Send extends Component {
                 multiplier = 1000000000000;
                 break;
             case currencySymbol:
-                multiplier = 1000000 / this.props.usdPrice / this.props.conversionRate;
+                multiplier = 1000000 / usdPrice / conversionRate;
+                break;
+            default:
                 break;
         }
         return multiplier;
@@ -308,17 +318,28 @@ class Send extends Component {
 
     setModalContent(selectedSetting) {
         let modalContent;
-        const { secondaryBackgroundColor, secondaryBarColor } = this.props;
+        const {
+            secondaryBackgroundColor,
+            secondaryBarColor,
+            barColor,
+            backgroundColor,
+            ctaColor,
+            secondaryCtaColor,
+            ctaBorderColor,
+            address,
+            amount,
+            denomination,
+        } = this.props;
         switch (selectedSetting) {
             case 'qrScanner':
                 modalContent = (
                     <QRScanner
                         onQRRead={data => this.onQRRead(data)}
                         hideModal={() => this._hideModal()}
-                        backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
-                        ctaColor={THEMES.getHSL(this.props.ctaColor)}
-                        secondaryCtaColor={this.props.secondaryCtaColor}
-                        ctaBorderColor={this.props.ctaBorderColor}
+                        backgroundColor={THEMES.getHSL(backgroundColor)}
+                        ctaColor={THEMES.getHSL(ctaColor)}
+                        secondaryCtaColor={secondaryCtaColor}
+                        ctaBorderColor={ctaBorderColor}
                     />
                 );
                 this.setState({
@@ -330,12 +351,12 @@ class Send extends Component {
             case 'transferConfirmation':
                 modalContent = (
                     <TransferConfirmationModal
-                        amount={this.state.amount}
-                        denomination={this.state.denomination}
-                        address={this.state.address}
+                        amount={amount}
+                        denomination={denomination}
+                        address={address}
                         sendTransfer={() => this.sendTransfer()}
                         hideModal={callback => this._hideModal(callback)}
-                        backgroundColor={THEMES.getHSL(this.props.barColor)}
+                        backgroundColor={THEMES.getHSL(barColor)}
                         borderColor={{ borderColor: secondaryBackgroundColor }}
                         textColor={{ color: secondaryBackgroundColor }}
                         setSendingTransferFlag={() => this.setSendingTransferFlag()}
@@ -350,7 +371,7 @@ class Send extends Component {
             case 'unitInfo':
                 modalContent = (
                     <UnitInfoModal
-                        backgroundColor={THEMES.getHSL(this.props.barColor)}
+                        backgroundColor={THEMES.getHSL(barColor)}
                         hideModal={() => this._hideModal()}
                         textColor={{ color: secondaryBarColor }}
                         borderColor={{ borderColor: secondaryBarColor }}
@@ -363,6 +384,8 @@ class Send extends Component {
                 });
                 this._showModal();
                 break;
+            default:
+                break;
         }
     }
 
@@ -372,25 +395,17 @@ class Send extends Component {
         if (dataString.match(/{/)) {
             // For codes containing JSON (iotaledger and Trinity)
             data = JSON.parse(data);
-            this.setState({
-                address: data.address,
-            });
+            this.props.setSendAddressField(data.address);
             if (data.message) {
-                this.setState({
-                    message: data.message,
-                });
+                this.props.setSendMessageField(data.message);
             }
         } else if (dataString.match(/iota\:/)) {
             // For codes with iota: at the front (TheTangle.org)
             data = data.substring(5);
-            this.setState({
-                address: data,
-            });
+            this.props.setSendAddressField(data);
         } else if (dataString.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
-            this.setState({
-                address: data,
-            });
+            this.props.setSendAddressField(data);
         } else {
             generateAlert(
                 'error',
@@ -407,7 +422,9 @@ class Send extends Component {
     }
 
     getConversionTextFiat() {
-        const convertedValue = round(this.state.amount / this.props.usdPrice / this.props.conversionRate, 10);
+        const { amount, usdPrice, conversionRate } = this.props;
+
+        const convertedValue = round(amount / usdPrice / conversionRate, 10);
         let conversionText = '';
         if (0 < convertedValue && convertedValue < 0.01) {
             conversionText = '< 0.01 Mi';
@@ -417,12 +434,13 @@ class Send extends Component {
         return conversionText;
     }
     getConversionTextIota() {
+        const { amount, usdPrice, conversionRate } = this.props;
         const convertedValue = round(
-            parseFloat(this.isValidAmount(this.state.amount) ? this.state.amount : 0) *
-                this.props.usdPrice /
+            parseFloat(this.isValidAmount(amount) ? amount : 0) *
+                usdPrice /
                 1000000 *
                 this.getUnitMultiplier() *
-                this.props.conversionRate,
+                conversionRate,
             10,
         );
         let conversionText = '';
@@ -435,7 +453,7 @@ class Send extends Component {
     }
 
     render() {
-        const { amount, address, message, isModalVisible, denomination, maxColor, maxText, sending } = this.state;
+        const { isModalVisible, maxColor, maxText, sending } = this.state;
         const {
             t,
             ctaColor,
@@ -446,6 +464,10 @@ class Send extends Component {
             ctaBorderColor,
             isSendingTransfer,
             isGettingSensitiveInfoToMakeTransaction,
+            address,
+            amount,
+            message,
+            denomination,
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const sendBorderColor = { borderColor: ctaBorderColor };
@@ -464,7 +486,7 @@ class Send extends Component {
                                 }}
                                 maxLength={90}
                                 label={t('recipientAddress')}
-                                onChangeText={address => this.setState({ address })}
+                                onChangeText={text => this.props.setSendAddressField(text)}
                                 containerStyle={{ width: width / 1.3 }}
                                 autoCapitalize={'characters'}
                                 autoCorrect={false}
@@ -487,7 +509,7 @@ class Send extends Component {
                                 }}
                                 keyboardType={'numeric'}
                                 label={t('amount')}
-                                onChangeText={amount => this.onAmountType(amount)}
+                                onChangeText={text => this.onAmountType(text)}
                                 containerStyle={{ width: width / 1.3 }}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -535,7 +557,7 @@ class Send extends Component {
                                 }}
                                 keyboardType={'default'}
                                 label={t('message')}
-                                onChangeText={message => this.setState({ message })}
+                                onChangeText={text => this.props.setSendMessageField(text)}
                                 containerStyle={{ width: width / 1.3 }}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -731,6 +753,10 @@ const mapStateToProps = state => ({
     secondaryCtaColor: state.settings.theme.secondaryCtaColor,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
     isTransitioning: state.tempAccount.isTransitioning,
+    address: state.ui.sendAddressFieldText,
+    amount: state.ui.sendAmountFieldText,
+    message: state.ui.sendMessageFieldText,
+    denomination: state.ui.sendDenomination,
 });
 
 const mapDispatchToProps = {
@@ -739,6 +765,11 @@ const mapDispatchToProps = {
     getFromKeychainRequest,
     getFromKeychainSuccess,
     getFromKeychainError,
+    setSendAddressField,
+    setSendAmountField,
+    setSendMessageField,
+    clearSendFields,
+    setSendDenomination,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
