@@ -42,6 +42,8 @@ import {
     updateTransitionAddresses,
     snapshotTransitionSuccess,
     snapshotTransitionError,
+    snapshotAttachToTangleRequest,
+    snapshotAttachToTangleComplete,
 } from './tempAccount';
 import {
     generateAccountInfoErrorAlert,
@@ -608,10 +610,12 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                         );
                         const attachToTangleBundle = createAttachToTangleBundle(seed, relevantAddresses);
                         const args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, attachToTangleBundle];
+                        dispatch(snapshotAttachToTangleRequest());
                         iota.api.sendTransfer(...args, error => {
                             if (!error) {
                                 dispatch(updateAccountAfterTransition(accountName, formattedAddresses, balance));
                                 dispatch(snapshotTransitionSuccess());
+                                dispatch(snapshotAttachToTangleComplete());
                                 dispatch(
                                     generateAlert(
                                         'success',
@@ -623,6 +627,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                             } else {
                                 console.log(error);
                                 dispatch(snapshotTransitionError());
+                                dispatch(snapshotAttachToTangleComplete());
                                 dispatch(generateTransitionErrorAlert());
                             }
                         });
