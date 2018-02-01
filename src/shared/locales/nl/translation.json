@@ -18,7 +18,7 @@
         "invalidResponse": "Ongeldig antwoord",
         "invalidResponseExplanation": "De node heeft een ongeldig antwoord teruggestuurd.",
         "invalidResponsePollingExplanation": "De node heeft een ongeldig antwoord teruggestuurd tijdens het pollen.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseFetchingAccount": "De node heeft een ongeldige waarde teruggegeven bij het opvragen van je account informatie.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Sleutel",
         "back": "Terug",
