@@ -147,11 +147,11 @@
     "newSeedSetup": {
         "seedNotGenerated": "Từ khoá chưa được tạo ra",
         "seedNotGeneratedExplanation": "Xin vui lòng nhấn nút Tạo Từ Khoá Mới.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "pressForNewSeed": "ẤN VÀO CHO TỪ KHOÁ MỚI",
+        "individualLetters": "Nhấn từng chữ cái để xáo trộn chúng."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Ví điện tử đã được thiết lập và sẵn sàng để sử dụng. Nếu bạn muốn thay đổi bất kỳ điều gì trong tương lai, hãy vào Cài Đặt."
     },
     "paperWallet": {
         "clickToPrint": "Click the button below to print a paper copy of your seed.",
