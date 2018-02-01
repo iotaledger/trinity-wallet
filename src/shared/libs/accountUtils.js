@@ -230,7 +230,7 @@ export const mapBalancesToAddresses = (addressData, balances) => {
     const addressesDataClone = cloneDeep(addressData);
 
     each(keys(addressData), (address, idx) => {
-        addressesDataClone[address] = { ...get(addressesDataClone, `${address}`, { balance: balances[idx] }) };
+        addressesDataClone[address] = { ...get(addressesDataClone, `${address}`), ...{ balance: balances[idx] } };
     });
 
     return addressesDataClone;
@@ -535,8 +535,14 @@ export const syncAccount = (seed, existingAccountState) => {
             console.log('Latest Balances', balances);
 
             const newBalances = map(balances, Number);
+            each(newBalances, (balance, idx) => {
+                console.log(keys(thisStateCopy.addresses)[idx], balance);
+            });
+            console.log('Before mapping', thisStateCopy.addresses);
+
             thisStateCopy.addresses = mapBalancesToAddresses(thisStateCopy.addresses, newBalances);
 
+            console.log('After mapping', thisStateCopy.addresses);
             thisStateCopy.balance = accumulateBalance(newBalances);
 
             return mapUnspentAddressesHashesToAccount(thisStateCopy);
@@ -569,6 +575,8 @@ export const syncAccount = (seed, existingAccountState) => {
 
                 return thisStateCopy;
             }
+
+            return thisStateCopy;
         });
 };
 
