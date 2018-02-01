@@ -9,6 +9,7 @@ import reduce from 'lodash/reduce';
 import isObject from 'lodash/isObject';
 import has from 'lodash/has';
 import omitBy from 'lodash/omitBy';
+import merge from 'lodash/merge';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
 import keys from 'lodash/keys';
@@ -320,15 +321,19 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
  *   @returns {Promise} - Resolves account argument by assigning unspentAddressesHashes (Transaction hashes associated with unspent addresses)
  **/
 export const mapUnspentAddressesHashesToAccount = account => {
-    const unspentAddresses = getUnspentAddresses(account.addresses);
+    const accountClone = cloneDeep(account);
+    const unspentAddresses = getUnspentAddresses(accountClone.addresses);
 
     if (isEmpty(unspentAddresses)) {
-        return Promise.resolve(assign({}, account, { unspentAddressesHashes: [] }));
+        accountClone.unspentAddressesHashes = [];
+        return Promise.resolve(accountClone);
     }
 
-    return iota.api
-        .findTransactionsAsync({ addresses: unspentAddresses })
-        .then(hashes => assign({}, account, { unspentAddressesHashes: hashes }));
+    return iota.api.findTransactionsAsync({ addresses: unspentAddresses }).then(hashes => {
+        accountClone.unspentAddressesHashes = hashes;
+
+        return accountClone;
+    });
 };
 
 export const getBundle = (tailTx, allBundleObjects) => {
@@ -532,9 +537,7 @@ export const syncTransfers = (diff, existingAccountState) => {
 export const syncAccount = (seed, existingAccountState) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
-    const addressSearchIndex = getStartingSearchIndexToFetchLatestAddresses(
-        thisStateCopy.addresses
-    );
+    const addressSearchIndex = getStartingSearchIndexToFetchLatestAddresses(thisStateCopy.addresses);
 
     return getLatestAddresses(seed, addressSearchIndex)
         .then(newAddressesObjects => {
@@ -547,9 +550,7 @@ export const syncAccount = (seed, existingAccountState) => {
             console.log('Latest Balances', balances);
 
             const newBalances = map(balances, Number);
-            thisStateCopy.addresses = mapBalancesToAddresses(
-                thisStateCopy.addresses, newBalances
-            );
+            thisStateCopy.addresses = mapBalancesToAddresses(thisStateCopy.addresses, newBalances);
 
             thisStateCopy.balance = accumulateBalance(newBalances);
 
@@ -557,29 +558,18 @@ export const syncAccount = (seed, existingAccountState) => {
         })
         .then(newStateCopy => {
             console.log('New account data with unspent addresses hashes', newStateCopy);
-            if (
-                hasNewTransfers(
-                    thisStateCopy.unspentAddressesHashes,
-                    newStateCopy.unspentAddressesHashes
-                )
-            ) {
-                const diff = difference(
-                    newStateCopy.unspentAddressesHashes,
-                    thisStateCopy.unspentAddressesHashes
-                );
+            if (hasNewTransfers(thisStateCopy.unspentAddressesHashes, newStateCopy.unspentAddressesHashes)) {
+                const diff = difference(newStateCopy.unspentAddressesHashes, thisStateCopy.unspentAddressesHashes);
 
                 // Update unspentAddressesHashes for this copy
                 thisStateCopy.unspentAddressesHashes = newStateCopy.unspentAddressesHashes;
 
-                return syncTransfers(
-                    diff,
-                    thisStateCopy
-                );
+                return syncTransfers(diff, thisStateCopy);
             }
 
             return Promise.resolve({
                 transfers: thisStateCopy.transfers,
-                pendingTxTailsHashes: thisStateCopy.pendingTxTailsHashes
+                pendingTxTailsHashes: thisStateCopy.pendingTxTailsHashes,
             });
         })
         .then(({ transfers, pendingTxTailsHashes }) => {
@@ -589,4 +579,37 @@ export const syncAccount = (seed, existingAccountState) => {
 
             return thisStateCopy;
         });
+};
+
+export const updateAccount = (name, newTransfer, existingAccountState, isValueTransfer) => {
+    const thisStateCopy = cloneDeep(existingAccountState);
+
+    // Assign persistence and transferValue props to the newly sent transfer
+    const newTransferBundleWithPersistenceAndTransferValue = map(newTransfer, bundle => ({
+        ...bundle,
+        ...{ transferValue: -bundle.value, persistence: false },
+    }));
+
+    // Append new transfer to cached transfers list
+    thisStateCopy.transfers = [...[newTransferBundleWithPersistenceAndTransferValue], ...thisStateCopy.transfers];
+
+    // Turn on spent flag for addresses that were used in this transfer
+    thisStateCopy.addresses = markAddressSpend([newTransfer], thisStateCopy.addresses);
+
+    // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
+    // Also check if it was a value transfer
+    // Only update unconfirmedBundleTails for promotion/reattachment if its a value transfer
+    const bundle = get(newTransfer, `[${0}].bundle`);
+    const tailTxs = filter(newTransfer, tx => tx.currentIndex === 0);
+
+    if (isValueTransfer) {
+        thisStateCopy.unconfirmedBundleTails = merge({}, thisStateCopy.unconfirmedBundleTails, {
+            [bundle]: map(tailTxs, t => ({ ...t, account: name })), // Assign account name to each tx
+        });
+    }
+
+    // Append new tail transaction hash to pendingTxTailHashes
+    thisStateCopy.pendingTxTailsHashes = [...thisStateCopy.pendingTxTailsHashes, ...map(tailTxs, t => t.hash)];
+
+    return mapUnspentAddressesHashesToAccount(getUnspentAddresses(thisStateCopy.addresses));
 };
