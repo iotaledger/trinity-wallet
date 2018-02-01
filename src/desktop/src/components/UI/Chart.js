@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory';
 import { setCurrency, setTimeframe } from 'actions/marketData';
 import { getCurrencySymbol } from 'libs/currency';
-import imageChevron from 'images/chevron-down-white.png';
+import Icon from 'components/UI/Icon';
 import Button from 'components/UI/Button';
 import css from './Chart.css';
 
@@ -42,7 +42,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.y;
             }),
         );
@@ -53,7 +53,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const minValue = Math.min(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.y;
             }),
         );
@@ -64,7 +64,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.x;
             }),
         );
@@ -130,32 +130,24 @@ class Chart extends React.Component {
             <div className={css.chart}>
                 <nav>
                     <Button variant="secondary" className="small" onClick={() => this.changeCurrency()}>
-                        <img src={imageChevron} />
+                        <Icon icon="chevron" size={8} />
                         {marketData.currency}
                     </Button>
                     <p>
                         {getCurrencySymbol(marketData.currency)} {this.getPriceFormat(price)} / Mi
                     </p>
                     <Button variant="secondary" className="small" onClick={() => this.changeTimeframe()}>
-                        <img src={imageChevron} />
+                        <Icon icon="chevron" size={8} />
                         {marketData.timeframe}
                     </Button>
                 </nav>
                 <div>
-                    <svg>
-                        <defs>
-                            <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
-                                <stop stopColor={settings.theme.body.background} offset="0%" />
-                                <stop stopColor={settings.theme.chart.color} offset="100%" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
                     <VictoryChart>
                         <VictoryLine
                             data={data}
                             style={{
                                 data: {
-                                    stroke: 'url(#gradient)',
+                                    stroke: settings.theme.chart.color,
                                     strokeWidth: 1.2,
                                 },
                             }}
@@ -171,7 +163,7 @@ class Chart extends React.Component {
                         />
                         <VictoryAxis
                             dependentAxis
-                            tickFormat={x => this.getPriceFormat(x)}
+                            tickFormat={(x) => this.getPriceFormat(x)}
                             style={{
                                 axis: { stroke: 'transparent' },
                                 tickLabels: { fill: 'white', fontSize: 9, fontFamily: 'Lato-Regular' },
@@ -196,7 +188,7 @@ class Chart extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     marketData: state.marketData,
     settings: state.settings,
 });
