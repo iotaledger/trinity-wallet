@@ -36,6 +36,10 @@ export const generateAccountInfoErrorAlert = err => dispatch => {
     dispatch(prepareLogUpdate(err));
 };
 
+export const generateTransitionErrorAlert = () => dispatch => {
+    dispatch(generateAlert('error', 'Snapshot transition failed', 'Please try again.', 10000));
+};
+
 export const generateSyncingCompleteAlert = () => dispatch => {
     dispatch(
         generateAlert(
