@@ -14,6 +14,8 @@ function createWindow() {
     windows.main = new BrowserWindow({
         width: 1024,
         height: 768,
+        minWidth: 920,
+        minHeight: 680,
         webPreferences: {
             nodeIntegration: true,
             preload: path.join(__dirname, 'lib/window.js'),

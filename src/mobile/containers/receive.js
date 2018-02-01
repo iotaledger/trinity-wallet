@@ -56,6 +56,7 @@ class Receive extends Component {
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
+        isTransitioning: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -83,10 +84,18 @@ class Receive extends Component {
     }
 
     onGeneratePress() {
-        const { t, seedIndex, selectedAccount, selectedAccountName, isSyncing, generateAlert } = this.props;
+        const {
+            t,
+            seedIndex,
+            selectedAccount,
+            selectedAccountName,
+            isSyncing,
+            generateAlert,
+            isTransitioning,
+        } = this.props;
 
-        if (isSyncing) {
-            return generateAlert('error', 'Syncing in process', 'Please wait until syncing is complete.');
+        if (isSyncing || isTransitioning) {
+            return generateAlert('error', 'Please wait', 'Please wait and try again.');
         }
 
         const error = () => {
@@ -371,6 +380,7 @@ const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     secondaryCtaColor: state.settings.theme.secondaryCtaColor,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
+    isTransitioning: state.tempAccount.isTransitioning,
 });
 
 const mapDispatchToProps = {

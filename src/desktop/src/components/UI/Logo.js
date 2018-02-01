@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Lottie from 'react-lottie';
 
 import * as loading from 'animations/loading-white.json';
-import logo from 'images/iota.png';
+import Icon from 'components/UI/Icon';
 
 export default class Logo extends React.PureComponent {
     static propTypes = {
@@ -23,7 +23,7 @@ export default class Logo extends React.PureComponent {
 
         return (
             <div style={{ width: size, height: size, display: 'inline-block' }}>
-                {!animate ? <img src={logo} width={size} /> : <Lottie width={size} height={size} options={options} />}
+                {!animate ? <Icon icon="iota" size={size} /> : <Lottie width={size} height={size} options={options} />}
             </div>
         );
     }
