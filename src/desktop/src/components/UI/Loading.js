@@ -6,14 +6,20 @@ import css from './Loading.css';
 export default class Loading extends React.PureComponent {
     static propTypes = {
         loop: PropTypes.bool,
+        title: PropTypes.string,
+        subtitle: PropTypes.string,
     };
 
     render() {
-        const { loop } = this.props;
+        const { loop, title, subtitle } = this.props;
 
         return (
             <div className={css.loading}>
-                <Logo size={200} animate loop={loop} />
+                <div>
+                    <Logo size={200} animate loop={loop} />
+                    {title && <h1>{title}</h1>}
+                    {subtitle && <h2>{subtitle}</h2>}
+                </div>
             </div>
         );
     }

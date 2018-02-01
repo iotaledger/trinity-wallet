@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Select from 'components/UI/Select';
+import Select from 'components/UI/input/Select';
 import i18next from 'libs/i18next';
 import { setLocale } from 'actions/settings';
 
