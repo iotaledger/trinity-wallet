@@ -576,11 +576,13 @@ class Send extends Component {
                             !isGettingSensitiveInfoToMakeTransaction && (
                                 <View style={styles.sendButtonContainer}>
                                     <TouchableOpacity
-                                        onPress={event => {
+                                        onPress={() => {
                                             this.setModalContent('transferConfirmation');
-                                            this.addressField.blur();
-                                            this.amountField.blur();
-                                            this.messageField.blur();
+                                            if (address === '' && amount === '' && message && '') {
+                                                this.addressField.blur();
+                                                this.amountField.blur();
+                                                this.messageField.blur();
+                                            }
                                         }}
                                     >
                                         <View
