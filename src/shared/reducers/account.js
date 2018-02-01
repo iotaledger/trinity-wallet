@@ -2,7 +2,6 @@ import get from 'lodash/get';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import filter from 'lodash/filter';
-import union from 'lodash/union';
 import { ActionTypes } from '../actions/account';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 
@@ -217,6 +216,18 @@ const account = (
                 pendingTxTailsHashes: {
                     ...state.pendingTxTailsHashes,
                     [action.payload.accountName]: action.payload.pendingTxTailsHashes,
+                },
+            };
+        case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
+            return {
+                ...state,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.accountName]: {
+                        balance: action.balance,
+                        addresses: action.addresses,
+                        transfers: state.accountInfo[action.accountName].transfers,
+                    },
                 },
             };
         default:

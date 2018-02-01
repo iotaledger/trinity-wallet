@@ -5,12 +5,11 @@
     flex-direction: column;
     min-height: 100vh;
     > header {
-        background: var(--color-bg-secondary);
+        background: var(--bar-bg);
         display: flex;
         height: var(--header-height);
         position: fixed;
         width: 100%;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
         .logo {
             align-items: center;
             display: flex;
@@ -43,12 +42,11 @@
 }
 
 .sidebar {
-    background: var(--color-bg-secondary);
+    background: var(--bar-bg);
     flex: 1 0 var(--sidebar-width);
     height: calc(100vh - var(--header-height));
     overflow: auto;
     text-align: center;
-    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.4);
     z-index: 2;
     position: relative;
     nav {
@@ -65,12 +63,17 @@
         display: block;
         margin: auto;
         margin-bottom: 10px;
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
+        opacity: 0.5;
+    }
+    span {
+        display: block;
+        margin: auto;
+        margin-bottom: 10px;
     }
     a {
-        border-bottom: 1px solid var(--color-sidenav-underline);
-        color: var(--color-sidenav-text);
+        color: var(--bar-secondary);
         display: block;
         font-size: 11px;
         margin: 10px 0;
@@ -78,11 +81,12 @@
         width: var(--sidebar-width);
         text-decoration: none;
         text-transform: uppercase;
-        opacity: 0.4;
-        transition: all 0.2s ease-out;
-        &:global(.nav-active),
-        &:hover {
-            opacity: 1;
+        &:hover,
+        &[aria-current='true'] {
+            color: var(--bar-body);
+            img {
+                opacity: 1;
+            }
         }
     }
 }
@@ -106,6 +110,7 @@
         flex-direction: column;
         justify-content: center;
         padding: 0 16px;
+        min-width: 90px;
         text-align: center;
         position: relative;
         border-top: 3px solid transparent;
@@ -117,8 +122,7 @@
             border-top: 3px solid transparent;
         }
         &.active:after {
-            border-bottom: 3px solid var(--color-highlight);
-            box-shadow: 0 2px 2px rgba(247, 208, 2, 0.2);
+            border-bottom: 3px solid var(--highlight);
         }
     }
 
