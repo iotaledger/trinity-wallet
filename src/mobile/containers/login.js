@@ -2,38 +2,38 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Modal from 'react-native-modal';
-import { AsyncStorage, StyleSheet, View, Text, Keyboard } from 'react-native';
-import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import authenticator from 'authenticator';
+import PropTypes from 'prop-types';
+import Modal from 'react-native-modal';
+import KeepAwake from 'react-native-keep-awake';
+import { StyleSheet, View, Text } from 'react-native';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
-import { setPassword, setReady, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setPassword, setReady, setUserActivity, setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
+import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import OnboardingButtons from '../components/onboardingButtons';
-import NodeSelection from '../components/nodeSelection';
 import whiteArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-white.png';
 import blackArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-black.png';
 import whiteTickImagePath from 'iota-wallet-shared-modules/images/tick-white.png';
 import blackTickImagePath from 'iota-wallet-shared-modules/images/tick-black.png';
+import DynamicStatusBar from '../components/dynamicStatusBar';
+import OnboardingButtons from '../components/onboardingButtons';
+import NodeSelection from '../components/nodeSelection';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import keychain from '../util/keychain';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
 import { width, height } from '../util/dimensions';
-import KeepAwake from 'react-native-keep-awake';
 
 class Login extends Component {
     static propTypes = {
@@ -58,6 +58,8 @@ class Login extends Component {
         is2FAEnabled: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
         migrate: PropTypes.func.isRequired,
+        setLoginPasswordField: PropTypes.func.isRequired,
+        password: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -141,6 +143,7 @@ class Login extends Component {
                     const hasCorrectPassword = get(credentials, 'password') === password;
                     if (hasData && hasCorrectPassword) {
                         setPassword(password);
+                        this.props.setLoginPasswordField('');
                         if (!is2FAEnabled) {
                             if (firstUse) {
                                 this.navigateToLoading();
@@ -237,7 +240,7 @@ class Login extends Component {
     }
 
     render() {
-        const { backgroundColor, positiveColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const { backgroundColor, positiveColor, negativeColor, secondaryBackgroundColor, password } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -255,6 +258,8 @@ class Login extends Component {
                             navigateToNodeSelection={this.navigateToNodeSelection}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             textColor={textColor}
+                            setLoginPasswordField={pword => this.props.setLoginPasswordField(pword)}
+                            password={password}
                         />
                     )}
                 {!this.state.changingNode &&
@@ -355,6 +360,7 @@ const mapStateToProps = state => ({
     key2FA: state.account.key2FA,
     versions: state.app.versions,
     accountInfo: state.account.accountInfo,
+    password: state.ui.loginPasswordFieldText,
 });
 
 const mapDispatchToProps = {
@@ -370,6 +376,7 @@ const mapDispatchToProps = {
     setSetting,
     setUserActivity,
     migrate,
+    setLoginPasswordField,
 };
 
 export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
