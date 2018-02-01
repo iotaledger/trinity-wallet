@@ -30,7 +30,7 @@
                     color: var(--highlight);
                 }
                 &[aria-current='true'] {
-                    background: var(--bar-secondary);
+                    background: var(--bar-alt);
                     border-right: 2px solid var(--highlight);
                 }
             }
@@ -39,12 +39,16 @@
         hr {
             background: none;
             border: none;
-            border-top: 1px solid var(--bar-secondary);
+            border-top: 1px solid var(--bar-alt);
             margin-bottom: 20px;
         }
 
         select {
             background: none;
+            color: var(--bar);
+        }
+        fieldset a:after {
+            border-top-color: var(--bar);
         }
     }
     aside,
@@ -59,7 +63,7 @@
 
         hr {
             border: none;
-            border-top: 1px dashed var(--body-secondary);
+            border-top: 1px dashed var(--body-alt);
             margin: 30px 0;
         }
         form {
