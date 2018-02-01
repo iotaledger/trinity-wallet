@@ -27,6 +27,7 @@ const initialState = {
     transitionBalance: 0,
     transitionAddresses: [],
     balanceCheckToggle: false,
+    isAttachingToTangle: false,
 };
 
 export default (state = initialState, action) => {
@@ -223,6 +224,16 @@ export default (state = initialState, action) => {
                 isTransitioning: false,
                 transitionBalance: 0,
                 transitionAddresses: [],
+            };
+        case ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_REQUEST:
+            return {
+                ...state,
+                isAttachingToTangle: true,
+            };
+        case ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE:
+            return {
+                ...state,
+                isAttachingToTangle: false,
             };
         case ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE:
             return {
