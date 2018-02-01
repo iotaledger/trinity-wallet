@@ -79,6 +79,7 @@ class Send extends Component {
         isSendingTransfer: PropTypes.bool.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         ctaBorderColor: PropTypes.string.isRequired,
+        isTransitioning: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -231,10 +232,19 @@ class Send extends Component {
     }
 
     sendTransfer() {
-        const { t, seedIndex, selectedAccountName, isSyncing } = this.props;
+        const { t, seedIndex, selectedAccountName, isSyncing, isTransitioning } = this.props;
 
         if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
+            return;
+        }
+
+        if (isTransitioning) {
+            this.props.generateAlert(
+                'error',
+                t('Snapshot transition in progress'),
+                t('Please wait until the transition is complete.'),
+            );
             return;
         }
 
@@ -720,6 +730,7 @@ const mapStateToProps = state => ({
     secondaryBarColor: state.settings.theme.secondaryBarColor,
     secondaryCtaColor: state.settings.theme.secondaryCtaColor,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
+    isTransitioning: state.tempAccount.isTransitioning,
 });
 
 const mapDispatchToProps = {
