@@ -70,7 +70,7 @@ class SaveYourSeed extends PureComponent {
                     </div>
                 </Content>
                 <Footer className="printHidden">
-                    <Button to="/seed/generate" variant="warning">
+                    <Button to="/seed/generate" variant="negative">
                         {t('button2')}
                     </Button>
                     {/* TODO: Remove the console log and think of a solution when to actually clear the seeds */}
@@ -83,7 +83,7 @@ class SaveYourSeed extends PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     seed: getSelectedSeed(state).seed,
 });
 

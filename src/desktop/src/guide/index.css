@@ -9,6 +9,7 @@
         background: var(--bar-bg);
         color: var(--bar);
         text-align: center;
+        padding-top: 40px;
 
         h1 {
             font-weight: 200;
@@ -21,12 +22,16 @@
 
             a {
                 display: block;
-                margin-bottom: 20px;
                 color: var(--bar);
+                width: 100%;
                 text-decoration: none;
-                &:hover,
-                &[aria-current='true'] {
+                padding: 8px 16px;
+                &:hover {
                     color: var(--highlight);
+                }
+                &[aria-current='true'] {
+                    background: var(--bar-secondary);
+                    border-right: 2px solid var(--highlight);
                 }
             }
         }
@@ -44,13 +49,12 @@
     }
     aside,
     section {
-        padding: 20px;
         min-height: 100vh;
     }
 
     section {
-        padding-top: 60px;
-        max-width: 960px;
+        padding: 60px 20px 100px;
+        max-width: 1120px;
         min-width: 480px;
 
         hr {

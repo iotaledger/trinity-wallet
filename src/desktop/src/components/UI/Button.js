@@ -9,7 +9,7 @@ export default class Button extends React.PureComponent {
         children: PropTypes.node,
         className: PropTypes.string,
         loading: PropTypes.bool,
-        variant: PropTypes.oneOf(['action', 'primary', 'secondary', 'warning', 'extra', 'highlight']).isRequired,
+        variant: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'extra', 'highlight']).isRequired,
         to: PropTypes.string,
     };
 

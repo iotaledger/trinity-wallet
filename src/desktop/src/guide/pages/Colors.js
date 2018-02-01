@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import css from './colors.css';
 
-const colors = ['positive', 'secondary', 'negative', 'highlight', 'extra'];
+const colors = ['primary', 'secondary', 'positive', 'negative', 'highlight', 'extra'];
 
 const Colors = () => {
     return (
@@ -29,8 +29,7 @@ const Colors = () => {
                 <strong className={css.inputSecondary}>Input secondary</strong>
             </div>
             <div className={css.color}>
-                <strong className={css.chart}>Chart gradient</strong>
-                <strong className={css.cta}>cta</strong>
+                <strong className={css.chart}>Chart line</strong>
             </div>
         </div>
     );
