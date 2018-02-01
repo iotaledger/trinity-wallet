@@ -69,8 +69,8 @@
         "pressBackAgain": "Nhấn nút lui lại lần nữa để đóng chương trình",
         "autoreattaching": "Đang tự động kết nối vào Tangle",
         "autoreattachingExplanation": "Đang kết nối giao dịch với dữ liệu {{hash}}",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autopromoting": "Tự động thúc đẩy chuyển khoảng",
+        "autopromotingExplanation": "Tự động thúc đẩy chuyển khoản với dữ liệu {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
@@ -154,22 +154,22 @@
         "walletReady": "Ví điện tử đã được thiết lập và sẵn sàng để sử dụng. Nếu bạn muốn thay đổi bất kỳ điều gì trong tương lai, hãy vào Cài Đặt."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
+        "clickToPrint": "Nhấn vào nút dưới đây để in ra giấy bản sao từ khoá của bạn.",
+        "storeSafely": "Lưu trữ an toàn.",
+        "neverShare": "Đừng bao giờ chia sẻ từ khoá với bất cứ ai.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "printWallet": "IN VÍ GIẤY"
     },
     "receive": {
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "NEW ADDRESS",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "addressCopied": "Đã sao chép địa chỉ",
+        "addressCopiedExplanation": "Địa chỉ đã được sao chép vào bộ nhớ tạm thời.",
+        "generateNewAddress": "ĐỊA CHỈ MỚI",
+        "message": "Tin nhắn tuỳ chọn",
+        "removeMessage": "HUỶ BỎ TIN NHẮN"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Đã xoá từ khoá",
+        "seedClearedExplanation": "Từ khoá đã được xoá khỏi bộ nhớ tạm để bảo mật.",
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
