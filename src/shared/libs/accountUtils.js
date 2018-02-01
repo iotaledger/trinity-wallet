@@ -237,14 +237,49 @@ export const organizeAccountInfo = (accountName, data) => {
     };
 };
 
-export const mapBalancesToAddresses = (addressData, balances) => {
+/**
+ *   Get state partials for addressData and assigns balances to those
+ *
+ *   @method mapBalancesToAddresses
+ *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *   @param {array} balances - Array of integers
+ *   @param {array} addresses - Array of strings (addresses)
+ *
+ *   @returns {object} - A new copy of the addressData object after assigning each nested object its updated balance.
+ **/
+export const mapBalancesToAddresses = (addressData, balances, addresses) => {
     const addressesDataClone = cloneDeep(addressData);
+    const addressesLength = size(addresses);
 
-    each(keys(addressData), (address, idx) => {
+    // Return prematurely if balances length are not equal to addresses length
+    // Or address data keys length is not equal to addresses length
+    // A strict check to make sure everything is up-to-date when new balances are assigned.
+    if (size(balances) !== addressesLength || size(keys(addressesDataClone)) !== addressesLength) {
+        return addressesDataClone;
+    }
+
+    each(addresses, (address, idx) => {
         addressesDataClone[address] = { ...get(addressesDataClone, `${address}`), ...{ balance: balances[idx] } };
     });
 
     return addressesDataClone;
+};
+
+/**
+ *   A wrapper over getBalances.
+ *   Main purpose of this wrapper is to keep addresses and balances indexes intact.
+ *
+ *   @method mapBalancesToAddresses
+ *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *
+ *   @returns {Promise|<object>} - Resolves { balances: [], addresses: [] } after getting latest balances against addresses
+ **/
+export const getBalancesWithAddresses = addressData => {
+    const addresses = keys(addressData);
+
+    return iota.api
+        .getBalancesAsync(addresses, DEFAULT_BALANCES_THRESHOLD)
+        .then(balances => ({ balances: get(balances, 'balances'), addresses }));
 };
 
 export const getLatestAddresses = (seed, index) => {
@@ -533,14 +568,17 @@ export const syncAccount = (seed, existingAccountState) => {
 
     return getLatestAddresses(seed, addressSearchIndex)
         .then(newAddressesObjects => {
+            // Assign latest addresses to addresses dictionary
             thisStateCopy.addresses = { ...thisStateCopy.addresses, ...newAddressesObjects };
 
-            return iota.api.getBalancesAsync(keys(thisStateCopy.addresses), DEFAULT_BALANCES_THRESHOLD);
+            // Grab latest balances with addresses transformed as array.
+            return getBalancesWithAddresses(thisStateCopy.addresses);
         })
-        .then(({ balances }) => {
+        .then(({ balances, addresses }) => {
             const newBalances = map(balances, Number);
 
-            thisStateCopy.addresses = mapBalancesToAddresses(thisStateCopy.addresses, newBalances);
+            // Runs through
+            thisStateCopy.addresses = mapBalancesToAddresses(thisStateCopy.addresses, newBalances, addresses);
 
             thisStateCopy.balance = accumulateBalance(newBalances);
 
