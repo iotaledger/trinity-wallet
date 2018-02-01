@@ -354,6 +354,7 @@ const mapStateToProps = state => ({
     is2FAEnabled: state.account.is2FAEnabled,
     key2FA: state.account.key2FA,
     versions: state.app.versions,
+    accountInfo: state.account.accountInfo,
 });
 
 const mapDispatchToProps = {

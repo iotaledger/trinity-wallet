@@ -85,10 +85,10 @@ class SecurityEnter extends React.PureComponent {
                     </Infobox>
                 </Content>
                 <Footer>
-                    <Button to="/seed/name" variant="secondary">
+                    <Button to="/seed/name" className="outline" variant="highlight">
                         {t('global:back')}
                     </Button>
-                    <Button type="submit" variant="success">
+                    <Button type="submit" className="outline" variant="primary">
                         {t('global:done')}
                     </Button>
                 </Footer>

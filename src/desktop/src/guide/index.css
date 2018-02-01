@@ -1,0 +1,65 @@
+.styleguide {
+    display: flex;
+    width: 100vw;
+
+    aside {
+        width: 240px;
+        margin-right: 40px;
+        flex-shrink: 0;
+        background: var(--bar-bg);
+        color: var(--bar);
+        text-align: center;
+
+        h1 {
+            font-weight: 200;
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+        nav {
+            width: 100%;
+            text-align: left;
+
+            a {
+                display: block;
+                margin-bottom: 20px;
+                color: var(--bar);
+                text-decoration: none;
+                &:hover,
+                &[aria-current='true'] {
+                    color: var(--highlight);
+                }
+            }
+        }
+
+        hr {
+            background: none;
+            border: none;
+            border-top: 1px solid var(--bar-secondary);
+            margin-bottom: 20px;
+        }
+
+        select {
+            background: none;
+        }
+    }
+    aside,
+    section {
+        padding: 20px;
+        min-height: 100vh;
+    }
+
+    section {
+        padding-top: 60px;
+        max-width: 960px;
+        min-width: 480px;
+
+        hr {
+            border: none;
+            border-top: 1px dashed var(--body-secondary);
+            margin: 30px 0;
+        }
+        form {
+            padding: 40px 0;
+        }
+    }
+}
