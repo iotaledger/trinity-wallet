@@ -52,13 +52,14 @@
             left: 0px;
             top: -20px;
             font-size: var(--font-size-xs);
+            color: var(--label);
             text-transform: uppercase;
             transition: color 0.2s ease-out;
         }
         input:focus + small,
         textarea:focus + small,
         select:focus + small {
-            color: var(--highlight);
+            color: var(--label-hover);
         }
         a {
             display: flex;

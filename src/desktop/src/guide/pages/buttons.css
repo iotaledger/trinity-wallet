@@ -1,4 +1,5 @@
 .buttons {
+    width: 780px;
     nav {
         display: flex;
         justify-content: space-between;
