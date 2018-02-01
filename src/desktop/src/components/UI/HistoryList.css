@@ -44,7 +44,7 @@
             }
         }
         &:hover > div {
-            background: var(--hover);
+            background: var(--body-secondary);
         }
     }
 
@@ -86,7 +86,7 @@
         border: 1px solid var(--body-secondary);
 
         &:hover {
-            background: var(--hover);
+            background: var(--body-secondary);
         }
 
         p {

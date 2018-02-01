@@ -12,29 +12,52 @@
     }
 }
 
-.positive {
-    color: var(--positive-body);
-    background: var(--positive-bg);
+.primary {
+    background: var(--primary);
+    color: var(--primary-body);
+    &.hover {
+        background: var(--primary-hover);
+    }
 }
 
 .secondary {
     color: var(--secondary-body);
     background: var(--secondary-bg);
+    &.hover {
+        background: var(--secondary-hover);
+    }
+}
+
+.positive {
+    color: var(--positive-body);
+    background: var(--positive-bg);
+    &.hover {
+        background: var(--positive-hover);
+    }
 }
 
 .negative {
     color: var(--negative-body);
     background: var(--negative-bg);
+    &.hover {
+        background: var(--negative-hover);
+    }
 }
 
 .highlight {
     color: var(--highlight-body);
     background: var(--highlight-bg);
+    &.hover {
+        background: var(--highlight-hover);
+    }
 }
 
 .extra {
     background: var(--extra-body);
     background: var(--extra-bg);
+    &.hover {
+        background: var(--extra-hover);
+    }
 }
 
 .bar {
@@ -43,11 +66,7 @@
 }
 
 .chart {
-    background: linear-gradient(to right, var(--body-bg), var(--chart));
-}
-.cta {
-    background: var(--cta);
-    color: var(--cta-body);
+    background: var(--chart);
 }
 
 .bgSecondary {
@@ -63,8 +82,4 @@
 .inputSecondary {
     color: var(--input-secondary);
     background: var(--input-bg);
-}
-
-.hover {
-    box-shadow: inset 0 0 0 30px var(--hover-bg);
 }

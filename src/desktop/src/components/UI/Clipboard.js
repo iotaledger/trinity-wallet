@@ -9,13 +9,14 @@ import css from './Clipboard.css';
 class Clipboard extends React.PureComponent {
     static propTypes = {
         text: PropTypes.string.isRequired,
+        label: PropTypes.string,
         title: PropTypes.string.isRequired,
         success: PropTypes.string.isRequired,
         showNotification: PropTypes.func.isRequired,
     };
 
     render() {
-        const { text, showNotification, title, success } = this.props;
+        const { label, text, showNotification, title, success } = this.props;
 
         return (
             <CopyToClipboard text={text}>
@@ -29,7 +30,7 @@ class Clipboard extends React.PureComponent {
                         })
                     }
                 >
-                    {text}
+                    {label || text}
                 </span>
             </CopyToClipboard>
         );
