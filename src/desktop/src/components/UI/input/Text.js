@@ -15,7 +15,7 @@ export default class TextInput extends React.PureComponent {
         return (
             <div className={css.input}>
                 <fieldset>
-                    <input type="text" value={value} onChange={e => onChange(e.target.value)} />
+                    <input type="text" value={value} onChange={(e) => onChange(e.target.value)} />
                     <small>{label}</small>
                 </fieldset>
             </div>

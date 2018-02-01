@@ -27,6 +27,18 @@ export const formatFullAddressData = data => {
     return addressData;
 };
 
+export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
+    const addressData = Object.assign(
+        {},
+        ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } })),
+    );
+    for (let i = 0; i < addresses.length; i++) {
+        addressData[addresses[i]].balance = balances[i];
+        addressData[addresses[i]].spent = addressesSpendStatus[i];
+    }
+    return addressData;
+};
+
 export const markAddressSpend = (transfers, addressData) => {
     const addressDataClone = cloneDeep(addressData);
     const addresses = Object.keys(addressDataClone);

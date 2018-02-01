@@ -13,8 +13,6 @@ import css from 'components/Main/Receive.css';
 import Button from 'components/UI/Button';
 import Clipboard from 'components/UI/Clipboard';
 
-// const worker = new Worker();
-
 class Receive extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
@@ -36,7 +34,7 @@ class Receive extends React.PureComponent {
     };
 
     render() {
-        const { t, tempAccount: { receiveAddress }, account, seeds } = this.props;
+        const { t, tempAccount: { receiveAddress, isGeneratingReceiveAddress }, account, seeds } = this.props;
 
         const seedInfo = seeds.items[seeds.selectedSeedIndex];
         const accountInfo = account.accountInfo[seedInfo.name];
@@ -53,7 +51,9 @@ class Receive extends React.PureComponent {
                             />
                         </p>
                         <QRCode value={receiveAddress} size={220} />
-                        <Button onClick={this.onGeneratePress}>{t('receive:generateNewAddress')}</Button>
+                        <Button onClick={this.onGeneratePress} loading={isGeneratingReceiveAddress}>
+                            {t('receive:generateNewAddress')}
+                        </Button>
                     </section>
                     <section>
                         <HistoryList
