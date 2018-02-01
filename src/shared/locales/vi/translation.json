@@ -17,7 +17,7 @@
         "keyReuseError": "Bạn không thể gửi tới địa chỉ mà đã được sử dụng để chi tiêu rồi.",
         "invalidResponse": "Đáp ứng không hợp lệ",
         "invalidResponseExplanation": "Nút mạng phản hồi không hợp lệ.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "invalidResponsePollingExplanation": "Nút mạng phản hồi lỗi khi lấy thông tin tài khoản từ nút mạng.",
         "invalidResponseFetchingAccount": "Nút mạng phản hồi không hợp lệ khi lấy thông tin tài khoản của bạn.",
         "invalidResponseSendingTransfer": "Nút mạng phản hồi không hợp lệ khi chuyển khoản.",
         "seed": "Từ Khoá",
@@ -64,7 +64,7 @@
         "receiving": "Đang Nhận",
         "confirmed": "Đã Xác Nhận",
         "pending": "Chờ Duyệt",
-        "bundleHash": "Bundle Hash",
+        "bundleHash": "Nhóm Hash",
         "addresses": "Địa Chỉ",
         "pressBackAgain": "Nhấn nút lui lại lần nữa để đóng chương trình",
         "autoreattaching": "Đang tự động kết nối vào Tangle",
@@ -132,15 +132,15 @@
         "language": "Ngôn Ngữ"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
-        "login": "LOG IN",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "emptyPassword": "Mật khẩu trống",
+        "emptyPasswordExplanation": "Bạn phải nhập mật khẩu để đăng nhập. Xin vui lòng thử lại.",
+        "enterPassword": "Vui lòng nhập mật khẩu.",
+        "useSeed": "DÙNG TỪ KHOÁ",
+        "login": "ĐĂNG NHẬP",
+        "selectDifferentNode": "Bạn muốn chọn một nút mạng khác không?"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
+        "loadingFirstTime": "Đang tải từ khoá lần đầu tiên.",
         "thisMayTake": "This may take a while.",
         "youMayNotice": "You may notice your device slowing down."
     },
