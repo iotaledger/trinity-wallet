@@ -15,6 +15,7 @@ import includes from 'lodash/includes';
 import keys from 'lodash/keys';
 import isEmpty from 'lodash/isEmpty';
 import size from 'lodash/size';
+import isNumber from 'lodash/isNumber';
 import { iota } from '../libs/iota';
 import { getBundleTailsForSentTransfers } from './promoter';
 import { getAllAddresses } from './addresses';
@@ -120,11 +121,22 @@ export const calculateBalance = data => {
     return balance;
 };
 
+/**
+ *   Takes in an array of balances (numbers) and calculates the total balance
+ *
+ *   @method accumulateBalance
+ *   @param {array} balances - Array of integers
+ *
+ *   @returns {number} - Total balance
+ **/
 export const accumulateBalance = balances =>
     reduce(
         balances,
         (res, val) => {
-            res = res + val;
+            if (isNumber(val)) {
+                res = res + val;
+            }
+
             return res;
         },
         0,
