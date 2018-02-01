@@ -22,7 +22,7 @@
 
 .secondary {
     color: var(--secondary-body);
-    background: var(--secondary-bg);
+    background: var(--secondary);
     &.hover {
         background: var(--secondary-hover);
     }
@@ -30,7 +30,7 @@
 
 .positive {
     color: var(--positive-body);
-    background: var(--positive-bg);
+    background: var(--positive);
     &.hover {
         background: var(--positive-hover);
     }
@@ -38,7 +38,7 @@
 
 .negative {
     color: var(--negative-body);
-    background: var(--negative-bg);
+    background: var(--negative);
     &.hover {
         background: var(--negative-hover);
     }
@@ -46,7 +46,7 @@
 
 .highlight {
     color: var(--highlight-body);
-    background: var(--highlight-bg);
+    background: var(--highlight);
     &.hover {
         background: var(--highlight-hover);
     }
@@ -54,7 +54,7 @@
 
 .extra {
     background: var(--extra-body);
-    background: var(--extra-bg);
+    background: var(--extra);
     &.hover {
         background: var(--extra-hover);
     }
@@ -70,16 +70,17 @@
 }
 
 .bgSecondary {
-    background: var(--body-secondary);
+    background: var(--body-alt);
 }
 
 .input {
     background: var(--input-bg);
+    color: var(--input);
 }
 .label {
     color: var(--label);
 }
 .inputSecondary {
-    color: var(--input-secondary);
+    color: var(--input-alt);
     background: var(--input-bg);
 }
