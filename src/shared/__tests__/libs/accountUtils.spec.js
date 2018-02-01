@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getPendingTxTailsHashes, markTransfersConfirmed } from '../../libs/accountUtils';
+import { getPendingTxTailsHashes, markTransfersConfirmed, accumulateBalance } from '../../libs/accountUtils';
 
 describe('libs: accountUtils', () => {
     describe('#getPendingTxTailsHashes', () => {
@@ -67,6 +67,30 @@ describe('libs: accountUtils', () => {
 
                     expect(markTransfersConfirmed(transfers, tailsHashes)).to.eql(result);
                 });
+            });
+        });
+    });
+
+    describe('#accumulateBalance', () => {
+        describe('when argument is not an array', () => {
+            it('should return 0', () => {
+                const args = [null, undefined, '', {}, 0, 0.5];
+
+                args.forEach(arg => expect(accumulateBalance(arg)).to.equal(0));
+            });
+        });
+
+        describe('when argument is an array', () => {
+            it('should return 0 if array is empty', () => {
+                expect(accumulateBalance([])).to.equal(0);
+            });
+
+            it('should only calculates on numbers inside array', () => {
+                expect(accumulateBalance(['foo', 'baz'])).to.equal(0);
+            });
+
+            it('should return total after summing up', () => {
+                expect(accumulateBalance([0, 4, 10])).to.equal(14);
             });
         });
     });
