@@ -14,19 +14,19 @@ const Colors = () => {
                 return (
                     <div key={key} className={css.color}>
                         <strong className={css[color]}>{color}</strong>
-                        <strong className={classNames(css[color], css.hover)}>{color} hover</strong>
+                        <strong className={classNames(css[color], css.hover)}>{color}.hover</strong>
                     </div>
                 );
             })}
             <div className={css.color}>
-                <strong className={css.bg}>body-bg</strong>
-                <strong className={css.bgSecondary}>body-secondary</strong>
+                <strong className={css.bg}>body.bg</strong>
+                <strong className={css.bgSecondary}>body.alt</strong>
                 <strong className={css.bar}>bar</strong>
             </div>
             <div className={css.color}>
                 <strong className={css.label}>label</strong>
-                <strong className={css.input}>Input</strong>
-                <strong className={css.inputSecondary}>Input secondary</strong>
+                <strong className={css.input}>input</strong>
+                <strong className={css.inputSecondary}>input.alt</strong>
             </div>
             <div className={css.color}>
                 <strong className={css.chart}>Chart line</strong>

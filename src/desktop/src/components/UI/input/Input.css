@@ -73,8 +73,7 @@
             right: 0px;
             cursor: pointer;
             user-select: none;
-            color: var(--input-secondary);
-            opacity: 0.5;
+            color: var(--input-alt);
             &:before {
                 content: '';
                 position: absolute;
@@ -83,7 +82,7 @@
                 top: 50%;
                 left: -2px;
                 border-radius: 4px;
-                background: var(--input-secondary);
+                background: var(--input-alt);
                 transform: translate(0, -50%);
             }
             > img {
@@ -91,16 +90,12 @@
             }
             > span {
                 font-size: 11px;
-                > img {
-                    width: 7px;
+                > span {
                     margin-left: 4px;
                 }
             }
             &:hover {
-                opacity: 1;
-                &:before {
-                    opacity: 0.5;
-                }
+                color: var(--input);
             }
         }
         a + input {
@@ -113,7 +108,7 @@
     display: block;
     float: right;
     font-size: 11px;
-    color: var(--body);
+    color: var(--input);
     line-height: 14px;
     padding: 4px 8px 2px;
     border-radius: 0 0 4px 4px;
@@ -128,28 +123,37 @@
     display: block;
     float: right;
     margin: 12px 0 0 auto;
-    font-size: 11px;
+    font-size: 10px;
     line-height: 14px;
-    padding: 0 21px 2px 0;
+    padding: 0 38px 2px 0;
     position: relative;
+    text-transform: uppercase;
     cursor: pointer;
-    opacity: 0.4;
     &:after {
         content: '';
-        width: 14px;
-        height: 14px;
+        width: 28px;
+        height: 15px;
         position: absolute;
         top: 0px;
         right: 1px;
-        background: var(--body-secondary);
-        border: 1px solid var(--input-border);
-        border-radius: 14px;
+        border-radius: 15px;
+        border: 1px solid var(--body);
     }
-    &:hover {
-        opacity: 1;
+    &:before {
+        content: '';
+        width: 11px;
+        height: 11px;
+        position: absolute;
+        top: 2px;
+        right: 16px;
+        border-radius: 9px;
+        border: 1px solid var(--body);
+        transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
     }
-    &.on:after {
-        background: var(--positive);
+    &.on:before {
+        border-color: var(--primary);
+        background: var(--primary);
+        right: 4px;
     }
 }
 
@@ -160,7 +164,7 @@
         width: 1px;
         height: 16px;
         border-radius: 2px;
-        background: var(--input-secondary);
+        background: var(--input);
         transform: rotate(45deg);
     }
 }
@@ -180,14 +184,10 @@
         height: 0;
         border-style: solid;
         border-width: 6px 4px 0 4px;
-        border-color: var(--input-secondary) transparent transparent transparent;
+        border-color: var(--input) transparent transparent transparent;
         position: absolute;
         right: 12px;
         top: calc(50% - 2px);
-        opacity: 0.6;
-    }
-    &:hover:after {
-        opacity: 1;
     }
 }
 

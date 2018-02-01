@@ -33,13 +33,13 @@
 
     &--info {
         composes: notification;
-        background: var(--positive-bg);
+        background: var(--positive);
         color: var(--positive-body);
     }
 
     &--error {
         composes: notification;
-        background: var(--negative-bg);
+        background: var(--negative);
         color: var(--negative-body);
     }
 
@@ -51,13 +51,13 @@
 
     &--extra {
         composes: notification;
-        background: var(--extra-bg);
+        background: var(--extra);
         color: var(--extra-body);
     }
 
     &--warning {
         composes: notification;
-        background: var(--negative-bg);
+        background: var(--negative);
         color: var(--negative-body);
     }
 }
