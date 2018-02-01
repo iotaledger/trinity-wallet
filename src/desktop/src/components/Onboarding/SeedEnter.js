@@ -30,13 +30,13 @@ class SeedEnter extends React.PureComponent {
         seedValid: this.props.selectedSeed.seed,
     };
 
-    onChange = value => {
+    onChange = (value) => {
         this.setState(() => ({
             seed: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase(),
         }));
     };
 
-    onSubmit = e => {
+    onSubmit = (e) => {
         e.preventDefault();
         const { addAndSelectSeed, clearSeeds, history, showError, t } = this.props;
         const { seed, seedValid } = this.state;
@@ -56,11 +56,11 @@ class SeedEnter extends React.PureComponent {
         history.push('/seed/name');
     };
 
-    getPaddedSeed = seed => {
+    getPaddedSeed = (seed) => {
         return `${seed}${'9'.repeat(MAX_SEED_LENGTH - seed.length < 0 ? 0 : MAX_SEED_LENGTH - seed.length)}`;
     };
 
-    getPaddedSeed = seed => {
+    getPaddedSeed = (seed) => {
         return `${seed}${'9'.repeat(MAX_SEED_LENGTH - seed.length < 0 ? 0 : MAX_SEED_LENGTH - seed.length)}`;
     };
 
@@ -94,10 +94,14 @@ class SeedEnter extends React.PureComponent {
                     </Infobox>
                 </Content>
                 <Footer>
-                    <Button to={seedValid ? '/seed/save/manual' : '/wallet-setup'} variant="secondary">
+                    <Button
+                        to={seedValid ? '/seed/save/manual' : '/wallet-setup'}
+                        className="outline"
+                        variant="highlight"
+                    >
                         {t('global:back')}
                     </Button>
-                    <Button type="submit" variant="success">
+                    <Button type="submit" className="outline" variant="primary">
                         {t('global:next')}
                     </Button>
                 </Footer>
@@ -106,7 +110,7 @@ class SeedEnter extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     selectedSeed: getSelectedSeed(state),
 });
 

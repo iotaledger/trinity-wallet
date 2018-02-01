@@ -1,27 +1,9 @@
-@import-normalize;
-
-@custom-media --xs (min-width: 0px); /* default */
-@custom-media --sm (max-width: 480px);
-@custom-media --md (max-width: 768px);
-@custom-media --lg (max-width: 1024px);
-@custom-media --xl (max-width: 1440px);
-
 :root {
-    --color-body: #ffffff;
-    --color-highlight: #f7d002;
-
-    --color-bg: #16373e;
-    --color-bg-secondary: #1a1b1b;
-
-    --color-valid: #009a33;
-    --color-extra: #8bd4ff;
-    --color-warning: var(--color-highlight);
-    --color-error: #f75602;
-
-    --font-size-default: 14px;
-    --font-size-small: 12px;
-    --font-size-large: 16px;
-    --font-size-title: 20px;
+    --font-size-xl: 26px;
+    --font-size-l: 21px;
+    --font-size-m: 14px;
+    --font-size-s: 12px;
+    --font-size-xs: 11px;
 
     --z-index-modal: 2048;
     --z-index-overlay: 2049;
@@ -30,11 +12,21 @@
 }
 
 * {
+    user-select: none;
+    cursor: default;
     &,
     &:before,
     &:after {
         box-sizing: border-box;
     }
+}
+a,
+a * {
+    cursor: pointer;
+}
+input,
+textarea {
+    cursor: text;
 }
 
 @font-face {
@@ -58,24 +50,39 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
 }
 
 body {
-    background: var(--color-bg);
-    color: var(--color-body);
+    background: var(--body-bg);
+    color: var(--body);
     font-family: 'Lato';
     font-weight: 200;
-    font-size: var(--font-size-default);
+    font-size: var(--font-size-m);
     line-height: 1.5;
+    overflow: hidden;
 }
 
+h1,
+h2,
+p {
+    font-weight: 200;
+    line-height: 1.6em;
+    margin: 0 0 1em;
+    max-width: 560px;
+}
 h1 {
-    font-size: var(--font-size-title);
+    font-size: var(--font-size-xl);
+}
+h2 {
+    font-size: var(--font-size-l);
+}
+
+p {
+    font-size: var(--font-size-m);
 }
 
 label {
-    color: var(--color-label);
+    color: var(--label);
     font-size: var(--font-size-small);
     display: block;
     margin-bottom: 8px;

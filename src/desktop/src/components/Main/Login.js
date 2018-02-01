@@ -14,7 +14,6 @@ import PasswordInput from 'components/UI/input/Password';
 import Button from 'components/UI/Button';
 import Loading from 'components/UI/Loading';
 import css from 'components/Layout/Onboarding.css';
-import { setTimeout } from 'timers';
 
 class Login extends React.Component {
     static propTypes = {
@@ -44,7 +43,18 @@ class Login extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
+        const { tempAccount } = this.props;
+
+        const ready = !tempAccount.ready && newProps.tempAccount.ready;
+        const hasError =
+            !tempAccount.hasErrorFetchingAccountInfoOnLogin && newProps.tempAccount.hasErrorFetchingAccountInfoOnLogin;
+
+        if (hasError) {
+            this.setState({
+                loading: false,
+            });
+        }
+
         if (ready) {
             this.setState({
                 loading: false,
@@ -95,17 +105,22 @@ class Login extends React.Component {
                 loading: true,
             });
 
-            //TODO: Fix iota.api call freeze. Do API calls in a worker/electron main?
-            setTimeout(() => this.setupAccount(seed, seeds.selectedSeedIndex), 2000);
+            this.setupAccount(seed, seeds.selectedSeedIndex);
         }
     };
 
     render() {
-        const { t } = this.props;
+        const { t, account } = this.props;
         const { loading } = this.state;
 
         if (loading) {
-            return <Loading loop />;
+            return (
+                <Loading
+                    loop
+                    title={account.firstUse ? t('loading:thisMayTake') : null}
+                    subtitle={account.firstUse ? t('loading:loadingFirstTime') : null}
+                />
+            );
         }
 
         return (
@@ -120,10 +135,12 @@ class Login extends React.Component {
                         />
                     </Content>
                     <Footer>
-                        <Button to="/seedlogin" variant="secondary">
+                        <Button to="/seedlogin" className="outline" variant="highlight">
                             {t('login:useSeed')}
                         </Button>
-                        <Button variant="success">{t('login:login')}</Button>
+                        <Button className="outline" variant="primary">
+                            {t('login:login')}
+                        </Button>
                     </Footer>
                 </Template>
             </div>

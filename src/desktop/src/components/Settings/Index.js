@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { showNotification } from 'actions/notifications';
@@ -8,7 +8,9 @@ import Template, { Content } from 'components/Main/Template';
 import Confirm from 'components/UI/Confirm';
 import Modal from 'components/UI/Modal';
 import Button from 'components/UI/Button';
+
 import Language from 'components/Settings/Language';
+import Theme from 'components/Settings/Theme';
 
 import css from 'components/Settings/Index.css';
 
@@ -57,24 +59,25 @@ class Settings extends React.PureComponent {
     };
 
     renderSettings = () => {
-        const { t, location, tempAccount } = this.props;
+        const { t, location, tempAccount, history } = this.props;
         const { modalLogout } = this.state;
         return (
             <Content>
                 <section>
                     <nav className={css.nav}>
-                        <a onClick={this.featureUnavailable}>
-                            <img src={icoMode} /> {t('settings:mode')}
-                        </a>
-                        <a onClick={this.featureUnavailable}>
-                            <img src={icoTheme} /> {t('settings:theme')}
-                        </a>
-                        <a onClick={this.featureUnavailable}>
-                            <img src={icoCurrency} /> {t('settings:currency')}
-                        </a>
                         <NavLink to="/settings/language">
                             <img src={icoLanguage} /> {t('settings:language')}
                         </NavLink>
+                        <NavLink to="/settings/theme">
+                            <img src={icoTheme} /> {t('settings:theme')}
+                        </NavLink>
+                        <a onClick={this.featureUnavailable}>
+                            <img src={icoMode} /> {t('settings:mode')}
+                        </a>
+
+                        <a onClick={this.featureUnavailable}>
+                            <img src={icoCurrency} /> {t('settings:currency')}
+                        </a>
                         {tempAccount && tempAccount.ready ? (
                             <div>
                                 <hr />
@@ -95,8 +98,11 @@ class Settings extends React.PureComponent {
                             </div>
                         ) : null}
                     </nav>
+                    {!this.props.tempAccount || !this.props.tempAccount.ready ? (
+                        <Button onClick={() => history.push('/')}>{t('global:back')}</Button>
+                    ) : null}
                 </section>
-                <section>
+                <section className={css.content}>
                     <Confirm
                         isOpen={modalLogout}
                         translations={{
@@ -109,7 +115,8 @@ class Settings extends React.PureComponent {
                     />
                     <Switch location={location}>
                         <Route path="/settings/language" component={Language} />
-                        <Route exact path="/settings/" component={Language} />
+                        <Route path="/settings/theme" component={Theme} />
+                        <Redirect from="/settings" to="/settings/language" />
                     </Switch>
                 </section>
             </Content>
@@ -117,14 +124,13 @@ class Settings extends React.PureComponent {
     };
 
     render() {
-        const { t, history } = this.props;
+        const { history } = this.props;
 
         return this.props.tempAccount && this.props.tempAccount.ready ? (
             <Template>{this.renderSettings()}</Template>
         ) : (
-            <Modal isOpen isWide hideCloseButton>
+            <Modal isOpen onClose={() => history.push('/')}>
                 <div className={css.public}>{this.renderSettings()}</div>
-                <Button onClick={() => history.push('/')}>{t('global:back')}</Button>
             </Modal>
         );
     }
