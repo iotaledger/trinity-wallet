@@ -203,7 +203,7 @@
         "invalidAmountExplanation": "取引金額の数値を入力して下さい。",
         "maximumSelected": "設定した最大額",
         "iotaUnits": "IOTA（単位）",
-        "sendMax": "SEND MAX"
+        "sendMax": "全額送金"
     },
     "setPassword": {
         "passwordTooShort": "パスワードが短すぎます。",
