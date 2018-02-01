@@ -170,10 +170,10 @@
     "saveYourSeed": {
         "seedCleared": "Đã xoá từ khoá",
         "seedClearedExplanation": "Từ khoá đã được xoá khỏi bộ nhớ tạm để bảo mật.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>Bạn phải lưu từ khoá với </0><1>ít nhất một</1><2>trong những sự lựa chọn dưới đây.</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Từ khoá không đúng",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "thisIsACheck": "This is a check to make sure you saved your seed.",
         "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
