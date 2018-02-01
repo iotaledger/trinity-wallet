@@ -313,8 +313,9 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
  *     transfers: [],
  *     balance: 0,
  *     pendingTxTailsHashes: {},
- *     unconfirmedBundleTails: {} // optional,
- *     accountName; 'foo' // optional
+ *     inputs: [], // (optional)
+ *     unconfirmedBundleTails: {} // (optional),
+ *     accountName; 'foo' // (optional)
  *   ]
  *
  *   @returns {Promise} - Resolves account argument by assigning unspentAddressesHashes (Transaction hashes associated with unspent addresses)
@@ -390,6 +391,7 @@ export const getAccountData = (seed, accountName) => {
     const data = {
         addresses: [],
         transfers: [],
+        inputs: [],
         balance: 0,
     };
 
@@ -472,7 +474,19 @@ export const getAccountData = (seed, accountName) => {
             return iota.api.getBalancesAsync(data.addresses, DEFAULT_BALANCES_THRESHOLD);
         })
         .then(balances => {
-            data.balance = accumulateBalance(map(balances.balances, Number));
+            each(balances.balances, (balance, idx) => {
+                const balanceAsNumber = parseInt(balance);
+                data.balance += balanceAsNumber;
+
+                if (balanceAsNumber > 0) {
+                    data.inputs.push({
+                        address: data.addresses[idx],
+                        keyIndex: idx,
+                        security: 2,
+                        balance: balanceAsNumber,
+                    });
+                }
+            });
 
             return organizeAccountInfo(accountName, data);
         });
@@ -480,10 +494,14 @@ export const getAccountData = (seed, accountName) => {
 
 export const hasNewTransfers = (existingHashes, newHashes) => size(newHashes) > size(existingHashes);
 
+export const getConfirmedTransacionHashes = pendingTxTailHashes => {
+    return getHashesWithPersistence(pendingTxTailHashes).then(({ states, hashes }) =>
+        filter(hashes, (hash, idx) => states[idx]),
+    );
+};
+
 export const syncTransfers = (diff, existingAccountState) => {
     const existingAccountStateCopy = cloneDeep(existingAccountState);
-
-    let { transfers, pendingTxTailsHashes } = existingAccountStateCopy;
 
     return iota.api
         .getTransactionsObjectsAsync(diff)
@@ -495,28 +513,9 @@ export const syncTransfers = (diff, existingAccountState) => {
         })
         .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
         .then(bundles => {
-            const updatedTransfers = [...transfers, ...bundles];
+            const updatedTransfers = [...existingAccountStateCopy.transfers, ...bundles];
 
-            transfers = formatTransfers(updatedTransfers, keys(existingAccountStateCopy.addresses));
-
-            // Update pending transfers copy with new transfers
-            pendingTxTailsHashes = union(pendingTxTailsHashes, getPendingTxTailsHashes(bundles));
-
-            return getHashesWithPersistence(pendingTxTailsHashes);
-        })
-        .then(({ states, hashes }) => {
-            const confirmedHashes = filter(hashes, (hash, idx) => states[idx]);
-
-            if (isEmpty(confirmedHashes)) {
-                return { transfers, pendingTxTailsHashes };
-            }
-
-            const alreadyConfirmed = tx => !includes(confirmedHashes, tx);
-
-            return {
-                transfers: markTransfersConfirmed(transfers, confirmedHashes),
-                pendingTxTailsHashes: filter(pendingTxTailsHashes, alreadyConfirmed),
-            };
+            return formatTransfers(updatedTransfers, keys(existingAccountStateCopy.addresses));
         });
 };
 
@@ -553,23 +552,30 @@ export const syncAccount = (seed, existingAccountState) => {
                 return syncTransfers(diff, thisStateCopy);
             }
 
-            return Promise.resolve({
-                transfers: thisStateCopy.transfers,
-                pendingTxTailsHashes: thisStateCopy.pendingTxTailsHashes,
-            });
+            return Promise.resolve(thisStateCopy.transfers);
         })
-        .then(({ transfers, pendingTxTailsHashes }) => {
-            thisStateCopy.transfers = transfers;
-            thisStateCopy.pendingTxTailsHashes = pendingTxTailsHashes;
-            thisStateCopy.addresses = markAddressSpend(transfers, thisStateCopy.addresses);
+        .then(updatedTransfers => {
+            thisStateCopy.transfers = updatedTransfers;
+            thisStateCopy.addresses = markAddressSpend(thisStateCopy.transfers, thisStateCopy.addresses);
 
-            return thisStateCopy;
+            return getConfirmedTransacionHashes(thisStateCopy.pendingTxTailsHashes);
+        })
+        .then(confirmedTransactionHashes => {
+            if (!isEmpty(confirmedTransactionHashes)) {
+                const alreadyConfirmed = tx => !includes(confirmedTransactionHashes, tx);
+
+                thisStateCopy.transfers = markTransfersConfirmed(thisStateCopy.transfers, confirmedTransactionHashes);
+                thisStateCopy.pendingTxTailsHashes = filter(thisStateCopy.pendingTxTailsHashes, alreadyConfirmed);
+
+                return thisStateCopy;
+            }
         });
 };
 
 export const updateAccount = (name, newTransfer, existingAccountState, isValueTransfer) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
+    console.log('This state copy', thisStateCopy);
     // Assign persistence and transferValue props to the newly sent transfer
     const newTransferBundleWithPersistenceAndTransferValue = map(newTransfer, bundle => ({
         ...bundle,
@@ -597,5 +603,5 @@ export const updateAccount = (name, newTransfer, existingAccountState, isValueTr
     // Append new tail transaction hash to pendingTxTailHashes
     thisStateCopy.pendingTxTailsHashes = [...thisStateCopy.pendingTxTailsHashes, ...map(tailTxs, t => t.hash)];
 
-    return mapUnspentAddressesHashesToAccount(getUnspentAddresses(thisStateCopy.addresses));
+    return mapUnspentAddressesHashesToAccount(thisStateCopy);
 };
