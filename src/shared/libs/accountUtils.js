@@ -15,7 +15,6 @@ import includes from 'lodash/includes';
 import keys from 'lodash/keys';
 import isEmpty from 'lodash/isEmpty';
 import size from 'lodash/size';
-import union from 'lodash/union';
 import { iota } from '../libs/iota';
 import { getBundleTailsForSentTransfers } from './promoter';
 import { getAllAddresses } from './addresses';
@@ -237,8 +236,6 @@ export const mapBalancesToAddresses = (addressData, balances) => {
 };
 
 export const getLatestAddresses = (seed, index) => {
-    console.log('Seed', seed);
-    console.log('Index', index);
     return new Promise((resolve, reject) => {
         iota.api.getInputs(seed, { start: index }, (err, data) => {
             if (err) {
@@ -253,8 +250,6 @@ export const getLatestAddresses = (seed, index) => {
                     {},
                 );
 
-                console.log('Data', data);
-                console.log('addresses', addresses);
                 resolve(addresses);
             }
         });
@@ -494,7 +489,7 @@ export const getAccountData = (seed, accountName) => {
 
 export const hasNewTransfers = (existingHashes, newHashes) => size(newHashes) > size(existingHashes);
 
-export const getConfirmedTransacionHashes = pendingTxTailHashes => {
+export const getConfirmedTransactionHashes = pendingTxTailHashes => {
     return getHashesWithPersistence(pendingTxTailHashes).then(({ states, hashes }) =>
         filter(hashes, (hash, idx) => states[idx]),
     );
@@ -526,29 +521,20 @@ export const syncAccount = (seed, existingAccountState) => {
 
     return getLatestAddresses(seed, addressSearchIndex)
         .then(newAddressesObjects => {
-            console.log('Latest addresses', newAddressesObjects);
             thisStateCopy.addresses = { ...thisStateCopy.addresses, ...newAddressesObjects };
 
             return iota.api.getBalancesAsync(keys(thisStateCopy.addresses), DEFAULT_BALANCES_THRESHOLD);
         })
         .then(({ balances }) => {
-            console.log('Latest Balances', balances);
-
             const newBalances = map(balances, Number);
-            each(newBalances, (balance, idx) => {
-                console.log(keys(thisStateCopy.addresses)[idx], balance);
-            });
-            console.log('Before mapping', thisStateCopy.addresses);
 
             thisStateCopy.addresses = mapBalancesToAddresses(thisStateCopy.addresses, newBalances);
 
-            console.log('After mapping', thisStateCopy.addresses);
             thisStateCopy.balance = accumulateBalance(newBalances);
 
             return mapUnspentAddressesHashesToAccount(thisStateCopy);
         })
         .then(newStateCopy => {
-            console.log('New account data with unspent addresses hashes', newStateCopy);
             if (hasNewTransfers(thisStateCopy.unspentAddressesHashes, newStateCopy.unspentAddressesHashes)) {
                 const diff = difference(newStateCopy.unspentAddressesHashes, thisStateCopy.unspentAddressesHashes);
 
@@ -564,7 +550,10 @@ export const syncAccount = (seed, existingAccountState) => {
             thisStateCopy.transfers = updatedTransfers;
             thisStateCopy.addresses = markAddressSpend(thisStateCopy.transfers, thisStateCopy.addresses);
 
-            return getConfirmedTransacionHashes(thisStateCopy.pendingTxTailsHashes);
+            // Set new pendingTxTailHashes
+            thisStateCopy.pendingTxTailsHashes = getPendingTxTailsHashes(thisStateCopy.transfers);
+
+            return getConfirmedTransactionHashes(thisStateCopy.pendingTxTailsHashes);
         })
         .then(confirmedTransactionHashes => {
             if (!isEmpty(confirmedTransactionHashes)) {
@@ -583,7 +572,6 @@ export const syncAccount = (seed, existingAccountState) => {
 export const updateAccount = (name, newTransfer, existingAccountState, isValueTransfer) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
-    console.log('This state copy', thisStateCopy);
     // Assign persistence and transferValue props to the newly sent transfer
     const newTransferBundleWithPersistenceAndTransferValue = map(newTransfer, bundle => ({
         ...bundle,
