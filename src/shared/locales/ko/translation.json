@@ -64,7 +64,7 @@
         "receiving": "Receiving",
         "confirmed": "확인됨",
         "pending": "보류",
-        "bundleHash": "Bundle Hash",
+        "bundleHash": "번들 해시",
         "addresses": "주소",
         "pressBackAgain": "Press back again to close the app",
         "autoreattaching": "Autoreattaching to Tangle",
@@ -341,7 +341,7 @@
         "hideSeed": "HIDE SEED"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
+        "alreadyHave": "이미 시드를 가지고 있습니다",
         "reenter": "You will now be asked to re-enter your seed.",
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
