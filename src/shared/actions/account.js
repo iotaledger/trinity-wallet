@@ -1,14 +1,5 @@
-import assign from 'lodash/assign';
-import includes from 'lodash/includes';
-import map from 'lodash/map';
 import takeRight from 'lodash/takeRight';
-import get from 'lodash/get';
-import filter from 'lodash/filter';
-import size from 'lodash/size';
-import difference from 'lodash/difference';
-import isEmpty from 'lodash/isEmpty';
-import union from 'lodash/union';
-import merge from 'lodash/merge';
+
 import { iota } from '../libs/iota';
 import {
     getSelectedAccount,
@@ -16,25 +7,13 @@ import {
     getPendingTxTailsHashesForSelectedAccount,
 } from '../selectors/account';
 import {
-    formatTransfers,
-    formatFullAddressData,
-    calculateBalance,
-    getUnspentAddresses,
-    getTotalBalanceWithLatestAddressData,
-    getLatestAddresses,
-    getTransactionHashes,
-    getTransactionsObjects,
-    getHashesWithPersistence,
-    getBundlesWithPersistence,
-    getConfirmedTxTailsHashes,
-    markTransfersConfirmed,
-    markAddressSpend,
-    getPendingTxTailsHashes,
+    syncAccount,
     getAccountData,
+    mapUnspentAddressesHashesToAccount,
+    updateAccount,
     formatAddresses,
 } from '../libs/accountUtils';
 import {
-    setReady,
     clearTempData,
     updateTransitionBalance,
     switchBalanceCheckToggle,
@@ -220,19 +199,6 @@ export const updateAccountInfoAfterSpending = payload => ({
     payload,
 });
 
-export const getAccountInfoNewSeedAsync = (seed, seedName) => {
-    return async dispatch => {
-        const address = await iota.api.getNewAddressAsync(seed);
-        //console.log('ADDRESS:', address);
-        const accountData = await iota.api.getAccountDataAsync(seed);
-        //console.log('ACCOUNT', accountData);
-        const addressData = formatFullAddressData(accountData);
-        const balance = calculateBalance(addressData);
-        const transfers = formatTransfers(accountData.transfers, accountData.addresses);
-        dispatch(setReady());
-    };
-};
-
 export const setPendingTransactionTailsHashesForAccount = payload => ({
     type: ActionTypes.SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT,
     payload,
@@ -257,95 +223,48 @@ export const fetchFullAccountInfoForFirstUse = (
     dispatch(fullAccountInfoForFirstUseFetchRequest());
     getAccountData(seed, accountName)
         .then(data => {
-            dispatch(clearTempData()); // Clean up partial state for reducer anyways.
-
-            const unspentAddresses = getUnspentAddresses(data.addresses);
-            if (!isEmpty(unspentAddresses)) {
-                iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
-                    if (err) {
-                        onError(err);
-                    } else {
-                        storeInKeychainPromise(password, seed, accountName)
-                            .then(() => {
-                                const payloadWithHashes = assign({}, data, { hashes });
-                                dispatch(fullAccountInfoForFirstUseFetchSuccess(payloadWithHashes));
-                            })
-                            .catch(err => {
-                                onError(err);
-                            });
-                    }
-                });
-            } else {
-                storeInKeychainPromise(password, seed, accountName)
-                    .then(() => {
-                        dispatch(fullAccountInfoForFirstUseFetchSuccess(assign({}, data, { hashes: [] })));
-                    })
-                    .catch(err => {
-                        onError(err);
-                    });
-            }
+            dispatch(clearTempData()); // Clean up partial state for reducer.
+            return mapUnspentAddressesHashesToAccount(data);
+        })
+        .then(dataWithUnspentAddressesHashes => {
+            storeInKeychainPromise(password, seed, accountName)
+                .then(() => dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithUnspentAddressesHashes)))
+                .catch(err => onError(err));
         })
         .catch(err => onError(err));
 };
 
 export const getFullAccountInfo = (seed, accountName, navigator = null) => {
     return dispatch => {
-        const onError = err => {
-            if (navigator) {
-                navigator.pop({ animated: false });
-            }
-            dispatch(generateAccountInfoErrorAlert(err));
-            dispatch(fullAccountInfoFetchError());
-        };
-
         dispatch(fullAccountInfoFetchRequest());
         getAccountData(seed, accountName)
-            .then(data => {
-                const unspentAddresses = getUnspentAddresses(data.addresses);
-
-                if (!isEmpty(unspentAddresses)) {
-                    iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
-                        if (err) {
-                            onError(err);
-                        }
-                        const payloadWithHashes = assign({}, data, { hashes });
-                        dispatch(fullAccountInfoFetchSuccess(payloadWithHashes));
-                    });
-                } else {
-                    dispatch(fullAccountInfoFetchSuccess(assign({}, data, { hashes: [] })));
+            .then(data => mapUnspentAddressesHashesToAccount(data))
+            .then(dataWithUnspentAddressesHashes =>
+                dispatch(fullAccountInfoFetchSuccess(dataWithUnspentAddressesHashes)),
+            )
+            .catch(err => {
+                if (navigator) {
+                    navigator.pop({ animated: false });
                 }
-            })
-            .catch(err => onError(err));
+                dispatch(generateAccountInfoErrorAlert(err));
+                dispatch(fullAccountInfoFetchError());
+            });
     };
 };
 
 export const manuallySyncAccount = (seed, accountName) => {
     return dispatch => {
-        const onError = err => {
-            dispatch(generateSyncingErrorAlert(err));
-            return dispatch(manualSyncError());
-        };
-
         dispatch(manualSyncRequest());
         getAccountData(seed, accountName)
-            .then(data => {
-                const unspentAddresses = getUnspentAddresses(data.addresses);
-                if (!isEmpty(unspentAddresses)) {
-                    iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
-                        if (err) {
-                            onError(err);
-                        } else {
-                            dispatch(generateSyncingCompleteAlert());
-                            const payloadWithHashes = assign({}, data, { hashes });
-                            dispatch(manualSyncSuccess(payloadWithHashes));
-                        }
-                    });
-                } else {
-                    dispatch(generateSyncingCompleteAlert());
-                    dispatch(manualSyncSuccess(assign({}, data, { hashes: [] })));
-                }
+            .then(data => mapUnspentAddressesHashesToAccount(data))
+            .then(dataWithUnspentAddressesHashes => {
+                dispatch(generateSyncingCompleteAlert());
+                dispatch(manualSyncSuccess(dataWithUnspentAddressesHashes));
             })
-            .catch(err => onError(err));
+            .catch(err => {
+                dispatch(generateSyncingErrorAlert(err));
+                dispatch(manualSyncError());
+            });
     };
 };
 
@@ -371,18 +290,16 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
         dispatch(accountInfoFetchRequest());
 
         const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-
         const existingHashes = getExistingUnspentAddressesHashes(
             accountName,
             getState().account.unspentAddressesHashes,
         );
-
         const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
             accountName,
             getState().account.pendingTxTailsHashes,
         );
 
-        let payload = {
+        const existingAccountData = {
             accountName,
             balance: selectedAccount.balance,
             addresses: selectedAccount.addresses,
@@ -391,95 +308,15 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             transfers: selectedAccount.transfers,
         };
 
-        const checkConfirmationForPendingTxsAndLatestAddresses = () => {
-            const addressSearchIndex = Object.keys(payload.addresses).length
-                ? Object.keys(payload.addresses).length - 1
-                : 0;
-            if (isEmpty(pendingTxTailsHashes)) {
-                return Promise.resolve(getLatestAddresses(seed, addressSearchIndex));
-            }
-
-            return Promise.resolve(getHashesWithPersistence(pendingTxTailsHashes))
-                .then(({ states, hashes }) => {
-                    return getConfirmedTxTailsHashes(states, hashes);
-                })
-                .then(confirmedHashes => {
-                    if (!isEmpty(confirmedHashes)) {
-                        payload = assign({}, payload, {
-                            transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
-                            pendingTxTailsHashes: filter(
-                                payload.pendingTxTailsHashes,
-                                tx => !includes(confirmedHashes, tx),
-                            ),
-                        });
-                    }
-
-                    return Promise.resolve(getLatestAddresses(seed, addressSearchIndex));
-                });
-        };
-
-        return checkConfirmationForPendingTxsAndLatestAddresses()
-            .then(addressData => {
-                payload = merge({}, payload, { addresses: addressData });
-
-                return getTotalBalanceWithLatestAddressData(payload.addresses);
-            })
-            .then(({ balance, addressData }) => {
-                payload = merge({}, payload, { balance, addresses: addressData });
-
-                const unspentAddresses = getUnspentAddresses(payload.addresses);
-
-                if (isEmpty(unspentAddresses)) {
-                    throw new Error('intentionally break chain');
-                }
-
-                return getTransactionHashes(unspentAddresses);
-            })
-            .then(latestHashes => {
-                const hasNewHashes = size(latestHashes) > size(existingHashes);
-
-                if (hasNewHashes) {
-                    const diff = difference(latestHashes, existingHashes);
-
-                    payload = assign({}, payload, {
-                        unspentAddressesHashes: union(existingHashes, latestHashes),
-                    });
-                    return getTransactionsObjects(diff);
-                }
-
-                throw new Error('intentionally break chain');
-            })
-            .then(txs => {
-                const tailTxs = filter(txs, t => t.currentIndex === 0);
-
-                return getHashesWithPersistence(map(tailTxs, t => t.hash));
-            })
-            .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
-            .then(bundles => {
-                const updatedTransfers = [...payload.transfers, ...bundles];
-                const updatedTransfersWithFormatting = formatTransfers(
-                    updatedTransfers,
-                    Object.keys(payload.addresses),
-                );
-
-                payload = assign({}, payload, {
-                    transfers: updatedTransfersWithFormatting,
-                    pendingTxTailsHashes: union(payload.pendingTxTailsHashes, getPendingTxTailsHashes(bundles)), // Update pending transfers copy with new transfers.
-                });
-
-                return dispatch(accountInfoFetchSuccess(payload));
-            })
+        return syncAccount(seed, existingAccountData)
+            .then(newAccountData => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch(err => {
-                if (err && err.message === 'intentionally break chain') {
-                    dispatch(accountInfoFetchSuccess(payload));
-                } else {
-                    if (navigator) {
-                        navigator.pop({ animated: false });
-                    }
-
-                    dispatch(accountInfoFetchError());
-                    dispatch(generateAccountInfoErrorAlert(err));
+                if (navigator) {
+                    navigator.pop({ animated: false });
                 }
+
+                dispatch(accountInfoFetchError());
+                dispatch(generateAccountInfoErrorAlert(err));
             });
     };
 };
@@ -492,8 +329,6 @@ export const deleteAccount = accountName => dispatch => {
 // Aim to update local transfers, addresses, hashes in store after a new transaction is made.
 export const updateAccountInfo = (accountName, newTransferBundle, value) => (dispatch, getState) => {
     const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-    const existingAddressData = selectedAccount.addresses;
-    const existingTransfers = selectedAccount.transfers;
     const existingUnspentAddressesHashes = getExistingUnspentAddressesHashes(
         accountName,
         getState().account.unspentAddressesHashes,
@@ -504,54 +339,23 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
     );
     const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
 
-    const newTransferBundleWithPersistenceAndTransferValue = map(newTransferBundle, bundle => ({
-        ...bundle,
-        ...{ transferValue: -bundle.value, persistence: false },
-    }));
-    const updatedTransfers = [...[newTransferBundleWithPersistenceAndTransferValue], ...existingTransfers];
-    const updatedAddressData = markAddressSpend([newTransferBundle], existingAddressData);
-    const updatedUnspentAddresses = getUnspentAddresses(updatedAddressData);
-    const bundle = get(newTransferBundle, `[${0}].bundle`);
+    const existingAccountData = {
+        ...selectedAccount,
+        pendingTxTailsHashes,
+        unspentAddressesHashes: existingUnspentAddressesHashes,
+        unconfirmedBundleTails: existingUnconfirmedBundleTails,
+    };
 
-    // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
-    // Also check if it was a value transfer
-    const tail = filter(newTransferBundle, tx => tx.currentIndex === 0);
-    const updatedUnconfirmedBundleTails = value
-        ? {
-              [bundle]: map(tail, t => ({ ...t, account: accountName })), // Assign account name to each tx
-          }
-        : existingUnconfirmedBundleTails;
-    const updatedPendingTxTailsHashes = [...pendingTxTailsHashes, ...map(tail, t => t.hash)];
+    return updateAccount(accountName, newTransferBundle, existingAccountData, value > 0)
+        .then(newAccountState => dispatch(updateAccountInfoAfterSpending({ ...newAccountState, ...{ accountName } })))
+        .catch(err => {
+            // Most probable reason for error here would be some network communication error
+            // for finding transactions associated with new unspent addresses.
+            // Account state update should always be atomic.
+            // TODO: Alert user to manually sync account at this point.
 
-    if (!isEmpty(updatedUnspentAddresses)) {
-        iota.api.findTransactions({ addresses: updatedUnspentAddresses }, (err, hashes) => {
-            if (err) {
-                console.error(err);
-            } else {
-                dispatch(
-                    updateAccountInfoAfterSpending({
-                        accountName,
-                        transfers: updatedTransfers,
-                        addresses: updatedAddressData,
-                        unspentAddressesHashes: hashes,
-                        unconfirmedBundleTails: updatedUnconfirmedBundleTails,
-                        pendingTxTailsHashes: updatedPendingTxTailsHashes,
-                    }),
-                );
-            }
+            console.error(err); // eslint-disable-line no-console
         });
-    } else {
-        dispatch(
-            updateAccountInfoAfterSpending({
-                accountName,
-                transfers: updatedTransfers,
-                addresses: updatedAddressData,
-                unspentAddressesHashes: existingUnspentAddressesHashes,
-                unconfirmedBundleTails: updatedUnconfirmedBundleTails,
-                pendingTxTailsHashes: updatedPendingTxTailsHashes,
-            }),
-        );
-    }
 };
 
 export const set2FAStatus = payload => ({
