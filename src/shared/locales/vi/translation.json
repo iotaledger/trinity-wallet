@@ -74,9 +74,11 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
-        "seedInvalidCharsExplanation": "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
+        "seedInvalidCharsExplanation":
+            "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
         "seedTooShort": "Từ khoá quá ngắn",
-        "seedTooShortExplanation": "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
+        "seedTooShortExplanation":
+            "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
         "nameInUse": "Tên tài khoản đã được dùng",
         "nameInUseExplanation": "Xin vui lòng sử dụng tên tài khoản riêng cho từ khoá của bạn.",
         "enterAccountName": "Nhập tên tài khoản.",
@@ -98,7 +100,8 @@
         "passwordTooShort": "Mật khẩu quá ngắn",
         "passwordTooShortExplanation": "Mật khẩu ít nhất phải chứa 12 ký tự. Xin vui lòng thử lại.",
         "oldPassword": "Không thể dùng mật khẩu cũ",
-        "oldPasswordExplanation": "Bạn không thể dùng mật khẩu cũ lúc tạo mật khẩu mới. Xin vui lòng thử lại với một mật khẩu mới.",
+        "oldPasswordExplanation":
+            "Bạn không thể dùng mật khẩu cũ lúc tạo mật khẩu mới. Xin vui lòng thử lại với một mật khẩu mới.",
         "ensureStrongPassword": "Hãy kiểm tra bạn dùng mật khẩu mạnh với ít nhất 12 ký tự.",
         "currentPassword": "Mật Khẩu Hiện Tại",
         "newPassword": "Mật Khẩu Mới",
@@ -115,10 +118,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "Từ khoá chứa ký tự không hợp lệ",
-        "invalidCharactersExplanation": "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
+        "invalidCharactersExplanation":
+            "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
         "seedTooShort": "Từ khoá quá ngắn",
-        "seedTooShortExplanation": "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
-        "seedExplanation": "Từ khoá có tối đa {{maxLength}} ký tự, và bao gồm chữ viết hoa A-Z, hoặc số 9. Bạn không thể dùng từ khoá dài hơn {{maxLength}} ký tự.",
+        "seedTooShortExplanation":
+            "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
+        "seedExplanation":
+            "Từ khoá có tối đa {{maxLength}} ký tự, và bao gồm chữ viết hoa A-Z, hoặc số 9. Bạn không thể dùng từ khoá dài hơn {{maxLength}} ký tự.",
         "neverShare": "ĐỪNG BAO GIỜ CHIA SẺ TỪ KHOÁ CHO NGƯỜI KHÁC BIẾT"
     },
     "home": {
@@ -151,7 +157,8 @@
         "individualLetters": "Press individual letters to randomise them."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady":
+            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
     "paperWallet": {
         "clickToPrint": "Click the button below to print a paper copy of your seed.",
@@ -170,7 +177,8 @@
     "saveYourSeed": {
         "seedCleared": "Seed cleared",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed":
+            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Incorrect seed",
@@ -186,7 +194,8 @@
         "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
         "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
+        "keyReuseExplanation":
+            "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
         "amount": "Amount",
         "max": "MAX",
@@ -200,11 +209,13 @@
     },
     "setPassword": {
         "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation":
+            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "Passwords do not match",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy":
+            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "Ensure you use a strong password of at least 12 characters.",
         "retypePassword": "Retype Password"
     },
@@ -256,8 +267,10 @@
     "walletSetup": {
         "okay": "Okay. Let's set up your wallet!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "seedExplanation":
+            "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
@@ -267,7 +280,8 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
@@ -347,7 +361,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",

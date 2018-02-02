@@ -32,7 +32,7 @@ class HistoryView extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     account: state.account,
     seed: getSelectedSeed(state),
 });

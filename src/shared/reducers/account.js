@@ -138,7 +138,7 @@ const account = (
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.hashes,
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
                 pendingTxTailsHashes: {
                     ...state.pendingTxTailsHashes,
@@ -153,7 +153,7 @@ const account = (
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.hashes,
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
                 pendingTxTailsHashes: {
                     ...state.pendingTxTailsHashes,
@@ -169,7 +169,7 @@ const account = (
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.hashes,
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
                 pendingTxTailsHashes: {
                     ...state.pendingTxTailsHashes,
@@ -179,17 +179,7 @@ const account = (
         case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
             return {
                 ...state,
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.payload.accountName]: {
-                        ...get(state.accountInfo, `${action.payload.accountName}`),
-                        transfers: action.payload.transfers,
-                        addresses: {
-                            ...get(state.accountInfo, `${action.payload.accountName}.addresses`),
-                            ...action.payload.addresses,
-                        },
-                    },
-                },
+                ...updateAccountInfo(state, action.payload),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
