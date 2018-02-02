@@ -10,7 +10,7 @@ const actions = {
     getFullAccountInfo,
 };
 
-const dispatch = (action) => {
+const dispatch = action => {
     if (typeof action === 'function') {
         action(dispatch, getState);
     } else {

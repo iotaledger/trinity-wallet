@@ -27,7 +27,7 @@ class SeedManualCopy extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     seed: getSelectedSeed(state).seed,
 });
 

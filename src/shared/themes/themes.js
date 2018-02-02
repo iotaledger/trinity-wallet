@@ -14,7 +14,7 @@ export const themes = {
     'Monochrome Dark': MonochromeDark,
 };
 
-export const getHSL = (color) => {
+export const getHSL = color => {
     return tinycolor(color).toHslString();
 };
 

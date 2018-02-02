@@ -19,11 +19,11 @@ class ThemePicker extends React.PureComponent {
             <div>
                 <Select
                     value={this.props.themeName}
-                    onChange={(e) => {
+                    onChange={e => {
                         this.props.updateTheme(themes[e.target.value], e.target.value);
                     }}
                 >
-                    {Object.keys(themes).map((themeName) => (
+                    {Object.keys(themes).map(themeName => (
                         <option key={themeName} value={themeName}>
                             {themeName}
                         </option>
@@ -34,7 +34,7 @@ class ThemePicker extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     themeName: state.settings.themeName,
 });
 
