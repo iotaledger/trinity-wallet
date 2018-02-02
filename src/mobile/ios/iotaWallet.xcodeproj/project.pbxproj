@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -63,6 +62,7 @@
 		CBFE034A1FD648E000094FBB /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03431FD648DE00094FBB /* Inconsolata-Bold.ttf */; };
 		CBFE034B1FD648E000094FBB /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03441FD648DF00094FBB /* Lato-Regular.ttf */; };
 		CBFE034C1FD648E000094FBB /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03451FD648E000094FBB /* Inconsolata-Regular.ttf */; };
+		B44C68648A6848A5819D4451 /* libReactNativeFingerprintScanner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE8CFE9B9D84056AD0C6B05 /* libReactNativeFingerprintScanner.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -596,6 +596,8 @@
 		CBFE03451FD648E000094FBB /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "../../shared/custom-fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
 		D215E82DADAEAE41E8BB76DC /* libPods-iotaWallet-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iotaWallet-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F88047D21594709567CE0F /* Pods-iotaWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet.debug.xcconfig"; sourceTree = "<group>"; };
+		2463697CC75C4CED807E599C /* ReactNativeFingerprintScanner.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativeFingerprintScanner.xcodeproj"; path = "../node_modules/react-native-fingerprint-scanner/ios/ReactNativeFingerprintScanner.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		1AE8CFE9B9D84056AD0C6B05 /* libReactNativeFingerprintScanner.a */ = {isa = PBXFileReference; name = "libReactNativeFingerprintScanner.a"; path = "libReactNativeFingerprintScanner.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -639,6 +641,7 @@
 				223B998F0B2E47599B0BBF46 /* libRNSVG.a in Frameworks */,
 				3933F23405C1A7DA85AA571A /* libPods-iotaWallet.a in Frameworks */,
 				BCCD269481564D2C81E6E261 /* libRNClipboard.a in Frameworks */,
+				B44C68648A6848A5819D4451 /* libReactNativeFingerprintScanner.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -886,6 +889,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				9090DAE9334840B081B3AC44 /* RNSVG.xcodeproj */,
 				A937E21FD0D64559BDD2A51D /* RNClipboard.xcodeproj */,
+				2463697CC75C4CED807E599C /* ReactNativeFingerprintScanner.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -2133,13 +2137,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
+					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
 				);
 				INFOPLIST_FILE = iotaWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2163,13 +2167,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-tcp/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
+					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
 				);
 				INFOPLIST_FILE = iotaWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2204,6 +2208,7 @@
 					"$(inherited)",
 					"$(BUILT_PRODUCTS_DIR)/usr/local/include/**",
 					"${PODS_DEV_ROOT}/React/**",
+					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -2245,6 +2250,7 @@
 					"$(inherited)",
 					"${PODS_DEV_ROOT}/React/**",
 					"$(BUILT_PRODUCTS_DIR)/usr/local/include/**",
+					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -2284,12 +2290,12 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
+					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
 				);
 				INFOPLIST_FILE = "iotaWallet-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2324,12 +2330,12 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
+					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
 				);
 				INFOPLIST_FILE = "iotaWallet-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2363,7 +2369,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.iotaWallet-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2390,7 +2395,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.iotaWallet-tvOSTests";
