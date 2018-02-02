@@ -18,7 +18,7 @@ class LanguageSelect extends React.PureComponent {
         de: 'Deutsch',
     };
 
-    changeHandler = (e) => {
+    changeHandler = e => {
         const { target } = e;
         const { setLocale } = this.props;
         setLocale(target.value);
@@ -64,7 +64,7 @@ class LanguageSelect extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     locale: state.settings.locale,
 });
 

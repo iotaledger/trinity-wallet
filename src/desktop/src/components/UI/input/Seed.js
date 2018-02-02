@@ -21,7 +21,7 @@ export default class SeedInput extends React.PureComponent {
         showScanner: false,
     };
 
-    onScanEvent = (address) => {
+    onScanEvent = address => {
         if (address !== null) {
             this.setState(() => ({
                 showScanner: false,
@@ -30,7 +30,7 @@ export default class SeedInput extends React.PureComponent {
         }
     };
 
-    onScanError = (err) => {
+    onScanError = err => {
         console.log(err);
     };
 
@@ -59,7 +59,7 @@ export default class SeedInput extends React.PureComponent {
                     <input
                         type="text"
                         value={seed}
-                        onChange={(e) => onChange(e.target.value.toUpperCase())}
+                        onChange={e => onChange(e.target.value.toUpperCase())}
                         maxLength={MAX_SEED_LENGTH}
                     />
                     <small>{label}</small>
@@ -71,7 +71,7 @@ export default class SeedInput extends React.PureComponent {
                     <Modal
                         isOpen
                         onClose={this.closeScanner}
-                        onStateChange={(showScanner) => this.setState({ showScanner })}
+                        onStateChange={showScanner => this.setState({ showScanner })}
                     >
                         <div className={css.qrScanner}>
                             <QrReader delay={350} onError={this.onScanError} onScan={this.onScanEvent} />
