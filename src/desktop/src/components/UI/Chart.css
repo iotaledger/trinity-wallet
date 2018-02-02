@@ -1,5 +1,6 @@
 .chart {
     width: 100%;
+    overflow: hidden;
 
     nav,
     ul {
@@ -37,5 +38,9 @@
     }
     > div {
         width: calc(100% + 55px);
+        > svg {
+            width: 0px;
+            height: 0px;
+        }
     }
 }

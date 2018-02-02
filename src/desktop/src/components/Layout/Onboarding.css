@@ -49,13 +49,16 @@
             flex-direction: column;
             justify-content: center;
 
-            > div > p {
-                margin-bottom: 50px;
+            > div > p + div {
+                margin-top: 50px;
             }
         }
 
         > header,
         > footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             flex: 0 1 auto;
             padding: 20px 0;
         }

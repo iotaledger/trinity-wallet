@@ -76,10 +76,10 @@ class GenerateSeed extends React.PureComponent {
                     <p>{this.state.seed ? t('newSeedSetup:individualLetters') : '\u00A0'}</p>
                 </Content>
                 <Footer>
-                    <Button onClick={this.onRequestPrevious} variant="secondary">
+                    <Button onClick={this.onRequestPrevious} className="outline" variant="highlight">
                         {t('global:back')}
                     </Button>
-                    <Button onClick={this.onRequestNext} disabled={!seed} variant="success">
+                    <Button onClick={this.onRequestNext} className="outline" disabled={!seed} variant="primary">
                         {t('global:next')}
                     </Button>
                 </Footer>
