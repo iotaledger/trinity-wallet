@@ -69,7 +69,6 @@ export class Poll extends Component {
     shouldSkipCycle() {
         const props = this.props;
 
-        console.log('Skip');
         const isAlreadyDoingSomeHeavyLifting =
             props.isSyncing ||
             props.isSendingTransfer ||
