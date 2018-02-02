@@ -5,7 +5,11 @@ import get from 'lodash/get';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
-import { getStartingSearchIndexForAddress, getUnspentInputs, shouldAllowSendingToAddress } from '../libs/transfers';
+import {
+    getStartingSearchIndexToPrepareInputs,
+    getUnspentInputs,
+    shouldAllowSendingToAddress,
+} from '../libs/transfers';
 import { MAX_SEED_LENGTH } from '../libs/util';
 import { prepareTransferArray } from '../libs/transfers';
 import { getSelectedAccount } from '../selectors/account';
@@ -311,7 +315,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
 
         const addressData = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
 
-        const startIndex = getStartingSearchIndexForAddress(addressData);
+        const startIndex = getStartingSearchIndexToPrepareInputs(addressData);
 
         // Make sure that the address a user is about to send to is not already used.
         // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint

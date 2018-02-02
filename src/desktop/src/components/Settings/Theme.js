@@ -34,9 +34,9 @@ class Theme extends React.PureComponent {
                 <Select
                     label="Theme"
                     value={themeName || this.props.themeName}
-                    onChange={(e) => this.setState({ themeName: e.target.value })}
+                    onChange={e => this.setState({ themeName: e.target.value })}
                 >
-                    {Object.keys(themes).map((item) => (
+                    {Object.keys(themes).map(item => (
                         <option key={item} value={item}>
                             {item}
                         </option>
@@ -113,7 +113,7 @@ class Theme extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     themeName: state.settings.themeName,
 });
 
