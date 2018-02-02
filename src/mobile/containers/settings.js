@@ -8,6 +8,7 @@ import { StyleSheet, View, BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
+import FingerprintScanner from 'react-native-fingerprint-scanner';
 import THEMES from '../theme/themes';
 import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
 import {
@@ -179,6 +180,7 @@ class Settings extends Component {
         negativeColor: PropTypes.object.isRequired,
         extraColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        isFingerprintEnabled: PropTypes.bool.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         setLanguage: PropTypes.func.isRequired,
@@ -257,7 +259,6 @@ class Settings extends Component {
                 t: this.props.t,
                 setSetting: setting => this.props.setSetting(setting),
                 setModalContent: content => this.setModalContent(content),
-                on2FASetupPress: () => this.on2FASetupPress(),
                 onThemePress: () => this.props.setSetting('themeCustomisation'),
                 onModePress: () => this.featureUnavailable(),
                 mode: this.props.mode,
@@ -484,6 +485,18 @@ class Settings extends Component {
                 tickImagePath,
                 arrowLeftImagePath,
             },
+            securitySettings: {
+                setSetting: (setting) => this.props.setSetting(setting),
+                backPress: () => this.props.setSetting('mainSettings'),
+                on2FASetupPress: () => this.on2FASetupPress(),
+                onFingerSetup: () => this.onFingerSetup(),
+                node: this.props.fullNode,
+                textColor: { color: secondaryBackgroundColor },
+                borderColor: { borderBottomColor: secondaryBackgroundColor },
+                arrowLeftImagePath,
+                addImagePath,
+                secondaryBackgroundColor,
+            },
         };
 
         return props[child] || {};
@@ -513,11 +526,51 @@ class Settings extends Component {
                 appStyle: {
                     orientation: 'portrait',
                 },
-            });
+            })
+          }
         } else {
             Navigation.startSingleScreenApp({
                 screen: {
                     screen: 'disable2FA',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                        generateAlert: this.props.generateAlert,
+                    },
+                },
+                appStyle: {
+                    orientation: 'portrait',
+                },
+              });
+
+        onFingerSetup() {
+        const { isFingerprintEnabled } = this.props;
+        if (isFingerprintEnabled) {
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: 'fingerprintDisable',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                        generateAlert: this.props.generateAlert,
+                    },
+                },
+                appStyle: {
+                    orientation: 'portrait',
+                },
+            });
+        } else if (!FingerprintScanner.isSensorAvailable()) {
+            this.props.generateAlert(
+                'error',
+                'No Fingerprint Sensor',
+                'Your device is missing a fingerprint sensor or is not configured in the device settings',
+            );
+        } else {
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: 'fingerprintEnable',
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
@@ -904,6 +957,7 @@ const mapStateToProps = state => ({
     extraColor: state.settings.theme.extraColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     is2FAEnabled: state.account.is2FAEnabled,
+    isFingerprintEnabled: state.account.isFingerprintEnabled,
     isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
     hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
     ctaBorderColor: state.settings.theme.ctaBorderColor,

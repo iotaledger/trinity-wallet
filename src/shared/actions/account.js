@@ -62,6 +62,7 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNT/ACCOUNT_INFO_FETCH_ERROR',
     SET_2FA_STATUS: 'IOTA/ACCOUNT/SET_2FA_STATUS',
     SET_2FA_KEY: 'IOTA/ACCOUNT/SET_2FA_KEY',
+    SET_FINGERPRINT_STATUS: 'IOTA/ACCOUNT/SET_FINGERPRINT_STATUS',
 };
 
 export const manualSyncRequest = () => ({
@@ -490,3 +491,8 @@ export const getBalanceForCheck = addresses => {
         });
     };
 };
+
+export const setFingerprintStatus = payload => ({
+    type: ActionTypes.SET_FINGERPRINT_STATUS,
+    payload,
+});
