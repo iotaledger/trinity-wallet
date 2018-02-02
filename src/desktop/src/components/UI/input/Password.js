@@ -15,9 +15,9 @@ export default class PasswordInput extends React.PureComponent {
         type: 'password',
     };
 
-    toggleVisibility = (e) => {
+    toggleVisibility = e => {
         e.preventDefault();
-        this.setState((state) => ({
+        this.setState(state => ({
             type: state.type === 'password' ? 'text' : 'password',
         }));
     };
@@ -31,7 +31,7 @@ export default class PasswordInput extends React.PureComponent {
                     <a className={type === 'text' ? css.strike : null} onClick={this.toggleVisibility}>
                         <Icon icon="eye" size={16} />
                     </a>
-                    <input type={type} value={value} onChange={(e) => onChange(e.target.value)} />
+                    <input type={type} value={value} onChange={e => onChange(e.target.value)} />
                     <small>{label}</small>
                 </fieldset>
             </div>

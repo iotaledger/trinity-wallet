@@ -51,14 +51,14 @@ export default class SeedGenerator extends React.PureComponent {
         }
     };
 
-    onLetterPressed = (e) => {
+    onLetterPressed = e => {
         e.preventDefault();
         const { target: { dataset } } = e;
         this.changeRandomLetterAtPosition(Number(dataset.index));
     };
 
-    changeRandomLetterAtPosition = (position) => {
-        this.setState((state) => {
+    changeRandomLetterAtPosition = position => {
+        this.setState(state => {
             const seed = state.seed
                 .split('')
                 .map((letter, index) => (index === Number(position) ? createRandomSeed(1) : letter))

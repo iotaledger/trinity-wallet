@@ -5,7 +5,7 @@ export const securelyPersistSeeds = (password, seeds) => {
     localStorage.setItem('iotaWallet:seeds', sjcl.encrypt(password, stringifiedSeeds));
 };
 
-export const getSecurelyPersistedSeeds = (password) => {
+export const getSecurelyPersistedSeeds = password => {
     const encryptedSeeds = localStorage.getItem('iotaWallet:seeds');
     if (!encryptedSeeds) {
         return {};
@@ -14,7 +14,7 @@ export const getSecurelyPersistedSeeds = (password) => {
     return JSON.parse(decryptedSeeds);
 };
 
-export const temporarilySavePassword = (password) => {
+export const temporarilySavePassword = password => {
     sessionStorage.setItem('password', btoa(password));
 };
 

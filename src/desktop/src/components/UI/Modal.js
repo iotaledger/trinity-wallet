@@ -21,7 +21,7 @@ export default class Modal extends React.Component {
         window.removeEventListener('keydown', this.onKeyDown, false);
     }
 
-    onKeyDown = (e) => {
+    onKeyDown = e => {
         if (e.which === 27 && this.props.isOpen) {
             this.props.onClose();
         }
