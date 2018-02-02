@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 
 import withCurrencyData from 'containers/settings/Currency';
 
-import Icon from 'components/UI/Icon';
 import Button from 'components/UI/Button';
 import Select from 'components/UI/input/Select';
 
 /**
  * Change global currency settings
  */
-class Currency extends PureComponent {
+class SetCurrency extends PureComponent {
     static propTypes = {
         /* Current currency */
         currency: PropTypes.array.isRequired,
@@ -63,4 +62,4 @@ class Currency extends PureComponent {
     }
 }
 
-export default withCurrencyData(Currency);
+export default withCurrencyData(SetCurrency);
