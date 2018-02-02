@@ -224,7 +224,7 @@ class ThemeCustomisation extends Component {
         } = this.state.theme;
         const { arrowLeftImagePath, tickImagePath, t } = this.props;
         const chevronDownImagePath =
-            secondaryBackgroundColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
+            secondaryBarColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
 
         return (
             <TouchableWithoutFeedback
