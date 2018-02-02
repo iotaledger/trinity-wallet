@@ -289,7 +289,6 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 // Less than value user is about to send to -> Has already spent from addresses and the txs aren't confirmed.
                 // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
             } else if (get(inputs, 'totalBalance') < value) {
-                console.log('HEREE');
                 dispatch(sendTransferError());
                 return dispatch(
                     generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError'), 20000),
@@ -323,7 +322,6 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
         // Omit input preparation in case the address is already spent from.
         return shouldAllowSendingToAddress([address], (err, shouldAllowSending) => {
             if (err) {
-                console.log('Err', err);
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     100000,
