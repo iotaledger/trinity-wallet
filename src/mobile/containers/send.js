@@ -486,9 +486,9 @@ class Send extends Component {
                                 }}
                                 maxLength={90}
                                 label={t('recipientAddress')}
-                                onChangeText={text => this.props.setSendAddressField(text)}
+                                onChangeText={text => this.props.setSendAddressField(text.toUpperCase())}
                                 containerStyle={{ width: width / 1.3 }}
-                                autoCapitalize={'characters'}
+                                autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="next"
