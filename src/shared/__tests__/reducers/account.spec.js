@@ -16,6 +16,7 @@ describe('Reducer: account', () => {
                 pendingTxTailsHashes: {},
                 is2FAEnabled: false,
                 key2FA: '',
+                isFingerprintEnabled: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -353,6 +354,7 @@ describe('Reducer: account', () => {
                 addresses: { baz: {} },
                 transfers: [{}],
                 balance: 100,
+                isFingerprintEnabled: false,
             });
 
             const newState = reducer(initialState, action);
@@ -361,6 +363,7 @@ describe('Reducer: account', () => {
                     foo: {
                         addresses: { foo: {}, baz: {} },
                         transfers: [{}],
+                        isFingerprintEnabled: false,
                         balance: 100,
                     },
                 },
@@ -394,6 +397,7 @@ describe('Reducer: account', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [[{}, {}], [{}, {}], [{}, {}]],
                         balance: 100,
+                        isFingerprintEnabled: false,
                     },
                 },
             };
@@ -482,6 +486,7 @@ describe('Reducer: account', () => {
                 addresses: { baz: {} },
                 transfers: [{}],
                 balance: 100,
+                isFingerprintEnabled: false,
             });
 
             const newState = reducer(initialState, action);
@@ -491,6 +496,7 @@ describe('Reducer: account', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [{}],
                         balance: 100,
+                        isFingerprintEnabled: false,
                     },
                 },
             };
@@ -523,6 +529,7 @@ describe('Reducer: account', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [[{}, {}], [{}, {}]],
                         balance: 100,
+                        isFingerprintEnabled: false,
                     },
                 },
             };
@@ -613,6 +620,7 @@ describe('Reducer: account', () => {
                 addresses: { baz: {} },
                 transfers: [{}],
                 balance: 100,
+                isFingerprintEnabled: false,
             });
 
             const newState = reducer(initialState, action);
@@ -622,6 +630,7 @@ describe('Reducer: account', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [{}],
                         balance: 100,
+                        isFingerprintEnabled: false,
                     },
                 },
                 seedNames: [],
@@ -657,6 +666,7 @@ describe('Reducer: account', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [[{}, {}], [{}, {}]],
                         balance: 100,
+                        isFingerprintEnabled: false,
                     },
                 },
                 seedNames: [],
@@ -787,6 +797,7 @@ describe('Reducer: account', () => {
                 accountInfo: {
                     dummy: {
                         balance: 0,
+                        isFingerprintEnabled: false,
                         addresses: { foo: {}, baz: {} },
                         transfers: [],
                     },
