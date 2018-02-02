@@ -313,11 +313,11 @@
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "trillion": "Nghìn Tỷ",
+        "billion": "Tỷ",
+        "million": "Triệu",
+        "thousand": "Nghìn",
+        "one": "Một"
     },
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete this account?",
@@ -351,6 +351,6 @@
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "aMessage": "tin nhắn"
     }
 }
