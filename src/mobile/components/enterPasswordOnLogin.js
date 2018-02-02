@@ -9,6 +9,8 @@ import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import OnboardingButtons from './onboardingButtons';
 import CustomTextInput from './customTextInput';
+import { connect } from 'react-redux';
+import FingerprintScanner from 'react-native-fingerprint-scanner';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -62,6 +64,7 @@ const styles = StyleSheet.create({
 class EnterPasswordOnLogin extends Component {
     state = {
         password: '',
+        label: '',
     };
 
     componentDidMount() {
@@ -69,6 +72,7 @@ class EnterPasswordOnLogin extends Component {
             RNExitApp.exitApp();
             return true;
         });
+        this.handleChangedLogin();
     }
 
     componentWillUnmount() {
@@ -76,6 +80,23 @@ class EnterPasswordOnLogin extends Component {
     }
 
     handleChangeText = password => this.setState({ password });
+
+    handleChangedLogin = () => {
+        const { isFingerprintEnabled, t } = this.props;
+        if (isFingerprintEnabled) {
+            this.setState({
+                label: t('global:passwordOrFingerprint'),
+            });
+            FingerprintScanner.authenticate({
+                onAttempt: this.handleAuthenticationAttempted,
+                description: t('fingerprintEnable:instructions'),
+            });
+        } else {
+            this.setState({
+                label: t('global:password'),
+            });
+        }
+    };
 
     handleLogin = () => {
         const { password } = this.state;
@@ -100,7 +121,7 @@ class EnterPasswordOnLogin extends Component {
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
-                            label={t('global:password')}
+                            label={this.state.label}
                             onChangeText={this.handleChangeText}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
@@ -117,7 +138,7 @@ class EnterPasswordOnLogin extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.changeNode}
                             onRightButtonPress={this.handleLogin}
-                            leftText={'SET NODE'}
+                            leftText={t('setNode')}
                             rightText={t('login')}
                         />
                     </View>
@@ -133,6 +154,11 @@ EnterPasswordOnLogin.propTypes = {
     secondaryBackgroundColor: PropTypes.string.isRequired,
     negativeColor: PropTypes.object.isRequired,
     navigateToNodeSelection: PropTypes.func.isRequired,
+    isFingerprintEnabled: PropTypes.bool.isRequired,
 };
 
-export default translate(['login', 'global'])(EnterPasswordOnLogin);
+const mapStateToProps = state => ({
+    isFingerprintEnabled: state.account.isFingerprintEnabled,
+});
+
+export default translate(['login', 'global', 'fingerprintEnable'])(connect(mapStateToProps)(EnterPasswordOnLogin));
