@@ -63,12 +63,13 @@ export class Poll extends Component {
     }
 
     componentWillUnmount() {
-        timer.clearInterval('polling');
+        timer.clearInterval(this, 'polling');
     }
 
     shouldSkipCycle() {
         const props = this.props;
 
+        console.log('Skip');
         const isAlreadyDoingSomeHeavyLifting =
             props.isSyncing ||
             props.isSendingTransfer ||
@@ -119,7 +120,7 @@ export class Poll extends Component {
     }
 
     startBackgroundProcesses() {
-        timer.setInterval('polling', () => this.fetch(this.props.pollFor), 15000);
+        timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 15000);
     }
 
     promote() {
