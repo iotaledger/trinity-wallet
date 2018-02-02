@@ -5,7 +5,11 @@ import get from 'lodash/get';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
-import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
+import {
+    getStartingSearchIndexToPrepareInputs,
+    getUnspentInputs,
+    shouldAllowSendingToAddress,
+} from '../libs/transfers';
 import { MAX_SEED_LENGTH } from '../libs/util';
 import { prepareTransferArray } from '../libs/transfers';
 import { getSelectedAccount } from '../selectors/account';
@@ -20,9 +24,6 @@ export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_REQUEST',
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_ERROR',
-    MANUAL_SYNC_REQUEST: 'IOTA/TEMP_ACCOUNT/MANUAL_SYNC_REQUEST',
-    MANUAL_SYNC_SUCCESS: 'IOTA/TEMP_ACCOUNT/MANUAL_SYNC_SUCCESS',
-    MANUAL_SYNC_ERROR: 'IOTA/TEMP_ACCOUNT/MANUAL_SYNC_ERROR',
     SEND_TRANSFER_REQUEST: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_REQUEST',
     SEND_TRANSFER_SUCCESS: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_SUCCESS',
     SEND_TRANSFER_ERROR: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_ERROR',
@@ -39,7 +40,40 @@ export const ActionTypes = {
     SET_SETTING: 'IOTA/TEMP_ACCOUNT/SET_SETTING',
     SET_USER_ACTIVITY: 'IOTA/TEMP_ACCOUNT/SET_USER_ACTIVITY',
     SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/TEMP_ACCOUNT/SET_ADDITIONAL_ACCOUNT_INFO',
+    SNAPSHOT_TRANSITION_REQUEST: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_REQUEST',
+    SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_SUCCESS',
+    SNAPSHOT_TRANSITION_ERROR: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_ERROR',
+    UPDATE_TRANSITION_BALANCE: 'IOTA/TEMP_ACCOUNT/UPDATE_TRANSITION_BALANCE',
+    SWITCH_BALANCE_CHECK_TOGGLE: 'IOTA/TEMP_ACCOUNT/SWITCH_BALANCE_CHECK_TOGGLE',
+    UPDATE_TRANSITION_ADDRESSES: 'IOTA/TEMP_ACCOUNT/UPDATE_TRANSITION_ADDRESSES',
 };
+
+export const updateTransitionAddresses = payload => ({
+    type: ActionTypes.UPDATE_TRANSITION_ADDRESSES,
+    payload,
+});
+
+export const updateTransitionBalance = payload => ({
+    type: ActionTypes.UPDATE_TRANSITION_BALANCE,
+    payload,
+});
+
+export const switchBalanceCheckToggle = () => ({
+    type: ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE,
+});
+
+export const snapshotTransitionRequest = () => ({
+    type: ActionTypes.SNAPSHOT_TRANSITION_REQUEST,
+});
+
+export const snapshotTransitionSuccess = payload => ({
+    type: ActionTypes.SNAPSHOT_TRANSITION_SUCCESS,
+    payload,
+});
+
+export const snapshotTransitionError = () => ({
+    type: ActionTypes.SNAPSHOT_TRANSITION_ERROR,
+});
 
 export const getTransfersRequest = () => ({
     type: ActionTypes.GET_TRANSFERS_REQUEST,
@@ -85,18 +119,6 @@ export const generateNewAddressSuccess = payload => ({
 
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
-});
-
-export const manualSyncRequest = () => ({
-    type: ActionTypes.MANUAL_SYNC_REQUEST,
-});
-
-export const manualSyncSuccess = () => ({
-    type: ActionTypes.MANUAL_SYNC_SUCCESS,
-});
-
-export const manualSyncError = () => ({
-    type: ActionTypes.MANUAL_SYNC_ERROR,
 });
 
 export const sendTransferRequest = () => ({
@@ -247,28 +269,10 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             return dispatch(makeTransfer(seed, address, value, accountName, transfer));
         }
 
-        const verifyAndSend = (filtered, expectedOutputsLength, inputs) => {
-            if (filtered.length !== expectedOutputsLength) {
-                return dispatch(
-                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
-                );
-            }
-
-            const options = { inputs };
-
-            return dispatch(makeTransfer(seed, address, value, accountName, transfer, options));
-        };
-
-        const unspentInputs = (err, inputs) => {
-            if (err && err.message !== 'Not enough balance') {
-                dispatch(sendTransferError());
-
-                return dispatch(
-                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
-                    100000,
-                );
-            }
-
+        const makeTransferWithBalanceCheck = inputs => {
+            // allBalance -> total balance associated with addresses.
+            // Contains balance from addresses regardless of the fact they are spent from.
+            // Less than the value user is about to send to -> Not enough balance.
             if (get(inputs, 'allBalance') < value) {
                 dispatch(sendTransferError());
                 return dispatch(
@@ -279,6 +283,11 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                         20000,
                     ),
                 );
+
+                // totalBalance -> balance after filtering out addresses that are spent.
+                // Contains balance from those addresses only that are not spent from.
+                // Less than value user is about to send to -> Has already spent from addresses and the txs aren't confirmed.
+                // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
             } else if (get(inputs, 'totalBalance') < value) {
                 dispatch(sendTransferError());
                 return dispatch(
@@ -286,21 +295,48 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 );
             }
 
-            const outputsToCheck = transfer.map(t => ({ address: iota.utils.noChecksum(t.address) }));
-
-            // Check to make sure user is not sending to an already used address
-            return filterSpentAddresses(outputsToCheck).then(filtered =>
-                verifyAndSend(filtered, outputsToCheck.length, get(inputs, 'inputs')),
+            return dispatch(
+                makeTransfer(seed, address, value, accountName, transfer, { inputs: get(inputs, 'inputs') }),
             );
         };
 
-        const getStartingIndex = () => {
-            const addresses = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
-            const addr = Object.keys(addresses).find(address => addresses[address].balance > 0);
-            return addr ? addresses[addr].index : 0;
+        const unspentInputs = (err, inputs) => {
+            if (err) {
+                dispatch(sendTransferError());
+
+                return dispatch(
+                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
+                    100000,
+                );
+            }
+
+            return makeTransferWithBalanceCheck(inputs);
         };
 
-        return getUnspentInputs(seed, getStartingIndex(), value, null, unspentInputs);
+        const addressData = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
+
+        const startIndex = getStartingSearchIndexToPrepareInputs(addressData);
+
+        // Make sure that the address a user is about to send to is not already used.
+        // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
+        // Omit input preparation in case the address is already spent from.
+        return shouldAllowSendingToAddress([address], (err, shouldAllowSending) => {
+            if (err) {
+                return dispatch(
+                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
+                    100000,
+                );
+            }
+
+            return shouldAllowSending
+                ? getUnspentInputs(addressData, startIndex, value, null, unspentInputs)
+                : (() => {
+                      dispatch(sendTransferError());
+                      return dispatch(
+                          generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
+                      );
+                  })();
+        });
     };
 };
 

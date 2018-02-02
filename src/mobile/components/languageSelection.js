@@ -116,7 +116,7 @@ class LanguageSelection extends Component {
                             onRef={c => {
                                 this.dropdown = c;
                             }}
-                            title={language}
+                            title={t('language')}
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={language}
                             options={I18N_LOCALE_LABELS}
@@ -152,4 +152,4 @@ class LanguageSelection extends Component {
     }
 }
 
-export default translate(['languageSelection', 'global'])(LanguageSelection);
+export default translate(['languageSetup', 'global'])(LanguageSelection);

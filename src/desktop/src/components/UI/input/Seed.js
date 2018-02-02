@@ -2,13 +2,14 @@ import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
 import { MAX_SEED_LENGTH } from 'libs/util';
+import { getChecksum } from 'libs/iota';
 import css from 'components/UI/input/Input.css';
 import Modal from 'components/UI/Modal';
 import Button from 'components/UI/Button';
 
-import Camera from 'images/camera-white.png';
+import Icon from 'components/UI/Icon';
 
-export default class SeedInout extends React.PureComponent {
+export default class SeedInput extends React.PureComponent {
     static propTypes = {
         seed: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
@@ -33,15 +34,13 @@ export default class SeedInout extends React.PureComponent {
         console.log(err);
     };
 
-    closeScanner = e => {
-        e.preventDefault();
+    closeScanner = () => {
         this.setState(() => ({
             showScanner: false,
         }));
     };
 
-    openScanner = e => {
-        e.preventDefault();
+    openScanner = () => {
         this.setState(() => ({
             showScanner: true,
         }));
@@ -55,18 +54,25 @@ export default class SeedInout extends React.PureComponent {
             <div className={css.input}>
                 <fieldset>
                     <a onClick={this.openScanner}>
-                        <img src={Camera} alt="" />
+                        <Icon icon="camera" size={16} />
                     </a>
                     <input
                         type="text"
                         value={seed}
-                        onChange={e => onChange(e.target.value)}
+                        onChange={e => onChange(e.target.value.toUpperCase())}
                         maxLength={MAX_SEED_LENGTH}
                     />
                     <small>{label}</small>
                 </fieldset>
+                {seed.length ? (
+                    <span className={css.info}>{seed.length < MAX_SEED_LENGTH ? '< 81' : getChecksum(seed)}</span>
+                ) : null}
                 {showScanner && (
-                    <Modal isOpen onStateChange={showScanner => this.setState({ showScanner })} hideCloseButton>
+                    <Modal
+                        isOpen
+                        onClose={this.closeScanner}
+                        onStateChange={showScanner => this.setState({ showScanner })}
+                    >
                         <div className={css.qrScanner}>
                             <QrReader delay={350} onError={this.onScanError} onScan={this.onScanEvent} />
                             <Button type="button" onClick={this.closeScanner} variant="secondary">

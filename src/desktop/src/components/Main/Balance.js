@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
-import { setCurrency, setTimeframe, getMarketData, getChartData, getPrice } from 'actions/marketData';
+import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { formatValue, formatUnit, round } from 'libs/util';
 import { getCurrencySymbol } from 'libs/currency';
 import { getAccountInfoAsync, getNewAddressAsync } from 'actions/seeds';
@@ -25,8 +25,6 @@ class Balance extends React.Component {
         account: PropTypes.object.isRequired,
         settings: PropTypes.object.isRequired,
         marketData: PropTypes.object.isRequired,
-        setCurrency: PropTypes.func.isRequired,
-        setTimeframe: PropTypes.func.isRequired,
         getChartData: PropTypes.func.isRequired,
         getPrice: PropTypes.func.isRequired,
         getMarketData: PropTypes.func.isRequired,
@@ -58,7 +56,7 @@ class Balance extends React.Component {
     }
 
     render() {
-        const { t, account, settings, marketData, seed, setCurrency, setTimeframe } = this.props;
+        const { t, account, settings, marketData, seed } = this.props;
         const accountInfo = account.accountInfo[seed.name];
 
         const currencySymbol = getCurrencySymbol(settings.currency);
@@ -83,7 +81,7 @@ class Balance extends React.Component {
                         />
                     </section>
                     <section className={css.flex}>
-                        <Chart marketData={marketData} setCurrency={setCurrency} setTimeframe={setTimeframe} />
+                        <Chart />
                     </section>
                 </Content>
             </Template>
@@ -104,8 +102,6 @@ const mapDispatchToProps = {
     getChartData,
     getPrice,
     getMarketData,
-    setCurrency,
-    setTimeframe,
 };
 
 export default translate('balance')(connect(mapStateToProps, mapDispatchToProps)(Balance));
