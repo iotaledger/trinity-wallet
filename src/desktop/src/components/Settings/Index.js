@@ -11,6 +11,7 @@ import Button from 'components/UI/Button';
 
 import Language from 'components/Settings/Language';
 import Theme from 'components/Settings/Theme';
+import Currency from 'views/settings/Currency';
 
 import css from 'components/Settings/Index.css';
 
@@ -74,10 +75,9 @@ class Settings extends React.PureComponent {
                         <a onClick={this.featureUnavailable}>
                             <img src={icoMode} /> {t('settings:mode')}
                         </a>
-
-                        <a onClick={this.featureUnavailable}>
+                        <NavLink to="/settings/currency">
                             <img src={icoCurrency} /> {t('settings:currency')}
-                        </a>
+                        </NavLink>
                         {tempAccount && tempAccount.ready ? (
                             <div>
                                 <hr />
@@ -116,6 +116,7 @@ class Settings extends React.PureComponent {
                     <Switch location={location}>
                         <Route path="/settings/language" component={Language} />
                         <Route path="/settings/theme" component={Theme} />
+                        <Route path="/settings/currency" component={Currency} />
                         <Redirect from="/settings" to="/settings/language" />
                     </Switch>
                 </section>
@@ -136,7 +137,7 @@ class Settings extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
 });
 
