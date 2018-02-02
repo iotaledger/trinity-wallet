@@ -254,11 +254,13 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
                     i18next.t('global:attachToTangleUnavailable'),
                     i18next.t('global:attachToTangleUnavailableExplanation'),
                     100000,
+                    error,
                 ],
                 default: [
                     i18next.t('global:invalidResponse'),
                     i18next.t('global:invalidResponseSendingTransfer'),
                     100000,
+                    error,
                 ],
             };
 
@@ -318,6 +320,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     100000,
+                    err,
                 );
             }
 
@@ -336,6 +339,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     100000,
+                    err,
                 );
             }
 
