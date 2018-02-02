@@ -12,9 +12,9 @@ import Select from 'components/UI/input/Select';
 class SetCurrency extends PureComponent {
     static propTypes = {
         /* Current currency */
-        currency: PropTypes.array.isRequired,
+        currency: PropTypes.string.isRequired,
         /* Available currency list */
-        currencies: PropTypes.string.isRequired,
+        currencies: PropTypes.array.isRequired,
         /* Currency change statuss */
         loading: PropTypes.bool.isRequired,
         /* Set new currency
