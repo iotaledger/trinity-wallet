@@ -11,12 +11,14 @@ import Button from 'components/UI/Button';
 
 import Language from 'components/Settings/Language';
 import Theme from 'components/Settings/Theme';
+import SetNode from 'views/settings/Node';
 import Currency from 'views/settings/Currency';
 import Password from 'views/settings/Password';
 
 import css from 'components/Settings/Index.css';
 
 import icoMode from 'images/mode-white.png';
+import icoNode from 'images/node-white.png';
 import icoTheme from 'images/theme-white.png';
 import icoCurrency from 'images/currency-white.png';
 import icoLanguage from 'images/language-white.png';
@@ -70,15 +72,18 @@ class Settings extends React.PureComponent {
                         <NavLink to="/settings/language">
                             <img src={icoLanguage} /> {t('settings:language')}
                         </NavLink>
+                        <NavLink to="/settings/node">
+                            <img src={icoNode} /> {t('global:node')}
+                        </NavLink>
                         <NavLink to="/settings/theme">
                             <img src={icoTheme} /> {t('settings:theme')}
+                        </NavLink>
+                        <NavLink to="/settings/currency">
+                            <img src={icoCurrency} /> {t('settings:currency')}
                         </NavLink>
                         <a onClick={this.featureUnavailable}>
                             <img src={icoMode} /> {t('settings:mode')}
                         </a>
-                        <NavLink to="/settings/currency">
-                            <img src={icoCurrency} /> {t('settings:currency')}
-                        </NavLink>
                         {tempAccount && tempAccount.ready ? (
                             <div>
                                 <hr />
@@ -117,6 +122,7 @@ class Settings extends React.PureComponent {
                     <Switch location={location}>
                         <Route path="/settings/language" component={Language} />
                         <Route path="/settings/theme" component={Theme} />
+                        <Route path="/settings/node" component={SetNode} />
                         <Route path="/settings/currency" component={Currency} />
                         <Route path="/settings/password" component={Password} />
                         <Redirect from="/settings" to="/settings/language" />

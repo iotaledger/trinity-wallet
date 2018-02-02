@@ -20,6 +20,8 @@ export default class Button extends React.PureComponent {
     render() {
         const { children, className, to, variant, loading } = this.props;
 
+        const loadingClass = loading ? css.loading : null;
+
         if (to) {
             return (
                 <Link {...this.props} className={classNames(css[className], css[variant])}>
@@ -29,7 +31,7 @@ export default class Button extends React.PureComponent {
         }
 
         return (
-            <button {...this.props} className={classNames(css[className], css[variant], loading ? css.loading : null)}>
+            <button {...this.props} className={classNames(css[className], css[variant], loadingClass)}>
                 {children}
             </button>
         );
