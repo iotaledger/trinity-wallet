@@ -16,14 +16,14 @@ export default class Confirm extends React.PureComponent {
         const { category, translations, isOpen } = this.props;
 
         return (
-            <Modal className="confirm" isOpen={isOpen} hideCloseButton>
+            <Modal className="confirm" onClose={this.props.onCancel} isOpen={isOpen}>
                 {translations.title ? <h1 className={category ? category : 'primary'}>{translations.title}</h1> : null}
                 {translations.message ? <p>{translations.message}</p> : null}
                 <footer>
                     <Button onClick={this.props.onCancel} variant="secondary">
                         {translations.cancel}
                     </Button>
-                    <Button onClick={this.props.onConfirm} variant="success">
+                    <Button onClick={this.props.onConfirm} variant="primary">
                         {translations.confirm}
                     </Button>
                 </footer>
