@@ -18,7 +18,8 @@
         "invalidResponse": "Błędna odpowiedź",
         "invalidResponseExplanation": "Serwer zwrócił błędną odpowiedź.",
         "invalidResponsePollingExplanation": "Węzeł zwrócił błędną odpowiedź podczas połączenia.",
-        "invalidResponseFetchingAccount": "Węzeł zwrócił błędną odpowiedź podczas pobierania informacji o Twoim koncie.",
+        "invalidResponseFetchingAccount":
+            "Węzeł zwrócił błędną odpowiedź podczas pobierania informacji o Twoim koncie.",
         "invalidResponseSendingTransfer": "Węzeł zwrócił błędną odpowiedź podczas realizowania transferu.",
         "seed": "Seed",
         "back": "WSTECZ",
@@ -74,9 +75,11 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
-        "seedInvalidCharsExplanation": "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
+        "seedInvalidCharsExplanation":
+            "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
-        "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój Seed ma obecnie {{currentLength}} znaków. Proszę spróbować ponownie.",
+        "seedTooShortExplanation":
+            "Seed musi zawierać {{maxLength}} znaków. Twój Seed ma obecnie {{currentLength}} znaków. Proszę spróbować ponownie.",
         "nameInUse": "Konto o tej nazwie już istnieje",
         "nameInUseExplanation": "Proszę użyć unikalnej nazwy konta dla Twojego seeda.",
         "enterAccountName": "Wprowadź nazwę konta.",
@@ -115,10 +118,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
-        "invalidCharactersExplanation": "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
+        "invalidCharactersExplanation":
+            "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
-        "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
-        "seedExplanation": "Seed powinien składać się z {{maxLength}} znaków i powinien zawierać wielkie litery A-Z lub cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
+        "seedTooShortExplanation":
+            "Seed musi zawierać {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
+        "seedExplanation":
+            "Seed powinien składać się z {{maxLength}} znaków i powinien zawierać wielkie litery A-Z lub cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
         "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA"
     },
     "home": {
@@ -151,7 +157,8 @@
         "individualLetters": "Naciśnij poszczególne litery, aby wylosować ponownie."
     },
     "onboardingComplete": {
-        "walletReady": "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
+        "walletReady":
+            "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
     },
     "paperWallet": {
         "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopie twojego seeda.",
@@ -200,11 +207,13 @@
     },
     "setPassword": {
         "passwordTooShort": "Hasło jest zbyt krótkie",
-        "passwordTooShortExplanation": "Hasło musi mieć co najmniej {{minLength}} znaków. Obecnie jest {{currentLength}}-znakowe. Spróbuj ponownie.",
+        "passwordTooShortExplanation":
+            "Hasło musi mieć co najmniej {{minLength}} znaków. Obecnie jest {{currentLength}}-znakowe. Spróbuj ponownie.",
         "passwordMismatch": "Hasła nie są zgodne",
         "passwordMismatchExplanation": "Wpisane hasła różnią się. Spróbuj ponownie.",
         "nowWeNeedTo": "Teraz musimy ustawić hasło.",
-        "anEncryptedCopy": "Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu. Będziesz korzystał z tego hasła w celu uzyskania dostępu do swojego portfela w przyszłości.",
+        "anEncryptedCopy":
+            "Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu. Będziesz korzystał z tego hasła w celu uzyskania dostępu do swojego portfela w przyszłości.",
         "ensure": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "retypePassword": "Wpisz hasło ponownie"
     },
@@ -256,8 +265,10 @@
     "walletSetup": {
         "okay": "W porządku. Ustawmy Twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz ziarno, którego chciałbyś użyć?",
-        "seedExplanation": "Ziarno IOTA jest jak połączenie Twojej nazwy użytkownika i hasła do konta w jeden ciąg długości 81 znaków.",
-        "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed'a, stracisz swoje IOTY.</4></0>",
+        "seedExplanation":
+            "Ziarno IOTA jest jak połączenie Twojej nazwy użytkownika i hasła do konta w jeden ciąg długości 81 znaków.",
+        "explanation":
+            "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed'a, stracisz swoje IOTY.</4></0>",
         "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seed'a."
     },
     "welcome": {
@@ -267,7 +278,8 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Twój seed ma {{maxSeedLength}} znaków, czytane od lewej do prawej.",
-        "writeDownYourSeed": "<0> Zapisz seed i sumę kontrolną i </0><1>trzykrotnie upewnij się</1><2> czy są poprawne.</2>"
+        "writeDownYourSeed":
+            "<0> Zapisz seed i sumę kontrolną i </0><1>trzykrotnie upewnij się</1><2> czy są poprawne.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
@@ -343,11 +355,13 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Zapisałem swojego seeda",
         "reenter": "Teraz będziesz poproszony/a o ponowne wprowadzenie swojego seeda.",
-        "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego seed'a, stracisz swoje środki IOTA."
+        "reenterWarning":
+            "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego seed'a, stracisz swoje środki IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TEJ CZYNNOŚCI NIE MOŻNA COFNĄĆ.",
-        "warning": "<0><0>Wszystkie dane portfela, w tym </0><1>seed, hasło</1><2> i </2><3>pozostałe dane konta</3><4>, zostaną utracone.</4></0>"
+        "warning":
+            "<0><0>Wszystkie dane portfela, w tym </0><1>seed, hasło</1><2> i </2><3>pozostałe dane konta</3><4>, zostaną utracone.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",

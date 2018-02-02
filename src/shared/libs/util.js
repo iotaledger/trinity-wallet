@@ -15,7 +15,7 @@ export const VALID_SEED_REGEX = /^[A-Z9]+$/;
 
 export const VALID_ADDRESS_WITH_CHECKSUM_REGEX = /^[A-Z9]{90}$/;
 
-export const formatValue = (value) => {
+export const formatValue = value => {
     var negative = false;
     if (value < 0) {
         negative = true;
@@ -44,7 +44,7 @@ export const formatValue = (value) => {
     }
 };
 
-export const formatUnit = (value) => {
+export const formatUnit = value => {
     if (value < 0) {
         value = -value;
     }
@@ -79,14 +79,14 @@ export function roundDown(number, decimals) {
     return Math.floor(number * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
 
-export const isValidServerAddress = (server) => {
+export const isValidServerAddress = server => {
     if (!server.startsWith('http://') && !server.startsWith('https://')) {
         return false;
     }
     return true;
 };
 
-export const isValidSeed = (seed) => seed.length === MAX_SEED_LENGTH && seed.match(VALID_SEED_REGEX);
+export const isValidSeed = seed => seed.length === MAX_SEED_LENGTH && seed.match(VALID_SEED_REGEX);
 
 export const guid = () => {
     const s4 = () =>
@@ -105,7 +105,7 @@ export const createRandomSeed = (randomBytesFn, length = MAX_SEED_LENGTH) => {
         length = MAX_SEED_LENGTH;
     }
 
-    Object.keys(bytes).forEach((key) => {
+    Object.keys(bytes).forEach(key => {
         if (bytes[key] < 243 && seed.length < length) {
             const randomNumber = bytes[key] % 27;
             const randomLetter = charset.charAt(randomNumber);
@@ -129,7 +129,7 @@ const _renameObjectKeys = (object, keyMap) =>
         {},
     );
 
-const _renameArrayKeys = (list, keyMap) => map(list, (object) => _renameObjectKeys(object, keyMap));
+const _renameArrayKeys = (list, keyMap) => map(list, object => _renameObjectKeys(object, keyMap));
 
 export const renameKeys = (payload, keyMap) => {
     if (isArray(payload)) {
@@ -147,7 +147,7 @@ export const serialize = (data, ...options) => {
     return data;
 };
 
-export const parse = (data) => {
+export const parse = data => {
     try {
         return JSON.parse(data);
     } catch (err) {
@@ -157,7 +157,7 @@ export const parse = (data) => {
 
 export const rearrangeObjectKeys = (obj, prop) => {
     const allKeys = keys(obj);
-    const withoutProp = filter(allKeys, (k) => k !== prop);
+    const withoutProp = filter(allKeys, k => k !== prop);
     const withPropAsLastEl = withoutProp.concat([prop]);
 
     const order = (newObj, key) => {

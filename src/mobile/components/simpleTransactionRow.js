@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-import { isReceivedTransfer, getRelevantTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { extractTailTransferFromBundle } from 'iota-wallet-shared-modules/libs/transfers';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
 import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
 import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
 import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
+import { translate } from 'react-i18next';
 
 import { width, height } from '../util/dimensions';
 
@@ -43,10 +45,11 @@ class SimpleTransactionRow extends Component {
     };
 
     render() {
-        const { rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor } = this.props;
-        const transfer = getRelevantTransfer(rowData, addresses);
+        const { rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor, t } = this.props;
+        const transfer = extractTailTransferFromBundle(rowData);
         const isReceived = isReceivedTransfer(rowData, addresses);
-        const sign = isReceived ? '+' : '-';
+        let sign = isReceived ? '+' : '-';
+        sign = transfer.value === 0 ? '' : sign;
         const titleColour = isReceived ? extraColor : negativeColor;
         const sendImagePath = secondaryBackgroundColor === 'white' ? whiteSendImagePath : blackSendImagePath;
         const receiveImagePath = secondaryBackgroundColor === 'white' ? whiteReceiveImagePath : blackReceiveImagePath;
@@ -65,8 +68,8 @@ class SimpleTransactionRow extends Component {
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
                     <Text style={[styles.text, { color: titleColour }]}>
                         {isReceived
-                            ? rowData[0].persistence ? 'Received' : 'Receiving'
-                            : rowData[0].persistence ? 'Sent' : 'Sending'}
+                            ? rowData[0].persistence ? t('received') : t('receiving')
+                            : rowData[0].persistence ? t('sent') : t('sending')}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>
@@ -79,4 +82,4 @@ class SimpleTransactionRow extends Component {
     }
 }
 
-export default SimpleTransactionRow;
+export default translate('global')(SimpleTransactionRow);

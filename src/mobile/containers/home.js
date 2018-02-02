@@ -87,6 +87,7 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
     }
     componentDidMount() {
+        const { t } = this.props;
         BackHandler.addEventListener('homeBackPress', () => {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
                 RNExitApp.exitApp();
@@ -140,7 +141,13 @@ class Home extends Component {
     }
 
     handleInactivity = () => {
-        this.props.setUserActivity({ inactive: true });
+        const { isTransitioning, isSyncing, isSendingTransfer } = this.props;
+        const doingSomething = isTransitioning || isSyncing || isSendingTransfer;
+        if (doingSomething) {
+            this.userInactivity.setActiveFromComponent();
+        } else {
+            this.props.setUserActivity({ inactive: true });
+        }
     };
 
     render() {
@@ -265,6 +272,9 @@ const mapStateToProps = state => ({
     secondaryBarColor: state.settings.theme.secondaryBarColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     currentRoute: state.home.childRoute,
+    isSyncing: state.tempAccount.isSyncing,
+    isSendingTransfer: state.tempAccount.isSendingTransfer,
+    isTransitioning: state.tempAccount.isTransitioning,
 });
 
 const mapDispatchToProps = {
@@ -291,6 +301,9 @@ Home.propTypes = {
     secondaryBarColor: PropTypes.string.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
     currentRoute: PropTypes.string.isRequired,
+    isTransitioning: PropTypes.bool.isRequired,
+    isSyncing: PropTypes.bool.isRequired,
+    isSendingTransfer: PropTypes.bool.isRequired,
 };
 
 export default withUserActivity()(
