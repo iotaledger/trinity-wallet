@@ -156,12 +156,12 @@ const MainSettings = props => (
         </View>
         <View style={styles.itemContainer}>
             <TouchableOpacity
-                onPress={() => props.on2FASetupPress()}
+                onPress={() => props.setSetting('securitySettings')}
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
                     <Image source={props.twoFactorAuthImagePath} style={styles.icon} />
-                    <Text style={[styles.titleText, props.textColor]}>{props.t('twoFA')}</Text>
+                    <Text style={[styles.titleText, props.textColor]}>{props.t('securitySettings')}</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -212,7 +212,6 @@ MainSettings.propTypes = {
     onLanguagePress: PropTypes.func.isRequired,
     setSetting: PropTypes.func.isRequired,
     setModalContent: PropTypes.func.isRequired,
-    on2FASetupPress: PropTypes.func.isRequired,
     onThemePress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
 };
