@@ -174,12 +174,12 @@
     },
     "seedReentry": {
         "incorrectSeed": "Từ khoá không đúng",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "incorrectSeedExplanation": "Từ khoá vừa nhập không chính xác. Xin vui lòng thử lại.",
+        "thisIsACheck": "Đây là sự kiểm tra để bảo đảm bạn đã lưu từ khoá.",
+        "ifYouHaveNotSaved": "Nếu bạn chưa lưu từ khoá, xin vui lòng quay lại và lưu vào."
     },
     "send": {
-        "invalidAddress": "Invalid address",
+        "invalidAddress": "Địa chỉ không đúng",
         "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
