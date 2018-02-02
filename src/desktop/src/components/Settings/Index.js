@@ -12,6 +12,7 @@ import Button from 'components/UI/Button';
 import Language from 'components/Settings/Language';
 import Theme from 'components/Settings/Theme';
 import Currency from 'views/settings/Currency';
+import Password from 'views/settings/Password';
 
 import css from 'components/Settings/Index.css';
 
@@ -85,9 +86,9 @@ class Settings extends React.PureComponent {
                                 <a onClick={this.featureUnavailable}>
                                     <img src={ico2fa} /> {t('settings:twoFA')}
                                 </a>
-                                <a onClick={this.featureUnavailable}>
+                                <NavLink to="/settings/password">
                                     <img src={icoPassword} /> {t('settings:changePassword')}
-                                </a>
+                                </NavLink>
                                 <hr />
                                 <a onClick={this.featureUnavailable}>
                                     <img src={icoAdvanced} /> {t('settings:advanced')}
@@ -117,6 +118,7 @@ class Settings extends React.PureComponent {
                         <Route path="/settings/language" component={Language} />
                         <Route path="/settings/theme" component={Theme} />
                         <Route path="/settings/currency" component={Currency} />
+                        <Route path="/settings/password" component={Password} />
                         <Redirect from="/settings" to="/settings/language" />
                     </Switch>
                 </section>
