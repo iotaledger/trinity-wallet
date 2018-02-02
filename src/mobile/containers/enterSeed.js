@@ -211,6 +211,7 @@ class EnterSeed extends React.Component {
                             onSubmitEditing={() => this.onDonePress()}
                             maxLength={MAX_SEED_LENGTH}
                             secondaryBackgroundColor="white"
+                            secondaryCtaColor="transparent"
                             value={seed}
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
