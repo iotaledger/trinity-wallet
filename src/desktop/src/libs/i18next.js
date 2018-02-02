@@ -7,7 +7,7 @@ export default i18next.init({
     // lng: I18N_DEFAULT_LANGUAGE,
     fallbackLng: I18N_DEFAULT_LANGUAGE,
     fallbackNS: 'Common',
-    parseMissingKeyHandler: (missing) => `NOT TRANSLATED: ${missing}`,
+    parseMissingKeyHandler: missing => `NOT TRANSLATED: ${missing}`,
     resources: {
         ar: require('locales/ar/translation.json'),
         da: require('locales/da/translation.json'),

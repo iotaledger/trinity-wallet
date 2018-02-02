@@ -7,7 +7,7 @@ const variants = ['primary', 'secondary', 'warning', 'extra', 'highlight'];
 class Buttons extends React.PureComponent {
     state = {};
 
-    loadingDummy = (variant) => {
+    loadingDummy = variant => {
         this.setState({
             [variant]: true,
         });

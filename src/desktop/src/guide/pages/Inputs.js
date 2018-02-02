@@ -30,13 +30,13 @@ class Inputs extends React.PureComponent {
                         value={this.state.password}
                         label="Password"
                         name="password"
-                        onChange={(value) => this.setState({ password: value })}
+                        onChange={value => this.setState({ password: value })}
                     />
                     <SeedInput
                         seed={this.state.seed}
                         label="Seed"
                         closeLabel="Back"
-                        onChange={(value) => this.setState({ seed: value })}
+                        onChange={value => this.setState({ seed: value })}
                     />
                     <AmountInput
                         amount={this.state.ammount}
@@ -44,12 +44,12 @@ class Inputs extends React.PureComponent {
                         label="Ammount"
                         labelMax="Max"
                         balance={2000}
-                        onChange={(value) => this.setState({ ammount: value })}
+                        onChange={value => this.setState({ ammount: value })}
                     />
                     <MessageInput
                         message={this.state.message}
                         label="Auto size"
-                        onChange={(value) => this.setState({ message: value })}
+                        onChange={value => this.setState({ message: value })}
                     />
                 </form>
             </div>
