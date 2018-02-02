@@ -236,7 +236,7 @@ class Send extends Component {
         }
 
         if (!addressIsValid) {
-            this.renderInvalidAddressErrors();
+            this.renderInvalidAddressErrors(address);
         }
 
         if (!amountIsValid) {
