@@ -83,7 +83,7 @@ class FingerprintDisable extends Component {
             this.goBack();
             return true;
         });
-        AppState.addEventListener('change', this.handleAppStateChange);
+        //  AppState.addEventListener('change', this.handleAppStateChange);
         this.activateFingerPrintScanner();
     }
     componentWillReceiveProps(newProps) {
