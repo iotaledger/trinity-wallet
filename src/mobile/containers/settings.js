@@ -486,7 +486,7 @@ class Settings extends Component {
                 arrowLeftImagePath,
             },
             securitySettings: {
-                setSetting: (setting) => this.props.setSetting(setting),
+                setSetting: setting => this.props.setSetting(setting),
                 backPress: () => this.props.setSetting('mainSettings'),
                 on2FASetupPress: () => this.on2FASetupPress(),
                 onFingerSetup: () => this.onFingerSetup(),
@@ -526,8 +526,7 @@ class Settings extends Component {
                 appStyle: {
                     orientation: 'portrait',
                 },
-            })
-          }
+            });
         } else {
             Navigation.startSingleScreenApp({
                 screen: {
@@ -542,9 +541,11 @@ class Settings extends Component {
                 appStyle: {
                     orientation: 'portrait',
                 },
-              });
+            });
+        }
+    }
 
-        onFingerSetup() {
+    onFingerSetup() {
         const { isFingerprintEnabled } = this.props;
         if (isFingerprintEnabled) {
             Navigation.startSingleScreenApp({
