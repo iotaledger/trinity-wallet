@@ -19,7 +19,7 @@ class Theme extends PureComponent {
     }
 
     updateTheme(theme) {
-        Object.keys(theme).map((colorName) => {
+        Object.keys(theme).map(colorName => {
             const color = theme[colorName];
             if (!color.color) {
                 return;
@@ -40,7 +40,7 @@ class Theme extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     theme: state.settings.theme,
     themeName: state.settings.themeName,
 });

@@ -34,19 +34,19 @@ class Send extends React.PureComponent {
         isModalVisible: false,
     };
 
-    onAddressChange = (value) => {
+    onAddressChange = value => {
         this.setState(() => ({
             address: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase(),
         }));
     };
 
-    onAmountChange = (value) => {
+    onAmountChange = value => {
         this.setState(() => ({
             amount: value,
         }));
     };
 
-    onMessageChange = (value) => {
+    onMessageChange = value => {
         this.setState(() => ({
             message: value,
         }));
@@ -174,7 +174,7 @@ class Send extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     settings: state.settings,
     account: state.account,

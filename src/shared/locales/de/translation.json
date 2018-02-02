@@ -179,7 +179,8 @@
     "saveYourSeed": {
         "seedCleared": "Seed gelöscht",
         "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht.",
-        "mustSaveYourSeed": "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der unten aufgelisteten Optionen sichern.</2></0>"
+        "mustSaveYourSeed":
+            "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der unten aufgelisteten Optionen sichern.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Ungültiger Seed",
@@ -221,7 +222,8 @@
         "retypePassword": "Passwort erneut eingeben"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Du kannst mehrere Seeds in diesem Wallet verwenden. Jeder Seed benötigt einen Kontonamen.",
+        "canUseMultipleSeeds":
+            "Du kannst mehrere Seeds in diesem Wallet verwenden. Jeder Seed benötigt einen Kontonamen.",
         "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
     "settings": {
@@ -268,8 +270,10 @@
     "walletSetup": {
         "okay": "Okay. Lass uns dein Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
-        "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
-        "explanation": "<0><0>Du kannst ihn benutzen, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Geld zuzugreifen. Aber, wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
+        "seedExplanation":
+            "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
+        "explanation":
+            "<0><0>Du kannst ihn benutzen, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Geld zuzugreifen. Aber, wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
@@ -279,7 +283,8 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Dein Seed besteht aus {{maxSeedLength}} Zeichen, gelesen von links nach rechts.",
-        "writeDownYourSeed": "<0> Schreibe deinen Seed und deine Prüfsumme auf und </0><1>überprüfe gründlich</1><2>, ob diese korrekt sind.</2>"
+        "writeDownYourSeed":
+            "<0> Schreibe deinen Seed und deine Prüfsumme auf und </0><1>überprüfe gründlich</1><2>, ob diese korrekt sind.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
@@ -359,7 +364,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DIESE AKTION KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN.",
-        "warning": "<0><0>Alle Daten deines Wallets, inklusive deiner </0><1>Seeds, Passwörter</1><2> und </2><3>anderer Konto-Informationen</3><4>, werden verloren gehen.</4></0>"
+        "warning":
+            "<0><0>Alle Daten deines Wallets, inklusive deiner </0><1>Seeds, Passwörter</1><2> und </2><3>anderer Konto-Informationen</3><4>, werden verloren gehen.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",
