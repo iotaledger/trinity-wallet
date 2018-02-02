@@ -85,7 +85,7 @@ class Login extends Component {
         this.props.getCurrencyData(currency);
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
-        AppState.addEventListener('change', this.handleAppStateChange);
+        //  AppState.addEventListener('change', this.handleAppStateChange);
         this.activateFingerPrintScanner();
     }
 
