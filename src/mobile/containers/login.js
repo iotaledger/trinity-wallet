@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { AsyncStorage, StyleSheet, View, Text, Keyboard } from 'react-native';
+import { AsyncStorage, StyleSheet, View, Text, Keyboard, AppState } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
@@ -34,6 +34,7 @@ import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
 import { width, height } from '../util/dimensions';
 import KeepAwake from 'react-native-keep-awake';
+import FingerprintScanner from 'react-native-fingerprint-scanner';
 
 class Login extends Component {
     static propTypes = {
@@ -57,6 +58,7 @@ class Login extends Component {
         key2FA: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
+        isFingerprintEnabled: PropTypes.bool.isRequired,
         migrate: PropTypes.func.isRequired,
     };
 
@@ -67,6 +69,7 @@ class Login extends Component {
             isModalVisible: false,
             changingNode: false,
             completing2FA: false,
+            appState: AppState.currentState,
         };
 
         this.onComplete2FA = this.onComplete2FA.bind(this);
@@ -82,11 +85,62 @@ class Login extends Component {
         this.props.getCurrencyData(currency);
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
+        AppState.addEventListener('change', this.handleAppStateChange);
+        this.activateFingerPrintScanner();
     }
 
     componentWillReceiveProps(newProps) {
         if (newProps.hasErrorFetchingAccountInfoOnLogin && !this.props.hasErrorFetchingAccountInfoOnLogin) {
             this._showModal();
+        }
+    }
+
+    handleAppStateChange = nextAppState => {
+        if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+            console.log('App has come to the foreground!');
+            this.activateFingerPrintScanner();
+        }
+        this.setState({ appState: nextAppState });
+    };
+    componentWillUnmount() {
+        AppState.removeEventListener('change', this.handleAppStateChange);
+        FingerprintScanner.release();
+    }
+
+    handleAuthenticationAttempted = error => {
+        this.props.generateAlert('error', 'Fingerprint Authentication', 'Authenticated unsuccessfully');
+    };
+
+    activateFingerPrintScanner() {
+        console.log('Starting fingerprint');
+        const { firstUse, selectedAccount, is2FAEnabled, isFingerprintEnabled } = this.props;
+        if (isFingerprintEnabled) {
+            FingerprintScanner.authenticate({ onAttempt: this.handleAuthenticationAttempted })
+                .then(() => {
+                    //this.props.generateAlert('success', 'Fingerprint Authentication', 'Authenticated successfully');
+                    keychain
+                        .get()
+                        .then(credentials => {
+                            if (!is2FAEnabled) {
+                                if (firstUse) {
+                                    this.navigateToLoading();
+                                } else {
+                                    const addresses = get(selectedAccount, 'addresses');
+                                    if (!isEmpty(addresses)) {
+                                        this.navigateToLoading();
+                                    } else {
+                                        this.navigateToHome();
+                                    }
+                                }
+                            } else {
+                                this.setState({ completing2FA: true });
+                            }
+                        })
+                        .catch(err => console.log(err));
+                })
+                .catch(error => {
+                    this.setState({ errorMessage: error.message });
+                });
         }
     }
 
@@ -352,6 +406,7 @@ const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     is2FAEnabled: state.account.is2FAEnabled,
+    isFingerprintEnabled: state.account.isFingerprintEnabled,
     key2FA: state.account.key2FA,
     versions: state.app.versions,
     accountInfo: state.account.accountInfo,
