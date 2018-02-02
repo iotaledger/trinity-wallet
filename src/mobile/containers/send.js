@@ -356,7 +356,7 @@ class Send extends Component {
                         address={address}
                         sendTransfer={() => this.sendTransfer()}
                         hideModal={callback => this._hideModal(callback)}
-                        backgroundColor={THEMES.getHSL(barColor)}
+                        backgroundColor={THEMES.getHSL(backgroundColor)}
                         borderColor={{ borderColor: secondaryBackgroundColor }}
                         textColor={{ color: secondaryBackgroundColor }}
                         setSendingTransferFlag={() => this.setSendingTransferFlag()}
