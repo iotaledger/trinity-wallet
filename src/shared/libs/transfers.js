@@ -121,7 +121,7 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
             const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
 
             const diff = threshold - collected;
-            const hasInputs = size(filtered);
+            const hasInputs = size(preparedInputs.inputs);
 
             if (hasInputs && diff > 0) {
                 const ordered = preparedInputs.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
