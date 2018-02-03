@@ -32,6 +32,7 @@ import {
     generateTransitionErrorAlert,
     generateAlert,
 } from '../actions/alerts';
+import { pushScreen } from '../libs/util';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
 export const ActionTypes = {
@@ -212,9 +213,7 @@ export const fetchFullAccountInfoForFirstUse = (
     navigator = null,
 ) => dispatch => {
     const onError = err => {
-        if (navigator) {
-            navigator.pop({ animated: false });
-        }
+        pushScreen(navigator, 'login');
 
         dispatch(generateAccountInfoErrorAlert(err));
         dispatch(fullAccountInfoForFirstUseFetchError());
@@ -243,9 +242,7 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
                 dispatch(fullAccountInfoFetchSuccess(dataWithUnspentAddressesHashes)),
             )
             .catch(err => {
-                if (navigator) {
-                    navigator.pop({ animated: false });
-                }
+                pushScreen(navigator, 'login');
                 dispatch(generateAccountInfoErrorAlert(err));
                 dispatch(fullAccountInfoFetchError());
             });
