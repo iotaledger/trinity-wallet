@@ -213,7 +213,9 @@ export const fetchFullAccountInfoForFirstUse = (
     navigator = null,
 ) => dispatch => {
     const onError = err => {
-        pushScreen(navigator, 'login');
+        if (navigator) {
+            navigator.pop({ animated: false });
+        }
 
         dispatch(generateAccountInfoErrorAlert(err));
         dispatch(fullAccountInfoForFirstUseFetchError());
