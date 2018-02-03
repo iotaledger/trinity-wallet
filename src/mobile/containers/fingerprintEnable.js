@@ -83,7 +83,7 @@ class FingerprintEnable extends Component {
             this.goBack();
             return true;
         });
-        //    AppState.addEventListener('change', this.handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
         this.activateFingerPrintScanner();
     }
     componentWillReceiveProps(newProps) {
@@ -93,6 +93,7 @@ class FingerprintEnable extends Component {
     }
     componentWillUnmount() {
         FingerprintScanner.release();
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
     handleAppStateChange = nextAppState => {
         if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
