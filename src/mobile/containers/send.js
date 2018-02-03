@@ -127,6 +127,7 @@ class Send extends Component {
             KeepAwake.deactivate();
             this.props.clearSendFields();
             this.props.setSendDenomination('i');
+            this.setState({ sending: false });
         }
     }
 
