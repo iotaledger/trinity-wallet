@@ -43,6 +43,8 @@ export const ActionTypes = {
     SNAPSHOT_TRANSITION_REQUEST: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_REQUEST',
     SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_SUCCESS',
     SNAPSHOT_TRANSITION_ERROR: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_ERROR',
+    SNAPSHOT_ATTACH_TO_TANGLE_REQUEST: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_ATTACH_TO_TANGLE_REQUEST',
+    SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE',
     UPDATE_TRANSITION_BALANCE: 'IOTA/TEMP_ACCOUNT/UPDATE_TRANSITION_BALANCE',
     SWITCH_BALANCE_CHECK_TOGGLE: 'IOTA/TEMP_ACCOUNT/SWITCH_BALANCE_CHECK_TOGGLE',
     UPDATE_TRANSITION_ADDRESSES: 'IOTA/TEMP_ACCOUNT/UPDATE_TRANSITION_ADDRESSES',
@@ -73,6 +75,15 @@ export const snapshotTransitionSuccess = payload => ({
 
 export const snapshotTransitionError = () => ({
     type: ActionTypes.SNAPSHOT_TRANSITION_ERROR,
+});
+
+export const snapshotAttachToTangleRequest = payload => ({
+    type: ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_REQUEST,
+    payload,
+});
+
+export const snapshotAttachToTangleComplete = () => ({
+    type: ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE,
 });
 
 export const getTransfersRequest = () => ({
@@ -243,11 +254,13 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
                     i18next.t('global:attachToTangleUnavailable'),
                     i18next.t('global:attachToTangleUnavailableExplanation'),
                     100000,
+                    error,
                 ],
                 default: [
                     i18next.t('global:invalidResponse'),
                     i18next.t('global:invalidResponseSendingTransfer'),
                     100000,
+                    error,
                 ],
             };
 
@@ -307,6 +320,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     100000,
+                    err,
                 );
             }
 
@@ -325,6 +339,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     100000,
+                    err,
                 );
             }
 
