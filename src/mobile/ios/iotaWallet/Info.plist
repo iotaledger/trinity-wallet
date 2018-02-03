@@ -55,11 +55,13 @@
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Please allow access to the photo library. This will allow you to attach screenshots to bug reports.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>QR Scanner</string>
+	<string>Trinity requires permission to access the camera in order to enable QR code scanning</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>IOTA Wallet</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Trinity requires permission to access Face ID in order to enable face authentication</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Black.ttf</string>
