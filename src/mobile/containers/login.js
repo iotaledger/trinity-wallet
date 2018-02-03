@@ -2,39 +2,66 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
+import KeepAwake from 'react-native-keep-awake';
 import { AsyncStorage, StyleSheet, View, Text, Keyboard, AppState } from 'react-native';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import { connect } from 'react-redux';
-import { Navigation } from 'react-native-navigation';
-import authenticator from 'authenticator';
-import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
+import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
-import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
-import { setPassword, setReady, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setPassword, setReady, setUserActivity, setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
+import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import OnboardingButtons from '../components/onboardingButtons';
-import NodeSelection from '../components/nodeSelection';
 import whiteArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-white.png';
 import blackArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-black.png';
 import whiteTickImagePath from 'iota-wallet-shared-modules/images/tick-white.png';
 import blackTickImagePath from 'iota-wallet-shared-modules/images/tick-black.png';
+import DynamicStatusBar from '../components/dynamicStatusBar';
+import OnboardingButtons from '../components/onboardingButtons';
+import NodeSelection from '../components/nodeSelection';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import keychain from '../util/keychain';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
 import { width, height } from '../util/dimensions';
-import KeepAwake from 'react-native-keep-awake';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalContent: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderRadius: GENERAL.borderRadius,
+        borderWidth: 2,
+        borderColor: 'rgba(255, 255, 255, 0.8)',
+        paddingVertical: height / 18,
+        width: width / 1.15,
+    },
+    questionText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 27.6,
+        paddingBottom: height / 40,
+    },
+    infoText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 27.6,
+        paddingBottom: height / 16,
+    },
+});
 
 class Login extends Component {
     static propTypes = {
@@ -43,13 +70,8 @@ class Login extends Component {
         selectedAccount: PropTypes.object.isRequired,
         fullNode: PropTypes.string.isRequired,
         availablePoWNodes: PropTypes.array.isRequired,
-        currency: PropTypes.string.isRequired,
         versions: PropTypes.object.isRequired,
         setPassword: PropTypes.func.isRequired,
-        getMarketData: PropTypes.func.isRequired,
-        getPrice: PropTypes.func.isRequired,
-        getChartData: PropTypes.func.isRequired,
-        getCurrencyData: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         backgroundColor: PropTypes.object.isRequired,
         positiveColor: PropTypes.object.isRequired,
@@ -60,6 +82,11 @@ class Login extends Component {
         setUserActivity: PropTypes.func.isRequired,
         isFingerprintEnabled: PropTypes.bool.isRequired,
         migrate: PropTypes.func.isRequired,
+        setLoginPasswordField: PropTypes.func.isRequired,
+        password: PropTypes.string.isRequired,
+        setFullNode: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+        navigator: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -79,24 +106,21 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        const { currency } = this.props;
         this.checkForUpdates();
-        this.getWalletData();
-        this.props.getCurrencyData(currency);
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
-        //  AppState.addEventListener('change', this.handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
         this.activateFingerPrintScanner();
     }
 
     componentWillReceiveProps(newProps) {
         if (newProps.hasErrorFetchingAccountInfoOnLogin && !this.props.hasErrorFetchingAccountInfoOnLogin) {
-            this._showModal();
+            this.showModal();
         }
     }
 
     handleAppStateChange = nextAppState => {
-        if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+        if (this.state.appState.match(/background/) && nextAppState === 'active') {
             console.log('App has come to the foreground!');
             this.activateFingerPrintScanner();
         }
@@ -108,14 +132,18 @@ class Login extends Component {
     }
 
     handleAuthenticationAttempted = error => {
-        this.props.generateAlert('error', 'Fingerprint Authentication', 'Authenticated unsuccessfully');
+        this.props.generateAlert('error', 'Fingerprint authentication', 'Authentication unsuccessful');
     };
 
     activateFingerPrintScanner() {
+        const { t } = this.props;
         console.log('Starting fingerprint');
         const { firstUse, selectedAccount, is2FAEnabled, isFingerprintEnabled } = this.props;
         if (isFingerprintEnabled) {
-            FingerprintScanner.authenticate({ onAttempt: this.handleAuthenticationAttempted })
+            FingerprintScanner.authenticate({
+                description: t('fingerprintEnable:instructions'),
+                onAttempt: this.handleAuthenticationAttempted,
+            })
                 .then(() => {
                     //this.props.generateAlert('success', 'Fingerprint Authentication', 'Authenticated successfully');
                     keychain
@@ -126,11 +154,7 @@ class Login extends Component {
                                     this.navigateToLoading();
                                 } else {
                                     const addresses = get(selectedAccount, 'addresses');
-                                    if (!isEmpty(addresses)) {
-                                        this.navigateToLoading();
-                                    } else {
-                                        this.navigateToHome();
-                                    }
+                                    this.navigateToLoading();
                                 }
                             } else {
                                 this.setState({ completing2FA: true });
@@ -144,46 +168,8 @@ class Login extends Component {
         }
     }
 
-    checkForUpdates() {
-        const latestVersion = getVersion();
-        const latestBuildNumber = getBuildNumber();
-        const { versions } = this.props;
-        const currentVersion = get(versions, 'version');
-        const currentBuildNumber = get(versions, 'buildNumber');
-
-        if (latestVersion !== currentVersion || latestBuildNumber !== currentBuildNumber) {
-            this.props.migrate({ version: latestVersion, buildNumber: latestBuildNumber }, persistConfig, persistor);
-        }
-    }
-
-    navigateToNodeSelection() {
-        this._hideModal();
-        this.setState({ changingNode: true });
-    }
-
-    _renderModalContent = () => {
-        const { backgroundColor, secondaryBackgroundColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-        return (
-            <View
-                style={{ width: width / 1.15, alignItems: 'center', backgroundColor: THEMES.getHSL(backgroundColor) }}
-            >
-                <View style={styles.modalContent}>
-                    <Text style={[styles.questionText, textColor]}>Cannot connect to IOTA node.</Text>
-                    <Text style={[styles.infoText, textColor]}>Do you want to select a different node?</Text>
-                    <OnboardingButtons
-                        onLeftButtonPress={() => this._hideModal()}
-                        onRightButtonPress={() => this.navigateToNodeSelection()}
-                        leftText={'NO'}
-                        rightText={'YES'}
-                    />
-                </View>
-            </View>
-        );
-    };
-
     onLoginPress(password) {
-        const { firstUse, t, setPassword, selectedAccount, is2FAEnabled } = this.props;
+        const { t, is2FAEnabled } = this.props;
 
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
@@ -194,18 +180,10 @@ class Login extends Component {
                     const hasData = get(credentials, 'data');
                     const hasCorrectPassword = get(credentials, 'password') === password;
                     if (hasData && hasCorrectPassword) {
-                        setPassword(password);
+                        this.props.setPassword(password);
+                        this.props.setLoginPasswordField('');
                         if (!is2FAEnabled) {
-                            if (firstUse) {
-                                this.navigateToLoading();
-                            } else {
-                                const addresses = get(selectedAccount, 'addresses');
-                                if (!isEmpty(addresses)) {
-                                    this.navigateToLoading();
-                                } else {
-                                    this.navigateToHome();
-                                }
-                            }
+                            this.navigateToLoading();
                         } else {
                             this.setState({ completing2FA: true });
                         }
@@ -230,15 +208,11 @@ class Login extends Component {
                     this.navigateToLoading();
                 } else {
                     const addresses = get(selectedAccount, 'addresses');
-                    if (!isEmpty(addresses)) {
-                        this.navigateToLoading();
-                    } else {
-                        this.navigateToHome();
-                    }
+                    this.navigateToLoading();
                 }
                 this.setState({ completing2FA: false });
             } else {
-                this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+                this.props.generateAlert('error', 'Wrong code', 'The code you entered is not correct');
             }
         } else {
             this.props.generateAlert('error', 'Empty code', 'The code you entered is empty');
@@ -249,15 +223,26 @@ class Login extends Component {
         this.setState({ completing2FA: false });
     }
 
-    getWalletData() {
-        this.props.getChartData();
-        this.props.getPrice();
-        this.props.getMarketData();
+    checkForUpdates() {
+        const latestVersion = getVersion();
+        const latestBuildNumber = getBuildNumber();
+        const { versions } = this.props;
+        const currentVersion = get(versions, 'version');
+        const currentBuildNumber = get(versions, 'buildNumber');
+
+        if (latestVersion !== currentVersion || latestBuildNumber !== currentBuildNumber) {
+            this.props.migrate({ version: latestVersion, buildNumber: latestBuildNumber }, persistConfig, persistor);
+        }
     }
 
-    _showModal = () => this.setState({ isModalVisible: true });
+    showModal = () => this.setState({ isModalVisible: true });
 
-    _hideModal = () => this.setState({ isModalVisible: false });
+    hideModal = () => this.setState({ isModalVisible: false });
+
+    navigateToNodeSelection() {
+        this.hideModal();
+        this.setState({ changingNode: true });
+    }
 
     navigateToLoading() {
         this.props.navigator.push({
@@ -272,26 +257,29 @@ class Login extends Component {
         });
     }
 
-    navigateToHome() {
-        this.props.changeHomeScreenRoute('balance');
-        this.props.setSetting('mainSettings');
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
-            },
-            appStyle: {
-                orientation: 'portrait',
-            },
-        });
-    }
+    renderModalContent = () => {
+        const { backgroundColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
+        return (
+            <View
+                style={{ width: width / 1.15, alignItems: 'center', backgroundColor: THEMES.getHSL(backgroundColor) }}
+            >
+                <View style={styles.modalContent}>
+                    <Text style={[styles.questionText, textColor]}>Cannot connect to IOTA node.</Text>
+                    <Text style={[styles.infoText, textColor]}>Do you want to select a different node?</Text>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this.hideModal()}
+                        onRightButtonPress={() => this.navigateToNodeSelection()}
+                        leftText={'NO'}
+                        rightText={'YES'}
+                    />
+                </View>
+            </View>
+        );
+    };
 
     render() {
-        const { backgroundColor, positiveColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const { backgroundColor, positiveColor, negativeColor, secondaryBackgroundColor, password } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -309,6 +297,8 @@ class Login extends Component {
                             navigateToNodeSelection={this.navigateToNodeSelection}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             textColor={textColor}
+                            setLoginPasswordField={pword => this.props.setLoginPasswordField(pword)}
+                            password={password}
                         />
                     )}
                 {!this.state.changingNode &&
@@ -358,48 +348,18 @@ class Login extends Component {
                     isVisible={this.state.isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
                 >
-                    {this._renderModalContent()}
+                    {this.renderModalContent()}
                 </Modal>
             </View>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    modalContent: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
-        borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.8)',
-        paddingVertical: height / 18,
-        width: width / 1.15,
-    },
-    questionText: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 27.6,
-        paddingBottom: height / 40,
-    },
-    infoText: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 27.6,
-        paddingBottom: height / 16,
-    },
-});
-
 const mapStateToProps = state => ({
     firstUse: state.account.firstUse,
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
-    currency: state.settings.currency,
     hasErrorFetchingAccountInfoOnLogin: state.tempAccount.hasErrorFetchingAccountInfoOnLogin,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
@@ -410,21 +370,19 @@ const mapStateToProps = state => ({
     key2FA: state.account.key2FA,
     versions: state.app.versions,
     accountInfo: state.account.accountInfo,
+    password: state.ui.loginPasswordFieldText,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     setPassword,
-    getMarketData,
-    getPrice,
-    getChartData,
-    getCurrencyData,
     setReady,
     setFullNode,
     changeHomeScreenRoute,
     setSetting,
     setUserActivity,
     migrate,
+    setLoginPasswordField,
 };
 
-export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default translate(['login', 'global', 'fingerprintEnable'])(connect(mapStateToProps, mapDispatchToProps)(Login));

@@ -238,6 +238,7 @@ class Settings extends Component {
             transitionForSnapshot,
             generateAddressesAndGetBalance,
             completeSnapshotTransition,
+            isAttachingToTangle,
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
         const arrowLeftImagePath = isWhite ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -450,6 +451,7 @@ class Settings extends Component {
                 balanceCheckToggle,
                 seedIndex,
                 selectedAccountName,
+                isAttachingToTangle,
                 addresses: Object.keys(selectedAccount.addresses),
                 transitionForSnapshot: (seed, addresses) => transitionForSnapshot(seed, addresses),
                 generateAddressesAndGetBalance: (seed, index) => generateAddressesAndGetBalance(seed, index),
@@ -971,6 +973,7 @@ const mapStateToProps = state => ({
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
+    isAttachingToTangle: state.tempAccount.isAttachingToTangle,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(
