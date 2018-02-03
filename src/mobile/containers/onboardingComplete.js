@@ -82,16 +82,6 @@ class OnboardingComplete extends Component {
 
     onNextPress() {
         this.props.navigator.push({
-            screen: 'login',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: COLORS.backgroundGreen,
-            },
-            animated: false,
-            overrideBackPress: true,
-        });
-        this.props.navigator.push({
             screen: 'loading',
             navigatorStyle: {
                 navBarHidden: true,
