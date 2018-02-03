@@ -305,7 +305,7 @@ export const getLatestAddresses = (seed, index) => {
                 const addresses = reduce(
                     data.inputs,
                     (obj, x) => {
-                        obj[x.address] = { balance: x.balance, spent: false, index: x.keyIndex };
+                        obj[x.address] = { index: x.keyIndex, balance: x.balance, spent: false };
                         return obj;
                     },
                     {},
