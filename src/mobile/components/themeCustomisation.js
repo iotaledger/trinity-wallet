@@ -224,7 +224,7 @@ class ThemeCustomisation extends Component {
         } = this.state.theme;
         const { arrowLeftImagePath, tickImagePath, t } = this.props;
         const chevronDownImagePath =
-            secondaryBackgroundColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
+            secondaryBarColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
 
         return (
             <TouchableWithoutFeedback
@@ -307,7 +307,7 @@ class ThemeCustomisation extends Component {
                             <View style={styles.buttonsContainer}>
                                 <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
                                     <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>
-                                        {t('global:save')}
+                                        {t('global:save').toUpperCase()}
                                     </Text>
                                 </View>
                                 <View
