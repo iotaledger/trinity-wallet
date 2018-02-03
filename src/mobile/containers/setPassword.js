@@ -20,6 +20,7 @@ import { width, height } from '../util/dimensions';
 import InfoBox from '../components/infoBox';
 
 const MIN_PASSWORD_LENGTH = 12;
+console.ignoredYellowBox = ['Native TextInput'];
 
 const styles = StyleSheet.create({
     container: {

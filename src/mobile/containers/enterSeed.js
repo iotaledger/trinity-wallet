@@ -18,6 +18,8 @@ import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
+console.ignoredYellowBox = ['Native TextInput'];
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
