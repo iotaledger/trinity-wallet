@@ -132,7 +132,7 @@ class Login extends Component {
     }
 
     handleAuthenticationAttempted = error => {
-        this.props.generateAlert('error', 'Fingerprint Authentication', 'Authenticated unsuccessful');
+        this.props.generateAlert('error', 'Fingerprint authentication', 'Authentication unsuccessful');
     };
 
     activateFingerPrintScanner() {
@@ -141,7 +141,7 @@ class Login extends Component {
         const { firstUse, selectedAccount, is2FAEnabled, isFingerprintEnabled } = this.props;
         if (isFingerprintEnabled) {
             FingerprintScanner.authenticate({
-                description: t('instructions'),
+                description: t('fingerprintEnable:instructions'),
                 onAttempt: this.handleAuthenticationAttempted,
             })
                 .then(() => {
