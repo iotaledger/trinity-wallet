@@ -74,6 +74,7 @@ export function round(value, precision) {
     const multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
 }
+
 export function roundDown(number, decimals) {
     decimals = decimals || 0;
     return Math.floor(number * Math.pow(10, decimals)) / Math.pow(10, decimals);
@@ -182,4 +183,27 @@ export const updatePersistedState = (incomingState, restoredState) => {
     }
 
     return merge({}, incomingState, restoredCopy);
+};
+
+// Takes in the navigator object and pushes.
+// FIXME: Unneeded method. Remove when routing is sorted.
+export const pushScreen = (
+    navigator,
+    screen,
+    props = {
+        navigatorStyle: {
+            navBarHidden: true,
+            navBarTransparent: true,
+            screenBackgroundColor: '#1a373e',
+        },
+        animated: false,
+        overrideBackPress: true,
+    },
+) => {
+    if (navigator) {
+        navigator.push({
+            ...props,
+            screen,
+        });
+    }
 };
