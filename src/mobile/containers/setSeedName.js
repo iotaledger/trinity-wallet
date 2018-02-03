@@ -20,7 +20,7 @@ import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import InfoBox from '../components/infoBox';
 
-console.ignoredYellowBox = true;
+console.ignoredYellowBox = ['Native TextInput'];
 
 export class SetSeedName extends Component {
     static propTypes = {
