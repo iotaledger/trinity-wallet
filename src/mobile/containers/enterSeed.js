@@ -172,7 +172,9 @@ class EnterSeed extends React.Component {
         const { seed } = this.state;
         let checksumValue = '...';
 
-        if (seed.length !== 0 && seed.length < 81) {
+        if (seed.length !== 0 && !seed.match(VALID_SEED_REGEX)) {
+            checksumValue = '!';
+        } else if (seed.length !== 0 && seed.length < 81) {
             checksumValue = '< 81';
         } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
             checksumValue = getChecksum(seed);
