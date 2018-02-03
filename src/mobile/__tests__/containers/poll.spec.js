@@ -1,9 +1,14 @@
 import assign from 'lodash/assign';
 import noop from 'lodash/noop';
+import each from 'lodash/each';
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Poll } from '../../containers/poll';
-import PropTypes from 'prop-types';
+
+jest.mock('react-native-keychain', () => ({
+    setGenericPassword: () => Promise.resolve({}),
+    getGenericPassword: () => Promise.resolve({}),
+}));
 
 const getProps = overrides =>
     assign(
@@ -78,7 +83,6 @@ describe('Testing Poll component', () => {
                 jest.spyOn(Poll.prototype, 'startBackgroundProcesses');
 
                 const instance = shallow(<Poll {...props} />, { lifecycleExperimental: true }).instance();
-
                 expect(instance.startBackgroundProcesses).toHaveBeenCalledTimes(1);
             });
         });
@@ -86,16 +90,54 @@ describe('Testing Poll component', () => {
 
     describe('instance methods', () => {
         describe('#fetch', () => {
-            describe('when argument is "marketData"', () => {
-                it('should call prop method fetchMarketData', () => {
-                    const props = getProps({
-                        fetchMarketData: jest.fn(),
+            const argsMap = {
+                allowed: {
+                    marketData: { func: 'fetchMarketData', instance: false },
+                    price: { func: 'fetchPrice', instance: false },
+                    chartData: { func: 'fetchChartData', instance: false },
+                    accountInfo: { func: 'fetchLatestAccountInfo', instance: true },
+                    promotion: { func: 'promote', instance: true },
+                },
+                notAllowed: [null, undefined, 'dummy', 0],
+            };
+
+            each(argsMap.allowed, (value, arg) => {
+                describe(`when argument is ${arg}`, () => {
+                    it(`should call ${value.instance ? 'instance' : 'prop'} method ${value.func}`, () => {
+                        let props = getProps();
+
+                        if (!value.instance) {
+                            props[value.func] = jest.fn();
+                        }
+
+                        const instance = shallow(<Poll {...props} />).instance();
+
+                        if (value.instance) {
+                            jest.spyOn(instance, value.func);
+                        }
+
+                        instance.fetch(arg);
+
+                        const expected = value.instance ? instance[value.func] : props[value.func];
+
+                        expect(expected).toHaveBeenCalledTimes(1);
                     });
+                });
+            });
 
-                    const instance = shallow(<Poll {...props} />, { lifecycleExperimental: true }).instance();
+            each(argsMap.notAllowed, (value, arg) => {
+                describe(`when argument is ${arg}`, () => {
+                    it('should call prop method setPollFor with first item in allPollingServices array', () => {
+                        const props = getProps({
+                            setPollFor: jest.fn(),
+                        });
 
-                    instance.fetch('marketData');
-                    expect(props.fetchMarketData).toHaveBeenCalledTimes(1);
+                        const instance = shallow(<Poll {...props} />).instance();
+
+                        instance.fetch(arg);
+
+                        expect(props.setPollFor).toHaveBeenCalledWith('foo'); // top item
+                    });
                 });
             });
         });
