@@ -3331,7 +3331,7 @@ iota-wallet-shared-modules@../shared/:
     bluebird "^3.5.1"
     i18next "^10.2.2"
     i18next-browser-languagedetector "^2.1.0"
-    iota.lib.js "https://github.com/rajivshah3/iota.lib.js#rn-hotfix"
+    iota.lib.js "^0.4.7"
     lodash "^4.17.4"
     moment "^2.19.1"
     redux "^3.7.2"
@@ -3339,9 +3339,9 @@ iota-wallet-shared-modules@../shared/:
     redux-thunk "^2.2.0"
     reselect "^3.0.1"
 
-iota.lib.js@^0.4.6, "iota.lib.js@https://github.com/rajivshah3/iota.lib.js#rn-hotfix":
-  version "0.4.6"
-  resolved "https://github.com/rajivshah3/iota.lib.js#05feb30ad8ab4ab2c40718e83d1e70c6570125ca"
+iota.lib.js@^0.4.7:
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.4.7.tgz#c2af1a7886b8b0e239a4b54b5caa9dd239c2d7eb"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
@@ -5233,10 +5233,11 @@ react-native-animatable@^1.2.3:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-camera@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.10.0.tgz#5d973c9a8aab95f68aede395ba310eae0c3cecdd"
+react-native-camera@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.13.0.tgz#7a612eb0de14978c53c22d2211a44a9e4a6ee618"
   dependencies:
+    lodash "^4.17.4"
     prop-types "^15.5.10"
 
 react-native-clipboard@^0.0.5:

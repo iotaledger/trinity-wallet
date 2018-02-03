@@ -1,8 +1,14 @@
 import { ActionTypes as SettingsActionTypes } from '../actions/settings';
+import { ActionTypes as UiActionTypes } from '../actions/ui';
 
 const initialState = {
     isFetchingCurrencyData: false,
     hasErrorFetchingCurrencyData: false,
+    sendAddressFieldText: '',
+    sendAmountFieldText: '',
+    sendMessageFieldText: '',
+    loginPasswordFieldText: '',
+    sendDenomination: 'i',
 };
 
 export default (state = initialState, action) => {
@@ -23,6 +29,38 @@ export default (state = initialState, action) => {
                 ...state,
                 isFetchingCurrencyData: false,
                 hasErrorFetchingCurrencyData: true,
+            };
+        case UiActionTypes.SET_LOGIN_PASSWORD_FIELD:
+            return {
+                ...state,
+                loginPasswordFieldText: action.payload,
+            };
+        case UiActionTypes.SET_SEND_ADDRESS_FIELD:
+            return {
+                ...state,
+                sendAddressFieldText: action.payload,
+            };
+        case UiActionTypes.SET_SEND_AMOUNT_FIELD:
+            return {
+                ...state,
+                sendAmountFieldText: action.payload,
+            };
+        case UiActionTypes.SET_SEND_MESSAGE_FIELD:
+            return {
+                ...state,
+                sendMessageFieldText: action.payload,
+            };
+        case UiActionTypes.CLEAR_SEND_FIELDS:
+            return {
+                ...state,
+                sendAddressFieldText: '',
+                sendAmountFieldText: '',
+                sendMessageFieldText: '',
+            };
+        case UiActionTypes.SET_SEND_DENOMINATION:
+            return {
+                ...state,
+                sendDenomination: action.payload,
             };
         default:
             return state;

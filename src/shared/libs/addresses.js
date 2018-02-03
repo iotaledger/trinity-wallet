@@ -54,7 +54,6 @@ const getRelevantAddresses = (resolve, reject, seed, opts, allAddresses) => {
             reject(err);
         } else {
             iota.api.findTransactions({ addresses }, (err, hashes) => {
-                console.log(size(hashes));
                 if (size(hashes)) {
                     allAddresses = [...allAddresses, ...addresses];
                     const newOpts = assign({}, opts, { index: opts.total + opts.index });

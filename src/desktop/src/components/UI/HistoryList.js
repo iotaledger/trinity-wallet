@@ -69,7 +69,7 @@ class HistoryList extends React.PureComponent {
 
         return (
             <div>
-                <ul className={classNames(css.historyList, inline ? css.inline : null)}>
+                <nav className={classNames(css.historyList, inline ? css.inline : null)}>
                     {transfers && transfers.length ? (
                         transfers.slice(0, transferLimit).map((transferRow, key) => {
                             const transfer = transferRow[0];
@@ -85,7 +85,7 @@ class HistoryList extends React.PureComponent {
                             }
 
                             return (
-                                <li
+                                <a
                                     key={key}
                                     onClick={() => this.setHistoryItem(key)}
                                     className={classNames(
@@ -96,15 +96,15 @@ class HistoryList extends React.PureComponent {
                                     {inline
                                         ? this.inlineItem(transfer, isReceived, isConfirmed)
                                         : this.fullItem(transfer, isReceived, isConfirmed)}
-                                </li>
+                                </a>
                             );
                         })
                     ) : (
-                        <li className={css.empty}>No recent history</li>
+                        <a className={css.empty}>No recent history</a>
                     )}
-                </ul>
+                </nav>
                 {activeTransfer !== null ? (
-                    <Modal isOpen hideCloseButton>
+                    <Modal isOpen onClose={() => this.setState({ activeItem: null })}>
                         <div className={css.historyItem}>
                             <header
                                 className={classNames(
@@ -156,7 +156,7 @@ class HistoryList extends React.PureComponent {
                             <h6>Message</h6>
                             <p>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</p>
                             <footer>
-                                <Button onClick={() => this.setState({ activeItem: null })} variant="success">
+                                <Button onClick={() => this.setState({ activeItem: null })} variant="primary">
                                     {t('global:back')}
                                 </Button>
                             </footer>

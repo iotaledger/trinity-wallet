@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Link from './Link';
+import { NavLink } from 'react-router-dom';
+
+import Icon from 'components/UI/Icon';
+
 import css from '../../Layout/Main.css';
 
 const images = {
-    balance: require('images/balance-white.png'),
     send: require('images/send-white.png'),
     receive: require('images/receive-white.png'),
     history: require('images/history-white.png'),
@@ -17,30 +19,30 @@ class Sidebar extends React.PureComponent {
         t: PropTypes.func.isRequired,
     };
     render() {
-        // eslint-disable-next-line
         const { t } = this.props;
         return (
             <div className={css.sidebar}>
                 <nav>
-                    <Link to="/balance" image={images.balance}>
-                        Balance
-                    </Link>
-
-                    <Link to="/send" image={images.send}>
-                        Send
-                    </Link>
-
-                    <Link to="/receive" image={images.receive}>
-                        Receive
-                    </Link>
-
-                    <Link to="/history" image={images.history}>
-                        History
-                    </Link>
-
-                    <Link to="/settings" image={images.settings}>
-                        Settings
-                    </Link>
+                    <NavLink to="/balance">
+                        <Icon icon="wallet" size={32} />
+                        {t('home:balance')}
+                    </NavLink>
+                    <NavLink to="/send">
+                        <img src={images.send} />
+                        {t('home:send')}
+                    </NavLink>
+                    <NavLink to="/receive">
+                        <img src={images.receive} />
+                        {t('home:receive')}
+                    </NavLink>
+                    <NavLink to="/history">
+                        <img src={images.history} />
+                        {t('home:history')}
+                    </NavLink>
+                    <NavLink to="/settings">
+                        <img src={images.settings} />
+                        {t('home:settings')}
+                    </NavLink>
                 </nav>
             </div>
         );
