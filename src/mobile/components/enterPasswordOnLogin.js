@@ -87,10 +87,12 @@ class EnterPasswordOnLogin extends Component {
             this.setState({
                 label: t('global:passwordOrFingerprint'),
             });
+            /*
             FingerprintScanner.authenticate({
                 onAttempt: this.handleAuthenticationAttempted,
                 description: t('fingerprintEnable:instructions'),
             });
+            */
         } else {
             this.setState({
                 label: t('global:password'),
