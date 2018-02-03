@@ -42,6 +42,7 @@ export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
         ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } })),
     );
     for (let i = 0; i < addresses.length; i++) {
+        addressData[addresses[i]].index = i;
         addressData[addresses[i]].balance = balances[i];
         addressData[addresses[i]].spent = addressesSpendStatus[i];
     }
@@ -304,7 +305,7 @@ export const getLatestAddresses = (seed, index) => {
                 const addresses = reduce(
                     data.inputs,
                     (obj, x) => {
-                        obj[x.address] = { balance: x.balance, spent: false };
+                        obj[x.address] = { balance: x.balance, spent: false, index: x.keyIndex };
                         return obj;
                     },
                     {},
