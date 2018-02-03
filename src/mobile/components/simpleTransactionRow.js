@@ -61,12 +61,12 @@ class SimpleTransactionRow extends Component {
                     <Image source={icon} style={styles.icon} />
                 </View>
                 <View style={{ flex: 3, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, { color: titleColour, padding: 5 }]}>
+                    <Text style={[styles.text, { color: secondaryBackgroundColor, padding: 5 }]}>
                         {formatTime(convertUnixTimeToJSDate(transfer.timestamp))}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, { color: titleColour }]}>
+                    <Text style={[styles.text, { color: secondaryBackgroundColor }]}>
                         {isReceived
                             ? rowData[0].persistence ? t('received') : t('receiving')
                             : rowData[0].persistence ? t('sent') : t('sending')}

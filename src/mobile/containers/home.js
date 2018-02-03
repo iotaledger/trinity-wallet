@@ -119,25 +119,25 @@ class Home extends Component {
     };
 
     onSwipeRight() {
-        const { currentRoute, changeHomeScreenRoute } = this.props;
+        const { currentRoute } = this.props;
         const availableRoutes = ['balance', 'send', 'receive', 'history', 'settings'];
         const currentRouteIndex = availableRoutes.indexOf(currentRoute);
         if (currentRouteIndex === 0) {
             return;
         }
         const nextRoute = availableRoutes[currentRouteIndex - 1];
-        changeHomeScreenRoute(nextRoute);
+        this.props.changeHomeScreenRoute(nextRoute);
     }
 
     onSwipeLeft() {
-        const { currentRoute, changeHomeScreenRoute } = this.props;
+        const { currentRoute } = this.props;
         const availableRoutes = ['balance', 'send', 'receive', 'history', 'settings'];
         const currentRouteIndex = availableRoutes.indexOf(currentRoute);
         if (currentRouteIndex === availableRoutes.length - 1) {
             return;
         }
         const nextRoute = availableRoutes[currentRouteIndex + 1];
-        changeHomeScreenRoute(nextRoute);
+        this.props.changeHomeScreenRoute(nextRoute);
     }
 
     handleInactivity = () => {
@@ -173,19 +173,12 @@ class Home extends Component {
         const barTextColor = { color: secondaryBarColor };
         const textColor = { color: secondaryBackgroundColor };
 
-        const config = {
-            velocityThreshold: 0.09,
-            directionalOffsetThreshold: 110,
-            detectSwipeUp: false,
-            detectSwipeDown: false,
-        };
-
         return (
             <UserInactivity
                 ref={c => {
                     this.userInactivity = c;
                 }}
-                timeForInactivity={180000}
+                timeForInactivity={10000}
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
