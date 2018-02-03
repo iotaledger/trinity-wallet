@@ -130,7 +130,6 @@ class SnapshotTransition extends Component {
         super();
         this.state = {
             isModalVisible: false,
-            isAttachingToTangle: false,
         };
     }
 
@@ -141,13 +140,11 @@ class SnapshotTransition extends Component {
         }
         if (isTransitioning && !newProps.isTransitioning) {
             this.hideModal();
-            this.setState({ isAttachingToTangle: false });
         }
     }
 
     onBalanceCompletePress() {
         this.hideModal();
-        this.setState({ isAttachingToTangle: true });
         const { completeSnapshotTransition, seedIndex, transitionAddresses, selectedAccountName } = this.props;
         setTimeout(() => {
             keychain
@@ -244,8 +241,8 @@ class SnapshotTransition extends Component {
             textColor,
             negativeColor,
             t,
+            isAttachingToTangle,
         } = this.props;
-        const { isAttachingToTangle } = this.state;
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>

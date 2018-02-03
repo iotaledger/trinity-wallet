@@ -83,5 +83,6 @@ export default {
     secondaryCtaColor: 'white',
     ctaBorderColor: 'transparent',
     pendingColor: '#f75602',
-    chartLineColor: '#FFA25B',
+    chartLineColorPrimary: '#FFA25B',
+    chartLineColorSecondary: '#FFA25B',
 };

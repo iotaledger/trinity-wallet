@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
 
 class EnterPasswordOnLogin extends Component {
     state = {
-        password: '',
         label: '',
     };
 
@@ -79,7 +78,7 @@ class EnterPasswordOnLogin extends Component {
         BackHandler.removeEventListener('loginBackPress');
     }
 
-    handleChangeText = password => this.setState({ password });
+    handleChangeText = password => this.props.setLoginPasswordField(password);
 
     handleChangedLogin = () => {
         const { isFingerprintEnabled, t } = this.props;
@@ -101,8 +100,7 @@ class EnterPasswordOnLogin extends Component {
     };
 
     handleLogin = () => {
-        const { password } = this.state;
-        const { onLoginPress } = this.props;
+        const { onLoginPress, password } = this.props;
         onLoginPress(password);
     };
 
@@ -112,7 +110,7 @@ class EnterPasswordOnLogin extends Component {
     };
 
     render() {
-        const { t, secondaryBackgroundColor, negativeColor } = this.props;
+        const { t, secondaryBackgroundColor, negativeColor, password } = this.props;
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
@@ -134,6 +132,7 @@ class EnterPasswordOnLogin extends Component {
                             onSubmitEditing={this.handleLogin}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             negativeColor={negativeColor}
+                            value={password}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -156,6 +155,7 @@ EnterPasswordOnLogin.propTypes = {
     secondaryBackgroundColor: PropTypes.string.isRequired,
     negativeColor: PropTypes.object.isRequired,
     navigateToNodeSelection: PropTypes.func.isRequired,
+    setLoginPasswordField: PropTypes.func.isRequired,
     isFingerprintEnabled: PropTypes.bool.isRequired,
 };
 
