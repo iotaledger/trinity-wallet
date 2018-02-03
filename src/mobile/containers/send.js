@@ -117,7 +117,15 @@ class Send extends Component {
     }
 
     componentWillMount() {
-        currencySymbol = getCurrencySymbol(this.props.currency);
+        const { t, currency, balance, amount } = this.props;
+        currencySymbol = getCurrencySymbol(currency);
+        if (amount === (balance / this.getUnitMultiplier()).toString()) {
+            this.setState({
+                maxPressed: true,
+                maxColor: '#FF6C69',
+                maxText: t('send:maximumSelected'),
+            });
+        }
     }
 
     componentWillReceiveProps(newProps) {
@@ -478,7 +486,7 @@ class Send extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View style={styles.emptyContainer} />
+                    <View style={{ flex: 0.15 }} />
                     <View style={styles.topContainer}>
                         <View style={styles.fieldContainer}>
                             <CustomTextInput
@@ -535,19 +543,18 @@ class Send extends Component {
                         <View style={styles.maxContainer}>
                             <TouchableOpacity onPress={event => this.onMaxPress()}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
                                     <View
                                         style={[
                                             {
-                                                width: width / 20,
-                                                borderRadius: width / 40,
-                                                height: width / 20,
-                                                marginRight: width / 50,
+                                                width: width / 24,
+                                                borderRadius: width / 48,
+                                                height: width / 24,
                                                 opacity: 0.8,
                                             },
                                             { backgroundColor: maxColor },
                                         ]}
                                     />
-                                    <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -572,7 +579,8 @@ class Send extends Component {
                             />
                         </View>
                     </View>
-                    <View style={styles.midContainer}>
+                    <View style={styles.bottomContainer}>
+                        <View style={{ flex: 0.4 }} />
                         {!isSendingTransfer &&
                             !isGettingSensitiveInfoToMakeTransaction && (
                                 <View style={styles.sendButtonContainer}>
@@ -610,8 +618,7 @@ class Send extends Component {
                                     color={THEMES.getHSL(negativeColor)}
                                 />
                             )}
-                    </View>
-                    <View style={styles.bottomContainer}>
+                        <View style={{ flex: 0.2 }} />
                         <TouchableOpacity
                             onPress={() => this.setModalContent('unitInfo')}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
@@ -653,21 +660,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: height / 5,
     },
-    emptyContainer: {
-        flex: 0.5,
-    },
     topContainer: {
         flex: 3.6,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    midContainer: {
-        flex: 1.4,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     bottomContainer: {
-        flex: 0.7,
+        flex: 2.1,
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
@@ -676,15 +675,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     maxContainer: {
-        justifyContent: 'center',
-        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-end',
         width: width / 1.3,
-        flex: 0.3,
-        paddingLeft: 1,
+        paddingRight: 1,
     },
     messageFieldContainer: {
         flex: 0.7,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
     },
     sendButton: {
@@ -711,13 +709,14 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         backgroundColor: 'transparent',
         position: 'absolute',
-        bottom: height / 27.5,
+        bottom: height / 18,
         right: width / 7.8,
     },
     maxButtonText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
         backgroundColor: 'transparent',
+        marginRight: width / 50,
     },
     infoText: {
         fontFamily: 'Lato-Regular',
