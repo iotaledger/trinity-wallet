@@ -96,7 +96,7 @@ class FingerprintEnable extends Component {
         AppState.removeEventListener('change', this.handleAppStateChange);
     }
     handleAppStateChange = nextAppState => {
-        if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+        if (this.state.appState.match(/background/) && nextAppState === 'active') {
             console.log('App has come to the foreground!');
             this.activateFingerPrintScanner();
         }

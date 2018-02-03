@@ -120,7 +120,7 @@ class Login extends Component {
     }
 
     handleAppStateChange = nextAppState => {
-        if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+        if (this.state.appState.match(/background/) && nextAppState === 'active') {
             console.log('App has come to the foreground!');
             this.activateFingerPrintScanner();
         }
@@ -132,14 +132,18 @@ class Login extends Component {
     }
 
     handleAuthenticationAttempted = error => {
-        this.props.generateAlert('error', 'Fingerprint Authentication', 'Authenticated unsuccessfully');
+        this.props.generateAlert('error', 'Fingerprint Authentication', 'Authenticated unsuccessful');
     };
 
     activateFingerPrintScanner() {
+        const { t } = this.props;
         console.log('Starting fingerprint');
         const { firstUse, selectedAccount, is2FAEnabled, isFingerprintEnabled } = this.props;
         if (isFingerprintEnabled) {
-            FingerprintScanner.authenticate({ onAttempt: this.handleAuthenticationAttempted })
+            FingerprintScanner.authenticate({
+                description: t('instructions'),
+                onAttempt: this.handleAuthenticationAttempted,
+            })
                 .then(() => {
                     //this.props.generateAlert('success', 'Fingerprint Authentication', 'Authenticated successfully');
                     keychain
@@ -150,11 +154,7 @@ class Login extends Component {
                                     this.navigateToLoading();
                                 } else {
                                     const addresses = get(selectedAccount, 'addresses');
-                                    if (!isEmpty(addresses)) {
-                                        this.navigateToLoading();
-                                    } else {
-                                        this.navigateToHome();
-                                    }
+                                    this.navigateToLoading();
                                 }
                             } else {
                                 this.setState({ completing2FA: true });
@@ -208,15 +208,11 @@ class Login extends Component {
                     this.navigateToLoading();
                 } else {
                     const addresses = get(selectedAccount, 'addresses');
-                    if (!isEmpty(addresses)) {
-                        this.navigateToLoading();
-                    } else {
-                        this.navigateToHome();
-                    }
+                    this.navigateToLoading();
                 }
                 this.setState({ completing2FA: false });
             } else {
-                this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+                this.props.generateAlert('error', 'Wrong code', 'The code you entered is not correct');
             }
         } else {
             this.props.generateAlert('error', 'Empty code', 'The code you entered is empty');
@@ -389,4 +385,4 @@ const mapDispatchToProps = {
     setLoginPasswordField,
 };
 
-export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default translate(['login', 'global', 'fingerprintEnable'])(connect(mapStateToProps, mapDispatchToProps)(Login));
