@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH, formatValue, formatUnit } from 'libs/util';
-import { sendTransaction, sendTransferRequest } from 'actions/tempAccount';
+import { sendTransferRequest } from 'actions/tempAccount';
 import { iota } from 'libs/iota';
 import { showError } from 'actions/notifications';
 import Template, { Content } from 'components/Main/Template';
@@ -14,15 +14,16 @@ import MessageInput from 'components/UI/input/Message';
 import Button from 'components/UI/Button';
 import Modal from 'components/UI/Modal';
 import css from 'components/Main/Send.css';
+import { runTask } from 'worker';
 
 class Send extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         account: PropTypes.object.isRequired,
+        tempAccount: PropTypes.object.isRequired,
         seeds: PropTypes.object.isRequired,
         settings: PropTypes.object.isRequired,
         showError: PropTypes.func.isRequired,
-        sendTransaction: PropTypes.func.isRequired,
         sendTransferRequest: PropTypes.func.isRequired,
     };
 
@@ -98,7 +99,7 @@ class Send extends React.PureComponent {
 
     sendTransfer = () => {
         const { address, amount, message } = this.state;
-        const { sendTransferRequest, sendTransaction, seeds, account } = this.props;
+        const { sendTransferRequest, seeds, account } = this.props;
 
         this.toggleConfirmation();
         sendTransferRequest();
@@ -106,11 +107,11 @@ class Send extends React.PureComponent {
         const seedInfo = seeds.items[seeds.selectedSeedIndex];
         const accountInfo = account.accountInfo[seedInfo.name];
 
-        sendTransaction(seedInfo.seed, accountInfo, seedInfo.name, address, parseInt(amount), message);
+        runTask('sendTransaction', [seedInfo.seed, accountInfo, seedInfo.name, address, parseInt(amount), message]);
     };
 
     render() {
-        const { t, settings, account, seeds } = this.props;
+        const { t, settings, account, seeds, tempAccount } = this.props;
         const { address, amount, message, isModalVisible } = this.state;
 
         const seedInfo = seeds.items[seeds.selectedSeedIndex];
@@ -124,8 +125,8 @@ class Send extends React.PureComponent {
                             <Modal
                                 className="confirm"
                                 isOpen={isModalVisible}
+                                isConfirm
                                 onClose={this.toggleConfirmation}
-                                hideCloseButton
                             >
                                 <h1>
                                     You are about to send{' '}
@@ -133,10 +134,10 @@ class Send extends React.PureComponent {
                                     <br />
                                     <strong>{address}</strong>
                                 </h1>
-                                <Button onClick={this.toggleConfirmation} variant="warning">
+                                <Button onClick={this.toggleConfirmation} variant="secondary">
                                     {t('global:no')}
                                 </Button>
-                                <Button onClick={this.sendTransfer} variant="success">
+                                <Button onClick={this.sendTransfer} variant="primary">
                                     {t('global:yes')}
                                 </Button>
                             </Modal>
@@ -155,7 +156,7 @@ class Send extends React.PureComponent {
                                 onChange={this.onAmountChange}
                             />
                             <MessageInput message={message} label={t('send:message')} onChange={this.onMessageChange} />
-                            <Button onClick={this.send} variant="success">
+                            <Button loading={tempAccount.isSendingTransfer} onClick={this.send} variant="primary">
                                 {t('send:send')}
                             </Button>
                         </div>
@@ -174,6 +175,7 @@ class Send extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
+    tempAccount: state.tempAccount,
     settings: state.settings,
     account: state.account,
     seeds: state.seeds,
@@ -181,7 +183,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     showError,
-    sendTransaction,
     sendTransferRequest,
 };
 
