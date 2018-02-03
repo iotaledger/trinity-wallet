@@ -87,6 +87,7 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
     }
     componentDidMount() {
+        const { t } = this.props;
         BackHandler.addEventListener('homeBackPress', () => {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
                 RNExitApp.exitApp();
@@ -118,29 +119,35 @@ class Home extends Component {
     };
 
     onSwipeRight() {
-        const { currentRoute, changeHomeScreenRoute } = this.props;
+        const { currentRoute } = this.props;
         const availableRoutes = ['balance', 'send', 'receive', 'history', 'settings'];
         const currentRouteIndex = availableRoutes.indexOf(currentRoute);
         if (currentRouteIndex === 0) {
             return;
         }
         const nextRoute = availableRoutes[currentRouteIndex - 1];
-        changeHomeScreenRoute(nextRoute);
+        this.props.changeHomeScreenRoute(nextRoute);
     }
 
     onSwipeLeft() {
-        const { currentRoute, changeHomeScreenRoute } = this.props;
+        const { currentRoute } = this.props;
         const availableRoutes = ['balance', 'send', 'receive', 'history', 'settings'];
         const currentRouteIndex = availableRoutes.indexOf(currentRoute);
         if (currentRouteIndex === availableRoutes.length - 1) {
             return;
         }
         const nextRoute = availableRoutes[currentRouteIndex + 1];
-        changeHomeScreenRoute(nextRoute);
+        this.props.changeHomeScreenRoute(nextRoute);
     }
 
     handleInactivity = () => {
-        this.props.setUserActivity({ inactive: true });
+        const { isTransitioning, isSyncing, isSendingTransfer } = this.props;
+        const doingSomething = isTransitioning || isSyncing || isSendingTransfer;
+        if (doingSomething) {
+            this.userInactivity.setActiveFromComponent();
+        } else {
+            this.props.setUserActivity({ inactive: true });
+        }
     };
 
     render() {
@@ -165,13 +172,6 @@ class Home extends Component {
 
         const barTextColor = { color: secondaryBarColor };
         const textColor = { color: secondaryBackgroundColor };
-
-        const config = {
-            velocityThreshold: 0.09,
-            directionalOffsetThreshold: 110,
-            detectSwipeUp: false,
-            detectSwipeDown: false,
-        };
 
         return (
             <UserInactivity
@@ -265,6 +265,9 @@ const mapStateToProps = state => ({
     secondaryBarColor: state.settings.theme.secondaryBarColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     currentRoute: state.home.childRoute,
+    isSyncing: state.tempAccount.isSyncing,
+    isSendingTransfer: state.tempAccount.isSendingTransfer,
+    isTransitioning: state.tempAccount.isTransitioning,
 });
 
 const mapDispatchToProps = {
@@ -291,6 +294,9 @@ Home.propTypes = {
     secondaryBarColor: PropTypes.string.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
     currentRoute: PropTypes.string.isRequired,
+    isTransitioning: PropTypes.bool.isRequired,
+    isSyncing: PropTypes.bool.isRequired,
+    isSendingTransfer: PropTypes.bool.isRequired,
 };
 
 export default withUserActivity()(

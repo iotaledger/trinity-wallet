@@ -169,34 +169,37 @@ class UseExistingSeed extends React.Component {
     }
 
     getDefaultAccountName() {
+        const { t } = this.props;
         if (this.props.seedCount === 0) {
-            return 'MAIN ACCOUNT';
+            return t('global:mainWallet');
         } else if (this.props.seedCount === 1) {
-            return 'SECOND ACCOUNT';
+            return t('global:secondWallet');
         } else if (this.props.seedCount === 2) {
-            return 'THIRD ACCOUNT';
+            return t('global:thirdWallet');
         } else if (this.props.seedCount === 3) {
-            return 'FOURTH ACCOUNT';
+            return t('global:fourthWallet');
         } else if (this.props.seedCount === 4) {
-            return 'FIFTH ACCOUNT';
+            return t('global:fifthWallet');
         } else if (this.props.seedCount === 5) {
-            return 'SIXTH ACCOUNT';
+            return t('global:sixthWallet');
         } else if (this.props.seedCount === 6) {
-            return 'OTHER ACCOUNT';
+            return t('global:otherWallet');
+        } else {
+            return '';
         }
-        return '';
     }
 
     getChecksumValue() {
         const { seed } = this.state;
         let checksumValue = '...';
 
-        if (seed.length !== 0 && seed.length < 81) {
+        if (seed.length !== 0 && !seed.match(VALID_SEED_REGEX)) {
+            checksumValue = '!';
+        } else if (seed.length !== 0 && seed.length < 81) {
             checksumValue = '< 81';
         } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
             checksumValue = getChecksum(seed);
         }
-
         return checksumValue;
     }
 
@@ -234,7 +237,7 @@ class UseExistingSeed extends React.Component {
                         </View>
                         <View style={{ flex: 0.4 }} />
                         <CustomTextInput
-                            label="Seed"
+                            label={t('global:seed')}
                             onChangeText={value => this.setState({ seed: value.toUpperCase() })}
                             containerStyle={{ width: width / 1.4 }}
                             autoCapitalize={'none'}

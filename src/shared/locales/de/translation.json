@@ -11,21 +11,21 @@
         "transferErrorMessage": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
         "transferSent": "Transaktion gesendet",
         "transferSentMessage": "Deine Transaktion wurde an den Tangle gesendet.",
-        "messageSent": "Message sent",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
+        "messageSent": "Nachricht gesendet",
+        "messageSentMessage": "Deine Nachricht wurde an den Tangle gesendet.",
         "keyReuse": "Key Wiederverwendung",
         "keyReuseError":
             "Du kannst an diese Adresse nicht senden, da von ihr bereits eine andere Transaktion ausgegangen ist.",
         "invalidResponse": "Ungültige Antwort",
-        "invalidResponseExplanation": "Der Node hat eine ungültige Antwort zurückgegeben.",
-        "invalidResponsePollingExplanation": "Der Node hat beim Aktualisieren eine ungültige Antwort zurückgegeben.",
-        "invalidResponseFetchingAccount": "Beim Abfragen deiner Konto-Informationen gab es einen Fehler am Node.",
+        "invalidResponseExplanation": "Der Node hat eine eine ungültige Antwort zurückgegeben.",
+        "invalidResponsePollingExplanation": "Der Server hat beim Aktualisieren eine ungültige Antwort zurückgegeben.",
+        "invalidResponseFetchingAccount": "Beim Abfragen deiner Konto-Informationen gab es einen Fehler auf dem Node.",
         "invalidResponseSendingTransfer": "Beim Senden deiner Transaktion gab es einen Fehler am Node.",
         "seed": "Seed",
         "back": "ZURÜCK",
         "backLowercase": "Zurück",
         "done": "FERTIG",
-        "doneLowercase": "Erledigt",
+        "doneLowercase": "Fertig",
         "next": "WEITER",
         "apply": "Verwenden",
         "save": "Speichern",
@@ -59,7 +59,19 @@
         "attachToTangleUnavailable": "Anhängen an den Tangle nicht möglich",
         "attachToTangleUnavailableExplanation": "Anhängen an den Tangle ist mit dem ausgewählten Node nicht möglich.",
         "wallet": "Wallet",
-        "pressBackAgain": "Press back again to close the app"
+        "sent": "Gesendet",
+        "received": "Empfangen",
+        "sending": "Sende...",
+        "receiving": "Empfange...",
+        "confirmed": "Bestätigt",
+        "pending": "Ausstehend",
+        "bundleHash": "Bundle-Hash",
+        "addresses": "Adressen",
+        "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
+        "autoreattaching": "Automatisches anhängen an den Tangle",
+        "autoreattachingExplanation": "Erneutes anhängen der Transaktion mit dem Hash {{hash}}",
+        "autopromoting": "Der Transfer wird autopromoted",
+        "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -110,7 +122,7 @@
         "invalidCharacters": "Seed enthält ungültige Zeichen",
         "invalidCharactersExplanation":
             "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed enthält ungültige Zeichen. Bitte versuche es erneut.",
-        "seedTooShort": "Seed ist zu kurz",
+        "seedTooShort": "Der Seed ist zu kurz",
         "seedTooShortExplanation":
             "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "seedExplanation":
@@ -144,7 +156,7 @@
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
         "seedNotGeneratedExplanation": "Bitte klicke die Schaltfläche \"Neuen Seed erzeugen\".",
         "pressForNewSeed": "DRÜCKE FÜR NEUEN SEED",
-        "individualLetters": "Drücke beliebige Buchstaben um sie zufällig neu zu setzen."
+        "individualLetters": "Drücke beliebige Buchstaben, um sie zufällig neu zu setzen."
     },
     "onboardingComplete": {
         "walletReady":
@@ -167,13 +179,12 @@
     "saveYourSeed": {
         "seedCleared": "Seed gelöscht",
         "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht.",
-        "mustSaveYourSeed": "Du musst deinen Seed mit ",
-        "atLeastOne": "mindestens einer ",
-        "ofTheOptions": "von den aufgeführten Optionen speichern."
+        "mustSaveYourSeed":
+            "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der unten aufgelisteten Optionen sichern.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Ungültiger Seed",
-        "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch mal.",
+        "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch einmal.",
         "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, dass du deinen Seed gesichert hast.",
         "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und sichere ihn."
     },
@@ -195,7 +206,8 @@
         "invalidAmount": "Falschen Betrag eingegeben",
         "invalidAmountExplanation": "Bitte gib einen numerischen Wert als Betrag ein.",
         "maximumSelected": "MAXIMALER Betrag ausgewählt",
-        "iotaUnits": "IOTA Einheiten"
+        "iotaUnits": "IOTA Einheiten",
+        "sendMax": "SENDE MAX"
     },
     "setPassword": {
         "passwordTooShort": "Das Passwort ist zu kurz",
@@ -212,10 +224,10 @@
     "setSeedName": {
         "canUseMultipleSeeds":
             "Du kannst mehrere Seeds in diesem Wallet verwenden. Jeder Seed benötigt einen Kontonamen.",
-        "youCanAdd": "Du kannst in den Einstellungen weitere Seeds hinzufügen."
+        "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
     "settings": {
-        "transferSending": "Sende Überweisung",
+        "transferSending": "Sende Überweisung...",
         "transferSendingExplanation": "Bitte warte bis deine Überweisung gesendet wurde.",
         "generatingAddress": "Erzeuge Empfangsadresse",
         "generatingAddressExplanation": "Bitte warte bis deine Adresse erzeugt wurde.",
@@ -232,12 +244,12 @@
         "reset": "Wallet zurücksetzen",
         "syncingComplete": "Synchronisierung abgeschlossen",
         "syncingCompleteExplanation": "Dein Konto wurde erfolgreich synchronisiert.",
-        "nicknameChanged": "Konto-Name geändert",
+        "nicknameChanged": "Kontoname geändert",
         "nicknameChangedExplanation": "Der Name des Kontos wurde geändert.",
         "accountDeleted": "Konto gelöscht",
         "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet gelöscht.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
-        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
+        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen, um das Wallet zurückzusetzen.",
         "poorConnection": "Schlechte Verbindung",
         "poorConnectionExplanation": "Fehler beim Ändern der Währung wegen schlechter Verbindung.",
         "hide": "Ausblenden",
@@ -248,32 +260,20 @@
         "cut": "Ausschneiden",
         "copy": "Kopieren",
         "paste": "Einfügen",
-        "selectAll": "Alles auswählen"
-    },
-    "resetWalletConfirmation": {
-        "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
-        "warning1": "Alle deine Wallet-Daten, einschließlich deiner ",
-        "warning2": " Seeds, Passwörter,",
-        "warning3": " und",
-        "warning4": " anderer Kontoinformationen",
-        "warning5": " werden verloren gehen.",
-        "areYouSure": "Bist du sicher, dass du fortfahren möchtest?"
+        "selectAll": "Alle auswählen"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Gib dein Passwort ein um das Wallet zurückzusetzen.",
+        "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
         "cancel": "ABBRECHEN",
         "reset": "ZURÜCKSETZEN"
     },
     "walletSetup": {
-        "okay": "Okay. Lass uns dein Konto einrichten!",
+        "okay": "Okay. Lass uns dein Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "seedExplanation":
             "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
-        "explanation1": "Du kannst ihn verwenden um auf dein Guthaben zuzugreifen von",
-        "explanation2": " jedem Wallet",
-        "explanation3": "auf",
-        "explanation4": " jedem Gerät",
-        "explanation5": ". Aber wenn du deinen Seed verlierst, verlierst du auch deine IOTA.",
+        "explanation":
+            "<0><0>Du kannst ihn benutzen, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Geld zuzugreifen. Aber, wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
@@ -282,14 +282,13 @@
         "reminder": "Wir raten dazu, den Prozess vollständig zu durchlaufen."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Dein Seed ist {{maxSeedLength}} Zeichen lang, von links nach rechts. Bitte schreibe deinen Seed und die Checksumme auf und",
-        "tripleCheck": "prüfe dreimal",
-        "thatTheyAreCorrect": "ob diese korrekt sind."
+        "yourSeedIs": "Dein Seed besteht aus {{maxSeedLength}} Zeichen, gelesen von links nach rechts.",
+        "writeDownYourSeed":
+            "<0> Schreibe deinen Seed und deine Prüfsumme auf und </0><1>überprüfe gründlich</1><2>, ob diese korrekt sind.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
-        "bundleHashCopiedExplanation": "Dein Bundel-Hash wurde in die Zwischenablage kopiert.",
+        "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert."
     },
@@ -310,12 +309,15 @@
     },
     "advancedSettings": {
         "selectNode": "Node auswählen",
-        "addCustomNode": "Benutzerdefinierter Node hinzufügen",
+        "addCustomNode": "Benutzerdefinierten Node hinzufügen",
         "manualSync": "Manuell synchronisieren"
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
         "frame": "Rahmen"
+    },
+    "themeCustomisation": {
+        "theme": "Theme"
     },
     "currencySelection": {
         "currency": "Währung"
@@ -344,7 +346,7 @@
         "pressToSync": "Drücke die Schaltfläche unten, um dein Konto zu synchronisieren.",
         "thisMayTake": "Dies kann eine Weile dauern.",
         "youMayNotice": "Dein Gerät könnte dabei langsamer werden.",
-        "syncAccount": "KONTO SYNCHRONISIEREN",
+        "syncAccount": "SYNCHRONISIEREN",
         "syncingYourAccount": "Konto wird synchronisiert."
     },
     "useExistingSeed": {
@@ -358,15 +360,12 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Ich habe mein Seed gesichert",
         "reenter": "Du wirst jetzt aufgefordert deinen Seed erneut einzugeben.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "Wenn dein Gerät ausfällt und du den Seed nicht gesichert hast, sind deine IOTA verloren."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DIESE AKTION KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN.",
-        "infoTextOne": "All deine Wallet-Daten, einschließlich deiner",
-        "infoTextTwo": "Seeds, deinem Passwort",
-        "infoTextThree": "und",
-        "infoTextFour": "anderer Kontoinformationen",
-        "infoTextFive": "werden verloren gehen."
+        "warning":
+            "<0><0>Alle Daten deines Wallets, inklusive deiner </0><1>Seeds, Passwörter</1><2> und </2><3>anderer Konto-Informationen</3><4>, werden verloren gehen.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",

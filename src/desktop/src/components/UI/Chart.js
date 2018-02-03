@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory';
+import { setCurrency, setTimeframe } from 'actions/marketData';
 import { getCurrencySymbol } from 'libs/currency';
 import imageChevron from 'images/chevron-down-white.png';
 import Button from 'components/UI/Button';
 import css from './Chart.css';
 
-export default class Chart extends React.Component {
+class Chart extends React.Component {
     static propTypes = {
         marketData: PropTypes.object.isRequired,
+        settings: PropTypes.object.isRequired,
         setTimeframe: PropTypes.func.isRequired,
         setCurrency: PropTypes.func.isRequired,
     };
@@ -82,6 +85,7 @@ export default class Chart extends React.Component {
 
     getPriceFormat(x) {
         const { marketData } = this.props;
+        x = parseFloat(x);
 
         if (marketData.currency === 'USD') {
             return x.toFixed(3);
@@ -119,8 +123,9 @@ export default class Chart extends React.Component {
 
     render() {
         const { price } = this.state;
-        const { marketData } = this.props;
+        const { marketData, settings } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
+
         return (
             <div className={css.chart}>
                 <nav>
@@ -137,13 +142,15 @@ export default class Chart extends React.Component {
                     </Button>
                 </nav>
                 <div>
-                    <VictoryChart>
+                    <svg>
                         <defs>
                             <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
-                                <stop stopColor="#FFA25B" stopOpacity={1} offset="100%" />
-                                <stop stopColor="#FFFFFF" stopOpacity={0.25} offset="0%" />
+                                <stop stopColor={settings.theme.body.background} offset="0%" />
+                                <stop stopColor={settings.theme.chart.color} offset="100%" />
                             </linearGradient>
                         </defs>
+                    </svg>
+                    <VictoryChart>
                         <VictoryLine
                             data={data}
                             style={{
@@ -188,3 +195,15 @@ export default class Chart extends React.Component {
         );
     }
 }
+
+const mapStateToProps = state => ({
+    marketData: state.marketData,
+    settings: state.settings,
+});
+
+const mapDispatchToProps = {
+    setCurrency,
+    setTimeframe,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chart);
