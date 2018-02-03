@@ -33,7 +33,7 @@ class Done extends React.PureComponent {
                     </div>
                 </Content>
                 <Footer>
-                    <Button onClick={this.onRequestNext} variant="success">
+                    <Button onClick={this.onRequestNext} className="outline" variant="primary">
                         {t('global:done')}
                     </Button>
                 </Footer>

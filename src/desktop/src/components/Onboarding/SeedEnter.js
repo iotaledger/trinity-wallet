@@ -94,10 +94,14 @@ class SeedEnter extends React.PureComponent {
                     </Infobox>
                 </Content>
                 <Footer>
-                    <Button to={seedValid ? '/seed/save/manual' : '/wallet-setup'} variant="secondary">
+                    <Button
+                        to={seedValid ? '/seed/save/manual' : '/wallet-setup'}
+                        className="outline"
+                        variant="highlight"
+                    >
                         {t('global:back')}
                     </Button>
-                    <Button type="submit" variant="success">
+                    <Button type="submit" className="outline" variant="primary">
                         {t('global:next')}
                     </Button>
                 </Footer>

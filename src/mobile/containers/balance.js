@@ -35,7 +35,8 @@ class Balance extends Component {
         extraColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        chartLineColor: PropTypes.string.isRequired,
+        chartLineColorPrimary: PropTypes.string.isRequired,
+        chartLineColorSecondary: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -85,8 +86,8 @@ class Balance extends Component {
             negativeColor,
             extraColor,
             secondaryBackgroundColor,
-            chartLineColor,
-            themeName,
+            chartLineColorPrimary,
+            chartLineColorSecondary,
         } = this.props;
 
         const shortenedBalance =
@@ -148,8 +149,8 @@ class Balance extends Component {
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             textColor={{ color: secondaryBackgroundColor }}
                             borderColor={{ borderColor: secondaryBackgroundColor }}
-                            chartLineColor={chartLineColor}
-                            themeName={themeName}
+                            chartLineColorPrimary={chartLineColorPrimary}
+                            chartLineColorSecondary={chartLineColorSecondary}
                         />
                     </View>
                 </View>
@@ -222,7 +223,8 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     negativeColor: settings.theme.negativeColor,
     extraColor: settings.theme.extraColor,
     secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
-    chartLineColor: settings.theme.chartLineColor,
+    chartLineColorPrimary: settings.theme.chartLineColorPrimary,
+    chartLineColorSecondary: settings.theme.chartLineColorSecondary,
 });
 
 const mapDispatchToProps = dispatch => ({

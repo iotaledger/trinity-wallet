@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import css from 'components/UI/input/Input.css';
 
-import IconEye from 'images/eye.png';
+import Icon from 'components/UI/Icon';
 
 export default class PasswordInput extends React.PureComponent {
     static propTypes = {
@@ -29,7 +29,7 @@ export default class PasswordInput extends React.PureComponent {
             <div className={css.input}>
                 <fieldset>
                     <a className={type === 'text' ? css.strike : null} onClick={this.toggleVisibility}>
-                        <img src={IconEye} alt="" />
+                        <Icon icon="eye" size={16} />
                     </a>
                     <input type={type} value={value} onChange={e => onChange(e.target.value)} />
                     <small>{label}</small>

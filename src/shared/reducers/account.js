@@ -2,7 +2,6 @@ import get from 'lodash/get';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import filter from 'lodash/filter';
-import union from 'lodash/union';
 import { ActionTypes } from '../actions/account';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 
@@ -139,7 +138,7 @@ const account = (
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.hashes,
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
                 pendingTxTailsHashes: {
                     ...state.pendingTxTailsHashes,
@@ -154,7 +153,7 @@ const account = (
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.hashes,
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
                 pendingTxTailsHashes: {
                     ...state.pendingTxTailsHashes,
@@ -170,7 +169,7 @@ const account = (
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.hashes,
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
                 pendingTxTailsHashes: {
                     ...state.pendingTxTailsHashes,
@@ -180,17 +179,7 @@ const account = (
         case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
             return {
                 ...state,
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.payload.accountName]: {
-                        ...get(state.accountInfo, `${action.payload.accountName}`),
-                        transfers: action.payload.transfers,
-                        addresses: {
-                            ...get(state.accountInfo, `${action.payload.accountName}.addresses`),
-                            ...action.payload.addresses,
-                        },
-                    },
-                },
+                ...updateAccountInfo(state, action.payload),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
@@ -217,6 +206,18 @@ const account = (
                 pendingTxTailsHashes: {
                     ...state.pendingTxTailsHashes,
                     [action.payload.accountName]: action.payload.pendingTxTailsHashes,
+                },
+            };
+        case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
+            return {
+                ...state,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.accountName]: {
+                        balance: action.balance,
+                        addresses: action.addresses,
+                        transfers: state.accountInfo[action.accountName].transfers,
+                    },
                 },
             };
         default:

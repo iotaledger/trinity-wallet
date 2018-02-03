@@ -102,7 +102,7 @@ class NodeSelection extends Component {
             >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.4 }} />
+                        <View style={{ flex: 0.25 }} />
                         <Dropdown
                             onRef={c => {
                                 this.dropdown = c;
