@@ -210,18 +210,18 @@
     },
     "setSeedName": {
         "canUseMultipleSeeds": "Bạn có thể sử dụng nhiều từ khoá cho ví điện tử này. Mỗi từ khoá cần một tên tài khoản khác.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "youCanAdd": "Bạn có thể cho thêm nhiều từ khoá nữa trong mục Cài Đặt."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
+        "transferSending": "Đang chuyển khoản",
+        "transferSendingExplanation": "Xin vui lòng chờ cho đến khi chuyển khoản hoàn tất.",
+        "generatingAddress": "Đang tạo ra địa chỉ nhận",
+        "generatingAddressExplanation": "Xin vui lòng đợi cho đến khi địa chỉ đã được tạo.",
+        "mode": "Chế Độ",
         "theme": "Giao Diện",
         "currency": "Tiền Tệ",
         "language": "Ngôn Ngữ",
-        "accountManagement": "Account management",
+        "accountManagement": "Quản lý tài khoản",
         "addNewSeed": "Add new seed",
         "twoFA": "Xác thực 2 nhân tố",
         "changePassword": "Đổi mật khẩu",
