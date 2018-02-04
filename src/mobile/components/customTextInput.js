@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
     fieldLabel: {
         fontSize: width / 34.5,
-        marginVertical: height / 70,
+        marginBottom: height / 100,
         marginLeft: 1,
     },
     textInput: {
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     innerContainer: {
         flexDirection: 'row',
         borderRadius: GENERAL.borderRadiusSmall,
-        height: height / 14,
+        height: height / 15,
+        paddingVertical: height / 140,
     },
     widgetContainer: {
         borderLeftWidth: 2,
@@ -147,6 +148,9 @@ class CustomTextInput extends React.Component {
             secondaryBackgroundColor,
             negativeColor,
             onRef,
+            height,
+            fontSize,
+            lineHeight,
             ...restProps
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
@@ -160,11 +164,11 @@ class CustomTextInput extends React.Component {
         return (
             <View style={[styles.fieldContainer, containerStyle]}>
                 <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>
-                <View style={[styles.innerContainer, innerContainerBackgroundColor]}>
+                <View style={[styles.innerContainer, innerContainerBackgroundColor, height]}>
                     <TextInput
                         {...restProps}
                         ref={onRef}
-                        style={[styles.textInput, textInputColor]}
+                        style={[styles.textInput, textInputColor, fontSize, lineHeight]}
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
                         onChangeText={onChangeText}
