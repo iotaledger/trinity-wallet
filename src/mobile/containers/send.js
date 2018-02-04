@@ -130,14 +130,6 @@ class Send extends Component {
         }
     }
 
-    componentDidMount() {
-        const { message } = this.props;
-
-        if (message.length > 0) {
-            this.messageField.focus();
-        }
-    }
-
     componentWillReceiveProps(newProps) {
         if (!this.props.isSendingTransfer && newProps.isSendingTransfer) {
             KeepAwake.activate();
@@ -597,6 +589,7 @@ class Send extends Component {
                             editable={!sending}
                             selectTextOnFocus={!sending}
                             numberOfLines={2}
+                            innerPadding={{ paddingVertical: height / 80 }}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
