@@ -304,7 +304,12 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             } else if (get(inputs, 'totalBalance') < value) {
                 dispatch(sendTransferError());
                 return dispatch(
-                    generateAlert('error', 'Please wait', 'Please wait for another transfer to confirm.', 20000),
+                    generateAlert(
+                        'error',
+                        'Please wait for another transfer to confirm',
+                        'Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.',
+                        20000,
+                    ),
                 );
             }
 
