@@ -99,7 +99,7 @@
         "passwordTooShortExplanation": "Mật khẩu ít nhất phải chứa 12 ký tự. Xin vui lòng thử lại.",
         "oldPassword": "Không thể dùng mật khẩu cũ",
         "oldPasswordExplanation": "Bạn không thể dùng mật khẩu cũ lúc tạo mật khẩu mới. Xin vui lòng thử lại với một mật khẩu mới.",
-        "ensureStrongPassword": "Hãy kiểm tra bạn dùng mật khẩu mạnh với ít nhất 12 ký tự.",
+        "ensureStrongPassword": "Hãy đảm bảo bạn dùng mật khẩu mạnh với ít nhất 12 ký tự.",
         "currentPassword": "Mật Khẩu Hiện Tại",
         "newPassword": "Mật Khẩu Mới",
         "confirmPassword": "Xác Nhận Mật Khẩu Mới"
@@ -186,30 +186,30 @@
         "notEnoughFunds": "Không đủ tiền",
         "notEnoughFundsExplanation": "Bạn không có đủ IOTA để hoàn thành giao dịch này.",
         "keyReuse": "Tái sử dụng mã key",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
+        "keyReuseExplanation": "Địa chỉ mà bạn định gửi tới đã được sử dụng rồi. Xin vui lòng chọn địa chỉ khác.",
         "recipientAddress": "Địa chỉ người nhận",
         "amount": "Số Lượng",
         "max": "TỐI ĐA",
         "message": "Tin nhắn",
         "send": "Gửi",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "Đơn vị IOTA",
+        "invalidAmount": "Số lượng nhập không đúng",
+        "invalidAmountExplanation": "Xin vui lòng nhập giá trị số cho số tiền giao dịch.",
+        "maximumSelected": "Số lượng TỐI ĐA được chọn",
+        "iotaUnits": "Đơn vị IOTA được giải thích",
         "sendMax": "GỬI TỐI ĐA"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
-        "passwordMismatch": "Passwords do not match",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "passwordTooShort": "Mật khẩu quá ngắn",
+        "passwordTooShortExplanation": "Mật khẩu của bạn phải có ít nhất {{minLength}} ký tự. Mật khẩu hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
+        "passwordMismatch": "Mật khẩu không trùng khớp",
+        "passwordMismatchExplanation": "Mật khẩu vừa nhập không trùng khớp. Xin vui lòng thử lại.",
+        "nowWeNeedTo": "Bây giờ chúng ta cần cài mật khẩu.",
+        "anEncryptedCopy": "Một bản sao mã hoá của từ khoá sẽ được lưu trên máy của bạn. Bạn sẽ phải xài mật khẩu này để truy cập ví điện tử của mình.",
+        "ensure": "Hãy đảm bảo bạn dùng mật khẩu mạnh với ít nhất 12 ký tự.",
+        "retypePassword": "Nhập Lại Mật Khẩu"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
+        "canUseMultipleSeeds": "Bạn có thể sử dụng nhiều từ khoá cho ví điện tử này. Mỗi từ khoá cần một tên tài khoản khác.",
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
     "settings": {

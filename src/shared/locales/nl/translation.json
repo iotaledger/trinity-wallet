@@ -195,7 +195,7 @@
         "invalidAmount": "Onjuiste hoeveelheid ingevoerd",
         "invalidAmountExplanation": "Voer het bedrag van uw transactie in.",
         "maximumSelected": "MAXIMUM bedrag geselecteerd",
-        "iotaUnits": "IOTA eenheden",
+        "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"
     },
     "setPassword": {
