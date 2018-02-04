@@ -195,7 +195,7 @@
         "invalidAmount": "Neveljavna vsota",
         "invalidAmountExplanation": "Prosimo vnesite vrednost za znesek transakcije.",
         "maximumSelected": "NAJVIŠJI izbrani znesek",
-        "iotaUnits": "IOTA enote",
+        "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"
     },
     "setPassword": {
