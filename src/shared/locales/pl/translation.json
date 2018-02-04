@@ -195,7 +195,7 @@
         "invalidAmount": "Wprowadzono niepoprawną ilość",
         "invalidAmountExplanation": "Proszę wprowadzić numeryczną wartość transakcji.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "Wyjaśnienie jednostek IOTA",
         "sendMax": "Wyślij wszystko"
     },
     "setPassword": {
