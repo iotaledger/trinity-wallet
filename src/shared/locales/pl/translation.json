@@ -17,7 +17,7 @@
         "keyReuseError": "Nie możesz wysłać na adres, który został już obciążony.",
         "invalidResponse": "Błędna odpowiedź",
         "invalidResponseExplanation": "Serwer zwrócił błędną odpowiedź.",
-        "invalidResponsePollingExplanation": "Serwer zwrócił błędna odpowiedź podczas połączenia.",
+        "invalidResponsePollingExplanation": "Serwer zwrócił nieprawidłową odpowiedź podczas połączenia.",
         "invalidResponseFetchingAccount": "Serwer zwrócił błędną odpowiedź podczas pobierania informacji o Twoim koncie.",
         "invalidResponseSendingTransfer": "Serwer zwrócił błędną odpowiedź podczas realizowania transferu.",
         "seed": "Seed",
@@ -30,7 +30,7 @@
         "save": "Zapisz",
         "close": "ZAMKNIJ",
         "continue": "Kontynuuj",
-        "manualCopy": "Zanotuj seeda",
+        "manualCopy": "Zanotuj seed",
         "paperWallet": "Drukuj wersję papierową",
         "copyToClipboard": "Dodaj do menedżera haseł",
         "notAvailable": "Ta funkcja nie jest dostępna",
@@ -67,8 +67,8 @@
         "bundleHash": "Hash pakietu",
         "addresses": "Adresy",
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
-        "autoreattaching": "Automatyczne ponawianie wiązania do sieci Tangle",
-        "autoreattachingExplanation": "Ponowne wiązanie transakcji z haszem {{hash}}",
+        "autoreattaching": "Automatyczne ponawianie  transferu w sieci Tangle",
+        "autoreattachingExplanation": "Ponowne dołączanie transakcji z hashem {{hash}}",
         "autopromoting": "Automatyczne promowanie transferu",
         "autopromotingExplanation": "Promowanie transakcji z haszem {{hash}}"
     },
@@ -146,7 +146,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed nie został wygenerowany",
-        "seedNotGeneratedExplanation": "Kliknij przycisk generowania nowego ziarna.",
+        "seedNotGeneratedExplanation": "Kliknij na przycisk generowania nowego seeda.",
         "pressForNewSeed": "WYGENERUJ NOWEGO SEEDa",
         "individualLetters": "Naciśnij poszczególne litery, aby wylosować ponownie."
     },
@@ -223,7 +223,7 @@
         "language": "Język",
         "accountManagement": "Zarządzanie kontem",
         "addNewSeed": "Dodaj nowy seed",
-        "twoFA": "Uwierzytelnianie dwuskładnikowe",
+        "twoFA": "Uwierzytelnienie dwuskładnikowe (2FA)",
         "changePassword": "Zmień hasło",
         "advanced": "Ustawienia zaawansowane",
         "logout": "Wyloguj",
@@ -255,7 +255,7 @@
     },
     "walletSetup": {
         "okay": "W porządku. Ustawmy Twój portfel!",
-        "doYouAlreadyHaveASeed": "Czy posiadasz ziarno, którego chciałbyś użyć?",
+        "doYouAlreadyHaveASeed": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
         "seedExplanation": "Seed IOTA jest swego rodzaju połączeniem nazwy użytkownika oraz hasła do Twojego konta, składającym się na ciąg 81 znaków.",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed, stracisz swoje środki IOTA.</4></0>",
         "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seeda."
@@ -333,7 +333,7 @@
         "syncingYourAccount": "Synchronizacja Twojego konta."
     },
     "useExistingSeed": {
-        "title": "Wprowadź seeda oraz nazwę konta."
+        "title": "Wprowadź seed oraz nazwę konta."
     },
     "viewSeed": {
         "enterPassword": "Wprowadź hasło, aby wyświetlić swój seed.",
