@@ -229,29 +229,29 @@
         "logout": "تسجيل خروج",
         "reset": "إعادة تعيين المحفظة",
         "syncingComplete": "تم إكمال المزامنة",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "syncingCompleteExplanation": "تم مزامنة حسابك بنجاح.",
         "nicknameChanged": "تم تغيير اسم الحساب",
         "nicknameChangedExplanation": "تم تغيير اسم الحساب الخاص بك.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
+        "accountDeleted": "تم حذف الحساب",
+        "accountDeletedExplanation": "تم حذف الحساب الخاص بك من المحفظة.",
+        "cannotPerformAction": "يتعذر تنفيذ الإجراء",
+        "cannotPerformActionExplanation": "اذهب إلى الإعدادات المتقدمة لإعادة المحفظة.",
+        "poorConnection": "اتصال ضعيف",
+        "poorConnectionExplanation": "تعذر تغيير العملة بسبب ضعف الاتصال.",
+        "hide": "إخفاء",
+        "hideOthers": "إخفاء الآخرين",
+        "showAll": "إظهار الكل",
+        "quit": "خروج",
+        "edit": "تحرير",
+        "cut": "قص",
+        "copy": "نسخ",
+        "paste": "لصق",
+        "selectAll": "تحديد الكل"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "الرجاء ادخال كلمة المرور لإعادة المحفظة.",
         "cancel": "إلغاء",
-        "reset": "RESET"
+        "reset": "إعادة"
     },
     "walletSetup": {
         "okay": "حسنًا. لنقم بإعداد محفظتك!",
@@ -276,28 +276,28 @@
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "عرض السييد",
+        "viewAddresses": "عرض العنواين",
+        "editAccountName": "تحرير اسم الحساب",
+        "deleteAccount": "حذف الحساب",
+        "addNewAccount": "إضافة حساب جديد"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "عقده معينة",
+        "add": "إضافة"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "استخدام سييد موجود",
+        "createNewSeed": "إنشاء سييد جديد"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "اختيار العقدة",
+        "addCustomNode": "إضافة عقده معينة",
+        "manualSync": "مزامنة يدوية"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "خلفية",
+        "frame": "إطار"
     },
     "themeCustomisation": {
         "theme": "التصميم"
@@ -343,7 +343,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "لقد حفظت السييد الخاص بي",
         "reenter": "سوف يطلب منك الآن إلى إعادة إدخال السييد الخاص بك.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "إذا تعطل جهازك، ولم تقم بحفظ السييد الخاص بك، سوف تفقد رصيد IOTA الخاص بك."
     },
     "walletResetConfirmation": {
         "cannotUndo": "لا يمكن التراجع عن هذا الإجراء.",
