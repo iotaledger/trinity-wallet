@@ -21,11 +21,11 @@ import {
     round,
     VALID_SEED_REGEX,
     ADDRESS_LENGTH,
-    parse,
     VALID_ADDRESS_WITH_CHECKSUM_REGEX,
 } from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
-import keychain, { getSeed } from '../util/keychain';
+import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
+import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import {
     getFromKeychainRequest,
     getFromKeychainSuccess,
@@ -40,22 +40,24 @@ import {
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import Modal from 'react-native-modal';
+import KeepAwake from 'react-native-keep-awake';
+import whiteSendToggleOffImagePath from 'iota-wallet-shared-modules/images/send-toggle-off-white.png';
+import whiteSendToggleOnImagePath from 'iota-wallet-shared-modules/images/send-toggle-on-white.png';
+import blackSendToggleOnImagePath from 'iota-wallet-shared-modules/images/send-toggle-on-black.png';
+import blackSendToggleOffImagePath from 'iota-wallet-shared-modules/images/send-toggle-off-black.png';
+import QRScanner from '../components/qrScanner';
 import {
     getBalanceForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from '../../shared/selectors/account';
-import Modal from 'react-native-modal';
-import QRScanner from '../components/qrScanner.js';
+import keychain, { getSeed } from '../util/keychain';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
-import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
-import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
-import KeepAwake from 'react-native-keep-awake';
 import CustomTextInput from '../components/customTextInput';
+import CtaButton from '../components/ctaButton';
 
-import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
-import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import { width, height } from '../util/dimensions';
 
 let currencySymbol = '';
@@ -79,9 +81,9 @@ class Send extends Component {
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
-        ctaColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.string.isRequired,
         backgroundColor: PropTypes.object.isRequired,
-        barColor: PropTypes.object.isRequired,
+        barColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.object.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
@@ -125,6 +127,14 @@ class Send extends Component {
                 maxColor: '#FF6C69',
                 maxText: t('send:maximumSelected'),
             });
+        }
+    }
+
+    componentDidMount() {
+        const { message } = this.props;
+
+        if (message.length > 0) {
+            this.messageField.focus();
         }
     }
 
@@ -346,7 +356,7 @@ class Send extends Component {
                         onQRRead={data => this.onQRRead(data)}
                         hideModal={() => this._hideModal()}
                         backgroundColor={THEMES.getHSL(backgroundColor)}
-                        ctaColor={THEMES.getHSL(ctaColor)}
+                        ctaColor={ctaColor}
                         secondaryCtaColor={secondaryCtaColor}
                         ctaBorderColor={ctaBorderColor}
                     />
@@ -380,7 +390,7 @@ class Send extends Component {
             case 'unitInfo':
                 modalContent = (
                     <UnitInfoModal
-                        backgroundColor={THEMES.getHSL(barColor)}
+                        backgroundColor={barColor}
                         hideModal={() => this._hideModal()}
                         textColor={{ color: secondaryBarColor }}
                         borderColor={{ borderColor: secondaryBarColor }}
@@ -462,7 +472,7 @@ class Send extends Component {
     }
 
     render() {
-        const { isModalVisible, maxColor, maxText, sending } = this.state;
+        const { isModalVisible, maxColor, maxText, sending, maxPressed } = this.state;
         const {
             t,
             ctaColor,
@@ -479,38 +489,40 @@ class Send extends Component {
             denomination,
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
-        const sendBorderColor = { borderColor: ctaBorderColor };
         const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
-        const ctaTextColor = { color: secondaryCtaColor };
+        const sendToggleOnImagePath =
+            secondaryBackgroundColor === 'white' ? whiteSendToggleOnImagePath : blackSendToggleOnImagePath;
+        const sendToggleOffImagePath =
+            secondaryBackgroundColor === 'white' ? whiteSendToggleOffImagePath : blackSendToggleOffImagePath;
+        const sendToggleImagePath = maxPressed ? sendToggleOnImagePath : sendToggleOffImagePath;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View style={{ flex: 0.15 }} />
+                    <View style={{ flex: 0.25 }} />
                     <View style={styles.topContainer}>
-                        <View style={styles.fieldContainer}>
-                            <CustomTextInput
-                                onRef={c => {
-                                    this.addressField = c;
-                                }}
-                                maxLength={90}
-                                label={t('recipientAddress')}
-                                onChangeText={text => this.props.setSendAddressField(text.toUpperCase())}
-                                containerStyle={{ width: width / 1.3 }}
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="next"
-                                onSubmitEditing={() => this.amountField.focus()}
-                                widget="qr"
-                                onQRPress={() => this.setModalContent('qrScanner')}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
-                                value={address}
-                                editable={!sending}
-                                selectTextOnFocus={!sending}
-                            />
-                        </View>
+                        <CustomTextInput
+                            onRef={c => {
+                                this.addressField = c;
+                            }}
+                            maxLength={90}
+                            label={t('recipientAddress')}
+                            onChangeText={text => this.props.setSendAddressField(text.toUpperCase())}
+                            containerStyle={{ width: width / 1.2 }}
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="next"
+                            onSubmitEditing={() => this.amountField.focus()}
+                            widget="qr"
+                            onQRPress={() => this.setModalContent('qrScanner')}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            negativeColor={negativeColor}
+                            value={address}
+                            editable={!sending}
+                            selectTextOnFocus={!sending}
+                        />
+                        <View style={{ flex: 0.17 }} />
                         <View style={styles.fieldContainer}>
                             <CustomTextInput
                                 onRef={c => {
@@ -519,7 +531,7 @@ class Send extends Component {
                                 keyboardType={'numeric'}
                                 label={t('amount')}
                                 onChangeText={text => this.onAmountType(text)}
-                                containerStyle={{ width: width / 1.3 }}
+                                containerStyle={{ width: width / 1.2 }}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="next"
@@ -539,72 +551,72 @@ class Send extends Component {
                                     ? this.getConversionTextFiat()
                                     : this.getConversionTextIota()}{' '}
                             </Text>
-                        </View>
-                        <View style={styles.maxContainer}>
-                            <TouchableOpacity onPress={event => this.onMaxPress()}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
+                            <View style={{ flex: 0.2 }} />
+                            <View style={styles.maxContainer}>
+                                <TouchableOpacity onPress={event => this.onMaxPress()}>
                                     <View
-                                        style={[
-                                            {
-                                                width: width / 24,
-                                                borderRadius: width / 48,
-                                                height: width / 24,
-                                                opacity: 0.8,
-                                            },
-                                            { backgroundColor: maxColor },
-                                        ]}
-                                    />
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.messageFieldContainer}>
-                            <CustomTextInput
-                                onRef={c => {
-                                    this.messageField = c;
-                                }}
-                                keyboardType={'default'}
-                                label={t('message')}
-                                onChangeText={text => this.props.setSendMessageField(text)}
-                                containerStyle={{ width: width / 1.3 }}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="send"
-                                onSubmitEditing={() => this.setModalContent('transferConfirmation')}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
-                                value={message}
-                                editable={!sending}
-                                selectTextOnFocus={!sending}
-                            />
-                        </View>
-                    </View>
-                    <View style={styles.bottomContainer}>
-                        <View style={{ flex: 0.4 }} />
-                        {!isSendingTransfer &&
-                            !isGettingSensitiveInfoToMakeTransaction && (
-                                <View style={styles.sendButtonContainer}>
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            this.setModalContent('transferConfirmation');
-                                            if (address === '' && amount === '' && message && '') {
-                                                this.addressField.blur();
-                                                this.amountField.blur();
-                                                this.messageField.blur();
-                                            }
+                                        style={{
+                                            flexDirection: 'row',
+                                            alignItems: 'center',
+                                            justifyContent: 'flex-start',
                                         }}
                                     >
-                                        <View
+                                        <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
+                                        <Image
                                             style={[
-                                                styles.sendButton,
-                                                { backgroundColor: THEMES.getHSL(ctaColor) },
-                                                sendBorderColor,
+                                                {
+                                                    width: width / 12,
+                                                    height: width / 12,
+                                                },
                                             ]}
-                                        >
-                                            <Text style={[styles.sendText, ctaTextColor]}>{t('send')}</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                </View>
+                                            source={sendToggleImagePath}
+                                        />
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <CustomTextInput
+                            onRef={c => {
+                                this.messageField = c;
+                            }}
+                            keyboardType={'default'}
+                            label={t('message')}
+                            onChangeText={text => this.props.setSendMessageField(text)}
+                            containerStyle={{ width: width / 1.2 }}
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="send"
+                            onSubmitEditing={() => this.setModalContent('transferConfirmation')}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            negativeColor={negativeColor}
+                            value={message}
+                            height={{ height: height / 13 }}
+                            lineHeight={{ lineHeight: width / 16 }}
+                            fontSize={{ fontSize: width / 25.9 }}
+                            multiline
+                            editable={!sending}
+                            selectTextOnFocus={!sending}
+                            numberOfLines={2}
+                        />
+                    </View>
+                    <View style={styles.bottomContainer}>
+                        <View style={{ flex: 0.25 }} />
+                        {!isSendingTransfer &&
+                            !isGettingSensitiveInfoToMakeTransaction && (
+                                <CtaButton
+                                    ctaColor={ctaColor}
+                                    ctaBorderColor={ctaBorderColor}
+                                    secondaryCtaColor={secondaryCtaColor}
+                                    text={t('send')}
+                                    onPress={() => {
+                                        this.setModalContent('transferConfirmation');
+                                        if (address === '' && amount === '' && message && '') {
+                                            this.addressField.blur();
+                                            this.amountField.blur();
+                                            this.messageField.blur();
+                                        }
+                                    }}
+                                />
                             )}
                         {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
                             !isModalVisible && (
@@ -618,7 +630,7 @@ class Send extends Component {
                                     color={THEMES.getHSL(negativeColor)}
                                 />
                             )}
-                        <View style={{ flex: 0.2 }} />
+                        <View style={{ flex: 0.36 }} />
                         <TouchableOpacity
                             onPress={() => this.setModalContent('unitInfo')}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
@@ -662,7 +674,7 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         flex: 3.6,
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
         alignItems: 'center',
     },
     bottomContainer: {
@@ -671,45 +683,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     fieldContainer: {
-        flex: 0.8,
         alignItems: 'center',
+        justifyContent: 'flex-start',
+        flex: 0.7,
     },
     maxContainer: {
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
-        width: width / 1.3,
+        width: width / 1.2,
         paddingRight: 1,
+        flex: 0.8,
     },
     messageFieldContainer: {
         flex: 0.7,
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
-    sendButton: {
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2,
-        height: height / 13,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1.2,
-    },
-    sendText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 25.9,
-        backgroundColor: 'transparent',
-    },
-    sendIOTAImage: {
-        height: width / 35,
-        width: width / 35,
-    },
-    sendButtonContainer: {
-        alignItems: 'center',
-    },
     conversionText: {
         fontFamily: 'Lato-Light',
         backgroundColor: 'transparent',
         position: 'absolute',
-        bottom: height / 18,
+        bottom: height / 10.2,
         right: width / 7.8,
     },
     maxButtonText: {
