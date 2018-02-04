@@ -594,37 +594,41 @@ class Send extends Component {
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <View style={{ flex: 0.25 }} />
+                        <View style={{ flex: 0.2 }} />
                         {!isSendingTransfer &&
                             !isGettingSensitiveInfoToMakeTransaction && (
-                                <CtaButton
-                                    ctaColor={ctaColor}
-                                    ctaBorderColor={ctaBorderColor}
-                                    secondaryCtaColor={secondaryCtaColor}
-                                    text={t('send')}
-                                    onPress={() => {
-                                        this.setModalContent('transferConfirmation');
-                                        if (address === '' && amount === '' && message && '') {
-                                            this.addressField.blur();
-                                            this.amountField.blur();
-                                            this.messageField.blur();
-                                        }
-                                    }}
-                                />
+                                <View style={{ flex: 0.5 }}>
+                                    <CtaButton
+                                        ctaColor={ctaColor}
+                                        ctaBorderColor={ctaBorderColor}
+                                        secondaryCtaColor={secondaryCtaColor}
+                                        text={t('send')}
+                                        onPress={() => {
+                                            this.setModalContent('transferConfirmation');
+                                            if (address === '' && amount === '' && message && '') {
+                                                this.addressField.blur();
+                                                this.amountField.blur();
+                                                this.messageField.blur();
+                                            }
+                                        }}
+                                    />
+                                </View>
                             )}
                         {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
                             !isModalVisible && (
-                                <ActivityIndicator
-                                    animating={
-                                        (isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
-                                        !isModalVisible
-                                    }
-                                    style={styles.activityIndicator}
-                                    size="large"
-                                    color={THEMES.getHSL(negativeColor)}
-                                />
+                                <View style={{ flex: 0.5 }}>
+                                    <ActivityIndicator
+                                        animating={
+                                            (isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
+                                            !isModalVisible
+                                        }
+                                        style={styles.activityIndicator}
+                                        size="large"
+                                        color={THEMES.getHSL(negativeColor)}
+                                    />
+                                </View>
                             )}
-                        <View style={{ flex: 0.36 }} />
+                        <View style={{ flex: 0.04 }} />
                         <TouchableOpacity
                             onPress={() => this.setModalContent('unitInfo')}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
