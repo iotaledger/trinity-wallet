@@ -124,7 +124,7 @@ class UseExistingSeed extends React.Component {
     static propTypes = {
         seedCount: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        ctaColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.string.isRequired,
         backgroundColor: PropTypes.object.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
