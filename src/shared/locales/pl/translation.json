@@ -195,7 +195,7 @@
         "invalidAmount": "Wprowadzono niepoprawną ilość",
         "invalidAmountExplanation": "Proszę wprowadzić numeryczną wartość transakcji.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
-        "iotaUnits": "Wyjaśnienie jednostek IOTA",
+        "iotaUnits": "Wybierz jednostke IOTA (I, KI, MI, GI, TI, lub $)",
         "sendMax": "Wyślij wszystko"
     },
     "setPassword": {
@@ -257,8 +257,8 @@
         "okay": "W porządku. Ustawmy Twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz ziarno, którego chciałbyś użyć?",
         "seedExplanation": "Ziarno IOTA jest jak połączenie Twojej nazwy użytkownika i hasła do konta w jeden ciąg długości 81 znaków.",
-        "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed'a, stracisz swoje IOTY.</4></0>",
-        "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seed'a."
+        "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed, stracisz swoje środki IOTA.</4></0>",
+        "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seeda."
     },
     "welcome": {
         "thankYou": "Dziękujemy za pobranie portfela IOTA.",
