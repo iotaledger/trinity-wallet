@@ -114,6 +114,9 @@ export function selectLocale(lang) {
     if (lang === 'ur') {
         return 'اردو - Urdu';
     }
+    if (lang === 'vi') {
+        return 'Tiếng Việt - Vietnamese';
+    }
     if (lang === 'zh_CN') {
         return '中文 (简体) - Chinese (Simplified)';
     }
