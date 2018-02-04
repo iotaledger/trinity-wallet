@@ -78,7 +78,7 @@ class CustomTextInput extends React.Component {
             l: 0.48823529411764705,
             a: 1,
         },
-        innerPadding: { paddingVertical: height / 140 },
+        innerPadding: { paddingVertical: height / 200 },
     };
 
     constructor(props) {
@@ -176,7 +176,6 @@ class CustomTextInput extends React.Component {
                         onChangeText={onChangeText}
                         selectionColor={THEMES.getHSL(negativeColor)}
                         underlineColorAndroid={'transparent'}
-                        lineHeight={height / 30}
                     />
                     {(widget === 'qr' && this.renderQR(widgetBorderColor)) ||
                         (widget === 'denomination' && this.renderDenomination(widgetBorderColor))}
