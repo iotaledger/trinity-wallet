@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderRadius: GENERAL.borderRadiusSmall,
         height: height / 15,
-        paddingVertical: height / 140,
     },
     widgetContainer: {
         borderLeftWidth: 2,
@@ -61,6 +60,7 @@ class CustomTextInput extends React.Component {
         denominationText: PropTypes.string,
         onQRPress: PropTypes.func,
         negativeColor: PropTypes.object,
+        innerPadding: PropTypes.object,
     };
 
     static defaultProps = {
@@ -78,6 +78,7 @@ class CustomTextInput extends React.Component {
             l: 0.48823529411764705,
             a: 1,
         },
+        innerPadding: { paddingVertical: height / 200 },
     };
 
     constructor(props) {
@@ -151,6 +152,7 @@ class CustomTextInput extends React.Component {
             height,
             fontSize,
             lineHeight,
+            innerPadding,
             ...restProps
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
@@ -164,7 +166,7 @@ class CustomTextInput extends React.Component {
         return (
             <View style={[styles.fieldContainer, containerStyle]}>
                 <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>
-                <View style={[styles.innerContainer, innerContainerBackgroundColor, height]}>
+                <View style={[styles.innerContainer, innerContainerBackgroundColor, height, innerPadding]}>
                     <TextInput
                         {...restProps}
                         ref={onRef}
