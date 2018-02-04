@@ -233,7 +233,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
                         'success',
                         i18next.t('global:messageSent'),
                         i18next.t('global:messageSentMessage'),
-                        100000,
+                        20000,
                     ),
                 );
             } else {
@@ -242,7 +242,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
                         'success',
                         i18next.t('global:transferSent'),
                         i18next.t('global:transferSentMessage'),
-                        100000,
+                        20000,
                     ),
                 );
             }
@@ -253,13 +253,13 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
                 attachToTangle: [
                     i18next.t('global:attachToTangleUnavailable'),
                     i18next.t('global:attachToTangleUnavailableExplanation'),
-                    100000,
+                    20000,
                     error,
                 ],
                 default: [
                     i18next.t('global:invalidResponse'),
                     i18next.t('global:invalidResponseSendingTransfer'),
-                    100000,
+                    20000,
                     error,
                 ],
             };
@@ -304,7 +304,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             } else if (get(inputs, 'totalBalance') < value) {
                 dispatch(sendTransferError());
                 return dispatch(
-                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError'), 20000),
+                    generateAlert('error', 'Please wait', 'Please wait for another transfer to confirm.', 20000),
                 );
             }
 
@@ -319,7 +319,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
 
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
-                    100000,
+                    20000,
                     err,
                 );
             }
@@ -338,7 +338,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             if (err) {
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
-                    100000,
+                    20000,
                     err,
                 );
             }
