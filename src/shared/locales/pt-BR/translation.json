@@ -210,7 +210,7 @@
     },
     "setSeedName": {
         "canUseMultipleSeeds": "Pode utilizar várias Seeds com esta carteira. Cada Seed requer um nome de conta.",
-        "youCanAdd": "Pode adicionar mais Seeds no menu de configuração."
+        "youCanAdd": "Pode adicionar mais Seeds no menu de opções."
     },
     "settings": {
         "transferSending": "Enviando transferência",
