@@ -23,8 +23,8 @@
         "seed": "سييد",
         "back": "رجوع",
         "backLowercase": "الى الخلف",
-        "done": "تم",
-        "doneLowercase": "فعله",
+        "done": "انتهى",
+        "doneLowercase": "انتهى",
         "next": "التالي",
         "apply": "تطبيق",
         "save": "حفظ",
@@ -79,12 +79,12 @@
         "seedTooShortExplanation": "يجب أن تكون البذور {{maxLength}} حرفاً. البذور الخاص بك حاليا {{currentLength}} حرفاً. الرجاء المحاولة مرة أخرى.",
         "nameInUse": "سبق التسجيل بهذا الإسم من قبل",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterAccountName": "Enter an account name.",
+        "enterAccountName": "أدخل اسم حساب.",
         "accountName": "اسم الحساب",
         "noNickname": "لم يتم ادخال اسم حساب",
         "noNicknameExplanation": "يرجى إدخال اسم حساب للسييد الخاص بك.",
         "seedInUse": "السييد قيد الاستخدام",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUseExplanation": "سبق ربط هذا السييد بمحفظتك. الرجاء استخدام سييد آخر."
     },
     "changePassword": {
         "oops": "المعذرة! حدث خطأ ما",
@@ -97,21 +97,21 @@
         "passwordsDoNotMatchExplanation": "كلمة المرور ليست متطابقة. يرجى المحاولة مرة أخرى.",
         "passwordTooShort": "كلمة المرور قصيرة جدا",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
-        "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPassword": "لا يمكن استخدام كلمة مرور قديمة",
+        "oldPasswordExplanation": "لا يمكنك استخدام كلمة مرور قديمة. يرجى المحاولة مرة أخرى باستخدام كلمة مرور جديدة.",
         "ensureStrongPassword": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "كلمة المرور الحالية",
+        "newPassword": "كلمة مرور جديدة",
+        "confirmPassword": "تأكيد كلمة المرور الجديدة"
     },
     "copyToClipboard": {
         "seedCleared": "تم مسح القيم",
         "seedClearedExplanation": "تم مسح القيم من الحافظة لأمنك.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "seedCopied": "تم نسخ السييد إلى الحافظة",
+        "seedCopiedExplanation": "سيتم مسح السييد بمجرد الضغط على \"انتهى\" أو مرور 60 ثانية.",
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
         "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "copyToClipboard": "نسخ إلى الحافظة"
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
@@ -163,7 +163,7 @@
     "receive": {
         "addressCopied": "تم نسخ العنوان",
         "addressCopiedExplanation": "تم نسخ عنوانك إلى الحافظة.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "عنوان جديد",
         "message": "رسالة اختيارية",
         "removeMessage": "احذف الرسالة"
     },
@@ -322,7 +322,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete this account?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
+        "thisAction": "لا يمكن التراجع عن هذا الإجراء.",
         "enterPassword": "Enter your password to delete this account."
     },
     "manualSync": {
@@ -346,7 +346,7 @@
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "لا يمكن التراجع عن هذا الإجراء.",
         "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "transferConfirmation": {
