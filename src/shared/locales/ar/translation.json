@@ -182,21 +182,21 @@
         "invalidAddress": "عنوان خاطئ",
         "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "السييد يحتوي على أحرف غير صالحة.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Insufficient funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "invalidAddressExplanation3": "العنوان يحتوي مجموع اختباري غير صحيح.",
+        "notEnoughFunds": "الرصيد غير كافي",
+        "notEnoughFundsExplanation": "ليس لديك IOTA كافية لإتمام عملية التحويل.",
         "keyReuse": "إعادة الاستخدام المفتاح",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
+        "recipientAddress": "عنوان المستقبل",
         "amount": "الكمية",
         "max": "أقصى",
         "message": "رسالة",
         "send": "إرسال",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
+        "invalidAmount": "المبلغ المدخل غير صحيح",
+        "invalidAmountExplanation": "الرجاء إدخال قيمة رقمية لمبلغ الحوالة.",
+        "maximumSelected": "تم اختيار الحد الأقصى",
         "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "sendMax": "إرسال الكل"
     },
     "setPassword": {
         "passwordTooShort": "كلمة المرور قصيرة جدا",
@@ -204,16 +204,16 @@
         "passwordMismatch": "كلمتي المرور لا تتطابق",
         "passwordMismatchExplanation": "كلمتي المرور المدخلة لا تتطابق، يرجى المحاولة مرة أخرى.",
         "nowWeNeedTo": "الآن نحن بحاجة إلى إعداد كلمة مرور.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "سيتم تخزين نسخة مشفرة من السييد الخاص بك على الجهاز الخاص بك. وسوف تستخدم كلمة المرور هذه للوصول إلى المحفظة الخاصة بك في المستقبل.",
         "ensure": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
-        "retypePassword": "Retype Password"
+        "retypePassword": "أعد كتابة كلمة المرور"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "يمكنك استخدام اكثر من سييد مع هذه المحفظة. كل سييد يتطلب اسم حساب.",
+        "youCanAdd": "يمكنك إضافة سييد آخر في قائمة الإعدادات."
     },
     "settings": {
-        "transferSending": "Transfer sending",
+        "transferSending": "جاري التحويل",
         "transferSendingExplanation": "Please wait until your transfer has been sent.",
         "generatingAddress": "Generating receive address",
         "generatingAddressExplanation": "Please wait until your address has been generated.",
