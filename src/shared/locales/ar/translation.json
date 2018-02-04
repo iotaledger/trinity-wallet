@@ -3,7 +3,7 @@
         "send": "إرسال",
         "cancel": "إلغاء",
         "continue?": "هل تريد بالتأكيد المتابعة؟",
-        "noTransactions": "نو التاريخ الحديث",
+        "noTransactions": "لا يوجد تاريخ حديث",
         "qr": "رمز QR",
         "balanceError": "لا يوجد رصيد كاف",
         "balanceErrorMessage": "ليس لديك ما يكفي من يوتا لإتمام عملية النقل هذه.",
@@ -300,7 +300,7 @@
         "frame": "Frame"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "التصميم"
     },
     "currencySelection": {
         "currency": "عملة"
@@ -321,12 +321,12 @@
     },
     "deleteAccount": {
         "areYouSure": "هل أنت متأكد أنك تريد حذف هذا الحساب؟",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "yourSeedWillBeRemoved": "سيتم إزالة السييد و تاريخ الحوالات الخاصة بك.",
         "thisAction": "لا يمكن التراجع عن هذا الإجراء.",
-        "enterPassword": "Enter your password to delete this account."
+        "enterPassword": "الرجاء ادخال كلمة المرور لحذف هذا الحساب."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "اضغط على الزر أدناه لمزامنة الحساب الخاص بك.",
         "thisMayTake": "قد يستغرق هذا بعض الوقت.",
         "youMayNotice": "ستلاحظ بطء الجهاز الخاص بك.",
         "syncAccount": "مزامنة الحساب",
@@ -342,7 +342,7 @@
     },
     "saveSeedConfirmation": {
         "alreadyHave": "لقد حفظت السييد الخاص بي",
-        "reenter": "You will now be asked to re-enter your seed.",
+        "reenter": "سوف يطلب منك الآن إلى إعادة إدخال السييد الخاص بك.",
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
@@ -351,6 +351,6 @@
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "aMessage": "رسالة"
     }
 }
