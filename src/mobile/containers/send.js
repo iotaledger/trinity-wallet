@@ -57,6 +57,7 @@ import UnitInfoModal from '../components/unitInfoModal';
 import THEMES from '../theme/themes';
 import CustomTextInput from '../components/customTextInput';
 import CtaButton from '../components/ctaButton';
+import { isAndroid } from '../util/device';
 
 import { width, height } from '../util/dimensions';
 
@@ -487,6 +488,7 @@ class Send extends Component {
         const sendToggleOffImagePath =
             secondaryBackgroundColor === 'white' ? whiteSendToggleOffImagePath : blackSendToggleOffImagePath;
         const sendToggleImagePath = maxPressed ? sendToggleOnImagePath : sendToggleOffImagePath;
+        const messageFieldHeight = isAndroid ? { height: height / 12 } : { height: height / 13 };
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -582,14 +584,13 @@ class Send extends Component {
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             negativeColor={negativeColor}
                             value={message}
-                            height={{ height: height / 13 }}
-                            lineHeight={{ lineHeight: width / 16 }}
+                            height={messageFieldHeight}
                             fontSize={{ fontSize: width / 25.9 }}
                             multiline
                             editable={!sending}
                             selectTextOnFocus={!sending}
                             numberOfLines={2}
-                            innerPadding={{ paddingVertical: height / 80 }}
+                            innerPadding={isAndroid ? null : { paddingVertical: height / 80 }}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
