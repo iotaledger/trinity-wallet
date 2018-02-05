@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class ViewAddresses extends Component {
+export class ViewAddresses extends Component {
     static propTypes = {
         addressData: PropTypes.object.isRequired,
         generateAlert: PropTypes.func.isRequired,
