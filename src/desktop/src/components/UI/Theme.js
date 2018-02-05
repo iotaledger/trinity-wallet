@@ -19,19 +19,19 @@ class Theme extends PureComponent {
     }
 
     updateTheme(theme) {
-        Object.keys(theme).map((colorName) => {
-            const color = theme[colorName];
-            if (!color.color) {
+        Object.keys(theme).map((colorsName) => {
+            const colorSet = theme[colorsName];
+            if (!colorSet.color) {
                 return;
             }
-            document.documentElement.style.setProperty(`--${colorName}`, color.color);
-            document.documentElement.style.setProperty(`--${colorName}-bg`, color.background || color.color);
-            document.documentElement.style.setProperty(
-                `--${colorName}-border`,
-                color.border || color.background || color.color,
-            );
-            document.documentElement.style.setProperty(`--${colorName}-secondary`, color.secondary || color.color);
-            document.documentElement.style.setProperty(`--${colorName}-body`, color.body || theme.body.color);
+
+            Object.keys(colorSet).map((colorName) => {
+                if (colorName === 'color') {
+                    document.documentElement.style.setProperty(`--${colorsName}`, colorSet.color);
+                } else {
+                    document.documentElement.style.setProperty(`--${colorsName}-${colorName}`, colorSet[colorName]);
+                }
+            });
         });
     }
 
