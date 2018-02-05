@@ -25,6 +25,7 @@ import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
+import CtaButton from '../components/ctaButton';
 
 import { width, height } from '../util/dimensions';
 import { isIPhoneX } from '../util/device';
@@ -39,7 +40,7 @@ class NewSeedSetup extends Component {
         randomiseSeed: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         backgroundColor: PropTypes.object.isRequired,
-        ctaColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.object.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
@@ -167,20 +168,17 @@ class NewSeedSetup extends Component {
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
                     <View style={{ flex: 150 }} />
-                    <TouchableOpacity
-                        onPress={event => this.onGeneratePress()}
-                        style={{ paddingTop: height / 30 }}
+                    <CtaButton
+                        ctaColor={ctaColor}
+                        ctaBorderColor={ctaBorderColor}
+                        secondaryCtaColor={secondaryCtaColor}
+                        text={t('pressForNewSeed')}
+                        onPress={() => {
+                            this.onGeneratePress();
+                        }}
+                        ctaWidth={width / 1.6}
                         testID="newSeedSetup-newSeed"
-                    >
-                        <View
-                            style={[
-                                styles.generateButton,
-                                { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
-                            ]}
-                        >
-                            <Text style={[styles.generateText, ctaTextColor]}>{t('pressForNewSeed')}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: isIPhoneX ? 100 : 30 }} />
