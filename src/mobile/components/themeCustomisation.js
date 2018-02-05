@@ -40,12 +40,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: height / 8.5,
         zIndex: 1,
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowRadius: 4,
-        shadowOpacity: 0.6,
     },
     bottomContainer: {
         flex: 1,
@@ -116,12 +110,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         opacity: 0.98,
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowRadius: 4,
-        shadowOpacity: 1.0,
         zIndex: 1,
     },
     frameBarTitle: {
@@ -261,8 +249,7 @@ class ThemeCustomisation extends Component {
                             style={[
                                 styles.demoContainer,
                                 {
-                                    backgroundColor: backgroundColor,
-                                    shadowColor: 'black',
+                                    backgroundColor,
                                     borderColor: secondaryBackgroundColor,
                                 },
                             ]}
@@ -278,15 +265,7 @@ class ThemeCustomisation extends Component {
                                     MOCKUP
                                 </Text>
                             </View>
-                            <View
-                                style={[
-                                    styles.frameBar,
-                                    {
-                                        backgroundColor: barColor,
-                                        shadowColor: 'black',
-                                    },
-                                ]}
-                            >
+                            <View style={[styles.frameBar, { backgroundColor: barColor }]}>
                                 <Text style={[styles.frameBarTitle, { color: secondaryBarColor }]}>
                                     {t('global:mainWallet')}
                                 </Text>
