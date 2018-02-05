@@ -54,7 +54,7 @@
         "somethingWentWrongExplanation": "Por favor, reinicie la aplicación.",
         "node": "Nodo",
         "cannotPerformAction": "No se puede realizar la acción",
-        "cannotPerformActionExplanation": "Ve a configuración avanzada para restaurar la cartera.",
+        "cannotPerformActionExplanation": "Ve a opciones avanzadas para restaurar la cartera.",
         "attachToTangleUnavailable": "Vincular con Tangle no está disponible",
         "attachToTangleUnavailableExplanation": "Vincular con Tangle no está disponible en el nodo seleccionado.",
         "wallet": "Cartera",
@@ -126,7 +126,7 @@
         "send": "ENVIAR",
         "receive": "RECIBIR",
         "history": "HISTORIAL",
-        "settings": "AJUSTES"
+        "settings": "OPCIONES"
     },
     "languageSetup": {
         "language": "Idioma"
@@ -151,7 +151,7 @@
         "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio."
     },
     "onboardingComplete": {
-        "walletReady": "La billetera está configurada y lista para usar. Si necesitas hacer cambios en el futuro, busca en el menú de Preferencias."
+        "walletReady": "La billetera está configurada y lista para usar. Si necesitas hacer cambios en el futuro, busca en el menú de Opciones."
     },
     "paperWallet": {
         "clickToPrint": "Pulsa el botón de abajo para imprimir una copia de tu seed.",
@@ -217,15 +217,15 @@
         "transferSendingExplanation": "Please wait until your transfer has been sent.",
         "generatingAddress": "Generating receive address",
         "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
+        "mode": "Modo",
+        "theme": "Tema",
         "currency": "Currency",
         "language": "Idioma",
         "accountManagement": "Account management",
         "addNewSeed": "Añadir nueva seed",
         "twoFA": "Two-factor authentication",
         "changePassword": "Cambiar contraseña",
-        "advanced": "Configuración avanzada",
+        "advanced": "Opciones avanzadas",
         "logout": "Log out",
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
@@ -235,7 +235,7 @@
         "accountDeleted": "Account deleted",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "cannotPerformActionExplanation": "Ve a opciones avanzadas para restaurar la cartera.",
         "poorConnection": "Poor connection",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "Ocultar",
