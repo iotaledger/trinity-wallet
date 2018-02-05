@@ -19,12 +19,9 @@
             text-align: center;
         }
         button {
-            line-height: 18px;
             display: block;
             span {
-                position: relative;
-                bottom: 1px;
-                margin-right: 8px;
+                margin-right: 6px;
             }
         }
     }
