@@ -488,7 +488,6 @@ class Send extends Component {
         const sendToggleOffImagePath =
             secondaryBackgroundColor === 'white' ? whiteSendToggleOffImagePath : blackSendToggleOffImagePath;
         const sendToggleImagePath = maxPressed ? sendToggleOnImagePath : sendToggleOffImagePath;
-        const messageFieldHeight = isAndroid ? { height: height / 12 } : { height: height / 13 };
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -501,9 +500,9 @@ class Send extends Component {
                             }}
                             maxLength={90}
                             label={t('recipientAddress')}
-                            onChangeText={text => this.props.setSendAddressField(text.toUpperCase())}
+                            onChangeText={text => this.props.setSendAddressField(text)}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'none'}
+                            autoCapitalize={'characters'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
@@ -584,39 +583,32 @@ class Send extends Component {
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             negativeColor={negativeColor}
                             value={message}
-                            height={messageFieldHeight}
-                            fontSize={{ fontSize: width / 25.9 }}
-                            multiline
                             editable={!sending}
                             selectTextOnFocus={!sending}
-                            numberOfLines={2}
-                            innerPadding={isAndroid ? null : { paddingVertical: height / 80 }}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <View style={{ flex: 0.2 }} />
+                        <View style={{ flex: 0.3 }} />
                         {!isSendingTransfer &&
                             !isGettingSensitiveInfoToMakeTransaction && (
-                                <View style={{ flex: 0.5 }}>
-                                    <CtaButton
-                                        ctaColor={ctaColor}
-                                        ctaBorderColor={ctaBorderColor}
-                                        secondaryCtaColor={secondaryCtaColor}
-                                        text={t('send')}
-                                        onPress={() => {
-                                            this.setModalContent('transferConfirmation');
-                                            if (address === '' && amount === '' && message && '') {
-                                                this.addressField.blur();
-                                                this.amountField.blur();
-                                                this.messageField.blur();
-                                            }
-                                        }}
-                                    />
-                                </View>
+                                <CtaButton
+                                    ctaColor={ctaColor}
+                                    ctaBorderColor={ctaBorderColor}
+                                    secondaryCtaColor={secondaryCtaColor}
+                                    text={t('send')}
+                                    onPress={() => {
+                                        this.setModalContent('transferConfirmation');
+                                        if (address === '' && amount === '' && message && '') {
+                                            this.addressField.blur();
+                                            this.amountField.blur();
+                                            this.messageField.blur();
+                                        }
+                                    }}
+                                />
                             )}
                         {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
                             !isModalVisible && (
-                                <View style={{ flex: 0.5 }}>
+                                <View style={{ height: height / 14 }}>
                                     <ActivityIndicator
                                         animating={
                                             (isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
@@ -628,16 +620,17 @@ class Send extends Component {
                                     />
                                 </View>
                             )}
-                        <View style={{ flex: 0.04 }} />
-                        <TouchableOpacity
-                            onPress={() => this.setModalContent('unitInfo')}
-                            hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
-                        >
-                            <View style={styles.info}>
-                                <Image source={infoImagePath} style={styles.infoIcon} />
-                                <Text style={[styles.infoText, textColor]}>{t('iotaUnits')}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <TouchableOpacity
+                                onPress={() => this.setModalContent('unitInfo')}
+                                hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+                            >
+                                <View style={styles.info}>
+                                    <Image source={infoImagePath} style={styles.infoIcon} />
+                                    <Text style={[styles.infoText, textColor]}>{t('iotaUnits')}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     <Modal
                         animationIn={'bounceInUp'}
@@ -668,7 +661,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        height: height / 5,
+        height: height / 14,
     },
     topContainer: {
         flex: 3.6,
