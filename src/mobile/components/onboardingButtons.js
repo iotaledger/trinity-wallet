@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import GENERAL from '../theme/general';
 import { connect } from 'react-redux';
-import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -30,10 +29,10 @@ const styles = StyleSheet.create({
 class OnboardingButtons extends Component {
     render() {
         const { style, positiveColor, negativeColor } = this.props;
-        const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
-        const positiveBorderColor = { borderColor: THEMES.getHSL(positiveColor) };
-        const negativeTextColor = { color: THEMES.getHSL(negativeColor) };
-        const negativeBorderColor = { borderColor: THEMES.getHSL(negativeColor) };
+        const positiveTextColor = { color: positiveColor };
+        const positiveBorderColor = { borderColor: positiveColor };
+        const negativeTextColor = { color: negativeColor };
+        const negativeBorderColor = { borderColor: negativeColor };
 
         return (
             <View style={styles.buttonsContainer}>

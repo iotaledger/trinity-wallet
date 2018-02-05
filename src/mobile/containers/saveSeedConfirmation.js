@@ -3,13 +3,11 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-white.png';
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { connect } from 'react-redux';
@@ -55,7 +53,7 @@ class SaveSeedConfirmation extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -89,7 +87,7 @@ class SaveSeedConfirmation extends Component {
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
@@ -129,10 +127,8 @@ class SaveSeedConfirmation extends Component {
                     )}
                     {!this.state.hasSavedSeed && (
                         <TouchableOpacity onPress={() => this.onBackPress()}>
-                            <View style={[styles.backButton, { borderColor: THEMES.getHSL(negativeColor) }]}>
-                                <Text style={[styles.backText, { color: THEMES.getHSL(negativeColor) }]}>
-                                    {t('global:back')}
-                                </Text>
+                            <View style={[styles.backButton, { borderColor: negativeColor }]}>
+                                <Text style={[styles.backText, { color: negativeColor }]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                     )}
