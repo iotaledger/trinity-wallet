@@ -19,7 +19,7 @@ const getProps = overrides =>
             backPress: noop,
             t: noop,
             secondaryBackgroundColor: 'white',
-            negativeColor: {},
+            negativeColor: 'white',
             tickImagePath: 0,
             arrowLeftImagePath: 0,
         },
@@ -61,7 +61,7 @@ describe('Testing CurrencySelection component', () => {
         });
 
         it('should require a negativeColor object as a prop', () => {
-            expect(CurrencySelection.propTypes.negativeColor).toBe(PropTypes.object.isRequired);
+            expect(CurrencySelection.propTypes.negativeColor).toBe(PropTypes.string.isRequired);
         });
 
         it('should require a tickImagePath number as a prop', () => {
