@@ -1,12 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
-    // target: 'electron',
     output: {
         path: path.join(__dirname, '..', 'dist'),
         pathinfo: true,

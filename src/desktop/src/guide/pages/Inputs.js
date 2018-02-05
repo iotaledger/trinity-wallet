@@ -42,7 +42,7 @@ class Inputs extends React.PureComponent {
                         amount={this.state.ammount}
                         settings={{ currency: 'USD' }}
                         label="Ammount"
-                        labelMax="Max"
+                        labelMax="Send maximum"
                         balance={2000}
                         onChange={(value) => this.setState({ ammount: value })}
                     />

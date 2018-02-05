@@ -77,10 +77,10 @@ class LightServerSetup extends React.PureComponent {
                     )}
                 </Content>
                 <Footer>
-                    <Button to="/instructions" variant="warning">
+                    <Button to="/instructions" variant="negative">
                         {t('button2')}
                     </Button>
-                    <Button onClick={this.onRequestNext} variant="success">
+                    <Button onClick={this.onRequestNext} variant="positive">
                         {t('button1')}
                     </Button>
                 </Footer>
