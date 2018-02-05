@@ -18,15 +18,17 @@ const styles = StyleSheet.create({
     },
     textInput: {
         fontSize: width / 23,
-        lineHeight: width / 23,
         fontFamily: 'Lato-Light',
         flex: 6,
         marginHorizontal: width / 28,
+        paddingTop: 0,
+        paddingBottom: 0,
     },
     innerContainer: {
         flexDirection: 'row',
+        alignItems: 'center',
         borderRadius: GENERAL.borderRadiusSmall,
-        height: height / 15,
+        height: height / 14,
     },
     widgetContainer: {
         borderLeftWidth: 2,
@@ -78,7 +80,7 @@ class CustomTextInput extends React.Component {
             l: 0.48823529411764705,
             a: 1,
         },
-        innerPadding: { paddingVertical: height / 200 },
+        innerPadding: null,
     };
 
     constructor(props) {
