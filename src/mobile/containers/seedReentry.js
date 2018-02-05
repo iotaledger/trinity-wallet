@@ -80,10 +80,10 @@ class SeedReentry extends Component {
                                 <View style={{ flex: 0.5 }} />
                                 <CustomTextInput
                                     label={t('global:seed')}
-                                    onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
+                                    onChangeText={text => this.setState({ seed: text })}
                                     containerStyle={{ width: width / 1.36 }}
                                     maxLength={MAX_SEED_LENGTH}
-                                    autoCapitalize={'none'}
+                                    autoCapitalize={'characters'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"

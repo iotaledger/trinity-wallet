@@ -98,7 +98,7 @@ class InitialLoading extends Component {
             });
         } else {
             this.props.navigator.push({
-                screen: 'login',
+                screen: 'home',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
