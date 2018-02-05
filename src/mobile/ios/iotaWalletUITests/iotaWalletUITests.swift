@@ -54,8 +54,11 @@ class iotaWalletUITests: XCTestCase {
       snapshot("enterSeed")
       app/*@START_MENU_TOKEN@*/.buttons["Done"]/*[[".keyboards.buttons[\"Done\"]",".buttons[\"Done\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
       sleep(3)
+      if app.otherElements["enterSeed-seedbox"].exists {
+        app.otherElements["enterSeed-seedbox"].typeText("\n")
+      }
+      sleep(3)
       snapshot("setSeedName")
-      app.buttons["Done"].tap()
       app.otherElements["setSeedName-done"].tap()
       app.otherElements["setPassword-passwordbox"].tap()
       // Test password: trinitytest1
