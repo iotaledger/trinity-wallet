@@ -27,7 +27,6 @@ import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import keychain from '../util/keychain';
-import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
@@ -72,9 +71,9 @@ class Login extends Component {
         versions: PropTypes.object.isRequired,
         setPassword: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
-        positiveColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        positiveColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         key2FA: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
@@ -200,7 +199,7 @@ class Login extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: this.props.backgroundColor,
             },
             animated: false,
             overrideBackPress: true,
@@ -211,9 +210,7 @@ class Login extends Component {
         const { backgroundColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         return (
-            <View
-                style={{ width: width / 1.15, alignItems: 'center', backgroundColor: THEMES.getHSL(backgroundColor) }}
-            >
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={styles.modalContent}>
                     <Text style={[styles.questionText, textColor]}>Cannot connect to IOTA node.</Text>
                     <Text style={[styles.infoText, textColor]}>Do you want to select a different node?</Text>
@@ -235,7 +232,7 @@ class Login extends Component {
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
         const tickImagePath = secondaryBackgroundColor === 'white' ? whiteTickImagePath : blackTickImagePath;
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 {!this.state.changingNode &&
                     !this.state.completing2FA && (

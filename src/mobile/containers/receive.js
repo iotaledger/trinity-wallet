@@ -28,7 +28,6 @@ import {
 } from 'iota-wallet-shared-modules/actions/keychain';
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import CustomTextInput from '../components/customTextInput';
 import CtaButton from '../components/ctaButton';
 
@@ -54,7 +53,7 @@ class Receive extends Component {
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
         ctaColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
@@ -255,7 +254,7 @@ class Receive extends Component {
                                 animating={isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress}
                                 style={styles.activityIndicator}
                                 size="large"
-                                color={THEMES.getHSL(negativeColor)}
+                                color={negativeColor}
                             />
                         </View>
                     )}
