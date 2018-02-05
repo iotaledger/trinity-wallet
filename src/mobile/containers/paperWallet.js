@@ -22,6 +22,7 @@ import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.p
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
+import CtaButton from '../components/ctaButton';
 
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
@@ -51,8 +52,8 @@ class PaperWallet extends Component {
 
             // Doesn't convert to PDF for android.
             if (isIOS) {
-                Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then(item =>
-                    item.forEach(item => RNFS.unlink(item.path)),
+                Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then((item) =>
+                    item.forEach((item) => RNFS.unlink(item.path)),
                 );
             }
         }
@@ -396,27 +397,27 @@ class PaperWallet extends Component {
                                 <Text style={styles.checksumText}>{checksum}</Text>
                             </View>
                         </View>
-                        <QRCode value={this.props.tempAccount.seed} getRef={c => (this.svg = c)} size={width / 3.4} />
+                        <QRCode value={this.props.tempAccount.seed} getRef={(c) => (this.svg = c)} size={width / 3.4} />
                     </View>
-                    <TouchableOpacity style={styles.checkboxContainer} onPress={event => this.onCheckboxPress()}>
+                    <TouchableOpacity style={styles.checkboxContainer} onPress={(event) => this.onCheckboxPress()}>
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />
                         <Text style={[styles.checkboxText, textColor]}>{t('iotaLogo')}</Text>
                     </TouchableOpacity>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={event => this.onPrintPress()}>
-                            <View
-                                style={[
-                                    styles.printButton,
-                                    { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
-                                ]}
-                            >
-                                <Text style={[styles.printText, ctaTextColor]}>{t('printWallet')}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <CtaButton
+                            ctaColor={ctaColor}
+                            ctaBorderColor={ctaBorderColor}
+                            secondaryCtaColor={secondaryCtaColor}
+                            text={t('printWallet')}
+                            onPress={() => {
+                                this.onPrintPress();
+                            }}
+                            ctaWidth={width / 1.1}
+                        />
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={event => this.onDonePress()}>
+                    <TouchableOpacity onPress={(event) => this.onDonePress()}>
                         <View style={[styles.doneButton, positiveColorBorder]}>
                             <Text style={[styles.doneText, positiveColorText]}>{t('global:done')}</Text>
                         </View>
@@ -505,19 +506,6 @@ const styles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
-    },
-    printButton: {
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.5,
-        height: height / 16,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1.2,
-    },
-    printText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
     },
     paperWalletContainer: {
         width: width / 1.1,
@@ -621,7 +609,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,

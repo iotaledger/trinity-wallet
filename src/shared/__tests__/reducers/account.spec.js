@@ -401,7 +401,7 @@ describe('Reducer: account', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should set hashes in payload to unspentAddressesHashes in state', () => {
+        it('should set unspentAddressesHashes in payload to unspentAddressesHashes in state', () => {
             const initialState = {
                 unspentAddressesHashes: {
                     firstAccount: ['baz', 'bar'],
@@ -411,7 +411,7 @@ describe('Reducer: account', () => {
 
             const action = actions.manualSyncSuccess({
                 accountName: 'firstAccount',
-                hashes: ['baz'],
+                unspentAddressesHashes: ['baz'],
             });
 
             const newState = reducer(initialState, action);
@@ -530,7 +530,7 @@ describe('Reducer: account', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should set hashes in payload to unspentAddressesHashes in state', () => {
+        it('should set unspentAddressesHashes in payload to unspentAddressesHashes in state', () => {
             const initialState = {
                 unspentAddressesHashes: {
                     firstAccount: ['baz', 'bar'],
@@ -540,7 +540,7 @@ describe('Reducer: account', () => {
 
             const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'firstAccount',
-                hashes: ['baz'],
+                unspentAddressesHashes: ['baz'],
             });
 
             const newState = reducer(initialState, action);
@@ -677,7 +677,7 @@ describe('Reducer: account', () => {
 
             const action = actions.fullAccountInfoForFirstUseFetchSuccess({
                 accountName: 'firstAccount',
-                hashes: ['baz'],
+                unspentAddressesHashes: ['baz'],
             });
 
             const newState = reducer(initialState, action);
@@ -776,6 +776,7 @@ describe('Reducer: account', () => {
             };
 
             const action = actions.updateAccountInfoAfterSpending({
+                balance: 0,
                 accountName: 'dummy',
                 addresses: { baz: {} },
                 transfers: [],

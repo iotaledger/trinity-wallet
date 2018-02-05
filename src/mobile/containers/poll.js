@@ -63,7 +63,7 @@ export class Poll extends Component {
     }
 
     componentWillUnmount() {
-        timer.clearInterval('polling');
+        timer.clearInterval(this, 'polling');
     }
 
     shouldSkipCycle() {
@@ -74,7 +74,8 @@ export class Poll extends Component {
             props.isSendingTransfer ||
             props.isGeneratingReceiveAddress ||
             props.isFetchingLatestAccountInfoOnLogin || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
-            props.addingAdditionalAccount;
+            props.addingAdditionalAccount ||
+            props.isTransitioning;
 
         const isAlreadyPollingSomething =
             props.isFetchingPrice ||
@@ -108,17 +109,17 @@ export class Poll extends Component {
 
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.getAccountInfo(seed, selectedAccountName);
                 }
             })
-            .catch(err => console.error(err)); // eslint-disable-line no-console
+            .catch((err) => console.error(err)); // eslint-disable-line no-console
     }
 
     startBackgroundProcesses() {
-        timer.setInterval('polling', () => this.fetch(this.props.pollFor), 15000);
+        timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 15000);
     }
 
     promote() {
@@ -155,7 +156,7 @@ export class Poll extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,
@@ -171,6 +172,7 @@ const mapStateToProps = state => ({
     seedIndex: state.tempAccount.seedIndex,
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     unconfirmedBundleTails: state.account.unconfirmedBundleTails,
+    isTransitioning: state.tempAccount.isTransitioning,
 });
 
 const mapDispatchToProps = {
