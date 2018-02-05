@@ -6,6 +6,7 @@ import blackQRImagePath from 'iota-wallet-shared-modules/images/qr-black.png';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
+import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
     fieldContainer: {
@@ -33,10 +34,17 @@ const styles = StyleSheet.create({
     widgetContainer: {
         borderLeftWidth: 2,
         justifyContent: 'center',
-        marginVertical: height / 120,
+        marginVertical: height / 70,
         flex: 1,
     },
-    QRImage: {},
+    conversionText: {
+        fontSize: width / 23,
+        fontFamily: 'Lato-Light',
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        top: isAndroid ? height / 60 : height / 50,
+        right: width / 8,
+    },
     widgetButton: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -63,6 +71,9 @@ class CustomTextInput extends React.Component {
         onQRPress: PropTypes.func,
         negativeColor: PropTypes.object,
         innerPadding: PropTypes.object,
+        currencyConversion: PropTypes.bool,
+        conversionText: PropTypes.string,
+        height: PropTypes.number,
     };
 
     static defaultProps = {
@@ -81,6 +92,9 @@ class CustomTextInput extends React.Component {
             a: 1,
         },
         innerPadding: null,
+        currencyConversion: false,
+        conversionText: '',
+        height: height / 14,
     };
 
     constructor(props) {
@@ -142,6 +156,14 @@ class CustomTextInput extends React.Component {
         );
     }
 
+    renderCurrencyConversion(conversionText) {
+        const { secondaryBackgroundColor } = this.props;
+        const isWhite = secondaryBackgroundColor === 'white';
+        const textColor = isWhite ? { color: 'white' } : { color: 'black' };
+
+        return <Text style={[styles.conversionText, textColor]}>{conversionText}</Text>;
+    }
+
     render() {
         const {
             label,
@@ -152,8 +174,8 @@ class CustomTextInput extends React.Component {
             negativeColor,
             onRef,
             height,
-            fontSize,
-            lineHeight,
+            conversionText,
+            currencyConversion,
             innerPadding,
             ...restProps
         } = this.props;
@@ -168,11 +190,11 @@ class CustomTextInput extends React.Component {
         return (
             <View style={[styles.fieldContainer, containerStyle]}>
                 <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>
-                <View style={[styles.innerContainer, innerContainerBackgroundColor, height, innerPadding]}>
+                <View style={[styles.innerContainer, innerContainerBackgroundColor, { height }]}>
                     <TextInput
                         {...restProps}
                         ref={onRef}
-                        style={[styles.textInput, textInputColor, fontSize, lineHeight]}
+                        style={[styles.textInput, textInputColor]}
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
                         onChangeText={onChangeText}
@@ -181,6 +203,7 @@ class CustomTextInput extends React.Component {
                     />
                     {(widget === 'qr' && this.renderQR(widgetBorderColor)) ||
                         (widget === 'denomination' && this.renderDenomination(widgetBorderColor))}
+                    {currencyConversion && this.renderCurrencyConversion(conversionText)}
                 </View>
             </View>
         );
