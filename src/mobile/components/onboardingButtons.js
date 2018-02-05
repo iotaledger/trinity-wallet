@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import GENERAL from '../theme/general';
 import { connect } from 'react-redux';
-import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -29,11 +28,12 @@ const styles = StyleSheet.create({
 
 class OnboardingButtons extends Component {
     render() {
-        const { style, positiveColor, negativeColor } = this.props;
-        const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
-        const positiveBorderColor = { borderColor: THEMES.getHSL(positiveColor) };
-        const negativeTextColor = { color: THEMES.getHSL(negativeColor) };
-        const negativeBorderColor = { borderColor: THEMES.getHSL(negativeColor) };
+        const { style, positiveColor, negativeColor, opacity } = this.props;
+        const positiveTextColor = { color: positiveColor };
+        const positiveBorderColor = { borderColor: positiveColor };
+        const negativeTextColor = { color: negativeColor };
+        const negativeBorderColor = { borderColor: negativeColor };
+        const rightButtonOpacity = { opacity };
 
         return (
             <View style={styles.buttonsContainer}>
@@ -42,8 +42,8 @@ class OnboardingButtons extends Component {
                         <Text style={[styles.text, negativeTextColor]}>{this.props.leftText}</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.onRightButtonPress()} testID={this.props.rightButtonTestID}>
-                    <View style={[styles.button, positiveBorderColor]}>
+                <TouchableOpacity onPress={() => this.props.onRightButtonPress()}>
+                    <View style={[styles.button, positiveBorderColor, rightButtonOpacity]} testID={this.props.rightButtonTestID}>
                         <Text style={[styles.text, positiveTextColor]}>{this.props.rightText}</Text>
                     </View>
                 </TouchableOpacity>

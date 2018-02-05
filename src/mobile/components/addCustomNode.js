@@ -69,7 +69,7 @@ class AddCustomNode extends Component {
         checkNode: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         setNode: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         onAddNodeError: PropTypes.func.isRequired,
