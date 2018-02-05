@@ -33,9 +33,9 @@ const keychain = {
                 .catch(err => reject(err));
         });
     },
-    set: (key, value) => {
+    set: (key, value, service) => {
         return new Promise((resolve, reject) => {
-            Keychain.setGenericPassword(key, value)
+            Keychain.setGenericPassword(key, value, service)
                 .then(() => resolve())
                 .catch(err => reject(err));
         });
