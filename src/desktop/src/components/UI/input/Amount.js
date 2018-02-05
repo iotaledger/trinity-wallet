@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { getCurrencySymbol } from 'libs/currency';
 import css from 'components/UI/input/Input.css';
 
-import Chevron from 'images/chevron-down-white.png';
+import Icon from 'components/UI/Icon';
 
 const units = ['$', 'i', 'Ki', 'Mi', 'Gi', 'Ti'];
 
@@ -54,9 +54,12 @@ export default class AddressInput extends React.PureComponent {
         return multiplier;
     }
 
-    maxAmount = (e) => {
-        e.preventDefault();
-        this.props.onChange(this.props.balance.toString());
+    maxAmount = () => {
+        const { amount, balance } = this.props;
+
+        const total = balance === parseInt(amount) ? '0' : balance.toString();
+
+        this.props.onChange(total);
     };
 
     unitChange = (e) => {
@@ -79,7 +82,7 @@ export default class AddressInput extends React.PureComponent {
                     <a onClick={this.unitChange}>
                         <span>
                             {unit === '$' ? getCurrencySymbol(settings.currency) : unit}
-                            <img src={Chevron} />
+                            <Icon icon="chevron" size={7} />
                         </span>
                     </a>
                     <input
