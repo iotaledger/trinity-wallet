@@ -54,4 +54,10 @@
     max-width: 960px;
     position: relative;
     z-index: 2;
+
+    form {
+        margin-top: 60px;
+        padding: 0px;
+        border: none;
+    }
 }
