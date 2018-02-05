@@ -35,9 +35,9 @@ const keychain = {
                 .catch(err => reject(err));
         });
     },
-    set: (key, value, service) => {
+    set: (key, value) => {
         return new Promise((resolve, reject) => {
-            Keychain.setGenericPassword(key, value, service)
+            Keychain.setGenericPassword(key, value)
                 .then(() => resolve())
                 .catch(err => reject(err));
         });
@@ -45,14 +45,14 @@ const keychain = {
 };
 
 export const storeSeedInKeychain = async (password, seed, name) => {
-    const data = await keychain.get();
+    const { data } = await keychain.get();
     const info = { accounts: [{ seed, name }], shared: { twoFactorAuthKey: null } };
 
     if (isEmpty(data)) {
         return keychain.set(password, serialize(info));
     }
 
-    const existingInfo = parse(get(data, 'data'));
+    const existingInfo = parse(data);
     const updatedKeychainInfo = assign({}, existingInfo, {
         accounts: [...get(existingInfo, 'accounts'), { seed, name }],
     });
