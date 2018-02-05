@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, BackHandler, ToastAndroid } from 'react-native';
+import { StyleSheet, View, BackHandler, ToastAndroid, KeyboardAvoidingView } from 'react-native';
 import RNExitApp from 'react-native-exit-app';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import UserInactivity from '../components/userInactivity';
-import { Navigation } from 'react-native-navigation';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { clearTempData, setPassword, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -182,7 +181,7 @@ class Home extends Component {
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
-                <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
+                <KeyboardAvoidingView style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
                     <DynamicStatusBar textColor={secondaryBarColor} />
                     {!inactive &&
                         !minimised && (
@@ -243,7 +242,7 @@ class Home extends Component {
                     {minimised && <View />}
                     <Poll />
                     <StatefulDropdownAlert />
-                </View>
+                </KeyboardAvoidingView>
             </UserInactivity>
         );
     }
