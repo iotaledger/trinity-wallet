@@ -57,8 +57,6 @@ import UnitInfoModal from '../components/unitInfoModal';
 import THEMES from '../theme/themes';
 import CustomTextInput from '../components/customTextInput';
 import CtaButton from '../components/ctaButton';
-import { isAndroid } from '../util/device';
-
 import { width, height } from '../util/dimensions';
 
 let currencySymbol = '';
@@ -488,6 +486,8 @@ class Send extends Component {
         const sendToggleOffImagePath =
             secondaryBackgroundColor === 'white' ? whiteSendToggleOffImagePath : blackSendToggleOffImagePath;
         const sendToggleImagePath = maxPressed ? sendToggleOnImagePath : sendToggleOffImagePath;
+        const conversionText =
+            denomination === currencySymbol ? this.getConversionTextFiat() : this.getConversionTextIota();
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -530,6 +530,8 @@ class Send extends Component {
                                 returnKeyType="next"
                                 onSubmitEditing={() => this.messageField.focus()}
                                 widget="denomination"
+                                conversionText={conversionText}
+                                currencyConversion
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 denominationText={denomination}
@@ -538,12 +540,6 @@ class Send extends Component {
                                 editable={!sending}
                                 selectTextOnFocus={!sending}
                             />
-                            <Text style={[styles.conversionText, textColor]}>
-                                {' '}
-                                {denomination === currencySymbol
-                                    ? this.getConversionTextFiat()
-                                    : this.getConversionTextIota()}{' '}
-                            </Text>
                             <View style={{ flex: 0.2 }} />
                             <View style={styles.maxContainer}>
                                 <TouchableOpacity onPress={event => this.onMaxPress()}>
@@ -689,13 +685,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         justifyContent: 'flex-start',
         alignItems: 'center',
-    },
-    conversionText: {
-        fontFamily: 'Lato-Light',
-        backgroundColor: 'transparent',
-        position: 'absolute',
-        bottom: height / 10.2,
-        right: width / 7.8,
     },
     maxButtonText: {
         fontFamily: 'Lato-Regular',
