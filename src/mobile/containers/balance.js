@@ -13,7 +13,6 @@ import {
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getBalanceForSelectedAccountViaSeedIndex,
 } from '../../shared/selectors/account';
-import THEMES from '../theme/themes';
 
 import { width, height } from '../util/dimensions';
 
@@ -32,8 +31,8 @@ class Balance extends Component {
         settings: PropTypes.object.isRequired,
         setCurrency: PropTypes.func.isRequired,
         setTimeframe: PropTypes.func.isRequired,
-        extraColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        extraColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         chartLineColorPrimary: PropTypes.string.isRequired,
         chartLineColorSecondary: PropTypes.string.isRequired,
@@ -118,8 +117,8 @@ class Balance extends Component {
                                 dataSource={ds.cloneWithRows(recentTransactions)}
                                 renderRow={dataSource => (
                                     <SimpleTransactionRow
-                                        negativeColor={THEMES.getHSL(negativeColor)}
-                                        extraColor={THEMES.getHSL(extraColor)}
+                                        negativeColor={negativeColor}
+                                        extraColor={extraColor}
                                         addresses={addresses}
                                         rowData={dataSource}
                                         secondaryBackgroundColor={secondaryBackgroundColor}
