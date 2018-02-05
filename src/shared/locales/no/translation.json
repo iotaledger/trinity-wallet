@@ -195,7 +195,7 @@
         "invalidAmount": "Ugyldig beløp lagt inn",
         "invalidAmountExplanation": "Vennligst skriv inn en tallverdi for transaksjonsbeløpet.",
         "maximumSelected": "MAKSIMUM beløp valgt",
-        "iotaUnits": "IOTA enheter",
+        "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"
     },
     "setPassword": {
