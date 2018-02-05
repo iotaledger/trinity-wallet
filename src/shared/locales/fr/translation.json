@@ -56,8 +56,7 @@
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
         "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
-        "attachToTangleUnavailableExplanation":
-            "La fonction Attacher au Tangle n'est pas disponible pour le node sélectionné.",
+        "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible pour le node sélectionné.",
         "wallet": "Wallet",
         "sent": "Envoyé",
         "received": "Reçue",
@@ -196,7 +195,7 @@
         "invalidAmount": "Montant saisi incorrect",
         "invalidAmountExplanation": "Veuillez saisir une valeur numérique pour le montant de la transaction.",
         "maximumSelected": "Montant MAXIMAL sélectionné",
-        "iotaUnits": "Unités IOTA",
+        "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"
     },
     "setPassword": {

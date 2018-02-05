@@ -192,10 +192,7 @@ class Home extends Component {
                                     <TabContent navigator={navigator} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <Tabs
-                                        onPress={name => this.props.changeHomeScreenRoute(name)}
-                                        barColor={THEMES.getHSL(barColor)}
-                                    >
+                                    <Tabs onPress={name => this.props.changeHomeScreenRoute(name)} barColor={barColor}>
                                         <Tab
                                             name="balance"
                                             icon={balanceImagePath}
@@ -287,7 +284,7 @@ Home.propTypes = {
     inactive: PropTypes.bool.isRequired,
     minimised: PropTypes.bool.isRequired,
     backgroundColor: PropTypes.object.isRequired,
-    barColor: PropTypes.object.isRequired,
+    barColor: PropTypes.string.isRequired,
     negativeColor: PropTypes.object.isRequired,
     positiveColor: PropTypes.object.isRequired,
     tempAccount: PropTypes.object.isRequired,
