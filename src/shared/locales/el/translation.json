@@ -195,7 +195,7 @@
         "invalidAmount": "Εισήχθη λάθος ποσό",
         "invalidAmountExplanation": "Παρακαλώ εισάγετε μια αριθμητική τιμή για το ποσό της συναλλαγής.",
         "maximumSelected": "ΜΕΓΙΣΤΟ ποσό επιλέχθηκε",
-        "iotaUnits": "Μονάδες ΙΟΤΑ",
+        "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"
     },
     "setPassword": {

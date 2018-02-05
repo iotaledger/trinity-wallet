@@ -313,7 +313,7 @@ class ThemeCustomisation extends Component {
                                 <View
                                     style={[
                                         styles.ctaButton,
-                                        { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
+                                        { backgroundColor: ctaColor, borderColor: ctaBorderColor },
                                     ]}
                                 >
                                     <Text style={[styles.ctaText, { color: secondaryCtaColor }]}>
