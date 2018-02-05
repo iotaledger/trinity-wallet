@@ -223,7 +223,7 @@
         "language": "Język",
         "accountManagement": "Zarządzanie kontem",
         "addNewSeed": "Dodaj nowy seed",
-        "twoFA": "Uwierzytelnienie dwuskładnikowe (2FA)",
+        "twoFA": "Uwierzytelnienie dwuetapowe (2FA)",
         "changePassword": "Zmień hasło",
         "advanced": "Ustawienia zaawansowane",
         "logout": "Wyloguj",
