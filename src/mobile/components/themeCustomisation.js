@@ -224,7 +224,7 @@ class ThemeCustomisation extends Component {
         } = this.state.theme;
         const { arrowLeftImagePath, tickImagePath, t } = this.props;
         const chevronDownImagePath =
-            secondaryBackgroundColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
+            secondaryBarColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
 
         return (
             <TouchableWithoutFeedback
@@ -238,7 +238,7 @@ class ThemeCustomisation extends Component {
                     <View style={styles.topContainer}>
                         <View style={{ zIndex: 2 }}>
                             <Dropdown
-                                onRef={c => {
+                                onRef={(c) => {
                                     this.dropdown = c;
                                 }}
                                 title={t('theme')}
@@ -247,7 +247,7 @@ class ThemeCustomisation extends Component {
                                 shadow
                                 defaultOption={themeName}
                                 options={themes}
-                                saveSelection={t => {
+                                saveSelection={(t) => {
                                     const newTHEMES = cloneDeep(THEMES);
                                     let newTheme = newTHEMES.themes[t];
                                     if (t === 'Custom' && this.props.themeName === 'Custom') {
@@ -307,13 +307,13 @@ class ThemeCustomisation extends Component {
                             <View style={styles.buttonsContainer}>
                                 <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
                                     <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>
-                                        {t('global:save')}
+                                        {t('global:save').toUpperCase()}
                                     </Text>
                                 </View>
                                 <View
                                     style={[
                                         styles.ctaButton,
-                                        { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
+                                        { backgroundColor: ctaColor, borderColor: ctaBorderColor },
                                     ]}
                                 >
                                     <Text style={[styles.ctaText, { color: secondaryCtaColor }]}>

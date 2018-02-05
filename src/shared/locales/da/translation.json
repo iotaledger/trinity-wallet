@@ -59,7 +59,19 @@
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
         "wallet": "Wallet",
-        "pressBackAgain": "Press back again to close the app"
+        "sent": "Sent",
+        "received": "Received",
+        "sending": "Sending",
+        "receiving": "Receiving",
+        "confirmed": "Confirmed",
+        "pending": "Pending",
+        "bundleHash": "Bundle Hash",
+        "addresses": "Addresses",
+        "pressBackAgain": "Press back again to close the app",
+        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autopromoting": "Autopromoting transfer",
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seedet indeholder ugyldige tegn",
@@ -167,9 +179,8 @@
     "saveYourSeed": {
         "seedCleared": "Seed ryddet",
         "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
-        "mustSaveYourSeed": "Du skal gemme dit seed med ",
-        "atLeastOne": "mindst én ",
-        "ofTheOptions": "én af valgmulighederne angivet nedenfor."
+        "mustSaveYourSeed":
+            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Forkert seed",
@@ -195,7 +206,8 @@
         "invalidAmount": "Forkert beløb indtastet",
         "invalidAmountExplanation": "Indtast venligst en numerisk værdi som transaktionsbeløbet.",
         "maximumSelected": "MAKSIMALT beløb valgt",
-        "iotaUnits": "IOTA-enheder"
+        "iotaUnits": "IOTA units explained",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Adgangskoden er for kort",
@@ -249,15 +261,6 @@
         "paste": "Paste",
         "selectAll": "Select All"
     },
-    "resetWalletConfirmation": {
-        "thisAction": "Denne handling kan ikke fortrydes.",
-        "warning1": "Alle dine tegnebogsdata herunder dit ",
-        "warning2": " seeds, password,",
-        "warning3": " og",
-        "warning4": " andre kontooplysninger",
-        "warning5": " mistes.",
-        "areYouSure": "Er du sikker på, du vil fortsætte?"
-    },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ANNULLER",
@@ -268,11 +271,8 @@
         "doYouAlreadyHaveASeed": "Har du allerede et seed, du gerne vil bruge?",
         "seedExplanation":
             "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
-        "explanation1": "Du kan bruge det til at tilgå dine midler fra",
-        "explanation2": " enhver tegnebog",
-        "explanation3": "på",
-        "explanation4": " enhver enhed",
-        "explanation5": ". Men hvis du mister dit seed, mister du også dine IOTA.",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Du bedes opbevare dit seed sikkert."
     },
     "welcome": {
@@ -282,10 +282,9 @@
             "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "trippeltjek",
-        "thatTheyAreCorrect": "at de er korrekt skrevet ned."
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
@@ -316,6 +315,9 @@
     "advancedThemeCustomisation": {
         "background": "Background",
         "frame": "Frame"
+    },
+    "themeCustomisation": {
+        "theme": "Tema"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -362,11 +364,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "infoTextOne": "Alle dine tegnebogsdata herunder dit",
-        "infoTextTwo": "seeds, password",
-        "infoTextThree": "og",
-        "infoTextFour": "andre kontooplysninger",
-        "infoTextFive": "mistes."
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",

@@ -3,7 +3,7 @@
         "send": "INVIA",
         "cancel": "ANNULLA",
         "continue?": "Sei sicuro di voler continuare?",
-        "noTransactions": "NIENTE NELLO STORICO RECENTE",
+        "noTransactions": "NIENTE NELLA CRONOLOGIA RECENTE",
         "qr": "QR",
         "balanceError": "Saldo insufficiente",
         "balanceErrorMessage": "Non hai abbastanza IOTA per completare questo trasferimento.",
@@ -11,8 +11,8 @@
         "transferErrorMessage": "Qualcosa è andato storto nell'invio del trasferimento. Prova di nuovo.",
         "transferSent": "Trasferimento inviato",
         "transferSentMessage": "Il trasferimento è stato inviato al Tangle.",
-        "messageSent": "Message sent",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
+        "messageSent": "Messaggio inviato",
+        "messageSentMessage": "Il messaggio è stato inviato al Tangle.",
         "keyReuse": "Riutilizzo di chiave",
         "keyReuseError": "Non è possibile inviare a un indirizzo che è già stato usato per una spesa.",
         "invalidResponse": "Risposta non valida",
@@ -61,7 +61,19 @@
         "attachToTangleUnavailableExplanation":
             "La funzione di collegamento al Tangle non è disponibile nel nodo che hai selezionato.",
         "wallet": "Portafoglio",
-        "pressBackAgain": "Press back again to close the app"
+        "sent": "Inviato",
+        "received": "Ricevuto",
+        "sending": "Invio",
+        "receiving": "Ricezione",
+        "confirmed": "Confermato",
+        "pending": "In attesa",
+        "bundleHash": "Hash del pacchetto",
+        "addresses": "Indirizzi",
+        "pressBackAgain": "Premi di nuovo Indietro per chiudere la app",
+        "autoreattaching": "Ricollegamento automatico al Tangle",
+        "autoreattachingExplanation": "Ricollegamento della transazione con hash {{hash}}",
+        "autopromoting": "Promozione automatica del trasferimento",
+        "autopromotingExplanation": "Promozione della transazione con hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -124,7 +136,7 @@
         "balance": "SALDO",
         "send": "INVIA",
         "receive": "RICEVI",
-        "history": "STORICO",
+        "history": "CRONOLOGIA",
         "settings": "IMPOSTAZIONI"
     },
     "languageSetup": {
@@ -170,9 +182,8 @@
     "saveYourSeed": {
         "seedCleared": "Seme cancellato",
         "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
-        "mustSaveYourSeed": "Devi salvare il tuo seme con ",
-        "atLeastOne": "almeno una ",
-        "ofTheOptions": "delle opzioni elencate di seguito."
+        "mustSaveYourSeed":
+            "<0><0>È necessario che salvi il tuo seme con </0><1>almeno una</1><2> delle opzioni elencate di seguito</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seme non corretto",
@@ -199,7 +210,8 @@
         "invalidAmount": "Inserito un importo non corretto",
         "invalidAmountExplanation": "Si prega di inserire un valore numerico per l'importo della transazione.",
         "maximumSelected": "Selezionato importo MASSIMO",
-        "iotaUnits": "Unità di IOTA"
+        "iotaUnits": "IOTA units explained",
+        "sendMax": "INVIA MASSIMO"
     },
     "setPassword": {
         "passwordTooShort": "La password è troppo corta",
@@ -254,15 +266,6 @@
         "paste": "Incolla",
         "selectAll": "Seleziona tutto"
     },
-    "resetWalletConfirmation": {
-        "thisAction": "Questa azione non può essere annullata.",
-        "warning1": "Tutti i dati del tuo portafoglio, inclusi i tuoi ",
-        "warning2": " semi, password,",
-        "warning3": " e",
-        "warning4": " altre informazioni sui conti",
-        "warning5": " andranno persi.",
-        "areYouSure": "Sei sicuro di voler continuare?"
-    },
     "resetWalletRequirePassword": {
         "enterPassword": "Immetti la tua password per reimpostare il portafoglio.",
         "cancel": "ANNULLA",
@@ -273,11 +276,8 @@
         "doYouAlreadyHaveASeed": "Possiedi già un seme che desideri utilizzare?",
         "seedExplanation":
             "Il seme IOTA è come una combinazione di utente e password per il tuo conto, in un'unica stringa di 81 caratteri.",
-        "explanation1": "Puoi usarlo per accedere ai tuoi fondi da",
-        "explanation2": " qualsiasi portafoglio",
-        "explanation3": ", su",
-        "explanation4": " qualsiasi dispositivo",
-        "explanation5": ". Ma se perdi il tuo seme, perdi anche i tuoi IOTA.",
+        "explanation":
+            "<0><0>Puoi utilizzarlo per accedere ai tuoi fondi da</0><1> qualsiasi portafoglio</1><2>, su</2><3> qualsiasi dispositivo</3><4>. Ma se perdi il tuo seme, perdi anche i tuoi IOTA</4></0>",
         "keepSafe": "Sei pregato di tenere il tuo seme al sicuro."
     },
     "welcome": {
@@ -286,10 +286,9 @@
         "reminder": "Potresti essere tentato di saltare alcuni passaggi, ma ti invitiamo a seguire l'intero processo."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Il tuo seme è composto da {{maxSeedLength}} caratteri letti da sinistra a destra. Annota il tuo seme e la relativa checksum, e",
-        "tripleCheck": "controlla tre volte",
-        "thatTheyAreCorrect": "che siano corretti."
+        "yourSeedIs": "Il tuo seme sono {{maxSeedLength}} caratteri letti da sinistra a destra.",
+        "writeDownYourSeed":
+            "<0>Trascrivi il tuo seme e la checksum e </0><1>verifica tre volte</1><2> di averli trascritti correttamente.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash del pacchetto copiato",
@@ -321,6 +320,9 @@
         "background": "Sfondo",
         "frame": "Bordi"
     },
+    "themeCustomisation": {
+        "theme": "Tema"
+    },
     "currencySelection": {
         "currency": "Valuta"
     },
@@ -340,7 +342,7 @@
     },
     "deleteAccount": {
         "areYouSure": "Sei sicuro di voler eliminare questo account?",
-        "yourSeedWillBeRemoved": "Il tuo seme e lo storico delle transazioni saranno rimossi.",
+        "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
         "thisAction": "Questa azione non può essere annullata.",
         "enterPassword": "Immetti la tua password per cancellare il conto."
     },
@@ -362,15 +364,12 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Ho salvato il mio seme",
         "reenter": "Adesso ti sarà richiesto di re-immettere il tuo seme.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "Se il tuo dispositivo si rompe e non hai trascritto il tuo seme, perderai i tuoi IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "QUESTA AZIONE NON PUÒ ESSERE ANNULLATA.",
-        "infoTextOne": "Tutti i dati del tuo portafoglio tra cui",
-        "infoTextTwo": "semi, password",
-        "infoTextThree": "e",
-        "infoTextFour": "altre informazioni sui conti",
-        "infoTextFive": "andranno persi."
+        "warning":
+            "<0><0>Tutti i dati nel tuo portafoglio tra cui </0> <1>i semi, le password</1><2> e </2><3>altre informazioni sul conto</3><4> andranno persi.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",

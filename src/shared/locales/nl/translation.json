@@ -12,23 +12,24 @@
             "Er is iets misgegaan tijdens het verzenden van uw overschrijving. Probeer het opnieuw.",
         "transferSent": "Overschrijving verzonden",
         "transferSentMessage": "Uw overschrijving is verzonden naar de Tangle.",
-        "messageSent": "Message sent",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
+        "messageSent": "Bericht verzonden",
+        "messageSentMessage": "Je bericht is verzonden naar de Tangle.",
         "keyReuse": "Sleutel hergebruik",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuseError": "Je kunt niets sturen naar een adres waar reeds op uitgegeven is.",
         "invalidResponse": "Ongeldig antwoord",
         "invalidResponseExplanation": "De node heeft een ongeldig antwoord teruggestuurd.",
         "invalidResponsePollingExplanation": "De node heeft een ongeldig antwoord teruggestuurd tijdens het pollen.",
         "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+            "De node heeft een ongeldige waarde teruggegeven bij het opvragen van je account informatie.",
+        "invalidResponseSendingTransfer":
+            "De node heeft een ongeldig antwoord teruggestuurd tijdens het verzenden van de transactie.",
         "seed": "Sleutel",
         "back": "Terug",
         "backLowercase": "Terug",
         "done": "GEREED",
-        "doneLowercase": "Done",
+        "doneLowercase": "Klaar",
         "next": "VOLGENDE",
-        "apply": "Apply",
+        "apply": "Toepassen",
         "save": "Opslaan",
         "close": "SLUITEN",
         "continue": "Doorgaan",
@@ -61,7 +62,19 @@
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
         "wallet": "Wallet",
-        "pressBackAgain": "Press back again to close the app"
+        "sent": "Verzonden",
+        "received": "Ontvangen",
+        "sending": "Wordt verzonden",
+        "receiving": "Wordt ontvangen",
+        "confirmed": "Bevestigd",
+        "pending": "In afwachting",
+        "bundleHash": "Bundel Hash",
+        "addresses": "Adressen",
+        "pressBackAgain": "Press back again to close the app",
+        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autopromoting": "Autopromoting transfer",
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De sleutel bevat ongeldige tekens",
@@ -169,9 +182,8 @@
     "saveYourSeed": {
         "seedCleared": "Sleutel gewist",
         "seedClearedExplanation": "De sleutel is voor uw veiligheid van het klembord gewist.",
-        "mustSaveYourSeed": "U moet uw sleutel opslaan met ",
-        "atLeastOne": "ten minste een ",
-        "ofTheOptions": "van de onderstaande opties."
+        "mustSaveYourSeed":
+            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Onjuiste sleutel",
@@ -197,7 +209,8 @@
         "invalidAmount": "Onjuiste hoeveelheid ingevoerd",
         "invalidAmountExplanation": "Voer het bedrag van uw transactie in.",
         "maximumSelected": "MAXIMUM bedrag geselecteerd",
-        "iotaUnits": "IOTA eenheden"
+        "iotaUnits": "IOTA units explained",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Wachtwoord is te kort",
@@ -253,15 +266,6 @@
         "paste": "Plakken",
         "selectAll": "Selecteer Alles"
     },
-    "resetWalletConfirmation": {
-        "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
-        "warning1": "Alle gegevens in uw wallet waaronder ",
-        "warning2": " sleutels, wachtwoorden,",
-        "warning3": " en",
-        "warning4": " andere accountgegevens",
-        "warning5": " zullen verloren gaan.",
-        "areYouSure": "Weet u zeker dat u wilt doorgaan?"
-    },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ANNULEREN",
@@ -272,11 +276,8 @@
         "doYouAlreadyHaveASeed": "Heeft u al een sleutel die u zou willen gebruiken?",
         "seedExplanation":
             "De toegangscode van uw IOTA wallet is als een gebruikersnaam en wachtwoord samengevoegd in een sleutel van 81 karakters.",
-        "explanation1": "U kunt deze gebruiken voor toegang tot uw IOTA vanuit",
-        "explanation2": " elke wallet",
-        "explanation3": "en op",
-        "explanation4": " elk apparaat",
-        "explanation5": ". Maar als u uw sleutel verliest, verliest u ook uw IOTA.",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Houd uw sleutel veilig."
     },
     "welcome": {
@@ -285,10 +286,9 @@
         "reminder": "Het is belangrijk om dit proces helemaal te voltooien. Sla geen stappen over."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "kijk goed na",
-        "thatTheyAreCorrect": "of ze kloppen."
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundel hash gekopieerd",
@@ -319,6 +319,9 @@
     "advancedThemeCustomisation": {
         "background": "Background",
         "frame": "Frame"
+    },
+    "themeCustomisation": {
+        "theme": "Thema"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -365,11 +368,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "infoTextOne": "Alle gegevens in uw wallet waaronder",
-        "infoTextTwo": "sleutels, wachtwoorden",
-        "infoTextThree": "en",
-        "infoTextFour": "andere accountgegevens",
-        "infoTextFive": "zullen verloren gaan."
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",

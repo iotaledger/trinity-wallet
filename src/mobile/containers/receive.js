@@ -30,6 +30,7 @@ import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import CustomTextInput from '../components/customTextInput';
+import CtaButton from '../components/ctaButton';
 
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
@@ -52,10 +53,11 @@ class Receive extends Component {
         getFromKeychainRequest: PropTypes.func.isRequired,
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
-        ctaColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
+        isTransitioning: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -83,10 +85,18 @@ class Receive extends Component {
     }
 
     onGeneratePress() {
-        const { t, seedIndex, selectedAccount, selectedAccountName, isSyncing, generateAlert } = this.props;
+        const {
+            t,
+            seedIndex,
+            selectedAccount,
+            selectedAccountName,
+            isSyncing,
+            generateAlert,
+            isTransitioning,
+        } = this.props;
 
-        if (isSyncing) {
-            return generateAlert('error', 'Syncing in process', 'Please wait until syncing is complete.');
+        if (isSyncing || isTransitioning) {
+            return generateAlert('error', 'Please wait', 'Please wait and try again.');
         }
 
         const error = () => {
@@ -97,7 +107,7 @@ class Receive extends Component {
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
         return keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 this.props.getFromKeychainSuccess('receive', 'addressGeneration');
 
                 if (get(credentials, 'data')) {
@@ -207,14 +217,14 @@ class Receive extends Component {
                             </View>
                         </TouchableOpacity>
                     )}
-                    <View style={{ flex: 0.05 }} />
+                    <View style={{ flex: 0.2 }} />
                     <CustomTextInput
-                        onRef={c => {
+                        onRef={(c) => {
                             this.messageField = c;
                         }}
                         label={t('message')}
-                        onChangeText={message => this.setState({ message })}
-                        containerStyle={{ width: width / 1.28 }}
+                        onChangeText={(message) => this.setState({ message })}
+                        containerStyle={{ width: width / 1.2 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
                         returnKeyType="done"
@@ -226,26 +236,17 @@ class Receive extends Component {
                     {receiveAddress === ' ' &&
                         (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
                             <View style={{ flex: 0.7, justifyContent: 'center' }}>
-                                <TouchableOpacity
+                                <CtaButton
+                                    ctaColor={ctaColor}
+                                    ctaBorderColor={ctaBorderColor}
+                                    secondaryCtaColor={secondaryCtaColor}
+                                    text={t('generateNewAddress')}
                                     onPress={() => {
-                                        // Check if there's already a network call in progress.
                                         if (!isGeneratingReceiveAddress) {
                                             this.onGeneratePress();
                                         }
                                     }}
-                                >
-                                    <View
-                                        style={[
-                                            styles.generateButton,
-                                            { backgroundColor: THEMES.getHSL(ctaColor) },
-                                            generateBorderColor,
-                                        ]}
-                                    >
-                                        <Text style={[styles.generateText, ctaTextColor]}>
-                                            {t('generateNewAddress')}
-                                        </Text>
-                                    </View>
-                                </TouchableOpacity>
+                                />
                             </View>
                         )}
                     {(isGettingSensitiveInfoToGenerateAddress || isGeneratingReceiveAddress) && (
@@ -298,7 +299,7 @@ const styles = StyleSheet.create({
         paddingTop: width / 30,
         paddingHorizontal: width / 30,
         paddingBottom: isAndroid ? width / 22 : width / 30,
-        width: width / 1.28,
+        width: width / 1.2,
     },
     activityIndicator: {
         flex: 1,
@@ -313,20 +314,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         height: width / 20,
         justifyContent: 'center',
-    },
-    generateButton: {
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.2,
-        height: height / 13,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1.5,
-    },
-    generateText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
-        backgroundColor: 'transparent',
-        color: 'white',
     },
     qrContainer: {
         borderRadius: GENERAL.borderRadius,
@@ -358,7 +345,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     isSyncing: state.tempAccount.isSyncing,
@@ -371,6 +358,7 @@ const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     secondaryCtaColor: state.settings.theme.secondaryCtaColor,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
+    isTransitioning: state.tempAccount.isTransitioning,
 });
 
 const mapDispatchToProps = {

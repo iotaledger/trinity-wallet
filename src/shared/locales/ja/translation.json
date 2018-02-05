@@ -30,7 +30,7 @@
         "save": "保存",
         "close": "閉じる",
         "continue": "次へ",
-        "manualCopy": "Seedを書き写す",
+        "manualCopy": "Seedを書き写してください。",
         "paperWallet": "印刷する",
         "copyToClipboard": "パスワード マネージャーに追加",
         "notAvailable": "この機能は使えません。",
@@ -58,7 +58,19 @@
         "attachToTangleUnavailable": "Tangleにアタッチ出来ません。",
         "attachToTangleUnavailableExplanation": "選択したノードではTangleにアタッチ出来ません。",
         "wallet": "ウォレット",
-        "pressBackAgain": "もう一度タップすると、アプリを閉じます。"
+        "sent": "送金済",
+        "received": "受取済",
+        "sending": "送金中",
+        "receiving": "受取中",
+        "confirmed": "承認済み",
+        "pending": "ペンディング中",
+        "bundleHash": "バンドル ハッシュ",
+        "addresses": "アドレス",
+        "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
+        "autoreattaching": "Tangleに自動リアタッチ",
+        "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションをリアタッチ",
+        "autopromoting": "送金を自動促進",
+        "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -73,8 +85,8 @@
         "accountName": "アカウント名",
         "noNickname": "アカウント名が入力されていません。",
         "noNicknameExplanation": "Seedのアカウント名を入力して下さい。",
-        "seedInUse": "このseedはすでに使われています。",
-        "seedInUseExplanation": "このseedは既にウォレットにリンクされています。違うseedをご使用下さい。"
+        "seedInUse": "このSeedはすでに使われています。",
+        "seedInUseExplanation": "このSeedは既にウォレットにリンクされています。違うSeedをご使用下さい。"
     },
     "changePassword": {
         "oops": "不具合が発生しました。",
@@ -93,12 +105,12 @@
         "ensureStrongPassword": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
         "currentPassword": "現在のパスワード",
         "newPassword": "新しいパスワード",
-        "confirmPassword": "新しいパスワードを承認"
+        "confirmPassword": "新しいパスワードを確認"
     },
     "copyToClipboard": {
         "seedCleared": "Seedを消去しました。",
         "seedClearedExplanation": "安全のために、Seedをクリップボードから消去しました。",
-        "seedCopied": "Seedをクリップボードにコピーしました",
+        "seedCopied": "Seedをクリップボードにコピーしました。",
         "seedCopiedExplanation": "\"完了\"を押す、または60秒後にはSeedは消去されます。",
         "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。",
         "doNotStore": "Seedをプレーンテキストで保存するのはやめましょう。",
@@ -135,7 +147,7 @@
     },
     "loading": {
         "loadingFirstTime": "初めてのSeedを読み込んでいます。",
-        "thisMayTake": "これは時間がかかる場合があります。",
+        "thisMayTake": "少々お待ち下さい。",
         "youMayNotice": "あなたのデバイスが遅くなることがあります。"
     },
     "newSeedSetup": {
@@ -164,9 +176,7 @@
     "saveYourSeed": {
         "seedCleared": "Seedが消去されました",
         "seedClearedExplanation": "コピーされたSeedをクリップボードから削除しました。",
-        "mustSaveYourSeed": "安全にSeedを保存して下さい。",
-        "atLeastOne": "最低一つ ",
-        "ofTheOptions": "以下のオプションを使って。"
+        "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>Seedを保存しましょう。</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seedが違います。",
@@ -192,7 +202,8 @@
         "invalidAmount": "不適切な金額が入力されました。",
         "invalidAmountExplanation": "取引金額の数値を入力して下さい。",
         "maximumSelected": "設定した最大額",
-        "iotaUnits": "IOTA（単位）"
+        "iotaUnits": "IOTA units explained",
+        "sendMax": "全額送金"
     },
     "setPassword": {
         "passwordTooShort": "パスワードが短すぎます。",
@@ -225,7 +236,7 @@
         "changePassword": "パスワード変更",
         "advanced": "詳細設定",
         "logout": "ログアウト",
-        "reset": "ウォレットをリセットします。",
+        "reset": "ウォレットをリセット",
         "syncingComplete": "同期が完了しました。",
         "syncingCompleteExplanation": "アカウントは正常に同期しました。",
         "nicknameChanged": "アカウント名が変更されました。",
@@ -246,15 +257,6 @@
         "paste": "貼り付け",
         "selectAll": "すべてを選択"
     },
-    "resetWalletConfirmation": {
-        "thisAction": "この操作は元に戻せません。",
-        "warning1": "全てのウォレットのデータ ",
-        "warning2": "Seedやパスワード",
-        "warning3": " や",
-        "warning4": " その他のアカウント情報",
-        "warning5": " が失われます。",
-        "areYouSure": "本当に続行しますか？"
-    },
     "resetWalletRequirePassword": {
         "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
         "cancel": "キャンセル",
@@ -264,11 +266,8 @@
         "okay": "それではウォレットの設定を行いましょう。",
         "doYouAlreadyHaveASeed": "IOTAのSeedはすでにお持ちでしょうか？",
         "seedExplanation": "IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
-        "explanation1": "Seedを使ってあなたの資金にアクセスできます。",
-        "explanation2": " 全てのウォレットのデータ",
-        "explanation3": "や",
-        "explanation4": " 全てのデバイスで",
-        "explanation5": "しかし、Seedを失うとIOTAも失われます。",
+        "explanation":
+            "<0><0>同じSeedを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>Seedを紛失すると、口座とその預金にもアクセスできなくなります。</4></0>",
         "keepSafe": "Seedは安全に保管してください。"
     },
     "welcome": {
@@ -277,9 +276,8 @@
         "reminder": "いくつかの手順を飛ばすのも可能ではありますが、全ての手順を踏むことをお勧めします。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Seedは左から右へ読み、{{maxSeedLength}} 文字あります。Seedとチェックサムを正確に書き留めて、",
-        "tripleCheck": "何度も確認",
-        "thatTheyAreCorrect": "それらが正しいことを確認して下さい。"
+        "yourSeedIs": "Seedは左から右に読む{{maxSeedLength}}文字です。",
+        "writeDownYourSeed": "<0>Seedとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>して下さい。</2>"
     },
     "history": {
         "bundleHashCopied": "バンドルハッシュをコピーしました。",
@@ -299,8 +297,8 @@
         "add": "追加"
     },
     "addNewAccount": {
-        "useExistingSeed": "既存のseedを使用",
-        "createNewSeed": "新しいseedを作成"
+        "useExistingSeed": "既存のSeedを使用",
+        "createNewSeed": "新しいSeedを作成"
     },
     "advancedSettings": {
         "selectNode": "ノードを選択",
@@ -310,6 +308,9 @@
     "advancedThemeCustomisation": {
         "background": "背景",
         "frame": "フレーム"
+    },
+    "themeCustomisation": {
+        "theme": "テーマ"
     },
     "currencySelection": {
         "currency": "通貨"
@@ -330,7 +331,7 @@
     },
     "deleteAccount": {
         "areYouSure": "このアカウントを削除しますか？",
-        "yourSeedWillBeRemoved": "seedとトランザクションの履歴を削除します。",
+        "yourSeedWillBeRemoved": "Seedとトランザクションの履歴を削除します。",
         "thisAction": "この操作は元に戻せません。",
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
     },
@@ -346,21 +347,18 @@
     },
     "viewSeed": {
         "enterPassword": "Seedを閲覧するにはパスワードを入力して下さい。",
-        "viewSeed": "Seedを見る",
-        "hideSeed": "Seedを隠す"
+        "viewSeed": "Seedを見る。",
+        "hideSeed": "Seedを隠す。"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "私はSeedを保管しました",
+        "alreadyHave": "私はSeedを安全に保管しました。",
         "reenter": "Seedを再入力するよう求められます。",
-        "reenterWarning": "お使いのデバイスが失敗し、seedを保存していない場合、IOTAを失います。"
+        "reenterWarning": "お使いのデバイスが失敗し、Seedがきちんと保存されていない場合、IOTAを失います。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "この操作は元に戻せません。",
-        "infoTextOne": "全てのウォレットのデータ",
-        "infoTextTwo": "（Seedやパスワード",
-        "infoTextThree": "や",
-        "infoTextFour": "その他のアカウント情報）",
-        "infoTextFive": "が失われます。"
+        "warning":
+            "<0><0>Seedやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消えます。</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",

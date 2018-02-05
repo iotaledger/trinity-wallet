@@ -10,6 +10,7 @@ This section details the overall flow and gives an overview of Trinity’s compl
 - [Polling](#polling)
 - [Address Management](#address-mgmt)
 - [Two factor authentication](#2FA)
+- [Biometric authentication](#biometric)
 - [Automatic Promotion/Reattachment](#auto-reattach)
 
 ## Technical Architecture
@@ -55,7 +56,7 @@ Trinity seed security follows two simple rules: minimise the time the seed spend
 
 During setup the user will create a password. The password and seed are then used as a key-value pair with iOS Keychain and Android Keystore respectively. The seed is stored encrypted and the password is used to decrypt the seed at the point of use. Access to the key stores is provided by the [React Native Sensitive Info](#sensitive-info) library.
 
-The seed is stored encrypted at every possible instance. The only time the seed lies unencrypted in memory is during seed setup. The seed is not encrypted prior to setting a password. This is not a problem for security. Android and iOS operate an application sandbox environment, where application memory is only accessible to the application itself. Encryption is used to mitigate the risk of an attacker gaining access to the application sandbox on a compromised device. If the user is in the process of setting up their seed, it can be safely assumed that their device has not been compromised.
+The seed is stored encrypted at every possible instance. The only time the seed lies unencrypted in memory is during seed setup i.e. the seed is not encrypted prior to setting a password. This does not pose a problem for security. Android and iOS operate an application sandbox environment, where application memory is only accessible to the application itself. Encryption is used to mitigate the risk of an attacker gaining access to the application sandbox on a compromised device. If the user is in the process of setting up their seed, it can be safely assumed that their device has not been compromised.
 
 **We advise not to use Trinity Mobile on Jailbroken or rooted devices.** If a device is jailbroken/rooted the application sandbox can be breached.
 
@@ -81,6 +82,12 @@ Trinity is a stateful wallet.
 #### Two factor authentication
 
 Two factor authentication provides an optional additional security layer for Trinity users.
+
+#### Biometric authentication
+
+For ease of use, users are given the option to use a form of biometric authentication as an alternative when logging in to the wallet. We use [react-native-fingerprint-scanner](https://github.com/hieuvp/react-native-fingerprint-scanner) to implement this. For Android, we support MeiZu's [Fingerprint Authentication API](https://translate.google.com/translate?sl=auto&tl=en&js=y&prev=_t&hl=en&ie=UTF-8&u=http%3A%2F%2Fopen-wiki.flyme.cn%2Findex.php%3Ftitle%3D%25E6%258C%2587%25E7%25BA%25B9%25E8%25AF%2586%25E5%2588%25ABAPI&edit-text=&act=url) and Samsung's [Pass SDK](http://developer.samsung.com/galaxy/pass). For iOS, we support Apple's [Touch ID](https://developer.apple.com/documentation/localauthentication) and [Face ID](https://images.apple.com/business/docs/FaceID_Security_Guide.pdf).
+
+**Please note that enabling these alternative options of authentication may pose a potential security risk to the security of your wallet. Anyone who has their fingerprint or face registered in your device could be able to access your wallet. If you have any concerns, please refer to the linked documentation for your device. These options are alternatives for a password and should not be used as a substitute because of the aforementioned reasons. If you have doubts, we advise that you do not enable this option.**
 
 #### Automatic Promotion/Reattachment
 

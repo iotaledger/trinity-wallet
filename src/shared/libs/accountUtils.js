@@ -1,21 +1,29 @@
 import cloneDeep from 'lodash/cloneDeep';
 import assign from 'lodash/assign';
 import each from 'lodash/each';
+import isArray from 'lodash/isArray';
+import difference from 'lodash/difference';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import reduce from 'lodash/reduce';
-import isNull from 'lodash/isNull';
 import isObject from 'lodash/isObject';
 import has from 'lodash/has';
 import omitBy from 'lodash/omitBy';
+import merge from 'lodash/merge';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
+import keys from 'lodash/keys';
+import isEmpty from 'lodash/isEmpty';
+import size from 'lodash/size';
+import isNumber from 'lodash/isNumber';
 import { iota } from '../libs/iota';
 import { getBundleTailsForSentTransfers } from './promoter';
 import { getAllAddresses } from './addresses';
+import { getStartingSearchIndexToFetchLatestAddresses } from './transfers';
+import { DEFAULT_BALANCES_THRESHOLD } from '../config';
 
-export const formatFullAddressData = data => {
+export const formatFullAddressData = (data) => {
     const addresses = data.addresses;
     const addressData = Object.assign(
         {},
@@ -28,15 +36,28 @@ export const formatFullAddressData = data => {
     return addressData;
 };
 
+export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
+    const addressData = Object.assign(
+        {},
+        ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } })),
+    );
+    for (let i = 0; i < addresses.length; i++) {
+        addressData[addresses[i]].index = i;
+        addressData[addresses[i]].balance = balances[i];
+        addressData[addresses[i]].spent = addressesSpendStatus[i];
+    }
+    return addressData;
+};
+
 export const markAddressSpend = (transfers, addressData) => {
     const addressDataClone = cloneDeep(addressData);
     const addresses = Object.keys(addressDataClone);
 
     // Iterate over all bundles and sort them between incoming
     // and outgoing transfers
-    transfers.forEach(bundle => {
+    transfers.forEach((bundle) => {
         // Iterate over every bundle entry
-        bundle.forEach(bundleEntry => {
+        bundle.forEach((bundleEntry) => {
             // If bundle address in the list of addresses associated with the seed
             // mark the address as sent
             if (addresses.indexOf(bundleEntry.address) > -1) {
@@ -89,10 +110,10 @@ export const formatTransfers = (transfers, addresses) => {
 
 export const addTransferValues = (transfers, addresses) => {
     // Add transaction value property to each transaction object
-    return transfers.map(arr => {
+    return transfers.map((arr) => {
         /* eslint-disable no-param-reassign */
         arr[0].transferValue = 0;
-        arr.map(obj => {
+        arr.map((obj) => {
             if (addresses.includes(obj.address)) {
                 arr[0].transferValue += obj.value;
             }
@@ -105,16 +126,37 @@ export const addTransferValues = (transfers, addresses) => {
     });
 };
 
-export const calculateBalance = data => {
+export const calculateBalance = (data) => {
     let balance = 0;
     if (Object.keys(data).length > 0) {
-        const balanceArray = Object.values(data).map(x => x.balance);
+        const balanceArray = Object.values(data).map((x) => x.balance);
         balance = balanceArray.reduce((a, b) => a + b);
     }
     return balance;
 };
 
-export const deduplicateTransferBundles = transfers => {
+/**
+ *   Takes in an array of balances (numbers) and calculates the total balance
+ *
+ *   @method accumulateBalance
+ *   @param {array} balances - Array of integers
+ *
+ *   @returns {number} - Total balance
+ **/
+export const accumulateBalance = (balances) =>
+    reduce(
+        balances,
+        (res, val) => {
+            if (isNumber(val)) {
+                res = res + val;
+            }
+
+            return res;
+        },
+        0,
+    );
+
+export const deduplicateTransferBundles = (transfers) => {
     const deduplicate = (res, transfer) => {
         const top = transfer[0];
         const bundle = top.bundle;
@@ -141,12 +183,12 @@ export const deduplicateTransferBundles = transfers => {
     };
 
     const aggregated = reduce(transfers, deduplicate, {});
-    return map(aggregated, v => v);
+    return map(aggregated, (v) => v);
 };
 
-export const getUnspentAddresses = addressData => {
+export const getUnspentAddresses = (addressData) => {
     const addresses = Object.keys(addressData);
-    const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
+    const addressesSpendStatus = Object.values(addressData).map((x) => x.spent);
 
     const unspentAddresses = [];
 
@@ -159,124 +201,9 @@ export const getUnspentAddresses = addressData => {
     return unspentAddresses;
 };
 
-export const filterSpentAddresses = inputs => {
-    return new Promise((resolve, reject) => {
-        // Find transaction objects for addresses
-        iota.api.findTransactionObjects({ addresses: inputs.map(input => input.address) }, (err, txs) => {
-            if (err) {
-                reject(err);
-            }
-            // Filter out receive transactions
-            txs = txs.filter(tx => tx.value < 0);
-            if (txs.length > 0) {
-                // Get bundle hashes
-                const bundles = txs.map(tx => tx.bundle);
-                // Find transaction objects for bundle hashes
-                iota.api.findTransactionObjects({ bundles: bundles }, (err, txs) => {
-                    if (err) {
-                        reject(err);
-                    }
-                    let hashes = txs.filter(tx => tx.currentIndex === 0);
-                    hashes = hashes.map(tx => tx.hash);
-                    iota.api.getLatestInclusion(hashes, (err, states) => {
-                        if (err) {
-                            reject(err);
-                        }
-                        // Filter confirmed hashes
-                        const confirmedHashes = hashes.filter((hash, i) => states[i]);
-                        // Filter unconfirmed hashes
-                        const unconfirmedHashes = hashes
-                            .filter(hash => confirmedHashes.indexOf(hash) === -1)
-                            .map(hash => ({ hash, validate: true }));
-                        const getBundles = confirmedHashes.concat(unconfirmedHashes).map(
-                            hash =>
-                                new Promise((resolve, reject) => {
-                                    iota.api.traverseBundle(
-                                        typeof hash == 'string' ? hash : hash.hash,
-                                        null,
-                                        [],
-                                        (err, bundle) => {
-                                            if (err) {
-                                                reject(err);
-                                            }
-                                            resolve(typeof hash === 'string' ? bundle : { bundle, validate: true });
-                                        },
-                                    );
-                                }),
-                        );
-                        resolve(
-                            Promise.all(getBundles)
-                                .then(bundles => {
-                                    bundles = bundles
-                                        .filter(bundle => {
-                                            if (bundle.validate) {
-                                                return iota.utils.isBundle(bundle.bundle);
-                                            }
-                                            return true;
-                                        })
-                                        .map(bundle => (bundle.hasOwnProperty('validate') ? bundle.bundle : bundle));
-                                    const blacklist = bundles
-                                        .reduce((a, b) => a.concat(b), [])
-                                        .filter(tx => tx.value < 0)
-                                        .map(tx => tx.address);
-                                    return inputs.filter(input => blacklist.indexOf(input.address) === -1);
-                                })
-                                .catch(err => reject(err)),
-                        );
-                    });
-                });
-            } else {
-                resolve(inputs);
-            }
-        });
-    });
-};
-
-export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
-    if (isNull(inputs)) {
-        inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
-    }
-
-    iota.api.getInputs(seed, { start, threshold }, (err, res) => {
-        if (err) {
-            callback(err);
-            return;
-        }
-
-        inputs.allBalance += res.inputs.reduce((sum, input) => sum + input.balance, 0);
-        filterSpentAddresses(res.inputs)
-            .then(filtered => {
-                const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
-                const diff = threshold - collected;
-                if (diff > 0) {
-                    const ordered = res.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
-                    const end = ordered[0].keyIndex;
-                    getUnspentInputs(
-                        seed,
-                        end + 1,
-                        diff,
-                        {
-                            inputs: inputs.inputs.concat(filtered),
-                            totalBalance: inputs.totalBalance + collected,
-                            allBalance: inputs.allBalance,
-                        },
-                        callback,
-                    );
-                } else {
-                    callback(null, {
-                        inputs: inputs.inputs.concat(filtered),
-                        totalBalance: inputs.totalBalance + collected,
-                        allBalance: inputs.allBalance,
-                    });
-                }
-            })
-            .catch(err => callback(err));
-    });
-};
-
-export const getPendingTxTailsHashes = transfers => {
+export const getPendingTxTailsHashes = (transfers) => {
     const grabTails = (res, val) => {
-        each(val, v => {
+        each(val, (v) => {
             if (!v.persistence && v.currentIndex === 0) {
                 res.push(v.hash);
             }
@@ -289,8 +216,8 @@ export const getPendingTxTailsHashes = transfers => {
 };
 
 export const markTransfersConfirmed = (transfers, tailHashes) => {
-    return map(transfers, txObjects =>
-        map(txObjects, tx => {
+    return map(transfers, (txObjects) =>
+        map(txObjects, (tx) => {
             const isTail = tx.currentIndex === 0;
             const hash = tx.hash;
             const isUnconfirmed = !tx.persistence;
@@ -324,68 +251,31 @@ export const organizeAccountInfo = (accountName, data) => {
     };
 };
 
-export const getTotalBalanceWithLatestAddressData = (addressData, threshold = 1) => {
-    const addresses = Object.keys(addressData);
+const getBalancesAsync = (addresses, threshold) => {
     return new Promise((resolve, reject) => {
-        iota.api.getBalances(addresses, threshold, (err, data) => {
+        iota.api.getBalances(addresses, threshold, (err, balances) => {
             if (err) {
                 reject(err);
             } else {
-                const newBalances = map(data.balances, Number);
-                const totalBalance = reduce(
-                    newBalances,
-                    (res, val) => {
-                        res = res + val;
-                        return res;
-                    },
-                    0,
-                );
-
-                const addressesDataClone = cloneDeep(addressData);
-                each(addresses, (address, idx) => {
-                    addressesDataClone[address] = { ...get(addressesDataClone, `${address}`, { balance: data[idx] }) };
-                });
-
-                resolve({ balance: totalBalance, addressData: addressesDataClone });
+                resolve(balances);
             }
         });
     });
 };
 
-export const getLatestAddresses = (seed, index) => {
+const getNodeInfoAsync = () => {
     return new Promise((resolve, reject) => {
-        iota.api.getInputs(seed, { start: index }, (err, data) => {
+        iota.api.getNodeInfo((err, info) => {
             if (err) {
                 reject(err);
             } else {
-                const addresses = reduce(
-                    data.inputs,
-                    (obj, x) => {
-                        obj[x.address] = { balance: x.balance, spent: false };
-                        return obj;
-                    },
-                    {},
-                );
-
-                resolve(addresses);
+                resolve(info);
             }
         });
     });
 };
 
-export const getTransactionHashes = addresses => {
-    return new Promise((resolve, reject) => {
-        iota.api.findTransactions({ addresses }, (err, hashes) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(hashes);
-            }
-        });
-    });
-};
-
-export const getTransactionsObjects = hashes => {
+const getTransactionsObjectsAsync = (hashes) => {
     return new Promise((resolve, reject) => {
         iota.api.getTransactionsObjects(hashes, (err, txs) => {
             if (err) {
@@ -397,7 +287,110 @@ export const getTransactionsObjects = hashes => {
     });
 };
 
-export const getHashesWithPersistence = hashes => {
+const findTransactionObjectsAsync = (args) => {
+    return new Promise((resolve, reject) => {
+        iota.api.findTransactionObjects(args, (err, txs) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(txs);
+            }
+        });
+    });
+};
+
+const findTransactionsAsync = (args) => {
+    return new Promise((resolve, reject) => {
+        iota.api.findTransactions(args, (err, txs) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(txs);
+            }
+        });
+    });
+};
+
+const getLatestInclusionAsync = (hashes) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getLatestInclusion(hashes, (err, states) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(states);
+            }
+        });
+    });
+};
+
+/**
+ *   Get state partials for addressData and assigns balances to those
+ *
+ *   @method mapBalancesToAddresses
+ *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *   @param {array} balances - Array of integers
+ *   @param {array} addresses - Array of strings (addresses)
+ *
+ *   @returns {object} - A new copy of the addressData object after assigning each nested object its updated balance.
+ **/
+export const mapBalancesToAddresses = (addressData, balances, addresses) => {
+    const addressesDataClone = cloneDeep(addressData);
+    const addressesLength = size(addresses);
+
+    // Return prematurely if balances length are not equal to addresses length
+    // Or address data keys length is not equal to addresses length
+    // A strict check to make sure everything is up-to-date when new balances are assigned.
+    if (size(balances) !== addressesLength || size(keys(addressesDataClone)) !== addressesLength) {
+        return addressesDataClone;
+    }
+
+    each(addresses, (address, idx) => {
+        addressesDataClone[address] = { ...get(addressesDataClone, `${address}`), ...{ balance: balances[idx] } };
+    });
+
+    return addressesDataClone;
+};
+
+/**
+ *   A wrapper over getBalances.
+ *   Main purpose of this wrapper is to keep addresses and balances indexes intact.
+ *
+ *   @method mapBalancesToAddresses
+ *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *
+ *   @returns {Promise|<object>} - Resolves { balances: [], addresses: [] } after getting latest balances against addresses
+ **/
+export const getBalancesWithAddresses = (addressData) => {
+    const addresses = keys(addressData);
+
+    return getBalancesAsync(addresses, DEFAULT_BALANCES_THRESHOLD).then((balances) => ({
+        balances: get(balances, 'balances'),
+        addresses,
+    }));
+};
+
+export const getLatestAddresses = (seed, index) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getInputs(seed, { start: index }, (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                const addresses = reduce(
+                    data.inputs,
+                    (obj, x) => {
+                        obj[x.address] = { index: x.keyIndex, balance: x.balance, spent: false };
+                        return obj;
+                    },
+                    {},
+                );
+
+                resolve(addresses);
+            }
+        });
+    });
+};
+
+export const getHashesWithPersistence = (hashes) => {
     return new Promise((resolve, reject) => {
         iota.api.getLatestInclusion(hashes, (err, states) => {
             if (err) {
@@ -415,7 +408,7 @@ export const getBundleWithPersistence = (tailTxHash, persistence) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(map(bundle, tx => assign({}, tx, { persistence })));
+                resolve(map(bundle, (tx) => assign({}, tx, { persistence })));
             }
         });
     });
@@ -426,8 +419,8 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
         hashes,
         (promise, hash, idx) => {
             return promise
-                .then(result => {
-                    return getBundleWithPersistence(hash, inclusionStates[idx]).then(bundle => {
+                .then((result) => {
+                    return getBundleWithPersistence(hash, inclusionStates[idx]).then((bundle) => {
                         result.push(bundle);
 
                         return result;
@@ -439,10 +432,37 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
     );
 };
 
-export const getConfirmedTxTailsHashes = (states, hashes) => {
-    const confirmedHashes = filter(hashes, (hash, idx) => states[idx]);
+/**
+ *   Takes in account object, filter unspent addresses from all addresses, fetch transaction hashes associated with those and
+ *   assigns them to the account object.
+ *
+ *   @method mapUnspentAddressesHashesToAccount
+ *   @param {object} account [
+ *     addresses: {},
+ *     transfers: [],
+ *     balance: 0,
+ *     pendingTxTailsHashes: {},
+ *     inputs: [], // (optional)
+ *     unconfirmedBundleTails: {} // (optional),
+ *     accountName; 'foo' // (optional)
+ *   ]
+ *
+ *   @returns {Promise} - Resolves account argument by assigning unspentAddressesHashes (Transaction hashes associated with unspent addresses)
+ **/
+export const mapUnspentAddressesHashesToAccount = (account) => {
+    const accountClone = cloneDeep(account);
+    const unspentAddresses = getUnspentAddresses(accountClone.addresses);
 
-    return new Promise((resolve, reject) => resolve(confirmedHashes));
+    if (isEmpty(unspentAddresses)) {
+        accountClone.unspentAddressesHashes = [];
+        return Promise.resolve(accountClone);
+    }
+
+    return findTransactionsAsync({ addresses: unspentAddresses }).then((hashes) => {
+        accountClone.unspentAddressesHashes = hashes;
+
+        return accountClone;
+    });
 };
 
 export const getBundle = (tailTx, allBundleObjects) => {
@@ -470,165 +490,306 @@ export const getBundle = (tailTx, allBundleObjects) => {
     return bundle;
 };
 
-export const findTransactionObjects = input => {
-    return new Promise((resolve, reject) => {
-        iota.api.findTransactionObjects(input, (err, txObjects) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(txObjects);
-            }
-        });
-    });
-};
-
-export const getLatestInclusion = hashes => {
-    return new Promise((resolve, reject) => {
-        iota.api.getLatestInclusion(hashes, (err, states) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(states);
-            }
-        });
-    });
-};
-
-export const getBalances = (addresses, threshold = 100) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getBalances(addresses, threshold, (err, balances) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(balances);
-            }
-        });
-    });
-};
-
-export const withHealthCheck = () => {
-    return new Promise((resolve, reject) => {
-        iota.api.getNodeInfo(err => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve();
-            }
-        });
-    });
-};
-
+/**
+ *   Gets seed associated information from the ledger.
+ *   - Communicates with node by checking its information. (getNodeInfoAsync)
+ *   - Get all used addresses (addresses with transactions) from the ledger. (getAllAddresses)
+ *   - Get all transaction objects associated with the addresses. (findTransactionObjectsAsync({ addresses }))
+ *   - Grab all bundle hashes and get transaction objects associated with those. (findTransactionObjectsAsync({ bundles }))
+ *   - Get confirmation states from all transactions from the ledger. (getLatestInclusionAsync)
+ *   - Map confirmations on transaction objects.
+ *   - Remove duplicates (reattachments) for confirmed transfers - A neat trick to avoid expensive bundle creation for reattachments.
+ *   - Get balances associated with addresses. (getBalancesAsync)
+ *   - Set balance
+ *   - Prepare inputs from balances and all addresses.
+ *   - Organize account info - Formats and transform account objects.
+ *
+ *   @method getAccountData
+ *   @param {string} seed
+ *   @param {string} accountName - Account name selected by the user.
+ *   @returns {Promise} - Account object [addresses: {}, transfers: [], balance: 0, pendingTxTailsHashes: {}, unconfirmedBundleTails: {} ]
+ **/
 export const getAccountData = (seed, accountName) => {
-    return new Promise((resolve, reject) => {
-        const tailTransactions = [];
-        const allBundleHashes = [];
+    const tailTransactions = [];
+    const allBundleHashes = [];
 
-        let allBundleObjects = [];
+    let allBundleObjects = [];
 
-        const transfers = [];
+    const transfers = [];
 
-        const data = {
-            addresses: [],
-            transfers: [],
-            inputs: [],
-            balance: 0,
-        };
+    const data = {
+        addresses: [],
+        transfers: [],
+        inputs: [],
+        balance: 0,
+    };
 
-        const pushIfNotExists = (pushTo, value) => {
-            const isTrue = isObject(value) ? find(pushTo, { hash: value.hash }) : includes(pushTo, value);
+    const pushIfNotExists = (pushTo, value) => {
+        const isTrue = isObject(value) ? find(pushTo, { hash: value.hash }) : includes(pushTo, value);
 
-            if (!isTrue) {
-                pushTo.push(value);
-            }
-        };
+        if (!isTrue) {
+            pushTo.push(value);
+        }
+    };
 
-        withHealthCheck()
-            .then(() => getAllAddresses(seed))
-            .then(addresses => {
-                data.addresses = addresses;
+    return getNodeInfoAsync()
+        .then(() => getAllAddresses(seed))
+        .then((addresses) => {
+            data.addresses = addresses;
 
-                return findTransactionObjects({ addresses: data.addresses });
-            })
-            .then(txObjects => {
-                each(txObjects, tx => pushIfNotExists(allBundleHashes, tx.bundle)); // Grab all bundle hashes
+            return findTransactionObjectsAsync({ addresses: data.addresses });
+        })
+        .then((txObjects) => {
+            each(txObjects, (tx) => pushIfNotExists(allBundleHashes, tx.bundle)); // Grab all bundle hashes
 
-                return findTransactionObjects({ bundles: allBundleHashes });
-            })
-            .then(bundleObjects => {
-                allBundleObjects = bundleObjects;
+            return findTransactionObjectsAsync({ bundles: allBundleHashes });
+        })
+        .then((bundleObjects) => {
+            allBundleObjects = bundleObjects;
 
-                each(allBundleObjects, tx => {
-                    if (tx.currentIndex === 0) {
-                        pushIfNotExists(tailTransactions, tx); // Keep a copy of all tail transactions to check confirmations
+            each(allBundleObjects, (tx) => {
+                if (tx.currentIndex === 0) {
+                    pushIfNotExists(tailTransactions, tx); // Keep a copy of all tail transactions to check confirmations
+                }
+            });
+
+            return getLatestInclusionAsync(map(tailTransactions, (t) => t.hash));
+        })
+        .then((states) => {
+            const allTxsAsObjects = reduce(
+                tailTransactions,
+                (res, v, i) => {
+                    if (i === 0) {
+                        res.confirmed = {};
+                        res.unconfirmed = {};
                     }
-                });
 
-                return getLatestInclusion(map(tailTransactions, t => t.hash));
-            })
-            .then(states => {
-                const allTxsAsObjects = reduce(
-                    tailTransactions,
-                    (res, v, i) => {
-                        if (i === 0) {
-                            res.confirmed = {};
-                            res.unconfirmed = {};
-                        }
-
-                        if (states[i]) {
-                            res.confirmed[v.bundle] = Object.assign({}, v, {
-                                persistence: true,
-                            });
-                        } else {
-                            res.unconfirmed[v.bundle] = Object.assign({}, v, {
-                                persistence: false,
-                            });
-                        }
-
-                        return res;
-                    },
-                    {},
-                );
-
-                // Get rid of transactions duplicates that are already confirmed
-                const deduplicatedUnconfirmedTxs = omitBy(allTxsAsObjects.unconfirmed, (value, key) => {
-                    return has(allTxsAsObjects.confirmed, key);
-                });
-
-                const finalTailTxs = [
-                    ...map(allTxsAsObjects.confirmed, t => t),
-                    ...map(deduplicatedUnconfirmedTxs, t => t),
-                ];
-
-                each(finalTailTxs, tx => {
-                    const bundle = getBundle(tx, allBundleObjects);
-
-                    if (iota.utils.isBundle(bundle)) {
-                        transfers.push(bundle);
-                    }
-                });
-
-                data.transfers = transfers;
-
-                return getBalances(data.addresses);
-            })
-            .then(balances => {
-                each(balances.balances, (balance, idx) => {
-                    const balanceAsNumber = parseInt(balance);
-                    data.balance += balanceAsNumber;
-
-                    if (balanceAsNumber > 0) {
-                        data.inputs.push({
-                            address: data.addresses[idx],
-                            keyIndex: idx,
-                            security: 2,
-                            balance: balanceAsNumber,
+                    if (states[i]) {
+                        res.confirmed[v.bundle] = Object.assign({}, v, {
+                            persistence: true,
+                        });
+                    } else {
+                        res.unconfirmed[v.bundle] = Object.assign({}, v, {
+                            persistence: false,
                         });
                     }
-                });
 
-                const payload = organizeAccountInfo(accountName, data);
-                resolve(payload);
-            })
-            .catch(err => reject(err));
-    });
+                    return res;
+                },
+                {},
+            );
+
+            // Get rid of transactions duplicates that are already confirmed
+            const deduplicatedUnconfirmedTxs = omitBy(allTxsAsObjects.unconfirmed, (value, key) => {
+                return has(allTxsAsObjects.confirmed, key);
+            });
+
+            const finalTailTxs = [
+                ...map(allTxsAsObjects.confirmed, (t) => t),
+                ...map(deduplicatedUnconfirmedTxs, (t) => t),
+            ];
+
+            each(finalTailTxs, (tx) => {
+                const bundle = getBundle(tx, allBundleObjects);
+
+                if (iota.utils.isBundle(bundle)) {
+                    transfers.push(bundle);
+                }
+            });
+
+            data.transfers = transfers;
+
+            return getBalancesAsync(data.addresses, DEFAULT_BALANCES_THRESHOLD);
+        })
+        .then((balances) => {
+            each(balances.balances, (balance, idx) => {
+                const balanceAsNumber = parseInt(balance);
+                data.balance += balanceAsNumber;
+
+                if (balanceAsNumber > 0) {
+                    data.inputs.push({
+                        address: data.addresses[idx],
+                        keyIndex: idx,
+                        security: 2,
+                        balance: balanceAsNumber,
+                    });
+                }
+            });
+
+            return organizeAccountInfo(accountName, data);
+        });
+};
+
+/**
+ *   Checks if there is a difference between local transaction hashes and ledger's transaction hashes.
+ *
+ *   @method hasNewTransfers
+ *   @param {array} existingHashes
+ *   @param {array} newHashes
+ *
+ *   @returns {boolean}
+ **/
+export const hasNewTransfers = (existingHashes, newHashes) =>
+    isArray(existingHashes) && isArray(newHashes) && size(newHashes) > size(existingHashes);
+
+/**
+ *   Calls getHashesWithPersistence to get latest inclusion states with hashes.
+ *   Filter confirmed hashes.
+ *
+ *   @method getConfirmedTransactionHashes
+ *   @param {array} pendingTxTailHashes
+ *
+ *   @returns {Promise<array>}
+ **/
+export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
+    return getHashesWithPersistence(pendingTxTailHashes).then(({ states, hashes }) =>
+        filter(hashes, (hash, idx) => states[idx]),
+    );
+};
+
+/**
+ *   Get transaction objects associated with hashes, assign persistence by calling inclusion states
+ *   Resolves formatted transfers.
+ *
+ *   @method syncTransfers
+ *   @param {array} diff
+ *   @param {object} existingAccountState - Account object
+ *
+ *   @returns {Promise<array>} - Resolves updated transfers
+ **/
+export const syncTransfers = (diff, existingAccountState) => {
+    const existingAccountStateCopy = cloneDeep(existingAccountState);
+
+    return getTransactionsObjectsAsync(diff)
+        .then((txs) => {
+            const tailTxs = filter(txs, (t) => t.currentIndex === 0);
+            const tailTxsHashes = (tx) => tx.hash;
+
+            return getHashesWithPersistence(map(tailTxs, tailTxsHashes));
+        })
+        .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
+        .then((bundles) => {
+            const updatedTransfers = [...existingAccountStateCopy.transfers, ...bundles];
+
+            return formatTransfers(updatedTransfers, keys(existingAccountStateCopy.addresses));
+        });
+};
+
+/**
+ *   Aims to update cached state with the ledger's.
+ *   - Grab search index for checking latest addresses and update address data dictionary.
+ *   - Grab balances against latest addresses.
+ *   - Assign new balances to latest addresses.
+ *   - Grab unspentAddressesHashes by filtering unspent addresses and checking for their hashes.
+ *   - Checks for new transfers by comparing old unspentAddressesHashes with newUnspentAddressesHashes.
+ *   - Sync transfers by calling syncTransfers.
+ *   - Update transfers, addresses by marking addresses as spent.
+ *   - Recompute, filter latest pending tail hashes from latest transfer objects and update pendingTxTailHashes in state.
+ *   - Check confirmation states for pending tail hashes.
+ *   - Update those transfer objects with persistence true.
+ *
+ *   @method syncAccount
+ *   @param {string} seed
+ *   @param {object} existingAccountState - Account object
+ *
+ *   @returns {Promise<object>} - Resolved a new updated account state object.
+ **/
+export const syncAccount = (seed, existingAccountState) => {
+    const thisStateCopy = cloneDeep(existingAccountState);
+
+    const addressSearchIndex = getStartingSearchIndexToFetchLatestAddresses(thisStateCopy.addresses);
+
+    return getLatestAddresses(seed, addressSearchIndex)
+        .then((newAddressesObjects) => {
+            // Assign latest addresses to addresses dictionary
+            thisStateCopy.addresses = { ...thisStateCopy.addresses, ...newAddressesObjects };
+
+            // Grab latest balances with addresses transformed as array.
+            return getBalancesWithAddresses(thisStateCopy.addresses);
+        })
+        .then(({ balances, addresses }) => {
+            const newBalances = map(balances, Number);
+
+            thisStateCopy.addresses = mapBalancesToAddresses(thisStateCopy.addresses, newBalances, addresses);
+
+            thisStateCopy.balance = accumulateBalance(newBalances);
+
+            return mapUnspentAddressesHashesToAccount(thisStateCopy);
+        })
+        .then((newStateCopy) => {
+            if (hasNewTransfers(thisStateCopy.unspentAddressesHashes, newStateCopy.unspentAddressesHashes)) {
+                const diff = difference(newStateCopy.unspentAddressesHashes, thisStateCopy.unspentAddressesHashes);
+
+                // Update unspentAddressesHashes for this copy
+                thisStateCopy.unspentAddressesHashes = newStateCopy.unspentAddressesHashes;
+
+                return syncTransfers(diff, thisStateCopy);
+            }
+
+            return Promise.resolve(thisStateCopy.transfers);
+        })
+        .then((updatedTransfers) => {
+            thisStateCopy.transfers = updatedTransfers;
+            thisStateCopy.addresses = markAddressSpend(thisStateCopy.transfers, thisStateCopy.addresses);
+
+            thisStateCopy.pendingTxTailsHashes = getPendingTxTailsHashes(thisStateCopy.transfers);
+
+            return getConfirmedTransactionHashes(thisStateCopy.pendingTxTailsHashes);
+        })
+        .then((confirmedTransactionHashes) => {
+            if (!isEmpty(confirmedTransactionHashes)) {
+                const alreadyConfirmed = (tx) => !includes(confirmedTransactionHashes, tx);
+
+                thisStateCopy.transfers = markTransfersConfirmed(thisStateCopy.transfers, confirmedTransactionHashes);
+                thisStateCopy.pendingTxTailsHashes = filter(thisStateCopy.pendingTxTailsHashes, alreadyConfirmed);
+
+                return thisStateCopy;
+            }
+
+            return thisStateCopy;
+        });
+};
+
+/**
+ *   Aims to update local account information after a spend.
+ *
+ *   @method syncAccount
+ *   @param {string} name
+ *   @param {array} newTransfer
+ *   @param {object} existingAccountState - Account object
+ *   @param {boolean} isValueTransfer
+ *
+ *   @returns {Promise<object>} - Resolved a new updated account state object.
+ **/
+export const updateAccount = (name, newTransfer, existingAccountState, isValueTransfer) => {
+    const thisStateCopy = cloneDeep(existingAccountState);
+
+    // Assign persistence and transferValue props to the newly sent transfer
+    const newTransferBundleWithPersistenceAndTransferValue = map(newTransfer, (bundle) => ({
+        ...bundle,
+        ...{ transferValue: -bundle.value, persistence: false },
+    }));
+
+    // Append new transfer to cached transfers list
+    thisStateCopy.transfers = [...[newTransferBundleWithPersistenceAndTransferValue], ...thisStateCopy.transfers];
+
+    // Turn on spent flag for addresses that were used in this transfer
+    thisStateCopy.addresses = markAddressSpend([newTransfer], thisStateCopy.addresses);
+
+    // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
+    // Also check if it was a value transfer
+    // Only update unconfirmedBundleTails for promotion/reattachment if its a value transfer
+    const bundle = get(newTransfer, `[${0}].bundle`);
+    const tailTxs = filter(newTransfer, (tx) => tx.currentIndex === 0);
+
+    if (isValueTransfer) {
+        thisStateCopy.unconfirmedBundleTails = merge({}, thisStateCopy.unconfirmedBundleTails, {
+            [bundle]: map(tailTxs, (t) => ({ ...t, account: name })), // Assign account name to each tx
+        });
+    }
+
+    // Append new tail transaction hash to pendingTxTailHashes
+    thisStateCopy.pendingTxTailsHashes = [...thisStateCopy.pendingTxTailsHashes, ...map(tailTxs, (t) => t.hash)];
+
+    return mapUnspentAddressesHashesToAccount(thisStateCopy);
 };
