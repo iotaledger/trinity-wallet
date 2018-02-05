@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
 import { set2FAKey, set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
+import { storeTwoFactorAuthKeyInKeychain } from '../util/keychain';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -127,20 +128,23 @@ class TwoFactorSetupAddKey extends Component {
     }
 
     navigateToEnterToken() {
-        this.props.set2FAKey(this.state.authkey);
         Clipboard.setString(' ');
-        this.props.navigator.push({
-            screen: 'twoFactorSetupEnterToken',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
-            },
-            animated: false,
-            appStyle: {
-                orientation: 'portrait',
-            },
-        });
+        storeTwoFactorAuthKeyInKeychain(this.state.authkey)
+            .then(() => {
+                this.props.navigator.push({
+                    screen: 'twoFactorSetupEnterToken',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundColor: this.props.backgroundColor,
+                    },
+                    animated: false,
+                    appStyle: {
+                        orientation: 'portrait',
+                    },
+                });
+            })
+            .catch(err => console.error(err)); // Generate an alert.
     }
 
     render() {
