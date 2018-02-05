@@ -312,7 +312,6 @@ class TopBar extends Component {
                         styles.container,
                         {
                             backgroundColor: barColor,
-                            shadowColor: 'black',
                         },
                     ]}
                 >
@@ -386,12 +385,6 @@ const styles = StyleSheet.create({
         paddingTop: height / 25,
         paddingBottom: height / 50,
         opacity: 0.98,
-        shadowOffset: {
-            width: 0,
-            height: -1,
-        },
-        shadowRadius: 4,
-        shadowOpacity: 1.0,
     },
     titleWrapper: {
         paddingHorizontal: width / 40,
