@@ -127,7 +127,7 @@ EnterPasswordOnLogin.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.object.isRequired,
+    negativeColor: PropTypes.string.isRequired,
     navigateToNodeSelection: PropTypes.func.isRequired,
     setLoginPasswordField: PropTypes.func.isRequired,
     password: PropTypes.string.isRequired,
