@@ -3,11 +3,14 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, BackHandler, ToastAndroid, KeyboardAvoidingView } from 'react-native';
 import RNExitApp from 'react-native-exit-app';
-import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
-import UserInactivity from '../components/userInactivity';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import { clearTempData, setPassword, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
+import {
+    clearTempData,
+    setPassword,
+    setUserActivity,
+    setSetting,
+} from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import whiteBalanceImagePath from 'iota-wallet-shared-modules/images/balance-white.png';
 import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
@@ -19,6 +22,8 @@ import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png
 import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
 import blackHistoryImagePath from 'iota-wallet-shared-modules/images/history-black.png';
 import blackSettingsImagePath from 'iota-wallet-shared-modules/images/settings-black.png';
+import DynamicStatusBar from '../components/dynamicStatusBar';
+import UserInactivity from '../components/userInactivity';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import withUserActivity from '../components/withUserActivity';
@@ -116,28 +121,6 @@ class Home extends Component {
         }
     };
 
-    onSwipeRight() {
-        const { currentRoute } = this.props;
-        const availableRoutes = ['balance', 'send', 'receive', 'history', 'settings'];
-        const currentRouteIndex = availableRoutes.indexOf(currentRoute);
-        if (currentRouteIndex === 0) {
-            return;
-        }
-        const nextRoute = availableRoutes[currentRouteIndex - 1];
-        this.props.changeHomeScreenRoute(nextRoute);
-    }
-
-    onSwipeLeft() {
-        const { currentRoute } = this.props;
-        const availableRoutes = ['balance', 'send', 'receive', 'history', 'settings'];
-        const currentRouteIndex = availableRoutes.indexOf(currentRoute);
-        if (currentRouteIndex === availableRoutes.length - 1) {
-            return;
-        }
-        const nextRoute = availableRoutes[currentRouteIndex + 1];
-        this.props.changeHomeScreenRoute(nextRoute);
-    }
-
     handleInactivity = () => {
         const { isTransitioning, isSyncing, isSendingTransfer } = this.props;
         const doingSomething = isTransitioning || isSyncing || isSendingTransfer;
@@ -147,6 +130,11 @@ class Home extends Component {
             this.props.setUserActivity({ inactive: true });
         }
     };
+
+    onTabSwitch(name) {
+        this.props.changeHomeScreenRoute(name);
+        this.props.setSetting('mainSettings');
+    }
 
     render() {
         const {
@@ -180,7 +168,7 @@ class Home extends Component {
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
-                <KeyboardAvoidingView style={{ flex: 1, backgroundColor: backgroundColor }}>
+                <KeyboardAvoidingView style={{ flex: 1, backgroundColor }}>
                     <DynamicStatusBar textColor={secondaryBarColor} />
                     {!inactive &&
                         !minimised && (
@@ -190,7 +178,7 @@ class Home extends Component {
                                     <TabContent navigator={navigator} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <Tabs onPress={name => this.props.changeHomeScreenRoute(name)} barColor={barColor}>
+                                    <Tabs onPress={name => this.onTabSwitch(name)} barColor={barColor}>
                                         <Tab
                                             name="balance"
                                             icon={balanceImagePath}
@@ -271,6 +259,7 @@ const mapDispatchToProps = {
     clearTempData,
     setPassword,
     setUserActivity,
+    setSetting,
 };
 
 Home.propTypes = {
@@ -288,10 +277,10 @@ Home.propTypes = {
     tempAccount: PropTypes.object.isRequired,
     secondaryBarColor: PropTypes.string.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
-    currentRoute: PropTypes.string.isRequired,
     isTransitioning: PropTypes.bool.isRequired,
     isSyncing: PropTypes.bool.isRequired,
     isSendingTransfer: PropTypes.bool.isRequired,
+    setSetting: PropTypes.func.isRequired,
 };
 
 export default withUserActivity()(
