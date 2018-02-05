@@ -14,6 +14,7 @@ import Theme from 'components/Settings/Theme';
 import SetNode from 'views/settings/Node';
 import Currency from 'views/settings/Currency';
 import Password from 'views/settings/Password';
+import Advanced from 'views/settings/Advanced';
 
 import css from 'components/Settings/Index.css';
 
@@ -95,9 +96,9 @@ class Settings extends React.PureComponent {
                                     <img src={icoPassword} /> {t('settings:changePassword')}
                                 </NavLink>
                                 <hr />
-                                <a onClick={this.featureUnavailable}>
+                                <NavLink to="/settings/advanced">
                                     <img src={icoAdvanced} /> {t('settings:advanced')}
-                                </a>
+                                </NavLink>
                                 <a onClick={this.toggleLogout}>
                                     <img src={icoLogout} /> {t('settings:logout')}
                                 </a>
@@ -125,6 +126,7 @@ class Settings extends React.PureComponent {
                         <Route path="/settings/node" component={SetNode} />
                         <Route path="/settings/currency" component={Currency} />
                         <Route path="/settings/password" component={Password} />
+                        <Route path="/settings/advanced" component={Advanced} />
                         <Redirect from="/settings" to="/settings/language" />
                     </Switch>
                 </section>
