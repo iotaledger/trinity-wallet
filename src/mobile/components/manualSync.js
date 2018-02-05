@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -110,7 +109,7 @@ const ManualSync = props => (
                         animating={props.isSyncing}
                         style={styles.activityIndicator}
                         size="large"
-                        color={THEMES.getHSL(props.negativeColor)}
+                        color={props.negativeColor}
                     />
                 </View>
             )}

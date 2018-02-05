@@ -2,12 +2,12 @@ import tinycolor from 'tinycolor2';
 
 const themes = {
     Default: {
-        backgroundColor: tinycolor(`#1a373e`).toHsl(),
+        backgroundColor: `#1a373e`,
         barColor: '#191c2b',
         ctaColor: `#f6d001`,
-        positiveColor: tinycolor(`#9DFFAF`).toHsl(),
-        negativeColor: tinycolor(`#F7D002`).toHsl(),
-        extraColor: tinycolor(`#88D4FF`).toHsl(),
+        positiveColor: `#9DFFAF`,
+        negativeColor: `#F7D002`,
+        extraColor: `#88D4FF`,
         secondaryBarColor: 'white',
         secondaryBackgroundColor: 'white',
         secondaryCtaColor: '#1a373e',
@@ -17,12 +17,12 @@ const themes = {
         chartLineColorSecondary: '#FFA25B',
     },
     Contemporary: {
-        backgroundColor: tinycolor(`#EAEDF3`).toHsl(),
+        backgroundColor: `#EAEDF3`,
         barColor: `#181C2B`,
         ctaColor: `#862888`,
-        positiveColor: tinycolor(`#007353`).toHsl(),
-        negativeColor: tinycolor(`#DA8F0F`).toHsl(),
-        extraColor: tinycolor(`#007353`).toHsl(),
+        positiveColor: `#007353`,
+        negativeColor: `#DA8F0F`,
+        extraColor: `#007353`,
         secondaryBarColor: 'white',
         secondaryBackgroundColor: 'black',
         secondaryCtaColor: 'white',
@@ -32,12 +32,12 @@ const themes = {
         chartLineColorSecondary: '#6439A9',
     },
     Grey: {
-        backgroundColor: tinycolor(`#313131`).toHsl(),
+        backgroundColor: `#313131`,
         barColor: `#1a1a1a`,
         ctaColor: `#009f3f`,
-        positiveColor: tinycolor(`#9DFFAF`).toHsl(),
-        negativeColor: tinycolor(`#F7D002`).toHsl(),
-        extraColor: tinycolor(`#88D4FF`).toHsl(),
+        positiveColor: `#9DFFAF`,
+        negativeColor: `#F7D002`,
+        extraColor: `#88D4FF`,
         secondaryBarColor: 'white',
         secondaryBackgroundColor: 'white',
         secondaryCtaColor: 'white',
@@ -47,12 +47,12 @@ const themes = {
         chartLineColorSecondary: '#FFA25B',
     },
     Blue: {
-        backgroundColor: tinycolor(`#20303f`).toHsl(),
+        backgroundColor: `#20303f`,
         barColor: `#121c24`,
         ctaColor: `#009f3f`,
-        positiveColor: tinycolor(`#9DFFAF`).toHsl(),
-        negativeColor: tinycolor(`#F7D002`).toHsl(),
-        extraColor: tinycolor(`#88D4FF`).toHsl(),
+        positiveColor: `#9DFFAF`,
+        negativeColor: `#F7D002`,
+        extraColor: `#88D4FF`,
         secondaryBarColor: 'white',
         secondaryBackgroundColor: 'white',
         secondaryCtaColor: 'white',
@@ -62,12 +62,12 @@ const themes = {
         chartLineColorSecondary: '#FFA25B',
     },
     Light: {
-        backgroundColor: tinycolor(`white`).toHsl(),
+        backgroundColor: `white`,
         barColor: `white`,
         ctaColor: `white`,
-        positiveColor: tinycolor(`black`).toHsl(),
-        negativeColor: tinycolor(`#black`).toHsl(),
-        extraColor: tinycolor(`#black`).toHsl(),
+        positiveColor: `black`,
+        negativeColor: `#black`,
+        extraColor: `#black`,
         secondaryBarColor: 'black',
         secondaryBackgroundColor: 'black',
         secondaryCtaColor: 'black',
@@ -77,12 +77,12 @@ const themes = {
         chartLineColorSecondary: 'black',
     },
     Dark: {
-        backgroundColor: tinycolor(`black`).toHsl(),
+        backgroundColor: `black`,
         barColor: `black`,
         ctaColor: `black`,
-        positiveColor: tinycolor(`#9DFFAF`).toHsl(),
-        negativeColor: tinycolor(`#F7D002`).toHsl(),
-        extraColor: tinycolor(`#88D4FF`).toHsl(),
+        positiveColor: `#9DFFAF`,
+        negativeColor: `#F7D002`,
+        extraColor: `#88D4FF`,
         secondaryBarColor: 'white',
         secondaryBackgroundColor: 'white',
         secondaryCtaColor: 'white',
@@ -121,11 +121,6 @@ const themes = {
         chartLineColor: 'white',
     }, */
 
-const getHSL = color => {
-    return tinycolor(color).toHslString();
-};
-
 export default {
     themes,
-    getHSL,
 };
