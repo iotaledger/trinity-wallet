@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
     fieldLabel: {
         fontSize: width / 34.5,
-        marginVertical: height / 70,
+        marginBottom: height / 100,
         marginLeft: 1,
     },
     textInput: {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     innerContainer: {
         flexDirection: 'row',
         borderRadius: GENERAL.borderRadiusSmall,
-        height: height / 14,
+        height: height / 15,
     },
     widgetContainer: {
         borderLeftWidth: 2,
@@ -60,6 +60,7 @@ class CustomTextInput extends React.Component {
         denominationText: PropTypes.string,
         onQRPress: PropTypes.func,
         negativeColor: PropTypes.object,
+        innerPadding: PropTypes.object,
     };
 
     static defaultProps = {
@@ -77,6 +78,7 @@ class CustomTextInput extends React.Component {
             l: 0.48823529411764705,
             a: 1,
         },
+        innerPadding: { paddingVertical: height / 200 },
     };
 
     constructor(props) {
@@ -147,6 +149,10 @@ class CustomTextInput extends React.Component {
             secondaryBackgroundColor,
             negativeColor,
             onRef,
+            height,
+            fontSize,
+            lineHeight,
+            innerPadding,
             ...restProps
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
@@ -160,11 +166,11 @@ class CustomTextInput extends React.Component {
         return (
             <View style={[styles.fieldContainer, containerStyle]}>
                 <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>
-                <View style={[styles.innerContainer, innerContainerBackgroundColor]}>
+                <View style={[styles.innerContainer, innerContainerBackgroundColor, height, innerPadding]}>
                     <TextInput
                         {...restProps}
                         ref={onRef}
-                        style={[styles.textInput, textInputColor]}
+                        style={[styles.textInput, textInputColor, fontSize, lineHeight]}
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
                         onChangeText={onChangeText}
