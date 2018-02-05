@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import noop from 'lodash/noop';
 import React from 'react';
+import { Clipboard } from 'react-native';
 import { shallow } from 'enzyme';
 import { ViewAddresses } from '../../containers/viewAddresses';
 
@@ -57,6 +58,59 @@ describe('Testing ViewAddresses component', () => {
                     .childAt(0)
                     .name(),
             ).toEqual('ListViewMock');
+        });
+    });
+
+    describe('instance methods', () => {
+        describe('when called', () => {
+            describe('#copy', () => {
+                afterEach(() => {
+                    if (Clipboard.setString.mockClear) {
+                        Clipboard.setString.mockClear();
+                    }
+                });
+
+                it('should call setString on Clipboard', () => {
+                    const fakeAddress = 'U'.repeat(81);
+                    const props = getProps();
+                    jest.spyOn(Clipboard, 'setString');
+
+                    const instance = shallow(<ViewAddresses {...props} />).instance();
+                    instance.copy(fakeAddress);
+
+                    expect(Clipboard.setString).toHaveBeenCalledTimes(1);
+                });
+
+                it('should call prop method generateAlert', () => {
+                    const fakeAddress = 'U'.repeat(81);
+                    const props = getProps({ generateAlert: jest.fn() });
+
+                    const instance = shallow(<ViewAddresses {...props} />).instance();
+                    instance.copy(fakeAddress);
+
+                    expect(props.generateAlert).toHaveBeenCalledTimes(1);
+                });
+            });
+        });
+    });
+
+    describe('static methods', () => {
+        describe('#getAddressesAsList', () => {
+            it('should return an empty array if argument passed to it is empty', () => {
+                expect(ViewAddresses.getAddressesAsList({})).toEqual([]);
+            });
+
+            it('should return list with checksums appended to each item at index 0 if argument passed to it is not empty', () => {
+                const fakeAddress = 'U'.repeat(81);
+                const args = {
+                    [fakeAddress]: {},
+                };
+
+                const checksum = 'NXELTUENX';
+                const fakeAddressWithChecksum = `${fakeAddress}${checksum}`;
+                const returnValue = [[fakeAddressWithChecksum, {}]];
+                expect(ViewAddresses.getAddressesAsList(args)).toEqual(returnValue);
+            });
         });
     });
 });

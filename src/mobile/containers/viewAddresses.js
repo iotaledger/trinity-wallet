@@ -101,12 +101,12 @@ export class ViewAddresses extends Component {
         return data;
     }
 
-    getAddressesAsList(addressData) {
+    static getAddressesAsList(addressData) {
         if (isEmpty(addressData)) {
             return [];
         }
 
-        const addresses = Object.entries(this.props.addressData).slice();
+        const addresses = Object.entries(addressData).slice();
         return ViewAddresses.addChecksums(addresses);
     }
 
@@ -119,7 +119,7 @@ export class ViewAddresses extends Component {
 
     render() {
         const { addressData, secondaryBackgroundColor, arrowLeftImagePath, t } = this.props;
-        const addresses = this.getAddressesAsList(addressData);
+        const addresses = ViewAddresses.getAddressesAsList(addressData);
 
         const textColor = { color: secondaryBackgroundColor };
 
