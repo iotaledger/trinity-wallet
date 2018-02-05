@@ -12,7 +12,6 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
-import THEMES from '../theme/themes';
 
 const version = getVersion();
 const build = getBuildNumber();
@@ -57,7 +56,7 @@ class InitialLoading extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
@@ -91,7 +90,7 @@ class InitialLoading extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
                 animated: false,
                 overrideBackPress: true,
@@ -102,7 +101,7 @@ class InitialLoading extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
                 animated: false,
             });
@@ -122,7 +121,7 @@ class InitialLoading extends Component {
             secondaryBackgroundColor === 'white' ? whiteWelcomeAnimation : blackWelcomeAnimation;
 
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.logoContainer}>
                     <View style={styles.animationContainer}>

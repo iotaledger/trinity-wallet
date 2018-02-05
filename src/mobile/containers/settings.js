@@ -9,7 +9,6 @@ import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
-import THEMES from '../theme/themes';
 import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
 import {
     changeAccountName,
@@ -172,13 +171,13 @@ class Settings extends Component {
         setAdditionalAccountInfo: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
         themeName: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
         barColor: PropTypes.string.isRequired,
         ctaColor: PropTypes.string.isRequired,
         ctaBorderColor: PropTypes.string.isRequired,
-        positiveColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
-        extraColor: PropTypes.object.isRequired,
+        positiveColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
+        extraColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         isFingerprintEnabled: PropTypes.bool.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
@@ -444,7 +443,7 @@ class Settings extends Component {
                 borderColor: { borderColor: secondaryBackgroundColor },
                 secondaryBackgroundColor,
                 negativeColor,
-                backgroundColor: THEMES.getHSL(backgroundColor),
+                backgroundColor: backgroundColor,
                 arrowLeftImagePath,
                 transitionBalance,
                 transitionAddresses,
@@ -521,7 +520,7 @@ class Settings extends Component {
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                        screenBackgroundColor: this.props.backgroundColor,
                         generateAlert: this.props.generateAlert,
                     },
                 },
@@ -536,7 +535,7 @@ class Settings extends Component {
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                        screenBackgroundColor: this.props.backgroundColor,
                         generateAlert: this.props.generateAlert,
                     },
                 },
@@ -657,7 +656,7 @@ class Settings extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: this.props.backgroundColor,
             },
             animated: false,
             overrideBackPress: true,
@@ -788,7 +787,7 @@ class Settings extends Component {
                         style={{ flex: 1 }}
                         hideModal={() => this.hideModal()}
                         logout={() => this.logout()}
-                        backgroundColor={THEMES.getHSL(backgroundColor)}
+                        backgroundColor={backgroundColor}
                         textColor={{ color: secondaryBackgroundColor }}
                         borderColor={{ borderColor: secondaryBackgroundColor }}
                     />
@@ -831,7 +830,7 @@ class Settings extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
@@ -849,7 +848,7 @@ class Settings extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
                 overrideBackPress: true,
             },
@@ -866,7 +865,7 @@ class Settings extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
@@ -878,7 +877,7 @@ class Settings extends Component {
 
     renderModalContent() {
         return (
-            <View style={[styles.modalContent, { backgroundColor: THEMES.getHSL(this.props.backgroundColor) }]}>
+            <View style={[styles.modalContent, { backgroundColor: this.props.backgroundColor }]}>
                 {this.state.modalContent}
             </View>
         );
@@ -901,7 +900,7 @@ class Settings extends Component {
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
-                    backdropColor={THEMES.getHSL(this.props.backgroundColor)}
+                    backdropColor={this.props.backgroundColor}
                     backdropOpacity={0.8}
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
