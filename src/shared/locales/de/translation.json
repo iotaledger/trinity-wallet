@@ -317,13 +317,13 @@
         "billion": "Milliarden",
         "million": "Millionen",
         "thousand": "Tausend",
-        "one": "Eins"
+        "one": "Ein"
     },
     "deleteAccount": {
         "areYouSure": "Willst du dieses Konto wirklich löschen?",
         "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
-        "enterPassword": "Bitte gib dein Passwort ein, um das Konto zu löschen."
+        "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
     },
     "manualSync": {
         "pressToSync": "Drücke die Schaltfläche unten, um dein Konto zu synchronisieren.",
