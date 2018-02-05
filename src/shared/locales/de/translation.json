@@ -77,7 +77,7 @@
         "seedInvalidCharsExplanation": "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed enthält ungültige Zeichen. Bitte versuche es erneut.",
         "seedTooShort": "Seed ist zu kurz",
         "seedTooShortExplanation": "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
-        "nameInUse": "Kontoname wird bereits verwendet",
+        "nameInUse": "Dieser Kontoname wird bereits verwendet",
         "nameInUseExplanation": "Bitte benutze einen eindeutigen Kontonamen für deinen Seed.",
         "enterAccountName": "Gib einen Kontonamen ein.",
         "accountName": "Kontoname",
@@ -195,7 +195,7 @@
         "invalidAmount": "Falschen Betrag eingegeben",
         "invalidAmountExplanation": "Bitte gib einen numerischen Wert als Betrag ein.",
         "maximumSelected": "MAXIMALER Betrag ausgewählt",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "IOTA Einheiten erklärt",
         "sendMax": "SENDE MAX"
     },
     "setPassword": {
@@ -218,7 +218,7 @@
         "generatingAddress": "Erzeuge Empfangsadresse",
         "generatingAddressExplanation": "Bitte warte bis deine Adresse erzeugt wurde.",
         "mode": "Modus",
-        "theme": "Theme",
+        "theme": "Design",
         "currency": "Währung",
         "language": "Sprache",
         "accountManagement": "Konto-Verwaltung",
@@ -300,7 +300,7 @@
         "frame": "Rahmen"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Design"
     },
     "currencySelection": {
         "currency": "Währung"
@@ -317,13 +317,13 @@
         "billion": "Milliarden",
         "million": "Millionen",
         "thousand": "Tausend",
-        "one": "Eins"
+        "one": "Ein"
     },
     "deleteAccount": {
         "areYouSure": "Willst du dieses Konto wirklich löschen?",
         "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
-        "enterPassword": "Bitte gib dein Passwort ein, um das Konto zu löschen."
+        "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
     },
     "manualSync": {
         "pressToSync": "Drücke die Schaltfläche unten, um dein Konto zu synchronisieren.",
