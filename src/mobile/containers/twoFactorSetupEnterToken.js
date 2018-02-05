@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
+import keychain, { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import { set2FAKey, set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
@@ -76,6 +77,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     componentDidMount() {
+        keychain.get().then(credentials => console.log('Keychain', credentials));
         BackHandler.addEventListener('newSeedSetupBackPress', () => {
             this.goBack();
             return true;
@@ -104,20 +106,25 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     check2FA() {
-        const value = authenticator.verifyToken(this.props.key2FA, this.state.code);
-        if (value) {
-            this.props.set2FAStatus(true);
-            this.navigateToHome();
-            this.timeout = setTimeout(() => {
-                this.props.generateAlert(
-                    'success',
-                    '2FA is now enabled',
-                    'You have succesfully enabled Two Factor Authentication.',
-                );
-            }, 300);
-        } else {
-            this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
-        }
+        getTwoFactorAuthKeyFromKeychain()
+            .then(key => {
+                const legit = authenticator.verifyToken(key, this.state.code);
+
+                if (legit) {
+                    this.props.set2FAStatus(true);
+                    this.navigateToHome();
+                    this.timeout = setTimeout(() => {
+                        this.props.generateAlert(
+                            'success',
+                            '2FA is now enabled',
+                            'You have successfully enabled Two Factor Authentication.',
+                        );
+                    }, 300);
+                } else {
+                    this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+                }
+            })
+            .catch(err => console.error(err)); // generate an alert.
     }
 
     render() {
