@@ -175,12 +175,12 @@
     "seedReentry": {
         "incorrectSeed": "Seedが違います。",
         "incorrectSeedExplanation": "入力したSeedは正しくありません。もう一度やり直して下さい。",
-        "thisIsACheck": "これはあなたがSeedを保存したかを確認するチェックです。",
+        "thisIsACheck": "これはあなたがSeedを保存したかの確認です。",
         "ifYouHaveNotSaved": "Seedをまだ保存していない場合は戻ってください。"
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
-        "invalidAddressExplanation1": "アドレスは{{maxLength}}文字にする必要があり、チェックサムを持っている必要があります。",
+        "invalidAddressExplanation1": "アドレスは{{maxLength}}文字、また、チェックサムを含む必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
         "notEnoughFunds": "残高不足",
