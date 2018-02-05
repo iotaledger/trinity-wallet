@@ -10,11 +10,10 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import Triangle from 'react-native-triangle';
-import THEMES from '../theme/themes';
 import { connect } from 'react-redux';
 import { isAndroid } from '../util/device';
-
 import { width, height } from '../util/dimensions';
+
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const CustomLayoutSpring = {
@@ -174,20 +173,14 @@ export class Dropdown extends Component {
         const heightValue = options.length < 7 ? height / 22.4 * options.length + height / 70 : height / 3.2;
         const dropdownHeight = isDropdownOpen ? heightValue : 0;
         const backgroundColor = background
-            ? { backgroundColor: THEMES.getHSL(this.props.backgroundColor) }
+            ? { backgroundColor: this.props.backgroundColor }
             : { backgroundColor: 'transparent' };
         const shadowColor = shadow ? { shadowColor: '#222' } : { shadowColor: 'transparent' };
         const lastItem = options.length - 1;
 
         return (
             <View style={[styles.container, dropdownWidth]}>
-                <Text
-                    style={[
-                        styles.dropdownTitle,
-                        { color: THEMES.getHSL(negativeColor) },
-                        isAndroid ? null : dropdownWidth,
-                    ]}
-                >
+                <Text style={[styles.dropdownTitle, { color: negativeColor }, isAndroid ? null : dropdownWidth]}>
                     {title}
                 </Text>
                 <View style={styles.dropdownButtonContainer}>

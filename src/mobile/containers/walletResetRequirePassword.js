@@ -12,7 +12,6 @@ import { persistor } from '../store';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, BackHandler } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import COLORS from '../theme/Colors';
-import THEMES from '../theme/themes';
 import Fonts from '../theme/Fonts';
 import CustomTextInput from '../components/customTextInput';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -33,8 +32,8 @@ class WalletResetRequirePassword extends Component {
         clearTempData: PropTypes.func.isRequired,
         setPassword: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
@@ -68,7 +67,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
@@ -88,7 +87,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
                 overrideBackPress: true,
             },
@@ -134,7 +133,7 @@ class WalletResetRequirePassword extends Component {
         const { t, negativeColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
 
-        const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
+        const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         const onboardingButtonsOverride = {
@@ -146,10 +145,10 @@ class WalletResetRequirePassword extends Component {
                 fontFamily: Fonts.secondary,
             },
             leftButton: {
-                borderColor: THEMES.getHSL(negativeColor),
+                borderColor: negativeColor,
             },
             leftText: {
-                color: THEMES.getHSL(negativeColor),
+                color: negativeColor,
             },
         };
 

@@ -12,7 +12,6 @@ import {
 import { width, height } from '../util/dimensions';
 import Dropdown from './dropdown';
 import { translate } from 'react-i18next';
-import THEMES from '../theme/themes';
 
 const styles = StyleSheet.create({
     container: {
@@ -97,7 +96,7 @@ export class CurrencySelection extends Component {
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         tickImagePath: PropTypes.number.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
     };
@@ -189,7 +188,7 @@ export class CurrencySelection extends Component {
                                 animating
                                 style={styles.activityIndicator}
                                 size="large"
-                                color={THEMES.getHSL(negativeColor)}
+                                color={negativeColor}
                             />
                         </View>
                     )) || <View style={styles.innerContainer} />}
