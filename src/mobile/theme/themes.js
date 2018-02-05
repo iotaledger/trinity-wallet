@@ -3,22 +3,38 @@ import tinycolor from 'tinycolor2';
 const themes = {
     Default: {
         backgroundColor: tinycolor(`#1a373e`).toHsl(),
-        barColor: tinycolor(`#0b282f`).toHsl(),
-        ctaColor: tinycolor(`#009f3f`).toHsl(),
+        barColor: '#191c2b',
+        ctaColor: `#f6d001`,
         positiveColor: tinycolor(`#9DFFAF`).toHsl(),
         negativeColor: tinycolor(`#F7D002`).toHsl(),
         extraColor: tinycolor(`#88D4FF`).toHsl(),
         secondaryBarColor: 'white',
         secondaryBackgroundColor: 'white',
+        secondaryCtaColor: '#1a373e',
+        ctaBorderColor: 'transparent',
+        pendingColor: '#f75602',
+        chartLineColorPrimary: '#FFA25B',
+        chartLineColorSecondary: '#FFA25B',
+    },
+    Contemporary: {
+        backgroundColor: tinycolor(`#EAEDF3`).toHsl(),
+        barColor: `#181C2B`,
+        ctaColor: `#862888`,
+        positiveColor: tinycolor(`#007353`).toHsl(),
+        negativeColor: tinycolor(`#DA8F0F`).toHsl(),
+        extraColor: tinycolor(`#007353`).toHsl(),
+        secondaryBarColor: 'white',
+        secondaryBackgroundColor: 'black',
         secondaryCtaColor: 'white',
         ctaBorderColor: 'transparent',
         pendingColor: '#f75602',
-        chartLineColor: '#FFA25B',
+        chartLineColorPrimary: '#6439A9',
+        chartLineColorSecondary: '#6439A9',
     },
     Grey: {
         backgroundColor: tinycolor(`#313131`).toHsl(),
-        barColor: tinycolor(`#1a1a1a`).toHsl(),
-        ctaColor: tinycolor(`#009f3f`).toHsl(),
+        barColor: `#1a1a1a`,
+        ctaColor: `#009f3f`,
         positiveColor: tinycolor(`#9DFFAF`).toHsl(),
         negativeColor: tinycolor(`#F7D002`).toHsl(),
         extraColor: tinycolor(`#88D4FF`).toHsl(),
@@ -27,12 +43,13 @@ const themes = {
         secondaryCtaColor: 'white',
         ctaBorderColor: 'transparent',
         pendingColor: '#f75602',
-        chartLineColor: '#FFA25B',
+        chartLineColorPrimary: '#FFA25B',
+        chartLineColorSecondary: '#FFA25B',
     },
     Blue: {
         backgroundColor: tinycolor(`#20303f`).toHsl(),
-        barColor: tinycolor(`#121c24`).toHsl(),
-        ctaColor: tinycolor(`#009f3f`).toHsl(),
+        barColor: `#121c24`,
+        ctaColor: `#009f3f`,
         positiveColor: tinycolor(`#9DFFAF`).toHsl(),
         negativeColor: tinycolor(`#F7D002`).toHsl(),
         extraColor: tinycolor(`#88D4FF`).toHsl(),
@@ -41,12 +58,13 @@ const themes = {
         secondaryCtaColor: 'white',
         ctaBorderColor: 'transparent',
         pendingColor: '#f75602',
-        chartLineColor: '#FFA25B',
+        chartLineColorPrimary: '#FFA25B',
+        chartLineColorSecondary: '#FFA25B',
     },
     Light: {
         backgroundColor: tinycolor(`white`).toHsl(),
-        barColor: tinycolor(`white`).toHsl(),
-        ctaColor: tinycolor(`white`).toHsl(),
+        barColor: `white`,
+        ctaColor: `white`,
         positiveColor: tinycolor(`black`).toHsl(),
         negativeColor: tinycolor(`#black`).toHsl(),
         extraColor: tinycolor(`#black`).toHsl(),
@@ -55,12 +73,13 @@ const themes = {
         secondaryCtaColor: 'black',
         ctaBorderColor: 'black',
         pendingColor: '#f75602',
-        chartLineColor: 'black',
+        chartLineColorPrimary: 'black',
+        chartLineColorSecondary: 'black',
     },
     Dark: {
         backgroundColor: tinycolor(`black`).toHsl(),
-        barColor: tinycolor(`black`).toHsl(),
-        ctaColor: tinycolor(`black`).toHsl(),
+        barColor: `black`,
+        ctaColor: `black`,
         positiveColor: tinycolor(`#9DFFAF`).toHsl(),
         negativeColor: tinycolor(`#F7D002`).toHsl(),
         extraColor: tinycolor(`#88D4FF`).toHsl(),
@@ -69,7 +88,8 @@ const themes = {
         secondaryCtaColor: 'white',
         ctaBorderColor: 'white',
         pendingColor: '#f75602',
-        chartLineColor: 'white',
+        chartLineColorPrimary: 'white',
+        chartLineColorSecondary: 'white',
     },
 };
 /* Simple: {
@@ -101,7 +121,7 @@ const themes = {
         chartLineColor: 'white',
     }, */
 
-const getHSL = color => {
+const getHSL = (color) => {
     return tinycolor(color).toHslString();
 };
 

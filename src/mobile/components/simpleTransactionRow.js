@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-import { isReceivedTransfer, getRelevantTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { extractTailTransferFromBundle } from 'iota-wallet-shared-modules/libs/transfers';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
 import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
@@ -45,9 +46,10 @@ class SimpleTransactionRow extends Component {
 
     render() {
         const { rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor, t } = this.props;
-        const transfer = getRelevantTransfer(rowData, addresses);
+        const transfer = extractTailTransferFromBundle(rowData);
         const isReceived = isReceivedTransfer(rowData, addresses);
-        const sign = isReceived ? '+' : '-';
+        let sign = isReceived ? '+' : '-';
+        sign = transfer.value === 0 ? '' : sign;
         const titleColour = isReceived ? extraColor : negativeColor;
         const sendImagePath = secondaryBackgroundColor === 'white' ? whiteSendImagePath : blackSendImagePath;
         const receiveImagePath = secondaryBackgroundColor === 'white' ? whiteReceiveImagePath : blackReceiveImagePath;
@@ -59,12 +61,12 @@ class SimpleTransactionRow extends Component {
                     <Image source={icon} style={styles.icon} />
                 </View>
                 <View style={{ flex: 3, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, { color: titleColour, padding: 5 }]}>
+                    <Text style={[styles.text, { color: secondaryBackgroundColor, padding: 5 }]}>
                         {formatTime(convertUnixTimeToJSDate(transfer.timestamp))}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, { color: titleColour }]}>
+                    <Text style={[styles.text, { color: secondaryBackgroundColor }]}>
                         {isReceived
                             ? rowData[0].persistence ? t('received') : t('receiving')
                             : rowData[0].persistence ? t('sent') : t('sending')}

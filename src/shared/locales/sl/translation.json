@@ -59,7 +59,19 @@
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
         "wallet": "Wallet",
-        "pressBackAgain": "Press back again to close the app"
+        "sent": "Sent",
+        "received": "Received",
+        "sending": "Sending",
+        "receiving": "Receiving",
+        "confirmed": "Confirmed",
+        "pending": "Pending",
+        "bundleHash": "Bundle Hash",
+        "addresses": "Addresses",
+        "pressBackAgain": "Press back again to close the app",
+        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autopromoting": "Autopromoting transfer",
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
@@ -167,9 +179,8 @@
     "saveYourSeed": {
         "seedCleared": "Generiranava vrednost odstranjena",
         "seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost.",
-        "mustSaveYourSeed": "Morate shraniti vašo generirano vrednost z ",
-        "atLeastOne": "vsaj en ",
-        "ofTheOptions": "eno od možnosti navednih spodaj."
+        "mustSaveYourSeed":
+            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Napačno generirano število",
@@ -194,7 +205,8 @@
         "invalidAmount": "Neveljavna vsota",
         "invalidAmountExplanation": "Prosimo vnesite vrednost za znesek transakcije.",
         "maximumSelected": "NAJVIŠJI izbrani znesek",
-        "iotaUnits": "IOTA enote"
+        "iotaUnits": "IOTA units explained",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Geslo je prekratko",
@@ -249,15 +261,6 @@
         "paste": "Paste",
         "selectAll": "Select All"
     },
-    "resetWalletConfirmation": {
-        "thisAction": "Tega dejanja ni mogoče razveljaviti.",
-        "warning1": "Vsi vaši podatki o denarnici vlkjucno z vašim ",
-        "warning2": " generiranim številom, geslom,",
-        "warning3": " in",
-        "warning4": " ostali podatki o računu",
-        "warning5": " bodo izgubljeni.",
-        "areYouSure": "Ali ste prepričani da želite nadaljevati?"
-    },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "PREKLIČI",
@@ -267,11 +270,8 @@
         "okay": "Okej. Ustvarimo vašo denarnico!",
         "doYouAlreadyHaveASeed": "Ali že imate seed, ki bi ga želeli uporabiti?",
         "seedExplanation": "IOTA seed je kot uporabniško ime in geslo za vaš račun, združeni v enoten niz 81 znakov.",
-        "explanation1": "Uporabljate jo lahko za dostop do vaših sredstev iz",
-        "explanation2": " katere koli denarnice",
-        "explanation3": ", na",
-        "explanation4": " kateri koli napravi",
-        "explanation5": ". Ampak če izgubite vašo generirano vrednost boste izgubili tudi vaš IOTA.",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Prosimo vas, da imate seed shranjen na varnem."
     },
     "welcome": {
@@ -280,10 +280,9 @@
         "reminder": "Mogoče vas bo zamikalo, da preskočite nekaj korakov, vendar vas pozivamo, da dokončaste proces."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "tri krat preveri",
-        "thatTheyAreCorrect": "da so pravilni."
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
@@ -314,6 +313,9 @@
     "advancedThemeCustomisation": {
         "background": "Ozadje",
         "frame": "Frame"
+    },
+    "themeCustomisation": {
+        "theme": "Tema"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -360,11 +362,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "infoTextOne": "Vsi vaši podatki o denarnici vlkjucno z vašim",
-        "infoTextTwo": "generiranim številom, geslom",
-        "infoTextThree": "in",
-        "infoTextFour": "ostali podatki o računu",
-        "infoTextFive": "bodo izgubljeni."
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",

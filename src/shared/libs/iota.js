@@ -3,7 +3,7 @@ import { defaultNode, nodes } from '../config';
 
 export const iota = new IOTA({ provider: defaultNode });
 
-export const changeIotaNode = provider => iota.changeNode({ provider });
+export const changeIotaNode = (provider) => iota.changeNode({ provider });
 
 export const getRandomNode = () => {
     const x = Math.floor(Math.random() * nodes.length);
@@ -11,7 +11,7 @@ export const getRandomNode = () => {
     return nodes[x];
 };
 
-export const convertFromTrytes = trytes => {
+export const convertFromTrytes = (trytes) => {
     trytes = trytes.replace(/9+$/, '');
     const message = iota.utils.fromTrytes(trytes);
     if (trytes === '') {
@@ -20,7 +20,7 @@ export const convertFromTrytes = trytes => {
     return message;
 };
 
-export const getBalances = addresses => {
+export const getBalances = (addresses) => {
     iota.api.getBalances(addresses, 1, (error, success) => {
         if (!error) {
             console.log(success);
@@ -30,7 +30,7 @@ export const getBalances = addresses => {
     });
 };
 
-export const checkNode = cb => {
+export const checkNode = (cb) => {
     iota.api.getNodeInfo((error, success) => {
         if (error) {
             cb(error);
@@ -41,7 +41,7 @@ export const checkNode = cb => {
     });
 };
 
-export const getChecksum = seed => {
+export const getChecksum = (seed) => {
     return iota.utils.addChecksum(seed, 3, false).substr(-3);
 };
 
@@ -58,19 +58,6 @@ export const isReceivedTransfer = (bundle, addresses) => {
                 // check if received transaction, or 0 value (message)
             } else if (bundle[i].value >= 0 && !isRemainder) {
                 return true;
-            }
-        }
-    }
-};
-
-export const getRelevantTransfer = (bundle, addresses) => {
-    for (let i = 0; i < bundle.length; i++) {
-        if (addresses.indexOf(bundle[i].address) > -1) {
-            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
-            if (bundle[i].value < 0 && !isRemainder) {
-                return bundle[0];
-            } else if (bundle[i].value >= 0 && !isRemainder) {
-                return bundle[i];
             }
         }
     }

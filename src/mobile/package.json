@@ -31,7 +31,7 @@
     "i18next": "^10.1.0",
     "inherits": "^2.0.3",
     "iota-wallet-shared-modules": "../shared/",
-    "iota.lib.js": "^0.4.6",
+    "iota.lib.js": "^0.4.7",
     "lodash": "^4.17.4",
     "lottie-ios": "^2.1.5",
     "lottie-react-native": "2.2.7",
@@ -44,7 +44,7 @@
     "react": "16.0.0",
     "react-i18next": "^7.3.0",
     "react-native": "0.51.0",
-    "react-native-camera": "^0.10.0",
+    "react-native-camera": "^0.13.0",
     "react-native-clipboard": "^0.0.5",
     "react-native-color": "^0.0.10",
     "react-native-crypto": "^2.0.2",
@@ -128,7 +128,7 @@
       "/shared/"
     ],
     "transformIgnorePatterns": [
-      "node_modules/?!(react-native|iota-wallet-shared-modules)"
+      "node_modules/?!(react-native|iota-wallet-shared-modules)/"
     ]
   },
   "react-native": {
