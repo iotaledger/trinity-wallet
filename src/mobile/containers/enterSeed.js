@@ -206,7 +206,7 @@ class EnterSeed extends React.Component {
                             label={t('global:seed')}
                             onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                             containerStyle={{ width: width / 1.36 }}
-                            autoCapitalize={'none'}
+                            autoCapitalize={'characters'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"

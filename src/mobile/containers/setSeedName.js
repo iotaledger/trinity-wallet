@@ -14,8 +14,6 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setSeedName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { width, height } from '../util/dimensions';
 import keychain, { hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
-import THEMES from '../theme/themes';
-import GENERAL from '../theme/general';
 import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import InfoBox from '../components/infoBox';
@@ -34,31 +32,6 @@ export class SetSeedName extends Component {
         this.state = {
             accountName: this.getDefaultAccountName(),
         };
-    }
-
-    navigateTo(screen) {
-        if (screen === 'loading') {
-            return this.props.navigator.push({
-                screen,
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
-                animated: false,
-                overrideBackPress: true,
-            });
-        } else {
-            return this.props.navigator.push({
-                screen,
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
-                animated: false,
-            });
-        }
     }
 
     onDonePress() {
@@ -148,6 +121,31 @@ export class SetSeedName extends Component {
     }
 
     navigateTo(screen) {
+        if (screen === 'loading') {
+            return this.props.navigator.push({
+                screen,
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: this.props.backgroundColor,
+                },
+                animated: false,
+                overrideBackPress: true,
+            });
+        } else {
+            return this.props.navigator.push({
+                screen,
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: this.props.backgroundColor,
+                },
+                animated: false,
+            });
+        }
+    }
+
+    navigateTo(screen) {
         return this.props.navigator.push({
             screen,
             navigatorStyle: {
@@ -167,7 +165,7 @@ export class SetSeedName extends Component {
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>

@@ -15,7 +15,6 @@ import {
 import CustomTextInput from '../components/customTextInput';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import { connect } from 'react-redux';
@@ -151,8 +150,8 @@ class EnterPassword extends Component {
 
     render() {
         const { t, positiveColor, secondaryBackgroundColor, textColor, negativeColor } = this.props;
-        const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
-        const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
+        const borderColor = { borderColor: positiveColor };
+        const positiveTextColor = { color: positiveColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
@@ -192,10 +191,10 @@ class EnterPassword extends Component {
 EnterPassword.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    positiveColor: PropTypes.object.isRequired,
+    positiveColor: PropTypes.string.isRequired,
     textColor: PropTypes.object.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.object.isRequired,
+    negativeColor: PropTypes.string.isRequired,
     isFingerprintEnabled: PropTypes.bool.isRequired,
 };
 

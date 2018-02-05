@@ -5384,9 +5384,9 @@ react-native-modal@^4.0.0:
     prop-types "15.5.10"
     react-native-animatable "^1.2.3"
 
-react-native-navigation@^1.1.205:
-  version "1.1.300"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-1.1.300.tgz#0086f55a1bcd48010d43d12218de8e017f144937"
+react-native-navigation@^v1.1.367:
+  version "1.1.367"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-1.1.367.tgz#9f869f82dfb75e9549a18f70a997dd0684315f99"
   dependencies:
     lodash "4.x.x"
 
