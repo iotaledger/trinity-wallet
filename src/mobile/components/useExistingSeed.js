@@ -11,7 +11,6 @@ import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import CustomTextInput from '../components/customTextInput';
 import QRScanner from '../components/qrScanner';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -125,12 +124,12 @@ class UseExistingSeed extends React.Component {
         seedCount: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         ctaColor: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         ctaBorderColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         addAccount: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
@@ -209,8 +208,8 @@ class UseExistingSeed extends React.Component {
 
     renderModalContent = () => (
         <QRScanner
-            ctaColor={THEMES.getHSL(this.props.ctaColor)}
-            backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
+            ctaColor={this.props.ctaColor}
+            backgroundColor={this.props.backgroundColor}
             onQRRead={data => this.onQRRead(data)}
             hideModal={() => this.hideModal()}
             secondaryCtaColor={this.props.secondaryCtaColor}

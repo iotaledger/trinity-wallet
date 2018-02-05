@@ -23,7 +23,6 @@ import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import withUserActivity from '../components/withUserActivity';
 import Poll from './poll';
-import THEMES from '../theme/themes';
 import Tabs from '../components/tabs';
 import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
@@ -181,7 +180,7 @@ class Home extends Component {
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
-                <KeyboardAvoidingView style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
+                <KeyboardAvoidingView style={{ flex: 1, backgroundColor: backgroundColor }}>
                     <DynamicStatusBar textColor={secondaryBarColor} />
                     {!inactive &&
                         !minimised && (
@@ -282,10 +281,10 @@ Home.propTypes = {
     setUserActivity: PropTypes.func.isRequired,
     inactive: PropTypes.bool.isRequired,
     minimised: PropTypes.bool.isRequired,
-    backgroundColor: PropTypes.object.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
     barColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.object.isRequired,
-    positiveColor: PropTypes.object.isRequired,
+    negativeColor: PropTypes.string.isRequired,
+    positiveColor: PropTypes.string.isRequired,
     tempAccount: PropTypes.object.isRequired,
     secondaryBarColor: PropTypes.string.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,

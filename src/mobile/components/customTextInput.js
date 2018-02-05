@@ -5,7 +5,6 @@ import whiteQRImagePath from 'iota-wallet-shared-modules/images/qr-white.png';
 import blackQRImagePath from 'iota-wallet-shared-modules/images/qr-black.png';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
@@ -69,7 +68,7 @@ class CustomTextInput extends React.Component {
         onDenominationPress: PropTypes.func,
         denominationText: PropTypes.string,
         onQRPress: PropTypes.func,
-        negativeColor: PropTypes.object,
+        negativeColor: PropTypes.string,
         innerPadding: PropTypes.object,
         currencyConversion: PropTypes.bool,
         conversionText: PropTypes.string,
@@ -85,12 +84,7 @@ class CustomTextInput extends React.Component {
         onQRPress: () => {},
         denominationText: 'i',
         secondaryBackgroundColor: 'white',
-        negativeColor: {
-            h: 50.44897959183674,
-            s: 0.9839357429718876,
-            l: 0.48823529411764705,
-            a: 1,
-        },
+        negativeColor: '#F7D002',
         innerPadding: null,
         currencyConversion: false,
         conversionText: '',
@@ -124,7 +118,7 @@ class CustomTextInput extends React.Component {
 
     getLabelStyle() {
         const { negativeColor, secondaryBackgroundColor } = this.props;
-        const focusedFieldLabel = { color: THEMES.getHSL(negativeColor), fontFamily: 'Lato-Regular' };
+        const focusedFieldLabel = { color: negativeColor, fontFamily: 'Lato-Regular' };
         const unfocusedFieldLabel = { color: secondaryBackgroundColor, fontFamily: 'Lato-Regular' };
 
         return this.state.isFocused ? focusedFieldLabel : unfocusedFieldLabel;
@@ -198,7 +192,7 @@ class CustomTextInput extends React.Component {
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
                         onChangeText={onChangeText}
-                        selectionColor={THEMES.getHSL(negativeColor)}
+                        selectionColor={negativeColor}
                         underlineColorAndroid={'transparent'}
                     />
                     {(widget === 'qr' && this.renderQR(widgetBorderColor)) ||

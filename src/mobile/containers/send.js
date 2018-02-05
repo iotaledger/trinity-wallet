@@ -54,7 +54,6 @@ import {
 import keychain, { getSeed } from '../util/keychain';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
-import THEMES from '../theme/themes';
 import CustomTextInput from '../components/customTextInput';
 import CtaButton from '../components/ctaButton';
 import { width, height } from '../util/dimensions';
@@ -81,9 +80,9 @@ class Send extends Component {
         getFromKeychainError: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
         ctaColor: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
         barColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         secondaryBarColor: PropTypes.string.isRequired,
@@ -118,12 +117,12 @@ class Send extends Component {
     }
 
     componentWillMount() {
-        const { t, currency, balance, amount } = this.props;
+        const { t, currency, balance, amount, ctaColor } = this.props;
         currencySymbol = getCurrencySymbol(currency);
         if (amount === (balance / this.getUnitMultiplier()).toString()) {
             this.setState({
                 maxPressed: true,
-                maxColor: '#FF6C69',
+                maxColor: ctaColor,
                 maxText: t('send:maximumSelected'),
             });
         }
@@ -161,13 +160,13 @@ class Send extends Component {
 
     onMaxPress() {
         const { sending } = this.state;
-        const { t } = this.props;
+        const { t, ctaColor } = this.props;
         const max = (this.props.balance / this.getUnitMultiplier()).toString();
         if (!sending) {
             this.props.setSendAmountField(max);
             this.setState({
                 maxPressed: true,
-                maxColor: '#FF6C69',
+                maxColor: ctaColor,
                 maxText: t('send:maximumSelected'),
             });
         }
@@ -346,7 +345,7 @@ class Send extends Component {
                     <QRScanner
                         onQRRead={data => this.onQRRead(data)}
                         hideModal={() => this._hideModal()}
-                        backgroundColor={THEMES.getHSL(backgroundColor)}
+                        backgroundColor={backgroundColor}
                         ctaColor={ctaColor}
                         secondaryCtaColor={secondaryCtaColor}
                         ctaBorderColor={ctaBorderColor}
@@ -366,7 +365,7 @@ class Send extends Component {
                         address={address}
                         sendTransfer={() => this.sendTransfer()}
                         hideModal={callback => this._hideModal(callback)}
-                        backgroundColor={THEMES.getHSL(backgroundColor)}
+                        backgroundColor={backgroundColor}
                         borderColor={{ borderColor: secondaryBackgroundColor }}
                         textColor={{ color: secondaryBackgroundColor }}
                         setSendingTransferFlag={() => this.setSendingTransferFlag()}
@@ -612,7 +611,7 @@ class Send extends Component {
                                         }
                                         style={styles.activityIndicator}
                                         size="large"
-                                        color={THEMES.getHSL(negativeColor)}
+                                        color={negativeColor}
                                     />
                                 </View>
                             )}
@@ -635,7 +634,7 @@ class Send extends Component {
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={THEMES.getHSL(backgroundColor)}
+                        backdropColor={backgroundColor}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}

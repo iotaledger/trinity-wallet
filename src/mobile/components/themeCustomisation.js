@@ -261,7 +261,7 @@ class ThemeCustomisation extends Component {
                             style={[
                                 styles.demoContainer,
                                 {
-                                    backgroundColor: THEMES.getHSL(backgroundColor),
+                                    backgroundColor: backgroundColor,
                                     shadowColor: 'black',
                                     borderColor: secondaryBackgroundColor,
                                 },
@@ -282,7 +282,7 @@ class ThemeCustomisation extends Component {
                                 style={[
                                     styles.frameBar,
                                     {
-                                        backgroundColor: THEMES.getHSL(barColor),
+                                        backgroundColor: barColor,
                                         shadowColor: 'black',
                                     },
                                 ]}
@@ -293,20 +293,20 @@ class ThemeCustomisation extends Component {
                                 <Image style={styles.chevron} source={chevronDownImagePath} />
                             </View>
                             <View style={styles.buttonsContainer}>
-                                <View style={[styles.button, { borderColor: THEMES.getHSL(negativeColor) }]}>
-                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(negativeColor) }]}>
+                                <View style={[styles.button, { borderColor: negativeColor }]}>
+                                    <Text style={[styles.buttonText, { color: negativeColor }]}>
                                         {t('global:back')}
                                     </Text>
                                 </View>
-                                <View style={[styles.button, { borderColor: THEMES.getHSL(positiveColor) }]}>
-                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(positiveColor) }]}>
+                                <View style={[styles.button, { borderColor: positiveColor }]}>
+                                    <Text style={[styles.buttonText, { color: positiveColor }]}>
                                         {t('global:next')}
                                     </Text>
                                 </View>
                             </View>
                             <View style={styles.buttonsContainer}>
-                                <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
-                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>
+                                <View style={[styles.button, { borderColor: extraColor }]}>
+                                    <Text style={[styles.buttonText, { color: extraColor }]}>
                                         {t('global:save').toUpperCase()}
                                     </Text>
                                 </View>

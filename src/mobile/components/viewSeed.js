@@ -104,7 +104,7 @@ class ViewSeed extends Component {
         textColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         borderColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         onWrongPassword: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
