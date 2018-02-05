@@ -6,7 +6,6 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } fr
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from './onboardingButtons';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 
@@ -109,7 +108,7 @@ class SnapshotTransition extends Component {
         isTransitioning: PropTypes.bool.isRequired,
         backPress: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
         borderColor: PropTypes.object.isRequired,
         transitionForSnapshot: PropTypes.func.isRequired,
@@ -273,7 +272,7 @@ class SnapshotTransition extends Component {
                                     animating={isTransitioning}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={THEMES.getHSL(negativeColor)}
+                                    color={negativeColor}
                                 />
                             </View>
                         )}
@@ -287,7 +286,7 @@ class SnapshotTransition extends Component {
                                     animating={isTransitioning}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={THEMES.getHSL(negativeColor)}
+                                    color={negativeColor}
                                 />
                             </View>
                         )}
@@ -312,7 +311,7 @@ class SnapshotTransition extends Component {
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
-                    backdropColor={THEMES.getHSL(backgroundColor)}
+                    backdropColor={backgroundColor}
                     backdropOpacity={0.6}
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}

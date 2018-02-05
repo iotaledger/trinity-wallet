@@ -21,7 +21,6 @@ import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/c
 import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import CtaButton from '../components/ctaButton';
 
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
@@ -275,13 +274,13 @@ class PaperWallet extends Component {
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const checksum = getChecksum(this.props.tempAccount.seed);
-        const positiveColorText = { color: THEMES.getHSL(positiveColor) };
-        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
+        const positiveColorText = { color: positiveColor };
+        const positiveColorBorder = { borderColor: positiveColor };
         const ctaTextColor = { color: secondaryCtaColor };
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
