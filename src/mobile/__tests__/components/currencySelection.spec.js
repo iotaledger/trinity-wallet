@@ -19,7 +19,7 @@ const getProps = overrides =>
             backPress: noop,
             t: noop,
             secondaryBackgroundColor: 'white',
-            negativeColor: '',
+            negativeColor: 'white',
             tickImagePath: 0,
             arrowLeftImagePath: 0,
         },
