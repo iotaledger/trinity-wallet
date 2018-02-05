@@ -55,6 +55,7 @@ class iotaWalletUITests: XCTestCase {
       app/*@START_MENU_TOKEN@*/.buttons["Done"]/*[[".keyboards.buttons[\"Done\"]",".buttons[\"Done\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
       sleep(3)
       snapshot("setSeedName")
+      app.buttons["Done"].tap()
       app.otherElements["setSeedName-done"].tap()
       app.otherElements["setPassword-passwordbox"].tap()
       // Test password: trinitytest1
@@ -74,7 +75,7 @@ class iotaWalletUITests: XCTestCase {
   func waitForElementToAppear(_ element: XCUIElement) {
     let existsPredicate = NSPredicate(format: "exists == true")
     expectation(for: existsPredicate, evaluatedWith: element, handler: nil)
-    waitForExpectations(timeout: 10, handler: nil)
+    waitForExpectations(timeout: 15, handler: nil)
   }
     
 }
