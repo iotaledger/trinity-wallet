@@ -73,7 +73,7 @@ class TopBar extends Component {
         setSeedIndex: PropTypes.func.isRequired,
         setReceiveAddress: PropTypes.func.isRequired,
         selectedAccount: PropTypes.object.isRequired,
-        barColor: PropTypes.object.isRequired,
+        barColor: PropTypes.string.isRequired,
         setPollFor: PropTypes.func.isRequired,
         secondaryBarColor: PropTypes.string.isRequired,
         notificationLog: PropTypes.array.isRequired,
@@ -284,6 +284,7 @@ class TopBar extends Component {
             isTopBarActive,
             secondaryBarColor,
             backgroundColor,
+            barColor,
             notificationLog,
             clearLog,
         } = this.props;
@@ -311,7 +312,7 @@ class TopBar extends Component {
                     style={[
                         styles.container,
                         {
-                            backgroundColor: THEMES.getHSL(this.props.barColor),
+                            backgroundColor: barColor,
                             shadowColor: 'black',
                         },
                     ]}
@@ -360,7 +361,7 @@ class TopBar extends Component {
                         onBackdropPress={() => this._hideModal()}
                     >
                         <NotificationLog
-                            backgroundColor={THEMES.getHSL(this.props.barColor)}
+                            backgroundColor={THEMES.getHSL(barColor)}
                             hideModal={() => this._hideModal()}
                             textColor={{ color: secondaryBarColor }}
                             borderColor={{ borderColor: secondaryBarColor }}
