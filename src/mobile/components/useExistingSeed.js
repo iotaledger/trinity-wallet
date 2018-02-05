@@ -124,7 +124,7 @@ class UseExistingSeed extends React.Component {
     static propTypes = {
         seedCount: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        ctaColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.string.isRequired,
         backgroundColor: PropTypes.object.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
@@ -170,19 +170,19 @@ class UseExistingSeed extends React.Component {
 
     getDefaultAccountName() {
         const { t } = this.props;
-        if (this.props.account.seedCount === 0) {
+        if (this.props.seedCount === 0) {
             return t('global:mainWallet');
-        } else if (this.props.account.seedCount === 1) {
+        } else if (this.props.seedCount === 1) {
             return t('global:secondWallet');
-        } else if (this.props.account.seedCount === 2) {
+        } else if (this.props.seedCount === 2) {
             return t('global:thirdWallet');
-        } else if (this.props.account.seedCount === 3) {
+        } else if (this.props.seedCount === 3) {
             return t('global:fourthWallet');
-        } else if (this.props.account.seedCount === 4) {
+        } else if (this.props.seedCount === 4) {
             return t('global:fifthWallet');
-        } else if (this.props.account.seedCount === 5) {
+        } else if (this.props.seedCount === 5) {
             return t('global:sixthWallet');
-        } else if (this.props.account.seedCount === 6) {
+        } else if (this.props.seedCount === 6) {
             return t('global:otherWallet');
         } else {
             return '';
@@ -193,12 +193,13 @@ class UseExistingSeed extends React.Component {
         const { seed } = this.state;
         let checksumValue = '...';
 
-        if (seed.length !== 0 && seed.length < 81) {
+        if (seed.length !== 0 && !seed.match(VALID_SEED_REGEX)) {
+            checksumValue = '!';
+        } else if (seed.length !== 0 && seed.length < 81) {
             checksumValue = '< 81';
         } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
             checksumValue = getChecksum(seed);
         }
-
         return checksumValue;
     }
 
@@ -210,7 +211,7 @@ class UseExistingSeed extends React.Component {
         <QRScanner
             ctaColor={THEMES.getHSL(this.props.ctaColor)}
             backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
-            onQRRead={data => this.onQRRead(data)}
+            onQRRead={(data) => this.onQRRead(data)}
             hideModal={() => this.hideModal()}
             secondaryCtaColor={this.props.secondaryCtaColor}
             ctaBorderColor={this.props.ctaBorderColor}
@@ -236,8 +237,8 @@ class UseExistingSeed extends React.Component {
                         </View>
                         <View style={{ flex: 0.4 }} />
                         <CustomTextInput
-                            label="Seed"
-                            onChangeText={value => this.setState({ seed: value.toUpperCase() })}
+                            label={t('global:seed')}
+                            onChangeText={(value) => this.setState({ seed: value.toUpperCase() })}
                             containerStyle={{ width: width / 1.4 }}
                             autoCapitalize={'none'}
                             maxLength={MAX_SEED_LENGTH}
@@ -257,11 +258,11 @@ class UseExistingSeed extends React.Component {
                         </View>
                         <View style={{ flex: 0.3 }} />
                         <CustomTextInput
-                            onRef={c => {
+                            onRef={(c) => {
                                 this.accountNameField = c;
                             }}
                             label={t('addAdditionalSeed:accountName')}
-                            onChangeText={value => this.setState({ accountName: value })}
+                            onChangeText={(value) => this.setState({ accountName: value })}
                             containerStyle={{ width: width / 1.4 }}
                             autoCapitalize={'words'}
                             maxLength={MAX_SEED_LENGTH}

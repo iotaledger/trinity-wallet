@@ -97,8 +97,8 @@ android {
 
     defaultConfig {
         applicationId "com.iota.wallet"
-        versionCode 14
-        versionName "3.3.5"
+        versionCode 15
+        versionName "3.3.6"
         minSdkVersion 16
         targetSdkVersion 26
         multiDexEnabled true
@@ -151,7 +151,9 @@ dependencies {
     compile project(':react-native-extra-dimensions-android')
     compile project(':react-native-detect-navbar-android')
     compile project(':react-native-os')
-    compile project(':react-native-camera')
+    compile (project(':react-native-camera')) {
+       exclude group: "com.android.support"
+    }
     compile project(':react-native-html-to-pdf')
     compile project(':react-native-print')
     compile project(':react-native-udp')
@@ -163,7 +165,6 @@ dependencies {
   	compile "com.android.support:appcompat-v7:25.3.1"
   	compile "com.facebook.react:react-native:+"
   	compile project(':react-native-svg')
-  	compile project(':react-native-camera')
     compile project(':react-native-fs')
     compile project(':react-native-keychain')
     compile("com.crashlytics.sdk.android:crashlytics:2.6.4@aar") {

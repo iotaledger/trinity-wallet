@@ -59,7 +59,19 @@
         "attachToTangleUnavailable": "Anexar ao Tangle indisponível",
         "attachToTangleUnavailableExplanation": "Anexar ao Tangle não está disponível no nó selecionado.",
         "wallet": "Carteira",
-        "pressBackAgain": "Toque novamente para fechar o app"
+        "sent": "Enviado",
+        "received": "Recebido",
+        "sending": "Enviando",
+        "receiving": "Recebendo",
+        "confirmed": "Confirmado",
+        "pending": "Pendente",
+        "bundleHash": "Pacote Hash",
+        "addresses": "Endereços",
+        "pressBackAgain": "Toque novamente para fechar o app",
+        "autoreattaching": "Anexando automaticamente ao Tangle",
+        "autoreattachingExplanation": "Anexando transação automaticamente com hash {{hash}}",
+        "autopromoting": "Promovendo transferência automaticamente",
+        "autopromotingExplanation": "Promovendo transação com hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -166,9 +178,8 @@
     "saveYourSeed": {
         "seedCleared": "Seed removida",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida do clipboard.",
-        "mustSaveYourSeed": "Você deve guardar a sua Seed com ",
-        "atLeastOne": "pelo menos uma ",
-        "ofTheOptions": "das opções listadas abaixo."
+        "mustSaveYourSeed":
+            "<0><0>Você precisa salvar sua seed com </0><1>pelo menos uma</1><2> das opções listadas abaixo.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorreta",
@@ -194,7 +205,8 @@
         "invalidAmount": "Valor inserido está incorreto",
         "invalidAmountExplanation": "Por favor, digite um valor numérico para o valor da transação.",
         "maximumSelected": "Quantia MÁXIMA selecionada",
-        "iotaUnits": "Unidades IOTA"
+        "iotaUnits": "IOTA units explained",
+        "sendMax": "ENVIAR O MÁXIMO"
     },
     "setPassword": {
         "passwordTooShort": "A senha é muito curta",
@@ -248,15 +260,6 @@
         "paste": "Colar",
         "selectAll": "Selecionar Tudo"
     },
-    "resetWalletConfirmation": {
-        "thisAction": "Esta ação não pode ser anulada.",
-        "warning1": "Toda a informação da sua carteira, incluindo suas ",
-        "warning2": " seeds, senha,",
-        "warning3": " e",
-        "warning4": " outras informações da conta",
-        "warning5": " serão perdidas.",
-        "areYouSure": "Tem certeza que deseja continuar?"
-    },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
         "cancel": "CANCELAR",
@@ -267,11 +270,8 @@
         "doYouAlreadyHaveASeed": "Já possui uma seed que gostaria de utilizar?",
         "seedExplanation":
             "A seed IOTA representa, simultaneamente, o nome do utilizador e a senha da sua conta, combinados numa sequência de 81 caracteres.",
-        "explanation1": "Poderá usá-la para aceder aos seus fundos a partir",
-        "explanation2": " de qualquer carteira",
-        "explanation3": ", em",
-        "explanation4": " qualquer dispositivo",
-        "explanation5": ". Mas se perder a sua Seed, também perderá os seus IOTA.",
+        "explanation":
+            "<0><0>Voce pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder a sua seed, também perderá as suas IOTAS.</4></0>",
         "keepSafe": "Por favor, mantenha a sua seed protegida e segura."
     },
     "welcome": {
@@ -280,10 +280,9 @@
         "reminder": "Você pode se sentir tentado a ignorar alguns passos, mas aconselhamos que conclua o processo."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Seu endereço é {{maxSeedLength}} caracteres lidos da esquerda para a direita. Anote seu endereço e código de verificação e",
-        "tripleCheck": "verifique várias vezes",
-        "thatTheyAreCorrect": "se eles estão corretos."
+        "yourSeedIs": "Sua seed é {{maxSeedLength}} caracteres lidos da esquerda para a direita.",
+        "writeDownYourSeed":
+            "<0>Anote suas seed e soma de verificação e </0><1>tenha certeza</1><2> que elas estão corretas.</2>"
     },
     "history": {
         "bundleHashCopied": "Pacote hash copiado",
@@ -314,6 +313,9 @@
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
         "frame": "Bordas"
+    },
+    "themeCustomisation": {
+        "theme": "Tema"
     },
     "currencySelection": {
         "currency": "Moeda"
@@ -360,11 +362,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "ESTA AÇÃO NÃO PODE SER REVERTIDA.",
-        "infoTextOne": "Toda a informação da sua carteira, incluindo suas",
-        "infoTextTwo": "seeds, senha",
-        "infoTextThree": "e",
-        "infoTextFour": "outras informações da conta",
-        "infoTextFive": "serão perdidas."
+        "warning":
+            "<0><0>Todos os seus dados da carteira, incluindo suas </0><1>seeds, senhas,</1><2> e </2><3>outras informações da conta</3><4> serão perdidas.</4></0>"
     },
     "transferConfirmation": {
         "youAreAbout": "Você está prestes a enviar {{contents}} para o endereço",

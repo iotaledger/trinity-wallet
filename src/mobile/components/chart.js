@@ -172,17 +172,10 @@ class Chart extends PureComponent {
                 <View style={styles.chartContainer}>
                     <VictoryChart domainPadding={isAndroid ? 0 : 15} height={chartHeight} width={chartWidth}>
                         <Defs>
-                            {(theme.secondaryBackgroundColor === 'white' && (
-                                <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
-                                    <Stop stopColor={theme.chartLineColor} stopOpacity="1" offset="100%" />
-                                    <Stop stopColor="#FFFFFF" stopOpacity="0.25" offset="0%" />
-                                </LinearGradient>
-                            )) || (
-                                <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
-                                    <Stop stopColor={theme.chartLineColor} stopOpacity="1" offset="100%" />
-                                    <Stop stopColor="transparent" stopOpacity="0.25" offset="0%" />
-                                </LinearGradient>
-                            )}
+                            <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
+                                <Stop stopColor={theme.chartLineColorPrimary} stopOpacity="1" offset="100%" />
+                                <Stop stopColor={theme.chartLineColorSecondary} stopOpacity="1" offset="25%" />
+                            </LinearGradient>
                         </Defs>
                         <VictoryLine
                             data={chartData.data}

@@ -17,14 +17,14 @@ const generate = (category, title, message, closeInterval = 5500) => ({
 
 const dispose = () => ({ type: ActionTypes.HIDE });
 
-export const generateAlert = (category, title, message, closeInterval, err) => dispatch => {
+export const generateAlert = (category, title, message, closeInterval, err) => (dispatch) => {
     dispatch(generate(category, title, message, closeInterval));
     if (err) {
         dispatch(prepareLogUpdate(err));
     }
 };
 
-export const generateAccountInfoErrorAlert = err => dispatch => {
+export const generateAccountInfoErrorAlert = (err) => (dispatch) => {
     dispatch(
         generateAlert(
             'error',
@@ -36,7 +36,11 @@ export const generateAccountInfoErrorAlert = err => dispatch => {
     dispatch(prepareLogUpdate(err));
 };
 
-export const generateSyncingCompleteAlert = () => dispatch => {
+export const generateTransitionErrorAlert = () => (dispatch) => {
+    dispatch(generateAlert('error', 'Snapshot transition failed', 'Please try again.', 10000));
+};
+
+export const generateSyncingCompleteAlert = () => (dispatch) => {
     dispatch(
         generateAlert(
             'success',
@@ -47,27 +51,27 @@ export const generateSyncingCompleteAlert = () => dispatch => {
     );
 };
 
-export const generateAccountDeletedAlert = () => dispatch =>
+export const generateAccountDeletedAlert = () => (dispatch) =>
     dispatch(
         generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation')),
     );
 
-export const generateSyncingErrorAlert = err => dispatch => {
+export const generateSyncingErrorAlert = (err) => (dispatch) => {
     dispatch(
         generateAlert('error', i18next.t('settings:invalidResponse'), i18next.t('settings:invalidResponseExplanation')),
     );
     dispatch(prepareLogUpdate(err));
 };
 
-export const disposeOffAlert = () => dispatch => dispatch(dispose());
+export const disposeOffAlert = () => (dispatch) => dispatch(dispose());
 
-export const prepareLogUpdate = err => dispatch => {
+export const prepareLogUpdate = (err) => (dispatch) => {
     const time = Date.now();
     const error = { error: err.toString(), time: time };
     dispatch(updateLog(error));
 };
 
-export const updateLog = logItem => ({
+export const updateLog = (logItem) => ({
     type: ActionTypes.UPDATE_LOG,
     logItem,
 });
