@@ -85,6 +85,14 @@ export const storeTwoFactorAuthKeyInKeychain = async key => {
     return keychain.set(password, serialize(withTwoFactorAuthKey));
 };
 
+export const getTwoFactorAuthKeyFromKeychain = async () => {
+    const info = await keychain.get();
+
+    const { data } = info;
+
+    return get(parse(data), 'shared.twoFactorAuthKey');
+};
+
 export const hasDuplicateAccountName = (data, name) => {
     const parsed = parse(data);
     const hasDuplicate = d => get(d, 'name') === name;

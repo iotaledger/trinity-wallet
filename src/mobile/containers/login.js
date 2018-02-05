@@ -122,6 +122,7 @@ class Login extends Component {
             keychain
                 .get()
                 .then(credentials => {
+                    console.log('Credentials', credentials);
                     const hasData = get(credentials, 'data');
                     const hasCorrectPassword = get(credentials, 'password') === password;
                     if (hasData && hasCorrectPassword) {
