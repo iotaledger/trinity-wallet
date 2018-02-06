@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class TwoFactorSetupAddKey extends Component {
+export class TwoFactorSetupAddKey extends Component {
     static propTypes = {
         backgroundColor: PropTypes.string.isRequired,
         generateAlert: PropTypes.func.isRequired,
