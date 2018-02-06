@@ -46,7 +46,7 @@
         "yes": "EVET",
         "no": "HAYIR",
         "password": "Şifre",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Parola veya parmak izi",
         "unrecognisedPassword": "Tanınmayan şifre",
         "unrecognisedPasswordExplanation": "Şifre tanımlı değil. Lütfen yeniden deneyin.",
         "syncInProgress": "Eşitleme sürüyor",
@@ -67,7 +67,7 @@
         "pending": "Bekleniyor",
         "bundleHash": "Bundle Hash",
         "addresses": "Adresler",
-        "pressBackAgain": "Press back again to close the app",
+        "pressBackAgain": "Uygulamayı kapatmak için geri tuşuna bir daha bas",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
         "autopromoting": "Autopromoting transfer",
@@ -139,8 +139,8 @@
         "useSeed": "CÜZDAN ŞİFRESİNİ KULLAN",
         "login": "GİRİŞ YAP",
         "selectDifferentNode": "Farklı düğüm seçmek istiyor musunuz?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "Node'u kur",
+        "cannotConnect": "IOTA node'una bağlanılamıyor."
     },
     "loading": {
         "loadingFirstTime": "Cüzdan şifresi ilk kez yükleniyor.",
@@ -198,7 +198,7 @@
         "invalidAmount": "Yanlış tutar girildi",
         "invalidAmountExplanation": "Lütfen sayısal bir transfer tutarı girin.",
         "maximumSelected": "En fazla tutar seçildi",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "IOTA birim açıklaması",
         "sendMax": "TÜMÜNÜ GÖNDER"
     },
     "setPassword": {
@@ -341,7 +341,7 @@
         "title": "Oluşum ve hesap adınızı girin."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
+        "enterPassword": "Seed'ini görüntülemek için parolanı ver.",
         "viewSeed": "Seed'i görüntüle",
         "hideSeed": "Oluşumu gizle"
     },
@@ -363,10 +363,10 @@
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "status": "Durum",
+        "enabled": "Etkin",
+        "disabled": "Etkisiz",
+        "fingerprintUnavailable": "Parmak izi algılayıcısı mevcut değil",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
