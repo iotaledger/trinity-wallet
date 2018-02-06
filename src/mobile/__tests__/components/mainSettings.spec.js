@@ -17,7 +17,6 @@ const getProps = overrides =>
             onLanguagePress: noop,
             setSetting: noop,
             setModalContent: noop,
-            on2FASetupPress: noop,
             onThemePress: noop,
             t: arg => arg,
         },
@@ -48,10 +47,6 @@ describe('Testing MainSettings component', () => {
 
         it('should require a setModalContent function as a prop', () => {
             expect(MainSettings.propTypes.setModalContent).toBe(PropTypes.func.isRequired);
-        });
-
-        it('should require a on2FASetupPress function as a prop', () => {
-            expect(MainSettings.propTypes.on2FASetupPress).toBe(PropTypes.func.isRequired);
         });
 
         it('should require a onThemePress function as a prop', () => {
@@ -90,8 +85,8 @@ describe('Testing MainSettings component', () => {
             { func: 'setSetting', calledWith: 'currencySelection' },
             { func: 'onLanguagePress', calledWith: null },
             { func: 'setSetting', calledWith: 'accountManagement' },
-            { func: 'on2FASetupPress', calledWith: null },
             { func: 'setSetting', calledWith: 'changePassword' },
+            { func: 'setSetting', calledWith: 'securitySettings' },
             { func: 'setSetting', calledWith: 'advancedSettings' },
             { func: 'setModalContent', calledWith: 'logoutConfirmation' },
         ].forEach((item, idx) => {

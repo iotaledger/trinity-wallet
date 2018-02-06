@@ -24,6 +24,7 @@ import TwoFactorSetupAddKey from '../containers/twoFactorSetupAddKey';
 import TwoFactorSetupEnterToken from '../containers/twoFactorSetupEnterToken';
 import Disable2FA from '../containers/disable2FA';
 import { isIPhoneX } from '../util/device';
+import FingerprintSetup from '../containers/fingerprintSetup';
 
 function getGenerator(screen) {
     if (isIPhoneX) {
@@ -67,4 +68,5 @@ export default function registerScreens(store, Provider) {
         Provider,
     );
     Navigation.registerComponent('disable2FA', () => getGenerator(Disable2FA), store, Provider);
+    Navigation.registerComponent('fingerprintSetup', () => getGenerator(FingerprintSetup), store, Provider);
 }
