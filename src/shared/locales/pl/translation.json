@@ -189,7 +189,7 @@
         "notEnoughFunds": "Brak wystarczających środków",
         "notEnoughFundsExplanation": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
         "keyReuse": "Ponowne użycie klucza",
-        "keyReuseExplanation": "Adres na który próbujesz wysłać został już wcześniej użyty. Spróbuj użyć innego adresu.",
+        "keyReuseExplanation": "Adres, na który próbujesz wysłać, został już wcześniej użyty. Spróbuj użyć innego adresu.",
         "recipientAddress": "Adres odbiorcy",
         "amount": "Ilość",
         "max": "MAKS.",
@@ -203,7 +203,7 @@
     },
     "setPassword": {
         "passwordTooShort": "Hasło jest zbyt krótkie",
-        "passwordTooShortExplanation": "Hasło musi mieć co najmniej {{minLength}} znaków. Obecnie jest {{currentLength}}-znakowe. Spróbuj ponownie.",
+        "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej {{minLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
         "passwordMismatch": "Hasła nie są zgodne",
         "passwordMismatchExplanation": "Wpisane hasła różnią się. Spróbuj ponownie.",
         "nowWeNeedTo": "Teraz musimy ustawić hasło.",
