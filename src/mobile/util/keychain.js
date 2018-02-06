@@ -121,6 +121,7 @@ export const getSeed = (value, index) => {
     const parsed = parse(value);
     const accounts = get(parsed, 'accounts');
 
+    // Should check seed prop - Dangerous
     return accounts[index] ? accounts[index].seed : '';
 };
 
