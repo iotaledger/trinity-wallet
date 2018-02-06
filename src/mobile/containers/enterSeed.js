@@ -137,7 +137,7 @@ class EnterSeed extends React.Component {
         });
     }
     onQRPress() {
-        this._showModal();
+        this.showModal();
     }
 
     onQRRead(data) {
@@ -153,22 +153,8 @@ class EnterSeed extends React.Component {
                 'Valid seeds should be 81 characters and contain only A-Z or 9.',
             );
         }
-        this._hideModal();
+        this.hideModal();
     }
-
-    _showModal = () => this.setState({ isModalVisible: true });
-
-    _hideModal = () => this.setState({ isModalVisible: false });
-
-    _renderModalContent = () => (
-        <QRScanner
-            backgroundColor={COLORS.backgroundGreen}
-            ctaColor={COLORS.greenLight}
-            onQRRead={data => this.onQRRead(data)}
-            hideModal={() => this._hideModal()}
-            secondaryCtaColor="white"
-        />
-    );
 
     getChecksumValue() {
         const { seed } = this.state;
@@ -184,11 +170,25 @@ class EnterSeed extends React.Component {
         return checksumValue;
     }
 
+    showModal = () => this.setState({ isModalVisible: true });
+
+    hideModal = () => this.setState({ isModalVisible: false });
+
     handleKeyPress = event => {
         if (event.key === 'Enter') {
             Keyboard.dismiss();
         }
     };
+
+    renderModalContent = () => (
+        <QRScanner
+            backgroundColor={COLORS.backgroundGreen}
+            ctaColor={COLORS.greenLight}
+            onQRRead={data => this.onQRRead(data)}
+            hideModal={() => this.hideModal()}
+            secondaryCtaColor="white"
+        />
+    );
 
     render() {
         const { seed } = this.state;
@@ -206,8 +206,8 @@ class EnterSeed extends React.Component {
                         <View style={{ flex: 0.5 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
-                            containerStyle={{ width: width / 1.36 }}
+                            onChangeText={text => this.setState({ seed: text.toUpperCase() })}
+                            containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'characters'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -267,7 +267,7 @@ class EnterSeed extends React.Component {
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
                     >
-                        {this._renderModalContent()}
+                        {this.renderModalContent()}
                     </Modal>
                 </View>
             </TouchableWithoutFeedback>

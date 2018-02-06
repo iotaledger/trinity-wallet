@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.5,
+        width: width / 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
@@ -212,7 +212,7 @@ class SetPassword extends Component {
         });
     }
 
-    _renderContent() {
+    renderContent() {
         const { t } = this.props;
 
         return (
@@ -236,7 +236,7 @@ class SetPassword extends Component {
                             <CustomTextInput
                                 label={t('global:password')}
                                 onChangeText={password => this.setState({ password })}
-                                containerStyle={{ width: width / 1.36 }}
+                                containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -253,7 +253,7 @@ class SetPassword extends Component {
                                 }}
                                 label={t('retypePassword')}
                                 onChangeText={reentry => this.setState({ reentry })}
-                                containerStyle={{ width: width / 1.36 }}
+                                containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -283,7 +283,7 @@ class SetPassword extends Component {
         return (
             <View style={styles.container}>
                 {isAndroid ? (
-                    <View style={styles.container}>{this._renderContent()}</View>
+                    <View style={styles.container}>{this.renderContent()}</View>
                 ) : (
                     <KeyboardAwareScrollView
                         resetScrollToCoords={{ x: 0, y: 0 }}
@@ -291,7 +291,7 @@ class SetPassword extends Component {
                         scrollEnabled={false}
                         enableOnAndroid={false}
                     >
-                        {this._renderContent()}
+                        {this.renderContent()}
                     </KeyboardAwareScrollView>
                 )}
                 <StatefulDropdownAlert />

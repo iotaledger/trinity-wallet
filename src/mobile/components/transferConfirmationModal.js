@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate, Trans } from 'react-i18next';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons';
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingVertical: height / 30,
-        width: width / 1.15,
+        width: width / 1.05,
         paddingHorizontal: width / 20,
     },
     textContainer: {
@@ -110,7 +110,7 @@ class TransferConfirmationModal extends Component {
             );
         }
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
+            <View style={{ width: width / 1.05, alignItems: 'center', backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <View style={styles.textContainer}>
                         <Text style={[styles.text, textColor]}>

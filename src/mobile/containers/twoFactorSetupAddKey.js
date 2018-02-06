@@ -7,9 +7,9 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, Image, Clipboard, TouchableOpacity, BackHandler } from 'react-native';
-import DynamicStatusBar from '../components/dynamicStatusBar';
 import { Navigation } from 'react-native-navigation';
 import QRCode from 'react-native-qrcode-svg';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
@@ -74,7 +74,6 @@ const styles = StyleSheet.create({
 class TwoFactorSetupAddKey extends Component {
     static propTypes = {
         backgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
         generateAlert: PropTypes.func.isRequired,
         set2FAKey: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
@@ -144,7 +143,7 @@ class TwoFactorSetupAddKey extends Component {
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor } = this.props;
+        const { secondaryBackgroundColor } = this.props;
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
