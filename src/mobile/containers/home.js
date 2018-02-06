@@ -121,6 +121,11 @@ class Home extends Component {
         }
     };
 
+    onTabSwitch(name) {
+        this.props.changeHomeScreenRoute(name);
+        this.props.setSetting('mainSettings');
+    }
+
     handleInactivity = () => {
         const { isTransitioning, isSyncing, isSendingTransfer } = this.props;
         const doingSomething = isTransitioning || isSyncing || isSendingTransfer;
@@ -130,11 +135,6 @@ class Home extends Component {
             this.props.setUserActivity({ inactive: true });
         }
     };
-
-    onTabSwitch(name) {
-        this.props.changeHomeScreenRoute(name);
-        this.props.setSetting('mainSettings');
-    }
 
     render() {
         const {
@@ -164,7 +164,7 @@ class Home extends Component {
                 ref={c => {
                     this.userInactivity = c;
                 }}
-                timeForInactivity={10000}
+                timeForInactivity={180000}
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >

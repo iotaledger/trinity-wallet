@@ -156,23 +156,23 @@ const MainSettings = props => (
         </View>
         <View style={styles.itemContainer}>
             <TouchableOpacity
-                onPress={() => props.setSetting('securitySettings')}
-                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-            >
-                <View style={styles.item}>
-                    <Image source={props.twoFactorAuthImagePath} style={styles.icon} />
-                    <Text style={[styles.titleText, props.textColor]}>{props.t('securitySettings')}</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
-        <View style={styles.itemContainer}>
-            <TouchableOpacity
                 onPress={() => props.setSetting('changePassword')}
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
                     <Image source={props.passwordImagePath} style={styles.icon} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('changePassword')}</Text>
+                </View>
+            </TouchableOpacity>
+        </View>
+        <View style={styles.itemContainer}>
+            <TouchableOpacity
+                onPress={() => props.setSetting('securitySettings')}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
+                <View style={styles.item}>
+                    <Image source={props.twoFactorAuthImagePath} style={styles.icon} />
+                    <Text style={[styles.titleText, props.textColor]}>{props.t('securitySettings')}</Text>
                 </View>
             </TouchableOpacity>
         </View>
