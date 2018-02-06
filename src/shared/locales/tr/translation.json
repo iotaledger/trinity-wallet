@@ -250,7 +250,7 @@
         "copy": "Kopyala",
         "paste": "Yapıştır",
         "selectAll": "Hepsini seç",
-        "securitySettings": "Security settings",
+        "securitySettings": "Güvenlik ayarları",
         "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
