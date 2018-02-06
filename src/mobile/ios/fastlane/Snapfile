@@ -57,6 +57,7 @@ languages([
   stop_after_first_error true
   reinstall_app true
   localize_simulator true
+  erase_simulator true
 
 # For more information about all available options run
 # fastlane action snapshot
