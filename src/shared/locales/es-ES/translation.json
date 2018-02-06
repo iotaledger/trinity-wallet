@@ -74,7 +74,7 @@
         "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}"
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "La seed contiene carácteres inválidos",
+        "seedInvalidChars": "La seed contiene caracteres inválidos",
         "seedInvalidCharsExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
         "seedTooShort": "La seed es demasiado corta",
         "seedTooShortExplanation": "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
@@ -178,14 +178,14 @@
     "seedReentry": {
         "incorrectSeed": "Seed incorrecta",
         "incorrectSeedExplanation": "La seed que ingresaste es incorrecta. Por favor vuelve a intentarlo.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "thisIsACheck": "Esto es una comprobación para asegurarnos que has guardado tu Seed.",
+        "ifYouHaveNotSaved": "Si no has guardado tu Seed, por favor regresa y hazlo."
     },
     "send": {
         "invalidAddress": "Dirección inválida",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "La dirección debe ser de {{maxLength}} caracteres y debe tener un código de verificación.",
         "invalidAddressExplanation2": "La dirección contiene caracteres inválidos.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
+        "invalidAddressExplanation3": "La dirección contiene un código de verificación no válido.",
         "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "No tienes suficiente IOTA para completar esta transferencia.",
         "keyReuse": "Key reuse",
