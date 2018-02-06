@@ -351,7 +351,7 @@
         "reenterWarning": "Cihazın bozulursa ve seed'ini kaydetmediysen, IOTA'larını kaybetirsin."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "BU AKSYON IPTAL EDILEMEZ.",
         "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
