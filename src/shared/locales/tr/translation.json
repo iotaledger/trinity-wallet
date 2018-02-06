@@ -11,7 +11,7 @@
         "transferErrorMessage": "Transferinizi gönderirken bir şeyler yanlış gitti. lütfen tekrar deneyin.",
         "transferSent": "Transfer Gönder",
         "transferSentMessage": "Transferiniz Tangle a gönderildi.",
-        "messageSent": "Message sent",
+        "messageSent": "Mesaj gönderildi",
         "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Anahtar tekrar kullanımı",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
@@ -342,11 +342,11 @@
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
+        "viewSeed": "Seed'i görüntüle",
         "hideSeed": "Oluşumu gizle"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
+        "alreadyHave": "Seed'imi kaydettim",
         "reenter": "You will now be asked to re-enter your seed.",
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
