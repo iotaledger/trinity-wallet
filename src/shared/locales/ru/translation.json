@@ -251,7 +251,7 @@
         "paste": "Вставить",
         "selectAll": "Выбрать всё",
         "securitySettings": "Настройки безопасности",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Аутентификация по отпечаткам пальцев"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите ваш пароль для сброса настроек кошелька.",
@@ -355,7 +355,7 @@
         "warning": "<0><0>Все данные вашего кошелька, включая </0><1> пароль,</1><2> and </2><3>\nдругая информация учетной записи</3><4> будут потеряны.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsEnable": "Коснитесь вашего устройства чтения отпечатков пальцев для включения проверки подлинности отпечатков пальцев.",
         "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
         "fingerprintAuthEnabled": "Fingerprint authentication enabled",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
@@ -368,9 +368,9 @@
         "disabled": "Выключено",
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "buttonInstructionsDisable": "Нажми на кнопку снизу для деактивации использования сенсора отпечатка пальцев.",
+        "buttonInstructionsEnable": "Нажми на кнопку снизу для активирования сенсора отпечатка пальца.",
+        "instructionsLogin": "Приложите палец к сенсору отпечатка пальцев для входа."
     },
     "transferConfirmation": {
         "youAreAbout": "Вы собираетесь отправить {{contents}} на адрес",
