@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import RNExitApp from 'react-native-exit-app';
-import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard, BackHandler } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard, BackHandler, AppState } from 'react-native';
+import { connect } from 'react-redux';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import OnboardingButtons from './onboardingButtons';
 import CustomTextInput from './customTextInput';
-import { connect } from 'react-redux';
-import FingerprintScanner from 'react-native-fingerprint-scanner';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -62,42 +61,29 @@ const styles = StyleSheet.create({
 });
 
 class EnterPasswordOnLogin extends Component {
-    state = {
-        label: '',
-    };
-
     componentDidMount() {
+        const { isFingerprintEnabled } = this.props;
         BackHandler.addEventListener('loginBackPress', () => {
             RNExitApp.exitApp();
             return true;
         });
-        this.handleChangedLogin();
+        if (isFingerprintEnabled) {
+            this.props.activateFingerPrintScanner();
+            AppState.addEventListener('change', this.handleAppStateChange);
+        }
     }
 
     componentWillUnmount() {
-        BackHandler.removeEventListener('loginBackPress');
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
-    handleChangeText = password => this.props.setLoginPasswordField(password);
-
-    handleChangedLogin = () => {
-        const { isFingerprintEnabled, t } = this.props;
-        if (isFingerprintEnabled) {
-            this.setState({
-                label: t('global:passwordOrFingerprint'),
-            });
-            /*
-            FingerprintScanner.authenticate({
-                onAttempt: this.handleAuthenticationAttempted,
-                description: t('fingerprintEnable:instructions'),
-            });
-            */
-        } else {
-            this.setState({
-                label: t('global:password'),
-            });
+    handleAppStateChange = nextAppState => {
+        if (nextAppState.match(/background/) && nextAppState === 'active') {
+            this.props.activateFingerPrintScanner();
         }
     };
+
+    handleChangeText = password => this.props.setLoginPasswordField(password);
 
     handleLogin = () => {
         const { onLoginPress, password } = this.props;
@@ -121,7 +107,7 @@ class EnterPasswordOnLogin extends Component {
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
-                            label={this.state.label}
+                            label={t('global:password')}
                             onChangeText={this.handleChangeText}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
@@ -157,10 +143,11 @@ EnterPasswordOnLogin.propTypes = {
     navigateToNodeSelection: PropTypes.func.isRequired,
     setLoginPasswordField: PropTypes.func.isRequired,
     isFingerprintEnabled: PropTypes.bool.isRequired,
+    activateFingerPrintScanner: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
     isFingerprintEnabled: state.account.isFingerprintEnabled,
 });
 
-export default translate(['login', 'global', 'fingerprintEnable'])(connect(mapStateToProps)(EnterPasswordOnLogin));
+export default translate(['login', 'global'])(connect(mapStateToProps)(EnterPasswordOnLogin));

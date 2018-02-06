@@ -8,6 +8,8 @@ import whiteCrossImagePath from 'iota-wallet-shared-modules/images/cross-white.p
 import blackNodeImagePath from 'iota-wallet-shared-modules/images/node-black.png';
 import blackSyncImagePath from 'iota-wallet-shared-modules/images/sync-black.png';
 import blackCrossImagePath from 'iota-wallet-shared-modules/images/cross-black.png';
+import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-icon-white.png';
+import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-icon-black.png';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -82,18 +84,18 @@ class SecuritySettings extends Component {
         addImagePath: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
         on2FASetupPress: PropTypes.func.isRequired,
-        onFingerSetup: PropTypes.func.isRequired,
+        onFingerprintSetupPress: PropTypes.func.isRequired,
     };
 
     render() {
-        const { t, textColor, borderColor, secondaryBackgroundColor, arrowLeftImagePath, addImagePath } = this.props;
+        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, addImagePath } = this.props;
         const nodeImagePath = secondaryBackgroundColor === 'white' ? whiteNodeImagePath : blackNodeImagePath;
-        const syncImagePath = secondaryBackgroundColor === 'white' ? whiteSyncImagePath : blackSyncImagePath;
-        const crossImagePath = secondaryBackgroundColor === 'white' ? whiteCrossImagePath : blackCrossImagePath;
+        const fingerprintImagePath =
+            secondaryBackgroundColor === 'white' ? whiteFingerprintImagePath : blackFingerprintImagePath;
 
         return (
             <View style={styles.container}>
-                <View style={{ flex: 4.5 }}>
+                <View style={{ flex: 9, justifyContent: 'flex-start' }}>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
                             onPress={() => this.props.on2FASetupPress()}
@@ -107,28 +109,28 @@ class SecuritySettings extends Component {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.onFingerSetup()}
+                            onPress={() => this.props.onFingerprintSetupPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={addImagePath} style={styles.icon} />
+                                <Image source={fingerprintImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('fingerprint')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <View style={{ flex: 5.5, justifyContent: 'flex-end' }}>
-                        <View style={{ flex: 4.5 }} />
-                        <View style={styles.itemContainer}>
-                            <TouchableOpacity
-                                onPress={() => this.props.setSetting('mainSettings')}
-                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                            >
-                                <View style={styles.item}>
-                                    <Image source={arrowLeftImagePath} style={styles.backIcon} />
-                                    <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                    <View style={{ flex: 7 }} />
+                </View>
+                <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.setSetting('mainSettings')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Image source={arrowLeftImagePath} style={styles.backIcon} />
+                                <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
