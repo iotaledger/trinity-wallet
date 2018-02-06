@@ -99,7 +99,7 @@
         "passwordTooShort": "Hasło jest zbyt krótkie",
         "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej 12 znaków. Spróbuj ponownie.",
         "oldPassword": "Nie możesz ponownie użyć starego hasła",
-        "oldPasswordExplanation": "Nie możesz ponownie użyć starego hasła. Spróbuj podać nowe hasło.",
+        "oldPasswordExplanation": "Nie możesz ponownie użyć starego hasła. Spróbuj ponownie z nowym hasłem.",
         "ensureStrongPassword": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "currentPassword": "Bieżące hasło",
         "newPassword": "Nowe hasło",
