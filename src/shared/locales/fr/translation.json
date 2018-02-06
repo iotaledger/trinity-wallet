@@ -139,8 +139,8 @@
         "useSeed": "UTILISER LA SEED",
         "login": "SE CONNECTER",
         "selectDifferentNode": "Voulez-vous sélectionner un node différent ?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Impossible de se connecter à un node IOTA."
+        "setNode": "CONFIGURER UN SERVEUR",
+        "cannotConnect": "Impossible de se connecter à un serveur IOTA."
     },
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
@@ -236,7 +236,7 @@
         "nicknameChanged": "Nom de compte modifié",
         "nicknameChangedExplanation": "Votre nom de compte a été modifié.",
         "accountDeleted": "Compte supprimé",
-        "accountDeletedExplanation": "Votre compte a été supprimé du wallet.",
+        "accountDeletedExplanation": "Votre compte a été supprimé du portefeuille.",
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
         "poorConnection": "Mauvaise connexion",
