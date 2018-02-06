@@ -251,7 +251,7 @@
         "paste": "Wklej",
         "selectAll": "Zaznacz wszystko",
         "securitySettings": "Ustawienia bezpieczeństwa",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Uwierzytelnianie poprzez czytnik lini papilarnych."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź hasło, aby zresetować portfel.",
