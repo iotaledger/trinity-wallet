@@ -85,8 +85,8 @@ describe('Testing MainSettings component', () => {
             { func: 'setSetting', calledWith: 'currencySelection' },
             { func: 'onLanguagePress', calledWith: null },
             { func: 'setSetting', calledWith: 'accountManagement' },
-            { func: 'setSetting', calledWith: 'securitySettings' },
             { func: 'setSetting', calledWith: 'changePassword' },
+            { func: 'setSetting', calledWith: 'securitySettings' },
             { func: 'setSetting', calledWith: 'advancedSettings' },
             { func: 'setModalContent', calledWith: 'logoutConfirmation' },
         ].forEach((item, idx) => {
