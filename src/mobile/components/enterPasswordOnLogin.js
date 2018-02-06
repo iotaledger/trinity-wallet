@@ -62,15 +62,10 @@ const styles = StyleSheet.create({
 
 class EnterPasswordOnLogin extends Component {
     componentDidMount() {
-        const { isFingerprintEnabled } = this.props;
         BackHandler.addEventListener('loginBackPress', () => {
             RNExitApp.exitApp();
             return true;
         });
-    }
-
-    componentWillUnmount() {
-        AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
     handleChangeText = password => this.props.setLoginPasswordField(password);
