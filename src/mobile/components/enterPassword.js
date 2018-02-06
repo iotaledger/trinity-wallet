@@ -70,11 +70,15 @@ const styles = StyleSheet.create({
 });
 
 class EnterPassword extends Component {
+    constructor() {
+        super();
+        this.state = {
+            password: '',
+        };
+    }
     componentWillUnmount() {
         FingerprintScanner.release();
     }
-
-    handleChangeText = password => this.props.setLoginPasswordField(password);
 
     activateFingerPrintScanner() {
         const { t } = this.props;
@@ -93,7 +97,8 @@ class EnterPassword extends Component {
     }
 
     handleLogin = () => {
-        const { onLoginPress, password } = this.props;
+        const { onLoginPress } = this.props;
+        const { password } = this.state;
         onLoginPress(password);
     };
 
@@ -112,7 +117,7 @@ class EnterPassword extends Component {
                     <View style={styles.midContainer}>
                         <CustomTextInput
                             label={t('password')}
-                            onChangeText={this.handleChangeText}
+                            onChangeText={text => this.setState({ password: text })}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
