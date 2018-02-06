@@ -130,7 +130,6 @@ class TwoFactorSetupEnterToken extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, backgroundColor]}>
                     <DynamicStatusBar textColor={secondaryBackgroundColor} />
-                    <StatefulDropdownAlert />
                     <View style={styles.topWrapper}>
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                     </View>
@@ -158,6 +157,7 @@ class TwoFactorSetupEnterToken extends Component {
                             rightText={'DONE'}
                         />
                     </View>
+                    <StatefulDropdownAlert />
                 </View>
             </TouchableWithoutFeedback>
         );
