@@ -7,6 +7,7 @@ import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
+import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import { StyleSheet, View, Text } from 'react-native';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
@@ -122,10 +123,10 @@ class Login extends Component {
             keychain
                 .get()
                 .then(credentials => {
-                    console.log('Credentials', credentials);
-                    const hasData = get(credentials, 'data');
+                    const hasAccountsData = get(credentials, 'data.accounts');
                     const hasCorrectPassword = get(credentials, 'password') === password;
-                    if (hasData && hasCorrectPassword) {
+
+                    if (hasAccountsData && hasCorrectPassword) {
                         this.props.setPassword(password);
                         this.props.setLoginPasswordField('');
                         if (!is2FAEnabled) {
@@ -147,23 +148,30 @@ class Login extends Component {
 
     onComplete2FA(token) {
         const { firstUse, selectedAccount } = this.props;
+
         if (token) {
-            const value2FA = authenticator.verifyToken(this.props.key2FA, token);
-            if (value2FA) {
-                if (firstUse) {
-                    this.navigateToLoading();
-                } else {
-                    const addresses = get(selectedAccount, 'addresses');
-                    if (!isEmpty(addresses)) {
-                        this.navigateToLoading();
+            getTwoFactorAuthKeyFromKeychain()
+                .then(key => {
+                    const legit = authenticator.verifyToken(key, token);
+
+                    if (legit) {
+                        if (firstUse) {
+                            this.navigateToLoading();
+                        } else {
+                            const addresses = get(selectedAccount, 'addresses');
+                            if (!isEmpty(addresses)) {
+                                this.navigateToLoading();
+                            } else {
+                                this.navigateToHome();
+                            }
+                        }
+
+                        this.setState({ completing2FA: false });
                     } else {
-                        this.navigateToHome();
+                        this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
                     }
-                }
-                this.setState({ completing2FA: false });
-            } else {
-                this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
-            }
+                })
+                .catch(err => console.error(err)); // Generate an alert here.
         } else {
             this.props.generateAlert('error', 'Empty code', 'The code you entered is empty');
         }
