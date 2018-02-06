@@ -68,10 +68,10 @@
         "bundleHash": "Hash pakietu",
         "addresses": "Adresy",
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
-        "autoreattaching": "Automatyczne ponawianie  transferu w sieci Tangle",
-        "autoreattachingExplanation": "Ponowne dołączanie transakcji z hashem {{hash}}",
+        "autoreattaching": "Automatyczne ponawianie wiązania do sieci Tangle",
+        "autoreattachingExplanation": "Ponowne wiązanie transakcji z hashem {{hash}}",
         "autopromoting": "Automatyczne promowanie transferu",
-        "autopromotingExplanation": "Promowanie transakcji z haszem {{hash}}"
+        "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -89,13 +89,13 @@
     },
     "changePassword": {
         "oops": "Ups! Coś poszło nie tak",
-        "oopsExplanation": "Wygląda na to, że coś poszło nie tak podczas aktualizacji hasła. Spróbuj ponownie.",
+        "oopsExplanation": "Wygląda na to, że coś poszło nie tak podczas aktualizacji Twojego hasła. Spróbuj ponownie.",
         "passwordUpdated": "Hasło zaktualizowane",
         "passwordUpdatedExplanation": "Twoje hasło zostało pomyślnie zaktualizowane.",
         "incorrectPassword": "Nieprawidłowe hasło",
         "incorrectPasswordExplanation": "Podane hasło jest nieprawidłowe. Spróbuj ponownie.",
         "passwordsDoNotMatch": "Hasła nie są zgodne",
-        "passwordsDoNotMatchExplanation": "Hasła nie są zgodne. Spróbuj jeszcze raz.",
+        "passwordsDoNotMatchExplanation": "Hasła nie są zgodne. Spróbuj ponownie.",
         "passwordTooShort": "Hasło jest zbyt krótkie",
         "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej 12 znaków. Spróbuj ponownie.",
         "oldPassword": "Nie możesz ponownie użyć starego hasła",
