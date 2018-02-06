@@ -124,6 +124,7 @@ class FingerprintEnable extends Component {
             .then(
                 FingerprintScanner.authenticate({
                     description: t('instructionsEnable'),
+                    onAttempt: this.handleAuthenticationAttempted,
                 })
                     .then(() => {
                         this.props.setFingerprintStatus(true);
@@ -135,12 +136,13 @@ class FingerprintEnable extends Component {
                             );
                         }, 300);
                     })
-                    .catch(() => {
+                    .catch(err => {
                         this.props.generateAlert(
                             'error',
                             t('fingerprintAuthFailed'),
                             t('fingerprintAuthFailedExplanation'),
                         );
+                        console.log(err);
                     }),
             )
             .catch(() => {

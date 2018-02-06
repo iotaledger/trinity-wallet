@@ -88,7 +88,7 @@ class SecuritySettings extends Component {
     };
 
     render() {
-        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, addImagePath } = this.props;
+        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath } = this.props;
         const nodeImagePath = secondaryBackgroundColor === 'white' ? whiteNodeImagePath : blackNodeImagePath;
         const fingerprintImagePath =
             secondaryBackgroundColor === 'white' ? whiteFingerprintImagePath : blackFingerprintImagePath;
