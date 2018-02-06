@@ -21,7 +21,7 @@ import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/c
 import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
+import CtaButton from '../components/ctaButton';
 
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
@@ -274,13 +274,13 @@ class PaperWallet extends Component {
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const checksum = getChecksum(this.props.tempAccount.seed);
-        const positiveColorText = { color: THEMES.getHSL(positiveColor) };
-        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
+        const positiveColorText = { color: positiveColor };
+        const positiveColorBorder = { borderColor: positiveColor };
         const ctaTextColor = { color: secondaryCtaColor };
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
@@ -403,16 +403,16 @@ class PaperWallet extends Component {
                         <Text style={[styles.checkboxText, textColor]}>{t('iotaLogo')}</Text>
                     </TouchableOpacity>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={event => this.onPrintPress()}>
-                            <View
-                                style={[
-                                    styles.printButton,
-                                    { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
-                                ]}
-                            >
-                                <Text style={[styles.printText, ctaTextColor]}>{t('printWallet')}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <CtaButton
+                            ctaColor={ctaColor}
+                            ctaBorderColor={ctaBorderColor}
+                            secondaryCtaColor={secondaryCtaColor}
+                            text={t('printWallet')}
+                            onPress={() => {
+                                this.onPrintPress();
+                            }}
+                            ctaWidth={width / 1.1}
+                        />
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
@@ -505,19 +505,6 @@ const styles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
-    },
-    printButton: {
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.5,
-        height: height / 16,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1.2,
-    },
-    printText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
     },
     paperWalletContainer: {
         width: width / 1.1,

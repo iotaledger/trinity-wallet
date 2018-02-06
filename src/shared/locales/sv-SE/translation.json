@@ -75,9 +75,11 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
-        "seedInvalidCharsExplanation": "Din seed kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken. Försök igen.",
+        "seedInvalidCharsExplanation":
+            "Din seed kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken. Försök igen.",
         "seedTooShort": "Din seed är för kort",
-        "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Seeden är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
+        "seedTooShortExplanation":
+            "Din seed måste vara minst {{maxLength}} tecken. Seeden är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
         "nameInUse": "Kontonamnet används redan",
         "nameInUseExplanation": "Vänligen använd ett unikt namn för din seed.",
         "enterAccountName": "Ange ditt kontonamn.",
@@ -116,10 +118,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
-        "invalidCharactersExplanation": "Seeden får enbart innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken. Försök igen.",
+        "invalidCharactersExplanation":
+            "Seeden får enbart innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken. Försök igen.",
         "seedTooShort": "Seeden är för kort",
-        "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
-        "seedExplanation": "Seed ska vara {{maxLength}} tecken lång och får endast innehålla bokstäverna A-Z och nummer 9. Din seed får inte vara längre än {{maxLength}} tecken.",
+        "seedTooShortExplanation":
+            "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
+        "seedExplanation":
+            "Seed ska vara {{maxLength}} tecken lång och får endast innehålla bokstäverna A-Z och nummer 9. Din seed får inte vara längre än {{maxLength}} tecken.",
         "neverShare": "DELA ALDRIG DIN SEED MED NÅGON"
     },
     "home": {
@@ -154,7 +159,8 @@
         "individualLetters": "Tryck på enskilda bokstäver för att ändra de slumpmässigt."
     },
     "onboardingComplete": {
-        "walletReady": "Plånboken är nu inställd och redo att använda. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
+        "walletReady":
+            "Plånboken är nu inställd och redo att använda. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
     },
     "paperWallet": {
         "clickToPrint": "Klicka på knappen nedan för att skriva ut en papperskopia av din seed.",
@@ -173,7 +179,8 @@
     "saveYourSeed": {
         "seedCleared": "Seed rensad",
         "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhet.",
-        "mustSaveYourSeed": "<0><0>Du måste spara din seed med</0><1>minst ett</1><2> av alternativen listade nedan.</2></0>"
+        "mustSaveYourSeed":
+            "<0><0>Du måste spara din seed med</0><1>minst ett</1><2> av alternativen listade nedan.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Felaktig seed",
@@ -189,7 +196,8 @@
         "notEnoughFunds": "Otillräckliga tillgångar",
         "notEnoughFundsExplanation": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
         "keyReuse": "Nyckelåteranvändning",
-        "keyReuseExplanation": "Den adress som du försöker skicka till har redan använts. Försök igen med en annan adress.",
+        "keyReuseExplanation":
+            "Den adress som du försöker skicka till har redan använts. Försök igen med en annan adress.",
         "recipientAddress": "Mottagarens adress",
         "amount": "Belopp",
         "max": "MAX",
@@ -203,11 +211,13 @@
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
-        "passwordTooShortExplanation": "Ditt lösenord måste vara minst {{minLength}} tecken. Det är för närvarande {{currentLength}} tecken långt. Vänligen försök igen.",
+        "passwordTooShortExplanation":
+            "Ditt lösenord måste vara minst {{minLength}} tecken. Det är för närvarande {{currentLength}} tecken långt. Vänligen försök igen.",
         "passwordMismatch": "Lösenorden matchar inte",
         "passwordMismatchExplanation": "De lösenord du har angett stämmer inte överens. Vänligen försök igen.",
         "nowWeNeedTo": "Nu behöver vi sätta ett lösenord.",
-        "anEncryptedCopy": "En krypterad version av din seed kommer sparas på din enhet. Detta lösenord kommer att användas för att få tillgång till din plånbok i framtiden.",
+        "anEncryptedCopy":
+            "En krypterad version av din seed kommer sparas på din enhet. Detta lösenord kommer att användas för att få tillgång till din plånbok i framtiden.",
         "ensure": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
         "retypePassword": "Skriv lösenordet igen"
     },
@@ -261,14 +271,17 @@
     "walletSetup": {
         "okay": "Okej. Låt oss sammanställa din plånbok!",
         "doYouAlreadyHaveASeed": "Har du redan en seed som du vill använda?",
-        "seedExplanation": "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
-        "explanation": "<0><0>Du kan använda det för att komma åt dina tillgångar från</0><1> valfri plånbok</1><2>, samt</2><3> valfri apparat</3><4>. Förlorar du din seed, kommer du samtidigt förlora dina IOTA.</4></0>",
+        "seedExplanation":
+            "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
+        "explanation":
+            "<0><0>Du kan använda det för att komma åt dina tillgångar från</0><1> valfri plånbok</1><2>, samt</2><3> valfri apparat</3><4>. Förlorar du din seed, kommer du samtidigt förlora dina IOTA.</4></0>",
         "keepSafe": "Vänligen förvara din seed säkert."
     },
     "welcome": {
         "thankYou": "Tack för att du använder IOTA plånboken.",
         "weWillSpend": "Vi kommer att tillbringa de närmsta minuterna åt att konfigurera din plånbok.",
-        "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig till att följa hela processen."
+        "reminder":
+            "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig till att följa hela processen."
     },
     "writeSeedDown": {
         "yourSeedIs": "Din seed är {{maxSeedLength}} tecken lästa från vänster till höger.",
@@ -352,7 +365,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNA ÅTGÄRD KAN INTE ÅNGRAS.",
-        "warning": "<0><0>All data i din plånbok inklusive dina </0><1>seeds, lösenord,</1><2> och </2><3>annan kontoinformation</3><4> kommer att förloras.</4></0>"
+        "warning":
+            "<0><0>All data i din plånbok inklusive dina </0><1>seeds, lösenord,</1><2> och </2><3>annan kontoinformation</3><4> kommer att förloras.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",

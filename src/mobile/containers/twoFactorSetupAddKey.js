@@ -16,7 +16,6 @@ import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
 // import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
 import { width, height } from '../util/dimensions';
-import THEMES from '../theme/themes';
 
 const styles = StyleSheet.create({
     container: {
@@ -74,8 +73,8 @@ const styles = StyleSheet.create({
 
 class TwoFactorSetupAddKey extends Component {
     static propTypes = {
-        backgroundColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         generateAlert: PropTypes.func.isRequired,
         set2FAKey: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
@@ -118,7 +117,7 @@ class TwoFactorSetupAddKey extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
@@ -135,7 +134,7 @@ class TwoFactorSetupAddKey extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: this.props.backgroundColor,
             },
             animated: false,
             appStyle: {
@@ -146,14 +145,13 @@ class TwoFactorSetupAddKey extends Component {
 
     render() {
         const { t, negativeColor, secondaryBackgroundColor } = this.props;
-        const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
+        const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
             <View style={[styles.container, backgroundColor]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
-                <StatefulDropdownAlert />
                 <View style={styles.topWrapper}>
                     <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                 </View>
@@ -183,6 +181,7 @@ class TwoFactorSetupAddKey extends Component {
                         rightText={'NEXT'}
                     />
                 </View>
+                <StatefulDropdownAlert />
             </View>
         );
     }

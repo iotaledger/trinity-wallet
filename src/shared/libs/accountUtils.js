@@ -42,6 +42,7 @@ export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
         ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } })),
     );
     for (let i = 0; i < addresses.length; i++) {
+        addressData[addresses[i]].index = i;
         addressData[addresses[i]].balance = balances[i];
         addressData[addresses[i]].spent = addressesSpendStatus[i];
     }
@@ -250,6 +251,78 @@ export const organizeAccountInfo = (accountName, data) => {
     };
 };
 
+const getBalancesAsync = (addresses, threshold) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getBalances(addresses, threshold, (err, balances) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(balances);
+            }
+        });
+    });
+};
+
+const getNodeInfoAsync = () => {
+    return new Promise((resolve, reject) => {
+        iota.api.getNodeInfo((err, info) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(info);
+            }
+        });
+    });
+};
+
+const getTransactionsObjectsAsync = hashes => {
+    return new Promise((resolve, reject) => {
+        iota.api.getTransactionsObjects(hashes, (err, txs) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(txs);
+            }
+        });
+    });
+};
+
+const findTransactionObjectsAsync = args => {
+    return new Promise((resolve, reject) => {
+        iota.api.findTransactionObjects(args, (err, txs) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(txs);
+            }
+        });
+    });
+};
+
+const findTransactionsAsync = args => {
+    return new Promise((resolve, reject) => {
+        iota.api.findTransactions(args, (err, txs) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(txs);
+            }
+        });
+    });
+};
+
+const getLatestInclusionAsync = hashes => {
+    return new Promise((resolve, reject) => {
+        iota.api.getLatestInclusion(hashes, (err, states) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(states);
+            }
+        });
+    });
+};
+
 /**
  *   Get state partials for addressData and assigns balances to those
  *
@@ -290,9 +363,10 @@ export const mapBalancesToAddresses = (addressData, balances, addresses) => {
 export const getBalancesWithAddresses = addressData => {
     const addresses = keys(addressData);
 
-    return iota.api
-        .getBalancesAsync(addresses, DEFAULT_BALANCES_THRESHOLD)
-        .then(balances => ({ balances: get(balances, 'balances'), addresses }));
+    return getBalancesAsync(addresses, DEFAULT_BALANCES_THRESHOLD).then(balances => ({
+        balances: get(balances, 'balances'),
+        addresses,
+    }));
 };
 
 export const getLatestAddresses = (seed, index) => {
@@ -304,7 +378,7 @@ export const getLatestAddresses = (seed, index) => {
                 const addresses = reduce(
                     data.inputs,
                     (obj, x) => {
-                        obj[x.address] = { balance: x.balance, spent: false };
+                        obj[x.address] = { index: x.keyIndex, balance: x.balance, spent: false };
                         return obj;
                     },
                     {},
@@ -384,7 +458,7 @@ export const mapUnspentAddressesHashesToAccount = account => {
         return Promise.resolve(accountClone);
     }
 
-    return iota.api.findTransactionsAsync({ addresses: unspentAddresses }).then(hashes => {
+    return findTransactionsAsync({ addresses: unspentAddresses }).then(hashes => {
         accountClone.unspentAddressesHashes = hashes;
 
         return accountClone;
@@ -458,18 +532,17 @@ export const getAccountData = (seed, accountName) => {
         }
     };
 
-    return iota.api
-        .getNodeInfoAsync()
+    return getNodeInfoAsync()
         .then(() => getAllAddresses(seed))
         .then(addresses => {
             data.addresses = addresses;
 
-            return iota.api.findTransactionObjectsAsync({ addresses: data.addresses });
+            return findTransactionObjectsAsync({ addresses: data.addresses });
         })
         .then(txObjects => {
             each(txObjects, tx => pushIfNotExists(allBundleHashes, tx.bundle)); // Grab all bundle hashes
 
-            return iota.api.findTransactionObjectsAsync({ bundles: allBundleHashes });
+            return findTransactionObjectsAsync({ bundles: allBundleHashes });
         })
         .then(bundleObjects => {
             allBundleObjects = bundleObjects;
@@ -480,7 +553,7 @@ export const getAccountData = (seed, accountName) => {
                 }
             });
 
-            return iota.api.getLatestInclusionAsync(map(tailTransactions, t => t.hash));
+            return getLatestInclusionAsync(map(tailTransactions, t => t.hash));
         })
         .then(states => {
             const allTxsAsObjects = reduce(
@@ -526,7 +599,7 @@ export const getAccountData = (seed, accountName) => {
 
             data.transfers = transfers;
 
-            return iota.api.getBalancesAsync(data.addresses, DEFAULT_BALANCES_THRESHOLD);
+            return getBalancesAsync(data.addresses, DEFAULT_BALANCES_THRESHOLD);
         })
         .then(balances => {
             each(balances.balances, (balance, idx) => {
@@ -587,8 +660,7 @@ export const getConfirmedTransactionHashes = pendingTxTailHashes => {
 export const syncTransfers = (diff, existingAccountState) => {
     const existingAccountStateCopy = cloneDeep(existingAccountState);
 
-    return iota.api
-        .getTransactionsObjectsAsync(diff)
+    return getTransactionsObjectsAsync(diff)
         .then(txs => {
             const tailTxs = filter(txs, t => t.currentIndex === 0);
             const tailTxsHashes = tx => tx.hash;

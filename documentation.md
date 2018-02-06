@@ -10,6 +10,7 @@ This section details the overall flow and gives an overview of Trinity’s compl
 - [Polling](#polling)
 - [Address Management](#address-mgmt)
 - [Two factor authentication](#2FA)
+- [Biometric authentication](#biometric)
 - [Automatic Promotion/Reattachment](#auto-reattach)
 
 ## Technical Architecture
@@ -81,6 +82,12 @@ Trinity is a stateful wallet.
 #### Two factor authentication
 
 Two factor authentication provides an optional additional security layer for Trinity users.
+
+#### Biometric authentication
+
+For ease of use, users are given the option to use a form of biometric authentication as an alternative when logging in to the wallet. We use [react-native-fingerprint-scanner](https://github.com/hieuvp/react-native-fingerprint-scanner) to implement this. For Android, we support MeiZu's [Fingerprint Authentication API](https://translate.google.com/translate?sl=auto&tl=en&js=y&prev=_t&hl=en&ie=UTF-8&u=http%3A%2F%2Fopen-wiki.flyme.cn%2Findex.php%3Ftitle%3D%25E6%258C%2587%25E7%25BA%25B9%25E8%25AF%2586%25E5%2588%25ABAPI&edit-text=&act=url) and Samsung's [Pass SDK](http://developer.samsung.com/galaxy/pass). For iOS, we support Apple's [Touch ID](https://developer.apple.com/documentation/localauthentication) and [Face ID](https://images.apple.com/business/docs/FaceID_Security_Guide.pdf).
+
+**Please note that enabling these alternative options of authentication may pose a potential security risk to the security of your wallet. Anyone who has their fingerprint or face registered in your device could be able to access your wallet. If you have any concerns, please refer to the linked documentation for your device. These options are alternatives for a password and should not be used as a substitute because of the aforementioned reasons. If you have doubts, we advise that you do not enable this option.**
 
 #### Automatic Promotion/Reattachment
 

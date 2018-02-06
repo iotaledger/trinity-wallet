@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import RNExitApp from 'react-native-exit-app';
-import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard, BackHandler } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard, BackHandler, AppState } from 'react-native';
+import { connect } from 'react-redux';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import GENERAL from '../theme/general';
@@ -60,10 +61,6 @@ const styles = StyleSheet.create({
 });
 
 class EnterPasswordOnLogin extends Component {
-    state = {
-        password: '',
-    };
-
     componentDidMount() {
         BackHandler.addEventListener('loginBackPress', () => {
             RNExitApp.exitApp();
@@ -71,15 +68,10 @@ class EnterPasswordOnLogin extends Component {
         });
     }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('loginBackPress');
-    }
-
-    handleChangeText = password => this.setState({ password });
+    handleChangeText = password => this.props.setLoginPasswordField(password);
 
     handleLogin = () => {
-        const { password } = this.state;
-        const { onLoginPress } = this.props;
+        const { onLoginPress, password } = this.props;
         onLoginPress(password);
     };
 
@@ -89,7 +81,7 @@ class EnterPasswordOnLogin extends Component {
     };
 
     render() {
-        const { t, secondaryBackgroundColor, negativeColor } = this.props;
+        const { t, secondaryBackgroundColor, negativeColor, password, isFingerprintEnabled } = this.props;
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
@@ -111,13 +103,16 @@ class EnterPasswordOnLogin extends Component {
                             onSubmitEditing={this.handleLogin}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             negativeColor={negativeColor}
+                            value={password}
+                            fingerprintAuthentication={isFingerprintEnabled}
+                            onFingerprintPress={() => this.props.activateFingerPrintScanner()}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
                         <OnboardingButtons
                             onLeftButtonPress={this.changeNode}
                             onRightButtonPress={this.handleLogin}
-                            leftText={'SET NODE'}
+                            leftText={t('setNode')}
                             rightText={t('login')}
                         />
                     </View>
@@ -131,8 +126,15 @@ EnterPasswordOnLogin.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.object.isRequired,
+    negativeColor: PropTypes.string.isRequired,
     navigateToNodeSelection: PropTypes.func.isRequired,
+    setLoginPasswordField: PropTypes.func.isRequired,
+    isFingerprintEnabled: PropTypes.bool.isRequired,
+    activateFingerPrintScanner: PropTypes.func.isRequired,
 };
 
-export default translate(['login', 'global'])(EnterPasswordOnLogin);
+const mapStateToProps = state => ({
+    isFingerprintEnabled: state.account.isFingerprintEnabled,
+});
+
+export default translate(['login', 'global'])(connect(mapStateToProps)(EnterPasswordOnLogin));

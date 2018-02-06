@@ -1,5 +1,10 @@
 import { expect } from 'chai';
-import { prepareTransferArray, prepareInputs, extractTailTransferFromBundle } from '../../libs/transfers';
+import {
+    prepareTransferArray,
+    prepareInputs,
+    extractTailTransferFromBundle,
+    getStartingSearchIndexToPrepareInputs,
+} from '../../libs/transfers';
 
 describe('libs: transfers', () => {
     describe('#prepareTransferArray', () => {
@@ -205,6 +210,30 @@ describe('libs: transfers', () => {
 
                 expect(extractTailTransferFromBundle(bundle)).to.eql({});
             });
+        });
+    });
+
+    describe('#getStartingSearchIndexToPrepareInputs', () => {
+        it('should return first index with balance prop greater than zero', () => {
+            const args = {
+                foo: { index: 52, balance: 100 },
+                baz: { index: 50, balance: 0 },
+                bar: { index: 49, balance: 10 },
+                qux: { index: 51, balance: 5 },
+            };
+
+            expect(getStartingSearchIndexToPrepareInputs(args)).to.equal(49);
+        });
+
+        it('should return 0 if no object is found with balance greater than zero', () => {
+            const args = {
+                foo: { index: 52, balance: 0 },
+                baz: { index: 50, balance: 0 },
+                bar: { index: 49, balance: 0 },
+                qux: { index: 51, balance: 0 },
+            };
+
+            expect(getStartingSearchIndexToPrepareInputs(args)).to.equal(0);
         });
     });
 });

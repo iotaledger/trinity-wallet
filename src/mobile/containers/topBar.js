@@ -25,7 +25,6 @@ import {
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { setPollFor } from 'iota-wallet-shared-modules/actions/polling';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-import THEMES from '../theme/themes';
 import NotificationLog from '../components/notificationLog';
 import Modal from 'react-native-modal';
 import blackChevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up-black.png';
@@ -73,7 +72,7 @@ class TopBar extends Component {
         setSeedIndex: PropTypes.func.isRequired,
         setReceiveAddress: PropTypes.func.isRequired,
         selectedAccount: PropTypes.object.isRequired,
-        barColor: PropTypes.object.isRequired,
+        barColor: PropTypes.string.isRequired,
         setPollFor: PropTypes.func.isRequired,
         secondaryBarColor: PropTypes.string.isRequired,
         notificationLog: PropTypes.array.isRequired,
@@ -284,6 +283,7 @@ class TopBar extends Component {
             isTopBarActive,
             secondaryBarColor,
             backgroundColor,
+            barColor,
             notificationLog,
             clearLog,
         } = this.props;
@@ -311,8 +311,7 @@ class TopBar extends Component {
                     style={[
                         styles.container,
                         {
-                            backgroundColor: THEMES.getHSL(this.props.barColor),
-                            shadowColor: 'black',
+                            backgroundColor: barColor,
                         },
                     ]}
                 >
@@ -353,14 +352,14 @@ class TopBar extends Component {
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={THEMES.getHSL(backgroundColor)}
+                        backdropColor={backgroundColor}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this._hideModal()}
                         onBackdropPress={() => this._hideModal()}
                     >
                         <NotificationLog
-                            backgroundColor={THEMES.getHSL(this.props.barColor)}
+                            backgroundColor={barColor}
                             hideModal={() => this._hideModal()}
                             textColor={{ color: secondaryBarColor }}
                             borderColor={{ borderColor: secondaryBarColor }}
@@ -386,12 +385,6 @@ const styles = StyleSheet.create({
         paddingTop: height / 25,
         paddingBottom: height / 50,
         opacity: 0.98,
-        shadowOffset: {
-            width: 0,
-            height: -1,
-        },
-        shadowRadius: 4,
-        shadowOpacity: 1.0,
     },
     titleWrapper: {
         paddingHorizontal: width / 40,

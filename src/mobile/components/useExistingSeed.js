@@ -11,7 +11,6 @@ import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import CustomTextInput from '../components/customTextInput';
 import QRScanner from '../components/qrScanner';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -124,13 +123,13 @@ class UseExistingSeed extends React.Component {
     static propTypes = {
         seedCount: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        ctaColor: PropTypes.object.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         ctaBorderColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         addAccount: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
@@ -193,12 +192,13 @@ class UseExistingSeed extends React.Component {
         const { seed } = this.state;
         let checksumValue = '...';
 
-        if (seed.length !== 0 && seed.length < 81) {
+        if (seed.length !== 0 && !seed.match(VALID_SEED_REGEX)) {
+            checksumValue = '!';
+        } else if (seed.length !== 0 && seed.length < 81) {
             checksumValue = '< 81';
         } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
             checksumValue = getChecksum(seed);
         }
-
         return checksumValue;
     }
 
@@ -208,8 +208,8 @@ class UseExistingSeed extends React.Component {
 
     renderModalContent = () => (
         <QRScanner
-            ctaColor={THEMES.getHSL(this.props.ctaColor)}
-            backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
+            ctaColor={this.props.ctaColor}
+            backgroundColor={this.props.backgroundColor}
             onQRRead={data => this.onQRRead(data)}
             hideModal={() => this.hideModal()}
             secondaryCtaColor={this.props.secondaryCtaColor}
@@ -237,9 +237,9 @@ class UseExistingSeed extends React.Component {
                         <View style={{ flex: 0.4 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={value => this.setState({ seed: value.toUpperCase() })}
+                            onChangeText={value => this.setState({ seed: value })}
                             containerStyle={{ width: width / 1.4 }}
-                            autoCapitalize={'none'}
+                            autoCapitalize={'characters'}
                             maxLength={MAX_SEED_LENGTH}
                             value={seed}
                             autoCorrect={false}
