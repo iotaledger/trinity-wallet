@@ -216,7 +216,7 @@
         "youCanAdd": "Możesz dodać więcej kluczy seed w menu ustawień."
     },
     "settings": {
-        "transferSending": "W trakcie transferu",
+        "transferSending": "Wykonywanie transferu",
         "transferSendingExplanation": "Proszę zaczekać na wysłanie Twojego transferu.",
         "generatingAddress": "Generowanie adresu odbiorczego",
         "generatingAddressExplanation": "Proszę zaczekać na wygenerowanie Twojego adresu.",
