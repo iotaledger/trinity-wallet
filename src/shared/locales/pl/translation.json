@@ -46,7 +46,7 @@
         "yes": "TAK",
         "no": "NIE",
         "password": "Hasło",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Hasło lub odcisk palca",
         "unrecognisedPassword": "Nierozpoznane hasło",
         "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
         "syncInProgress": "Synchronizacja w toku",
@@ -139,8 +139,8 @@
         "useSeed": "UŻYJ SEED'a",
         "login": "ZALOGUJ",
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "Wybierz serwer",
+        "cannotConnect": "Nie można podłączyć sie do serwera."
     },
     "loading": {
         "loadingFirstTime": "Ładowanie seeda po raz pierwszy.",
@@ -250,7 +250,7 @@
         "copy": "Kopiuj",
         "paste": "Wklej",
         "selectAll": "Zaznacz wszystko",
-        "securitySettings": "Security settings",
+        "securitySettings": "Ustawienia bezpieczeństwa",
         "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
