@@ -151,7 +151,7 @@
         "seedNotGenerated": "Seed nie został wygenerowany",
         "seedNotGeneratedExplanation": "Kliknij na przycisk generowania nowego seeda.",
         "pressForNewSeed": "WYGENERUJ NOWY SEED",
-        "individualLetters": "Naciśnij poszczególne litery, aby wylosować ponownie."
+        "individualLetters": "Naciśnij na dane pole, aby wylosować je ponownie."
     },
     "onboardingComplete": {
         "walletReady": "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
@@ -192,7 +192,7 @@
         "keyReuseExplanation": "Adres na który próbujesz wysłać został już wcześniej użyty. Spróbuj innego adresu.",
         "recipientAddress": "Adres odbiorcy",
         "amount": "Ilość",
-        "max": "MAX",
+        "max": "MAKS.",
         "message": "Wiadomość",
         "send": "WYŚLIJ",
         "invalidAmount": "Wprowadzono niepoprawną ilość",
