@@ -18,7 +18,7 @@
         "invalidResponse": "Błędna odpowiedź",
         "invalidResponseExplanation": "Serwer zwrócił błędną odpowiedź.",
         "invalidResponsePollingExplanation": "Serwer zwrócił nieprawidłową odpowiedź podczas połączenia.",
-        "invalidResponseFetchingAccount": "Serwer zwrócił błędną odpowiedź podczas pobierania informacji o Twoim koncie.",
+        "invalidResponseFetchingAccount": "Serwer zwrócił nieprawidłową odpowiedź podczas pobierania informacji o Twoim koncie.",
         "invalidResponseSendingTransfer": "Serwer zwrócił błędną odpowiedź podczas realizowania transferu.",
         "seed": "Seed",
         "back": "WSTECZ",
@@ -31,10 +31,10 @@
         "close": "ZAMKNIJ",
         "continue": "Kontynuuj",
         "manualCopy": "Zanotuj swój seed",
-        "paperWallet": "Drukuj wersję papierową",
+        "paperWallet": "Wydrukuj wersje papierową",
         "copyToClipboard": "Dodaj do menedżera haseł",
         "notAvailable": "Ta funkcja nie jest dostępna",
-        "notAvailableExplanation": "Zostanie dodana w późniejszym etapie.",
+        "notAvailableExplanation": "Zostanie dodana w późniejszym czasie.",
         "enterSeed": "Proszę wpisz swój seed.",
         "mainWallet": "KONTO GŁÓWNE",
         "secondWallet": "DRUGIE KONTO",
@@ -85,11 +85,11 @@
         "noNickname": "Nie wprowadzono nazwy konta",
         "noNicknameExplanation": "Wpisz nazwę konta dla Twojego klucza seed.",
         "seedInUse": "Seed jest już w użyciu",
-        "seedInUseExplanation": "Ten seed jest już powiązany z Twoim portfelem. Proszę użyj innego."
+        "seedInUseExplanation": "Ten seed został już wcześniej powiązany z Twoim portfelem. Proszę użyj innego."
     },
     "changePassword": {
         "oops": "Ups! Coś poszło nie tak",
-        "oopsExplanation": "Wygląda na to, że coś poszło nie tak podczas aktualizacji Twojego hasła. Spróbuj ponownie.",
+        "oopsExplanation": "Wygląda na to, że coś poszło nie tak podczas aktualizacji Twojego hasła. Proszę spróbować ponownie.",
         "passwordUpdated": "Hasło zaktualizowane",
         "passwordUpdatedExplanation": "Twoje hasło zostało pomyślnie zaktualizowane.",
         "incorrectPassword": "Nieprawidłowe hasło",
@@ -335,7 +335,7 @@
         "thisMayTake": "To może chwilę potrwać.",
         "youMayNotice": "Możesz zaobserwować spowolnienie Twojego urządzenia.",
         "syncAccount": "SYNCHRONIZUJ KONTO",
-        "syncingYourAccount": "Synchronizacja Twojego konta."
+        "syncingYourAccount": "Synchronizuje Twoje konto."
     },
     "useExistingSeed": {
         "title": "Wprowadź seed oraz nazwę konta."
@@ -373,7 +373,7 @@
         "instructionsLogin": "Przyłóż palec do czytnika, aby się zalogować."
     },
     "transferConfirmation": {
-        "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",
+        "youAreAbout": "Masz zamiar wysłać {{contents}} na ten adres",
         "aMessage": "wiadomość"
     }
 }
