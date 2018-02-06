@@ -212,8 +212,8 @@
         "retypePassword": "Escribe la contraseña de nuevo"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "Puedes utilizar múltiples Seeds con esta billetera. Cada Seed requiere un nombre de cuenta.",
+        "youCanAdd": "Puedes añadir más Seeds en el menú de Ajustes."
     },
     "settings": {
         "transferSending": "Transfer sending",
