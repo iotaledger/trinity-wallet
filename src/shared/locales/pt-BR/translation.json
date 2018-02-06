@@ -46,7 +46,7 @@
         "yes": "SIM",
         "no": "NÃO",
         "password": "Senha",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Senha ou impressão digital",
         "unrecognisedPassword": "Senha não reconhecida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
         "syncInProgress": "Sincronizando",
