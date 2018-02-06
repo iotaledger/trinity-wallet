@@ -325,7 +325,7 @@
         "one": "Jeden"
     },
     "deleteAccount": {
-        "areYouSure": "Czy na pewno chcesz usunąć konto?",
+        "areYouSure": "Czy na pewno chcesz usunąć to konto?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
         "thisAction": "Tej czynności nie można cofnąć.",
         "enterPassword": "Wprowadź hasło, aby usunąć konto."
