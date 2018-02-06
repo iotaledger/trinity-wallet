@@ -46,6 +46,7 @@
         "yes": "はい",
         "no": "いいえ",
         "password": "パスワード",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
         "syncInProgress": "同期中...",
@@ -70,7 +71,8 @@
         "autoreattaching": "Tangleに自動リアタッチ",
         "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションをリアタッチ",
         "autopromoting": "送金を自動促進",
-        "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進"
+        "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進",
+        "fingerprintInstructionsLogin": "Touch reader to log in."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -137,7 +139,9 @@
         "enterPassword": "パスワードを入力して下さい。",
         "useSeed": "Seedでログイン",
         "login": "ログイン",
-        "selectDifferentNode": "別のノードを選択しますか？"
+        "selectDifferentNode": "別のノードを選択しますか？",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "初めてのSeedを読み込んでいます。",
@@ -246,7 +250,9 @@
         "cut": "切り取り",
         "copy": "コピー",
         "paste": "貼り付け",
-        "selectAll": "すべてを選択"
+        "selectAll": "すべてを選択",
+        "securitySettings": "Security settings",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
@@ -348,6 +354,23 @@
     "walletResetConfirmation": {
         "cannotUndo": "この操作は元に戻せません。",
         "warning": "<0><0>Seedやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消えます。</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication."
     },
     "transferConfirmation": {
         "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
