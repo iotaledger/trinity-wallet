@@ -2,24 +2,70 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { set2FAKey, set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
+import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import {
+    set2FAKey,
+    set2FAStatus,
+    setFirstUse,
+    setOnboardingComplete,
+} from 'iota-wallet-shared-modules/actions/account';
 import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
-import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { Navigation } from 'react-native-navigation';
 import { clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import COLORS from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import CustomTextInput from '../components/customTextInput';
-import OnboardingButtons from '../components/onboardingButtons.js';
+import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import { Keyboard } from 'react-native';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-
 import { width, height } from '../util/dimensions';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    topWrapper: {
+        flex: 1.3,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 16,
+    },
+    midWrapper: {
+        flex: 1.6,
+        alignItems: 'center',
+    },
+    bottomContainer: {
+        flex: 2,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: height / 20,
+    },
+    generalText: {
+        fontFamily: Fonts.secondary,
+        fontSize: width / 20.7,
+        textAlign: 'center',
+        paddingBottom: height / 10,
+        backgroundColor: 'transparent',
+    },
+    questionText: {
+        fontFamily: Fonts.secondary,
+        fontSize: width / 20.25,
+        textAlign: 'center',
+        paddingLeft: width / 7,
+        paddingRight: width / 7,
+        paddingTop: height / 25,
+        backgroundColor: 'transparent',
+    },
+    iotaLogo: {
+        height: width / 5,
+        width: width / 5,
+    },
+});
 
 class Disable2FA extends Component {
     static propTypes = {
@@ -28,6 +74,8 @@ class Disable2FA extends Component {
         negativeColor: PropTypes.string.isRequired,
         set2FAStatus: PropTypes.func.isRequired,
         set2FAKey: PropTypes.func.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -130,50 +178,6 @@ class Disable2FA extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    topWrapper: {
-        flex: 1.3,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 16,
-    },
-    midWrapper: {
-        flex: 1.6,
-        alignItems: 'center',
-    },
-    bottomContainer: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 20,
-    },
-    generalText: {
-        fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        paddingBottom: height / 10,
-        backgroundColor: 'transparent',
-    },
-    questionText: {
-        fontFamily: Fonts.secondary,
-        fontSize: width / 20.25,
-        textAlign: 'center',
-        paddingLeft: width / 7,
-        paddingRight: width / 7,
-        paddingTop: height / 25,
-        backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-});
 
 const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,

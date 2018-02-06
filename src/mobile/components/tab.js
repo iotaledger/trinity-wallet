@@ -36,6 +36,8 @@ class Tab extends Component {
         icon: PropTypes.number.isRequired,
         textColor: PropTypes.object.isRequired,
         text: PropTypes.string.isRequired,
+        onPress: PropTypes.func.isRequired,
+        isActive: PropTypes.bool.isRequired,
     };
 
     render() {

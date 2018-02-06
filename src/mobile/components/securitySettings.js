@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import whiteNodeImagePath from 'iota-wallet-shared-modules/images/node-white.png';
-import whiteSyncImagePath from 'iota-wallet-shared-modules/images/sync-white.png';
-import whiteCrossImagePath from 'iota-wallet-shared-modules/images/cross-white.png';
 import blackNodeImagePath from 'iota-wallet-shared-modules/images/node-black.png';
-import blackSyncImagePath from 'iota-wallet-shared-modules/images/sync-black.png';
-import blackCrossImagePath from 'iota-wallet-shared-modules/images/cross-black.png';
 import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-icon-white.png';
 import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-icon-black.png';
 import { width, height } from '../util/dimensions';
@@ -79,9 +75,7 @@ class SecuritySettings extends Component {
         setSetting: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
-        borderColor: PropTypes.object.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
-        addImagePath: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
         on2FASetupPress: PropTypes.func.isRequired,
         onFingerprintSetupPress: PropTypes.func.isRequired,

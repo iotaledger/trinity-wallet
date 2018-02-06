@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { translate } from 'react-i18next';
 import Dropdown from '../components/dropdown';
 import { width, height } from '../util/dimensions';
-import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -69,7 +69,9 @@ class NodeSelection extends Component {
         backPress: PropTypes.func.isRequired,
         setNode: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        tickImagePath: PropTypes.number.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     saveNodeSelection() {
@@ -80,17 +82,7 @@ class NodeSelection extends Component {
     }
 
     render() {
-        const {
-            node,
-            nodes,
-            backPress,
-            t,
-            textColor,
-            secondaryBackgroundColor,
-            nodeSelection,
-            arrowLeftImagePath,
-            tickImagePath,
-        } = this.props;
+        const { node, nodes, backPress, t, textColor, arrowLeftImagePath, tickImagePath } = this.props;
 
         return (
             <TouchableWithoutFeedback

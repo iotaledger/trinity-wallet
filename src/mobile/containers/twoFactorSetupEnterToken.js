@@ -7,10 +7,9 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
-import DynamicStatusBar from '../components/dynamicStatusBar';
 import { Navigation } from 'react-native-navigation';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import CustomTextInput from '../components/customTextInput';
-import QRCode from 'react-native-qrcode-svg';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
@@ -62,6 +61,8 @@ class TwoFactorSetupEnterToken extends Component {
         set2FAStatus: PropTypes.func.isRequired,
         set2FAKey: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        navigator: PropTypes.object.isRequired,
+        key2FA: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -121,7 +122,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor } = this.props;
+        const { negativeColor, secondaryBackgroundColor } = this.props;
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -139,7 +140,7 @@ class TwoFactorSetupEnterToken extends Component {
                         <CustomTextInput
                             label="Token"
                             onChangeText={code => this.setState({ code })}
-                            containerStyle={{ width: width / 1.36 }}
+                            containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
