@@ -96,6 +96,8 @@ class AdvancedThemeCustomisation extends React.Component {
         t: PropTypes.func.isRequired,
         tickImagePath: PropTypes.number.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
+        barColor: PropTypes.string.isRequired,
+        textColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {

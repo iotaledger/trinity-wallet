@@ -48,6 +48,10 @@ class QRScanner extends Component {
         t: PropTypes.func.isRequired,
         onQRRead: PropTypes.func.isRequired,
         hideModal: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        ctaColor: PropTypes.string.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
     };
 
     componentWillMount() {

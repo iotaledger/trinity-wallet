@@ -9,9 +9,9 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { width, height } from '../util/dimensions';
 import Dropdown from './dropdown';
-import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -89,16 +89,11 @@ const styles = StyleSheet.create({
 export class CurrencySelection extends Component {
     static propTypes = {
         isFetchingCurrencyData: PropTypes.bool.isRequired,
-        hasErrorFetchingCurrencyData: PropTypes.bool.isRequired,
-        getCurrencyData: PropTypes.func.isRequired,
         currency: PropTypes.string.isRequired,
         currencies: PropTypes.array.isRequired,
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
-        tickImagePath: PropTypes.number.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
     };
 
     componentWillReceiveProps(newProps) {
@@ -157,7 +152,7 @@ export class CurrencySelection extends Component {
     }
 
     render() {
-        const { currency, currencies, t, secondaryBackgroundColor, negativeColor, isFetchingCurrencyData } = this.props;
+        const { currency, currencies, t, negativeColor, isFetchingCurrencyData } = this.props;
 
         return (
             <TouchableWithoutFeedback

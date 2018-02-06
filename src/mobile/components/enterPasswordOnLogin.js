@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import RNExitApp from 'react-native-exit-app';
-import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard, BackHandler, AppState } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
@@ -61,6 +61,12 @@ const styles = StyleSheet.create({
 });
 
 class EnterPasswordOnLogin extends Component {
+    static propTypes = {
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
+        password: PropTypes.string.isRequired,
+    };
+
     componentDidMount() {
         BackHandler.addEventListener('loginBackPress', () => {
             RNExitApp.exitApp();
@@ -94,7 +100,7 @@ class EnterPasswordOnLogin extends Component {
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={this.handleChangeText}
-                            containerStyle={{ width: width / 1.36 }}
+                            containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically

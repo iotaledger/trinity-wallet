@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -7,7 +6,7 @@ import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import { StyleSheet, View, Text, Keyboard, AppState } from 'react-native';
+import { StyleSheet, View, Text, AppState } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
@@ -64,9 +63,7 @@ const styles = StyleSheet.create({
 
 class Login extends Component {
     static propTypes = {
-        firstUse: PropTypes.bool.isRequired,
         hasErrorFetchingAccountInfoOnLogin: PropTypes.bool.isRequired,
-        selectedAccount: PropTypes.object.isRequired,
         fullNode: PropTypes.string.isRequired,
         availablePoWNodes: PropTypes.array.isRequired,
         versions: PropTypes.object.isRequired,
@@ -228,7 +225,7 @@ class Login extends Component {
         const { backgroundColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
                 <View style={styles.modalContent}>
                     <Text style={[styles.questionText, textColor]}>Cannot connect to IOTA node.</Text>
                     <Text style={[styles.infoText, textColor]}>Do you want to select a different node?</Text>

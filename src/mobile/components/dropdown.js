@@ -106,6 +106,22 @@ export class Dropdown extends Component {
         onRef: PropTypes.func,
         disableWhen: PropTypes.bool,
         shadow: PropTypes.bool,
+        defaultOption: PropTypes.string,
+        saveSelection: PropTypes.func.isRequired,
+        options: PropTypes.array.isRequired,
+        title: PropTypes.string.isRequired,
+        dropdownWidth: PropTypes.number.isRequired,
+        background: PropTypes.bool.isRequired,
+        negativeColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+    };
+
+    static defaultProps = {
+        shadow: false,
+        disableWhen: false,
+        onRef: () => {},
+        defaultOption: '',
     };
 
     constructor(props) {
@@ -254,33 +270,28 @@ export class Dropdown extends Component {
                                                 <View style={[styles.additionalPadding, backgroundColor]} />
                                             </View>
                                         );
-                                    } else {
-                                        return (
-                                            <TouchableOpacity
-                                                onPress={() => this.onOptionPress(rowData)}
-                                                style={{ alignItems: 'flex-start', flex: 1 }}
+                                    }
+                                    return (
+                                        <TouchableOpacity
+                                            onPress={() => this.onOptionPress(rowData)}
+                                            style={{ alignItems: 'flex-start', flex: 1 }}
+                                        >
+                                            <View
+                                                style={[styles.dropdownItemContainer, backgroundColor, dropdownWidth]}
                                             >
-                                                <View
+                                                <Text
+                                                    numberOfLines={1}
                                                     style={[
-                                                        styles.dropdownItemContainer,
-                                                        backgroundColor,
+                                                        styles.dropdownItem,
                                                         dropdownWidth,
+                                                        { color: secondaryBackgroundColor },
                                                     ]}
                                                 >
-                                                    <Text
-                                                        numberOfLines={1}
-                                                        style={[
-                                                            styles.dropdownItem,
-                                                            dropdownWidth,
-                                                            { color: secondaryBackgroundColor },
-                                                        ]}
-                                                    >
-                                                        {rowData}
-                                                    </Text>
-                                                </View>
-                                            </TouchableOpacity>
-                                        );
-                                    }
+                                                    {rowData}
+                                                </Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                    );
                                 }}
                                 contentContainerView={styles.listView}
                                 enableEmptySections
