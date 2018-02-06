@@ -156,9 +156,9 @@ class Login extends Component {
         if (token) {
             getTwoFactorAuthKeyFromKeychain()
                 .then(key => {
-                    const legit = authenticator.verifyToken(key, token);
+                    const verified = authenticator.verifyToken(key, token);
 
-                    if (legit) {
+                    if (verified) {
                         if (firstUse) {
                             this.navigateToLoading();
                         } else {
