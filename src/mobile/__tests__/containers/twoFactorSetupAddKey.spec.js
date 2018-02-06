@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { TwoFactorSetupAddKey } from '../../containers/twoFactorSetupAddKey';
 import * as keychainUtils from '../../util/keychain';
-import { storeTwoFactorAuthKeyInKeychain } from '../../util/keychain';
 
 jest.mock('react-native-keychain', () => ({
     setGenericPassword: jest.fn(() => Promise.resolve({})),
