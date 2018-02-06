@@ -9,7 +9,7 @@ import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
 import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import { StyleSheet, View, Text } from 'react-native';
-import { StyleSheet, View, Text, Keyboard, AppState } from 'react-native';
+import { StyleSheet, View, Text, AppState } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
@@ -78,7 +78,6 @@ class Login extends Component {
         positiveColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        key2FA: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
         isFingerprintEnabled: PropTypes.bool.isRequired,
@@ -362,7 +361,6 @@ const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     is2FAEnabled: state.account.is2FAEnabled,
     isFingerprintEnabled: state.account.isFingerprintEnabled,
-    key2FA: state.account.key2FA,
     versions: state.app.versions,
     accountInfo: state.account.accountInfo,
     password: state.ui.loginPasswordFieldText,
