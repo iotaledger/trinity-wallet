@@ -46,7 +46,7 @@
         "yes": "はい",
         "no": "いいえ",
         "password": "パスワード",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "パスワードや指紋",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
         "syncInProgress": "同期中...",
@@ -139,8 +139,8 @@
         "useSeed": "Seedでログイン",
         "login": "ログイン",
         "selectDifferentNode": "別のノードを選択しますか？",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "ノード設定",
+        "cannotConnect": "ノードに接続できません。"
     },
     "loading": {
         "loadingFirstTime": "初めてのSeedを読み込んでいます。",
@@ -250,8 +250,8 @@
         "copy": "コピー",
         "paste": "貼り付け",
         "selectAll": "すべてを選択",
-        "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "securitySettings": "セキュリティ設定",
+        "fingerprint": "指紋認証"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
