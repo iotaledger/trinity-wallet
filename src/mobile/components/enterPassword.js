@@ -83,7 +83,7 @@ class EnterPassword extends Component {
     activateFingerPrintScanner() {
         const { t } = this.props;
 
-        FingerprintScanner.authenticate({ description: t('fingerprintInstructionsLogin') })
+        FingerprintScanner.authenticate({ description: t('fingerprintSetup: instructionsLogin') })
             .then(() => {
                 this.props.setUserActivity({ inactive: false });
             })
