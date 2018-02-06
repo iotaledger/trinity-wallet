@@ -176,6 +176,7 @@ class NewSeedSetup extends Component {
                             this.onGeneratePress();
                         }}
                         ctaWidth={width / 1.6}
+                        testID="newSeedSetup-newSeed"
                     />
                 </View>
                 <View style={styles.midContainer}>
@@ -231,6 +232,8 @@ class NewSeedSetup extends Component {
                         onRightButtonPress={() => this.onNextPress()}
                         leftText={t('global:back')}
                         rightText={t('global:next')}
+                        leftButtonTestID="newSeedSetup-back"
+                        rightButtonTestID="newSeedSetup-next"
                     />
                 </View>
                 <StatefulDropdownAlert />

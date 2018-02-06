@@ -37,12 +37,12 @@ class OnboardingButtons extends Component {
 
         return (
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity onPress={() => this.props.onLeftButtonPress()}>
+                <TouchableOpacity onPress={() => this.props.onLeftButtonPress()} testID={this.props.leftButtonTestID}>
                     <View style={[styles.button, negativeBorderColor]}>
                         <Text style={[styles.text, negativeTextColor]}>{this.props.leftText}</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.onRightButtonPress()}>
+                <TouchableOpacity onPress={() => this.props.onRightButtonPress()} testID={this.props.rightButtonTestID}>
                     <View style={[styles.button, positiveBorderColor, rightButtonOpacity]}>
                         <Text style={[styles.text, positiveTextColor]}>{this.props.rightText}</Text>
                     </View>

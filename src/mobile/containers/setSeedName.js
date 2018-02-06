@@ -18,6 +18,8 @@ import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import InfoBox from '../components/infoBox';
 
+console.ignoredYellowBox = true;
+
 export class SetSeedName extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
@@ -167,7 +169,7 @@ export class SetSeedName extends Component {
         return (
             <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View>
                         <View style={styles.topContainer}>
                             <Image source={iotaImagePath} style={styles.iotaLogo} />
@@ -205,6 +207,8 @@ export class SetSeedName extends Component {
                                 onRightButtonPress={() => this.onDonePress()}
                                 leftText={t('global:back')}
                                 rightText={t('global:done')}
+                                leftButtonTestID="setSeedName-back"
+                                rightButtonTestID="setSeedName-done"
                             />
                         </View>
                     </View>
