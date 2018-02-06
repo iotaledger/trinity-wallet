@@ -46,6 +46,7 @@
         "yes": "是的",
         "no": "没有",
         "password": "密码",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不相符。请再试一次。",
         "syncInProgress": "同步中",
@@ -70,7 +71,8 @@
         "autoreattaching": "自动附加到纠缠",
         "autoreattachingExplanation": "使用哈希{{hash}} 的重新事务",
         "autopromoting": "自动提示转移",
-        "autopromotingExplanation": "使用哈希{{hash}} 促进事务"
+        "autopromotingExplanation": "使用哈希{{hash}} 促进事务",
+        "fingerprintInstructionsLogin": "Touch reader to log in."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -137,7 +139,9 @@
         "enterPassword": "请输入您的密码.",
         "useSeed": "使用种子",
         "login": "登录",
-        "selectDifferentNode": "是否要选择其他节点？"
+        "selectDifferentNode": "是否要选择其他节点？",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "首次读取种子",
@@ -246,7 +250,9 @@
         "cut": "剪切",
         "copy": "复制",
         "paste": "粘贴",
-        "selectAll": "全选"
+        "selectAll": "全选",
+        "securitySettings": "Security settings",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
@@ -348,6 +354,23 @@
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",
         "warning": "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会迷路。</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication."
     },
     "transferConfirmation": {
         "youAreAbout": "您将发送{{contents}} 到地址",
