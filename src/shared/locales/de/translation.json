@@ -139,8 +139,8 @@
         "useSeed": "SEED BENUTZEN",
         "login": "ANMELDEN",
         "selectDifferentNode": "Möchtest du einen anderen Server auswählen?",
-        "setNode": "NODE AUSWÄHLEN",
-        "cannotConnect": "Keine Verbindung mit dem IOTA Node möglich."
+        "setNode": "SERVER AUSWÄHLEN",
+        "cannotConnect": "Verbindung mit IOTA Server nicht möglich."
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
@@ -251,7 +251,7 @@
         "paste": "Einfügen",
         "selectAll": "Alle auswählen",
         "securitySettings": "Sicherheitseinstellungen",
-        "fingerprint": "Authentifizierung mittel Fingerabdruck"
+        "fingerprint": "Fingerabdruck-Authentifizierung"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -358,9 +358,9 @@
         "instructionsEnable": "Berühre den Fingerabdrucksensor an deinem Gerät, um die Authentifizierung mittels Fingerabdruck einzurichten.",
         "instructionsDisable": "Berühre den Fingerabdrucksensor an deinem Gerät, um die Authentifizierung mittels Fingerabdruck zu deaktivieren.",
         "fingerprintAuthEnabled": "Fingerabdruck-Authentifizierung aktiviert",
-        "fingerprintAuthEnabledExplanation": "Authentifizierung mittels Fingerabdruck erfolgreich aktiviert.",
+        "fingerprintAuthEnabledExplanation": "Fingerabdruck-Authentifizierung wurde erfolgreich aktiviert.",
         "fingerprintAuthDisabled": "Fingerabdruck-Authentifizierung deaktiviert",
-        "fingerprintAuthDisabledExplanation": "Authentifizierung mittels Fingerabdruck erfolgreich deaktiviert.",
+        "fingerprintAuthDisabledExplanation": "Fingerabdruck-Authentifizierung wurde erfolgreich deaktiviert.",
         "fingerprintAuthFailed": "Fingerabdruck-Authentifizierung fehlgeschlagen",
         "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
         "status": "Status",
@@ -368,8 +368,8 @@
         "disabled": "Deaktiviert",
         "fingerprintUnavailable": "Fingerabdrucksensor nicht vorhanden",
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt die Erkennung von Fingerabdrücken nicht, oder diese Option wurde in den Einstellungen Ihres Geräts deaktiviert.",
-        "buttonInstructionsDisable": "Drücke die untere Schaltfläche, um die Authentifizierung mittels Fingerabdruck zu deaktivieren.",
-        "buttonInstructionsEnable": "Drücke die untere Schaltfläche, um die Authentifizierung mittels Fingerabdruck zu aktivieren.",
+        "buttonInstructionsDisable": "Drücke die untere Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
+        "buttonInstructionsEnable": "Drücke die untere Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "instructionsLogin": "Fingerabdrucksensor berühren, um sich anzumelden."
     },
     "transferConfirmation": {
