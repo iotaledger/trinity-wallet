@@ -57,7 +57,7 @@
         "cannotPerformAction": "Nie można wykonać akcji",
         "cannotPerformActionExplanation": "Aby zresetować portfel, przejdź do ustawień zaawansowanych.",
         "attachToTangleUnavailable": "Dołączenie do sieci Tangle niedostępne",
-        "attachToTangleUnavailableExplanation": "Dowiązanie do sieci Tangle nie jest dostępne na wybranym węźle.",
+        "attachToTangleUnavailableExplanation": "Dowiązanie do sieci Tangle nie jest dostępne na wybranym serwerze.",
         "wallet": "Portfel",
         "sent": "Wysłano",
         "received": "Odebrano",
