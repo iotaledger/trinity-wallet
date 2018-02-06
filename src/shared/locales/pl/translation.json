@@ -77,7 +77,7 @@
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
         "seedInvalidCharsExplanation": "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
-        "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
+        "seedTooShortExplanation": "Seed musi zawierać co najmniej {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
         "nameInUse": "Konto o tej nazwie już istnieje",
         "nameInUseExplanation": "Proszę użyć unikalnej nazwy konta dla Twojego klucza seed.",
         "enterAccountName": "Wprowadź nazwę konta.",
@@ -254,7 +254,7 @@
         "fingerprint": "Logowanie odciskiem palca"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Wprowadź hasło, aby zresetować portfel.",
+        "enterPassword": "Wprowadź hasło, aby zresetować swój portfel.",
         "cancel": "ANULUJ",
         "reset": "RESET"
     },
@@ -267,7 +267,7 @@
     },
     "welcome": {
         "thankYou": "Dziękujemy za pobranie portfela IOTA.",
-        "weWillSpend": "Kilka następnych minut spędzimy na konfiguracji portfela.",
+        "weWillSpend": "Kilka następnych minut spędzimy na Konfiguracji portfela.",
         "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces."
     },
     "writeSeedDown": {
@@ -314,7 +314,7 @@
         "logoutConfirmation": "Czy na pewno chcesz się wylogować?"
     },
     "qrScanner": {
-        "scan": "Zeskanuj kod QR"
+        "scan": "Zeskanuj swój kod QR"
     },
     "unitInfoModal": {
         "unitSystem": "JEDNOSTKA MIARY",
@@ -327,8 +327,8 @@
     "deleteAccount": {
         "areYouSure": "Czy na pewno chcesz usunąć to konto?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
-        "thisAction": "Tej czynności nie można cofnąć.",
-        "enterPassword": "Wprowadź hasło, aby usunąć konto."
+        "thisAction": "Tej czynności nie będzie można cofnąć.",
+        "enterPassword": "Wprowadź hasło, aby usunąć to konto."
     },
     "manualSync": {
         "pressToSync": "Naciśnij poniższy przycisk, aby zsynchronizować swoje konto.",
