@@ -46,6 +46,7 @@
         "yes": "JA",
         "no": "NEJ",
         "password": "Lösenord",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Fel lösenord",
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
         "syncInProgress": "Synkronisering pågår",
@@ -70,7 +71,8 @@
         "autoreattaching": "Auto-fastsättning till Tangle",
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
         "autopromoting": "Auto-promotar överföring",
-        "autopromotingExplanation": "Promotar transaktion med hashen {{hash}}"
+        "autopromotingExplanation": "Promotar transaktion med hashen {{hash}}",
+        "fingerprintInstructionsLogin": "Touch reader to log in."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -142,7 +144,9 @@
         "enterPassword": "Vänligen ange ditt lösenord.",
         "useSeed": "ANVÄND DIN SEED",
         "login": "LOGGA IN",
-        "selectDifferentNode": "Vill du välja en annan nod?"
+        "selectDifferentNode": "Vill du välja en annan nod?",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Laddar din adress för första gången.",
@@ -256,7 +260,9 @@
         "cut": "Klipp ut",
         "copy": "Kopiera",
         "paste": "Klistra in",
-        "selectAll": "Välj alla"
+        "selectAll": "Välj alla",
+        "securitySettings": "Security settings",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ange ditt lösenord för att återställa plånboken.",
@@ -362,6 +368,23 @@
         "cannotUndo": "DENNA ÅTGÄRD KAN INTE ÅNGRAS.",
         "warning":
             "<0><0>All data i din plånbok inklusive dina </0><1>seeds, lösenord,</1><2> och </2><3>annan kontoinformation</3><4> kommer att förloras.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication."
     },
     "transferConfirmation": {
         "youAreAbout": "Du kommer att skicka {{contents}} till adressen",
