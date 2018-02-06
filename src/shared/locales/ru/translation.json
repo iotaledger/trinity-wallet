@@ -140,7 +140,7 @@
         "login": "ВОЙТИ",
         "selectDifferentNode": "Вы хотите выбрать другой узел?",
         "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "cannotConnect": "Не удается подключиться к узлу IOTA."
     },
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
@@ -198,7 +198,7 @@
         "invalidAmount": "Указана неверная сумма",
         "invalidAmountExplanation": "Пожалуйста, введите числовое значение для суммы перевода.",
         "maximumSelected": "Выбрана МАКСИМАЛЬНАЯ сумма",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "Пояснение единиц измерения IOTA",
         "sendMax": "Максимальный перевод"
     },
     "setPassword": {
@@ -250,7 +250,7 @@
         "copy": "Копировать",
         "paste": "Вставить",
         "selectAll": "Выбрать всё",
-        "securitySettings": "Security settings",
+        "securitySettings": "Настройки безопасности",
         "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
