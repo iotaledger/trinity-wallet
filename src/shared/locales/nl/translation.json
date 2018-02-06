@@ -203,7 +203,7 @@
     },
     "setPassword": {
         "passwordTooShort": "Wachtwoord is te kort",
-        "passwordTooShortExplanation": "Uw wachtwoord moet minstens ${MIN_PASSWORD_LENGTH} tekens lang zijn. Het is momenteel ${this.state.password.length} tekens lang. Probeer het opnieuw.",
+        "passwordTooShortExplanation": "Uw wachtwoord moet minstens {{minLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
         "passwordMismatch": "Wachtwoorden komen niet overeen",
         "passwordMismatchExplanation": "Het ingevoerde wachtwoord is onjuist. Probeer het nog eens.",
         "nowWeNeedTo": "Oke, nu moeten we een wachtwoord instellen.",
