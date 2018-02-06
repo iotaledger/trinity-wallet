@@ -46,7 +46,7 @@
         "yes": "ДА",
         "no": "НЕТ",
         "password": "Пароль",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Пароль или отпечаток пальца",
         "unrecognisedPassword": "Нераспознанный пароль",
         "unrecognisedPasswordExplanation": "Нераспознанный пароль. Пожайлуста, повторите попытку.",
         "syncInProgress": "Идёт синхронизация",
@@ -139,7 +139,7 @@
         "useSeed": "ИСПОЛЬЗУЙТЕ КЛЮЧ",
         "login": "ВОЙТИ",
         "selectDifferentNode": "Вы хотите выбрать другой узел?",
-        "setNode": "SET NODE",
+        "setNode": "ВЫБРАТЬ СЕРВЕР",
         "cannotConnect": "Не удается подключиться к узлу IOTA."
     },
     "loading": {
@@ -198,7 +198,7 @@
         "invalidAmount": "Указана неверная сумма",
         "invalidAmountExplanation": "Пожалуйста, введите числовое значение для суммы перевода.",
         "maximumSelected": "Выбрана МАКСИМАЛЬНАЯ сумма",
-        "iotaUnits": "Пояснение единиц измерения IOTA",
+        "iotaUnits": "Пояснение системы единиц IOTA",
         "sendMax": "Максимальный перевод"
     },
     "setPassword": {
@@ -363,9 +363,9 @@
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
+        "status": "Статус",
+        "enabled": "Включено",
+        "disabled": "Выключено",
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
