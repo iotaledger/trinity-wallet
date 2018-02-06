@@ -4,6 +4,10 @@ import keychainWrapper, {
     storeSeedInKeychain,
     storeTwoFactorAuthKeyInKeychain,
     getTwoFactorAuthKeyFromKeychain,
+    getPasswordFromKeychain,
+    hasDuplicateAccountName,
+    hasDuplicateSeed,
+    getSeed,
 } from '../../util/keychain';
 
 jest.mock('react-native-keychain', () => ({
@@ -187,6 +191,84 @@ describe('Testing keychain util', () => {
             );
 
             return getTwoFactorAuthKeyFromKeychain().then(key => expect(key).toEqual('my super secret key'));
+        });
+    });
+
+    describe('#getPasswordFromKeychain', () => {
+        afterEach(() => {
+            keychain.getGenericPassword.mockClear();
+        });
+
+        it('should call getPasswordFromKeychain once', () => {
+            return getPasswordFromKeychain().then(() => expect(keychain.getGenericPassword).toHaveBeenCalledTimes(1));
+        });
+
+        it('should return password prop from keychain object', () => {
+            keychain.getGenericPassword.mockImplementation(() =>
+                Promise.resolve({
+                    username: 'barcelona', // username is transformed to password -> keychain.get()
+                    password: '',
+                    service: '',
+                }),
+            );
+
+            return getPasswordFromKeychain().then(password => expect(password).toEqual('barcelona'));
+        });
+    });
+
+    describe('#hasDuplicateAccountName', () => {
+        it('should return false if name passed in second argument is not present in any account array object', () => {
+            const data = JSON.stringify({ accounts: [{ seed: 'SEED', name: 'bar' }], shared: {} });
+
+            expect(hasDuplicateAccountName(data, 'foo')).toEqual(false);
+            expect(hasDuplicateAccountName(data, 'baz')).toEqual(false);
+        });
+
+        it('should return true if name passed in second argument is present in any account array object', () => {
+            const data = JSON.stringify({
+                accounts: [{ seed: 'SEED', name: 'bar' }, { seed: 'SEEDTWO', name: 'foo' }],
+                shared: {},
+            });
+
+            expect(hasDuplicateAccountName(data, 'bar')).toEqual(true);
+            expect(hasDuplicateAccountName(data, 'foo')).toEqual(true);
+        });
+    });
+
+    describe('#hasDuplicateSeed', () => {
+        it('should return false if seed passed in second argument is not present in any account array object', () => {
+            const data = JSON.stringify({ accounts: [{ seed: 'SEED', name: 'bar' }], shared: {} });
+
+            expect(hasDuplicateSeed(data, 'SEEDTWO')).toEqual(false);
+            expect(hasDuplicateSeed(data, 'SEEDTHREE')).toEqual(false);
+        });
+
+        it('should return true if seed passed in second argument is present in any account array object', () => {
+            const data = JSON.stringify({
+                accounts: [{ seed: 'SEED', name: 'bar' }, { seed: 'SEEDTWO', name: 'foo' }],
+                shared: {},
+            });
+
+            expect(hasDuplicateSeed(data, 'SEED')).toEqual(true);
+            expect(hasDuplicateSeed(data, 'SEEDTWO')).toEqual(true);
+        });
+    });
+
+    describe('#getSeed', () => {
+        it('should return an empty string if index does not exist in accounts array prop passed as first argument', () => {
+            const data = JSON.stringify({ accounts: [{ seed: 'SEED', name: 'bar' }], shared: {} });
+
+            [1, -1, 0.5, null, undefined].forEach(item => expect(getSeed(data, item)).toEqual(''));
+        });
+
+        it('should return seed prop for item at specified index if index exists is accounts array', () => {
+            const data = JSON.stringify({
+                accounts: [{ seed: 'DANGLE', name: 'bar' }, { seed: '9999', name: 'foo' }],
+                shared: {},
+            });
+
+            expect(getSeed(data, 0)).toEqual('DANGLE');
+            expect(getSeed(data, 1)).toEqual('9999');
         });
     });
 });
