@@ -110,7 +110,7 @@
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "seedCopied": "Seed skopiowany do schowka",
         "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"Gotowe\", lub po upływie 60 sekund.",
-        "clickToCopy": "Kliknij przycisk poniżej i skopiuj swojego seeda do menedżera haseł.",
+        "clickToCopy": "Kliknij poniższy przycisk i skopiuj swój klucz seed do menedżera haseł.",
         "doNotStore": "Nie przechowuj swojego klucza seed w formie zwykłego tekstu.",
         "copyToClipboard": "Kopiuj do schowka"
     },
@@ -149,7 +149,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed nie został wygenerowany",
-        "seedNotGeneratedExplanation": "Kliknij na przycisk generowania nowego seeda.",
+        "seedNotGeneratedExplanation": "Kliknij na przycisk generowania nowego klucza seed.",
         "pressForNewSeed": "WYGENERUJ NOWY SEED",
         "individualLetters": "Naciśnij na dane pole, aby wylosować je ponownie."
     },
@@ -157,7 +157,7 @@
         "walletReady": "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
     },
     "paperWallet": {
-        "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopie twojego seeda.",
+        "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopie Twojego klucza seed.",
         "storeSafely": "Przechowuj go bezpiecznie.",
         "neverShare": "Nigdy nie udostępniaj nikomu swojego klucza seed.",
         "iotaLogo": "Logo IOTA",
