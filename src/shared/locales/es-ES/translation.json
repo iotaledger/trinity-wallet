@@ -189,17 +189,17 @@
         "notEnoughFunds": "Fondos insuficientes",
         "notEnoughFundsExplanation": "No tienes suficiente IOTA para completar esta transferencia.",
         "keyReuse": "Reutilización de clave",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
+        "keyReuseExplanation": "La dirección a la que intentas enviar ha sido utilizada anteriormente. Por favor, prueba otra dirección.",
         "recipientAddress": "Dirección del destinatario",
         "amount": "Cantidad",
         "max": "MAX",
         "message": "Mensaje",
         "send": "ENVIAR",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "invalidAmount": "La cantidad ingresada es incorrecta",
+        "invalidAmountExplanation": "Por favor, introduce un valor numérico para la cantidad de la transacción.",
+        "maximumSelected": "Cantidad MÁXIMA seleccionada",
+        "iotaUnits": "Explicación de la unidad IOTA",
+        "sendMax": "ENVIAR MÁXIMO"
     },
     "setPassword": {
         "passwordTooShort": "La contraseña es demasiado corta",
@@ -207,9 +207,9 @@
         "passwordMismatch": "Las contraseñas no coinciden",
         "passwordMismatchExplanation": "Las contraseñas introducidas no coinciden. Por favor, inténtalo de nuevo.",
         "nowWeNeedTo": "Ahora tenemos que configurar una contraseña.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "Se almacenará en tu dispositivo una copia encriptada de la Seed. Esta contraseña será la que utilizarás para acceder a tu billetera en futuros accesos.",
         "ensure": "Asegúrate de utilizar una contraseña segura con al menos 12 caracteres.",
-        "retypePassword": "Retype Password"
+        "retypePassword": "Escribe la contraseña de nuevo"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
