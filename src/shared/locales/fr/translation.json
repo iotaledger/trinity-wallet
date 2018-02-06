@@ -140,7 +140,7 @@
         "login": "SE CONNECTER",
         "selectDifferentNode": "Voulez-vous sélectionner un node différent ?",
         "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "cannotConnect": "Impossible de se connecter à un node IOTA."
     },
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
@@ -198,7 +198,7 @@
         "invalidAmount": "Montant saisi incorrect",
         "invalidAmountExplanation": "Veuillez saisir une valeur numérique pour le montant de la transaction.",
         "maximumSelected": "Montant MAXIMAL sélectionné",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "Unités IOTA expliquées",
         "sendMax": "SEND MAX"
     },
     "setPassword": {
@@ -250,8 +250,8 @@
         "copy": "Copier",
         "paste": "Coller",
         "selectAll": "Tout Sélectionner",
-        "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "securitySettings": "Paramètres de sécurité",
+        "fingerprint": "Authentification par empreintes digitales"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Saisissez votre mot de passe pour réinitialiser le wallet.",
@@ -355,10 +355,10 @@
         "warning": "<0><0>Toutes vos données de wallet, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "instructionsEnable": "Toucher le lecteur d’empreinte digitale de votre appareil pour activer l’authentification par empreintes digitales.",
+        "instructionsDisable": "Toucher le lecteur d’empreinte digitale de votre appareil pour désactiver l’authentification par empreintes digitales.",
+        "fingerprintAuthEnabled": "Authentification par empreintes digitales activée",
+        "fingerprintAuthEnabledExplanation": "Vous avez correctement activé l’authentification par empreintes digitales.",
         "fingerprintAuthDisabled": "Authentification par empreintes digitales désactivée",
         "fingerprintAuthDisabledExplanation": "Vous avez correctement désactivé l’authentification par empreintes digitales.",
         "fingerprintAuthFailed": "Échec de l’authentification par empreinte digitale",
