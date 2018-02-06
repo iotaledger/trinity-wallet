@@ -178,7 +178,7 @@
     "seedReentry": {
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
-        "thisIsACheck": "To jest test w celu upewnienia się że zapisałeś swój seed.",
+        "thisIsACheck": "To jest test w celu upewnienia się, że zapisałeś swój seed.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to."
     },
     "send": {
