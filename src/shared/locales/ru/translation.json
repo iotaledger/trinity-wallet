@@ -46,6 +46,7 @@
         "yes": "ДА",
         "no": "НЕТ",
         "password": "Пароль",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Нераспознанный пароль",
         "unrecognisedPasswordExplanation": "Нераспознанный пароль. Пожайлуста, повторите попытку.",
         "syncInProgress": "Идёт синхронизация",
@@ -70,7 +71,8 @@
         "autoreattaching": "Автообновление в Tangle",
         "autoreattachingExplanation": "Повторное присоединение транзакций с хэш {{hash}}",
         "autopromoting": "Передача автопромотирования",
-        "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}"
+        "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}",
+        "fingerprintInstructionsLogin": "Touch reader to log in."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -137,7 +139,9 @@
         "enterPassword": "Пожалуйста, введите пароль.",
         "useSeed": "ИСПОЛЬЗУЙТЕ КЛЮЧ",
         "login": "ВОЙТИ",
-        "selectDifferentNode": "Вы хотите выбрать другой узел?"
+        "selectDifferentNode": "Вы хотите выбрать другой узел?",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
@@ -246,7 +250,9 @@
         "cut": "Вырезать",
         "copy": "Копировать",
         "paste": "Вставить",
-        "selectAll": "Выбрать всё"
+        "selectAll": "Выбрать всё",
+        "securitySettings": "Security settings",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите ваш пароль для сброса настроек кошелька.",
@@ -348,6 +354,23 @@
     "walletResetConfirmation": {
         "cannotUndo": "ЭТО ДЕЙСТВИЕ НЕ МОЖЕТ БЫТЬ ОТМЕНЕНО.",
         "warning": "<0><0>Все данные вашего кошелька, включая </0><1> пароль,</1><2> and </2><3>\nдругая информация учетной записи</3><4> будут потеряны.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication."
     },
     "transferConfirmation": {
         "youAreAbout": "Вы собираетесь отправить {{contents}} на адрес",
