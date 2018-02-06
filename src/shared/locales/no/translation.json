@@ -71,8 +71,7 @@
         "autoreattaching": "Retilknytter automatisk",
         "autoreattachingExplanation": "Retiljknytter transaksjon med hash-{{hash}}",
         "autopromoting": "Sender hjelpetransaksjoner",
-        "autopromotingExplanation": "Sende hjelpetransaksjoner for {{hash}}",
-        "fingerprintInstructionsLogin": "Touch reader to log in."
+        "autopromotingExplanation": "Sende hjelpetransaksjoner for {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -370,7 +369,8 @@
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication."
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "Du skal til å sende {{contents}} til adressen",
