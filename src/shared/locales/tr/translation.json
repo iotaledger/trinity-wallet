@@ -347,8 +347,8 @@
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Seed'imi kaydettim",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenter": "Şimdi, seed'ini bir daha vermen lâzim olacak.",
+        "reenterWarning": "Cihazın bozulursa ve seed'ini kaydetmediysen, IOTA'larını kaybetirsin."
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
