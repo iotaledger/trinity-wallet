@@ -70,7 +70,7 @@
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
         "autoreattaching": "Automatyczne ponawianie wiązania do sieci Tangle",
         "autoreattachingExplanation": "Ponowne wiązanie transakcji z hashem {{hash}}",
-        "autopromoting": "Autopromocja wysyłki",
+        "autopromoting": "Autopromocja transferu",
         "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}"
     },
     "addAdditionalSeed": {
@@ -139,7 +139,7 @@
         "useSeed": "UŻYJ SEED",
         "login": "ZALOGUJ",
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?",
-        "setNode": "Wybierz serwer",
+        "setNode": "SERWER",
         "cannotConnect": "Nie można podłączyć sie do serwera."
     },
     "loading": {
@@ -216,7 +216,7 @@
         "youCanAdd": "Możesz dodać więcej kluczy seed w menu ustawień."
     },
     "settings": {
-        "transferSending": "Wysyłanie transferu",
+        "transferSending": "W trakcie transferu",
         "transferSendingExplanation": "Proszę zaczekać na wysłanie Twojego transferu.",
         "generatingAddress": "Generowanie adresu odbiorczego",
         "generatingAddressExplanation": "Proszę zaczekać na wygenerowanie Twojego adresu.",
@@ -327,7 +327,7 @@
     "deleteAccount": {
         "areYouSure": "Czy na pewno chcesz usunąć to konto?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
-        "thisAction": "Tej czynności nie będzie można cofnąć.",
+        "thisAction": "Tej czynności nie można cofnąć.",
         "enterPassword": "Wprowadź hasło, aby usunąć to konto."
     },
     "manualSync": {
