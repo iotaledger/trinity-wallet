@@ -147,7 +147,7 @@ class Login extends Component {
     }
 
     onComplete2FA(token) {
-        const { firstUse, selectedAccount } = this.props;
+        const { firstUse, selectedAccount, t } = this.props;
 
         if (token) {
             getTwoFactorAuthKeyFromKeychain()
@@ -168,12 +168,12 @@ class Login extends Component {
 
                         this.setState({ completing2FA: false });
                     } else {
-                        this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+                        this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
                     }
                 })
                 .catch(err => console.error(err)); // Generate an alert here.
         } else {
-            this.props.generateAlert('error', 'Empty code', 'The code you entered is empty');
+            this.props.generateAlert('error', t('twoFA:emptyCode'), t('emptyCodeExplanation'));
         }
     }
 
@@ -340,4 +340,4 @@ const mapDispatchToProps = {
     setLoginPasswordField,
 };
 
-export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default translate(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login));
