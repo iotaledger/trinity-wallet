@@ -170,7 +170,9 @@ class Login extends Component {
             .then(() => {
                 keychain
                     .get()
-                    .then(() => {
+                    .then(credentials => {
+                        const password = get(credentials, 'password');
+                        this.props.setPassword(password);
                         if (!is2FAEnabled) {
                             this.navigateToLoading();
                         } else {
