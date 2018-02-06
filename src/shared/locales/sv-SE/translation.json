@@ -366,7 +366,7 @@
         "status": "Status",
         "enabled": "Aktiverad",
         "disabled": "Inaktiverad",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailable": "Fingeravtrycksläsare ej tillgänglig",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
