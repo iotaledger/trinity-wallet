@@ -128,7 +128,7 @@ export class TwoFactorSetupAddKey extends Component {
     navigateToEnterToken() {
         Clipboard.setString('');
 
-        storeTwoFactorAuthKeyInKeychain(this.state.authKey)
+        return storeTwoFactorAuthKeyInKeychain(this.state.authKey)
             .then(() => {
                 this.props.navigator.push({
                     screen: 'twoFactorSetupEnterToken',
