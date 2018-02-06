@@ -45,16 +45,20 @@ const keychain = {
 };
 
 export const storeSeedInKeychain = async (password, seed, name) => {
-    const { data } = await keychain.get();
-    const info = { accounts: [{ seed, name }], shared: { twoFactorAuthKey: null } };
+    const existingInfo = await keychain.get();
+    const existingData = get(existingInfo, 'data');
 
-    if (isEmpty(data)) {
+    // In case this is the first seed with account name
+    // Set the new seed with account name
+    if (isEmpty(existingData)) {
+        const info = { accounts: [{ seed, name }], shared: { twoFactorAuthKey: null } };
         return keychain.set(password, serialize(info));
     }
 
-    const existingInfo = parse(data);
-    const updatedKeychainInfo = assign({}, existingInfo, {
-        accounts: [...get(existingInfo, 'accounts'), { seed, name }],
+    const parsed = parse(existingData);
+
+    const updatedKeychainInfo = assign({}, parsed, {
+        accounts: [...get(parsed, 'accounts'), { seed, name }],
     });
 
     return keychain.set(password, serialize(updatedKeychainInfo));
@@ -93,6 +97,12 @@ export const getTwoFactorAuthKeyFromKeychain = async () => {
     return get(parse(data), 'shared.twoFactorAuthKey');
 };
 
+export const getPasswordFromKeychain = async () => {
+    const info = await keychain.get();
+
+    return get(info, 'password');
+};
+
 export const hasDuplicateAccountName = (data, name) => {
     const parsed = parse(data);
     const hasDuplicate = d => get(d, 'name') === name;
@@ -115,11 +125,11 @@ export const getSeed = (value, index) => {
 };
 
 export const updateAccountNameInKeychain = async (replaceAtIndex, newAccountName, password) => {
-    const data = await keychain.get();
-    const accountInformation = get(data, 'data');
+    const info = await keychain.get();
+    const data = get(info, 'data');
 
-    if (accountInformation) {
-        const parsed = parse(accountInformation);
+    if (data) {
+        const parsed = parse(data);
         const replace = (d, i) => {
             if (i === replaceAtIndex) {
                 return {
@@ -136,7 +146,7 @@ export const updateAccountNameInKeychain = async (replaceAtIndex, newAccountName
         return keychain.set(
             password,
             serialize(
-                assign({}, accountInformation, {
+                assign({}, parsed, {
                     accounts: updatedAccountInfo,
                 }),
             ),
@@ -147,18 +157,18 @@ export const updateAccountNameInKeychain = async (replaceAtIndex, newAccountName
 };
 
 export const deleteFromKeychain = async (deleteFromIndex, password) => {
-    const data = await keychain.get();
-    const accountInformation = get(data, 'data');
+    const info = await keychain.get();
+    const data = get(info, 'data');
 
-    if (accountInformation) {
-        const parsed = parse(accountInformation);
+    if (data) {
+        const parsed = parse(data);
         const remove = (d, i) => i !== deleteFromIndex;
         const updatedAccountInfo = filter(get(parsed, 'accounts'), remove);
 
         return keychain.set(
             password,
             serialize(
-                assign({}, updatedAccountInfo, {
+                assign({}, parsed, {
                     accounts: updatedAccountInfo,
                 }),
             ),

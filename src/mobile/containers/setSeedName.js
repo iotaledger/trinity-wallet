@@ -58,16 +58,17 @@ export class SetSeedName extends Component {
                 keychain
                     .get()
                     .then(credentials => {
+                        console.log('Credentials', credentials);
                         if (isEmpty(credentials)) {
                             return fetch(trimmedAccountName);
                         } else {
-                            if (hasDuplicateAccountName(credentials.password, trimmedAccountName)) {
+                            if (hasDuplicateAccountName(credentials.data, trimmedAccountName)) {
                                 return this.props.generateAlert(
                                     'error',
                                     t('addAdditionalSeed:nameInUse'),
                                     t('addAdditionalSeed:nameInUseExplanation'),
                                 );
-                            } else if (hasDuplicateSeed(credentials.password, this.props.tempAccount.seed)) {
+                            } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
                                 return this.props.generateAlert(
                                     'error',
                                     t('addAdditionalSeed:seedInUse'),
