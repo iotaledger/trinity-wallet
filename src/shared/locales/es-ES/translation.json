@@ -46,7 +46,7 @@
         "yes": "SÍ",
         "no": "NO",
         "password": "Contraseña",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Contraseña o huella dactilar",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtalo de nuevo.",
         "syncInProgress": "Sincronización en progreso",
@@ -139,8 +139,8 @@
         "useSeed": "USAR SEED",
         "login": "INICIAR SESIÓN",
         "selectDifferentNode": "Do you want to select a different node?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "Establecer Nodo",
+        "cannotConnect": "No es posible conectarse al nodo de IOTA."
     },
     "loading": {
         "loadingFirstTime": "Cargando la seed por primera vez.",
@@ -148,7 +148,7 @@
         "youMayNotice": "Puedes notar que se alenta tu dispositivo."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGenerated": "La semilla no se ha generado",
         "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
         "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio."
