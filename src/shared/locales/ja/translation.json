@@ -355,8 +355,8 @@
         "warning": "<0><0>Seedやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消えます。</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "instructionsEnable": "指紋認証を有効にするには、指紋リーダーに触れてください。",
+        "instructionsDisable": "指紋認証を無効にするには、指紋リーダーに触れてください。",
         "fingerprintAuthEnabled": "Fingerprint authentication enabled",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
         "fingerprintAuthDisabled": "Fingerprint authentication disabled",
