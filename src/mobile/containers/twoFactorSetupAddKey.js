@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
-import { set2FAKey, set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
-import { storeTwoFactorAuthKeyInKeychain } from '../util/keychain';
+import { set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import { StyleSheet, View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
-import Clipboard from '../util/clipboard';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import { Navigation } from 'react-native-navigation';
 import QRCode from 'react-native-qrcode-svg';
+import { Clipboard, StyleSheet, View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import DynamicStatusBar from '../components/dynamicStatusBar';
+import { storeTwoFactorAuthKeyInKeychain } from '../util/keychain';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
@@ -75,9 +74,7 @@ const styles = StyleSheet.create({
 class TwoFactorSetupAddKey extends Component {
     static propTypes = {
         backgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        set2FAKey: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         navigator: PropTypes.object.isRequired,
     };
@@ -103,7 +100,7 @@ class TwoFactorSetupAddKey extends Component {
 
     onKeyPress(key) {
         if (key) {
-            Clipboard.set(key);
+            Clipboard.setString(key);
 
             this.props.generateAlert(
                 'success',
@@ -130,7 +127,7 @@ class TwoFactorSetupAddKey extends Component {
     }
 
     navigateToEnterToken() {
-        Clipboard.clear();
+        Clipboard.setString('');
 
         storeTwoFactorAuthKeyInKeychain(this.state.authkey)
             .then(() => {
@@ -195,14 +192,12 @@ class TwoFactorSetupAddKey extends Component {
 }
 const mapDispatchToProps = {
     set2FAStatus,
-    set2FAKey,
     generateAlert,
 };
 
 const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
-    negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
