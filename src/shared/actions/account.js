@@ -230,7 +230,10 @@ export const fetchFullAccountInfoForFirstUse = (
         .then(dataWithUnspentAddressesHashes => {
             storeInKeychainPromise(password, seed, accountName)
                 .then(() => dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithUnspentAddressesHashes)))
-                .catch(err => onError(err));
+                .catch(err => {
+                    console.log('Err', err);
+                    onError(err);
+                });
         })
         .catch(err => onError(err));
 };
