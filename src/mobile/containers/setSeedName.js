@@ -58,7 +58,6 @@ export class SetSeedName extends Component {
                 keychain
                     .get()
                     .then(credentials => {
-                        console.log('Credentials', credentials);
                         if (isEmpty(credentials)) {
                             return fetch(trimmedAccountName);
                         } else {
