@@ -120,7 +120,7 @@
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
         "seedExplanation": "Seed powinien składać się z {{maxLength}} znaków i powinien zawierać wielkie litery A-Z lub cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
-        "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA"
+        "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO KLUCZA SEED"
     },
     "home": {
         "balance": "SALDO",
@@ -143,7 +143,7 @@
         "cannotConnect": "Nie można podłączyć sie do serwera."
     },
     "loading": {
-        "loadingFirstTime": "Ładowanie seeda po raz pierwszy.",
+        "loadingFirstTime": "Ładowanie klucza seed po raz pierwszy.",
         "thisMayTake": "To może chwilę potrwać.",
         "youMayNotice": "Możesz zaobserwować spowolnienie Twojego urządzenia."
     },
@@ -159,7 +159,7 @@
     "paperWallet": {
         "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopie twojego seeda.",
         "storeSafely": "Przechowuj go bezpiecznie.",
-        "neverShare": "Nigdy nie udostępniaj nikomu swojego seeda.",
+        "neverShare": "Nigdy nie udostępniaj nikomu swojego klucza seed.",
         "iotaLogo": "Logo IOTA",
         "printWallet": "DRUKUJ PAPIEROWY PORTFEL"
     },
@@ -179,7 +179,7 @@
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "thisIsACheck": "To jest test w celu upewnienia się że zapisałeś swój seed.",
-        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego seeda, proszę cofnij się i to zrób."
+        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to."
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -207,7 +207,7 @@
         "passwordMismatch": "Hasła nie są zgodne",
         "passwordMismatchExplanation": "Wpisane hasła różnią się. Spróbuj ponownie.",
         "nowWeNeedTo": "Teraz musimy ustawić hasło.",
-        "anEncryptedCopy": "Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu. Będziesz korzystał z tego hasła w celu uzyskania dostępu do swojego portfela w przyszłości.",
+        "anEncryptedCopy": "Zaszyfrowana kopia Twojego klucza seed będzie przechowywana na Twoim urządzeniu. Będziesz korzystał z tego hasła w celu uzyskania dostępu do swojego portfela w przyszłości.",
         "ensure": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "retypePassword": "Wpisz hasło ponownie"
     },
@@ -263,7 +263,7 @@
         "doYouAlreadyHaveASeed": "Czy posiadasz już seed, którego chciałbyś użyć?",
         "seedExplanation": "Seed IOTA jest swego rodzaju połączeniem nazwy użytkownika oraz hasła do Twojego konta, składającym się na ciąg 81 znaków.",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed, stracisz swoje środki IOTA.</4></0>",
-        "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seeda."
+        "keepSafe": "Proszę dbaj o bezpieczeństwo swojego klucza seed."
     },
     "welcome": {
         "thankYou": "Dziękujemy za pobranie portfela IOTA.",
@@ -343,10 +343,10 @@
     "viewSeed": {
         "enterPassword": "Wprowadź hasło, aby wyświetlić swój seed.",
         "viewSeed": "POKAŻ SEED",
-        "hideSeed": "UKRYJ SEEDA"
+        "hideSeed": "UKRYJ SEED"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "Zapisałem swojego seeda",
+        "alreadyHave": "Zapisałem swój seed",
         "reenter": "Teraz będziesz poproszony/a o ponowne wprowadzenie swojego klucza seed.",
         "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego klucza seed, stracisz swoje środki IOTA."
     },
