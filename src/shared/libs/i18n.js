@@ -27,6 +27,7 @@ export const I18N_LOCALES = [
     'sv_SE',
     'tr',
     'ur',
+    'vi',
     'zh_CN',
     'zh_TW',
 ];
@@ -59,6 +60,7 @@ export const I18N_LOCALE_LABELS = [
     'Svenska - Swedish',
     'Türkçe - Turkish',
     'اردو - Urdu',
+    'Tiếng Việt - Vietnamese',
     '中文 (简体) - Chinese (Simplified)',
     '中文 (繁體) - Chinese (Traditional)',
 ];
