@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
 import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
-import { StyleSheet, View, Text } from 'react-native';
 import { StyleSheet, View, Text, AppState } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
@@ -29,7 +28,7 @@ import NodeSelection from '../components/nodeSelection';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import keychain from '../util/keychain';
+import keychain, { getPasswordFromKeychain } from '../util/keychain';
 import GENERAL from '../theme/general';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
@@ -123,15 +122,14 @@ class Login extends Component {
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
-            keychain
-                .get()
-                .then(credentials => {
-                    const hasAccountsData = get(credentials, 'data.accounts');
-                    const hasCorrectPassword = get(credentials, 'password') === password;
+            getPasswordFromKeychain()
+                .then(passwordFromKeychain => {
+                    const hasCorrectPassword = passwordFromKeychain === password;
 
-                    if (hasAccountsData && hasCorrectPassword) {
+                    if (hasCorrectPassword) {
                         this.props.setPassword(password);
                         this.props.setLoginPasswordField('');
+
                         if (!is2FAEnabled) {
                             this.navigateToLoading();
                         } else {
@@ -145,7 +143,7 @@ class Login extends Component {
                         );
                     }
                 })
-                .catch(err => console.log(err)); // Dropdown
+                .catch(err => console.log(err)); // Generate an alert.
         }
     }
 
