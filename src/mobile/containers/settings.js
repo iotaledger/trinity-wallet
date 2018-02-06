@@ -69,6 +69,7 @@ import keychain, {
     deleteFromKeychain,
 } from '../util/keychain';
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -250,20 +251,24 @@ class Settings extends Component {
 
     onFingerprintSetupPress() {
         const { backgroundColor } = this.props;
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'fingerprintSetup',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: backgroundColor,
-                    generateAlert: this.props.generateAlert,
+        if (isAndroid) {
+            this.featureUnavailable();
+        } else {
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: 'fingerprintSetup',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundColor: backgroundColor,
+                        generateAlert: this.props.generateAlert,
+                    },
                 },
-            },
-            appStyle: {
-                orientation: 'portrait',
-            },
-        });
+                appStyle: {
+                    orientation: 'portrait',
+                },
+            });
+        }
     }
 
     onManualSyncPress() {
@@ -647,7 +652,7 @@ class Settings extends Component {
                 borderColor: { borderColor: secondaryBackgroundColor },
                 secondaryBackgroundColor,
                 negativeColor,
-                backgroundColor: backgroundColor,
+                backgroundColor,
                 arrowLeftImagePath,
                 transitionBalance,
                 transitionAddresses,
