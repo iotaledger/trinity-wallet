@@ -168,4 +168,25 @@ describe('Testing keychain util', () => {
             });
         });
     });
+
+    describe('#getTwoFactorAuthKeyFromKeychain', () => {
+        afterEach(() => {
+            keychain.getGenericPassword.mockClear();
+        });
+
+        it('should return twoFactorAuthKey prop', () => {
+            keychain.getGenericPassword.mockImplementation(() =>
+                Promise.resolve({
+                    username: 'baz',
+                    password: {
+                        accounts: [{ seed: 'FOO', name: 'ACCOUNT_ONE' }],
+                        shared: { twoFactorAuthKey: 'my super secret key' },
+                    },
+                    service: 'bundleId',
+                }),
+            );
+
+            return getTwoFactorAuthKeyFromKeychain().then(key => expect(key).toEqual('my super secret key'));
+        });
+    });
 });
