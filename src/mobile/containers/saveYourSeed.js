@@ -10,8 +10,6 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
-import { Navigation } from 'react-native-navigation';
-import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
@@ -20,8 +18,8 @@ class SaveYourSeed extends Component {
         navigator: PropTypes.object.isRequired,
         setCopiedToClipboard: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
-        extraColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        extraColor: PropTypes.string.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
     };
@@ -56,7 +54,7 @@ class SaveYourSeed extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -74,7 +72,7 @@ class SaveYourSeed extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -85,7 +83,7 @@ class SaveYourSeed extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -96,7 +94,7 @@ class SaveYourSeed extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -105,12 +103,12 @@ class SaveYourSeed extends Component {
     render() {
         const { t, backgroundColor, extraColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
-        const extraColorText = { color: THEMES.getHSL(extraColor) };
-        const extraColorBorder = { borderColor: THEMES.getHSL(extraColor) };
+        const extraColorText = { color: extraColor };
+        const extraColorBorder = { borderColor: extraColor };
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />

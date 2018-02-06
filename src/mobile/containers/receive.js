@@ -28,8 +28,8 @@ import {
 } from 'iota-wallet-shared-modules/actions/keychain';
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import CustomTextInput from '../components/customTextInput';
+import CtaButton from '../components/ctaButton';
 
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
@@ -52,8 +52,8 @@ class Receive extends Component {
         getFromKeychainRequest: PropTypes.func.isRequired,
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
-        ctaColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
@@ -216,14 +216,14 @@ class Receive extends Component {
                             </View>
                         </TouchableOpacity>
                     )}
-                    <View style={{ flex: 0.05 }} />
+                    <View style={{ flex: 0.2 }} />
                     <CustomTextInput
                         onRef={c => {
                             this.messageField = c;
                         }}
                         label={t('message')}
                         onChangeText={message => this.setState({ message })}
-                        containerStyle={{ width: width / 1.28 }}
+                        containerStyle={{ width: width / 1.2 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
                         returnKeyType="done"
@@ -235,26 +235,17 @@ class Receive extends Component {
                     {receiveAddress === ' ' &&
                         (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
                             <View style={{ flex: 0.7, justifyContent: 'center' }}>
-                                <TouchableOpacity
+                                <CtaButton
+                                    ctaColor={ctaColor}
+                                    ctaBorderColor={ctaBorderColor}
+                                    secondaryCtaColor={secondaryCtaColor}
+                                    text={t('generateNewAddress')}
                                     onPress={() => {
-                                        // Check if there's already a network call in progress.
                                         if (!isGeneratingReceiveAddress) {
                                             this.onGeneratePress();
                                         }
                                     }}
-                                >
-                                    <View
-                                        style={[
-                                            styles.generateButton,
-                                            { backgroundColor: THEMES.getHSL(ctaColor) },
-                                            generateBorderColor,
-                                        ]}
-                                    >
-                                        <Text style={[styles.generateText, ctaTextColor]}>
-                                            {t('generateNewAddress')}
-                                        </Text>
-                                    </View>
-                                </TouchableOpacity>
+                                />
                             </View>
                         )}
                     {(isGettingSensitiveInfoToGenerateAddress || isGeneratingReceiveAddress) && (
@@ -263,7 +254,7 @@ class Receive extends Component {
                                 animating={isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress}
                                 style={styles.activityIndicator}
                                 size="large"
-                                color={THEMES.getHSL(negativeColor)}
+                                color={negativeColor}
                             />
                         </View>
                     )}
@@ -307,7 +298,7 @@ const styles = StyleSheet.create({
         paddingTop: width / 30,
         paddingHorizontal: width / 30,
         paddingBottom: isAndroid ? width / 22 : width / 30,
-        width: width / 1.28,
+        width: width / 1.2,
     },
     activityIndicator: {
         flex: 1,
@@ -322,20 +313,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         height: width / 20,
         justifyContent: 'center',
-    },
-    generateButton: {
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.2,
-        height: height / 13,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1.5,
-    },
-    generateText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
-        backgroundColor: 'transparent',
-        color: 'white',
     },
     qrContainer: {
         borderRadius: GENERAL.borderRadius,

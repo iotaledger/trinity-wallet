@@ -9,11 +9,10 @@ import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import Seedbox from '../components/seedBox';
-import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
+import CtaButton from '../components/ctaButton';
 
 class CopySeedToClipboard extends Component {
     static propTypes = {
@@ -87,7 +86,7 @@ class CopySeedToClipboard extends Component {
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
@@ -101,23 +100,22 @@ class CopySeedToClipboard extends Component {
                         textColor={textColor}
                         seed={this.props.tempAccount.seed}
                     />
-                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ marginTop: height / 22 }}>
-                        <View
-                            style={[
-                                styles.copyButton,
-                                { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
-                            ]}
-                        >
-                            <Text style={[styles.copyText, ctaTextColor]}>{t('copyToClipboard').toUpperCase()}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <View style={{ flex: 0.2 }} />
+                    <CtaButton
+                        ctaColor={ctaColor}
+                        ctaBorderColor={ctaBorderColor}
+                        secondaryCtaColor={secondaryCtaColor}
+                        text={t('copyToClipboard').toUpperCase()}
+                        onPress={() => {
+                            this.onCopyPress();
+                        }}
+                        ctaWidth={width / 1.65}
+                    />
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: THEMES.getHSL(positiveColor) }]}>
-                            <Text style={[styles.doneText, { color: THEMES.getHSL(positiveColor) }]}>
-                                {t('global:done')}
-                            </Text>
+                        <View style={[styles.doneButton, { borderColor: positiveColor }]}>
+                            <Text style={[styles.doneText, { color: positiveColor }]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -200,19 +198,6 @@ const styles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
-    },
-    copyButton: {
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2,
-        height: height / 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1.2,
-    },
-    copyText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
-        backgroundColor: 'transparent',
     },
 });
 

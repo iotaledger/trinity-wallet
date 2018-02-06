@@ -60,9 +60,9 @@ const styles = StyleSheet.create({
 class Enter2FA extends Component {
     static propTypes = {
         onComplete2FA: PropTypes.func.isRequired,
-        positiveColor: PropTypes.object.isRequired,
+        positiveColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         onBackPress: PropTypes.func.isRequired,
     };
 

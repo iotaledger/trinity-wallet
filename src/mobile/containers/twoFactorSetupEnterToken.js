@@ -16,7 +16,6 @@ import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 // import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
 import { width, height } from '../util/dimensions';
-import THEMES from '../theme/themes';
 
 const styles = StyleSheet.create({
     container: {
@@ -57,8 +56,8 @@ const styles = StyleSheet.create({
 
 class TwoFactorSetupEnterToken extends Component {
     static propTypes = {
-        backgroundColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         generateAlert: PropTypes.func.isRequired,
         set2FAStatus: PropTypes.func.isRequired,
         set2FAKey: PropTypes.func.isRequired,
@@ -98,7 +97,7 @@ class TwoFactorSetupEnterToken extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
             },
         });
@@ -123,7 +122,7 @@ class TwoFactorSetupEnterToken extends Component {
 
     render() {
         const { t, negativeColor, secondaryBackgroundColor } = this.props;
-        const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
+        const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
@@ -131,7 +130,6 @@ class TwoFactorSetupEnterToken extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, backgroundColor]}>
                     <DynamicStatusBar textColor={secondaryBackgroundColor} />
-                    <StatefulDropdownAlert />
                     <View style={styles.topWrapper}>
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                     </View>
@@ -159,6 +157,7 @@ class TwoFactorSetupEnterToken extends Component {
                             rightText={'DONE'}
                         />
                     </View>
+                    <StatefulDropdownAlert />
                 </View>
             </TouchableWithoutFeedback>
         );
