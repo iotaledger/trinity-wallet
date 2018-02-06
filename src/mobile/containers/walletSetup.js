@@ -49,12 +49,11 @@ class WalletSetup extends Component {
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.5 }} />
+                    <View style={{ flex: 1 }} />
                     <View style={styles.greetingTextContainer}>
                         <Text style={styles.greetingText}>{t('okay')}</Text>
-                        <Text style={styles.questionText}>{t('doYouAlreadyHaveASeed')}</Text>
                     </View>
-                    <View style={{ flex: 0.25 }} />
+                    <View style={{ flex: 0.5 }} />
                     <InfoBox
                         text={
                             <View>
@@ -76,6 +75,10 @@ class WalletSetup extends Component {
                             </View>
                         }
                     />
+                    <View style={{ flex: 0.5 }} />
+                    <View style={styles.greetingTextContainer}>
+                        <Text style={styles.questionText}>{t('doYouAlreadyHaveASeed')}</Text>
+                    </View>
                     <View style={{ flex: 0.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
@@ -169,7 +172,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 20.7,
         textAlign: 'center',
-        paddingTop: height / 50,
         backgroundColor: 'transparent',
     },
     buttonsContainer: {
