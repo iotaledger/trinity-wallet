@@ -250,7 +250,7 @@
         "copy": "Kopiera",
         "paste": "Klistra in",
         "selectAll": "Välj alla",
-        "securitySettings": "Security settings",
+        "securitySettings": "Säkerhetsinställningar",
         "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
