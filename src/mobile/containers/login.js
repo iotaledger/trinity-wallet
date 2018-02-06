@@ -168,7 +168,7 @@ class Login extends Component {
         const { t } = this.props;
 
         const { is2FAEnabled } = this.props;
-        FingerprintScanner.authenticate({ description: t('fingerprintSetup: instructionsLogin') })
+        FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
             .then(() => {
                 keychain
                     .get()
@@ -184,8 +184,8 @@ class Login extends Component {
             .catch(() => {
                 this.props.generateAlert(
                     'error',
-                    t('fingerprintSetup: fingerprintAuthFailed'),
-                    t('fingerprintSetup: fingerprintAuthFailedExplanation'),
+                    t('fingerprintSetup:fingerprintAuthFailed'),
+                    t('fingerprintSetup:fingerprintAuthFailedExplanation'),
                 );
             });
     }
