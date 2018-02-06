@@ -173,7 +173,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed wyczyszczony",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
-        "mustSaveYourSeed": "<0><0>Musisz zapisać swój seed wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji.</2></0>"
+        "mustSaveYourSeed": "<0><0>Musisz zapisać swój seed, wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Nieprawidłowy seed",
