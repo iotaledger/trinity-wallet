@@ -212,8 +212,8 @@
         "retypePassword": "Wpisz hasło ponownie"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Możesz używać wielu kluczy seed w tym portfelu. Każdy seed wymaga osobnej nazwy konta.",
-        "youCanAdd": "Możesz dodać więcej seedów w menu ustawień."
+        "canUseMultipleSeeds": "Możesz używać wielu kluczy seed w tym portfelu. Każdy jeden wymaga jednak osobnej nazwy konta.",
+        "youCanAdd": "Możesz dodać więcej kluczy seed w menu ustawień."
     },
     "settings": {
         "transferSending": "W trakcie transferu",
