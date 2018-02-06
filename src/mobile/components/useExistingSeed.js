@@ -152,7 +152,7 @@ class UseExistingSeed extends React.Component {
 
     onQRRead(data) {
         const dataString = data.toString();
-        if (dataString.length == 81 && dataString.match(VALID_SEED_REGEX)) {
+        if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
             });
@@ -183,9 +183,8 @@ class UseExistingSeed extends React.Component {
             return t('global:sixthWallet');
         } else if (this.props.seedCount === 6) {
             return t('global:otherWallet');
-        } else {
-            return '';
         }
+        return '';
     }
 
     getChecksumValue() {
@@ -238,7 +237,7 @@ class UseExistingSeed extends React.Component {
                         <CustomTextInput
                             label={t('global:seed')}
                             onChangeText={value => this.setState({ seed: value })}
-                            containerStyle={{ width: width / 1.4 }}
+                            containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'characters'}
                             maxLength={MAX_SEED_LENGTH}
                             value={seed}
@@ -262,7 +261,7 @@ class UseExistingSeed extends React.Component {
                             }}
                             label={t('addAdditionalSeed:accountName')}
                             onChangeText={value => this.setState({ accountName: value })}
-                            containerStyle={{ width: width / 1.4 }}
+                            containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'words'}
                             maxLength={MAX_SEED_LENGTH}
                             autoCorrect={false}

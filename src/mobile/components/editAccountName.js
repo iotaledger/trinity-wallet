@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width: width,
+        width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -76,10 +76,14 @@ const styles = StyleSheet.create({
 export class EditAccountName extends Component {
     static propTypes = {
         t: PropTypes.func.isRequired,
-        seedIndex: PropTypes.number.isRequired,
         accountName: PropTypes.string.isRequired,
         saveAccountName: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
+        textColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        tickImagePath: PropTypes.number.isRequired,
+        negativeColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -107,7 +111,7 @@ export class EditAccountName extends Component {
                             <CustomTextInput
                                 label={t('accountName')}
                                 onChangeText={accountName => this.setState({ accountName })}
-                                containerStyle={{ width: width / 1.36 }}
+                                containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -122,7 +126,7 @@ export class EditAccountName extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={event => this.props.backPress()}
+                            onPress={() => this.props.backPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>

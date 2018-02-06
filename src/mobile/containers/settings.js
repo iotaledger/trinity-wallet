@@ -8,7 +8,6 @@ import { StyleSheet, View, BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
-import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
 import {
     changeAccountName,
     deleteAccount,
@@ -68,6 +67,7 @@ import keychain, {
     updateAccountNameInKeychain,
     deleteFromKeychain,
 } from '../util/keychain';
+import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 
@@ -194,6 +194,8 @@ class Settings extends Component {
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isFetchingAccountInfo: PropTypes.bool.isRequired,
+        completeSnapshotTransition: PropTypes.func.isRequired,
+        isAttachingToTangle: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -338,12 +340,6 @@ class Settings extends Component {
         return this.props.setSetting('deleteAccount');
     }
 
-    featureUnavailable() {
-        const { t } = this.props;
-
-        return this.props.generateAlert('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
-    }
-
     onResetWalletPress() {
         Navigation.startSingleScreenApp({
             screen: {
@@ -386,42 +382,6 @@ class Settings extends Component {
         this.showModal();
     }
 
-    logout() {
-        this.props.clearTempData();
-        this.props.setPassword('');
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'login',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
-                },
-                overrideBackPress: true,
-            },
-            appStyle: {
-                orientation: 'portrait',
-            },
-        });
-    }
-
-    navigateNewSeed() {
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'newSeedSetup',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
-                },
-            },
-            appStyle: {
-                orientation: 'portrait',
-            },
-        });
-        BackHandler.removeEventListener('homeBackPress');
-    }
-
     getChildrenProps(child) {
         const {
             secondaryBackgroundColor,
@@ -442,11 +402,7 @@ class Settings extends Component {
             balanceCheckToggle,
             isTransitioning,
             selectedAccount,
-            transitionForSnapshot,
-            generateAddressesAndGetBalance,
-            completeSnapshotTransition,
             isAttachingToTangle,
-            isFingerprintEnabled,
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
         const arrowLeftImagePath = isWhite ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -661,10 +617,10 @@ class Settings extends Component {
                 selectedAccountName,
                 isAttachingToTangle,
                 addresses: Object.keys(selectedAccount.addresses),
-                transitionForSnapshot: (seed, addresses) => transitionForSnapshot(seed, addresses),
-                generateAddressesAndGetBalance: (seed, index) => generateAddressesAndGetBalance(seed, index),
+                transitionForSnapshot: (seed, addresses) => this.props.transitionForSnapshot(seed, addresses),
+                generateAddressesAndGetBalance: (seed, index) => this.props.generateAddressesAndGetBalance(seed, index),
                 completeSnapshotTransition: (seed, accountName, addresses) =>
-                    completeSnapshotTransition(seed, accountName, addresses),
+                    this.props.completeSnapshotTransition(seed, accountName, addresses),
                 shouldPreventAction: () => this.shouldPreventAction(),
                 generateAlert: (success, title, message) => this.props.generateAlert(success, title, message),
             },
@@ -712,6 +668,48 @@ class Settings extends Component {
         return props[child] || {};
     }
 
+    logout() {
+        this.props.clearTempData();
+        this.props.setPassword('');
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'login',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: this.props.backgroundColor,
+                },
+                overrideBackPress: true,
+            },
+            appStyle: {
+                orientation: 'portrait',
+            },
+        });
+    }
+
+    navigateNewSeed() {
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'newSeedSetup',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: this.props.backgroundColor,
+                },
+            },
+            appStyle: {
+                orientation: 'portrait',
+            },
+        });
+        BackHandler.removeEventListener('homeBackPress');
+    }
+
+    featureUnavailable() {
+        const { t } = this.props;
+
+        return this.props.generateAlert('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
+    }
+
     fetchAccountInfo(seed, accountName) {
         this.props.setAdditionalAccountInfo({
             addingAdditionalAccount: true,
@@ -749,7 +747,7 @@ class Settings extends Component {
 
     // UseExistingSeed method
     addExistingSeed(seed, accountName) {
-        const { t, seedNames, password, navigator } = this.props;
+        const { t, seedNames } = this.props;
 
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
@@ -783,24 +781,22 @@ class Settings extends Component {
                 .get()
                 .then(credentials => {
                     if (isNull(credentials)) {
-                        this.fetchAccountInfo(seed, accountName);
-                    } else {
-                        if (hasDuplicateAccountName(credentials.data, accountName)) {
-                            this.props.generateAlert(
-                                'error',
-                                t('addAdditionalSeed:nameInUse'),
-                                t('addAdditionalSeed:nameInUseExplanation'),
-                            );
-                        } else if (hasDuplicateSeed(credentials.data, seed)) {
-                            this.props.generateAlert(
-                                'error',
-                                t('addAdditionalSeed:seedInUse'),
-                                t('addAdditionalSeed:seedInUseExplanation'),
-                            );
-                        } else {
-                            this.fetchAccountInfo(seed, accountName);
-                        }
+                        return this.fetchAccountInfo(seed, accountName);
                     }
+                    if (hasDuplicateAccountName(credentials.data, accountName)) {
+                        return this.props.generateAlert(
+                            'error',
+                            t('addAdditionalSeed:nameInUse'),
+                            t('addAdditionalSeed:nameInUseExplanation'),
+                        );
+                    } else if (hasDuplicateSeed(credentials.data, seed)) {
+                        return this.props.generateAlert(
+                            'error',
+                            t('addAdditionalSeed:seedInUse'),
+                            t('addAdditionalSeed:seedInUseExplanation'),
+                        );
+                    }
+                    return this.fetchAccountInfo(seed, accountName);
                 })
                 .catch(err => console.log(err)); // eslint-disable no-console
         }

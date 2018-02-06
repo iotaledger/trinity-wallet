@@ -36,6 +36,65 @@ import { isAndroid } from '../util/device';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center',
+    },
+    receiveAddressContainer: {
+        borderRadius: GENERAL.borderRadius,
+        height: width / 4.2,
+        justifyContent: 'center',
+        paddingTop: width / 30,
+        paddingHorizontal: width / 30,
+        paddingBottom: isAndroid ? width / 22 : width / 30,
+        width: width / 1.2,
+    },
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: height / 5,
+    },
+    receiveAddressText: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 21.8,
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+        height: width / 20,
+        justifyContent: 'center',
+    },
+    qrContainer: {
+        borderRadius: GENERAL.borderRadius,
+        padding: width / 30,
+        backgroundColor: 'white',
+        borderWidth: 2,
+        width: width / 2.2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: width / 2.2,
+    },
+    removeButtonContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    removeButton: {
+        borderWidth: 1.5,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 2.7,
+        height: height / 17,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'transparent',
+    },
+    removeText: {
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 34.5,
+        backgroundColor: 'transparent',
+    },
+});
+
 class Receive extends Component {
     static propTypes = {
         selectedAccount: PropTypes.object.isRequired,
@@ -57,6 +116,8 @@ class Receive extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
+        t: PropTypes.func.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -75,32 +136,28 @@ class Receive extends Component {
     }
 
     onAddressPress(address) {
-        const { t, generateAlert } = this.props;
+        const { t } = this.props;
 
         if (address !== ' ') {
             Clipboard.setString(address);
-            generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
+            this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
         }
     }
 
     onGeneratePress() {
-        const {
-            t,
-            seedIndex,
-            selectedAccount,
-            selectedAccountName,
-            isSyncing,
-            generateAlert,
-            isTransitioning,
-        } = this.props;
+        const { t, seedIndex, selectedAccount, selectedAccountName, isSyncing, isTransitioning } = this.props;
 
         if (isSyncing || isTransitioning) {
-            return generateAlert('error', 'Please wait', 'Please wait and try again.');
+            return this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
         }
 
         const error = () => {
             this.props.getFromKeychainError('receive', 'addressGeneration');
-            generateAlert('error', t('global:somethingWentWrong'), t('global:somethingWentWrongExplanation'));
+            this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongExplanation'),
+            );
         };
 
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
@@ -165,16 +222,14 @@ class Receive extends Component {
         } = this.props;
         const message = this.state.message;
         const textColor = { color: secondaryBackgroundColor };
-        const ctaTextColor = { color: secondaryCtaColor };
-        const generateBorderColor = { borderColor: ctaBorderColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
         const opacity = { opacity: this.getOpacity() };
-        const qrOpacity = { opacity: this.getQrOpacity() };
         const isWhite = secondaryBackgroundColor === 'white';
         const receiveAddressContainerBackgroundColor = isWhite
             ? { backgroundColor: 'rgba(255, 255, 255, 0.05)' }
             : { backgroundColor: 'rgba(0, 0, 0, 0.05)' };
         const qrBorder = isWhite ? { borderColor: 'transparent' } : { borderColor: 'black' };
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
@@ -222,7 +277,7 @@ class Receive extends Component {
                             this.messageField = c;
                         }}
                         label={t('message')}
-                        onChangeText={message => this.setState({ message })}
+                        onChangeText={text => this.setState({ text })}
                         containerStyle={{ width: width / 1.2 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
@@ -284,65 +339,6 @@ class Receive extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        flex: 1,
-        justifyContent: 'center',
-    },
-    receiveAddressContainer: {
-        borderRadius: GENERAL.borderRadius,
-        height: width / 4.2,
-        justifyContent: 'center',
-        paddingTop: width / 30,
-        paddingHorizontal: width / 30,
-        paddingBottom: isAndroid ? width / 22 : width / 30,
-        width: width / 1.2,
-    },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: height / 5,
-    },
-    receiveAddressText: {
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 21.8,
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        height: width / 20,
-        justifyContent: 'center',
-    },
-    qrContainer: {
-        borderRadius: GENERAL.borderRadius,
-        padding: width / 30,
-        backgroundColor: 'white',
-        borderWidth: 2,
-        width: width / 2.2,
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: width / 2.2,
-    },
-    removeButtonContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    removeButton: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 17,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-    },
-    removeText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
-    },
-});
 
 const mapStateToProps = state => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
