@@ -67,21 +67,11 @@ class EnterPasswordOnLogin extends Component {
             RNExitApp.exitApp();
             return true;
         });
-        if (isFingerprintEnabled) {
-            this.props.activateFingerPrintScanner();
-            AppState.addEventListener('change', this.handleAppStateChange);
-        }
     }
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this.handleAppStateChange);
     }
-
-    handleAppStateChange = nextAppState => {
-        if (nextAppState.match(/background/) && nextAppState === 'active') {
-            this.props.activateFingerPrintScanner();
-        }
-    };
 
     handleChangeText = password => this.props.setLoginPasswordField(password);
 
@@ -96,7 +86,7 @@ class EnterPasswordOnLogin extends Component {
     };
 
     render() {
-        const { t, secondaryBackgroundColor, negativeColor, password } = this.props;
+        const { t, secondaryBackgroundColor, negativeColor, password, isFingerprintEnabled } = this.props;
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
@@ -119,6 +109,8 @@ class EnterPasswordOnLogin extends Component {
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             negativeColor={negativeColor}
                             value={password}
+                            fingerprintAuthentication={isFingerprintEnabled}
+                            onFingerprintPress={() => this.props.activateFingerPrintScanner()}
                         />
                     </View>
                     <View style={styles.bottomContainer}>

@@ -148,6 +148,7 @@ class Home extends Component {
             positiveColor,
             secondaryBarColor,
             secondaryBackgroundColor,
+            isFingerprintEnabled,
         } = this.props;
 
         const balanceImagePath = secondaryBarColor === 'white' ? whiteBalanceImagePath : blackBalanceImagePath;
@@ -223,6 +224,7 @@ class Home extends Component {
                                 positiveColor={positiveColor}
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 textColor={textColor}
+                                isFingerprintEnabled={isFingerprintEnabled}
                             />
                         </View>
                     )}
@@ -281,6 +283,7 @@ Home.propTypes = {
     isSyncing: PropTypes.bool.isRequired,
     isSendingTransfer: PropTypes.bool.isRequired,
     setSetting: PropTypes.func.isRequired,
+    isFingerprintEnabled: PropTypes.bool.isRequired,
 };
 
 export default withUserActivity()(

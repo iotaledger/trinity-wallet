@@ -70,28 +70,9 @@ const styles = StyleSheet.create({
 });
 
 class EnterPassword extends Component {
-    componentDidMount() {
-        const { isFingerprintEnabled } = this.props;
-
-        AppState.addEventListener('change', this.handleAppStateChange);
-        if (isFingerprintEnabled) {
-            this.activateFingerPrintScanner();
-        }
-    }
-
     componentWillUnmount() {
-        AppState.removeEventListener('change', this.handleAppStateChange);
         FingerprintScanner.release();
     }
-
-    handleAppStateChange = nextAppState => {
-        const { isFingerprintEnabled } = this.props;
-        if (nextAppState.match(/background/) && nextAppState === 'active') {
-            if (isFingerprintEnabled) {
-                this.activateFingerPrintScanner();
-            }
-        }
-    };
 
     handleChangeText = password => this.props.setLoginPasswordField(password);
 
@@ -117,7 +98,7 @@ class EnterPassword extends Component {
     };
 
     render() {
-        const { t, positiveColor, secondaryBackgroundColor, negativeColor } = this.props;
+        const { t, positiveColor, secondaryBackgroundColor, negativeColor, isFingerprintEnabled } = this.props;
         const borderColor = { borderColor: positiveColor };
         const positiveTextColor = { color: positiveColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -141,6 +122,8 @@ class EnterPassword extends Component {
                             onSubmitEditing={this.handleLogin}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             negativeColor={negativeColor}
+                            onFingerprintPress={() => this.activateFingerPrintScanner()}
+                            fingerprintAuthentication={isFingerprintEnabled}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
