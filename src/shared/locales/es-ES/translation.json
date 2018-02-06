@@ -346,12 +346,12 @@
         "hideSeed": "OCULTAR SEED"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "alreadyHave": "He guardado mi Seed",
+        "reenter": "Ahora se te pedirá volver a introducir tu Seed.",
+        "reenterWarning": "Si tu dispositivo se rompe y no has guardado tu Seed, perderás todos tus IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "ESTA ACCIÓN NO SE PUEDE DESHACER.",
         "warning": "<0><0>Todo de los datos de tu cartera, incluyendo tus </0><1> seeds, contraseña,</1><2> y </2><3>otra información de la cuenta</3><4> serán eliminados.</4></0>"
     },
     "fingerprintSetup": {
