@@ -8,6 +8,8 @@ import keychainWrapper, {
     hasDuplicateAccountName,
     hasDuplicateSeed,
     getSeed,
+    updateAccountNameInKeychain,
+    deleteFromKeychain,
 } from '../../util/keychain';
 
 jest.mock('react-native-keychain', () => ({
@@ -269,6 +271,98 @@ describe('Testing keychain util', () => {
 
             expect(getSeed(data, 0)).toEqual('DANGLE');
             expect(getSeed(data, 1)).toEqual('9999');
+        });
+    });
+
+    describe('#updateAccountNameInKeychain', () => {
+        afterEach(() => {
+            keychain.setGenericPassword.mockClear();
+            keychain.getGenericPassword.mockClear();
+        });
+
+        describe('when data prop fetched for keychain is empty', () => {
+            it('should throw with error "Something went wrong while updating account name."', () => {
+                return updateAccountNameInKeychain().catch(err => {
+                    expect(err.message).toEqual('Something went wrong while updating account name.');
+                });
+            });
+        });
+
+        describe('when data prop fetched for keychain is not empty', () => {
+            it('should call setGenericPassword method on keychain with updated account name', () => {
+                keychain.getGenericPassword.mockImplementation(() =>
+                    Promise.resolve({
+                        username: 'baz',
+                        password: {
+                            accounts: [
+                                { seed: 'FOO', name: 'ACCOUNT_ONE' },
+                                { seed: 'BAR', name: 'ACCOUNT_TWO' },
+                                { seed: '9999', name: 'ACCOUNT_THREE' },
+                            ],
+                            shared: { twoFactorAuthKey: null },
+                        },
+                        service: 'bundleId',
+                    }),
+                );
+
+                return updateAccountNameInKeychain(0, 'NEW ACCOUNT NAME', 'baz').then(() => {
+                    expect(keychain.setGenericPassword).toHaveBeenCalledWith(
+                        'baz',
+                        JSON.stringify({
+                            accounts: [
+                                { seed: 'FOO', name: 'NEW ACCOUNT NAME' },
+                                { seed: 'BAR', name: 'ACCOUNT_TWO' },
+                                { seed: '9999', name: 'ACCOUNT_THREE' },
+                            ],
+                            shared: { twoFactorAuthKey: null },
+                        }),
+                    );
+                });
+            });
+        });
+    });
+
+    describe('#deleteFromKeychain', () => {
+        afterEach(() => {
+            keychain.setGenericPassword.mockClear();
+            keychain.getGenericPassword.mockClear();
+        });
+
+        describe('when data prop fetched for keychain is empty', () => {
+            it('should throw with error "Something went wrong while deleting from keychain."', () => {
+                return deleteFromKeychain().catch(err => {
+                    expect(err.message).toEqual('Something went wrong while deleting from keychain.');
+                });
+            });
+        });
+
+        describe('when data prop fetched for keychain is not empty', () => {
+            it('should call setGenericPassword method on keychain with filtered accounts', () => {
+                keychain.getGenericPassword.mockImplementation(() =>
+                    Promise.resolve({
+                        username: 'baz',
+                        password: {
+                            accounts: [
+                                { seed: 'FOO', name: 'ACCOUNT_ONE' },
+                                { seed: 'BAR', name: 'ACCOUNT_TWO' },
+                                { seed: '9999', name: 'ACCOUNT_THREE' },
+                            ],
+                            shared: { twoFactorAuthKey: null },
+                        },
+                        service: 'bundleId',
+                    }),
+                );
+
+                return deleteFromKeychain(0, 'baz').then(() => {
+                    expect(keychain.setGenericPassword).toHaveBeenCalledWith(
+                        'baz',
+                        JSON.stringify({
+                            accounts: [{ seed: 'BAR', name: 'ACCOUNT_TWO' }, { seed: '9999', name: 'ACCOUNT_THREE' }],
+                            shared: { twoFactorAuthKey: null },
+                        }),
+                    );
+                });
+            });
         });
     });
 });
