@@ -74,7 +74,7 @@
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
-        "fingerprintInstructionsLogin": "Touch reader to log in."
+        "fingerprintInstructionsLogin": "Touch fingerprint reader to log in."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
