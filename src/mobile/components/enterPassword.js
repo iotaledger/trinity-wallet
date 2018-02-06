@@ -83,15 +83,15 @@ class EnterPassword extends Component {
     activateFingerPrintScanner() {
         const { t } = this.props;
 
-        FingerprintScanner.authenticate({ description: t('fingerprintSetup: instructionsLogin') })
+        FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
             .then(() => {
                 this.props.setUserActivity({ inactive: false });
             })
             .catch(error => {
                 this.props.generateAlert(
                     'error',
-                    t('fingerprintSetup: fingerprintAuthFailed'),
-                    t('fingerprintSetup: fingerprintAuthFailedExplanation'),
+                    t('fingerprintSetup:fingerprintAuthFailed'),
+                    t('fingerprintSetup:fingerprintAuthFailedExplanation'),
                 );
             });
     }
@@ -116,7 +116,7 @@ class EnterPassword extends Component {
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
-                            label={t('password')}
+                            label={t('global:password')}
                             onChangeText={text => this.setState({ password: text })}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
