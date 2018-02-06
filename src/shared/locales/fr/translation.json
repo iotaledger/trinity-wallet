@@ -53,7 +53,7 @@
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
         "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
-        "node": "Node",
+        "node": "Serveur",
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
         "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
@@ -288,7 +288,7 @@
         "addNewAccount": "Ajouter un nouveau compte"
     },
     "addCustomNode": {
-        "customNode": "Node personnalisé",
+        "customNode": "Serveur personnalisé",
         "add": "Ajouter"
     },
     "addNewAccount": {
@@ -296,8 +296,8 @@
         "createNewSeed": "Créer une nouvelle seed"
     },
     "advancedSettings": {
-        "selectNode": "Choisir un node",
-        "addCustomNode": "Ajouter un node personnalisé",
+        "selectNode": "Sélectionner un serveur",
+        "addCustomNode": "Ajouter un serveur personnalisé",
         "manualSync": "Synchro manuelle"
     },
     "advancedThemeCustomisation": {
