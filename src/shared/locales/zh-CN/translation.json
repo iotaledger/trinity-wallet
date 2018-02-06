@@ -71,8 +71,7 @@
         "autoreattaching": "自动附加到纠缠",
         "autoreattachingExplanation": "使用哈希{{hash}} 的重新事务",
         "autopromoting": "自动提示转移",
-        "autopromotingExplanation": "使用哈希{{hash}} 促进事务",
-        "fingerprintInstructionsLogin": "Touch reader to log in."
+        "autopromotingExplanation": "使用哈希{{hash}} 促进事务"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -370,7 +369,8 @@
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication."
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "您将发送{{contents}} 到地址",
