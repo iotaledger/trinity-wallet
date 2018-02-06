@@ -66,7 +66,7 @@ const themes = {
         barColor: `white`,
         ctaColor: `white`,
         positiveColor: `black`,
-        negativeColor: `#black`,
+        negativeColor: `black`,
         extraColor: `#black`,
         secondaryBarColor: 'black',
         secondaryBackgroundColor: 'black',
