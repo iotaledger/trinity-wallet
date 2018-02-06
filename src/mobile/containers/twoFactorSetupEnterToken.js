@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
-import keychain, { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
+import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import { set2FAKey, set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
@@ -77,7 +77,6 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     componentDidMount() {
-        keychain.get().then(credentials => console.log('Keychain', credentials));
         BackHandler.addEventListener('newSeedSetupBackPress', () => {
             this.goBack();
             return true;
