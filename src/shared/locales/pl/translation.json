@@ -17,9 +17,9 @@
         "keyReuseError": "Nie możesz wysłać na adres, który został już obciążony.",
         "invalidResponse": "Błędna odpowiedź",
         "invalidResponseExplanation": "Serwer zwrócił błędną odpowiedź.",
-        "invalidResponsePollingExplanation": "Serwer zwrócił nieprawidłową odpowiedź podczas połączenia.",
-        "invalidResponseFetchingAccount": "Serwer zwrócił nieprawidłową odpowiedź podczas pobierania informacji o Twoim koncie.",
-        "invalidResponseSendingTransfer": "Serwer zwrócił błędną odpowiedź podczas realizowania transferu.",
+        "invalidResponsePollingExplanation": "Serwer zwrócił błędną odpowiedź podczas połączenia.",
+        "invalidResponseFetchingAccount": "Serwer zwrócił błędną odpowiedź podczas pobierania informacji o Twoim koncie.",
+        "invalidResponseSendingTransfer": "Serwer zwrócił błędną odpowiedź podczas wykonywania transferu.",
         "seed": "Seed",
         "back": "WSTECZ",
         "backLowercase": "Wstecz",
@@ -140,7 +140,7 @@
         "login": "ZALOGUJ",
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?",
         "setNode": "SERWER",
-        "cannotConnect": "Nie można podłączyć sie do serwera."
+        "cannotConnect": "Nie można połączyć się z serwerem."
     },
     "loading": {
         "loadingFirstTime": "Ładowanie klucza seed po raz pierwszy.",
@@ -185,7 +185,7 @@
         "invalidAddress": "Błędny adres",
         "invalidAddressExplanation1": "Adres powinien składać się z {{maxLength}} znaków i posiadać sumę kontrolną.",
         "invalidAddressExplanation2": "Adres zawiera nieprawidłowe znaki.",
-        "invalidAddressExplanation3": "Adres zawiera nieprawidłową sume kontrolną.",
+        "invalidAddressExplanation3": "Adres zawiera nieprawidłową sumę kontrolną.",
         "notEnoughFunds": "Brak wystarczających środków",
         "notEnoughFundsExplanation": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
         "keyReuse": "Ponowne użycie klucza",
