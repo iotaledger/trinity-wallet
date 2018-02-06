@@ -7,8 +7,8 @@ import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
 import { isValidSeed } from 'libs/util';
 import { createRandomSeed } from 'libs/seedUtil';
+import Button from 'ui/components/Button';
 import Template, { Content, Footer } from './Template';
-import Button from '../UI/Button';
 import SeedGenerator from '../UI/SeedGenerator';
 
 class GenerateSeed extends React.PureComponent {

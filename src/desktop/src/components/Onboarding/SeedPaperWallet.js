@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
 import BoxedSeed from 'components/UI/BoxedSeed';
-import Button from 'components/UI/Button';
+import Button from 'ui/components/Button';
 import css from 'components/Onboarding/SeedPaperWallet.css';
 
 class SeedPaperWallet extends PureComponent {

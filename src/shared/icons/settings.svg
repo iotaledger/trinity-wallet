@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Settings</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Settings" fill="#000000" fill-rule="nonzero">
+            <g id="wrench" transform="translate(1.000000, 1.000000)">
+                <path d="M60.2,11.8 L47.7,24.2 L40.3,21.7 L37.8,14.3 L50.3,1.9 C44.8,-0.1 38.6,0.9 34.4,5.1 C29.9,9.6 29,16.3 31.6,22 L2.1,51.5 C-0.2,53.8 -0.2,57.6 2.1,60 C4.4,62.3 8.2,62.3 10.6,60 L40,30.6 C45.7,33.2 52.5,32.3 56.9,27.8 C61.2,23.5 62.2,17.3 60.2,11.8 Z M8.5,57.8 C7.3,59 5.4,59 4.3,57.8 C3.2,56.6 3.1,54.7 4.3,53.6 C5.5,52.4 7.4,52.4 8.5,53.6 C9.7,54.8 9.7,56.7 8.5,57.8 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

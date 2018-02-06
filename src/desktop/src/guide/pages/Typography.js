@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Infobox from 'components/UI/Infobox';
+import Infobox from 'ui/components/Info';
 
 const Typography = () => {
     return (

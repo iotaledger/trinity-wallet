@@ -8,8 +8,8 @@ import { seedsSelector } from 'selectors/seeds';
 import { isValidPassword } from 'libs/util';
 import { securelyPersistSeeds } from 'libs/storage';
 import Template, { Content, Footer } from 'components/Onboarding/Template';
-import Button from 'components/UI/Button';
-import Infobox from 'components/UI/Infobox';
+import Button from 'ui/components/Button';
+import Infobox from 'ui/components/Info';
 import PasswordInput from 'components/UI/input/Password';
 
 class SecurityEnter extends React.PureComponent {

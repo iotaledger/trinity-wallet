@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import Settings from 'components/Settings/Index';
+import Settings from 'ui/views/settings/Index';
 import Welcome from '../Onboarding/Welcome';
 import Instructions from '../Onboarding/Instructions';
-import LightServerSetup from '../Onboarding/LightServerSetup';
 import WalletSetup from '../Onboarding/WalletSetup';
 import GenerateSeed from '../Onboarding/GenerateSeed';
 import SeedEnter from '../Onboarding/SeedEnter';
@@ -36,7 +35,6 @@ export default withRouter(
                         <div className={css.wrapper}>
                             <Switch location={location}>
                                 <Route path="/instructions" component={Instructions} />
-                                <Route path="/lightserver" component={LightServerSetup} />
                                 <Route path="/wallet-setup" component={WalletSetup} />
                                 <Route path="/seed/generate" component={GenerateSeed} />
                                 <Route exact path="/seed/save/:type" component={SaveYourSeedOptions} />

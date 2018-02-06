@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import css from 'components/UI/input/Input.css';
 
-import Icon from 'components/UI/Icon';
+import Icon from 'ui/components/Icon';
 
 export default class PasswordInput extends React.PureComponent {
     static propTypes = {

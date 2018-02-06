@@ -11,8 +11,8 @@ import HistoryList from 'components/UI/HistoryList';
 import AddressInput from 'components/UI/input/Address';
 import AmountInput from 'components/UI/input/Amount';
 import MessageInput from 'components/UI/input/Message';
-import Button from 'components/UI/Button';
-import Modal from 'components/UI/Modal';
+import Button from 'ui/components/Button';
+import Modal from 'ui/components/modal/Modal';
 import css from 'components/Main/Send.css';
 import { runTask } from 'worker';
 
@@ -122,12 +122,7 @@ class Send extends React.PureComponent {
                 <Content>
                     <section className={css.send}>
                         <div>
-                            <Modal
-                                className="confirm"
-                                isOpen={isModalVisible}
-                                isConfirm
-                                onClose={this.toggleConfirmation}
-                            >
+                            <Modal variant="confirm" isOpen={isModalVisible} onClose={this.toggleConfirmation}>
                                 <h1>
                                     You are about to send{' '}
                                     <strong>{`${formatValue(amount)} ${formatUnit(amount)}`}</strong> to the address:{' '}

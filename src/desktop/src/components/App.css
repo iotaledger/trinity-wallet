@@ -59,7 +59,7 @@ body {
     font-weight: 200;
     font-size: var(--font-size-m);
     line-height: 1.5;
-    overflow: visible;
+    overflow: hidden;
 }
 
 h1,

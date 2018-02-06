@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import Button from 'ui/components/Button';
 import Template, { Content, Footer } from './Template';
-import Button from '../UI/Button';
 import LanguageSelect from '../UI/LanguageSelect';
 import css from '../Layout/Onboarding.css';
 
