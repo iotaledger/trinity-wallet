@@ -7,7 +7,8 @@ import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Keyboard, AppState } from 'react-native';
+import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { setPassword, setReady, setUserActivity, setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -78,6 +79,7 @@ class Login extends Component {
         key2FA: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
+        isFingerprintEnabled: PropTypes.bool.isRequired,
         migrate: PropTypes.func.isRequired,
         setLoginPasswordField: PropTypes.func.isRequired,
         password: PropTypes.string.isRequired,
@@ -93,6 +95,7 @@ class Login extends Component {
             isModalVisible: false,
             changingNode: false,
             completing2FA: false,
+            appState: AppState.currentState,
         };
 
         this.onComplete2FA = this.onComplete2FA.bind(this);
@@ -145,23 +148,12 @@ class Login extends Component {
     }
 
     onComplete2FA(token) {
-        const { firstUse, selectedAccount } = this.props;
         if (token) {
             const value2FA = authenticator.verifyToken(this.props.key2FA, token);
             if (value2FA) {
-                if (firstUse) {
-                    this.navigateToLoading();
-                } else {
-                    const addresses = get(selectedAccount, 'addresses');
-                    if (!isEmpty(addresses)) {
-                        this.navigateToLoading();
-                    } else {
-                        this.navigateToHome();
-                    }
-                }
-                this.setState({ completing2FA: false });
+                this.navigateToLoading();
             } else {
-                this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+                this.props.generateAlert('error', 'Wrong code', 'The code you entered is not correct');
             }
         } else {
             this.props.generateAlert('error', 'Empty code', 'The code you entered is empty');
@@ -170,6 +162,32 @@ class Login extends Component {
 
     onBackPress() {
         this.setState({ completing2FA: false });
+    }
+
+    activateFingerPrintScanner() {
+        const { t } = this.props;
+
+        const { is2FAEnabled } = this.props;
+        FingerprintScanner.authenticate({ description: t('fingerprintInstructionsLogin') })
+            .then(() => {
+                keychain
+                    .get()
+                    .then(() => {
+                        if (!is2FAEnabled) {
+                            this.navigateToLoading();
+                        } else {
+                            this.setState({ completing2FA: true });
+                        }
+                    })
+                    .catch(err => console.log(err));
+            })
+            .catch(() => {
+                this.props.generateAlert(
+                    'error',
+                    t('fingerprintSetup: fingerprintAuthFailed'),
+                    t('fingerprintSetup: fingerprintAuthFailedExplanation'),
+                );
+            });
     }
 
     checkForUpdates() {
@@ -226,13 +244,20 @@ class Login extends Component {
     };
 
     render() {
-        const { backgroundColor, positiveColor, negativeColor, secondaryBackgroundColor, password } = this.props;
+        const {
+            backgroundColor,
+            positiveColor,
+            negativeColor,
+            secondaryBackgroundColor,
+            password,
+            isFingerprintEnabled,
+        } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
         const tickImagePath = secondaryBackgroundColor === 'white' ? whiteTickImagePath : blackTickImagePath;
         return (
-            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+            <View style={[styles.container, { backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 {!this.state.changingNode &&
                     !this.state.completing2FA && (
@@ -246,6 +271,8 @@ class Login extends Component {
                             textColor={textColor}
                             setLoginPasswordField={pword => this.props.setLoginPasswordField(pword)}
                             password={password}
+                            activateFingerPrintScanner={() => this.activateFingerPrintScanner()}
+                            isFingerprintEnabled={isFingerprintEnabled}
                         />
                     )}
                 {!this.state.changingNode &&
@@ -313,6 +340,7 @@ const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     is2FAEnabled: state.account.is2FAEnabled,
+    isFingerprintEnabled: state.account.isFingerprintEnabled,
     key2FA: state.account.key2FA,
     versions: state.app.versions,
     accountInfo: state.account.accountInfo,
