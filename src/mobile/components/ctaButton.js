@@ -29,6 +29,7 @@ class CtaButton extends React.Component {
         ctaBorderColor: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,
         ctaWidth: PropTypes.number,
+        testID: PropTypes.string,
     };
 
     static defaultProps = {
@@ -40,7 +41,7 @@ class CtaButton extends React.Component {
     }
 
     render() {
-        const { ctaColor, ctaBorderColor, secondaryCtaColor, text, ctaWidth } = this.props;
+        const { ctaColor, ctaBorderColor, secondaryCtaColor, text, ctaWidth, testID } = this.props;
 
         return (
             <View style={styles.ctaButtonContainer}>
@@ -48,6 +49,7 @@ class CtaButton extends React.Component {
                     onPress={() => {
                         this.onCtaPress();
                     }}
+                    testID={testID}
                 >
                     <View
                         style={[

@@ -9,6 +9,8 @@ import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
 import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Keyboard, AppState } from 'react-native';
+import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { setPassword, setReady, setUserActivity, setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -79,6 +81,7 @@ class Login extends Component {
         key2FA: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
+        isFingerprintEnabled: PropTypes.bool.isRequired,
         migrate: PropTypes.func.isRequired,
         setLoginPasswordField: PropTypes.func.isRequired,
         password: PropTypes.string.isRequired,
@@ -94,6 +97,7 @@ class Login extends Component {
             isModalVisible: false,
             changingNode: false,
             completing2FA: false,
+            appState: AppState.currentState,
         };
 
         this.onComplete2FA = this.onComplete2FA.bind(this);
@@ -181,6 +185,32 @@ class Login extends Component {
         this.setState({ completing2FA: false });
     }
 
+    activateFingerPrintScanner() {
+        const { t, is2FAEnabled } = this.props;
+        FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
+            .then(() => {
+                keychain
+                    .get()
+                    .then(credentials => {
+                        const password = get(credentials, 'password');
+                        this.props.setPassword(password);
+                        if (!is2FAEnabled) {
+                            this.navigateToLoading();
+                        } else {
+                            this.setState({ completing2FA: true });
+                        }
+                    })
+                    .catch(err => console.log(err));
+            })
+            .catch(() => {
+                this.props.generateAlert(
+                    'error',
+                    t('fingerprintSetup:fingerprintAuthFailed'),
+                    t('fingerprintSetup:fingerprintAuthFailedExplanation'),
+                );
+            });
+    }
+
     checkForUpdates() {
         const latestVersion = getVersion();
         const latestBuildNumber = getBuildNumber();
@@ -235,13 +265,20 @@ class Login extends Component {
     };
 
     render() {
-        const { backgroundColor, positiveColor, negativeColor, secondaryBackgroundColor, password } = this.props;
+        const {
+            backgroundColor,
+            positiveColor,
+            negativeColor,
+            secondaryBackgroundColor,
+            password,
+            isFingerprintEnabled,
+        } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
         const tickImagePath = secondaryBackgroundColor === 'white' ? whiteTickImagePath : blackTickImagePath;
         return (
-            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+            <View style={[styles.container, { backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 {!this.state.changingNode &&
                     !this.state.completing2FA && (
@@ -255,6 +292,8 @@ class Login extends Component {
                             textColor={textColor}
                             setLoginPasswordField={pword => this.props.setLoginPasswordField(pword)}
                             password={password}
+                            activateFingerPrintScanner={() => this.activateFingerPrintScanner()}
+                            isFingerprintEnabled={isFingerprintEnabled}
                         />
                     )}
                 {!this.state.changingNode &&
@@ -322,6 +361,7 @@ const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     is2FAEnabled: state.account.is2FAEnabled,
+    isFingerprintEnabled: state.account.isFingerprintEnabled,
     key2FA: state.account.key2FA,
     versions: state.app.versions,
     accountInfo: state.account.accountInfo,
@@ -340,4 +380,4 @@ const mapDispatchToProps = {
     setLoginPasswordField,
 };
 
-export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default translate(['login', 'global', 'fingerprintSetup'])(connect(mapStateToProps, mapDispatchToProps)(Login));

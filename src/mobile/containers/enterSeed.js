@@ -18,6 +18,8 @@ import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
+console.ignoredYellowBox = ['Native TextInput'];
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -192,7 +194,7 @@ class EnterSeed extends React.Component {
         const { seed } = this.state;
         const { t } = this.props;
         return (
-            <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss}>
+            <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
                 <View style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <View style={styles.topContainer}>
@@ -217,10 +219,13 @@ class EnterSeed extends React.Component {
                             value={seed}
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
+                            testID="enterSeed-seedbox"
                         />
                         <View style={{ flex: 0.4 }} />
                         <View style={styles.checksum}>
-                            <Text style={styles.checksumText}>{this.getChecksumValue()}</Text>
+                            <Text style={styles.checksumText} testID="enterSeed-checksum">
+                                {this.getChecksumValue()}
+                            </Text>
                         </View>
                         <View style={{ flex: 0.4 }} />
                         <InfoBox
@@ -244,6 +249,8 @@ class EnterSeed extends React.Component {
                             onRightButtonPress={() => this.onDonePress()}
                             leftText={t('global:back')}
                             rightText={t('global:next')}
+                            leftButtonTestID="enterSeed-back"
+                            rightButtonTestID="enterSeed-next"
                         />
                     </View>
                     <StatefulDropdownAlert />

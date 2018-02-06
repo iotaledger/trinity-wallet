@@ -574,6 +574,7 @@ class Send extends Component {
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="send"
+                            blurOnSubmit
                             onSubmitEditing={() => this.setModalContent('transferConfirmation')}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             negativeColor={negativeColor}
