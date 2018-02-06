@@ -71,8 +71,7 @@
         "autoreattaching": "Rattachement automatique au Tangle",
         "autoreattachingExplanation": "Rattachement de la transaction de hash {{hash}}",
         "autopromoting": "Promotion automatique du transfert",
-        "autopromotingExplanation": "Promotion de la transaction de hash {{hash}}",
-        "fingerprintInstructionsLogin": "Touch reader to log in."
+        "autopromotingExplanation": "Promotion de la transaction de hash {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -370,7 +369,8 @@
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication."
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "Vous êtes sur le point d’envoyer {{contents}} à l’adresse",
