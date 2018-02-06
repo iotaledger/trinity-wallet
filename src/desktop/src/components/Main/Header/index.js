@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { formatValue, formatUnit } from 'libs/util';
 import { getSeedItems, getSelectedIndex, getSelectedSeed } from 'selectors/seeds';
 import { selectSeed } from 'actions/seeds';
-import Logo from 'components/UI/Logo';
+import Logo from 'ui/components/Logo';
 import css from 'components/Layout/Main.css';
 
 class Header extends React.PureComponent {

@@ -11,7 +11,7 @@ import { loadSeeds, clearSeeds } from 'actions/seeds';
 import { runTask } from 'worker';
 import Template, { Content, Footer } from 'components/Onboarding/Template';
 import PasswordInput from 'components/UI/input/Password';
-import Button from 'components/UI/Button';
+import Button from 'ui/components/Button';
 import Loading from 'components/UI/Loading';
 import css from 'components/Layout/Onboarding.css';
 
@@ -65,7 +65,7 @@ class Login extends React.Component {
         }
     }
 
-    setPassword = password => {
+    setPassword = (password) => {
         this.setState({
             password: password,
         });
@@ -81,7 +81,7 @@ class Login extends React.Component {
         }
     }
 
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault();
         const { password } = this.state;
         const { t, loadSeeds, showError } = this.props;
@@ -148,7 +148,7 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     account: state.account,
     tempAccount: state.tempAccount,
 });

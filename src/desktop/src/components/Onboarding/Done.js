@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { setOnboardingCompletionStatus } from 'actions/app';
+import Button from 'ui/components/Button';
 import Template, { Content, Footer } from './Template';
-import Button from '../UI/Button';
 import css from '../Layout/Onboarding.css';
 
 class Done extends React.PureComponent {

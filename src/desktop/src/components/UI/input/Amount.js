@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { getCurrencySymbol } from 'libs/currency';
 import css from 'components/UI/input/Input.css';
 
-import Icon from 'components/UI/Icon';
+import Icon from 'ui/components/Icon';
 
 const units = ['$', 'i', 'Ki', 'Mi', 'Gi', 'Ti'];
 

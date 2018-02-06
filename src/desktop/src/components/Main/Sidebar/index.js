@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
-import Icon from 'components/UI/Icon';
+import Icon from 'ui/components/Icon';
 
 import css from '../../Layout/Main.css';
 
@@ -24,23 +24,23 @@ class Sidebar extends React.PureComponent {
             <div className={css.sidebar}>
                 <nav>
                     <NavLink to="/balance">
-                        <Icon icon="wallet" size={32} />
+                        <Icon icon="wallet" size={20} />
                         {t('home:balance')}
                     </NavLink>
                     <NavLink to="/send">
-                        <img src={images.send} />
+                        <Icon icon="send" size={20} />
                         {t('home:send')}
                     </NavLink>
                     <NavLink to="/receive">
-                        <img src={images.receive} />
+                        <Icon icon="receive" size={20} />
                         {t('home:receive')}
                     </NavLink>
                     <NavLink to="/history">
-                        <img src={images.history} />
+                        <Icon icon="history" size={20} />
                         {t('home:history')}
                     </NavLink>
                     <NavLink to="/settings">
-                        <img src={images.settings} />
+                        <Icon icon="settings" size={20} />
                         {t('home:settings')}
                     </NavLink>
                 </nav>
