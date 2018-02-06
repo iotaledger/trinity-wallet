@@ -74,7 +74,7 @@
         "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}"
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "La seed contiene caracteres inválidos",
+        "seedInvalidChars": "La seed contiene carácteres inválidos",
         "seedInvalidCharsExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
         "seedTooShort": "La seed es demasiado corta",
         "seedTooShortExplanation": "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
@@ -138,7 +138,7 @@
         "enterPassword": "Por favor introduzca su contraseña.",
         "useSeed": "USAR SEED",
         "login": "INICIAR SESIÓN",
-        "selectDifferentNode": "Do you want to select a different node?",
+        "selectDifferentNode": "¿Deseas seleccionar un nodo distinto?",
         "setNode": "Establecer Nodo",
         "cannotConnect": "No es posible conectarse al nodo de IOTA."
     },
@@ -149,8 +149,8 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "La semilla no se ha generado",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGeneratedExplanation": "Por favor haz click en el botón Generar Nueva Seed.",
+        "pressForNewSeed": "PULSAR PARA NUEVA SEED",
         "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio."
     },
     "onboardingComplete": {
@@ -165,8 +165,8 @@
     },
     "receive": {
         "addressCopied": "Dirección Copiada",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "NEW ADDRESS",
+        "addressCopiedExplanation": "La dirección se ha copiado en el portapapeles.",
+        "generateNewAddress": "NUEVA DIRECCIÓN",
         "message": "Mensaje opcional",
         "removeMessage": "ELIMINAR MENSAJE"
     },
