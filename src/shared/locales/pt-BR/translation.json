@@ -367,10 +367,10 @@
         "enabled": "Ativado",
         "disabled": "Desativado",
         "fingerprintUnavailable": "Sensor de impressão digital indisponível",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "fingerprintUnavailableExplanation": "Seu dispositivo não suporta reconhecimento de impressões digitais ou não foi configurado nas opções do dispositivo.",
+        "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação de impressão digital.",
+        "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação de impressão digital.",
+        "instructionsLogin": "Toque o leitor de impressão digital para logar."
     },
     "transferConfirmation": {
         "youAreAbout": "Você está prestes a enviar {{contents}} para o endereço",
