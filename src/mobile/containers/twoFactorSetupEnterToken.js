@@ -17,6 +17,7 @@ import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 // import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
 import { width, height } from '../util/dimensions';
+import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -105,6 +106,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     check2FA() {
+        const { t } = this.props;
         getTwoFactorAuthKeyFromKeychain()
             .then(key => {
                 const legit = authenticator.verifyToken(key, this.state.code);
@@ -113,14 +115,10 @@ class TwoFactorSetupEnterToken extends Component {
                     this.props.set2FAStatus(true);
                     this.navigateToHome();
                     this.timeout = setTimeout(() => {
-                        this.props.generateAlert(
-                            'success',
-                            '2FA is now enabled',
-                            'You have successfully enabled Two Factor Authentication.',
-                        );
+                        this.props.generateAlert('success', t('twoFAEnabled'), t('twoFAEnabledExplanation'));
                     }, 300);
                 } else {
-                    this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+                    this.props.generateAlert('error', t('wrongCode'), t('wrongCodeExplanation'));
                 }
             })
             .catch(err => console.error(err)); // generate an alert.
@@ -142,9 +140,9 @@ class TwoFactorSetupEnterToken extends Component {
                     </View>
                     <View style={styles.midWrapper}>
                         <View style={{ flex: 0.25 }} />
-                        <Text style={[styles.subHeaderText, textColor]}>Enter the token from your 2FA app</Text>
+                        <Text style={[styles.subHeaderText, textColor]}>{t('enterCode')}</Text>
                         <CustomTextInput
-                            label="Token"
+                            label={t('code')}
                             onChangeText={code => this.setState({ code })}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
@@ -160,8 +158,8 @@ class TwoFactorSetupEnterToken extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.goBack}
                             onRightButtonPress={this.check2FA}
-                            leftText={'BACK'}
-                            rightText={'DONE'}
+                            leftText={t('global:back')}
+                            rightText={t('global:done')}
                         />
                     </View>
                 </View>
@@ -183,4 +181,4 @@ const mapStateToProps = state => ({
     key2FA: state.account.key2FA,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken);
+export default translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken));
