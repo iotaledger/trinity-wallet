@@ -18,7 +18,8 @@
         "invalidResponse": "잘못된 응답",
         "invalidResponseExplanation": "노드가 잘못된 응답을 보냈습니다.",
         "invalidResponsePollingExplanation": "노드가 폴링 중 잘못된 응답을 보냈습니다.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseFetchingAccount":
+            "The node returned an invalid response while fetching your account information.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "씨드",
         "back": "뒤로",
@@ -46,6 +47,7 @@
         "yes": "예",
         "no": "아니오",
         "password": "비밀번호",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "잘못된 비밀번호",
         "unrecognisedPasswordExplanation": "비밀번호가 옳지 않습니다. 재시도 해주십시오.",
         "syncInProgress": "동기화 진행 중...",
@@ -74,9 +76,11 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
-        "seedInvalidCharsExplanation": "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
+        "seedInvalidCharsExplanation":
+            "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "씨드는 {{maxLength}} 의 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 의 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "seedTooShortExplanation":
+            "씨드는 {{maxLength}} 의 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 의 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
         "nameInUse": "계정이 이미 존재합니다.",
         "nameInUseExplanation": "씨드를 위한 고유 계정 이름을 사용하십시오.",
         "enterAccountName": "계정 이름을 입력하십시오.",
@@ -115,10 +119,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "유효하지 않은 문자가 씨드에 포함되어 있음",
-        "invalidCharactersExplanation": "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
+        "invalidCharactersExplanation":
+            "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "씨드는 {{maxLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
-        "seedExplanation": "씨드는 {{maxLength}} 자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. {{maxLength}} 자 이상의 씨드는 사용할 수 없습니다.",
+        "seedTooShortExplanation":
+            "씨드는 {{maxLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "seedExplanation":
+            "씨드는 {{maxLength}} 자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. {{maxLength}} 자 이상의 씨드는 사용할 수 없습니다.",
         "neverShare": "다른 이와 절대로 씨드를 공유하지 마십시오."
     },
     "home": {
@@ -137,7 +144,9 @@
         "enterPassword": "비밀번호를 입력 해주십시오.",
         "useSeed": "씨드 사용하기",
         "login": "로그인",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Do you want to select a different node?",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "처음으로 씨드를 불러오는 중입니다.",
@@ -170,7 +179,8 @@
     "saveYourSeed": {
         "seedCleared": "씨드 삭제됨",
         "seedClearedExplanation": "보안을 위해 클립보드에서 씨드가 삭제되었습니다.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed":
+            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "잘못된 씨드",
@@ -200,11 +210,13 @@
     },
     "setPassword": {
         "passwordTooShort": "비밀번호가 너무 짧습니다.",
-        "passwordTooShortExplanation": "씨드는 최소 {{minLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "passwordTooShortExplanation":
+            "씨드는 최소 {{minLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
         "passwordMismatch": "비밀번호가 일치하지 않습니다.",
         "passwordMismatchExplanation": "입력한 비밀번호가 일치하지 않습니다. 다시 입력해주십시오.",
         "nowWeNeedTo": "이제 비밀번호를 설정해야합니다.",
-        "anEncryptedCopy": "귀하의 디바이스에 암호화된 씨드가 저장될 것입니다. 지갑에 엑세스하기 위해서 이 비밀번호를 사용하십시오.",
+        "anEncryptedCopy":
+            "귀하의 디바이스에 암호화된 씨드가 저장될 것입니다. 지갑에 엑세스하기 위해서 이 비밀번호를 사용하십시오.",
         "ensure": "최소 12글자로 이루어진 비밀번호를 사용하십시오.",
         "retypePassword": "비밀번호 다시 입력"
     },
@@ -246,7 +258,9 @@
         "cut": "삭제",
         "copy": "복사",
         "paste": "붙여넣기",
-        "selectAll": "전체 선택"
+        "selectAll": "전체 선택",
+        "securitySettings": "Security settings",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -257,7 +271,8 @@
         "okay": "좋습니다. 이제 귀하의 지갑을 만듭시다!",
         "doYouAlreadyHaveASeed": "이미 당신이 사용하고 싶은 씨드가 있습니까?",
         "seedExplanation": "81자로 이루어진 IOTA 씨드는 귀하의 계정에 아이디 및 비밀번호와 같습니다.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "반드시 씨드를 안전히 보관하십시오."
     },
     "welcome": {
@@ -267,7 +282,8 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "번들 해시 복사됨",
@@ -347,7 +363,27 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",

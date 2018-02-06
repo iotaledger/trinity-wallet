@@ -20,6 +20,7 @@ import { width, height } from '../util/dimensions';
 import InfoBox from '../components/infoBox';
 
 const MIN_PASSWORD_LENGTH = 12;
+console.ignoredYellowBox = ['Native TextInput'];
 
 const styles = StyleSheet.create({
     container: {
@@ -216,7 +217,7 @@ class SetPassword extends Component {
 
         return (
             <View>
-                <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss}>
+                <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -243,6 +244,7 @@ class SetPassword extends Component {
                                 onSubmitEditing={() => this.reentry.focus()}
                                 secondaryBackgroundColor="white"
                                 secureTextEntry
+                                testID="setPassword-passwordbox"
                             />
                             <View style={{ flex: 0.2 }} />
                             <CustomTextInput
@@ -259,6 +261,7 @@ class SetPassword extends Component {
                                 onSubmitEditing={() => this.onDonePress()}
                                 secondaryBackgroundColor="white"
                                 secureTextEntry
+                                testID="setPassword-reentrybox"
                             />
                             <View style={{ flex: 0.3 }} />
                         </View>

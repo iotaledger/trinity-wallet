@@ -3,6 +3,8 @@ import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity } from 'reac
 import PropTypes from 'prop-types';
 import whiteQRImagePath from 'iota-wallet-shared-modules/images/qr-white.png';
 import blackQRImagePath from 'iota-wallet-shared-modules/images/qr-black.png';
+import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-icon-white.png';
+import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-icon-black.png';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 import { isAndroid } from '../util/device';
@@ -69,8 +71,11 @@ class CustomTextInput extends React.Component {
         denominationText: PropTypes.string,
         onQRPress: PropTypes.func,
         negativeColor: PropTypes.string,
+        testID: PropTypes.string,
+        onFingerprintPress: PropTypes.func,
         innerPadding: PropTypes.object,
         currencyConversion: PropTypes.bool,
+        fingerprintAuthentication: PropTypes.bool,
         conversionText: PropTypes.string,
         height: PropTypes.number,
     };
@@ -78,6 +83,7 @@ class CustomTextInput extends React.Component {
     static defaultProps = {
         onFocus: () => {},
         onBlur: () => {},
+        onFingerprintPress: () => {},
         containerStyle: {},
         widget: 'empty',
         onDenominationPress: () => {},
@@ -89,6 +95,7 @@ class CustomTextInput extends React.Component {
         currencyConversion: false,
         conversionText: '',
         height: height / 14,
+        fingerprintAuthentication: false,
     };
 
     constructor(props) {
@@ -150,6 +157,21 @@ class CustomTextInput extends React.Component {
         );
     }
 
+    renderFingerprintAuthentication(widgetBorderColor) {
+        const { secondaryBackgroundColor, onFingerprintPress, containerStyle } = this.props;
+        const fingerprintImagePath =
+            secondaryBackgroundColor === 'white' ? whiteFingerprintImagePath : blackFingerprintImagePath;
+        const fingerprintImageSize = { width: containerStyle.width / 13, height: containerStyle.width / 13 };
+
+        return (
+            <View style={[styles.widgetContainer, widgetBorderColor]}>
+                <TouchableOpacity onPress={() => onFingerprintPress()} style={styles.widgetButton}>
+                    <Image source={fingerprintImagePath} style={[styles.fingerprintImage, fingerprintImageSize]} />
+                </TouchableOpacity>
+            </View>
+        );
+    }
+
     renderCurrencyConversion(conversionText) {
         const { secondaryBackgroundColor } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
@@ -167,10 +189,12 @@ class CustomTextInput extends React.Component {
             secondaryBackgroundColor,
             negativeColor,
             onRef,
+            testID,
             height,
             conversionText,
             currencyConversion,
             innerPadding,
+            fingerprintAuthentication,
             ...restProps
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
@@ -184,7 +208,7 @@ class CustomTextInput extends React.Component {
         return (
             <View style={[styles.fieldContainer, containerStyle]}>
                 <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>
-                <View style={[styles.innerContainer, innerContainerBackgroundColor, { height }]}>
+                <View style={[styles.innerContainer, innerContainerBackgroundColor, { height }]} testID={testID}>
                     <TextInput
                         {...restProps}
                         ref={onRef}
@@ -198,6 +222,7 @@ class CustomTextInput extends React.Component {
                     {(widget === 'qr' && this.renderQR(widgetBorderColor)) ||
                         (widget === 'denomination' && this.renderDenomination(widgetBorderColor))}
                     {currencyConversion && this.renderCurrencyConversion(conversionText)}
+                    {fingerprintAuthentication && this.renderFingerprintAuthentication(widgetBorderColor)}
                 </View>
             </View>
         );
