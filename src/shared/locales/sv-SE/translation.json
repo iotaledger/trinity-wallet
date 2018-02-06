@@ -71,8 +71,7 @@
         "autoreattaching": "Auto-fastsättning till Tangle",
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
         "autopromoting": "Auto-promotar överföring",
-        "autopromotingExplanation": "Promotar transaktion med hashen {{hash}}",
-        "fingerprintInstructionsLogin": "Touch reader to log in."
+        "autopromotingExplanation": "Promotar transaktion med hashen {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -384,7 +383,8 @@
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication."
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "Du kommer att skicka {{contents}} till adressen",
