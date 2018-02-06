@@ -70,7 +70,7 @@ class CustomTextInput extends React.Component {
         onDenominationPress: PropTypes.func,
         denominationText: PropTypes.string,
         onQRPress: PropTypes.func,
-        negativeColor: PropTypes.object,
+        negativeColor: PropTypes.string,
         testID: PropTypes.string,
         onFingerprintPress: PropTypes.func,
         innerPadding: PropTypes.object,
