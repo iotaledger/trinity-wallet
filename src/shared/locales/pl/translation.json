@@ -136,7 +136,7 @@
         "emptyPassword": "Puste hasło",
         "emptyPasswordExplanation": "Musisz podać hasło, aby się zalogować. Spróbuj ponownie.",
         "enterPassword": "Wprowadź swoje hasło.",
-        "useSeed": "UŻYJ SEED'a",
+        "useSeed": "UŻYJ SEED",
         "login": "ZALOGUJ",
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?",
         "setNode": "Wybierz serwer",
@@ -260,7 +260,7 @@
     },
     "walletSetup": {
         "okay": "W porządku. Ustawmy Twój portfel!",
-        "doYouAlreadyHaveASeed": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
+        "doYouAlreadyHaveASeed": "Czy posiadasz już seed, którego chciałbyś użyć?",
         "seedExplanation": "Seed IOTA jest swego rodzaju połączeniem nazwy użytkownika oraz hasła do Twojego konta, składającym się na ciąg 81 znaków.",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed, stracisz swoje środki IOTA.</4></0>",
         "keepSafe": "Proszę dbaj o bezpieczeństwo swojego seeda."
@@ -357,20 +357,20 @@
     "fingerprintSetup": {
         "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
         "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "fingerprintAuthEnabled": "Logowanie odciskiem palca włączone",
+        "fingerprintAuthEnabledExplanation": "Pomyślnie włączono funkcję logowania odciskiem palca.",
+        "fingerprintAuthDisabled": "Logowanie odciskiem palca wyłączone",
+        "fingerprintAuthDisabledExplanation": "Pomyślnie wyłączono funkcję logowania odciskiem palca.",
+        "fingerprintAuthFailed": "Nie rozpoznano odcisku palca",
+        "fingerprintAuthFailedExplanation": "Nie rozpoznano odcisku palca. Spróbuj ponownie.",
         "status": "Status",
         "enabled": "Włączony",
         "disabled": "Wyłączony",
         "fingerprintUnavailable": "Czytnik lini papilarnych niedostępny.",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "fingerprintUnavailableExplanation": "Twoje urządzenie nie obsługuje funkcji rozpoznawania odcisku palca lub funkcja ta nie została skonfigurowana w ustawieniach urządzenia.",
+        "buttonInstructionsDisable": "Naciśnij poniższy przycisk, aby wyłączyć logowanie odciskiem palca.",
+        "buttonInstructionsEnable": "Naciśnij poniższy przycisk, aby włączyć logowanie odciskiem palca.",
+        "instructionsLogin": "Przyłóż palec do czytnika, aby się zalogować."
     },
     "transferConfirmation": {
         "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",
