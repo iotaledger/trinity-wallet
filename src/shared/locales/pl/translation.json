@@ -139,7 +139,7 @@
         "useSeed": "UŻYJ SEED",
         "login": "ZALOGUJ",
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?",
-        "setNode": "Wybierz serwer",
+        "setNode": "SERWER",
         "cannotConnect": "Nie można podłączyć sie do serwera."
     },
     "loading": {
