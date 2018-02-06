@@ -32,3 +32,8 @@ platform :ios do
     # )
   end
 end
+
+lane :screenshots do
+    capture_screenshots
+    frame_screenshots
+end
