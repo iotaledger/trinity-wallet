@@ -7,7 +7,8 @@ import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import { StyleSheet, View, Text, Image, Clipboard, TouchableOpacity, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
+import Clipboard from '../util/clipboard';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { Navigation } from 'react-native-navigation';
 import QRCode from 'react-native-qrcode-svg';
@@ -15,7 +16,6 @@ import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
-// import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -84,8 +84,10 @@ class TwoFactorSetupAddKey extends Component {
 
     constructor() {
         super();
+
         this.goBack = this.goBack.bind(this);
         this.navigateToEnterToken = this.navigateToEnterToken.bind(this);
+
         this.state = {
             code: '',
             authkey: authenticator.generateKey(),
@@ -99,9 +101,10 @@ class TwoFactorSetupAddKey extends Component {
         });
     }
 
-    onKeyPress(address) {
-        if (address !== ' ') {
-            Clipboard.setString(address);
+    onKeyPress(key) {
+        if (key) {
+            Clipboard.set(key);
+
             this.props.generateAlert(
                 'success',
                 'Key copied to clipboard',
@@ -111,7 +114,6 @@ class TwoFactorSetupAddKey extends Component {
     }
 
     goBack() {
-        // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
@@ -128,7 +130,8 @@ class TwoFactorSetupAddKey extends Component {
     }
 
     navigateToEnterToken() {
-        Clipboard.setString(' ');
+        Clipboard.clear();
+
         storeTwoFactorAuthKeyInKeychain(this.state.authkey)
             .then(() => {
                 this.props.navigator.push({
@@ -148,7 +151,7 @@ class TwoFactorSetupAddKey extends Component {
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor } = this.props;
+        const { secondaryBackgroundColor } = this.props;
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -181,8 +184,8 @@ class TwoFactorSetupAddKey extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.navigateToEnterToken}
-                        leftText={'BACK'}
-                        rightText={'NEXT'}
+                        leftText="BACK"
+                        rightText="NEXT"
                     />
                 </View>
                 <StatefulDropdownAlert />
@@ -195,6 +198,7 @@ const mapDispatchToProps = {
     set2FAKey,
     generateAlert,
 };
+
 const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
