@@ -254,9 +254,9 @@
         "fingerprint": "Autenticación con huella digital"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Ingresa tu contraseña para reiniciar la billetera.",
         "cancel": "CANCELAR",
-        "reset": "RESET"
+        "reset": "REINICIAR"
     },
     "walletSetup": {
         "okay": "Vale. ¡Vamos a configurar tu billetera!",
@@ -276,45 +276,45 @@
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "La dirección se ha copiado al portapapeles."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Ver Seed",
+        "viewAddresses": "Ver direcciones",
+        "editAccountName": "Editar nombre de cuenta",
+        "deleteAccount": "Borrar cuenta",
+        "addNewAccount": "Añadir nueva cuenta"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Nodo personalizado",
+        "add": "Añadir"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Usar Seed existente",
+        "createNewSeed": "Crear nueva Seed"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Seleccionar nodo",
+        "addCustomNode": "Añadir nodo personalizado",
+        "manualSync": "Sincronización manual"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Fondo",
+        "frame": "Marco"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Tema"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "Divisa"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "¿Estás seguro que quieres desconectarte?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Escanea tu código QR"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
