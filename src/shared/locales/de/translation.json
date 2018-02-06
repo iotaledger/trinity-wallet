@@ -140,7 +140,7 @@
         "login": "ANMELDEN",
         "selectDifferentNode": "Möchtest du einen anderen Server auswählen?",
         "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "cannotConnect": "Keine Verbindung mit dem IOTA Node möglich."
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
@@ -250,7 +250,7 @@
         "copy": "Kopieren",
         "paste": "Einfügen",
         "selectAll": "Alle auswählen",
-        "securitySettings": "Security settings",
+        "securitySettings": "Sicherheitseinstellungen",
         "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
