@@ -86,8 +86,7 @@ class TwoFactorSetupAddKey extends Component {
         this.navigateToEnterToken = this.navigateToEnterToken.bind(this);
 
         this.state = {
-            code: '',
-            authkey: authenticator.generateKey(),
+            authKey: authenticator.generateKey(),
         };
     }
 
@@ -129,7 +128,7 @@ class TwoFactorSetupAddKey extends Component {
     navigateToEnterToken() {
         Clipboard.setString('');
 
-        storeTwoFactorAuthKeyInKeychain(this.state.authkey)
+        storeTwoFactorAuthKeyInKeychain(this.state.authKey)
             .then(() => {
                 this.props.navigator.push({
                     screen: 'twoFactorSetupEnterToken',
@@ -164,16 +163,16 @@ class TwoFactorSetupAddKey extends Component {
                     <Text style={[styles.subHeaderText, textColor]}>Add this key to your 2FA app</Text>
                     <View style={styles.qrContainer}>
                         <QRCode
-                            value={authenticator.generateTotpUri(this.state.authkey, 'Trinity Wallet Mobile')}
+                            value={authenticator.generateTotpUri(this.state.authKey, 'Trinity Wallet Mobile')}
                             size={height / 5}
                             bgColor="#000"
                             fgColor="#FFF"
                         />
                     </View>
-                    <TouchableOpacity onPress={() => this.onKeyPress(this.state.authkey)}>
+                    <TouchableOpacity onPress={() => this.onKeyPress(this.state.authKey)}>
                         <Text style={[styles.infoText, textColor]}>
                             <Text style={styles.infoText}>Key: </Text>
-                            <Text style={styles.infoTextLight}>{this.state.authkey}</Text>
+                            <Text style={styles.infoTextLight}>{this.state.authKey}</Text>
                         </Text>
                     </TouchableOpacity>
                 </View>

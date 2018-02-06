@@ -71,7 +71,6 @@ class TwoFactorSetupEnterToken extends Component {
 
         this.state = {
             code: '',
-            authkey: authenticator.generateKey(),
         };
     }
 
