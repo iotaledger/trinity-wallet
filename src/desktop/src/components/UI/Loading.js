@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Logo from 'components/UI/Logo';
+import Logo from 'ui/components/Logo';
 import css from './Loading.css';
 
 export default class Loading extends React.PureComponent {

@@ -5,8 +5,8 @@ import { translate } from 'react-i18next';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { showNotification } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
+import Button from 'ui/components/Button';
 import BoxedSeed from '../UI/BoxedSeed';
-import Button from '../UI/Button';
 
 // TODO: Translate component
 class SeedCopyToClipboard extends React.PureComponent {

@@ -6,7 +6,7 @@ import Receive from 'components/Main/Receive';
 import Send from 'components/Main/Send';
 import Login from 'components/Main/Login';
 import HistoryView from 'components/Main/History';
-import Settings from 'components/Settings/Index';
+import Settings from 'ui/views/settings/Index';
 
 export default withRouter(
     class Main extends React.PureComponent {

@@ -3,8 +3,8 @@ import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
 import { ADDRESS_LENGTH } from 'libs/util';
 import css from 'components/UI/input/Input.css';
-import Modal from 'components/UI/Modal';
-import Button from 'components/UI/Button';
+import Modal from 'ui/components/modal/Modal';
+import Button from 'ui/components/Button';
 
 import Camera from 'images/camera-white.png';
 

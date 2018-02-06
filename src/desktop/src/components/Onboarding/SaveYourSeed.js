@@ -7,9 +7,9 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { showNotification } from 'actions/notifications';
 import { clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
+import Button from 'ui/components/Button';
 import Template, { Content, Footer } from './Template';
 import BoxedSeed from '../UI/BoxedSeed';
-import Button from '../UI/Button';
 // import { ipcRenderer } from 'electron';
 
 // ipcRenderer.on('wrote-pdf', function (event, path) {

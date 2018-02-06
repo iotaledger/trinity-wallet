@@ -4,8 +4,8 @@ import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'vict
 
 import withChartData from 'containers/components/Chart';
 
-import Icon from 'components/UI/Icon';
-import Button from 'components/UI/Button';
+import Icon from 'ui/components/Icon';
+import Button from 'ui/components/Button';
 import css from './chart.css';
 
 /**

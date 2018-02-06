@@ -7,8 +7,8 @@ import { showError } from 'actions/notifications';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
 import Template, { Content, Footer } from 'components/Onboarding/Template';
-import Button from 'components/UI/Button';
-import Infobox from 'components/UI/Infobox';
+import Button from 'ui/components/Button';
+import Infobox from 'ui/components/Info';
 import SeedInput from 'components/UI/input/Seed';
 
 class SeedEnter extends React.PureComponent {

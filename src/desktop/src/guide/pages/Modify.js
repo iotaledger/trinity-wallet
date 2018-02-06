@@ -5,8 +5,8 @@ import { updateTheme } from 'actions/settings';
 import { showNotification } from 'actions/notifications';
 
 import Input from 'components/UI/input/Text';
-import Button from 'components/UI/Button';
-import Clipboard from 'components/UI/Clipboard';
+import Button from 'ui/components/Button';
+import Clipboard from 'ui/components/Clipboard';
 
 import css from './modify.css';
 
