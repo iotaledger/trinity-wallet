@@ -46,6 +46,7 @@
         "yes": "SI",
         "no": "NO",
         "password": "Password",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
         "syncInProgress": "Sincronizzazione in corso",
@@ -70,7 +71,8 @@
         "autoreattaching": "Ricollegamento automatico al Tangle",
         "autoreattachingExplanation": "Ricollegamento della transazione con hash {{hash}}",
         "autopromoting": "Promozione automatica del trasferimento",
-        "autopromotingExplanation": "Promozione della transazione con hash {{hash}}"
+        "autopromotingExplanation": "Promozione della transazione con hash {{hash}}",
+        "fingerprintInstructionsLogin": "Touch reader to log in."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -137,7 +139,9 @@
         "enterPassword": "Inserisci la tua password.",
         "useSeed": "USA IL SEME",
         "login": "ACCEDI",
-        "selectDifferentNode": "Vuoi selezionare un nodo diverso?"
+        "selectDifferentNode": "Vuoi selezionare un nodo diverso?",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Carico il seme per la prima volta.",
@@ -246,7 +250,9 @@
         "cut": "Taglia",
         "copy": "Copia",
         "paste": "Incolla",
-        "selectAll": "Seleziona tutto"
+        "selectAll": "Seleziona tutto",
+        "securitySettings": "Security settings",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Immetti la tua password per reimpostare il portafoglio.",
@@ -348,6 +354,23 @@
     "walletResetConfirmation": {
         "cannotUndo": "QUESTA AZIONE NON PUÒ ESSERE ANNULLATA.",
         "warning": "<0><0>Tutti i dati nel tuo portafoglio tra cui </0> <1>i semi, le password</1><2> e </2><3>altre informazioni sul conto</3><4> andranno persi.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication."
     },
     "transferConfirmation": {
         "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",
