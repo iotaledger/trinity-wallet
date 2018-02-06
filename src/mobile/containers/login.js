@@ -165,9 +165,7 @@ class Login extends Component {
     }
 
     activateFingerPrintScanner() {
-        const { t } = this.props;
-
-        const { is2FAEnabled } = this.props;
+        const { t, is2FAEnabled } = this.props;
         FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
             .then(() => {
                 keychain
