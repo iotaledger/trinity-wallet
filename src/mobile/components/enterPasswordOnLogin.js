@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import RNExitApp from 'react-native-exit-app';
-import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard, BackHandler } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard, BackHandler, AppState } from 'react-native';
+import { connect } from 'react-redux';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import GENERAL from '../theme/general';
@@ -61,15 +62,26 @@ const styles = StyleSheet.create({
 
 class EnterPasswordOnLogin extends Component {
     componentDidMount() {
+        const { isFingerprintEnabled } = this.props;
         BackHandler.addEventListener('loginBackPress', () => {
             RNExitApp.exitApp();
             return true;
         });
+        if (isFingerprintEnabled) {
+            this.props.activateFingerPrintScanner();
+            AppState.addEventListener('change', this.handleAppStateChange);
+        }
     }
 
     componentWillUnmount() {
-        BackHandler.removeEventListener('loginBackPress');
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
+
+    handleAppStateChange = nextAppState => {
+        if (nextAppState.match(/background/) && nextAppState === 'active') {
+            this.props.activateFingerPrintScanner();
+        }
+    };
 
     handleChangeText = password => this.props.setLoginPasswordField(password);
 
@@ -113,7 +125,7 @@ class EnterPasswordOnLogin extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.changeNode}
                             onRightButtonPress={this.handleLogin}
-                            leftText={'SET NODE'}
+                            leftText={t('setNode')}
                             rightText={t('login')}
                         />
                     </View>
@@ -130,7 +142,12 @@ EnterPasswordOnLogin.propTypes = {
     negativeColor: PropTypes.string.isRequired,
     navigateToNodeSelection: PropTypes.func.isRequired,
     setLoginPasswordField: PropTypes.func.isRequired,
-    password: PropTypes.string.isRequired,
+    isFingerprintEnabled: PropTypes.bool.isRequired,
+    activateFingerPrintScanner: PropTypes.func.isRequired,
 };
 
-export default translate(['login', 'global'])(EnterPasswordOnLogin);
+const mapStateToProps = state => ({
+    isFingerprintEnabled: state.account.isFingerprintEnabled,
+});
+
+export default translate(['login', 'global'])(connect(mapStateToProps)(EnterPasswordOnLogin));
