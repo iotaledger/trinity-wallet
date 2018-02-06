@@ -12,7 +12,6 @@ import GENERAL from '../theme/general';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { width, height } from '../util/dimensions';
-import THEMES from '../theme/themes';
 import { connect } from 'react-redux';
 import InfoBox from '../components/infoBox';
 
@@ -41,7 +40,7 @@ class WalletResetConfirmation extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -55,7 +54,7 @@ class WalletResetConfirmation extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
@@ -71,8 +70,8 @@ class WalletResetConfirmation extends Component {
     render() {
         const { t, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
-        const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
-        const negativeColor = { color: THEMES.getHSL(this.props.negativeColor) };
+        const backgroundColor = { backgroundColor: this.props.backgroundColor };
+        const negativeColor = { color: this.props.negativeColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (

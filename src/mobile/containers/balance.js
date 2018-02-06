@@ -13,7 +13,6 @@ import {
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getBalanceForSelectedAccountViaSeedIndex,
 } from '../../shared/selectors/account';
-import THEMES from '../theme/themes';
 
 import { width, height } from '../util/dimensions';
 
@@ -32,10 +31,11 @@ class Balance extends Component {
         settings: PropTypes.object.isRequired,
         setCurrency: PropTypes.func.isRequired,
         setTimeframe: PropTypes.func.isRequired,
-        extraColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        extraColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        chartLineColor: PropTypes.string.isRequired,
+        chartLineColorPrimary: PropTypes.string.isRequired,
+        chartLineColorSecondary: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -85,8 +85,8 @@ class Balance extends Component {
             negativeColor,
             extraColor,
             secondaryBackgroundColor,
-            chartLineColor,
-            themeName,
+            chartLineColorPrimary,
+            chartLineColorSecondary,
         } = this.props;
 
         const shortenedBalance =
@@ -117,8 +117,8 @@ class Balance extends Component {
                                 dataSource={ds.cloneWithRows(recentTransactions)}
                                 renderRow={dataSource => (
                                     <SimpleTransactionRow
-                                        negativeColor={THEMES.getHSL(negativeColor)}
-                                        extraColor={THEMES.getHSL(extraColor)}
+                                        negativeColor={negativeColor}
+                                        extraColor={extraColor}
                                         addresses={addresses}
                                         rowData={dataSource}
                                         secondaryBackgroundColor={secondaryBackgroundColor}
@@ -148,8 +148,8 @@ class Balance extends Component {
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             textColor={{ color: secondaryBackgroundColor }}
                             borderColor={{ borderColor: secondaryBackgroundColor }}
-                            chartLineColor={chartLineColor}
-                            themeName={themeName}
+                            chartLineColorPrimary={chartLineColorPrimary}
+                            chartLineColorSecondary={chartLineColorSecondary}
                         />
                     </View>
                 </View>
@@ -222,7 +222,8 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     negativeColor: settings.theme.negativeColor,
     extraColor: settings.theme.extraColor,
     secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
-    chartLineColor: settings.theme.chartLineColor,
+    chartLineColorPrimary: settings.theme.chartLineColorPrimary,
+    chartLineColorSecondary: settings.theme.chartLineColorSecondary,
 });
 
 const mapDispatchToProps = dispatch => ({

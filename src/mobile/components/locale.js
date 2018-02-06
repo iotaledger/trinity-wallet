@@ -60,7 +60,7 @@ export function selectLocale(lang) {
     if (lang === 'fr') {
         return 'Français - French';
     }
-    if (lang === 'el') {
+    if (lang === 'he') {
         return 'עִברִית - Hebrew';
     }
     if (lang === 'hi') {
@@ -90,10 +90,10 @@ export function selectLocale(lang) {
     if (lang === 'pl') {
         return 'Polski - Polish';
     }
-    if (lang === 'pt_PT') {
+    if (lang === 'pt_BR') {
         return 'Português (Brasil) - Portuguese (Brazil)';
     }
-    if (lang === 'pt_BR') {
+    if (lang === 'pt_PT') {
         return 'Português (Portugal) - Portuguese (Portugal)';
     }
     if (lang === 'ro') {
@@ -113,6 +113,9 @@ export function selectLocale(lang) {
     }
     if (lang === 'ur') {
         return 'اردو - Urdu';
+    }
+    if (lang === 'vi') {
+        return 'Tiếng Việt - Vietnamese';
     }
     if (lang === 'zh_CN') {
         return '中文 (简体) - Chinese (Simplified)';

@@ -107,7 +107,7 @@ class ChangePassword extends Component {
         tickImagePath: PropTypes.number.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
     };
 

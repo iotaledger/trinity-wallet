@@ -13,7 +13,6 @@ import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
-import THEMES from '../theme/themes';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -22,10 +21,10 @@ class History extends Component {
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
         closeTopBar: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
-        positiveColor: PropTypes.object.isRequired,
-        extraColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        positiveColor: PropTypes.string.isRequired,
+        extraColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         pendingColor: PropTypes.string.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
@@ -127,7 +126,7 @@ class History extends Component {
                                     <RefreshControl
                                         refreshing={this.state.refreshing}
                                         onRefresh={this._onRefresh.bind(this)}
-                                        tintColor={THEMES.getHSL(negativeColor)}
+                                        tintColor={negativeColor}
                                     />
                                 }
                                 contentContainerStyle={{ paddingTop: 1, paddingBottom: 1 }}
@@ -139,10 +138,10 @@ class History extends Component {
                                         titleColor="#F8FFA6"
                                         copyAddress={item => this.copyAddress(item)}
                                         copyBundleHash={item => this.copyBundleHash(item)}
-                                        positiveColor={THEMES.getHSL(positiveColor)}
-                                        negativeColor={THEMES.getHSL(negativeColor)}
-                                        extraColor={THEMES.getHSL(extraColor)}
-                                        backgroundColor={THEMES.getHSL(backgroundColor)}
+                                        positiveColor={positiveColor}
+                                        negativeColor={negativeColor}
+                                        extraColor={extraColor}
+                                        backgroundColor={backgroundColor}
                                         textColor={textColor}
                                         borderColor={borderColor}
                                         secondaryBackgroundColor={secondaryBackgroundColor}
