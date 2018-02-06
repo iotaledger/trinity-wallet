@@ -367,7 +367,7 @@
         "enabled": "Aktiviert",
         "disabled": "Deaktiviert",
         "fingerprintUnavailable": "Fingerabdrucksensor nicht vorhanden",
-        "fingerprintUnavailableExplanation": "Dein Gerät unterstützt die Erkennung von Fingerabdrücken nicht, oder diese Option wurde in den Einstellungen Ihres Geräts deaktiviert.",
+        "fingerprintUnavailableExplanation": "Dein Gerät unterstützt die Erkennung von Fingerabdrücken nicht oder diese Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
         "buttonInstructionsDisable": "Drücke die untere Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
         "buttonInstructionsEnable": "Drücke die untere Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "instructionsLogin": "Fingerabdrucksensor berühren, um sich anzumelden."
