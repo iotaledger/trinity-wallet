@@ -84,6 +84,8 @@ class WalletSetup extends Component {
                         onRightButtonPress={() => this.onYesPress()}
                         leftText={t('global:no')}
                         rightText={t('global:yes')}
+                        leftButtonTestID="walletSetup-no"
+                        rightButtonTestID="walletSetup-yes"
                     />
                 </View>
             </View>

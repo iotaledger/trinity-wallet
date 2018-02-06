@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Seedbox from '../components/seedBox.js';
 import { width, height } from '../util/dimensions';
-import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
@@ -24,12 +23,12 @@ class WriteSeedDown extends Component {
         const checksum = getChecksum(this.props.tempAccount.seed);
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
-        const positiveColorText = { color: THEMES.getHSL(positiveColor) };
-        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
+        const positiveColorText = { color: positiveColor };
+        const positiveColorBorder = { borderColor: positiveColor };
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />

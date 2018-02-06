@@ -1,4 +1,5 @@
-import tail from 'lodash/map';
+import takeRight from 'lodash/takeRight';
+
 import { iota } from '../libs/iota';
 import {
     getSelectedAccount,
@@ -20,6 +21,8 @@ import {
     updateTransitionAddresses,
     snapshotTransitionSuccess,
     snapshotTransitionError,
+    snapshotAttachToTangleRequest,
+    snapshotAttachToTangleComplete,
 } from './tempAccount';
 import {
     generateAccountInfoErrorAlert,
@@ -29,6 +32,7 @@ import {
     generateTransitionErrorAlert,
     generateAlert,
 } from '../actions/alerts';
+import { pushScreen } from '../libs/util';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
 export const ActionTypes = {
@@ -62,6 +66,7 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNT/ACCOUNT_INFO_FETCH_ERROR',
     SET_2FA_STATUS: 'IOTA/ACCOUNT/SET_2FA_STATUS',
     SET_2FA_KEY: 'IOTA/ACCOUNT/SET_2FA_KEY',
+    SET_FINGERPRINT_STATUS: 'IOTA/ACCOUNT/SET_FINGERPRINT_STATUS',
 };
 
 export const manualSyncRequest = () => ({
@@ -240,9 +245,7 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
                 dispatch(fullAccountInfoFetchSuccess(dataWithUnspentAddressesHashes)),
             )
             .catch(err => {
-                if (navigator) {
-                    navigator.pop({ animated: false });
-                }
+                pushScreen(navigator, 'login');
                 dispatch(generateAccountInfoErrorAlert(err));
                 dispatch(fullAccountInfoFetchError());
             });
@@ -385,7 +388,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
             if (!error) {
                 const allBalances = success.balances.map(a => Number(a));
                 const balance = allBalances.reduce((a, b) => a + b, 0);
-                const lastAddressBalance = tail(allBalances.filter(balance => balance > 0));
+                const lastAddressBalance = takeRight(allBalances.filter(balance => balance > 0));
                 const lastIndexWithBalance = allBalances.lastIndexOf(lastAddressBalance.pop());
                 const relevantBalances = allBalances.slice(0, lastIndexWithBalance + 1);
                 const relevantAddresses = addresses.slice(0, lastIndexWithBalance + 1);
@@ -411,10 +414,12 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                         );
                         const attachToTangleBundle = createAttachToTangleBundle(seed, relevantAddresses);
                         const args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, attachToTangleBundle];
+                        dispatch(snapshotAttachToTangleRequest());
                         iota.api.sendTransfer(...args, error => {
                             if (!error) {
                                 dispatch(updateAccountAfterTransition(accountName, formattedAddresses, balance));
                                 dispatch(snapshotTransitionSuccess());
+                                dispatch(snapshotAttachToTangleComplete());
                                 dispatch(
                                     generateAlert(
                                         'success',
@@ -426,6 +431,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                             } else {
                                 console.log(error);
                                 dispatch(snapshotTransitionError());
+                                dispatch(snapshotAttachToTangleComplete());
                                 dispatch(generateTransitionErrorAlert());
                             }
                         });
@@ -446,7 +452,7 @@ export const generateAddressesAndGetBalance = (seed, index) => {
     return dispatch => {
         const options = {
             index: index,
-            total: 6,
+            total: 20,
             returnAll: true,
             security: 2,
         };
@@ -490,3 +496,8 @@ export const getBalanceForCheck = addresses => {
         });
     };
 };
+
+export const setFingerprintStatus = payload => ({
+    type: ActionTypes.SET_FINGERPRINT_STATUS,
+    payload,
+});

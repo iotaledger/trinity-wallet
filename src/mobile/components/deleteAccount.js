@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Fonts from '../theme/Fonts';
-import Colors from '../theme/Colors';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { width, height } from '../util/dimensions';
 import Modal from 'react-native-modal';
 import CustomTextInput from '../components/customTextInput';
-import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { translate } from 'react-i18next';
 
@@ -139,7 +137,7 @@ class DeleteAccount extends Component {
                 style={{
                     width: width / 1.15,
                     alignItems: 'center',
-                    backgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    backgroundColor: this.props.backgroundColor,
                 }}
             >
                 <View style={[styles.modalContent, borderColor]}>
@@ -178,9 +176,7 @@ class DeleteAccount extends Component {
                             <View style={styles.textContainer}>
                                 <Text style={[styles.infoText, textColor]}>{t('areYouSure')}</Text>
                                 <Text style={[styles.infoText, textColor]}>{t('yourSeedWillBeRemoved')}</Text>
-                                <Text style={[styles.warningText, { color: THEMES.getHSL(negativeColor) }]}>
-                                    {t('thisAction')}
-                                </Text>
+                                <Text style={[styles.warningText, { color: negativeColor }]}>{t('thisAction')}</Text>
                             </View>
                         )}
                         {this.state.pressedContinue && (
@@ -232,7 +228,7 @@ class DeleteAccount extends Component {
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={THEMES.getHSL(backgroundColor)}
+                        backdropColor={backgroundColor}
                         backdropOpacity={0.6}
                         style={{ alignItems: 'center' }}
                         isVisible={this.state.isModalVisible}

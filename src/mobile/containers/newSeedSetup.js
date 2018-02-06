@@ -23,8 +23,8 @@ import { Navigation } from 'react-native-navigation';
 import OnboardingButtons from '../components/onboardingButtons';
 import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
+import CtaButton from '../components/ctaButton';
 
 import { width, height } from '../util/dimensions';
 import { isIPhoneX } from '../util/device';
@@ -38,9 +38,9 @@ class NewSeedSetup extends Component {
         setSeed: PropTypes.func.isRequired,
         randomiseSeed: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
-        ctaColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        ctaColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
@@ -79,7 +79,7 @@ class NewSeedSetup extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
@@ -101,7 +101,7 @@ class NewSeedSetup extends Component {
                 screen: 'saveYourSeed',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                screenBackgroundColor: this.props.backgroundColor,
             });
         } else {
             this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
@@ -162,21 +162,22 @@ class NewSeedSetup extends Component {
         const ctaTextColor = { color: secondaryCtaColor };
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
                     <View style={{ flex: 150 }} />
-                    <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
-                        <View
-                            style={[
-                                styles.generateButton,
-                                { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
-                            ]}
-                        >
-                            <Text style={[styles.generateText, ctaTextColor]}>{t('pressForNewSeed')}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <CtaButton
+                        ctaColor={ctaColor}
+                        ctaBorderColor={ctaBorderColor}
+                        secondaryCtaColor={secondaryCtaColor}
+                        text={t('pressForNewSeed')}
+                        onPress={() => {
+                            this.onGeneratePress();
+                        }}
+                        ctaWidth={width / 1.6}
+                        testID="newSeedSetup-newSeed"
+                    />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: isIPhoneX ? 100 : 30 }} />
@@ -188,13 +189,13 @@ class NewSeedSetup extends Component {
                                 key={sectionID}
                                 onPress={event => this.onItemPress(sectionID)}
                                 style={[styles.tileContainer, { backgroundColor: secondaryBackgroundColor }]}
-                                underlayColor={THEMES.getHSL(negativeColor)}
+                                underlayColor={negativeColor}
                             >
                                 <View style={styles.tile}>
                                     <Text
                                         style={{
                                             backgroundColor: 'transparent',
-                                            color: THEMES.getHSL(backgroundColor),
+                                            color: backgroundColor,
                                             fontFamily: 'Lato-Bold',
                                             fontSize: width / 28.9,
                                             textAlign: 'center',
@@ -231,6 +232,8 @@ class NewSeedSetup extends Component {
                         onRightButtonPress={() => this.onNextPress()}
                         leftText={t('global:back')}
                         rightText={t('global:next')}
+                        leftButtonTestID="newSeedSetup-back"
+                        rightButtonTestID="newSeedSetup-next"
                     />
                 </View>
                 <StatefulDropdownAlert />

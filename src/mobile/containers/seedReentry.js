@@ -10,7 +10,6 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import InfoBox from '../components/infoBox';
 import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
@@ -22,8 +21,8 @@ class SeedReentry extends Component {
     static propTypes = {
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        negativeColor: PropTypes.object.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
@@ -43,7 +42,7 @@ class SeedReentry extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
                 },
                 animated: false,
             });
@@ -66,7 +65,7 @@ class SeedReentry extends Component {
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -80,10 +79,10 @@ class SeedReentry extends Component {
                                 <View style={{ flex: 0.5 }} />
                                 <CustomTextInput
                                     label={t('global:seed')}
-                                    onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
+                                    onChangeText={text => this.setState({ seed: text })}
                                     containerStyle={{ width: width / 1.36 }}
                                     maxLength={MAX_SEED_LENGTH}
-                                    autoCapitalize={'none'}
+                                    autoCapitalize={'characters'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"

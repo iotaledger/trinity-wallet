@@ -1,52 +1,12 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
+import PropTypes from 'prop-types';
+import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
-import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-
-class OnboardingComplete extends Component {
-    onNextPress() {
-        this.props.navigator.push({
-            screen: 'login',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: COLORS.backgroundGreen,
-            },
-            animated: false,
-            overrideBackPress: true,
-        });
-    }
-
-    render() {
-        const { t } = this.props;
-
-        return (
-            <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
-                </View>
-                <View style={styles.midContainer}>
-                    <View style={styles.infoTextContainer}>
-                        <Text style={styles.infoText}>{t('walletReady')}</Text>
-                    </View>
-                    <Image source={balloonsImagePath} style={styles.party} />
-                </View>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={event => this.onNextPress()}>
-                        <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>{t('global:next')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        );
-    }
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -108,11 +68,56 @@ const styles = StyleSheet.create({
     },
     party: {
         justifyContent: 'center',
-        width: width,
+        width,
         height: width,
         position: 'absolute',
         top: -height / 10,
     },
 });
+
+class OnboardingComplete extends Component {
+    static propTypes = {
+        t: PropTypes.func.isRequired,
+    };
+
+    onNextPress() {
+        this.props.navigator.push({
+            screen: 'loading',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: COLORS.backgroundGreen,
+            },
+            animated: false,
+            overrideBackPress: true,
+        });
+    }
+
+    render() {
+        const { t } = this.props;
+
+        return (
+            <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
+                <View style={styles.topContainer}>
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                </View>
+                <View style={styles.midContainer}>
+                    <View style={styles.infoTextContainer}>
+                        <Text style={styles.infoText}>{t('walletReady')}</Text>
+                    </View>
+                    <Image source={balloonsImagePath} style={styles.party} />
+                </View>
+                <View style={styles.bottomContainer}>
+                    <TouchableOpacity onPress={() => this.onNextPress()}>
+                        <View style={styles.nextButton}>
+                            <Text style={styles.nextText}>{t('global:next')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        );
+    }
+}
 
 export default translate(['onboardingComplete', 'global'])(OnboardingComplete);

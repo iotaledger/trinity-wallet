@@ -74,6 +74,7 @@ export function round(value, precision) {
     const multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
 }
+
 export function roundDown(number, decimals) {
     decimals = decimals || 0;
     return Math.floor(number * Math.pow(10, decimals)) / Math.pow(10, decimals);
@@ -170,7 +171,7 @@ export const rearrangeObjectKeys = (obj, prop) => {
 };
 
 export const updatePersistedState = (incomingState, restoredState) => {
-    const { app: { versions }, settings: { availablePoWNodes } } = incomingState;
+    const { app: { versions }, settings: { availablePoWNodes, theme } } = incomingState;
     const restoredCopy = cloneDeep(restoredState);
 
     if ('app' in restoredCopy) {
@@ -179,7 +180,31 @@ export const updatePersistedState = (incomingState, restoredState) => {
 
     if ('settings' in restoredCopy) {
         restoredCopy.settings.availablePoWNodes = availablePoWNodes;
+        restoredCopy.settings.theme = theme;
     }
 
     return merge({}, incomingState, restoredCopy);
+};
+
+// Takes in the navigator object and pushes.
+// FIXME: Unneeded method. Remove when routing is sorted.
+export const pushScreen = (
+    navigator,
+    screen,
+    props = {
+        navigatorStyle: {
+            navBarHidden: true,
+            navBarTransparent: true,
+            screenBackgroundColor: '#1a373e',
+        },
+        animated: false,
+        overrideBackPress: true,
+    },
+) => {
+    if (navigator) {
+        navigator.push({
+            ...props,
+            screen,
+        });
+    }
 };

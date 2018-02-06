@@ -40,12 +40,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: height / 8.5,
         zIndex: 1,
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowRadius: 4,
-        shadowOpacity: 0.6,
     },
     bottomContainer: {
         flex: 1,
@@ -116,12 +110,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         opacity: 0.98,
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowRadius: 4,
-        shadowOpacity: 1.0,
         zIndex: 1,
     },
     frameBarTitle: {
@@ -224,7 +212,7 @@ class ThemeCustomisation extends Component {
         } = this.state.theme;
         const { arrowLeftImagePath, tickImagePath, t } = this.props;
         const chevronDownImagePath =
-            secondaryBackgroundColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
+            secondaryBarColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
 
         return (
             <TouchableWithoutFeedback
@@ -261,8 +249,7 @@ class ThemeCustomisation extends Component {
                             style={[
                                 styles.demoContainer,
                                 {
-                                    backgroundColor: THEMES.getHSL(backgroundColor),
-                                    shadowColor: 'black',
+                                    backgroundColor,
                                     borderColor: secondaryBackgroundColor,
                                 },
                             ]}
@@ -278,42 +265,34 @@ class ThemeCustomisation extends Component {
                                     MOCKUP
                                 </Text>
                             </View>
-                            <View
-                                style={[
-                                    styles.frameBar,
-                                    {
-                                        backgroundColor: THEMES.getHSL(barColor),
-                                        shadowColor: 'black',
-                                    },
-                                ]}
-                            >
+                            <View style={[styles.frameBar, { backgroundColor: barColor }]}>
                                 <Text style={[styles.frameBarTitle, { color: secondaryBarColor }]}>
                                     {t('global:mainWallet')}
                                 </Text>
                                 <Image style={styles.chevron} source={chevronDownImagePath} />
                             </View>
                             <View style={styles.buttonsContainer}>
-                                <View style={[styles.button, { borderColor: THEMES.getHSL(negativeColor) }]}>
-                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(negativeColor) }]}>
+                                <View style={[styles.button, { borderColor: negativeColor }]}>
+                                    <Text style={[styles.buttonText, { color: negativeColor }]}>
                                         {t('global:back')}
                                     </Text>
                                 </View>
-                                <View style={[styles.button, { borderColor: THEMES.getHSL(positiveColor) }]}>
-                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(positiveColor) }]}>
+                                <View style={[styles.button, { borderColor: positiveColor }]}>
+                                    <Text style={[styles.buttonText, { color: positiveColor }]}>
                                         {t('global:next')}
                                     </Text>
                                 </View>
                             </View>
                             <View style={styles.buttonsContainer}>
-                                <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
-                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>
-                                        {t('global:save')}
+                                <View style={[styles.button, { borderColor: extraColor }]}>
+                                    <Text style={[styles.buttonText, { color: extraColor }]}>
+                                        {t('global:save').toUpperCase()}
                                     </Text>
                                 </View>
                                 <View
                                     style={[
                                         styles.ctaButton,
-                                        { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
+                                        { backgroundColor: ctaColor, borderColor: ctaBorderColor },
                                     ]}
                                 >
                                     <Text style={[styles.ctaText, { color: secondaryCtaColor }]}>
