@@ -251,7 +251,7 @@
         "paste": "Wklej",
         "selectAll": "Zaznacz wszystko",
         "securitySettings": "Ustawienia zabezpieczeń",
-        "fingerprint": "Uwierzytelnianie poprzez czytnik lini papilarnych."
+        "fingerprint": "Logowanie odciskiem palca"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź hasło, aby zresetować portfel.",
@@ -366,7 +366,7 @@
         "status": "Status",
         "enabled": "Włączony",
         "disabled": "Wyłączony",
-        "fingerprintUnavailable": "Czytnik lini papilarnych niedostępny.",
+        "fingerprintUnavailable": "Czytnik odcisku palca niedostępny",
         "fingerprintUnavailableExplanation": "Twoje urządzenie nie obsługuje funkcji rozpoznawania odcisku palca lub funkcja ta nie została skonfigurowana w ustawieniach urządzenia.",
         "buttonInstructionsDisable": "Naciśnij poniższy przycisk, aby wyłączyć logowanie odciskiem palca.",
         "buttonInstructionsEnable": "Naciśnij poniższy przycisk, aby włączyć logowanie odciskiem palca.",
