@@ -1,8 +1,6 @@
-// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
-// import Header from './Header';
-import Logo from '../UI/Logo';
+import Logo from 'ui/components/Logo';
 
 export const Content = ({ children }) =>
     children && (

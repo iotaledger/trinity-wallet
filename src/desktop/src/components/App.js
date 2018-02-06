@@ -10,9 +10,9 @@ import { translate } from 'react-i18next';
 import Loading from 'components/UI/Loading';
 import Onboarding from 'components/Layout/Onboarding';
 import Main from 'components/Layout/Main';
-import Notifications from 'components/UI/Notifications';
 import Theme from 'components/UI/Theme';
-import Alerts from 'components/UI/Alerts';
+import Alerts from 'ui/views/global/Alerts';
+import Notifications from 'ui/views/global/Notifications';
 
 import './App.css';
 
@@ -102,7 +102,7 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     settings: state.settings,
     tempAccount: state.tempAccount,
     app: state.app,

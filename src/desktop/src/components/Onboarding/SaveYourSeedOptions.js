@@ -8,7 +8,7 @@ import Template, { Content, Footer } from 'components/Onboarding/Template';
 import SeedManualCopy from 'components/Onboarding/SeedManualCopy';
 import SeedCopyToClipboard from 'components/Onboarding/SeedCopyToClipboard';
 import SeedPaperWallet from 'components/Onboarding/SeedPaperWallet';
-import Button from 'components/UI/Button';
+import Button from 'ui/components/Button';
 
 import css from 'components/Layout/Onboarding.css';
 

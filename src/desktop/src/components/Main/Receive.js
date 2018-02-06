@@ -10,8 +10,8 @@ import { generateNewAddressRequest, generateNewAddressError, generateNewAddressS
 import Template, { Content } from 'components/Main/Template';
 import HistoryList from 'components/UI/HistoryList';
 import css from 'components/Main/Receive.css';
-import Button from 'components/UI/Button';
-import Clipboard from 'components/UI/Clipboard';
+import Button from 'ui/components/Button';
+import Clipboard from 'ui/components/Clipboard';
 
 class Receive extends React.PureComponent {
     static propTypes = {
@@ -68,7 +68,7 @@ class Receive extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     account: state.account,
     seeds: state.seeds,

@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { MAX_SEED_LENGTH } from 'libs/util';
 import { getChecksum } from 'libs/iota';
 import css from 'components/UI/input/Input.css';
-import Modal from 'components/UI/Modal';
-import Button from 'components/UI/Button';
+import Modal from 'ui/components/modal/Modal';
+import Button from 'ui/components/Button';
 
-import Icon from 'components/UI/Icon';
+import Icon from 'ui/components/Icon';
 
 export default class SeedInput extends React.PureComponent {
     static propTypes = {

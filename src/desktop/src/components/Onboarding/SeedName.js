@@ -6,8 +6,8 @@ import { renameCurrentSeed } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
 import { showError } from 'actions/notifications';
 import Template, { Content, Footer } from 'components/Onboarding/Template';
-import Infobox from 'components/UI/Infobox';
-import Button from 'components/UI/Button';
+import Infobox from 'ui/components/Info';
+import Button from 'ui/components/Button';
 import Input from 'components/UI/input/Text';
 
 class SeedName extends React.PureComponent {

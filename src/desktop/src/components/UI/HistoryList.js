@@ -5,9 +5,9 @@ import { translate } from 'react-i18next';
 import { formatValue, formatUnit, round } from 'libs/util';
 import { convertFromTrytes } from 'libs/iota';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/dateUtils';
-import Modal from 'components/UI/Modal';
-import Button from 'components/UI/Button';
-import Clipboard from 'components/UI/Clipboard';
+import Modal from 'ui/components/modal/Modal';
+import Button from 'ui/components/Button';
+import Clipboard from 'ui/components/Clipboard';
 
 import css from './HistoryList.css';
 
