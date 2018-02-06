@@ -251,7 +251,7 @@
         "paste": "Pegar",
         "selectAll": "Seleccionar todo",
         "securitySettings": "Configuraciones de seguridad",
-        "fingerprint": "Autenticación con huella digital"
+        "fingerprint": "Autenticación con huella dactilar"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ingresa tu contraseña para reiniciar la billetera.",
@@ -275,7 +275,7 @@
         "writeDownYourSeed": "<0>Escribe tu seed y código de verificación y </0><1>vuelve a comprobarlos</1><2>que son correctos.</2>"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopied": "Hash del paquete copiado",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "La dirección se ha copiado al portapapeles."
@@ -355,25 +355,25 @@
         "warning": "<0><0>Todo de los datos de tu cartera, incluyendo tus </0><1> seeds, contraseña,</1><2> y </2><3>otra información de la cuenta</3><4> serán eliminados.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "instructionsEnable": "Toca el lector de huellas dactilares para activar la autenticación de huella dactilar.",
+        "instructionsDisable": "Toca el lector de huellas dactilares para desactivar la autenticación de huella dactilar.",
+        "fingerprintAuthEnabled": "Autenticación de huellas dactilares habilitada",
+        "fingerprintAuthEnabledExplanation": "La autenticación de huella dactilar se ha habilitado con éxito.",
+        "fingerprintAuthDisabled": "Autenticación de huella dactilar deshabilitada",
+        "fingerprintAuthDisabledExplanation": "La autenticación de huella dactilar se ha deshabilitado con éxito.",
+        "fingerprintAuthFailed": "Autenticación de huella dactilar errónea",
+        "fingerprintAuthFailedExplanation": "Autenticación de huella dactilar errónea. Inténtalo de nuevo.",
+        "status": "Estado",
+        "enabled": "Habilitado",
+        "disabled": "Deshabilitado",
+        "fingerprintUnavailable": "Sensor de huella dactilar no disponible",
+        "fingerprintUnavailableExplanation": "El dispositivo no es compatible con el reconocimiento de huella dactilar o no está configurado en los ajustes del dispositivo.",
+        "buttonInstructionsDisable": "Pulsa el botón que hay a continuación para deshabilitar la autenticación de huellas dactilares.",
+        "buttonInstructionsEnable": "Pulsa el botón que hay a continuación para habilitar la autenticación de huellas dactilares.",
+        "instructionsLogin": "Toca el lector de huellas dactilares para iniciar sesión."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "Estás a punto de enviar {{contents}} a la dirección",
+        "aMessage": "un mensaje"
     }
 }
