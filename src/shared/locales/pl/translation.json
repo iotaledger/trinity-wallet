@@ -183,7 +183,7 @@
     },
     "send": {
         "invalidAddress": "Błędny adres",
-        "invalidAddressExplanation1": "Adres powinien być {{maxLength}}-znakowy i posiadać sumę kontrolną.",
+        "invalidAddressExplanation1": "Adres powinien składać się z {{maxLength}} znaków i posiadać sumę kontrolną.",
         "invalidAddressExplanation2": "Adres zawiera nieprawidłowe znaki.",
         "invalidAddressExplanation3": "Adres zawiera nieprawidłową sumę kontrolną.",
         "notEnoughFunds": "Brak wystarczających środków",
@@ -199,7 +199,7 @@
         "invalidAmountExplanation": "Proszę wprowadzić numeryczną wartość transakcji.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
         "iotaUnits": "Objaśnienie jednostek IOTA",
-        "sendMax": "Wyślij wszystko"
+        "sendMax": "WYŚLIJ WSZYSTKO"
     },
     "setPassword": {
         "passwordTooShort": "Hasło jest zbyt krótkie",
@@ -250,7 +250,7 @@
         "copy": "Kopiuj",
         "paste": "Wklej",
         "selectAll": "Zaznacz wszystko",
-        "securitySettings": "Ustawienia bezpieczeństwa",
+        "securitySettings": "Ustawienia zabezpieczeń",
         "fingerprint": "Uwierzytelnianie poprzez czytnik lini papilarnych."
     },
     "resetWalletRequirePassword": {
