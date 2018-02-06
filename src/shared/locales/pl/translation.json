@@ -79,11 +79,11 @@
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
         "nameInUse": "Konto o tej nazwie już istnieje",
-        "nameInUseExplanation": "Proszę użyć unikalnej nazwy konta dla Twojego seeda.",
+        "nameInUseExplanation": "Proszę użyć unikalnej nazwy konta dla Twojego klucza seed.",
         "enterAccountName": "Wprowadź nazwę konta.",
         "accountName": "Nazwa konta",
         "noNickname": "Nie wprowadzono nazwy konta",
-        "noNicknameExplanation": "Wpisz nazwę konta dla Twojego seeda.",
+        "noNicknameExplanation": "Wpisz nazwę konta dla Twojego klucza seed.",
         "seedInUse": "Seed jest już w użyciu",
         "seedInUseExplanation": "Ten seed jest już powiązany z Twoim portfelem. Proszę użyj innego."
     },
@@ -111,7 +111,7 @@
         "seedCopied": "Seed skopiowany do schowka",
         "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"Gotowe\", lub po upływie 60 sekund.",
         "clickToCopy": "Kliknij przycisk poniżej i skopiuj swojego seeda do menedżera haseł.",
-        "doNotStore": "Nie przechowuj swojego seeda w formie zwykłego tekstu.",
+        "doNotStore": "Nie przechowuj swojego klucza seed w formie zwykłego tekstu.",
         "copyToClipboard": "Kopiuj do schowka"
     },
     "enterSeed": {
@@ -347,8 +347,8 @@
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Zapisałem swojego seeda",
-        "reenter": "Teraz będziesz poproszony/a o ponowne wprowadzenie swojego seeda.",
-        "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego seeda, stracisz swoje środki IOTA."
+        "reenter": "Teraz będziesz poproszony/a o ponowne wprowadzenie swojego klucza seed.",
+        "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego klucza seed, stracisz swoje środki IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TEJ CZYNNOŚCI NIE MOŻNA COFNĄĆ.",
