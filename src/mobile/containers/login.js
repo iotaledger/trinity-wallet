@@ -168,7 +168,7 @@ class Login extends Component {
         const { t } = this.props;
 
         const { is2FAEnabled } = this.props;
-        FingerprintScanner.authenticate({ description: t('fingerprintInstructionsLogin') })
+        FingerprintScanner.authenticate({ description: t('fingerprintSetup: instructionsLogin') })
             .then(() => {
                 keychain
                     .get()
@@ -359,4 +359,4 @@ const mapDispatchToProps = {
     setLoginPasswordField,
 };
 
-export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default translate(['login', 'global', 'fingerprintSetup'])(connect(mapStateToProps, mapDispatchToProps)(Login));
