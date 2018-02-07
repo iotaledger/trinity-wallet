@@ -326,19 +326,19 @@
     },
     "deleteAccount": {
         "areYouSure": "정말로 이 계정을 삭제하시겠습니까?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "yourSeedWillBeRemoved": "등록된 시드 및 거래 내역이 전부 제거됩니다.",
         "thisAction": "이 작업은 취소할 수 없습니다.",
-        "enterPassword": "Enter your password to delete this account."
+        "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "아래 버튼을 눌러 계정을 동기화할 수 있습니다.",
         "thisMayTake": "시간이 조금 걸릴 수 있습니다.",
         "youMayNotice": "당신의 디바이스가 느려지는 것을 감지할 수도 있습니다.",
         "syncAccount": "계정 동기화",
-        "syncingYourAccount": "Syncing your account."
+        "syncingYourAccount": "계정을 동기화 중입니다."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "시드와 계정 이름을 입력해 주세요."
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
