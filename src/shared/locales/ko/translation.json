@@ -30,8 +30,8 @@
         "save": "저장하기",
         "close": "닫기",
         "continue": "계속 하기",
-        "manualCopy": "씨드 기록하기",
-        "paperWallet": "종이 인쇄하기",
+        "manualCopy": "시드 기록하기",
+        "paperWallet": "종이에 인쇄하기",
         "copyToClipboard": "패스워드 관리자에 입력하기",
         "notAvailable": "이 기능은 사용할 수 없습니다.",
         "notAvailableExplanation": "이 기능은 추후에 추가될 예정입니다.",
@@ -58,9 +58,9 @@
         "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오.",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
-        "wallet": "Wallet",
-        "sent": "Sent",
-        "received": "Received",
+        "wallet": "지갑",
+        "sent": "보냄",
+        "received": "받음",
         "sending": "Sending",
         "receiving": "Receiving",
         "confirmed": "확인됨",
@@ -138,9 +138,9 @@
         "enterPassword": "비밀번호를 입력 해주십시오.",
         "useSeed": "씨드 사용하기",
         "login": "로그인",
-        "selectDifferentNode": "Do you want to select a different node?",
+        "selectDifferentNode": "다른 노드를 선택해 보시겠습니까?",
         "setNode": "노드 설정",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "cannotConnect": "아이오타 노드에 연결할 수가 없습니다."
     },
     "loading": {
         "loadingFirstTime": "처음으로 씨드를 불러오는 중입니다.",
@@ -151,7 +151,7 @@
         "seedNotGenerated": "씨드가 생성되지 않았습니다.",
         "seedNotGeneratedExplanation": "새 씨드 생성 버튼을 클릭하십시오.",
         "pressForNewSeed": "새로운 씨드를 위해 클릭",
-        "individualLetters": "임의로 순서를 정하기 위해 개별 글자를 눌러주세요."
+        "individualLetters": "개별 문자를 눌러 해당 문자를 무작위로 바꿀 수 있습니다."
     },
     "onboardingComplete": {
         "walletReady": "지갑 설정이 완료되었습니다. 추후에 변경하려면 메뉴에 설정을 확인하십시오."
@@ -173,7 +173,7 @@
     "saveYourSeed": {
         "seedCleared": "씨드 삭제됨",
         "seedClearedExplanation": "보안을 위해 클립보드에서 씨드가 삭제되었습니다.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>반드시 아래 나열된 방법 중 </0><1>하나 이상</1><2>을 사용하여 시드를 기록해야 합니다.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "잘못된 씨드",
@@ -272,7 +272,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "시드는 {{maxSeedLength}} 개의 문자로 이루어지며, 왼쪽에서 오른쪽으로 읽습니다.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed": "<0> 시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인하십시오.</1><2></2>"
     },
     "history": {
         "bundleHashCopied": "번들 해시 복사됨",
