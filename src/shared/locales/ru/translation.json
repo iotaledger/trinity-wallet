@@ -68,7 +68,7 @@
         "bundleHash": "Пакет данных",
         "addresses": "Адреса",
         "pressBackAgain": "Нажмите еще раз назад чтобы закрыть приложение",
-        "autoreattaching": "Автообновление в Tangle",
+        "autoreattaching": "Автоматическое прикрепление к Tangle",
         "autoreattachingExplanation": "Повторное присоединение транзакций с хэш {{hash}}",
         "autopromoting": "Передача автопромотирования",
         "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}"
