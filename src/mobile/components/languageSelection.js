@@ -73,9 +73,9 @@ class LanguageSelection extends Component {
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         setLanguage: PropTypes.func.isRequired,
-        textColor: PropTypes.string.isRequired,
-        arrowLeftImagePath: PropTypes.string.isRequired,
-        tickImagePath: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        tickImagePath: PropTypes.number.isRequired,
         language: PropTypes.string.isRequired,
     };
 

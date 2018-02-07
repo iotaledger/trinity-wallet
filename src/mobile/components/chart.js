@@ -105,11 +105,11 @@ const nextCurrency = {
 
 class Chart extends Component {
     static propTypes = {
-        textColor: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
         marketData: PropTypes.object.isRequired,
         setCurrency: PropTypes.func.isRequired,
         setTimeframe: PropTypes.func.isRequired,
-        borderColor: PropTypes.string.isRequired,
+        borderColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         chartLineColorPrimary: PropTypes.string.isRequired,
         chartLineColorSecondary: PropTypes.string.isRequired,

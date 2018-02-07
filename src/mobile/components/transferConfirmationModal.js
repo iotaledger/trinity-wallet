@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingVertical: height / 30,
-        width: width / 1.05,
+        width: width / 1.1,
         paddingHorizontal: width / 20,
     },
     textContainer: {
@@ -110,7 +110,7 @@ class TransferConfirmationModal extends Component {
             );
         }
         return (
-            <View style={{ width: width / 1.05, alignItems: 'center', backgroundColor }}>
+            <View style={{ width: width / 1.1, alignItems: 'center', backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <View style={styles.textContainer}>
                         <Text style={[styles.text, textColor]}>
