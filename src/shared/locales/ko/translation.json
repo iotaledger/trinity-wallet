@@ -97,10 +97,10 @@
         "passwordsDoNotMatch": "비밀번호가 일치하지 않습니다.",
         "passwordsDoNotMatchExplanation": "비밀번호가 일치하지 않습니다. 다시 시도하십시오.",
         "passwordTooShort": "비밀번호가 너무 짧습니다.",
-        "passwordTooShortExplanation": "비밀번호는 최소 12 글자 수를 포함해야합니다. 다시 시도하십시오.",
+        "passwordTooShortExplanation": "비밀번호는 최소 12글자로 구성되어야 합니다. 다시 시도해 주십시오.",
         "oldPassword": "이전 암호를 설정할 수 없음",
         "oldPasswordExplanation": "새 비밀번호로 이전 비밀번호를 사용할 수 없습니다. 새 비밀번호로 다시 시도하십시오.",
-        "ensureStrongPassword": "최소 12글자로 이루어진 비밀번호를 사용하십시오.",
+        "ensureStrongPassword": "최소 12글자로 구성된 비밀번호를 사용하십시오.",
         "currentPassword": "현재 비밀번호",
         "newPassword": "새 비밀번호",
         "confirmPassword": "새 비밀번호 확인"
@@ -143,7 +143,7 @@
         "cannotConnect": "IOTA 노드에 연결할 수가 없습니다."
     },
     "loading": {
-        "loadingFirstTime": "처음으로 씨드를 불러오는 중입니다.",
+        "loadingFirstTime": "처음으로 시드를 불러오는 중입니다.",
         "thisMayTake": "시간이 조금 걸릴 수 있습니다.",
         "youMayNotice": "당신의 디바이스가 느려지는 것을 감지할 수도 있습니다."
     },
@@ -154,7 +154,7 @@
         "individualLetters": "개별 문자를 눌러 해당 문자를 무작위로 바꿀 수 있습니다."
     },
     "onboardingComplete": {
-        "walletReady": "지갑 설정이 완료되었습니다. 추후에 변경하려면 메뉴에 설정을 확인하십시오."
+        "walletReady": "지갑 구성이 완료되었습니다. 변경해야 할 사항이 있을 경우 설정 메뉴를 확인하십시오."
     },
     "paperWallet": {
         "clickToPrint": "아래 버튼을 눌러 시드를 인쇄하십시오.",
@@ -208,11 +208,11 @@
         "passwordMismatchExplanation": "입력한 비밀번호가 일치하지 않습니다. 다시 입력해주십시오.",
         "nowWeNeedTo": "이제 비밀번호를 설정해야합니다.",
         "anEncryptedCopy": "귀하의 디바이스에 암호화된 씨드가 저장될 것입니다. 지갑에 엑세스하기 위해서 이 비밀번호를 사용하십시오.",
-        "ensure": "최소 12글자로 이루어진 비밀번호를 사용하십시오.",
+        "ensure": "최소 12글자로 구성된 비밀번호를 사용하십시오.",
         "retypePassword": "비밀번호 다시 입력"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "하나의 지갑으로 여러 개의 시드를 사용할 수 있습니다. 각각의 시드는 계정 이름이 필요합니다.",
+        "canUseMultipleSeeds": "하나의 지갑에 여러 개의 시드를 등록하여 사용할 수 있습니다. 각각의 시드는 계정 이름이 필요합니다.",
         "youCanAdd": "설정 메뉴에서 시드를 추가할 수 있습니다."
     },
     "settings": {
