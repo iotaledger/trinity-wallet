@@ -107,13 +107,13 @@ export class Dropdown extends Component {
         disableWhen: PropTypes.bool,
         shadow: PropTypes.bool,
         defaultOption: PropTypes.string,
-        saveSelection: PropTypes.func.isRequired,
+        saveSelection: PropTypes.func,
         options: PropTypes.array.isRequired,
-        title: PropTypes.string.isRequired,
-        dropdownWidth: PropTypes.number.isRequired,
-        background: PropTypes.bool.isRequired,
+        title: PropTypes.string,
+        dropdownWidth: PropTypes.number,
+        background: PropTypes.bool,
         negativeColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string,
         backgroundColor: PropTypes.string.isRequired,
     };
 
@@ -122,6 +122,11 @@ export class Dropdown extends Component {
         disableWhen: false,
         onRef: () => {},
         defaultOption: '',
+        background: false,
+        saveSelection: () => {},
+        title: '',
+        dropdownWidth: width / 1.2,
+        secondaryBackgroundColor: 'white',
     };
 
     constructor(props) {
