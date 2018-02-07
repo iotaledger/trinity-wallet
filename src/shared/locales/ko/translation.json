@@ -75,9 +75,9 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
-        "seedInvalidCharsExplanation": "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
+        "seedInvalidCharsExplanation": "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주십시오.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "씨드는 {{maxLength}} 의 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 의 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "seedTooShortExplanation": "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
         "nameInUse": "계정이 이미 존재합니다.",
         "nameInUseExplanation": "씨드를 위한 고유 계정 이름을 사용하십시오.",
         "enterAccountName": "계정 이름을 입력하십시오.",
@@ -116,9 +116,9 @@
     },
     "enterSeed": {
         "invalidCharacters": "유효하지 않은 문자가 씨드에 포함되어 있음",
-        "invalidCharactersExplanation": "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
+        "invalidCharactersExplanation": "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주십시오.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "씨드는 {{maxLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "seedTooShortExplanation": "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
         "seedExplanation": "씨드는 {{maxLength}} 자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. {{maxLength}} 자 이상의 씨드는 사용할 수 없습니다.",
         "neverShare": "다른 이와 절대로 씨드를 공유하지 마십시오."
     },
