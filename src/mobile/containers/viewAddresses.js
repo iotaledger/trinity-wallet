@@ -107,7 +107,9 @@ export class ViewAddresses extends Component {
             return [];
         }
 
-        const addresses = Object.entries(addressData).slice();
+        const addresses = Object.entries(addressData)
+            .slice()
+            .reverse();
         return ViewAddresses.addChecksums(addresses);
     }
 
