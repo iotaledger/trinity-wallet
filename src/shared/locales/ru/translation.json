@@ -18,8 +18,8 @@
         "invalidResponse": "Неправильный отклик",
         "invalidResponseExplanation": "Узел вернул недопустимый отклик.",
         "invalidResponsePollingExplanation": "Узел вернул недопустимый отклик во время опроса.",
-        "invalidResponseFetchingAccount": "Нод выдаёт неверный ответ при запросе данных вашего счёта.",
-        "invalidResponseSendingTransfer": "Нод выдал ошибку при отправке перевода.",
+        "invalidResponseFetchingAccount": "Узел выдаёт неверный ответ при запросе данных вашего счёта.",
+        "invalidResponseSendingTransfer": "Узел выдал ошибку при отправке перевода.",
         "seed": "Ключ (seed)",
         "back": "НАЗАД",
         "backLowercase": "Назад",
@@ -53,7 +53,7 @@
         "syncInProgressExplanation": "Пожалуйста, подождите, пока синхронизация будет завершена.",
         "somethingWentWrong": "Произошла ошибка",
         "somethingWentWrongExplanation": "Пожалуйста, перезапустите приложение.",
-        "node": "Нод",
+        "node": "Узел",
         "cannotPerformAction": "Не удается выполнить действие",
         "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса настроек кошелька.",
         "attachToTangleUnavailable": "Привязка к Tangle недоступна",
@@ -64,10 +64,10 @@
         "sending": "Отправка",
         "receiving": "Получение",
         "confirmed": "Подтверждено",
-        "pending": "Ожидание",
+        "pending": "В ожидании",
         "bundleHash": "Пакет данных",
         "addresses": "Адресов",
-        "pressBackAgain": "Снова нажмите снова, чтобы закрыть приложение",
+        "pressBackAgain": "Нажмите еще раз назад чтобы закрыть приложение",
         "autoreattaching": "Автообновление в Tangle",
         "autoreattachingExplanation": "Повторное присоединение транзакций с хэш {{hash}}",
         "autopromoting": "Передача автопромотирования",
@@ -106,7 +106,7 @@
         "confirmPassword": "Подтвердите новый пароль"
     },
     "copyToClipboard": {
-        "seedCleared": "Ключ (seed) очищен",
+        "seedCleared": "Ключ (seed) удален",
         "seedClearedExplanation": "Ключ (seed) был удален из буфера обмена для вашей безопасности.",
         "seedCopied": "Ключ скопирован в буфер обмена",
         "seedCopiedExplanation": "Поле с ключём будет очищено после нажатия кнопки «Готово» или по истечению 60 секунд.",
@@ -288,7 +288,7 @@
         "addNewAccount": "Добавить новый счёт"
     },
     "addCustomNode": {
-        "customNode": "Пользовательский Нод",
+        "customNode": "Пользовательский узел",
         "add": "Добавить"
     },
     "addNewAccount": {
@@ -296,8 +296,8 @@
         "createNewSeed": "Создать новый ключ (seed)"
     },
     "advancedSettings": {
-        "selectNode": "Выбрать Нод",
-        "addCustomNode": "Добавить пользовательский Нод",
+        "selectNode": "Выбрать узел",
+        "addCustomNode": "Добавить пользовательский узел",
         "manualSync": "Ручная синхронизация"
     },
     "advancedThemeCustomisation": {
