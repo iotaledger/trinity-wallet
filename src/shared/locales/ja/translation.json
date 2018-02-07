@@ -30,7 +30,7 @@
         "save": "保存",
         "close": "閉じる",
         "continue": "次へ",
-        "manualCopy": "Seedを書き写してください。",
+        "manualCopy": "Seedを書き写す",
         "paperWallet": "印刷する",
         "copyToClipboard": "パスワード マネージャーに追加",
         "notAvailable": "この機能は使えません。",
@@ -151,7 +151,7 @@
         "seedNotGenerated": "Seedが生成されていません。",
         "seedNotGeneratedExplanation": "「新しいSeedを生成する。」ボタンをクリックして下さい。",
         "pressForNewSeed": "新しいSeedの元を作成",
-        "individualLetters": "文字をタップしてランダムにしてください。"
+        "individualLetters": "文字をタップして更にランダムにしてください。"
     },
     "onboardingComplete": {
         "walletReady": "ウォレットの準備が整いました。設定の変更は今後も設定メニューから行えます。"
