@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
 class Welcome extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
-        t: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     onNextPress() {

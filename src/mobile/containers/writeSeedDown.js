@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
 class WriteSeedDown extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
-        t: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
         positiveColor: PropTypes.string.isRequired,
         backgroundColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
