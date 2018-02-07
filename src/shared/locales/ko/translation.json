@@ -84,8 +84,8 @@
         "accountName": "계정 이름",
         "noNickname": "계정 이름이 등록되지 않음",
         "noNicknameExplanation": "씨드를 위한 계정 이름을 입력해주십시오.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUse": "이미 사용중인 시드입니다.",
+        "seedInUseExplanation": "이미 지갑에 추가된 시드입니다. 다른 시드를 입력해 주세요."
     },
     "changePassword": {
         "oops": "죄송합니다. 오류가 발생했습니다.",
@@ -139,7 +139,7 @@
         "useSeed": "씨드 사용하기",
         "login": "로그인",
         "selectDifferentNode": "Do you want to select a different node?",
-        "setNode": "SET NODE",
+        "setNode": "노드 설정",
         "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
