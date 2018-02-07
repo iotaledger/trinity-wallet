@@ -3,22 +3,67 @@ import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import { connect } from 'react-redux';
-import CustomTextInput from '../components/customTextInput';
-import { Keyboard } from 'react-native';
-import StatefulDropdownAlert from './statefulDropdownAlert';
-import OnboardingButtons from '../components/onboardingButtons';
+import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setSeedName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { width, height } from '../util/dimensions';
-import keychain, { hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
 import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import { connect } from 'react-redux';
+import DynamicStatusBar from '../components/dynamicStatusBar';
+import CustomTextInput from '../components/customTextInput';
+import StatefulDropdownAlert from './statefulDropdownAlert';
+import OnboardingButtons from '../components/onboardingButtons';
+import { width, height } from '../util/dimensions';
+import keychain, { hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
 import InfoBox from '../components/infoBox';
 
 console.ignoredYellowBox = true;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    topContainer: {
+        flex: 0.7,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 22,
+    },
+    midContainer: {
+        flex: 4.8,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        width,
+    },
+    bottomContainer: {
+        flex: 0.7,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: height / 20,
+    },
+    titleContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: height / 15,
+    },
+    infoText: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
+        textAlign: 'justify',
+        paddingTop: height / 60,
+        backgroundColor: 'transparent',
+    },
+    infoIcon: {
+        width: width / 20,
+        height: width / 20,
+    },
+    iotaLogo: {
+        height: width / 5,
+        width: width / 5,
+    },
+});
 
 export class SetSeedName extends Component {
     static propTypes = {
@@ -26,6 +71,13 @@ export class SetSeedName extends Component {
         setSeedName: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         setAdditionalAccountInfo: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
+        seed: PropTypes.string.isRequired,
+        onboardingComplete: PropTypes.bool.isRequired,
+        seedCount: PropTypes.number.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -37,7 +89,7 @@ export class SetSeedName extends Component {
     }
 
     onDonePress() {
-        const { t } = this.props;
+        const { t, onboardingComplete, seed } = this.props;
         const trimmedAccountName = trim(this.state.accountName);
 
         const fetch = accountName => {
@@ -50,7 +102,7 @@ export class SetSeedName extends Component {
         };
 
         if (!isEmpty(this.state.accountName)) {
-            if (!this.props.account.onboardingComplete) {
+            if (!onboardingComplete) {
                 this.props.setSeedName(trimmedAccountName);
 
                 this.navigateTo('setPassword');
@@ -102,60 +154,47 @@ export class SetSeedName extends Component {
     }
 
     getDefaultAccountName() {
-        const { t } = this.props;
-        if (this.props.account.seedCount === 0) {
+        const { t, seedCount } = this.props;
+        if (seedCount === 0) {
             return t('global:mainWallet');
-        } else if (this.props.account.seedCount === 1) {
+        } else if (seedCount === 1) {
             return t('global:secondWallet');
-        } else if (this.props.account.seedCount === 2) {
+        } else if (seedCount === 2) {
             return t('global:thirdWallet');
-        } else if (this.props.account.seedCount === 3) {
+        } else if (seedCount === 3) {
             return t('global:fourthWallet');
-        } else if (this.props.account.seedCount === 4) {
+        } else if (seedCount === 4) {
             return t('global:fifthWallet');
-        } else if (this.props.account.seedCount === 5) {
+        } else if (seedCount === 5) {
             return t('global:sixthWallet');
-        } else if (this.props.account.seedCount === 6) {
+        } else if (seedCount === 6) {
             return t('global:otherWallet');
-        } else {
-            return '';
         }
+        return '';
     }
 
     navigateTo(screen) {
+        const { backgroundColor } = this.props;
         if (screen === 'loading') {
             return this.props.navigator.push({
                 screen,
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
+                    screenBackgroundColor: backgroundColor,
                 },
                 animated: false,
                 overrideBackPress: true,
             });
-        } else {
-            return this.props.navigator.push({
-                screen,
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
-                },
-                animated: false,
-            });
         }
-    }
-
-    navigateTo(screen) {
         return this.props.navigator.push({
             screen,
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: backgroundColor,
             },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -163,11 +202,10 @@ export class SetSeedName extends Component {
         const { accountName } = this.state;
         const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
-        const borderColor = { borderColor: secondaryBackgroundColor };
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
-            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+            <View style={[styles.container, { backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View>
@@ -178,8 +216,8 @@ export class SetSeedName extends Component {
                             <View style={{ flex: 0.5 }} />
                             <CustomTextInput
                                 label={t('addAdditionalSeed:accountName')}
-                                onChangeText={accountName => this.setState({ accountName })}
-                                containerStyle={{ width: width / 1.36 }}
+                                onChangeText={text => this.setState({ text })}
+                                containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'words'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -219,55 +257,10 @@ export class SetSeedName extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    topContainer: {
-        flex: 0.7,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 22,
-    },
-    midContainer: {
-        flex: 4.8,
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        width,
-    },
-    bottomContainer: {
-        flex: 0.7,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 20,
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 15,
-    },
-    infoText: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 27.6,
-        textAlign: 'justify',
-        paddingTop: height / 60,
-        backgroundColor: 'transparent',
-    },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-});
-
 const mapStateToProps = state => ({
-    tempAccount: state.tempAccount,
-    account: state.account,
+    seed: state.tempAccount.seed,
+    seedCount: state.account.seedCount,
+    onboardingComplete: state.account.onboardingComplete,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,

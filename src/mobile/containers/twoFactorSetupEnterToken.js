@@ -140,7 +140,7 @@ class TwoFactorSetupEnterToken extends Component {
                         <CustomTextInput
                             label="Token"
                             onChangeText={code => this.setState({ code })}
-                            containerStyle={{ width: width / 1.36 }}
+                            containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
