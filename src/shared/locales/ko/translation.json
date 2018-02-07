@@ -20,7 +20,7 @@
         "invalidResponsePollingExplanation": "노드가 폴링 중 잘못된 응답을 보냈습니다.",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
-        "seed": "씨드",
+        "seed": "시드",
         "back": "뒤로",
         "backLowercase": "뒤로가기",
         "done": "완료",
@@ -157,7 +157,7 @@
         "walletReady": "지갑 설정이 완료되었습니다. 추후에 변경하려면 메뉴에 설정을 확인하십시오."
     },
     "paperWallet": {
-        "clickToPrint": "씨드를 인쇄하려면 아래 버튼을 클릭하십시오.",
+        "clickToPrint": "아래 버튼을 눌러 시드를 인쇄하십시오.",
         "storeSafely": "안전하게 저장하십시오.",
         "neverShare": "절대 다른 이와 당신의 씨드를 공유하지 마십시오.",
         "iotaLogo": "IOTA 로고",
