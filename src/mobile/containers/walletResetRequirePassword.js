@@ -74,7 +74,7 @@ class WalletResetRequirePassword extends Component {
         backgroundColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        t: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
