@@ -271,7 +271,7 @@
         "reminder": "몇 가지 단계를 건너 뛰길 원하시더라도, 모든 프로세스를 완벽히 따르길 권장합니다."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "yourSeedIs": "시드는 {{maxSeedLength}} 개의 문자로 이루어지며, 왼쪽에서 오른쪽으로 읽습니다.",
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
@@ -283,7 +283,7 @@
     "accountManagement": {
         "viewSeed": "시드 보기",
         "viewAddresses": "주소 보기",
-        "editAccountName": "Edit account name",
+        "editAccountName": "계정 이름 변경",
         "deleteAccount": "계정 삭제",
         "addNewAccount": "새 계정 추가"
     },
