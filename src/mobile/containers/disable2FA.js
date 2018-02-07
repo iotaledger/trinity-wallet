@@ -2,32 +2,76 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { set2FAKey, set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
+import authenticator from 'authenticator';
 import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
-import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
+import { setFirstUse, setOnboardingComplete, set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
 import { Navigation } from 'react-native-navigation';
 import { clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
+import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
+import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import COLORS from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import CustomTextInput from '../components/customTextInput';
-import OnboardingButtons from '../components/onboardingButtons.js';
+import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import { Keyboard } from 'react-native';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-
 import { width, height } from '../util/dimensions';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    topWrapper: {
+        flex: 1.3,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 16,
+    },
+    midWrapper: {
+        flex: 1.6,
+        alignItems: 'center',
+    },
+    bottomContainer: {
+        flex: 2,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: height / 20,
+    },
+    generalText: {
+        fontFamily: Fonts.secondary,
+        fontSize: width / 20.7,
+        textAlign: 'center',
+        paddingBottom: height / 10,
+        backgroundColor: 'transparent',
+    },
+    questionText: {
+        fontFamily: Fonts.secondary,
+        fontSize: width / 20.25,
+        textAlign: 'center',
+        paddingLeft: width / 7,
+        paddingRight: width / 7,
+        paddingTop: height / 25,
+        backgroundColor: 'transparent',
+    },
+    iotaLogo: {
+        height: width / 5,
+        width: width / 5,
+    },
+});
 
 class Disable2FA extends Component {
     static propTypes = {
         generateAlert: PropTypes.func.isRequired,
         backgroundColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
         set2FAStatus: PropTypes.func.isRequired,
-        set2FAKey: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -42,20 +86,29 @@ class Disable2FA extends Component {
     }
 
     disable2FA() {
-        this.props.set2FAStatus(false);
-        this.props.set2FAKey('');
+        return getTwoFactorAuthKeyFromKeychain()
+            .then(key => {
+                const verified = authenticator.verifyToken(key, this.state.token);
 
-        this.goBack();
-        this.timeout = setTimeout(() => {
-            this.props.generateAlert(
-                'success',
-                '2FA is now disabled',
-                'You have succesfully disabled Two Factor Authentication.',
-            );
-        }, 300);
+                if (verified) {
+                    this.props.set2FAStatus(false);
+
+                    this.goBack();
+                    this.timeout = setTimeout(() => {
+                        this.props.generateAlert(
+                            'success',
+                            '2FA is now disabled',
+                            'You have successfully disabled Two Factor Authentication.',
+                        );
+                    }, 300);
+                } else {
+                    this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+                }
+            })
+            .catch(err => console.error(err)); // eslint-disable-line no-console
     }
+
     goBack() {
-        // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
@@ -131,54 +184,9 @@ class Disable2FA extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    topWrapper: {
-        flex: 1.3,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 16,
-    },
-    midWrapper: {
-        flex: 1.6,
-        alignItems: 'center',
-    },
-    bottomContainer: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 20,
-    },
-    generalText: {
-        fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        paddingBottom: height / 10,
-        backgroundColor: 'transparent',
-    },
-    questionText: {
-        fontFamily: Fonts.secondary,
-        fontSize: width / 20.25,
-        textAlign: 'center',
-        paddingLeft: width / 7,
-        paddingRight: width / 7,
-        paddingTop: height / 25,
-        backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-});
-
 const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
-    key2FA: state.account.key2FA,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
@@ -188,7 +196,6 @@ const mapDispatchToProps = {
     setOnboardingComplete,
     clearTempData,
     generateAlert,
-    set2FAKey,
     set2FAStatus,
 };
 
