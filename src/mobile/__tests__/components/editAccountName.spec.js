@@ -16,6 +16,11 @@ const getProps = overrides =>
             accountName: 'foo',
             saveAccountName: noop,
             backPress: noop,
+            textColor: { color: 'white' },
+            secondaryBackgroundColor: 'white',
+            arrowLeftImagePath: 20,
+            tickImagePath: 21,
+            negativeColor: 'white',
         },
         overrides,
     );
