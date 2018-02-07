@@ -239,10 +239,20 @@ class Send extends Component {
     }
 
     onMaxPress() {
-        const { sending } = this.state;
-        const { t, ctaColor } = this.props;
+        const { sending, maxPressed } = this.state;
+        const { t, ctaColor, secondaryBackgroundColor } = this.props;
         const max = (this.props.balance / this.getUnitMultiplier()).toString();
-        if (!sending) {
+        if (sending) {
+            return;
+        }
+        if (maxPressed) {
+            this.props.setSendAmountField('');
+            this.setState({
+                maxPressed: false,
+                maxColor: secondaryBackgroundColor,
+                maxText: t('send:sendMax'),
+            });
+        } else {
             this.props.setSendAmountField(max);
             this.setState({
                 maxPressed: true,

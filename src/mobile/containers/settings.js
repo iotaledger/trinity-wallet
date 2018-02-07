@@ -478,7 +478,6 @@ class Settings extends Component {
                 arrowLeftImagePath,
             },
             editAccountName: {
-                seedIndex: this.props.seedIndex,
                 accountName: this.props.selectedAccountName,
                 saveAccountName: accountName => this.saveAccountName(accountName),
                 backPress: () => this.props.setSetting('accountManagement'),
