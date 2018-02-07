@@ -157,13 +157,13 @@ export const updateAccountNameInKeychain = async (replaceAtIndex, newAccountName
     return Promise.reject(new Error('Something went wrong while updating account name.'));
 };
 
-export const deleteFromKeychain = async (deleteFromIndex, password) => {
+export const deleteFromKeychain = async (indexToDelete, password) => {
     const info = await keychain.get();
     const data = get(info, 'data');
 
     if (data) {
         const parsed = parse(data);
-        const remove = (d, i) => i !== deleteFromIndex;
+        const remove = (d, i) => i !== indexToDelete;
         const updatedAccountInfo = filter(get(parsed, 'accounts'), remove);
 
         return keychain.set(
