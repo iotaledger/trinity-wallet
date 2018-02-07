@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import PropTypes from 'prop-types';
 import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-white.png';
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
@@ -94,6 +95,13 @@ const styles = StyleSheet.create({
 });
 
 class SaveSeedConfirmation extends Component {
+    static propTypes = {
+        navigator: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
+    };
+
     constructor(props) {
         super(props);
 
@@ -164,7 +172,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     render() {
-        const { t, negativeColor, backgroundColor, secondaryBackgroundColor } = this.props;
+        const { t, backgroundColor, secondaryBackgroundColor } = this.props;
         const { hasSavedSeed } = this.state;
         const textColor = { color: secondaryBackgroundColor };
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
@@ -187,10 +195,7 @@ class SaveSeedConfirmation extends Component {
                     </View>
                     <View style={styles.bottomMidContainer}>
                         {this.state.showCheckbox && (
-                            <TouchableOpacity
-                                style={styles.checkboxContainer}
-                                onPress={event => this.onCheckboxPress()}
-                            >
+                            <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onCheckboxPress()}>
                                 <Image source={this.state.checkboxImage} style={styles.checkbox} />
                                 <Text style={[styles.checkboxText, textColor]}>
                                     {t('saveSeedConfirmation:alreadyHave')}

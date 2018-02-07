@@ -1,8 +1,5 @@
-import React, { Component } from 'react';
-import i18next from 'i18next';
-
 export function detectLocale(locale) {
-    var adaptedLocale = locale.substring(0, 2);
+    const adaptedLocale = locale.substring(0, 2);
     if (adaptedLocale === 'es' && !locale.match(/ES/)) {
         // Catch all non-Spain Spanish
         return 'es_LA';
@@ -30,9 +27,8 @@ export function detectLocale(locale) {
     if (adaptedLocale === 'nb') {
         // Norwegian Bokmål
         return 'no';
-    } else {
-        return adaptedLocale;
     }
+    return adaptedLocale;
 }
 
 export function selectLocale(lang) {
@@ -122,7 +118,6 @@ export function selectLocale(lang) {
     }
     if (lang === 'zh_TW') {
         return '中文 (繁體) - Chinese (Traditional)';
-    } else {
-        return 'English (International)';
     }
+    return 'English (International)';
 }
