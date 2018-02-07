@@ -338,7 +338,7 @@
         "syncingYourAccount": "계정을 동기화 중입니다."
     },
     "useExistingSeed": {
-        "title": "시드와 계정 이름을 입력해 주세요."
+        "title": "시드와 계정 이름을 입력하십시오."
     },
     "viewSeed": {
         "enterPassword": "시드를 보기 위해 암호를 입력해 주세요.",
@@ -373,7 +373,7 @@
         "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "아래의 주소로 {{contents}}를 보내려고 합니다.",
+        "aMessage": "메시지"
     }
 }
