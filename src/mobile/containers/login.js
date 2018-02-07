@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -65,9 +64,7 @@ const styles = StyleSheet.create({
 
 class Login extends Component {
     static propTypes = {
-        firstUse: PropTypes.bool.isRequired,
         hasErrorFetchingAccountInfoOnLogin: PropTypes.bool.isRequired,
-        selectedAccount: PropTypes.object.isRequired,
         fullNode: PropTypes.string.isRequired,
         availablePoWNodes: PropTypes.array.isRequired,
         versions: PropTypes.object.isRequired,
@@ -113,6 +110,12 @@ class Login extends Component {
     componentWillReceiveProps(newProps) {
         if (newProps.hasErrorFetchingAccountInfoOnLogin && !this.props.hasErrorFetchingAccountInfoOnLogin) {
             this.showModal();
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.props.isFingerprintEnabled) {
+            FingerprintScanner.release();
         }
     }
 
@@ -246,7 +249,7 @@ class Login extends Component {
         const { backgroundColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
                 <View style={styles.modalContent}>
                     <Text style={[styles.questionText, textColor]}>Cannot connect to IOTA node.</Text>
                     <Text style={[styles.infoText, textColor]}>Do you want to select a different node?</Text>

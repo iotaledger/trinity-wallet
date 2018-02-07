@@ -34,6 +34,7 @@ class CtaButton extends React.Component {
 
     static defaultProps = {
         ctaWidth: width / 1.2,
+        testID: '',
     };
 
     onCtaPress() {

@@ -19,6 +19,17 @@ const getProps = overrides =>
             setModalContent: noop,
             onThemePress: noop,
             t: arg => arg,
+            themeImagePath: 0,
+            advancedImagePath: 1,
+            logoutImagePath: 2,
+            passwordImagePath: 11,
+            twoFactorAuthImagePath: 12,
+            accountImagePath: 21,
+            languageImagePath: 23,
+            currencyImagePath: 22,
+            modeImagePath: 40,
+            borderBottomColor: { borderColor: 'white' },
+            textColor: { color: 'white' },
         },
         overrides,
     );
@@ -54,7 +65,51 @@ describe('Testing MainSettings component', () => {
         });
 
         it('should require a t function as a prop', () => {
-            expect(MainSettings.propTypes.t).toBe(PropTypes.func.isRequired);
+            expect(MainSettings.propTypes.t).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a themeImagePath number as a prop', () => {
+            expect(MainSettings.propTypes.themeImagePath).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a advancedImagePath number as a prop', () => {
+            expect(MainSettings.propTypes.advancedImagePath).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a logoutImagePath number as a prop', () => {
+            expect(MainSettings.propTypes.logoutImagePath).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a passwordImagePath number as a prop', () => {
+            expect(MainSettings.propTypes.passwordImagePath).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a twoFactorAuthImagePath number as a prop', () => {
+            expect(MainSettings.propTypes.twoFactorAuthImagePath).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a accountImagePath number as a prop', () => {
+            expect(MainSettings.propTypes.accountImagePath).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a languageImagePath number as a prop', () => {
+            expect(MainSettings.propTypes.languageImagePath).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a currencyImagePath number as a prop', () => {
+            expect(MainSettings.propTypes.currencyImagePath).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a borderBottomColor object as a prop', () => {
+            expect(MainSettings.propTypes.borderBottomColor).toEqual(PropTypes.object.isRequired);
+        });
+
+        it('should require a textColor object as a prop', () => {
+            expect(MainSettings.propTypes.textColor).toEqual(PropTypes.object.isRequired);
+        });
+
+        it('should require a modeImagePath number as a prop', () => {
+            expect(MainSettings.propTypes.modeImagePath).toEqual(PropTypes.number.isRequired);
         });
     });
 

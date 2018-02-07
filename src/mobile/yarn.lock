@@ -3219,7 +3219,11 @@ i18next-browser-languagedetector@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-2.1.0.tgz#1b0e17b09507f84e7a1fa761539a07544f92a0df"
 
-i18next@^10.1.0, i18next@^10.2.2:
+i18next@^10.1.0:
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.3.0.tgz#6866d14f6ae7b3629921f78bc028d04914f0654c"
+
+i18next@^10.2.2:
   version "10.2.2"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.2.2.tgz#1f2dc55ca2e8d7e071f7aff9f78654ef7f003c0e"
 
@@ -5221,8 +5225,8 @@ react-dom@^16.2.0:
     prop-types "^15.6.0"
 
 react-i18next@^7.3.0:
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.3.0.tgz#53de5afb6a3de53a0a9d09be7249c4748c0fc2db"
+  version "7.3.4"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.3.4.tgz#d5932d47ac7f0d723eecef492ea97b7232673706"
   dependencies:
     hoist-non-react-statics "2.3.1"
     html-parse-stringify2 "2.0.1"

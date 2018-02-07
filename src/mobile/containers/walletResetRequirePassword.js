@@ -2,30 +2,69 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import keychain from '../util/keychain';
 import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
 import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, Image, BackHandler } from 'react-native';
+import OnboardingButtons from '../components/onboardingButtons';
 import { persistor } from '../store';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, BackHandler } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import COLORS from '../theme/Colors';
 import Fonts from '../theme/Fonts';
+import keychain from '../util/keychain';
 import CustomTextInput from '../components/customTextInput';
-import OnboardingButtons from '../components/onboardingButtons.js';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import { Keyboard } from 'react-native';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 
 import { width, height } from '../util/dimensions';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    topWrapper: {
+        flex: 0.5,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 22,
+    },
+    midWrapper: {
+        flex: 3.7,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    bottomContainer: {
+        flex: 0.5,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: height / 20,
+    },
+    generalText: {
+        fontFamily: Fonts.secondary,
+        fontSize: width / 20.7,
+        textAlign: 'center',
+        paddingBottom: height / 10,
+        backgroundColor: 'transparent',
+    },
+    iotaLogo: {
+        height: width / 5,
+        width: width / 5,
+    },
+    buttonsContainer: {
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+});
 
 class WalletResetRequirePassword extends Component {
     static propTypes = {
         password: PropTypes.string.isRequired,
-        navigator: PropTypes.object.isRequired,
         resetWallet: PropTypes.func.isRequired,
         setFirstUse: PropTypes.func.isRequired,
         setOnboardingComplete: PropTypes.func.isRequired,
@@ -35,6 +74,7 @@ class WalletResetRequirePassword extends Component {
         backgroundColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        t: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -113,7 +153,7 @@ class WalletResetRequirePassword extends Component {
                     this.props.setPassword('');
                     this.props.resetWallet();
                 })
-                .catch(error => {
+                .catch(() => {
                     this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
@@ -131,8 +171,6 @@ class WalletResetRequirePassword extends Component {
 
     render() {
         const { t, negativeColor, secondaryBackgroundColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
@@ -165,7 +203,7 @@ class WalletResetRequirePassword extends Component {
                                 label={t('global:password')}
                                 onChangeText={password => this.setState({ password })}
                                 value={this.state.password}
-                                containerStyle={{ width: width / 1.4 }}
+                                containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -193,47 +231,6 @@ class WalletResetRequirePassword extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    topWrapper: {
-        flex: 0.5,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 22,
-    },
-    midWrapper: {
-        flex: 3.7,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    bottomContainer: {
-        flex: 0.5,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 20,
-    },
-    generalText: {
-        fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        paddingBottom: height / 10,
-        backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    buttonsContainer: {
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        flexDirection: 'row',
-    },
-});
 
 const mapStateToProps = state => ({
     password: state.tempAccount.password,

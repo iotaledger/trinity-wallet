@@ -62,6 +62,68 @@ let currencySymbol = '';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: height / 14,
+    },
+    topContainer: {
+        flex: 3.6,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    bottomContainer: {
+        flex: 2.1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    fieldContainer: {
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        flex: 0.7,
+    },
+    maxContainer: {
+        justifyContent: 'flex-start',
+        alignItems: 'flex-end',
+        width: width / 1.2,
+        paddingRight: 1,
+        flex: 0.8,
+    },
+    messageFieldContainer: {
+        flex: 0.7,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    maxButtonText: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 31.8,
+        backgroundColor: 'transparent',
+        marginRight: width / 50,
+    },
+    infoText: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 29.6,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    infoIcon: {
+        width: width / 25,
+        height: width / 25,
+        marginRight: width / 60,
+    },
+    info: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
+
 class Send extends Component {
     static propTypes = {
         t: PropTypes.func.isRequired,
@@ -99,6 +161,28 @@ class Send extends Component {
         setSendDenomination: PropTypes.func.isRequired,
         denomination: PropTypes.string.isRequired,
     };
+
+    static isValidAddress(address) {
+        if (Send.isValidAddressChars(address) !== null) {
+            return size(address) === 90 && iota.utils.isValidChecksum(address);
+        }
+        return false;
+    }
+
+    static isValidAddressChars(address) {
+        return address.match(VALID_SEED_REGEX);
+    }
+
+    static isValidAmount(amount) {
+        const value = parseFloat(amount);
+        if (value < 0) {
+            return false;
+        }
+        if (value > 0 && value < 1) {
+            return false;
+        }
+        return !isNaN(value);
+    }
 
     constructor(props) {
         super(props);
@@ -139,10 +223,6 @@ class Send extends Component {
         }
     }
 
-    setSendingTransferFlag() {
-        this.setState({ sending: true });
-    }
-
     onDenominationPress() {
         const { secondaryBackgroundColor, denomination } = this.props;
         const availableDenominations = ['i', 'Ki', 'Mi', 'Gi', 'Ti', currencySymbol];
@@ -159,10 +239,20 @@ class Send extends Component {
     }
 
     onMaxPress() {
-        const { sending } = this.state;
-        const { t, ctaColor } = this.props;
+        const { sending, maxPressed } = this.state;
+        const { t, ctaColor, secondaryBackgroundColor } = this.props;
         const max = (this.props.balance / this.getUnitMultiplier()).toString();
-        if (!sending) {
+        if (sending) {
+            return;
+        }
+        if (maxPressed) {
+            this.props.setSendAmountField('');
+            this.setState({
+                maxPressed: false,
+                maxColor: secondaryBackgroundColor,
+                maxText: t('send:sendMax'),
+            });
+        } else {
             this.props.setSendAmountField(max);
             this.setState({
                 maxPressed: true,
@@ -186,58 +276,15 @@ class Send extends Component {
         }
     }
 
-    isValidAddress(address) {
-        if (this.isValidAddressChars(address) !== null) {
-            return size(address) === 90 && iota.utils.isValidChecksum(address);
-        }
-    }
-
-    isValidAddressChars(address) {
-        return address.match(VALID_SEED_REGEX);
-    }
-
-    isValidAmount(amount) {
-        const value = parseFloat(amount);
-        if (value < 0) {
-            return false;
-        }
-        if (value > 0 && value < 1) {
-            return false;
-        }
-        return !isNaN(value);
-    }
-
-    enoughBalance() {
-        const { amount, balance } = this.props;
-        if (parseFloat(amount) * this.getUnitMultiplier() > balance) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    renderInvalidAddressErrors(address) {
-        const { t, generateAlert } = this.props;
-        const props = ['error', t('invalidAddress')];
-
-        if (size(address) !== 90) {
-            return generateAlert(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
-        } else if (address.match(VALID_SEED_REGEX) === null) {
-            return generateAlert(...props, t('invalidAddressExplanation2'));
-        }
-
-        return generateAlert(...props, t('invalidAddressExplanation3'));
-    }
-
     onSendPress() {
-        const { t, amount, address, message } = this.props;
+        const { t, amount, address } = this.props;
 
-        const addressIsValid = this.isValidAddress(address);
+        const addressIsValid = Send.isValidAddress(address);
         const enoughBalance = this.enoughBalance();
-        const amountIsValid = this.isValidAmount(amount);
-        const addressCharsAreValid = this.isValidAddressChars(address);
+        const amountIsValid = Send.isValidAmount(amount);
+        const addressCharsAreValid = Send.isValidAddressChars(address);
         if (addressIsValid && enoughBalance && amountIsValid && addressCharsAreValid) {
-            return this._showModal();
+            return this.showModal();
         }
 
         if (!enoughBalance) {
@@ -251,6 +298,192 @@ class Send extends Component {
         if (!amountIsValid) {
             return this.props.generateAlert('error', t('invalidAmount'), t('invalidAmountExplanation'));
         }
+    }
+
+    onQRRead(data) {
+        const dataString = data.toString();
+        if (dataString.match(/{/)) {
+            // For codes containing JSON (iotaledger and Trinity)
+            const parsedData = JSON.parse(data);
+            this.props.setSendAddressField(parsedData.address);
+            if (data.message) {
+                this.props.setSendMessageField(data.message);
+            }
+        } else if (dataString.match(/iota:/)) {
+            // For codes with iota: at the front (TheTangle.org)
+            const dataSubstring = data.substring(5);
+            this.props.setSendAddressField(dataSubstring);
+        } else if (dataString.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
+            // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
+            this.props.setSendAddressField(data);
+        } else {
+            this.props.generateAlert(
+                'error',
+                'Incorrect address format',
+                'Valid addresses should be 90 characters and contain only A-Z or 9.',
+            );
+        }
+        this.hideModal();
+    }
+
+    setModalContent(selectedSetting) {
+        let modalContent;
+        const {
+            secondaryBackgroundColor,
+            secondaryBarColor,
+            barColor,
+            backgroundColor,
+            ctaColor,
+            secondaryCtaColor,
+            ctaBorderColor,
+            address,
+            amount,
+            denomination,
+        } = this.props;
+        switch (selectedSetting) {
+            case 'qrScanner':
+                modalContent = (
+                    <QRScanner
+                        onQRRead={data => this.onQRRead(data)}
+                        hideModal={() => this.hideModal()}
+                        backgroundColor={backgroundColor}
+                        ctaColor={ctaColor}
+                        secondaryCtaColor={secondaryCtaColor}
+                        ctaBorderColor={ctaBorderColor}
+                        secondaryBackgroundColor={secondaryBackgroundColor}
+                    />
+                );
+                this.setState({
+                    selectedSetting,
+                    modalContent,
+                });
+                this.showModal();
+                break;
+            case 'transferConfirmation':
+                modalContent = (
+                    <TransferConfirmationModal
+                        amount={amount}
+                        denomination={denomination}
+                        address={address}
+                        sendTransfer={() => this.sendTransfer()}
+                        hideModal={callback => this.hideModal(callback)}
+                        backgroundColor={backgroundColor}
+                        borderColor={{ borderColor: secondaryBackgroundColor }}
+                        textColor={{ color: secondaryBackgroundColor }}
+                        setSendingTransferFlag={() => this.setSendingTransferFlag()}
+                    />
+                );
+                this.setState({
+                    selectedSetting,
+                    modalContent,
+                });
+                this.onSendPress();
+                break;
+            case 'unitInfo':
+                modalContent = (
+                    <UnitInfoModal
+                        backgroundColor={barColor}
+                        hideModal={() => this.hideModal()}
+                        textColor={{ color: secondaryBarColor }}
+                        borderColor={{ borderColor: secondaryBarColor }}
+                        secondaryBarColor={secondaryBarColor}
+                    />
+                );
+                this.setState({
+                    selectedSetting,
+                    modalContent,
+                });
+                this.showModal();
+                break;
+            default:
+                break;
+        }
+    }
+
+    getUnitMultiplier() {
+        const { usdPrice, conversionRate, denomination } = this.props;
+        let multiplier = 1;
+        switch (denomination) {
+            case 'i':
+                break;
+            case 'Ki':
+                multiplier = 1000;
+                break;
+            case 'Mi':
+                multiplier = 1000000;
+                break;
+            case 'Gi':
+                multiplier = 1000000000;
+                break;
+            case 'Ti':
+                multiplier = 1000000000000;
+                break;
+            case currencySymbol:
+                multiplier = 1000000 / usdPrice / conversionRate;
+                break;
+            default:
+                break;
+        }
+        return multiplier;
+    }
+
+    setSendingTransferFlag() {
+        this.setState({ sending: true });
+    }
+
+    getConversionTextFiat() {
+        const { amount, usdPrice, conversionRate } = this.props;
+
+        const convertedValue = round(amount / usdPrice / conversionRate, 10);
+        let conversionText = '';
+        if (convertedValue > 0 && convertedValue < 0.01) {
+            conversionText = '< 0.01 Mi';
+        } else if (convertedValue >= 0.01) {
+            conversionText = `= ${convertedValue.toFixed(2)} Mi`;
+        }
+        return conversionText;
+    }
+    getConversionTextIota() {
+        const { amount, usdPrice, conversionRate } = this.props;
+        const convertedValue = round(
+            parseFloat(Send.isValidAmount(amount) ? amount : 0) *
+                usdPrice /
+                1000000 *
+                this.getUnitMultiplier() *
+                conversionRate,
+            10,
+        );
+        let conversionText = '';
+        if (convertedValue > 0 && convertedValue < 0.01) {
+            conversionText = `< ${currencySymbol}0.01`;
+        } else if (convertedValue >= 0.01) {
+            conversionText = `= ${currencySymbol}${convertedValue.toFixed(2)}`;
+        }
+        return conversionText;
+    }
+
+    clearInteractions() {
+        this.props.closeTopBar();
+        Keyboard.dismiss();
+    }
+
+    showModal = () => this.setState({ isModalVisible: true });
+
+    hideModal = callback =>
+        this.setState({ isModalVisible: false }, () => {
+            const callable = fn => isFunction(fn);
+
+            if (callable(callback)) {
+                setTimeout(callback);
+            }
+        });
+
+    enoughBalance() {
+        const { amount, balance } = this.props;
+        if (parseFloat(amount) * this.getUnitMultiplier() > balance) {
+            return false;
+        }
+        return true;
     }
 
     sendTransfer() {
@@ -285,181 +518,20 @@ class Send extends Component {
             .catch(() => this.props.getFromKeychainError('send', 'makeTransaction'));
     }
 
-    getUnitMultiplier() {
-        const { usdPrice, conversionRate, denomination } = this.props;
-        let multiplier = 1;
-        switch (denomination) {
-            case 'i':
-                break;
-            case 'Ki':
-                multiplier = 1000;
-                break;
-            case 'Mi':
-                multiplier = 1000000;
-                break;
-            case 'Gi':
-                multiplier = 1000000000;
-                break;
-            case 'Ti':
-                multiplier = 1000000000000;
-                break;
-            case currencySymbol:
-                multiplier = 1000000 / usdPrice / conversionRate;
-                break;
-            default:
-                break;
+    renderInvalidAddressErrors(address) {
+        const { t } = this.props;
+        const props = ['error', t('invalidAddress')];
+
+        if (size(address) !== 90) {
+            return this.props.generateAlert(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
+        } else if (address.match(VALID_SEED_REGEX) === null) {
+            return this.props.generateAlert(...props, t('invalidAddressExplanation2'));
         }
-        return multiplier;
+
+        return this.props.generateAlert(...props, t('invalidAddressExplanation3'));
     }
 
-    _showModal = () => this.setState({ isModalVisible: true });
-
-    _hideModal = callback =>
-        this.setState({ isModalVisible: false }, () => {
-            const callable = fn => isFunction(fn);
-
-            if (callable(callback)) {
-                setTimeout(callback);
-            }
-        });
-
-    _renderModalContent = () => <View>{this.state.modalContent}</View>;
-
-    setModalContent(selectedSetting) {
-        let modalContent;
-        const {
-            secondaryBackgroundColor,
-            secondaryBarColor,
-            barColor,
-            backgroundColor,
-            ctaColor,
-            secondaryCtaColor,
-            ctaBorderColor,
-            address,
-            amount,
-            denomination,
-        } = this.props;
-        switch (selectedSetting) {
-            case 'qrScanner':
-                modalContent = (
-                    <QRScanner
-                        onQRRead={data => this.onQRRead(data)}
-                        hideModal={() => this._hideModal()}
-                        backgroundColor={backgroundColor}
-                        ctaColor={ctaColor}
-                        secondaryCtaColor={secondaryCtaColor}
-                        ctaBorderColor={ctaBorderColor}
-                    />
-                );
-                this.setState({
-                    selectedSetting,
-                    modalContent,
-                });
-                this._showModal();
-                break;
-            case 'transferConfirmation':
-                modalContent = (
-                    <TransferConfirmationModal
-                        amount={amount}
-                        denomination={denomination}
-                        address={address}
-                        sendTransfer={() => this.sendTransfer()}
-                        hideModal={callback => this._hideModal(callback)}
-                        backgroundColor={backgroundColor}
-                        borderColor={{ borderColor: secondaryBackgroundColor }}
-                        textColor={{ color: secondaryBackgroundColor }}
-                        setSendingTransferFlag={() => this.setSendingTransferFlag()}
-                    />
-                );
-                this.setState({
-                    selectedSetting,
-                    modalContent,
-                });
-                this.onSendPress();
-                break;
-            case 'unitInfo':
-                modalContent = (
-                    <UnitInfoModal
-                        backgroundColor={barColor}
-                        hideModal={() => this._hideModal()}
-                        textColor={{ color: secondaryBarColor }}
-                        borderColor={{ borderColor: secondaryBarColor }}
-                        secondaryBarColor={secondaryBarColor}
-                    />
-                );
-                this.setState({
-                    selectedSetting,
-                    modalContent,
-                });
-                this._showModal();
-                break;
-            default:
-                break;
-        }
-    }
-
-    onQRRead(data) {
-        const { generateAlert } = this.props;
-        const dataString = data.toString();
-        if (dataString.match(/{/)) {
-            // For codes containing JSON (iotaledger and Trinity)
-            data = JSON.parse(data);
-            this.props.setSendAddressField(data.address);
-            if (data.message) {
-                this.props.setSendMessageField(data.message);
-            }
-        } else if (dataString.match(/iota\:/)) {
-            // For codes with iota: at the front (TheTangle.org)
-            data = data.substring(5);
-            this.props.setSendAddressField(data);
-        } else if (dataString.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
-            // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
-            this.props.setSendAddressField(data);
-        } else {
-            generateAlert(
-                'error',
-                'Incorrect address format',
-                'Valid addresses should be 90 characters and contain only A-Z or 9.',
-            );
-        }
-        this._hideModal();
-    }
-
-    clearInteractions() {
-        this.props.closeTopBar();
-        Keyboard.dismiss();
-    }
-
-    getConversionTextFiat() {
-        const { amount, usdPrice, conversionRate } = this.props;
-
-        const convertedValue = round(amount / usdPrice / conversionRate, 10);
-        let conversionText = '';
-        if (0 < convertedValue && convertedValue < 0.01) {
-            conversionText = '< 0.01 Mi';
-        } else if (convertedValue >= 0.01) {
-            conversionText = '= ' + convertedValue.toFixed(2) + ' Mi';
-        }
-        return conversionText;
-    }
-    getConversionTextIota() {
-        const { amount, usdPrice, conversionRate } = this.props;
-        const convertedValue = round(
-            parseFloat(this.isValidAmount(amount) ? amount : 0) *
-                usdPrice /
-                1000000 *
-                this.getUnitMultiplier() *
-                conversionRate,
-            10,
-        );
-        let conversionText = '';
-        if (0 < convertedValue && convertedValue < 0.01) {
-            conversionText = '< ' + currencySymbol + '0.01';
-        } else if (convertedValue >= 0.01) {
-            conversionText = '= ' + currencySymbol + convertedValue.toFixed(2);
-        }
-        return conversionText;
-    }
+    renderModalContent = () => <View>{this.state.modalContent}</View>;
 
     render() {
         const { isModalVisible, maxColor, maxText, sending, maxPressed } = this.state;
@@ -534,14 +606,14 @@ class Send extends Component {
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 denominationText={denomination}
-                                onDenominationPress={event => this.onDenominationPress()}
+                                onDenominationPress={() => this.onDenominationPress()}
                                 value={amount}
                                 editable={!sending}
                                 selectTextOnFocus={!sending}
                             />
                             <View style={{ flex: 0.2 }} />
                             <View style={styles.maxContainer}>
-                                <TouchableOpacity onPress={event => this.onMaxPress()}>
+                                <TouchableOpacity onPress={() => this.onMaxPress()}>
                                     <View
                                         style={{
                                             flexDirection: 'row',
@@ -640,75 +712,13 @@ class Send extends Component {
                         isVisible={isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
                     >
-                        {this._renderModalContent()}
+                        {this.renderModalContent()}
                     </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: height / 14,
-    },
-    topContainer: {
-        flex: 3.6,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    bottomContainer: {
-        flex: 2.1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    fieldContainer: {
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        flex: 0.7,
-    },
-    maxContainer: {
-        justifyContent: 'flex-start',
-        alignItems: 'flex-end',
-        width: width / 1.2,
-        paddingRight: 1,
-        flex: 0.8,
-    },
-    messageFieldContainer: {
-        flex: 0.7,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    maxButtonText: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 31.8,
-        backgroundColor: 'transparent',
-        marginRight: width / 50,
-    },
-    infoText: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 29.6,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    infoIcon: {
-        width: width / 25,
-        height: width / 25,
-        marginRight: width / 60,
-    },
-    info: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
 
 const mapStateToProps = state => ({
     currency: state.settings.currency,
