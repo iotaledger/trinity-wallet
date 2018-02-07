@@ -38,6 +38,7 @@ Tabs.propTypes = {
     children: PropTypes.node.isRequired,
     onPress: PropTypes.func.isRequired,
     currentRoute: PropTypes.string.isRequired,
+    barColor: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
