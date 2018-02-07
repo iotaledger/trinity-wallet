@@ -75,17 +75,17 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
-        "seedInvalidCharsExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
+        "seedInvalidCharsExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed contiene caracteres inválidos. Por favor inténtalo de nuevo.",
         "seedTooShort": "La seed es demasiado corta",
-        "seedTooShortExplanation": "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
-        "nameInUse": "Nombre de cuenta ya está en uso",
+        "seedTooShortExplanation": "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo de nuevo.",
+        "nameInUse": "Nombre de cuenta en uso",
         "nameInUseExplanation": "Por favor, usa un nombre de cuenta único para tu seed.",
         "enterAccountName": "Introduzca un nombre de cuenta.",
         "accountName": "Nombre de cuenta",
         "noNickname": "Falta ingresar un nombre de la cuenta",
         "noNicknameExplanation": "Por favor ingresa un nombre para la cuenta de tu seed.",
-        "seedInUse": "Seed ya está en uso",
-        "seedInUseExplanation": "Esta Seed ya está vinculada a tu cartera. Por favor, use una diferente."
+        "seedInUse": "Seed en uso",
+        "seedInUseExplanation": "Esta seed ya está vinculado a tu cartera. Por favor, use una diferente."
     },
     "changePassword": {
         "oops": "¡Ay! Algo salió mal",
@@ -103,20 +103,20 @@
         "ensureStrongPassword": "Asegúrate de utilizar una contraseña segura con al menos 12 caracteres.",
         "currentPassword": "Contraseña actual",
         "newPassword": "Contraseña nueva",
-        "confirmPassword": "Confirme nueva contraseña"
+        "confirmPassword": "Confirmar contraseña nueva"
     },
     "copyToClipboard": {
         "seedCleared": "Seed removida",
-        "seedClearedExplanation": "Tu seed ha sido bordada del portapapeles para tu seguridad.",
+        "seedClearedExplanation": "Por razones de seguridad tu seed ha sido eliminada del portapapeles.",
         "seedCopied": "Seed copiada al portapapeles",
-        "seedCopiedExplanation": "La seed será borrada al presionar “Listo” o al osar 60 segundos.",
-        "clickToCopy": "Haz click en el botón y copia tu seed a un administrador de contraseñas.",
+        "seedCopiedExplanation": "La seed será borrada al presionar “Listo” o pasados 60 segundos.",
+        "clickToCopy": "Pulsa en el botón de abajo y copia tu seed en un administrador de contraseñas.",
         "doNotStore": "No almacenes tu seed en texto plano.",
         "copyToClipboard": "Copiar al portapapeles"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contiene caracteres inválidos",
-        "invalidCharactersExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
+        "invalidCharactersExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed contiene caracteres inválidos. Por favor intentalo de nuevo.",
         "seedTooShort": "La seed es demasiado corta",
         "seedTooShortExplanation": "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
         "seedExplanation": "Las seeds deben ser de {{maxLength}} caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar seeds de más de {{maxLength}} caracteres.",
