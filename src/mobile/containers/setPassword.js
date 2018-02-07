@@ -192,6 +192,8 @@ class SetPassword extends Component {
                         t('global:somethingWentWrongExplanation'),
                     );
                 });
+        } else if (!(password === reentry)) {
+            this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
         } else if (password.length < MIN_PASSWORD_LENGTH || reentry.length < MIN_PASSWORD_LENGTH) {
             this.props.generateAlert(
                 'error',
@@ -201,8 +203,6 @@ class SetPassword extends Component {
                     currentLength: password.length,
                 }),
             );
-        } else if (!(password === reentry)) {
-            this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
         }
     }
 
