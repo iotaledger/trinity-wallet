@@ -163,8 +163,7 @@ export const deleteFromKeychain = async (indexToDelete, password) => {
 
     if (data) {
         const parsed = parse(data);
-        const remove = (d, i) => i !== indexToDelete;
-        const updatedAccountInfo = filter(get(parsed, 'accounts'), remove);
+        const updatedAccountInfo = filter(get(parsed, 'accounts'), (d, i) => i !== indexToDelete);
 
         return keychain.set(
             password,

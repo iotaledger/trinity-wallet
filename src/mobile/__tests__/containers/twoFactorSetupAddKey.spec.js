@@ -173,7 +173,7 @@ describe('Testing TwoFactorSetupAddKey component', () => {
                     const instance = shallow(<TwoFactorSetupAddKey {...props} />).instance();
                     instance.navigateToEnterToken();
 
-                    expect(Clipboard.setString).toHaveBeenCalledWith('');
+                    expect(Clipboard.setString).toHaveBeenCalledWith(' ');
                 });
 
                 it('should call storeTwoFactorAuthKeyInKeychain method in util/keychain module', () => {
