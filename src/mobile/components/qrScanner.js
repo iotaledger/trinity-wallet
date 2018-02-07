@@ -9,7 +9,6 @@ import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     qrInfoText: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         textAlign: 'center',
         fontSize: width / 23,
@@ -52,6 +51,7 @@ class QRScanner extends Component {
         ctaColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         ctaBorderColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     componentWillMount() {
@@ -61,13 +61,20 @@ class QRScanner extends Component {
     }
 
     render() {
-        const { t, backgroundColor, ctaColor, secondaryCtaColor, ctaBorderColor } = this.props;
+        const {
+            t,
+            backgroundColor,
+            ctaColor,
+            secondaryCtaColor,
+            ctaBorderColor,
+            secondaryBackgroundColor,
+        } = this.props;
 
         return (
             <View style={styles.modalContent}>
                 <View style={{ alignItems: 'center', backgroundColor }}>
                     <View style={{ height: height / 12 }} />
-                    <Text style={styles.qrInfoText}>{t('scan')}</Text>
+                    <Text style={[styles.qrInfoText, { color: secondaryBackgroundColor }]}>{t('scan')}</Text>
                     <QRCodeScanner onRead={data => this.props.onQRRead(data.data)} />
                     <View style={{ paddingBottom: height / 15 }}>
                         <TouchableOpacity
