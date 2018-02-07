@@ -110,7 +110,7 @@ export class Dropdown extends Component {
         saveSelection: PropTypes.func,
         options: PropTypes.array.isRequired,
         title: PropTypes.string,
-        dropdownWidth: PropTypes.number,
+        dropdownWidth: PropTypes.object,
         background: PropTypes.bool,
         negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string,
@@ -125,7 +125,7 @@ export class Dropdown extends Component {
         background: false,
         saveSelection: () => {},
         title: '',
-        dropdownWidth: width / 1.2,
+        dropdownWidth: { width: width / 1.2 },
         secondaryBackgroundColor: 'white',
     };
 

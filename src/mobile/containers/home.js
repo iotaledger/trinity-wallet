@@ -283,7 +283,11 @@ Home.propTypes = {
     isSyncing: PropTypes.bool.isRequired,
     isSendingTransfer: PropTypes.bool.isRequired,
     setSetting: PropTypes.func.isRequired,
-    isFingerprintEnabled: PropTypes.bool.isRequired,
+    isFingerprintEnabled: PropTypes.bool,
+};
+
+Home.defaultProps = {
+    isFingerprintEnabled: false,
 };
 
 export default withUserActivity()(
