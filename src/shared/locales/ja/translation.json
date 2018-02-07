@@ -150,7 +150,7 @@
     "newSeedSetup": {
         "seedNotGenerated": "Seedが生成されていません。",
         "seedNotGeneratedExplanation": "「新しいSeedを生成する。」ボタンをクリックして下さい。",
-        "pressForNewSeed": "新しいSeedの複製",
+        "pressForNewSeed": "新しいSeedの元を作成",
         "individualLetters": "文字をタップしてランダムにしてください。"
     },
     "onboardingComplete": {
