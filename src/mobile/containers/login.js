@@ -113,6 +113,12 @@ class Login extends Component {
         }
     }
 
+    componentWillUnmount() {
+        if (this.props.isFingerprintEnabled) {
+            FingerprintScanner.release();
+        }
+    }
+
     onLoginPress(password) {
         const { t, is2FAEnabled } = this.props;
 
