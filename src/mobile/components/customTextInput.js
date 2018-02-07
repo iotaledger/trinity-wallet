@@ -78,6 +78,7 @@ class CustomTextInput extends React.Component {
         fingerprintAuthentication: PropTypes.bool,
         conversionText: PropTypes.string,
         height: PropTypes.number,
+        onRef: PropTypes.func,
     };
 
     static defaultProps = {
@@ -96,6 +97,8 @@ class CustomTextInput extends React.Component {
         conversionText: '',
         height: height / 14,
         fingerprintAuthentication: false,
+        testID: '',
+        onRef: () => {},
     };
 
     constructor(props) {

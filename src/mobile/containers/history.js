@@ -16,6 +16,31 @@ import keychain, { getSeed } from '../util/keychain';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    listView: {
+        height: height * 0.7,
+        justifyContent: 'flex-end',
+    },
+    separator: {
+        flex: 1,
+        height: height / 60,
+    },
+    noTransactionsContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    noTransactions: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
+        backgroundColor: 'transparent',
+    },
+});
+
 class History extends Component {
     static propTypes = {
         addresses: PropTypes.array.isRequired,
@@ -31,16 +56,26 @@ class History extends Component {
         selectedAccountName: PropTypes.string.isRequired,
         isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        seedIndex: PropTypes.number.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
         this.state = { viewRef: null, refreshing: false };
+        this.onRefresh = this.onRefresh.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
         if (this.props.isFetchingLatestAccountInfoOnLogin && !newProps.isFetchingLatestAccountInfoOnLogin) {
             this.setState({ refreshing: false });
+        }
+    }
+
+    onRefresh() {
+        if (!this.shouldPreventManualRefresh()) {
+            this.setState({ refreshing: true });
+            this.updateAccountData();
         }
     }
 
@@ -66,13 +101,6 @@ class History extends Component {
         );
     }
 
-    _onRefresh() {
-        if (!this.shouldPreventManualRefresh()) {
-            this.setState({ refreshing: true });
-            this.updateAccountData();
-        }
-    }
-
     updateAccountData() {
         const { selectedAccountName, seedIndex } = this.props;
         keychain
@@ -84,21 +112,16 @@ class History extends Component {
             .catch(err => console.log(err));
     }
 
-    // FIXME: findNodeHangle is not defined
-    imageLoaded() {
-        this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
-    }
-
     copyBundleHash(item) {
-        const { t, generateAlert } = this.props;
+        const { t } = this.props;
         Clipboard.setString(item);
-        generateAlert('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
+        this.props.generateAlert('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
     }
 
     copyAddress(item) {
-        const { t, generateAlert } = this.props;
+        const { t } = this.props;
         Clipboard.setString(item);
-        generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
+        this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
     render() {
@@ -125,7 +148,7 @@ class History extends Component {
                                 refreshControl={
                                     <RefreshControl
                                         refreshing={this.state.refreshing}
-                                        onRefresh={this._onRefresh.bind(this)}
+                                        onRefresh={this.onRefresh}
                                         tintColor={negativeColor}
                                     />
                                 }
@@ -153,7 +176,6 @@ class History extends Component {
                                 ref={listview => {
                                     this.listview = listview;
                                 }}
-                                onLoadEnd={this.imageLoaded.bind(this)}
                                 snapToInterval={height * 0.7 / 6}
                             />
                         </View>
@@ -167,31 +189,6 @@ class History extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    listView: {
-        height: height * 0.7,
-        justifyContent: 'flex-end',
-    },
-    separator: {
-        flex: 1,
-        height: height / 60,
-    },
-    noTransactionsContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    noTransactions: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 27.6,
-        backgroundColor: 'transparent',
-    },
-});
 
 const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),

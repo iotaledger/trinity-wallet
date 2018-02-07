@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import size from 'lodash/size';
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
@@ -24,16 +24,6 @@ export class Poll extends Component {
     static propTypes = {
         pollFor: PropTypes.string.isRequired,
         allPollingServices: PropTypes.array.isRequired, // oneOf
-        isFetchingPrice: PropTypes.bool.isRequired,
-        isFetchingChartData: PropTypes.bool.isRequired,
-        isFetchingMarketData: PropTypes.bool.isRequired,
-        isFetchingAccountInfo: PropTypes.bool.isRequired,
-        isPromoting: PropTypes.bool.isRequired,
-        isSyncing: PropTypes.bool.isRequired,
-        addingAdditionalAccount: PropTypes.bool.isRequired,
-        isSendingTransfer: PropTypes.bool.isRequired,
-        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
         seedIndex: PropTypes.number.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         unconfirmedBundleTails: PropTypes.object.isRequired,

@@ -81,6 +81,7 @@ class AdvancedSettings extends Component {
         setSetting: PropTypes.func.isRequired,
         onDeleteAccountPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        textColor: PropTypes.string.isRequired,
     };
 
     render() {
