@@ -111,7 +111,7 @@
         "seedCopied": "Seedをクリップボードにコピーしました。",
         "seedCopiedExplanation": "\"完了\"を押す、または60秒後にはSeedは消去されます。",
         "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。",
-        "doNotStore": "Seedをプレーンテキストで保存するのはやめましょう。",
+        "doNotStore": "Seedは平文では絶対に保存しないでください。",
         "copyToClipboard": "クリップボードにコピー"
     },
     "enterSeed": {
@@ -207,7 +207,7 @@
         "passwordMismatch": "パスワードが一致しません。",
         "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
         "nowWeNeedTo": "次にパスワードの設定です。",
-        "anEncryptedCopy": "暗号化されたSeedのコピーがデバイスに保存されます。今後このパスワードを使用してウォレットにアクセスします。",
+        "anEncryptedCopy": "暗号化されたSeedのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
         "ensure": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
         "retypePassword": "パスワードを再入力して下さい。"
     },
