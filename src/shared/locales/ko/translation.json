@@ -341,9 +341,9 @@
         "title": "시드와 계정 이름을 입력해 주세요."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "시드를 보기 위해 암호를 입력해 주세요.",
+        "viewSeed": "시드 보기",
+        "hideSeed": "시드 숨기기"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "이미 시드를 가지고 있습니다",
