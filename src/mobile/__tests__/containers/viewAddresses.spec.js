@@ -112,7 +112,7 @@ describe('Testing ViewAddresses component', () => {
                 expect(ViewAddresses.getAddressesAsList(args)).toEqual(returnValue);
             });
 
-            it('should return reverse the returned list if argument passed to it is not empty', () => {
+            it('should reverse the returned list if argument passed to it is not empty', () => {
                 const fakeAddressOne = 'U'.repeat(81);
                 const fakeAddressTwo = 'A'.repeat(81);
                 const fakeAddressThree = '9'.repeat(81);
