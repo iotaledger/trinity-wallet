@@ -32,7 +32,7 @@
         "continue": "계속 하기",
         "manualCopy": "시드 기록하기",
         "paperWallet": "종이에 인쇄하기",
-        "copyToClipboard": "패스워드 관리자에 입력하기",
+        "copyToClipboard": "비밀번호 관리자에 입력하기",
         "notAvailable": "이 기능은 사용할 수 없습니다.",
         "notAvailableExplanation": "이 기능은 추후에 추가될 예정입니다.",
         "enterSeed": "씨드를 입력하십시오.",
@@ -110,8 +110,8 @@
         "seedClearedExplanation": "보안을 위해 클립보드에서 씨드가 삭제되었습니다.",
         "seedCopied": "씨드가 클립보드에 복사됨",
         "seedCopiedExplanation": "'완료'를 클릭하거나 60초가 지나면 씨드가 삭제됩니다.",
-        "clickToCopy": "아래 버튼을 클릭하여 비밀번호 관리자에 씨드를 복사하십시오.",
-        "doNotStore": "씨드를 일반 텍스트로 저장하지 마십시오.",
+        "clickToCopy": "아래 버튼을 눌러 시드를 복사하고, 비밀번호 관리자에 저장하십시오.",
+        "doNotStore": "시드를 암호화하지 않은 채로 저장하지 마십시오.",
         "copyToClipboard": "클립보드에 복사"
     },
     "enterSeed": {
@@ -158,7 +158,7 @@
     },
     "paperWallet": {
         "clickToPrint": "아래 버튼을 눌러 시드를 인쇄하십시오.",
-        "storeSafely": "안전하게 저장하십시오.",
+        "storeSafely": "안전하게 보관하십시오.",
         "neverShare": "절대 다른 이와 당신의 씨드를 공유하지 마십시오.",
         "iotaLogo": "IOTA 로고",
         "printWallet": "종이 지갑 인쇄하기"
@@ -347,7 +347,7 @@
     },
     "saveSeedConfirmation": {
         "alreadyHave": "이미 시드를 가지고 있습니다",
-        "reenter": "You will now be asked to re-enter your seed.",
+        "reenter": "이제 다시 시드를 입력하여야 합니다.",
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
