@@ -213,6 +213,7 @@ class UseExistingSeed extends React.Component {
             hideModal={() => this.hideModal()}
             secondaryCtaColor={this.props.secondaryCtaColor}
             ctaBorderColor={this.props.ctaBorderColor}
+            secondaryBackgroundColor={this.props.secondaryBackgroundColor}
         />
     );
 
