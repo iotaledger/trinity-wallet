@@ -184,7 +184,7 @@ class Loading extends Component {
 
         if (firstUse || addingAdditionalAccount) {
             return (
-                <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+                <View style={[styles.container, { backgroundColor }]}>
                     <DynamicStatusBar textColor={secondaryBackgroundColor} />
                     <View style={{ flex: 1 }} />
                     <View style={styles.animationContainer}>
@@ -216,7 +216,7 @@ class Loading extends Component {
         }
 
         return (
-            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+            <View style={[styles.container, { backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.animationContainer}>
                     <View>
