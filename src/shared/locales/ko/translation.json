@@ -36,13 +36,13 @@
         "notAvailable": "이 기능은 사용할 수 없습니다.",
         "notAvailableExplanation": "이 기능은 추후에 추가될 예정입니다.",
         "enterSeed": "씨드를 입력하십시오.",
-        "mainWallet": "메인 계정",
+        "mainWallet": "주 계정",
         "secondWallet": "두 번째 계정",
         "thirdWallet": "세 번째 계정",
         "fourthWallet": "네 번째 계정",
         "fifthWallet": "다섯 번째 계정",
         "sixthWallet": "여섯 번째 계정",
-        "otherWallet": "다른 계정",
+        "otherWallet": "기타 계정",
         "yes": "예",
         "no": "아니오",
         "password": "비밀번호",
@@ -107,9 +107,9 @@
     },
     "copyToClipboard": {
         "seedCleared": "씨드 삭제됨",
-        "seedClearedExplanation": "보안을 위해 클립보드에서 씨드가 삭제되었습니다.",
+        "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
         "seedCopied": "씨드가 클립보드에 복사됨",
-        "seedCopiedExplanation": "'완료'를 클릭하거나 60초가 지나면 씨드가 삭제됩니다.",
+        "seedCopiedExplanation": "'완료'를 누르거나 60초가 지나면 시드가 삭제됩니다.",
         "clickToCopy": "아래 버튼을 눌러 시드를 복사하고, 비밀번호 관리자에 저장하십시오.",
         "doNotStore": "시드를 암호화하지 않은 채로 저장하지 마십시오.",
         "copyToClipboard": "클립보드에 복사"
@@ -172,14 +172,14 @@
     },
     "saveYourSeed": {
         "seedCleared": "씨드 삭제됨",
-        "seedClearedExplanation": "보안을 위해 클립보드에서 씨드가 삭제되었습니다.",
+        "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
         "mustSaveYourSeed": "<0><0>반드시 아래 나열된 방법 중 </0><1>하나 이상</1><2>을 사용하여 시드를 기록해야 합니다.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "잘못된 씨드",
         "incorrectSeedExplanation": "입력한 씨드가 올바르지 않습니다. 다시 시도해주십시오.",
-        "thisIsACheck": "이것은 씨드를 저장했는지 확인하기 위한 검사입니다.",
-        "ifYouHaveNotSaved": "씨드를 저장하지 않은 경우, 다시 돌아가서 저장하십시오."
+        "thisIsACheck": "시드를 기록하였는지 확인하기 위한 검사를 수행합니다.",
+        "ifYouHaveNotSaved": "시드를 기록하지 않은 경우, 다시 돌아가서 기록하십시오."
     },
     "send": {
         "invalidAddress": "잘못된 주소",
@@ -190,7 +190,7 @@
         "notEnoughFundsExplanation": "거래를 완료를 하기 위해서는 현재 IOTA 잔액이 충분하지 않습니다.",
         "keyReuse": "키 재사용",
         "keyReuseExplanation": "입력한 주소는 이미 사용되었습니다. 다른 주소를 사용하십시오.",
-        "recipientAddress": "받는 이 주소",
+        "recipientAddress": "받는 주소",
         "amount": "금액",
         "max": "최대",
         "message": "메시지",
@@ -212,8 +212,8 @@
         "retypePassword": "비밀번호 다시 입력"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "이 지갑으로 여러 개의 씨드를 사용할 수 있습니다. 각각의 씨드는 계정 이름이 필요합니다.",
-        "youCanAdd": "설정 메뉴에서 씨드를 추가할 수 있습니다."
+        "canUseMultipleSeeds": "하나의 지갑으로 여러 개의 시드를 사용할 수 있습니다. 각각의 시드는 계정 이름이 필요합니다.",
+        "youCanAdd": "설정 메뉴에서 시드를 추가할 수 있습니다."
     },
     "settings": {
         "transferSending": "트랜스퍼 전송중",
@@ -346,9 +346,9 @@
         "hideSeed": "시드 숨기기"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "이미 시드를 가지고 있습니다",
+        "alreadyHave": "시드를 저장하였습니다",
         "reenter": "이제 다시 시드를 입력하여야 합니다.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "시드를 저장하지 않은 채로 사용 중인 장치가 오작동할 경우 아이오타를 잃게 됩니다."
     },
     "walletResetConfirmation": {
         "cannotUndo": "이 작업은 되돌릴 수 없습니다.",
