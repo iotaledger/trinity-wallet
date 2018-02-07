@@ -311,10 +311,10 @@
         "currency": "통화"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "정말로 로그아웃 하시겠습니까?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "QR 코드 스캔"
     },
     "unitInfoModal": {
         "unitSystem": "단위",
@@ -325,7 +325,7 @@
         "one": "일"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
+        "areYouSure": "정말로 이 계정을 삭제하시겠습니까?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "이 작업은 취소할 수 없습니다.",
         "enterPassword": "Enter your password to delete this account."
