@@ -19,6 +19,12 @@ const getProps = overrides =>
             t: () => 'foo',
             generateAlert: noop,
             setAdditionalAccountInfo: noop,
+            secondaryBackgroundColor: 'white',
+            negativeColor: 'white',
+            seed: 'SEED',
+            onboardingComplete: false,
+            seedCount: 0,
+            backgroundColor: 'white',
         },
         overrides,
     );

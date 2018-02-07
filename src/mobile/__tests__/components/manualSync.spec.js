@@ -23,6 +23,10 @@ const getProps = overrides =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
+            textColor: { color: 'white' },
+            arrowLeftImagePath: 0,
+            negativeColor: 'white',
+            borderColor: { borderColor: 'white' },
         },
         overrides,
     );
