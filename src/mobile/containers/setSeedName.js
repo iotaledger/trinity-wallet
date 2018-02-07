@@ -112,21 +112,23 @@ export class SetSeedName extends Component {
                     .then(credentials => {
                         if (isEmpty(credentials)) {
                             return fetch(trimmedAccountName);
-                        } else if (hasDuplicateAccountName(credentials.password, trimmedAccountName)) {
-                            return this.props.generateAlert(
-                                'error',
-                                t('addAdditionalSeed:nameInUse'),
-                                t('addAdditionalSeed:nameInUseExplanation'),
-                            );
-                        } else if (hasDuplicateSeed(credentials.password, seed)) {
-                            return this.props.generateAlert(
-                                'error',
-                                t('addAdditionalSeed:seedInUse'),
-                                t('addAdditionalSeed:seedInUseExplanation'),
-                            );
-                        }
+                        } else {
+                            if (hasDuplicateAccountName(credentials.data, trimmedAccountName)) {
+                                return this.props.generateAlert(
+                                    'error',
+                                    t('addAdditionalSeed:nameInUse'),
+                                    t('addAdditionalSeed:nameInUseExplanation'),
+                                );
+                            } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
+                                return this.props.generateAlert(
+                                    'error',
+                                    t('addAdditionalSeed:seedInUse'),
+                                    t('addAdditionalSeed:seedInUseExplanation'),
+                                );
+                            }
 
-                        return fetch(trimmedAccountName);
+                            return fetch(trimmedAccountName);
+                        }
                     })
                     .catch(() => {
                         this.props.generateAlert(
