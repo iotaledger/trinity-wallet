@@ -111,6 +111,35 @@ describe('Testing ViewAddresses component', () => {
                 const returnValue = [[fakeAddressWithChecksum, {}]];
                 expect(ViewAddresses.getAddressesAsList(args)).toEqual(returnValue);
             });
+
+            it('should return reverse the returned list if argument passed to it is not empty', () => {
+                const fakeAddressOne = 'U'.repeat(81);
+                const fakeAddressTwo = 'A'.repeat(81);
+                const fakeAddressThree = '9'.repeat(81);
+                const args = {
+                    [fakeAddressOne]: {},
+                    [fakeAddressTwo]: {},
+                    [fakeAddressThree]: {},
+                };
+
+                expect(ViewAddresses.getAddressesAsList(args)).not.toEqual([
+                    [`${fakeAddressOne}NXELTUENX`],
+                    {},
+                    [`${fakeAddressTwo}YLFHUOJUY`],
+                    {},
+                    [`${fakeAddressThree}A9BEONKZW`],
+                    {},
+                ]);
+
+                expect(ViewAddresses.getAddressesAsList(args)).not.toEqual([
+                    [`${fakeAddressThree}A9BEONKZW`],
+                    {},
+                    [`${fakeAddressTwo}YLFHUOJUY`],
+                    {},
+                    [`${fakeAddressOne}NXELTUENX`],
+                    {},
+                ]);
+            });
         });
     });
 });
