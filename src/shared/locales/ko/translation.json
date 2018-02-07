@@ -64,7 +64,7 @@
         "sending": "Sending",
         "receiving": "Receiving",
         "confirmed": "확인됨",
-        "pending": "보류",
+        "pending": "처리 중",
         "bundleHash": "번들 해시",
         "addresses": "주소",
         "pressBackAgain": "Press back again to close the app",
@@ -167,7 +167,7 @@
         "addressCopied": "주소가 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
         "generateNewAddress": "새 주소",
-        "message": "선택 정보 입력",
+        "message": "메시지 (선택)",
         "removeMessage": "메시지 삭제하기"
     },
     "saveYourSeed": {
@@ -262,7 +262,7 @@
         "okay": "좋습니다. 이제 귀하의 지갑을 만듭시다!",
         "doYouAlreadyHaveASeed": "이미 당신이 사용하고 싶은 씨드가 있습니까?",
         "seedExplanation": "81자로 이루어진 IOTA 씨드는 귀하의 계정에 아이디 및 비밀번호와 같습니다.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 당신의 펀드에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
         "keepSafe": "반드시 씨드를 안전히 보관하십시오."
     },
     "welcome": {
