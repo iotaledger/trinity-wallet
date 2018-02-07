@@ -26,10 +26,6 @@ describe('Testing EditAccountName component', () => {
             expect(EditAccountName.propTypes.t).toBe(PropTypes.func.isRequired);
         });
 
-        it('should require a seedIndex number as a prop', () => {
-            expect(EditAccountName.propTypes.seedIndex).toBe(PropTypes.number.isRequired);
-        });
-
         it('should require an accountName string as a prop', () => {
             expect(EditAccountName.propTypes.accountName).toBe(PropTypes.string.isRequired);
         });
