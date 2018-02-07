@@ -75,7 +75,9 @@ class EnterPassword extends Component {
         };
     }
     componentWillUnmount() {
-        FingerprintScanner.release();
+        if (this.props.isFingerprintEnabled) {
+            FingerprintScanner.release();
+        }
     }
 
     activateFingerPrintScanner() {
