@@ -32,10 +32,6 @@ describe('Testing CurrencySelection component', () => {
             expect(CurrencySelection.propTypes.isFetchingCurrencyData).toBe(PropTypes.bool.isRequired);
         });
 
-        it('should require an hasErrorFetchingCurrencyData boolean as a prop', () => {
-            expect(CurrencySelection.propTypes.hasErrorFetchingCurrencyData).toBe(PropTypes.bool.isRequired);
-        });
-
         it('should require a getCurrencyData function as a prop', () => {
             expect(CurrencySelection.propTypes.getCurrencyData).toBe(PropTypes.func.isRequired);
         });

@@ -1,6 +1,7 @@
 import noop from 'lodash/noop';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
+import PropTypes from 'prop-types';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 import { width, height } from '../util/dimensions';
@@ -103,6 +104,17 @@ const nextCurrency = {
 };
 
 class Chart extends Component {
+    static propTypes = {
+        textColor: PropTypes.string.isRequired,
+        marketData: PropTypes.object.isRequired,
+        setCurrency: PropTypes.func.isRequired,
+        setTimeframe: PropTypes.func.isRequired,
+        borderColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        chartLineColorPrimary: PropTypes.string.isRequired,
+        chartLineColorSecondary: PropTypes.string.isRequired,
+    };
+
     constructor(props) {
         super(props);
 
@@ -112,62 +124,39 @@ class Chart extends Component {
     }
 
     componentWillMount() {
-        switch (this.props.marketData.currency) {
+        const { marketData } = this.props;
+        switch (marketData.currency) {
             case 'USD':
-                return this.setState({ price: this.props.marketData.usdPrice });
+                return this.setState({ price: marketData.usdPrice });
             case 'EUR':
-                return this.setState({ price: this.props.marketData.eurPrice });
+                return this.setState({ price: marketData.eurPrice });
             case 'BTC':
-                return this.setState({ price: this.props.marketData.btcPrice });
+                return this.setState({ price: marketData.btcPrice });
             case 'ETH':
-                return this.setState({ price: this.props.marketData.ethPrice });
+                return this.setState({ price: marketData.ethPrice });
             default:
                 return noop;
         }
     }
 
-    changeCurrency() {
-        const { marketData, setCurrency } = this.props;
-        const newCurrency = nextCurrency[marketData.currency];
-        setCurrency(newCurrency);
-        this.setState({ price: marketData[`${newCurrency.toLowerCase()}Price`] });
-    }
-
-    changeTimeframe() {
-        const { marketData, setTimeframe } = this.props;
-        setTimeframe(timeframeFromCurrent[marketData.timeframe]);
-    }
-
     getMaxY() {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
-        const maxValue = Math.max(
-            ...data.map(object => {
-                return object.y;
-            }),
-        );
+        const maxValue = Math.max(...data.map(object => object.y));
         return maxValue;
     }
 
     getMinY() {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
-        const minValue = Math.min(
-            ...data.map(object => {
-                return object.y;
-            }),
-        );
+        const minValue = Math.min(...data.map(object => object.y));
         return minValue;
     }
 
     getMaxX() {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
-        const maxValue = Math.max(
-            ...data.map(object => {
-                return object.x;
-            }),
-        );
+        const maxValue = Math.max(...data.map(object => object.x));
         return maxValue;
     }
 
@@ -185,15 +174,26 @@ class Chart extends Component {
 
     getPriceFormat(x) {
         const { marketData } = this.props;
-        x = parseFloat(x);
+        const xValue = parseFloat(x);
 
         if (marketData.currency === 'USD') {
-            return x.toFixed(2);
+            return xValue.toFixed(2);
         } else if (marketData.currency === 'EUR') {
-            return x.toFixed(2);
+            return xValue.toFixed(2);
         }
+        return xValue.toFixed(5);
+    }
 
-        return x.toFixed(5);
+    changeCurrency() {
+        const { marketData, setCurrency } = this.props;
+        const newCurrency = nextCurrency[marketData.currency];
+        setCurrency(newCurrency);
+        this.setState({ price: marketData[`${newCurrency.toLowerCase()}Price`] });
+    }
+
+    changeTimeframe() {
+        const { marketData, setTimeframe } = this.props;
+        setTimeframe(timeframeFromCurrent[marketData.timeframe]);
     }
 
     render() {
