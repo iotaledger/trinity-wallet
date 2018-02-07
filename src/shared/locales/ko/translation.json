@@ -327,7 +327,7 @@
     "deleteAccount": {
         "areYouSure": "정말로 이 계정을 삭제하시겠습니까?",
         "yourSeedWillBeRemoved": "등록된 시드 및 거래 내역이 전부 제거됩니다.",
-        "thisAction": "이 작업은 취소할 수 없습니다.",
+        "thisAction": "이 작업은 되돌릴 수 없습니다.",
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
     },
     "manualSync": {
@@ -351,7 +351,7 @@
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "이 작업은 되돌릴 수 없습니다.",
         "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
@@ -363,9 +363,9 @@
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
+        "status": "상태",
+        "enabled": "사용 중",
+        "disabled": "사용 중지됨",
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
