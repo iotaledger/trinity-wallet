@@ -187,6 +187,7 @@ class EnterSeed extends React.Component {
             onQRRead={data => this.onQRRead(data)}
             hideModal={() => this.hideModal()}
             secondaryCtaColor="white"
+            secondaryBackgroundColor="white"
         />
     );
 

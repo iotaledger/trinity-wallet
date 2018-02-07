@@ -350,6 +350,7 @@ class Send extends Component {
                         ctaColor={ctaColor}
                         secondaryCtaColor={secondaryCtaColor}
                         ctaBorderColor={ctaBorderColor}
+                        secondaryBackgroundColor={secondaryBackgroundColor}
                     />
                 );
                 this.setState({
