@@ -198,8 +198,8 @@
         "invalidAmount": "잘못된 금액이 입력됨",
         "invalidAmountExplanation": "거래 금액을 위한 숫자 값을 입력하십시오.",
         "maximumSelected": "최대 금액 선택됨",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "iotaUnits": "아이오타 단위 체계",
+        "sendMax": "최대 금액"
     },
     "setPassword": {
         "passwordTooShort": "비밀번호가 너무 짧습니다.",
@@ -250,8 +250,8 @@
         "copy": "복사",
         "paste": "붙여넣기",
         "selectAll": "전체 선택",
-        "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "securitySettings": "보안 설정",
+        "fingerprint": "생체 인증"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
