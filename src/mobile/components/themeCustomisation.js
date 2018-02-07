@@ -238,11 +238,11 @@ class ThemeCustomisation extends Component {
                                 options={themes}
                                 saveSelection={selection => {
                                     const newTHEMES = cloneDeep(THEMES);
-                                    let newTheme = newTHEMES.themes[t];
+                                    let newTheme = newTHEMES.themes[selection];
                                     if (selection === 'Custom' && this.props.themeName === 'Custom') {
                                         newTheme = this.props.theme;
                                     }
-                                    this.setState({ themeName: t, theme: newTheme });
+                                    this.setState({ themeName: selection, theme: newTheme });
                                 }}
                             />
                         </View>
@@ -250,7 +250,7 @@ class ThemeCustomisation extends Component {
                             style={[
                                 styles.demoContainer,
                                 {
-                                    backgroundColor,
+                                    backgroundColor: backgroundColor,
                                     borderColor: secondaryBackgroundColor,
                                 },
                             ]}
