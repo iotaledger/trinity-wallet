@@ -32,7 +32,6 @@ const account = (
         unspentAddressesHashes: {},
         pendingTxTailsHashes: {},
         is2FAEnabled: false,
-        key2FA: '',
         isFingerprintEnabled: false,
     },
     action,
@@ -196,11 +195,6 @@ const account = (
             return {
                 ...state,
                 is2FAEnabled: action.payload,
-            };
-        case ActionTypes.SET_2FA_KEY:
-            return {
-                ...state,
-                key2FA: action.payload,
             };
         case ActionTypes.SET_FINGERPRINT_STATUS:
             return {
