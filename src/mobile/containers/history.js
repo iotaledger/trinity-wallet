@@ -156,7 +156,7 @@ class History extends Component {
                 return t('global:pending');
             }
 
-            return incoming ? t('global:received') : t('global:sent');
+            return incoming ? t('home:receive') : t('global:send');
         };
 
         return map(transfers, transfer => {
