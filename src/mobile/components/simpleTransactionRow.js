@@ -42,6 +42,7 @@ class SimpleTransactionRow extends Component {
         negativeColor: PropTypes.string.isRequired,
         extraColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     render() {

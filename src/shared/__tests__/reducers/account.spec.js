@@ -15,7 +15,6 @@ describe('Reducer: account', () => {
                 unspentAddressesHashes: {},
                 pendingTxTailsHashes: {},
                 is2FAEnabled: false,
-                key2FA: '',
                 isFingerprintEnabled: false,
             };
 
@@ -913,23 +912,6 @@ describe('Reducer: account', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 is2FAEnabled: true,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('SET_2FA_KEY', () => {
-        it('should set key2FA to payload', () => {
-            const initialState = {
-                key2FA: 'foo',
-            };
-
-            const action = actions.set2FAKey('baz');
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                key2FA: 'baz',
             };
 
             expect(newState).to.eql(expectedState);

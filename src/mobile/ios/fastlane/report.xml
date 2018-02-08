@@ -5,17 +5,17 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: Verifying fastlane version" time="0.030692">
+      <testcase classname="fastlane.lanes" name="0: Verifying fastlane version" time="0.145262">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.006884">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.008321">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: capture_screenshots" time="887.03555">
+      <testcase classname="fastlane.lanes" name="2: capture_screenshots" time="1202.648541">
         
           <failure message="/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/actions/actions_helper.rb:48:in `execute_action'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/runner.rb:231:in `block in execute_action'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/runner.rb:227:in `chdir'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/runner.rb:227:in `execute_action'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/runner.rb:148:in `trigger_action_by_name'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/fast_file.rb:148:in `method_missing'&#10;Fastfile:37:in `block in parsing_binding'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/lane.rb:33:in `call'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/runner.rb:45:in `chdir'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/runner.rb:45:in `execute'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/lane_manager.rb:56:in `cruise_lane'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/commands_generator.rb:108:in `block (2 levels) in run'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0/gems/commander-fastlane-4.4.5/lib/commander/command.rb:178:in `call'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0/gems/commander-fastlane-4.4.5/lib/commander/command.rb:153:in `run'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0/gems/commander-fastlane-4.4.5/lib/commander/runner.rb:476:in `run_active_command'&#10;/Users/rajiv/.rvm/rubies/ruby-2.4.0/lib/ruby/gems/2.4.0/gems/fastlane-2.80.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:75:in `run!'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0/gems/commander-fastlane-4.4.5/lib/commander/delegates.rb:15:in `run!'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/commands_generator.rb:337:in `run'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/commands_generator.rb:42:in `start'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/fastlane/lib/fastlane/cli_tools_distributor.rb:98:in `take_off'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0@global/gems/fastlane-2.80.0/bin/fastlane:20:in `&lt;top (required)&gt;'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0/bin/fastlane:23:in `load'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0/bin/fastlane:23:in `&lt;main&gt;'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0/bin/ruby_executable_hooks:15:in `eval'&#10;/Users/rajiv/.rvm/gems/ruby-2.4.0/bin/ruby_executable_hooks:15:in `&lt;main&gt;'&#10;&#10;Too many errors... no more retries..." />
         

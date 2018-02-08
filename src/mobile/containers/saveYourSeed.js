@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
-import DynamicStatusBar from '../components/dynamicStatusBar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -10,8 +9,72 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    topContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 22,
+    },
+    midContainer: {
+        flex: 4,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    bottomContainer: {
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        paddingBottom: height / 20,
+    },
+    optionButtonText: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 25.3,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    optionButton: {
+        borderWidth: 1.5,
+        borderRadius: GENERAL.borderRadiusLarge,
+        width: width / 1.36,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+    infoText: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 23,
+        textAlign: 'left',
+        paddingTop: height / 10,
+        backgroundColor: 'transparent',
+        paddingHorizontal: width / 9,
+    },
+    infoTextNormal: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 23,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    infoTextBold: {
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 23,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    iotaLogo: {
+        height: width / 5,
+        width: width / 5,
+    },
+});
 
 class SaveYourSeed extends Component {
     static propTypes = {
@@ -22,6 +85,7 @@ class SaveYourSeed extends Component {
         extraColor: PropTypes.string.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -30,12 +94,6 @@ class SaveYourSeed extends Component {
                 this.onBackPress();
                 return true;
             });
-        }
-    }
-
-    componentWillUnmount() {
-        if (this.props.onboardingComplete) {
-            BackHandler.removeEventListener('saveYourSeedBackPress');
         }
     }
 
@@ -48,6 +106,13 @@ class SaveYourSeed extends Component {
             this.props.setCopiedToClipboard(false);
         }
     }
+
+    componentWillUnmount() {
+        if (this.props.onboardingComplete) {
+            BackHandler.removeEventListener('saveYourSeedBackPress');
+        }
+    }
+
     onDonePress() {
         this.props.navigator.push({
             screen: 'saveSeedConfirmation',
@@ -108,7 +173,7 @@ class SaveYourSeed extends Component {
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
-            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+            <View style={[styles.container, { backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
@@ -122,7 +187,7 @@ class SaveYourSeed extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ paddingTop: height / 20 }}>
-                        <TouchableOpacity onPress={event => this.onWriteClick()}>
+                        <TouchableOpacity onPress={() => this.onWriteClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:manualCopy').toUpperCase()}
@@ -131,7 +196,7 @@ class SaveYourSeed extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={event => this.onPrintClick()}>
+                        <TouchableOpacity onPress={() => this.onPrintClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:paperWallet').toUpperCase()}
@@ -140,7 +205,7 @@ class SaveYourSeed extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={event => this.onCopyClick()}>
+                        <TouchableOpacity onPress={() => this.onCopyClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:copyToClipboard').toUpperCase()}
@@ -162,70 +227,6 @@ class SaveYourSeed extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    topContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 22,
-    },
-    midContainer: {
-        flex: 4,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    bottomContainer: {
-        justifyContent: 'center',
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-        paddingBottom: height / 20,
-    },
-    optionButtonText: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 25.3,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    optionButton: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.36,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    infoText: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 23,
-        textAlign: 'left',
-        paddingTop: height / 10,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        paddingHorizontal: width / 9,
-    },
-    infoTextNormal: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 23,
-        textAlign: 'left',
-        backgroundColor: 'transparent',
-    },
-    infoTextBold: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-});
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,

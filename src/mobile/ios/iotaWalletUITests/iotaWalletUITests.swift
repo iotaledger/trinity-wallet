@@ -52,7 +52,7 @@ class iotaWalletUITests: XCTestCase {
       sleep(3)
       XCTAssert(app/*@START_MENU_TOKEN@*/.staticTexts["Z9C"]/*[[".otherElements.matching(identifier: \"SEED Z9C Seeds should be 81 characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters. \\nNEVER SHARE YOUR SEED WITH ANYONE BACK NEXT\")",".otherElements[\"SEED Z9C Seeds should be 81 characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters. \\nNEVER SHARE YOUR SEED WITH ANYONE\"]",".otherElements[\"Z9C\"]",".staticTexts[\"Z9C\"]",".staticTexts[\"enterSeed-checksum\"]"],[[[-1,4],[-1,3],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,4],[-1,3],[-1,2,3],[-1,1,2]],[[-1,4],[-1,3],[-1,2,3]],[[-1,4],[-1,3]]],[1]]@END_MENU_TOKEN@*/.exists)
       snapshot("enterSeed")
-      app/*@START_MENU_TOKEN@*/.buttons["Done"]/*[[".keyboards.buttons[\"Done\"]",".buttons[\"Done\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+      app/*@START_MENU_TOKEN@*/.keyboards.buttons["Done"]/*[[".keyboards.buttons[\"Done\"]",".buttons[\"Done\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
       sleep(3)
       if app.otherElements["enterSeed-seedbox"].exists {
         app.otherElements["enterSeed-seedbox"].typeText("\n")
@@ -65,12 +65,12 @@ class iotaWalletUITests: XCTestCase {
       app.otherElements["setPassword-passwordbox"].typeText("trinity")
       sleep(1)
       app.otherElements["setPassword-passwordbox"].typeText("test1")
-      app.buttons["Next"].tap()
+      app.keyboards.buttons["Next"].tap()
       app.otherElements["setPassword-reentrybox"].typeText("trinity")
       sleep(1)
       app.otherElements["setPassword-reentrybox"].typeText("test1")
       snapshot("setPassword")
-      app.buttons["Done"].tap()
+      app.keyboards.buttons["Done"].tap()
       sleep(1)
       snapshot("onboardingComplete")
 
