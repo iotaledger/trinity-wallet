@@ -134,18 +134,18 @@
     },
     "login": {
         "emptyPassword": "비밀번호 입력",
-        "emptyPasswordExplanation": "로그인을 위해 비밀번호를 입력하십시오. 다시 시도하십시오.",
-        "enterPassword": "비밀번호를 입력 해주십시오.",
-        "useSeed": "씨드 사용하기",
+        "emptyPasswordExplanation": "비밀번호를 입력해야 로그인할 수 있습니다. 다시 시도해 주십시오.",
+        "enterPassword": "비밀번호를 입력해 주십시오.",
+        "useSeed": "시드 사용하기",
         "login": "로그인",
-        "selectDifferentNode": "다른 노드를 선택해 보시겠습니까?",
+        "selectDifferentNode": "다른 노드를 선택하시겠습니까?",
         "setNode": "노드 설정",
-        "cannotConnect": "IOTA 노드에 연결할 수가 없습니다."
+        "cannotConnect": "IOTA 노드에 연결할 수 없습니다."
     },
     "loading": {
         "loadingFirstTime": "처음으로 시드를 불러오는 중입니다.",
         "thisMayTake": "시간이 조금 걸릴 수 있습니다.",
-        "youMayNotice": "당신의 디바이스가 느려지는 것을 감지할 수도 있습니다."
+        "youMayNotice": "기기가 느려질 수도 있습니다."
     },
     "newSeedSetup": {
         "seedNotGenerated": "시드가 생성되지 않았습니다",
@@ -171,19 +171,19 @@
         "removeMessage": "메시지 삭제하기"
     },
     "saveYourSeed": {
-        "seedCleared": "씨드 삭제됨",
+        "seedCleared": "시드 삭제됨",
         "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
         "mustSaveYourSeed": "<0><0>반드시 아래 나열된 방법 중 </0><1>하나 이상</1><2>을 사용하여 시드를 기록해야 합니다.</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "잘못된 씨드",
-        "incorrectSeedExplanation": "입력한 씨드가 올바르지 않습니다. 다시 시도해주십시오.",
+        "incorrectSeed": "잘못된 시드",
+        "incorrectSeedExplanation": "입력한 시드가 올바르지 않습니다. 다시 시도해 주십시오.",
         "thisIsACheck": "시드를 기록하였는지 확인하기 위한 검사를 수행합니다.",
-        "ifYouHaveNotSaved": "시드를 기록하지 않은 경우, 다시 돌아가서 기록하십시오."
+        "ifYouHaveNotSaved": "시드를 기록하지 않은 경우 다시 뒤로 돌아가서 기록하십시오."
     },
     "send": {
         "invalidAddress": "잘못된 주소",
-        "invalidAddressExplanation1": "주소는 {{maxLength}} 글자 수를 포함해야하고 체크섬을 포함해야 합니다.",
+        "invalidAddressExplanation1": "주소는 {{maxLength}}글자로 구성되어야 하며, 체크섬을 포함해야 합니다.",
         "invalidAddressExplanation2": "주소에 유효하지 않은 문자가 포함되어 있습니다.",
         "invalidAddressExplanation3": "주소에 유효하지 않은 체크섬이 포함되어 있습니다.",
         "notEnoughFunds": "잔액 부족",
