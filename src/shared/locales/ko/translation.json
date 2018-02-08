@@ -106,18 +106,18 @@
         "confirmPassword": "새 비밀번호 확인"
     },
     "copyToClipboard": {
-        "seedCleared": "씨드 삭제됨",
+        "seedCleared": "시드 삭제됨",
         "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
-        "seedCopied": "씨드가 클립보드에 복사됨",
+        "seedCopied": "시드가 클립보드에 복사됨",
         "seedCopiedExplanation": "'완료'를 누르거나 60초가 지나면 시드가 삭제됩니다.",
         "clickToCopy": "아래 버튼을 눌러 시드를 복사하고, 비밀번호 관리자에 저장하십시오.",
         "doNotStore": "시드를 암호화하지 않은 채로 저장하지 마십시오.",
         "copyToClipboard": "클립보드에 복사"
     },
     "enterSeed": {
-        "invalidCharacters": "유효하지 않은 문자가 씨드에 포함되어 있음",
+        "invalidCharacters": "시드에 잘못된 문자 포함",
         "invalidCharactersExplanation": "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주십시오.",
-        "seedTooShort": "씨드가 너무 짧습니다.",
+        "seedTooShort": "시드가 너무 짧음",
         "seedTooShortExplanation": "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
         "seedExplanation": "시드는 {{maxLength}}자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. {{maxLength}}자보다 더 긴 시드는 사용할 수 없습니다.",
         "neverShare": "절대로 다른 사람에게 시드를 알려주지 마십시오"
@@ -126,14 +126,14 @@
         "balance": "잔액",
         "send": "보내기",
         "receive": "받기",
-        "history": "히스토리",
+        "history": "거래 기록",
         "settings": "설정"
     },
     "languageSetup": {
         "language": "언어"
     },
     "login": {
-        "emptyPassword": "빈 비밀번호",
+        "emptyPassword": "비밀번호 입력",
         "emptyPasswordExplanation": "로그인을 위해 비밀번호를 입력하십시오. 다시 시도하십시오.",
         "enterPassword": "비밀번호를 입력 해주십시오.",
         "useSeed": "씨드 사용하기",
