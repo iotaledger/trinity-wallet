@@ -168,14 +168,9 @@ export class TwoFactorSetupAddKey extends Component {
                     </View>
                     <TouchableOpacity onPress={() => this.onKeyPress(this.state.authKey)}>
                         <Text style={[styles.infoText, textColor]}>
-<<<<<<< src/mobile/containers/twoFactorSetupAddKey.js
                             <Text style={styles.infoText}>{t('key')}</Text>
                             <Text style={styles.infoText}>: </Text>
                             <Text style={styles.infoTextLight}>{this.state.authkey}</Text>
-=======
-                            <Text style={styles.infoText}>Key: </Text>
-                            <Text style={styles.infoTextLight}>{this.state.authKey}</Text>
->>>>>>> src/mobile/containers/twoFactorSetupAddKey.js
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -183,13 +178,8 @@ export class TwoFactorSetupAddKey extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.navigateToEnterToken}
-<<<<<<< src/mobile/containers/twoFactorSetupAddKey.js
                         leftText={t('global:back')}
                         rightText={t('global:next')}
-=======
-                        leftText="BACK"
-                        rightText="NEXT"
->>>>>>> src/mobile/containers/twoFactorSetupAddKey.js
                     />
                 </View>
                 <StatefulDropdownAlert />
