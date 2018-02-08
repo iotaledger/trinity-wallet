@@ -1,16 +1,31 @@
+import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, ListView, Text, TouchableWithoutFeedback, Clipboard, RefreshControl } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    ListView,
+    Text,
+    TouchableWithoutFeedback,
+    Clipboard,
+    RefreshControl,
+    FlatList,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { extractTailTransferFromBundle } from 'iota-wallet-shared-modules/libs/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
+import { convertFromTrytes, isReceivedTransfer, iota } from 'iota-wallet-shared-modules/libs/iota';
+import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
+import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import TransactionRow from '../components/transactionRow';
+import TransferListItem from '../components/transferListItem';
 import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
 
@@ -124,66 +139,88 @@ class History extends Component {
         this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
-    render() {
+    prepTransactions() {
         const {
-            t,
-            addresses,
             transfers,
-            positiveColor,
-            negativeColor,
-            backgroundColor,
+            addresses,
             extraColor,
-            secondaryBackgroundColor,
+            negativeColor,
+            positiveColor,
             pendingColor,
+            secondaryBackgroundColor,
+            t,
         } = this.props;
-        const hasTransactions = transfers.length > 0;
-        const textColor = { color: secondaryBackgroundColor };
-        const borderColor = { borderColor: secondaryBackgroundColor };
+
+        const computeStatus = (persistence, incoming) => {
+            if (!persistence) {
+                return t('global:pending');
+            }
+
+            return incoming ? t('global:received') : t('global:sent');
+        };
+
+        return map(transfers, transfer => {
+            const tx = extractTailTransferFromBundle(transfer);
+            const isIncoming = isReceivedTransfer(transfer, addresses);
+            const isSecondaryBackgroundColorWhite = secondaryBackgroundColor === 'white';
+
+            const borderColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
+            const backgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
+
+            return {
+                status: computeStatus(tx.persistence, isIncoming),
+                confirmation: isIncoming ? t('global:received') : t('global:sent'),
+                value: round(formatValue(tx.value), 1),
+                unit: formatUnit(tx.value),
+                time: formatTime(convertUnixTimeToJSDate(tx.timestamp)),
+                message: convertFromTrytes(tx.signatureMessageFragment),
+                messageTitle: `${t('send:message')}:  `,
+                style: {
+                    titleColor: isIncoming ? extraColor : negativeColor,
+                    containerBorderColor: { borderColor },
+                    containerBackgroundColor: { backgroundColor },
+                    confirmationStatusColor: { color: !tx.persistence ? pendingColor : positiveColor },
+                    messageTextColor: { color: secondaryBackgroundColor },
+                },
+            };
+        });
+    }
+
+    renderTransactions() {
+        const { negativeColor, secondaryBackgroundColor, t } = this.props;
+        const { refreshing } = this.state;
+
+        const data = this.prepTransactions();
+
+        return (
+            <FlatList
+                data={data}
+                initialNumToRender={8}
+                removeClippedSubviews
+                keyExtractor={(item, index) => index}
+                renderItem={({ item }) => <TransferListItem {...item} onItemPress={() => console.log('Hey')} />}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={this.onRefresh} tintColor={negativeColor} />
+                }
+                ItemSeparatorComponent={() => <View style={styles.separator} />}
+                ListEmptyComponent={() => (
+                    <View style={styles.noTransactionsContainer}>
+                        <Text style={[styles.noTransactions, { color: secondaryBackgroundColor }]}>
+                            {t('global:noTransactions')}
+                        </Text>
+                    </View>
+                )}
+            />
+        );
+    }
+
+    render() {
+        const transactions = this.renderTransactions();
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
-                    {hasTransactions ? (
-                        <View style={styles.listView}>
-                            <ListView
-                                refreshControl={
-                                    <RefreshControl
-                                        refreshing={this.state.refreshing}
-                                        onRefresh={this.onRefresh}
-                                        tintColor={negativeColor}
-                                    />
-                                }
-                                contentContainerStyle={{ paddingTop: 1, paddingBottom: 1 }}
-                                dataSource={ds.cloneWithRows(transfers)}
-                                renderRow={dataSource => (
-                                    <TransactionRow
-                                        addresses={addresses}
-                                        rowData={dataSource}
-                                        titleColor="#F8FFA6"
-                                        copyAddress={item => this.copyAddress(item)}
-                                        copyBundleHash={item => this.copyBundleHash(item)}
-                                        positiveColor={positiveColor}
-                                        negativeColor={negativeColor}
-                                        extraColor={extraColor}
-                                        backgroundColor={backgroundColor}
-                                        textColor={textColor}
-                                        borderColor={borderColor}
-                                        secondaryBackgroundColor={secondaryBackgroundColor}
-                                        pendingColor={pendingColor}
-                                    />
-                                )}
-                                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                                enableEmptySections
-                                ref={listview => {
-                                    this.listview = listview;
-                                }}
-                                snapToInterval={height * 0.7 / 6}
-                            />
-                        </View>
-                    ) : (
-                        <View style={styles.noTransactionsContainer}>
-                            <Text style={[styles.noTransactions, textColor]}>{t('global:noTransactions')}</Text>
-                        </View>
-                    )}
+                    <View style={styles.listView}>{transactions}</View>
                 </View>
             </TouchableWithoutFeedback>
         );
