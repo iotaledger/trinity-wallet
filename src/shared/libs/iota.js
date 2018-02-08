@@ -1,3 +1,4 @@
+import isNull from 'lodash/isNull';
 import IOTA from './iota.lib.promisified';
 import { defaultNode, nodes } from '../config';
 
@@ -12,12 +13,15 @@ export const getRandomNode = () => {
 };
 
 export const convertFromTrytes = trytes => {
-    trytes = trytes.replace(/9+$/, '');
-    const message = iota.utils.fromTrytes(trytes);
-    if (trytes === '') {
+    const trytesWithoutNines = trytes.replace(/9+$/, '');
+
+    const message = iota.utils.fromTrytes(trytesWithoutNines);
+
+    if (trytesWithoutNines === '') {
         return 'Empty';
     }
-    return message;
+
+    return isNull(message) && trytesWithoutNines ? trytesWithoutNines : message;
 };
 
 export const getBalances = addresses => {
