@@ -26,6 +26,7 @@ const getProps = overrides =>
             secondaryBackgroundColor: 'white',
             navigator: {},
             generateAlert: noop,
+            t: () => '',
         },
         overrides,
     );
@@ -96,7 +97,7 @@ describe('Testing TwoFactorSetupAddKey component', () => {
             const props = getProps();
 
             const wrapper = shallow(<TwoFactorSetupAddKey {...props} />);
-            expect(wrapper.find('Text').length).toEqual(4);
+            expect(wrapper.find('Text').length).toEqual(5);
         });
 
         it('should return a StatefulDropdownAlert component', () => {
