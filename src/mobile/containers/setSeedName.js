@@ -119,7 +119,7 @@ export class SetSeedName extends Component {
                                     t('addAdditionalSeed:nameInUse'),
                                     t('addAdditionalSeed:nameInUseExplanation'),
                                 );
-                            } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
+                            } else if (hasDuplicateSeed(credentials.data, seed)) {
                                 return this.props.generateAlert(
                                     'error',
                                     t('addAdditionalSeed:seedInUse'),
