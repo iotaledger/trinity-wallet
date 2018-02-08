@@ -4,9 +4,8 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableW
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import { detectLocale, selectLocale } from '../components/locale';
 import Dropdown from './dropdown';
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { selectLocale } from '../components/locale';
 
 const { width } = Dimensions.get('window');
 const { height } = global;
@@ -74,6 +73,10 @@ class LanguageSelection extends Component {
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         setLanguage: PropTypes.func.isRequired,
+        textColor: PropTypes.object.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        tickImagePath: PropTypes.number.isRequired,
+        language: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -91,15 +94,7 @@ class LanguageSelection extends Component {
     }
 
     render() {
-        const {
-            backPress,
-            t,
-            textColor,
-            secondaryBackgroundColor,
-            arrowLeftImagePath,
-            tickImagePath,
-            language,
-        } = this.props;
+        const { backPress, t, textColor, arrowLeftImagePath, tickImagePath, language } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -120,8 +115,8 @@ class LanguageSelection extends Component {
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={language}
                             options={I18N_LOCALE_LABELS}
-                            saveSelection={language => {
-                                this.languageSelected = language;
+                            saveSelection={lang => {
+                                this.languageSelected = lang;
                             }}
                             background
                         />

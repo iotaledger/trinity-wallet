@@ -306,7 +306,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 return dispatch(
                     generateAlert(
                         'error',
-                        'Please wait for another transfer to confirm',
+                        'Please wait',
                         'Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.',
                         20000,
                     ),
