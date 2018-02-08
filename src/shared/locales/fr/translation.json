@@ -164,7 +164,7 @@
         "printWallet": "IMPRIMER LE PORTEFEUILLE"
     },
     "receive": {
-        "addressCopied": "Adressée copiée",
+        "addressCopied": "Adresse copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papier.",
         "generateNewAddress": "NOUVELLE ADRESSE",
         "message": "Message facultatif",
