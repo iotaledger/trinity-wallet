@@ -99,6 +99,7 @@ export class TwoFactorSetupAddKey extends Component {
     }
 
     onKeyPress(key) {
+        const { t } = this.props;
         if (key) {
             Clipboard.setString(key);
 
@@ -144,7 +145,7 @@ export class TwoFactorSetupAddKey extends Component {
     }
 
     render() {
-        const { secondaryBackgroundColor } = this.props;
+        const { secondaryBackgroundColor, t } = this.props;
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
