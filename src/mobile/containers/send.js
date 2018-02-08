@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class Send extends Component {
+export class Send extends Component {
     static propTypes = {
         t: PropTypes.func.isRequired,
         currency: PropTypes.string.isRequired,
@@ -220,6 +220,21 @@ class Send extends Component {
             this.props.clearSendFields();
             this.props.setSendDenomination('i');
             this.setState({ sending: false });
+
+            // Reset toggle switch in case maximum was on
+            this.resetToggleSwitch();
+        }
+    }
+
+    resetToggleSwitch() {
+        const { maxPressed } = this.state;
+        const { t } = this.props;
+
+        if (maxPressed) {
+            this.setState({
+                maxPressed: !maxPressed,
+                maxText: t('send:sendMax'),
+            });
         }
     }
 
