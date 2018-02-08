@@ -174,6 +174,7 @@ class ThemeCustomisation extends Component {
         themeName: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         backPress: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -235,13 +236,13 @@ class ThemeCustomisation extends Component {
                                 shadow
                                 defaultOption={themeName}
                                 options={themes}
-                                saveSelection={t => {
+                                saveSelection={selection => {
                                     const newTHEMES = cloneDeep(THEMES);
-                                    let newTheme = newTHEMES.themes[t];
-                                    if (t === 'Custom' && this.props.themeName === 'Custom') {
+                                    let newTheme = newTHEMES.themes[selection];
+                                    if (selection === 'Custom' && this.props.themeName === 'Custom') {
                                         newTheme = this.props.theme;
                                     }
-                                    this.setState({ themeName: t, theme: newTheme });
+                                    this.setState({ themeName: selection, theme: newTheme });
                                 }}
                             />
                         </View>
@@ -249,7 +250,7 @@ class ThemeCustomisation extends Component {
                             style={[
                                 styles.demoContainer,
                                 {
-                                    backgroundColor,
+                                    backgroundColor: backgroundColor,
                                     borderColor: secondaryBackgroundColor,
                                 },
                             ]}

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
-import { set2FAKey, set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
+import { set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import { StyleSheet, View, Text, Image, Clipboard, TouchableOpacity, BackHandler } from 'react-native';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import { Navigation } from 'react-native-navigation';
 import QRCode from 'react-native-qrcode-svg';
+import { Clipboard, StyleSheet, View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import DynamicStatusBar from '../components/dynamicStatusBar';
+import { storeTwoFactorAuthKeyInKeychain } from '../util/keychain';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
-// import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -71,23 +71,22 @@ const styles = StyleSheet.create({
     },
 });
 
-class TwoFactorSetupAddKey extends Component {
+export class TwoFactorSetupAddKey extends Component {
     static propTypes = {
         backgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        set2FAKey: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         navigator: PropTypes.object.isRequired,
     };
 
     constructor() {
         super();
+
         this.goBack = this.goBack.bind(this);
         this.navigateToEnterToken = this.navigateToEnterToken.bind(this);
+
         this.state = {
-            code: '',
-            authkey: authenticator.generateKey(),
+            authKey: authenticator.generateKey(),
         };
     }
 
@@ -98,9 +97,10 @@ class TwoFactorSetupAddKey extends Component {
         });
     }
 
-    onKeyPress(address) {
-        if (address !== ' ') {
-            Clipboard.setString(address);
+    onKeyPress(key) {
+        if (key) {
+            Clipboard.setString(key);
+
             this.props.generateAlert(
                 'success',
                 'Key copied to clipboard',
@@ -110,7 +110,6 @@ class TwoFactorSetupAddKey extends Component {
     }
 
     goBack() {
-        // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
@@ -127,24 +126,28 @@ class TwoFactorSetupAddKey extends Component {
     }
 
     navigateToEnterToken() {
-        this.props.set2FAKey(this.state.authkey);
         Clipboard.setString(' ');
-        this.props.navigator.push({
-            screen: 'twoFactorSetupEnterToken',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
-            },
-            animated: false,
-            appStyle: {
-                orientation: 'portrait',
-            },
-        });
+
+        return storeTwoFactorAuthKeyInKeychain(this.state.authKey)
+            .then(() => {
+                this.props.navigator.push({
+                    screen: 'twoFactorSetupEnterToken',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundColor: this.props.backgroundColor,
+                    },
+                    animated: false,
+                    appStyle: {
+                        orientation: 'portrait',
+                    },
+                });
+            })
+            .catch(err => console.error(err)); // Generate an alert.
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor } = this.props;
+        const { secondaryBackgroundColor } = this.props;
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -160,16 +163,16 @@ class TwoFactorSetupAddKey extends Component {
                     <Text style={[styles.subHeaderText, textColor]}>Add this key to your 2FA app</Text>
                     <View style={styles.qrContainer}>
                         <QRCode
-                            value={authenticator.generateTotpUri(this.state.authkey, 'Trinity Wallet Mobile')}
+                            value={authenticator.generateTotpUri(this.state.authKey, 'Trinity Wallet Mobile')}
                             size={height / 5}
                             bgColor="#000"
                             fgColor="#FFF"
                         />
                     </View>
-                    <TouchableOpacity onPress={() => this.onKeyPress(this.state.authkey)}>
+                    <TouchableOpacity onPress={() => this.onKeyPress(this.state.authKey)}>
                         <Text style={[styles.infoText, textColor]}>
                             <Text style={styles.infoText}>Key: </Text>
-                            <Text style={styles.infoTextLight}>{this.state.authkey}</Text>
+                            <Text style={styles.infoTextLight}>{this.state.authKey}</Text>
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -177,8 +180,8 @@ class TwoFactorSetupAddKey extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.navigateToEnterToken}
-                        leftText={'BACK'}
-                        rightText={'NEXT'}
+                        leftText="BACK"
+                        rightText="NEXT"
                     />
                 </View>
                 <StatefulDropdownAlert />
@@ -188,13 +191,12 @@ class TwoFactorSetupAddKey extends Component {
 }
 const mapDispatchToProps = {
     set2FAStatus,
-    set2FAKey,
     generateAlert,
 };
+
 const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
-    negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 

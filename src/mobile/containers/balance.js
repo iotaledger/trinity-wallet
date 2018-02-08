@@ -13,8 +13,58 @@ import {
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getBalanceForSelectedAccountViaSeedIndex,
 } from '../../shared/selectors/account';
-
 import { width, height } from '../util/dimensions';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    balanceContainer: {
+        flex: 1.8,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    transactionsContainer: {
+        flex: 2,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    chartContainer: {
+        flex: 5,
+        paddingVertical: height / 70,
+    },
+    iotaBalance: {
+        fontFamily: 'Lato-Heavy',
+        fontSize: width / 8,
+        backgroundColor: 'transparent',
+    },
+    fiatBalance: {
+        paddingTop: height / 150,
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 25,
+        backgroundColor: 'transparent',
+    },
+    noTransactions: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 37.6,
+        backgroundColor: 'transparent',
+    },
+    line: {
+        borderBottomWidth: height / 1000,
+        width: width / 1.2,
+    },
+    separator: {
+        height: height / 120,
+        flex: 1,
+    },
+    listView: {
+        flex: 1,
+        justifyContent: 'center',
+        paddingVertical: height / 50,
+    },
+});
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -36,7 +86,20 @@ class Balance extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         chartLineColorPrimary: PropTypes.string.isRequired,
         chartLineColorSecondary: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
+        closeTopBar: PropTypes.func.isRequired,
     };
+
+    static getDecimalPlaces(n) {
+        const s = `${+n}`;
+        const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(s);
+
+        if (!match) {
+            return 0;
+        }
+
+        return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
+    }
 
     constructor() {
         super();
@@ -60,17 +123,6 @@ class Balance extends Component {
         }
     }
 
-    getDecimalPlaces(n) {
-        const s = `${+n}`;
-        const match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
-
-        if (!match) {
-            return 0;
-        }
-
-        return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
-    }
-
     render() {
         const {
             t,
@@ -91,7 +143,7 @@ class Balance extends Component {
 
         const shortenedBalance =
             roundDown(formatValue(balance), 1) +
-            (balance < 1000 || this.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+');
+            (balance < 1000 || Balance.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+');
         const currencySymbol = getCurrencySymbol(settings.currency);
         const fiatBalance = balance * marketData.usdPrice / 1000000 * settings.conversionRate;
         const recentTransactions = transfers.slice(0, 4);
@@ -103,7 +155,7 @@ class Balance extends Component {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     <View style={styles.balanceContainer}>
-                        <Text style={[styles.iotaBalance, textColor]} onPress={event => this.onBalanceClick()}>
+                        <Text style={[styles.iotaBalance, textColor]} onPress={() => this.onBalanceClick()}>
                             {this.state.balanceIsShort ? shortenedBalance : formatValue(balance)} {formatUnit(balance)}
                         </Text>
                         <Text style={[styles.fiatBalance, textColor]}>
@@ -157,57 +209,6 @@ class Balance extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-    },
-    balanceContainer: {
-        flex: 1.8,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    transactionsContainer: {
-        flex: 2,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 10,
-    },
-    chartContainer: {
-        flex: 5,
-        paddingVertical: height / 70,
-    },
-    iotaBalance: {
-        fontFamily: 'Lato-Heavy',
-        fontSize: width / 8,
-        backgroundColor: 'transparent',
-    },
-    fiatBalance: {
-        paddingTop: height / 150,
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 25,
-        backgroundColor: 'transparent',
-    },
-    noTransactions: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 37.6,
-        backgroundColor: 'transparent',
-    },
-    line: {
-        borderBottomWidth: height / 1000,
-        width: width / 1.2,
-    },
-    separator: {
-        height: height / 120,
-        flex: 1,
-    },
-    listView: {
-        flex: 1,
-        justifyContent: 'center',
-        paddingVertical: height / 50,
-    },
-});
 
 const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     marketData,

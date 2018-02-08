@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
 class OnboardingComplete extends Component {
     static propTypes = {
         t: PropTypes.func.isRequired,
+        navigator: PropTypes.object.isRequired,
     };
 
     onNextPress() {

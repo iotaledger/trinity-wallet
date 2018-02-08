@@ -23,6 +23,10 @@ const getProps = overrides =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
+            textColor: { color: 'white' },
+            arrowLeftImagePath: 0,
+            negativeColor: 'white',
+            borderColor: { borderColor: 'white' },
         },
         overrides,
     );
@@ -30,19 +34,35 @@ const getProps = overrides =>
 describe('Testing ManualSync component', () => {
     describe('propTypes', () => {
         it('should require a isSyncing boolean as a prop', () => {
-            expect(ManualSync.propTypes.isSyncing).toBe(PropTypes.bool.isRequired);
+            expect(ManualSync.propTypes.isSyncing).toEqual(PropTypes.bool.isRequired);
         });
 
         it('should require a backPress function as a prop', () => {
-            expect(ManualSync.propTypes.backPress).toBe(PropTypes.func.isRequired);
+            expect(ManualSync.propTypes.backPress).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a onManualSyncPress function as a prop', () => {
-            expect(ManualSync.propTypes.onManualSyncPress).toBe(PropTypes.func.isRequired);
+            expect(ManualSync.propTypes.onManualSyncPress).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a t function as a prop', () => {
-            expect(ManualSync.propTypes.t).toBe(PropTypes.func.isRequired);
+            expect(ManualSync.propTypes.t).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a textColor object as a prop', () => {
+            expect(ManualSync.propTypes.textColor).toEqual(PropTypes.object.isRequired);
+        });
+
+        it('should require a arrowLeftImagePath number as a prop', () => {
+            expect(ManualSync.propTypes.arrowLeftImagePath).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a negativeColor string as a prop', () => {
+            expect(ManualSync.propTypes.negativeColor).toEqual(PropTypes.string.isRequired);
+        });
+
+        it('should require a borderColor object as a prop', () => {
+            expect(ManualSync.propTypes.borderColor).toEqual(PropTypes.object.isRequired);
         });
     });
 

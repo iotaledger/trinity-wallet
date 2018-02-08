@@ -58,7 +58,14 @@ class InitialLoading extends Component {
         onboardingComplete: PropTypes.bool.isRequired,
         backgroundColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        language: PropTypes.string.isRequired,
     };
+
+    static clearKeychain() {
+        if (isIOS) {
+            keychain.clear().catch(err => console.error(err)); // eslint-disable-line no-console
+        }
+    }
 
     constructor() {
         super();
@@ -84,7 +91,7 @@ class InitialLoading extends Component {
 
     onLoaded() {
         if (!this.props.onboardingComplete) {
-            this.clearKeychain();
+            InitialLoading.clearKeychain();
             this.props.navigator.push({
                 screen: 'languageSetup',
                 navigatorStyle: {
@@ -108,12 +115,6 @@ class InitialLoading extends Component {
         }
     }
 
-    clearKeychain() {
-        if (isIOS) {
-            keychain.clear().catch(err => console.error(err)); // eslint-disable-line no-console
-        }
-    }
-
     render() {
         const { backgroundColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
@@ -121,7 +122,7 @@ class InitialLoading extends Component {
             secondaryBackgroundColor === 'white' ? whiteWelcomeAnimation : blackWelcomeAnimation;
 
         return (
-            <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+            <View style={[styles.container, { backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.logoContainer}>
                     <View style={styles.animationContainer}>

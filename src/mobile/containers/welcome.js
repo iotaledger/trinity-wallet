@@ -1,52 +1,12 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
+import PropTypes from 'prop-types';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
-
-class Welcome extends Component {
-    onNextPress() {
-        this.props.navigator.push({
-            screen: 'walletSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: COLORS.backgroundGreen,
-            },
-            animated: false,
-        });
-    }
-
-    render() {
-        const { t } = this.props;
-
-        return (
-            <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
-                </View>
-                <View style={styles.midContainer}>
-                    <View style={styles.infoTextContainer}>
-                        <Text style={styles.infoTextLight}>{t('thankYou')}</Text>
-                        <Text style={styles.infoTextLight}>{t('weWillSpend')}</Text>
-                        <Text style={styles.infoTextRegular}>{t('reminder')}</Text>
-                    </View>
-                </View>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onNextPress()} testID="welcome-next">
-                        <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>{t('global:next')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        );
-    }
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -112,5 +72,51 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
 });
+
+class Welcome extends Component {
+    static propTypes = {
+        navigator: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired,
+    };
+
+    onNextPress() {
+        this.props.navigator.push({
+            screen: 'walletSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: COLORS.backgroundGreen,
+            },
+            animated: false,
+        });
+    }
+
+    render() {
+        const { t } = this.props;
+
+        return (
+            <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
+                <View style={styles.topContainer}>
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                </View>
+                <View style={styles.midContainer}>
+                    <View style={styles.infoTextContainer}>
+                        <Text style={styles.infoTextLight}>{t('thankYou')}</Text>
+                        <Text style={styles.infoTextLight}>{t('weWillSpend')}</Text>
+                        <Text style={styles.infoTextRegular}>{t('reminder')}</Text>
+                    </View>
+                </View>
+                <View style={styles.bottomContainer}>
+                    <TouchableOpacity onPress={() => this.onNextPress()} testID="welcome-next">
+                        <View style={styles.nextButton}>
+                            <Text style={styles.nextText}>{t('global:next')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        );
+    }
+}
 
 export default translate(['welcome', 'global'])(Welcome);
