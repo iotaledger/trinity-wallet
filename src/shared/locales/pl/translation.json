@@ -226,7 +226,7 @@
         "language": "Język",
         "accountManagement": "Zarządzanie kontem",
         "addNewSeed": "Dodaj nowy seed",
-        "twoFA": "Uwierzytelnienie dwuetapowe (2FA)",
+        "twoFA": "Autoryzacja dwustopniowa",
         "changePassword": "Zmień hasło",
         "advanced": "Ustawienia zaawansowane",
         "logout": "Wyloguj",
@@ -377,17 +377,17 @@
         "aMessage": "wiadomość"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Wpisz kod z aplikacji dwustopniowej autoryzacji 2FA",
+        "wrongCode": "Błędny kod",
+        "wrongCodeExplanation": "Podany kod jest nieprawidłowy.",
+        "emptyCode": "Kod pusty",
+        "emptyCodeExplanation": "Wprowadź kod i spróbuj ponownie.",
+        "keyCopied": "Klucz został skopiowany do schowka",
+        "keyCopiedExplanation": "Twój klucz dwustopniowej autoryzacji został skopiowany do schowka.",
+        "addKey": "Dodaj ten klucz do aplikacji dwustopniowej autoryzacji",
+        "key": "Klucz",
+        "twoFAEnabled": "Autoryzacja dwustopniowa jest teraz włączona",
+        "twoFAEnabledExplanation": "Pomyślnie włączono funkcję dwustopniowej autoryzacji.",
+        "enterCode": "Wpisz kod z aplikacji dwustopniowej autoryzacji",
         "code": "Kod"
     }
 }
