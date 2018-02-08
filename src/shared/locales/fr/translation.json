@@ -58,7 +58,7 @@
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
         "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
         "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible pour le node sélectionné.",
-        "wallet": "Portefeuille",
+        "wallet": "Wallet",
         "sent": "Envoyé",
         "received": "Reçu",
         "sending": "Envoi en cours",
