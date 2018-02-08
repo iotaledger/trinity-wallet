@@ -68,7 +68,7 @@ describe('Testing Send component', () => {
                 });
 
                 describe('when state prop maxPressed is true', () => {
-                    it('should not set maxPressed prop to false', () => {
+                    it('should set maxPressed prop to false', () => {
                         const props = getProps();
 
                         const wrapper = shallow(<Send {...props} />);
