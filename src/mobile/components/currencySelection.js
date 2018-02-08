@@ -9,9 +9,9 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { width, height } from '../util/dimensions';
 import Dropdown from './dropdown';
-import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -89,15 +89,14 @@ const styles = StyleSheet.create({
 export class CurrencySelection extends Component {
     static propTypes = {
         isFetchingCurrencyData: PropTypes.bool.isRequired,
-        hasErrorFetchingCurrencyData: PropTypes.bool.isRequired,
-        getCurrencyData: PropTypes.func.isRequired,
         currency: PropTypes.string.isRequired,
         currencies: PropTypes.array.isRequired,
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
+        getCurrencyData: PropTypes.func.isRequired,
         tickImagePath: PropTypes.number.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
     };
 
@@ -121,17 +120,17 @@ export class CurrencySelection extends Component {
     }
 
     renderBackOption() {
-        const props = this.props;
+        const { arrowLeftImagePath, secondaryBackgroundColor, t } = this.props;
 
         return (
             <TouchableOpacity
-                onPress={props.backPress}
+                onPress={this.props.backPress}
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemLeft}>
-                    <Image source={props.arrowLeftImagePath} style={styles.iconLeft} />
-                    <Text style={[styles.titleTextLeft, { color: props.secondaryBackgroundColor }]}>
-                        {props.t('global:backLowercase')}
+                    <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                    <Text style={[styles.titleTextLeft, { color: secondaryBackgroundColor }]}>
+                        {t('global:backLowercase')}
                     </Text>
                 </View>
             </TouchableOpacity>
@@ -139,25 +138,23 @@ export class CurrencySelection extends Component {
     }
 
     renderSaveOption() {
-        const props = this.props;
+        const { tickImagePath, t, secondaryBackgroundColor } = this.props;
 
         return (
             <TouchableOpacity
-                onPress={() => props.getCurrencyData(this.dropdown.getSelected(), true)}
+                onPress={() => this.props.getCurrencyData(this.dropdown.getSelected(), true)}
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemRight}>
-                    <Text style={[styles.titleTextRight, { color: props.secondaryBackgroundColor }]}>
-                        {props.t('global:save')}
-                    </Text>
-                    <Image source={props.tickImagePath} style={styles.iconRight} />
+                    <Text style={[styles.titleTextRight, { color: secondaryBackgroundColor }]}>{t('global:save')}</Text>
+                    <Image source={tickImagePath} style={styles.iconRight} />
                 </View>
             </TouchableOpacity>
         );
     }
 
     render() {
-        const { currency, currencies, t, secondaryBackgroundColor, negativeColor, isFetchingCurrencyData } = this.props;
+        const { currency, currencies, t, negativeColor, isFetchingCurrencyData } = this.props;
 
         return (
             <TouchableWithoutFeedback

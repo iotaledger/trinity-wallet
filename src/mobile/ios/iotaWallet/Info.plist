@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>16</string>
+	<string>18</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -55,7 +55,9 @@
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Please allow access to the photo library. This will allow you to attach screenshots to bug reports.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>QR Scanner</string>
+	<string>Trinity requires permission to access the camera in order to enable QR code scanning</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Trinity requires permission to access Face ID in order to enable face authentication</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>

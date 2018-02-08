@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingVertical: height / 30,
-        width: width / 1.15,
+        width: width / 1.05,
         paddingHorizontal: width / 20,
     },
     container: {
@@ -123,6 +123,8 @@ class SnapshotTransition extends Component {
         generateAlert: PropTypes.func.isRequired,
         addresses: PropTypes.array.isRequired,
         shouldPreventAction: PropTypes.func.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        isAttachingToTangle: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -211,7 +213,7 @@ class SnapshotTransition extends Component {
         const { transitionBalance, t, backgroundColor, borderColor, textColor } = this.props;
 
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
+            <View style={{ width: width / 1.05, alignItems: 'center', backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <View style={styles.textContainer}>
                         <Text style={[styles.buttonInfoText, textColor]}>

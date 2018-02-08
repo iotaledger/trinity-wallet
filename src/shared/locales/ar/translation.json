@@ -46,6 +46,7 @@
         "yes": "نعم",
         "no": "لا",
         "password": "كلمة المرور",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "كلمة المرور غير المعترف بها",
         "unrecognisedPasswordExplanation": "كلمة المرور غير مطابقة. يرجى المحاولة مره اخرى.",
         "syncInProgress": "المزامنة قيد التقدم",
@@ -74,9 +75,11 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "أوتورياتاتشينج إلى تشابك",
-        "seedInvalidCharsExplanation": "يمكن أن تتكون البذور فقط من الحروف من الألف إلى الياء والرقم 9. البذور الخاص بك يحتوي على أحرف غير صالحة. الرجاء المحاولة مرة أخرى.",
+        "seedInvalidCharsExplanation":
+            "يمكن أن تتكون البذور فقط من الحروف من الألف إلى الياء والرقم 9. البذور الخاص بك يحتوي على أحرف غير صالحة. الرجاء المحاولة مرة أخرى.",
         "seedTooShort": "السييد قصير جداً",
-        "seedTooShortExplanation": "يجب أن تكون البذور {{maxLength}} حرفاً. البذور الخاص بك حاليا {{currentLength}} حرفاً. الرجاء المحاولة مرة أخرى.",
+        "seedTooShortExplanation":
+            "يجب أن تكون البذور {{maxLength}} حرفاً. البذور الخاص بك حاليا {{currentLength}} حرفاً. الرجاء المحاولة مرة أخرى.",
         "nameInUse": "سبق التسجيل بهذا الإسم من قبل",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
         "enterAccountName": "أدخل اسم حساب.",
@@ -115,10 +118,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "السييد يحتوي على أحرف غير صالحة",
-        "invalidCharactersExplanation": "يجب ان يتكون السييد من احرف انجليزية كبيرة A-Z والرقم 9 فقط. السييد الخاص بك يحتوي على أحرف غير صالحة. يرجى المحاولة مرة أخرى.",
+        "invalidCharactersExplanation":
+            "يجب ان يتكون السييد من احرف انجليزية كبيرة A-Z والرقم 9 فقط. السييد الخاص بك يحتوي على أحرف غير صالحة. يرجى المحاولة مرة أخرى.",
         "seedTooShort": "السييد قصير جداً",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation":
+            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص"
     },
     "home": {
@@ -137,7 +143,9 @@
         "enterPassword": "الرجاء إدخال كلمة المرور.",
         "useSeed": "استخدم سييد",
         "login": "تسجيل الدخول",
-        "selectDifferentNode": "هل تريد اختيار عقده مختلفة؟"
+        "selectDifferentNode": "هل تريد اختيار عقده مختلفة؟",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "تحميل البذور لأول مرة.",
@@ -151,7 +159,8 @@
         "individualLetters": "اضغط على الأحرف بشكل فردي لكي تكن عشوائية."
     },
     "onboardingComplete": {
-        "walletReady": "تم إعداد المحفظة الآن وجاهزة للاستخدام. إذا كنت بحاجة إلى إجراء أية تغييرات في المستقبل، فابحث في قائمة الإعدادات."
+        "walletReady":
+            "تم إعداد المحفظة الآن وجاهزة للاستخدام. إذا كنت بحاجة إلى إجراء أية تغييرات في المستقبل، فابحث في قائمة الإعدادات."
     },
     "paperWallet": {
         "clickToPrint": "اضغط الزر أدناه لطباعة نسخه ورقية من السييد الخاصة بك.",
@@ -170,7 +179,8 @@
     "saveYourSeed": {
         "seedCleared": "تم مسح القيم",
         "seedClearedExplanation": "تم مسح القيم من الحافظة لأمنك.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed":
+            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "قيمة خاطئة",
@@ -186,7 +196,8 @@
         "notEnoughFunds": "الرصيد غير كافي",
         "notEnoughFundsExplanation": "ليس لديك IOTA كافية لإتمام عملية التحويل.",
         "keyReuse": "إعادة الاستخدام المفتاح",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
+        "keyReuseExplanation":
+            "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "عنوان المستقبل",
         "amount": "الكمية",
         "max": "أقصى",
@@ -200,11 +211,13 @@
     },
     "setPassword": {
         "passwordTooShort": "كلمة المرور قصيرة جدا",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation":
+            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "كلمتي المرور لا تتطابق",
         "passwordMismatchExplanation": "كلمتي المرور المدخلة لا تتطابق، يرجى المحاولة مرة أخرى.",
         "nowWeNeedTo": "الآن نحن بحاجة إلى إعداد كلمة مرور.",
-        "anEncryptedCopy": "سيتم تخزين نسخة مشفرة من السييد الخاص بك على الجهاز الخاص بك. وسوف تستخدم كلمة المرور هذه للوصول إلى المحفظة الخاصة بك في المستقبل.",
+        "anEncryptedCopy":
+            "سيتم تخزين نسخة مشفرة من السييد الخاص بك على الجهاز الخاص بك. وسوف تستخدم كلمة المرور هذه للوصول إلى المحفظة الخاصة بك في المستقبل.",
         "ensure": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
         "retypePassword": "أعد كتابة كلمة المرور"
     },
@@ -246,7 +259,9 @@
         "cut": "قص",
         "copy": "نسخ",
         "paste": "لصق",
-        "selectAll": "تحديد الكل"
+        "selectAll": "تحديد الكل",
+        "securitySettings": "Security settings",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "الرجاء ادخال كلمة المرور لإعادة المحفظة.",
@@ -256,8 +271,10 @@
     "walletSetup": {
         "okay": "حسنًا. لنقم بإعداد محفظتك!",
         "doYouAlreadyHaveASeed": "هل لديك seed ترغب في استخدامه؟",
-        "seedExplanation": "السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "seedExplanation":
+            "السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "يرجى الحفاظ على السييد الخاص بك في مكان آمن."
     },
     "welcome": {
@@ -267,7 +284,8 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
@@ -347,7 +365,27 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "لا يمكن التراجع عن هذا الإجراء.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",

@@ -18,7 +18,8 @@
         "invalidResponse": "Ugyldig svar",
         "invalidResponseExplanation": "Noden returnerte et ugyldig svar.",
         "invalidResponsePollingExplanation": "Noden returnerte et ugyldig svar.",
-        "invalidResponseFetchingAccount": "Noden returnerte et ugyldig svar når vi forsøkte å hente detaljene for din konto.",
+        "invalidResponseFetchingAccount":
+            "Noden returnerte et ugyldig svar når vi forsøkte å hente detaljene for din konto.",
         "invalidResponseSendingTransfer": "Noden returnerte et ugyldig svar når vi forsøkte å sende en overføring.",
         "seed": "Hovednøkkel",
         "back": "TILBAKE",
@@ -46,6 +47,7 @@
         "yes": "JA",
         "no": "NEI",
         "password": "Passord",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Feil passord",
         "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
         "syncInProgress": "Synkronisering pågår",
@@ -74,9 +76,11 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
-        "seedInvalidCharsExplanation": "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
+        "seedInvalidCharsExplanation":
+            "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
         "seedTooShort": "Hovednøkkelen er for kort",
-        "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
+        "seedTooShortExplanation":
+            "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
         "nameInUse": "Kontonavnet er allerede i bruk",
         "nameInUseExplanation": "Bruk et unikt kontonavn for din hovednøkkel.",
         "enterAccountName": "Angi et kontonavn.",
@@ -98,7 +102,8 @@
         "passwordTooShort": "Passordet er for kort",
         "passwordTooShortExplanation": "Passordet ditt må være minst 12 tegn. Prøv igjen.",
         "oldPassword": "Kan ikke angi gammelt passord",
-        "oldPasswordExplanation": "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
+        "oldPasswordExplanation":
+            "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
         "ensureStrongPassword": "Sjekk at du bruker et sterkt passord med minst 12 tegn.",
         "currentPassword": "Nåværende passord",
         "newPassword": "Nytt passord",
@@ -108,17 +113,21 @@
         "seedCleared": "Hovednøkkel er fjernet",
         "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstaven for din sikkerhet.",
         "seedCopied": "Kopierte hovednøkkelen til utklippstavle",
-        "seedCopiedExplanation": "Hovednøkkelen vil fjernes med en gang du trykker \"FERDIG\" eller 60 sekunder har gått.",
+        "seedCopiedExplanation":
+            "Hovednøkkelen vil fjernes med en gang du trykker \"FERDIG\" eller 60 sekunder har gått.",
         "clickToCopy": "Klikk knappen nedenfor og kopier din hovednøkkel til et passord-lagrings program.",
         "doNotStore": "Lagre ikke hovednøkkeleb din i klartekst.",
         "copyToClipboard": "Kopier til utklippstavlen"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
-        "invalidCharactersExplanation": "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
+        "invalidCharactersExplanation":
+            "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
         "seedTooShort": "Hovednøkkelen er for kort",
-        "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
-        "seedExplanation": "Hovednøkler bør være {{maxLength}} tegn, og bør inneholde de store bokstavene A-Z, eller tallet 9. Du kan ikke bruke hovednøkler lenger enn {{maxLength}} tegn.",
+        "seedTooShortExplanation":
+            "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
+        "seedExplanation":
+            "Hovednøkler bør være {{maxLength}} tegn, og bør inneholde de store bokstavene A-Z, eller tallet 9. Du kan ikke bruke hovednøkler lenger enn {{maxLength}} tegn.",
         "neverShare": "OPPGI ALDRI DIN HOVEDNØKKEL TIL ANDRE"
     },
     "home": {
@@ -137,7 +146,9 @@
         "enterPassword": "Skriv inn passord.",
         "useSeed": "BRUK HOVEDNØKKEL",
         "login": "LOGG INN",
-        "selectDifferentNode": "Vil du forsøke en annen node?"
+        "selectDifferentNode": "Vil du forsøke en annen node?",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
@@ -151,7 +162,8 @@
         "individualLetters": "Trykk enkelte tegn for å gi de tilfeldig plassering."
     },
     "onboardingComplete": {
-        "walletReady": "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Innstillinger menyen."
+        "walletReady":
+            "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Innstillinger menyen."
     },
     "paperWallet": {
         "clickToPrint": "Klikk knappen nedenfor for å skrive ut en papirkopi av din hovednøkkel.",
@@ -200,16 +212,19 @@
     },
     "setPassword": {
         "passwordTooShort": "Passordet er for kort",
-        "passwordTooShortExplanation": "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
+        "passwordTooShortExplanation":
+            "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
         "passwordMismatch": "Passordene samsvarer ikke",
         "passwordMismatchExplanation": "Passordene du angav samsvarer ikke. Prøv på nytt.",
         "nowWeNeedTo": "Nå må vi sette opp et passord.",
-        "anEncryptedCopy": "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du vil bruke dette passordet for å åpne lommeboken neste gang.",
+        "anEncryptedCopy":
+            "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du vil bruke dette passordet for å åpne lommeboken neste gang.",
         "ensure": "Forsikre deg om at du bruker et sterkt passord med minst 12 tegn.",
         "retypePassword": "Skriv inn passordet på nytt"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Du kan lagre flere hovednøkler i denne lommeboken. Hver av disse må ha et eget kontonavn.",
+        "canUseMultipleSeeds":
+            "Du kan lagre flere hovednøkler i denne lommeboken. Hver av disse må ha et eget kontonavn.",
         "youCanAdd": "Du kan legge til flere hovednøkler i menyen for Innstillinger."
     },
     "settings": {
@@ -246,7 +261,9 @@
         "cut": "Klipp ut",
         "copy": "Kopier",
         "paste": "Lim inn",
-        "selectAll": "Velg alt"
+        "selectAll": "Velg alt",
+        "securitySettings": "Security settings",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
@@ -256,14 +273,17 @@
     "walletSetup": {
         "okay": "OK. La oss sette opp lommeboken din!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøkkel du ønsker å bruke?",
-        "seedExplanation": "IOTA hovednøkkel er som et brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
-        "explanation": "<0><0>Du kan bruke den til å få tilgang til midler fra</0> <1>enhver lommebok</1> <2>, på</2> <3>enhver enhet</3> <4>. Men hvis du mister din nøkkel, du også miste din IOTA.</4></0>",
+        "seedExplanation":
+            "IOTA hovednøkkel er som et brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
+        "explanation":
+            "<0><0>Du kan bruke den til å få tilgang til midler fra</0> <1>enhver lommebok</1> <2>, på</2> <3>enhver enhet</3> <4>. Men hvis du mister din nøkkel, du også miste din IOTA.</4></0>",
         "keepSafe": "Vennligst sikre din hovednøkkel godt."
     },
     "welcome": {
         "thankYou": "Takk for at du lastet ned IOTA lommeboken.",
         "weWillSpend": "Vi vil bruke neste minuttene til å sette opp lommeboken din.",
-        "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
+        "reminder":
+            "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
     },
     "writeSeedDown": {
         "yourSeedIs": "Din nøkkel er {{maxSeedLength}} tegn lest fra venstre mot høyre.",
@@ -347,7 +367,27 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLINGEN KAN IKKE ANGRES.",
-        "warning": "<0><0>Alle dine lommebokdata inkludert dine</0> <1>nøkler, passord</1> <2>og</2> <3>andre kontoopplysninger</3> <4> vil gå tapt.</4></0>"
+        "warning":
+            "<0><0>Alle dine lommebokdata inkludert dine</0> <1>nøkler, passord</1> <2>og</2> <3>andre kontoopplysninger</3> <4> vil gå tapt.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "Du skal til å sende {{contents}} til adressen",

@@ -106,6 +106,27 @@ export class Dropdown extends Component {
         onRef: PropTypes.func,
         disableWhen: PropTypes.bool,
         shadow: PropTypes.bool,
+        defaultOption: PropTypes.string,
+        saveSelection: PropTypes.func,
+        options: PropTypes.array.isRequired,
+        title: PropTypes.string,
+        dropdownWidth: PropTypes.object,
+        background: PropTypes.bool,
+        negativeColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string,
+        backgroundColor: PropTypes.string.isRequired,
+    };
+
+    static defaultProps = {
+        shadow: false,
+        disableWhen: false,
+        onRef: () => {},
+        defaultOption: '',
+        background: false,
+        saveSelection: () => {},
+        title: '',
+        dropdownWidth: { width: width / 1.2 },
+        secondaryBackgroundColor: 'white',
     };
 
     constructor(props) {
@@ -254,33 +275,28 @@ export class Dropdown extends Component {
                                                 <View style={[styles.additionalPadding, backgroundColor]} />
                                             </View>
                                         );
-                                    } else {
-                                        return (
-                                            <TouchableOpacity
-                                                onPress={() => this.onOptionPress(rowData)}
-                                                style={{ alignItems: 'flex-start', flex: 1 }}
+                                    }
+                                    return (
+                                        <TouchableOpacity
+                                            onPress={() => this.onOptionPress(rowData)}
+                                            style={{ alignItems: 'flex-start', flex: 1 }}
+                                        >
+                                            <View
+                                                style={[styles.dropdownItemContainer, backgroundColor, dropdownWidth]}
                                             >
-                                                <View
+                                                <Text
+                                                    numberOfLines={1}
                                                     style={[
-                                                        styles.dropdownItemContainer,
-                                                        backgroundColor,
+                                                        styles.dropdownItem,
                                                         dropdownWidth,
+                                                        { color: secondaryBackgroundColor },
                                                     ]}
                                                 >
-                                                    <Text
-                                                        numberOfLines={1}
-                                                        style={[
-                                                            styles.dropdownItem,
-                                                            dropdownWidth,
-                                                            { color: secondaryBackgroundColor },
-                                                        ]}
-                                                    >
-                                                        {rowData}
-                                                    </Text>
-                                                </View>
-                                            </TouchableOpacity>
-                                        );
-                                    }
+                                                    {rowData}
+                                                </Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                    );
                                 }}
                                 contentContainerView={styles.listView}
                                 enableEmptySections
