@@ -120,7 +120,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     render() {
-        const { negativeColor, secondaryBackgroundColor } = this.props;
+        const { negativeColor, secondaryBackgroundColor, t } = this.props;
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
