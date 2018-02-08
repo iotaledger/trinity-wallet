@@ -387,7 +387,7 @@
         "key": "Key",
         "twoFAEnabled": "2FA is now enabled",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "enterCode": "Wpisz kod z aplikacji dwustopniowej autoryzacji 2FA",
+        "code": "Kod"
     }
 }
