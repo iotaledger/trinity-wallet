@@ -342,8 +342,8 @@
     },
     "viewSeed": {
         "enterPassword": "Seedを閲覧するにはパスワードを入力して下さい。",
-        "viewSeed": "Seedを見る。",
-        "hideSeed": "Seedを隠す。"
+        "viewSeed": "Seedを見る",
+        "hideSeed": "Seedを隠す"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "私はSeedを安全に保管しました。",
