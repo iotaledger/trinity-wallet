@@ -35,7 +35,7 @@
         "copyToClipboard": "비밀번호 관리자에 입력하기",
         "notAvailable": "이 기능은 사용할 수 없습니다.",
         "notAvailableExplanation": "이 기능은 추후에 추가될 예정입니다.",
-        "enterSeed": "씨드를 입력하십시오.",
+        "enterSeed": "시드를 입력하십시오.",
         "mainWallet": "주 계정",
         "secondWallet": "두 번째 계정",
         "thirdWallet": "세 번째 계정",
