@@ -58,7 +58,7 @@
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
         "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
         "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible pour le node sélectionné.",
-        "wallet": "Wallet",
+        "wallet": "Portefeuille",
         "sent": "Envoyé",
         "received": "Reçu",
         "sending": "Envoi en cours",
@@ -85,7 +85,7 @@
         "noNickname": "Aucun nom de compte saisi",
         "noNicknameExplanation": "Veuillez saisir un nom de compte pour votre seed.",
         "seedInUse": "Seed déjà utilisée",
-        "seedInUseExplanation": "Cette seed est déjà liée à votre wallet. Veuillez en utiliser une autre."
+        "seedInUseExplanation": "Cette seed est déjà liée à votre portefeuille. Veuillez en utiliser une autre."
     },
     "changePassword": {
         "oops": "Oups. Une erreur est survenue",
@@ -207,12 +207,12 @@
         "passwordMismatch": "Les mots de passe ne correspondent pas",
         "passwordMismatchExplanation": "Les mots de passe que vous avez saisis ne correspondent pas. Veuillez réessayer.",
         "nowWeNeedTo": "Maintenant nous devons paramétrer un mot de passe.",
-        "anEncryptedCopy": "Une copie chiffrée de votre seed sera stockée sur votre appareil. Vous utiliserez ce mot de passe pour accéder à votre wallet à l’avenir.",
+        "anEncryptedCopy": "Une copie chiffrée de votre seed sera stockée sur votre appareil. Vous utiliserez ce mot de passe pour accéder à votre portefeuille à l’avenir.",
         "ensure": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "retypePassword": "Confirmer le mot de passe"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Vous pouvez utiliser plusieurs seeds avec ce wallet. Chaque seed requiert un nom de compte.",
+        "canUseMultipleSeeds": "Vous pouvez utiliser plusieurs seeds avec ce portefeuille. Chaque seed requiert un nom de compte.",
         "youCanAdd": "Vous pouvez ajouter plus de seeds dans le menu Réglages."
     },
     "settings": {
@@ -230,7 +230,7 @@
         "changePassword": "Modifier le mot de passe",
         "advanced": "Réglages avancés",
         "logout": "Déconnexion",
-        "reset": "Réinitialiser le wallet",
+        "reset": "Réinitialiser le portefeuille",
         "syncingComplete": "Synchronisation terminée",
         "syncingCompleteExplanation": "Votre compte a été synchronisé avec succès.",
         "nicknameChanged": "Nom de compte modifié",
@@ -238,7 +238,7 @@
         "accountDeleted": "Compte supprimé",
         "accountDeletedExplanation": "Votre compte a été supprimé du portefeuille.",
         "cannotPerformAction": "Impossible d’effectuer cette action",
-        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
+        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
         "poorConnection": "Mauvaise connexion",
         "poorConnectionExplanation": "Impossible de changer de devise à cause de la mauvaise connexion.",
         "hide": "Masquer",
@@ -254,7 +254,7 @@
         "fingerprint": "Authentification par empreintes digitales"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Saisissez votre mot de passe pour réinitialiser le wallet.",
+        "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
         "cancel": "ANNULER",
         "reset": "RÉINITIALISER"
     },
@@ -262,11 +262,11 @@
         "okay": "Bien ! Configurons votre portefeuille !",
         "doYouAlreadyHaveASeed": "Détenez-vous déjà une seed que vous désirez utiliser ?",
         "seedExplanation": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
-        "explanation": "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel wallet</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
+        "explanation": "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel portefeuille</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
         "keepSafe": "Merci de garder votre Seed en sécurité."
     },
     "welcome": {
-        "thankYou": "Merci d’avoir téléchargé le wallet IOTA.",
+        "thankYou": "Merci d’avoir téléchargé le portefeuille IOTA.",
         "weWillSpend": "Durant les prochaines minutes, nous allons configurer votre portefeuille.",
         "reminder": "Vous pourriez être tenté de brûler certaines étapes, mais il est impératif de suivre la procédure complète."
     },
@@ -352,7 +352,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
-        "warning": "<0><0>Toutes vos données de wallet, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
+        "warning": "<0><0>Toutes vos données de portefeuille, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Toucher le lecteur d’empreinte digitale de votre appareil pour activer l’authentification par empreintes digitales.",
@@ -375,5 +375,19 @@
     "transferConfirmation": {
         "youAreAbout": "Vous êtes sur le point d’envoyer {{contents}} à l’adresse",
         "aMessage": "un message"
+    },
+    "twoFA": {
+        "wrongCode": "Wrong code",
+        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "emptyCode": "Empty code",
+        "emptyCodeExplanation": "Please enter a code and try again.",
+        "keyCopied": "Key copied to clipboard",
+        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "addKey": "Add this key to your 2FA app",
+        "key": "Key",
+        "twoFAEnabled": "2FA is now enabled",
+        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "enterCode": "Enter the code from your 2FA app",
+        "code": "Code"
     }
 }
