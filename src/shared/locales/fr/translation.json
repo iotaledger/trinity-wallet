@@ -377,8 +377,8 @@
         "aMessage": "un message"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "wrongCode": "Code incorrect",
+        "wrongCodeExplanation": "Le code saisi est incorrect.",
         "emptyCode": "Empty code",
         "emptyCodeExplanation": "Please enter a code and try again.",
         "keyCopied": "Key copied to clipboard",
