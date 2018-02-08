@@ -48,7 +48,7 @@
         "yes": "SI",
         "no": "NO",
         "password": "Password",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Password o impronta digitale",
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
         "syncInProgress": "Sincronizzazione in corso",
@@ -150,8 +150,8 @@
         "useSeed": "USA IL SEME",
         "login": "ACCEDI",
         "selectDifferentNode": "Vuoi selezionare un nodo diverso?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "IMPOSTA NODO",
+        "cannotConnect": "Impossibile connettersi al nodo IOTA."
     },
     "loading": {
         "loadingFirstTime": "Carico il seme per la prima volta.",
@@ -268,8 +268,8 @@
         "copy": "Copia",
         "paste": "Incolla",
         "selectAll": "Seleziona tutto",
-        "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "securitySettings": "Impostazioni di sicurezza",
+        "fingerprint": "Autenticazione tramite impronta digitale"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Immetti la tua password per reimpostare il portafoglio.",
@@ -377,23 +377,27 @@
             "<0><0>Tutti i dati nel tuo portafoglio tra cui </0> <1>i semi, le password</1><2> e </2><3>altre informazioni sul conto</3><4> andranno persi.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "instructionsEnable":
+            "Tocca il lettore di impronte digitali del dispositivo per abilitare l'autenticazione tramite impronta digitale.",
+        "instructionsDisable":
+            "Tocca il lettore di impronte digitali del dispositivo per disabilitare l'autenticazione tramite impronta digitale.",
+        "fingerprintAuthEnabled": "Autenticazione tramite impronta digitale abilitata",
+        "fingerprintAuthEnabledExplanation": "Hai abilitato con successo l'autenticazione tramite impronta digitale.",
+        "fingerprintAuthDisabled": "Autenticazione tramite impronta digitale disabilitata",
+        "fingerprintAuthDisabledExplanation":
+            "Hai disabilitato con successo l'autenticazione tramite impronta digitale.",
+        "fingerprintAuthFailed": "Autenticazione tramite impronta digitale non riuscita",
+        "fingerprintAuthFailedExplanation": "Autenticazione tramite impronta digitale fallita. Riprova.",
+        "status": "Stato",
+        "enabled": "Abilitato",
+        "disabled": "Disabilitato",
+        "fingerprintUnavailable": "Sensore impronta digitale non disponibile",
         "fingerprintUnavailableExplanation":
-            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+            "Il tuo dispositivo non supporta il riconoscimento dell'impronta digitale o non è stato configurato nelle impostazioni del dispositivo.",
+        "buttonInstructionsDisable":
+            "Premi il pulsante sotto per disabilitare l'autenticazione tramite impronta digitale.",
+        "buttonInstructionsEnable": "Premi il pulsante sotto per abilitare l'autenticazione tramite impronta digitale.",
+        "instructionsLogin": "Tocca il lettore di impronte digitali per accedere."
     },
     "transferConfirmation": {
         "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",

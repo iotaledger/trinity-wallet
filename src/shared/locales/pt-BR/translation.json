@@ -47,7 +47,7 @@
         "yes": "SIM",
         "no": "NÃO",
         "password": "Senha",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Senha ou impressão digital",
         "unrecognisedPassword": "Senha não reconhecida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
         "syncInProgress": "Sincronizando",
@@ -146,8 +146,8 @@
         "useSeed": "USAR A SEED",
         "login": "INICIAR SESSÃO",
         "selectDifferentNode": "Você quer selecionar um servidor diferente?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "SERVIDOR",
+        "cannotConnect": "Não é possível conectar ao servidor IOTA."
     },
     "loading": {
         "loadingFirstTime": "Carregando a Seed pela primeira vez.",
@@ -208,7 +208,7 @@
         "invalidAmount": "Valor inserido está incorreto",
         "invalidAmountExplanation": "Por favor, digite um valor numérico para o valor da transação.",
         "maximumSelected": "Quantia MÁXIMA selecionada",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "Unidades IOTA explicadas",
         "sendMax": "ENVIAR O MÁXIMO"
     },
     "setPassword": {
@@ -262,8 +262,8 @@
         "copy": "Copiar",
         "paste": "Colar",
         "selectAll": "Selecionar Tudo",
-        "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "securitySettings": "Opções de segurança",
+        "fingerprint": "Autenticação de impressão digital"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
@@ -371,23 +371,25 @@
             "<0><0>Todos os seus dados da carteira, incluindo suas </0><1>seeds, senhas,</1><2> e </2><3>outras informações da conta</3><4> serão perdidas.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "instructionsEnable":
+            "Toque o leitor de impressão digital do seu dispositivo para habilitar a autenticação de impressão digital.",
+        "instructionsDisable":
+            "Toque o leitor de impressão digital do seu dispositivo para desabilitar a autenticação de impressão digital.",
+        "fingerprintAuthEnabled": "Autenticação de impressão digital habilitada",
+        "fingerprintAuthEnabledExplanation": "Você habilitou a autenticação de impressão digital com sucesso.",
+        "fingerprintAuthDisabled": "Notificações de impressão digital desabilitadas",
+        "fingerprintAuthDisabledExplanation": "Você desabilitou a autenticação de impressão digital com sucesso.",
+        "fingerprintAuthFailed": "Autenticação de impressão digital falhou",
+        "fingerprintAuthFailedExplanation": "Falha na autenticação de impressão digital. Por favor, tente novamente.",
+        "status": "Estado",
+        "enabled": "Ativado",
+        "disabled": "Desativado",
+        "fingerprintUnavailable": "Sensor de impressão digital indisponível",
         "fingerprintUnavailableExplanation":
-            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+            "Seu dispositivo não suporta reconhecimento de impressões digitais ou não foi configurado nas opções do dispositivo.",
+        "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação de impressão digital.",
+        "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação de impressão digital.",
+        "instructionsLogin": "Toque o leitor de impressão digital para logar."
     },
     "transferConfirmation": {
         "youAreAbout": "Você está prestes a enviar {{contents}} para o endereço",

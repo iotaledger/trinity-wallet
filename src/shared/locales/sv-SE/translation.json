@@ -144,8 +144,8 @@
         "useSeed": "ANVÄND DIN SEED",
         "login": "LOGGA IN",
         "selectDifferentNode": "Vill du välja en annan nod?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "VÄLJ NOD",
+        "cannotConnect": "Kan ej ansluta till IOTA nod."
     },
     "loading": {
         "loadingFirstTime": "Laddar din adress för första gången.",
@@ -260,7 +260,7 @@
         "copy": "Kopiera",
         "paste": "Klistra in",
         "selectAll": "Välj alla",
-        "securitySettings": "Security settings",
+        "securitySettings": "Säkerhetsinställningar",
         "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
@@ -378,9 +378,9 @@
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "enabled": "Aktiverad",
+        "disabled": "Inaktiverad",
+        "fingerprintUnavailable": "Fingeravtrycksläsare ej tillgänglig",
         "fingerprintUnavailableExplanation":
             "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
