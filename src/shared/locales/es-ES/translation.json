@@ -271,7 +271,7 @@
         "reminder": "Puede tentarte saltar algunos pasos, pero te sugerimos seguir el proceso completo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "yourSeedIs": "Tu Seed tiene {{maxSeedLength}} caracteres leídos de izquierda a derecha.",
         "writeDownYourSeed": "<0>Escribe tu seed y código de verificación y </0><1>vuelve a comprobarlos</1><2>que son correctos.</2>"
     },
     "history": {
