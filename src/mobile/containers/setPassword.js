@@ -20,6 +20,7 @@ import { width, height } from '../util/dimensions';
 import InfoBox from '../components/infoBox';
 
 const MIN_PASSWORD_LENGTH = 12;
+console.ignoredYellowBox = ['Native TextInput'];
 
 const styles = StyleSheet.create({
     container: {
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.5,
+        width: width / 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
@@ -191,6 +192,8 @@ class SetPassword extends Component {
                         t('global:somethingWentWrongExplanation'),
                     );
                 });
+        } else if (!(password === reentry)) {
+            this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
         } else if (password.length < MIN_PASSWORD_LENGTH || reentry.length < MIN_PASSWORD_LENGTH) {
             this.props.generateAlert(
                 'error',
@@ -200,8 +203,6 @@ class SetPassword extends Component {
                     currentLength: password.length,
                 }),
             );
-        } else if (!(password === reentry)) {
-            this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
         }
     }
 
@@ -211,12 +212,12 @@ class SetPassword extends Component {
         });
     }
 
-    _renderContent() {
+    renderContent() {
         const { t } = this.props;
 
         return (
             <View>
-                <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss}>
+                <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -235,7 +236,7 @@ class SetPassword extends Component {
                             <CustomTextInput
                                 label={t('global:password')}
                                 onChangeText={password => this.setState({ password })}
-                                containerStyle={{ width: width / 1.36 }}
+                                containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -243,6 +244,7 @@ class SetPassword extends Component {
                                 onSubmitEditing={() => this.reentry.focus()}
                                 secondaryBackgroundColor="white"
                                 secureTextEntry
+                                testID="setPassword-passwordbox"
                             />
                             <View style={{ flex: 0.2 }} />
                             <CustomTextInput
@@ -251,7 +253,7 @@ class SetPassword extends Component {
                                 }}
                                 label={t('retypePassword')}
                                 onChangeText={reentry => this.setState({ reentry })}
-                                containerStyle={{ width: width / 1.36 }}
+                                containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -259,6 +261,7 @@ class SetPassword extends Component {
                                 onSubmitEditing={() => this.onDonePress()}
                                 secondaryBackgroundColor="white"
                                 secureTextEntry
+                                testID="setPassword-reentrybox"
                             />
                             <View style={{ flex: 0.3 }} />
                         </View>
@@ -280,7 +283,7 @@ class SetPassword extends Component {
         return (
             <View style={styles.container}>
                 {isAndroid ? (
-                    <View style={styles.container}>{this._renderContent()}</View>
+                    <View style={styles.container}>{this.renderContent()}</View>
                 ) : (
                     <KeyboardAwareScrollView
                         resetScrollToCoords={{ x: 0, y: 0 }}
@@ -288,7 +291,7 @@ class SetPassword extends Component {
                         scrollEnabled={false}
                         enableOnAndroid={false}
                     >
-                        {this._renderContent()}
+                        {this.renderContent()}
                     </KeyboardAwareScrollView>
                 )}
                 <StatefulDropdownAlert />

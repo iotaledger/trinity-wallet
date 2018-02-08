@@ -18,6 +18,8 @@ import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
+console.ignoredYellowBox = ['Native TextInput'];
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -135,7 +137,7 @@ class EnterSeed extends React.Component {
         });
     }
     onQRPress() {
-        this._showModal();
+        this.showModal();
     }
 
     onQRRead(data) {
@@ -151,22 +153,8 @@ class EnterSeed extends React.Component {
                 'Valid seeds should be 81 characters and contain only A-Z or 9.',
             );
         }
-        this._hideModal();
+        this.hideModal();
     }
-
-    _showModal = () => this.setState({ isModalVisible: true });
-
-    _hideModal = () => this.setState({ isModalVisible: false });
-
-    _renderModalContent = () => (
-        <QRScanner
-            backgroundColor={COLORS.backgroundGreen}
-            ctaColor={COLORS.greenLight}
-            onQRRead={data => this.onQRRead(data)}
-            hideModal={() => this._hideModal()}
-            secondaryCtaColor="white"
-        />
-    );
 
     getChecksumValue() {
         const { seed } = this.state;
@@ -182,17 +170,32 @@ class EnterSeed extends React.Component {
         return checksumValue;
     }
 
+    showModal = () => this.setState({ isModalVisible: true });
+
+    hideModal = () => this.setState({ isModalVisible: false });
+
     handleKeyPress = event => {
         if (event.key === 'Enter') {
             Keyboard.dismiss();
         }
     };
 
+    renderModalContent = () => (
+        <QRScanner
+            backgroundColor={COLORS.backgroundGreen}
+            ctaColor={COLORS.greenLight}
+            onQRRead={data => this.onQRRead(data)}
+            hideModal={() => this.hideModal()}
+            secondaryCtaColor="white"
+            secondaryBackgroundColor="white"
+        />
+    );
+
     render() {
         const { seed } = this.state;
         const { t } = this.props;
         return (
-            <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss}>
+            <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
                 <View style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <View style={styles.topContainer}>
@@ -204,8 +207,8 @@ class EnterSeed extends React.Component {
                         <View style={{ flex: 0.5 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
-                            containerStyle={{ width: width / 1.36 }}
+                            onChangeText={text => this.setState({ seed: text.toUpperCase() })}
+                            containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'characters'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -217,10 +220,13 @@ class EnterSeed extends React.Component {
                             value={seed}
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
+                            testID="enterSeed-seedbox"
                         />
                         <View style={{ flex: 0.4 }} />
                         <View style={styles.checksum}>
-                            <Text style={styles.checksumText}>{this.getChecksumValue()}</Text>
+                            <Text style={styles.checksumText} testID="enterSeed-checksum">
+                                {this.getChecksumValue()}
+                            </Text>
                         </View>
                         <View style={{ flex: 0.4 }} />
                         <InfoBox
@@ -244,6 +250,8 @@ class EnterSeed extends React.Component {
                             onRightButtonPress={() => this.onDonePress()}
                             leftText={t('global:back')}
                             rightText={t('global:next')}
+                            leftButtonTestID="enterSeed-back"
+                            rightButtonTestID="enterSeed-next"
                         />
                     </View>
                     <StatefulDropdownAlert />
@@ -260,7 +268,7 @@ class EnterSeed extends React.Component {
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
                     >
-                        {this._renderModalContent()}
+                        {this.renderModalContent()}
                     </Modal>
                 </View>
             </TouchableWithoutFeedback>
