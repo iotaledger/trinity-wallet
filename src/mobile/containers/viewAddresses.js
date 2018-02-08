@@ -1,4 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
+import cloneDeep from 'lodash/cloneDeep';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -93,12 +94,12 @@ export class ViewAddresses extends Component {
 
     static addChecksums(data) {
         const addressesWithChecksums = data.map(item => iota.utils.addChecksum(item[0], 9, true));
-
-        for (let i = 0; i < data.length; i++) {
-            data[i][0] = addressesWithChecksums[i];
+        const clonedData = cloneDeep(data);
+        for (let i = 0; i < data.length; i += 1) {
+            clonedData[i][0] = addressesWithChecksums[i];
         }
 
-        return data;
+        return clonedData;
     }
 
     static getAddressesAsList(addressData) {
@@ -106,7 +107,9 @@ export class ViewAddresses extends Component {
             return [];
         }
 
-        const addresses = Object.entries(addressData).slice();
+        const addresses = Object.entries(addressData)
+            .slice()
+            .reverse();
         return ViewAddresses.addChecksums(addresses);
     }
 

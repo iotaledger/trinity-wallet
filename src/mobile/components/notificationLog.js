@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, TouchableOpacity, Text, ListView, ScrollView } from 'react-native';
-import { width, height } from '../util/dimensions';
+import { View, StyleSheet, TouchableOpacity, Text, ListView } from 'react-native';
 import { formatTimeAs } from 'iota-wallet-shared-modules/libs/dateUtils';
+
+import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -70,24 +71,16 @@ class NotificationLog extends Component {
         secondaryBarColor: PropTypes.string.isRequired,
         hideModal: PropTypes.func.isRequired,
         notificationLog: PropTypes.array.isRequired,
+        clearLog: PropTypes.func.isRequired,
     };
 
     clearNotificationLog() {
-        const { hideModal, clearLog } = this.props;
         this.props.hideModal();
         this.props.clearLog();
     }
 
     render() {
-        const {
-            t,
-            backgroundColor,
-            textColor,
-            borderColor,
-            secondaryBarColor,
-            notificationLog,
-            hideModal,
-        } = this.props;
+        const { backgroundColor, textColor, borderColor, secondaryBarColor, notificationLog, hideModal } = this.props;
         const lineBorder = { borderBottomColor: secondaryBarColor };
         const trimmedLog = notificationLog.reverse().slice(0, 10);
 
