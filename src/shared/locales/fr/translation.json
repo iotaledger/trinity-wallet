@@ -179,7 +179,7 @@
         "incorrectSeed": "Seed incorrecte",
         "incorrectSeedExplanation": "La seed que vous avez saisie est incorrecte. Veuillez réessayer.",
         "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre seed.",
-        "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre code d'accès, veuillez revenir en arrière et faites-le."
+        "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire."
     },
     "send": {
         "invalidAddress": "Adresse invalide",
@@ -260,7 +260,7 @@
     },
     "walletSetup": {
         "okay": "Bien ! Configurons votre portefeuille !",
-        "doYouAlreadyHaveASeed": "Détenez-vous déjà un code d'accès que vous désirez utiliser ?",
+        "doYouAlreadyHaveASeed": "Détenez-vous déjà une seed que vous désirez utiliser ?",
         "seedExplanation": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
         "explanation": "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel wallet</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
         "keepSafe": "Merci de garder votre Seed en sécurité."
