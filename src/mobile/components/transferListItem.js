@@ -77,11 +77,14 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
     },
+    modal: {
+        alignItems: 'center',
+    },
 });
 
 export default class TransferListItem extends PureComponent {
     static propTypes = {
-        onItemPress: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
@@ -91,7 +94,14 @@ export default class TransferListItem extends PureComponent {
         message: PropTypes.string.isRequired,
         bundle: PropTypes.string.isRequired,
         addresses: PropTypes.array.isRequired,
-        style: PropTypes.object.isRequired,
+        style: PropTypes.shape({
+            titleColor: PropTypes.string,
+            containerBorderColor: PropTypes.shape({ borderColor: PropTypes.string }).isRequired,
+            containerBackgroundColor: PropTypes.shape({ backgroundColor: PropTypes.string }).isRequired,
+            confirmationStatusColor: PropTypes.shape({ color: PropTypes.string }).isRequired,
+            defaultTextColor: PropTypes.shape({ color: PropTypes.string }).isRequired,
+            backgroundColor: PropTypes.string,
+        }).isRequired,
     };
 
     constructor() {
@@ -133,28 +143,28 @@ export default class TransferListItem extends PureComponent {
                         </View>
                         <View style={styles.messageOuterWrapper}>
                             <View style={styles.messageInnerWrapper}>
-                                <Text style={[styles.messageTitle, style.messageTextColor]}>{t('send:message')}:</Text>
-                                <Text style={[styles.message, style.messageTextColor]} numberOfLines={1}>
+                                <Text style={[styles.messageTitle, style.defaultTextColor]}>{t('send:message')}:</Text>
+                                <Text style={[styles.message, style.defaultTextColor]} numberOfLines={1}>
                                     {message}
                                 </Text>
                             </View>
                             <View style={styles.timeWrapper}>
-                                <Text style={[styles.timestamp, style.messageTextColor]}>
+                                <Text style={[styles.timestamp, style.defaultTextColor]}>
                                     {formatTime(convertUnixTimeToJSDate(time))}
                                 </Text>
                             </View>
                         </View>
                     </View>
                     <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
+                        animationIn="bounceInUp"
+                        animationOut="bounceOut"
                         animationInTiming={1000}
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={style.containerBackgroundColor}
+                        backdropColor={style.backgroundColor}
                         backdropOpacity={0.6}
-                        style={{ alignItems: 'center' }}
+                        style={styles.modal}
                         isVisible={isModalActive}
                         onBackButtonPress={this.toggleModal}
                         onBackdropPress={this.toggleModal}

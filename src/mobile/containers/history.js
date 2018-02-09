@@ -12,7 +12,6 @@ import {
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
 import { convertFromTrytes, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
-import Modal from 'react-native-modal';
 import HistoryModalContent from '../components/historyModalContent';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
@@ -67,7 +66,7 @@ class History extends Component {
     constructor() {
         super();
 
-        this.state = { modalContent: null, refreshing: false, isModalVisible: false };
+        this.state = { refreshing: false, isModalVisible: false };
         this.onRefresh = this.onRefresh.bind(this);
     }
 
@@ -127,6 +126,7 @@ class History extends Component {
             positiveColor,
             pendingColor,
             secondaryBackgroundColor,
+            backgroundColor,
             t,
         } = this.props;
 
@@ -138,30 +138,33 @@ class History extends Component {
             return incoming ? t('home:receive') : t('global:send');
         };
 
+        const isSecondaryBackgroundColorWhite = secondaryBackgroundColor === 'white';
+
+        const borderColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
+        const containerBackgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
+
         return map(transfers, transfer => {
             const tx = extractTailTransferFromBundle(transfer);
-            const isIncoming = isReceivedTransfer(transfer, addresses);
-            const isSecondaryBackgroundColorWhite = secondaryBackgroundColor === 'white';
-
-            const borderColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
-            const backgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
+            const incoming = isReceivedTransfer(transfer, addresses);
 
             return {
                 t,
-                addresses: map(transfer, v => v.address),
-                status: computeStatus(tx.persistence, isIncoming),
-                confirmation: isIncoming ? t('global:received') : t('global:sent'),
+                generateAlert: this.props.generateAlert, // Already declated in upper scope
+                addresses: map(transfer, item => item.address),
+                status: computeStatus(tx.persistence, incoming),
+                confirmation: incoming ? t('global:received') : t('global:sent'),
                 value: round(formatValue(tx.value), 1),
                 unit: formatUnit(tx.value),
                 time: tx.timestamp,
                 message: convertFromTrytes(tx.signatureMessageFragment),
                 bundle: tx.bundle,
                 style: {
-                    titleColor: isIncoming ? extraColor : negativeColor,
+                    titleColor: incoming ? extraColor : negativeColor,
                     containerBorderColor: { borderColor },
-                    containerBackgroundColor: { backgroundColor },
+                    containerBackgroundColor: { backgroundColor: containerBackgroundColor },
                     confirmationStatusColor: { color: !tx.persistence ? pendingColor : positiveColor },
-                    messageTextColor: { color: secondaryBackgroundColor },
+                    defaultTextColor: { color: secondaryBackgroundColor },
+                    backgroundColor,
                 },
             };
         });
@@ -176,12 +179,10 @@ class History extends Component {
         return (
             <FlatList
                 data={data}
-                initialNumToRender={8}
+                initialNumToRender={8} // TODO: Should be dynamically computed.
                 removeClippedSubviews
                 keyExtractor={(item, index) => index}
-                renderItem={({ item }) => (
-                    <TransferListItem {...item} onItemPress={modalProps => this.renderModal(modalProps)} />
-                )}
+                renderItem={({ item }) => <TransferListItem {...item} />}
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={this.onRefresh} tintColor={negativeColor} />
                 }
@@ -197,42 +198,13 @@ class History extends Component {
         );
     }
 
-    renderModal(props) {
-        const overrides = {
-            ...props,
-            t: this.props.t,
-        };
-
-        this.setState({ isModalVisible: true, modalContent: <HistoryModalContent {...overrides} /> });
-    }
-
     render() {
-        const { backgroundColor } = this.props;
-        const { modalContent, isModalVisible } = this.state;
-
         const transactions = this.renderTransactions();
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     <View style={styles.listView}>{transactions}</View>
-                    <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
-                        animationInTiming={300}
-                        animationOutTiming={200}
-                        backdropTransitionInTiming={500}
-                        backdropTransitionOutTiming={200}
-                        backdropColor={backgroundColor}
-                        backdropOpacity={0.6}
-                        style={{ alignItems: 'center' }}
-                        isVisible={isModalVisible}
-                        onBackButtonPress={() =>
-                            this.setState({ isModalVisible: false }, () => this.setState({ modalContent: null }))
-                        }
-                    >
-                        {modalContent}
-                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );
