@@ -140,7 +140,7 @@
         "login": "ΣΥΝΔΕΣΗ",
         "selectDifferentNode": "Θέλετε να επιλέξετε διαφορετικό κόμβο;",
         "setNode": "ΟΡΙΣΜΟΣ ΚΟΜΒΟΥ",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "cannotConnect": "Δεν μπορεί να γίνει σύνδεση στον κόμβο ΙΟΤΑ."
     },
     "loading": {
         "loadingFirstTime": "Φόρτωση σπόρου για πρώτη φορά.",
@@ -173,7 +173,7 @@
     "saveYourSeed": {
         "seedCleared": "Σπόρος εκκαθαρίστηκε",
         "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>Θα πρέπει να αποθηκεύσετε το seed σας με</0> <1>τουλάχιστον ένα</1> <2>από τους παρακάτω τρόπους.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Λάθος σπόρος",
@@ -251,7 +251,7 @@
         "paste": "Επικόλληση",
         "selectAll": "Επιλογή όλων",
         "securitySettings": "Ρυθμίσεις ασφαλείας",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Ταυτοποίηση με χρήση δακτυλικών αποτυπωμάτων"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",
@@ -262,7 +262,7 @@
         "okay": "Εντάξει. Ας εγκαταστήσουμε το πορτοφόλι σας!",
         "doYouAlreadyHaveASeed": "Έχετε ήδη έναν σπόρο που θα θέλατε να χρησιμοποιήσετε;",
         "seedExplanation": "Ο σπόρος ΙΟΤΑ είναι όπως ένα όνομα χρήστη και κωδικός πρόσβασης για το λογαριασμό σας, σε συνδυασμένα σε μια συμβολοσειρά 81 χαρακτήρων.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>Μπορείτε να το χρησιμοποιήσετε για να αποκτήσετε πρόσβαση σας κεφάλαια από</0> <1>κάθε πορτοφόλι</1> <2>, από</2> <3>οποιαδήποτε συσκευή</3> <4>. Αλλά αν χάσετε το seed σας, χάνετε επίσης και τα ΙΟΤΑ σας.</4></0>",
         "keepSafe": "Παρακαλώ κρατήστε το σπόρο σας ασφαλή."
     },
     "welcome": {
@@ -271,8 +271,8 @@
         "reminder": "Μπορεί να μπείτε στον πειρασμό να παραλείψετε ορισμένα βήματα, αλλά σας προτρέπουμε να ακολουθήσετε την πλήρη διαδικασία."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "yourSeedIs": "Το seed σας έχει μέγεθος {{maxSeedLength}} χαρακτήρες που διαβάζονται από αριστερά προς τα δεξιά.",
+        "writeDownYourSeed": "<0>Σημειώστε το seed και το checksum και</0> <1>επαληθεύστε</1> <2>ότι είναι σωστά.</2>"
     },
     "history": {
         "bundleHashCopied": "Πακέτο κατακερματισμού αντιγράφηκε",
@@ -348,15 +348,15 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Έχω αποθηκεύσει το σπόρο μου",
         "reenter": "Τώρα θα σας ζητηθεί να επανεισάγετε το σπόρο σας.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "Αν η συσκευή σας χαλάσει και δεν έχετε αποθηκεύσει το seed σας, θα χάσετε τα IOTA σας."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ΑΥΤΗ Η ΕΝΕΡΓΕΙΑ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΑΝΑΙΡΕΘΕΙ.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>Όλοι τα δεδομένα του πορτοφολιού συμπεριλαμβανομένων</0> <1>του seed, του κωδικού πρόσβασης,</1> <2>και</2> <3>άλλες πληροφορίες του λογαριασμού</3> <4>θα χαθούν.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "instructionsEnable": "Αγγίξτε τον αισθητήρα ανάγνωσης δακτυλικών αποτυπωμάτων της συσκευής σας για να ενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
+        "instructionsDisable": "Αγγίξτε τον αισθητήρα ανάγνωσης δακτυλικών αποτυπωμάτων της συσκευής σας για να απενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
         "fingerprintAuthEnabled": "Fingerprint authentication enabled",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
         "fingerprintAuthDisabled": "Fingerprint authentication disabled",
