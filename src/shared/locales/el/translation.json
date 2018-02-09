@@ -368,19 +368,19 @@
         "disabled": "Ανενεργό",
         "fingerprintUnavailable": "Ο αισθητήρας δακτυλικών αποτυπωμάτων δεν είναι διαθέσιμος",
         "fingerprintUnavailableExplanation": "Η συσκευή σας δεν υποστηρίζει αναγνώριση δακτυλικών αποτυπωμάτων ή δεν έχει ρυθμιστεί στις ρυθμίσεις της συσκευής.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "buttonInstructionsDisable": "Πατήστε το παρακάτω κουμπί για να απενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
+        "buttonInstructionsEnable": "Πατήστε το παρακάτω κουμπί για να ενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
+        "instructionsLogin": "Αγγίξτε τη συσκευή ανάγνωσης δακτυλικών αποτυπωμάτων για να συνδεθείτε."
     },
     "transferConfirmation": {
         "youAreAbout": "Είστε έτοιμοι να στείλετε {{contents}} στη διεύθυνση",
         "aMessage": "ένα μήνυμα"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
+        "wrongCode": "Λανθασμένος κωδικός",
+        "wrongCodeExplanation": "Ο κωδικός που εισάγατε είναι λάθος.",
+        "emptyCode": "Κενός κωδικός",
+        "emptyCodeExplanation": "Παρακαλώ εισάγετε έναν κωδικό και προσπαθήστε ξανά.",
         "keyCopied": "Key copied to clipboard",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
         "addKey": "Add this key to your 2FA app",
