@@ -5,9 +5,9 @@ import { translate } from 'react-i18next';
 import { updateTheme } from 'actions/settings';
 import { themes } from 'themes/themes';
 
-import Select from 'components/UI/input/Select';
+import Select from 'ui/components/input/Select';
 import Button from 'ui/components/Button';
-import inputCSS from 'components/UI/input/Input.css';
+import inputCSS from 'ui/components/input/input.css';
 import Icon from 'ui/components/Icon';
 
 import css from './index.css';

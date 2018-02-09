@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import listCSS from 'components/UI/HistoryList.css';
+import listCSS from 'ui/components/list.css';
 
 import css from './lists.css';
 
@@ -9,7 +9,7 @@ const Colors = () => {
     return (
         <div className={css.lists}>
             <h1>History list inline</h1>
-            <nav className={classNames(listCSS.historyList, listCSS.inline)}>
+            <nav className={classNames(listCSS.list, listCSS.inline)}>
                 <a className={classNames(listCSS.received, listCSS.confirmed)}>
                     <div>
                         <span>2 days ago</span>
@@ -41,7 +41,7 @@ const Colors = () => {
             </nav>
 
             <h1>History list full</h1>
-            <nav className={listCSS.historyList}>
+            <nav className={listCSS.list}>
                 <a className={classNames(listCSS.received, listCSS.pending)}>
                     <div className={listCSS.full}>
                         <p>
