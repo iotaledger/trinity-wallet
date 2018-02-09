@@ -377,7 +377,7 @@
         "aMessage": "メッセージ"
     },
     "twoFA": {
-        "wrongCode": "認証番号が間違っています。",
+        "wrongCode": "認証コードが間違っています。",
         "wrongCodeExplanation": "The code you entered is incorrect.",
         "emptyCode": "Empty code",
         "emptyCodeExplanation": "Please enter a code and try again.",
