@@ -93,7 +93,13 @@ export default class TransferListItem extends PureComponent {
         time: PropTypes.number.isRequired,
         message: PropTypes.string.isRequired,
         bundle: PropTypes.string.isRequired,
-        addresses: PropTypes.array.isRequired,
+        addresses: PropTypes.arrayOf(
+            PropTypes.shape({
+                address: PropTypes.string.isRequired,
+                value: PropTypes.number.isRequired,
+                unit: PropTypes.string.isRequired,
+            }),
+        ).isRequired,
         style: PropTypes.shape({
             titleColor: PropTypes.string,
             containerBorderColor: PropTypes.shape({ borderColor: PropTypes.string }).isRequired,
