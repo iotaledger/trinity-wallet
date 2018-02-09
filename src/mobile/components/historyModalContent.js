@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
+import { Clipboard, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
@@ -122,12 +122,27 @@ export default class HistoryModalContent extends PureComponent {
         }).isRequired,
     };
 
+    copy(item, type) {
+        const { t } = this.props;
+
+        const types = {
+            bundle: [t('bundleHashCopied'), t('bundleHashCopiedExplanation')],
+            address: [t('addressCopied'), t('addressCopiedExplanation')],
+        };
+
+        Clipboard.setString(item);
+
+        if (types[type]) {
+            this.props.generateAlert('success', ...types[type]);
+        }
+    }
+
     renderAddressRow(address) {
         const { value, unit, style } = this.props;
 
         return (
             <View style={styles.addressRowContainer}>
-                <TouchableOpacity onPress={() => {}} style={styles.addressRowTopWrapper}>
+                <TouchableOpacity onPress={() => this.copy(address, 'address')} style={styles.addressRowTopWrapper}>
                     <Text style={[styles.text, style.defaultTextColor]} numberOfLines={2}>
                         {address}
                     </Text>
@@ -180,7 +195,7 @@ export default class HistoryModalContent extends PureComponent {
                             <Text style={[styles.heading, style.defaultTextColor]}>{t('bundleHash')}:</Text>
                             <View style={styles.bundleWrapper}>
                                 <TouchableOpacity
-                                    onPress={() => console.log('Copied')}
+                                    onPress={() => this.copy(bundle, 'bundle')}
                                     style={styles.bundleInnerWrapper}
                                 >
                                     <Text style={[styles.bundleHash, style.defaultTextColor]} numberOfLines={2}>
