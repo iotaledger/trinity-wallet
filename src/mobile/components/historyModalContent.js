@@ -71,18 +71,25 @@ const styles = StyleSheet.create({
 export default class HistoryModalContent extends PureComponent {
     static propTypes = {
         onPress: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        borderColor: PropTypes.object.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
         status: PropTypes.string.isRequired,
-        value: PropTypes.number.isRequired,
         confirmation: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired,
         unit: PropTypes.string.isRequired,
-        time: PropTypes.string.isRequired,
+        time: PropTypes.number.isRequired,
         message: PropTypes.string.isRequired,
-        addresses: PropTypes.string.isRequired,
         bundle: PropTypes.string.isRequired,
-        style: PropTypes.object.isRequired,
+        addresses: PropTypes.array.isRequired,
+        style: PropTypes.shape({
+            titleColor: PropTypes.string,
+            containerBorderColor: PropTypes.shape({ borderColor: PropTypes.string }).isRequired,
+            containerBackgroundColor: PropTypes.shape({ backgroundColor: PropTypes.string }).isRequired,
+            confirmationStatusColor: PropTypes.shape({ color: PropTypes.string }).isRequired,
+            defaultTextColor: PropTypes.shape({ color: PropTypes.string }).isRequired,
+            backgroundColor: PropTypes.string,
+            borderColor: PropTypes.shape({ borderColor: PropTypes.string }).isRequired,
+        }).isRequired,
     };
 
     renderAddressRow(address) {
@@ -91,12 +98,12 @@ export default class HistoryModalContent extends PureComponent {
         return (
             <View style={styles.addressRowContainer}>
                 <TouchableOpacity onPress={() => {}} style={{ flex: 4.7 }}>
-                    <Text style={[styles.hash, style.messageTextColor]} numberOfLines={2}>
+                    <Text style={[styles.hash, style.defaultTextColor]} numberOfLines={2}>
                         {address}
                     </Text>
                 </TouchableOpacity>
                 <View style={{ flex: 1.3 }}>
-                    <Text style={[styles.modalValue, style.messageTextColor]} numberOfLines={1}>
+                    <Text style={[styles.modalValue, style.defaultTextColor]} numberOfLines={1}>
                         {' '}
                         {value} {unit}
                     </Text>
@@ -119,26 +126,12 @@ export default class HistoryModalContent extends PureComponent {
     }
 
     render() {
-        const {
-            status,
-            onPress,
-            borderColor,
-            backgroundColor,
-            value,
-            unit,
-            confirmation,
-            time,
-            bundle,
-            message,
-            addresses,
-            t,
-            style,
-        } = this.props;
+        const { status, onPress, value, unit, confirmation, time, bundle, message, addresses, t, style } = this.props;
 
         return (
             <TouchableOpacity style={styles.container} onPress={onPress}>
                 <View style={styles.wrapper}>
-                    <View style={[styles.content, borderColor, { backgroundColor }]}>
+                    <View style={[styles.content, style.borderColor, { backgroundColor: style.backgroundColor }]}>
                         <ScrollView>
                             <View style={styles.statusWrapper}>
                                 <Text style={[styles.statusText, { color: style.titleColor }]}>{status}</Text>
@@ -149,22 +142,22 @@ export default class HistoryModalContent extends PureComponent {
                                     <Text style={[styles.confirmation, style.confirmationStatusColor]}>
                                         {confirmation}
                                     </Text>
-                                    <Text style={[styles.timestamp, styles.confirmationStatusColor]}>{time}</Text>
+                                    <Text style={[styles.timestamp, style.defaultTextColor]}>{time}</Text>
                                 </View>
                             </View>
-                            <Text style={[styles.bundleTitle, style.messageTextColor]}>{t('bundleHash')}:</Text>
+                            <Text style={[styles.bundleTitle, style.defaultTextColor]}>{t('bundleHash')}:</Text>
                             <View style={styles.bundleWrapper}>
                                 <TouchableOpacity onPress={() => console.log('Copied')} style={{ flex: 7 }}>
-                                    <Text style={[styles.bundleHash, style.messageTextColor]} numberOfLines={2}>
+                                    <Text style={[styles.bundleHash, style.defaultTextColor]} numberOfLines={2}>
                                         {bundle}
                                     </Text>
                                     <View style={{ flex: 1 }} />
                                 </TouchableOpacity>
                             </View>
-                            <Text style={[styles.bundleTitle, style.messageTextColor]}>{t('addresses')}:</Text>
+                            <Text style={[styles.bundleTitle, style.defaultTextColor]}>{t('addresses')}:</Text>
                             {this.renderAddresses(addresses)}
-                            <Text style={[styles.bundleTitle, style.messageTextColor]}>{t('send:message')}:</Text>
-                            <Text style={[styles.hash, style.messageTextColor]}>{message}</Text>
+                            <Text style={[styles.bundleTitle, style.defaultTextColor]}>{t('send:message')}:</Text>
+                            <Text style={[styles.hash, style.defaultTextColor]}>{message}</Text>
                         </ScrollView>
                     </View>
                 </View>
