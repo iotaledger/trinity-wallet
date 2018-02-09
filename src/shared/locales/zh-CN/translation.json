@@ -46,7 +46,7 @@
         "yes": "是的",
         "no": "没有",
         "password": "密码",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "密码或指纹",
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不相符。请再试一次。",
         "syncInProgress": "同步中",
@@ -139,8 +139,8 @@
         "useSeed": "使用种子",
         "login": "登录",
         "selectDifferentNode": "是否要选择其他节点？",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "设置节点",
+        "cannotConnect": "无法连接到IOTA节点。"
     },
     "loading": {
         "loadingFirstTime": "首次读取种子",
@@ -198,8 +198,8 @@
         "invalidAmount": "输入的金额不正确",
         "invalidAmountExplanation": "请输入交易记录金额的数值。",
         "maximumSelected": "已选择最大金额",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "iotaUnits": "IOTA单位解释",
+        "sendMax": "全部发送"
     },
     "setPassword": {
         "passwordTooShort": "密码太短",
@@ -250,7 +250,7 @@
         "copy": "复制",
         "paste": "粘贴",
         "selectAll": "全选",
-        "securitySettings": "Security settings",
+        "securitySettings": "安全设置",
         "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
