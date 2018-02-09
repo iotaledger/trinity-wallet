@@ -377,16 +377,16 @@
         "aMessage": "메시지"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "wrongCode": "잘못된 코드",
+        "wrongCodeExplanation": "입력한 코드가 옳지 않습니다.",
+        "emptyCode": "코드 미입력",
+        "emptyCodeExplanation": "코드를 입력하고 다시 시도해주십시오.",
+        "keyCopied": "키가 클립보드에 복사됨",
+        "keyCopiedExplanation": "OTP 키가 클립보드에 복사되었습니다.",
+        "addKey": "OTP 어플에 이 키를 추가하십시오",
+        "key": "키",
+        "twoFAEnabled": "OTP 인증 활성화됨",
+        "twoFAEnabledExplanation": "OTP 인증이 활성화되었습니다.",
         "enterCode": "OPT 코드를 입력하십시오",
         "code": "코드"
     }
