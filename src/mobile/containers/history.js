@@ -148,11 +148,16 @@ class History extends Component {
         return map(transfers, transfer => {
             const tx = extractTailTransferFromBundle(transfer);
             const incoming = isReceivedTransfer(transfer, addresses);
+            const withValueAndUnit = item => ({
+                address: iota.utils.addChecksum(item.address, 9, true),
+                value: item.value,
+                unit: formatUnit(item.value),
+            });
 
             return {
                 t,
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
-                addresses: map(transfer, item => iota.utils.addChecksum(item.address, 9, true)),
+                addresses: map(transfer, withValueAndUnit),
                 status: computeStatus(tx.persistence, incoming),
                 confirmation: incoming ? t('global:received') : t('global:sent'),
                 value: round(formatValue(tx.value), 1),
