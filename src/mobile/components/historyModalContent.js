@@ -118,13 +118,13 @@ export default class HistoryModalContent extends PureComponent {
             }),
         ).isRequired,
         style: PropTypes.shape({
-            titleColor: PropTypes.string,
-            containerBorderColor: PropTypes.shape({ borderColor: PropTypes.string }).isRequired,
-            containerBackgroundColor: PropTypes.shape({ backgroundColor: PropTypes.string }).isRequired,
-            confirmationStatusColor: PropTypes.shape({ color: PropTypes.string }).isRequired,
-            defaultTextColor: PropTypes.shape({ color: PropTypes.string }).isRequired,
-            backgroundColor: PropTypes.string,
-            borderColor: PropTypes.shape({ borderColor: PropTypes.string }).isRequired,
+            titleColor: PropTypes.string.isRequired,
+            containerBorderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
+            containerBackgroundColor: PropTypes.shape({ backgroundColor: PropTypes.string.isRequired }).isRequired,
+            confirmationStatusColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
+            defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
+            backgroundColor: PropTypes.string.isRequired,
+            borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
         }).isRequired,
     };
 
