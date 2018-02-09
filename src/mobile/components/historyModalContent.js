@@ -110,7 +110,13 @@ export default class HistoryModalContent extends PureComponent {
         time: PropTypes.number.isRequired,
         message: PropTypes.string.isRequired,
         bundle: PropTypes.string.isRequired,
-        addresses: PropTypes.array.isRequired,
+        addresses: PropTypes.arrayOf(
+            PropTypes.shape({
+                address: PropTypes.string.isRequired,
+                value: PropTypes.number.isRequired,
+                unit: PropTypes.string.isRequired,
+            }),
+        ).isRequired,
         style: PropTypes.shape({
             titleColor: PropTypes.string,
             containerBorderColor: PropTypes.shape({ borderColor: PropTypes.string }).isRequired,
@@ -138,18 +144,18 @@ export default class HistoryModalContent extends PureComponent {
     }
 
     renderAddressRow(address) {
-        const { value, unit, style } = this.props;
+        const { style } = this.props;
 
         return (
             <View style={styles.addressRowContainer}>
                 <TouchableOpacity onPress={() => this.copy(address, 'address')} style={styles.addressRowTopWrapper}>
                     <Text style={[styles.text, style.defaultTextColor]} numberOfLines={2}>
-                        {address}
+                        {address.address}
                     </Text>
                 </TouchableOpacity>
                 <View style={styles.addressRowBottomWrapper}>
                     <Text style={[styles.addressRowValue, style.defaultTextColor]} numberOfLines={1}>
-                        {value} {unit}
+                        {address.value} {address.unit}
                     </Text>
                 </View>
             </View>
