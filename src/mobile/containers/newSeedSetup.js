@@ -137,7 +137,7 @@ class NewSeedSetup extends Component {
     constructor() {
         super();
 
-        console.disableYellowBox = true;
+        console.disableYellowBox = true; // eslint-disable-line no-console
 
         this.state = {
             randomised: false,
