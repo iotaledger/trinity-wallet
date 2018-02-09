@@ -385,8 +385,8 @@
         "keyCopiedExplanation": "2要素認証キーをクリップボードにコピーしました。",
         "addKey": "2要素認証アプリにキーを追加してください。",
         "key": "キー",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "twoFAEnabled": "2要素認証が有効になりました。",
+        "twoFAEnabledExplanation": "2要素認証を有効にしました。",
         "enterCode": "2要素認証アプリのコードを入力してください。",
         "code": "コード"
     }
