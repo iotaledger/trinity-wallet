@@ -377,9 +377,9 @@
         "aMessage": "メッセージ"
     },
     "twoFA": {
-        "wrongCode": "認証コードが間違っています。",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
+        "wrongCode": "コードが間違っています。",
+        "wrongCodeExplanation": "入力したコードが正しくありません。",
+        "emptyCode": "コードが入力されていません。",
         "emptyCodeExplanation": "Please enter a code and try again.",
         "keyCopied": "Key copied to clipboard",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
