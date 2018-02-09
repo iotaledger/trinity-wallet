@@ -357,12 +357,12 @@
     "fingerprintSetup": {
         "instructionsEnable": "Αγγίξτε τον αισθητήρα ανάγνωσης δακτυλικών αποτυπωμάτων της συσκευής σας για να ενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
         "instructionsDisable": "Αγγίξτε τον αισθητήρα ανάγνωσης δακτυλικών αποτυπωμάτων της συσκευής σας για να απενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "fingerprintAuthEnabled": "Η είσοδος με χρήση δακτυλικών αποτυπωμάτων ενεργοποιήθηκε",
+        "fingerprintAuthEnabledExplanation": "Έχετε ενεργοποιήσει επιτυχώς την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
+        "fingerprintAuthDisabled": "Η είσοδος με χρήση δακτυλικών αποτυπωμάτων απενεργοποιήθηκε",
+        "fingerprintAuthDisabledExplanation": "Έχετε απενεργοποιήσει επιτυχώς την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
+        "fingerprintAuthFailed": "Η είσοδος με χρήση δακτυλικού αποτυπωμάτος απέτυχε",
+        "fingerprintAuthFailedExplanation": "Η είσοδος με χρήση δακτυλικού αποτυπωμάτος απέτυχε. Παρακαλώ δοκιμάστε ξανά.",
         "status": "Κατάσταση",
         "enabled": "Ενεργό",
         "disabled": "Ανενεργό",
@@ -381,13 +381,13 @@
         "wrongCodeExplanation": "Ο κωδικός που εισάγατε είναι λάθος.",
         "emptyCode": "Κενός κωδικός",
         "emptyCodeExplanation": "Παρακαλώ εισάγετε έναν κωδικό και προσπαθήστε ξανά.",
-        "keyCopied": "Key copied to clipboard",
+        "keyCopied": "Το κλειδί αντιγράφτηκε στο πρόχειρο",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
         "addKey": "Add this key to your 2FA app",
-        "key": "Key",
+        "key": "Κλειδί",
         "twoFAEnabled": "2FA is now enabled",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "code": "Κωδικός"
     }
 }
