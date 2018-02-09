@@ -1,16 +1,7 @@
 import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    ListView,
-    Text,
-    TouchableWithoutFeedback,
-    Clipboard,
-    RefreshControl,
-    FlatList,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Clipboard, RefreshControl, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -20,16 +11,14 @@ import {
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
-import { convertFromTrytes, isReceivedTransfer, iota } from 'iota-wallet-shared-modules/libs/iota';
+import { convertFromTrytes, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import Modal from 'react-native-modal';
+import HistoryModalContent from '../components/historyModalContent';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
-import TransactionRow from '../components/transactionRow';
 import TransferListItem from '../components/transferListItem';
 import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
-
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const styles = StyleSheet.create({
     container: {
@@ -77,7 +66,8 @@ class History extends Component {
 
     constructor() {
         super();
-        this.state = { viewRef: null, refreshing: false };
+
+        this.state = { modalContent: null, refreshing: false, isModalVisible: false };
         this.onRefresh = this.onRefresh.bind(this);
     }
 
@@ -105,6 +95,7 @@ class History extends Component {
         if (isAlreadyFetchingAccountInfo) {
             this.generateAlreadyFetchingAccountInfoAlert();
         }
+
         return isAlreadyDoingSomeHeavyLifting || isAlreadyFetchingAccountInfo;
     }
 
@@ -125,18 +116,6 @@ class History extends Component {
                 this.props.getAccountInfo(seed, selectedAccountName);
             })
             .catch(err => console.log(err));
-    }
-
-    copyBundleHash(item) {
-        const { t } = this.props;
-        Clipboard.setString(item);
-        this.props.generateAlert('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
-    }
-
-    copyAddress(item) {
-        const { t } = this.props;
-        Clipboard.setString(item);
-        this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
     prepTransactions() {
@@ -168,13 +147,15 @@ class History extends Component {
             const backgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
             return {
+                t,
+                addresses: map(transfer, v => v.address),
                 status: computeStatus(tx.persistence, isIncoming),
                 confirmation: isIncoming ? t('global:received') : t('global:sent'),
                 value: round(formatValue(tx.value), 1),
                 unit: formatUnit(tx.value),
-                time: formatTime(convertUnixTimeToJSDate(tx.timestamp)),
+                time: tx.timestamp,
                 message: convertFromTrytes(tx.signatureMessageFragment),
-                messageTitle: `${t('send:message')}:  `,
+                bundle: tx.bundle,
                 style: {
                     titleColor: isIncoming ? extraColor : negativeColor,
                     containerBorderColor: { borderColor },
@@ -198,7 +179,9 @@ class History extends Component {
                 initialNumToRender={8}
                 removeClippedSubviews
                 keyExtractor={(item, index) => index}
-                renderItem={({ item }) => <TransferListItem {...item} onItemPress={() => console.log('Hey')} />}
+                renderItem={({ item }) => (
+                    <TransferListItem {...item} onItemPress={modalProps => this.renderModal(modalProps)} />
+                )}
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={this.onRefresh} tintColor={negativeColor} />
                 }
@@ -214,13 +197,42 @@ class History extends Component {
         );
     }
 
+    renderModal(props) {
+        const overrides = {
+            ...props,
+            t: this.props.t,
+        };
+
+        this.setState({ isModalVisible: true, modalContent: <HistoryModalContent {...overrides} /> });
+    }
+
     render() {
+        const { backgroundColor } = this.props;
+        const { modalContent, isModalVisible } = this.state;
+
         const transactions = this.renderTransactions();
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     <View style={styles.listView}>{transactions}</View>
+                    <Modal
+                        animationIn={'bounceInUp'}
+                        animationOut={'bounceOut'}
+                        animationInTiming={300}
+                        animationOutTiming={200}
+                        backdropTransitionInTiming={500}
+                        backdropTransitionOutTiming={200}
+                        backdropColor={backgroundColor}
+                        backdropOpacity={0.6}
+                        style={{ alignItems: 'center' }}
+                        isVisible={isModalVisible}
+                        onBackButtonPress={() =>
+                            this.setState({ isModalVisible: false }, () => this.setState({ modalContent: null }))
+                        }
+                    >
+                        {modalContent}
+                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );
