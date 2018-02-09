@@ -11,8 +11,8 @@
         "transferErrorMessage": "Κάτι πήγε στραβά κατά την αποστολή της μεταφοράς σας. Παρακαλώ δοκιμάστε ξανά.",
         "transferSent": "Μεταφορά απεστάλει",
         "transferSentMessage": "Η μεταφορά σας έχει αποσταλεί στο Tangle.",
-        "messageSent": "Message sent",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
+        "messageSent": "Το μήνυμα εστάλη",
+        "messageSentMessage": "Η μεταφορά σας έχει αποσταλεί στο Tangle.",
         "keyReuse": "Επαναχρησιμοποίηση κλειδιού",
         "keyReuseError": "Δεν μπορείτε να στείλετε σε μια διεύθυνση από όπου έχει ήδη γίνει δαπάνη.",
         "invalidResponse": "Μη έγκυρη απόκριση",
@@ -46,7 +46,7 @@
         "yes": "ΝΑΙ",
         "no": "ΟΧΙ",
         "password": "Κωδικός πρόσβασης",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Κωδικός πρόσβασης ή δακτυλικό αποτύπωμα",
         "unrecognisedPassword": "Μη αναγνωρισμένος κωδικός πρόσβασης",
         "unrecognisedPasswordExplanation": "Ο κωδικός πρόσβασης δεν αναγνωρίστηκε. Παρακαλώ δοκιμάστε ξανά.",
         "syncInProgress": "Συγχρονισμός σε εξέλιξη",
@@ -58,7 +58,7 @@
         "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
         "attachToTangleUnavailable": "Η επισύναψη στο Tangle δεν είναι διαθέσιμη",
         "attachToTangleUnavailableExplanation": "Επισύναψη στο Tangle δεν είναι διαθέσιμη για το επιλεγμένο κόμβο.",
-        "wallet": "Wallet",
+        "wallet": "Πορτοφόλι",
         "sent": "Sent",
         "received": "Received",
         "sending": "Sending",
@@ -67,10 +67,10 @@
         "pending": "Εκκρεμεί",
         "bundleHash": "Bundle Hash",
         "addresses": "Διευθύνσεις",
-        "pressBackAgain": "Press back again to close the app",
-        "autoreattaching": "Autoreattaching to Tangle",
+        "pressBackAgain": "Πατήστε ξανά πίσω για να κλείσετε την εφαρμογή",
+        "autoreattaching": "Αυτόματη επισύναψη στο Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
+        "autopromoting": "Αυτόματη προώθηση συναλλαγής",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
@@ -166,7 +166,7 @@
     "receive": {
         "addressCopied": "Η διεύθυνση αντιγράφηκε",
         "addressCopiedExplanation": "Η διεύθυνσή σας έχει αντιγραφεί στο Πρόχειρο.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "ΝΕΑ ΔΙΕΥΘΥΝΣΗ",
         "message": "Προαιρετικό μήνυμα",
         "removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ"
     },
@@ -198,8 +198,8 @@
         "invalidAmount": "Εισήχθη λάθος ποσό",
         "invalidAmountExplanation": "Παρακαλώ εισάγετε μια αριθμητική τιμή για το ποσό της συναλλαγής.",
         "maximumSelected": "ΜΕΓΙΣΤΟ ποσό επιλέχθηκε",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "iotaUnits": "Επεξήγηση των υποδιαιρέσεων του IOTA",
+        "sendMax": "ΑΠΟΣΤΟΛΗ ΜΕΓΙΣΤΟΥ ΠΟΣΟΥ"
     },
     "setPassword": {
         "passwordTooShort": "Ο κωδικός πρόσβασης είναι πολύ σύντομος",
@@ -250,7 +250,7 @@
         "copy": "Αντιγραφή",
         "paste": "Επικόλληση",
         "selectAll": "Επιλογή όλων",
-        "securitySettings": "Security settings",
+        "securitySettings": "Ρυθμίσεις ασφαλείας",
         "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
@@ -363,11 +363,11 @@
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "status": "Κατάσταση",
+        "enabled": "Ενεργό",
+        "disabled": "Ανενεργό",
+        "fingerprintUnavailable": "Ο αισθητήρας δακτυλικών αποτυπωμάτων δεν είναι διαθέσιμος",
+        "fingerprintUnavailableExplanation": "Η συσκευή σας δεν υποστηρίζει αναγνώριση δακτυλικών αποτυπωμάτων ή δεν έχει ρυθμιστεί στις ρυθμίσεις της συσκευής.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "instructionsLogin": "Touch fingerprint reader to log in."
