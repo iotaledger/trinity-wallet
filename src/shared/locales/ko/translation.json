@@ -368,7 +368,7 @@
         "disabled": "사용 중지됨",
         "fingerprintUnavailable": "지문인식기를 사용할 수 없습니다.",
         "fingerprintUnavailableExplanation": "본 장치는 지문인식 기능을 지원하지 않거나, 지문인식 기능을 사용하지 않도록 설정되어 있습니다.",
-        "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 사용 중지할 수 있습니다.",
+        "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증 사용을 중지할 수 있습니다.",
         "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 사용할 수 있습니다.",
         "instructionsLogin": "로그인을 하려면 손가락을 지문인식기 위에 올리세요."
     },
@@ -387,7 +387,7 @@
         "key": "Key",
         "twoFAEnabled": "2FA is now enabled",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "enterCode": "OPT 코드를 입력하십시오",
+        "code": "코드"
     }
 }
