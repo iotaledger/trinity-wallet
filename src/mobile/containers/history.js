@@ -11,7 +11,7 @@ import {
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
-import { convertFromTrytes, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { convertFromTrytes, isReceivedTransfer, iota } from 'iota-wallet-shared-modules/libs/iota';
 import HistoryModalContent from '../components/historyModalContent';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
@@ -152,7 +152,7 @@ class History extends Component {
             return {
                 t,
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
-                addresses: map(transfer, item => item.address),
+                addresses: map(transfer, item => iota.util.addChecksum(item.address, 9, true)),
                 status: computeStatus(tx.persistence, incoming),
                 confirmation: incoming ? t('global:received') : t('global:sent'),
                 value: round(formatValue(tx.value), 1),
