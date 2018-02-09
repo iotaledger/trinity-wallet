@@ -4,7 +4,7 @@ import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { showNotification } from 'actions/notifications';
-import Template, { Content } from 'components/Main/Template';
+import { clearTempData } from 'actions/tempAccount';
 import Confirm from 'ui/components/modal/Confirm';
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -17,17 +17,7 @@ import Currency from 'ui/views/settings/Currency';
 import Password from 'ui/views/settings/Password';
 import Advanced from 'ui/views/settings/Advanced';
 
-import css from 'ui/views/settings/index.css';
-
-import icoMode from 'images/mode-white.png';
-import icoNode from 'images/node-white.png';
-import icoTheme from 'images/theme-white.png';
-import icoCurrency from 'images/currency-white.png';
-import icoLanguage from 'images/language-white.png';
-import ico2fa from 'images/2fa-white.png';
-import icoPassword from 'images/password-white.png';
-import icoAdvanced from 'images/advanced-white.png';
-import icoLogout from 'images/logout-white.png';
+import css from './index.css';
 
 class Settings extends React.PureComponent {
     static propTypes = {
@@ -38,6 +28,7 @@ class Settings extends React.PureComponent {
         }).isRequired,
         tempAccount: PropTypes.object,
         showNotification: PropTypes.func.isRequired,
+        clearTempData: PropTypes.func.isRequired,
     };
 
     state = {
@@ -51,6 +42,7 @@ class Settings extends React.PureComponent {
     };
 
     doLogout = () => {
+        this.props.clearTempData();
         this.props.history.push('/login');
     };
 
@@ -68,7 +60,7 @@ class Settings extends React.PureComponent {
         const { t, location, tempAccount, history } = this.props;
         const { modalLogout } = this.state;
         return (
-            <Content>
+            <main>
                 <section>
                     <nav className={css.nav}>
                         <NavLink to="/settings/language">
@@ -131,7 +123,7 @@ class Settings extends React.PureComponent {
                         <Redirect from="/settings" to="/settings/language" />
                     </Switch>
                 </section>
-            </Content>
+            </main>
         );
     };
 
@@ -139,10 +131,10 @@ class Settings extends React.PureComponent {
         const { history } = this.props;
 
         return this.props.tempAccount && this.props.tempAccount.ready ? (
-            <Template>{this.renderSettings()}</Template>
+            this.renderSettings()
         ) : (
             <Modal isOpen onClose={() => history.push('/')}>
-                <div className={css.public}>{this.renderSettings()}</div>
+                {this.renderSettings()}
             </Modal>
         );
     }
@@ -154,6 +146,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     showNotification,
+    clearTempData,
 };
 
 export default translate('settings')(connect(mapStateToProps, mapDispatchToProps)(Settings));

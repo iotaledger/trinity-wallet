@@ -8,7 +8,7 @@ import { showError, showNotification } from 'actions/notifications';
 import { isValidPassword } from 'libs/util';
 import { getSecurelyPersistedSeeds, securelyPersistSeeds } from 'libs/storage';
 
-import Password from 'components/UI/input/Password';
+import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 
 /**
@@ -17,17 +17,17 @@ import Button from 'ui/components/Button';
 class SetPassword extends PureComponent {
     static propTypes = {
         /* Error helper function
-         * @param {Object} error notification content
+         * @param {Object} content - Error notification content
          * @ignore
          */
         showError: PropTypes.func.isRequired,
         /* Notification helper function
-         * @param {Object} success notification content
+         * @param {Object} content - Success notification content
          * @ignore
          */
         showNotification: PropTypes.func.isRequired,
         /* Translation helper
-         * @param {String} locale identifier to be translated
+         * @param {string} translationString - Locale string identifier to be translated
          * @ignore
          */
         t: PropTypes.func.isRequired,

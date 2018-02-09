@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import LanguageSelect from 'components/UI/LanguageSelect';
+import LanguageSelect from 'ui/components/input/Language';
 
 class Language extends React.PureComponent {
     static propTypes = {
@@ -12,7 +12,7 @@ class Language extends React.PureComponent {
         const { t } = this.props;
         return (
             <div>
-                <LanguageSelect label={t('languageSetup:language')} />
+                <LanguageSelect />
             </div>
         );
     }

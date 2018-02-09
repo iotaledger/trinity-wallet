@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateTheme } from 'actions/settings';
 import { showNotification } from 'actions/notifications';
 
-import Input from 'components/UI/input/Text';
+import Input from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
 

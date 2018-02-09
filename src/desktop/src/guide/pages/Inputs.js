@@ -1,10 +1,10 @@
 import React from 'react';
 
-import PasswordInput from 'components/UI/input/Password';
-import SeedInput from 'components/UI/input/Seed';
-import AmountInput from 'components/UI/input/Amount';
-import MessageInput from 'components/UI/input/Message';
-import Select from 'components/UI/input/Select';
+import PasswordInput from 'ui/components/input/Password';
+import SeedInput from 'ui/components/input/Seed';
+import AmountInput from 'ui/components/input/Amount';
+import MessageInput from 'ui/components/input/Message';
+import Select from 'ui/components/input/Select';
 
 class Inputs extends React.PureComponent {
     state = {
@@ -41,7 +41,7 @@ class Inputs extends React.PureComponent {
                     <AmountInput
                         amount={this.state.ammount}
                         settings={{ currency: 'USD' }}
-                        label="Ammount"
+                        label="Amount"
                         labelMax="Send maximum"
                         balance={2000}
                         onChange={(value) => this.setState({ ammount: value })}
