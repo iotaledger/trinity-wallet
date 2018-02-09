@@ -1,6 +1,10 @@
+import pick from 'lodash/pick';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import HistoryModalContent from '../components/historyModalContent';
+import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
+import Modal from 'react-native-modal';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
@@ -78,21 +82,42 @@ const styles = StyleSheet.create({
 export default class TransferListItem extends PureComponent {
     static propTypes = {
         onItemPress: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
         value: PropTypes.number.isRequired,
         unit: PropTypes.string.isRequired,
-        time: PropTypes.string.isRequired,
+        time: PropTypes.number.isRequired,
         message: PropTypes.string.isRequired,
-        messageTitle: PropTypes.string.isRequired,
+        bundle: PropTypes.string.isRequired,
+        addresses: PropTypes.array.isRequired,
         style: PropTypes.object.isRequired,
     };
 
+    constructor() {
+        super();
+
+        this.state = { isModalActive: false };
+
+        this.toggleModal = this.toggleModal.bind(this);
+    }
+
+    getModalProps() {
+        const props = this.props;
+
+        return { ...props, onPress: this.toggleModal };
+    }
+
+    toggleModal() {
+        this.setState({ isModalActive: !this.state.isModalActive });
+    }
+
     render() {
-        const { onItemPress, status, confirmation, value, unit, time, message, messageTitle, style } = this.props;
+        const { status, confirmation, value, unit, time, message, t, style } = this.props;
+        const { isModalActive } = this.state;
 
         return (
-            <TouchableOpacity onPress={onItemPress}>
+            <TouchableOpacity onPress={this.toggleModal}>
                 <View style={styles.topWrapper}>
                     <View style={[styles.container, style.containerBorderColor, style.containerBackgroundColor]}>
                         <View style={styles.innerWrapper}>
@@ -108,16 +133,34 @@ export default class TransferListItem extends PureComponent {
                         </View>
                         <View style={styles.messageOuterWrapper}>
                             <View style={styles.messageInnerWrapper}>
-                                <Text style={[styles.messageTitle, style.messageTextColor]}>{messageTitle}</Text>
+                                <Text style={[styles.messageTitle, style.messageTextColor]}>{t('send:message')}:</Text>
                                 <Text style={[styles.message, style.messageTextColor]} numberOfLines={1}>
                                     {message}
                                 </Text>
                             </View>
                             <View style={styles.timeWrapper}>
-                                <Text style={[styles.timestamp, style.messageTextColor]}>{time}</Text>
+                                <Text style={[styles.timestamp, style.messageTextColor]}>
+                                    {formatTime(convertUnixTimeToJSDate(time))}
+                                </Text>
                             </View>
                         </View>
                     </View>
+                    <Modal
+                        animationIn={'bounceInUp'}
+                        animationOut={'bounceOut'}
+                        animationInTiming={1000}
+                        animationOutTiming={200}
+                        backdropTransitionInTiming={500}
+                        backdropTransitionOutTiming={200}
+                        backdropColor={style.containerBackgroundColor}
+                        backdropOpacity={0.6}
+                        style={{ alignItems: 'center' }}
+                        isVisible={isModalActive}
+                        onBackButtonPress={this.toggleModal}
+                        onBackdropPress={this.toggleModal}
+                    >
+                        <HistoryModalContent {...this.getModalProps()} />
+                    </Modal>
                 </View>
             </TouchableOpacity>
         );
