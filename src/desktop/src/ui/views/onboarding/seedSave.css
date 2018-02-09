@@ -1,0 +1,25 @@
+.seed {
+    display: flex;
+    max-width: 500px;
+    margin-bottom: 60px;
+    width: 100%;
+    > canvas {
+        margin-right: 20px;
+    }
+    p {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 500px;
+        letter-spacing: 2px;
+        font-family: monospace;
+        font-size: var(--font-size-m);
+        span {
+            margin-right: 16px;
+        }
+    }
+}
+.nav {
+    button {
+        margin: 0 8px;
+    }
+}

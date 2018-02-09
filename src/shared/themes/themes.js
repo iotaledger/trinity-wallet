@@ -1,19 +1,19 @@
 import tinycolor from 'tinycolor2';
 
 import Default from './themes/Default';
-import GreyDark from './themes/GreyDark';
+import Electric from './themes/Electric';
 import Mint from './themes/Mint';
-import MonochromeLight from './themes/MonochromeLight';
-import MonochromeDark from './themes/MonochromeDark';
+import Ionic from './themes/Ionic';
+import SteelBlue from './themes/SteelBlue';
+import Contemporary from './themes/Contemporary';
 
 export const themes = {
     Default: Default,
     Mint: Mint,
-    /*,
-    'Grey dark': GreyDark,
-    'Monochrome Light': MonochromeLight,
-    'Monochrome Dark': MonochromeDark,
-    */
+    Electric: Electric,
+    Ionic: Ionic,
+    SteelBlue: SteelBlue,
+    Contemporary: Contemporary,
 };
 
 export const getHSL = (color) => {

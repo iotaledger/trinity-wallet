@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Icon from 'ui/views/settings/';
+import Icon from 'ui/components/Icon';
 import { icons } from 'icons/icons';
 
 import css from './icons.css';

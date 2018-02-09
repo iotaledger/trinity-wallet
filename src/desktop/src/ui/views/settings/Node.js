@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import withNodeData from 'containers/settings/Node';
 
 import Button from 'ui/components/Button';
-import Select from 'components/UI/input/Select';
-import Text from 'components/UI/input/Text';
+import Select from 'ui/components/input/Select';
+import Text from 'ui/components/input/Text';
 
 /**
  * Change IRI API node component
@@ -19,11 +19,11 @@ class SetNode extends PureComponent {
         /* Node validity check statuss */
         loading: PropTypes.bool.isRequired,
         /* Set new node
-         * @param {String} node url
+         * @param {string} url - Node url
          */
         setNode: PropTypes.func.isRequired,
         /* Translation helper
-         * @param {String} locale identifier to be translated
+         * @param {string} translationString - Locale string identifier to be translated
          * @ignore
          */
         t: PropTypes.func.isRequired,

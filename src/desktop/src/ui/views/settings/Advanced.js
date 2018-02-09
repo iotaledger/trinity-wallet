@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { showError } from 'actions/notifications';
 import { getSecurelyPersistedSeeds } from 'libs/storage';
 
-import Password from 'components/UI/input/Password';
+import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
 
@@ -17,12 +17,12 @@ import Modal from 'ui/components/modal/Modal';
 class Advanced extends PureComponent {
     static propTypes = {
         /* Error helper function
-         * @param {Object} error notification content
+         * @param {Object} content - Error notification content
          * @ignore
          */
         showError: PropTypes.func.isRequired,
         /* Translation helper
-         * @param {String} locale identifier to be translated
+         * @param {String} translationString - Locale string identifier to be translated
          * @ignore
          */
         t: PropTypes.func.isRequired,
