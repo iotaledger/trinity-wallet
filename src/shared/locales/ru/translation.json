@@ -377,17 +377,17 @@
         "aMessage": "сообщение"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "wrongCode": "Неправильный код",
+        "wrongCodeExplanation": "Введенный Вами код неверен.",
+        "emptyCode": "Код пустой",
+        "emptyCodeExplanation": "Пожалуйста введите код и повторите попытку.",
+        "keyCopied": "Ключ скопирован в буфер обмена",
+        "keyCopiedExplanation": "Ваш 2FA ключ был скопирована в буфер обмена.",
+        "addKey": "Добавить этот ключ к вашему 2FA приложению",
+        "key": "Ключ",
+        "twoFAEnabled": "2FA теперь включена",
+        "twoFAEnabledExplanation": "Вы успешно включили аутентификацию по отпечаткам пальцев.",
+        "enterCode": "Введите код из 2FA приложения",
+        "code": "Код"
     }
 }
