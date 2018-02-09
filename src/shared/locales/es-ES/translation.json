@@ -383,11 +383,11 @@
         "emptyCodeExplanation": "Por favor, introduce el código e inténtalo de nuevo.",
         "keyCopied": "Clave copiada al portapapeles",
         "keyCopiedExplanation": "Tu clave 2FA se ha copiado al portapapeles.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
+        "addKey": "Añade esta clave a tu aplicación 2FA",
+        "key": "Clave",
+        "twoFAEnabled": "2FA habilitado",
+        "twoFAEnabledExplanation": "Has habilitado la autenticación de doble factor correctamente.",
+        "enterCode": "Introduce el código de tu aplicación 2FA",
         "code": "Código"
     }
 }
