@@ -137,7 +137,7 @@ class NewSeedSetup extends Component {
     constructor() {
         super();
 
-        console.disableYellowBox = true; // eslint-disable-line no-console
+        console.disableYellowBox = true;
 
         this.state = {
             randomised: false,
@@ -235,14 +235,14 @@ class NewSeedSetup extends Component {
         });
     }
 
-    renderSeedBox(character) {
+    renderSeedBox(character, index) {
         const { secondaryBackgroundColor, negativeColor, backgroundColor } = this.props;
 
         const { randomised } = this.state;
 
         return (
             <TouchableHighlight
-                onPress={() => this.onItemPress(character)}
+                onPress={() => this.onItemPress(index)}
                 style={[styles.tileContainer, { backgroundColor: secondaryBackgroundColor }]}
                 underlayColor={negativeColor}
             >
@@ -292,7 +292,7 @@ class NewSeedSetup extends Component {
                         contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
                         data={split(seed, '')}
                         keyExtractor={(item, index) => index}
-                        renderItem={({ item }) => this.renderSeedBox(item)}
+                        renderItem={({ item, index }) => this.renderSeedBox(item, index)}
                         initialNumToRender={MAX_SEED_LENGTH}
                         scrollEnabled={false}
                     />
