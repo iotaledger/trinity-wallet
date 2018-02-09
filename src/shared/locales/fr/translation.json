@@ -379,15 +379,15 @@
     "twoFA": {
         "wrongCode": "Code incorrect",
         "wrongCodeExplanation": "Le code saisi est incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
+        "emptyCode": "Code vide",
+        "emptyCodeExplanation": "Veuillez entrer un code et réessayez.",
+        "keyCopied": "Clé copiée dans le presse-papiers",
+        "keyCopiedExplanation": "Votre clé 2FA a été copiée dans le presse-papiers.",
+        "addKey": "Ajouter cette clé à votre application 2FA",
+        "key": "Clé",
+        "twoFAEnabled": "2FA est maintenant activé",
+        "twoFAEnabledExplanation": "Vous avez correctement activé l’authentification à deux facteurs.",
+        "enterCode": "Entrer le code de votre application 2FA",
         "code": "Code"
     }
 }
