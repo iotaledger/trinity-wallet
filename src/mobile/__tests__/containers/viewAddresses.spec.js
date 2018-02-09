@@ -28,36 +28,23 @@ describe('Testing ViewAddresses component', () => {
             expect(wrapper.name()).toEqual('View');
         });
 
-        it('should return a View component with Text as its immediate child if addressData props is empty', () => {
+        it('should return a View component as an immediate child', () => {
             const props = getProps();
             const wrapper = shallow(<ViewAddresses {...props} />);
 
             expect(wrapper.childAt(0).name()).toEqual('View');
-            expect(
-                wrapper
-                    .childAt(0)
-                    .childAt(0)
-                    .name(),
-            ).toEqual('Text');
         });
 
-        it('should return a View component with ListView as its immediate child if addressData props is not empty', () => {
+        it('should return a FlatList component', () => {
             const props = getProps({ addressData: { ['U'.repeat(81)]: {} } });
             const wrapper = shallow(<ViewAddresses {...props} />);
 
-            expect(wrapper.childAt(0).name()).toEqual('View');
             expect(
                 wrapper
                     .childAt(0)
                     .childAt(0)
                     .name(),
-            ).not.toEqual('Text');
-            expect(
-                wrapper
-                    .childAt(0)
-                    .childAt(0)
-                    .name(),
-            ).toEqual('ListViewMock');
+            ).toEqual('FlatList');
         });
     });
 
@@ -90,55 +77,6 @@ describe('Testing ViewAddresses component', () => {
 
                     expect(props.generateAlert).toHaveBeenCalledTimes(1);
                 });
-            });
-        });
-    });
-
-    describe('static methods', () => {
-        describe('#getAddressesAsList', () => {
-            it('should return an empty array if argument passed to it is empty', () => {
-                expect(ViewAddresses.getAddressesAsList({})).toEqual([]);
-            });
-
-            it('should return list with checksums appended to each item at index 0 if argument passed to it is not empty', () => {
-                const fakeAddress = 'U'.repeat(81);
-                const args = {
-                    [fakeAddress]: {},
-                };
-
-                const checksum = 'NXELTUENX';
-                const fakeAddressWithChecksum = `${fakeAddress}${checksum}`;
-                const returnValue = [[fakeAddressWithChecksum, {}]];
-                expect(ViewAddresses.getAddressesAsList(args)).toEqual(returnValue);
-            });
-
-            it('should reverse the returned list if argument passed to it is not empty', () => {
-                const fakeAddressOne = 'U'.repeat(81);
-                const fakeAddressTwo = 'A'.repeat(81);
-                const fakeAddressThree = '9'.repeat(81);
-                const args = {
-                    [fakeAddressOne]: {},
-                    [fakeAddressTwo]: {},
-                    [fakeAddressThree]: {},
-                };
-
-                expect(ViewAddresses.getAddressesAsList(args)).not.toEqual([
-                    [`${fakeAddressOne}NXELTUENX`],
-                    {},
-                    [`${fakeAddressTwo}YLFHUOJUY`],
-                    {},
-                    [`${fakeAddressThree}A9BEONKZW`],
-                    {},
-                ]);
-
-                expect(ViewAddresses.getAddressesAsList(args)).not.toEqual([
-                    [`${fakeAddressThree}A9BEONKZW`],
-                    {},
-                    [`${fakeAddressTwo}YLFHUOJUY`],
-                    {},
-                    [`${fakeAddressOne}NXELTUENX`],
-                    {},
-                ]);
             });
         });
     });
