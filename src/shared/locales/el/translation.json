@@ -59,10 +59,10 @@
         "attachToTangleUnavailable": "Η επισύναψη στο Tangle δεν είναι διαθέσιμη",
         "attachToTangleUnavailableExplanation": "Επισύναψη στο Tangle δεν είναι διαθέσιμη για το επιλεγμένο κόμβο.",
         "wallet": "Πορτοφόλι",
-        "sent": "Sent",
-        "received": "Received",
-        "sending": "Sending",
-        "receiving": "Receiving",
+        "sent": "Εστάλη",
+        "received": "Ελήφθη",
+        "sending": "Αποστολή σε εξέλιξη",
+        "receiving": "Λήψη σε εξέλιξη",
         "confirmed": "Επιβεβαιώθηκε",
         "pending": "Εκκρεμεί",
         "bundleHash": "Bundle Hash",
@@ -139,7 +139,7 @@
         "useSeed": "ΧΡΗΣΗ ΣΠΟΡΟΥ",
         "login": "ΣΥΝΔΕΣΗ",
         "selectDifferentNode": "Θέλετε να επιλέξετε διαφορετικό κόμβο;",
-        "setNode": "SET NODE",
+        "setNode": "ΟΡΙΣΜΟΣ ΚΟΜΒΟΥ",
         "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
