@@ -35,7 +35,7 @@ class Chart extends PureComponent {
         /* Change chart time frame */
         setTimeframe: PropTypes.func.isRequired,
         /* Style price to current currency format 
-         * @param {Number} price value to format
+         * @param {number} price - Input price value for formatting
          */
         getPriceFormat: PropTypes.func.isRequired,
         /* Theme settings
@@ -43,7 +43,7 @@ class Chart extends PureComponent {
          */
         theme: PropTypes.object.isRequired,
         /* Translation helper
-         * @param {String} locale identifier to be translated
+         * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */
         t: PropTypes.func.isRequired,

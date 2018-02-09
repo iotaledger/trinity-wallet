@@ -10,9 +10,9 @@ import { translate, I18nextProvider } from 'react-i18next';
 import 'components/App.css';
 
 import Logo from 'ui/components/Logo';
-import Theme from 'components/UI/Theme';
-import Alerts from 'ui/views/global/Alerts';
-import Notifications from 'ui/views/global/Notifications';
+import Theme from 'ui/global/Theme';
+import Alerts from 'ui/global/Alerts';
+import Notifications from 'ui/global/Notifications';
 import ThemePicker from './ThemePicker';
 
 import i18next from '../libs/i18next';

@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 import { updateTheme } from 'actions/settings';
 import { themes } from 'themes/themes';
 
-import Select from 'components/UI/input/Select';
+import Select from 'ui/components/input/Select';
 
 class ThemePicker extends React.PureComponent {
     static propTypes = {
         themeName: PropTypes.string.isRequired,
         updateTheme: PropTypes.func.isRequired,
     };
-
     state = {};
 
     render() {
