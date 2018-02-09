@@ -377,17 +377,17 @@
         "aMessage": "eine Nachricht"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "wrongCode": "Falscher Code",
+        "wrongCodeExplanation": "Der von dir eingegebene Code ist falsch.",
         "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
+        "emptyCodeExplanation": "Bitte gebe den Code ein und versuche es erneut.",
+        "keyCopied": "Schlüssel in die Zwischenablage kopiert",
+        "keyCopiedExplanation": "Dein 2FA Schlüssel wurde in die Zwischenablage kopiert.",
+        "addKey": "Füge diesen Schlüssel in deine 2FA App ein",
+        "key": "Schlüssel",
+        "twoFAEnabled": "2FA ist nun aktiviert",
+        "twoFAEnabledExplanation": "Du hast erfolgreich Zwei-Faktor-Authentifizierung aktiviert.",
+        "enterCode": "Gebe den Code aus deiner 2FA App ein",
         "code": "Code"
     }
 }
