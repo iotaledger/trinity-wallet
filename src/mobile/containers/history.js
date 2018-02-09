@@ -140,7 +140,9 @@ class History extends Component {
 
         const isSecondaryBackgroundColorWhite = secondaryBackgroundColor === 'white';
 
-        const borderColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
+        const containerBorderColor = isSecondaryBackgroundColorWhite
+            ? 'rgba(255, 255, 255, 0.25)'
+            : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
         return map(transfers, transfer => {
@@ -160,11 +162,12 @@ class History extends Component {
                 bundle: tx.bundle,
                 style: {
                     titleColor: incoming ? extraColor : negativeColor,
-                    containerBorderColor: { borderColor },
+                    containerBorderColor: { borderColor: containerBorderColor },
                     containerBackgroundColor: { backgroundColor: containerBackgroundColor },
                     confirmationStatusColor: { color: !tx.persistence ? pendingColor : positiveColor },
                     defaultTextColor: { color: secondaryBackgroundColor },
                     backgroundColor,
+                    borderColor: { borderColor: secondaryBackgroundColor },
                 },
             };
         });

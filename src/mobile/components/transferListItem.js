@@ -101,6 +101,7 @@ export default class TransferListItem extends PureComponent {
             confirmationStatusColor: PropTypes.shape({ color: PropTypes.string }).isRequired,
             defaultTextColor: PropTypes.shape({ color: PropTypes.string }).isRequired,
             backgroundColor: PropTypes.string,
+            borderColor: PropTypes.shape({ borderColor: PropTypes.string }).isRequired,
         }).isRequired,
     };
 
