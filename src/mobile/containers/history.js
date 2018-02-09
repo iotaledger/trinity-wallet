@@ -152,7 +152,7 @@ class History extends Component {
             return {
                 t,
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
-                addresses: map(transfer, item => iota.util.addChecksum(item.address, 9, true)),
+                addresses: map(transfer, item => iota.utils.addChecksum(item.address, 9, true)),
                 status: computeStatus(tx.persistence, incoming),
                 confirmation: incoming ? t('global:received') : t('global:sent'),
                 value: round(formatValue(tx.value), 1),
