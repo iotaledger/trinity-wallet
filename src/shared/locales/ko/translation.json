@@ -302,7 +302,7 @@
     },
     "advancedThemeCustomisation": {
         "background": "배경",
-        "frame": "Frame"
+        "frame": "테두리"
     },
     "themeCustomisation": {
         "theme": "테마"
@@ -355,22 +355,22 @@
         "warning": "<0><0></0><1>시드와 비밀번호</1><2>를 비롯한 </2><3>모든 계정 정보가</3><4> 삭제됩니다.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "지문인식 로그인을 활성화하려면 손가락을 지문인식기 위에 올리세요.",
-        "instructionsDisable": "지문인식 로그인을 비활성화하려면 손가락을 지문인식기 위에 올리세요.",
-        "fingerprintAuthEnabled": "지문 인증 사용 설정됨",
-        "fingerprintAuthEnabledExplanation": "성공적으로 지문 인증을 사용 설정하였습니다.",
-        "fingerprintAuthDisabled": "지문 인증 사용 중지됨",
-        "fingerprintAuthDisabledExplanation": "성공적으로 지문 인증을 사용 중지하였습니다.",
+        "instructionsEnable": "지문 인증을 활성화하려면 손가락을 지문 센서 위에 올리십시오.",
+        "instructionsDisable": "지문 인증을 비활성화하려면 손가락을 지문 센서 위에 올리십시오.",
+        "fingerprintAuthEnabled": "지문 인증 활성화됨",
+        "fingerprintAuthEnabledExplanation": "성공적으로 지문 인증을 활성화하였습니다.",
+        "fingerprintAuthDisabled": "지문 인증 비활성화됨",
+        "fingerprintAuthDisabledExplanation": "성공적으로 지문 인증을 비활성화하였습니다.",
         "fingerprintAuthFailed": "지문 인증 실패",
         "fingerprintAuthFailedExplanation": "지문 인증이 실패했습니다. 다시 시도해 주십시오.",
         "status": "상태",
         "enabled": "사용 중",
         "disabled": "사용 중지됨",
-        "fingerprintUnavailable": "지문인식기를 사용할 수 없습니다.",
-        "fingerprintUnavailableExplanation": "본 장치는 지문인식 기능을 지원하지 않거나, 지문인식 기능을 사용하지 않도록 설정되어 있습니다.",
-        "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증 사용을 중지할 수 있습니다.",
-        "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 사용할 수 있습니다.",
-        "instructionsLogin": "로그인을 하려면 손가락을 지문인식기 위에 올리세요."
+        "fingerprintUnavailable": "지문 센서 사용 불가능",
+        "fingerprintUnavailableExplanation": "이 기기는 지문인식 기능을 지원하지 않거나, 지문인식 기능을 사용하지 않도록 설정되어 있습니다.",
+        "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다.",
+        "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 활성화할 수 있습니다.",
+        "instructionsLogin": "로그인하기 위해 손가락을 지문센서 위에 올리십시오."
     },
     "transferConfirmation": {
         "youAreAbout": "아래의 주소로 {{contents}}를 보내려고 합니다.",
@@ -383,11 +383,11 @@
         "emptyCodeExplanation": "코드를 입력하고 다시 시도해주십시오.",
         "keyCopied": "키가 클립보드에 복사됨",
         "keyCopiedExplanation": "OTP 키가 클립보드에 복사되었습니다.",
-        "addKey": "OTP 어플에 이 키를 추가하십시오",
+        "addKey": "OTP 앱에 이 키를 추가하십시오",
         "key": "키",
         "twoFAEnabled": "OTP 인증 활성화됨",
         "twoFAEnabledExplanation": "OTP 인증이 활성화되었습니다.",
-        "enterCode": "OPT 코드를 입력하십시오",
+        "enterCode": "OTP 코드를 입력하십시오",
         "code": "코드"
     }
 }
