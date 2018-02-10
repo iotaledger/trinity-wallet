@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class Balance extends Component {
+export class Balance extends Component {
     static propTypes = {
         marketData: PropTypes.object.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
@@ -83,8 +83,6 @@ class Balance extends Component {
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
         settings: PropTypes.object.isRequired,
-        setCurrency: PropTypes.func.isRequired,
-        setTimeframe: PropTypes.func.isRequired,
         extraColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
@@ -92,6 +90,8 @@ class Balance extends Component {
         chartLineColorSecondary: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
+        setCurrency: PropTypes.func.isRequired,
+        setTimeframe: PropTypes.func.isRequired,
     };
 
     static getDecimalPlaces(n) {
