@@ -99,7 +99,7 @@ describe('Testing TransactionRow component', () => {
             expect(wrapper.find('Text').length).toEqual(6);
         });
 
-        it('should return status prop as a child to Text component', () => {
+        it('should return status prop as a child to first Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<TransactionRow {...props} />);
