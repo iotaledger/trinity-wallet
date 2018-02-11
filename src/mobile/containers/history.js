@@ -14,7 +14,7 @@ import {
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { convertFromTrytes, isReceivedTransfer, iota } from 'iota-wallet-shared-modules/libs/iota';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
-import TransferListItem from '../components/transferListItem';
+import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
 
@@ -189,7 +189,7 @@ class History extends Component {
                 initialNumToRender={8} // TODO: Should be dynamically computed.
                 removeClippedSubviews
                 keyExtractor={(item, index) => index}
-                renderItem={({ item }) => <TransferListItem {...item} />}
+                renderItem={({ item }) => <TransactionRow {...item} />}
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={this.onRefresh} tintColor={negativeColor} />
                 }
