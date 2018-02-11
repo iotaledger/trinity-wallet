@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Clipboard, RefreshControl, FlatList } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -11,10 +11,9 @@ import {
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
-import { convertFromTrytes, isReceivedTransfer, iota } from 'iota-wallet-shared-modules/libs/iota';
-import HistoryModalContent from '../components/historyModalContent';
-import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
+import { convertFromTrytes, isReceivedTransfer, iota } from 'iota-wallet-shared-modules/libs/iota';
+import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import TransferListItem from '../components/transferListItem';
 import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
@@ -130,12 +129,12 @@ class History extends Component {
             t,
         } = this.props;
 
-        const computeStatus = (persistence, incoming) => {
+        const computeConfirmationStatus = (persistence, incoming) => {
             if (!persistence) {
                 return t('global:pending');
             }
 
-            return incoming ? t('home:receive') : t('global:send');
+            return incoming ? t('global:received') : t('global:sent');
         };
 
         const isSecondaryBackgroundColorWhite = secondaryBackgroundColor === 'white';
@@ -158,8 +157,8 @@ class History extends Component {
                 t,
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
                 addresses: map(transfer, withValueAndUnit),
-                status: computeStatus(tx.persistence, incoming),
-                confirmation: incoming ? t('global:received') : t('global:sent'),
+                status: incoming ? t('home:receive') : t('global:send'),
+                confirmation: computeConfirmationStatus(tx.persistence, incoming),
                 value: round(formatValue(tx.value), 1),
                 unit: formatUnit(tx.value),
                 time: tx.timestamp,

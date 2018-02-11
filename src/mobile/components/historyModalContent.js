@@ -148,7 +148,10 @@ export default class HistoryModalContent extends PureComponent {
 
         return (
             <View style={styles.addressRowContainer}>
-                <TouchableOpacity onPress={() => this.copy(address, 'address')} style={styles.addressRowTopWrapper}>
+                <TouchableOpacity
+                    onPress={() => this.copy(address.address, 'address')}
+                    style={styles.addressRowTopWrapper}
+                >
                     <Text style={[styles.text, style.defaultTextColor]} numberOfLines={2}>
                         {address.address}
                     </Text>
