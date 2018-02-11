@@ -1,10 +1,9 @@
-import pick from 'lodash/pick';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
-import HistoryModalContent from '../components/historyModalContent';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
+import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import Modal from 'react-native-modal';
+import HistoryModalContent from '../components/historyModalContent';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
@@ -82,7 +81,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default class TransferListItem extends PureComponent {
+export default class TransactionRow extends PureComponent {
     static propTypes = {
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
