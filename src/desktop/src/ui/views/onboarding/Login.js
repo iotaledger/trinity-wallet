@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSecurelyPersistedSeeds } from 'libs/storage';
-import { setFirstUse } from 'actions/account';
+import { addAccountName } from 'actions/account';
 import { showError } from 'actions/notifications';
 import { clearTempData } from 'actions/tempAccount';
 import { loadSeeds, clearSeeds } from 'actions/seeds';
@@ -16,17 +16,13 @@ import Loading from 'ui/components/Loading';
 class Login extends React.Component {
     static propTypes = {
         t: PropTypes.func.isRequired,
-        history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
-        }).isRequired,
-        account: PropTypes.shape({
-            firstUse: PropTypes.bool.isRequired,
-        }).isRequired,
+        account: PropTypes.object.isRequired,
         tempAccount: PropTypes.object.isRequired,
         loadSeeds: PropTypes.func.isRequired,
         showError: PropTypes.func.isRequired,
         clearTempData: PropTypes.func.isRequired,
         clearSeeds: PropTypes.func.isRequired,
+        addAccountName: PropTypes.func.isRequired,
     };
 
     state = {
@@ -60,9 +56,10 @@ class Login extends React.Component {
     };
 
     setupAccount(seed) {
-        const { account } = this.props;
+        const { account, addAccountName } = this.props;
 
         if (account.firstUse) {
+            addAccountName(seed.name);
             runTask('getFullAccountInfo', [seed.seed, seed.name]);
         } else {
             runTask('getAccountInfo', [seed.seed, seed.name]);
@@ -138,6 +135,7 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => ({
     account: state.account,
+    firstUse: state.account.firstUse,
     tempAccount: state.tempAccount,
 });
 
@@ -146,7 +144,7 @@ const mapDispatchToProps = {
     loadSeeds,
     clearTempData,
     clearSeeds,
-    setFirstUse,
+    addAccountName,
 };
 
 export default translate()(connect(mapStateToProps, mapDispatchToProps)(Login));
