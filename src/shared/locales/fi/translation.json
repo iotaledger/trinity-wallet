@@ -208,8 +208,8 @@
         "passwordMismatchExplanation": "Annetut salasanat eivät täsmää. Yritä uudelleen.",
         "nowWeNeedTo": "Nyt meidän on luotava salasana.",
         "anEncryptedCopy": "Seed-lukusi salattu kopio tallennetaan laitteellesi. Tällä salasanalla pääset käyttämään lompakkoasi jatkossa.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "ensure": "Varmista, että käytät hyvää salasanaa, joka on vähintään 12 merkkiä pitkä.",
+        "retypePassword": "Kirjoita salasana uudelleen"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
