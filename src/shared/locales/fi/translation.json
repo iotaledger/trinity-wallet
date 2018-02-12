@@ -133,7 +133,7 @@
         "language": "Kieli"
     },
     "login": {
-        "emptyPassword": "Empty password",
+        "emptyPassword": "Tyhjennä salasana",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
         "enterPassword": "Please enter your password.",
         "useSeed": "KÄYTÄ SEED-LUKUASI",
