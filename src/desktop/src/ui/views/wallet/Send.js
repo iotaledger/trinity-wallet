@@ -130,7 +130,9 @@ class Send extends React.PureComponent {
                         </form>
                     </div>
                 </section>
-                <section />
+                <section>
+                    <List filter="sent" limit={10} />
+                </section>
             </main>
         );
     }

@@ -33,10 +33,7 @@ class Receive extends React.PureComponent {
     };
 
     render() {
-        const { t, tempAccount: { receiveAddress, isGeneratingReceiveAddress }, account, seeds } = this.props;
-
-        const seedInfo = seeds.items[seeds.selectedSeedIndex];
-        const accountInfo = account.accountInfo[seedInfo.name];
+        const { t, tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
 
         return (
             <main>
@@ -54,11 +51,7 @@ class Receive extends React.PureComponent {
                     </Button>
                 </section>
                 <section>
-                    <List
-                        filter="received"
-                        transfers={accountInfo.transfers.length ? accountInfo.transfers : []}
-                        addresses={Object.keys(accountInfo.addresses)}
-                    />
+                    <List filter="received" limit={10} />
                 </section>
             </main>
         );
