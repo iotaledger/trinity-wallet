@@ -250,7 +250,7 @@
         "copy": "Kopioi",
         "paste": "Liitä",
         "selectAll": "Valitse kaikki",
-        "securitySettings": "Security settings",
+        "securitySettings": "Turvallisuusasetukset",
         "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
