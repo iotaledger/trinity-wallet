@@ -4,7 +4,6 @@ import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'vict
 
 import withChartData from 'containers/components/Chart';
 
-import Icon from 'ui/components/Icon';
 import Button from 'ui/components/Button';
 import css from './chart.css';
 
@@ -56,14 +55,12 @@ class Chart extends PureComponent {
             <div className={css.chart}>
                 <nav>
                     <Button variant="secondary" className="small" onClick={() => setCurrency()}>
-                        <Icon icon="chevron" size={8} />
                         {priceData.currency}
                     </Button>
                     <p>
                         {priceData.symbol} {getPriceFormat(priceData.price)} / Mi
                     </p>
                     <Button variant="secondary" className="small" onClick={() => setTimeframe()}>
-                        <Icon icon="chevron" size={8} />
                         {chartData.timeframe}
                     </Button>
                 </nav>

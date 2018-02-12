@@ -12,9 +12,9 @@ export default function withListData(ListComponent) {
     class ListData extends React.Component {
         static propTypes = {
             account: PropTypes.object.isRequired,
-            limit: PropTypes.number.isRequired,
-            filter: PropTypes.string.isRequired,
             accountName: PropTypes.string.isRequired,
+            limit: PropTypes.number,
+            filter: PropTypes.string,
             t: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
         };

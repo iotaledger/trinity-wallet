@@ -1,5 +1,5 @@
 export default {
-    body: { color: '#ffffff', bg: '#1a373e', alt: '#244146' },
+    body: { color: '#ffffff', bg: '#1a373e', alt: '#244146', hover: '#264147' },
     bar: { color: '#ffffff', bg: '#181C2B', alt: '#000000' },
     primary: { color: '#F7D002', hover: '#D3B100', body: '#ffffff' },
     secondary: { color: '#436A72', hover: '#324F56', body: '#ffffff' },
@@ -9,6 +9,7 @@ export default {
     extra: { color: '#88D4FF', hover: '#669FBF', body: '#ffffff' },
     label: { color: '#ffffff', hover: '#9DFFAF' },
     input: { color: '#ffffff', bg: '#2a4a51', alt: '#94A8AC' },
+    inputOptional: { color: '#ffffff', bg: '#2a4a51', alt: '#94A8AC' },
     chart: { color: '#FFA25B' },
     /* TODO: Remove these after mobile theming update */
     backgroundColor: { h: 191.66666666666663, s: 0.4090909090909091, l: 0.17254901960784313, a: 1 },

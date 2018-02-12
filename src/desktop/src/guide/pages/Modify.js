@@ -120,6 +120,14 @@ class ModifyTheme extends React.Component {
                                 />
                             </div>
                             <div>
+                                <span style={{ background: theme.body.hover }} />
+                                <Input
+                                    label="Body hover"
+                                    value={theme.body.hover}
+                                    onChange={(value) => this.updateColor('body', 'hover', value)}
+                                />
+                            </div>
+                            <div>
                                 <span style={{ background: theme.body.alt }} />
                                 <Input
                                     label="Body alternative"
@@ -179,6 +187,33 @@ class ModifyTheme extends React.Component {
                                     label="Input alternative"
                                     value={theme.input.alt}
                                     onChange={(value) => this.updateColor('input', 'alt', value)}
+                                />
+                            </div>
+                            <hr />
+                        </li>
+                        <li className={css.preview}>
+                            <div>
+                                <span style={{ background: theme.inputOptional.color }} />
+                                <Input
+                                    label="Input optional color"
+                                    value={theme.inputOptional.color}
+                                    onChange={(value) => this.updateColor('inputOptional', 'color', value)}
+                                />
+                            </div>
+                            <div>
+                                <span style={{ background: theme.inputOptional.bg }} />
+                                <Input
+                                    label="Input optional background"
+                                    value={theme.inputOptional.bg}
+                                    onChange={(value) => this.updateColor('inputOptional', 'bg', value)}
+                                />
+                            </div>
+                            <div>
+                                <span style={{ background: theme.inputOptional.alt }} />
+                                <Input
+                                    label="Input optional alternative"
+                                    value={theme.inputOptional.alt}
+                                    onChange={(value) => this.updateColor('inputOptional', 'alt', value)}
                                 />
                             </div>
                             <hr />

@@ -149,4 +149,4 @@ const mapDispatchToProps = {
     clearTempData,
 };
 
-export default translate('settings')(connect(mapStateToProps, mapDispatchToProps)(Settings));
+export default translate()(connect(mapStateToProps, mapDispatchToProps)(Settings));

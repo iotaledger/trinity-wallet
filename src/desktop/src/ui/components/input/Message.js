@@ -24,7 +24,7 @@ export default class MessageInput extends React.PureComponent {
         return (
             <div className={css.input}>
                 <fieldset>
-                    <Textarea value={message} onChange={(e) => onChange(e.target.value)} />
+                    <Textarea className={css.optional} value={message} onChange={(e) => onChange(e.target.value)} />
                     <small>{label}</small>
                 </fieldset>
             </div>

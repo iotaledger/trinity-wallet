@@ -1,5 +1,5 @@
 export default {
-    body: { color: '#F0F2F6', bg: '#161835', alt: '#FFFFFF' },
+    body: { color: '#F0F2F6', bg: '#161835', alt: '#FFFFFF', hover: '#21233F' },
     bar: { color: '#F0F2F6', bg: '#000000', alt: '#192733' },
     primary: { color: '#19D5FC', hover: '#209EB8', body: '#000000' },
     secondary: { color: '#FA76FF', hover: '#BF4AC4', body: '#1E1E1E' },
@@ -9,5 +9,6 @@ export default {
     extra: { color: '#88D4FF', hover: '#669FBF', body: '#1E1E1E' },
     label: { color: '#F0F2F6', hover: '#66CF72', active: '#19D5FC' },
     input: { color: '#1E1E1E', bg: '#FFFFFF', alt: '#727272' },
+    inputOptional: { color: '#1E1E1E', bg: '#FFFFFF', alt: '#727272' },
     chart: { color: '#FA76FF' },
 };
