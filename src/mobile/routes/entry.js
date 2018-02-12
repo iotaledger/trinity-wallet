@@ -4,7 +4,6 @@ import { translate } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { setRandomlySelectedNode } from 'iota-wallet-shared-modules/actions/settings';
 import { changeIotaNode, getRandomNode } from 'iota-wallet-shared-modules/libs/iota';
-import '../shim';
 import registerScreens from './navigation';
 import i18 from '../i18next';
 
