@@ -144,14 +144,15 @@ class History extends Component {
             : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
+        const withValueAndUnit = item => ({
+            address: iota.utils.addChecksum(item.address, 9, true),
+            value: round(formatValue(item.value), 1),
+            unit: formatUnit(item.value),
+        });
+
         return map(transfers, transfer => {
             const tx = extractTailTransferFromBundle(transfer);
             const incoming = isReceivedTransfer(transfer, addresses);
-            const withValueAndUnit = item => ({
-                address: iota.utils.addChecksum(item.address, 9, true),
-                value: item.value,
-                unit: formatUnit(item.value),
-            });
 
             return {
                 t,
