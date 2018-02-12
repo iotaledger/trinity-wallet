@@ -271,50 +271,50 @@
         "reminder": "Joidenkin vaiheiden ohittaminen voi houkutella, mutta painotamme sinulle, että seuraat koko prosessin läpi."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "yourSeedIs": "Sinun seed-lukusi on {{maxSeedLength}} merkkiä luettuna vasemmalta oikealle.",
+        "writeDownYourSeed": "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopied": "Osoite kopioitu",
+        "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Katso seed-luku",
+        "viewAddresses": "Näytä osoitteet",
+        "editAccountName": "Muokkaa tilin nimeä",
+        "deleteAccount": "Poista tili",
+        "addNewAccount": "Lisää uusi tili"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Mukautettu palvelin",
+        "add": "Lisää"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Käytä olemassaolevaa seed-lukua",
+        "createNewSeed": "Luo uusi seed-luku"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Valitse palvelin",
+        "addCustomNode": "Lisää mukautettu palvelin",
+        "manualSync": "Manuaalinen synkronointi"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Tausta",
+        "frame": "Kehys"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Teema"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "Valuutta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Haluatko varmasti kirjautua ulos?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Skannaa QR-koodisi"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
