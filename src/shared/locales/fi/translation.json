@@ -379,14 +379,14 @@
     "twoFA": {
         "wrongCode": "Väärä koodi",
         "wrongCodeExplanation": "Kirjoittamasi tunnusluku on virheellinen.",
-        "emptyCode": "Empty code",
+        "emptyCode": "Tyhjennä tunnusluku",
         "emptyCodeExplanation": "Syötä tunnusluku ja yritä uudelleen.",
         "keyCopied": "Avain kopioitu leikepöydälle",
         "keyCopiedExplanation": "Sinun 2FA-avaimesi on kopioitu leikepöydälle.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "addKey": "Lisää tämä avain sinun 2FA-ohjelmaan",
+        "key": "Avain",
+        "twoFAEnabled": "2FA on nyt käytössä",
+        "twoFAEnabledExplanation": "Olet onnistuneesti ottanut käyttöön kaksivaihetunnistautumisen (2FA).",
         "enterCode": "Syötä tunnusluku 2FA-ohjelmasta",
         "code": "Tunnusluku"
     }
