@@ -47,13 +47,14 @@
         "yes": "OUI",
         "no": "NON",
         "password": "Mot de passe",
+        "passwordOrFingerprint": "Mot de passe ou empreinte digitale",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
         "syncInProgress": "Synchronisation en cours",
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
         "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
-        "node": "Node",
+        "node": "Serveur",
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
         "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
@@ -146,7 +147,9 @@
         "enterPassword": "Veuillez introduire votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
         "login": "SE CONNECTER",
-        "selectDifferentNode": "Voulez-vous sélectionner un node différent ?"
+        "selectDifferentNode": "Voulez-vous sélectionner un node différent ?",
+        "setNode": "CONFIGURER UN SERVEUR",
+        "cannotConnect": "Impossible de se connecter à un serveur IOTA."
     },
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
@@ -209,8 +212,8 @@
         "invalidAmount": "Montant saisi incorrect",
         "invalidAmountExplanation": "Veuillez saisir une valeur numérique pour le montant de la transaction.",
         "maximumSelected": "Montant MAXIMAL sélectionné",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "iotaUnits": "Unités IOTA expliquées",
+        "sendMax": "ENVOYER LE MAX"
     },
     "setPassword": {
         "passwordTooShort": "Le mot de passe est trop court",
@@ -251,20 +254,22 @@
         "nicknameChanged": "Nom de compte modifié",
         "nicknameChangedExplanation": "Votre nom de compte a été modifié.",
         "accountDeleted": "Compte supprimé",
-        "accountDeletedExplanation": "Votre compte a été supprimé du wallet.",
+        "accountDeletedExplanation": "Votre compte a été supprimé du portefeuille.",
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
         "poorConnection": "Mauvaise connexion",
         "poorConnectionExplanation": "Impossible de changer de devise à cause de la mauvaise connexion.",
         "hide": "Masquer",
-        "hideOthers": "Cacher les autres",
+        "hideOthers": "Masquer les autres",
         "showAll": "Tout Afficher",
         "quit": "Quitter",
         "edit": "Modifier",
         "cut": "Couper",
         "copy": "Copier",
         "paste": "Coller",
-        "selectAll": "Tout Sélectionner"
+        "selectAll": "Tout Sélectionner",
+        "securitySettings": "Paramètres de sécurité",
+        "fingerprint": "Authentification par empreintes digitales"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Saisissez votre mot de passe pour réinitialiser le wallet.",
@@ -305,7 +310,7 @@
         "addNewAccount": "Ajouter un nouveau compte"
     },
     "addCustomNode": {
-        "customNode": "Node personnalisé",
+        "customNode": "Serveur personnalisé",
         "add": "Ajouter"
     },
     "addNewAccount": {
@@ -313,8 +318,8 @@
         "createNewSeed": "Créer une nouvelle seed"
     },
     "advancedSettings": {
-        "selectNode": "Choisir un node",
-        "addCustomNode": "Ajouter un node personnalisé",
+        "selectNode": "Sélectionner un serveur",
+        "addCustomNode": "Ajouter un serveur personnalisé",
         "manualSync": "Synchro manuelle"
     },
     "advancedThemeCustomisation": {
@@ -372,6 +377,31 @@
         "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
         "warning":
             "<0><0>Toutes vos données de wallet, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable":
+            "Toucher le lecteur d’empreinte digitale de votre appareil pour activer l’authentification par empreintes digitales.",
+        "instructionsDisable":
+            "Toucher le lecteur d’empreinte digitale de votre appareil pour désactiver l’authentification par empreintes digitales.",
+        "fingerprintAuthEnabled": "Authentification par empreintes digitales activée",
+        "fingerprintAuthEnabledExplanation":
+            "Vous avez correctement activé l’authentification par empreintes digitales.",
+        "fingerprintAuthDisabled": "Authentification par empreintes digitales désactivée",
+        "fingerprintAuthDisabledExplanation":
+            "Vous avez correctement désactivé l’authentification par empreintes digitales.",
+        "fingerprintAuthFailed": "Échec de l’authentification par empreinte digitale",
+        "fingerprintAuthFailedExplanation": "Échec d'authentification. Veuillez réessayer.",
+        "status": "Statut",
+        "enabled": "Activé",
+        "disabled": "Désactivé",
+        "fingerprintUnavailable": "Capteur d'empreintes digitales non disponible",
+        "fingerprintUnavailableExplanation":
+            "Votre appareil ne supporte pas de reconnaissance d’empreintes digitales ou il n’a pas été configuré dans les paramètres.",
+        "buttonInstructionsDisable":
+            "Appuyez sur le bouton ci-dessous pour désactiver l’authentification d’empreintes digitales.",
+        "buttonInstructionsEnable":
+            "Appuyez sur le bouton ci-dessous pour activer l’authentification d’empreintes digitales.",
+        "instructionsLogin": "Toucher le lecteur d’empreintes digitales pour ouvrir une session."
     },
     "transferConfirmation": {
         "youAreAbout": "Vous êtes sur le point d’envoyer {{contents}} à l’adresse",

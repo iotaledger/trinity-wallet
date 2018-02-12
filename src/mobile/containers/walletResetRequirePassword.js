@@ -2,198 +2,24 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import keychain from '../util/keychain';
 import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
 import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { persistor } from '../store';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, BackHandler } from 'react-native';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import COLORS from '../theme/Colors';
-import THEMES from '../theme/themes';
-import Fonts from '../theme/Fonts';
-import CustomTextInput from '../components/customTextInput';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import StatefulDropdownAlert from './statefulDropdownAlert';
-import { Keyboard } from 'react-native';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, Image, BackHandler } from 'react-native';
+import OnboardingButtons from '../components/onboardingButtons';
+import { persistor } from '../store';
+import DynamicStatusBar from '../components/dynamicStatusBar';
+import COLORS from '../theme/Colors';
+import Fonts from '../theme/Fonts';
+import keychain from '../util/keychain';
+import CustomTextInput from '../components/customTextInput';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 
 import { width, height } from '../util/dimensions';
-
-class WalletResetRequirePassword extends Component {
-    static propTypes = {
-        password: PropTypes.string.isRequired,
-        navigator: PropTypes.object.isRequired,
-        resetWallet: PropTypes.func.isRequired,
-        setFirstUse: PropTypes.func.isRequired,
-        setOnboardingComplete: PropTypes.func.isRequired,
-        clearTempData: PropTypes.func.isRequired,
-        setPassword: PropTypes.func.isRequired,
-        generateAlert: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-    };
-
-    constructor() {
-        super();
-
-        this.state = {
-            password: '',
-        };
-
-        this.goBack = this.goBack.bind(this);
-        this.resetWallet = this.resetWallet.bind(this);
-    }
-
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', () => {
-            this.goBack();
-            return true;
-        });
-    }
-
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress');
-    }
-
-    goBack() {
-        // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
-            },
-            appStyle: {
-                orientation: 'portrait',
-            },
-        });
-    }
-
-    isAuthenticated() {
-        return this.props.password === this.state.password;
-    }
-
-    redirectToInitialScreen() {
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'languageSetup',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
-                overrideBackPress: true,
-            },
-            appStyle: {
-                orientation: 'portrait',
-            },
-        });
-    }
-
-    resetWallet() {
-        const isAuthenticated = this.isAuthenticated();
-        const { t } = this.props;
-
-        if (isAuthenticated) {
-            persistor
-                .purge()
-                .then(() => keychain.clear())
-                .then(() => {
-                    this.redirectToInitialScreen();
-                    this.props.setOnboardingComplete(false);
-                    this.props.setFirstUse(true);
-                    this.props.clearTempData();
-                    this.props.setPassword('');
-                    this.props.resetWallet();
-                })
-                .catch(error => {
-                    this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongExplanation'),
-                    );
-                });
-        } else {
-            this.props.generateAlert(
-                'error',
-                t('global:unrecognisedPassword'),
-                t('global:unrecognisedPasswordExplanation'),
-            );
-        }
-    }
-
-    render() {
-        const { t, negativeColor, secondaryBackgroundColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-
-        const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
-        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
-
-        const onboardingButtonsOverride = {
-            rightButton: {
-                borderColor: COLORS.red,
-            },
-            rightText: {
-                color: COLORS.red,
-                fontFamily: Fonts.secondary,
-            },
-            leftButton: {
-                borderColor: THEMES.getHSL(negativeColor),
-            },
-            leftText: {
-                color: THEMES.getHSL(negativeColor),
-            },
-        };
-
-        return (
-            <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <View>
-                        <View style={styles.topWrapper}>
-                            <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
-                        </View>
-                        <View style={styles.midWrapper}>
-                            <CustomTextInput
-                                label={t('global:password')}
-                                onChangeText={password => this.setState({ password })}
-                                value={this.state.password}
-                                containerStyle={{ width: width / 1.4 }}
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="done"
-                                onSubmitEditing={this.handleLogin}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
-                                secureTextEntry
-                            />
-                            <View style={{ flex: 0.2 }} />
-                        </View>
-                        <View style={styles.bottomContainer}>
-                            <OnboardingButtons
-                                style={onboardingButtonsOverride}
-                                onLeftButtonPress={this.goBack}
-                                onRightButtonPress={this.resetWallet}
-                                leftText={t('cancel')}
-                                rightText={t('reset')}
-                            />
-                        </View>
-                    </View>
-                </TouchableWithoutFeedback>
-                <StatefulDropdownAlert />
-            </View>
-        );
-    }
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -236,7 +62,177 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+class WalletResetRequirePassword extends Component {
+    static propTypes = {
+        password: PropTypes.string.isRequired,
+        resetWallet: PropTypes.func.isRequired,
+        setFirstUse: PropTypes.func.isRequired,
+        setOnboardingComplete: PropTypes.func.isRequired,
+        clearTempData: PropTypes.func.isRequired,
+        setPassword: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
+    };
+
+    constructor() {
+        super();
+
+        this.state = {
+            password: '',
+        };
+
+        this.goBack = this.goBack.bind(this);
+        this.resetWallet = this.resetWallet.bind(this);
+    }
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            this.goBack();
+            return true;
+        });
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress');
+    }
+
+    goBack() {
+        // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: this.props.backgroundColor,
+                },
+            },
+            appStyle: {
+                orientation: 'portrait',
+            },
+        });
+    }
+
+    isAuthenticated() {
+        return this.props.password === this.state.password;
+    }
+
+    redirectToInitialScreen() {
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'languageSetup',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: this.props.backgroundColor,
+                },
+                overrideBackPress: true,
+            },
+            appStyle: {
+                orientation: 'portrait',
+            },
+        });
+    }
+
+    resetWallet() {
+        const isAuthenticated = this.isAuthenticated();
+        const { t } = this.props;
+
+        if (isAuthenticated) {
+            persistor
+                .purge()
+                .then(() => keychain.clear())
+                .then(() => {
+                    this.redirectToInitialScreen();
+                    this.props.setOnboardingComplete(false);
+                    this.props.setFirstUse(true);
+                    this.props.clearTempData();
+                    this.props.setPassword('');
+                    this.props.resetWallet();
+                })
+                .catch(() => {
+                    this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongExplanation'),
+                    );
+                });
+        } else {
+            this.props.generateAlert(
+                'error',
+                t('global:unrecognisedPassword'),
+                t('global:unrecognisedPasswordExplanation'),
+            );
+        }
+    }
+
+    render() {
+        const { t, negativeColor, secondaryBackgroundColor } = this.props;
+        const backgroundColor = { backgroundColor: this.props.backgroundColor };
+        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
+
+        const onboardingButtonsOverride = {
+            rightButton: {
+                borderColor: COLORS.red,
+            },
+            rightText: {
+                color: COLORS.red,
+                fontFamily: Fonts.secondary,
+            },
+            leftButton: {
+                borderColor: negativeColor,
+            },
+            leftText: {
+                color: negativeColor,
+            },
+        };
+
+        return (
+            <View style={[styles.container, backgroundColor]}>
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <View>
+                        <View style={styles.topWrapper}>
+                            <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
+                        </View>
+                        <View style={styles.midWrapper}>
+                            <CustomTextInput
+                                label={t('global:password')}
+                                onChangeText={(password) => this.setState({ password })}
+                                value={this.state.password}
+                                containerStyle={{ width: width / 1.2 }}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
+                                onSubmitEditing={this.handleLogin}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
+                                secureTextEntry
+                            />
+                            <View style={{ flex: 0.2 }} />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <OnboardingButtons
+                                style={onboardingButtonsOverride}
+                                onLeftButtonPress={this.goBack}
+                                onRightButtonPress={this.resetWallet}
+                                leftText={t('cancel')}
+                                rightText={t('reset')}
+                            />
+                        </View>
+                    </View>
+                </TouchableWithoutFeedback>
+                <StatefulDropdownAlert />
+            </View>
+        );
+    }
+}
+
+const mapStateToProps = (state) => ({
     password: state.tempAccount.password,
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,

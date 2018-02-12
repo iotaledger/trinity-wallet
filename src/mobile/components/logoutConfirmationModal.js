@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import OnboardingButtons from './onboardingButtons.js';
-import COLORS from '../theme/Colors';
-import GENERAL from '../theme/general';
 import { translate } from 'react-i18next';
+import OnboardingButtons from './onboardingButtons';
+import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 
@@ -14,7 +13,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        width: width / 1.15,
+        width: width / 1.1,
     },
     questionText: {
         backgroundColor: 'transparent',
@@ -29,7 +28,7 @@ class LogoutConfirmationModal extends Component {
         const { t, backgroundColor, textColor, borderColor } = this.props;
 
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
+            <View style={{ width: width / 1.1, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={[styles.questionText, textColor]}>{t('logoutConfirmation')}</Text>
                     <OnboardingButtons

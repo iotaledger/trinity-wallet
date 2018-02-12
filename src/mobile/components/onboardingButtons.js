@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import GENERAL from '../theme/general';
 import { connect } from 'react-redux';
-import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -10,12 +9,12 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         justifyContent: 'space-between',
         flexDirection: 'row',
-        width: width / 1.36,
+        width: width / 1.2,
     },
     button: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
-        width: width / 3,
+        width: width / 2.7,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -29,21 +28,22 @@ const styles = StyleSheet.create({
 
 class OnboardingButtons extends Component {
     render() {
-        const { style, positiveColor, negativeColor } = this.props;
-        const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
-        const positiveBorderColor = { borderColor: THEMES.getHSL(positiveColor) };
-        const negativeTextColor = { color: THEMES.getHSL(negativeColor) };
-        const negativeBorderColor = { borderColor: THEMES.getHSL(negativeColor) };
+        const { style, positiveColor, negativeColor, opacity } = this.props;
+        const positiveTextColor = { color: positiveColor };
+        const positiveBorderColor = { borderColor: positiveColor };
+        const negativeTextColor = { color: negativeColor };
+        const negativeBorderColor = { borderColor: negativeColor };
+        const rightButtonOpacity = { opacity };
 
         return (
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity onPress={() => this.props.onLeftButtonPress()}>
+                <TouchableOpacity onPress={() => this.props.onLeftButtonPress()} testID={this.props.leftButtonTestID}>
                     <View style={[styles.button, negativeBorderColor]}>
                         <Text style={[styles.text, negativeTextColor]}>{this.props.leftText}</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.onRightButtonPress()}>
-                    <View style={[styles.button, positiveBorderColor]}>
+                <TouchableOpacity onPress={() => this.props.onRightButtonPress()} testID={this.props.rightButtonTestID}>
+                    <View style={[styles.button, positiveBorderColor, rightButtonOpacity]}>
                         <Text style={[styles.text, positiveTextColor]}>{this.props.rightText}</Text>
                     </View>
                 </TouchableOpacity>
@@ -52,7 +52,7 @@ class OnboardingButtons extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,

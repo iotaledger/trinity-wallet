@@ -16,6 +16,7 @@ const updateAccountInfo = (state, payload) => ({
                 ...payload.addresses,
             },
             transfers: payload.transfers,
+            isFingerprintEnabled: false,
         },
     },
 });
@@ -31,7 +32,7 @@ const account = (
         unspentAddressesHashes: {},
         pendingTxTailsHashes: {},
         is2FAEnabled: false,
-        key2FA: '',
+        isFingerprintEnabled: false,
     },
     action,
 ) => {
@@ -195,10 +196,10 @@ const account = (
                 ...state,
                 is2FAEnabled: action.payload,
             };
-        case ActionTypes.SET_2FA_KEY:
+        case ActionTypes.SET_FINGERPRINT_STATUS:
             return {
                 ...state,
-                key2FA: action.payload,
+                isFingerprintEnabled: action.payload,
             };
         case ActionTypes.SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT:
             return {

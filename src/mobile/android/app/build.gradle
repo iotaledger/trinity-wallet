@@ -97,8 +97,8 @@ android {
 
     defaultConfig {
         applicationId "com.iota.wallet"
-        versionCode 15
-        versionName "3.3.6"
+        versionCode 18
+        versionName "3.3.9"
         minSdkVersion 16
         targetSdkVersion 26
         multiDexEnabled true
@@ -145,6 +145,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fingerprint-scanner')
     compile project(':react-native-fabric')
     compile project(':react-native-keep-awake')
     compile project(':react-native-device-info')
