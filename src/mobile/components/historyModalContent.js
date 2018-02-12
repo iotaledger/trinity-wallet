@@ -179,7 +179,7 @@ export default class HistoryModalContent extends PureComponent {
     }
 
     render() {
-        const { status, onPress, value, unit, confirmation, time, bundle, message, addresses, t, style } = this.props;
+        const { status, onPress, value, unit, confirmation, time, bundle, message, t, style } = this.props;
 
         return (
             <TouchableOpacity style={styles.container} onPress={onPress}>
@@ -214,7 +214,7 @@ export default class HistoryModalContent extends PureComponent {
                                 </TouchableOpacity>
                             </View>
                             <Text style={[styles.heading, style.defaultTextColor]}>{t('addresses')}:</Text>
-                            {this.renderAddresses(addresses)}
+                            {this.renderAddresses()}
                             <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
                             <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
                         </ScrollView>
