@@ -1,18 +1,18 @@
 ## Information Architecture
 This section details the overall flow and gives an overview of Trinity’s complete feature set.
-##### [Setup](#setup)
-- [Seed Generation](#new-seed)
+##### [Setup](#setup-1)
+- [Seed Generation](#seed-generation)
 - [Seed Storage](#seed-storage)
 
 ##### [Main dashboard](#dashboard)
-- [Account management](#multi-account)
+- [Account Management](#account-management-1)
 - [Node Selection](#node-selection)
 - [Polling](#polling)
-- [Automatic Promotion/Reattachment](#auto-reattach)
-- [Address Management](#address-mgmt)
-- [Two-factor Authentication](#2FA)
-- [Biometric authentication](#biometric)
+- [Address Management](#address-management)
+- [Two-factor Authentication](#two-factor-authentication)
+- [Biometric Authentication](#biometric-authentication)
 - [Snapshot Transition](#transition)
+- [Automatic Promotion/Reattachment](#automatic-promotionreattachment)
 
 ## Technical Architecture
 This section highlights all important APIs used in Trinity.
@@ -21,6 +21,7 @@ This section highlights all important APIs used in Trinity.
 - [i18next](#i18next)
 - [Bitrise](#bitrise)
 - [Fastlane](#fastlane)
+- [React Native Sensitive Info](#react-native-sensitive-info)
 
 ## Information Architecture
 ## Setup
