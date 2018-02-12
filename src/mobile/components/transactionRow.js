@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, View, Text, StyleSheet, ListView, ScrollView } from 'react-native';
-import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
-import { convertFromTrytes, isReceivedTransfer, iota } from 'iota-wallet-shared-modules/libs/iota';
-import { translate } from 'react-i18next';
-import { extractTailTransferFromBundle } from 'iota-wallet-shared-modules/libs/transfers';
+import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import Modal from 'react-native-modal';
+import HistoryModalContent from '../components/historyModalContent';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
-
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const styles = StyleSheet.create({
     container: {
@@ -23,11 +18,42 @@ const styles = StyleSheet.create({
         height: height / 10,
         justifyContent: 'center',
     },
-    title: {
+    topWrapper: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    innerWrapper: {
+        flexDirection: 'row',
+        flex: 1,
         justifyContent: 'space-between',
+        alignItems: 'flex-start',
+    },
+    messageOuterWrapper: {
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+    },
+    messageInnerWrapper: {
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    timeWrapper: {
+        flex: 1,
+        alignItems: 'flex-end',
+    },
+    statusWrapper: {
+        flexDirection: 'row',
         backgroundColor: 'transparent',
+    },
+    statusText: {
         fontFamily: 'Lato-Regular',
-        fontSize: width / 29.6,
+        fontSize: width / 31.8,
+    },
+    valueText: {
+        marginLeft: 8,
     },
     message: {
         backgroundColor: 'transparent',
@@ -40,29 +66,7 @@ const styles = StyleSheet.create({
         fontSize: width / 31.8,
         paddingRight: width / 70,
     },
-    modalBundleTitle: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 31.8,
-        paddingTop: height / 50,
-    },
-    hash: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Inconsolata-Regular',
-        fontSize: width / 31.8,
-    },
-    bundleHash: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Inconsolata-Regular',
-        fontSize: width / 31.8,
-        marginTop: 2,
-    },
-    status: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 31.8,
-    },
-    modalTimestamp: {
+    confirmationStatus: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
@@ -72,268 +76,109 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
     },
-    modalContent: {
-        width: width / 1.15,
-        maxHeight: height / 1.05,
-        padding: width / 25,
-        justifyContent: 'center',
-        borderRadius: GENERAL.borderRadius,
-        borderWidth: 2,
-    },
-    modalStatus: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 31.8,
-        paddingRight: width / 25,
-    },
-    modalValue: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 27.6,
-        textAlign: 'right',
+    modal: {
+        alignItems: 'center',
     },
 });
 
-/* eslint-disable no-nested-ternary */
-// FIXME: Remove nested ternary
-class TransactionRow extends Component {
+export default class TransactionRow extends PureComponent {
     static propTypes = {
-        backgroundColor: PropTypes.string.isRequired,
-        positiveColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        pendingColor: PropTypes.string.isRequired,
-        rowData: PropTypes.array.isRequired,
-        extraColor: PropTypes.string.isRequired,
-        textColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        borderColor: PropTypes.object.isRequired,
-        addresses: PropTypes.array.isRequired,
-        copyBundleHash: PropTypes.func.isRequired,
-        copyAddress: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        status: PropTypes.string.isRequired,
+        confirmation: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired,
+        unit: PropTypes.string.isRequired,
+        time: PropTypes.number.isRequired,
+        message: PropTypes.string.isRequired,
+        bundle: PropTypes.string.isRequired,
+        addresses: PropTypes.arrayOf(
+            PropTypes.shape({
+                address: PropTypes.string.isRequired,
+                value: PropTypes.number.isRequired,
+                unit: PropTypes.string.isRequired,
+            }),
+        ).isRequired,
+        style: PropTypes.shape({
+            titleColor: PropTypes.string.isRequired,
+            containerBorderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
+            containerBackgroundColor: PropTypes.shape({ backgroundColor: PropTypes.string.isRequired }).isRequired,
+            confirmationStatusColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
+            defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
+            backgroundColor: PropTypes.string.isRequired,
+            borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
+        }).isRequired,
     };
-
-    static addChecksum(address) {
-        const addressesWithChecksum = iota.utils.addChecksum(address, 9, true);
-        return addressesWithChecksum;
-    }
 
     constructor() {
         super();
 
-        this.state = {
-            isModalVisible: false,
-        };
+        this.state = { isModalActive: false };
+
+        this.toggleModal = this.toggleModal.bind(this);
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
+    getModalProps() {
+        const props = this.props;
 
-    hideModal = () => this.setState({ isModalVisible: false });
+        return { ...props, onPress: this.toggleModal };
+    }
 
-    renderModalContent = (transfer, titleColour, isReceived, hasPersistence, textColor, borderColor, t) => (
-        <TouchableOpacity style={{ width, height, alignItems: 'center' }} onPress={() => this.hideModal()}>
-            <View style={{ flex: 1, justifyContent: 'center', width: width / 1.15 }}>
-                <View style={[styles.modalContent, borderColor, { backgroundColor: this.props.backgroundColor }]}>
-                    <ScrollView>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <Text
-                                style={{
-                                    justifyContent: 'space-between',
-                                    backgroundColor: 'transparent',
-                                    fontFamily: 'Lato-Regular',
-                                    fontSize: width / 29.6,
-                                    color: titleColour,
-                                }}
-                            >
-                                {isReceived ? t('home:receive') : t('global:send')}{' '}
-                                {round(formatValue(transfer.value), 1)} {formatUnit(transfer.value)}
-                            </Text>
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <Text
-                                    style={[
-                                        styles.modalStatus,
-                                        { color: this.props.positiveColor },
-                                        !isReceived && { color: this.props.negativeColor },
-                                        !hasPersistence && { color: this.props.pendingColor },
-                                    ]}
-                                >
-                                    {hasPersistence
-                                        ? isReceived ? t('global:received') : t('global:sent')
-                                        : t('global:pending')}
-                                </Text>
-                                <Text style={[styles.modalTimestamp, textColor]}>
-                                    {formatModalTime(convertUnixTimeToJSDate(transfer.timestamp))}
-                                </Text>
-                            </View>
-                        </View>
-                        <Text style={[styles.modalBundleTitle, textColor]}>{t('bundleHash')}:</Text>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <TouchableOpacity
-                                onPress={() => this.props.copyBundleHash(transfer.bundle)}
-                                style={{ flex: 7 }}
-                            >
-                                <Text style={[styles.bundleHash, textColor]} numberOfLines={2}>
-                                    {transfer.bundle}
-                                </Text>
-                                <View style={{ flex: 1 }} />
-                            </TouchableOpacity>
-                        </View>
-                        <Text style={[styles.modalBundleTitle, textColor]}>{t('addresses')}:</Text>
-                        <ListView
-                            dataSource={ds.cloneWithRows(this.props.rowData)}
-                            renderRow={rowData => (
-                                <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 2 }}>
-                                    <TouchableOpacity
-                                        onPress={() =>
-                                            this.props.copyAddress(TransactionRow.addChecksum(rowData.address))
-                                        }
-                                        style={{ flex: 4.7 }}
-                                    >
-                                        <Text style={[styles.hash, textColor]} numberOfLines={2}>
-                                            {TransactionRow.addChecksum(rowData.address)}
-                                        </Text>
-                                    </TouchableOpacity>
-                                    <View style={{ flex: 1.3 }}>
-                                        <Text style={[styles.modalValue, textColor]} numberOfLines={1}>
-                                            {' '}
-                                            {round(formatValue(rowData.value), 1)} {formatUnit(rowData.value)}
-                                        </Text>
-                                    </View>
-                                </View>
-                            )}
-                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                            enableEmptySections
-                        />
-                        <Text style={[styles.modalBundleTitle, textColor]}>{t('send:message')}:</Text>
-                        <Text style={[styles.hash, textColor]}>
-                            {convertFromTrytes(transfer.signatureMessageFragment)}
-                        </Text>
-                    </ScrollView>
-                </View>
-            </View>
-        </TouchableOpacity>
-    );
+    toggleModal() {
+        this.setState({ isModalActive: !this.state.isModalActive });
+    }
 
     render() {
-        const {
-            negativeColor,
-            positiveColor,
-            backgroundColor,
-            extraColor,
-            textColor,
-            secondaryBackgroundColor,
-            borderColor,
-            pendingColor,
-            addresses,
-            rowData,
-            t,
-        } = this.props;
-        const isReceived = isReceivedTransfer(rowData, addresses);
-        const transfer = extractTailTransferFromBundle(rowData);
-        const hasPersistence = rowData[0].persistence;
-        const titleColour = isReceived ? extraColor : negativeColor;
-        const containerBorderColor =
-            secondaryBackgroundColor === 'white'
-                ? { borderColor: 'rgba(255, 255, 255, 0.25)' }
-                : { borderColor: 'rgba(0, 0, 0, 0.25)' };
-        const containerBackgroundColor =
-            secondaryBackgroundColor === 'white'
-                ? { backgroundColor: 'rgba(255, 255, 255, 0.08)' }
-                : { backgroundColor: 'transparent' };
+        const { status, confirmation, value, unit, time, message, t, style } = this.props;
+        const { isModalActive } = this.state;
 
         return (
-            <TouchableOpacity onPress={() => this.showModal(transfer)}>
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <View style={[styles.container, containerBorderColor, containerBackgroundColor]}>
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                flex: 1,
-                                justifyContent: 'space-between',
-                                alignItems: 'flex-start',
-                            }}
-                        >
-                            <Text
-                                style={{
-                                    justifyContent: 'space-between',
-                                    backgroundColor: 'transparent',
-                                    fontFamily: 'Lato-Regular',
-                                    fontSize: width / 31.8,
-                                    marginBottom: width / 100,
-                                    color: titleColour,
-                                }}
-                            >
-                                {isReceived ? t('home:receive') : t('global:send')}{' '}
-                                {round(formatValue(transfer.value), 1)} {formatUnit(transfer.value)}
-                            </Text>
-                            <Text
-                                style={[
-                                    styles.status,
-                                    { color: positiveColor },
-                                    !isReceived && { color: positiveColor },
-                                    !hasPersistence && { color: pendingColor },
-                                ]}
-                            >
-                                {hasPersistence
-                                    ? isReceived ? t('global:received') : t('global:sent')
-                                    : t('global:pending')}
-                            </Text>
-                        </View>
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                flex: 1,
-                                justifyContent: 'space-between',
-                                alignItems: 'flex-end',
-                            }}
-                        >
-                            <View
-                                style={{
-                                    flexDirection: 'row',
-                                    flex: 1,
-                                    justifyContent: 'flex-start',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <Text style={[styles.messageTitle, textColor]}>{t('send:message')}:</Text>
-                                <Text style={[styles.message, textColor]} numberOfLines={1}>
-                                    {convertFromTrytes(transfer.signatureMessageFragment)}
+            <TouchableOpacity onPress={this.toggleModal}>
+                <View style={styles.topWrapper}>
+                    <View style={[styles.container, style.containerBorderColor, style.containerBackgroundColor]}>
+                        <View style={styles.innerWrapper}>
+                            <View style={styles.statusWrapper}>
+                                <Text style={[styles.statusText, { color: style.titleColor }]}>{status}</Text>
+                                <Text style={[styles.statusText, styles.valueText, { color: style.titleColor }]}>
+                                    {value} {unit}
                                 </Text>
                             </View>
-                            <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                <Text style={[styles.timestamp, textColor]}>
-                                    {formatTime(convertUnixTimeToJSDate(transfer.timestamp))}
+                            <Text style={[styles.confirmationStatus, style.confirmationStatusColor]}>
+                                {confirmation}
+                            </Text>
+                        </View>
+                        <View style={styles.messageOuterWrapper}>
+                            <View style={styles.messageInnerWrapper}>
+                                <Text style={[styles.messageTitle, style.defaultTextColor]}>{t('send:message')}:</Text>
+                                <Text style={[styles.message, style.defaultTextColor]} numberOfLines={1}>
+                                    {message}
+                                </Text>
+                            </View>
+                            <View style={styles.timeWrapper}>
+                                <Text style={[styles.timestamp, style.defaultTextColor]}>
+                                    {formatTime(convertUnixTimeToJSDate(time))}
                                 </Text>
                             </View>
                         </View>
                     </View>
+                    <Modal
+                        animationIn="bounceInUp"
+                        animationOut="bounceOut"
+                        animationInTiming={1000}
+                        animationOutTiming={200}
+                        backdropTransitionInTiming={500}
+                        backdropTransitionOutTiming={200}
+                        backdropColor={style.backgroundColor}
+                        backdropOpacity={0.6}
+                        style={styles.modal}
+                        isVisible={isModalActive}
+                        onBackButtonPress={this.toggleModal}
+                        onBackdropPress={this.toggleModal}
+                    >
+                        <HistoryModalContent {...this.getModalProps()} />
+                    </Modal>
                 </View>
-                <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
-                    animationInTiming={1000}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={500}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={backgroundColor}
-                    backdropOpacity={0.6}
-                    style={{ alignItems: 'center' }}
-                    isVisible={this.state.isModalVisible}
-                    onBackButtonPress={() => this.hideModal()}
-                >
-                    {this.renderModalContent(
-                        transfer,
-                        titleColour,
-                        isReceived,
-                        hasPersistence,
-                        textColor,
-                        borderColor,
-                        t,
-                    )}
-                </Modal>
             </TouchableOpacity>
         );
     }
 }
-
-export default translate(['global', 'send', 'home'])(TransactionRow);

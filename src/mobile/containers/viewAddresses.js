@@ -1,16 +1,14 @@
-import isEmpty from 'lodash/isEmpty';
-import cloneDeep from 'lodash/cloneDeep';
+import orderBy from 'lodash/orderBy';
+import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { iota } from 'iota-wallet-shared-modules/libs/iota';
-import { Image, View, Text, StyleSheet, TouchableOpacity, ListView, Clipboard } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, FlatList, Clipboard } from 'react-native';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
-
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const styles = StyleSheet.create({
     container: {
@@ -92,25 +90,17 @@ export class ViewAddresses extends Component {
         t: PropTypes.func.isRequired,
     };
 
-    static addChecksums(data) {
-        const addressesWithChecksums = data.map(item => iota.utils.addChecksum(item[0], 9, true));
-        const clonedData = cloneDeep(data);
-        for (let i = 0; i < data.length; i += 1) {
-            clonedData[i][0] = addressesWithChecksums[i];
-        }
+    prepAddresses() {
+        const { addressData } = this.props;
 
-        return clonedData;
-    }
+        const preparedAddresses = map(addressData, (data, address) => ({
+            ...data,
+            balance: round(formatValue(data.balance), 1),
+            unit: formatUnit(data.balance),
+            address: iota.utils.addChecksum(address, 9, true),
+        }));
 
-    static getAddressesAsList(addressData) {
-        if (isEmpty(addressData)) {
-            return [];
-        }
-
-        const addresses = Object.entries(addressData)
-            .slice()
-            .reverse();
-        return ViewAddresses.addChecksums(addresses);
+        return orderBy(preparedAddresses, 'index', ['desc'])
     }
 
     copy(address) {
@@ -120,54 +110,67 @@ export class ViewAddresses extends Component {
         return this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
+    renderAddress(address) {
+        const { secondaryBackgroundColor } = this.props;
+
+        return (
+            <View style={{ flexDirection: 'row', paddingHorizontal: width / 15 }}>
+                <TouchableOpacity
+                    onPress={() => this.copy(address.address)}
+                    style={{ alignItems: 'flex-start', flex: 8, justifyContent: 'center' }}
+                >
+                    <View>
+                        <Text
+                            numberOfLines={2}
+                            style={[
+                                styles.addressText,
+                                { textDecorationLine: address.spent ? 'line-through' : 'none' },
+                                { color: secondaryBackgroundColor },
+                            ]}
+                        >
+                            {address.address}
+                        </Text>
+                    </View>
+                </TouchableOpacity>
+                <View style={{ alignItems: 'flex-end', flex: 2, justifyContent: 'center' }}>
+                    <Text style={[styles.balanceText, { color: secondaryBackgroundColor }]}>
+                        {address.balance} {address.unit}
+                    </Text>
+                </View>
+            </View>
+        );
+    }
+
+    renderAddresses() {
+        const { secondaryBackgroundColor } = this.props;
+        const addresses = this.prepAddresses();
+
+        return (
+            <FlatList
+                data={addresses}
+                keyExtractor={(item, index) => index}
+                renderItem={({ item }) => this.renderAddress(item)}
+                ItemSeparatorComponent={() => <View style={styles.separator} />}
+                ListEmptyComponent={() => (
+                    <View style={styles.noAddressesContainer}>
+                        <Text style={[styles.noAddresses, { color: secondaryBackgroundColor }]}>NO ADDRESSES</Text>
+                    </View>
+                )}
+            />
+        );
+    }
+
     render() {
-        const { addressData, secondaryBackgroundColor, arrowLeftImagePath, t } = this.props;
-        const addresses = ViewAddresses.getAddressesAsList(addressData);
+        const { secondaryBackgroundColor, arrowLeftImagePath, t } = this.props;
+        const addresses = this.renderAddresses();
 
         const textColor = { color: secondaryBackgroundColor };
 
         return (
             <View style={styles.container}>
-                {isEmpty(addresses) ? (
-                    <View style={styles.noAddressesContainer}>
-                        <Text style={[styles.noAddresses, textColor]}>NO ADDRESSES</Text>
-                    </View>
-                ) : (
-                    <View style={styles.listView}>
-                        <ListView
-                            dataSource={ds.cloneWithRows(addresses)}
-                            renderRow={rowData => (
-                                <View style={{ flexDirection: 'row', paddingHorizontal: width / 15 }}>
-                                    <TouchableOpacity
-                                        onPress={() => this.copy(rowData[0])}
-                                        style={{ alignItems: 'flex-start', flex: 8, justifyContent: 'center' }}
-                                    >
-                                        <View>
-                                            <Text
-                                                numberOfLines={2}
-                                                style={[
-                                                    styles.addressText,
-                                                    { textDecorationLine: rowData[1].spent ? 'line-through' : 'none' },
-                                                    textColor,
-                                                ]}
-                                            >
-                                                {rowData[0]}
-                                            </Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                    <View style={{ alignItems: 'flex-end', flex: 2, justifyContent: 'center' }}>
-                                        <Text style={[styles.balanceText, textColor]}>
-                                            {round(formatValue(rowData[1].balance), 1)} {formatUnit(rowData[1].balance)}
-                                        </Text>
-                                    </View>
-                                </View>
-                            )}
-                            contentContainerView={{ flex: 1 }}
-                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                            enableEmptySections
-                        />
-                    </View>
-                )}
+                <View style={styles.listView}>
+                {addresses}
+                </View>
                 <View style={{ flex: 0.2 }} />
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity
