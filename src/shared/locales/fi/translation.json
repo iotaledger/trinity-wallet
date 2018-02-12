@@ -251,22 +251,22 @@
         "paste": "Liitä",
         "selectAll": "Valitse kaikki",
         "securitySettings": "Turvallisuusasetukset",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Sormenjälkitunnistuksen varmennus"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
+        "cancel": "PERUUTA",
+        "reset": "RESETOI"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
+        "okay": "Okei. Luodaan sinulle lompakko!",
         "doYouAlreadyHaveASeed": "Onko sinulla jo seed-luku jota haluat käyttää?",
         "seedExplanation": "IOTA seed-luku on käyttäjänimen ja salasanan yhdistelmä tilillesi. Seed-luku koostuu yhdestä 81-merkin pituisesta merkkijonosta.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>Voit käyttää sitä päästäksesi käsiksi varoihisi mistä</0> <1>tahansa lompakosta</1> <2>, millä</2> <3>tahansa laitteella</3> <4>. Mutta jos hävität seed-lukusi, menetät myös sinun IOTAt.</4></0>",
         "keepSafe": "Muista aina pitää seed-lukusi turvassa."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
+        "thankYou": "Kiitos, että olet ladannut IOTA-lompakon.",
         "weWillSpend": "We will spend the next few minutes setting up your wallet.",
         "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
     },
