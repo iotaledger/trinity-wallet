@@ -267,8 +267,8 @@
     },
     "welcome": {
         "thankYou": "Kiitos, että olet ladannut IOTA-lompakon.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "weWillSpend": "Käytämme seuraavat pari minuuttia luodaksemme sinulle lompakkosi.",
+        "reminder": "Joidenkin vaiheiden ohittaminen voi houkutella, mutta painotamme sinulle, että seuraat koko prosessin läpi."
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
