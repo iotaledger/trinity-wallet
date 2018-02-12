@@ -70,9 +70,7 @@ export default function withSendData(SendComponent) {
         };
 
         sendTransfer = (seed, address, value, message, taskRunner) => {
-            const { prepareTransfer, account, tempAccount, accountName, showError, t } = this.props;
-
-            const accountInfo = account.accountInfo[tempAccount.seedIndex];
+            const { prepareTransfer, tempAccount, accountName, showError, t } = this.props;
 
             if (tempAccount.isSyncing) {
                 showError({

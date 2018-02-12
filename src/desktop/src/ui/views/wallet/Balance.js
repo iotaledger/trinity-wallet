@@ -64,8 +64,6 @@ class Balance extends React.Component {
             accountInfo.balance * marketData.usdPrice / 1000000 * settings.conversionRate,
         ).toFixed(2);
 
-        console.log('bang');
-
         return (
             <main>
                 <section className={css.balance}>
@@ -74,12 +72,7 @@ class Balance extends React.Component {
                         <strong>{`${formatValue(accountInfo.balance)} ${formatUnit(accountInfo.balance)}`}</strong>
                         <small>{`${currencySymbol} ${fiatBalance}`}</small>
                     </div>
-                    <List
-                        compact
-                        transfers={accountInfo.transfers.length ? accountInfo.transfers : []}
-                        limit={10}
-                        addresses={Object.keys(accountInfo.addresses)}
-                    />
+                    <List compact limit={10} />
                 </section>
                 <section className={css.flex}>
                     <Chart />
