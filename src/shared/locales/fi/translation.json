@@ -1,11 +1,11 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "CANCEL",
-        "continue?": "Are you sure you want to continue?",
+        "send": "LÄHETÄ",
+        "cancel": "PERUUTA",
+        "continue?": "Oletko varma, että haluat jatkaa?",
         "noTransactions": "NO RECENT HISTORY",
         "qr": "QR",
-        "balanceError": "Not enough balance",
+        "balanceError": "Ei tarpeeksi katetta",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
         "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
