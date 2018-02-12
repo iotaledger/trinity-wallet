@@ -177,12 +177,12 @@
     },
     "seedReentry": {
         "incorrectSeed": "Virheellinen seed-luku",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "incorrectSeedExplanation": "Antamasi seed-luku on virheellinen. Yritä uudelleen.",
+        "thisIsACheck": "Tämä on tarkistus siitä, että olet tallentanut seed-lukusi.",
+        "ifYouHaveNotSaved": "Jos et ole tallentanut seed-lukuasi, palaa takaisin ja tee se."
     },
     "send": {
-        "invalidAddress": "Invalid address",
+        "invalidAddress": "Virheellinen osoite",
         "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
