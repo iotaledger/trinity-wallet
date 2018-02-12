@@ -390,33 +390,17 @@ export const checkForNewAddress = (seedName, addressData, txArray) => {
 
 export const randomiseSeed = randomBytesFn => {
     return dispatch => {
-        // TODO move this to an iota util file
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
         let seed = '';
-        // uncomment for synchronous API, uses SJCL
-        // var rand = randomBytes(1)
-
-        // asynchronous API, uses iOS-side SecRandomCopyBytes
-        randomBytesFn(100, (error, bytes) => {
-            if (!error) {
-                Object.keys(bytes).forEach(key => {
-                    if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
-                        const randomNumber = bytes[key] % 27;
-                        const randomLetter = charset.charAt(randomNumber);
-                        seed += randomLetter;
-                    }
-                });
-                dispatch(setSeed(seed));
-            } else {
-                dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:somethingWentWrong'),
-                        i18next.t('global:somethingWentWrongExplanation'),
-                        error,
-                    ),
-                );
-            }
+        randomBytesFn(100).then(bytes => {
+            Object.keys(bytes).forEach(key => {
+                if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
+                    const randomNumber = bytes[key] % 27;
+                    const randomLetter = charset.charAt(randomNumber);
+                    seed += randomLetter;
+                }
+            });
+            dispatch(setSeed(seed));
         });
     };
 };
