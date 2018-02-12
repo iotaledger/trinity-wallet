@@ -98,12 +98,13 @@ export default function withSendData(SendComponent) {
         };
 
         render() {
-            const { theme, seeds, tempAccount, t } = this.props;
+            const { balance, seeds, tempAccount, theme, t } = this.props;
 
             const sendProps = {
                 isSending: tempAccount.isSendingTransfer,
                 validateInputs: this.validateInputs,
                 sendTransfer: this.sendTransfer,
+                balance,
                 seeds,
                 theme,
                 t,

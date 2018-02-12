@@ -20,6 +20,7 @@ const Colors = () => {
             })}
             <div className={css.color}>
                 <strong className={css.bg}>body.bg</strong>
+                <strong className={css.bgHover}>body.hover</strong>
                 <strong className={css.bgSecondary}>body.alt</strong>
                 <strong className={css.bar}>bar</strong>
             </div>
@@ -27,6 +28,7 @@ const Colors = () => {
                 <strong className={css.label}>label</strong>
                 <strong className={css.input}>input</strong>
                 <strong className={css.inputSecondary}>input.alt</strong>
+                <strong className={css.inputOptional}>inputOptional.color</strong>
             </div>
             <div className={css.color}>
                 <strong className={css.chart}>Chart line</strong>

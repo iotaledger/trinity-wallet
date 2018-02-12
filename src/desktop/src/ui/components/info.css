@@ -1,7 +1,7 @@
 .wrapper {
     display: inline-block;
     border-radius: 4px;
-    background: var(--body-alt);
+    background: var(--body-hover);
     border-top: 20px solid var(--input-bg);
     font-size: var(--font-size-small);
     margin: 16px 0;
@@ -9,8 +9,10 @@
     text-align: left;
     position: relative;
     max-width: 512px;
-    > :first-child {
+    span {
         position: absolute;
+        top: 16px;
+        left: 16px;
     }
     > :nth-child(2) {
         margin-top: 0;

@@ -73,6 +73,10 @@
     background: var(--body-alt);
 }
 
+.bgHover {
+   background: var(--body-hover);
+}
+
 .input {
     background: var(--input-bg);
     color: var(--input);
@@ -83,4 +87,8 @@
 .inputSecondary {
     color: var(--input-alt);
     background: var(--input-bg);
+}
+.inputOptional{
+   color: var(--inputOptional-color);
+   background: var(--inputOptional-bg);   
 }

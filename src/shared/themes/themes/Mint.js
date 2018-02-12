@@ -9,5 +9,6 @@ export default {
     extra: { color: '#88D4FF', hover: '#669FBF', body: '#1E1E1E' },
     label: { color: '#F0F2F6', hover: '#66CF72', active: '#09F9BA' },
     input: { color: '#1E1E1E', bg: '#FFFFFF', alt: '#727272' },
+    inputOptional: { color: '#1E1E1E', bg: '#FFFFFF', alt: '#727272' },
     chart: { color: '#5CBAFE' },
 };

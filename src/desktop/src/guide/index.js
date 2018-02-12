@@ -7,7 +7,7 @@ import { BrowserRouter as Router, withRouter, NavLink, Switch, Route } from 'rea
 
 import { translate, I18nextProvider } from 'react-i18next';
 
-import 'components/App.css';
+import 'ui/index.css';
 
 import Logo from 'ui/components/Logo';
 import Theme from 'ui/global/Theme';

@@ -97,10 +97,10 @@ export default class AddressInput extends React.PureComponent {
             <div className={css.input}>
                 <fieldset>
                     <a onClick={this.unitChange}>
-                        <span>
+                        <strong>
                             {unit === '$' ? getCurrencySymbol(settings.currency) : unit}
-                            <Icon icon="chevronDown" size={7} />
-                        </span>
+                            <Icon icon="chevronDown" size={8} />
+                        </strong>
                     </a>
                     <input
                         type="text"
@@ -109,12 +109,14 @@ export default class AddressInput extends React.PureComponent {
                     />
                     <small>{label}</small>
                 </fieldset>
-                <a
-                    className={classNames(css.checkbox, parseInt(amount) === balance ? css.on : css.off)}
-                    onClick={this.maxAmount}
-                >
-                    {labelMax}
-                </a>
+                {balance > 0 && (
+                    <a
+                        className={classNames(css.checkbox, parseInt(amount) === balance ? css.on : css.off)}
+                        onClick={this.maxAmount}
+                    >
+                        {labelMax}
+                    </a>
+                )}
             </div>
         );
     }
