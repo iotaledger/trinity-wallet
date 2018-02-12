@@ -326,7 +326,7 @@
     },
     "deleteAccount": {
         "areYouSure": "Oletko varma, että haluat poistaa tämän tilin?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoria poistetaan.",
         "thisAction": "Tätä toimintoa ei voi jälkikäteen peruuttaa.",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
@@ -341,17 +341,17 @@
         "title": "Anna seed-luku ja tilin nimi."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Syötä salasana nähdäksesi seed-lukusi.",
+        "viewSeed": "KATSO SEED-LUKU",
+        "hideSeed": "PIILOTA SEED-LUKU"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "alreadyHave": "Olen tallettanut seed-lukuni",
+        "reenter": "Sinua pyydetään nyt uudelleensyöttämään seed-lukusi.",
+        "reenterWarning": "Jos laitteesi hajoaa, etkä ole tallettanut seed-lukuasi, menetät sinun IOTAt."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "TÄTÄ TOIMINTOA EI VOI KUMOTA.",
         "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
