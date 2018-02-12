@@ -57,7 +57,7 @@
         "cannotPerformAction": "작업을 수행할 수 없음",
         "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오.",
         "attachToTangleUnavailable": "노드 원격 어태치 미지원",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "attachToTangleUnavailableExplanation": "선택하신 노드는 원격 어태치를 지원하지 않습니다.",
         "wallet": "지갑",
         "sent": "보냄",
         "received": "받음",
