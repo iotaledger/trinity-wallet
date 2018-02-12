@@ -47,6 +47,7 @@
         "yes": "JA",
         "no": "NEI",
         "password": "Passord",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Feil passord",
         "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
         "syncInProgress": "Synkronisering pågår",
@@ -145,7 +146,9 @@
         "enterPassword": "Skriv inn passord.",
         "useSeed": "BRUK HOVEDNØKKEL",
         "login": "LOGG INN",
-        "selectDifferentNode": "Vil du forsøke en annen node?"
+        "selectDifferentNode": "Vil du forsøke en annen node?",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
@@ -258,7 +261,9 @@
         "cut": "Klipp ut",
         "copy": "Kopier",
         "paste": "Lim inn",
-        "selectAll": "Velg alt"
+        "selectAll": "Velg alt",
+        "securitySettings": "Security settings",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
@@ -364,6 +369,25 @@
         "cannotUndo": "DENNE HANDLINGEN KAN IKKE ANGRES.",
         "warning":
             "<0><0>Alle dine lommebokdata inkludert dine</0> <1>nøkler, passord</1> <2>og</2> <3>andre kontoopplysninger</3> <4> vil gå tapt.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "Du skal til å sende {{contents}} til adressen",

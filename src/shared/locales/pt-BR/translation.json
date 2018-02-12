@@ -47,6 +47,7 @@
         "yes": "SIM",
         "no": "NÃO",
         "password": "Senha",
+        "passwordOrFingerprint": "Senha ou impressão digital",
         "unrecognisedPassword": "Senha não reconhecida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
         "syncInProgress": "Sincronizando",
@@ -55,7 +56,7 @@
         "somethingWentWrongExplanation": "Por favor, reinicie o aplicativo.",
         "node": "Servidor",
         "cannotPerformAction": "Não é possível executar a ação",
-        "cannotPerformActionExplanation": "Vá para configurações avançadas para redefinir a carteira.",
+        "cannotPerformActionExplanation": "Vá para opções para redefinir a carteira.",
         "attachToTangleUnavailable": "Anexar ao Tangle indisponível",
         "attachToTangleUnavailableExplanation": "Anexar ao Tangle não está disponível no nó selecionado.",
         "wallet": "Carteira",
@@ -144,7 +145,9 @@
         "enterPassword": "Por favor, digite sua senha.",
         "useSeed": "USAR A SEED",
         "login": "INICIAR SESSÃO",
-        "selectDifferentNode": "Você quer selecionar um servidor diferente?"
+        "selectDifferentNode": "Você quer selecionar um servidor diferente?",
+        "setNode": "SERVIDOR",
+        "cannotConnect": "Não é possível conectar ao servidor IOTA."
     },
     "loading": {
         "loadingFirstTime": "Carregando a Seed pela primeira vez.",
@@ -205,7 +208,7 @@
         "invalidAmount": "Valor inserido está incorreto",
         "invalidAmountExplanation": "Por favor, digite um valor numérico para o valor da transação.",
         "maximumSelected": "Quantia MÁXIMA selecionada",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "Unidades IOTA explicadas",
         "sendMax": "ENVIAR O MÁXIMO"
     },
     "setPassword": {
@@ -222,7 +225,7 @@
     },
     "setSeedName": {
         "canUseMultipleSeeds": "Pode utilizar várias Seeds com esta carteira. Cada Seed requer um nome de conta.",
-        "youCanAdd": "Pode adicionar mais Seeds no menu de configuração."
+        "youCanAdd": "Pode adicionar mais Seeds no menu de opções."
     },
     "settings": {
         "transferSending": "Enviando transferência",
@@ -237,7 +240,7 @@
         "addNewSeed": "Adicionar nova seed",
         "twoFA": "Autenticação 2FA",
         "changePassword": "Mudar senha",
-        "advanced": "Configurações avançadas",
+        "advanced": "Opções",
         "logout": "Terminar sessão",
         "reset": "Redefinir a carteira",
         "syncingComplete": "Sincronização completa",
@@ -247,7 +250,7 @@
         "accountDeleted": "Conta excluída",
         "accountDeletedExplanation": "Sua conta foi removida da carteira.",
         "cannotPerformAction": "Não é possível executar a ação",
-        "cannotPerformActionExplanation": "Vá para configurações avançadas para redefinir a carteira.",
+        "cannotPerformActionExplanation": "Vá para opções para redefinir a carteira.",
         "poorConnection": "Conexão fraca",
         "poorConnectionExplanation": "Falha ao alterar a moeda devido a uma conexão fraca.",
         "hide": "Ocultar",
@@ -258,7 +261,9 @@
         "cut": "Cortar",
         "copy": "Copiar",
         "paste": "Colar",
-        "selectAll": "Selecionar Tudo"
+        "selectAll": "Selecionar Tudo",
+        "securitySettings": "Opções de segurança",
+        "fingerprint": "Autenticação de impressão digital"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
@@ -364,6 +369,27 @@
         "cannotUndo": "ESTA AÇÃO NÃO PODE SER REVERTIDA.",
         "warning":
             "<0><0>Todos os seus dados da carteira, incluindo suas </0><1>seeds, senhas,</1><2> e </2><3>outras informações da conta</3><4> serão perdidas.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable":
+            "Toque o leitor de impressão digital do seu dispositivo para habilitar a autenticação de impressão digital.",
+        "instructionsDisable":
+            "Toque o leitor de impressão digital do seu dispositivo para desabilitar a autenticação de impressão digital.",
+        "fingerprintAuthEnabled": "Autenticação de impressão digital habilitada",
+        "fingerprintAuthEnabledExplanation": "Você habilitou a autenticação de impressão digital com sucesso.",
+        "fingerprintAuthDisabled": "Notificações de impressão digital desabilitadas",
+        "fingerprintAuthDisabledExplanation": "Você desabilitou a autenticação de impressão digital com sucesso.",
+        "fingerprintAuthFailed": "Autenticação de impressão digital falhou",
+        "fingerprintAuthFailedExplanation": "Falha na autenticação de impressão digital. Por favor, tente novamente.",
+        "status": "Estado",
+        "enabled": "Ativado",
+        "disabled": "Desativado",
+        "fingerprintUnavailable": "Sensor de impressão digital indisponível",
+        "fingerprintUnavailableExplanation":
+            "Seu dispositivo não suporta reconhecimento de impressões digitais ou não foi configurado nas opções do dispositivo.",
+        "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação de impressão digital.",
+        "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação de impressão digital.",
+        "instructionsLogin": "Toque o leitor de impressão digital para logar."
     },
     "transferConfirmation": {
         "youAreAbout": "Você está prestes a enviar {{contents}} para o endereço",

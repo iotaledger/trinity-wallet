@@ -7,7 +7,7 @@ import { EditAccountName } from '../../components/editAccountName';
 
 jest.mock('react-native-device-info');
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {
@@ -16,6 +16,11 @@ const getProps = overrides =>
             accountName: 'foo',
             saveAccountName: noop,
             backPress: noop,
+            textColor: { color: 'white' },
+            secondaryBackgroundColor: 'white',
+            arrowLeftImagePath: 20,
+            tickImagePath: 21,
+            negativeColor: 'white',
         },
         overrides,
     );
@@ -23,23 +28,39 @@ const getProps = overrides =>
 describe('Testing EditAccountName component', () => {
     describe('propTypes', () => {
         it('should require a t function as a prop', () => {
-            expect(EditAccountName.propTypes.t).toBe(PropTypes.func.isRequired);
-        });
-
-        it('should require a seedIndex number as a prop', () => {
-            expect(EditAccountName.propTypes.seedIndex).toBe(PropTypes.number.isRequired);
+            expect(EditAccountName.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require an accountName string as a prop', () => {
-            expect(EditAccountName.propTypes.accountName).toBe(PropTypes.string.isRequired);
+            expect(EditAccountName.propTypes.accountName).toEqual(PropTypes.string.isRequired);
         });
 
         it('should require a saveAccountName function as a prop', () => {
-            expect(EditAccountName.propTypes.saveAccountName).toBe(PropTypes.func.isRequired);
+            expect(EditAccountName.propTypes.saveAccountName).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a backPress function as a prop', () => {
-            expect(EditAccountName.propTypes.backPress).toBe(PropTypes.func.isRequired);
+            expect(EditAccountName.propTypes.backPress).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a textColor object as a prop', () => {
+            expect(EditAccountName.propTypes.textColor).toEqual(PropTypes.object.isRequired);
+        });
+
+        it('should require a secondaryBackgroundColor string as a prop', () => {
+            expect(EditAccountName.propTypes.secondaryBackgroundColor).toEqual(PropTypes.string.isRequired);
+        });
+
+        it('should require a arrowLeftImagePath number as a prop', () => {
+            expect(EditAccountName.propTypes.arrowLeftImagePath).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a tickImagePath number as a prop', () => {
+            expect(EditAccountName.propTypes.tickImagePath).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a negativeColor function as a prop', () => {
+            expect(EditAccountName.propTypes.negativeColor).toEqual(PropTypes.string.isRequired);
         });
     });
 

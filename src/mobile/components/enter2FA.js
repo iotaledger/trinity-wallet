@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
-import CustomTextInput from '../components/customTextInput';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import CustomTextInput from '../components/customTextInput';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import OnboardingButtons from './onboardingButtons';
@@ -60,9 +60,8 @@ const styles = StyleSheet.create({
 class Enter2FA extends Component {
     static propTypes = {
         onComplete2FA: PropTypes.func.isRequired,
-        positiveColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         onBackPress: PropTypes.func.isRequired,
     };
 
@@ -70,7 +69,7 @@ class Enter2FA extends Component {
         token2FA: '',
     };
 
-    handleChange2FAToken = token2FA => this.setState({ token2FA });
+    handleChange2FAToken = (token2FA) => this.setState({ token2FA });
 
     handleDonePress = () => {
         const { token2FA } = this.state;
@@ -85,7 +84,7 @@ class Enter2FA extends Component {
 
     render() {
         const { codefor2FA } = this.state;
-        const { positiveColor, secondaryBackgroundColor, negativeColor } = this.props;
+        const { secondaryBackgroundColor, negativeColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
@@ -102,7 +101,7 @@ class Enter2FA extends Component {
                         <CustomTextInput
                             label="Token"
                             onChangeText={this.handleChange2FAToken}
-                            containerStyle={{ width: width / 1.36 }}
+                            containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'none'}
                             keyboardType={'numeric'}
                             autoCorrect={false}

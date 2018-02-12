@@ -48,6 +48,7 @@
         "yes": "JA",
         "no": "NEIN",
         "password": "Passwort",
+        "passwordOrFingerprint": "Passwort oder Fingerabdruck",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte nochmal versuchen.",
         "syncInProgress": "Synchronisiere...",
@@ -81,7 +82,7 @@
         "seedTooShort": "Seed ist zu kurz",
         "seedTooShortExplanation":
             "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
-        "nameInUse": "Kontoname wird bereits verwendet",
+        "nameInUse": "Dieser Kontoname wird bereits verwendet",
         "nameInUseExplanation": "Bitte benutze einen eindeutigen Kontonamen für deinen Seed.",
         "enterAccountName": "Gib einen Kontonamen ein.",
         "accountName": "Kontoname",
@@ -146,7 +147,9 @@
         "enterPassword": "Bitte gib dein Passwort ein.",
         "useSeed": "SEED BENUTZEN",
         "login": "ANMELDEN",
-        "selectDifferentNode": "Möchtest du einen anderen Server auswählen?"
+        "selectDifferentNode": "Möchtest du einen anderen Server auswählen?",
+        "setNode": "SERVER AUSWÄHLEN",
+        "cannotConnect": "Verbindung mit IOTA Server nicht möglich."
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
@@ -207,7 +210,7 @@
         "invalidAmount": "Falschen Betrag eingegeben",
         "invalidAmountExplanation": "Bitte gib einen numerischen Wert als Betrag ein.",
         "maximumSelected": "MAXIMALER Betrag ausgewählt",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "IOTA Einheiten erklärt",
         "sendMax": "SENDE MAX"
     },
     "setPassword": {
@@ -233,7 +236,7 @@
         "generatingAddress": "Erzeuge Empfangsadresse",
         "generatingAddressExplanation": "Bitte warte bis deine Adresse erzeugt wurde.",
         "mode": "Modus",
-        "theme": "Theme",
+        "theme": "Design",
         "currency": "Währung",
         "language": "Sprache",
         "accountManagement": "Konto-Verwaltung",
@@ -261,7 +264,9 @@
         "cut": "Ausschneiden",
         "copy": "Kopieren",
         "paste": "Einfügen",
-        "selectAll": "Alle auswählen"
+        "selectAll": "Alle auswählen",
+        "securitySettings": "Sicherheitseinstellungen",
+        "fingerprint": "Fingerabdruck-Authentifizierung"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -318,7 +323,7 @@
         "frame": "Rahmen"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Design"
     },
     "currencySelection": {
         "currency": "Währung"
@@ -335,13 +340,13 @@
         "billion": "Milliarden",
         "million": "Millionen",
         "thousand": "Tausend",
-        "one": "Eins"
+        "one": "Ein"
     },
     "deleteAccount": {
         "areYouSure": "Willst du dieses Konto wirklich löschen?",
         "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
-        "enterPassword": "Bitte gib dein Passwort ein, um das Konto zu löschen."
+        "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
     },
     "manualSync": {
         "pressToSync": "Drücke die Schaltfläche unten, um dein Konto zu synchronisieren.",
@@ -367,6 +372,29 @@
         "cannotUndo": "DIESE AKTION KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN.",
         "warning":
             "<0><0>Alle Daten deines Wallets, inklusive deiner </0><1>Seeds, Passwörter</1><2> und </2><3>anderer Konto-Informationen</3><4>, werden verloren gehen.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable":
+            "Berühre den Fingerabdrucksensor an deinem Gerät, um die Authentifizierung mittels Fingerabdruck einzurichten.",
+        "instructionsDisable":
+            "Berühre den Fingerabdrucksensor an deinem Gerät, um die Authentifizierung mittels Fingerabdruck zu deaktivieren.",
+        "fingerprintAuthEnabled": "Fingerabdruck-Authentifizierung aktiviert",
+        "fingerprintAuthEnabledExplanation": "Fingerabdruck-Authentifizierung wurde erfolgreich aktiviert.",
+        "fingerprintAuthDisabled": "Fingerabdruck-Authentifizierung deaktiviert",
+        "fingerprintAuthDisabledExplanation": "Fingerabdruck-Authentifizierung wurde erfolgreich deaktiviert.",
+        "fingerprintAuthFailed": "Fingerabdruck-Authentifizierung fehlgeschlagen",
+        "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
+        "status": "Status",
+        "enabled": "Aktiviert",
+        "disabled": "Deaktiviert",
+        "fingerprintUnavailable": "Fingerabdrucksensor nicht vorhanden",
+        "fingerprintUnavailableExplanation":
+            "Dein Gerät unterstützt die Erkennung von Fingerabdrücken nicht oder diese Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
+        "buttonInstructionsDisable":
+            "Drücke die untere Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
+        "buttonInstructionsEnable":
+            "Drücke die untere Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
+        "instructionsLogin": "Fingerabdrucksensor berühren, um sich anzumelden."
     },
     "transferConfirmation": {
         "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",

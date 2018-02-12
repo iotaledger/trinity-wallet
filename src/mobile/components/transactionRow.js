@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, View, Text, StyleSheet, ListView, ScrollView } from 'react-native';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
-import { convertFromTrytes, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { convertFromTrytes, isReceivedTransfer, iota } from 'iota-wallet-shared-modules/libs/iota';
+import { translate } from 'react-i18next';
 import { extractTailTransferFromBundle } from 'iota-wallet-shared-modules/libs/transfers';
 import Modal from 'react-native-modal';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
-import { translate } from 'react-i18next';
-import { iota } from 'iota-wallet-shared-modules/libs/iota';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -114,6 +113,11 @@ class TransactionRow extends Component {
         t: PropTypes.func.isRequired,
     };
 
+    static addChecksum(address) {
+        const addressesWithChecksum = iota.utils.addChecksum(address, 9, true);
+        return addressesWithChecksum;
+    }
+
     constructor() {
         super();
 
@@ -125,11 +129,6 @@ class TransactionRow extends Component {
     showModal = () => this.setState({ isModalVisible: true });
 
     hideModal = () => this.setState({ isModalVisible: false });
-
-    addChecksum(address) {
-        address = iota.utils.addChecksum(address, 9, true);
-        return address;
-    }
 
     renderModalContent = (transfer, titleColour, isReceived, hasPersistence, textColor, borderColor, t) => (
         <TouchableOpacity style={{ width, height, alignItems: 'center' }} onPress={() => this.hideModal()}>
@@ -185,11 +184,13 @@ class TransactionRow extends Component {
                             renderRow={(rowData) => (
                                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 2 }}>
                                     <TouchableOpacity
-                                        onPress={() => this.props.copyAddress(this.addChecksum(rowData.address))}
+                                        onPress={() =>
+                                            this.props.copyAddress(TransactionRow.addChecksum(rowData.address))
+                                        }
                                         style={{ flex: 4.7 }}
                                     >
                                         <Text style={[styles.hash, textColor]} numberOfLines={2}>
-                                            {this.addChecksum(rowData.address)}
+                                            {TransactionRow.addChecksum(rowData.address)}
                                         </Text>
                                     </TouchableOpacity>
                                     <View style={{ flex: 1.3 }}>

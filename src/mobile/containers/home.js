@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, BackHandler, ToastAndroid } from 'react-native';
+import { StyleSheet, View, BackHandler, ToastAndroid, KeyboardAvoidingView } from 'react-native';
 import RNExitApp from 'react-native-exit-app';
-import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
-import UserInactivity from '../components/userInactivity';
-import { Navigation } from 'react-native-navigation';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import { clearTempData, setPassword, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
+import {
+    clearTempData,
+    setPassword,
+    setUserActivity,
+    setSetting,
+} from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import whiteBalanceImagePath from 'iota-wallet-shared-modules/images/balance-white.png';
 import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
@@ -20,11 +22,12 @@ import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png
 import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
 import blackHistoryImagePath from 'iota-wallet-shared-modules/images/history-black.png';
 import blackSettingsImagePath from 'iota-wallet-shared-modules/images/settings-black.png';
+import DynamicStatusBar from '../components/dynamicStatusBar';
+import UserInactivity from '../components/userInactivity';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import withUserActivity from '../components/withUserActivity';
 import Poll from './poll';
-import THEMES from '../theme/themes';
 import Tabs from '../components/tabs';
 import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
@@ -118,26 +121,9 @@ class Home extends Component {
         }
     };
 
-    onSwipeRight() {
-        const { currentRoute } = this.props;
-        const availableRoutes = ['balance', 'send', 'receive', 'history', 'settings'];
-        const currentRouteIndex = availableRoutes.indexOf(currentRoute);
-        if (currentRouteIndex === 0) {
-            return;
-        }
-        const nextRoute = availableRoutes[currentRouteIndex - 1];
-        this.props.changeHomeScreenRoute(nextRoute);
-    }
-
-    onSwipeLeft() {
-        const { currentRoute } = this.props;
-        const availableRoutes = ['balance', 'send', 'receive', 'history', 'settings'];
-        const currentRouteIndex = availableRoutes.indexOf(currentRoute);
-        if (currentRouteIndex === availableRoutes.length - 1) {
-            return;
-        }
-        const nextRoute = availableRoutes[currentRouteIndex + 1];
-        this.props.changeHomeScreenRoute(nextRoute);
+    onTabSwitch(name) {
+        this.props.changeHomeScreenRoute(name);
+        this.props.setSetting('mainSettings');
     }
 
     handleInactivity = () => {
@@ -162,6 +148,7 @@ class Home extends Component {
             positiveColor,
             secondaryBarColor,
             secondaryBackgroundColor,
+            isFingerprintEnabled,
         } = this.props;
 
         const balanceImagePath = secondaryBarColor === 'white' ? whiteBalanceImagePath : blackBalanceImagePath;
@@ -182,7 +169,7 @@ class Home extends Component {
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
-                <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
+                <KeyboardAvoidingView style={{ flex: 1, backgroundColor }}>
                     <DynamicStatusBar textColor={secondaryBarColor} />
                     {!inactive &&
                         !minimised && (
@@ -192,10 +179,7 @@ class Home extends Component {
                                     <TabContent navigator={navigator} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <Tabs
-                                        onPress={(name) => this.props.changeHomeScreenRoute(name)}
-                                        barColor={barColor}
-                                    >
+                                    <Tabs onPress={(name) => this.onTabSwitch(name)} barColor={barColor}>
                                         <Tab
                                             name="balance"
                                             icon={balanceImagePath}
@@ -240,13 +224,14 @@ class Home extends Component {
                                 positiveColor={positiveColor}
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 textColor={textColor}
+                                isFingerprintEnabled={isFingerprintEnabled}
                             />
                         </View>
                     )}
                     {minimised && <View />}
                     <Poll />
                     <StatefulDropdownAlert />
-                </View>
+                </KeyboardAvoidingView>
             </UserInactivity>
         );
     }
@@ -276,6 +261,7 @@ const mapDispatchToProps = {
     clearTempData,
     setPassword,
     setUserActivity,
+    setSetting,
 };
 
 Home.propTypes = {
@@ -286,17 +272,22 @@ Home.propTypes = {
     setUserActivity: PropTypes.func.isRequired,
     inactive: PropTypes.bool.isRequired,
     minimised: PropTypes.bool.isRequired,
-    backgroundColor: PropTypes.object.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
     barColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.object.isRequired,
-    positiveColor: PropTypes.object.isRequired,
+    negativeColor: PropTypes.string.isRequired,
+    positiveColor: PropTypes.string.isRequired,
     tempAccount: PropTypes.object.isRequired,
     secondaryBarColor: PropTypes.string.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
-    currentRoute: PropTypes.string.isRequired,
     isTransitioning: PropTypes.bool.isRequired,
     isSyncing: PropTypes.bool.isRequired,
     isSendingTransfer: PropTypes.bool.isRequired,
+    setSetting: PropTypes.func.isRequired,
+    isFingerprintEnabled: PropTypes.bool,
+};
+
+Home.defaultProps = {
+    isFingerprintEnabled: false,
 };
 
 export default withUserActivity()(

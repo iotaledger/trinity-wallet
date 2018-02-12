@@ -22,7 +22,6 @@ import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import keychain, { getSeed, storeSeedInKeychain } from '../util/keychain';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-import THEMES from '../theme/themes';
 
 import { width, height } from '../util/dimensions';
 
@@ -72,7 +71,7 @@ class Loading extends Component {
         getFullAccountInfo: PropTypes.func.isRequired,
         fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
         getMarketData: PropTypes.func.isRequired,
         getPrice: PropTypes.func.isRequired,
         getChartData: PropTypes.func.isRequired,
@@ -145,7 +144,7 @@ class Loading extends Component {
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                        screenBackgroundColor: this.props.backgroundColor,
                     },
                 },
                 appStyle: {
@@ -185,7 +184,7 @@ class Loading extends Component {
 
         if (firstUse || addingAdditionalAccount) {
             return (
-                <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+                <View style={[styles.container, { backgroundColor }]}>
                     <DynamicStatusBar textColor={secondaryBackgroundColor} />
                     <View style={{ flex: 1 }} />
                     <View style={styles.animationContainer}>
@@ -217,7 +216,7 @@ class Loading extends Component {
         }
 
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
+            <View style={[styles.container, { backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.animationContainer}>
                     <View>
