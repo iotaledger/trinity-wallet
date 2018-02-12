@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Icons';
-    src: url('icons/Trinity.ttf') format('truetype');
+    src:  url('icons/Icons.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }

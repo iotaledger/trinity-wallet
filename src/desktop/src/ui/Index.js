@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import store from 'store';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
+import { clearTempData } from 'actions/tempAccount';
 
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
@@ -23,6 +24,7 @@ class App extends React.Component {
         settings: PropTypes.object.isRequired,
         account: PropTypes.object.isRequired,
         tempAccount: PropTypes.object.isRequired,
+        clearTempData: PropTypes.func.isRequired,
     };
 
     state = {
@@ -67,6 +69,7 @@ class App extends React.Component {
     menuToggle(item) {
         switch (item) {
             case 'logout':
+                this.props.clearTempData();
                 this.props.history.push('/login');
                 break;
             default:
@@ -101,4 +104,8 @@ const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
 });
 
-export default withRouter(translate()(connect(mapStateToProps)(App)));
+const mapDispatchToProps = {
+    clearTempData,
+};
+
+export default withRouter(translate()(connect(mapStateToProps, mapDispatchToProps)(App)));

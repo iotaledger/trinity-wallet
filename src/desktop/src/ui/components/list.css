@@ -22,39 +22,29 @@
                 padding: 0 2%;
             }
             > span:nth-child(1) {
-                text-align: left;
-                &:before {
-                    content: '';
-                    display: inline-block;
-                    vertical-align: middle;
-                    background: url('images/send-white.png') center;
-                    background-size: cover;
-                    width: 12px;
-                    height: 12px;
-                    margin: -3px 10px 0 0;
-                }
+               width: 24px;
+               line-height: 32px;
             }
-            > strong:nth-child(2) {
+            > span:nth-child(2) {
+                text-align: left;
+            }
+            > strong:nth-child(3) {
                 width: 20%;
                 text-align: left;
             }
-            > span:nth-child(3) {
+            > span:nth-child(4) {
                 width: 30%;
                 text-align: right;
             }
         }
         &:hover > div {
-            background: var(--body-alt);
+            background: var(--body-hover);
         }
     }
 
     .received {
         strong {
             color: var(--extra);
-        }
-        > div > span:nth-child(1):before {
-            background: url('images/receive-white.png') center;
-            background-size: cover;
         }
     }
 
@@ -86,7 +76,7 @@
         border: 1px solid var(--body-alt);
 
         &:hover {
-            background: var(--body-alt);
+            background: var(--body-hover);
         }
 
         p {

@@ -1,13 +1,11 @@
-/* eslint-disable camelcase */
 import i18next from 'i18next';
 
 const I18N_DEFAULT_LANGUAGE = 'en';
 
 export default i18next.init({
-    // lng: I18N_DEFAULT_LANGUAGE,
     fallbackLng: I18N_DEFAULT_LANGUAGE,
     fallbackNS: 'Common',
-    parseMissingKeyHandler: (missing) => `NOT TRANSLATED: ${missing}`,
+    parseMissingKeyHandler: (missing) => `_${missing}_`,
     resources: {
         ar: require('locales/ar/translation.json'),
         da: require('locales/da/translation.json'),
