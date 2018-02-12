@@ -5,9 +5,8 @@ import { ADDRESS_LENGTH } from 'libs/util';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
+import Icon from 'ui/components/Icon';
 import css from './input.css';
-
-import Camera from 'images/camera-white.png';
 
 /**
  * Address input component
@@ -59,7 +58,7 @@ export default class AddressInput extends React.PureComponent {
             <div className={css.input}>
                 <fieldset>
                     <a onClick={this.openScanner}>
-                        <img src={Camera} alt="" />
+                        <Icon icon="camera" size={16} />
                     </a>
                     <input
                         type="text"

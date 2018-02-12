@@ -32,6 +32,10 @@
                 pointer-events: none;
                 opacity: 0.5;
             }
+            &.optional {
+                background: var(--inputOptional-bg);
+                color: var(--inputOptional);
+            }
         }
         select {
             position: relative;
@@ -89,11 +93,9 @@
                 background: var(--input-alt);
                 transform: translate(0, -50%);
             }
-            > img {
-                width: 16px;
-            }
-            > span {
+            > strong {
                 font-size: 11px;
+                font-weight: 200;
                 > span {
                     margin-left: 4px;
                 }
@@ -171,8 +173,11 @@
         width: 1px;
         height: 16px;
         border-radius: 2px;
-        background: var(--input);
+        background: var(--input-alt);
         transform: rotate(45deg);
+    }
+    &:hover:after {
+        background: var(--input);
     }
 }
 
@@ -207,7 +212,7 @@
         transform: rotateY(180deg);
         max-width: 100%;
         margin-bottom: 50px;
-        border: 2px solid #fff;
+        border: 2px solid var(--input);
     }
     > section {
         margin-bottom: 40px;

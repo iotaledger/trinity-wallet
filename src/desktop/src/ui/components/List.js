@@ -7,6 +7,7 @@ import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/dateU
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
+import Icon from 'ui/components/Icon';
 
 import withListData from 'containers/components/List';
 
@@ -47,6 +48,7 @@ class List extends React.PureComponent {
     compactItem = (transfer, isReceived, isConfirmed, t) => {
         return (
             <div>
+                <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
                 <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
                 <strong>
                     {!isConfirmed ? t('global:pending') : isReceived ? t('global:received') : t('global:sent')}

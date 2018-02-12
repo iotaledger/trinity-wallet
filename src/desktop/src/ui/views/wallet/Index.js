@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Switch, Route, Redirect, withRouter, NavLink } from 'react-router-dom';
+import { Switch, Route, withRouter, NavLink } from 'react-router-dom';
 
 import Header from 'ui/views/wallet/Header';
 
