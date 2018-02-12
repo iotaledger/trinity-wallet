@@ -1,18 +1,18 @@
 ## Information Architecture
 This section details the overall flow and gives an overview of Trinity’s complete feature set.
-##### [Setup](#setup)
-- [Seed Generation](#new-seed)
+##### [Setup](#setup-1)
+- [Seed Generation](#seed-generation)
 - [Seed Storage](#seed-storage)
 
 ##### [Main dashboard](#dashboard)
-- [Account management](#multi-account)
+- [Account Management](#account-management-1)
 - [Node Selection](#node-selection)
 - [Polling](#polling)
-- [Automatic Promotion/Reattachment](#auto-reattach)
-- [Address Management](#address-mgmt)
-- [Two-factor Authentication](#2FA)
-- [Biometric authentication](#biometric)
+- [Address Management](#address-management)
+- [Two-factor Authentication](#two-factor-authentication)
+- [Biometric Authentication](#biometric-authentication)
 - [Snapshot Transition](#transition)
+- [Automatic Promotion/Reattachment](#automatic-promotionreattachment)
 
 ## Technical Architecture
 This section highlights all important APIs used in Trinity.
@@ -21,6 +21,7 @@ This section highlights all important APIs used in Trinity.
 - [i18next](#i18next)
 - [Bitrise](#bitrise)
 - [Fastlane](#fastlane)
+- [Fabric](#fabric)
 
 ## Information Architecture
 ## Setup
@@ -129,12 +130,15 @@ Trinity pulls latest market data from [Cryptocompare](https://www.cryptocompare.
 Foreign exchange rates are obtained from [Fixer](http://fixer.io/) to provide up-to-date IOTA-fiat conversion.
 
 #### i18next
-For multilingual support.
+Trinity supports over 25 different languages. To make localization easier, we use the [i18next](https://www.i18next.com/) and [react-i18next](https://react.i18next.com/) localization libraries. Additionally, we use [Crowdin](https://crowdin.com/) as a platform for translators to provide translations.
 
 #### Bitrise
-For continuous delivery and deployment for the mobile applications.
+For continuous integration and deployment (CI/CD), we use [Bitrise](https://bitrise.io). Pull requests are tested by a workflow to ensure that changes do not break existing functionality. Additionally, deployment workflows are used to automate the building and submission of mobile apps to the App Store/Play Store.
 
 #### Fastlane
-For automation of various deployment steps for App Store/Play Store.
+We use [Fastlane])(https://fastlane.tools) to automate various steps of deployment to the App Store/Play Store.
+
+#### Fabric
+To ensure usability and stability across many platforms and devices, we use [Crashlytics](http://try.crashlytics.com/) so that devices will automatically send us anonymized crash data. Crashlytics is part of [Fabric](https://get.fabric.io), a group of development tools offered by Google.
 
 <a name="mobile-randomness">1.</a> J. Krhovjak, P. Svenda, and V. Matyas, “The sources of randomness in mobile devices,” In Proceeding of NORDSEC, 2007.
