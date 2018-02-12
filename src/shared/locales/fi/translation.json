@@ -366,23 +366,23 @@
         "status": "Tila",
         "enabled": "Käytössä",
         "disabled": "Ei käytössä",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "fingerprintUnavailable": "Sormenjälkianturi ei saatavilla",
+        "fingerprintUnavailableExplanation": "Laite ei tue sormenjälkitunnistusta tai sitä ei ole määritetty laitteen asetuksiin.",
+        "buttonInstructionsDisable": "Paina alla olevaa painiketta poistaaksesi sormenjälkitunnistuksen.",
+        "buttonInstructionsEnable": "Paina alla olevaa painiketta ottaaksesi käyttöön sormenjälkitunnistuksen.",
+        "instructionsLogin": "Kosketa sormenjälkilukijaa kirjautuaksesi sisään."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "Olet lähettämässä {{contents}} osoitteeseen",
+        "aMessage": "viesti"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "wrongCode": "Väärä koodi",
+        "wrongCodeExplanation": "Kirjoittamasi tunnusluku on virheellinen.",
         "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "emptyCodeExplanation": "Syötä tunnusluku ja yritä uudelleen.",
+        "keyCopied": "Avain kopioitu leikepöydälle",
+        "keyCopiedExplanation": "Sinun 2FA-avaimesi on kopioitu leikepöydälle.",
         "addKey": "Add this key to your 2FA app",
         "key": "Key",
         "twoFAEnabled": "2FA is now enabled",
