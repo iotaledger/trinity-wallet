@@ -15,6 +15,7 @@ import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { width, height } from '../util/dimensions';
+import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -99,6 +100,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     check2FA() {
+        const { t } = this.props;
         getTwoFactorAuthKeyFromKeychain()
             .then(key => {
                 const verified = authenticator.verifyToken(key, this.state.code);
@@ -108,21 +110,17 @@ class TwoFactorSetupEnterToken extends Component {
                     this.navigateToHome();
 
                     this.timeout = setTimeout(() => {
-                        this.props.generateAlert(
-                            'success',
-                            '2FA is now enabled',
-                            'You have successfully enabled Two Factor Authentication.',
-                        );
+                        this.props.generateAlert('success', t('twoFAEnabled'), t('twoFAEnabledExplanation'));
                     }, 300);
                 } else {
-                    this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+                    this.props.generateAlert('error', t('wrongCode'), t('wrongCodeExplanation'));
                 }
             })
             .catch(err => console.error(err)); // generate an alert.
     }
 
     render() {
-        const { negativeColor, secondaryBackgroundColor } = this.props;
+        const { negativeColor, secondaryBackgroundColor, t } = this.props;
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -136,9 +134,9 @@ class TwoFactorSetupEnterToken extends Component {
                     </View>
                     <View style={styles.midWrapper}>
                         <View style={{ flex: 0.25 }} />
-                        <Text style={[styles.subHeaderText, textColor]}>Enter the token from your 2FA app</Text>
+                        <Text style={[styles.subHeaderText, textColor]}>{t('enterCode')}</Text>
                         <CustomTextInput
-                            label="Token"
+                            label={t('code')}
                             onChangeText={code => this.setState({ code })}
                             containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'none'}
@@ -154,8 +152,8 @@ class TwoFactorSetupEnterToken extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.goBack}
                             onRightButtonPress={this.check2FA}
-                            leftText="BACK"
-                            rightText="DONE"
+                            leftText={t('global:back')}
+                            rightText={t('global:done')}
                         />
                     </View>
                     <StatefulDropdownAlert />
@@ -176,4 +174,4 @@ const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken);
+export default translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken));
