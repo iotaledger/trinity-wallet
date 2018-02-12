@@ -85,7 +85,7 @@
         "noNickname": "Tilin nimeä ei annettu",
         "noNicknameExplanation": "Anna tilin nimi seed-luvullesi.",
         "seedInUse": "Seed-luku on jo käytössä",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUseExplanation": "Tämä seed-luku on jo linkitetty lompakkoosi. Käytä erilaista vaihtoehtoa."
     },
     "changePassword": {
         "oops": "Oops! Jokin meni pieleen",
@@ -188,7 +188,7 @@
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
-        "keyReuse": "Key reuse",
+        "keyReuse": "Avaimen uudelleenkäyttö",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
         "amount": "Amount",
