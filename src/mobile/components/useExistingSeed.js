@@ -11,7 +11,6 @@ import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import CustomTextInput from '../components/customTextInput';
 import QRScanner from '../components/qrScanner';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -125,12 +124,12 @@ class UseExistingSeed extends React.Component {
         seedCount: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         ctaColor: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         ctaBorderColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         addAccount: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
@@ -153,7 +152,7 @@ class UseExistingSeed extends React.Component {
 
     onQRRead(data) {
         const dataString = data.toString();
-        if (dataString.length == 81 && dataString.match(VALID_SEED_REGEX)) {
+        if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
             });
@@ -184,9 +183,8 @@ class UseExistingSeed extends React.Component {
             return t('global:sixthWallet');
         } else if (this.props.seedCount === 6) {
             return t('global:otherWallet');
-        } else {
-            return '';
         }
+        return '';
     }
 
     getChecksumValue() {
@@ -209,12 +207,13 @@ class UseExistingSeed extends React.Component {
 
     renderModalContent = () => (
         <QRScanner
-            ctaColor={THEMES.getHSL(this.props.ctaColor)}
-            backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
+            ctaColor={this.props.ctaColor}
+            backgroundColor={this.props.backgroundColor}
             onQRRead={(data) => this.onQRRead(data)}
             hideModal={() => this.hideModal()}
             secondaryCtaColor={this.props.secondaryCtaColor}
             ctaBorderColor={this.props.ctaBorderColor}
+            secondaryBackgroundColor={this.props.secondaryBackgroundColor}
         />
     );
 
@@ -238,9 +237,9 @@ class UseExistingSeed extends React.Component {
                         <View style={{ flex: 0.4 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={(value) => this.setState({ seed: value.toUpperCase() })}
-                            containerStyle={{ width: width / 1.4 }}
-                            autoCapitalize={'none'}
+                            onChangeText={(value) => this.setState({ seed: value })}
+                            containerStyle={{ width: width / 1.2 }}
+                            autoCapitalize={'characters'}
                             maxLength={MAX_SEED_LENGTH}
                             value={seed}
                             autoCorrect={false}
@@ -263,7 +262,7 @@ class UseExistingSeed extends React.Component {
                             }}
                             label={t('addAdditionalSeed:accountName')}
                             onChangeText={(value) => this.setState({ accountName: value })}
-                            containerStyle={{ width: width / 1.4 }}
+                            containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'words'}
                             maxLength={MAX_SEED_LENGTH}
                             autoCorrect={false}

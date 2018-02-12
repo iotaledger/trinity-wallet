@@ -13,35 +13,69 @@ import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
-import THEMES from '../theme/themes';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    listView: {
+        height: height * 0.7,
+        justifyContent: 'flex-end',
+    },
+    separator: {
+        flex: 1,
+        height: height / 60,
+    },
+    noTransactionsContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    noTransactions: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
+        backgroundColor: 'transparent',
+    },
+});
 
 class History extends Component {
     static propTypes = {
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
         closeTopBar: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
-        positiveColor: PropTypes.object.isRequired,
-        extraColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        positiveColor: PropTypes.string.isRequired,
+        extraColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         pendingColor: PropTypes.string.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        seedIndex: PropTypes.number.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
         this.state = { viewRef: null, refreshing: false };
+        this.onRefresh = this.onRefresh.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
         if (this.props.isFetchingLatestAccountInfoOnLogin && !newProps.isFetchingLatestAccountInfoOnLogin) {
             this.setState({ refreshing: false });
+        }
+    }
+
+    onRefresh() {
+        if (!this.shouldPreventManualRefresh()) {
+            this.setState({ refreshing: true });
+            this.updateAccountData();
         }
     }
 
@@ -67,13 +101,6 @@ class History extends Component {
         );
     }
 
-    _onRefresh() {
-        if (!this.shouldPreventManualRefresh()) {
-            this.setState({ refreshing: true });
-            this.updateAccountData();
-        }
-    }
-
     updateAccountData() {
         const { selectedAccountName, seedIndex } = this.props;
         keychain
@@ -85,21 +112,16 @@ class History extends Component {
             .catch((err) => console.log(err));
     }
 
-    // FIXME: findNodeHangle is not defined
-    imageLoaded() {
-        this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
-    }
-
     copyBundleHash(item) {
-        const { t, generateAlert } = this.props;
+        const { t } = this.props;
         Clipboard.setString(item);
-        generateAlert('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
+        this.props.generateAlert('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
     }
 
     copyAddress(item) {
-        const { t, generateAlert } = this.props;
+        const { t } = this.props;
         Clipboard.setString(item);
-        generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
+        this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
     render() {
@@ -126,8 +148,8 @@ class History extends Component {
                                 refreshControl={
                                     <RefreshControl
                                         refreshing={this.state.refreshing}
-                                        onRefresh={this._onRefresh.bind(this)}
-                                        tintColor={THEMES.getHSL(negativeColor)}
+                                        onRefresh={this.onRefresh}
+                                        tintColor={negativeColor}
                                     />
                                 }
                                 contentContainerStyle={{ paddingTop: 1, paddingBottom: 1 }}
@@ -139,10 +161,10 @@ class History extends Component {
                                         titleColor="#F8FFA6"
                                         copyAddress={(item) => this.copyAddress(item)}
                                         copyBundleHash={(item) => this.copyBundleHash(item)}
-                                        positiveColor={THEMES.getHSL(positiveColor)}
-                                        negativeColor={THEMES.getHSL(negativeColor)}
-                                        extraColor={THEMES.getHSL(extraColor)}
-                                        backgroundColor={THEMES.getHSL(backgroundColor)}
+                                        positiveColor={positiveColor}
+                                        negativeColor={negativeColor}
+                                        extraColor={extraColor}
+                                        backgroundColor={backgroundColor}
                                         textColor={textColor}
                                         borderColor={borderColor}
                                         secondaryBackgroundColor={secondaryBackgroundColor}
@@ -154,7 +176,6 @@ class History extends Component {
                                 ref={(listview) => {
                                     this.listview = listview;
                                 }}
-                                onLoadEnd={this.imageLoaded.bind(this)}
                                 snapToInterval={height * 0.7 / 6}
                             />
                         </View>
@@ -168,31 +189,6 @@ class History extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    listView: {
-        height: height * 0.7,
-        justifyContent: 'flex-end',
-    },
-    separator: {
-        flex: 1,
-        height: height / 60,
-    },
-    noTransactionsContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    noTransactions: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 27.6,
-        backgroundColor: 'transparent',
-    },
-});
 
 const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),

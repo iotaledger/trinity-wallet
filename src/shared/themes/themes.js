@@ -1,5 +1,3 @@
-import tinycolor from 'tinycolor2';
-
 import Default from './themes/Default';
 import Electric from './themes/Electric';
 import Mint from './themes/Mint';
@@ -16,11 +14,6 @@ export const themes = {
     Contemporary: Contemporary,
 };
 
-export const getHSL = (color) => {
-    return tinycolor(color).toHslString();
-};
-
 export default {
     themes,
-    getHSL,
 };

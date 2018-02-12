@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Clipboard } from 'react-native';
-import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -9,125 +8,11 @@ import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import Seedbox from '../components/seedBox';
-import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import CtaButton from '../components/ctaButton';
-
-class CopySeedToClipboard extends Component {
-    static propTypes = {
-        tempAccount: PropTypes.object.isRequired,
-        navigator: PropTypes.object.isRequired,
-        setCopiedToClipboard: PropTypes.func.isRequired,
-        generateAlert: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired,
-        secondaryCtaColor: PropTypes.string.isRequired,
-    };
-
-    constructor() {
-        super();
-
-        this.timeout = null;
-    }
-
-    componentWillUnmount() {
-        this.clearTimeout();
-        Clipboard.setString(' ');
-    }
-
-    onDonePress() {
-        this.clearTimeout();
-        Clipboard.setString(' ');
-        this.props.setCopiedToClipboard(true);
-
-        this.props.navigator.pop({
-            animated: false,
-        });
-    }
-
-    onCopyPress() {
-        const { t } = this.props;
-
-        Clipboard.setString(this.props.tempAccount.seed);
-
-        this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
-
-        this.timeout = setTimeout(() => {
-            Clipboard.setString(' ');
-            this.generateClipboardClearAlert();
-        }, 30000);
-    }
-
-    generateClipboardClearAlert() {
-        const { t } = this.props;
-
-        return this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
-    }
-
-    clearTimeout() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
-    }
-
-    render() {
-        const {
-            t,
-            positiveColor,
-            backgroundColor,
-            ctaColor,
-            secondaryBackgroundColor,
-            secondaryCtaColor,
-            ctaBorderColor,
-        } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-        const borderColor = { borderColor: secondaryBackgroundColor };
-        const ctaTextColor = { color: secondaryCtaColor };
-        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
-
-        return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
-                <View style={styles.topContainer}>
-                    <Image source={iotaImagePath} style={styles.iotaLogo} />
-                </View>
-                <View style={styles.midContainer}>
-                    <Text style={[styles.infoTextNormal, textColor]}>{t('clickToCopy')}</Text>
-                    <Text style={[styles.infoTextBold, textColor]}>{t('doNotStore')}</Text>
-                    <Seedbox
-                        secondaryBackgroundColor={secondaryBackgroundColor}
-                        borderColor={borderColor}
-                        textColor={textColor}
-                        seed={this.props.tempAccount.seed}
-                    />
-                    <View style={{ flex: 0.2 }} />
-                    <CtaButton
-                        ctaColor={ctaColor}
-                        ctaBorderColor={ctaBorderColor}
-                        secondaryCtaColor={secondaryCtaColor}
-                        text={t('copyToClipboard').toUpperCase()}
-                        onPress={() => {
-                            this.onCopyPress();
-                        }}
-                        ctaWidth={width / 1.65}
-                    />
-                </View>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={(event) => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: THEMES.getHSL(positiveColor) }]}>
-                            <Text style={[styles.doneText, { color: THEMES.getHSL(positiveColor) }]}>
-                                {t('global:done')}
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <StatefulDropdownAlert />
-            </View>
-        );
-    }
-}
+import DynamicStatusBar from '../components/dynamicStatusBar';
 
 const styles = StyleSheet.create({
     container: {
@@ -204,6 +89,121 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
 });
+
+class CopySeedToClipboard extends Component {
+    static propTypes = {
+        tempAccount: PropTypes.object.isRequired,
+        navigator: PropTypes.object.isRequired,
+        setCopiedToClipboard: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
+        positiveColor: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        ctaColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
+    };
+
+    constructor() {
+        super();
+
+        this.timeout = null;
+    }
+
+    componentWillUnmount() {
+        this.clearTimeout();
+        Clipboard.setString(' ');
+    }
+
+    onDonePress() {
+        this.clearTimeout();
+        Clipboard.setString(' ');
+        this.props.setCopiedToClipboard(true);
+
+        this.props.navigator.pop({
+            animated: false,
+        });
+    }
+
+    onCopyPress() {
+        const { t } = this.props;
+
+        Clipboard.setString(this.props.tempAccount.seed);
+
+        this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
+
+        this.timeout = setTimeout(() => {
+            Clipboard.setString(' ');
+            this.generateClipboardClearAlert();
+        }, 30000);
+    }
+
+    generateClipboardClearAlert() {
+        const { t } = this.props;
+
+        return this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
+    }
+
+    clearTimeout() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+    }
+
+    render() {
+        const {
+            t,
+            positiveColor,
+            backgroundColor,
+            ctaColor,
+            secondaryBackgroundColor,
+            secondaryCtaColor,
+            ctaBorderColor,
+        } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
+        const borderColor = { borderColor: secondaryBackgroundColor };
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
+
+        return (
+            <View style={[styles.container, { backgroundColor }]}>
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <View style={styles.topContainer}>
+                    <Image source={iotaImagePath} style={styles.iotaLogo} />
+                </View>
+                <View style={styles.midContainer}>
+                    <Text style={[styles.infoTextNormal, textColor]}>{t('clickToCopy')}</Text>
+                    <Text style={[styles.infoTextBold, textColor]}>{t('doNotStore')}</Text>
+                    <Seedbox
+                        secondaryBackgroundColor={secondaryBackgroundColor}
+                        borderColor={borderColor}
+                        textColor={textColor}
+                        seed={this.props.tempAccount.seed}
+                    />
+                    <View style={{ flex: 0.2 }} />
+                    <CtaButton
+                        ctaColor={ctaColor}
+                        ctaBorderColor={ctaBorderColor}
+                        secondaryCtaColor={secondaryCtaColor}
+                        text={t('copyToClipboard').toUpperCase()}
+                        onPress={() => {
+                            this.onCopyPress();
+                        }}
+                        ctaWidth={width / 1.65}
+                    />
+                </View>
+                <View style={styles.bottomContainer}>
+                    <TouchableOpacity onPress={() => this.onDonePress()}>
+                        <View style={[styles.doneButton, { borderColor: positiveColor }]}>
+                            <Text style={[styles.doneText, { color: positiveColor }]}>{t('global:done')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <StatefulDropdownAlert />
+            </View>
+        );
+    }
+}
 
 const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,

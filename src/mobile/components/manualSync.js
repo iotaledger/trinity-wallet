@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const ManualSync = props => (
+const ManualSync = (props) => (
     <View style={styles.container}>
         <View style={styles.topContainer}>
             <View style={{ flex: 0.8 }} />
@@ -110,7 +109,7 @@ const ManualSync = props => (
                         animating={props.isSyncing}
                         style={styles.activityIndicator}
                         size="large"
-                        color={THEMES.getHSL(props.negativeColor)}
+                        color={props.negativeColor}
                     />
                 </View>
             )}
@@ -136,6 +135,10 @@ ManualSync.propTypes = {
     backPress: PropTypes.func.isRequired,
     onManualSyncPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
+    textColor: PropTypes.object.isRequired,
+    arrowLeftImagePath: PropTypes.number.isRequired,
+    negativeColor: PropTypes.string.isRequired,
+    borderColor: PropTypes.object.isRequired,
 };
 
 export default ManualSync;

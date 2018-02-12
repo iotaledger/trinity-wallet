@@ -15,7 +15,7 @@ describe('Reducer: account', () => {
                 unspentAddressesHashes: {},
                 pendingTxTailsHashes: {},
                 is2FAEnabled: false,
-                key2FA: '',
+                isFingerprintEnabled: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -353,6 +353,7 @@ describe('Reducer: account', () => {
                 addresses: { baz: {} },
                 transfers: [{}],
                 balance: 100,
+                isFingerprintEnabled: false,
             });
 
             const newState = reducer(initialState, action);
@@ -361,6 +362,7 @@ describe('Reducer: account', () => {
                     foo: {
                         addresses: { foo: {}, baz: {} },
                         transfers: [{}],
+                        isFingerprintEnabled: false,
                         balance: 100,
                     },
                 },
@@ -394,6 +396,7 @@ describe('Reducer: account', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [[{}, {}], [{}, {}], [{}, {}]],
                         balance: 100,
+                        isFingerprintEnabled: false,
                     },
                 },
             };
@@ -482,6 +485,7 @@ describe('Reducer: account', () => {
                 addresses: { baz: {} },
                 transfers: [{}],
                 balance: 100,
+                isFingerprintEnabled: false,
             });
 
             const newState = reducer(initialState, action);
@@ -491,6 +495,7 @@ describe('Reducer: account', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [{}],
                         balance: 100,
+                        isFingerprintEnabled: false,
                     },
                 },
             };
@@ -523,6 +528,7 @@ describe('Reducer: account', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [[{}, {}], [{}, {}]],
                         balance: 100,
+                        isFingerprintEnabled: false,
                     },
                 },
             };
@@ -613,6 +619,7 @@ describe('Reducer: account', () => {
                 addresses: { baz: {} },
                 transfers: [{}],
                 balance: 100,
+                isFingerprintEnabled: false,
             });
 
             const newState = reducer(initialState, action);
@@ -622,6 +629,7 @@ describe('Reducer: account', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [{}],
                         balance: 100,
+                        isFingerprintEnabled: false,
                     },
                 },
                 seedNames: [],
@@ -657,6 +665,7 @@ describe('Reducer: account', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [[{}, {}], [{}, {}]],
                         balance: 100,
+                        isFingerprintEnabled: false,
                     },
                 },
                 seedNames: [],
@@ -787,6 +796,7 @@ describe('Reducer: account', () => {
                 accountInfo: {
                     dummy: {
                         balance: 0,
+                        isFingerprintEnabled: false,
                         addresses: { foo: {}, baz: {} },
                         transfers: [],
                     },
@@ -902,23 +912,6 @@ describe('Reducer: account', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 is2FAEnabled: true,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('SET_2FA_KEY', () => {
-        it('should set key2FA to payload', () => {
-            const initialState = {
-                key2FA: 'foo',
-            };
-
-            const action = actions.set2FAKey('baz');
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                key2FA: 'baz',
             };
 
             expect(newState).to.eql(expectedState);

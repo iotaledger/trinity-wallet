@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import Fonts from '../theme/Fonts';
-import Colors from '../theme/Colors';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import { width, height } from '../util/dimensions';
-import Modal from 'react-native-modal';
-import CustomTextInput from '../components/customTextInput';
-import THEMES from '../theme/themes';
-import GENERAL from '../theme/general';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import Modal from 'react-native-modal';
+import Fonts from '../theme/Fonts';
+import OnboardingButtons from '../components/onboardingButtons';
+import { width, height } from '../util/dimensions';
+import CustomTextInput from '../components/customTextInput';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width: width,
+        width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -89,6 +88,22 @@ const styles = StyleSheet.create({
 });
 
 class DeleteAccount extends Component {
+    static propTypes = {
+        backPress: PropTypes.func.isRequired,
+        password: PropTypes.string.isRequired,
+        onWrongPassword: PropTypes.func.isRequired,
+        deleteAccount: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        currentAccountName: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
+        textColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        borderColor: PropTypes.string.isRequired,
+        arrowLeftImagePath: PropTypes.string.isRequired,
+        tickImagePath: PropTypes.string.isRequired,
+    };
+
     constructor() {
         super();
 
@@ -98,10 +113,6 @@ class DeleteAccount extends Component {
             password: '',
         };
     }
-
-    _showModal = data => this.setState({ isModalVisible: true });
-
-    _hideModal = () => this.setState({ isModalVisible: false });
 
     onBackPress() {
         if (!this.state.pressedContinue) {
@@ -113,38 +124,40 @@ class DeleteAccount extends Component {
 
     onContinuePress() {
         if (!this.state.pressedContinue) {
-            this.setState({ pressedContinue: true });
-        } else {
-            if (this.state.password == this.props.password) {
-                this._showModal();
-            } else {
-                this.props.onWrongPassword();
-            }
+            return this.setState({ pressedContinue: true });
         }
+        if (this.state.password === this.props.password) {
+            return this.showModal();
+        }
+        return this.props.onWrongPassword();
     }
 
     onYesPress() {
-        this._hideModal();
+        this.hideModal();
         this.props.deleteAccount();
     }
 
     onNoPress() {
-        this._hideModal();
+        this.hideModal();
     }
 
-    _renderModalContent = (borderColor, textColor) => {
-        const { t } = this.props;
+    showModal = () => this.setState({ isModalVisible: true });
+
+    hideModal = () => this.setState({ isModalVisible: false });
+
+    renderModalContent = (borderColor, textColor) => {
+        const { t, backgroundColor, currentAccountName } = this.props;
         return (
             <View
                 style={{
                     width: width / 1.15,
                     alignItems: 'center',
-                    backgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    backgroundColor,
                 }}
             >
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={[styles.infoText, { paddingBottom: height / 16 }, textColor]}>
-                        Are you sure you want to delete your account called {this.props.currentAccountName}?
+                        Are you sure you want to delete your account called {currentAccountName}?
                     </Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onNoPress()}
@@ -178,9 +191,7 @@ class DeleteAccount extends Component {
                             <View style={styles.textContainer}>
                                 <Text style={[styles.infoText, textColor]}>{t('areYouSure')}</Text>
                                 <Text style={[styles.infoText, textColor]}>{t('yourSeedWillBeRemoved')}</Text>
-                                <Text style={[styles.warningText, { color: THEMES.getHSL(negativeColor) }]}>
-                                    {t('thisAction')}
-                                </Text>
+                                <Text style={[styles.warningText, { color: negativeColor }]}>{t('thisAction')}</Text>
                             </View>
                         )}
                         {this.state.pressedContinue && (
@@ -188,7 +199,7 @@ class DeleteAccount extends Component {
                                 <Text style={[styles.infoText, textColor]}>{t('enterPassword')}</Text>
                                 <CustomTextInput
                                     label={t('global:password')}
-                                    onChangeText={password => this.setState({ password })}
+                                    onChangeText={(password) => this.setState({ password })}
                                     containerStyle={{ width: width / 1.36 }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
@@ -197,7 +208,7 @@ class DeleteAccount extends Component {
                                     onSubmitEditing={this.handleLogin}
                                     secondaryBackgroundColor={secondaryBackgroundColor}
                                     negativeColor={negativeColor}
-                                    secureTextEntry={true}
+                                    secureTextEntry
                                     value={this.state.password}
                                 />
                             </View>
@@ -206,7 +217,7 @@ class DeleteAccount extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={event => this.onBackPress()}
+                            onPress={() => this.onBackPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
@@ -232,13 +243,13 @@ class DeleteAccount extends Component {
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={THEMES.getHSL(backgroundColor)}
+                        backdropColor={backgroundColor}
                         backdropOpacity={0.6}
                         style={{ alignItems: 'center' }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
                     >
-                        {this._renderModalContent(borderColor, textColor)}
+                        {this.renderModalContent(borderColor, textColor)}
                     </Modal>
                 </View>
             </TouchableWithoutFeedback>
