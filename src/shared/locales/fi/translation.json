@@ -160,23 +160,23 @@
         "clickToPrint": "Kilkkaa alla olevaa nappia tulostaaksesi paperikopion seed-luvustasi.",
         "storeSafely": "Säilytä sitä turvallisesti.",
         "neverShare": "Älä koskaa jaa seed-lukua kenenkään ulkopuolisen kanssa.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "iotaLogo": "IOTA-logo",
+        "printWallet": "TULOSTA PAPERILOMPAKKO"
     },
     "receive": {
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "NEW ADDRESS",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "addressCopied": "Osoite kopioitu",
+        "addressCopiedExplanation": "Osoitteesi on kopioitu leikepöydälle.",
+        "generateNewAddress": "UUSI OSOITE",
+        "message": "Valinnainen viesti",
+        "removeMessage": "POISTA VIESTI"
     },
     "saveYourSeed": {
         "seedCleared": "Seed-luku tyhjennetty",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
+        "mustSaveYourSeed": "<0><0>Sinun on tallennettava seed-lukusi käyttäen </0> <1>vähintään yhtä</1> <2>alla olevista vaihtoehdoista.</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Virheellinen seed-luku",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "thisIsACheck": "This is a check to make sure you saved your seed.",
         "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
