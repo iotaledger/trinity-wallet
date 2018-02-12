@@ -68,10 +68,10 @@
         "bundleHash": "번들 해시",
         "addresses": "주소",
         "pressBackAgain": "앱을 닫으려면 뒤로가기를 다시 누르세요.",
-        "autoreattaching": "Autoreattaching to Tangle",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autoreattaching": "어태치 자동 재시도중",
+        "autoreattachingExplanation": "아래의 트랜잭션 해시를 다시 어태치합니다: {{hash}}",
+        "autopromoting": "거래 자동 프로모트 중",
+        "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
