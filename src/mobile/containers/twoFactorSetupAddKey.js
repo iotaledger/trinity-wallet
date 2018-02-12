@@ -16,6 +16,7 @@ import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -98,14 +99,11 @@ export class TwoFactorSetupAddKey extends Component {
     }
 
     onKeyPress(key) {
+        const { t } = this.props;
         if (key) {
             Clipboard.setString(key);
 
-            this.props.generateAlert(
-                'success',
-                'Key copied to clipboard',
-                'Your 2FA key has been copied to the clipboard.',
-            );
+            this.props.generateAlert('success', t('keyCopied'), t('keyCopiedExplanation'));
         }
     }
 
@@ -147,7 +145,7 @@ export class TwoFactorSetupAddKey extends Component {
     }
 
     render() {
-        const { secondaryBackgroundColor } = this.props;
+        const { secondaryBackgroundColor, t } = this.props;
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -160,7 +158,7 @@ export class TwoFactorSetupAddKey extends Component {
                 </View>
                 <View style={styles.midWrapper}>
                     <View style={{ flex: 0.4 }} />
-                    <Text style={[styles.subHeaderText, textColor]}>Add this key to your 2FA app</Text>
+                    <Text style={[styles.subHeaderText, textColor]}>{t('addKey')}</Text>
                     <View style={styles.qrContainer}>
                         <QRCode
                             value={authenticator.generateTotpUri(this.state.authKey, 'Trinity Wallet Mobile')}
@@ -171,8 +169,9 @@ export class TwoFactorSetupAddKey extends Component {
                     </View>
                     <TouchableOpacity onPress={() => this.onKeyPress(this.state.authKey)}>
                         <Text style={[styles.infoText, textColor]}>
-                            <Text style={styles.infoText}>Key: </Text>
-                            <Text style={styles.infoTextLight}>{this.state.authKey}</Text>
+                            <Text style={styles.infoText}>{t('key')}</Text>
+                            <Text style={styles.infoText}>: </Text>
+                            <Text style={styles.infoTextLight}>{this.state.authkey}</Text>
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -180,8 +179,8 @@ export class TwoFactorSetupAddKey extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.navigateToEnterToken}
-                        leftText="BACK"
-                        rightText="NEXT"
+                        leftText={t('global:back')}
+                        rightText={t('global:next')}
                     />
                 </View>
                 <StatefulDropdownAlert />
@@ -200,4 +199,4 @@ const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey);
+export default translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey));
