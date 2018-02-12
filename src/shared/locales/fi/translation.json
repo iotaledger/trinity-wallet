@@ -134,18 +134,18 @@
     },
     "login": {
         "emptyPassword": "Tyhjennä salasana",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
+        "emptyPasswordExplanation": "Kirjoita salasana kirjautumiseen. Yritä uudelleen.",
+        "enterPassword": "Anna salasanasi.",
         "useSeed": "KÄYTÄ SEED-LUKUASI",
-        "login": "LOG IN",
-        "selectDifferentNode": "Do you want to select a different node?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "login": "KIRJAUDU SISÄÄN",
+        "selectDifferentNode": "Haluatko valita toisen palvelimen?",
+        "setNode": "ASETA PALVELIN",
+        "cannotConnect": "Ei saada yhteyttä IOTA-palvelimeen."
     },
     "loading": {
         "loadingFirstTime": "Ladataan seed-lukua ensimmäistä kertaa.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "thisMayTake": "Tämä saattaa kestää hetken.",
+        "youMayNotice": "Laitteessa voi ilmetä hitautta."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed-lukua ei ole luotu",
@@ -154,11 +154,11 @@
         "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Lompakko on nyt käyttövalmis. Jos sinun tarvitsee jatkossa tehdä muutoksia, katso Settings-menusta."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
+        "clickToPrint": "Kilkkaa alla olevaa nappia tulostaaksesi paperikopion seed-luvustasi.",
+        "storeSafely": "Säilytä sitä turvallisesti.",
         "neverShare": "Älä koskaa jaa seed-lukua kenenkään ulkopuolisen kanssa.",
         "iotaLogo": "IOTA logo",
         "printWallet": "PRINT PAPER WALLET"
