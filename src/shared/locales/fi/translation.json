@@ -18,19 +18,19 @@
         "invalidResponse": "Virheellinen vastaus",
         "invalidResponseExplanation": "Palvelin palautti virheilmoituksen.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+        "invalidResponseFetchingAccount": "Palvelin palautti virheilmoituksen hakiessaan tilitietojasi.",
+        "invalidResponseSendingTransfer": "Palvelin palautti virheilmoituksen lähettäessään siirtoa.",
         "seed": "Seed-luku",
         "back": "TAKAISIN",
-        "backLowercase": "Back",
-        "done": "DONE",
-        "doneLowercase": "Done",
-        "next": "NEXT",
-        "apply": "Apply",
-        "save": "Save",
-        "close": "CLOSE",
-        "continue": "Continue",
-        "manualCopy": "Write seed down",
+        "backLowercase": "Takaisin",
+        "done": "VALMIS",
+        "doneLowercase": "Valmis",
+        "next": "SEURAAVA",
+        "apply": "Käytä",
+        "save": "Tallenna",
+        "close": "SULJE",
+        "continue": "Jatka",
+        "manualCopy": "Kirjoita seed-luku talteen",
         "paperWallet": "Print paper copy",
         "copyToClipboard": "Add to password manager",
         "notAvailable": "This function is not available",
@@ -75,7 +75,7 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
-        "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidCharsExplanation": "Seed-luvut voivat muodostua ainoastaan isoista alkukirjaimista A-Z ja numerosta 9. Sinun seed-lukusi sisältää virheellisiä merkkejä. Yritä uudelleen.",
         "seedTooShort": "Seed-luku on liian lyhyt",
         "seedTooShortExplanation": "Seed-lukujen on oltava {{maxLength}} merkkiä pitkiä. Sinun seed-lukusi on tällä hetkellä {{currentLength}} merkkiä pitkä. Yritä uudelleen.",
         "nameInUse": "Tilin nimi on jo käytössä",
@@ -84,7 +84,7 @@
         "accountName": "Tilin nimi",
         "noNickname": "Tilin nimeä ei annettu",
         "noNicknameExplanation": "Please enter an account name for your seed.",
-        "seedInUse": "Seed already in use",
+        "seedInUse": "Seed-luku on jo käytössä",
         "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
@@ -117,10 +117,10 @@
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedTooShort": "Seed-luku on liian lyhyt",
+        "seedTooShortExplanation": "Seed-luvun on oltava {{maxLength}} merkkiä pitkä. Sinun seed-lukusi on tällä hetkellä {{currentLength}} merkkiä pitkä. Yritä uudelleen.",
+        "seedExplanation": "Seed-lukusi tulee olla {{maxLength}} merkkiä pitkä ja sisältää isoja kirjaimia A-Z tai numeroa yhdeksän (9). Yli {{maxLength}} merkkiä pitkä Seed-lukuja ei voi käyttää.",
+        "neverShare": "ÄLÄ KOSKAAN JAA SEED-LUKUASI KENENKÄÄN KANSSA"
     },
     "home": {
         "balance": "BALANCE",
@@ -136,7 +136,7 @@
         "emptyPassword": "Empty password",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
         "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
+        "useSeed": "KÄYTÄ SEED-LUKUASI",
         "login": "LOG IN",
         "selectDifferentNode": "Do you want to select a different node?",
         "setNode": "SET NODE",
@@ -148,10 +148,10 @@
         "youMayNotice": "You may notice your device slowing down."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "seedNotGenerated": "Seed-lukua ei ole luotu",
+        "seedNotGeneratedExplanation": "Paina Luo Uusi Seed-luku painiketta.",
+        "pressForNewSeed": "LUO UUSI SEED-LUKU",
+        "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi."
     },
     "onboardingComplete": {
         "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
