@@ -6,20 +6,20 @@
         "noTransactions": "НЕДАВНЯЯ ИСТОРИЯ ОТСУТСТВУЕТ",
         "qr": "QR-код",
         "balanceError": "Недостаточно средств",
-        "balanceErrorMessage": "У вас недостаточно IOTA для данной операции.",
+        "balanceErrorMessage": "У вас недостаточно IOTA для завершения данного перевода.",
         "transferError": "Ошибка перевода",
         "transferErrorMessage": "Что-то пошло не так при отправке вашего перевода. Пожалуйста, повторите попытку.",
         "transferSent": "Перевод отправлен",
         "transferSentMessage": "Ваш перевод отправлен в Tangle.",
         "messageSent": "Сообщение отправлено",
         "messageSentMessage": "Ваше сообщение отправлено в Tangle.",
-        "keyReuse": "Повторное использование адреса для отправки",
+        "keyReuse": "Повторное использование ключа адреса",
         "keyReuseError": "Вы не можете сделать перевод на адрес, с которого уже был осуществлён вывод.",
-        "invalidResponse": "Неправильный отклик",
+        "invalidResponse": "Ошибка сервера",
         "invalidResponseExplanation": "Узел вернул недопустимый отклик.",
-        "invalidResponsePollingExplanation": "Узел вернул недопустимый отклик во время опроса.",
-        "invalidResponseFetchingAccount": "Нод выдаёт неверный ответ при запросе данных вашего счёта.",
-        "invalidResponseSendingTransfer": "Нод выдал ошибку при отправке перевода.",
+        "invalidResponsePollingExplanation": "На узле произошла ошибка вовремя запроса.",
+        "invalidResponseFetchingAccount": "На узле произошла ошибка вовремя запроса информации по вашему аккаунту.",
+        "invalidResponseSendingTransfer": "На узле произошла ошибка вовремя отсылки перевода.",
         "seed": "Ключ (seed)",
         "back": "НАЗАД",
         "backLowercase": "Назад",
@@ -35,7 +35,7 @@
         "copyToClipboard": "Добавить в менеджер паролей",
         "notAvailable": "Эта функция не доступна",
         "notAvailableExplanation": "Данная функция будет добавлена на более поздней стадии.",
-        "enterSeed": "Пожалуйста, введите ваш ключ.",
+        "enterSeed": "Пожалуйста, введите ваш ключ (seed).",
         "mainWallet": "ОСНОВНОЙ СЧЁТ",
         "secondWallet": "ВТОРОЙ СЧЁТ",
         "thirdWallet": "ТРЕТИЙ СЧЁТ",
@@ -46,13 +46,14 @@
         "yes": "ДА",
         "no": "НЕТ",
         "password": "Пароль",
+        "passwordOrFingerprint": "Пароль или отпечаток пальца",
         "unrecognisedPassword": "Нераспознанный пароль",
-        "unrecognisedPasswordExplanation": "Нераспознанный пароль. Пожайлуста, повторите попытку.",
+        "unrecognisedPasswordExplanation": "Неверный пароль. Пожалуйста, попробуйте снова.",
         "syncInProgress": "Идёт синхронизация",
         "syncInProgressExplanation": "Пожалуйста, подождите, пока синхронизация будет завершена.",
         "somethingWentWrong": "Произошла ошибка",
         "somethingWentWrongExplanation": "Пожалуйста, перезапустите приложение.",
-        "node": "Нод",
+        "node": "Узел",
         "cannotPerformAction": "Не удается выполнить действие",
         "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса настроек кошелька.",
         "attachToTangleUnavailable": "Привязка к Tangle недоступна",
@@ -63,11 +64,11 @@
         "sending": "Отправка",
         "receiving": "Получение",
         "confirmed": "Подтверждено",
-        "pending": "Ожидание",
+        "pending": "В ожидании",
         "bundleHash": "Пакет данных",
-        "addresses": "Адресов",
-        "pressBackAgain": "Снова нажмите снова, чтобы закрыть приложение",
-        "autoreattaching": "Автообновление в Tangle",
+        "addresses": "Адреса",
+        "pressBackAgain": "Нажмите еще раз назад чтобы закрыть приложение",
+        "autoreattaching": "Автоматическое прикрепление к Tangle",
         "autoreattachingExplanation": "Повторное присоединение транзакций с хэш {{hash}}",
         "autopromoting": "Передача автопромотирования",
         "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}"
@@ -110,7 +111,7 @@
         "confirmPassword": "Подтвердите новый пароль"
     },
     "copyToClipboard": {
-        "seedCleared": "Ключ (seed) очищен",
+        "seedCleared": "Ключ (seed) удален",
         "seedClearedExplanation": "Ключ (seed) был удален из буфера обмена для вашей безопасности.",
         "seedCopied": "Ключ скопирован в буфер обмена",
         "seedCopiedExplanation":
@@ -146,7 +147,9 @@
         "enterPassword": "Пожалуйста, введите пароль.",
         "useSeed": "ИСПОЛЬЗУЙТЕ КЛЮЧ",
         "login": "ВОЙТИ",
-        "selectDifferentNode": "Вы хотите выбрать другой узел?"
+        "selectDifferentNode": "Вы хотите выбрать другой узел?",
+        "setNode": "ВЫБРАТЬ УЗЕЛ",
+        "cannotConnect": "Не удается подключиться к узлу IOTA."
     },
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
@@ -207,7 +210,7 @@
         "invalidAmount": "Указана неверная сумма",
         "invalidAmountExplanation": "Пожалуйста, введите числовое значение для суммы перевода.",
         "maximumSelected": "Выбрана МАКСИМАЛЬНАЯ сумма",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "Пояснение системы единиц IOTA",
         "sendMax": "Максимальный перевод"
     },
     "setPassword": {
@@ -261,7 +264,9 @@
         "cut": "Вырезать",
         "copy": "Копировать",
         "paste": "Вставить",
-        "selectAll": "Выбрать всё"
+        "selectAll": "Выбрать всё",
+        "securitySettings": "Настройки безопасности",
+        "fingerprint": "Аутентификация на основе отпечатков пальцев"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите ваш пароль для сброса настроек кошелька.",
@@ -301,7 +306,7 @@
         "addNewAccount": "Добавить новый счёт"
     },
     "addCustomNode": {
-        "customNode": "Пользовательский Нод",
+        "customNode": "Пользовательский узел",
         "add": "Добавить"
     },
     "addNewAccount": {
@@ -309,8 +314,8 @@
         "createNewSeed": "Создать новый ключ (seed)"
     },
     "advancedSettings": {
-        "selectNode": "Выбрать Нод",
-        "addCustomNode": "Добавить пользовательский Нод",
+        "selectNode": "Выбрать узел",
+        "addCustomNode": "Добавить пользовательский узел",
         "manualSync": "Ручная синхронизация"
     },
     "advancedThemeCustomisation": {
@@ -368,6 +373,30 @@
         "cannotUndo": "ЭТО ДЕЙСТВИЕ НЕ МОЖЕТ БЫТЬ ОТМЕНЕНО.",
         "warning":
             "<0><0>Все данные вашего кошелька, включая </0><1> пароль,</1><2> and </2><3>\nдругая информация учетной записи</3><4> будут потеряны.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable":
+            "Коснитесь сенсора чтения отпечатков пальцев на вашем устройстве для включения аутентификации на основе отпечатков пальцев.",
+        "instructionsDisable":
+            "Коснитесь сенсора чтения отпечатков пальцев на вашем устройстве для отключения аутентификации на основе отпечатков пальцев.",
+        "fingerprintAuthEnabled": "Аутентификация по отпечаткам пальцев включена",
+        "fingerprintAuthEnabledExplanation": "Вы успешно включили аутентификацию по отпечаткам пальцев.",
+        "fingerprintAuthDisabled": "Аутентификация по отпечаткам пальцев отключена",
+        "fingerprintAuthDisabledExplanation": "Вы успешно отключили аутентификацию по отпечаткам пальцев.",
+        "fingerprintAuthFailed": "Ошибка аутентификации на основе отпечатков пальцев",
+        "fingerprintAuthFailedExplanation":
+            "Ошибка аутентификации на основе отпечатков пальцев. Пожалуйста, попробуйте еще раз.",
+        "status": "Статус",
+        "enabled": "Включено",
+        "disabled": "Выключено",
+        "fingerprintUnavailable": "Сенсор чтения отпечатков пальцев недоступен",
+        "fingerprintUnavailableExplanation":
+            "Ваше устройство не поддерживает распознавания отпечатков пальцев или он не был настроен в параметрах устройства.",
+        "buttonInstructionsDisable":
+            "Нажмите на кнопку ниже, чтобы отключить аутентификацию на основе отпечатков пальцев.",
+        "buttonInstructionsEnable":
+            "Нажмите на кнопку ниже, чтобы включить аутентификацию на основе отпечатков пальцев.",
+        "instructionsLogin": "Приложите палец к сенсору чтения отпечатков пальцев для входа."
     },
     "transferConfirmation": {
         "youAreAbout": "Вы собираетесь отправить {{contents}} на адрес",

@@ -48,6 +48,7 @@
         "yes": "SÍ",
         "no": "NO",
         "password": "Contraseña",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtalo de nuevo.",
         "syncInProgress": "Sincronización en progreso",
@@ -146,7 +147,9 @@
         "enterPassword": "Por favor introduce tu contraseña.",
         "useSeed": "USAR SEED",
         "login": "INICIAR SESIÓN",
-        "selectDifferentNode": "Quieres seleccionar un nodo diferente?"
+        "selectDifferentNode": "Quieres seleccionar un nodo diferente?",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Cargando la seed por primera vez.",
@@ -260,7 +263,9 @@
         "cut": "Cortar",
         "copy": "Copiar",
         "paste": "Pegar",
-        "selectAll": "Seleccionar todo"
+        "selectAll": "Seleccionar todo",
+        "securitySettings": "Security settings",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -366,6 +371,25 @@
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
         "warning":
             "<0><0>Todo de los datos de tu cartera, incluyendo tus </0><1> seeds, contraseña,</1><2> y </2><3>otra información de la cuenta</3><4> serán eliminados.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",

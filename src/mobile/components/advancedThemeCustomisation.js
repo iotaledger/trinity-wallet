@@ -96,6 +96,8 @@ class AdvancedThemeCustomisation extends React.Component {
         t: PropTypes.func.isRequired,
         tickImagePath: PropTypes.number.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
+        barColor: PropTypes.string.isRequired,
+        textColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -138,7 +140,7 @@ class AdvancedThemeCustomisation extends React.Component {
                             style={styles.sliderRow}
                             gradientSteps={40}
                             value={this.state.backgroundColor.h}
-                            onValueChange={h =>
+                            onValueChange={(h) =>
                                 this.setState({ backgroundColor: { ...this.state.backgroundColor, h } })
                             }
                         />
@@ -147,7 +149,7 @@ class AdvancedThemeCustomisation extends React.Component {
                             gradientSteps={20}
                             value={this.state.backgroundColor.s}
                             color={this.state.backgroundColor}
-                            onValueChange={s =>
+                            onValueChange={(s) =>
                                 this.setState({ backgroundColor: { ...this.state.backgroundColor, s } })
                             }
                         />
@@ -156,7 +158,7 @@ class AdvancedThemeCustomisation extends React.Component {
                             gradientSteps={20}
                             value={this.state.backgroundColor.l}
                             color={this.state.backgroundColor}
-                            onValueChange={l =>
+                            onValueChange={(l) =>
                                 this.setState({ backgroundColor: { ...this.state.backgroundColor, l } })
                             }
                         />
@@ -174,21 +176,21 @@ class AdvancedThemeCustomisation extends React.Component {
                             style={styles.sliderRow}
                             gradientSteps={40}
                             value={this.state.barColor.h}
-                            onValueChange={h => this.setState({ barColor: { ...this.state.barColor, h } })}
+                            onValueChange={(h) => this.setState({ barColor: { ...this.state.barColor, h } })}
                         />
                         <SaturationSlider
                             style={styles.sliderRow}
                             gradientSteps={20}
                             value={this.state.barColor.s}
                             color={this.state.barColor}
-                            onValueChange={s => this.setState({ barColor: { ...this.state.barColor, s } })}
+                            onValueChange={(s) => this.setState({ barColor: { ...this.state.barColor, s } })}
                         />
                         <LightnessSlider
                             style={styles.sliderRow}
                             gradientSteps={20}
                             value={this.state.barColor.l}
                             color={this.state.barColor}
-                            onValueChange={l => this.setState({ barColor: { ...this.state.barColor, l } })}
+                            onValueChange={(l) => this.setState({ barColor: { ...this.state.barColor, l } })}
                         />
                     </View>
                 </View>

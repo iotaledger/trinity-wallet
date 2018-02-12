@@ -11,7 +11,7 @@
         "transferErrorMessage": "Transferinizi gönderirken bir şeyler yanlış gitti. lütfen tekrar deneyin.",
         "transferSent": "Transfer Gönder",
         "transferSentMessage": "Transferiniz Tangle a gönderildi.",
-        "messageSent": "Message sent",
+        "messageSent": "Mesaj gönderildi",
         "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Anahtar tekrar kullanımı",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
@@ -47,6 +47,7 @@
         "yes": "EVET",
         "no": "HAYIR",
         "password": "Şifre",
+        "passwordOrFingerprint": "Parola veya parmak izi",
         "unrecognisedPassword": "Tanınmayan şifre",
         "unrecognisedPasswordExplanation": "Şifre tanımlı değil. Lütfen yeniden deneyin.",
         "syncInProgress": "Eşitleme sürüyor",
@@ -58,16 +59,16 @@
         "cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin.",
         "attachToTangleUnavailable": "Tangle kullanılmayacak şekilde ekle",
         "attachToTangleUnavailableExplanation": "Seçilen düğümünüzde Tangle eklentisi mevcut değil.",
-        "wallet": "Wallet",
-        "sent": "Sent",
-        "received": "Received",
-        "sending": "Sending",
-        "receiving": "Receiving",
-        "confirmed": "Confirmed",
-        "pending": "Pending",
+        "wallet": "Cüzdan",
+        "sent": "Gönderildi",
+        "received": "Alındı",
+        "sending": "Gönderiliyor",
+        "receiving": "Alınıyor",
+        "confirmed": "Onaylandı",
+        "pending": "Bekleniyor",
         "bundleHash": "Bundle Hash",
-        "addresses": "Addresses",
-        "pressBackAgain": "Press back again to close the app",
+        "addresses": "Adresler",
+        "pressBackAgain": "Uygulamayı kapatmak için geri tuşuna bir daha bas",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
         "autopromoting": "Autopromoting transfer",
@@ -145,7 +146,9 @@
         "enterPassword": "Lütfen şifrenizi girin.",
         "useSeed": "CÜZDAN ŞİFRESİNİ KULLAN",
         "login": "GİRİŞ YAP",
-        "selectDifferentNode": "Farklı düğüm seçmek istiyor musunuz?"
+        "selectDifferentNode": "Farklı düğüm seçmek istiyor musunuz?",
+        "setNode": "Node'u kur",
+        "cannotConnect": "IOTA node'una bağlanılamıyor."
     },
     "loading": {
         "loadingFirstTime": "Cüzdan şifresi ilk kez yükleniyor.",
@@ -172,7 +175,7 @@
     "receive": {
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adresin panoya kopyalanmış.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "YENİ ADRES",
         "message": "İsteğe bağlı mesaj",
         "removeMessage": "MESAJI SİL"
     },
@@ -206,8 +209,8 @@
         "invalidAmount": "Yanlış tutar girildi",
         "invalidAmountExplanation": "Lütfen sayısal bir transfer tutarı girin.",
         "maximumSelected": "En fazla tutar seçildi",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "iotaUnits": "IOTA birim açıklaması",
+        "sendMax": "TÜMÜNÜ GÖNDER"
     },
     "setPassword": {
         "passwordTooShort": "Parola çok kısa",
@@ -251,15 +254,17 @@
         "cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin.",
         "poorConnection": "Kötü bağlantı",
         "poorConnectionExplanation": "Kötü bağlantı nedeniyle para birimini değiştirmek başarısız oldu.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
+        "hide": "Sakla",
+        "hideOthers": "Diğerlerini sakla",
+        "showAll": "Hepsini göster",
+        "quit": "Çıkış",
+        "edit": "Düzenle",
+        "cut": "Kes",
+        "copy": "Kopyala",
+        "paste": "Yapıştır",
+        "selectAll": "Hepsini seç",
+        "securitySettings": "Güvenlik ayarları",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Cüzdanınızı sıfırlamak için şifrenizi girin.",
@@ -328,7 +333,7 @@
         "scan": "QR Kodunuzu Tarayın"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "BİRİM SİSTEMİ",
         "trillion": "Trilyon",
         "billion": "Milyar",
         "million": "Milyon",
@@ -352,19 +357,38 @@
         "title": "Oluşum ve hesap adınızı girin."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
+        "enterPassword": "Seed'ini görüntülemek için parolanı ver.",
+        "viewSeed": "Seed'i görüntüle",
         "hideSeed": "Oluşumu gizle"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "alreadyHave": "Seed'imi kaydettim",
+        "reenter": "Şimdi, seed'ini bir daha vermen lâzim olacak.",
+        "reenterWarning": "Cihazın bozulursa ve seed'ini kaydetmediysen, IOTA'larını kaybetirsin."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "BU AKSYON IPTAL EDILEMEZ.",
         "warning":
-            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+            "<0><0>Tüm cüzdan verilerin, </0><1>seed'lerin, parolan</1><2> ve </2><3>diğer hesap bilgilerin</3><4> dahil, kaybolacak.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Durum",
+        "enabled": "Etkin",
+        "disabled": "Etkisiz",
+        "fingerprintUnavailable": "Parmak izi algılayıcısı mevcut değil",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",

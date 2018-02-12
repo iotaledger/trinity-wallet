@@ -46,6 +46,7 @@
         "yes": "ĐỒNG Ý",
         "no": "KHÔNG",
         "password": "Mật Khẩu",
+        "passwordOrFingerprint": "Mật khẩu hoặc dấu vân tay",
         "unrecognisedPassword": "Không nhận dạng được mật khẩu",
         "unrecognisedPasswordExplanation": "Không xác nhận được mật khẩu. Xin vui lòng thử lại.",
         "syncInProgress": "Đang đồng bộ hoá",
@@ -143,7 +144,9 @@
         "enterPassword": "Vui lòng nhập mật khẩu.",
         "useSeed": "DÙNG TỪ KHOÁ",
         "login": "ĐĂNG NHẬP",
-        "selectDifferentNode": "Bạn muốn chọn một nút mạng khác không?"
+        "selectDifferentNode": "Bạn muốn chọn một nút mạng khác không?",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Đang tải từ khoá lần đầu tiên.",
@@ -221,19 +224,19 @@
     "setSeedName": {
         "canUseMultipleSeeds":
             "Bạn có thể sử dụng nhiều từ khoá cho ví điện tử này. Mỗi từ khoá cần một tên tài khoản khác.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "youCanAdd": "Bạn có thể cho thêm nhiều từ khoá nữa trong mục Cài Đặt."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
+        "transferSending": "Đang chuyển khoản",
+        "transferSendingExplanation": "Xin vui lòng chờ cho đến khi chuyển khoản hoàn tất.",
+        "generatingAddress": "Đang tạo ra địa chỉ nhận",
+        "generatingAddressExplanation": "Xin vui lòng đợi cho đến khi địa chỉ đã được tạo.",
+        "mode": "Chế Độ",
         "theme": "Giao Diện",
         "currency": "Tiền Tệ",
         "language": "Ngôn Ngữ",
-        "accountManagement": "Account management",
-        "addNewSeed": "Add new seed",
+        "accountManagement": "Quản lý tài khoản",
+        "addNewSeed": "Thêm từ khoá mới",
         "twoFA": "Xác thực 2 nhân tố",
         "changePassword": "Đổi mật khẩu",
         "advanced": "Advanced settings",
@@ -241,8 +244,8 @@
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
         "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
+        "nicknameChanged": "Tên tài khoản đã thay đổi",
+        "nicknameChangedExplanation": "Tên tài khoản của bạn đã được thay đổi.",
         "accountDeleted": "Account deleted",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "Cannot perform action",
@@ -257,7 +260,9 @@
         "cut": "Cut",
         "copy": "Copy",
         "paste": "Paste",
-        "selectAll": "Select All"
+        "selectAll": "Select All",
+        "securitySettings": "Security settings",
+        "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -363,6 +368,25 @@
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
         "warning":
             "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
