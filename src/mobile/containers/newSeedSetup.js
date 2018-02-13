@@ -267,6 +267,7 @@ class NewSeedSetup extends Component {
                                 onPress={() => this.onItemPress(sectionID)}
                                 style={[styles.tileContainer, { backgroundColor: secondaryBackgroundColor }]}
                                 underlayColor={negativeColor}
+                                hitSlop={{ top: height / 80, bottom: height / 80, left: width / 80, right: width / 80 }}
                             >
                                 <View style={styles.tile}>
                                     <Text
