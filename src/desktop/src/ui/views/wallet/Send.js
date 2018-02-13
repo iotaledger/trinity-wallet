@@ -91,7 +91,11 @@ class Send extends React.PureComponent {
                 <section className={css.send}>
                     <div>
                         <form onSubmit={this.validateInputs}>
-                            <Modal variant="confirm" isOpen={isModalVisible} onClose={this.toggleConfirmation}>
+                            <Modal
+                                variant="confirm"
+                                isOpen={isModalVisible}
+                                onClose={() => this.setState({ isModalVisible: false })}
+                            >
                                 <h1>
                                     You are about to send{' '}
                                     <strong>{`${formatValue(amount)} ${formatUnit(amount)}`}</strong> to the address:{' '}
@@ -112,7 +116,7 @@ class Send extends React.PureComponent {
                                 closeLabel={t('global:back')}
                             />
                             <AmountInput
-                                amount={amount}
+                                amount={amount.toString()}
                                 settings={settings}
                                 label={t('send:amount')}
                                 labelMax={t('send:max')}

@@ -2,9 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { persistStore } from 'redux-persist';
 import { withRouter } from 'react-router-dom';
-import store from 'store';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 import { clearTempData } from 'actions/tempAccount';
@@ -55,15 +53,13 @@ class App extends React.Component {
     };
 
     componentWillMount() {
-        persistStore(store, { blacklist: ['tempAccount', 'notifications', 'seeds'] }, () => {
-            setTimeout(
-                () =>
-                    this.setState(() => ({
-                        initialized: true,
-                    })),
-                3200,
-            );
-        });
+        setTimeout(
+            () =>
+                this.setState(() => ({
+                    initialized: true,
+                })),
+            3200,
+        );
     }
 
     componentDidMount() {

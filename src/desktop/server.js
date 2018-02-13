@@ -29,17 +29,10 @@ app.get('*', (request, response) => {
     response.sendFile(__dirname + '/dist/index.html');
 });
 
-app.listen(PORT, error => {
+app.listen(PORT, (error) => {
     if (error) {
         console.error(error);
     } else {
         console.info('=> 🌎 http://localhost:%s/', PORT);
     }
 });
-
-if (process.env.USE_SSL) {
-    const https = require('https');
-    const key = require('fs').readFileSync('ssl.key');
-    const cert = require('fs').readFileSync('ssl.cert');
-    https.createServer({ key, cert }, app).listen(1073);
-}
