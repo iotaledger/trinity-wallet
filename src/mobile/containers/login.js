@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
