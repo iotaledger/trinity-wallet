@@ -171,7 +171,7 @@ export class TwoFactorSetupAddKey extends Component {
                         <Text style={[styles.infoText, textColor]}>
                             <Text style={styles.infoText}>{t('key')}</Text>
                             <Text style={styles.infoText}>: </Text>
-                            <Text style={styles.infoTextLight}>{this.state.authkey}</Text>
+                            <Text style={styles.infoTextLight}>{this.state.authKey}</Text>
                         </Text>
                     </TouchableOpacity>
                 </View>
