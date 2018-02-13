@@ -13,16 +13,15 @@ import CustomTextInput from './customTextInput';
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 1.2,
+        flex: 2.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 3.6,
         width,
         alignItems: 'center',
-        paddingTop: height / 5,
     },
     bottomContainer: {
         flex: 0.7,

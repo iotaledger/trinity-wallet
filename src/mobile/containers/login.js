@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -6,7 +7,6 @@ import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import { StyleSheet, View, Text, AppState } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
@@ -27,7 +27,7 @@ import NodeSelection from '../components/nodeSelection';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import keychain, { getPasswordFromKeychain } from '../util/keychain';
+import keychain, { getPasswordFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import GENERAL from '../theme/general';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
@@ -151,25 +151,14 @@ class Login extends Component {
     }
 
     onComplete2FA(token) {
-        const { firstUse, selectedAccount, t } = this.props;
+        const { t } = this.props;
 
         if (token) {
             getTwoFactorAuthKeyFromKeychain()
                 .then(key => {
                     const verified = authenticator.verifyToken(key, token);
-
                     if (verified) {
-                        if (firstUse) {
-                            this.navigateToLoading();
-                        } else {
-                            const addresses = get(selectedAccount, 'addresses');
-                            if (!isEmpty(addresses)) {
-                                this.navigateToLoading();
-                            } else {
-                                this.navigateToHome();
-                            }
-                        }
-
+                        this.navigateToLoading();
                         this.setState({ completing2FA: false });
                     } else {
                         this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
@@ -379,4 +368,6 @@ const mapDispatchToProps = {
     setLoginPasswordField,
 };
 
-export default translate(['login', 'global', 'twoFA', 'fingerprintSetup'])(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default translate(['login', 'global', 'twoFA', 'fingerprintSetup'])(
+    connect(mapStateToProps, mapDispatchToProps)(Login),
+);
