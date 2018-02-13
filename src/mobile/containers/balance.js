@@ -1,10 +1,17 @@
+import map from 'lodash/map';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, ListView, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import { isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
+import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
+import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
+import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
+import { extractTailTransferFromBundle } from 'iota-wallet-shared-modules/libs/transfers';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
@@ -57,7 +64,6 @@ const styles = StyleSheet.create({
     },
     separator: {
         height: height / 120,
-        flex: 1,
     },
     listView: {
         flex: 1,
@@ -66,9 +72,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
-class Balance extends Component {
+export class Balance extends Component {
     static propTypes = {
         marketData: PropTypes.object.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
@@ -79,8 +83,6 @@ class Balance extends Component {
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
         settings: PropTypes.object.isRequired,
-        setCurrency: PropTypes.func.isRequired,
-        setTimeframe: PropTypes.func.isRequired,
         extraColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
@@ -88,6 +90,8 @@ class Balance extends Component {
         chartLineColorSecondary: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
+        setCurrency: PropTypes.func.isRequired,
+        setTimeframe: PropTypes.func.isRequired,
     };
 
     static getDecimalPlaces(n) {
@@ -123,19 +127,79 @@ class Balance extends Component {
         }
     }
 
+    prepTransactions() {
+        const { transfers, addresses, t, extraColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const recentTransactions = transfers.slice(0, 4);
+
+        const computeConfirmationStatus = (persistence, incoming) => {
+            if (incoming) {
+                return persistence ? t('received') : t('receiving');
+            }
+
+            return persistence ? t('sent') : t('sending');
+        };
+
+        const getSign = (value, incoming) => {
+            if (value === 0) {
+                return '';
+            }
+
+            return incoming ? '+' : '-';
+        };
+
+        const isSecondaryBackgroundColorWhite = secondaryBackgroundColor === 'white';
+
+        const outgoingIconPath = isSecondaryBackgroundColorWhite ? whiteSendImagePath : blackSendImagePath;
+        const incomingIconPath = isSecondaryBackgroundColorWhite ? whiteReceiveImagePath : blackReceiveImagePath;
+
+        return map(recentTransactions, transfer => {
+            const tx = extractTailTransferFromBundle(transfer);
+            const incoming = isReceivedTransfer(transfer, addresses);
+
+            return {
+                time: tx.timestamp,
+                confirmationStatus: computeConfirmationStatus(tx.persistence, incoming),
+                value: round(formatValue(tx.value), 1),
+                unit: formatUnit(tx.value),
+                sign: getSign(tx.value, incoming),
+                iconPath: incoming ? incomingIconPath : outgoingIconPath,
+                style: {
+                    titleColor: incoming ? extraColor : negativeColor,
+                    defaultTextColor: { color: secondaryBackgroundColor },
+                },
+            };
+        });
+    }
+
+    renderTransactions() {
+        const { secondaryBackgroundColor, t } = this.props;
+        const data = this.prepTransactions();
+
+        return (
+            <FlatList
+                scrollEnabled={false}
+                data={data}
+                keyExtractor={(item, index) => index}
+                renderItem={({ item }) => <SimpleTransactionRow {...item} />}
+                contentContainerStyle={styles.listView}
+                ItemSeparatorComponent={() => <View style={styles.separator} />}
+                ListEmptyComponent={() => (
+                    <Text style={[styles.noTransactions, { color: secondaryBackgroundColor }]}>
+                        {t('global:noTransactions')}
+                    </Text>
+                )}
+            />
+        );
+    }
+
     render() {
         const {
-            t,
             balance,
             settings,
             marketData,
-            transfers,
-            addresses,
             isSendingTransfer,
             isGeneratingReceiveAddress,
             isSyncing,
-            negativeColor,
-            extraColor,
             secondaryBackgroundColor,
             chartLineColorPrimary,
             chartLineColorSecondary,
@@ -146,10 +210,9 @@ class Balance extends Component {
             (balance < 1000 || Balance.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+');
         const currencySymbol = getCurrencySymbol(settings.currency);
         const fiatBalance = balance * marketData.usdPrice / 1000000 * settings.conversionRate;
-        const recentTransactions = transfers.slice(0, 4);
-        const hasTransactions = recentTransactions.length > 0;
         const textColor = { color: secondaryBackgroundColor };
         const lineBorder = { borderBottomColor: secondaryBackgroundColor };
+        const recentTransactions = this.renderTransactions();
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
@@ -164,29 +227,7 @@ class Balance extends Component {
                     </View>
                     <View style={styles.transactionsContainer}>
                         <View style={[styles.line, lineBorder]} />
-                        {hasTransactions ? (
-                            <ListView
-                                dataSource={ds.cloneWithRows(recentTransactions)}
-                                renderRow={(dataSource) => (
-                                    <SimpleTransactionRow
-                                        negativeColor={negativeColor}
-                                        extraColor={extraColor}
-                                        addresses={addresses}
-                                        rowData={dataSource}
-                                        secondaryBackgroundColor={secondaryBackgroundColor}
-                                    />
-                                )}
-                                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                                enableEmptySections
-                                contentContainerStyle={styles.listView}
-                                scrollEnabled={false}
-                                centerContent
-                            />
-                        ) : (
-                            <View style={styles.listView}>
-                                <Text style={[styles.noTransactions, textColor]}>{t('global:noTransactions')}</Text>
-                            </View>
-                        )}
+                        {recentTransactions}
                         <View style={[styles.line, lineBorder]} />
                     </View>
                     <View style={styles.chartContainer}>
@@ -195,8 +236,8 @@ class Balance extends Component {
                             isGeneratingReceiveAddress={isGeneratingReceiveAddress}
                             isSyncing={isSyncing}
                             marketData={marketData}
-                            setCurrency={(currency) => this.props.setCurrency(currency)}
-                            setTimeframe={(timeframe) => this.props.setTimeframe(timeframe)}
+                            setCurrency={currency => this.props.setCurrency(currency)}
+                            setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             textColor={{ color: secondaryBackgroundColor }}
                             borderColor={{ borderColor: secondaryBackgroundColor }}
@@ -227,11 +268,11 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     chartLineColorSecondary: settings.theme.chartLineColorSecondary,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    setCurrency: (currency) => {
+const mapDispatchToProps = dispatch => ({
+    setCurrency: currency => {
         dispatch(setCurrency(currency));
     },
-    setTimeframe: (timeframe) => {
+    setTimeframe: timeframe => {
         dispatch(setTimeframe(timeframe));
     },
 });
