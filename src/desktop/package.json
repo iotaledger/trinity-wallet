@@ -49,6 +49,7 @@
         "express": "^4.16.2",
         "extract-text-webpack-plugin": "^3.0.2",
         "file-loader": "^1.1.6",
+        "html-webpack-plugin": "^2.30.1",
         "i18next": "^10.3.0",
         "postcss-custom-media": "^6.0.0",
         "postcss-loader": "^2.1.0",
