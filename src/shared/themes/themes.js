@@ -5,7 +5,7 @@ import Ionic from './themes/Ionic';
 import SteelBlue from './themes/SteelBlue';
 import Contemporary from './themes/Contemporary';
 
-export const themes = {
+const themes = {
     Default: Default,
     Mint: Mint,
     Electric: Electric,
@@ -14,6 +14,4 @@ export const themes = {
     Contemporary: Contemporary,
 };
 
-export default {
-    themes,
-};
+export default themes;

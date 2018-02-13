@@ -1,5 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
@@ -75,6 +76,11 @@ module.exports = {
         new ExtractTextPlugin({
             filename: 'css/[name].css',
             allChunks: false,
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Trinity',
+            inject: false,
+            template: __dirname + '/index.html',
         }),
     ],
 };
