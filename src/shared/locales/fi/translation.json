@@ -92,7 +92,7 @@
         "oopsExplanation": "Näyttää siltä, että jotain meni pieleen päivitettäessä salasanaasi. Yritä uudelleen.",
         "passwordUpdated": "Salasana päivitetty",
         "passwordUpdatedExplanation": "Salasanasi on päivitetty onnistuneesti.",
-        "incorrectPassword": "Väärä salasana",
+        "incorrectPassword": "Virheellinen salasana",
         "incorrectPasswordExplanation": "Nykyinen salasana on virheellinen. Yritä uudelleen.",
         "passwordsDoNotMatch": "Salasanat eivät täsmää",
         "passwordsDoNotMatchExplanation": "Salasanat eivät täsmää, yritä uudelleen.",
@@ -226,7 +226,7 @@
         "language": "Kieli",
         "accountManagement": "Tilinhallinta",
         "addNewSeed": "Lisää uusi seed-luku",
-        "twoFA": "Kaksivaiheinen varmennus",
+        "twoFA": "Kaksivaiheinen tunnistautuminen (2FA)",
         "changePassword": "Vaihda salasana",
         "advanced": "Lisäasetukset",
         "logout": "Kirjaudu ulos",
@@ -335,7 +335,7 @@
         "thisMayTake": "Tämä saattaa kestää hetken.",
         "youMayNotice": "Laitteessa voi ilmetä hitautta.",
         "syncAccount": "SYNKRONOI TILI",
-        "syncingYourAccount": "Synkronoi tiliäsi."
+        "syncingYourAccount": "Synkronoidaan tiliäsi."
     },
     "useExistingSeed": {
         "title": "Anna seed-luku ja tilin nimi."
