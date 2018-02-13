@@ -1,6 +1,6 @@
 import { ActionTypes } from '../actions/settings.js';
 import { defaultNode as fullNode, nodes as availablePoWNodes } from '../config';
-import { themes } from '../themes/themes';
+import themes from '../themes/themes';
 
 const initialState = {
     locale: 'en',

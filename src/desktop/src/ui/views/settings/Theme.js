@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { updateTheme } from 'actions/settings';
-import { themes } from 'themes/themes';
+import themes from 'themes/themes';
 
 import Select from 'ui/components/input/Select';
 import Button from 'ui/components/Button';
 import inputCSS from 'ui/components/input/input.css';
 import Icon from 'ui/components/Icon';
 
-import css from './index.css';
+import css from 'ui/index.css';
 
 /** Theme switch component */
 class Theme extends React.PureComponent {
@@ -38,7 +38,7 @@ class Theme extends React.PureComponent {
 
     render() {
         const { themeName } = this.state;
-        const { t } = this.props;
+        const { updateTheme, t } = this.props;
 
         const theme = themeName ? themes[themeName] : themes[this.props.themeName];
 
@@ -117,7 +117,7 @@ class Theme extends React.PureComponent {
                 </div>
                 <Button
                     disabled={!themeName || themeName === this.props.themeName}
-                    onClick={() => this.props.updateTheme(themes[themeName], themeName)}
+                    onClick={() => updateTheme(themes[themeName], themeName)}
                 >
                     Save
                 </Button>

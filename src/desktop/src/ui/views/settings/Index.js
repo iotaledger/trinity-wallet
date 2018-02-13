@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { showNotification } from 'actions/notifications';
 import { clearTempData } from 'actions/tempAccount';
 import Confirm from 'ui/components/modal/Confirm';
-import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 
@@ -17,7 +16,7 @@ import Currency from 'ui/views/settings/Currency';
 import Password from 'ui/views/settings/Password';
 import Advanced from 'ui/views/settings/Advanced';
 
-import css from './index.css';
+import css from 'ui/index.css';
 
 /** Settings main wrapper component */
 class Settings extends React.PureComponent {
@@ -58,11 +57,12 @@ class Settings extends React.PureComponent {
         this.props.history.push('/login');
     };
 
-    renderSettings = () => {
+    render() {
         const { t, location, tempAccount, history } = this.props;
         const { modalLogout } = this.state;
+
         return (
-            <main>
+            <main className={!tempAccount || !tempAccount.ready ? css.public : css.settings}>
                 <section>
                     <nav className={css.nav}>
                         <NavLink to="/settings/language">
@@ -119,18 +119,6 @@ class Settings extends React.PureComponent {
                     </Switch>
                 </section>
             </main>
-        );
-    };
-
-    render() {
-        const { history } = this.props;
-
-        return this.props.tempAccount && this.props.tempAccount.ready ? (
-            this.renderSettings()
-        ) : (
-            <Modal isOpen onClose={() => history.push('/')}>
-                {this.renderSettings()}
-            </Modal>
         );
     }
 }
