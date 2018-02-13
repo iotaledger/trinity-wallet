@@ -130,13 +130,6 @@ export function addCustomNode(customNode) {
 }
 
 export function updateTheme(theme, themeName) {
-    ['primary', 'secondary', 'positive', 'negative', 'highlight', 'extra'].map((colorName) => {
-        const color = theme[colorName];
-        if (!color.body) {
-            color.body = theme.body.color;
-        }
-    });
-
     return (dispatch) => {
         dispatch({
             type: ActionTypes.UPDATE_THEME,

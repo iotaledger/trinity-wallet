@@ -179,6 +179,32 @@ strong {
                 display: none;
             }
         }
+
+        &.settings {
+            max-width: 760px;
+            section:first-child {
+                width: 200px;
+                display: inline;
+            }
+            section:last-child {
+                width: calc(100% - 200px);
+            }
+        }
+
+        &.public {
+            display: flex;
+            flex-direction: row;
+            max-width: 680px;
+            margin: 0 auto;
+
+            section:first-child {
+                width: 200px;
+                display: inline;
+            }
+            section:last-child {
+                width: calc(100% - 200px);
+            }
+        }
     }
 
     aside {
@@ -244,5 +270,61 @@ strong {
                 padding: 20px;
             }
         }
+    }
+}
+
+.nav {
+    margin-bottom: 30px;
+    max-width: 200px;
+    a {
+        display: flex;
+        color: var(--body);
+        line-height: 16px;
+        font-size: var(--font-size-m);
+        text-decoration: none;
+        font-weight: normal;
+        margin-bottom: 16px;
+        cursor: pointer;
+        &:hover,
+        &[aria-current='true'] {
+            color: var(--highlight);
+        }
+
+        > span {
+            margin-right: 20px;
+        }
+    }
+    img {
+        height: 16px;
+        width: 16px;
+        margin-right: 12px;
+    }
+
+    hr {
+        border: none;
+        margin: 20px 0;
+        border-top: 1px solid var(--body-alt);
+    }
+}
+
+.content {
+    text-align: center;
+}
+
+.mockup {
+    pointer-events: none;
+    width: 100%;
+    padding: 20px 20px 10px;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    border: 1px solid var(--body-alt);
+    text-align: center;
+
+    button {
+        margin: 10px;
+    }
+
+    p {
+        margin-bottom: 30px;
     }
 }
