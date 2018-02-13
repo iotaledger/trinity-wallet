@@ -6,8 +6,8 @@ target 'iotaWallet' do
   # use_frameworks!
 
   # Pods for iotaWallet
-pod 'Fabric'
-pod 'Crashlytics'
+pod 'Fabric', '~> 1.7.3'
+pod 'Crashlytics', '~>  3.10'
 
   target 'iotaWalletTests' do
     inherit! :search_paths
