@@ -315,7 +315,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             }
 
             // Verify if a user is sending to on of his own addresses.
-            // This would fail if a pre-requisite checks for checksums fail.
+            // This would fail if a pre-requisite check for checksums fail.
             const isSendingToOwnAddress = some(
                 get(inputs, 'inputs'),
                 input => iota.utils.addChecksum(input.address, 9, true) === address,
