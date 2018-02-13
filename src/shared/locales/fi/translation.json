@@ -65,13 +65,13 @@
         "receiving": "Vastaanotetaan",
         "confirmed": "Vahvistettu",
         "pending": "Odottaa",
-        "bundleHash": "Bundle Hash",
+        "bundleHash": "Kokoelman Tiiviste-luku",
         "addresses": "Osoitteet",
         "pressBackAgain": "Paina paluu-painiketta sulkeaksesi sovelluksen",
         "autoreattaching": "Automaattinen yhteyden uudelleenmuodostaminen Tangleen",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autoreattachingExplanation": "Kiinnitetään siirto uudelleen tiiviste-luvulla {{hash}}",
         "autopromoting": "Edistetään siirtoa automaattisesti",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autopromotingExplanation": "Edistetään siirtoa tiiviste-luvulla {{hash}}"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -275,8 +275,8 @@
         "writeDownYourSeed": "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Kokoelman tiiviste-luku kopioitu",
+        "bundleHashCopiedExplanation": "Kokoelman tiiviste-luku kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle."
     },
