@@ -13,6 +13,10 @@
         letter-spacing: 2px;
         font-family: monospace;
         font-size: var(--font-size-m);
+
+        @media print {
+            color: black;
+        }
         span {
             margin-right: 16px;
         }
@@ -21,5 +25,14 @@
 .nav {
     button {
         margin: 0 8px;
+    }
+    @media print {
+        display: none;
+    }
+}
+
+.hide-on-print {
+    @media print {
+        display: none;
     }
 }

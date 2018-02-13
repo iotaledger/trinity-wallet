@@ -42,7 +42,7 @@ class SeedSave extends PureComponent {
                         <p>{seed.match(/.{1,3}/g).map((chunk, i) => <span key={i}>{chunk}</span>)}</p>
                     </div>
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
-                        <p>
+                        <p className={css.hideOnPrint}>
                             You must save your seed with<strong>at least one</strong> of the options listed below.
                         </p>
                     </Trans>

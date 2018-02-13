@@ -5,7 +5,6 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import QRCode from 'qrcode.react';
 import { runTask } from 'worker';
-import { generateNewAddressRequest, generateNewAddressError, generateNewAddressSuccess } from 'actions/tempAccount';
 import List from 'ui/components/List';
 import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
@@ -64,10 +63,4 @@ const mapStateToProps = (state) => ({
     seeds: state.seeds,
 });
 
-const mapDispatchToProps = {
-    generateNewAddressRequest,
-    generateNewAddressError,
-    generateNewAddressSuccess,
-};
-
-export default translate('receive')(connect(mapStateToProps, mapDispatchToProps)(Receive));
+export default translate()(connect(mapStateToProps)(Receive));
