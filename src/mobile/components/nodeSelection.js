@@ -57,9 +57,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
-    dropdownWidth: {
-        width: width / 1.5,
-    },
 });
 
 class NodeSelection extends Component {
@@ -100,7 +97,7 @@ class NodeSelection extends Component {
                                 this.dropdown = c;
                             }}
                             title={t('global:node')}
-                            dropdownWidth={styles.dropdownWidth}
+                            dropdownWidth={{ width: width / 1.5 }}
                             defaultOption={node}
                             options={nodes}
                             background
