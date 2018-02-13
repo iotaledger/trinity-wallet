@@ -9,7 +9,7 @@
     text-align: left;
     position: relative;
     max-width: 512px;
-    span {
+    > span {
         position: absolute;
         top: 16px;
         left: 16px;

@@ -8,6 +8,7 @@ import store from 'store';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 import { clearTempData } from 'actions/tempAccount';
+import { clearSeeds } from 'actions/seeds';
 
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
@@ -17,14 +18,36 @@ import Loading from 'ui/components/Loading';
 import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 
+/** Main wallet wrapper component */
 class App extends React.Component {
     static propTypes = {
-        t: PropTypes.func.isRequired,
+        /** Browser histoty object */
         history: PropTypes.object.isRequired,
+        /** Settings state state data
+         * @ignore
+         */
         settings: PropTypes.object.isRequired,
+        /** Accounts state state data
+         * @ignore
+         */
         account: PropTypes.object.isRequired,
+        /** Temporary account state data
+         * @ignore
+         */
         tempAccount: PropTypes.object.isRequired,
+        /** Clear temporary account state data
+         * @ignore
+         */
         clearTempData: PropTypes.func.isRequired,
+        /** Clear temporary seed state data
+         * @ignore
+         */
+        clearSeeds: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         * @ignore
+         */
+        t: PropTypes.func.isRequired,
     };
 
     state = {
@@ -70,6 +93,7 @@ class App extends React.Component {
         switch (item) {
             case 'logout':
                 this.props.clearTempData();
+                this.props.clearSeeds();
                 this.props.history.push('/login');
                 break;
             default:
@@ -106,6 +130,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     clearTempData,
+    clearSeeds,
 };
 
 export default withRouter(translate()(connect(mapStateToProps, mapDispatchToProps)(App)));

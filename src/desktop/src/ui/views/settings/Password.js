@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { showError, showNotification } from 'actions/notifications';
 
 import { isValidPassword } from 'libs/util';
-import { getSecurelyPersistedSeeds, securelyPersistSeeds } from 'libs/storage';
+import { getSecurelyPersistedSeeds, securelyPersistSeeds } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -16,17 +16,17 @@ import Button from 'ui/components/Button';
  */
 class SetPassword extends PureComponent {
     static propTypes = {
-        /* Error helper function
+        /** Error helper function
          * @param {Object} content - Error notification content
          * @ignore
          */
         showError: PropTypes.func.isRequired,
-        /* Notification helper function
+        /** Notification helper function
          * @param {Object} content - Success notification content
          * @ignore
          */
         showNotification: PropTypes.func.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
          */

@@ -18,17 +18,13 @@ import css from './send.css';
  */
 class Send extends React.PureComponent {
     static propTypes = {
-        /* Current send status */
+        /** Current send status */
         isSending: PropTypes.bool.isRequired,
-        /* Current seed state value */
+        /** Current seed state value */
         seeds: PropTypes.object.isRequired,
-        /* Total current account wallet ballance in iotas */
+        /** Total current account wallet ballance in iotas */
         balance: PropTypes.number.isRequired,
-        /* Validate the transaction inputs
-         *  @param {string} address - receiver address 
-         *  @param {number} value - transaction value in iotas
-         */
-        /* Fiat currency settings
+        /** Fiat currency settings
          * @property {string} conversionRate - Active currency conversion rate to MIota
          * @property (string) currency - Active currency name
          */
@@ -36,15 +32,19 @@ class Send extends React.PureComponent {
             conversionRate: PropTypes.number.isRequired,
             currency: PropTypes.string.isRequired,
         }),
+        /** Validate the transaction inputs
+         *  @param {string} address - receiver address
+         *  @param {number} value - transaction value in iotas
+         */
         validateInputs: PropTypes.func.isRequired,
-        /* Send the transaction
+        /** Send the transaction
          *  @param {string} seed - seed to be used for the transaction signing
-         *  @param {string} address - receiver address 
+         *  @param {string} address - receiver address
          *  @param {number} value - transaction value in iotas
          *  @param {string} message - transaction message
          */
         sendTransfer: PropTypes.func.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */

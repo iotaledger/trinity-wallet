@@ -8,11 +8,11 @@ import css from './input.css';
  */
 export default class MessageInput extends React.PureComponent {
     static propTypes = {
-        /* Current message value */
+        /** Current message value */
         message: PropTypes.string.isRequired,
-        /* Message input label */
+        /** Message input label */
         label: PropTypes.string,
-        /* Message change event function
+        /** Message change event function
          * @param {string} value - Current message value
          */
         onChange: PropTypes.func.isRequired,

@@ -12,17 +12,17 @@ import Text from 'ui/components/input/Text';
  */
 class SetNode extends PureComponent {
     static propTypes = {
-        /* Current node */
+        /** Current node */
         node: PropTypes.string.isRequired,
-        /* Available nodes list */
+        /** Available nodes list */
         nodes: PropTypes.array.isRequired,
-        /* Node validity check statuss */
+        /** Node validity check statuss */
         loading: PropTypes.bool.isRequired,
-        /* Set new node
+        /** Set new node
          * @param {string} url - Node url
          */
         setNode: PropTypes.func.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
          */

@@ -17,14 +17,14 @@ import css from './seedSave.css';
  */
 class SeedSave extends PureComponent {
     static propTypes = {
-        /* Current user defined seed */
+        /** Current user defined seed */
         seed: PropTypes.string,
-        /* Notification helper
+        /** Notification helper
          * @param {object} content - notification content
          * @ignore
          */
         showNotification: PropTypes.func.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */

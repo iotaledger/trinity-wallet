@@ -9,15 +9,15 @@ import css from './button.css';
  */
 export default class Button extends React.PureComponent {
     static propTypes = {
-        /* Button or link element content */
+        /** Button or link element content */
         children: PropTypes.node,
-        /* Buttons style type */
+        /** Buttons style type */
         variant: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'extra', 'highlight']).isRequired,
-        /* Buttons custom class */
+        /** Buttons custom class */
         className: PropTypes.oneOf(['outline', 'small']),
-        /* Buttons loading state */
+        /** Buttons loading state */
         loading: PropTypes.bool,
-        /* Target link */
+        /** Target link */
         to: PropTypes.string,
     };
 
