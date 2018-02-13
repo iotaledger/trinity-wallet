@@ -18,11 +18,11 @@
         "build": "rm -rf ./dist && cross-env NODE_ENV=production webpack -p --env=production --config webpack.config",
         "build:styleguide": "rm -rf ./dist && cross-env NODE_ENV=production BUILD_TARGET=styleguide webpack -p --env=production --config webpack.config",
         "compile": "npm run compile:linux && npm run compile:mac && npm run compile:win",
-        "compile:linux": "electron-builder --linux --x64 --ia32",
-        "compile:mac": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false && electron-builder --mac --x64",
-        "compile:win": "electron-builder --win --x64 --ia32",
-        "compile:win64": "electron-builder --win --x64",
-        "compile:win32": "electron-builder --win --x32"
+        "compile:linux": "npm run build && electron-builder --linux --x64 --ia32",
+        "compile:mac": "npm run build && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false && electron-builder --mac --x64",
+        "compile:win": "npm run build && electron-builder --win --x64 --ia32",
+        "compile:win64": "npm run build && electron-builder --win --x64",
+        "compile:win32": "npm run build && electron-builder --win --x32"
     },
     "devDependencies": {
         "babel-core": "^6.26.0",
@@ -68,6 +68,7 @@
         "redux": "^3.7.2",
         "sjcl": "^1.0.7",
         "style-loader": "^0.20.1",
+        "uglifyjs-webpack-plugin": "^1.1.8",
         "url-loader": "^0.6.2",
         "webpack": "^3.11.0",
         "webpack-dev-middleware": "^2.0.5",
