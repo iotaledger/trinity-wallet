@@ -2,6 +2,7 @@ import i18next from '../i18next.js';
 import cloneDeep from 'lodash/cloneDeep';
 import size from 'lodash/size';
 import get from 'lodash/get';
+import some from 'lodash/some';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
@@ -308,6 +309,25 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                         'error',
                         'Please wait',
                         'Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.',
+                        20000,
+                    ),
+                );
+            }
+
+            // Verify if a user is sending to on of his own addresses.
+            // This would fail if a pre-requisite checks for checksums fail.
+            const isSendingToOwnAddress = some(
+                get(inputs, 'inputs'),
+                input => iota.utils.addChecksum(input.address, 9, true) === address,
+            );
+
+            if (isSendingToOwnAddress) {
+                dispatch(sendTransferError());
+                return dispatch(
+                    generateAlert(
+                        'error',
+                        'Own address',
+                        'You cannot make a value transfer to one of your own addresses.',
                         20000,
                     ),
                 );
