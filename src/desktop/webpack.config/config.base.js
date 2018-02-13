@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
@@ -76,11 +75,6 @@ module.exports = {
         new ExtractTextPlugin({
             filename: 'css/[name].css',
             allChunks: false,
-        }),
-        new HtmlWebpackPlugin({
-            title: 'IOTA Light Wallet',
-            inject: false,
-            template: __dirname + '/index.html',
         }),
     ],
 };

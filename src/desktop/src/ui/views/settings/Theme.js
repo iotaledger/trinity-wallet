@@ -55,13 +55,13 @@ class Theme extends React.PureComponent {
                         </option>
                     ))}
                 </Select>
-                <div className={css.mockup} style={{ background: theme.body.background }}>
+                <div className={css.mockup} style={{ background: theme.body.bg }}>
                     <p style={{ color: theme.body.color }}>Mockup</p>
                     <div className={inputCSS.input} style={{ marginBottom: 10 }}>
                         <fieldset>
                             <a
                                 style={{
-                                    color: theme.input.secondary || theme.body.color,
+                                    color: theme.input.alt,
                                 }}
                                 className={inputCSS.strike}
                             >
@@ -69,7 +69,7 @@ class Theme extends React.PureComponent {
                             </a>
                             <input
                                 style={{
-                                    background: theme.input.background,
+                                    background: theme.input.bg,
                                     color: theme.input.color,
                                 }}
                                 type="text"
@@ -82,7 +82,7 @@ class Theme extends React.PureComponent {
                     <Button
                         style={{
                             color: theme.positive.body || theme.body.color,
-                            background: theme.positive.background || theme.positive.color,
+                            background: theme.positive.bg || theme.positive.color,
                         }}
                     >
                         {t('global:save')}
@@ -90,7 +90,7 @@ class Theme extends React.PureComponent {
                     <Button
                         style={{
                             color: theme.highlight.color,
-                            borderColor: theme.highlight.border || theme.highlight.color,
+                            borderColor: theme.highlight.color,
                             background: 'none',
                         }}
                     >
@@ -99,7 +99,7 @@ class Theme extends React.PureComponent {
                     <Button
                         style={{
                             color: theme.negative.color,
-                            borderColor: theme.negative.border || theme.negative.color,
+                            borderColor: theme.negative.color,
                             background: 'none',
                         }}
                     >
@@ -108,7 +108,7 @@ class Theme extends React.PureComponent {
                     <Button
                         style={{
                             color: theme.extra.color,
-                            borderColor: theme.extra.border || theme.extra.color,
+                            borderColor: theme.extra.color,
                             background: 'none',
                         }}
                     >
