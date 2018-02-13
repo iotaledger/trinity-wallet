@@ -85,7 +85,7 @@
         "noNickname": "Tilin nimeä ei annettu",
         "noNicknameExplanation": "Anna tilin nimi seed-luvullesi.",
         "seedInUse": "Seed-luku on jo käytössä",
-        "seedInUseExplanation": "Tämä seed-luku on jo linkitetty lompakkoosi. Käytä erilaista vaihtoehtoa."
+        "seedInUseExplanation": "Tämä seed-luku on jo linkitetty lompakkoosi. Käytä uutta seed-lukua."
     },
     "changePassword": {
         "oops": "Oops! Jokin meni pieleen",
@@ -109,8 +109,8 @@
         "seedCleared": "Seed-luku tyhjennetty",
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
         "seedCopied": "Kopioitu seed-luku leikepöydälle",
-        "seedCopiedExplanation": "Seed-luku poistetaan, kun painat ”VALMIS” tai 60 sekuntia on kulunut.",
-        "clickToCopy": "Klikkaa alla olevaa painiketta ja kopioi seed-lukusi salasanan hallintaan.",
+        "seedCopiedExplanation": "Seed-luku poistetaan, kun painat ”VALMIS” tai kun 60 sekuntia on kulunut.",
+        "clickToCopy": "Klikkaa alla olevaa painiketta ja kopioi seed-lukusi salasanan hallintaohjelmaan.",
         "doNotStore": "Älä säilytä seed-lukuasi pelkkänä tekstinä.",
         "copyToClipboard": "Kopioi leikepöydälle"
     },
@@ -154,7 +154,7 @@
         "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi."
     },
     "onboardingComplete": {
-        "walletReady": "Lompakko on nyt käyttövalmis. Jos sinun tarvitsee jatkossa tehdä muutoksia, katso Settings-menusta."
+        "walletReady": "Lompakko on nyt käyttövalmis. Jos sinun tarvitsee jatkossa tehdä muutoksia, katso Asetukset-valikosta."
     },
     "paperWallet": {
         "clickToPrint": "Kilkkaa alla olevaa nappia tulostaaksesi paperikopion seed-luvustasi.",
@@ -187,7 +187,7 @@
         "invalidAddressExplanation2": "Osoite sisältää virheellisiä merkkejä.",
         "invalidAddressExplanation3": "Osoite sisältää virheellisen tarkistussumman.",
         "notEnoughFunds": "Varoja ei riittävästi",
-        "notEnoughFundsExplanation": "Sinulla ei ole tarpeeksi IOTAa suorittaaksesi tämän siirron loppuun.",
+        "notEnoughFundsExplanation": "Sinulla ei ole tarpeeksi IOTAa suorittaaksesi siirtoa loppuun.",
         "keyReuse": "Avaimen uudelleenkäyttö",
         "keyReuseExplanation": "Osoite, johon yrität lähettää on jo käytetty. Kokeile toista osoitetta.",
         "recipientAddress": "Vastaanottajan osoite",
@@ -209,16 +209,16 @@
         "nowWeNeedTo": "Nyt meidän on luotava salasana.",
         "anEncryptedCopy": "Seed-lukusi salattu kopio tallennetaan laitteellesi. Tällä salasanalla pääset käyttämään lompakkoasi jatkossa.",
         "ensure": "Varmista, että käytät hyvää salasanaa, joka on vähintään 12 merkkiä pitkä.",
-        "retypePassword": "Kirjoita salasana uudelleen"
+        "retypePassword": "Kirjoita Salasana Uudelleen"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Voit käyttää useita seed-lukuja tässä lompakossa. Jokainen seed-luku tarvitsee tilin nimen.",
+        "canUseMultipleSeeds": "Voit käyttää useita seed-lukuja tässä lompakossa. Jokainen seed-luku tarvitsee oman tilin nimen.",
         "youCanAdd": "Voit lisätä useampia seed-lukuja Asetukset-valikossa."
     },
     "settings": {
-        "transferSending": "Siirtojen lähetykset",
+        "transferSending": "Siirto käynnissä",
         "transferSendingExplanation": "Odota, kunnes siirto on lähetetty.",
-        "generatingAddress": "Luo vastaanotto-osoitetta",
+        "generatingAddress": "Luodaan vastaanotto-osoitetta",
         "generatingAddressExplanation": "Odota, kunnes osoitteesi on luotu.",
         "mode": "Tila",
         "theme": "Teema",
