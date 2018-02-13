@@ -19,7 +19,7 @@
         "invalidResponseExplanation": "Palvelin palautti virheilmoituksen.",
         "invalidResponsePollingExplanation": "Palvelin palautti virheilmoituksen.",
         "invalidResponseFetchingAccount": "Palvelin palautti virheilmoituksen hakiessaan tilitietojasi.",
-        "invalidResponseSendingTransfer": "Palvelin palautti virheilmoituksen lähettäessään siirtoa.",
+        "invalidResponseSendingTransfer": "Palvelin palautti virheilmoituksen siirron yhteydessä.",
         "seed": "Seed-luku",
         "back": "TAKAISIN",
         "backLowercase": "Takaisin",
@@ -70,7 +70,7 @@
         "pressBackAgain": "Paina paluu-painiketta sulkeaksesi sovelluksen",
         "autoreattaching": "Automaattinen yhteyden uudelleenmuodostaminen Tangleen",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
+        "autopromoting": "Edistetään siirtoa automaattisesti",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
     },
     "addAdditionalSeed": {
