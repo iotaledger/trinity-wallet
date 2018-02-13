@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import { generateNewAddress } from 'actions/tempAccount';
 import { getAccountInfo, getFullAccountInfo } from 'actions/account';
 
