@@ -165,23 +165,27 @@ class Balance extends Component {
                     <View style={styles.transactionsContainer}>
                         <View style={[styles.line, lineBorder]} />
                         {hasTransactions ? (
-                            <ListView
-                                dataSource={ds.cloneWithRows(recentTransactions)}
-                                renderRow={dataSource => (
-                                    <SimpleTransactionRow
-                                        negativeColor={negativeColor}
-                                        extraColor={extraColor}
-                                        addresses={addresses}
-                                        rowData={dataSource}
-                                        secondaryBackgroundColor={secondaryBackgroundColor}
-                                    />
-                                )}
-                                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                                enableEmptySections
-                                contentContainerStyle={styles.listView}
-                                scrollEnabled={false}
-                                centerContent
-                            />
+                            <View>
+                                <ListView
+                                    dataSource={ds.cloneWithRows(recentTransactions)}
+                                    renderRow={dataSource => (
+                                        <SimpleTransactionRow
+                                            negativeColor={negativeColor}
+                                            extraColor={extraColor}
+                                            addresses={addresses}
+                                            rowData={dataSource}
+                                            secondaryBackgroundColor={secondaryBackgroundColor}
+                                        />
+                                    )}
+                                    renderSeparator={(sectionId, rowId) => (
+                                        <View key={rowId} style={styles.separator} />
+                                    )}
+                                    enableEmptySections
+                                    contentContainerStyle={styles.listView}
+                                    scrollEnabled={false}
+                                    centerContent
+                                />
+                            </View>
                         ) : (
                             <View style={styles.listView}>
                                 <Text style={[styles.noTransactions, textColor]}>{t('global:noTransactions')}</Text>
