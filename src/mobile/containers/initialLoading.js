@@ -93,7 +93,7 @@ class InitialLoading extends Component {
         if (!this.props.onboardingComplete) {
             InitialLoading.clearKeychain();
             this.props.navigator.push({
-                screen: 'newSeedSetup',
+                screen: 'languageSetup',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
