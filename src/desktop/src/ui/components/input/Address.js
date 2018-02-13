@@ -13,15 +13,15 @@ import css from './input.css';
  */
 export default class AddressInput extends React.PureComponent {
     static propTypes = {
-        /* Current address value */
+        /** Current address value */
         address: PropTypes.string.isRequired,
-        /* Address input label */
+        /** Address input label */
         label: PropTypes.string.isRequired,
-        /* Camera modal close button label */
+        /** Camera modal close button label */
         closeLabel: PropTypes.string.isRequired,
-        /* Address change event function
+        /** Address change event function
          * @param {string} value - Current address value
-        */
+         */
         onChange: PropTypes.func.isRequired,
     };
 

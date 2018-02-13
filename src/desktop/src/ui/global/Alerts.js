@@ -9,15 +9,15 @@ import Button from 'ui/components/Button';
  */
 class Alerts extends React.PureComponent {
     static propTypes = {
-        /* Dispose alert function
+        /** Dispose alert function
          * @ignore
          */
         disposeOffAlert: PropTypes.func.isRequired,
-        /* Alerts state
+        /** Alerts state
          * @ignore
          */
         alerts: PropTypes.object.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {String} translationString - locale string identifier to be translated
          * @ignore
          */

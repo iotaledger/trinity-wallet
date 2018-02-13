@@ -9,15 +9,15 @@ import css from './modal.css';
  */
 export default class Confirm extends React.PureComponent {
     static propTypes = {
-        /* Confirm window visibility state */
+        /** Confirm window visibility state */
         isOpen: PropTypes.bool.isRequired,
-        /* Confirm window type */
+        /** Confirm window type */
         category: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'highlight', 'extra']),
-        /* Confirm window content */
+        /** Confirm window content */
         content: PropTypes.object.isRequired,
-        /* Confirm window cancel function */
+        /** Confirm window cancel function */
         onCancel: PropTypes.func.isRequired,
-        /* Confirm window confirm function */
+        /** Confirm window confirm function */
         onConfirm: PropTypes.func.isRequired,
     };
 

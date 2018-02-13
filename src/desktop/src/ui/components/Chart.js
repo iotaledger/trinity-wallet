@@ -12,7 +12,7 @@ import css from './chart.css';
  */
 class Chart extends PureComponent {
     static propTypes = {
-        /* Current price data for selected currency */
+        /** Current price data for selected currency */
         priceData: PropTypes.shape({
             currency: PropTypes.string.isRequired,
             symbol: PropTypes.string.isRequired,
@@ -21,7 +21,7 @@ class Chart extends PureComponent {
             change24h: PropTypes.string.isRequired,
             mcap: PropTypes.string.isRequired,
         }).isRequired,
-        /* Chart data */
+        /** Chart data */
         chartData: PropTypes.shape({
             data: PropTypes.array.isRequired,
             timeframe: PropTypes.string.isRequired,
@@ -29,19 +29,19 @@ class Chart extends PureComponent {
                 ticks: PropTypes.array.isRequired,
             }),
         }).isRequired,
-        /* Change chart currency */
+        /** Change chart currency */
         setCurrency: PropTypes.func.isRequired,
-        /* Change chart time frame */
+        /** Change chart time frame */
         setTimeframe: PropTypes.func.isRequired,
-        /* Style price to current currency format 
+        /** Style price to current currency format
          * @param {number} price - Input price value for formatting
          */
         getPriceFormat: PropTypes.func.isRequired,
-        /* Theme settings
+        /** Theme settings
          * @ignore
          */
         theme: PropTypes.object.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */
@@ -103,9 +103,15 @@ class Chart extends PureComponent {
                     </VictoryChart>
                 </div>
                 <ul>
-                    <li>MCAP: $ {priceData.mcap}</li>
-                    <li>Change: {priceData.change24h}%</li>
-                    <li>Volume (24h): $ {priceData.volume}</li>
+                    <li>
+                        {t('mcap')}: $ {priceData.mcap}
+                    </li>
+                    <li>
+                        {t('Change')}: {priceData.change24h}%
+                    </li>
+                    <li>
+                        {t('Volume')} (24h): $ {priceData.volume}
+                    </li>
                 </ul>
             </div>
         );

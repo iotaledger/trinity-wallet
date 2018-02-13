@@ -7,7 +7,7 @@ import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
 import { isValidSeed, MAX_SEED_LENGTH } from 'libs/util';
-import { createRandomSeed } from 'libs/seedUtil';
+import { createRandomSeed } from 'libs/crypto';
 import Button from 'ui/components/Button';
 
 import css from './seedGenerate.css';
@@ -17,20 +17,20 @@ import css from './seedGenerate.css';
  */
 class GenerateSeed extends React.PureComponent {
     static propTypes = {
-        /* Accept current generated seed */
+        /** Accept current generated seed */
         addAndSelectSeed: PropTypes.func.isRequired,
-        /* Browser history object */
+        /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /* Error modal helper
+        /** Error modal helper
          * @param {Object} content - error screen content
          * @ignore
          */
         showError: PropTypes.func.isRequired,
-        /* Clear seed data from state */
+        /** Clear seed data from state */
         clearSeeds: PropTypes.func.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */
