@@ -9,11 +9,11 @@ import css from './input.css';
  */
 export default class PasswordInput extends React.PureComponent {
     static propTypes = {
-        /* Current password value */
+        /** Current password value */
         value: PropTypes.string.isRequired,
-        /* Password input label */
+        /** Password input label */
         label: PropTypes.string.isRequired,
-        /* Password change event function
+        /** Password change event function
          * @param {string} value - Current password value
          */
         onChange: PropTypes.func.isRequired,

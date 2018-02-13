@@ -8,7 +8,7 @@ import Button from 'ui/components/Button';
  */
 class Instructions extends React.PureComponent {
     static propTypes = {
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */

@@ -8,9 +8,9 @@ import PropTypes from 'prop-types';
  */
 class Theme extends PureComponent {
     static propTypes = {
-        /* Theme definitions object */
+        /** Theme definitions object */
         theme: PropTypes.object.isRequired,
-        /* Unique yheme name */
+        /** Unique yheme name */
         themeName: PropTypes.string.isRequired,
     };
 

@@ -18,17 +18,17 @@ import css from './list.css';
  */
 class List extends React.PureComponent {
     static propTypes = {
-        /* List item count limit */
+        /** List item count limit */
         limit: PropTypes.number,
-        /* Compact style state  */
+        /** Compact style state  */
         compact: PropTypes.bool,
-        /* Transaction type filter */
+        /** Transaction type filter */
         filter: PropTypes.oneOf(['sent', 'received', 'pending']),
-        /* Transaction history */
+        /** Transaction history */
         transfers: PropTypes.array.isRequired,
-        /* Receive address list */
+        /** Receive address list */
         addresses: PropTypes.array.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */

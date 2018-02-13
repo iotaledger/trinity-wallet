@@ -4,24 +4,23 @@ import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { showError } from 'actions/notifications';
-import { getSecurelyPersistedSeeds } from 'libs/storage';
+import { getSecurelyPersistedSeeds } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
 
 /**
- * Advaned user settings component:
- * - Wallet reset
+ * Advaned user settings component, icnluding - wallet reset
  */
 class Advanced extends PureComponent {
     static propTypes = {
-        /* Error helper function
+        /** Error helper function
          * @param {Object} content - Error notification content
          * @ignore
          */
         showError: PropTypes.func.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {String} translationString - Locale string identifier to be translated
          * @ignore
          */

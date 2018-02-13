@@ -14,16 +14,16 @@ import Input from 'ui/components/input/Text';
  */
 class AccountName extends React.PureComponent {
     static propTypes = {
-        /* Rename current account */
+        /** Rename current account */
         renameCurrentSeed: PropTypes.func.isRequired,
-        /* Browser history object */
+        /** Browser history object */
         history: PropTypes.object.isRequired,
-        /* Error modal helper
+        /** Error modal helper
          * @param {Object} content - error screen content
          * @ignore
          */
         showError: PropTypes.func.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */

@@ -10,11 +10,11 @@ import Icon from 'ui/components/Icon';
  */
 export default class Logo extends React.PureComponent {
     static propTypes = {
-        /* Logo size */
+        /** Logo size */
         size: PropTypes.number,
-        /* Animation state */
+        /** Animation state */
         animate: PropTypes.bool,
-        /* Should animation loop state */
+        /** Should animation loop state */
         loop: PropTypes.bool,
     };
 

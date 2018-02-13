@@ -1,9 +1,10 @@
 import i18next from 'i18next';
 
-const I18N_DEFAULT_LANGUAGE = 'en';
-
+/**
+ * i18next localisation initialisation
+ */
 export default i18next.init({
-    fallbackLng: I18N_DEFAULT_LANGUAGE,
+    fallbackLng: 'en',
     fallbackNS: 'Common',
     parseMissingKeyHandler: (missing) => `_${missing}_`,
     resources: {

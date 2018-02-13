@@ -8,11 +8,11 @@ import css from './Loading.css';
  */
 export default class Loading extends React.PureComponent {
     static propTypes = {
-        /* Loading animation loop option */
+        /** Loading animation loop option */
         loop: PropTypes.bool,
-        /* Loading screen title content */
+        /** Loading screen title content */
         title: PropTypes.string,
-        /* Loadinf screen subtitle content */
+        /** Loading screen subtitle content */
         subtitle: PropTypes.string,
     };
 

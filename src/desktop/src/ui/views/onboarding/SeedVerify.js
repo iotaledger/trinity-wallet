@@ -15,24 +15,24 @@ import SeedInput from 'ui/components/input/Seed';
  */
 class SeedEnter extends React.PureComponent {
     static propTypes = {
-        /* Add and select seed to state */
+        /** Add and select seed to state */
         addAndSelectSeed: PropTypes.func.isRequired,
-        /* Clear state seed data */
+        /** Clear state seed data */
         clearSeeds: PropTypes.func.isRequired,
-        /* Browser History object */
+        /** Browser History object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /* Current generated seed */
+        /** Current generated seed */
         selectedSeed: PropTypes.shape({
             seed: PropTypes.string,
         }).isRequired,
-        /* Error modal helper
+        /** Error modal helper
          * @param {Object} content - error screen content
          * @ignore
          */
         showError: PropTypes.func.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */

@@ -19,16 +19,28 @@ import Advanced from 'ui/views/settings/Advanced';
 
 import css from './index.css';
 
+/** Settings main wrapper component */
 class Settings extends React.PureComponent {
     static propTypes = {
-        t: PropTypes.func.isRequired,
+        /** Browser location object */
         location: PropTypes.object,
+        /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
+        /** Temporary account state data
+         * @ignore
+         */
         tempAccount: PropTypes.object,
-        showNotification: PropTypes.func.isRequired,
+        /** Clear temporary seed state data
+         * @ignore
+         */
         clearTempData: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - Locale string identifier to be translated
+         * @ignore
+         */
+        t: PropTypes.func.isRequired,
     };
 
     state = {
@@ -44,16 +56,6 @@ class Settings extends React.PureComponent {
     doLogout = () => {
         this.props.clearTempData();
         this.props.history.push('/login');
-    };
-
-    featureUnavailable = () => {
-        const { t } = this.props;
-
-        return this.props.showNotification({
-            timeout: 2000,
-            title: t('global:notAvailable'),
-            text: t('global:notAvailableExplanation'),
-        });
     };
 
     renderSettings = () => {
@@ -75,16 +77,9 @@ class Settings extends React.PureComponent {
                         <NavLink to="/settings/currency">
                             <Icon icon="currency" size={16} /> {t('settings:currency')}
                         </NavLink>
-                        <a onClick={this.featureUnavailable}>
-                            <Icon icon="mode" size={16} /> {t('settings:mode')}
-                        </a>
                         {tempAccount && tempAccount.ready ? (
                             <div>
                                 <hr />
-
-                                <a onClick={this.featureUnavailable}>
-                                    <Icon icon="twoFA" size={16} /> {t('settings:twoFA')}
-                                </a>
                                 <NavLink to="/settings/password">
                                     <Icon icon="password" size={16} /> {t('settings:changePassword')}
                                 </NavLink>
