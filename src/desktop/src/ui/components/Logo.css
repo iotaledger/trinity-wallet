@@ -1,4 +1,7 @@
 .logo {
     position: relative;
     display: inline-block;
+    @media print {
+        display: none;
+    }
 }

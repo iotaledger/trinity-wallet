@@ -5,6 +5,8 @@ import Lottie from 'react-lottie';
 import * as loading from 'animations/loading-white.json';
 import Icon from 'ui/components/Icon';
 
+import css from './logo.css';
+
 /**
  * IOTA animated/static logo component
  */
@@ -28,7 +30,7 @@ export default class Logo extends React.PureComponent {
         };
 
         return (
-            <div style={{ width: size, height: size, display: 'inline-block' }}>
+            <div className={css.logo} style={{ width: size, height: size }}>
                 {!animate ? <Icon icon="iota" size={size} /> : <Lottie width={size} height={size} options={options} />}
             </div>
         );

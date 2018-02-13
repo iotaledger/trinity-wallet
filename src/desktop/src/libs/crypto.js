@@ -26,7 +26,7 @@ function randomBytes(size) {
  * @returns {String} Random seed string
  */
 export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
-    return createRandomSeedWrapped(randomBytes, MAX_SEED_LENGTH);
+    return createRandomSeedWrapped(randomBytes, length);
 };
 
 /**

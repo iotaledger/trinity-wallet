@@ -17,7 +17,7 @@ function createWindow() {
         minWidth: 920,
         minHeight: 680,
         webPreferences: {
-            nodeIntegration: true,
+            nodeIntegration: false,
             preload: path.join(__dirname, 'lib/window.js'),
         },
     });

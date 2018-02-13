@@ -65,20 +65,12 @@ class Chart extends PureComponent {
                     </Button>
                 </nav>
                 <div>
-                    <svg>
-                        <defs>
-                            <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
-                                <stop stopColor={theme.body.background} offset="0%" />
-                                <stop stopColor={theme.chart.color} offset="100%" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
                     <VictoryChart>
                         <VictoryLine
                             data={chartData.data}
                             style={{
                                 data: {
-                                    stroke: 'url(#gradient)',
+                                    stroke: theme.chart.color,
                                     strokeWidth: 1.2,
                                 },
                             }}

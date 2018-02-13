@@ -35,7 +35,7 @@ class SetNode extends PureComponent {
     };
 
     validNode = (node) => {
-        return node.length;
+        return node.length > 0;
     };
 
     render() {

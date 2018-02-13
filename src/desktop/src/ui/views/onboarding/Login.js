@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { getSecurelyPersistedSeeds } from 'libs/crypto';
 import { addAccountName } from 'actions/account';
 import { showError } from 'actions/notifications';
+import { getMarketData, getChartData, getPrice } from 'actions/marketData';
+import { getCurrencyData } from 'actions/settings';
 import { clearTempData } from 'actions/tempAccount';
 import { loadSeeds, clearSeeds } from 'actions/seeds';
 import { runTask } from 'worker';
@@ -24,6 +26,8 @@ class Login extends React.Component {
          * @ignore
          */
         tempAccount: PropTypes.object.isRequired,
+        /** Current currency symbol */
+        currency: PropTypes.string.isRequired,
         /** Set seed state data
          * @param {Object} seeds - Seed state data
          * @ignore
@@ -37,6 +41,15 @@ class Login extends React.Component {
          * @ignore
          */
         clearSeeds: PropTypes.func.isRequired,
+
+        /** Fetch chart data */
+        getChartData: PropTypes.func.isRequired,
+        /** Fetch price data */
+        getPrice: PropTypes.func.isRequired,
+        /** Fetch market data */
+        getMarketData: PropTypes.func.isRequired,
+        /** Fetch currency data */
+        getCurrencyData: PropTypes.func.isRequired,
         /** Add account name to account list
          * @param {Object} title - Account title
          * @ignore
@@ -85,7 +98,12 @@ class Login extends React.Component {
     };
 
     setupAccount(seed) {
-        const { account, addAccountName } = this.props;
+        const { account, addAccountName, currency } = this.props;
+
+        this.props.getPrice();
+        this.props.getChartData();
+        this.props.getMarketData();
+        this.props.getCurrencyData(currency);
 
         if (account.firstUse) {
             addAccountName(seed.name);
@@ -166,6 +184,7 @@ const mapStateToProps = (state) => ({
     account: state.account,
     firstUse: state.account.firstUse,
     tempAccount: state.tempAccount,
+    currency: state.settings.currency,
 });
 
 const mapDispatchToProps = {
@@ -174,6 +193,10 @@ const mapDispatchToProps = {
     clearTempData,
     clearSeeds,
     addAccountName,
+    getChartData,
+    getPrice,
+    getMarketData,
+    getCurrencyData,
 };
 
 export default translate()(connect(mapStateToProps, mapDispatchToProps)(Login));
