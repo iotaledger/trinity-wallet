@@ -7,27 +7,20 @@ import PropTypes, { shape } from 'prop-types';
 import { shallow } from 'enzyme';
 import { Balance } from '../../containers/balance';
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {
             marketData: {},
-            isSendingTransfer: false,
-            isGeneratingReceiveAddress: false,
-            isSyncing: false,
             seedIndex: 0,
             balance: 0,
             addresses: [],
             transfers: [],
             settings: {},
-            setCurrency: noop,
-            setTimeframe: noop,
             extraColor: 'white',
             negativeColor: 'white',
             secondaryBackgroundColor: 'white',
-            chartLineColorPrimary: 'white',
-            chartLineColorSecondary: 'white',
-            t: arg => {
+            t: (arg) => {
                 const translations = {
                     received: 'Received',
                     receiving: 'Receiving',
@@ -46,18 +39,6 @@ describe('Testing Balance component', () => {
     describe('propTypes', () => {
         it('should require a marketData object as a prop', () => {
             expect(Balance.propTypes.marketData).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a isSendingTransfer boolean as a prop', () => {
-            expect(Balance.propTypes.isSendingTransfer).toEqual(PropTypes.bool.isRequired);
-        });
-
-        it('should require an isGeneratingReceiveAddress boolean as a prop', () => {
-            expect(Balance.propTypes.isGeneratingReceiveAddress).toEqual(PropTypes.bool.isRequired);
-        });
-
-        it('should require an isSyncing boolean as a prop', () => {
-            expect(Balance.propTypes.isSyncing).toEqual(PropTypes.bool.isRequired);
         });
 
         it('should require an seedIndex number as a prop', () => {
@@ -92,28 +73,12 @@ describe('Testing Balance component', () => {
             expect(Balance.propTypes.secondaryBackgroundColor).toEqual(PropTypes.string.isRequired);
         });
 
-        it('should require a chartLineColorPrimary string as a prop', () => {
-            expect(Balance.propTypes.chartLineColorPrimary).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require a chartLineColorSecondary string as a prop', () => {
-            expect(Balance.propTypes.chartLineColorSecondary).toEqual(PropTypes.string.isRequired);
-        });
-
         it('should require a t function as a prop', () => {
             expect(Balance.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a closeTopBar function as a prop', () => {
             expect(Balance.propTypes.closeTopBar).toEqual(PropTypes.func.isRequired);
-        });
-
-        it('should require a setCurrency function as a prop', () => {
-            expect(Balance.propTypes.setCurrency).toEqual(PropTypes.func.isRequired);
-        });
-
-        it('should require a setTimeframe function as a prop', () => {
-            expect(Balance.propTypes.setTimeframe).toEqual(PropTypes.func.isRequired);
         });
     });
 
@@ -123,13 +88,6 @@ describe('Testing Balance component', () => {
 
             const wrapper = shallow(<Balance {...props} />);
             expect(wrapper.name()).toEqual('TouchableWithoutFeedback');
-        });
-
-        it('should return a Chart component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<Balance {...props} />);
-            expect(wrapper.find('Chart').length).toEqual(1);
         });
     });
 
@@ -169,7 +127,7 @@ describe('Testing Balance component', () => {
                         'contentContainerStyle',
                         'ItemSeparatorComponent',
                         'ListEmptyComponent',
-                    ].forEach(prop => expect(passedProps.includes(prop)).toEqual(true));
+                    ].forEach((prop) => expect(passedProps.includes(prop)).toEqual(true));
                 });
             });
 
@@ -230,7 +188,7 @@ describe('Testing Balance component', () => {
                     const instance = shallow(<Balance {...props} />).instance();
                     const returnValueHead = instance.prepTransactions()[0];
 
-                    ['time', 'confirmationStatus', 'value', 'unit', 'sign', 'iconPath', 'style'].forEach(prop =>
+                    ['time', 'confirmationStatus', 'value', 'unit', 'sign', 'iconPath', 'style'].forEach((prop) =>
                         expect(Object.keys(returnValueHead).includes(prop)).toEqual(true),
                     );
 
@@ -260,7 +218,7 @@ describe('Testing Balance component', () => {
                 });
 
                 it('should have confirmationStatus prop equals "Receiving" if value prop is greater than one, addresses are part of transfers object and persistence is false', () => {
-                    transfers = map(transfers, tx => map(tx, t => ({ ...t, persistence: false })));
+                    transfers = map(transfers, (tx) => map(tx, (t) => ({ ...t, persistence: false })));
 
                     const props = getProps({
                         transfers,
@@ -274,7 +232,7 @@ describe('Testing Balance component', () => {
                 });
 
                 it('should have confirmationStatus prop equals "Sent" if value prop is less than one, addresses are part of transfers object and persistence is true', () => {
-                    transfers = map(transfers, tx => map(tx, t => ({ ...t, value: -1 })));
+                    transfers = map(transfers, (tx) => map(tx, (t) => ({ ...t, value: -1 })));
 
                     const props = getProps({
                         transfers,
@@ -288,7 +246,7 @@ describe('Testing Balance component', () => {
                 });
 
                 it('should have confirmationStatus prop equals "Sending" if value prop is less than one, addresses are part of transfers object and persistence is false', () => {
-                    transfers = map(transfers, tx => map(tx, t => ({ ...t, value: -1, persistence: false })));
+                    transfers = map(transfers, (tx) => map(tx, (t) => ({ ...t, value: -1, persistence: false })));
 
                     const props = getProps({
                         transfers,
