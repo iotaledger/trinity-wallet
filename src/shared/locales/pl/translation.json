@@ -52,7 +52,7 @@
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
         "somethingWentWrong": "Coś poszło nie tak",
-        "somethingWentWrongExplanation": "Uruchom ponownie aplikację.",
+        "somethingWentWrongExplanation": "Uruchom aplikację ponownie.",
         "node": "Serwer",
         "cannotPerformAction": "Nie można wykonać akcji",
         "cannotPerformActionExplanation": "Aby zresetować portfel, przejdź do ustawień zaawansowanych.",
@@ -292,7 +292,7 @@
         "add": "Dodaj"
     },
     "addNewAccount": {
-        "useExistingSeed": "Użyj istniejącego seeda",
+        "useExistingSeed": "Użyj istniejącego klucza seed",
         "createNewSeed": "Stwórz nowy seed"
     },
     "advancedSettings": {
