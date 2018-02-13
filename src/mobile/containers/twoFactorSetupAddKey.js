@@ -7,8 +7,10 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
-import { Clipboard, StyleSheet, View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
+import { Clipboard, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { translate } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
+import WithBackPressGoToHome from '../components/withBackPressGoToHome';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { storeTwoFactorAuthKeyInKeychain } from '../util/keychain';
 import Fonts from '../theme/Fonts';
@@ -16,7 +18,6 @@ import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
-import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -78,6 +79,7 @@ export class TwoFactorSetupAddKey extends Component {
         generateAlert: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         navigator: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -91,18 +93,10 @@ export class TwoFactorSetupAddKey extends Component {
         };
     }
 
-    componentDidMount() {
-        BackHandler.addEventListener('newSeedSetupBackPress', () => {
-            this.goBack();
-            return true;
-        });
-    }
-
     onKeyPress(key) {
         const { t } = this.props;
         if (key) {
             Clipboard.setString(key);
-
             this.props.generateAlert('success', t('keyCopied'), t('keyCopiedExplanation'));
         }
     }
@@ -199,4 +193,6 @@ const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
-export default translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey));
+export default WithBackPressGoToHome()(
+    translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey)),
+);

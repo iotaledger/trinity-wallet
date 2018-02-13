@@ -81,9 +81,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
-    dropdownWidth: {
-        width: width / 2,
-    },
 });
 
 export class CurrencySelection extends Component {
@@ -174,7 +171,7 @@ export class CurrencySelection extends Component {
                             title={t('currency')}
                             options={currencies}
                             defaultOption={currency}
-                            dropdownWidth={styles.dropdownWidth}
+                            dropdownWidth={{ width: width / 2 }}
                             disableWhen={isFetchingCurrencyData}
                             background
                         />

@@ -20,6 +20,7 @@ import whiteArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-lef
 import blackArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-black.png';
 import whiteTickImagePath from 'iota-wallet-shared-modules/images/tick-white.png';
 import blackTickImagePath from 'iota-wallet-shared-modules/images/tick-black.png';
+import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
@@ -367,6 +368,6 @@ const mapDispatchToProps = {
     setLoginPasswordField,
 };
 
-export default translate(['login', 'global', 'twoFA', 'fingerprintSetup'])(
-    connect(mapStateToProps, mapDispatchToProps)(Login),
+export default WithBackPressCloseApp()(
+    translate(['login', 'global', 'twoFA', 'fingerprintSetup'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
 );
