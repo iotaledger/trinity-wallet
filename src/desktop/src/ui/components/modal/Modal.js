@@ -9,13 +9,13 @@ import css from './modal.css';
  */
 export default class Modal extends React.Component {
     static propTypes = {
-        /* Modal content */
+        /** Modal content */
         children: PropTypes.node,
-        /* Modal window type */
+        /** Modal window type */
         variant: PropTypes.oneOf(['confirm']),
-        /* Modal visibility state */
+        /** Modal visibility state */
         isOpen: PropTypes.bool,
-        /* Modal visibility state */
+        /** Modal visibility state */
         onClose: PropTypes.func.isRequired,
     };
 

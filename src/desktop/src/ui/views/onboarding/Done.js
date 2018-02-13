@@ -10,11 +10,11 @@ import Button from 'ui/components/Button';
  */
 class Done extends React.PureComponent {
     static propTypes = {
-        /* Browser history object */
+        /** Browser history object */
         history: PropTypes.object.isRequired,
-        /* Set onboarding status to complete */
+        /** Set onboarding status to complete */
         setOnboardingComplete: PropTypes.func.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */

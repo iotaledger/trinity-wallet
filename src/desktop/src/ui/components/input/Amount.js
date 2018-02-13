@@ -13,11 +13,11 @@ const units = ['$', 'i', 'Ki', 'Mi', 'Gi', 'Ti'];
  */
 export default class AddressInput extends React.PureComponent {
     static propTypes = {
-        /* Current ammount value */
+        /** Current ammount value */
         amount: PropTypes.string.isRequired,
-        /* Max available ammount */
+        /** Max available ammount */
         balance: PropTypes.number.isRequired,
-        /* Fiat currency settings
+        /** Fiat currency settings
          * @property {string} conversionRate - Active currency conversion rate to MIota
          * @property (string) currency - Active currency name
          */
@@ -25,11 +25,11 @@ export default class AddressInput extends React.PureComponent {
             conversionRate: PropTypes.number.isRequired,
             currency: PropTypes.string.isRequired,
         }).isRequired,
-        /* Ammount input label */
+        /** Ammount input label */
         label: PropTypes.string.isRequired,
-        /* Max ammount controller label */
+        /** Max ammount controller label */
         labelMax: PropTypes.string.isRequired,
-        /* Ammount change event function
+        /** Ammount change event function
          * @param {string} value - Current ammount value
          */
         onChange: PropTypes.func.isRequired,

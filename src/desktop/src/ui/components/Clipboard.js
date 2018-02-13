@@ -11,15 +11,15 @@ import css from './clipboard.css';
  */
 class Clipboard extends React.PureComponent {
     static propTypes = {
-        /* Target content copied to clipboard */
+        /** Target content copied to clipboard */
         text: PropTypes.string.isRequired,
-        /* Optional element content, defaults to `text` prop */
+        /** Optional element content, defaults to `text` prop */
         label: PropTypes.string,
-        /* Success notification title */
+        /** Success notification title */
         title: PropTypes.string.isRequired,
-        /* Success notification description */
+        /** Success notification description */
         success: PropTypes.string.isRequired,
-        /* Notification helper function
+        /** Notification helper function
          * @ignore
          */
         showNotification: PropTypes.func.isRequired,

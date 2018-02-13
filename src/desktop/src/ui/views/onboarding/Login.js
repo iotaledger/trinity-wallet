@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSecurelyPersistedSeeds } from 'libs/storage';
+import { getSecurelyPersistedSeeds } from 'libs/crypto';
 import { addAccountName } from 'actions/account';
 import { showError } from 'actions/notifications';
 import { clearTempData } from 'actions/tempAccount';
@@ -13,16 +13,45 @@ import PasswordInput from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
 
+/** Login component */
 class Login extends React.Component {
     static propTypes = {
-        t: PropTypes.func.isRequired,
+        /** Accounts state state data
+         * @ignore
+         */
         account: PropTypes.object.isRequired,
+        /** Temporary account state data
+         * @ignore
+         */
         tempAccount: PropTypes.object.isRequired,
+        /** Set seed state data
+         * @param {Object} seeds - Seed state data
+         * @ignore
+         */
         loadSeeds: PropTypes.func.isRequired,
-        showError: PropTypes.func.isRequired,
+        /** Clear temporary account state data
+         * @ignore
+         */
         clearTempData: PropTypes.func.isRequired,
+        /** Clear temporary seed state data
+         * @ignore
+         */
         clearSeeds: PropTypes.func.isRequired,
+        /** Add account name to account list
+         * @param {Object} title - Account title
+         * @ignore
+         */
         addAccountName: PropTypes.func.isRequired,
+        /** Error modal helper
+         * @param {Object} content - Error screen content
+         * @ignore
+         */
+        showError: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         * @ignore
+         */
+        t: PropTypes.func.isRequired,
     };
 
     state = {

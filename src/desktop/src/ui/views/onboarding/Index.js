@@ -24,9 +24,9 @@ import css from 'ui/index.css';
  */
 class Onboarding extends React.PureComponent {
     static propTypes = {
-        /* Onboarding completion status */
+        /** Onboarding completion status */
         complete: PropTypes.bool,
-        /* Browser location */
+        /** Browser location */
         location: PropTypes.object,
     };
 

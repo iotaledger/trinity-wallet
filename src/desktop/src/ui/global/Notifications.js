@@ -9,16 +9,16 @@ import css from './Notifications.css';
  */
 class Notifications extends React.PureComponent {
     static propTypes = {
-        /* Dispose notification function
+        /** Dispose notification function
          * @param {string} id - Notificaion identifier
          * @ignore
          */
         hideNotification: PropTypes.func.isRequired,
-        /* Notifications state
+        /** Notifications state
          * @ignore
          */
         notifications: PropTypes.object.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param (string) translationString - Locale string identifier to be translated
          * @ignore
          */

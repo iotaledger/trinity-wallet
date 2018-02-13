@@ -11,11 +11,11 @@ import { setLocale } from 'actions/settings';
  */
 class LanguageSelect extends React.PureComponent {
     static propTypes = {
-        /* Current locale */
+        /** Current locale */
         locale: PropTypes.string,
-        /* Language drop-down label */
+        /** Language drop-down label */
         label: PropTypes.string,
-        /* Locale change event function
+        /** Locale change event function
          * @param {string} locale - Target locale
          */
         setLocale: PropTypes.func.isRequired,

@@ -14,13 +14,13 @@ import css from './input.css';
  */
 export default class SeedInput extends React.PureComponent {
     static propTypes = {
-        /* Current seed value */
+        /** Current seed value */
         seed: PropTypes.string.isRequired,
-        /* Seed input label */
+        /** Seed input label */
         label: PropTypes.string.isRequired,
-        /* Camera modal close label */
+        /** Camera modal close label */
         closeLabel: PropTypes.string.isRequired,
-        /* Seed change event function
+        /** Seed change event function
          * @param {string} value - Current seed value
          */
         onChange: PropTypes.func.isRequired,

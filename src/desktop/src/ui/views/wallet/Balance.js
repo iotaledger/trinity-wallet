@@ -6,7 +6,6 @@ import { getSelectedSeed } from 'selectors/seeds';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { formatValue, formatUnit, round } from 'libs/util';
 import { getCurrencySymbol } from 'libs/currency';
-import { getAccountInfoAsync, getNewAddressAsync } from 'actions/seeds';
 import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
 
@@ -15,13 +14,7 @@ import css from './balance.css';
 class Balance extends React.Component {
     static propTypes = {
         t: PropTypes.func.isRequired,
-        getAccountInfoAsync: PropTypes.func,
-        getNewAddressAsync: PropTypes.func,
-        seed: PropTypes.shape({
-            name: PropTypes.string,
-            seed: PropTypes.string,
-            addresses: PropTypes.array,
-        }).isRequired,
+        seed: PropTypes.object.isRequired,
         account: PropTypes.object.isRequired,
         settings: PropTypes.object.isRequired,
         marketData: PropTypes.object.isRequired,
@@ -34,25 +27,6 @@ class Balance extends React.Component {
         this.props.getChartData();
         this.props.getPrice();
         this.props.getMarketData();
-    }
-
-    getBalance = () => {
-        const { getAccountInfoAsync, seed } = this.props;
-        getAccountInfoAsync(seed.seed);
-    };
-
-    getNewAddress = () => {
-        const { getNewAddressAsync, seed } = this.props;
-        getNewAddressAsync(seed.seed);
-    };
-
-    getDecimalPlaces(n) {
-        const s = String(Number(n));
-        const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(s);
-        if (!match) {
-            return 0;
-        }
-        return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
     }
 
     render() {
@@ -90,8 +64,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getAccountInfoAsync,
-    getNewAddressAsync,
     getChartData,
     getPrice,
     getMarketData,

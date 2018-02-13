@@ -7,13 +7,13 @@ import css from './input.css';
  */
 export default class Select extends React.PureComponent {
     static propTypes = {
-        /* Drop-down options options */
+        /** Drop-down options options */
         children: PropTypes.node,
-        /* Drop-downs selected item's value */
+        /** Drop-downs selected item's value */
         defaultValue: PropTypes.string,
-        /* Drop-down disabeld state */
+        /** Drop-down disabeld state */
         disabled: PropTypes.bool,
-        /* Select element label */
+        /** Select element label */
         label: PropTypes.string,
     };
 

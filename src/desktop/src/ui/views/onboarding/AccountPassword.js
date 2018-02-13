@@ -6,7 +6,7 @@ import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { seedsSelector } from 'selectors/seeds';
 import { isValidPassword } from 'libs/util';
-import { securelyPersistSeeds } from 'libs/storage';
+import { securelyPersistSeeds } from 'libs/crypto';
 import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
 import PasswordInput from 'ui/components/input/Password';
@@ -16,20 +16,20 @@ import PasswordInput from 'ui/components/input/Password';
  */
 class AccountPassword extends React.PureComponent {
     static propTypes = {
-        /* Current state seed data */
+        /** Current state seed data */
         seeds: PropTypes.object,
-        /* Clear state seed data */
+        /** Clear state seed data */
         clearSeeds: PropTypes.func.isRequired,
-        /* Browser history object */
+        /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /* Error modal helper
+        /** Error modal helper
          * @param {Object} content - error screen content
          * @ignore
          */
         showError: PropTypes.func.isRequired,
-        /* Translation helper
+        /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */

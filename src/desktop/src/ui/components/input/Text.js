@@ -7,13 +7,13 @@ import css from './input.css';
  */
 export default class TextInput extends React.PureComponent {
     static propTypes = {
-        /* Current input value */
+        /** Current input value */
         value: PropTypes.string.isRequired,
-        /* Input label */
+        /** Input label */
         label: PropTypes.string,
-        /* Address change event function
+        /** Address change event function
          * @param {string} value - Current input value
-        */
+         */
         onChange: PropTypes.func.isRequired,
     };
 
