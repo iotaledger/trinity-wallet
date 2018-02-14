@@ -395,8 +395,8 @@
         "code": "코드"
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "시가총액",
         "change": "Change",
-        "volume": "Volume (24h)"
+        "volume": "거래량 (24시간)"
     }
 }
