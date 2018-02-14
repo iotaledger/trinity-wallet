@@ -6,11 +6,13 @@ import { withRouter } from 'react-router-dom';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 import { clearTempData } from 'actions/tempAccount';
+import { getUpdateData } from 'actions/settings';
 import { clearSeeds } from 'actions/seeds';
 
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
 import Notifications from 'ui/global/Notifications';
+import Updates from 'ui/global/Updates';
 
 import Loading from 'ui/components/Loading';
 import Onboarding from 'ui/views/onboarding/Index';
@@ -41,6 +43,11 @@ class App extends React.Component {
          * @ignore
          */
         clearSeeds: PropTypes.func.isRequired,
+        /** Initiate update check
+         * @param {Boolean} force - Force update confirmation dialog
+         * @ignore
+         */
+        getUpdateData: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -87,6 +94,9 @@ class App extends React.Component {
 
     menuToggle(item) {
         switch (item) {
+            case 'update':
+                this.props.getUpdateData(true);
+                break;
             case 'logout':
                 this.props.clearTempData();
                 this.props.clearSeeds();
@@ -106,6 +116,7 @@ class App extends React.Component {
                 <Theme />
                 <Notifications />
                 <Alerts />
+                <Updates />
                 {!this.state.initialized ? (
                     <Loading loop={false} />
                 ) : account.onboardingComplete && tempAccount.ready ? (
@@ -127,6 +138,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     clearTempData,
     clearSeeds,
+    getUpdateData,
 };
 
 export default withRouter(translate()(connect(mapStateToProps, mapDispatchToProps)(App)));

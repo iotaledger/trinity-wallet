@@ -2,6 +2,7 @@
     "name": "iota-desktop-wallet",
     "productName": "Trinity",
     "version": "0.1.0",
+    "url": "https://gitlab.com/iota-community/wallet",
     "description": "iota light wallet for desktop",
     "main": "main.js",
     "author": "UCL",
@@ -126,6 +127,7 @@
     },
     "dependencies": {
         "react-lottie": "^1.0.0",
+        "react-markdown": "^3.2.0",
         "react-textarea-autosize": "^5.2.1",
         "victory": "^0.25.5"
     }

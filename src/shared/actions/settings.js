@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import { generateAlert } from './alerts';
 import { showError } from './notifications';
+import { UPDATE_URL } from '../config';
 
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
@@ -16,6 +17,9 @@ export const ActionTypes = {
     CURRENCY_DATA_FETCH_SUCCESS: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_SUCCESS',
     CURRENCY_DATA_FETCH_ERROR: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_ERROR',
     SET_RANDOMLY_SELECTED_NODE: 'IOTA/SETTINGS/SET_RANDOMLY_SELECTED_NODE',
+    SET_UPDATE_ERROR: 'IOTA/SETTINGS/SET_UPDATE_ERROR',
+    SET_UPDATE_SUCCESS: 'IOTA/SETTINGS/UPDATE_SUCCESS',
+    SET_UPDATE_DONE: 'IOTA/SETTINGS/UPDATE_DONE',
 };
 
 const currencyDataFetchRequest = () => ({
@@ -84,6 +88,47 @@ export function getCurrencyData(currency, withAlerts = false) {
                     );
                 }
             });
+    };
+}
+
+/** Receives new release data and updates the release state
+ * @param {Boolean} force - should confirmation dialog be forced
+ */
+export function getUpdateData(force) {
+    return (dispatch) => {
+        return fetch(UPDATE_URL)
+            .then(
+                (response) => response.json(),
+                (error) => {
+                    dispatch({
+                        type: ActionTypes.SET_UPDATE_ERROR,
+                        payload: {
+                            force,
+                        },
+                    });
+                },
+            )
+            .then((json) => {
+                if (json && json.version) {
+                    dispatch({
+                        type: ActionTypes.SET_UPDATE_SUCCESS,
+                        payload: {
+                            version: json.version,
+                            notes: json.notes,
+                            force,
+                        },
+                    });
+                }
+            });
+    };
+}
+
+/** Set update version state as done */
+export function setUpdateDone() {
+    return (dispatch) => {
+        dispatch({
+            type: ActionTypes.SET_UPDATE_DONE,
+        });
     };
 }
 
