@@ -55,7 +55,7 @@
         "somethingWentWrongExplanation": "앱을 다시 실행하여 주십시오.",
         "node": "노드",
         "cannotPerformAction": "작업을 수행할 수 없음",
-        "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오.",
+        "cannotPerformActionExplanation": "고급 설정으로 이동하여 지갑을 초기화하십시오.",
         "attachToTangleUnavailable": "노드 원격 어태치 미지원",
         "attachToTangleUnavailableExplanation": "선택하신 노드는 원격 어태치를 지원하지 않습니다.",
         "wallet": "지갑",
