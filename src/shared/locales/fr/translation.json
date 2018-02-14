@@ -73,7 +73,7 @@
         "autopromoting": "Promotion automatique du transfert",
         "autopromotingExplanation": "Promotion de la transaction de hash {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers une autre de vos adresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -281,8 +281,8 @@
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papier.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "ENVOI",
+        "receive": "RECEPTION"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -395,8 +395,8 @@
         "code": "Code"
     },
     "chart": {
-        "mcap": "MCAP",
-        "change": "Change",
+        "mcap": "CAP",
+        "change": "Différence",
         "volume": "Volume (24h)"
     }
 }
