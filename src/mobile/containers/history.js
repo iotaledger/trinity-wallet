@@ -75,6 +75,9 @@ class History extends Component {
         }
     }
 
+    /**
+     * Triggers a refresh
+     */
     onRefresh() {
         if (!this.shouldPreventManualRefresh()) {
             this.setState({ refreshing: true });
@@ -82,6 +85,9 @@ class History extends Component {
         }
     }
 
+    /**
+     * Prevents more than one refresh from occurring at the same time
+     */
     shouldPreventManualRefresh() {
         const props = this.props;
 
@@ -109,13 +115,17 @@ class History extends Component {
         const { selectedAccountName, seedIndex } = this.props;
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 const seed = getSeed(credentials.data, seedIndex);
                 this.props.getAccountInfo(seed, selectedAccountName);
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
     }
 
+    /**
+     * Formats transaction data
+     * @return {Array} Formatted transaction data
+     */
     prepTransactions() {
         const {
             transfers,
@@ -144,13 +154,13 @@ class History extends Component {
             : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
-        const withValueAndUnit = item => ({
+        const withValueAndUnit = (item) => ({
             address: iota.utils.addChecksum(item.address, 9, true),
             value: round(formatValue(item.value), 1),
             unit: formatUnit(item.value),
         });
 
-        return map(transfers, transfer => {
+        return map(transfers, (transfer) => {
             const tx = extractTailTransferFromBundle(transfer);
             const incoming = isReceivedTransfer(transfer, addresses);
 
