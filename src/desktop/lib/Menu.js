@@ -6,6 +6,7 @@ const state = {
 
 let language = {
     about: 'About',
+    checkUpdate: 'Check for Updates',
     settings: 'Settings',
     language: 'Language',
     currency: 'Currency',
@@ -51,6 +52,10 @@ const initMenu = (app, getWindow) => {
                     {
                         label: `${language.about} ${app.getName()}`,
                         role: 'about',
+                    },
+                    {
+                        label: `${language.checkUpdate}...`,
+                        click: () => navigate('update'),
                     },
                     {
                         label: language.settings,
