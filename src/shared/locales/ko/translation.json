@@ -280,7 +280,9 @@
         "bundleHashCopied": "번들 해시 복사됨",
         "bundleHashCopiedExplanation": "번들 해시가 클립보드에 복사되었습니다.",
         "addressCopied": "주소 복사됨",
-        "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다."
+        "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
