@@ -57,7 +57,7 @@ class Enter2FA extends Component {
         token2FA: '',
     };
 
-    handleChange2FAToken = token2FA => this.setState({ token2FA });
+    handleChange2FAToken = (token2FA) => this.setState({ token2FA });
 
     handleDonePress = () => {
         const { token2FA } = this.state;

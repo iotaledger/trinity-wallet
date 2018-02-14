@@ -72,7 +72,9 @@
         "autoreattaching": "Retilknytter automatisk",
         "autoreattachingExplanation": "Retiljknytter transaksjon med hash-{{hash}}",
         "autopromoting": "Sender hjelpetransaksjoner",
-        "autopromotingExplanation": "Sende hjelpetransaksjoner for {{hash}}"
+        "autopromotingExplanation": "Sende hjelpetransaksjoner for {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -293,7 +295,9 @@
         "bundleHashCopied": "Pakke hash kopiert",
         "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
-        "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen."
+        "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Vis nøkkel",
@@ -392,5 +396,24 @@
     "transferConfirmation": {
         "youAreAbout": "Du skal til å sende {{contents}} til adressen",
         "aMessage": "en melding"
+    },
+    "twoFA": {
+        "wrongCode": "Wrong code",
+        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "emptyCode": "Empty code",
+        "emptyCodeExplanation": "Please enter a code and try again.",
+        "keyCopied": "Key copied to clipboard",
+        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "addKey": "Add this key to your 2FA app",
+        "key": "Key",
+        "twoFAEnabled": "2FA is now enabled",
+        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "enterCode": "Enter the code from your 2FA app",
+        "code": "Code"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }

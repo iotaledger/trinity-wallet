@@ -102,7 +102,7 @@ class AddCustomNode extends Component {
 
         if (!nodes.includes(customNode)) {
             setNode(customNode);
-            checkNode(error => {
+            checkNode((error) => {
                 if (error) {
                     onAddNodeError();
                     setNode(currentNode);
@@ -134,7 +134,7 @@ class AddCustomNode extends Component {
                         <View style={{ flex: 0.3 }} />
                         <CustomTextInput
                             label={t('customNode')}
-                            onChangeText={customNode => this.setState({ customNode })}
+                            onChangeText={(customNode) => this.setState({ customNode })}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}

@@ -71,7 +71,9 @@
         "autoreattaching": "Auto-fastsättning till Tangle",
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
         "autopromoting": "Auto-promotar överföring",
-        "autopromotingExplanation": "Promotar transaktion med hashen {{hash}}"
+        "autopromotingExplanation": "Promotar transaktion med hashen {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -291,7 +293,9 @@
         "bundleHashCopied": "Hashbunt kopierad",
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
-        "addressCopiedExplanation": "Din adress har kopierats till urklipp."
+        "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -390,5 +394,24 @@
     "transferConfirmation": {
         "youAreAbout": "Du kommer att skicka {{contents}} till adressen",
         "aMessage": "ett meddelande"
+    },
+    "twoFA": {
+        "wrongCode": "Wrong code",
+        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "emptyCode": "Empty code",
+        "emptyCodeExplanation": "Please enter a code and try again.",
+        "keyCopied": "Key copied to clipboard",
+        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "addKey": "Add this key to your 2FA app",
+        "key": "Key",
+        "twoFAEnabled": "2FA is now enabled",
+        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "enterCode": "Enter the code from your 2FA app",
+        "code": "Code"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }
