@@ -280,7 +280,9 @@
         "bundleHashCopied": "Bundel hash gekopieerd",
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het Klembord.",
         "addressCopied": "Adres gekopieerd",
-        "addressCopiedExplanation": "Het adres is naar het Klembord gekopieerd."
+        "addressCopiedExplanation": "Het adres is naar het Klembord gekopieerd.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "View seed",
