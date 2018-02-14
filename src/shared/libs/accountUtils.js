@@ -158,22 +158,13 @@ export const accumulateBalance = (balances) =>
 
 export const deduplicateTransferBundles = (transfers) => {
     const deduplicate = (res, transfer) => {
-        const top = transfer[0];
-        const bundle = top.bundle;
-        const attachmentTimestampOnCurrentTx = top.attachmentTimestamp;
-        const persistenceOnCurrentTx = top.persistence;
+        const tail = find(transfer, (tx) => tx.currentIndex === 0);
+        const bundle = tail.bundle;
+        const persistence = tail.persistence;
 
         if (bundle in res) {
-            const timestampOnExistingTx = get(res[bundle], '[0].attachmentTimestamp');
-            const persistenceOnExistingTx = get(res[bundle], '[0].persistence');
-
-            // In case a tx is still unconfirmed.
-            if (!persistenceOnExistingTx && persistenceOnCurrentTx) {
+            if (persistence) {
                 res[bundle] = transfer;
-            } else if (!persistenceOnCurrentTx && !persistenceOnCurrentTx) {
-                if (attachmentTimestampOnCurrentTx < timestampOnExistingTx) {
-                    res[bundle] = transfer;
-                }
             }
         } else {
             res = { ...res, ...{ [bundle]: transfer } };
