@@ -280,7 +280,9 @@
         "bundleHashCopied": "Hash du paquet copié",
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
         "addressCopied": "Adressée copiée",
-        "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papier."
+        "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papier.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
