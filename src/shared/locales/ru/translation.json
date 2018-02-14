@@ -393,5 +393,10 @@
         "twoFAEnabledExplanation": "Вы успешно включили аутентификацию по отпечаткам пальцев.",
         "enterCode": "Введите код из 2FA приложения",
         "code": "Код"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }

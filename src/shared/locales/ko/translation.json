@@ -393,5 +393,10 @@
         "twoFAEnabledExplanation": "OTP 인증이 활성화되었습니다.",
         "enterCode": "OTP 코드를 입력하십시오",
         "code": "코드"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }
