@@ -274,7 +274,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Tu Seed tiene {{maxSeedLength}} caracteres leídos de izquierda a derecha.",
-        "writeDownYourSeed": "<0>Escribe tu seed y código de verificación y </0><1>vuelve a comprobarlos</1><2> que son correctos.</2>"
+        "writeDownYourSeed": "<0>Escribe tu seed y código de verificación y </0><1>vuelve a comprobar</1><2> que son correctos.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
