@@ -280,7 +280,9 @@
         "bundleHashCopied": "Hash pakietu skopiowany",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
-        "addressCopiedExplanation": "Adres został skopiowany do schowka."
+        "addressCopiedExplanation": "Adres został skopiowany do schowka.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
