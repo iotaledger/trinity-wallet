@@ -280,7 +280,9 @@
         "bundleHashCopied": "Хэш пакет скопирован",
         "bundleHashCopiedExplanation": "Хэш пакет скопирован в буфер обмена.",
         "addressCopied": "Адрес скопирован",
-        "addressCopiedExplanation": "Адрес скопирован в буфер обмена."
+        "addressCopiedExplanation": "Адрес скопирован в буфер обмена.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Показать ключ",
