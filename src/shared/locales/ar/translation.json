@@ -71,7 +71,9 @@
         "autoreattaching": "اضغط على العودة مرة أخرى لإغلاق التطبيق",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
         "autopromoting": "نقل أوتوبروموتينج",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "أوتورياتاتشينج إلى تشابك",
