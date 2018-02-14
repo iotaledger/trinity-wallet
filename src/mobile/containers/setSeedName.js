@@ -216,7 +216,7 @@ export class SetSeedName extends Component {
                             <View style={{ flex: 0.5 }} />
                             <CustomTextInput
                                 label={t('addAdditionalSeed:accountName')}
-                                onChangeText={(text) => this.setState({ text })}
+                                onChangeText={text => this.setState({ accountName: text })}
                                 containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'words'}
                                 autoCorrect={false}
