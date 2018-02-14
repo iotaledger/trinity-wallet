@@ -46,7 +46,7 @@
         "yes": "是的",
         "no": "没有",
         "password": "密码",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "密码或指纹",
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不相符。请再试一次。",
         "syncInProgress": "同步中",
@@ -71,7 +71,9 @@
         "autoreattaching": "自动附加到纠缠",
         "autoreattachingExplanation": "使用哈希{{hash}} 的重新事务",
         "autopromoting": "自动提示转移",
-        "autopromotingExplanation": "使用哈希{{hash}} 促进事务"
+        "autopromotingExplanation": "使用哈希{{hash}} 促进事务",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -119,8 +121,7 @@
         "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
-        "seedExplanation":
-            "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
+        "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
         "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
@@ -140,8 +141,8 @@
         "useSeed": "使用种子",
         "login": "登录",
         "selectDifferentNode": "是否要选择其他节点？",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "设置节点",
+        "cannotConnect": "无法连接到IOTA节点。"
     },
     "loading": {
         "loadingFirstTime": "首次读取种子",
@@ -199,13 +200,12 @@
         "invalidAmount": "输入的金额不正确",
         "invalidAmountExplanation": "请输入交易记录金额的数值。",
         "maximumSelected": "已选择最大金额",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "iotaUnits": "IOTA单位解释",
+        "sendMax": "全部发送"
     },
     "setPassword": {
         "passwordTooShort": "密码太短",
-        "passwordTooShortExplanation":
-            "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
+        "passwordTooShortExplanation": "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
         "passwordMismatch": "密码不相符",
         "passwordMismatchExplanation": "您输入的密码不匹配。请再试一次。",
         "nowWeNeedTo": "现在我们需要设置一个密码。",
@@ -252,7 +252,7 @@
         "copy": "复制",
         "paste": "粘贴",
         "selectAll": "全选",
-        "securitySettings": "Security settings",
+        "securitySettings": "安全设置",
         "fingerprint": "Fingerprint authentication"
     },
     "resetWalletRequirePassword": {
@@ -264,8 +264,7 @@
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-        "explanation":
-            "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
+        "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
         "keepSafe": "请您保管好你的种子."
     },
     "welcome": {
@@ -281,7 +280,9 @@
         "bundleHashCopied": "绑定哈希值已复制",
         "bundleHashCopiedExplanation": "绑定哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
-        "addressCopiedExplanation": "地址已复制到剪贴板。"
+        "addressCopiedExplanation": "地址已复制到剪贴板。",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
@@ -370,8 +371,7 @@
         "enabled": "Enabled",
         "disabled": "Disabled",
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation":
-            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "instructionsLogin": "Touch fingerprint reader to log in."
@@ -379,5 +379,19 @@
     "transferConfirmation": {
         "youAreAbout": "您将发送{{contents}} 到地址",
         "aMessage": "一条信息"
+    },
+    "twoFA": {
+        "wrongCode": "Wrong code",
+        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "emptyCode": "Empty code",
+        "emptyCodeExplanation": "Please enter a code and try again.",
+        "keyCopied": "Key copied to clipboard",
+        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "addKey": "Add this key to your 2FA app",
+        "key": "Key",
+        "twoFAEnabled": "2FA is now enabled",
+        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "enterCode": "Enter the code from your 2FA app",
+        "code": "Code"
     }
 }
