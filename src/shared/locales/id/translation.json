@@ -280,7 +280,9 @@
         "bundleHashCopied": "Salin rangkaian hash",
         "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
         "addressCopied": "Alamat telah disalin",
-        "addressCopiedExplanation": "Alamat telah disalin ke papan klip."
+        "addressCopiedExplanation": "Alamat telah disalin ke papan klip.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Lihat seed",
