@@ -73,7 +73,7 @@
         "autopromoting": "送金を自動促進",
         "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進",
         "cannotSendToOwn": "自分のアドレスに送金する。",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "自分のアドレスに送金することができません。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
