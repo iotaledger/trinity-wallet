@@ -326,8 +326,8 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 return dispatch(
                     generateAlert(
                         'error',
-                        'Own address',
-                        'You cannot make a value transfer to one of your own addresses.',
+                        i18next.t('global:cannotSendToOwn'),
+                        i18next.t('global:cannotSendToOwnExplanation'),
                         20000,
                     ),
                 );
