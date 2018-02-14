@@ -102,7 +102,7 @@ class TwoFactorSetupEnterToken extends Component {
     check2FA() {
         const { t } = this.props;
         getTwoFactorAuthKeyFromKeychain()
-            .then(key => {
+            .then((key) => {
                 const verified = authenticator.verifyToken(key, this.state.code);
 
                 if (verified) {
@@ -116,7 +116,7 @@ class TwoFactorSetupEnterToken extends Component {
                     this.props.generateAlert('error', t('wrongCode'), t('wrongCodeExplanation'));
                 }
             })
-            .catch(err => console.error(err)); // generate an alert.
+            .catch((err) => console.error(err)); // generate an alert.
     }
 
     render() {
@@ -137,7 +137,7 @@ class TwoFactorSetupEnterToken extends Component {
                         <Text style={[styles.subHeaderText, textColor]}>{t('enterCode')}</Text>
                         <CustomTextInput
                             label={t('code')}
-                            onChangeText={code => this.setState({ code })}
+                            onChangeText={(code) => this.setState({ code })}
                             containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
@@ -167,7 +167,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,

@@ -4,7 +4,6 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import { isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
 import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
@@ -75,9 +74,6 @@ const styles = StyleSheet.create({
 export class Balance extends Component {
     static propTypes = {
         marketData: PropTypes.object.isRequired,
-        isSendingTransfer: PropTypes.bool.isRequired,
-        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        isSyncing: PropTypes.bool.isRequired,
         seedIndex: PropTypes.number.isRequired,
         balance: PropTypes.number.isRequired,
         addresses: PropTypes.array.isRequired,
@@ -86,12 +82,8 @@ export class Balance extends Component {
         extraColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        chartLineColorPrimary: PropTypes.string.isRequired,
-        chartLineColorSecondary: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
-        setCurrency: PropTypes.func.isRequired,
-        setTimeframe: PropTypes.func.isRequired,
     };
 
     static getDecimalPlaces(n) {
@@ -152,7 +144,7 @@ export class Balance extends Component {
         const outgoingIconPath = isSecondaryBackgroundColorWhite ? whiteSendImagePath : blackSendImagePath;
         const incomingIconPath = isSecondaryBackgroundColorWhite ? whiteReceiveImagePath : blackReceiveImagePath;
 
-        return map(recentTransactions, transfer => {
+        return map(recentTransactions, (transfer) => {
             const tx = extractTailTransferFromBundle(transfer);
             const incoming = isReceivedTransfer(transfer, addresses);
 
@@ -193,17 +185,7 @@ export class Balance extends Component {
     }
 
     render() {
-        const {
-            balance,
-            settings,
-            marketData,
-            isSendingTransfer,
-            isGeneratingReceiveAddress,
-            isSyncing,
-            secondaryBackgroundColor,
-            chartLineColorPrimary,
-            chartLineColorSecondary,
-        } = this.props;
+        const { balance, settings, marketData, secondaryBackgroundColor } = this.props;
 
         const shortenedBalance =
             roundDown(formatValue(balance), 1) +
@@ -231,19 +213,7 @@ export class Balance extends Component {
                         <View style={[styles.line, lineBorder]} />
                     </View>
                     <View style={styles.chartContainer}>
-                        <Chart
-                            isSendingTransfer={isSendingTransfer}
-                            isGeneratingReceiveAddress={isGeneratingReceiveAddress}
-                            isSyncing={isSyncing}
-                            marketData={marketData}
-                            setCurrency={currency => this.props.setCurrency(currency)}
-                            setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
-                            secondaryBackgroundColor={secondaryBackgroundColor}
-                            textColor={{ color: secondaryBackgroundColor }}
-                            borderColor={{ borderColor: secondaryBackgroundColor }}
-                            chartLineColorPrimary={chartLineColorPrimary}
-                            chartLineColorSecondary={chartLineColorSecondary}
-                        />
+                        <Chart />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -253,9 +223,6 @@ export class Balance extends Component {
 
 const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     marketData,
-    isSendingTransfer: tempAccount.isSendingTransfer,
-    isGeneratingReceiveAddress: tempAccount.isGeneratingReceiveAddress,
-    isSyncing: tempAccount.isSyncing,
     seedIndex: tempAccount.seedIndex,
     balance: getBalanceForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
@@ -268,13 +235,4 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     chartLineColorSecondary: settings.theme.chartLineColorSecondary,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setCurrency: currency => {
-        dispatch(setCurrency(currency));
-    },
-    setTimeframe: timeframe => {
-        dispatch(setTimeframe(timeframe));
-    },
-});
-
-export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Balance));
+export default translate(['global'])(connect(mapStateToProps)(Balance));

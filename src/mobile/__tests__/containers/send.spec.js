@@ -6,7 +6,7 @@ import { Send } from '../../containers/send';
 
 jest.mock('react-native-camera', () => {});
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {

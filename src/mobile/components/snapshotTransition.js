@@ -150,7 +150,7 @@ class SnapshotTransition extends Component {
         setTimeout(() => {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     const data = get(credentials, 'data');
                     if (!data) {
                         throw new Error('Error');
@@ -159,7 +159,7 @@ class SnapshotTransition extends Component {
                         completeSnapshotTransition(seed, selectedAccountName, transitionAddresses);
                     }
                 })
-                .catch(err => console.error(err));
+                .catch((err) => console.error(err));
         }, 300);
     }
 
@@ -171,7 +171,7 @@ class SnapshotTransition extends Component {
         setTimeout(() => {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     const data = get(credentials, 'data');
                     if (!data) {
                         throw new Error('Error');
@@ -180,7 +180,7 @@ class SnapshotTransition extends Component {
                         generateAddressesAndGetBalance(seed, currentIndex);
                     }
                 })
-                .catch(err => console.error(err));
+                .catch((err) => console.error(err));
         }, 300);
     }
 
@@ -190,7 +190,7 @@ class SnapshotTransition extends Component {
         if (!shouldPreventAction()) {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     const data = get(credentials, 'data');
                     if (!data) {
                         throw new Error('Error');
@@ -199,7 +199,7 @@ class SnapshotTransition extends Component {
                         transitionForSnapshot(seed, addresses);
                     }
                 })
-                .catch(err => console.error(err));
+                .catch((err) => console.error(err));
         } else {
             this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
         }

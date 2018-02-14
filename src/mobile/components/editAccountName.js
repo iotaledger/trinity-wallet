@@ -110,7 +110,7 @@ export class EditAccountName extends Component {
                         <View style={styles.textFieldContainer}>
                             <CustomTextInput
                                 label={t('accountName')}
-                                onChangeText={accountName => this.setState({ accountName })}
+                                onChangeText={(accountName) => this.setState({ accountName })}
                                 containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}

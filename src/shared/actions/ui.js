@@ -7,22 +7,22 @@ export const ActionTypes = {
     SET_SEND_DENOMINATION: 'IOTA/UI/SET_SEND_DENOMINATION',
 };
 
-export const setSendAddressField = payload => ({
+export const setSendAddressField = (payload) => ({
     type: ActionTypes.SET_SEND_ADDRESS_FIELD,
     payload,
 });
 
-export const setSendAmountField = payload => ({
+export const setSendAmountField = (payload) => ({
     type: ActionTypes.SET_SEND_AMOUNT_FIELD,
     payload,
 });
 
-export const setSendMessageField = payload => ({
+export const setSendMessageField = (payload) => ({
     type: ActionTypes.SET_SEND_MESSAGE_FIELD,
     payload,
 });
 
-export const setLoginPasswordField = payload => ({
+export const setLoginPasswordField = (payload) => ({
     type: ActionTypes.SET_LOGIN_PASSWORD_FIELD,
     payload,
 });
@@ -31,7 +31,7 @@ export const clearSendFields = () => ({
     type: ActionTypes.CLEAR_SEND_FIELDS,
 });
 
-export const setSendDenomination = payload => ({
+export const setSendDenomination = (payload) => ({
     type: ActionTypes.SET_SEND_DENOMINATION,
     payload,
 });

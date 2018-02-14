@@ -18,7 +18,7 @@ jest.mock('../../util/keychain', () => ({
     storeTwoFactorAuthKeyInKeychain: jest.fn(() => Promise.resolve({})),
 }));
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {
@@ -130,7 +130,7 @@ describe('Testing TwoFactorSetupAddKey component', () => {
 
                     jest.spyOn(Clipboard, 'setString');
                     const instance = shallow(<TwoFactorSetupAddKey {...props} />).instance();
-                    [null, undefined, ''].forEach(item => {
+                    [null, undefined, ''].forEach((item) => {
                         instance.onKeyPress(item);
 
                         expect(Clipboard.setString).toHaveBeenCalledTimes(0);
