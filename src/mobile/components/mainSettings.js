@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const MainSettings = props => (
+const MainSettings = (props) => (
     <View style={styles.container}>
         <View style={styles.itemContainer}>
             <TouchableOpacity

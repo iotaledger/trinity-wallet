@@ -6,7 +6,7 @@ export default i18next.use(reactI18nextModule).init(
     {
         fallbackLng: 'en',
         fallbackNS: 'global',
-        parseMissingKeyHandler: value => `Translation not available for ${value}`,
+        parseMissingKeyHandler: (value) => `Translation not available for ${value}`,
         resources: {
             ar: require('../shared/locales/ar/translation.json'),
             da: require('../shared/locales/da/translation.json'),

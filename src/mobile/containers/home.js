@@ -105,7 +105,7 @@ class Home extends Component {
         BackHandler.removeEventListener('homeBackPress');
     }
 
-    onLoginPress = password => {
+    onLoginPress = (password) => {
         const { t, tempAccount } = this.props;
 
         if (!password) {
@@ -162,7 +162,7 @@ class Home extends Component {
 
         return (
             <UserInactivity
-                ref={c => {
+                ref={(c) => {
                     this.userInactivity = c;
                 }}
                 timeForInactivity={180000}
@@ -179,7 +179,7 @@ class Home extends Component {
                                     <TabContent navigator={navigator} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <Tabs onPress={name => this.onTabSwitch(name)} barColor={barColor}>
+                                    <Tabs onPress={(name) => this.onTabSwitch(name)} barColor={barColor}>
                                         <Tab
                                             name="balance"
                                             icon={balanceImagePath}
@@ -237,7 +237,7 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     settings: state.settings,
     account: state.account,

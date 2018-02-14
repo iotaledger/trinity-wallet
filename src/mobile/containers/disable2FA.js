@@ -87,7 +87,7 @@ class Disable2FA extends Component {
 
     disable2FA() {
         return getTwoFactorAuthKeyFromKeychain()
-            .then(key => {
+            .then((key) => {
                 const verified = authenticator.verifyToken(key, this.state.token);
 
                 if (verified) {
@@ -105,7 +105,7 @@ class Disable2FA extends Component {
                     this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
                 }
             })
-            .catch(err => console.error(err)); // eslint-disable-line no-console
+            .catch((err) => console.error(err)); // eslint-disable-line no-console
     }
 
     goBack() {
@@ -155,7 +155,7 @@ class Disable2FA extends Component {
                             <Text style={[styles.generalText, textColor]}>Enter your token to disable 2FA</Text>
                             <CustomTextInput
                                 label="Token"
-                                onChangeText={token => this.setState({ token })}
+                                onChangeText={(token) => this.setState({ token })}
                                 containerStyle={{ width: width / 1.36 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -184,7 +184,7 @@ class Disable2FA extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,

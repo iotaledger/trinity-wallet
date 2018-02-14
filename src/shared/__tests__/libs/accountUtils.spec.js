@@ -83,7 +83,7 @@ describe('libs: accountUtils', () => {
             it('should return 0', () => {
                 const args = [null, undefined, '', {}, 0, 0.5];
 
-                args.forEach(arg => expect(accumulateBalance(arg)).to.equal(0));
+                args.forEach((arg) => expect(accumulateBalance(arg)).to.equal(0));
             });
         });
 

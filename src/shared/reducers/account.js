@@ -62,7 +62,7 @@ const account = (
             return {
                 ...state,
                 accountInfo: omit(state.accountInfo, action.payload),
-                seedNames: filter(state.seedNames, name => name !== action.payload),
+                seedNames: filter(state.seedNames, (name) => name !== action.payload),
                 seedCount: state.seedCount - 1,
             };
         case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
