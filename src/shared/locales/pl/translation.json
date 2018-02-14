@@ -393,5 +393,10 @@
         "twoFAEnabledExplanation": "Pomyślnie włączono funkcję dwustopniowej autoryzacji.",
         "enterCode": "Wpisz kod z aplikacji dwustopniowej autoryzacji",
         "code": "Kod"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }
