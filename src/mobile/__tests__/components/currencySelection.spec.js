@@ -7,7 +7,7 @@ import { CurrencySelection } from '../../components/currencySelection';
 
 /* eslint-disable no-undef */
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {

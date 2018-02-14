@@ -72,7 +72,7 @@ export const manualSyncRequest = () => ({
     type: ActionTypes.MANUAL_SYNC_REQUEST,
 });
 
-export const manualSyncSuccess = payload => ({
+export const manualSyncSuccess = (payload) => ({
     type: ActionTypes.MANUAL_SYNC_SUCCESS,
     payload,
 });
@@ -85,7 +85,7 @@ export const fullAccountInfoForFirstUseFetchRequest = () => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST,
 });
 
-export const fullAccountInfoForFirstUseFetchSuccess = payload => ({
+export const fullAccountInfoForFirstUseFetchSuccess = (payload) => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS,
     payload,
 });
@@ -98,7 +98,7 @@ export const fullAccountInfoFetchRequest = () => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST,
 });
 
-export const fullAccountInfoFetchSuccess = payload => ({
+export const fullAccountInfoFetchSuccess = (payload) => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS,
     payload,
 });
@@ -107,7 +107,7 @@ export const fullAccountInfoFetchError = () => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR,
 });
 
-export const setFirstUse = payload => ({
+export const setFirstUse = (payload) => ({
     type: ActionTypes.SET_FIRST_USE,
     payload,
 });
@@ -130,12 +130,12 @@ export const changeAccountName = (accountInfo, accountNames) => ({
     accountNames,
 });
 
-export const removeAccount = payload => ({
+export const removeAccount = (payload) => ({
     type: ActionTypes.REMOVE_ACCOUNT,
     payload,
 });
 
-export const setOnboardingComplete = payload => ({
+export const setOnboardingComplete = (payload) => ({
     type: ActionTypes.SET_ONBOARDING_COMPLETE,
     payload,
 });
@@ -144,7 +144,7 @@ export const increaseSeedCount = () => ({
     type: ActionTypes.INCREASE_SEED_COUNT,
 });
 
-export const addAccountName = seedName => ({
+export const addAccountName = (seedName) => ({
     type: ActionTypes.ADD_SEED_NAME,
     seedName,
 });
@@ -155,7 +155,7 @@ export const addAddresses = (accountName, addresses) => ({
     addresses,
 });
 
-export const setBalance = payload => ({
+export const setBalance = (payload) => ({
     type: ActionTypes.SET_BALANCE,
     payload,
 });
@@ -167,17 +167,17 @@ export const updateAccountAfterTransition = (accountName, addresses, balance) =>
     balance,
 });
 
-export const updateUnconfirmedBundleTails = payload => ({
+export const updateUnconfirmedBundleTails = (payload) => ({
     type: ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS,
     payload,
 });
 
-export const setNewUnconfirmedBundleTails = payload => ({
+export const setNewUnconfirmedBundleTails = (payload) => ({
     type: ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS,
     payload,
 });
 
-export const removeBundleFromUnconfirmedBundleTails = payload => ({
+export const removeBundleFromUnconfirmedBundleTails = (payload) => ({
     type: ActionTypes.REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS,
     payload,
 });
@@ -186,7 +186,7 @@ const accountInfoFetchRequest = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
 });
 
-export const accountInfoFetchSuccess = payload => ({
+export const accountInfoFetchSuccess = (payload) => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
     payload,
 });
@@ -195,12 +195,12 @@ const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
-export const updateAccountInfoAfterSpending = payload => ({
+export const updateAccountInfoAfterSpending = (payload) => ({
     type: ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING,
     payload,
 });
 
-export const setPendingTransactionTailsHashesForAccount = payload => ({
+export const setPendingTransactionTailsHashesForAccount = (payload) => ({
     type: ActionTypes.SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT,
     payload,
 });
@@ -211,8 +211,8 @@ export const fetchFullAccountInfoForFirstUse = (
     password,
     storeInKeychainPromise,
     navigator = null,
-) => dispatch => {
-    const onError = err => {
+) => (dispatch) => {
+    const onError = (err) => {
         if (navigator) {
             navigator.pop({ animated: false });
         }
@@ -223,27 +223,27 @@ export const fetchFullAccountInfoForFirstUse = (
 
     dispatch(fullAccountInfoForFirstUseFetchRequest());
     getAccountData(seed, accountName)
-        .then(data => {
+        .then((data) => {
             dispatch(clearTempData()); // Clean up partial state for reducer.
             return mapUnspentAddressesHashesToAccount(data);
         })
-        .then(dataWithUnspentAddressesHashes => {
+        .then((dataWithUnspentAddressesHashes) => {
             storeInKeychainPromise(password, seed, accountName)
                 .then(() => dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithUnspentAddressesHashes)))
-                .catch(err => onError(err));
+                .catch((err) => onError(err));
         })
-        .catch(err => onError(err));
+        .catch((err) => onError(err));
 };
 
 export const getFullAccountInfo = (seed, accountName, navigator = null) => {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(fullAccountInfoFetchRequest());
         getAccountData(seed, accountName)
-            .then(data => mapUnspentAddressesHashesToAccount(data))
-            .then(dataWithUnspentAddressesHashes =>
+            .then((data) => mapUnspentAddressesHashesToAccount(data))
+            .then((dataWithUnspentAddressesHashes) =>
                 dispatch(fullAccountInfoFetchSuccess(dataWithUnspentAddressesHashes)),
             )
-            .catch(err => {
+            .catch((err) => {
                 pushScreen(navigator, 'login');
                 dispatch(generateAccountInfoErrorAlert(err));
                 dispatch(fullAccountInfoFetchError());
@@ -252,15 +252,15 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
 };
 
 export const manuallySyncAccount = (seed, accountName) => {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(manualSyncRequest());
         getAccountData(seed, accountName)
-            .then(data => mapUnspentAddressesHashesToAccount(data))
-            .then(dataWithUnspentAddressesHashes => {
+            .then((data) => mapUnspentAddressesHashesToAccount(data))
+            .then((dataWithUnspentAddressesHashes) => {
                 dispatch(generateSyncingCompleteAlert());
                 dispatch(manualSyncSuccess(dataWithUnspentAddressesHashes));
             })
-            .catch(err => {
+            .catch((err) => {
                 dispatch(generateSyncingErrorAlert(err));
                 dispatch(manualSyncError());
             });
@@ -308,8 +308,8 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
         };
 
         return syncAccount(seed, existingAccountData)
-            .then(newAccountData => dispatch(accountInfoFetchSuccess(newAccountData)))
-            .catch(err => {
+            .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
+            .catch((err) => {
                 if (navigator) {
                     navigator.pop({ animated: false });
                 }
@@ -320,7 +320,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
     };
 };
 
-export const deleteAccount = accountName => dispatch => {
+export const deleteAccount = (accountName) => (dispatch) => {
     dispatch(removeAccount(accountName));
     dispatch(generateAccountDeletedAlert());
 };
@@ -346,8 +346,8 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
     };
 
     return updateAccount(accountName, newTransferBundle, existingAccountData, value > 0)
-        .then(newAccountState => dispatch(updateAccountInfoAfterSpending({ ...newAccountState, ...{ accountName } })))
-        .catch(err => {
+        .then((newAccountState) => dispatch(updateAccountInfoAfterSpending({ ...newAccountState, ...{ accountName } })))
+        .catch((err) => {
             // Most probable reason for error here would be some network communication error
             // for finding transactions associated with new unspent addresses.
             // Account state update should always be atomic.
@@ -357,13 +357,13 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
         });
 };
 
-export const set2FAStatus = payload => ({
+export const set2FAStatus = (payload) => ({
     type: ActionTypes.SET_2FA_STATUS,
     payload,
 });
 
 export const transitionForSnapshot = (seed, addresses) => {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(snapshotTransitionRequest());
         if (addresses.length > 0) {
             dispatch(getBalanceForCheck(addresses));
@@ -377,12 +377,12 @@ export const transitionForSnapshot = (seed, addresses) => {
 };
 
 export const completeSnapshotTransition = (seed, accountName, addresses) => {
-    return dispatch => {
+    return (dispatch) => {
         iota.api.getBalances(addresses, 1, (error, success) => {
             if (!error) {
-                const allBalances = success.balances.map(a => Number(a));
+                const allBalances = success.balances.map((a) => Number(a));
                 const balance = allBalances.reduce((a, b) => a + b, 0);
-                const lastAddressBalance = takeRight(allBalances.filter(balance => balance > 0));
+                const lastAddressBalance = takeRight(allBalances.filter((balance) => balance > 0));
                 const lastIndexWithBalance = allBalances.lastIndexOf(lastAddressBalance.pop());
                 const relevantBalances = allBalances.slice(0, lastIndexWithBalance + 1);
                 const relevantAddresses = addresses.slice(0, lastIndexWithBalance + 1);
@@ -409,7 +409,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                         const attachToTangleBundle = createAttachToTangleBundle(seed, relevantAddresses);
                         const args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, attachToTangleBundle];
                         dispatch(snapshotAttachToTangleRequest());
-                        iota.api.sendTransfer(...args, error => {
+                        iota.api.sendTransfer(...args, (error) => {
                             if (!error) {
                                 dispatch(updateAccountAfterTransition(accountName, formattedAddresses, balance));
                                 dispatch(snapshotTransitionSuccess());
@@ -443,7 +443,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
 };
 
 export const generateAddressesAndGetBalance = (seed, index) => {
-    return dispatch => {
+    return (dispatch) => {
         const options = {
             index: index,
             total: 20,
@@ -474,11 +474,11 @@ export const createAttachToTangleBundle = (seed, addresses) => {
     return transfers;
 };
 
-export const getBalanceForCheck = addresses => {
-    return dispatch => {
+export const getBalanceForCheck = (addresses) => {
+    return (dispatch) => {
         iota.api.getBalances(addresses, 1, (error, success) => {
             if (!error) {
-                const balances = success.balances.map(a => Number(a));
+                const balances = success.balances.map((a) => Number(a));
                 const balance = balances.reduce((a, b) => a + b, 0);
                 dispatch(updateTransitionBalance(balance));
                 dispatch(switchBalanceCheckToggle());
@@ -491,7 +491,7 @@ export const getBalanceForCheck = addresses => {
     };
 };
 
-export const setFingerprintStatus = payload => ({
+export const setFingerprintStatus = (payload) => ({
     type: ActionTypes.SET_FINGERPRINT_STATUS,
     payload,
 });

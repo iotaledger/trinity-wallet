@@ -246,8 +246,8 @@ class PaperWallet extends Component {
 
             // Doesn't convert to PDF for android.
             if (isIOS) {
-                Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then(item =>
-                    item.forEach(i => RNFS.unlink(i.path)),
+                Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then((item) =>
+                    item.forEach((i) => RNFS.unlink(i.path)),
                 );
             }
         }
@@ -534,7 +534,7 @@ class PaperWallet extends Component {
                                 <Text style={styles.checksumText}>{checksum}</Text>
                             </View>
                         </View>
-                        <QRCode value={seed} getRef={c => (this.svg = c)} size={width / 3.4} />
+                        <QRCode value={seed} getRef={(c) => (this.svg = c)} size={width / 3.4} />
                     </View>
                     <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onCheckboxPress()}>
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />
@@ -565,7 +565,7 @@ class PaperWallet extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,

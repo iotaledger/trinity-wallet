@@ -99,13 +99,13 @@ export class Poll extends Component {
 
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.getAccountInfo(seed, selectedAccountName);
                 }
             })
-            .catch(err => console.error(err)); // eslint-disable-line no-console
+            .catch((err) => console.error(err)); // eslint-disable-line no-console
     }
 
     startBackgroundProcesses() {
@@ -146,7 +146,7 @@ export class Poll extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,

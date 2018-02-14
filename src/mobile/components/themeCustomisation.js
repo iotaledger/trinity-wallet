@@ -227,7 +227,7 @@ class ThemeCustomisation extends Component {
                     <View style={styles.topContainer}>
                         <View style={{ zIndex: 2 }}>
                             <Dropdown
-                                onRef={c => {
+                                onRef={(c) => {
                                     this.dropdown = c;
                                 }}
                                 title={t('theme')}
@@ -236,7 +236,7 @@ class ThemeCustomisation extends Component {
                                 shadow
                                 defaultOption={themeName}
                                 options={themes}
-                                saveSelection={selection => {
+                                saveSelection={(selection) => {
                                     const newTHEMES = cloneDeep(THEMES);
                                     let newTheme = newTHEMES.themes[selection];
                                     if (selection === 'Custom' && this.props.themeName === 'Custom') {

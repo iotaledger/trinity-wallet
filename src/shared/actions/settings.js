@@ -22,7 +22,7 @@ const currencyDataFetchRequest = () => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_REQUEST,
 });
 
-const currencyDataFetchSuccess = payload => ({
+const currencyDataFetchSuccess = (payload) => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
     payload,
 });
@@ -31,7 +31,7 @@ const currencyDataFetchError = () => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_ERROR,
 });
 
-export const setRandomlySelectedNode = payload => ({
+export const setRandomlySelectedNode = (payload) => ({
     type: ActionTypes.SET_RANDOMLY_SELECTED_NODE,
     payload,
 });
@@ -45,13 +45,13 @@ export function setLocale(locale) {
 
 export function getCurrencyData(currency, withAlerts = false) {
     const url = 'https://api.fixer.io/latest?base=USD';
-    return dispatch => {
+    return (dispatch) => {
         dispatch(currencyDataFetchRequest());
 
         return fetch(url)
             .then(
-                response => response.json(),
-                error => {
+                (response) => response.json(),
+                (error) => {
                     dispatch(currencyDataFetchError());
 
                     if (withAlerts) {
@@ -65,7 +65,7 @@ export function getCurrencyData(currency, withAlerts = false) {
                     }
                 },
             )
-            .then(json => {
+            .then((json) => {
                 const conversionRate = get(json, `rates.${currency}`) || 1;
                 dispatch(
                     currencyDataFetchSuccess({
@@ -103,7 +103,7 @@ export const invalidServerError = () => {
 };
 
 export function setFullNode(fullNode) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({
             type: ActionTypes.SET_FULLNODE,
             payload: fullNode,
@@ -112,7 +112,7 @@ export function setFullNode(fullNode) {
 }
 
 export function addCustomPoWNode(customNode) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({
             type: ActionTypes.ADD_CUSTOM_POW_NODE,
             payload: customNode,
@@ -121,7 +121,7 @@ export function addCustomPoWNode(customNode) {
 }
 
 export function addCustomNode(customNode) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({
             type: ActionTypes.ADD_CUSTOM_NODE,
             payload: customNode,
@@ -130,7 +130,7 @@ export function addCustomNode(customNode) {
 }
 
 export function updateTheme(theme, themeName) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({
             type: ActionTypes.UPDATE_THEME,
             theme,

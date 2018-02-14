@@ -199,7 +199,7 @@ class DeleteAccount extends Component {
                                 <Text style={[styles.infoText, textColor]}>{t('enterPassword')}</Text>
                                 <CustomTextInput
                                     label={t('global:password')}
-                                    onChangeText={password => this.setState({ password })}
+                                    onChangeText={(password) => this.setState({ password })}
                                     containerStyle={{ width: width / 1.36 }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
