@@ -49,15 +49,7 @@ class OnboardingButtons extends Component {
     };
 
     render() {
-        const {
-            style,
-            positiveColor,
-            negativeColor,
-            opacity,
-            buttonWidth,
-            containerWidth,
-            onboardingButtonsOverride,
-        } = this.props;
+        const { style, positiveColor, negativeColor, opacity, buttonWidth, containerWidth } = this.props;
         const rightTextColor = { color: positiveColor };
         const rightBorderColor = { borderColor: positiveColor };
         const leftTextColor = { color: negativeColor };
