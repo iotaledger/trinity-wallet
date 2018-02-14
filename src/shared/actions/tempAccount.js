@@ -2,6 +2,7 @@ import i18next from '../i18next.js';
 import cloneDeep from 'lodash/cloneDeep';
 import size from 'lodash/size';
 import get from 'lodash/get';
+import some from 'lodash/some';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
@@ -50,12 +51,12 @@ export const ActionTypes = {
     UPDATE_TRANSITION_ADDRESSES: 'IOTA/TEMP_ACCOUNT/UPDATE_TRANSITION_ADDRESSES',
 };
 
-export const updateTransitionAddresses = payload => ({
+export const updateTransitionAddresses = (payload) => ({
     type: ActionTypes.UPDATE_TRANSITION_ADDRESSES,
     payload,
 });
 
-export const updateTransitionBalance = payload => ({
+export const updateTransitionBalance = (payload) => ({
     type: ActionTypes.UPDATE_TRANSITION_BALANCE,
     payload,
 });
@@ -68,7 +69,7 @@ export const snapshotTransitionRequest = () => ({
     type: ActionTypes.SNAPSHOT_TRANSITION_REQUEST,
 });
 
-export const snapshotTransitionSuccess = payload => ({
+export const snapshotTransitionSuccess = (payload) => ({
     type: ActionTypes.SNAPSHOT_TRANSITION_SUCCESS,
     payload,
 });
@@ -77,7 +78,7 @@ export const snapshotTransitionError = () => ({
     type: ActionTypes.SNAPSHOT_TRANSITION_ERROR,
 });
 
-export const snapshotAttachToTangleRequest = payload => ({
+export const snapshotAttachToTangleRequest = (payload) => ({
     type: ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_REQUEST,
     payload,
 });
@@ -90,7 +91,7 @@ export const getTransfersRequest = () => ({
     type: ActionTypes.GET_TRANSFERS_REQUEST,
 });
 
-export const getTransfersSuccess = payload => ({
+export const getTransfersSuccess = (payload) => ({
     type: ActionTypes.GET_TRANSFERS_SUCCESS,
     payload,
 });
@@ -99,12 +100,12 @@ export const getTransfersError = () => ({
     type: ActionTypes.GET_TRANSFERS_ERROR,
 });
 
-export const setCopiedToClipboard = payload => ({
+export const setCopiedToClipboard = (payload) => ({
     type: ActionTypes.SET_COPIED_TO_CLIPBOARD,
     payload,
 });
 
-export const setReceiveAddress = payload => ({
+export const setReceiveAddress = (payload) => ({
     type: ActionTypes.SET_RECEIVE_ADDRESS,
     payload,
 });
@@ -114,7 +115,7 @@ export const setUsedSeedToLogin = () => ({
     payload: true,
 });
 
-export const setSeedIndex = payload => ({
+export const setSeedIndex = (payload) => ({
     type: ActionTypes.SET_SEED_INDEX,
     payload,
 });
@@ -123,7 +124,7 @@ export const generateNewAddressRequest = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_REQUEST,
 });
 
-export const generateNewAddressSuccess = payload => ({
+export const generateNewAddressSuccess = (payload) => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_SUCCESS,
     payload,
 });
@@ -136,7 +137,7 @@ export const sendTransferRequest = () => ({
     type: ActionTypes.SEND_TRANSFER_REQUEST,
 });
 
-export const sendTransferSuccess = payload => ({
+export const sendTransferSuccess = (payload) => ({
     type: ActionTypes.SEND_TRANSFER_SUCCESS,
     payload,
 });
@@ -150,7 +151,7 @@ export const setReady = () => ({
     payload: true,
 });
 
-export const setSeed = payload => ({
+export const setSeed = (payload) => ({
     type: ActionTypes.SET_SEED,
     payload,
 });
@@ -160,7 +161,7 @@ export const clearSeed = () => ({
     payload: Array(82).join(' '),
 });
 
-export const setSetting = payload => ({
+export const setSetting = (payload) => ({
     type: ActionTypes.SET_SETTING,
     payload,
 });
@@ -169,23 +170,23 @@ export const clearTempData = () => ({
     type: ActionTypes.CLEAR_TEMP_DATA,
 });
 
-export const setPassword = payload => ({
+export const setPassword = (payload) => ({
     type: ActionTypes.SET_PASSWORD,
     payload,
 });
 
-export const setSeedName = payload => ({
+export const setSeedName = (payload) => ({
     type: ActionTypes.SET_SEED_NAME,
     payload,
 });
 
-export const setAdditionalAccountInfo = payload => ({
+export const setAdditionalAccountInfo = (payload) => ({
     type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
     payload,
 });
 
 export const generateNewAddress = (seed, seedName, addresses) => {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(generateNewAddressRequest());
         let index = 0;
 
@@ -282,7 +283,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             return dispatch(makeTransfer(seed, address, value, accountName, transfer));
         }
 
-        const makeTransferWithBalanceCheck = inputs => {
+        const makeTransferWithBalanceCheck = (inputs) => {
             // allBalance -> total balance associated with addresses.
             // Contains balance from addresses regardless of the fact they are spent from.
             // Less than the value user is about to send to -> Not enough balance.
@@ -308,6 +309,25 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                         'error',
                         'Please wait',
                         'Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.',
+                        20000,
+                    ),
+                );
+            }
+
+            // Verify if a user is sending to on of his own addresses.
+            // This would fail if a pre-requisite check for checksums fail.
+            const isSendingToOwnAddress = some(
+                get(inputs, 'inputs'),
+                (input) => iota.utils.addChecksum(input.address, 9, true) === address,
+            );
+
+            if (isSendingToOwnAddress) {
+                dispatch(sendTransferError());
+                return dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:cannotSendToOwn'),
+                        i18next.t('global:cannotSendToOwnExplanation'),
                         20000,
                     ),
                 );
@@ -361,7 +381,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
 };
 
 export const checkForNewAddress = (seedName, addressData, txArray) => {
-    return dispatch => {
+    return (dispatch) => {
         // Check if 0 value transfer
         if (txArray[0].value !== 0) {
             const changeAddress = txArray[txArray.length - 1].address;
@@ -388,12 +408,12 @@ export const checkForNewAddress = (seedName, addressData, txArray) => {
     };
 };
 
-export const randomiseSeed = randomBytesFn => {
-    return dispatch => {
+export const randomiseSeed = (randomBytesFn) => {
+    return (dispatch) => {
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
         let seed = '';
-        randomBytesFn(100).then(bytes => {
-            Object.keys(bytes).forEach(key => {
+        randomBytesFn(100).then((bytes) => {
+            Object.keys(bytes).forEach((key) => {
                 if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
                     const randomNumber = bytes[key] % 27;
                     const randomLetter = charset.charAt(randomNumber);

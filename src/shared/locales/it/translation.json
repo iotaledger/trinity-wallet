@@ -74,7 +74,9 @@
         "autoreattaching": "Ricollegamento automatico al Tangle",
         "autoreattachingExplanation": "Ricollegamento della transazione con hash {{hash}}",
         "autopromoting": "Promozione automatica del trasferimento",
-        "autopromotingExplanation": "Promozione della transazione con hash {{hash}}"
+        "autopromotingExplanation": "Promozione della transazione con hash {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -299,7 +301,9 @@
         "bundleHashCopied": "Hash del pacchetto copiato",
         "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
-        "addressCopiedExplanation": "L'indirizzo è stato copiato negli Appunti."
+        "addressCopiedExplanation": "L'indirizzo è stato copiato negli Appunti.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
@@ -402,5 +406,24 @@
     "transferConfirmation": {
         "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",
         "aMessage": "un messaggio"
+    },
+    "twoFA": {
+        "wrongCode": "Codice errato",
+        "wrongCodeExplanation": "Il codice inserito non è corretto.",
+        "emptyCode": "Codice vuoto",
+        "emptyCodeExplanation": "Si prega di inserire un codice e riprovare.",
+        "keyCopied": "Chiave copiata negli Appunti",
+        "keyCopiedExplanation": "La chiave di autenticazione a 2 fattori è stata copiata negli Appunti.",
+        "addKey": "Aggiungi questa chiave alla tua app di 2FA",
+        "key": "Chiave",
+        "twoFAEnabled": "Autenticazione a 2 fattori abilitata",
+        "twoFAEnabledExplanation": "È stata attivata con successo l'autenticazione a due fattori.",
+        "enterCode": "Inserisci il codice dall'app di 2FA",
+        "code": "Codice"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }

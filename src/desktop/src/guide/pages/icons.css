@@ -5,6 +5,7 @@
         margin: 0 48px 48px 0;
         span {
             display: block;
+            color: var(--body);
         }
         span:nth-child(1) {
             margin-bottom: 8px;

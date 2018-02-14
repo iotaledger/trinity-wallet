@@ -23,9 +23,12 @@ const renderInitialScreen = () => {
     });
 };
 
-export const setRandomIotaNode = store => {
+export const setRandomIotaNode = (store) => {
     const { settings } = store.getState();
     const hasAlreadyRandomized = get(settings, 'hasRandomizedNode');
+
+    // Update provider
+    changeIotaNode(get(settings, 'fullNode'));
 
     if (!hasAlreadyRandomized) {
         const node = getRandomNode();
@@ -36,7 +39,7 @@ export const setRandomIotaNode = store => {
 
 // Initialization function
 // Passed as a callback to persistStore to adjust the rendering time
-export default store => {
+export default (store) => {
     registerScreens(store, Provider);
     translate.setI18n(i18);
 

@@ -21,7 +21,7 @@
     },
     "plugins": ["babel", "react"],
     "rules": {
-        "arrow-parens": [2, "as-needed"],
+        "arrow-parens": [2, "always"],
         "block-scoped-var": 2,
         "brace-style": [2, "1tbs", { "allowSingleLine": true }],
         "curly": [2, "all"],

@@ -173,7 +173,7 @@ class WalletResetRequirePassword extends Component {
                         <View style={styles.midWrapper}>
                             <CustomTextInput
                                 label={t('global:password')}
-                                onChangeText={password => this.setState({ password })}
+                                onChangeText={(password) => this.setState({ password })}
                                 value={this.state.password}
                                 containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'none'}
@@ -203,7 +203,7 @@ class WalletResetRequirePassword extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     password: state.tempAccount.password,
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,

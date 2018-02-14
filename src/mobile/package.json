@@ -10,7 +10,7 @@
     "android:dev": "cross-env NODE_ENV=development ./node_modules/.bin/react-native run-android",
     "ios": "./node_modules/.bin/react-native run-ios",
     "ios:dev": "cross-env NODE_ENV=development ./node_modules/.bin/react-native run-ios",
-    "test": "jest --forceExit",
+    "test": "./node_modules/.bin/jest --forceExit",
     "postinstall": "./node_modules/.bin/rn-nodeify --hack --install",
     "lint": "./node_modules/.bin/eslint --ext .js ."
   },

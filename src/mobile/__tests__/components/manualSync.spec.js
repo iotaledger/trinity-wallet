@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import ManualSync from '../../components/manualSync';
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {
             isSyncing: false,
             backPress: noop,
             onManualSyncPress: noop,
-            t: arg => {
+            t: (arg) => {
                 const translations = {
                     'manualSync:youMayNotice': 'You may notice your device slowing down.',
                     'manualSync:thisMayTake': 'This may take a while.',

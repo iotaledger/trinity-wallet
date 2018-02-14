@@ -13,7 +13,7 @@
         "transferSentMessage": "Deine Transaktion wurde an den Tangle gesendet.",
         "messageSent": "Nachricht gesendet",
         "messageSentMessage": "Deine Nachricht wurde an den Tangle gesendet.",
-        "keyReuse": "Key Wiederverwendung",
+        "keyReuse": "Wiederverwendung des Keys",
         "keyReuseError":
             "Du kannst an diese Adresse nicht senden, da von ihr bereits eine andere Transaktion ausgegangen ist.",
         "invalidResponse": "Ungültige Antwort",
@@ -73,7 +73,9 @@
         "autoreattaching": "Automatisches anhängen an den Tangle",
         "autoreattachingExplanation": "Erneutes anhängen der Transaktion mit dem Hash {{hash}}",
         "autopromoting": "Der Transfer wird autopromoted",
-        "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}"
+        "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -116,7 +118,7 @@
         "seedCopied": "Seed in Zwischenablage kopiert",
         "seedCopiedExplanation":
             "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst oder 60 Sekunden vergangen sind.",
-        "clickToCopy": "Klicke die Schaltfläche unten um den Seed in einen Passwort-Manager zu kopieren.",
+        "clickToCopy": "Klicke die Schaltfläche unten, um den Seed in einen Passwort-Manager zu kopieren.",
         "doNotStore": "Speichere deinen Seed nicht als Klartext.",
         "copyToClipboard": "In die Zwischenablage kopieren"
     },
@@ -296,7 +298,9 @@
         "bundleHashCopied": "Bundle-Hash kopiert",
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
-        "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert."
+        "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -399,5 +403,24 @@
     "transferConfirmation": {
         "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",
         "aMessage": "eine Nachricht"
+    },
+    "twoFA": {
+        "wrongCode": "Falscher Code",
+        "wrongCodeExplanation": "Der von dir eingegebene Code ist falsch.",
+        "emptyCode": "Empty code",
+        "emptyCodeExplanation": "Bitte gebe den Code ein und versuche es erneut.",
+        "keyCopied": "Schlüssel in die Zwischenablage kopiert",
+        "keyCopiedExplanation": "Dein 2FA Schlüssel wurde in die Zwischenablage kopiert.",
+        "addKey": "Füge diesen Schlüssel in deine 2FA App ein",
+        "key": "Schlüssel",
+        "twoFAEnabled": "2FA ist nun aktiviert",
+        "twoFAEnabledExplanation": "Du hast erfolgreich Zwei-Faktor-Authentifizierung aktiviert.",
+        "enterCode": "Gebe den Code aus deiner 2FA App ein",
+        "code": "Code"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }

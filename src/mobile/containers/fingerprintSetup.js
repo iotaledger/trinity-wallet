@@ -121,7 +121,7 @@ class FingerprintEnable extends Component {
                             );
                         }, 300);
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         this.props.generateAlert(
                             'error',
                             t('fingerprintAuthFailed'),
@@ -216,7 +216,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
