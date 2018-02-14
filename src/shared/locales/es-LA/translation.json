@@ -71,7 +71,9 @@
         "autoreattaching": "Auto-revinculando al Tangle",
         "autoreattachingExplanation": "Revinculando la transacción con hash {{hash}}",
         "autopromoting": "Auto-promoviendo la transferencia",
-        "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}"
+        "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
