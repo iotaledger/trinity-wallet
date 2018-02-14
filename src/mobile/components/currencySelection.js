@@ -168,7 +168,7 @@ export class CurrencySelection extends Component {
                     <View style={styles.topContainer}>
                         <View style={{ flex: 1.2 }} />
                         <Dropdown
-                            onRef={c => {
+                            onRef={(c) => {
                                 this.dropdown = c;
                             }}
                             title={t('currency')}

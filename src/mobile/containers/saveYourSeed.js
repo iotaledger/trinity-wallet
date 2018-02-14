@@ -228,7 +228,7 @@ class SaveYourSeed extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     extraColor: state.settings.theme.extraColor,
