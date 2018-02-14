@@ -19,7 +19,7 @@ class Tabs extends Component {
     render() {
         const { children, onPress, currentRoute } = this.props;
 
-        const childComponents = Children.map(children, child =>
+        const childComponents = Children.map(children, (child) =>
             cloneElement(child, {
                 onPress: () => onPress(child.props.name),
                 isActive: child.props.name === currentRoute,
@@ -41,7 +41,7 @@ Tabs.propTypes = {
     barColor: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     currentRoute: state.home.childRoute,
 });
 
