@@ -16,7 +16,13 @@ const getProps = (overrides) =>
                 push: noop,
             },
             setSeedName: noop,
-            t: () => 'foo',
+            t: arg => {
+                const translations = {
+                    'global:mainWallet': 'MAIN ACCOUNT',
+                };
+
+                return translations[arg] ? translations[arg] : 'foo';
+            },
             generateAlert: noop,
             setAdditionalAccountInfo: noop,
             secondaryBackgroundColor: 'white',
@@ -70,6 +76,21 @@ describe('Testing SetSeedName component', () => {
                     inst.onDonePress();
 
                     expect(props.setSeedName).toHaveBeenCalledWith('foo');
+                });
+
+                it('should call update accountName prop in state with text when onChangeText prop method on CustomTextInput is triggered', () => {
+                    const props = getProps();
+
+                    const wrapper = shallow(<SetSeedName {...props} />);
+
+                    expect(wrapper.state('accountName')).toEqual('MAIN ACCOUNT');
+
+                    wrapper
+                        .find('CustomTextInput')
+                        .props()
+                        .onChangeText('foo');
+
+                    expect(wrapper.state('accountName')).toEqual('foo');
                 });
             });
         });
