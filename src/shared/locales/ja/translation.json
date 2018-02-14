@@ -393,5 +393,10 @@
         "twoFAEnabledExplanation": "2要素認証を有効にしました。",
         "enterCode": "2要素認証アプリのコードを入力してください。",
         "code": "コード"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }
