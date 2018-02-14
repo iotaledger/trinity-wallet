@@ -71,7 +71,9 @@
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
         "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}"
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
