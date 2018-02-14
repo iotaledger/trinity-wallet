@@ -280,7 +280,9 @@
         "bundleHashCopied": "绑定哈希值已复制",
         "bundleHashCopiedExplanation": "绑定哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
-        "addressCopiedExplanation": "地址已复制到剪贴板。"
+        "addressCopiedExplanation": "地址已复制到剪贴板。",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
