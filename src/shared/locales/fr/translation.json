@@ -395,7 +395,7 @@
         "code": "Code"
     },
     "chart": {
-        "mcap": "CAP",
+        "mcap": "MCAP",
         "change": "Différence",
         "volume": "Volume (24h)"
     }
