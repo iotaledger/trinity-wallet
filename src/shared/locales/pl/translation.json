@@ -282,7 +282,7 @@
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Adres został skopiowany do schowka.",
         "send": "WYSYŁKA",
-        "receive": "RECEIVE"
+        "receive": "ODBIÓR"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -395,8 +395,8 @@
         "code": "Kod"
     },
     "chart": {
-        "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "mcap": "Market",
+        "change": "Zmiana",
+        "volume": "Wolumen (24h)"
     }
 }
