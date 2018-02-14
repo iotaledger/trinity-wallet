@@ -9,6 +9,7 @@ import withChartData from 'iota-wallet-shared-modules/containers/components/Char
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 import GENERAL from '../theme/general';
+import { translate } from 'react-i18next';
 
 const chartWidth = width * 0.98;
 const chartHeight = height * 0.38;
@@ -117,7 +118,7 @@ class Chart extends PureComponent {
         setCurrency: PropTypes.func.isRequired,
         /* Change chart time frame */
         setTimeframe: PropTypes.func.isRequired,
-        /* Style price to current currency format 
+        /* Style price to current currency format
          * @param {Number} price value to format
          */
         getPriceFormat: PropTypes.func.isRequired,
@@ -214,13 +215,13 @@ class Chart extends PureComponent {
                 </View>
                 <View style={styles.marketDataContainer}>
                     <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={[styles.marketFigureTitle, textColor]}>MCAP</Text> $ {priceData.mcap}
+                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text> $ {priceData.mcap}
                     </Text>
                     <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={styles.marketFigureTitle}>Change</Text> {priceData.change24h}%
+                        <Text style={styles.marketFigureTitle}>{t('chart:change')}</Text> {priceData.change24h}%
                     </Text>
                     <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={styles.marketFigureTitle}>Volume (24h)</Text> $ {priceData.volume}
+                        <Text style={styles.marketFigureTitle}>{t('chart:volume')}</Text> $ {priceData.volume}
                     </Text>
                 </View>
                 <View style={{ flex: 0.2 }} />
@@ -229,4 +230,4 @@ class Chart extends PureComponent {
     }
 }
 
-export default withChartData(Chart);
+export default translate('chart')(withChartData(Chart));
