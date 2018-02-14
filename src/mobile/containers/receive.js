@@ -277,7 +277,7 @@ class Receive extends Component {
                             this.messageField = c;
                         }}
                         label={t('message')}
-                        onChangeText={text => this.setState({ text })}
+                        onChangeText={text => this.setState({ message: text })}
                         containerStyle={{ width: width / 1.2 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
