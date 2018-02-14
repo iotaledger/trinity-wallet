@@ -71,7 +71,9 @@
         "autoreattaching": "Automatyczne ponawianie wiązania do sieci Tangle",
         "autoreattachingExplanation": "Ponowne wiązanie transakcji z hashem {{hash}}",
         "autopromoting": "Autopromocja transferu",
-        "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}"
+        "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
