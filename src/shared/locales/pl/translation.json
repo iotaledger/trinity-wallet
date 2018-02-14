@@ -54,7 +54,7 @@
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
         "somethingWentWrong": "Coś poszło nie tak",
-        "somethingWentWrongExplanation": "Uruchom ponownie aplikację.",
+        "somethingWentWrongExplanation": "Uruchom aplikację ponownie.",
         "node": "Serwer",
         "cannotPerformAction": "Nie można wykonać akcji",
         "cannotPerformActionExplanation": "Aby zresetować portfel, przejdź do ustawień zaawansowanych.",
@@ -73,7 +73,9 @@
         "autoreattaching": "Automatyczne ponawianie wiązania do sieci Tangle",
         "autoreattachingExplanation": "Ponowne wiązanie transakcji z hashem {{hash}}",
         "autopromoting": "Autopromocja transferu",
-        "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}"
+        "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -81,7 +83,7 @@
             "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation":
-            "Seed musi zawierać co najmniej {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
+            "Seed musi zawierać {{maxLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
         "nameInUse": "Konto o tej nazwie już istnieje",
         "nameInUseExplanation": "Proszę użyć unikalnej nazwy konta dla Twojego klucza seed.",
         "enterAccountName": "Wprowadź nazwę konta.",
@@ -125,7 +127,7 @@
             "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation":
-            "Seed musi zawierać {{maxLength}} znaków. Twój seed ma aktualnie {{currentLength}} znaków. Proszę spróbować ponownie.",
+            "Seed musi zawierać {{maxLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
         "seedExplanation":
             "Seed powinien składać się z {{maxLength}} znaków i zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
         "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO KLUCZA SEED"
@@ -207,7 +209,7 @@
         "message": "Wiadomość",
         "send": "WYŚLIJ",
         "invalidAmount": "Wprowadzono niepoprawną ilość",
-        "invalidAmountExplanation": "Proszę wprowadzić numeryczną wartość transakcji.",
+        "invalidAmountExplanation": "Proszę wprowadzić liczbową wartość transakcji.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
         "iotaUnits": "Objaśnienie jednostek IOTA",
         "sendMax": "WYŚLIJ WSZYSTKO"
@@ -240,7 +242,7 @@
         "language": "Język",
         "accountManagement": "Zarządzanie kontem",
         "addNewSeed": "Dodaj nowy seed",
-        "twoFA": "Uwierzytelnienie dwuetapowe (2FA)",
+        "twoFA": "Autoryzacja dwustopniowa",
         "changePassword": "Zmień hasło",
         "advanced": "Ustawienia zaawansowane",
         "logout": "Wyloguj",
@@ -268,7 +270,7 @@
         "fingerprint": "Logowanie odciskiem palca"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Wprowadź hasło, aby zresetować swój portfel.",
+        "enterPassword": "Wprowadź swoje hasło, aby zresetować portfel.",
         "cancel": "ANULUJ",
         "reset": "RESET"
     },
@@ -283,7 +285,7 @@
     },
     "welcome": {
         "thankYou": "Dziękujemy za pobranie portfela IOTA.",
-        "weWillSpend": "Kilka następnych minut spędzimy na Konfiguracji portfela.",
+        "weWillSpend": "Kilka następnych minut spędzimy na konfiguracji portfela.",
         "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces."
     },
     "writeSeedDown": {
@@ -295,7 +297,9 @@
         "bundleHashCopied": "Hash pakietu skopiowany",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
-        "addressCopiedExplanation": "Adres został skopiowany do schowka."
+        "addressCopiedExplanation": "Adres został skopiowany do schowka.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -309,7 +313,7 @@
         "add": "Dodaj"
     },
     "addNewAccount": {
-        "useExistingSeed": "Użyj istniejącego seeda",
+        "useExistingSeed": "Użyj istniejącego klucza seed",
         "createNewSeed": "Stwórz nowy seed"
     },
     "advancedSettings": {
@@ -334,7 +338,7 @@
         "scan": "Zeskanuj swój kod QR"
     },
     "unitInfoModal": {
-        "unitSystem": "JEDNOSTKA MIARY",
+        "unitSystem": "JEDNOSTKI MIARY",
         "trillion": "Bilion",
         "billion": "Miliard",
         "million": "Milion",
@@ -345,7 +349,7 @@
         "areYouSure": "Czy na pewno chcesz usunąć to konto?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
         "thisAction": "Tej czynności nie można cofnąć.",
-        "enterPassword": "Wprowadź hasło, aby usunąć to konto."
+        "enterPassword": "Wprowadź swoje hasło, aby usunąć to konto."
     },
     "manualSync": {
         "pressToSync": "Naciśnij poniższy przycisk, aby zsynchronizować swoje konto.",
@@ -395,5 +399,24 @@
     "transferConfirmation": {
         "youAreAbout": "Masz zamiar wysłać {{contents}} na ten adres",
         "aMessage": "wiadomość"
+    },
+    "twoFA": {
+        "wrongCode": "Błędny kod",
+        "wrongCodeExplanation": "Podany kod jest nieprawidłowy.",
+        "emptyCode": "Kod pusty",
+        "emptyCodeExplanation": "Wprowadź kod i spróbuj ponownie.",
+        "keyCopied": "Klucz został skopiowany do schowka",
+        "keyCopiedExplanation": "Twój klucz dwustopniowej autoryzacji został skopiowany do schowka.",
+        "addKey": "Dodaj ten klucz do aplikacji dwustopniowej autoryzacji",
+        "key": "Klucz",
+        "twoFAEnabled": "Autoryzacja dwustopniowa jest teraz włączona",
+        "twoFAEnabledExplanation": "Pomyślnie włączono funkcję dwustopniowej autoryzacji.",
+        "enterCode": "Wpisz kod z aplikacji dwustopniowej autoryzacji",
+        "code": "Kod"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }

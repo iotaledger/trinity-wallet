@@ -23,7 +23,7 @@ import { getAllAddresses } from './addresses';
 import { getStartingSearchIndexToFetchLatestAddresses } from './transfers';
 import { DEFAULT_BALANCES_THRESHOLD } from '../config';
 
-export const formatFullAddressData = data => {
+export const formatFullAddressData = (data) => {
     const addresses = data.addresses;
     const addressData = Object.assign(
         {},
@@ -55,9 +55,9 @@ export const markAddressSpend = (transfers, addressData) => {
 
     // Iterate over all bundles and sort them between incoming
     // and outgoing transfers
-    transfers.forEach(bundle => {
+    transfers.forEach((bundle) => {
         // Iterate over every bundle entry
-        bundle.forEach(bundleEntry => {
+        bundle.forEach((bundleEntry) => {
             // If bundle address in the list of addresses associated with the seed
             // mark the address as sent
             if (addresses.indexOf(bundleEntry.address) > -1) {
@@ -110,10 +110,10 @@ export const formatTransfers = (transfers, addresses) => {
 
 export const addTransferValues = (transfers, addresses) => {
     // Add transaction value property to each transaction object
-    return transfers.map(arr => {
+    return transfers.map((arr) => {
         /* eslint-disable no-param-reassign */
         arr[0].transferValue = 0;
-        arr.map(obj => {
+        arr.map((obj) => {
             if (addresses.includes(obj.address)) {
                 arr[0].transferValue += obj.value;
             }
@@ -126,10 +126,10 @@ export const addTransferValues = (transfers, addresses) => {
     });
 };
 
-export const calculateBalance = data => {
+export const calculateBalance = (data) => {
     let balance = 0;
     if (Object.keys(data).length > 0) {
-        const balanceArray = Object.values(data).map(x => x.balance);
+        const balanceArray = Object.values(data).map((x) => x.balance);
         balance = balanceArray.reduce((a, b) => a + b);
     }
     return balance;
@@ -143,7 +143,7 @@ export const calculateBalance = data => {
  *
  *   @returns {number} - Total balance
  **/
-export const accumulateBalance = balances =>
+export const accumulateBalance = (balances) =>
     reduce(
         balances,
         (res, val) => {
@@ -156,7 +156,7 @@ export const accumulateBalance = balances =>
         0,
     );
 
-export const deduplicateTransferBundles = transfers => {
+export const deduplicateTransferBundles = (transfers) => {
     const deduplicate = (res, transfer) => {
         const top = transfer[0];
         const bundle = top.bundle;
@@ -183,12 +183,12 @@ export const deduplicateTransferBundles = transfers => {
     };
 
     const aggregated = reduce(transfers, deduplicate, {});
-    return map(aggregated, v => v);
+    return map(aggregated, (v) => v);
 };
 
-export const getUnspentAddresses = addressData => {
+export const getUnspentAddresses = (addressData) => {
     const addresses = Object.keys(addressData);
-    const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
+    const addressesSpendStatus = Object.values(addressData).map((x) => x.spent);
 
     const unspentAddresses = [];
 
@@ -201,9 +201,9 @@ export const getUnspentAddresses = addressData => {
     return unspentAddresses;
 };
 
-export const getPendingTxTailsHashes = transfers => {
+export const getPendingTxTailsHashes = (transfers) => {
     const grabTails = (res, val) => {
-        each(val, v => {
+        each(val, (v) => {
             if (!v.persistence && v.currentIndex === 0) {
                 res.push(v.hash);
             }
@@ -216,8 +216,8 @@ export const getPendingTxTailsHashes = transfers => {
 };
 
 export const markTransfersConfirmed = (transfers, tailHashes) => {
-    return map(transfers, txObjects =>
-        map(txObjects, tx => {
+    return map(transfers, (txObjects) =>
+        map(txObjects, (tx) => {
             const isTail = tx.currentIndex === 0;
             const hash = tx.hash;
             const isUnconfirmed = !tx.persistence;
@@ -275,7 +275,7 @@ const getNodeInfoAsync = () => {
     });
 };
 
-const getTransactionsObjectsAsync = hashes => {
+const getTransactionsObjectsAsync = (hashes) => {
     return new Promise((resolve, reject) => {
         iota.api.getTransactionsObjects(hashes, (err, txs) => {
             if (err) {
@@ -287,7 +287,7 @@ const getTransactionsObjectsAsync = hashes => {
     });
 };
 
-const findTransactionObjectsAsync = args => {
+const findTransactionObjectsAsync = (args) => {
     return new Promise((resolve, reject) => {
         iota.api.findTransactionObjects(args, (err, txs) => {
             if (err) {
@@ -299,7 +299,7 @@ const findTransactionObjectsAsync = args => {
     });
 };
 
-const findTransactionsAsync = args => {
+const findTransactionsAsync = (args) => {
     return new Promise((resolve, reject) => {
         iota.api.findTransactions(args, (err, txs) => {
             if (err) {
@@ -311,7 +311,7 @@ const findTransactionsAsync = args => {
     });
 };
 
-const getLatestInclusionAsync = hashes => {
+const getLatestInclusionAsync = (hashes) => {
     return new Promise((resolve, reject) => {
         iota.api.getLatestInclusion(hashes, (err, states) => {
             if (err) {
@@ -360,10 +360,10 @@ export const mapBalancesToAddresses = (addressData, balances, addresses) => {
  *
  *   @returns {Promise|<object>} - Resolves { balances: [], addresses: [] } after getting latest balances against addresses
  **/
-export const getBalancesWithAddresses = addressData => {
+export const getBalancesWithAddresses = (addressData) => {
     const addresses = keys(addressData);
 
-    return getBalancesAsync(addresses, DEFAULT_BALANCES_THRESHOLD).then(balances => ({
+    return getBalancesAsync(addresses, DEFAULT_BALANCES_THRESHOLD).then((balances) => ({
         balances: get(balances, 'balances'),
         addresses,
     }));
@@ -390,7 +390,7 @@ export const getLatestAddresses = (seed, index) => {
     });
 };
 
-export const getHashesWithPersistence = hashes => {
+export const getHashesWithPersistence = (hashes) => {
     return new Promise((resolve, reject) => {
         iota.api.getLatestInclusion(hashes, (err, states) => {
             if (err) {
@@ -408,7 +408,7 @@ export const getBundleWithPersistence = (tailTxHash, persistence) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(map(bundle, tx => assign({}, tx, { persistence })));
+                resolve(map(bundle, (tx) => assign({}, tx, { persistence })));
             }
         });
     });
@@ -419,8 +419,8 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
         hashes,
         (promise, hash, idx) => {
             return promise
-                .then(result => {
-                    return getBundleWithPersistence(hash, inclusionStates[idx]).then(bundle => {
+                .then((result) => {
+                    return getBundleWithPersistence(hash, inclusionStates[idx]).then((bundle) => {
                         result.push(bundle);
 
                         return result;
@@ -449,7 +449,7 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
  *
  *   @returns {Promise} - Resolves account argument by assigning unspentAddressesHashes (Transaction hashes associated with unspent addresses)
  **/
-export const mapUnspentAddressesHashesToAccount = account => {
+export const mapUnspentAddressesHashesToAccount = (account) => {
     const accountClone = cloneDeep(account);
     const unspentAddresses = getUnspentAddresses(accountClone.addresses);
 
@@ -458,7 +458,7 @@ export const mapUnspentAddressesHashesToAccount = account => {
         return Promise.resolve(accountClone);
     }
 
-    return findTransactionsAsync({ addresses: unspentAddresses }).then(hashes => {
+    return findTransactionsAsync({ addresses: unspentAddresses }).then((hashes) => {
         accountClone.unspentAddressesHashes = hashes;
 
         return accountClone;
@@ -534,28 +534,28 @@ export const getAccountData = (seed, accountName) => {
 
     return getNodeInfoAsync()
         .then(() => getAllAddresses(seed))
-        .then(addresses => {
+        .then((addresses) => {
             data.addresses = addresses;
 
             return findTransactionObjectsAsync({ addresses: data.addresses });
         })
-        .then(txObjects => {
-            each(txObjects, tx => pushIfNotExists(allBundleHashes, tx.bundle)); // Grab all bundle hashes
+        .then((txObjects) => {
+            each(txObjects, (tx) => pushIfNotExists(allBundleHashes, tx.bundle)); // Grab all bundle hashes
 
             return findTransactionObjectsAsync({ bundles: allBundleHashes });
         })
-        .then(bundleObjects => {
+        .then((bundleObjects) => {
             allBundleObjects = bundleObjects;
 
-            each(allBundleObjects, tx => {
+            each(allBundleObjects, (tx) => {
                 if (tx.currentIndex === 0) {
                     pushIfNotExists(tailTransactions, tx); // Keep a copy of all tail transactions to check confirmations
                 }
             });
 
-            return getLatestInclusionAsync(map(tailTransactions, t => t.hash));
+            return getLatestInclusionAsync(map(tailTransactions, (t) => t.hash));
         })
-        .then(states => {
+        .then((states) => {
             const allTxsAsObjects = reduce(
                 tailTransactions,
                 (res, v, i) => {
@@ -585,11 +585,11 @@ export const getAccountData = (seed, accountName) => {
             });
 
             const finalTailTxs = [
-                ...map(allTxsAsObjects.confirmed, t => t),
-                ...map(deduplicatedUnconfirmedTxs, t => t),
+                ...map(allTxsAsObjects.confirmed, (t) => t),
+                ...map(deduplicatedUnconfirmedTxs, (t) => t),
             ];
 
-            each(finalTailTxs, tx => {
+            each(finalTailTxs, (tx) => {
                 const bundle = getBundle(tx, allBundleObjects);
 
                 if (iota.utils.isBundle(bundle)) {
@@ -601,7 +601,7 @@ export const getAccountData = (seed, accountName) => {
 
             return getBalancesAsync(data.addresses, DEFAULT_BALANCES_THRESHOLD);
         })
-        .then(balances => {
+        .then((balances) => {
             each(balances.balances, (balance, idx) => {
                 const balanceAsNumber = parseInt(balance);
                 data.balance += balanceAsNumber;
@@ -641,7 +641,7 @@ export const hasNewTransfers = (existingHashes, newHashes) =>
  *
  *   @returns {Promise<array>}
  **/
-export const getConfirmedTransactionHashes = pendingTxTailHashes => {
+export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
     return getHashesWithPersistence(pendingTxTailHashes).then(({ states, hashes }) =>
         filter(hashes, (hash, idx) => states[idx]),
     );
@@ -661,14 +661,14 @@ export const syncTransfers = (diff, existingAccountState) => {
     const existingAccountStateCopy = cloneDeep(existingAccountState);
 
     return getTransactionsObjectsAsync(diff)
-        .then(txs => {
-            const tailTxs = filter(txs, t => t.currentIndex === 0);
-            const tailTxsHashes = tx => tx.hash;
+        .then((txs) => {
+            const tailTxs = filter(txs, (t) => t.currentIndex === 0);
+            const tailTxsHashes = (tx) => tx.hash;
 
             return getHashesWithPersistence(map(tailTxs, tailTxsHashes));
         })
         .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
-        .then(bundles => {
+        .then((bundles) => {
             const updatedTransfers = [...existingAccountStateCopy.transfers, ...bundles];
 
             return formatTransfers(updatedTransfers, keys(existingAccountStateCopy.addresses));
@@ -700,7 +700,7 @@ export const syncAccount = (seed, existingAccountState) => {
     const addressSearchIndex = getStartingSearchIndexToFetchLatestAddresses(thisStateCopy.addresses);
 
     return getLatestAddresses(seed, addressSearchIndex)
-        .then(newAddressesObjects => {
+        .then((newAddressesObjects) => {
             // Assign latest addresses to addresses dictionary
             thisStateCopy.addresses = { ...thisStateCopy.addresses, ...newAddressesObjects };
 
@@ -716,7 +716,7 @@ export const syncAccount = (seed, existingAccountState) => {
 
             return mapUnspentAddressesHashesToAccount(thisStateCopy);
         })
-        .then(newStateCopy => {
+        .then((newStateCopy) => {
             if (hasNewTransfers(thisStateCopy.unspentAddressesHashes, newStateCopy.unspentAddressesHashes)) {
                 const diff = difference(newStateCopy.unspentAddressesHashes, thisStateCopy.unspentAddressesHashes);
 
@@ -728,7 +728,7 @@ export const syncAccount = (seed, existingAccountState) => {
 
             return Promise.resolve(thisStateCopy.transfers);
         })
-        .then(updatedTransfers => {
+        .then((updatedTransfers) => {
             thisStateCopy.transfers = updatedTransfers;
             thisStateCopy.addresses = markAddressSpend(thisStateCopy.transfers, thisStateCopy.addresses);
 
@@ -736,9 +736,9 @@ export const syncAccount = (seed, existingAccountState) => {
 
             return getConfirmedTransactionHashes(thisStateCopy.pendingTxTailsHashes);
         })
-        .then(confirmedTransactionHashes => {
+        .then((confirmedTransactionHashes) => {
             if (!isEmpty(confirmedTransactionHashes)) {
-                const alreadyConfirmed = tx => !includes(confirmedTransactionHashes, tx);
+                const alreadyConfirmed = (tx) => !includes(confirmedTransactionHashes, tx);
 
                 thisStateCopy.transfers = markTransfersConfirmed(thisStateCopy.transfers, confirmedTransactionHashes);
                 thisStateCopy.pendingTxTailsHashes = filter(thisStateCopy.pendingTxTailsHashes, alreadyConfirmed);
@@ -765,7 +765,7 @@ export const updateAccount = (name, newTransfer, existingAccountState, isValueTr
     const thisStateCopy = cloneDeep(existingAccountState);
 
     // Assign persistence and transferValue props to the newly sent transfer
-    const newTransferBundleWithPersistenceAndTransferValue = map(newTransfer, bundle => ({
+    const newTransferBundleWithPersistenceAndTransferValue = map(newTransfer, (bundle) => ({
         ...bundle,
         ...{ transferValue: -bundle.value, persistence: false },
     }));
@@ -780,16 +780,16 @@ export const updateAccount = (name, newTransfer, existingAccountState, isValueTr
     // Also check if it was a value transfer
     // Only update unconfirmedBundleTails for promotion/reattachment if its a value transfer
     const bundle = get(newTransfer, `[${0}].bundle`);
-    const tailTxs = filter(newTransfer, tx => tx.currentIndex === 0);
+    const tailTxs = filter(newTransfer, (tx) => tx.currentIndex === 0);
 
     if (isValueTransfer) {
         thisStateCopy.unconfirmedBundleTails = merge({}, thisStateCopy.unconfirmedBundleTails, {
-            [bundle]: map(tailTxs, t => ({ ...t, account: name })), // Assign account name to each tx
+            [bundle]: map(tailTxs, (t) => ({ ...t, account: name })), // Assign account name to each tx
         });
     }
 
     // Append new tail transaction hash to pendingTxTailHashes
-    thisStateCopy.pendingTxTailsHashes = [...thisStateCopy.pendingTxTailsHashes, ...map(tailTxs, t => t.hash)];
+    thisStateCopy.pendingTxTailsHashes = [...thisStateCopy.pendingTxTailsHashes, ...map(tailTxs, (t) => t.hash)];
 
     return mapUnspentAddressesHashesToAccount(thisStateCopy);
 };

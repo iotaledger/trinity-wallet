@@ -10,7 +10,7 @@ jest.mock('react-native-keychain', () => ({
     getGenericPassword: () => Promise.resolve({}),
 }));
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {

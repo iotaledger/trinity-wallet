@@ -1,0 +1,25 @@
+.loading {
+    display: flex;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    align-items: center;
+    justify-content: center;
+    background: var(--body-bg);
+    > div {
+        text-align: center;
+    }
+    h1 {
+        margin: 45px 0 12px;
+        font-size: var(--font-size-large);
+        font-weight: 300;
+        color: var(--body);
+    }
+    h2 {
+        font-size: var(--font-size-default);
+        font-weight: 200;
+        color: var(--body);
+    }
+}

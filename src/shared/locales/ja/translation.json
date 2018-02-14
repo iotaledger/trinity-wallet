@@ -56,8 +56,8 @@
         "node": "ノード",
         "cannotPerformAction": "操作を実行できません。",
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
-        "attachToTangleUnavailable": "Tangleにアタッチ出来ません。",
-        "attachToTangleUnavailableExplanation": "選択したノードではTangleにアタッチ出来ません。",
+        "attachToTangleUnavailable": "Tangleに登録出来ません。",
+        "attachToTangleUnavailableExplanation": "選択したノードではTangleに登録出来ません。",
         "wallet": "ウォレット",
         "sent": "送金済",
         "received": "受取済",
@@ -68,10 +68,12 @@
         "bundleHash": "バンドル ハッシュ",
         "addresses": "アドレス",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
-        "autoreattaching": "Tangleに自動リアタッチ",
-        "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションをリアタッチ",
+        "autoreattaching": "Tangleに自動再登録",
+        "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションを再登録",
         "autopromoting": "送金を自動促進",
-        "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進"
+        "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -287,7 +289,9 @@
         "bundleHashCopied": "バンドルハッシュをコピーしました。",
         "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
-        "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。"
+        "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Seedを表示",
@@ -386,5 +390,24 @@
     "transferConfirmation": {
         "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
         "aMessage": "メッセージ"
+    },
+    "twoFA": {
+        "wrongCode": "コードが間違っています。",
+        "wrongCodeExplanation": "入力したコードが正しくありません。",
+        "emptyCode": "コードが入力されていません。",
+        "emptyCodeExplanation": "コードを入力して、もう一度やり直してください。",
+        "keyCopied": "キーをクリップボードにコピーしました。",
+        "keyCopiedExplanation": "2要素認証キーをクリップボードにコピーしました。",
+        "addKey": "2要素認証アプリにキーを追加してください。",
+        "key": "キー",
+        "twoFAEnabled": "2要素認証が有効になりました。",
+        "twoFAEnabledExplanation": "2要素認証を有効にしました。",
+        "enterCode": "2要素認証アプリのコードを入力してください。",
+        "code": "コード"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }

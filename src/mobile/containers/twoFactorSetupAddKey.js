@@ -135,7 +135,7 @@ export class TwoFactorSetupAddKey extends Component {
                     },
                 });
             })
-            .catch(err => console.error(err)); // Generate an alert.
+            .catch((err) => console.error(err)); // Generate an alert.
     }
 
     render() {
@@ -187,7 +187,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
