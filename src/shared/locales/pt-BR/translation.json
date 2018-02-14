@@ -18,8 +18,7 @@
         "invalidResponse": "Resposta inválida",
         "invalidResponseExplanation": "O servidor retornou uma resposta inválida.",
         "invalidResponsePollingExplanation": "O servidor retornou uma resposta inválida ao obter os dados.",
-        "invalidResponseFetchingAccount":
-            "O servidor retornou uma resposta inválida ao transmitir informações da sua conta.",
+        "invalidResponseFetchingAccount": "O servidor retornou uma resposta inválida ao transmitir informações da sua conta.",
         "invalidResponseSendingTransfer": "O servidor retornou uma resposta inválida ao enviar a transferência.",
         "seed": "Seed",
         "back": "VOLTAR",
@@ -72,15 +71,15 @@
         "autoreattaching": "Anexando automaticamente ao Tangle",
         "autoreattachingExplanation": "Anexando transação automaticamente com hash {{hash}}",
         "autopromoting": "Promovendo transferência automaticamente",
-        "autopromotingExplanation": "Promovendo transação com hash {{hash}}"
+        "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
-        "seedInvalidCharsExplanation":
-            "Seeds só podem conter letras maiúsculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
+        "seedInvalidCharsExplanation": "Seeds só podem conter letras maiúsculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
         "seedTooShort": "A Seed é muito curta",
-        "seedTooShortExplanation":
-            "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
+        "seedTooShortExplanation": "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
         "nameInUse": "Nome da conta já está sendo utilizado",
         "nameInUseExplanation": "Por favor, use um nome de conta exclusivo para a sua Seed.",
         "enterAccountName": "Entre um nome de conta.",
@@ -102,8 +101,7 @@
         "passwordTooShort": "A senha é muito curta",
         "passwordTooShortExplanation": "A sua senha deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
         "oldPassword": "Você não pode usar a senha antiga",
-        "oldPasswordExplanation":
-            "Você não pode usar a senha antiga como a nova senha. Por favor, tente novamente com uma nova senha.",
+        "oldPasswordExplanation": "Você não pode usar a senha antiga como a nova senha. Por favor, tente novamente com uma nova senha.",
         "ensureStrongPassword": "Certifique-se de usar uma senha forte de pelo menos 12 caracteres.",
         "currentPassword": "Senha Atual",
         "newPassword": "Nova Senha",
@@ -120,13 +118,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém carateres inválidos",
-        "invalidCharactersExplanation":
-            "Seeds só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
+        "invalidCharactersExplanation": "Seeds só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
         "seedTooShort": "A Seed é muito curta",
-        "seedTooShortExplanation":
-            "Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
-        "seedExplanation":
-            "Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Você não pode usar Seeds com mais de {{maxLength}} caracteres.",
+        "seedTooShortExplanation": "Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
+        "seedExplanation": "Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Você não pode usar Seeds com mais de {{maxLength}} caracteres.",
         "neverShare": "NUNCA REVELE A SUA SEED PARA NINGUÉM"
     },
     "home": {
@@ -161,8 +156,7 @@
         "individualLetters": "Digite letras individuais para tornar o processo mais aleatório."
     },
     "onboardingComplete": {
-        "walletReady":
-            "A carteira está configurada e pronta para ser utilizada. Se desejar efetuar alterações no futuro, utilize o menu Opções."
+        "walletReady": "A carteira está configurada e pronta para ser utilizada. Se desejar efetuar alterações no futuro, utilize o menu Opções."
     },
     "paperWallet": {
         "clickToPrint": "Clique no botão abaixo para imprimir uma cópia em papel da sua seed.",
@@ -181,8 +175,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed removida",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida do clipboard.",
-        "mustSaveYourSeed":
-            "<0><0>Você precisa salvar sua seed com </0><1>pelo menos uma</1><2> das opções listadas abaixo.</2></0>"
+        "mustSaveYourSeed": "<0><0>Você precisa salvar sua seed com </0><1>pelo menos uma</1><2> das opções listadas abaixo.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorreta",
@@ -192,8 +185,7 @@
     },
     "send": {
         "invalidAddress": "Endereço inválido",
-        "invalidAddressExplanation1":
-            "O endereço deve ter {{maxLength}} caracteres e deve conter o código de verificação.",
+        "invalidAddressExplanation1": "O endereço deve ter {{maxLength}} caracteres e deve conter o código de verificação.",
         "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
         "invalidAddressExplanation3": "O endereço contém um código de verificação incorreto.",
         "notEnoughFunds": "Fundos insuficientes",
@@ -213,13 +205,11 @@
     },
     "setPassword": {
         "passwordTooShort": "A senha é muito curta",
-        "passwordTooShortExplanation":
-            "A sua senha deve ter pelo menos {MIN_PASSWORD_LENGTH} caracteres. Neste momento tem {this. state. password. length} caracteres. Por favor tente novamente.",
+        "passwordTooShortExplanation": "A sua senha deve ter pelo menos {MIN_PASSWORD_LENGTH} caracteres. Neste momento tem {this. state. password. length} caracteres. Por favor tente novamente.",
         "passwordMismatch": "As senhas não são iguais",
         "passwordMismatchExplanation": "As senhas digitadas são diferentes. Tente novamente.",
         "nowWeNeedTo": "Agora precisamos criar uma senha.",
-        "anEncryptedCopy":
-            "Um cópia criptografada da sua Seed será guardada no seu dispositivo. Você usará esta senha para acessar sua carteira no futuro.",
+        "anEncryptedCopy": "Um cópia criptografada da sua Seed será guardada no seu dispositivo. Você usará esta senha para acessar sua carteira no futuro.",
         "ensure": "Certifique-se de usar uma senha forte de pelo menos 12 caracteres.",
         "retypePassword": "Digite a Senha Novamente"
     },
@@ -273,10 +263,8 @@
     "walletSetup": {
         "okay": "Ok. Vamos configurar a sua carteira!",
         "doYouAlreadyHaveASeed": "Já possui uma seed que gostaria de utilizar?",
-        "seedExplanation":
-            "A seed IOTA representa, simultaneamente, o nome do utilizador e a senha da sua conta, combinados numa sequência de 81 caracteres.",
-        "explanation":
-            "<0><0>Voce pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder a sua seed, também perderá as suas IOTAS.</4></0>",
+        "seedExplanation": "A seed IOTA representa, simultaneamente, o nome do utilizador e a senha da sua conta, combinados numa sequência de 81 caracteres.",
+        "explanation": "<0><0>Voce pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder a sua seed, também perderá as suas IOTAS.</4></0>",
         "keepSafe": "Por favor, mantenha a sua seed protegida e segura."
     },
     "welcome": {
@@ -286,14 +274,15 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Sua seed é {{maxSeedLength}} caracteres lidos da esquerda para a direita.",
-        "writeDownYourSeed":
-            "<0>Anote suas seed e soma de verificação e </0><1>tenha certeza</1><2> que elas estão corretas.</2>"
+        "writeDownYourSeed": "<0>Anote suas seed e soma de verificação e </0><1>tenha certeza</1><2> que elas estão corretas.</2>"
     },
     "history": {
         "bundleHashCopied": "Pacote hash copiado",
         "bundleHashCopiedExplanation": "O pacote hash foi copiado para o clipboard.",
         "addressCopied": "Endereço copiado",
-        "addressCopiedExplanation": "O seu endereço foi copiado para o clipboard."
+        "addressCopiedExplanation": "O seu endereço foi copiado para o clipboard.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Ver seed",
@@ -367,14 +356,11 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "ESTA AÇÃO NÃO PODE SER REVERTIDA.",
-        "warning":
-            "<0><0>Todos os seus dados da carteira, incluindo suas </0><1>seeds, senhas,</1><2> e </2><3>outras informações da conta</3><4> serão perdidas.</4></0>"
+        "warning": "<0><0>Todos os seus dados da carteira, incluindo suas </0><1>seeds, senhas,</1><2> e </2><3>outras informações da conta</3><4> serão perdidas.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable":
-            "Toque o leitor de impressão digital do seu dispositivo para habilitar a autenticação de impressão digital.",
-        "instructionsDisable":
-            "Toque o leitor de impressão digital do seu dispositivo para desabilitar a autenticação de impressão digital.",
+        "instructionsEnable": "Toque o leitor de impressão digital do seu dispositivo para habilitar a autenticação de impressão digital.",
+        "instructionsDisable": "Toque o leitor de impressão digital do seu dispositivo para desabilitar a autenticação de impressão digital.",
         "fingerprintAuthEnabled": "Autenticação de impressão digital habilitada",
         "fingerprintAuthEnabledExplanation": "Você habilitou a autenticação de impressão digital com sucesso.",
         "fingerprintAuthDisabled": "Notificações de impressão digital desabilitadas",
@@ -385,8 +371,7 @@
         "enabled": "Ativado",
         "disabled": "Desativado",
         "fingerprintUnavailable": "Sensor de impressão digital indisponível",
-        "fingerprintUnavailableExplanation":
-            "Seu dispositivo não suporta reconhecimento de impressões digitais ou não foi configurado nas opções do dispositivo.",
+        "fingerprintUnavailableExplanation": "Seu dispositivo não suporta reconhecimento de impressões digitais ou não foi configurado nas opções do dispositivo.",
         "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação de impressão digital.",
         "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação de impressão digital.",
         "instructionsLogin": "Toque o leitor de impressão digital para logar."
@@ -394,5 +379,19 @@
     "transferConfirmation": {
         "youAreAbout": "Você está prestes a enviar {{contents}} para o endereço",
         "aMessage": "uma mensagem"
+    },
+    "twoFA": {
+        "wrongCode": "Wrong code",
+        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "emptyCode": "Empty code",
+        "emptyCodeExplanation": "Please enter a code and try again.",
+        "keyCopied": "Key copied to clipboard",
+        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "addKey": "Add this key to your 2FA app",
+        "key": "Key",
+        "twoFAEnabled": "2FA is now enabled",
+        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "enterCode": "Enter the code from your 2FA app",
+        "code": "Code"
     }
 }
