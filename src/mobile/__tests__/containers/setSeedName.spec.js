@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import PropTypes from 'prop-types';
 import { SetSeedName } from '../../containers/setSeedName';
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {

@@ -1,13 +1,13 @@
 import React from 'react';
-import Button from 'components/UI/Button';
+import Button from 'ui/components/Button';
 import css from './buttons.css';
 
-const variants = ['primary', 'secondary', 'warning', 'extra', 'highlight'];
+const variants = ['primary', 'secondary', 'positive', 'negative', 'extra', 'highlight'];
 
 class Buttons extends React.PureComponent {
     state = {};
 
-    loadingDummy = variant => {
+    loadingDummy = (variant) => {
         this.setState({
             [variant]: true,
         });
