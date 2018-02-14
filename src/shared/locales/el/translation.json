@@ -280,7 +280,9 @@
         "bundleHashCopied": "Πακέτο κατακερματισμού αντιγράφηκε",
         "bundleHashCopiedExplanation": "Το πακέτο κατακερματισμού έχει αντιγραφεί στο Πρόχειρο.",
         "addressCopied": "Η διεύθυνση αντιγράφηκε",
-        "addressCopiedExplanation": "Η διεύθυνση έχει αντιγραφεί στο Πρόχειρο."
+        "addressCopiedExplanation": "Η διεύθυνση έχει αντιγραφεί στο Πρόχειρο.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Προβολή σπόρου",
