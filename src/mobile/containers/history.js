@@ -158,7 +158,7 @@ class History extends Component {
                 t,
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
                 addresses: map(transfer, withValueAndUnit),
-                status: incoming ? t('home:receive') : t('global:send'),
+                status: incoming ? t('history:receive') : t('history:send'),
                 confirmation: computeConfirmationStatus(tx.persistence, incoming),
                 value: round(formatValue(tx.value), 1),
                 unit: formatUnit(tx.value),
