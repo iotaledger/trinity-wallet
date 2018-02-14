@@ -280,7 +280,9 @@
         "bundleHashCopied": "Bundle-Hash kopiert",
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
-        "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert."
+        "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
