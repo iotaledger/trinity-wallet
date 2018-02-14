@@ -393,5 +393,10 @@
         "twoFAEnabledExplanation": "Olet onnistuneesti ottanut käyttöön kaksivaihetunnistautumisen (2FA).",
         "enterCode": "Syötä tunnusluku 2FA-ohjelmasta",
         "code": "Tunnusluku"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }
