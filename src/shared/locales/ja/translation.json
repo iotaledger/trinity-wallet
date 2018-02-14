@@ -280,7 +280,9 @@
         "bundleHashCopied": "バンドルハッシュをコピーしました。",
         "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
-        "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。"
+        "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Seedを表示",
