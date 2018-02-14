@@ -199,7 +199,7 @@ class NewSeedSetup extends Component {
                 if (!error) {
                     let i = 0;
                     let seed = this.props.seed;
-                    Object.keys(bytes).forEach(key => {
+                    Object.keys(bytes).forEach((key) => {
                         if (bytes[key] < 243 && i < 1) {
                             const randomNumber = bytes[key] % 27;
                             const randomLetter = charset.charAt(randomNumber);
@@ -326,7 +326,7 @@ class NewSeedSetup extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     backgroundColor: state.settings.theme.backgroundColor,
     ctaColor: state.settings.theme.ctaColor,

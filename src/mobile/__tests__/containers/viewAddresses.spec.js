@@ -6,7 +6,7 @@ import { Clipboard } from 'react-native';
 import { shallow } from 'enzyme';
 import { ViewAddresses } from '../../containers/viewAddresses';
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {

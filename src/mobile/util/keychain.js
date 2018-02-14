@@ -12,7 +12,7 @@ const keychain = {
     get: () => {
         return new Promise((resolve, reject) => {
             Keychain.getGenericPassword()
-                .then(credentials => {
+                .then((credentials) => {
                     if (isEmpty(credentials)) {
                         resolve(null);
                     } else {
@@ -25,21 +25,21 @@ const keychain = {
                         resolve(payload);
                     }
                 })
-                .catch(err => reject(err));
+                .catch((err) => reject(err));
         });
     },
     clear: () => {
         return new Promise((resolve, reject) => {
             Keychain.resetGenericPassword()
                 .then(() => resolve())
-                .catch(err => reject(err));
+                .catch((err) => reject(err));
         });
     },
     set: (key, value) => {
         return new Promise((resolve, reject) => {
             Keychain.setGenericPassword(key, value)
                 .then(() => resolve())
-                .catch(err => reject(err));
+                .catch((err) => reject(err));
         });
     },
 };
@@ -64,7 +64,7 @@ export const storeSeedInKeychain = async (password, seed, name) => {
     return keychain.set(password, serialize(updatedKeychainInfo));
 };
 
-export const storeTwoFactorAuthKeyInKeychain = async key => {
+export const storeTwoFactorAuthKeyInKeychain = async (key) => {
     const info = await keychain.get();
 
     const { password, data } = info;
@@ -105,14 +105,14 @@ export const getPasswordFromKeychain = async () => {
 
 export const hasDuplicateAccountName = (data, name) => {
     const parsed = parse(data);
-    const hasDuplicate = d => get(d, 'name') === name;
+    const hasDuplicate = (d) => get(d, 'name') === name;
 
     return some(get(parsed, 'accounts'), hasDuplicate);
 };
 
 export const hasDuplicateSeed = (data, seed) => {
     const parsed = parse(data);
-    const hasDuplicate = d => get(d, 'seed') === seed;
+    const hasDuplicate = (d) => get(d, 'seed') === seed;
 
     return some(get(parsed, 'accounts'), hasDuplicate);
 };

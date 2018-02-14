@@ -1,0 +1,43 @@
+.chart {
+    width: 100%;
+    overflow: hidden;
+
+    nav,
+    ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    nav {
+        button,
+        p {
+            margin: 0px;
+        }
+        p {
+            line-height: 21px;
+            font-size: 21px;
+            text-align: center;
+        }
+        button {
+            display: block;
+            span {
+                margin-right: 6px;
+            }
+        }
+    }
+    ul {
+        margin: 0px;
+        padding: 0px;
+        li {
+            font-size: var(--font-size-small);
+            list-style: none;
+        }
+    }
+    > div {
+        width: calc(100% + 55px);
+        > svg {
+            width: 0px;
+            height: 0px;
+        }
+    }
+}

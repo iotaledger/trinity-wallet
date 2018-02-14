@@ -51,7 +51,7 @@ const store = createStore(
     compose(
         applyMiddleware(...middleware),
         autoRehydrate(),
-        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
+        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : (f) => f,
     ),
 );
 

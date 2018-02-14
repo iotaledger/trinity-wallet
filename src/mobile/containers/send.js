@@ -359,7 +359,7 @@ export class Send extends Component {
             case 'qrScanner':
                 modalContent = (
                     <QRScanner
-                        onQRRead={data => this.onQRRead(data)}
+                        onQRRead={(data) => this.onQRRead(data)}
                         hideModal={() => this.hideModal()}
                         backgroundColor={backgroundColor}
                         ctaColor={ctaColor}
@@ -381,7 +381,7 @@ export class Send extends Component {
                         denomination={denomination}
                         address={address}
                         sendTransfer={() => this.sendTransfer()}
-                        hideModal={callback => this.hideModal(callback)}
+                        hideModal={(callback) => this.hideModal(callback)}
                         backgroundColor={backgroundColor}
                         borderColor={{ borderColor: secondaryBackgroundColor }}
                         textColor={{ color: secondaryBackgroundColor }}
@@ -484,9 +484,9 @@ export class Send extends Component {
 
     showModal = () => this.setState({ isModalVisible: true });
 
-    hideModal = callback =>
+    hideModal = (callback) =>
         this.setState({ isModalVisible: false }, () => {
-            const callable = fn => isFunction(fn);
+            const callable = (fn) => isFunction(fn);
 
             if (callable(callback)) {
                 setTimeout(callback);
@@ -522,7 +522,7 @@ export class Send extends Component {
         this.props.getFromKeychainRequest('send', 'makeTransaction');
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
                 if (get(credentials, 'data')) {
@@ -581,12 +581,12 @@ export class Send extends Component {
                     <View style={{ flex: 0.25 }} />
                     <View style={styles.topContainer}>
                         <CustomTextInput
-                            onRef={c => {
+                            onRef={(c) => {
                                 this.addressField = c;
                             }}
                             maxLength={90}
                             label={t('recipientAddress')}
-                            onChangeText={text => this.props.setSendAddressField(text)}
+                            onChangeText={(text) => this.props.setSendAddressField(text)}
                             containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'characters'}
                             autoCorrect={false}
@@ -604,12 +604,12 @@ export class Send extends Component {
                         <View style={{ flex: 0.17 }} />
                         <View style={styles.fieldContainer}>
                             <CustomTextInput
-                                onRef={c => {
+                                onRef={(c) => {
                                     this.amountField = c;
                                 }}
                                 keyboardType={'numeric'}
                                 label={t('amount')}
-                                onChangeText={text => this.onAmountType(text)}
+                                onChangeText={(text) => this.onAmountType(text)}
                                 containerStyle={{ width: width / 1.2 }}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -651,12 +651,12 @@ export class Send extends Component {
                             </View>
                         </View>
                         <CustomTextInput
-                            onRef={c => {
+                            onRef={(c) => {
                                 this.messageField = c;
                             }}
                             keyboardType={'default'}
                             label={t('message')}
-                            onChangeText={text => this.props.setSendMessageField(text)}
+                            onChangeText={(text) => this.props.setSendMessageField(text)}
                             containerStyle={{ width: width / 1.2 }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -735,7 +735,7 @@ export class Send extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
