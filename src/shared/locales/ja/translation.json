@@ -396,7 +396,7 @@
     },
     "chart": {
         "mcap": "時価総額",
-        "change": "Change",
+        "change": "変化率",
         "volume": "取引量(24h)"
     }
 }
