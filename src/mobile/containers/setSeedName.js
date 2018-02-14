@@ -92,7 +92,7 @@ export class SetSeedName extends Component {
         const { t, onboardingComplete, seed } = this.props;
         const trimmedAccountName = trim(this.state.accountName);
 
-        const fetch = accountName => {
+        const fetch = (accountName) => {
             this.props.setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
                 additionalAccountName: accountName,
@@ -109,7 +109,7 @@ export class SetSeedName extends Component {
             } else {
                 keychain
                     .get()
-                    .then(credentials => {
+                    .then((credentials) => {
                         if (isEmpty(credentials)) {
                             return fetch(trimmedAccountName);
                         } else {
@@ -216,7 +216,7 @@ export class SetSeedName extends Component {
                             <View style={{ flex: 0.5 }} />
                             <CustomTextInput
                                 label={t('addAdditionalSeed:accountName')}
-                                onChangeText={text => this.setState({ text })}
+                                onChangeText={(text) => this.setState({ accountName: text })}
                                 containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'words'}
                                 autoCorrect={false}
@@ -257,7 +257,7 @@ export class SetSeedName extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     seedCount: state.account.seedCount,
     onboardingComplete: state.account.onboardingComplete,

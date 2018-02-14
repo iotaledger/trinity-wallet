@@ -105,14 +105,14 @@ class LanguageSelection extends Component {
                     <View style={styles.topContainer}>
                         <View style={{ flex: 0.4 }} />
                         <Dropdown
-                            onRef={c => {
+                            onRef={(c) => {
                                 this.dropdown = c;
                             }}
                             title={t('language')}
                             dropdownWidth={{ width: width / 1.5 }}
                             defaultOption={language}
                             options={I18N_LOCALE_LABELS}
-                            saveSelection={lang => {
+                            saveSelection={(lang) => {
                                 this.languageSelected = lang;
                             }}
                             background

@@ -1,12 +1,10 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
-    // target: 'electron',
     output: {
         path: path.join(__dirname, '..', 'dist'),
         pathinfo: true,
@@ -53,7 +51,7 @@ module.exports = {
                 ),
             },
             {
-                test: /\.(png|jpg|jpeg|svg|ttf)$/,
+                test: /\.(png|jpg|jpeg|svg|ttf|woff)$/,
                 use: [
                     {
                         loader: 'url-loader',
@@ -66,7 +64,7 @@ module.exports = {
             },
             {
                 test: /\.workers?\.js$/,
-                use: { loader: 'worker-loader' },
+                use: [{ loader: 'worker-loader' }, { loader: 'babel-loader' }],
             },
         ],
     },
@@ -80,7 +78,7 @@ module.exports = {
             allChunks: false,
         }),
         new HtmlWebpackPlugin({
-            title: 'IOTA Light Wallet',
+            title: 'Trinity',
             inject: false,
             template: __dirname + '/index.html',
         }),

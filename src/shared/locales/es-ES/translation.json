@@ -74,7 +74,9 @@
         "autoreattaching": "Auto-revinculando al Tangle",
         "autoreattachingExplanation": "Revinculando la transacción con hash {{hash}}",
         "autopromoting": "Auto-promoviendo la transferencia",
-        "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}"
+        "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
@@ -293,13 +295,15 @@
     "writeSeedDown": {
         "yourSeedIs": "Tu Seed tiene {{maxSeedLength}} caracteres leídos de izquierda a derecha.",
         "writeDownYourSeed":
-            "<0>Escribe tu seed y código de verificación y </0><1>vuelve a comprobarlos</1><2>que son correctos.</2>"
+            "<0>Escribe tu seed y código de verificación y </0><1>vuelve a comprobar</1><2> que son correctos.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
-        "addressCopiedExplanation": "La dirección se ha copiado al portapapeles."
+        "addressCopiedExplanation": "La dirección se ha copiado al portapapeles.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -401,5 +405,24 @@
     "transferConfirmation": {
         "youAreAbout": "Estás a punto de enviar {{contents}} a la dirección",
         "aMessage": "un mensaje"
+    },
+    "twoFA": {
+        "wrongCode": "Código incorrecto",
+        "wrongCodeExplanation": "El código que has introducido es incorrecto.",
+        "emptyCode": "Código vacío",
+        "emptyCodeExplanation": "Por favor, introduce el código e inténtalo de nuevo.",
+        "keyCopied": "Clave copiada al portapapeles",
+        "keyCopiedExplanation": "Tu clave 2FA se ha copiado al portapapeles.",
+        "addKey": "Añade esta clave a tu aplicación 2FA",
+        "key": "Clave",
+        "twoFAEnabled": "2FA habilitado",
+        "twoFAEnabledExplanation": "Has habilitado la autenticación de doble factor correctamente.",
+        "enterCode": "Introduce el código de tu aplicación 2FA",
+        "code": "Código"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }
