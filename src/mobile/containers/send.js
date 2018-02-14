@@ -173,12 +173,15 @@ export class Send extends Component {
         return address.match(VALID_SEED_REGEX);
     }
 
-    static isValidAmount(amount) {
+    static isValidAmount(amount, multiplier) {
         const value = parseFloat(amount);
         if (value < 0) {
             return false;
         }
         if (value > 0 && value < 1) {
+            return false;
+        }
+        if (!Number.isInteger(value * multiplier)) {
             return false;
         }
         return !isNaN(value);
@@ -293,10 +296,11 @@ export class Send extends Component {
 
     onSendPress() {
         const { t, amount, address } = this.props;
+        const multiplier = this.getUnitMultiplier();
 
         const addressIsValid = Send.isValidAddress(address);
         const enoughBalance = this.enoughBalance();
-        const amountIsValid = Send.isValidAmount(amount);
+        const amountIsValid = Send.isValidAmount(amount, multiplier);
         const addressCharsAreValid = Send.isValidAddressChars(address);
         if (addressIsValid && enoughBalance && amountIsValid && addressCharsAreValid) {
             return this.showModal();
