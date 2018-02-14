@@ -280,7 +280,9 @@
         "bundleHashCopied": "Paket karması kopyalanır",
         "bundleHashCopiedExplanation": "Paket karması panoya kopyalanmış.",
         "addressCopied": "Adres kopyalandı",
-        "addressCopiedExplanation": "Adres panoya kopyalanmış."
+        "addressCopiedExplanation": "Adres panoya kopyalanmış.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Kaynağı görüntüle",
