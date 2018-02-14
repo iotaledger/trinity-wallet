@@ -393,5 +393,10 @@
         "twoFAEnabledExplanation": "Du hast erfolgreich Zwei-Faktor-Authentifizierung aktiviert.",
         "enterCode": "Gebe den Code aus deiner 2FA App ein",
         "code": "Code"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }
