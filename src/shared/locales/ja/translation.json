@@ -71,7 +71,9 @@
         "autoreattaching": "Tangleに自動再登録",
         "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションを再登録",
         "autopromoting": "送金を自動促進",
-        "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進"
+        "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
