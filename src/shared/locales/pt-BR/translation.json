@@ -280,7 +280,9 @@
         "bundleHashCopied": "Pacote hash copiado",
         "bundleHashCopiedExplanation": "O pacote hash foi copiado para o clipboard.",
         "addressCopied": "Endereço copiado",
-        "addressCopiedExplanation": "O seu endereço foi copiado para o clipboard."
+        "addressCopiedExplanation": "O seu endereço foi copiado para o clipboard.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "Ver seed",
