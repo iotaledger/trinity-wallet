@@ -117,7 +117,7 @@ class EnterPassword extends Component {
                     <View style={styles.midContainer}>
                         <CustomTextInput
                             label={t('global:password')}
-                            onChangeText={text => this.setState({ password: text })}
+                            onChangeText={(text) => this.setState({ password: text })}
                             containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
@@ -153,7 +153,7 @@ EnterPassword.propTypes = {
     isFingerprintEnabled: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     isFingerprintEnabled: state.account.isFingerprintEnabled,
 });
 

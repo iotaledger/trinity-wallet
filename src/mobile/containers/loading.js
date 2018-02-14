@@ -111,7 +111,7 @@ class Loading extends Component {
 
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 const firstSeed = getSeed(credentials.data, 0);
 
                 if (firstUse && !addingAdditionalAccount) {
@@ -128,7 +128,7 @@ class Loading extends Component {
                     this.props.getAccountInfo(firstSeed, selectedAccountName, navigator);
                 }
             })
-            .catch(err => console.log(err)); // Dropdown
+            .catch((err) => console.log(err)); // Dropdown
     }
 
     componentWillReceiveProps(newProps) {
@@ -190,7 +190,7 @@ class Loading extends Component {
                     <View style={styles.animationContainer}>
                         <View>
                             <LottieView
-                                ref={animation => {
+                                ref={(animation) => {
                                     this.animation = animation;
                                 }}
                                 source={loadingAnimationPath}
@@ -221,7 +221,7 @@ class Loading extends Component {
                 <View style={styles.animationContainer}>
                     <View>
                         <LottieView
-                            ref={animation => {
+                            ref={(animation) => {
                                 this.animation = animation;
                             }}
                             source={welcomeAnimationPath}
@@ -235,7 +235,7 @@ class Loading extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     firstUse: state.account.firstUse,
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,

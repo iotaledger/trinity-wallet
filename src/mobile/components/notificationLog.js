@@ -91,7 +91,7 @@ class NotificationLog extends Component {
                     <View style={[styles.line, lineBorder]} />
                     <ListView
                         dataSource={ds.cloneWithRows(trimmedLog)}
-                        renderRow={dataSource => (
+                        renderRow={(dataSource) => (
                             <View>
                                 <Text style={[styles.itemText, textColor]}>
                                     {formatTimeAs.hoursMinutesSecondsDayMonthYear(dataSource.time)} - {dataSource.error}

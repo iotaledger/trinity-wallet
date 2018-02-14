@@ -142,7 +142,7 @@ class ViewSeed extends Component {
         if (this.state.password === this.props.password) {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     const data = get(credentials, 'data');
 
                     if (!data) {
@@ -153,7 +153,7 @@ class ViewSeed extends Component {
                         this.setState({ showSeed: true });
                     }
                 })
-                .catch(err => console.error(err)); // eslint-disable-line no-console
+                .catch((err) => console.error(err)); // eslint-disable-line no-console
         } else {
             this.props.onWrongPassword();
         }
@@ -190,7 +190,7 @@ class ViewSeed extends Component {
                             <View style={styles.textFieldContainer}>
                                 <CustomTextInput
                                     label={t('global:password')}
-                                    onChangeText={password => this.setState({ password })}
+                                    onChangeText={(password) => this.setState({ password })}
                                     containerStyle={{ width: width / 1.2 }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}

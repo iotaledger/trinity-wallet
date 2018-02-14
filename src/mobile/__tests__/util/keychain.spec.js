@@ -25,7 +25,7 @@ describe('Testing keychain util', () => {
         });
 
         it('should return an object with keys password, data and service', () => {
-            return keychainWrapper.get().then(data => {
+            return keychainWrapper.get().then((data) => {
                 expect(Object.keys(data)).toEqual(['password', 'data', 'service']);
             });
         });
@@ -115,7 +115,7 @@ describe('Testing keychain util', () => {
 
         describe('when key passed as an argument is not a string', () => {
             it('should throw with error "Invalid two factor authentication key."', () => {
-                return storeTwoFactorAuthKeyInKeychain(null).catch(err => {
+                return storeTwoFactorAuthKeyInKeychain(null).catch((err) => {
                     expect(err.message).toEqual('Invalid two factor authentication key.');
                 });
             });
@@ -123,7 +123,7 @@ describe('Testing keychain util', () => {
 
         describe('when password prop from getGenericPassword is empty', () => {
             it('should throw with error "Cannot store two factor authentication key. No account information found in keychain."', () => {
-                return storeTwoFactorAuthKeyInKeychain('foo').catch(err => {
+                return storeTwoFactorAuthKeyInKeychain('foo').catch((err) => {
                     expect(err.message).toEqual(
                         'Cannot store two factor authentication key. No account information found in keychain.',
                     );
@@ -141,7 +141,7 @@ describe('Testing keychain util', () => {
             );
 
             it('should throw with error "Cannot store two factor authentication key. No account information found in keychain."', () => {
-                return storeTwoFactorAuthKeyInKeychain('foo').catch(err => {
+                return storeTwoFactorAuthKeyInKeychain('foo').catch((err) => {
                     expect(err.message).toEqual(
                         'Cannot store two factor authentication key. No account information found in keychain.',
                     );
@@ -192,7 +192,7 @@ describe('Testing keychain util', () => {
                 }),
             );
 
-            return getTwoFactorAuthKeyFromKeychain().then(key => expect(key).toEqual('my super secret key'));
+            return getTwoFactorAuthKeyFromKeychain().then((key) => expect(key).toEqual('my super secret key'));
         });
     });
 
@@ -214,7 +214,7 @@ describe('Testing keychain util', () => {
                 }),
             );
 
-            return getPasswordFromKeychain().then(password => expect(password).toEqual('barcelona'));
+            return getPasswordFromKeychain().then((password) => expect(password).toEqual('barcelona'));
         });
     });
 
@@ -260,7 +260,7 @@ describe('Testing keychain util', () => {
         it('should return an empty string if index does not exist in accounts array prop passed as first argument', () => {
             const data = JSON.stringify({ accounts: [{ seed: 'SEED', name: 'bar' }], shared: {} });
 
-            [1, -1, 0.5, null, undefined].forEach(item => expect(getSeed(data, item)).toEqual(''));
+            [1, -1, 0.5, null, undefined].forEach((item) => expect(getSeed(data, item)).toEqual(''));
         });
 
         it('should return seed prop for item at specified index if index exists is accounts array', () => {
@@ -282,7 +282,7 @@ describe('Testing keychain util', () => {
 
         describe('when data prop fetched for keychain is empty', () => {
             it('should throw with error "Something went wrong while updating account name."', () => {
-                return updateAccountNameInKeychain().catch(err => {
+                return updateAccountNameInKeychain().catch((err) => {
                     expect(err.message).toEqual('Something went wrong while updating account name.');
                 });
             });
@@ -330,7 +330,7 @@ describe('Testing keychain util', () => {
 
         describe('when data prop fetched for keychain is empty', () => {
             it('should throw with error "Something went wrong while deleting from keychain."', () => {
-                return deleteFromKeychain().catch(err => {
+                return deleteFromKeychain().catch((err) => {
                     expect(err.message).toEqual('Something went wrong while deleting from keychain.');
                 });
             });
