@@ -395,7 +395,7 @@
         "code": "Kod"
     },
     "chart": {
-        "mcap": "Rynek",
+        "mcap": "Market",
         "change": "Zmiana",
         "volume": "Wolumen (24h)"
     }
