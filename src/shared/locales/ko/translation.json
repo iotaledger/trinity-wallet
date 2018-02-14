@@ -71,7 +71,9 @@
         "autoreattaching": "어태치 자동 재시도중",
         "autoreattachingExplanation": "아래의 트랜잭션 해시를 다시 어태치합니다: {{hash}}",
         "autopromoting": "거래 자동 프로모트 중",
-        "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}"
+        "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
