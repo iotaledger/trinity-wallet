@@ -72,8 +72,8 @@
         "autoreattachingExplanation": "Erneutes anhängen der Transaktion mit dem Hash {{hash}}",
         "autopromoting": "Der Transfer wird autopromoted",
         "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "An eigene Adresse senden",
+        "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -281,8 +281,8 @@
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "SENDEN",
+        "receive": "EMPFANGEN"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -383,7 +383,7 @@
     "twoFA": {
         "wrongCode": "Falscher Code",
         "wrongCodeExplanation": "Der von dir eingegebene Code ist falsch.",
-        "emptyCode": "Empty code",
+        "emptyCode": "Leeres Passwort",
         "emptyCodeExplanation": "Bitte gebe den Code ein und versuche es erneut.",
         "keyCopied": "Schlüssel in die Zwischenablage kopiert",
         "keyCopiedExplanation": "Dein 2FA Schlüssel wurde in die Zwischenablage kopiert.",
@@ -396,7 +396,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "change": "Änderung",
+        "volume": "Volumen (24Std)"
     }
 }
