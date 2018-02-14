@@ -280,7 +280,9 @@
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "已複製地址",
-        "addressCopiedExplanation": "您的地址已複製到剪貼簿。"
+        "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "查看種子",
