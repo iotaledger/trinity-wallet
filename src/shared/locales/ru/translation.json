@@ -71,7 +71,9 @@
         "autoreattaching": "Автоматическое прикрепление к Tangle",
         "autoreattachingExplanation": "Повторное присоединение транзакций с хэш {{hash}}",
         "autopromoting": "Передача автопромотирования",
-        "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}"
+        "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
