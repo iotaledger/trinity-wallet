@@ -18,8 +18,7 @@
         "invalidResponse": "Réponse non valide",
         "invalidResponseExplanation": "Le node a renvoyé une réponse invalide.",
         "invalidResponsePollingExplanation": "Le node a retourné une réponse invalide lors de son interrogation.",
-        "invalidResponseFetchingAccount":
-            "Le node a renvoyé une réponse non valide lors de la récupération des informations de votre compte.",
+        "invalidResponseFetchingAccount": "Le node a renvoyé une réponse non valide lors de la récupération des informations de votre compte.",
         "invalidResponseSendingTransfer": "Le node a renvoyé une réponse invalide lors du transfert.",
         "seed": "Seed",
         "back": "RETOUR",
@@ -58,9 +57,8 @@
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
         "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
-        "attachToTangleUnavailableExplanation":
-            "La fonction Attacher au Tangle n'est pas disponible pour le node sélectionné.",
-        "wallet": "Portefeuille",
+        "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible pour le node sélectionné.",
+        "wallet": "Wallet",
         "sent": "Envoyé",
         "received": "Reçu",
         "sending": "Envoi en cours",
@@ -79,11 +77,9 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
-        "seedInvalidCharsExplanation":
-            "Les seeds ne peuvent être constituées que de lettres majuscules de A à Z et du chiffre 9. Votre seed comporte des caractères invalides. Veuillez réessayer.",
+        "seedInvalidCharsExplanation": "Les seeds ne peuvent être constituées que de lettres majuscules de A à Z et du chiffre 9. Votre seed comporte des caractères invalides. Veuillez réessayer.",
         "seedTooShort": "La seed est trop courte",
-        "seedTooShortExplanation":
-            "Les seeds doivent comporter {{maxLength}} caractères. Votre seed comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
+        "seedTooShortExplanation": "Les seeds doivent comporter {{maxLength}} caractères. Votre seed comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
         "nameInUse": "Nom de compte déjà utilisé",
         "nameInUseExplanation": "Veuillez utiliser un nom de compte unique pour votre seed.",
         "enterAccountName": "Veuillez saisir un nom de compte.",
@@ -105,8 +101,7 @@
         "passwordTooShort": "Le mot de passe est trop court",
         "passwordTooShortExplanation": "Votre mot de passe doit contenir au moins 12 caractères. Veuillez réessayer.",
         "oldPassword": "Impossible de réutiliser l'ancien mot de passe",
-        "oldPasswordExplanation":
-            "Vous ne pouvez pas réutiliser l’ancien mot de passe. Veuillez utiliser un nouveau mot de passe.",
+        "oldPasswordExplanation": "Vous ne pouvez pas réutiliser l’ancien mot de passe. Veuillez utiliser un nouveau mot de passe.",
         "ensureStrongPassword": "Veillez à utiliser un mot de passe complexe composé d'au moins 12 caractères.",
         "currentPassword": "Mot de passe actuel",
         "newPassword": "Nouveau mot de passe",
@@ -116,21 +111,17 @@
         "seedCleared": "Seed effacée",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "seedCopied": "Seed copiée dans le presse-papier",
-        "seedCopiedExplanation":
-            "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
+        "seedCopiedExplanation": "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez votre seed dans un gestionnaire de mot de passe.",
         "doNotStore": "Ne stockez pas votre seed en texte en clair.",
         "copyToClipboard": "Copier dans le presse-papier"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contient des caractères invalides",
-        "invalidCharactersExplanation":
-            "Les seeds ne peuvent être constituées que de lettres majuscules de A à Z et du chiffre 9. Votre seed comporte des caractères invalides. Veuillez réessayer.",
+        "invalidCharactersExplanation": "Les seeds ne peuvent être constituées que de lettres majuscules de A à Z et du chiffre 9. Votre seed comporte des caractères invalides. Veuillez réessayer.",
         "seedTooShort": "La seed est trop courte",
-        "seedTooShortExplanation":
-            "Les seeds doivent comporter au moins {{maxLength}} caractères. Votre seed comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
-        "seedExplanation":
-            "Les seeds doivent comporter {{maxLength}} caractères et doivent contenir des majuscules de A à Z, ou le chiffre 9. Vous ne pouvez pas utiliser les seeds de plus de {{maxLength}} caractères.",
+        "seedTooShortExplanation": "Les seeds doivent comporter au moins {{maxLength}} caractères. Votre seed comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
+        "seedExplanation": "Les seeds doivent comporter {{maxLength}} caractères et doivent contenir des majuscules de A à Z, ou le chiffre 9. Vous ne pouvez pas utiliser les seeds de plus de {{maxLength}} caractères.",
         "neverShare": "NE PARTAGEZ JAMAIS VOTRE SEED"
     },
     "home": {
@@ -165,8 +156,7 @@
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées."
     },
     "onboardingComplete": {
-        "walletReady":
-            "Le portefeuille est maintenant configuré et prêt à l'utilisation. Pour toute modification ultérieure, rendez-vous dans le menu Réglages."
+        "walletReady": "Le portefeuille est maintenant configuré et prêt à l'utilisation. Pour toute modification ultérieure, rendez-vous dans le menu Réglages."
     },
     "paperWallet": {
         "clickToPrint": "Cliquez sur le bouton ci-dessous pour imprimer une copie papier de votre seed.",
@@ -185,8 +175,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed effacée",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
-        "mustSaveYourSeed":
-            "<0><0>Vous devez sauvegarder votre seed avec </0><1>au moins une</1><2> des options citées ci-dessous.</2></0>"
+        "mustSaveYourSeed": "<0><0>Vous devez sauvegarder votre seed avec </0><1>au moins une</1><2> des options citées ci-dessous.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorrecte",
@@ -196,19 +185,19 @@
     },
     "send": {
         "invalidAddress": "Adresse invalide",
-        "invalidAddressExplanation1":
-            "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
+        "invalidAddressExplanation1": "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
         "invalidAddressExplanation2": "L'adresse contient des caractères invalides.",
         "invalidAddressExplanation3": "L'adresse contient un code de vérification invalide.",
         "notEnoughFunds": "Fonds insuffisants",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
         "keyReuse": "Réutilisation de clé",
-        "keyReuseExplanation":
-            "L’adresse vers laquelle vous essayez d'effectuer un transfert a déjà été utilisée. Veuillez choisir une autre adresse.",
+        "keyReuseExplanation": "L’adresse vers laquelle vous essayez d'effectuer un transfert a déjà été utilisée. Veuillez choisir une autre adresse.",
         "recipientAddress": "Adresse du destinataire",
         "amount": "Montant",
         "max": "MAX",
         "message": "Message",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "ENVOYER",
         "invalidAmount": "Montant saisi incorrect",
         "invalidAmountExplanation": "Veuillez saisir une valeur numérique pour le montant de la transaction.",
@@ -218,20 +207,16 @@
     },
     "setPassword": {
         "passwordTooShort": "Le mot de passe est trop court",
-        "passwordTooShortExplanation":
-            "Votre mot de passe doit comporter au moins {{minLength}} caractères. Il comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
+        "passwordTooShortExplanation": "Votre mot de passe doit comporter au moins {{minLength}} caractères. Il comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
         "passwordMismatch": "Les mots de passe ne correspondent pas",
-        "passwordMismatchExplanation":
-            "Les mots de passe que vous avez saisis ne correspondent pas. Veuillez réessayer.",
+        "passwordMismatchExplanation": "Les mots de passe que vous avez saisis ne correspondent pas. Veuillez réessayer.",
         "nowWeNeedTo": "Maintenant nous devons paramétrer un mot de passe.",
-        "anEncryptedCopy":
-            "Une copie chiffrée de votre seed sera stockée sur votre appareil. Vous utiliserez ce mot de passe pour accéder à votre portefeuille à l’avenir.",
+        "anEncryptedCopy": "Une copie chiffrée de votre seed sera stockée sur votre appareil. Vous utiliserez ce mot de passe pour accéder à votre portefeuille à l’avenir.",
         "ensure": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "retypePassword": "Confirmer le mot de passe"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "Vous pouvez utiliser plusieurs seeds avec ce portefeuille. Chaque seed requiert un nom de compte.",
+        "canUseMultipleSeeds": "Vous pouvez utiliser plusieurs seeds avec ce portefeuille. Chaque seed requiert un nom de compte.",
         "youCanAdd": "Vous pouvez ajouter plus de seeds dans le menu Réglages."
     },
     "settings": {
@@ -280,22 +265,18 @@
     "walletSetup": {
         "okay": "Bien ! Configurons votre portefeuille !",
         "doYouAlreadyHaveASeed": "Détenez-vous déjà une seed que vous désirez utiliser ?",
-        "seedExplanation":
-            "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
-        "explanation":
-            "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel portefeuille</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
+        "seedExplanation": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
+        "explanation": "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel wallet</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
         "keepSafe": "Merci de garder votre Seed en sécurité."
     },
     "welcome": {
         "thankYou": "Merci d’avoir téléchargé le portefeuille IOTA.",
         "weWillSpend": "Durant les prochaines minutes, nous allons configurer votre portefeuille.",
-        "reminder":
-            "Vous pourriez être tenté de brûler certaines étapes, mais il est impératif de suivre la procédure complète."
+        "reminder": "Vous pourriez être tenté de brûler certaines étapes, mais il est impératif de suivre la procédure complète."
     },
     "writeSeedDown": {
         "yourSeedIs": "Votre seed se lit de gauche à droite et comporte {{maxSeedLength}} caractères.",
-        "writeDownYourSeed":
-            "<0>Notez votre seed et le code de vérification et </0><1>vérifiez à plusieurs reprises</1><2> qu’ils sont corrects.</2>"
+        "writeDownYourSeed": "<0>Notez votre seed et le code de vérification et </0><1>vérifiez à plusieurs reprises</1><2> qu’ils sont corrects.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
@@ -373,37 +354,28 @@
     "saveSeedConfirmation": {
         "alreadyHave": "J’ai enregistré ma seed",
         "reenter": "Vous allez devoir saisir à nouveau votre seed.",
-        "reenterWarning":
-            "Si votre appareil tombe en panne et vous n’avez pas enregistré votre seed, vous perdrez vos IOTA."
+        "reenterWarning": "Si votre appareil tombe en panne et vous n’avez pas enregistré votre seed, vous perdrez vos IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
-        "warning":
-            "<0><0>Toutes vos données de portefeuille, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
+        "warning": "<0><0>Toutes vos données de wallet, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable":
-            "Toucher le lecteur d’empreinte digitale de votre appareil pour activer l’authentification par empreintes digitales.",
-        "instructionsDisable":
-            "Toucher le lecteur d’empreinte digitale de votre appareil pour désactiver l’authentification par empreintes digitales.",
+        "instructionsEnable": "Toucher le lecteur d’empreinte digitale de votre appareil pour activer l’authentification par empreintes digitales.",
+        "instructionsDisable": "Toucher le lecteur d’empreinte digitale de votre appareil pour désactiver l’authentification par empreintes digitales.",
         "fingerprintAuthEnabled": "Authentification par empreintes digitales activée",
-        "fingerprintAuthEnabledExplanation":
-            "Vous avez correctement activé l’authentification par empreintes digitales.",
+        "fingerprintAuthEnabledExplanation": "Vous avez correctement activé l’authentification par empreintes digitales.",
         "fingerprintAuthDisabled": "Authentification par empreintes digitales désactivée",
-        "fingerprintAuthDisabledExplanation":
-            "Vous avez correctement désactivé l’authentification par empreintes digitales.",
+        "fingerprintAuthDisabledExplanation": "Vous avez correctement désactivé l’authentification par empreintes digitales.",
         "fingerprintAuthFailed": "Échec de l’authentification par empreinte digitale",
         "fingerprintAuthFailedExplanation": "Échec d'authentification. Veuillez réessayer.",
         "status": "Statut",
         "enabled": "Activé",
         "disabled": "Désactivé",
         "fingerprintUnavailable": "Capteur d'empreintes digitales non disponible",
-        "fingerprintUnavailableExplanation":
-            "Votre appareil ne supporte pas de reconnaissance d’empreintes digitales ou il n’a pas été configuré dans les paramètres.",
-        "buttonInstructionsDisable":
-            "Appuyez sur le bouton ci-dessous pour désactiver l’authentification d’empreintes digitales.",
-        "buttonInstructionsEnable":
-            "Appuyez sur le bouton ci-dessous pour activer l’authentification d’empreintes digitales.",
+        "fingerprintUnavailableExplanation": "Votre appareil ne supporte pas de reconnaissance d’empreintes digitales ou il n’a pas été configuré dans les paramètres.",
+        "buttonInstructionsDisable": "Appuyez sur le bouton ci-dessous pour désactiver l’authentification d’empreintes digitales.",
+        "buttonInstructionsEnable": "Appuyez sur le bouton ci-dessous pour activer l’authentification d’empreintes digitales.",
         "instructionsLogin": "Toucher le lecteur d’empreintes digitales pour ouvrir une session."
     },
     "transferConfirmation": {
