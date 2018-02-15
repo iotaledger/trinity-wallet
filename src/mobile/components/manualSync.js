@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const ManualSync = props => (
+const ManualSync = (props) => (
     <View style={styles.container}>
         <View style={styles.topContainer}>
             <View style={{ flex: 0.8 }} />

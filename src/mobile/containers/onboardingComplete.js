@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'reac
 import PropTypes from 'prop-types';
 import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
@@ -121,4 +122,4 @@ class OnboardingComplete extends Component {
     }
 }
 
-export default translate(['onboardingComplete', 'global'])(OnboardingComplete);
+export default WithBackPressCloseApp()(translate(['onboardingComplete', 'global'])(OnboardingComplete));

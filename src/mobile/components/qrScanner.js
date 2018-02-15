@@ -50,8 +50,12 @@ class QRScanner extends Component {
         backgroundColor: PropTypes.string.isRequired,
         ctaColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
-        ctaBorderColor: PropTypes.string.isRequired,
+        ctaBorderColor: PropTypes.string,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+    };
+
+    static defaultProps = {
+        ctaBorderColor: 'transparent',
     };
 
     componentWillMount() {
@@ -75,7 +79,7 @@ class QRScanner extends Component {
                 <View style={{ alignItems: 'center', backgroundColor }}>
                     <View style={{ height: height / 12 }} />
                     <Text style={[styles.qrInfoText, { color: secondaryBackgroundColor }]}>{t('scan')}</Text>
-                    <QRCodeScanner onRead={data => this.props.onQRRead(data.data)} />
+                    <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
                     <View style={{ paddingBottom: height / 15 }}>
                         <TouchableOpacity
                             style={[styles.closeButton, { backgroundColor: ctaColor }, { borderColor: ctaBorderColor }]}

@@ -10,7 +10,7 @@
     "android:dev": "cross-env NODE_ENV=development ./node_modules/.bin/react-native run-android",
     "ios": "./node_modules/.bin/react-native run-ios",
     "ios:dev": "cross-env NODE_ENV=development ./node_modules/.bin/react-native run-ios",
-    "test": "jest --forceExit",
+    "test": "./node_modules/.bin/jest --forceExit",
     "postinstall": "./node_modules/.bin/rn-nodeify --hack --install",
     "lint": "./node_modules/.bin/eslint --ext .js ."
   },
@@ -72,6 +72,7 @@
     "react-native-qrcode-svg": "^5.0.3",
     "react-native-randombytes": "^3.0.0",
     "react-native-safe-area-view": "^0.2.0",
+    "react-native-securerandom": "^0.1.1",
     "react-native-svg": "^6.0.1-rc.1",
     "react-native-tcp": "^3.3.0",
     "react-native-timer": "^1.3.1",

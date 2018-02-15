@@ -6,20 +6,12 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-white.png';
 import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-black.png';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
-import { Navigation } from 'react-native-navigation';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Text,
-    Image,
-    TouchableWithoutFeedback,
-    Keyboard,
-    BackHandler,
-    TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
+import WithBackPressGoToHome from '../components/withBackPressGoToHome';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import Fonts from '../theme/Fonts';
 import StatefulDropdownAlert from './statefulDropdownAlert';
@@ -97,13 +89,6 @@ class FingerprintEnable extends Component {
         this.navigateToHome = this.navigateToHome.bind(this);
     }
 
-    componentDidMount() {
-        BackHandler.addEventListener('newSeedSetupBackPress', () => {
-            this.navigateToHome();
-            return true;
-        });
-    }
-
     componentWillUnmount() {
         FingerprintScanner.release();
     }
@@ -136,7 +121,7 @@ class FingerprintEnable extends Component {
                             );
                         }, 300);
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         this.props.generateAlert(
                             'error',
                             t('fingerprintAuthFailed'),
@@ -231,7 +216,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
@@ -239,6 +224,6 @@ const mapStateToProps = state => ({
     isFingerprintEnabled: state.account.isFingerprintEnabled,
 });
 
-export default translate(['fingerprintSetup', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(FingerprintEnable),
+export default WithBackPressGoToHome()(
+    translate(['fingerprintSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(FingerprintEnable)),
 );

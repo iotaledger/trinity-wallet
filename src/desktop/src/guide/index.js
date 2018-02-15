@@ -7,12 +7,12 @@ import { BrowserRouter as Router, withRouter, NavLink, Switch, Route } from 'rea
 
 import { translate, I18nextProvider } from 'react-i18next';
 
-import 'components/App.css';
+import 'ui/index.css';
 
-import Logo from 'components/UI/Logo';
-import Theme from 'components/UI/Theme';
-import Alerts from 'components/UI/Alerts';
-import Notifications from 'components/UI/Notifications';
+import Logo from 'ui/components/Logo';
+import Theme from 'ui/global/Theme';
+import Alerts from 'ui/global/Alerts';
+import Notifications from 'ui/global/Notifications';
 import ThemePicker from './ThemePicker';
 
 import i18next from '../libs/i18next';
@@ -25,6 +25,7 @@ import Modals from './pages/Modals';
 import Typography from './pages/Typography';
 import Lists from './pages/Lists';
 import Icons from './pages/Icons';
+import Modify from './pages/Modify';
 
 const Intro = () => {
     return (
@@ -61,6 +62,7 @@ class Guide extends React.Component {
                         <NavLink to="/inputs">Inputs</NavLink>
                         <NavLink to="/modals">Modals & Alerts</NavLink>
                         <NavLink to="/lists">Lists</NavLink>
+                        <NavLink to="/modify">Modify theme</NavLink>
                     </nav>
                     <hr />
                     <ThemePicker />
@@ -74,6 +76,7 @@ class Guide extends React.Component {
                         <Route path="/modals" component={Modals} />
                         <Route path="/typography" component={Typography} />
                         <Route path="/lists" component={Lists} />
+                        <Route path="/modify" component={Modify} />
                         <Route path="/" component={Intro} />
                     </Switch>
                 </section>

@@ -5,6 +5,9 @@ const buildTarget = process.env.BUILD_TARGET || 'main';
 
 if (buildTarget === 'styleguide') {
     config.entry = ['babel-polyfill', './src/guide/index.js'];
+    config.target = 'web';
+} else {
+    config.target = 'electron-renderer';
 }
 
 config.plugins = [
@@ -14,8 +17,6 @@ config.plugins = [
         },
     }),
 ].concat(config.plugins);
-
-config.target = 'electron-renderer';
 
 config.output.publicPath = '../dist/';
 config.output.pathinfo = false;
