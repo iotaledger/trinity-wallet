@@ -5,7 +5,6 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import isNull from 'lodash/isNull';
 import omitBy from 'lodash/omitBy';
-import has from 'lodash/has';
 import size from 'lodash/size';
 import reduce from 'lodash/reduce';
 import { DEFAULT_TAG, DEFAULT_SECURITY } from '../config';
