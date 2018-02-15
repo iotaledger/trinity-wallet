@@ -121,8 +121,7 @@
         "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
-        "seedExplanation":
-            "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
+        "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
         "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
@@ -197,6 +196,8 @@
         "amount": "金额",
         "max": "最大",
         "message": "信息",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "发送",
         "invalidAmount": "输入的金额不正确",
         "invalidAmountExplanation": "请输入交易记录金额的数值。",
@@ -206,8 +207,7 @@
     },
     "setPassword": {
         "passwordTooShort": "密码太短",
-        "passwordTooShortExplanation":
-            "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
+        "passwordTooShortExplanation": "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
         "passwordMismatch": "密码不相符",
         "passwordMismatchExplanation": "您输入的密码不匹配。请再试一次。",
         "nowWeNeedTo": "现在我们需要设置一个密码。",
@@ -266,8 +266,7 @@
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-        "explanation":
-            "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
+        "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
         "keepSafe": "请您保管好你的种子."
     },
     "welcome": {
@@ -374,8 +373,7 @@
         "enabled": "Enabled",
         "disabled": "Disabled",
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation":
-            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "instructionsLogin": "Touch fingerprint reader to log in."
