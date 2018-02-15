@@ -161,7 +161,7 @@ export const accumulateBalance = (balances) =>
 /**
  *   Takes in transfer bundles and only keep a single copy
  *
- *   @method accumulateBalance
+ *   @method deduplicateTransferBundles
  *   @param {array} transfers - transfers array
  *
  *   @returns {array} - filtered transfers array
@@ -202,18 +202,26 @@ export const getUnspentAddresses = (addressData) => {
     return unspentAddresses;
 };
 
-export const getPendingTxTailsHashes = (transfers) => {
-    const grabTails = (res, val) => {
-        each(val, (v) => {
-            if (!v.persistence && v.currentIndex === 0) {
-                res.push(v.hash);
+/**
+ *   Takes in transfer bundles and grab hashes for transfer objects that are unconfirmed.
+ *
+ *   @method getPendingTxTailsHashes
+ *   @param {array} bundles - Transfer bundles
+ *
+ *   @returns {array} - array of transfer hashes
+ **/
+export const getPendingTxTailsHashes = (bundles) => {
+    const grabHashesFromTails = (acc, transfers) => {
+        each(transfers, (tx) => {
+            if (tx.currentIndex === 0 && !tx.persistence) {
+                acc.push(tx.hash);
             }
         });
 
-        return res;
+        return acc;
     };
 
-    return reduce(transfers, grabTails, []);
+    return reduce(bundles, grabHashesFromTails, []);
 };
 
 export const markTransfersConfirmed = (transfers, tailHashes) => {
