@@ -97,11 +97,11 @@ class DeleteAccount extends Component {
         backgroundColor: PropTypes.string.isRequired,
         currentAccountName: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
-        textColor: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        borderColor: PropTypes.string.isRequired,
-        arrowLeftImagePath: PropTypes.string.isRequired,
-        tickImagePath: PropTypes.string.isRequired,
+        borderColor: PropTypes.object.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        tickImagePath: PropTypes.number.isRequired,
     };
 
     constructor() {
@@ -199,7 +199,7 @@ class DeleteAccount extends Component {
                                 <Text style={[styles.infoText, textColor]}>{t('enterPassword')}</Text>
                                 <CustomTextInput
                                     label={t('global:password')}
-                                    onChangeText={password => this.setState({ password })}
+                                    onChangeText={(password) => this.setState({ password })}
                                     containerStyle={{ width: width / 1.36 }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}

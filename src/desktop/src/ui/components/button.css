@@ -1,0 +1,171 @@
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.button {
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    height: 42px;
+    line-height: 40px;
+    font-size: var(--font-size-s);
+    letter-spacing: 0.2px;
+    min-width: 140px;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 200;
+    padding: 0 24px 0;
+    user-select: none;
+    overflow: visible;
+    transition: padding 0.2s cubic-bezier(0.55, 0, 0.1, 1);
+    &:focus {
+        outline: none;
+    }
+    &.small {
+        padding: 0 16px;
+        height: 32px;
+        line-height: 32px;
+        min-width: 30px;
+        border-radius: 2px;
+    }
+    &:disabled,
+    &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    &:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 18px;
+        width: 16px;
+        height: 16px;
+        margin: -8px 0 0 -8px;
+        border-radius: 50%;
+        border: 1px solid transparent;
+        border-top-color: var(--color-Border);
+        opacity: 0;
+    }
+}
+
+footer .button + .button {
+    margin-left: 20px;
+}
+
+.primary {
+    composes: button;
+    color: var(--primary-body);
+    background: var(--primary);
+    &:hover {
+        background: var(--primary-hover);
+    }
+}
+
+.secondary {
+    composes: button;
+    color: var(--secondary-body);
+    background: var(--secondary);
+    &:hover {
+        background: var(--secondary-hover);
+    }
+}
+
+.positive {
+    composes: button;
+    color: var(--positive-body);
+    background: var(--positive);
+    &:hover {
+        background: var(--positive-hover);
+    }
+}
+
+.negative {
+    composes: button;
+    color: var(--negative-body);
+    background: var(--negative);
+    &:hover {
+        background: var(--negative-hover);
+    }
+}
+
+.highlight {
+    composes: button;
+    color: var(--highlight-body);
+    background: var(--highlight);
+    &:hover {
+        background: var(--highlight-hover);
+    }
+}
+
+.extra {
+    composes: button;
+    color: var(--extra-body);
+    background: var(--extra);
+    &:hover {
+        background: var(--extra-hover);
+        border-color: var(--extra-hover);
+    }
+}
+
+.outline {
+    background: none;
+    border: 1px solid;
+
+    &:hover {
+        background: none;
+    }
+
+    &.primary {
+        color: var(--primary);
+        &:hover {
+            color: var(--primary-hover);
+        }
+    }
+
+    &.secondary {
+        color: var(--secondary);
+        &:hover {
+            color: var(--secondary-hover);
+        }
+    }
+    &.positive {
+        color: var(--positive);
+        &:hover {
+            color: var(--positive-hover);
+        }
+    }
+    &.negative {
+        color: var(--negative);
+        &:hover {
+            color: var(--negative-hover);
+        }
+    }
+    &.extra {
+        color: var(--extra);
+        &:hover {
+            color: var(--extra-hover);
+        }
+    }
+    &.highlight {
+        color: var(--highlight);
+        &:hover {
+            color: var(--highlight-hover);
+        }
+    }
+}
+
+.loading {
+    pointer-events: none;
+    padding: 0 12px 0 36px;
+    &:before {
+        transition: all 0.8s cubic-bezier(0.55, 0, 0.1, 1);
+        opacity: 1;
+        animation: spin 0.6s ease infinite;
+    }
+}

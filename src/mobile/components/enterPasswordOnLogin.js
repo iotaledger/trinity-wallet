@@ -13,16 +13,15 @@ import CustomTextInput from './customTextInput';
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 1.2,
+        flex: 2.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 3.6,
         width,
         alignItems: 'center',
-        paddingTop: height / 5,
     },
     bottomContainer: {
         flex: 0.7,
@@ -74,7 +73,7 @@ class EnterPasswordOnLogin extends Component {
         });
     }
 
-    handleChangeText = password => this.props.setLoginPasswordField(password);
+    handleChangeText = (password) => this.props.setLoginPasswordField(password);
 
     handleLogin = () => {
         const { onLoginPress, password } = this.props;
@@ -139,7 +138,7 @@ EnterPasswordOnLogin.propTypes = {
     activateFingerPrintScanner: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     isFingerprintEnabled: state.account.isFingerprintEnabled,
 });
 

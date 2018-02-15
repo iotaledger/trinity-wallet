@@ -1,10 +1,10 @@
 import React from 'react';
 
-import PasswordInput from 'components/UI/input/Password';
-import SeedInput from 'components/UI/input/Seed';
-import AmountInput from 'components/UI/input/Amount';
-import MessageInput from 'components/UI/input/Message';
-import Select from 'components/UI/input/Select';
+import PasswordInput from 'ui/components/input/Password';
+import SeedInput from 'ui/components/input/Seed';
+import AmountInput from 'ui/components/input/Amount';
+import MessageInput from 'ui/components/input/Message';
+import Select from 'ui/components/input/Select';
 
 class Inputs extends React.PureComponent {
     state = {
@@ -30,26 +30,26 @@ class Inputs extends React.PureComponent {
                         value={this.state.password}
                         label="Password"
                         name="password"
-                        onChange={value => this.setState({ password: value })}
+                        onChange={(value) => this.setState({ password: value })}
                     />
                     <SeedInput
                         seed={this.state.seed}
                         label="Seed"
                         closeLabel="Back"
-                        onChange={value => this.setState({ seed: value })}
+                        onChange={(value) => this.setState({ seed: value })}
                     />
                     <AmountInput
                         amount={this.state.ammount}
                         settings={{ currency: 'USD' }}
-                        label="Ammount"
-                        labelMax="Max"
+                        label="Amount"
+                        labelMax="Send maximum"
                         balance={2000}
-                        onChange={value => this.setState({ ammount: value })}
+                        onChange={(value) => this.setState({ ammount: value })}
                     />
                     <MessageInput
                         message={this.state.message}
                         label="Auto size"
-                        onChange={value => this.setState({ message: value })}
+                        onChange={(value) => this.setState({ message: value })}
                     />
                 </form>
             </div>

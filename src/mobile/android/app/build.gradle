@@ -168,12 +168,13 @@ dependencies {
   	compile project(':react-native-svg')
     compile project(':react-native-fs')
     compile project(':react-native-keychain')
-    compile("com.crashlytics.sdk.android:crashlytics:2.6.4@aar") {
-            transitive = true;
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
+        transitive = true;
     }
     compile "com.android.support:multidex:1.0.1"
     compile project(':lottie-react-native')
     compile project(':react-native-exit-app')
+    compile project(':react-native-securerandom')
 }
 
 // Run this once to be able to run the application with BUCK
