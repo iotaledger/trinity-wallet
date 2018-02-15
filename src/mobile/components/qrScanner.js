@@ -50,8 +50,12 @@ class QRScanner extends Component {
         backgroundColor: PropTypes.string.isRequired,
         ctaColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
-        ctaBorderColor: PropTypes.string.isRequired,
+        ctaBorderColor: PropTypes.string,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+    };
+
+    static defaultProps = {
+        ctaBorderColor: 'transparent',
     };
 
     componentWillMount() {
