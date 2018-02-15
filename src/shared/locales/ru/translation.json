@@ -281,7 +281,7 @@
         "bundleHashCopiedExplanation": "Хэш пакет скопирован в буфер обмена.",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Адрес скопирован в буфер обмена.",
-        "send": "SEND",
+        "send": "Отправление",
         "receive": "Получение"
     },
     "accountManagement": {
