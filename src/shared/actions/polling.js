@@ -5,7 +5,6 @@ import concat from 'lodash/concat';
 import merge from 'lodash/merge';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
-import union from 'lodash/union';
 import size from 'lodash/size';
 import some from 'lodash/some';
 import { getUrlTimeFormat, getUrlNumberFormat, setPrice, setChartData, setMarketData } from './marketData';
@@ -14,15 +13,10 @@ import {
     setNewUnconfirmedBundleTails,
     updateUnconfirmedBundleTails,
     removeBundleFromUnconfirmedBundleTails,
-    setPendingTransactionTailsHashesForAccount,
     updateTransfers,
 } from './account';
 import { getFirstConsistentTail, isWithinADay } from '../libs/promoter';
-import {
-    getSelectedAccount,
-    getExistingUnspentAddressesHashes,
-    getPendingTxTailsHashesForSelectedAccount,
-} from '../selectors/account';
+import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
 import { iota } from '../libs/iota';
 import { syncAccount } from '../libs/accountUtils';
 import { rearrangeObjectKeys } from '../libs/util';
@@ -204,17 +198,12 @@ export const getAccountInfo = (seed, accountName) => {
             accountName,
             getState().account.unspentAddressesHashes,
         );
-        const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
-            accountName,
-            getState().account.pendingTxTailsHashes,
-        );
 
         const existingAccountData = {
             accountName,
             balance: selectedAccount.balance,
             addresses: selectedAccount.addresses,
             unspentAddressesHashes: existingHashes,
-            pendingTxTailsHashes,
             transfers: selectedAccount.transfers,
         };
 
@@ -336,30 +325,21 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                         // Probably unnecessary at this point
                         consistentTails = concat([], newTail, consistentTails);
 
-                        // Update pendingTxTailHashes with the new reattachment
-                        // Also transfers. Possible reattachment to get confirmed.
                         const selectedAccountInfo = getSelectedAccount(txAccount, getState().account.accountInfo);
                         const existingTransfers = selectedAccountInfo.transfers;
-                        const existingPendingTxTailHashes = getPendingTxTailsHashesForSelectedAccount(
-                            txAccount,
-                            getState().account.pendingTxTailsHashes,
-                        );
 
+                        // Prepare/Transform new transfer bundle
                         const newTransferBundleWithPersistenceAndTransferValue = map(newTxs, (bundle) => ({
                             ...bundle,
                             ...{ transferValue: bundle.value, persistence: false },
                         }));
+
+                        // Append new transfer to existing transfers
                         const updatedTransfers = [
                             ...[newTransferBundleWithPersistenceAndTransferValue],
                             ...existingTransfers,
                         ];
 
-                        dispatch(
-                            setPendingTransactionTailsHashesForAccount({
-                                accountName: txAccount,
-                                pendingTxTailsHashes: union(existingPendingTxTailHashes, map(newTail, (tx) => tx.hash)),
-                            }),
-                        );
                         dispatch(updateTransfers(txAccount, updatedTransfers));
 
                         const existingBundlesInStore = getState().account.unconfirmedBundleTails;
