@@ -152,7 +152,7 @@
     "newSeedSetup": {
         "seedNotGenerated": "Ключ не был создан",
         "seedNotGeneratedExplanation": "Пожалуйста, нажмите на кнопку \"Создать новый ключ\".",
-        "pressForNewSeed": "НАЖМИТЕ ДЛЯ НОВОГО КЛЮЧА",
+        "pressForNewSeed": "СОЗДАТЬ НОВЫЙ КЛЮЧ",
         "individualLetters": "Нажмите какие-нибудь клавиши на клавиатуре в случайном порядке."
     },
     "onboardingComplete": {
