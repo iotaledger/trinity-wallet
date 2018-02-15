@@ -100,7 +100,7 @@ export class ViewAddresses extends Component {
             address: iota.utils.addChecksum(address, 9, true),
         }));
 
-        return orderBy(preparedAddresses, 'index', ['desc'])
+        return orderBy(preparedAddresses, 'index', ['desc']);
     }
 
     copy(address) {
@@ -168,9 +168,7 @@ export class ViewAddresses extends Component {
 
         return (
             <View style={styles.container}>
-                <View style={styles.listView}>
-                {addresses}
-                </View>
+                <View style={styles.listView}>{addresses}</View>
                 <View style={{ flex: 0.2 }} />
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity
@@ -193,7 +191,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 

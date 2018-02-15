@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
-
+import { translate } from 'react-i18next';
 import withChartData from 'iota-wallet-shared-modules/containers/components/Chart';
-
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 import GENERAL from '../theme/general';
-import { translate } from 'react-i18next';
 
 const chartWidth = width * 0.98;
 const chartHeight = height * 0.38;

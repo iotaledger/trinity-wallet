@@ -13,7 +13,7 @@ const mapDispatchToProps = {
 };
 
 export default () => C => {
-    class withUserActivity extends Component {
+    class WithUserActivity extends Component {
         componentDidMount() {
             AppState.addEventListener('change', this.handleAppStateChange);
         }
@@ -36,10 +36,10 @@ export default () => C => {
         }
     }
 
-    withUserActivity.propTypes = {
+    WithUserActivity.propTypes = {
         setUserActivity: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
     };
 
-    return translate(['global'])(connect(null, mapDispatchToProps)(withUserActivity));
+    return translate(['global'])(connect(null, mapDispatchToProps)(WithUserActivity));
 };
