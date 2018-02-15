@@ -241,7 +241,7 @@ class NewSeedSetup extends Component {
                 onPress={() => this.onItemPress(index)}
                 style={[styles.tileContainer, { backgroundColor: secondaryBackgroundColor }]}
                 underlayColor={negativeColor}
-                hitSlop={{ top: height / 80, bottom: height / 80, left: width / 80, right: width / 80 }}
+                hitSlop={{ top: height / 80, bottom: height / 80, left: height / 80, right: height / 80 }}
             >
                 <View style={styles.tile}>
                     <Text style={[styles.tileText, { color: backgroundColor, opacity: randomised ? 1 : 0.1 }]}>
