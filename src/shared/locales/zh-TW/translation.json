@@ -121,7 +121,8 @@
         "invalidCharactersExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
         "seedTooShort": "種子碼過短",
         "seedTooShortExplanation": "您的密碼必須至少{{最大的長度}} 字元。目前{{目前長度}} 字元長。請再試一次",
-        "seedExplanation": "種子應{{maxLength}} 字長, 並應包含大寫字母 a-z, 或數字9。您不能使用種子長於{{maxLength}} 字元。",
+        "seedExplanation":
+            "種子應{{maxLength}} 字長, 並應包含大寫字母 a-z, 或數字9。您不能使用種子長於{{maxLength}} 字元。",
         "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {
@@ -175,7 +176,8 @@
     "saveYourSeed": {
         "seedCleared": "種子已清除",
         "seedClearedExplanation": "基於安全理由，種子已從剪貼簿清除",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed":
+            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "錯誤種子",
@@ -264,7 +266,8 @@
         "okay": "好囉。來建置您的錢包！",
         "doYouAlreadyHaveASeed": "您是否已有希望使用的種子碼?",
         "seedExplanation": "IOTA種子碼是由您帳戶的名稱和密碼結合成為81個字元長的字串。",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "請妥善保存您的種子碼"
     },
     "welcome": {
@@ -274,7 +277,8 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
@@ -356,7 +360,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此動作將無法撤銷。",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
@@ -371,7 +376,8 @@
         "enabled": "Enabled",
         "disabled": "Disabled",
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "instructionsLogin": "Touch fingerprint reader to log in."

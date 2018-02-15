@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import HistoryModalContent from '../../components/historyModalContent';
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {
             onPress: noop,
             generateAlert: noop,
-            t: arg => {
+            t: (arg) => {
                 const translations = {
                     'send:message': 'Message',
                     addresses: 'Addresses',

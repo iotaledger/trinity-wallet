@@ -19,7 +19,7 @@ import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.rnfs.RNFSPackage;
 import com.rnprint.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
-
+import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
 import org.iota.mobile.IOTAMobilePackage;
 
 import java.util.Arrays;
@@ -64,7 +64,8 @@ public class MainApplication extends NavigationApplication {
             new KeychainPackage(),
             new LottiePackage(),
             new IOTAMobilePackage(),
-            new RNExitAppPackage()
+            new RNExitAppPackage(),
+            new RNSecureRandomPackage()
     );
   }
 

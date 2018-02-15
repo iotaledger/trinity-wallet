@@ -60,9 +60,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
-    dropdownWidth: {
-        width: width / 1.5,
-    },
 });
 
 const currentLocale = i18next.language;
@@ -112,7 +109,7 @@ class LanguageSelection extends Component {
                                 this.dropdown = c;
                             }}
                             title={t('language')}
-                            dropdownWidth={styles.dropdownWidth}
+                            dropdownWidth={{ width: width / 1.5 }}
                             defaultOption={language}
                             options={I18N_LOCALE_LABELS}
                             saveSelection={(lang) => {
