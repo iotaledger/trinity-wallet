@@ -224,20 +224,33 @@ export const getPendingTxTailsHashes = (bundles) => {
     return reduce(bundles, grabHashesFromTails, []);
 };
 
-export const markTransfersConfirmed = (transfers, tailHashes) => {
-    return map(transfers, (txObjects) =>
-        map(txObjects, (tx) => {
-            const isTail = tx.currentIndex === 0;
-            const hash = tx.hash;
-            const isUnconfirmed = !tx.persistence;
+/**
+ *   Takes in transfer bundles and confirmed tail transaction hashes
+ *   Assigns persistence true to all transfers that are confirmed
+ *
+ *   @method markTransfersConfirmed
+ *   @param {array} bundles - Transfer bundles
+ *   @param {array} confirmedTransfersTailsHashes - Array of transaction hashes
+ *
+ *   @returns {array} - bundles
+ **/
+export const markTransfersConfirmed = (bundles, confirmedTransfersTailsHashes) => {
+    return map(bundles, (transfers) => {
+        const tailTransaction = find(transfers, { currentIndex: 0 });
 
-            if (isTail && includes(tailHashes, hash) && isUnconfirmed) {
-                return assign({}, tx, { persistence: true });
-            }
+        // Safety check to see if tail transaction was actually found.
+        // Very unlikely to happen unless and until state is messed up.
+        // If tail transaction was found, check if its hash includes in the confirmed trasfers tails hashes list.
+        const isConfirmedTailTransaction =
+            tailTransaction && includes(confirmedTransfersTailsHashes, tailTransaction.hash);
 
-            return tx;
-        }),
-    );
+        // Invert persistence on all transfer objects if transaction is confirmed.
+        if (isConfirmedTailTransaction) {
+            return map(transfers, (transfer) => ({ ...transfer, persistence: true }));
+        }
+
+        return transfers;
+    });
 };
 
 export const organizeAccountInfo = (accountName, data) => {
@@ -248,7 +261,6 @@ export const organizeAccountInfo = (accountName, data) => {
 
     const unconfirmedBundleTails = getBundleTailsForSentTransfers(transfers, data.addresses, accountName); // Should really be ordered.
     const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
-    const pendingTxTailsHashes = getPendingTxTailsHashes(transfers);
 
     return {
         accountName,
@@ -256,7 +268,6 @@ export const organizeAccountInfo = (accountName, data) => {
         addresses: addressDataWithSpentFlag,
         balance,
         unconfirmedBundleTails,
-        pendingTxTailsHashes,
     };
 };
 
@@ -354,7 +365,7 @@ export const mapBalancesToAddresses = (addressData, balances, addresses) => {
     }
 
     each(addresses, (address, idx) => {
-        addressesDataClone[address] = { ...get(addressesDataClone, `${address}`), ...{ balance: balances[idx] } };
+        addressesDataClone[address] = { ...get(addressesDataClone, `${address}`), balance: balances[idx] };
     });
 
     return addressesDataClone;
@@ -459,18 +470,14 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
  *   @returns {Promise} - Resolves account argument by assigning unspentAddressesHashes (Transaction hashes associated with unspent addresses)
  **/
 export const mapUnspentAddressesHashesToAccount = (account) => {
-    const accountClone = cloneDeep(account);
-    const unspentAddresses = getUnspentAddresses(accountClone.addresses);
+    const unspentAddresses = getUnspentAddresses(account.addresses);
 
     if (isEmpty(unspentAddresses)) {
-        accountClone.unspentAddressesHashes = [];
-        return Promise.resolve(accountClone);
+        return Promise.resolve(assign({}, account, { unspentAddressesHashes: [] }));
     }
 
     return findTransactionsAsync({ addresses: unspentAddresses }).then((hashes) => {
-        accountClone.unspentAddressesHashes = hashes;
-
-        return accountClone;
+        return assign({}, account, { unspentAddressesHashes: hashes });
     });
 };
 
@@ -642,9 +649,7 @@ export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
  *
  *   @returns {Promise<array>} - Resolves updated transfers
  **/
-export const syncTransfers = (diff, existingAccountState) => {
-    const existingAccountStateCopy = cloneDeep(existingAccountState);
-
+export const syncTransfers = (diff, accountState) => {
     return getTransactionsObjectsAsync(diff)
         .then((txs) => {
             const tailTxs = filter(txs, (t) => t.currentIndex === 0);
@@ -654,9 +659,9 @@ export const syncTransfers = (diff, existingAccountState) => {
         })
         .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
         .then((bundles) => {
-            const updatedTransfers = [...existingAccountStateCopy.transfers, ...bundles];
+            const updatedTransfers = [...accountState.transfers, ...bundles];
 
-            return formatTransfers(updatedTransfers, keys(existingAccountStateCopy.addresses));
+            return formatTransfers(updatedTransfers, keys(accountState.addresses));
         });
 };
 
@@ -717,16 +722,13 @@ export const syncAccount = (seed, existingAccountState) => {
             thisStateCopy.transfers = updatedTransfers;
             thisStateCopy.addresses = markAddressSpend(thisStateCopy.transfers, thisStateCopy.addresses);
 
-            thisStateCopy.pendingTxTailsHashes = getPendingTxTailsHashes(thisStateCopy.transfers);
+            const pendingTxTailsHashes = getPendingTxTailsHashes(thisStateCopy.transfers);
 
-            return getConfirmedTransactionHashes(thisStateCopy.pendingTxTailsHashes);
+            return getConfirmedTransactionHashes(pendingTxTailsHashes);
         })
         .then((confirmedTransactionHashes) => {
             if (!isEmpty(confirmedTransactionHashes)) {
-                const alreadyConfirmed = (tx) => !includes(confirmedTransactionHashes, tx);
-
                 thisStateCopy.transfers = markTransfersConfirmed(thisStateCopy.transfers, confirmedTransactionHashes);
-                thisStateCopy.pendingTxTailsHashes = filter(thisStateCopy.pendingTxTailsHashes, alreadyConfirmed);
 
                 return thisStateCopy;
             }
@@ -746,35 +748,32 @@ export const syncAccount = (seed, existingAccountState) => {
  *
  *   @returns {Promise<object>} - Resolved a new updated account state object.
  **/
-export const updateAccount = (name, newTransfer, existingAccountState, isValueTransfer) => {
-    const thisStateCopy = cloneDeep(existingAccountState);
-
+export const updateAccount = (name, newTransfer, accountState, isValueTransfer) => {
     // Assign persistence and transferValue props to the newly sent transfer
     const newTransferBundleWithPersistenceAndTransferValue = map(newTransfer, (bundle) => ({
         ...bundle,
         ...{ transferValue: -bundle.value, persistence: false },
     }));
 
-    // Append new transfer to cached transfers list
-    thisStateCopy.transfers = [...[newTransferBundleWithPersistenceAndTransferValue], ...thisStateCopy.transfers];
+    // Append new transfer to existing transfers
+    const transfers = [...[newTransferBundleWithPersistenceAndTransferValue], ...accountState.transfers];
 
     // Turn on spent flag for addresses that were used in this transfer
-    thisStateCopy.addresses = markAddressSpend([newTransfer], thisStateCopy.addresses);
+    const addresses = markAddressSpend([newTransfer], accountState.addresses);
+
+    let unconfirmedBundleTails = accountState.unconfirmedBundleTails;
 
     // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
     // Also check if it was a value transfer
     // Only update unconfirmedBundleTails for promotion/reattachment if its a value transfer
-    const bundle = get(newTransfer, `[${0}].bundle`);
-    const tailTxs = filter(newTransfer, (tx) => tx.currentIndex === 0);
-
     if (isValueTransfer) {
-        thisStateCopy.unconfirmedBundleTails = merge({}, thisStateCopy.unconfirmedBundleTails, {
+        const bundle = get(newTransfer, `[${0}].bundle`);
+        const tailTxs = filter(newTransfer, (tx) => tx.currentIndex === 0);
+
+        unconfirmedBundleTails = merge({}, unconfirmedBundleTails, {
             [bundle]: map(tailTxs, (t) => ({ ...t, account: name })), // Assign account name to each tx
         });
     }
 
-    // Append new tail transaction hash to pendingTxTailHashes
-    thisStateCopy.pendingTxTailsHashes = [...thisStateCopy.pendingTxTailsHashes, ...map(tailTxs, (t) => t.hash)];
-
-    return mapUnspentAddressesHashesToAccount(thisStateCopy);
+    return mapUnspentAddressesHashesToAccount({ ...accountState, transfers, addresses, unconfirmedBundleTails });
 };

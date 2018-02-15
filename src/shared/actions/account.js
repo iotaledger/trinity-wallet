@@ -1,11 +1,6 @@
 import takeRight from 'lodash/takeRight';
-
 import { iota } from '../libs/iota';
-import {
-    getSelectedAccount,
-    getExistingUnspentAddressesHashes,
-    getPendingTxTailsHashesForSelectedAccount,
-} from '../selectors/account';
+import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
 import {
     syncAccount,
     getAccountData,
@@ -48,7 +43,6 @@ export const ActionTypes = {
     ADD_ADDRESSES: 'IOTA/ACCOUNT/ADD_ADDRESSES',
     SET_BALANCE: 'IOTA/ACCOUNT/SET_BALANCE',
     UPDATE_ACCOUNT_AFTER_TRANSITION: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_AFTER_TRANSITION',
-    SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT: 'IOTA/ACCOUNT/SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT',
     SET_NEW_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/SET_NEW_UNCONFIRMED_BUNDLE_TAILS',
     UPDATE_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/UPDATE_UNCONFIRMED_BUNDLE_TAILS',
     REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS',
@@ -200,11 +194,6 @@ export const updateAccountInfoAfterSpending = (payload) => ({
     payload,
 });
 
-export const setPendingTransactionTailsHashesForAccount = (payload) => ({
-    type: ActionTypes.SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT,
-    payload,
-});
-
 export const fetchFullAccountInfoForFirstUse = (
     seed,
     accountName,
@@ -293,17 +282,12 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             accountName,
             getState().account.unspentAddressesHashes,
         );
-        const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
-            accountName,
-            getState().account.pendingTxTailsHashes,
-        );
 
         const existingAccountData = {
             accountName,
             balance: selectedAccount.balance,
             addresses: selectedAccount.addresses,
             unspentAddressesHashes: existingHashes,
-            pendingTxTailsHashes,
             transfers: selectedAccount.transfers,
         };
 
@@ -332,15 +316,11 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
         accountName,
         getState().account.unspentAddressesHashes,
     );
-    const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
-        accountName,
-        getState().account.pendingTxTailsHashes,
-    );
+
     const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
 
     const existingAccountData = {
         ...selectedAccount,
-        pendingTxTailsHashes,
         unspentAddressesHashes: existingUnspentAddressesHashes,
         unconfirmedBundleTails: existingUnconfirmedBundleTails,
     };
