@@ -396,7 +396,7 @@
     },
     "chart": {
         "mcap": "시가총액",
-        "change": "Change",
+        "change": "전일대비",
         "volume": "거래량 (24시간)"
     }
 }
