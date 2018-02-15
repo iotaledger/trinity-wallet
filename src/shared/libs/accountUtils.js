@@ -8,8 +8,6 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import reduce from 'lodash/reduce';
 import isObject from 'lodash/isObject';
-import has from 'lodash/has';
-import omitBy from 'lodash/omitBy';
 import merge from 'lodash/merge';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
@@ -20,7 +18,11 @@ import isNumber from 'lodash/isNumber';
 import { iota } from '../libs/iota';
 import { getBundleTailsForSentTransfers } from './promoter';
 import { getAllAddresses } from './addresses';
-import { getStartingSearchIndexToFetchLatestAddresses } from './transfers';
+import {
+    getStartingSearchIndexToFetchLatestAddresses,
+    categorizeTransactionsByPersistence,
+    removeIrrelevantUnconfirmedTransfers,
+} from './transfers';
 import { DEFAULT_BALANCES_THRESHOLD } from '../config';
 
 export const formatFullAddressData = (data) => {
@@ -555,44 +557,20 @@ export const getAccountData = (seed, accountName) => {
             return getLatestInclusionAsync(map(tailTransactions, (t) => t.hash));
         })
         .then((states) => {
-            const allTxsAsObjects = reduce(
-                tailTransactions,
-                (res, v, i) => {
-                    if (i === 0) {
-                        res.confirmed = {};
-                        res.unconfirmed = {};
-                    }
-
-                    if (states[i]) {
-                        res.confirmed[v.bundle] = Object.assign({}, v, {
-                            persistence: true,
-                        });
-                    } else {
-                        res.unconfirmed[v.bundle] = Object.assign({}, v, {
-                            persistence: false,
-                        });
-                    }
-
-                    return res;
-                },
-                {},
-            );
-
-            // Get rid of transactions duplicates that are already confirmed
-            const deduplicatedUnconfirmedTxs = omitBy(allTxsAsObjects.unconfirmed, (value, key) => {
-                return has(allTxsAsObjects.confirmed, key);
-            });
+            const allTxsAsObjects = categorizeTransactionsByPersistence(tailTransactions, states);
+            const relevantUnconfirmedTransfers = removeIrrelevantUnconfirmedTransfers(allTxsAsObjects);
 
             const finalTailTxs = [
-                ...map(allTxsAsObjects.confirmed, (t) => t),
-                ...map(deduplicatedUnconfirmedTxs, (t) => t),
+                ...map(allTxsAsObjects.confirmed, (t) => ({ ...t, persistence: true })),
+                ...map(relevantUnconfirmedTransfers, (t) => ({ ...t, persistence: false })),
             ];
 
             each(finalTailTxs, (tx) => {
                 const bundle = getBundle(tx, allBundleObjects);
 
                 if (iota.utils.isBundle(bundle)) {
-                    transfers.push(bundle);
+                    // Map persistence from tail transaction object to all transfer objects in the bundle
+                    transfers.push(map(bundle, (transfer) => ({ ...transfer, persistence: tx.persistence })));
                 }
             });
 
