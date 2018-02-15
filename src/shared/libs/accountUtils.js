@@ -16,7 +16,7 @@ import isEmpty from 'lodash/isEmpty';
 import size from 'lodash/size';
 import isNumber from 'lodash/isNumber';
 import { iota } from '../libs/iota';
-import { getBundleTailsForSentTransfers } from './promoter';
+import { getBundleTailsForValidTransfers } from './promoter';
 import { getAllAddresses } from './addresses';
 import {
     getStartingSearchIndexToFetchLatestAddresses,
@@ -225,6 +225,29 @@ export const getPendingTxTailsHashes = (bundles) => {
 };
 
 /**
+ *   Takes in transfer bundles and grab hashes for transfer objects that are unconfirmed.
+ *
+ *   @method getBalancesSync
+ *   @param {array} addresses
+ *   @param {object} addressData
+ *
+ *   @returns {array} - array of balances
+ **/
+export const getBalancesSync = (addresses, addressData) => {
+    const balances = [];
+
+    each(addresses, (address) => {
+        // Just a safety check.
+        if (address in addressData) {
+            const balance = addressData[address].balance;
+            balances.push(balance);
+        }
+    });
+
+    return balances;
+};
+
+/**
  *   Takes in transfer bundles and confirmed tail transaction hashes
  *   Assigns persistence true to all transfers that are confirmed
  *
@@ -258,17 +281,17 @@ export const organizeAccountInfo = (accountName, data) => {
 
     const addressData = formatFullAddressData(data);
     const balance = calculateBalance(addressData);
-
-    const unconfirmedBundleTails = getBundleTailsForSentTransfers(transfers, data.addresses, accountName); // Should really be ordered.
     const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
 
-    return {
-        accountName,
-        transfers,
-        addresses: addressDataWithSpentFlag,
-        balance,
-        unconfirmedBundleTails,
-    };
+    return getBundleTailsForValidTransfers(transfers, data.addresses, accountName).then((unconfirmedBundleTails) => {
+        return {
+            accountName,
+            transfers,
+            addresses: addressDataWithSpentFlag,
+            balance,
+            unconfirmedBundleTails,
+        };
+    });
 };
 
 const getBalancesAsync = (addresses, threshold) => {
@@ -609,7 +632,8 @@ export const getAccountData = (seed, accountName) => {
             });
 
             return organizeAccountInfo(accountName, data);
-        });
+        })
+        .then((organizedData) => organizedData);
 };
 
 /**
