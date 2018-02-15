@@ -4,6 +4,8 @@ import each from 'lodash/each';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import isNull from 'lodash/isNull';
+import omitBy from 'lodash/omitBy';
+import has from 'lodash/has';
 import size from 'lodash/size';
 import reduce from 'lodash/reduce';
 import { DEFAULT_TAG, DEFAULT_SECURITY } from '../config';
@@ -214,4 +216,47 @@ export const extractTailTransferFromBundle = (bundle) => {
     };
 
     return reduce(bundle, extractTail, {});
+};
+
+/**
+ *   Accepts tail transaction objects and their corresponding inclusion states.
+ *   Categorize tail transactions confirmed/unconfirmed
+ *   Transform transaction array to dictionary with key as bundle hash
+ *
+ *   @method categorizeTransactionsByPersistence
+ *   @param {array} tailTransactions - Array of tail transfer objects
+ *   @param {array} states - Array of booleans
+ *   @returns {object} Categorized transactions by confirmed/unconfirmed.
+ **/
+export const categorizeTransactionsByPersistence = (tailTransactions, states) => {
+    return reduce(
+        tailTransactions,
+        (acc, tx, idx) => {
+            if (states[idx]) {
+                acc.confirmed[tx.bundle] = tx;
+            } else {
+                acc.unconfirmed[tx.bundle] = tx;
+            }
+
+            return acc;
+        },
+        {
+            confirmed: {},
+            unconfirmed: {},
+        },
+    );
+};
+
+/**
+ *   Accepts unconfirmed and confirmed transactions.
+ *   Removes all those unconfirmed transfers that are already confirmed.
+ *
+ *   @method removeIrrelevantUnconfirmedTransfers
+ *   @param {object} categorizedTransfers - transfers categorized by confirmed/unconfirmed as dictionary with key as bundle hash
+ *   @returns {object} Unconfirmed transfers as dictionary after removing transfer objects that are already confirmed.
+ **/
+
+export const removeIrrelevantUnconfirmedTransfers = (categorizedTransfers) => {
+    const { unconfirmed, confirmed } = categorizedTransfers;
+    return omitBy(unconfirmed, (tx, bundle) => bundle in confirmed);
 };
