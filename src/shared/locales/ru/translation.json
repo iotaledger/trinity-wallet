@@ -72,8 +72,8 @@
         "autoreattachingExplanation": "Повторное присоединение транзакций с хэш {{hash}}",
         "autopromoting": "Передача автопромотирования",
         "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "Вы не можете совершить перевод средств на один из ваших адресов."
+        "cannotSendToOwn": "Отправка на собственный адрес",
+        "cannotSendToOwnExplanation": "Вы не можете переводить средства на один из ваших собственных адресов."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -175,7 +175,7 @@
     "saveYourSeed": {
         "seedCleared": "Ключ очищен",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
-        "mustSaveYourSeed": "<0> <0> Вы должны сохранить свое семя с </ 0> <1> как минимум одним </ 1> <2> из перечисленных ниже опций. </ 2> </ 0>"
+        "mustSaveYourSeed": "<0> <0> Вы должны сохранить свой ключ </ 0> <1> как минимум одним </ 1> <2> из перечисленных ниже способов. </ 2> </ 0>"
     },
     "seedReentry": {
         "incorrectSeed": "Неверный ключ",
@@ -396,7 +396,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
+        "change": "Изменение",
         "volume": "Объем (24ч)"
     }
 }
