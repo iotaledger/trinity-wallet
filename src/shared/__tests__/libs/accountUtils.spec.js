@@ -6,7 +6,6 @@ import {
     mapBalancesToAddresses,
     hasNewTransfers,
 } from '../../libs/accountUtils';
-import _ from 'lodash';
 
 describe('libs: accountUtils', () => {
     describe('#getPendingTxTailsHashes', () => {
