@@ -282,7 +282,7 @@
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Адрес скопирован в буфер обмена.",
         "send": "SEND",
-        "receive": "RECEIVE"
+        "receive": "Получение"
     },
     "accountManagement": {
         "viewSeed": "Показать ключ",
@@ -397,6 +397,6 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Change",
-        "volume": "Volume (24h)"
+        "volume": "Объем (24ч)"
     }
 }
