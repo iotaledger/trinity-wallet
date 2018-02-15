@@ -12,29 +12,52 @@
     }
 }
 
-.positive {
-    color: var(--positive-body);
-    background: var(--positive-bg);
+.primary {
+    background: var(--primary);
+    color: var(--primary-body);
+    &.hover {
+        background: var(--primary-hover);
+    }
 }
 
 .secondary {
     color: var(--secondary-body);
-    background: var(--secondary-bg);
+    background: var(--secondary);
+    &.hover {
+        background: var(--secondary-hover);
+    }
+}
+
+.positive {
+    color: var(--positive-body);
+    background: var(--positive);
+    &.hover {
+        background: var(--positive-hover);
+    }
 }
 
 .negative {
     color: var(--negative-body);
-    background: var(--negative-bg);
+    background: var(--negative);
+    &.hover {
+        background: var(--negative-hover);
+    }
 }
 
 .highlight {
     color: var(--highlight-body);
-    background: var(--highlight-bg);
+    background: var(--highlight);
+    &.hover {
+        background: var(--highlight-hover);
+    }
 }
 
 .extra {
     background: var(--extra-body);
-    background: var(--extra-bg);
+    background: var(--extra);
+    &.hover {
+        background: var(--extra-hover);
+    }
 }
 
 .bar {
@@ -43,28 +66,29 @@
 }
 
 .chart {
-    background: linear-gradient(to right, var(--body-bg), var(--chart));
-}
-.cta {
-    background: var(--cta);
-    color: var(--cta-body);
+    background: var(--chart);
 }
 
 .bgSecondary {
-    background: var(--body-secondary);
+    background: var(--body-alt);
+}
+
+.bgHover {
+    background: var(--body-hover);
 }
 
 .input {
     background: var(--input-bg);
+    color: var(--input);
 }
 .label {
     color: var(--label);
 }
 .inputSecondary {
-    color: var(--input-secondary);
+    color: var(--input-alt);
     background: var(--input-bg);
 }
-
-.hover {
-    box-shadow: inset 0 0 0 30px var(--hover-bg);
+.inputOptional {
+    color: var(--inputOptional-color);
+    background: var(--inputOptional-bg);
 }

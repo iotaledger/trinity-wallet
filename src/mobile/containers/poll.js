@@ -6,6 +6,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
+import { AppState } from 'react-native';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import {
     fetchMarketData,
@@ -50,10 +51,12 @@ export class Poll extends Component {
 
     componentDidMount() {
         this.startBackgroundProcesses();
+        AppState.addEventListener('change', this.handleAppStateChange);
     }
 
     componentWillUnmount() {
         timer.clearInterval(this, 'polling');
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
     shouldSkipCycle() {
@@ -99,17 +102,29 @@ export class Poll extends Component {
 
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.getAccountInfo(seed, selectedAccountName);
                 }
             })
-            .catch(err => console.error(err)); // eslint-disable-line no-console
+            .catch((err) => console.error(err)); // eslint-disable-line no-console
     }
 
     startBackgroundProcesses() {
         timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 15000);
+    }
+
+    handleAppStateChange = (nextAppState) => {
+        if (nextAppState.match(/inactive|background/)) {
+            this.stopBackgroundProcesses();
+        } else if (nextAppState === 'active') {
+            this.startBackgroundProcesses();
+        }
+    };
+
+    stopBackgroundProcesses() {
+        timer.clearInterval(this, 'polling');
     }
 
     promote() {
@@ -146,7 +161,7 @@ export class Poll extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,

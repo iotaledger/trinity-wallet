@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Confirm from 'components/UI/Confirm';
-import Modal from 'components/UI/Modal';
-import Button from 'components/UI/Button';
+import Confirm from 'ui/components/modal/Confirm';
+import Modal from 'ui/components/modal/Modal';
+import Button from 'ui/components/Button';
 
 import { showError, showNotification } from 'actions/notifications';
 import css from './modals.css';
@@ -29,7 +29,7 @@ class Modals extends React.PureComponent {
                 </Button>
                 <Confirm
                     isOpen={this.state.confirmOn}
-                    translations={{
+                    content={{
                         title: 'Are you sure?',
                         confirm: 'Yes',
                         cancel: 'No',
@@ -37,23 +37,31 @@ class Modals extends React.PureComponent {
                     onCancel={() => this.setState({ confirmOn: false })}
                     onConfirm={() => this.setState({ confirmOn: false })}
                 />
-                <Button onClick={() => this.setState({ warningOn: true })} variant="warning">
-                    Warning
+                <Button onClick={() => this.setState({ warningOn: true })} variant="negative">
+                    Negative
                 </Button>
-                <Modal isConfirm isOpen={this.state.warningOn} onClose={() => this.setState({ warningOn: false })}>
+                <Modal
+                    variant="confirm"
+                    isOpen={this.state.warningOn}
+                    onClose={() => this.setState({ warningOn: false })}
+                >
                     <h1 className="error">Error occured</h1>
                     <p>Sorry for the trouble - some error occured.</p>
-                    <Button onClick={() => this.setState({ warningOn: false })} variant="primary">
+                    <Button onClick={() => this.setState({ warningOn: false })} variant="secondary">
                         Back
                     </Button>
                 </Modal>
-                <Button onClick={() => this.setState({ successOn: true })} variant="primary">
+                <Button onClick={() => this.setState({ successOn: true })} variant="positive">
                     Success
                 </Button>
-                <Modal isConfirm isOpen={this.state.successOn} onClose={() => this.setState({ successOn: false })}>
+                <Modal
+                    variant="confirm"
+                    isOpen={this.state.successOn}
+                    onClose={() => this.setState({ successOn: false })}
+                >
                     <h1 className="success">Successfully done!</h1>
                     <p>The thing you did was succesfull!</p>
-                    <Button onClick={() => this.setState({ successOn: false })} variant="primary">
+                    <Button onClick={() => this.setState({ successOn: false })} variant="secondary">
                         Back
                     </Button>
                 </Modal>
@@ -77,7 +85,7 @@ class Modals extends React.PureComponent {
                             text: 'Something you did was not wroking as expected!',
                         })
                     }
-                    variant="warning"
+                    variant="negative"
                 >
                     Error
                 </Button>

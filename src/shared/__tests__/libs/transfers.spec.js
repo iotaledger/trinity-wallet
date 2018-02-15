@@ -20,13 +20,13 @@ describe('libs: transfers', () => {
 
         it('should only have address, value, message and tag props in the first element of the array', () => {
             const result = prepareTransferArray(...args);
-            ['address', 'value', 'message', 'tag'].forEach(item => expect(item in result[0]).to.equal(true));
+            ['address', 'value', 'message', 'tag'].forEach((item) => expect(item in result[0]).to.equal(true));
             expect(Object.keys(result[0]).length).to.equal(4);
         });
 
         it('should not have any other props other than address, value, message and tag props in the first element of the array', () => {
             const result = prepareTransferArray(...args);
-            ['foo', 'baz'].forEach(item => expect(item in result[0]).to.equal(false));
+            ['foo', 'baz'].forEach((item) => expect(item in result[0]).to.equal(false));
         });
     });
 
@@ -57,7 +57,7 @@ describe('libs: transfers', () => {
 
             const result = prepareInputs(addressesData, 0, 2); // Threshold -> 2
             const inputs = result.inputs;
-            inputs.forEach(input => expect(input).to.have.keys('address', 'balance', 'keyIndex', 'security'));
+            inputs.forEach((input) => expect(input).to.have.keys('address', 'balance', 'keyIndex', 'security'));
         });
 
         it('should have totalBalance always equal to sum of balances prop inside inputs', () => {
@@ -99,7 +99,7 @@ describe('libs: transfers', () => {
                 },
             ];
 
-            payloads.forEach(payload => {
+            payloads.forEach((payload) => {
                 const result = prepareInputs(payload.data, 0, payload.threshold);
                 expect(result.totalBalance >= payload.threshold).to.equal(true);
             });
@@ -133,7 +133,7 @@ describe('libs: transfers', () => {
                 },
             ];
 
-            payloads.forEach(payload => {
+            payloads.forEach((payload) => {
                 const result = prepareInputs(payload.data, 0, payload.threshold);
                 expect(result.totalBalance < payload.threshold).to.equal(true);
             });
@@ -167,16 +167,16 @@ describe('libs: transfers', () => {
                 },
             ];
 
-            payloads.forEach(payload => {
+            payloads.forEach((payload) => {
                 const result = prepareInputs(payload.data, 1, payload.threshold);
-                result.inputs.forEach(input => {
+                result.inputs.forEach((input) => {
                     expect(input.keyIndex).to.not.equal(0);
                 });
             });
 
-            payloads.forEach(payload => {
+            payloads.forEach((payload) => {
                 const result = prepareInputs(payload.data, 2, payload.threshold);
-                result.inputs.forEach(input => {
+                result.inputs.forEach((input) => {
                     expect(input.keyIndex === 0 || input.keyIndex === 1).to.not.equal(true);
                 });
             });
@@ -188,7 +188,7 @@ describe('libs: transfers', () => {
             it('should always return an object', () => {
                 const args = [undefined, null, [], {}, 'foo', 0];
 
-                args.forEach(arg => {
+                args.forEach((arg) => {
                     const result = extractTailTransferFromBundle(arg);
                     expect(typeof result).to.equal('object');
                     expect(Array.isArray(result)).to.equal(false);

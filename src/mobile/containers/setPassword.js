@@ -152,10 +152,9 @@ class SetPassword extends Component {
                             screenBackgroundColor: COLORS.backgroundGreen,
                         },
                         animated: false,
-                        overrideBackPress: true,
                     });
                 })
-                .catch(err => console.error(err));
+                .catch((err) => console.error(err));
         };
 
         const { t, seed, seedName } = this.props;
@@ -164,7 +163,7 @@ class SetPassword extends Component {
         if (password.length >= MIN_PASSWORD_LENGTH && password === reentry) {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     if (isEmpty(credentials)) {
                         return ifNoKeychainDuplicates(password, seed, seedName);
                     }
@@ -235,7 +234,7 @@ class SetPassword extends Component {
                             <View style={{ flex: 0.2 }} />
                             <CustomTextInput
                                 label={t('global:password')}
-                                onChangeText={password => this.setState({ password })}
+                                onChangeText={(password) => this.setState({ password })}
                                 containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -248,11 +247,11 @@ class SetPassword extends Component {
                             />
                             <View style={{ flex: 0.2 }} />
                             <CustomTextInput
-                                onRef={c => {
+                                onRef={(c) => {
                                     this.reentry = c;
                                 }}
                                 label={t('retypePassword')}
-                                onChangeText={reentry => this.setState({ reentry })}
+                                onChangeText={(reentry) => this.setState({ reentry })}
                                 containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -300,7 +299,7 @@ class SetPassword extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     seedName: state.tempAccount.seedName,
 });

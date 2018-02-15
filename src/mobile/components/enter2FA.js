@@ -10,33 +10,21 @@ import OnboardingButtons from './onboardingButtons';
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 1.2,
+        flex: 2.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 3.6,
         width,
         alignItems: 'center',
-        paddingTop: height / 4.2,
     },
     bottomContainer: {
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 8,
-    },
-    title: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
@@ -69,7 +57,7 @@ class Enter2FA extends Component {
         token2FA: '',
     };
 
-    handleChange2FAToken = token2FA => this.setState({ token2FA });
+    handleChange2FAToken = (token2FA) => this.setState({ token2FA });
 
     handleDonePress = () => {
         const { token2FA } = this.state;
@@ -93,13 +81,10 @@ class Enter2FA extends Component {
                 <View>
                     <View style={styles.topContainer}>
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
-                        <View style={styles.titleContainer}>
-                            <Text style={[styles.title, textColor]}>Please enter your 2FA Token</Text>
-                        </View>
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
-                            label="Token"
+                            label="2FA Token"
                             onChangeText={this.handleChange2FAToken}
                             containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'none'}
