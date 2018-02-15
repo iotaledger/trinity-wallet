@@ -4,7 +4,6 @@ import { translate } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { setRandomlySelectedNode } from 'iota-wallet-shared-modules/actions/settings';
 import { changeIotaNode, getRandomNode } from 'iota-wallet-shared-modules/libs/iota';
-import '../shim';
 import registerScreens from './navigation';
 import i18 from '../i18next';
 
@@ -24,9 +23,12 @@ const renderInitialScreen = () => {
     });
 };
 
-export const setRandomIotaNode = store => {
+export const setRandomIotaNode = (store) => {
     const { settings } = store.getState();
     const hasAlreadyRandomized = get(settings, 'hasRandomizedNode');
+
+    // Update provider
+    changeIotaNode(get(settings, 'fullNode'));
 
     if (!hasAlreadyRandomized) {
         const node = getRandomNode();
@@ -37,7 +39,7 @@ export const setRandomIotaNode = store => {
 
 // Initialization function
 // Passed as a callback to persistStore to adjust the rendering time
-export default store => {
+export default (store) => {
     registerScreens(store, Provider);
     translate.setI18n(i18);
 

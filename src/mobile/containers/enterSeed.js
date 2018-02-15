@@ -174,7 +174,7 @@ class EnterSeed extends React.Component {
 
     hideModal = () => this.setState({ isModalVisible: false });
 
-    handleKeyPress = event => {
+    handleKeyPress = (event) => {
         if (event.key === 'Enter') {
             Keyboard.dismiss();
         }
@@ -184,7 +184,7 @@ class EnterSeed extends React.Component {
         <QRScanner
             backgroundColor={COLORS.backgroundGreen}
             ctaColor={COLORS.greenLight}
-            onQRRead={data => this.onQRRead(data)}
+            onQRRead={(data) => this.onQRRead(data)}
             hideModal={() => this.hideModal()}
             secondaryCtaColor="white"
             secondaryBackgroundColor="white"
@@ -207,7 +207,7 @@ class EnterSeed extends React.Component {
                         <View style={{ flex: 0.5 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={text => this.setState({ seed: text.toUpperCase() })}
+                            onChangeText={(text) => this.setState({ seed: text.toUpperCase() })}
                             containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'characters'}
                             autoCorrect={false}
@@ -276,7 +276,7 @@ class EnterSeed extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     marketData: state.marketData,
     tempAccount: state.tempAccount,
     account: state.account,

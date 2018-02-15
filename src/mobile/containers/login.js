@@ -6,7 +6,6 @@ import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import { StyleSheet, View, Text, AppState } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
@@ -21,13 +20,14 @@ import whiteArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-lef
 import blackArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-black.png';
 import whiteTickImagePath from 'iota-wallet-shared-modules/images/tick-white.png';
 import blackTickImagePath from 'iota-wallet-shared-modules/images/tick-black.png';
+import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import keychain, { getPasswordFromKeychain } from '../util/keychain';
+import keychain, { getPasswordFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import GENERAL from '../theme/general';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
@@ -126,7 +126,7 @@ class Login extends Component {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
             getPasswordFromKeychain()
-                .then(passwordFromKeychain => {
+                .then((passwordFromKeychain) => {
                     const hasCorrectPassword = passwordFromKeychain === password;
 
                     if (hasCorrectPassword) {
@@ -146,38 +146,27 @@ class Login extends Component {
                         );
                     }
                 })
-                .catch(err => console.log(err)); // Generate an alert.
+                .catch((err) => console.log(err)); // Generate an alert.
         }
     }
 
     onComplete2FA(token) {
-        const { firstUse, selectedAccount } = this.props;
+        const { t } = this.props;
 
         if (token) {
             getTwoFactorAuthKeyFromKeychain()
-                .then(key => {
+                .then((key) => {
                     const verified = authenticator.verifyToken(key, token);
-
                     if (verified) {
-                        if (firstUse) {
-                            this.navigateToLoading();
-                        } else {
-                            const addresses = get(selectedAccount, 'addresses');
-                            if (!isEmpty(addresses)) {
-                                this.navigateToLoading();
-                            } else {
-                                this.navigateToHome();
-                            }
-                        }
-
+                        this.navigateToLoading();
                         this.setState({ completing2FA: false });
                     } else {
-                        this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+                        this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
                     }
                 })
-                .catch(err => console.error(err)); // Generate an alert here.
+                .catch((err) => console.error(err)); // Generate an alert here.
         } else {
-            this.props.generateAlert('error', 'Empty code', 'The code you entered is empty');
+            this.props.generateAlert('error', t('twoFA:emptyCode'), t('emptyCodeExplanation'));
         }
     }
 
@@ -191,7 +180,7 @@ class Login extends Component {
             .then(() => {
                 keychain
                     .get()
-                    .then(credentials => {
+                    .then((credentials) => {
                         const password = get(credentials, 'password');
                         this.props.setPassword(password);
                         if (!is2FAEnabled) {
@@ -200,7 +189,7 @@ class Login extends Component {
                             this.setState({ completing2FA: true });
                         }
                     })
-                    .catch(err => console.log(err));
+                    .catch((err) => console.log(err));
             })
             .catch(() => {
                 this.props.generateAlert(
@@ -290,7 +279,7 @@ class Login extends Component {
                             navigateToNodeSelection={this.navigateToNodeSelection}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             textColor={textColor}
-                            setLoginPasswordField={pword => this.props.setLoginPasswordField(pword)}
+                            setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
                             password={password}
                             activateFingerPrintScanner={() => this.activateFingerPrintScanner()}
                             isFingerprintEnabled={isFingerprintEnabled}
@@ -313,7 +302,7 @@ class Login extends Component {
                         <View style={{ flex: 0.8 }} />
                         <View style={{ flex: 4.62 }}>
                             <NodeSelection
-                                setNode={selectedNode => {
+                                setNode={(selectedNode) => {
                                     changeIotaNode(selectedNode);
                                     this.props.setFullNode(selectedNode);
                                 }}
@@ -350,7 +339,7 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     firstUse: state.account.firstUse,
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     fullNode: state.settings.fullNode,
@@ -379,4 +368,6 @@ const mapDispatchToProps = {
     setLoginPasswordField,
 };
 
-export default translate(['login', 'global', 'fingerprintSetup'])(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default WithBackPressCloseApp()(
+    translate(['login', 'global', 'twoFA', 'fingerprintSetup'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
+);

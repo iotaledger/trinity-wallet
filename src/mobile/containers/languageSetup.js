@@ -7,6 +7,7 @@ import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import { width, height } from '../util/dimensions';
 import Dropdown from '../components/dropdown';
 import COLORS from '../theme/Colors';
@@ -61,9 +62,6 @@ const styles = StyleSheet.create({
         width,
         height: width / 0.95,
     },
-    dropdownWidth: {
-        width: width / 1.5,
-    },
 });
 
 const locale = getDeviceLocale();
@@ -72,8 +70,8 @@ const defaultLanguageLabel = selectLocale(defaultLocale);
 
 class LanguageSetup extends Component {
     static propTypes = {
-        navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
+        navigator: PropTypes.object.isRequired,
     };
 
     static clickDropdownItem(languageLabel) {
@@ -117,12 +115,12 @@ class LanguageSetup extends Component {
                         <View style={styles.midContainer}>
                             <View style={{ flex: 0.5 }} />
                             <Dropdown
-                                onRef={c => (this.dropdown = c)}
+                                onRef={(c) => (this.dropdown = c)}
                                 title={t('language')}
-                                dropdownWidth={styles.dropdownWidth}
+                                dropdownWidth={{ width: width / 1.5 }}
                                 defaultOption={defaultLanguageLabel}
                                 options={I18N_LOCALE_LABELS}
-                                saveSelection={language => LanguageSetup.clickDropdownItem(language)}
+                                saveSelection={(language) => LanguageSetup.clickDropdownItem(language)}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -139,4 +137,4 @@ class LanguageSetup extends Component {
     }
 }
 
-export default translate(['languageSetup', 'global'])(LanguageSetup);
+export default WithBackPressCloseApp()(translate(['languageSetup', 'global'])(LanguageSetup));

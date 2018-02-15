@@ -7,8 +7,10 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
-import { Clipboard, StyleSheet, View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
+import { Clipboard, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { translate } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
+import WithBackPressGoToHome from '../components/withBackPressGoToHome';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { storeTwoFactorAuthKeyInKeychain } from '../util/keychain';
 import Fonts from '../theme/Fonts';
@@ -77,6 +79,7 @@ export class TwoFactorSetupAddKey extends Component {
         generateAlert: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         navigator: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -90,22 +93,11 @@ export class TwoFactorSetupAddKey extends Component {
         };
     }
 
-    componentDidMount() {
-        BackHandler.addEventListener('newSeedSetupBackPress', () => {
-            this.goBack();
-            return true;
-        });
-    }
-
     onKeyPress(key) {
+        const { t } = this.props;
         if (key) {
             Clipboard.setString(key);
-
-            this.props.generateAlert(
-                'success',
-                'Key copied to clipboard',
-                'Your 2FA key has been copied to the clipboard.',
-            );
+            this.props.generateAlert('success', t('keyCopied'), t('keyCopiedExplanation'));
         }
     }
 
@@ -143,11 +135,11 @@ export class TwoFactorSetupAddKey extends Component {
                     },
                 });
             })
-            .catch(err => console.error(err)); // Generate an alert.
+            .catch((err) => console.error(err)); // Generate an alert.
     }
 
     render() {
-        const { secondaryBackgroundColor } = this.props;
+        const { secondaryBackgroundColor, t } = this.props;
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -160,7 +152,7 @@ export class TwoFactorSetupAddKey extends Component {
                 </View>
                 <View style={styles.midWrapper}>
                     <View style={{ flex: 0.4 }} />
-                    <Text style={[styles.subHeaderText, textColor]}>Add this key to your 2FA app</Text>
+                    <Text style={[styles.subHeaderText, textColor]}>{t('addKey')}</Text>
                     <View style={styles.qrContainer}>
                         <QRCode
                             value={authenticator.generateTotpUri(this.state.authKey, 'Trinity Wallet Mobile')}
@@ -171,7 +163,8 @@ export class TwoFactorSetupAddKey extends Component {
                     </View>
                     <TouchableOpacity onPress={() => this.onKeyPress(this.state.authKey)}>
                         <Text style={[styles.infoText, textColor]}>
-                            <Text style={styles.infoText}>Key: </Text>
+                            <Text style={styles.infoText}>{t('key')}</Text>
+                            <Text style={styles.infoText}>: </Text>
                             <Text style={styles.infoTextLight}>{this.state.authKey}</Text>
                         </Text>
                     </TouchableOpacity>
@@ -180,8 +173,8 @@ export class TwoFactorSetupAddKey extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.navigateToEnterToken}
-                        leftText="BACK"
-                        rightText="NEXT"
+                        leftText={t('global:back')}
+                        rightText={t('global:next')}
                     />
                 </View>
                 <StatefulDropdownAlert />
@@ -194,10 +187,12 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey);
+export default WithBackPressGoToHome()(
+    translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey)),
+);
