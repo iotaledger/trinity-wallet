@@ -156,6 +156,14 @@ export const accumulateBalance = (balances) =>
         0,
     );
 
+/**
+ *   Takes in transfer bundles and only keep a single copy
+ *
+ *   @method accumulateBalance
+ *   @param {array} transfers - transfers array
+ *
+ *   @returns {array} - filtered transfers array
+ **/
 export const deduplicateTransferBundles = (transfers) => {
     const deduplicate = (res, transfer) => {
         const tail = find(transfer, (tx) => tx.currentIndex === 0);
