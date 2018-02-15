@@ -47,7 +47,7 @@ describe('libs: accountUtils', () => {
 
         describe('when second argument passed is an array of strings', () => {
             describe('when includes hash', () => {
-                it('should assign persistence true to tx objects with currentIndex 0', () => {
+                it('should assign persistence true to all tx objects', () => {
                     const transfers = [
                         [
                             { currentIndex: 1, hash: 'foo', persistence: false },
@@ -68,7 +68,7 @@ describe('libs: accountUtils', () => {
                         ],
                         [
                             { currentIndex: 0, hash: 'waldo', persistence: true },
-                            { currentIndex: 1, hash: 'bar', persistence: false },
+                            { currentIndex: 1, hash: 'bar', persistence: true },
                         ],
                     ];
 
