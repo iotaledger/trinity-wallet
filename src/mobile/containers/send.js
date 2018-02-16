@@ -173,6 +173,10 @@ export class Send extends Component {
         return address.match(VALID_SEED_REGEX);
     }
 
+    static isValidMessage(message) {
+        return iota.utils.fromTrytes(iota.utils.toTrytes(message)) === message;
+    }
+
     static isValidAmount(amount, multiplier) {
         const value = parseFloat(amount);
         if (value < 0) {
@@ -295,14 +299,15 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address } = this.props;
+        const { t, amount, address, message } = this.props;
         const multiplier = this.getUnitMultiplier();
 
+        const messageIsValid = Send.isValidMessage(message);
         const addressIsValid = Send.isValidAddress(address);
         const enoughBalance = this.enoughBalance();
         const amountIsValid = Send.isValidAmount(amount, multiplier);
         const addressCharsAreValid = Send.isValidAddressChars(address);
-        if (addressIsValid && enoughBalance && amountIsValid && addressCharsAreValid) {
+        if (addressIsValid && enoughBalance && amountIsValid && addressCharsAreValid && messageIsValid) {
             return this.showModal();
         }
 
@@ -316,6 +321,10 @@ export class Send extends Component {
 
         if (!amountIsValid) {
             return this.props.generateAlert('error', t('invalidAmount'), t('invalidAmountExplanation'));
+        }
+
+        if (!messageIsValid) {
+            return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
         }
     }
 

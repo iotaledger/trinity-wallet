@@ -7,6 +7,7 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
+import { translate } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import CustomTextInput from '../components/customTextInput';
@@ -15,7 +16,6 @@ import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { width, height } from '../util/dimensions';
-import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -62,6 +62,7 @@ class TwoFactorSetupEnterToken extends Component {
         set2FAStatus: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -76,10 +77,14 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     componentDidMount() {
-        BackHandler.addEventListener('newSeedSetupBackPress', () => {
+        BackHandler.addEventListener('hardwareBackPress', () => {
             this.goBack();
             return true;
         });
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress');
     }
 
     goBack() {
