@@ -200,7 +200,7 @@
         "invalidMessageExplanation": "Сообщение содержит недопустимые символы.",
         "send": "ОТПРАВИТЬ",
         "invalidAmount": "Указана неверная сумма",
-        "invalidAmountExplanation": "Пожалуйста, введите числовое значение для суммы перевода.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "Выбрана МАКСИМАЛЬНАЯ сумма",
         "iotaUnits": "Пояснение системы единиц IOTA",
         "sendMax": "Максимальный перевод"
