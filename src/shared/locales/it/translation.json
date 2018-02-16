@@ -200,7 +200,7 @@
         "invalidMessageExplanation": "Il tuo messaggio contiene caratteri non validi.",
         "send": "INVIA",
         "invalidAmount": "Inserito un importo non corretto",
-        "invalidAmountExplanation": "Si prega di inserire un valore numerico per l'importo della transazione.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "Selezionato importo MASSIMO",
         "iotaUnits": "Spiegazione delle unità IOTA",
         "sendMax": "INVIA MASSIMO"
