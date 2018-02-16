@@ -200,7 +200,7 @@
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "보내기",
         "invalidAmount": "잘못된 금액이 입력됨",
-        "invalidAmountExplanation": "거래 금액에는 숫자만 입력할 수 있습니다.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "최대 금액 선택됨",
         "iotaUnits": "IOTA 단위 체계",
         "sendMax": "최대 금액"
