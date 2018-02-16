@@ -138,7 +138,7 @@ Trinity supports over 25 different languages. To make localization easier, we us
 For continuous integration and deployment (CI/CD), we use [Bitrise](https://bitrise.io). Pull requests are tested by a workflow to ensure that changes do not break existing functionality. Additionally, deployment workflows are used to automate the building and submission of mobile apps to the App Store/Play Store.
 
 #### Fastlane
-We use [Fastlane])(https://fastlane.tools) to automate various steps of deployment to the App Store/Play Store.
+We use [Fastlane](https://fastlane.tools) to automate various steps of deployment to the App Store/Play Store.
 
 #### Fabric
 To ensure usability and stability across many platforms and devices, we use [Crashlytics](http://try.crashlytics.com/) so that devices will automatically send us anonymized crash data. Crashlytics is part of [Fabric](https://get.fabric.io), a group of development tools offered by Google.
