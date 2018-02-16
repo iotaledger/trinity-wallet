@@ -38,6 +38,7 @@
 		3933F23405C1A7DA85AA571A /* libPods-iotaWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9ED25C0E2B25086EB947F7 /* libPods-iotaWallet.a */; };
 		41661B0E52C06755BAB97122 /* libPods-iotaWallet-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DA04854F76D6CF0ED2F220 /* libPods-iotaWallet-tvOS.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		607DB64120365F9A004FF321 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 607DB63920365F7F004FF321 /* libRNIsDeviceRooted.a */; };
 		60ABE45D4856C876EFB3E718 /* libPods-iotaWallet-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D215E82DADAEAE41E8BB76DC /* libPods-iotaWallet-tvOSTests.a */; };
 		60D2988A201A85F800143895 /* iotaWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D29889201A85F800143895 /* iotaWalletUITests.swift */; };
 		60D29892201A862400143895 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D29891201A862300143895 /* SnapshotHelper.swift */; };
@@ -272,6 +273,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 78044F1342E5585676B8B8C2D1907A6F;
 			remoteInfo = "Pods-iotaWalletTests";
+		};
+		607DB63820365F7F004FF321 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607DB60120365F7F004FF321 /* RNIsDeviceRooted.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNIsDeviceRooted;
 		};
 		60D2988C201A85F800143895 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -560,6 +568,7 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6003E2BD1F896555008A6D52 /* iotaWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = iotaWallet.entitlements; path = iotaWallet/iotaWallet.entitlements; sourceTree = "<group>"; };
 		604AFFAB1FAF8B71003CBDFE /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		607DB60120365F7F004FF321 /* RNIsDeviceRooted.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNIsDeviceRooted.xcodeproj; path = "../node_modules/react-native-is-device-rooted/ios/RNIsDeviceRooted.xcodeproj"; sourceTree = "<group>"; };
 		6083B2CD1FB558A700DF3681 /* iotaWallet-release-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWallet-release-config.xcconfig"; sourceTree = "<group>"; };
 		6083B2CF1FB558DF00DF3681 /* iotaWallet-debug-config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "iotaWallet-debug-config.xcconfig"; sourceTree = "<group>"; };
 		6083B2D11FB5594F00DF3681 /* iotaWalletTests-release-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWalletTests-release-config.xcconfig"; sourceTree = "<group>"; };
@@ -644,6 +653,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607DB64120365F9A004FF321 /* libRNIsDeviceRooted.a in Frameworks */,
 				CBD250C22032537F00D9A6B0 /* libRNSecureRandom.a in Frameworks */,
 				CB17C67E1FFE9290006C7ACD /* libLottie.a in Frameworks */,
 				CB17C6711FFE91D0006C7ACD /* libLottieReactNative.a in Frameworks */,
@@ -870,6 +880,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		607DB60220365F7F004FF321 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				607DB63920365F7F004FF321 /* libRNIsDeviceRooted.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		6083B2C81FB557A700DF3681 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,6 +931,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				607DB60120365F7F004FF321 /* RNIsDeviceRooted.xcodeproj */,
 				CBD250832032536D00D9A6B0 /* RNSecureRandom.xcodeproj */,
 				CB17C6721FFE9255006C7ACD /* Lottie.xcodeproj */,
 				CB17C6391FFE91C1006C7ACD /* LottieReactNative.xcodeproj */,
@@ -1403,6 +1422,10 @@
 					ProjectRef = CBDB986A1F8EAD9800035DC3 /* RNHTMLtoPDF.xcodeproj */;
 				},
 				{
+					ProductGroup = 607DB60220365F7F004FF321 /* Products */;
+					ProjectRef = 607DB60120365F7F004FF321 /* RNIsDeviceRooted.xcodeproj */;
+				},
+				{
 					ProductGroup = CB262D151FE04011004E06D5 /* Products */;
 					ProjectRef = CB262D141FE04011004E06D5 /* RNKeychain.xcodeproj */;
 				},
@@ -1622,6 +1645,13 @@
 			fileType = archive.ar;
 			path = "libPods-iotaWalletTests.a";
 			remoteRef = 604AFFBB1FAF8B71003CBDFE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		607DB63920365F7F004FF321 /* libRNIsDeviceRooted.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNIsDeviceRooted.a;
+			remoteRef = 607DB63820365F7F004FF321 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		60F4FC781FD50249001F5A1E /* libRNDeviceInfo.a */ = {
