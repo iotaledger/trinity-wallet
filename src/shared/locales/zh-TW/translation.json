@@ -200,7 +200,7 @@
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "傳送",
         "invalidAmount": "錯誤數額填入",
-        "invalidAmountExplanation": "交易金額請填入數值",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "已選定最大的數額",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"
