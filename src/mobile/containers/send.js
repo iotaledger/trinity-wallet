@@ -380,6 +380,7 @@ export class Send extends Component {
                 modalContent = (
                     <TransferConfirmationModal
                         value={parseFloat(amount) * this.getUnitMultiplier()}
+                        amount={amount}
                         conversionText={this.getConversionTextIota()}
                         address={address}
                         sendTransfer={() => this.sendTransfer()}

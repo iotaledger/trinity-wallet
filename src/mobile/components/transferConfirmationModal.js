@@ -64,6 +64,7 @@ class TransferConfirmationModal extends Component {
         value: PropTypes.number.isRequired,
         setSendingTransferFlag: PropTypes.func.isRequired,
         conversionText: PropTypes.string.isRequired,
+        amount: PropTypes.string.isRequired,
     };
 
     onSendPress() {
@@ -77,7 +78,7 @@ class TransferConfirmationModal extends Component {
     }
 
     render() {
-        const { t, backgroundColor, textColor, borderColor, value, conversionText } = this.props;
+        const { t, backgroundColor, textColor, borderColor, value, conversionText, amount } = this.props;
         // TODO: fix this using trans component
 
         /*
@@ -97,7 +98,7 @@ class TransferConfirmationModal extends Component {
 
         let transferContents = null;
         /* eslint-disable eqeqeq */
-        if (value === 0) {
+        if (value === 0 || amount === '') {
             /* eslint-enable eqeqeq */
             // doesn't work with === for some reason
             transferContents = <Text style={styles.iotaText}>a message</Text>;
