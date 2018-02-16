@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import { createSelector } from 'reselect';
-import { deduplicateTransferBundles } from '../libs/accountUtils';
+import { deduplicateTransferBundles } from '../libs/iota/transfers';
 
 export const getAccountFromState = (state) => state.account || {};
 
