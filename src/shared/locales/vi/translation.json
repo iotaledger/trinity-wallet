@@ -200,7 +200,7 @@
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "Gửi",
         "invalidAmount": "Số lượng nhập không đúng",
-        "invalidAmountExplanation": "Xin vui lòng nhập giá trị số cho số tiền giao dịch.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "Số lượng TỐI ĐA được chọn",
         "iotaUnits": "Đơn vị IOTA được giải thích",
         "sendMax": "GỬI TỐI ĐA"
