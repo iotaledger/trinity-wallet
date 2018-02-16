@@ -1,13 +1,8 @@
 import takeRight from 'lodash/takeRight';
 import { iota } from '../libs/iota';
 import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
-import {
-    syncAccount,
-    getAccountData,
-    mapUnspentAddressesHashesToAccount,
-    updateAccount,
-    formatAddresses,
-} from '../libs/accountUtils';
+import { syncAccount, getAccountData, mapUnspentAddressesHashesToState, updateAccount } from '../libs/iota/accounts';
+import { formatAddresses } from '../libs/iota/addresses';
 import {
     clearTempData,
     updateTransitionBalance,
@@ -214,7 +209,7 @@ export const fetchFullAccountInfoForFirstUse = (
     getAccountData(seed, accountName)
         .then((data) => {
             dispatch(clearTempData()); // Clean up partial state for reducer.
-            return mapUnspentAddressesHashesToAccount(data);
+            return mapUnspentAddressesHashesToState(data);
         })
         .then((dataWithUnspentAddressesHashes) => {
             storeInKeychainPromise(password, seed, accountName)
@@ -228,7 +223,7 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
     return (dispatch) => {
         dispatch(fullAccountInfoFetchRequest());
         getAccountData(seed, accountName)
-            .then((data) => mapUnspentAddressesHashesToAccount(data))
+            .then((data) => mapUnspentAddressesHashesToState(data))
             .then((dataWithUnspentAddressesHashes) =>
                 dispatch(fullAccountInfoFetchSuccess(dataWithUnspentAddressesHashes)),
             )
@@ -244,7 +239,7 @@ export const manuallySyncAccount = (seed, accountName) => {
     return (dispatch) => {
         dispatch(manualSyncRequest());
         getAccountData(seed, accountName)
-            .then((data) => mapUnspentAddressesHashesToAccount(data))
+            .then((data) => mapUnspentAddressesHashesToState(data))
             .then((dataWithUnspentAddressesHashes) => {
                 dispatch(generateSyncingCompleteAlert());
                 dispatch(manualSyncSuccess(dataWithUnspentAddressesHashes));
