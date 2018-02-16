@@ -200,7 +200,7 @@
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "ΑΠΟΣΤΟΛΗ",
         "invalidAmount": "Εισήχθη λάθος ποσό",
-        "invalidAmountExplanation": "Παρακαλώ εισάγετε μια αριθμητική τιμή για το ποσό της συναλλαγής.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "ΜΕΓΙΣΤΟ ποσό επιλέχθηκε",
         "iotaUnits": "Επεξήγηση των υποδιαιρέσεων του IOTA",
         "sendMax": "ΑΠΟΣΤΟΛΗ ΜΕΓΙΣΤΟΥ ΠΟΣΟΥ"
