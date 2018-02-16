@@ -5366,9 +5366,9 @@ react-native-iphone-x-helper@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.0.1.tgz#950dbdaca66f458689a7e9697c5beb9bd53f98f2"
 
-react-native-is-device-rooted@^1.0.3:
+"react-native-is-device-rooted@https://github.com/rajivshah3/react-native-isDeviceRooted":
   version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-native-is-device-rooted/-/react-native-is-device-rooted-1.0.3.tgz#e827f9b51e44c12a4884dbf81e21d5a50e70ccac"
+  resolved "https://github.com/rajivshah3/react-native-isDeviceRooted#6a33c36385863f80ec4a738a15924664269783d5"
 
 react-native-keep-awake@^2.0.6:
   version "2.0.6"
