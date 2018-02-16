@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         backgroundColor: 'transparent',
         position: 'absolute',
-        top: isAndroid ? height / 60 : height / 50,
-        right: width / 8,
+        top: isAndroid ? height / 60 : height / 49,
+        right: width / 7.5,
     },
     widgetButton: {
         alignItems: 'center',
