@@ -15,10 +15,10 @@ import {
     removeBundleFromUnconfirmedBundleTails,
     updateTransfers,
 } from './account';
-import { getFirstConsistentTail, isWithinADay } from '../libs/promoter';
+import { getFirstConsistentTail } from '../libs/iota/transfers';
 import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
 import { iota } from '../libs/iota';
-import { syncAccount } from '../libs/accountUtils';
+import { syncAccount } from '../libs/iota/accounts';
 import { rearrangeObjectKeys } from '../libs/util';
 import i18next from '../i18next.js';
 
@@ -269,10 +269,8 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
         }
 
         const tailsFromLatestTransactionObjects = filter(txs, (t) => {
-            const attachmentTimestamp = get(t, 'attachmentTimestamp');
-            const hasMadeReattachmentWithinADay = isWithinADay(attachmentTimestamp);
-
-            return !t.persistence && t.currentIndex === 0 && t.value > 0 && hasMadeReattachmentWithinADay;
+            // TODO: Validate transfers
+            return !t.persistence && t.currentIndex === 0 && t.value > 0;
         });
 
         if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
