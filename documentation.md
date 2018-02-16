@@ -22,6 +22,8 @@ This section highlights all important APIs used in Trinity.
 - [Bitrise](#bitrise)
 - [Fastlane](#fastlane)
 - [Fabric](#fabric)
+- [RNIsDeviceRooted](#rnisdevicerooted)
+
 
 ## Information Architecture
 ## Setup
@@ -140,5 +142,15 @@ We use [Fastlane])(https://fastlane.tools) to automate various steps of deployme
 
 #### Fabric
 To ensure usability and stability across many platforms and devices, we use [Crashlytics](http://try.crashlytics.com/) so that devices will automatically send us anonymized crash data. Crashlytics is part of [Fabric](https://get.fabric.io), a group of development tools offered by Google.
+
+#### RNIsDeviceRooted
+Jailbreaking or rooting your device may pose a threat to the security of your account information, including your seed. In order to alert users of this risk, we use [react-native-is-device-rooted](https://github.com/beast/react-native-isDeviceRooted) to detect characteristics of jailbreaking/rooting. This includes:
+- iOS
+  - The presence of certain apps and files such as Cydia
+  - The ability to open deeplinks into the Cydia app
+  - The ability to write outside of the app sandbox
+- Android
+  - The kernel was signed with a test key instead of a release key
+  - The presence of Superuser/`su` binaries and related files
 
 <a name="mobile-randomness">1.</a> J. Krhovjak, P. Svenda, and V. Matyas, “The sources of randomness in mobile devices,” In Proceeding of NORDSEC, 2007.
