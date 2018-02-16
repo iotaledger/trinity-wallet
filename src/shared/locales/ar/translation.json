@@ -200,7 +200,7 @@
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "إرسال",
         "invalidAmount": "المبلغ المدخل غير صحيح",
-        "invalidAmountExplanation": "الرجاء إدخال قيمة رقمية لمبلغ الحوالة.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "تم اختيار الحد الأقصى",
         "iotaUnits": "IOTA units explained",
         "sendMax": "إرسال الكل"
