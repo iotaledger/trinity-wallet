@@ -200,7 +200,7 @@
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "Pošlji",
         "invalidAmount": "Neveljavna vsota",
-        "invalidAmountExplanation": "Prosimo vnesite vrednost za znesek transakcije.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "NAJVIŠJI izbrani znesek",
         "iotaUnits": "IOTA units explained",
         "sendMax": "POŠLJI MAX"
