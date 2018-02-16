@@ -2,15 +2,18 @@ PODS:
   - Crashlytics (3.10.0):
     - Fabric (~> 1.7.3)
   - Fabric (1.7.3)
+  - UIDevice-PasscodeStatus (0.0.2)
 
 DEPENDENCIES:
   - Crashlytics (~> 3.10)
   - Fabric (~> 1.7.3)
+  - UIDevice-PasscodeStatus (~> 0.0.2)
 
 SPEC CHECKSUMS:
   Crashlytics: a989ef242b66605577a425733797f810bd2725eb
   Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
+  UIDevice-PasscodeStatus: 250b63a271e85223105ff4c1626056ce3aab3305
 
-PODFILE CHECKSUM: 9884f6851675d1052a711e80d37ad23ab688c793
+PODFILE CHECKSUM: f648b663ec2b85474148bc4a0a6c72899971ac3b
 
 COCOAPODS: 1.4.0
