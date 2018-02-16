@@ -8,6 +8,7 @@ target 'iotaWallet' do
   # Pods for iotaWallet
 pod 'Fabric', '~> 1.7.3'
 pod 'Crashlytics', '~>  3.10'
+pod 'UIDevice-PasscodeStatus', '~> 0.0.2'
 
   target 'iotaWalletTests' do
     inherit! :search_paths
