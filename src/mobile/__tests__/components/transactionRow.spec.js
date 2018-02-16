@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import TransactionRow from '../../components/transactionRow';
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {
             generateAlert: noop,
-            t: arg => {
+            t: (arg) => {
                 const translations = {
                     'send:message': 'Message',
                 };

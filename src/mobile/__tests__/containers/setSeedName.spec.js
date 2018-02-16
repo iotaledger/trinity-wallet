@@ -16,7 +16,7 @@ const getProps = (overrides) =>
                 push: noop,
             },
             setSeedName: noop,
-            t: arg => {
+            t: (arg) => {
                 const translations = {
                     'global:mainWallet': 'MAIN ACCOUNT',
                 };

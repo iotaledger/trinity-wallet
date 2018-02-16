@@ -6,6 +6,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
+import { AppState } from 'react-native';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import {
     fetchMarketData,
@@ -50,10 +51,12 @@ export class Poll extends Component {
 
     componentDidMount() {
         this.startBackgroundProcesses();
+        AppState.addEventListener('change', this.handleAppStateChange);
     }
 
     componentWillUnmount() {
         timer.clearInterval(this, 'polling');
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
     shouldSkipCycle() {
@@ -110,6 +113,18 @@ export class Poll extends Component {
 
     startBackgroundProcesses() {
         timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 15000);
+    }
+
+    handleAppStateChange = (nextAppState) => {
+        if (nextAppState.match(/inactive|background/)) {
+            this.stopBackgroundProcesses();
+        } else if (nextAppState === 'active') {
+            this.startBackgroundProcesses();
+        }
+    };
+
+    stopBackgroundProcesses() {
+        timer.clearInterval(this, 'polling');
     }
 
     promote() {

@@ -226,11 +226,11 @@ class ChangePassword extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.2 }} />
                         <View style={[styles.infoTextWrapper, borderColor]}>
                             <Image source={infoImagePath} style={styles.infoIcon} />
                             <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
                         </View>
+                        <View style={{ flex: 0.2 }} />
                         {this.renderTextField(
                             (c) => {
                                 this.currentPassword = c;
