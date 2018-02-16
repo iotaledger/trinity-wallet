@@ -211,7 +211,8 @@
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "SEND",
         "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter an integer for the transaction amount.",
+        "invalidAmountExplanation":
+            "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"

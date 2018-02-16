@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
+import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
@@ -60,9 +61,9 @@ class TransferConfirmationModal extends Component {
         backgroundColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
-        amount: PropTypes.string.isRequired,
-        denomination: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired,
         setSendingTransferFlag: PropTypes.func.isRequired,
+        conversionText: PropTypes.string.isRequired,
     };
 
     onSendPress() {
@@ -76,18 +77,17 @@ class TransferConfirmationModal extends Component {
     }
 
     render() {
-        const { t, backgroundColor, textColor, borderColor } = this.props;
+        const { t, backgroundColor, textColor, borderColor, value, conversionText } = this.props;
         // TODO: fix this using trans component
 
         /*
         let transferContents = null;
-        if (this.props.amount === 0) {
+        if (value === 0) {
             transferContents = <Text style={styles.iotaText}>{t('transferConfirmation:aMessage')}</Text>;
         } else {
             transferContents = (
                 <Text style={styles.iotaText}>
-                    {' '}
-                    {this.props.amount} {this.props.denomination}{' '}
+                    {formatValue(value)} {formatUnit(value)}
                 </Text>
             );
         }
@@ -97,15 +97,14 @@ class TransferConfirmationModal extends Component {
 
         let transferContents = null;
         /* eslint-disable eqeqeq */
-        if (this.props.amount == 0) {
+        if (value === 0) {
             /* eslint-enable eqeqeq */
             // doesn't work with === for some reason
             transferContents = <Text style={styles.iotaText}>a message</Text>;
         } else {
             transferContents = (
                 <Text style={styles.iotaText}>
-                    {' '}
-                    {this.props.amount} {this.props.denomination}{' '}
+                    {formatValue(value)} {formatUnit(value)} ({conversionText})
                 </Text>
             );
         }
@@ -115,7 +114,7 @@ class TransferConfirmationModal extends Component {
                     <View style={styles.textContainer}>
                         <Text style={[styles.text, textColor]}>
                             <Text style={[styles.regularText, textColor]}>
-                                You are about to send {transferContents} to the address
+                                You are about to send {transferContents} to
                             </Text>
                         </Text>
                         <Text numberOfLines={3} style={[styles.addressText, textColor]}>
