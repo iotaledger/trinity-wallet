@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        width: width / 1.15,
+        width: width / 1.2,
     },
     topContainer: {
         flex: 9,
@@ -150,7 +150,7 @@ class DeleteAccount extends Component {
         return (
             <View
                 style={{
-                    width: width / 1.15,
+                    width: width / 1.2,
                     alignItems: 'center',
                     backgroundColor,
                 }}
@@ -164,6 +164,8 @@ class DeleteAccount extends Component {
                         onRightButtonPress={() => this.onYesPress()}
                         leftText={t('global:no')}
                         rightText={t('global:yes')}
+                        buttonWidth={{ width: width / 3.2 }}
+                        containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
             </View>
