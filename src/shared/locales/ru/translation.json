@@ -18,8 +18,8 @@
         "invalidResponse": "Ошибка сервера",
         "invalidResponseExplanation": "На узле произошла ошибка.",
         "invalidResponsePollingExplanation": "На узле произошла ошибка во время запроса.",
-        "invalidResponseFetchingAccount": "На узле произошла ошибка вовремя запроса информации по вашему аккаунту.",
-        "invalidResponseSendingTransfer": "На узле произошла ошибка вовремя отсылки перевода.",
+        "invalidResponseFetchingAccount": "На узле произошла ошибка во время запроса информации по Вашему счёту.",
+        "invalidResponseSendingTransfer": "На узле произошла ошибка во время отсылки перевода.",
         "seed": "Ключ",
         "back": "НАЗАД",
         "backLowercase": "Назад",
@@ -147,11 +147,11 @@
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
         "thisMayTake": "Это может занять некоторое время.",
-        "youMayNotice": "Вы можете заметить замедление работы вашего устройства."
+        "youMayNotice": "Вы можете заметить замедление работы Вашего устройства."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Ключ не был сгенерирован",
-        "seedNotGeneratedExplanation": "Пожалуйста, нажмите на кнопку \"Сгенерировать новый ключ\".",
+        "seedNotGeneratedExplanation": "Пожалуйста, нажмите на кнопку \"Создать новый ключ\".",
         "pressForNewSeed": "СОЗДАТЬ НОВЫЙ КЛЮЧ",
         "individualLetters": "Нажмите какие-нибудь клавиши на клавиатуре в случайном порядке."
     },
@@ -174,7 +174,7 @@
     },
     "saveYourSeed": {
         "seedCleared": "Буфер обмена очищен",
-        "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
+        "seedClearedExplanation": "Ключ был удален из буфера обмена для Вашей безопасности.",
         "mustSaveYourSeed": "<0><0>Вы должны сохранить свой ключ </ 0><1>как минимум одним</ 1> <2> из перечисленных ниже способов.</ 2></ 0>"
     },
     "seedReentry": {
