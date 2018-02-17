@@ -99,7 +99,7 @@ android {
         applicationId "com.iota.wallet"
         versionCode 18
         versionName "3.3.9"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 26
         multiDexEnabled true
         multiDexEnabled true
