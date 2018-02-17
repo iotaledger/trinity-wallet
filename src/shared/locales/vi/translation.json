@@ -72,8 +72,8 @@
         "autoreattachingExplanation": "Đang kết nối giao dịch với dữ liệu {{hash}}",
         "autopromoting": "Tự động thúc đẩy chuyển khoảng",
         "autopromotingExplanation": "Tự động thúc đẩy chuyển khoản với dữ liệu {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "Gửi đến địa chỉ của mình",
+        "cannotSendToOwnExplanation": "Bạn không thể chuyển khoản vào một trong những địa chỉ của riêng bạn."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
@@ -141,8 +141,8 @@
         "useSeed": "DÙNG TỪ KHOÁ",
         "login": "ĐĂNG NHẬP",
         "selectDifferentNode": "Bạn muốn chọn một nút mạng khác không?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "CHỌN NÚT MẠNG",
+        "cannotConnect": "Không thể kết nối vào nút mạng của IOTA."
     },
     "loading": {
         "loadingFirstTime": "Đang tải từ khoá lần đầu tiên.",
@@ -196,7 +196,7 @@
         "amount": "Số Lượng",
         "max": "TỐI ĐA",
         "message": "Tin nhắn",
-        "invalidMessage": "Invalid message",
+        "invalidMessage": "Tin nhắn không hợp lệ",
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "Gửi",
         "invalidAmount": "Số lượng nhập không đúng",
