@@ -73,7 +73,7 @@
         "autopromoting": "Передача автопромотирования",
         "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}",
         "cannotSendToOwn": "Отправка на собственный адрес",
-        "cannotSendToOwnExplanation": "Вы не можете переводить средства на один из ваших собственных адресов."
+        "cannotSendToOwnExplanation": "Вы не можете переводить средства на один из Ваших собственных адресов."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
