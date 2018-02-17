@@ -13,11 +13,11 @@
         "transferSentMessage": "Ваш перевод отправлен в Tangle.",
         "messageSent": "Сообщение отправлено",
         "messageSentMessage": "Ваше сообщение отправлено в Tangle.",
-        "keyReuse": "Повторное использование ключа адреса",
+        "keyReuse": "Повторное использование ключа",
         "keyReuseError": "Вы не можете сделать перевод на адрес, с которого уже был осуществлён перевод.",
         "invalidResponse": "Ошибка сервера",
-        "invalidResponseExplanation": "Узел вернул недопустимый отклик.",
-        "invalidResponsePollingExplanation": "На узле произошла ошибка вовремя запроса.",
+        "invalidResponseExplanation": "На узле произошла ошибка.",
+        "invalidResponsePollingExplanation": "На узле произошла ошибка во время запроса.",
         "invalidResponseFetchingAccount": "На узле произошла ошибка вовремя запроса информации по вашему аккаунту.",
         "invalidResponseSendingTransfer": "На узле произошла ошибка вовремя отсылки перевода.",
         "seed": "Ключ",
@@ -354,7 +354,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Я сохранил свой ключ",
         "reenter": "Сейчас Вас попросят повторно ввести Ваш ключ.",
-        "reenterWarning": "Если ваше устройство выйдет из строя, и вы не сохранили свой ключ (seed), то вы потеряете свои IOTA."
+        "reenterWarning": "Если Ваше устройство выйдет из строя, и Вы не сохранили свой ключ, то Вы потеряете свои IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ЭТО ДЕЙСТВИЕ НЕ МОЖЕТ БЫТЬ ОТМЕНЕНО.",
