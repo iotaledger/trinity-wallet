@@ -204,6 +204,7 @@ export const shouldAllowSendingToAddress = (addresses, callback) => {
  *   @param {array} bundle - Array of transfer objects
  *   @returns {object} transfer object
  **/
+
 export const extractTailTransferFromBundle = (bundle) => {
     const extractTail = (res, tx) => {
         if (tx.currentIndex === 0) {
