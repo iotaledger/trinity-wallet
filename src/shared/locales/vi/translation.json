@@ -255,7 +255,7 @@
         "paste": "Dán",
         "selectAll": "Chọn Tất Cả",
         "securitySettings": "Thiết lập bảo mật",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Xác thực bằng dấu vân tay"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
