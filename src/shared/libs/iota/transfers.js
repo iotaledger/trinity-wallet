@@ -142,6 +142,7 @@ export const isValidBundleAsync = (bundle) => {
     console.log('Balance on bundle async', balanceOnBundle);
     console.log('Addresses on bundle async', addressesOnBundle);
     return getBalancesAsync(addressesOnBundle, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
+        console.log('New async balances', balances.balances);
         const latestBalance = accumulateBalance(map(balances.balances, Number));
 
         return balanceOnBundle <= latestBalance;
@@ -168,7 +169,7 @@ export const filterInvalidTransfersAsync = (transfers) => {
         (promise, bundle) => {
             return promise
                 .then((result) => {
-                    isValidBundleAsync(bundle).then((isValid) => {
+                    return isValidBundleAsync(bundle).then((isValid) => {
                         if (isValid) {
                             result.push(bundle);
                         }
