@@ -44,14 +44,14 @@ const rootReducer = (state, action) => {
     return reducers(state, action);
 };
 
-const middleware = isDevelopment ? developmentMiddleware : productionMiddleware;
+const middleware = isDevelopment ? productionMiddleware : productionMiddleware;
 
 const store = createStore(
     rootReducer,
     compose(
         applyMiddleware(...middleware),
         autoRehydrate(),
-        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
+        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : (f) => f,
     ),
 );
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, BackHandler } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
+import RNExitApp from 'react-native-exit-app';
 import LottieView from 'lottie-react-native';
 import i18next from 'i18next';
 import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
@@ -63,7 +64,7 @@ class InitialLoading extends Component {
 
     static clearKeychain() {
         if (isIOS) {
-            keychain.clear().catch(err => console.error(err)); // eslint-disable-line no-console
+            keychain.clear().catch((err) => console.error(err)); // eslint-disable-line no-console
         }
     }
 
@@ -76,17 +77,11 @@ class InitialLoading extends Component {
     componentWillMount() {
         const { language } = this.props;
         i18next.changeLanguage(getLocaleFromLabel(language));
-        BackHandler.removeEventListener('backPress');
     }
 
     componentDidMount() {
         this.animation.play();
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
-
-        BackHandler.addEventListener('backPress', () => {
-            BackHandler.exitApp();
-            return true;
-        });
     }
 
     onLoaded() {
@@ -100,7 +95,6 @@ class InitialLoading extends Component {
                     screenBackgroundColor: this.props.backgroundColor,
                 },
                 animated: false,
-                overrideBackPress: true,
             });
         } else {
             this.props.navigator.push({
@@ -127,7 +121,7 @@ class InitialLoading extends Component {
                 <View style={styles.logoContainer}>
                     <View style={styles.animationContainer}>
                         <LottieView
-                            ref={animation => {
+                            ref={(animation) => {
                                 this.animation = animation;
                             }}
                             source={welcomeAnimationPath}
@@ -143,7 +137,7 @@ class InitialLoading extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     onboardingComplete: state.account.onboardingComplete,
     backgroundColor: state.settings.theme.backgroundColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,

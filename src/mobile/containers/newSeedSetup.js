@@ -2,7 +2,7 @@ import split from 'lodash/split';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableHighlight, ListView, Image, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight, FlatList, Image, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
@@ -18,8 +18,6 @@ import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const styles = StyleSheet.create({
     container: {
@@ -110,6 +108,12 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
+    tileText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 28.9,
+        textAlign: 'center',
+    },
 });
 
 class NewSeedSetup extends Component {
@@ -132,6 +136,8 @@ class NewSeedSetup extends Component {
 
     constructor() {
         super();
+
+        console.disableYellowBox = true; // eslint-disable-line no-console
 
         this.state = {
             randomised: false,
@@ -189,10 +195,10 @@ class NewSeedSetup extends Component {
     onItemPress(sectionID) {
         if (this.state.randomised) {
             const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-            generateSecureRandom(5).then(bytes => {
+            generateSecureRandom(5).then((bytes) => {
                 let i = 0;
                 let seed = this.props.seed;
-                Object.keys(bytes).forEach(key => {
+                Object.keys(bytes).forEach((key) => {
                     if (bytes[key] < 243 && i < 1) {
                         const randomNumber = bytes[key] % 27;
                         const randomLetter = charset.charAt(randomNumber);
@@ -225,19 +231,40 @@ class NewSeedSetup extends Component {
         });
     }
 
+    renderSeedBox(character, index) {
+        const { secondaryBackgroundColor, negativeColor, backgroundColor } = this.props;
+
+        const { randomised } = this.state;
+
+        return (
+            <TouchableHighlight
+                onPress={() => this.onItemPress(index)}
+                style={[styles.tileContainer, { backgroundColor: secondaryBackgroundColor }]}
+                underlayColor={negativeColor}
+                hitSlop={{ top: height / 80, bottom: height / 80, left: height / 80, right: height / 80 }}
+            >
+                <View style={styles.tile}>
+                    <Text style={[styles.tileText, { color: backgroundColor, opacity: randomised ? 1 : 0.1 }]}>
+                        {character}
+                    </Text>
+                </View>
+            </TouchableHighlight>
+        );
+    }
+
     render() {
         const {
             seed,
             t,
             ctaColor,
             backgroundColor,
-            negativeColor,
             secondaryBackgroundColor,
             secondaryCtaColor,
             ctaBorderColor,
         } = this.props;
         const viewOpacity = this.state.randomised ? 1 : 0.1;
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
+
         return (
             <View style={[styles.container, { backgroundColor }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
@@ -258,35 +285,13 @@ class NewSeedSetup extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: isIPhoneX ? 100 : 30 }} />
-                    <ListView
+                    <FlatList
                         contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
-                        dataSource={ds.cloneWithRows(split(seed, ''))}
-                        renderRow={(rowData, rowID, sectionID) => (
-                            <TouchableHighlight
-                                key={sectionID}
-                                onPress={() => this.onItemPress(sectionID)}
-                                style={[styles.tileContainer, { backgroundColor: secondaryBackgroundColor }]}
-                                underlayColor={negativeColor}
-                            >
-                                <View style={styles.tile}>
-                                    <Text
-                                        style={{
-                                            backgroundColor: 'transparent',
-                                            color: backgroundColor,
-                                            fontFamily: 'Lato-Bold',
-                                            fontSize: width / 28.9,
-                                            textAlign: 'center',
-                                            opacity: viewOpacity,
-                                        }}
-                                    >
-                                        {rowData}
-                                    </Text>
-                                </View>
-                            </TouchableHighlight>
-                        )}
-                        initialListSize={MAX_SEED_LENGTH}
+                        data={split(seed, '')}
+                        keyExtractor={(item, index) => index}
+                        renderItem={({ item, index }) => this.renderSeedBox(item, index)}
+                        initialNumToRender={MAX_SEED_LENGTH}
                         scrollEnabled={false}
-                        enableEmptySections
                     />
                     <View style={{ justifyContent: 'center', alignItems: 'center', flex: 100 }}>
                         <Text
@@ -318,7 +323,7 @@ class NewSeedSetup extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     backgroundColor: state.settings.theme.backgroundColor,
     ctaColor: state.settings.theme.ctaColor,

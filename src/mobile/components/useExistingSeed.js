@@ -209,7 +209,7 @@ class UseExistingSeed extends React.Component {
         <QRScanner
             ctaColor={this.props.ctaColor}
             backgroundColor={this.props.backgroundColor}
-            onQRRead={data => this.onQRRead(data)}
+            onQRRead={(data) => this.onQRRead(data)}
             hideModal={() => this.hideModal()}
             secondaryCtaColor={this.props.secondaryCtaColor}
             ctaBorderColor={this.props.ctaBorderColor}
@@ -237,7 +237,7 @@ class UseExistingSeed extends React.Component {
                         <View style={{ flex: 0.4 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={value => this.setState({ seed: value })}
+                            onChangeText={(value) => this.setState({ seed: value })}
                             containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'characters'}
                             maxLength={MAX_SEED_LENGTH}
@@ -257,11 +257,11 @@ class UseExistingSeed extends React.Component {
                         </View>
                         <View style={{ flex: 0.3 }} />
                         <CustomTextInput
-                            onRef={c => {
+                            onRef={(c) => {
                                 this.accountNameField = c;
                             }}
                             label={t('addAdditionalSeed:accountName')}
-                            onChangeText={value => this.setState({ accountName: value })}
+                            onChangeText={(value) => this.setState({ accountName: value })}
                             containerStyle={{ width: width / 1.2 }}
                             autoCapitalize={'words'}
                             maxLength={MAX_SEED_LENGTH}

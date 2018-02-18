@@ -55,7 +55,7 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
 
     const addresses = keys(addressData).slice(start);
 
-    each(addresses, address => {
+    each(addresses, (address) => {
         const balance = get(addressData, `${address}.balance`);
         const keyIndex = get(addressData, `${address}.index`);
 
@@ -83,9 +83,9 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  *   @param {array} inputs - Array or objects containing balance, keyIndex and address props.
  *   @returns {Promise} - A promise that resolves all inputs with unspent addresses.
  **/
-export const filterSpentAddresses = inputs => {
+export const filterSpentAddresses = (inputs) => {
     return new Promise((resolve, reject) => {
-        const addresses = map(inputs, input => input.address);
+        const addresses = map(inputs, (input) => input.address);
         iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
             if (err) {
                 reject(err);
@@ -117,7 +117,7 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
     inputs.allBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
 
     filterSpentAddresses(preparedInputs.inputs)
-        .then(filtered => {
+        .then((filtered) => {
             const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
 
             const diff = threshold - collected;
@@ -146,7 +146,7 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
                 });
             }
         })
-        .catch(err => callback(err));
+        .catch((err) => callback(err));
 };
 
 /**
@@ -158,11 +158,11 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
  *   @param {object} addressData - Addresses dictionary with balance and spend status
  *   @returns {number} index
  **/
-export const getStartingSearchIndexToPrepareInputs = addressData => {
+export const getStartingSearchIndexToPrepareInputs = (addressData) => {
     const byIndex = (a, b) => get(addressData, `${a}.index`) - get(addressData, `${b}.index`);
     const address = Object.keys(addressData)
         .sort(byIndex)
-        .find(address => addressData[address].balance > 0);
+        .find((address) => addressData[address].balance > 0);
 
     return address ? addressData[address].index : 0;
 };
@@ -174,7 +174,7 @@ export const getStartingSearchIndexToPrepareInputs = addressData => {
  *   @param {object} addressData - Addresses dictionary with balance and spend status
  *   @returns {number} index
  **/
-export const getStartingSearchIndexToFetchLatestAddresses = addressData => {
+export const getStartingSearchIndexToFetchLatestAddresses = (addressData) => {
     const addresses = Object.keys(addressData);
     return addresses.length ? addresses.length - 1 : 0;
 };
@@ -204,7 +204,8 @@ export const shouldAllowSendingToAddress = (addresses, callback) => {
  *   @param {array} bundle - Array of transfer objects
  *   @returns {object} transfer object
  **/
-export const extractTailTransferFromBundle = bundle => {
+
+export const extractTailTransferFromBundle = (bundle) => {
     const extractTail = (res, tx) => {
         if (tx.currentIndex === 0) {
             res = tx;
@@ -214,4 +215,39 @@ export const extractTailTransferFromBundle = bundle => {
     };
 
     return reduce(bundle, extractTail, {});
+};
+
+export const getRelevantTransfer = (bundle, addresses) => {
+    for (let i = 0; i < bundle.length; i++) {
+        if (addresses.indexOf(bundle[i].address) > -1) {
+            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
+            if (bundle[i].value < 0 && !isRemainder) {
+                return bundle[0];
+            } else if (bundle[i].value >= 0 && !isRemainder) {
+                return bundle[i];
+            }
+        } else {
+            return extractTailTransferFromBundle(bundle);
+        }
+    }
+};
+
+export const isReceivedTransfer = (bundle, addresses) => {
+    // Iterate over every bundle entry
+
+    for (let i = 0; i < bundle.length; i++) {
+        if (addresses.indexOf(bundle[i].address) > -1) {
+            // Check if it's a remainder address
+            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
+            // check if sent transaction
+            if (bundle[i].value < 0 && !isRemainder) {
+                return false;
+                // check if received transaction, or 0 value (message)
+            } else if (bundle[i].value >= 0 && !isRemainder) {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
 };
