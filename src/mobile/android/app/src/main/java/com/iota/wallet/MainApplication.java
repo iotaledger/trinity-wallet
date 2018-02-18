@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.airbnb.android.react.lottie.LottiePackage;
-import com.bitgo.randombytes.RandomBytesPackage;
 import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
 import com.facebook.react.ReactPackage;
@@ -49,7 +48,6 @@ public class MainApplication extends NavigationApplication {
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
-            new RandomBytesPackage(),
             new SvgPackage(),
             new MainReactPackage(),
             new RNDeviceInfo(),

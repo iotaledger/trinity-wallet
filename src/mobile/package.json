@@ -70,7 +70,6 @@
     "react-native-print": "^0.3.0",
     "react-native-qrcode-scanner": "^0.0.22",
     "react-native-qrcode-svg": "^5.0.3",
-    "react-native-randombytes": "^3.0.0",
     "react-native-safe-area-view": "^0.2.0",
     "react-native-securerandom": "^0.1.1",
     "react-native-svg": "^6.0.1-rc.1",
