@@ -238,7 +238,7 @@ export const getBundleTailsForPendingValidTransfers = (transfers, addressData, a
     const pendingTransfers = filterConfirmedTransfers(transfers);
 
     if (isEmpty(pendingTransfers)) {
-        return {};
+        return Promise.resolve({});
     }
 
     console.log('Pending', pendingTransfers);
