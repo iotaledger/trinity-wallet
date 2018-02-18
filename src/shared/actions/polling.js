@@ -18,7 +18,6 @@ import {
 import { getFirstConsistentTail } from '../libs/iota/transfers';
 import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
 import { iota } from '../libs/iota';
-import { findTransactionObjectsAsync } from '../libs/iota/extendedApi';
 import { syncAccount } from '../libs/iota/accounts';
 import { rearrangeObjectKeys } from '../libs/util';
 import i18next from '../i18next.js';
