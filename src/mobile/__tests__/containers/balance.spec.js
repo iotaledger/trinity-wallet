@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import noop from 'lodash/noop';
 import React from 'react';
 import { FlatList } from 'react-native';
-import PropTypes, { shape } from 'prop-types';
+import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { Balance } from '../../containers/balance';
 

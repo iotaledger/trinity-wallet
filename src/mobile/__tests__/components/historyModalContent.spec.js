@@ -81,7 +81,7 @@ describe('Testing HistoryModalContent component', () => {
         });
 
         it('should require a message string as a prop', () => {
-            expect(HistoryModalContent.propTypes.message).toEqual(PropTypes.string.isRequired);
+            expect(HistoryModalContent.propTypes.message).toEqual(PropTypes.string);
         });
 
         it('should require a bundle string as a prop', () => {
@@ -104,11 +104,11 @@ describe('Testing HistoryModalContent component', () => {
             expect(wrapper.find('View').length).toEqual(6);
         });
 
-        it('should return nine Text components', () => {
+        it('should return eight Text components', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.find('Text').length).toEqual(9);
+            expect(wrapper.find('Text').length).toEqual(8);
         });
 
         it('should return a ScrollView component', () => {

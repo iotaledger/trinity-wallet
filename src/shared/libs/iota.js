@@ -44,21 +44,3 @@ export const checkNode = (cb) => {
 export const getChecksum = (seed) => {
     return iota.utils.addChecksum(seed, 3, false).substr(-3);
 };
-
-export const isReceivedTransfer = (bundle, addresses) => {
-    // Iterate over every bundle entry
-
-    for (let i = 0; i < bundle.length; i++) {
-        if (addresses.indexOf(bundle[i].address) > -1) {
-            // Check if it's a remainder address
-            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
-            // check if sent transaction
-            if (bundle[i].value < 0 && !isRemainder) {
-                return false;
-                // check if received transaction, or 0 value (message)
-            } else if (bundle[i].value >= 0 && !isRemainder) {
-                return true;
-            }
-        }
-    }
-};
