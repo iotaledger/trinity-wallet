@@ -105,11 +105,20 @@ export const getAllAddresses = (
 
 export const formatFullAddressData = (data) => {
     const addresses = data.addresses;
-    const addressData = assign({}, ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } })));
+    const addressData = reduce(
+        addresses,
+        (acc, address, index) => {
+            acc[address] = { index, balance: 0, spent: false };
+
+            return acc;
+        },
+        {},
+    );
 
     for (let i = 0; i < data.inputs.length; i++) {
         addressData[data.inputs[i].address].balance = data.inputs[i].balance;
     }
+
     return addressData;
 };
 
