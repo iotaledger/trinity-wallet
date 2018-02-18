@@ -3,6 +3,7 @@ import get from 'lodash/get';
 import keys from 'lodash/keys';
 import each from 'lodash/each';
 import find from 'lodash/find';
+import head from 'lodash/head';
 import map from 'lodash/map';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
@@ -121,10 +122,10 @@ export const filterInvalidTransfersSync = (transfers, addressData) => {
     const validTransfers = [];
 
     each(transfers, (bundle) => {
-        const balanceOnBundle = bundle.reduce((acc, tx) => (tx.value < 0 ? acc + Math.abs(tx.value) : acc), 0);
+        const balanceOnBundle = accumulateBalanceFromBundle(bundle);
+        const addressesOnBundle = getUsedAddressesFromBundle(bundle);
 
-        const addresses = bundle.filter((tx) => tx.value < 0).map((tx) => tx.address);
-        const balances = getBalancesSync(addresses, addressData);
+        const balances = getBalancesSync(addressesOnBundle, addressData);
         const latestBalance = accumulateBalance(balances);
 
         if (balanceOnBundle <= latestBalance) {
@@ -139,14 +140,10 @@ export const filterInvalidTransfersAsync = (transfers) => {
         (promise, bundle) => {
             return promise
                 .then((result) => {
-                    const balanceOnBundle = bundle.reduce(
-                        (acc, tx) => (tx.value < 0 ? acc + Math.abs(tx.value) : acc),
-                        0,
-                    );
+                    const balanceOnBundle = accumulateBalanceFromBundle(bundle);
+                    const addressesOnBundle = getUsedAddressesFromBundle(bundle);
 
-                    const addresses = bundle.filter((tx) => tx.value < 0).map((tx) => tx.address);
-
-                    return getBalancesAsync(addresses, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
+                    return getBalancesAsync(addressesOnBundle, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
                         const latestBalance = accumulateBalance(map(balances.balances, Number));
 
                         if (balanceOnBundle <= latestBalance) {
@@ -160,6 +157,47 @@ export const filterInvalidTransfersAsync = (transfers) => {
         },
         Promise.resolve([]),
     );
+};
+
+/**
+ *   Accepts transfers and filters zero value transfers if any
+ *
+ *   @method filterZeroValueTransfers
+ *   @param {array} transfers
+ *   @returns {array} - Value transfers
+ **/
+export const filterZeroValueTransfers = (transfers) => {
+    const keepValueTransfers = (acc, bundle) => {
+        const topTx = head(bundle);
+
+        if (topTx.value !== 0) {
+            acc.push(bundle);
+        }
+    };
+
+    return reduce(transfers, keepValueTransfers, []);
+};
+
+/**
+ *   Accepts a bundle and computes the total balance consumed
+ *
+ *   @method accumulateBalanceOnBundle
+ *   @param {array} bundle
+ *   @returns {number} - Balance
+ **/
+export const accumulateBalanceFromBundle = (bundle) => {
+    return reduce(bundle, (acc, tx) => (tx.value < 0 ? acc + Math.abs(tx.value) : acc), 0);
+};
+
+/**
+ *   Accepts a bundle and computes the total balance consumed
+ *
+ *   @method accumulateBalanceOnBundle
+ *   @param {array} bundle
+ *   @returns {number} - Balance
+ **/
+export const getUsedAddressesFromBundle = (bundle) => {
+    return map(filter(bundle, (tx) => tx.value < 0), (tx) => tx.addresses);
 };
 
 export const getBundleTailsForValidTransfers = (transfers, addressData, account) => {
@@ -185,10 +223,18 @@ export const getBundleTailsForValidTransfers = (transfers, addressData, account)
         });
     };
 
+    // Remove all invalid transfers from sent transfers
     const validSentTransfers = filterInvalidTransfersSync(sent, addressData);
+
+    // Transform all valid sent transfers by bundles
     const allValidSentTransferTailsByBundle = transform(validSentTransfers, byBundles, {});
 
-    return filterInvalidTransfersAsync(received).then((validReceivedTransfers) => {
+    // categorizeTransfers categorizes zero value transfers in received.
+    const receivedValueTransfers = filterZeroValueTransfers(received);
+
+    // Remove all invalid received transfers
+    return filterInvalidTransfersAsync(receivedValueTransfers).then((validReceivedTransfers) => {
+        // Transform all valid received transfers by bundles
         const allValidReceivedTransferTailsByBundle = transform(validReceivedTransfers, byBundles, {});
 
         return { ...allValidSentTransferTailsByBundle, ...allValidReceivedTransferTailsByBundle };

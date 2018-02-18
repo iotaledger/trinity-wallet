@@ -72,6 +72,24 @@ const getLatestInclusionAsync = (hashes) => {
     });
 };
 
+const promoteTransactionAsync = (
+    hash,
+    depth = 3,
+    minWeightMagnitude = 14,
+    transfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }],
+    options = { interrupt: false, delay: 0 },
+) => {
+    return new Promise((resolve, reject) => {
+        iota.api.promoteTransaction(hash, depth, minWeightMagnitude, transfer, options, (err, txs) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(txs);
+            }
+        });
+    });
+};
+
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -79,4 +97,5 @@ export {
     findTransactionObjectsAsync,
     findTransactionsAsync,
     getLatestInclusionAsync,
+    promoteTransactionAsync,
 };
