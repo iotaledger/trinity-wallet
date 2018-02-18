@@ -292,6 +292,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
         return syncAccount(seed, existingAccountData)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
+                console.log('Err', err);
                 if (navigator) {
                     navigator.pop({ animated: false });
                 }

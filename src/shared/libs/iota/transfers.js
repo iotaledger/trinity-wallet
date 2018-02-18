@@ -7,6 +7,7 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
 import filter from 'lodash/filter';
 import omitBy from 'lodash/omitBy';
 import size from 'lodash/size';
@@ -118,23 +119,42 @@ export const isReceivedTransfer = (bundle, addresses) => {
     }
 };
 
+export const isValidBundleSync = (bundle, addressData) => {
+    const balanceOnBundle = accumulateBalanceFromBundle(bundle);
+    const addressesOnBundle = getUsedAddressesFromBundle(bundle);
+
+    const balances = getBalancesSync(addressesOnBundle, addressData);
+    const latestBalance = accumulateBalance(balances);
+
+    console.log('Balance on bundle', balanceOnBundle);
+    console.log('Addresses on bundle', addressesOnBundle);
+
+    console.log('Synced balances', balances);
+
+    console.log('Latest balance', latestBalance);
+    return balanceOnBundle <= latestBalance;
+};
+
+export const isValidBundleAsync = (bundle) => {
+    const balanceOnBundle = accumulateBalanceFromBundle(bundle);
+    const addressesOnBundle = getUsedAddressesFromBundle(bundle);
+
+    console.log('Balance on bundle async', balanceOnBundle);
+    console.log('Addresses on bundle async', addressesOnBundle);
+    return getBalancesAsync(addressesOnBundle, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
+        const latestBalance = accumulateBalance(map(balances.balances, Number));
+
+        return balanceOnBundle <= latestBalance;
+    });
+};
+
 export const filterInvalidTransfersSync = (transfers, addressData) => {
     const validTransfers = [];
 
     each(transfers, (bundle) => {
-        const balanceOnBundle = accumulateBalanceFromBundle(bundle);
-        const addressesOnBundle = getUsedAddressesFromBundle(bundle);
+        const isValidBundle = isValidBundleSync(bundle, addressData);
 
-        console.log('Balance on bundle', balanceOnBundle);
-        console.log('Addresses on bundle', addressesOnBundle);
-        const balances = getBalancesSync(addressesOnBundle, addressData);
-
-        console.log('Synced balances', balances);
-        const latestBalance = accumulateBalance(balances);
-
-        console.log('Latest balance', latestBalance);
-
-        if (balanceOnBundle <= latestBalance) {
+        if (isValidBundle) {
             validTransfers.push(bundle);
         }
     });
@@ -148,16 +168,8 @@ export const filterInvalidTransfersAsync = (transfers) => {
         (promise, bundle) => {
             return promise
                 .then((result) => {
-                    const balanceOnBundle = accumulateBalanceFromBundle(bundle);
-                    const addressesOnBundle = getUsedAddressesFromBundle(bundle);
-
-                    console.log('Balance on bundle async', balanceOnBundle);
-                    console.log('Addresses on bundle async', addressesOnBundle);
-                    return getBalancesAsync(addressesOnBundle, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
-                        const latestBalance = accumulateBalance(map(balances.balances, Number));
-
-                        console.log('Latest balance', latestBalance);
-                        if (balanceOnBundle <= latestBalance) {
+                    isValidBundleAsync(bundle).then((isValid) => {
+                        if (isValid) {
                             result.push(bundle);
                         }
 
@@ -213,12 +225,27 @@ export const getUsedAddressesFromBundle = (bundle) => {
     return map(filter(bundle, (tx) => tx.value < 0), (tx) => tx.address);
 };
 
-export const getBundleTailsForValidTransfers = (transfers, addressData, account) => {
+export const filterConfirmedTransfers = (transfers) => {
+    return filter(transfers, (bundle) => {
+        const topTx = head(bundle);
+
+        return !topTx.persistence;
+    });
+};
+
+export const getBundleTailsForPendingValidTransfers = (transfers, addressData, account) => {
     const addresses = keys(addressData);
+    const pendingTransfers = filterConfirmedTransfers(transfers);
+
+    if (isEmpty(pendingTransfers)) {
+        return {};
+    }
+
+    console.log('Pending', pendingTransfers);
     console.log('Address data', addressData);
     console.log('Transfers', transfers);
     console.log('Addresses', addresses);
-    const { sent, received } = iota.utils.categorizeTransfers(transfers, addresses);
+    const { sent, received } = iota.utils.categorizeTransfers(pendingTransfers, addresses);
 
     console.log('Categorized sent', sent);
     console.log('Categorized received', received);
@@ -227,9 +254,8 @@ export const getBundleTailsForValidTransfers = (transfers, addressData, account)
         each(transfers, (tx) => {
             const isTail = tx.currentIndex === 0;
             const isValueTransfer = tx.value !== 0;
-            const isPending = !tx.persistence;
 
-            if (isPending && isTail && isValueTransfer) {
+            if (isTail && isValueTransfer) {
                 const bundle = tx.bundle;
                 const withAccount = assign({}, tx, { account });
 
