@@ -21,7 +21,7 @@ import {
 } from './extendedApi';
 import {
     formatTransfers,
-    getBundleTailsForValidTransfers,
+    getBundleTailsForPendingValidTransfers,
     categorizeTransactionsByPersistence,
     removeIrrelevantUnconfirmedTransfers,
     constructBundle,
@@ -51,15 +51,17 @@ const organizeAccountInfo = (accountName, data) => {
     const balance = calculateBalance(addressData);
     const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
 
-    return getBundleTailsForValidTransfers(transfers, addressData, accountName).then((unconfirmedBundleTails) => {
-        return {
-            accountName,
-            transfers,
-            addresses: addressDataWithSpentFlag,
-            balance,
-            unconfirmedBundleTails,
-        };
-    });
+    return getBundleTailsForPendingValidTransfers(transfers, addressData, accountName).then(
+        (unconfirmedBundleTails) => {
+            return {
+                accountName,
+                transfers,
+                addresses: addressDataWithSpentFlag,
+                balance,
+                unconfirmedBundleTails,
+            };
+        },
+    );
 };
 
 /**
@@ -249,14 +251,21 @@ export const syncAccount = (seed, existingAccountState) => {
                 return syncTransfers(diff, thisStateCopy);
             }
 
-            return Promise.resolve(thisStateCopy.transfers);
+            return Promise.resolve({
+                transfers: thisStateCopy.transfers,
+                newTransfers: [],
+            });
         })
         .then(({ transfers, newTransfers }) => {
             thisStateCopy.transfers = transfers;
             thisStateCopy.addresses = markAddressSpend(thisStateCopy.transfers, thisStateCopy.addresses);
 
             // Transform new transfers by bundle for promotion.
-            return getBundleTailsForValidTransfers(newTransfers, thisStateCopy.addresses, thisStateCopy.accountName);
+            return getBundleTailsForPendingValidTransfers(
+                newTransfers,
+                thisStateCopy.addresses,
+                thisStateCopy.accountName,
+            );
         })
         .then((newUnconfirmedBundleTails) => {
             thisStateCopy.unconfirmedBundleTails = merge(
