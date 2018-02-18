@@ -126,12 +126,6 @@ export const isValidBundleSync = (bundle, addressData) => {
     const balances = getBalancesSync(addressesOnBundle, addressData);
     const latestBalance = accumulateBalance(balances);
 
-    console.log('Balance on bundle', balanceOnBundle);
-    console.log('Addresses on bundle', addressesOnBundle);
-
-    console.log('Synced balances', balances);
-
-    console.log('Latest balance', latestBalance);
     return balanceOnBundle <= latestBalance;
 };
 
@@ -139,10 +133,7 @@ export const isValidBundleAsync = (bundle) => {
     const balanceOnBundle = accumulateBalanceFromBundle(bundle);
     const addressesOnBundle = getUsedAddressesFromBundle(bundle);
 
-    console.log('Balance on bundle async', balanceOnBundle);
-    console.log('Addresses on bundle async', addressesOnBundle);
     return getBalancesAsync(addressesOnBundle, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
-        console.log('New async balances', balances.balances);
         const latestBalance = accumulateBalance(map(balances.balances, Number));
 
         return balanceOnBundle <= latestBalance;
@@ -242,14 +233,7 @@ export const getBundleTailsForPendingValidTransfers = (transfers, addressData, a
         return Promise.resolve({});
     }
 
-    console.log('Pending', pendingTransfers);
-    console.log('Address data', addressData);
-    console.log('Transfers', transfers);
-    console.log('Addresses', addresses);
     const { sent, received } = iota.utils.categorizeTransfers(pendingTransfers, addresses);
-
-    console.log('Categorized sent', sent);
-    console.log('Categorized received', received);
 
     const byBundles = (acc, transfers) => {
         each(transfers, (tx) => {
@@ -272,25 +256,16 @@ export const getBundleTailsForPendingValidTransfers = (transfers, addressData, a
     // Remove all invalid transfers from sent transfers
     const validSentTransfers = filterInvalidTransfersSync(sent, addressData);
 
-    console.log('Valid sent transfers', validSentTransfers);
     // Transform all valid sent transfers by bundles
     const allValidSentTransferTailsByBundle = transform(validSentTransfers, byBundles, {});
-
-    console.log('All valid bundle tails for sent', allValidSentTransferTailsByBundle);
 
     // categorizeTransfers categorizes zero value transfers in received.
     const receivedValueTransfers = filterZeroValueTransfers(received);
 
-    console.log('Received value transfers', receivedValueTransfers);
-
     // Remove all invalid received transfers
     return filterInvalidTransfersAsync(receivedValueTransfers).then((validReceivedTransfers) => {
-        console.log('All valid received transfers', validReceivedTransfers);
-
         // Transform all valid received transfers by bundles
         const allValidReceivedTransferTailsByBundle = transform(validReceivedTransfers, byBundles, {});
-
-        console.log('All valid received bundle tails', allValidReceivedTransferTailsByBundle);
 
         return { ...allValidSentTransferTailsByBundle, ...allValidReceivedTransferTailsByBundle };
     });
