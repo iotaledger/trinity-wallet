@@ -46,12 +46,12 @@ import {
 
 const organizeAccountInfo = (accountName, data) => {
     const transfers = formatTransfers(data.transfers, data.addresses);
-
     const addressData = formatFullAddressData(data);
+
     const balance = calculateBalance(addressData);
     const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
 
-    return getBundleTailsForValidTransfers(transfers, data.addresses, accountName).then((unconfirmedBundleTails) => {
+    return getBundleTailsForValidTransfers(transfers, addressData, accountName).then((unconfirmedBundleTails) => {
         return {
             accountName,
             transfers,
