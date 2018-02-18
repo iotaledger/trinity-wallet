@@ -228,6 +228,7 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
                 dispatch(fullAccountInfoFetchSuccess(dataWithUnspentAddressesHashes)),
             )
             .catch((err) => {
+                console.log('Err', err);
                 pushScreen(navigator, 'login');
                 dispatch(generateAccountInfoErrorAlert(err));
                 dispatch(fullAccountInfoFetchError());

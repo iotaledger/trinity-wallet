@@ -24,7 +24,7 @@ import {
     getBundleTailsForValidTransfers,
     categorizeTransactionsByPersistence,
     removeIrrelevantUnconfirmedTransfers,
-    getBundle,
+    constructBundle,
     hasNewTransfers,
     syncTransfers,
     getPendingTxTailsHashes,
@@ -166,7 +166,7 @@ export const getAccountData = (seed, accountName) => {
             ];
 
             each(finalTailTxs, (tx) => {
-                const bundle = getBundle(tx, allBundleObjects);
+                const bundle = constructBundle(tx, allBundleObjects);
 
                 if (iota.utils.isBundle(bundle)) {
                     // Map persistence from tail transaction object to all transfer objects in the bundle
