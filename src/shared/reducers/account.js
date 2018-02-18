@@ -16,7 +16,7 @@ const updateAccountInfo = (state, payload) => ({
                 ...payload.addresses,
             },
             transfers: payload.transfers,
-            isFingerprintEnabled: false,
+            isFingerprintEnabled: false, // FIXME: Unneeded prop
         },
     },
 });
@@ -73,6 +73,8 @@ const account = (
                     ...state.unspentAddressesHashes,
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
+                // Both these cases do a deep merge while updating existing unconfirmed bundle tails so just assign those
+                unconfirmedBundleTails: action.payload.unconfirmedBundleTails,
             };
         case ActionTypes.UPDATE_ADDRESSES:
             return {

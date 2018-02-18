@@ -224,6 +224,7 @@ describe('Reducer: account', () => {
             const action = actions.accountInfoFetchSuccess({
                 accountName,
                 addresses: { baz: {} },
+                unconfirmedBundleTails: {},
             });
 
             const newState = reducer(initialState, action);
@@ -295,6 +296,26 @@ describe('Reducer: account', () => {
             };
 
             expect(newState.unspentAddressesHashes).to.eql(expectedState.unspentAddressesHashes);
+        });
+
+        it('should set unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
+            const initialState = {
+                unconfirmedBundleTails: {
+                    foo: [],
+                },
+            };
+
+            const action = actions.accountInfoFetchSuccess({
+                accountName: 'firstAccount',
+                unconfirmedBundleTails: {},
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                unconfirmedBundleTails: {},
+            };
+
+            expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
         });
     });
 
