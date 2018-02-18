@@ -79,6 +79,13 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
+    modalInfoText: {
+        fontFamily: Fonts.secondary,
+        fontSize: width / 25.9,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+        paddingHorizontal: width / 15,
+    },
     warningText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 25.9,
@@ -156,7 +163,7 @@ class DeleteAccount extends Component {
                 }}
             >
                 <View style={[styles.modalContent, borderColor]}>
-                    <Text style={[styles.infoText, { paddingBottom: height / 16 }, textColor]}>
+                    <Text style={[styles.modalInfoText, { paddingBottom: height / 16 }, textColor]}>
                         Are you sure you want to delete your account called {currentAccountName}?
                     </Text>
                     <OnboardingButtons

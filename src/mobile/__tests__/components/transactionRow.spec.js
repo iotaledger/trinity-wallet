@@ -69,7 +69,7 @@ describe('Testing TransactionRow component', () => {
         });
 
         it('should require a message string as a prop', () => {
-            expect(TransactionRow.propTypes.message).toEqual(PropTypes.string.isRequired);
+            expect(TransactionRow.propTypes.message).toEqual(PropTypes.string);
         });
 
         it('should require a bundle string as a prop', () => {
@@ -92,11 +92,11 @@ describe('Testing TransactionRow component', () => {
             expect(wrapper.find('View').length).toEqual(7);
         });
 
-        it('should return six Text components', () => {
+        it('should return five Text components', () => {
             const props = getProps();
 
             const wrapper = shallow(<TransactionRow {...props} />);
-            expect(wrapper.find('Text').length).toEqual(6);
+            expect(wrapper.find('Text').length).toEqual(5);
         });
 
         it('should return status prop as a child to first Text component', () => {

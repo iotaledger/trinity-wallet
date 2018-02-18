@@ -16,7 +16,6 @@ const updateAccountInfo = (state, payload) => ({
                 ...payload.addresses,
             },
             transfers: payload.transfers,
-            isFingerprintEnabled: false,
         },
     },
 });
