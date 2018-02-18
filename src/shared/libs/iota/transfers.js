@@ -125,13 +125,21 @@ export const filterInvalidTransfersSync = (transfers, addressData) => {
         const balanceOnBundle = accumulateBalanceFromBundle(bundle);
         const addressesOnBundle = getUsedAddressesFromBundle(bundle);
 
+        console.log('Balance on bundle', balanceOnBundle);
+        console.log('Addresses on bundle', addressesOnBundle);
         const balances = getBalancesSync(addressesOnBundle, addressData);
+
+        console.log('Synced balances', balances);
         const latestBalance = accumulateBalance(balances);
+
+        console.log('Latest balance', latestBalance);
 
         if (balanceOnBundle <= latestBalance) {
             validTransfers.push(bundle);
         }
     });
+
+    return validTransfers;
 };
 
 export const filterInvalidTransfersAsync = (transfers) => {
@@ -143,9 +151,12 @@ export const filterInvalidTransfersAsync = (transfers) => {
                     const balanceOnBundle = accumulateBalanceFromBundle(bundle);
                     const addressesOnBundle = getUsedAddressesFromBundle(bundle);
 
+                    console.log('Balance on bundle async', balanceOnBundle);
+                    console.log('Addresses on bundle async', addressesOnBundle);
                     return getBalancesAsync(addressesOnBundle, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
                         const latestBalance = accumulateBalance(map(balances.balances, Number));
 
+                        console.log('Latest balance', latestBalance);
                         if (balanceOnBundle <= latestBalance) {
                             result.push(bundle);
                         }
@@ -173,6 +184,8 @@ export const filterZeroValueTransfers = (transfers) => {
         if (topTx.value !== 0) {
             acc.push(bundle);
         }
+
+        return acc;
     };
 
     return reduce(transfers, keepValueTransfers, []);
@@ -197,12 +210,18 @@ export const accumulateBalanceFromBundle = (bundle) => {
  *   @returns {number} - Balance
  **/
 export const getUsedAddressesFromBundle = (bundle) => {
-    return map(filter(bundle, (tx) => tx.value < 0), (tx) => tx.addresses);
+    return map(filter(bundle, (tx) => tx.value < 0), (tx) => tx.address);
 };
 
 export const getBundleTailsForValidTransfers = (transfers, addressData, account) => {
     const addresses = keys(addressData);
+    console.log('Address data', addressData);
+    console.log('Transfers', transfers);
+    console.log('Addresses', addresses);
     const { sent, received } = iota.utils.categorizeTransfers(transfers, addresses);
+
+    console.log('Categorized sent', sent);
+    console.log('Categorized received', received);
 
     const byBundles = (acc, transfers) => {
         each(transfers, (tx) => {
@@ -226,16 +245,25 @@ export const getBundleTailsForValidTransfers = (transfers, addressData, account)
     // Remove all invalid transfers from sent transfers
     const validSentTransfers = filterInvalidTransfersSync(sent, addressData);
 
+    console.log('Valid sent transfers', validSentTransfers);
     // Transform all valid sent transfers by bundles
     const allValidSentTransferTailsByBundle = transform(validSentTransfers, byBundles, {});
+
+    console.log('All valid bundle tails for sent', allValidSentTransferTailsByBundle);
 
     // categorizeTransfers categorizes zero value transfers in received.
     const receivedValueTransfers = filterZeroValueTransfers(received);
 
+    console.log('Received value transfers', receivedValueTransfers);
+
     // Remove all invalid received transfers
     return filterInvalidTransfersAsync(receivedValueTransfers).then((validReceivedTransfers) => {
+        console.log('All valid received transfers', validReceivedTransfers);
+
         // Transform all valid received transfers by bundles
         const allValidReceivedTransferTailsByBundle = transform(validReceivedTransfers, byBundles, {});
+
+        console.log('All valid received bundle tails', allValidReceivedTransferTailsByBundle);
 
         return { ...allValidSentTransferTailsByBundle, ...allValidReceivedTransferTailsByBundle };
     });
