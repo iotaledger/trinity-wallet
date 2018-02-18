@@ -1,11 +1,12 @@
 import { translate, Trans } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, Image, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
+import WithBackPressGoToHome from '../components/withBackPressGoToHome';
 import { width, height } from '../util/dimensions';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
@@ -43,11 +44,13 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontSize: width / 22.7,
+        fontFamily: 'Lato-Regular',
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoText: {
         fontSize: width / 27.6,
+        fontFamily: 'Lato-Light',
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },
@@ -63,10 +66,6 @@ const styles = StyleSheet.create({
     infoIcon: {
         width: width / 20,
         height: width / 20,
-    },
-    confirmationTextWrapper: {
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     confirmationText: {
         fontFamily: Fonts.secondary,
@@ -94,17 +93,6 @@ class WalletResetConfirmation extends Component {
 
         this.goBack = this.goBack.bind(this);
         this.requirePassword = this.requirePassword.bind(this);
-    }
-
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', () => {
-            this.goBack();
-            return true;
-        });
-    }
-
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress');
     }
 
     navigateTo(url) {
@@ -154,11 +142,7 @@ class WalletResetConfirmation extends Component {
                     <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midWrapper}>
-                    <View style={styles.subHeaderWrapper}>
-                        <Text style={[styles.subHeaderText, negativeColor]}>
-                            {t('walletResetConfirmation:cannotUndo')}
-                        </Text>
-                    </View>
+                    <View style={{ flex: 0.2 }} />
                     <InfoBox
                         text={
                             <Trans i18nKey="walletResetConfirmation:warning">
@@ -173,9 +157,10 @@ class WalletResetConfirmation extends Component {
                         }
                         secondaryBackgroundColor={secondaryBackgroundColor}
                     />
-                    <View style={styles.confirmationTextWrapper}>
-                        <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
-                    </View>
+                    <View style={{ flex: 0.4 }} />
+                    <Text style={[styles.subHeaderText, negativeColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
+                    <View style={{ flex: 0.2 }} />
+                    <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                 </View>
                 <View style={styles.bottomWrapper}>
                     <OnboardingButtons
@@ -190,11 +175,13 @@ class WalletResetConfirmation extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
-export default translate(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation));
+export default WithBackPressGoToHome()(
+    translate(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation)),
+);

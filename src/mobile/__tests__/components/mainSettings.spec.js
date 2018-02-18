@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import MainSettings from '../../components/mainSettings';
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {
@@ -18,7 +18,7 @@ const getProps = overrides =>
             setSetting: noop,
             setModalContent: noop,
             onThemePress: noop,
-            t: arg => arg,
+            t: (arg) => arg,
             themeImagePath: 0,
             advancedImagePath: 1,
             logoutImagePath: 2,

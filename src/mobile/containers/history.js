@@ -1,20 +1,22 @@
+import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, ListView, Text, TouchableWithoutFeedback, Clipboard, RefreshControl } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
+import { convertFromTrytes, iota } from 'iota-wallet-shared-modules/libs/iota';
+import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
-
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const styles = StyleSheet.create({
     container: {
@@ -62,7 +64,8 @@ class History extends Component {
 
     constructor() {
         super();
-        this.state = { viewRef: null, refreshing: false };
+
+        this.state = { refreshing: false, isModalVisible: false };
         this.onRefresh = this.onRefresh.bind(this);
     }
 
@@ -90,6 +93,7 @@ class History extends Component {
         if (isAlreadyFetchingAccountInfo) {
             this.generateAlreadyFetchingAccountInfoAlert();
         }
+
         return isAlreadyDoingSomeHeavyLifting || isAlreadyFetchingAccountInfo;
     }
 
@@ -105,85 +109,110 @@ class History extends Component {
         const { selectedAccountName, seedIndex } = this.props;
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 const seed = getSeed(credentials.data, seedIndex);
                 this.props.getAccountInfo(seed, selectedAccountName);
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
     }
 
-    copyBundleHash(item) {
-        const { t } = this.props;
-        Clipboard.setString(item);
-        this.props.generateAlert('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
+    prepTransactions() {
+        const {
+            transfers,
+            addresses,
+            extraColor,
+            negativeColor,
+            positiveColor,
+            pendingColor,
+            secondaryBackgroundColor,
+            backgroundColor,
+            t,
+        } = this.props;
+
+        const computeConfirmationStatus = (persistence, incoming) => {
+            if (!persistence) {
+                return t('global:pending');
+            }
+
+            return incoming ? t('global:received') : t('global:sent');
+        };
+
+        const isSecondaryBackgroundColorWhite = secondaryBackgroundColor === 'white';
+
+        const containerBorderColor = isSecondaryBackgroundColorWhite
+            ? 'rgba(255, 255, 255, 0.25)'
+            : 'rgba(0, 0, 0, 0.25)';
+        const containerBackgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
+
+        const withValueAndUnit = (item) => ({
+            address: iota.utils.addChecksum(item.address, 9, true),
+            value: round(formatValue(item.value), 1),
+            unit: formatUnit(item.value),
+        });
+
+        return map(transfers, (transfer) => {
+            const tx = getRelevantTransfer(transfer, addresses);
+            const incoming = isReceivedTransfer(transfer, addresses);
+
+            return {
+                t,
+                generateAlert: this.props.generateAlert, // Already declated in upper scope
+                addresses: map(transfer, withValueAndUnit),
+                status: incoming ? t('history:receive') : t('history:send'),
+                confirmation: computeConfirmationStatus(tx.persistence, incoming),
+                value: round(formatValue(tx.value), 1),
+                unit: formatUnit(tx.value),
+                time: tx.timestamp,
+                message: convertFromTrytes(tx.signatureMessageFragment),
+                bundle: tx.bundle,
+                style: {
+                    titleColor: incoming ? extraColor : negativeColor,
+                    containerBorderColor: { borderColor: containerBorderColor },
+                    containerBackgroundColor: { backgroundColor: containerBackgroundColor },
+                    confirmationStatusColor: { color: !tx.persistence ? pendingColor : positiveColor },
+                    defaultTextColor: { color: secondaryBackgroundColor },
+                    backgroundColor,
+                    borderColor: { borderColor: secondaryBackgroundColor },
+                },
+            };
+        });
     }
 
-    copyAddress(item) {
-        const { t } = this.props;
-        Clipboard.setString(item);
-        this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
+    renderTransactions() {
+        const { negativeColor, secondaryBackgroundColor, t } = this.props;
+        const { refreshing } = this.state;
+
+        const data = this.prepTransactions();
+
+        return (
+            <FlatList
+                data={data}
+                initialNumToRender={8} // TODO: Should be dynamically computed.
+                removeClippedSubviews
+                keyExtractor={(item, index) => index}
+                renderItem={({ item }) => <TransactionRow {...item} />}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={this.onRefresh} tintColor={negativeColor} />
+                }
+                ItemSeparatorComponent={() => <View style={styles.separator} />}
+                ListEmptyComponent={() => (
+                    <View style={styles.noTransactionsContainer}>
+                        <Text style={[styles.noTransactions, { color: secondaryBackgroundColor }]}>
+                            {t('global:noTransactions')}
+                        </Text>
+                    </View>
+                )}
+            />
+        );
     }
 
     render() {
-        const {
-            t,
-            addresses,
-            transfers,
-            positiveColor,
-            negativeColor,
-            backgroundColor,
-            extraColor,
-            secondaryBackgroundColor,
-            pendingColor,
-        } = this.props;
-        const hasTransactions = transfers.length > 0;
-        const textColor = { color: secondaryBackgroundColor };
-        const borderColor = { borderColor: secondaryBackgroundColor };
+        const transactions = this.renderTransactions();
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
-                    {hasTransactions ? (
-                        <View style={styles.listView}>
-                            <ListView
-                                refreshControl={
-                                    <RefreshControl
-                                        refreshing={this.state.refreshing}
-                                        onRefresh={this.onRefresh}
-                                        tintColor={negativeColor}
-                                    />
-                                }
-                                contentContainerStyle={{ paddingTop: 1, paddingBottom: 1 }}
-                                dataSource={ds.cloneWithRows(transfers)}
-                                renderRow={dataSource => (
-                                    <TransactionRow
-                                        addresses={addresses}
-                                        rowData={dataSource}
-                                        titleColor="#F8FFA6"
-                                        copyAddress={item => this.copyAddress(item)}
-                                        copyBundleHash={item => this.copyBundleHash(item)}
-                                        positiveColor={positiveColor}
-                                        negativeColor={negativeColor}
-                                        extraColor={extraColor}
-                                        backgroundColor={backgroundColor}
-                                        textColor={textColor}
-                                        borderColor={borderColor}
-                                        secondaryBackgroundColor={secondaryBackgroundColor}
-                                        pendingColor={pendingColor}
-                                    />
-                                )}
-                                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                                enableEmptySections
-                                ref={listview => {
-                                    this.listview = listview;
-                                }}
-                                snapToInterval={height * 0.7 / 6}
-                            />
-                        </View>
-                    ) : (
-                        <View style={styles.noTransactionsContainer}>
-                            <Text style={[styles.noTransactions, textColor]}>{t('global:noTransactions')}</Text>
-                        </View>
-                    )}
+                    <View style={styles.listView}>{transactions}</View>
                 </View>
             </TouchableWithoutFeedback>
         );

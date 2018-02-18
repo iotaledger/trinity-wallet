@@ -73,7 +73,7 @@ class EnterPasswordOnLogin extends Component {
         });
     }
 
-    handleChangeText = password => this.props.setLoginPasswordField(password);
+    handleChangeText = (password) => this.props.setLoginPasswordField(password);
 
     handleLogin = () => {
         const { onLoginPress, password } = this.props;
@@ -138,7 +138,7 @@ EnterPasswordOnLogin.propTypes = {
     activateFingerPrintScanner: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     isFingerprintEnabled: state.account.isFingerprintEnabled,
 });
 

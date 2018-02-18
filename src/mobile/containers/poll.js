@@ -102,20 +102,20 @@ export class Poll extends Component {
 
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.getAccountInfo(seed, selectedAccountName);
                 }
             })
-            .catch(err => console.error(err)); // eslint-disable-line no-console
+            .catch((err) => console.error(err)); // eslint-disable-line no-console
     }
 
     startBackgroundProcesses() {
         timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 15000);
     }
 
-    handleAppStateChange = nextAppState => {
+    handleAppStateChange = (nextAppState) => {
         if (nextAppState.match(/inactive|background/)) {
             this.stopBackgroundProcesses();
         } else if (nextAppState === 'active') {
@@ -161,7 +161,7 @@ export class Poll extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,
