@@ -258,12 +258,12 @@
         "fingerprint": "Xác thực bằng dấu vân tay"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Nhập mật khẩu để cài lại ví điện tử.",
+        "cancel": "HUỶ BỎ",
+        "reset": "CÀI LẠI"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
+        "okay": "Ok. Hãy thiết lập ví điện tử của bạn!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
         "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
