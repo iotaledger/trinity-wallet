@@ -251,10 +251,21 @@ export const syncAccount = (seed, existingAccountState) => {
 
             return Promise.resolve(thisStateCopy.transfers);
         })
-        .then((updatedTransfers) => {
-            thisStateCopy.transfers = updatedTransfers;
+        .then(({ transfers, newTransfers }) => {
+            thisStateCopy.transfers = transfers;
             thisStateCopy.addresses = markAddressSpend(thisStateCopy.transfers, thisStateCopy.addresses);
 
+            // Transform new transfers by bundle for promotion.
+            return getBundleTailsForValidTransfers(newTransfers, thisStateCopy.addresses, thisStateCopy.accountName);
+        })
+        .then((newUnconfirmedBundleTails) => {
+            thisStateCopy.unconfirmedBundleTails = merge(
+                {},
+                thisStateCopy.unconfirmedBundleTails,
+                newUnconfirmedBundleTails,
+            );
+
+            // Grab all hashes for pending transactions
             const pendingTxTailsHashes = getPendingTxTailsHashes(thisStateCopy.transfers);
 
             return getConfirmedTransactionHashes(pendingTxTailsHashes);

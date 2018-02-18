@@ -278,6 +278,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             accountName,
             getState().account.unspentAddressesHashes,
         );
+        const unconfirmedBundleTails = getState().account.unconfirmedBundleTails;
 
         const existingAccountData = {
             accountName,
@@ -285,6 +286,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             addresses: selectedAccount.addresses,
             unspentAddressesHashes: existingHashes,
             transfers: selectedAccount.transfers,
+            unconfirmedBundleTails,
         };
 
         return syncAccount(seed, existingAccountData)
