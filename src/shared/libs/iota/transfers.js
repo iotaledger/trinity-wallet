@@ -509,7 +509,7 @@ export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
  *   @param {array} diff
  *   @param {object} existingAccountState - Account object
  *
- *   @returns {Promise<array>} - Resolves updated transfers
+ *   @returns {Promise<object>} - { transfers (Updated transfers), newTransfers }
  **/
 export const syncTransfers = (diff, accountState) => {
     return getTransactionsObjectsAsync(diff)
@@ -520,9 +520,12 @@ export const syncTransfers = (diff, accountState) => {
             return getHashesWithPersistence(map(tailTxs, tailTxsHashes));
         })
         .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
-        .then((bundles) => {
-            const updatedTransfers = [...accountState.transfers, ...bundles];
+        .then((newTransfers) => {
+            const updatedTransfers = [...accountState.transfers, ...newTransfers];
 
-            return formatTransfers(updatedTransfers, keys(accountState.addresses));
+            return {
+                transfers: formatTransfers(updatedTransfers, keys(accountState.addresses)),
+                newTransfers,
+            };
         });
 };
