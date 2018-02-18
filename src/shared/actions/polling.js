@@ -200,12 +200,15 @@ export const getAccountInfo = (seed, accountName) => {
             getState().account.unspentAddressesHashes,
         );
 
+        const unconfirmedBundleTails = getState().account.unconfirmedBundleTails;
+
         const existingAccountData = {
             accountName,
             balance: selectedAccount.balance,
             addresses: selectedAccount.addresses,
             unspentAddressesHashes: existingHashes,
             transfers: selectedAccount.transfers,
+            unconfirmedBundleTails,
         };
 
         return syncAccount(seed, existingAccountData)
