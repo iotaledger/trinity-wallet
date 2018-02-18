@@ -1,24 +1,17 @@
-import tinycolor from 'tinycolor2';
-
 import Default from './themes/Default';
-import GreyDark from './themes/GreyDark';
-import Grey from './themes/Grey';
-import MonochromeLight from './themes/MonochromeLight';
-import MonochromeDark from './themes/MonochromeDark';
+import Electric from './themes/Electric';
+import Mint from './themes/Mint';
+import Ionic from './themes/Ionic';
+import SteelBlue from './themes/SteelBlue';
+import Contemporary from './themes/Contemporary';
 
-export const themes = {
+const themes = {
     Default: Default,
-    Grey: Grey,
-    'Grey dark': GreyDark,
-    'Monochrome Light': MonochromeLight,
-    'Monochrome Dark': MonochromeDark,
+    Mint: Mint,
+    Electric: Electric,
+    Ionic: Ionic,
+    SteelBlue: SteelBlue,
+    Contemporary: Contemporary,
 };
 
-export const getHSL = color => {
-    return tinycolor(color).toHslString();
-};
-
-export default {
-    themes,
-    getHSL,
-};
+export default themes;

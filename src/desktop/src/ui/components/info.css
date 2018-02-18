@@ -1,0 +1,25 @@
+.wrapper {
+    display: inline-block;
+    border-radius: 4px;
+    background: var(--body-hover);
+    border-top: 20px solid var(--input-bg);
+    font-size: var(--font-size-small);
+    margin: 16px 0;
+    padding: 21px 16px 21px 57px;
+    text-align: left;
+    position: relative;
+    max-width: 512px;
+    > span {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+    }
+    > :nth-child(2) {
+        margin-top: 0;
+        padding-top: 0px;
+    }
+    > :last-child {
+        margin-bottom: 0;
+        padding-bottom: 0px;
+    }
+}

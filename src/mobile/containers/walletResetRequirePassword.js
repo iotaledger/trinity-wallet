@@ -13,8 +13,7 @@ import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, Image, BackHandle
 import OnboardingButtons from '../components/onboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-import COLORS from '../theme/Colors';
-import Fonts from '../theme/Fonts';
+import FONTS from '../theme/Fonts';
 import keychain from '../util/keychain';
 import CustomTextInput from '../components/customTextInput';
 import StatefulDropdownAlert from './statefulDropdownAlert';
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     generalText: {
-        fontFamily: Fonts.secondary,
+        fontFamily: FONTS.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         paddingBottom: height / 10,
@@ -75,6 +74,7 @@ class WalletResetRequirePassword extends Component {
         negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
+        navigator: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -100,20 +100,7 @@ class WalletResetRequirePassword extends Component {
     }
 
     goBack() {
-        // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
-                },
-            },
-            appStyle: {
-                orientation: 'portrait',
-            },
-        });
+        this.props.navigator.pop({ animated: false });
     }
 
     isAuthenticated() {
@@ -174,22 +161,6 @@ class WalletResetRequirePassword extends Component {
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
-        const onboardingButtonsOverride = {
-            rightButton: {
-                borderColor: COLORS.red,
-            },
-            rightText: {
-                color: COLORS.red,
-                fontFamily: Fonts.secondary,
-            },
-            leftButton: {
-                borderColor: negativeColor,
-            },
-            leftText: {
-                color: negativeColor,
-            },
-        };
-
         return (
             <View style={[styles.container, backgroundColor]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
@@ -201,7 +172,7 @@ class WalletResetRequirePassword extends Component {
                         <View style={styles.midWrapper}>
                             <CustomTextInput
                                 label={t('global:password')}
-                                onChangeText={password => this.setState({ password })}
+                                onChangeText={(password) => this.setState({ password })}
                                 value={this.state.password}
                                 containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize={'none'}
@@ -217,7 +188,6 @@ class WalletResetRequirePassword extends Component {
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
-                                style={onboardingButtonsOverride}
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.resetWallet}
                                 leftText={t('cancel')}
@@ -232,7 +202,7 @@ class WalletResetRequirePassword extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     password: state.tempAccount.password,
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,

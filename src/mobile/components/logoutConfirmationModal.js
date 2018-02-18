@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        width: width / 1.1,
+        width: width / 1.2,
     },
     questionText: {
         backgroundColor: 'transparent',
@@ -28,7 +28,7 @@ class LogoutConfirmationModal extends Component {
         const { t, backgroundColor, textColor, borderColor } = this.props;
 
         return (
-            <View style={{ width: width / 1.1, alignItems: 'center', backgroundColor: backgroundColor }}>
+            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={[styles.questionText, textColor]}>{t('logoutConfirmation')}</Text>
                     <OnboardingButtons
@@ -36,6 +36,8 @@ class LogoutConfirmationModal extends Component {
                         onRightButtonPress={() => this.props.logout()}
                         leftText={t('global:no')}
                         rightText={t('global:yes')}
+                        buttonWidth={{ width: width / 3.2 }}
+                        containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
             </View>

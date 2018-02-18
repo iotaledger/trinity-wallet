@@ -81,9 +81,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
-    dropdownWidth: {
-        width: width / 2,
-    },
 });
 
 export class CurrencySelection extends Component {
@@ -168,13 +165,13 @@ export class CurrencySelection extends Component {
                     <View style={styles.topContainer}>
                         <View style={{ flex: 1.2 }} />
                         <Dropdown
-                            onRef={c => {
+                            onRef={(c) => {
                                 this.dropdown = c;
                             }}
                             title={t('currency')}
                             options={currencies}
                             defaultOption={currency}
-                            dropdownWidth={styles.dropdownWidth}
+                            dropdownWidth={{ width: width / 2 }}
                             disableWhen={isFetchingCurrencyData}
                             background
                         />

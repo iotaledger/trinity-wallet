@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, BackHandler, ToastAndroid, KeyboardAvoidingView } from 'react-native';
-import RNExitApp from 'react-native-exit-app';
+import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import {
@@ -26,7 +25,8 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import UserInactivity from '../components/userInactivity';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
-import withUserActivity from '../components/withUserActivity';
+import WithUserActivity from '../components/withUserActivity';
+import WithBackPress from '../components/withBackPress';
 import Poll from './poll';
 import Tabs from '../components/tabs';
 import Tab from '../components/tab';
@@ -85,27 +85,12 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.onLoginPress = this.onLoginPress.bind(this);
     }
-    componentDidMount() {
-        const { t } = this.props;
-        BackHandler.addEventListener('homeBackPress', () => {
-            if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
-                RNExitApp.exitApp();
-            }
-            this.lastBackPressed = Date.now();
-            ToastAndroid.show(t('global:pressBackAgain'), ToastAndroid.SHORT);
-            return true;
-        });
-    }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('homeBackPress');
-    }
-
-    onLoginPress = password => {
+    onLoginPress = (password) => {
         const { t, tempAccount } = this.props;
 
         if (!password) {
@@ -123,7 +108,14 @@ class Home extends Component {
 
     onTabSwitch(name) {
         this.props.changeHomeScreenRoute(name);
-        this.props.setSetting('mainSettings');
+        this.resetSettings();
+    }
+
+    resetSettings() {
+        const { currentSetting } = this.props;
+        if (currentSetting !== 'mainSettings') {
+            this.props.setSetting('mainSettings');
+        }
     }
 
     handleInactivity = () => {
@@ -132,6 +124,7 @@ class Home extends Component {
         if (doingSomething) {
             this.userInactivity.setActiveFromComponent();
         } else {
+            this.resetSettings();
             this.props.setUserActivity({ inactive: true });
         }
     };
@@ -162,7 +155,7 @@ class Home extends Component {
 
         return (
             <UserInactivity
-                ref={c => {
+                ref={(c) => {
                     this.userInactivity = c;
                 }}
                 timeForInactivity={180000}
@@ -179,7 +172,7 @@ class Home extends Component {
                                     <TabContent navigator={navigator} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <Tabs onPress={name => this.onTabSwitch(name)} barColor={barColor}>
+                                    <Tabs onPress={(name) => this.onTabSwitch(name)} barColor={barColor}>
                                         <Tab
                                             name="balance"
                                             icon={balanceImagePath}
@@ -237,7 +230,7 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     settings: state.settings,
     account: state.account,
@@ -253,6 +246,7 @@ const mapStateToProps = state => ({
     isSyncing: state.tempAccount.isSyncing,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     isTransitioning: state.tempAccount.isTransitioning,
+    currentSetting: state.tempAccount.currentSetting,
 });
 
 const mapDispatchToProps = {
@@ -284,12 +278,13 @@ Home.propTypes = {
     isSendingTransfer: PropTypes.bool.isRequired,
     setSetting: PropTypes.func.isRequired,
     isFingerprintEnabled: PropTypes.bool,
+    currentSetting: PropTypes.string.isRequired,
 };
 
 Home.defaultProps = {
     isFingerprintEnabled: false,
 };
 
-export default withUserActivity()(
-    translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home)),
+export default WithUserActivity()(
+    WithBackPress()(translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
 );
