@@ -100,9 +100,11 @@ class AddCustomNode extends Component {
         } = this.props;
         const { customNode } = this.state;
 
-        if (!nodes.includes(customNode)) {
+        if (!customNode.startsWith('http')) return onAddNodeError();
+
+        if (!nodes.includes(customNode.replace(/ /g, ''))) {
             setNode(customNode);
-            checkNode(error => {
+            checkNode((error) => {
                 if (error) {
                     onAddNodeError();
                     setNode(currentNode);
@@ -134,7 +136,7 @@ class AddCustomNode extends Component {
                         <View style={{ flex: 0.3 }} />
                         <CustomTextInput
                             label={t('customNode')}
-                            onChangeText={customNode => this.setState({ customNode })}
+                            onChangeText={(customNode) => this.setState({ customNode })}
                             containerStyle={{ width: width / 1.36 }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
@@ -156,17 +158,15 @@ class AddCustomNode extends Component {
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
-                        {this.state.customNode.startsWith('http') && (
-                            <TouchableOpacity
-                                onPress={() => this.addNode()}
-                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                            >
-                                <View style={styles.itemRight}>
-                                    <Text style={[styles.titleTextRight, textColor]}>{t('add')}</Text>
-                                    <Image source={addImagePath} style={styles.iconRight} />
-                                </View>
-                            </TouchableOpacity>
-                        )}
+                        <TouchableOpacity
+                            onPress={() => this.addNode()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.itemRight}>
+                                <Text style={[styles.titleTextRight, textColor]}>{t('add')}</Text>
+                                <Image source={addImagePath} style={styles.iconRight} />
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
