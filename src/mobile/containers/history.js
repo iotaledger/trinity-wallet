@@ -5,14 +5,14 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl, FlatL
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { extractTailTransferFromBundle } from 'iota-wallet-shared-modules/libs/transfers';
+import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
-import { convertFromTrytes, isReceivedTransfer, iota } from 'iota-wallet-shared-modules/libs/iota';
+import { convertFromTrytes, iota } from 'iota-wallet-shared-modules/libs/iota';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
@@ -151,7 +151,7 @@ class History extends Component {
         });
 
         return map(transfers, (transfer) => {
-            const tx = extractTailTransferFromBundle(transfer);
+            const tx = getRelevantTransfer(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
             return {
