@@ -140,14 +140,10 @@ class Chart extends PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
-        /* Get new chart data
-         * @ignore
-         */
-        getChartData: PropTypes.func.isRequired,
     };
 
     render() {
-        const { priceData, chartData, theme, setCurrency, setTimeframe, getPriceFormat, getChartData, t } = this.props;
+        const { priceData, chartData, theme, setCurrency, setTimeframe, getPriceFormat, t } = this.props;
 
         const textColor = { color: theme.secondaryBackgroundColor };
         const borderColor = { borderColor: theme.secondaryBackgroundColor };
