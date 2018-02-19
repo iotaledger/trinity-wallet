@@ -366,14 +366,12 @@ export const updateAccountAfterReattachment = (accountName, reattachment) => (di
         // We make sure we check if bundle hash exists.
         // Also the usage of unionBy is to have a safety check that we do not end up storing duplicate hashes
         // https://github.com/iotaledger/iri/issues/463
-        const updatedUnconfirmedBundleTails =
-            bundle in existingUnconfirmedBundleTails
-                ? assign({}, existingUnconfirmedBundleTails, {
-                      [bundle]: unionBy([normalizedTailTransaction], existingUnconfirmedBundleTails[bundle], 'hash'),
-                  })
-                : assign({}, existingUnconfirmedBundleTails, {
-                      [bundle]: [normalizedTailTransaction],
-                  });
+        const updatedUnconfirmedBundleTails = assign({}, existingUnconfirmedBundleTails, {
+            [bundle]:
+                bundle in existingUnconfirmedBundleTails
+                    ? unionBy([normalizedTailTransaction], existingUnconfirmedBundleTails[bundle], 'hash')
+                    : [normalizedTailTransaction],
+        });
 
         // Update state with latest unconfirmedBundleTails.
         dispatch(setNewUnconfirmedBundleTails(updatedUnconfirmedBundleTails));
