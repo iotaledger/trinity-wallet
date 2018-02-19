@@ -90,12 +90,20 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
     }
 
+    shouldComponentUpdate(newProps) {
+        const { isSyncing, isSendingTransfer, isTransitioning } = this.props;
+        if (isSyncing !== newProps.isSyncing) return false;
+        if (isSendingTransfer !== newProps.isSendingTransfer) return false;
+        if (isTransitioning !== newProps.isTransitioning) return false;
+        return true;
+    }
+
     onLoginPress = (password) => {
-        const { t, tempAccount } = this.props;
+        const { t, storedPassword } = this.props;
 
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
-        } else if (password !== tempAccount.password) {
+        } else if (password !== storedPassword) {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
@@ -231,9 +239,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    tempAccount: state.tempAccount,
-    settings: state.settings,
-    account: state.account,
+    storedPassword: state.tempAccount.password,
     inactive: state.tempAccount.inactive,
     minimised: state.tempAccount.minimised,
     barColor: state.settings.theme.barColor,
@@ -270,7 +276,7 @@ Home.propTypes = {
     barColor: PropTypes.string.isRequired,
     negativeColor: PropTypes.string.isRequired,
     positiveColor: PropTypes.string.isRequired,
-    tempAccount: PropTypes.object.isRequired,
+    storedPassword: PropTypes.string.isRequired,
     secondaryBarColor: PropTypes.string.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
     isTransitioning: PropTypes.bool.isRequired,

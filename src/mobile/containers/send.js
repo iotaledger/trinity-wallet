@@ -230,6 +230,16 @@ export class Send extends Component {
         }
     }
 
+    shouldComponentUpdate(newProps) {
+        const { isSyncing, isTransitioning, usdPrice, conversionRate, balance } = this.props;
+        if (isSyncing !== newProps.isSyncing) return false;
+        if (isTransitioning !== newProps.isTransitioning) return false;
+        if (usdPrice !== newProps.usdPrice) return false;
+        if (conversionRate !== newProps.conversionRate) return false;
+        if (balance !== newProps.balance) return false;
+        return true;
+    }
+
     onDenominationPress() {
         const { secondaryBackgroundColor, denomination } = this.props;
         const { currencySymbol } = this.state;

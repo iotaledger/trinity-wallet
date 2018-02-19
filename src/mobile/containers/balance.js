@@ -110,6 +110,12 @@ export class Balance extends Component {
         }
     }
 
+    shouldComponentUpdate(newProps) {
+        const { marketData } = this.props;
+        if (newProps.marketData !== marketData) return false;
+        return true;
+    }
+
     onBalanceClick() {
         if (this.state.balanceIsShort) {
             this.setState({ balanceIsShort: false });
@@ -194,7 +200,6 @@ export class Balance extends Component {
         const textColor = { color: secondaryBackgroundColor };
         const lineBorder = { borderBottomColor: secondaryBackgroundColor };
         const recentTransactions = this.renderTransactions();
-
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
