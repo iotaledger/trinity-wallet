@@ -360,7 +360,6 @@ export class Send extends Component {
             ctaBorderColor,
             address,
             amount,
-            denomination,
         } = this.props;
         switch (selectedSetting) {
             case 'qrScanner':
