@@ -531,3 +531,22 @@ export const syncTransfers = (diff, accountState) => {
             };
         });
 };
+
+/**
+ *   Accepts a bundle hash and transfers and returns
+ *   all bundles matching the bundle hash
+ *
+ *   @method findBundlesFromTransfers
+ *   @param {string} bundleHash
+ *   @param {array} transfers
+ *   @param {array} transfers - Transfers matching the bundle hash
+ *
+ *   @returns {Promise<object>} - { transfers (Updated transfers), newTransfers }
+ **/
+export const findBundlesFromTransfers = (bundleHash, transfers) => {
+    return filter(transfers, (bundle) => {
+        const topTx = head(bundle);
+
+        return topTx.bundle === bundleHash;
+    });
+};
