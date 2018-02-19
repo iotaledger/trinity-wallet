@@ -3,7 +3,7 @@
         "send": "ENVOYER",
         "cancel": "ANNULER",
         "continue?": "Êtes-vous sûr(e) de vouloir continuer ?",
-        "noTransactions": "AUCUN HISTORIQUE RÉCENT",
+        "noTransactions": "AUCUN HISTORIQUE",
         "qr": "QR",
         "balanceError": "Solde insuffisant",
         "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
@@ -73,7 +73,7 @@
         "autopromoting": "Promotion automatique du transfert",
         "autopromotingExplanation": "Promotion de la transaction de hash {{hash}}",
         "cannotSendToOwn": "Envoi à votre propre adresse",
-        "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers une autre de vos adresses."
+        "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers vos propres adresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -200,9 +200,9 @@
         "invalidMessageExplanation": "Votre message contient des caractères invalides.",
         "send": "ENVOYER",
         "invalidAmount": "Montant saisi incorrect",
-        "invalidAmountExplanation": "Veuillez entrer un montant de la transaction valide. Il peut être utile de voir l'explication des unités IOTA au bas de cette page.",
+        "invalidAmountExplanation": "Veuillez entrer un montant valide pour la transaction. Vous pouvez vous référer à l'explication des unités IOTA au bas de cette page si besoin.",
         "maximumSelected": "Montant MAXIMAL sélectionné",
-        "iotaUnits": "Unités IOTA expliquées",
+        "iotaUnits": "Explication des unités IOTA",
         "sendMax": "ENVOYER LE MAX"
     },
     "setPassword": {
