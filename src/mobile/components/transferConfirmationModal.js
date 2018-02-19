@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
@@ -119,7 +119,8 @@ class TransferConfirmationModal extends Component {
         } else {
             transferContents = (
                 <Text style={styles.iotaText}>
-                    {formatValue(value)} {formatUnit(value)} ({conversionText})
+                    {' '}
+                    {round(formatValue(value), 3)} {formatUnit(value)} ({conversionText}){' '}
                 </Text>
             );
         }
