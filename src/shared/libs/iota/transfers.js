@@ -18,7 +18,6 @@ import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
 import { getBalancesAsync, getTransactionsObjectsAsync } from './extendedApi';
-import { Promise } from '../../../../../../.cache/typescript/2.6/node_modules/@types/bluebird';
 
 /**
  *   Returns a single transfer array
@@ -596,5 +595,7 @@ export const isValidForPromotion = (bundleHash, transfers, addressData) => {
     const addresses = keys(addressData);
     const incomingTransfer = isReceivedTransfer(firstBundle, addresses);
 
-    return incomingTransfer ? isValidBundleAsync(firstBundle) : Promise.resolve(isValidBundleSync(firstBundle));
+    return incomingTransfer
+        ? isValidBundleAsync(firstBundle)
+        : Promise.resolve(isValidBundleSync(firstBundle, addressData));
 };
