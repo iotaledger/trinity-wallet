@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl, FlatL
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { extractTailTransferFromBundle, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
+import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
@@ -152,7 +152,7 @@ class History extends Component {
         });
 
         return map(transfers, (transfer) => {
-            const tx = extractTailTransferFromBundle(transfer);
+            const tx = getRelevantTransfer(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
             return {
