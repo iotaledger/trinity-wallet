@@ -573,8 +573,19 @@ export const getBundleHashesForTailTransactionHashes = (bundleTails, tailTransac
     return transform(bundleTails, grabBundleHashes, []);
 };
 
+/**
+ *   Accepts bundle hash, transfers and addressData and determines if the bundle associated
+ *   with bundle hash is valid or not.
+ *
+ *   @method isValidForPromotion
+ *   @param {string} bundleHash
+ *   @param {array} transfers
+ *   @param {object} addressData
+ *
+ *   @returns {Promise<boolean>} - Promise that resolves whether the bundle is valid or not
+ **/
 export const isValidForPromotion = (bundleHash, transfers, addressData) => {
-    const bundles = findBundlesFromTransfers(transfers);
+    const bundles = findBundlesFromTransfers(bundleHash, transfers);
     const firstBundle = head(bundles);
 
     // If no bundles found, something in the state is messed up
@@ -586,12 +597,4 @@ export const isValidForPromotion = (bundleHash, transfers, addressData) => {
     const incomingTransfer = isReceivedTransfer(firstBundle, addresses);
 
     return incomingTransfer ? isValidBundleAsync(firstBundle) : Promise.resolve(isValidBundleSync(firstBundle));
-};
-
-export const promote = (bundle, tails, transfers, addressData) => {
-    return isValidForPromotion(bundle, transfers, addressData).then((isValid) => {
-        if (!isValid) {
-            throw new Error('Bundle no longer valid.');
-        }
-    });
 };
