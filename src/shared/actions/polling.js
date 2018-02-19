@@ -7,7 +7,8 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
 import some from 'lodash/some';
-import { getUrlTimeFormat, getUrlNumberFormat, setPrice, setChartData, setMarketData } from './marketData';
+import { setPrice, setChartData, setMarketData } from './marketData';
+import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/marketData';
 import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
 import {
     setNewUnconfirmedBundleTails,
@@ -160,7 +161,8 @@ export const fetchChartData = () => {
                     )
                     .then((json) => {
                         if (json) {
-                            dispatch(setChartData(json, currency, timeframe));
+                            const data = formatChartData(json, currency, timeframe);
+                            dispatch(setChartData(data, currency, timeframe));
                         }
 
                         // Dirty hack
