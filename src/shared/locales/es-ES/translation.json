@@ -398,7 +398,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
+        "change": "Variación",
         "volume": "Volumen (24h)"
     }
 }
