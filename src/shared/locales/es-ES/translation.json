@@ -196,8 +196,8 @@
         "amount": "Cantidad",
         "max": "MAX",
         "message": "Mensaje",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "Mensaje inválido",
+        "invalidMessageExplanation": "El mensaje contiene caracteres inválidos.",
         "send": "ENVIAR",
         "invalidAmount": "La cantidad ingresada es incorrecta",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
@@ -399,6 +399,6 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Change",
-        "volume": "Volume (24h)"
+        "volume": "Volumen (24h)"
     }
 }
