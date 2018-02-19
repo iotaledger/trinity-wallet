@@ -1,4 +1,8 @@
+import assign from 'lodash/assign';
+import unionBy from 'lodash/unionBy';
 import takeRight from 'lodash/takeRight';
+import map from 'lodash/map';
+import find from 'lodash/find';
 import { iota } from '../libs/iota';
 import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
 import { syncAccount, getAccountData, mapUnspentAddressesHashesToState, updateAccount } from '../libs/iota/accounts';
@@ -22,7 +26,7 @@ import {
     generateTransitionErrorAlert,
     generateAlert,
 } from '../actions/alerts';
-import { pushScreen } from '../libs/util';
+import { pushScreen, rearrangeObjectKeys } from '../libs/util';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
 export const ActionTypes = {
@@ -332,6 +336,48 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
 
             console.error(err); // eslint-disable-line no-console
         });
+};
+
+export const updateAccountAfterReattachment = (accountName, reattachment) => (dispatch, getState) => {
+    const tailTransaction = find(reattachment, { currentIndex: 0 });
+
+    // Do not do anything if there is no tail transaction.
+    if (tailTransaction) {
+        const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+
+        const existingTransfers = selectedAccount.transfers;
+
+        // Append new reattachment to existing transfers
+        const updatedTransfers = [
+            ...[map(reattachment, (tx) => ({ ...tx, transferValue: tx.value, persistence: false }))],
+            ...existingTransfers,
+        ];
+
+        // Update state with latest transfers
+        dispatch(updateTransfers(accountName, updatedTransfers));
+
+        const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
+        const bundle = tailTransaction.bundle;
+
+        // Unconfirmed bundle tails stored account name with each tail transaction object
+        const normalizedTailTransaction = assign({}, tailTransaction, { account: accountName });
+
+        // This check would is very redundant but to make sure state is never messed up,
+        // We make sure we check if bundle hash exists.
+        // Also the usage of unionBy is to have a safety check that we do not end up storing duplicate hashes
+        // https://github.com/iotaledger/iri/issues/463
+        const updatedUnconfirmedBundleTails =
+            bundle in existingUnconfirmedBundleTails
+                ? assign({}, existingUnconfirmedBundleTails, {
+                      [bundle]: unionBy([normalizedTailTransaction], existingUnconfirmedBundleTails[bundle], 'hash'),
+                  })
+                : assign({}, existingUnconfirmedBundleTails, {
+                      [bundle]: [normalizedTailTransaction],
+                  });
+
+        // Update state with latest unconfirmedBundleTails.
+        dispatch(setNewUnconfirmedBundleTails(updatedUnconfirmedBundleTails));
+    }
 };
 
 export const set2FAStatus = (payload) => ({
