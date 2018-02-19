@@ -26,7 +26,7 @@ import {
     generateTransitionErrorAlert,
     generateAlert,
 } from '../actions/alerts';
-import { pushScreen, rearrangeObjectKeys } from '../libs/util';
+import { pushScreen } from '../libs/util';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
 export const ActionTypes = {

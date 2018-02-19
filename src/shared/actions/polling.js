@@ -1,26 +1,16 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
-import clone from 'lodash/clone';
-import concat from 'lodash/concat';
-import merge from 'lodash/merge';
 import find from 'lodash/find';
-import map from 'lodash/map';
-import filter from 'lodash/filter';
-import size from 'lodash/size';
-import some from 'lodash/some';
 import { getUrlTimeFormat, getUrlNumberFormat, setPrice, setChartData, setMarketData } from './marketData';
 import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
 import {
     setNewUnconfirmedBundleTails,
-    updateUnconfirmedBundleTails,
     removeBundleFromUnconfirmedBundleTails,
-    updateTransfers,
     updateAccountAfterReattachment,
 } from './account';
 import { replayBundleAsync, promoteTransactionAsync } from '../libs/iota/extendedApi';
 import { getFirstConsistentTail, isValidForPromotion } from '../libs/iota/transfers';
 import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
-import { iota } from '../libs/iota';
 import { syncAccount } from '../libs/iota/accounts';
 import { rearrangeObjectKeys } from '../libs/util';
 import i18next from '../i18next.js';
@@ -234,6 +224,7 @@ const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispa
                     'success',
                     i18next.t('global:autoreattaching'),
                     i18next.t('global:autoreattachingExplanation', { hash }),
+                    2500,
                 ),
             );
 
@@ -275,7 +266,6 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                     i18next.t('global:autopromoting'),
                     i18next.t('global:autopromotingExplanation', { hash }),
                 ),
-
             );
 
             const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
@@ -286,7 +276,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
             return dispatch(promoteTransactionSuccess());
         })
         .catch((err) => {
-            console.error('err', err);
+            console.log('err', err);
             return dispatch(promoteTransactionError());
         });
 };
