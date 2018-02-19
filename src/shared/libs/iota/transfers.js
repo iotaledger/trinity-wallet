@@ -11,12 +11,14 @@ import isEmpty from 'lodash/isEmpty';
 import filter from 'lodash/filter';
 import omitBy from 'lodash/omitBy';
 import size from 'lodash/size';
+import some from 'lodash/some';
 import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
-import { getBalancesAsync, getTransactionsObjectsAsync } from './extendedApi';
+import { getBalancesAsync, getTransactionsObjectsAsync, getLatestInclusionAsync } from './extendedApi';
+import { Promise } from '../../../../../../.cache/typescript/2.6/node_modules/@types/bluebird';
 
 /**
  *   Returns a single transfer array
@@ -549,4 +551,39 @@ export const findBundlesFromTransfers = (bundleHash, transfers) => {
 
         return topTx.bundle === bundleHash;
     });
+};
+
+/**
+ *   Accepts tail transaction object categorized by bundles and a list of tail transaction hashes
+ *   Returns all relevant bundle hashes for tail transaction hashes
+ *
+ *   @method getBundleHashesForTailTransactionHashes
+ *   @param {object} bundleTails - { bundleHash: [{}, {}]}
+ *   @param {array} tailTransactionHashes - List of tail transaction hashes
+ *
+ *   @returns {array} bundleHashes - List of bundle hashes
+ **/
+export const getBundleHashesForTailTransactionHashes = (bundleTails, tailTransactionHashes) => {
+    const grabBundleHashes = (acc, tailTransactions, bundleHash) => {
+        if (some(tailTransactions, (tailTransaction) => includes(tailTransactionHashes, tailTransaction.hash))) {
+            acc.push(bundleHash);
+        }
+    };
+
+    return transform(bundleTails, grabBundleHashes, []);
+};
+
+export const isValidForPromotion = (bundleHash, transfers, addressData) => {
+    const bundles = findBundlesFromTransfers(transfers);
+    const firstBundle = head(bundles);
+
+    // If no bundles found, something in the state is messed up
+    if (!firstBundle) {
+        return Promise.resolve(false);
+    }
+
+    const addresses = keys(addressData);
+    const incomingTransfer = isReceivedTransfer(firstBundle, addresses);
+
+    return incomingTransfer ? isValidBundleAsync(firstBundle) : Promise.resolve(isValidBundleSync(firstBundle));
 };
