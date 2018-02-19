@@ -161,7 +161,7 @@ export const fetchChartData = () => {
                     )
                     .then((json) => {
                         if (json) {
-                            const data = formatChartData(data, currency, timeframe);
+                            const data = formatChartData(json, currency, timeframe);
                             dispatch(setChartData(data, currency, timeframe));
                         }
 
