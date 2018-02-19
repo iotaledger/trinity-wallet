@@ -17,7 +17,7 @@ import transform from 'lodash/transform';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
-import { getBalancesAsync, getTransactionsObjectsAsync, getLatestInclusionAsync } from './extendedApi';
+import { getBalancesAsync, getTransactionsObjectsAsync } from './extendedApi';
 import { Promise } from '../../../../../../.cache/typescript/2.6/node_modules/@types/bluebird';
 
 /**
@@ -586,4 +586,12 @@ export const isValidForPromotion = (bundleHash, transfers, addressData) => {
     const incomingTransfer = isReceivedTransfer(firstBundle, addresses);
 
     return incomingTransfer ? isValidBundleAsync(firstBundle) : Promise.resolve(isValidBundleSync(firstBundle));
+};
+
+export const promote = (bundle, tails, transfers, addressData) => {
+    return isValidForPromotion(bundle, transfers, addressData).then((isValid) => {
+        if (!isValid) {
+            throw new Error('Bundle no longer valid.');
+        }
+    });
 };
