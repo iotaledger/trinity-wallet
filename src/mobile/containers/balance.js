@@ -9,15 +9,15 @@ import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png
 import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
 import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
 import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
-import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/transfers';
-import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
-import SimpleTransactionRow from '../components/simpleTransactionRow';
-import Chart from '../components/chart';
+import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getBalanceForSelectedAccountViaSeedIndex,
-} from '../../shared/selectors/account';
+} from 'iota-wallet-shared-modules/selectors/account';
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
+import SimpleTransactionRow from '../components/simpleTransactionRow';
+import Chart from '../components/chart';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
