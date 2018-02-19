@@ -72,7 +72,7 @@
         "autoreattachingExplanation": "Anexando transação automaticamente com hash {{hash}}",
         "autopromoting": "Promovendo transferência automaticamente",
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwn": "Enviando para próprio endereço",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
