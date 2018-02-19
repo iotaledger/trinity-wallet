@@ -349,8 +349,8 @@ export const updateAccountAfterReattachment = (accountName, reattachment) => (di
 
         // Append new reattachment to existing transfers
         const updatedTransfers = [
-            ...[map(reattachment, (tx) => ({ ...tx, transferValue: tx.value, persistence: false }))],
             ...existingTransfers,
+            ...[map(reattachment, (tx) => ({ ...tx, transferValue: tx.value, persistence: false }))],
         ];
 
         // Update state with latest transfers
