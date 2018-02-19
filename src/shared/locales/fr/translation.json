@@ -87,7 +87,7 @@
         "noNickname": "Aucun nom de compte saisi",
         "noNicknameExplanation": "Veuillez saisir un nom de compte pour votre seed.",
         "seedInUse": "Seed déjà utilisée",
-        "seedInUseExplanation": "Cette seed est déjà liée à votre wallet. Veuillez en utiliser une autre."
+        "seedInUseExplanation": "Cette seed est déjà liée à votre portefeuille. Veuillez en utiliser une autre."
     },
     "changePassword": {
         "oops": "Oups. Une erreur est survenue",
@@ -266,7 +266,7 @@
         "okay": "Bien ! Configurons votre portefeuille !",
         "doYouAlreadyHaveASeed": "Détenez-vous déjà une seed que vous désirez utiliser ?",
         "seedExplanation": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
-        "explanation": "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel wallet</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
+        "explanation": "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel portefeuille</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
         "keepSafe": "Merci de garder votre Seed en sécurité."
     },
     "welcome": {
@@ -358,7 +358,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
-        "warning": "<0><0>Toutes vos données de wallet, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
+        "warning": "<0><0>Toutes vos données de portefeuille, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Toucher le lecteur d’empreinte digitale de votre appareil pour activer l’authentification par empreintes digitales.",
