@@ -284,7 +284,7 @@
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papier.",
         "send": "ENVOI",
-        "receive": "RECEPTION"
+        "receive": "RÉCEPTION"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -386,9 +386,9 @@
         "wrongCode": "Code incorrect",
         "wrongCodeExplanation": "Le code saisi est incorrect.",
         "emptyCode": "Code vide",
-        "emptyCodeExplanation": "Veuillez entrer un code et réessayez.",
-        "keyCopied": "Clé copiée dans le presse-papiers",
-        "keyCopiedExplanation": "Votre clé 2FA a été copiée dans le presse-papiers.",
+        "emptyCodeExplanation": "Veuillez entrer un code et réessayer.",
+        "keyCopied": "Clé copiée dans le presse-papier",
+        "keyCopiedExplanation": "Votre clé 2FA a été copiée dans le presse-papier.",
         "addKey": "Ajouter cette clé à votre application 2FA",
         "key": "Clé",
         "twoFAEnabled": "2FA est maintenant activé",
