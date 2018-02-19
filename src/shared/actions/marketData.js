@@ -75,6 +75,7 @@ export function getPrice() {
 }
 
 export function getChartData() {
+    console.log('getting chart data');
     return (dispatch) => {
         const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
