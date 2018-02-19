@@ -3,16 +3,17 @@ import { BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { isAndroid } from '../util/device';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
 });
 
-export default () => C => {
+export default () => (C) => {
     class WithBackPressGoToHome extends Component {
         constructor(props) {
             super(props);
-            this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+            if (isAndroid) this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
         }
 
         onNavigatorEvent(event) {

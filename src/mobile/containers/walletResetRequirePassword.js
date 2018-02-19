@@ -13,7 +13,6 @@ import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, Image, BackHandle
 import OnboardingButtons from '../components/onboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-import COLORS from '../theme/Colors';
 import FONTS from '../theme/Fonts';
 import keychain from '../util/keychain';
 import CustomTextInput from '../components/customTextInput';
