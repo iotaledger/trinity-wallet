@@ -58,7 +58,7 @@
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
         "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
         "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible pour le serveur sélectionné.",
-        "wallet": "Wallet",
+        "wallet": "Portefeuille",
         "sent": "Envoyé",
         "received": "Reçu",
         "sending": "Envoi en cours",
@@ -163,7 +163,7 @@
         "storeSafely": "Conservez-la en lieu sûr.",
         "neverShare": "Ne communiquez votre seed à personne.",
         "iotaLogo": "Logo IOTA",
-        "printWallet": "IMPRIMER LE PORTEFEUILLE"
+        "printWallet": "IMPRIMER LE PORTEFEUILLE PAPIER"
     },
     "receive": {
         "addressCopied": "Adresse copiée",
@@ -255,7 +255,7 @@
         "paste": "Coller",
         "selectAll": "Tout Sélectionner",
         "securitySettings": "Paramètres de sécurité",
-        "fingerprint": "Authentification par empreintes digitales"
+        "fingerprint": "Authentification par empreinte digitale"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
@@ -361,22 +361,22 @@
         "warning": "<0><0>Toutes vos données de portefeuille, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Toucher le lecteur d’empreinte digitale de votre appareil pour activer l’authentification par empreintes digitales.",
-        "instructionsDisable": "Toucher le lecteur d’empreinte digitale de votre appareil pour désactiver l’authentification par empreintes digitales.",
-        "fingerprintAuthEnabled": "Authentification par empreintes digitales activée",
-        "fingerprintAuthEnabledExplanation": "Vous avez correctement activé l’authentification par empreintes digitales.",
-        "fingerprintAuthDisabled": "Authentification par empreintes digitales désactivée",
-        "fingerprintAuthDisabledExplanation": "Vous avez correctement désactivé l’authentification par empreintes digitales.",
+        "instructionsEnable": "Toucher le lecteur d’empreinte digitale de votre appareil pour activer l’authentification par empreinte digitale.",
+        "instructionsDisable": "Toucher le lecteur d’empreinte digitale de votre appareil pour désactiver l’authentification par empreinte digitale.",
+        "fingerprintAuthEnabled": "Authentification par empreinte digitale activée",
+        "fingerprintAuthEnabledExplanation": "Vous avez correctement activé l’authentification par empreinte digitale.",
+        "fingerprintAuthDisabled": "Authentification par empreinte digitale désactivée",
+        "fingerprintAuthDisabledExplanation": "Vous avez correctement désactivé l’authentification par empreinte digitale.",
         "fingerprintAuthFailed": "Échec de l’authentification par empreinte digitale",
-        "fingerprintAuthFailedExplanation": "Échec d'authentification. Veuillez réessayer.",
+        "fingerprintAuthFailedExplanation": "Échec de l'authentification par empreinte digitale. Veuillez réessayer.",
         "status": "Statut",
         "enabled": "Activé",
         "disabled": "Désactivé",
-        "fingerprintUnavailable": "Capteur d'empreintes digitales non disponible",
-        "fingerprintUnavailableExplanation": "Votre appareil ne supporte pas de reconnaissance d’empreintes digitales ou il n’a pas été configuré dans les paramètres.",
-        "buttonInstructionsDisable": "Appuyez sur le bouton ci-dessous pour désactiver l’authentification d’empreintes digitales.",
-        "buttonInstructionsEnable": "Appuyez sur le bouton ci-dessous pour activer l’authentification d’empreintes digitales.",
-        "instructionsLogin": "Toucher le lecteur d’empreintes digitales pour ouvrir une session."
+        "fingerprintUnavailable": "Capteur d'empreinte digitale non disponible",
+        "fingerprintUnavailableExplanation": "La reconnaissance d’empreinte digitale n'est pas supportée ou bien n'a pas été configurée dans les réglages de votre appareil.",
+        "buttonInstructionsDisable": "Appuyez sur le bouton ci-dessous pour désactiver l’authentification par empreinte digitale.",
+        "buttonInstructionsEnable": "Appuyez sur le bouton ci-dessous pour activer l’authentification par empreinte digitale.",
+        "instructionsLogin": "Touchez le lecteur d’empreintes digitales pour vous connecter."
     },
     "transferConfirmation": {
         "youAreAbout": "Vous êtes sur le point d’envoyer {{contents}} à l’adresse",
@@ -389,11 +389,11 @@
         "emptyCodeExplanation": "Veuillez entrer un code et réessayer.",
         "keyCopied": "Clé copiée dans le presse-papier",
         "keyCopiedExplanation": "Votre clé 2FA a été copiée dans le presse-papier.",
-        "addKey": "Ajouter cette clé à votre application 2FA",
+        "addKey": "Ajoutez cette clé à votre application 2FA",
         "key": "Clé",
         "twoFAEnabled": "2FA est maintenant activé",
         "twoFAEnabledExplanation": "Vous avez correctement activé l’authentification à deux facteurs.",
-        "enterCode": "Entrer le code de votre application 2FA",
+        "enterCode": "Entrez le code de votre application 2FA",
         "code": "Code"
     },
     "chart": {
