@@ -1,35 +1,7 @@
 import { expect } from 'chai';
-import {
-    prepareTransferArray,
-    prepareInputs,
-    extractTailTransferFromBundle,
-    getStartingSearchIndexToPrepareInputs,
-} from '../../libs/transfers';
+import { prepareInputs, getStartingSearchIndexToPrepareInputs } from '../../../libs/iota/inputs';
 
-describe('libs: transfers', () => {
-    describe('#prepareTransferArray', () => {
-        let args;
-
-        beforeEach(() => {
-            args = ['foo', 0, 'message'];
-        });
-
-        it('should return an array', () => {
-            expect(Array.isArray(prepareTransferArray(...args))).to.equal(true);
-        });
-
-        it('should only have address, value, message and tag props in the first element of the array', () => {
-            const result = prepareTransferArray(...args);
-            ['address', 'value', 'message', 'tag'].forEach((item) => expect(item in result[0]).to.equal(true));
-            expect(Object.keys(result[0]).length).to.equal(4);
-        });
-
-        it('should not have any other props other than address, value, message and tag props in the first element of the array', () => {
-            const result = prepareTransferArray(...args);
-            ['foo', 'baz'].forEach((item) => expect(item in result[0]).to.equal(false));
-        });
-    });
-
+describe('libs: iota/inputs', () => {
     describe('#prepareInputs', () => {
         it('should return an object with props inputs and totalBalance', () => {
             const result = prepareInputs({}, 0, 0);
@@ -179,36 +151,6 @@ describe('libs: transfers', () => {
                 result.inputs.forEach((input) => {
                     expect(input.keyIndex === 0 || input.keyIndex === 1).to.not.equal(true);
                 });
-            });
-        });
-    });
-
-    describe('#extractTailTransferFromBundle', () => {
-        describe('when not passed a valid bundle', () => {
-            it('should always return an object', () => {
-                const args = [undefined, null, [], {}, 'foo', 0];
-
-                args.forEach((arg) => {
-                    const result = extractTailTransferFromBundle(arg);
-                    expect(typeof result).to.equal('object');
-                    expect(Array.isArray(result)).to.equal(false);
-                    expect(result === null).to.equal(false);
-                    expect(result === undefined).to.equal(false);
-                });
-            });
-        });
-
-        describe('when passed a valid bundle', () => {
-            it('should return an object with currentIndex prop equals 0', () => {
-                const bundle = Array.from(Array(5), (x, idx) => ({ currentIndex: idx }));
-
-                expect(extractTailTransferFromBundle(bundle)).to.eql({ currentIndex: 0 });
-            });
-
-            it('should return an empty object if there is no item with prop currentIndex 0', () => {
-                const bundle = Array.from(Array(5), (x, idx) => ({ currentIndex: idx + 1 }));
-
-                expect(extractTailTransferFromBundle(bundle)).to.eql({});
             });
         });
     });
