@@ -6,13 +6,10 @@ import some from 'lodash/some';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
-import {
-    getStartingSearchIndexToPrepareInputs,
-    getUnspentInputs,
-    shouldAllowSendingToAddress,
-} from '../libs/transfers';
+import { prepareTransferArray } from '../libs/iota/transfers';
+import { shouldAllowSendingToAddress } from '../libs/iota/addresses';
+import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { MAX_SEED_LENGTH } from '../libs/util';
-import { prepareTransferArray } from '../libs/transfers';
 import { getSelectedAccount } from '../selectors/account';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
