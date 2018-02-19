@@ -84,8 +84,8 @@ class TransferConfirmationModal extends Component {
 
         // Prevent modal close lag
         hideModal(() => {
+            setSendingTransferFlag();
             this.timeout = setTimeout(() => {
-                setSendingTransferFlag();
                 sendTransfer();
             }, 300);
         });
