@@ -222,9 +222,7 @@ export const getAccountInfo = (seed, accountName) => {
     };
 };
 
-const dummy = (accountName, consistentTail, tails) => (dispatch) => {
-    const alertArguments = (title, message, status = 'success') => [status, title, message];
-
+const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispatch) => {
     if (!consistentTail) {
         // Grab hash from the top tail to replay
         const topTx = head(tails);
@@ -233,10 +231,9 @@ const dummy = (accountName, consistentTail, tails) => (dispatch) => {
         return replayBundleAsync(hash).then((reattachedTxs) => {
             dispatch(
                 generateAlert(
-                    ...alertArguments(
-                        i18next.t('global:autoreattaching'),
-                        i18next.t('global:autoreattachingExplanation', { hash }),
-                    ),
+                    'success',
+                    i18next.t('global:autoreattaching'),
+                    i18next.t('global:autoreattachingExplanation', { hash }),
                 ),
             );
 
@@ -253,36 +250,43 @@ const dummy = (accountName, consistentTail, tails) => (dispatch) => {
 export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest());
 
-    const alertArguments = (title, message, status = 'success') => [status, title, message];
-
     const accountName = get(tails, '[0].account');
     const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
 
     return isValidForPromotion(bundle, selectedAccount.transfers, selectedAccount.addresses)
         .then((isValid) => {
-            if (true) {
+            if (!isValid) {
                 dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
+
+                // Polling retries in case of errors
+                // If the chosen bundle for promotion is no longer valid
+                // dispatch an error action, so that the next bundle could be picked up
+                // immediately for promotion.
                 return dispatch(promoteTransactionError());
             }
 
             return getFirstConsistentTail(tails, 0);
         })
-        .then((consistentTail) => dispatch(dummy(accountName, consistentTail, tails)))
+        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tails)))
         .then((hash) => {
             dispatch(
                 generateAlert(
-                    ...alertArguments(
-                        i18next.t('global:autopromoting'),
-                        i18next.t('global:autopromotingExplanation', { hash }),
-                    ),
+                    'success',
+                    i18next.t('global:autopromoting'),
+                    i18next.t('global:autopromotingExplanation', { hash }),
                 ),
+
             );
 
-            const existingBundlesInStore = getState().account.unconfirmedBundleTails;
-            dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(existingBundlesInStore, bundle)));
+            const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
+
+            // Rearrange bundles so that the next cycle picks up a new bundle for promotion
+            dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(existingUnconfirmedBundleTails, bundle)));
+
             return dispatch(promoteTransactionSuccess());
         })
         .catch((err) => {
+            console.error('err', err);
             return dispatch(promoteTransactionError());
         });
 };
