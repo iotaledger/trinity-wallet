@@ -1,35 +1,10 @@
 import get from 'lodash/get';
-import keys from 'lodash/keys';
 import each from 'lodash/each';
-import map from 'lodash/map';
-import filter from 'lodash/filter';
 import isNull from 'lodash/isNull';
+import keys from 'lodash/keys';
 import size from 'lodash/size';
-import reduce from 'lodash/reduce';
-import { DEFAULT_TAG, DEFAULT_SECURITY } from '../config';
-import { iota } from './iota';
-
-/**
- *   Returns a single transfer array
- *   Converts message and tag to trytes. Basically preparing an array of transfer objects before making a transfer.
- *
- *   @method prepareTransferArray
- *   @param {string} address
- *   @param {number} value
- *   @param {string} message
- *   @param {string} [tag='TRINITY']
- *   @returns {array} Transfer object
- **/
-export const prepareTransferArray = (address, value, message, tag = DEFAULT_TAG) => {
-    return [
-        {
-            address,
-            value,
-            message: iota.utils.toTrytes(message),
-            tag,
-        },
-    ];
-};
+import { filterSpentAddresses } from './addresses';
+import { DEFAULT_SECURITY } from '../../config';
 
 /**
  *   Prepares inputs for sending transfer from locally stored address related information
@@ -74,26 +49,6 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
     });
 
     return { inputs, totalBalance };
-};
-
-/**
- *   Communicates with ledger and checks if the addresses are spent from.
- *
- *   @method filterSpentAddresses
- *   @param {array} inputs - Array or objects containing balance, keyIndex and address props.
- *   @returns {Promise} - A promise that resolves all inputs with unspent addresses.
- **/
-export const filterSpentAddresses = (inputs) => {
-    return new Promise((resolve, reject) => {
-        const addresses = map(inputs, (input) => input.address);
-        iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(filter(inputs, (input, idx) => !wereSpent[idx]));
-            }
-        });
-    });
 };
 
 /**
@@ -160,94 +115,9 @@ export const getUnspentInputs = (addressData, start, threshold, inputs, callback
  **/
 export const getStartingSearchIndexToPrepareInputs = (addressData) => {
     const byIndex = (a, b) => get(addressData, `${a}.index`) - get(addressData, `${b}.index`);
-    const address = Object.keys(addressData)
+    const address = keys(addressData)
         .sort(byIndex)
         .find((address) => addressData[address].balance > 0);
 
     return address ? addressData[address].index : 0;
-};
-
-/**
- *   Find the last address index from address data.
- *
- *   @method getStartingSearchIndexToFetchLatestAddresses
- *   @param {object} addressData - Addresses dictionary with balance and spend status
- *   @returns {number} index
- **/
-export const getStartingSearchIndexToFetchLatestAddresses = (addressData) => {
-    const addresses = Object.keys(addressData);
-    return addresses.length ? addresses.length - 1 : 0;
-};
-
-/**
- *   Communicates with ledger and checks if the addresses are spent from.
- *
- *   @method shouldAllowSendingToAddress
- *   @param {array} addresses - Could also accept an address as string since wereAddressesSpentFrom casts it internally
- *   @param {function} callback
- **/
-export const shouldAllowSendingToAddress = (addresses, callback) => {
-    iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
-        if (err) {
-            callback(err);
-        } else {
-            const spentAddresses = filter(addresses, (address, idx) => wereSpent[idx]);
-            callback(null, !spentAddresses.length);
-        }
-    });
-};
-
-/**
- *   Accepts a transfer bundle and returns the tail object
- *
- *   @method extractTailTransferFromBundle
- *   @param {array} bundle - Array of transfer objects
- *   @returns {object} transfer object
- **/
-
-export const extractTailTransferFromBundle = (bundle) => {
-    const extractTail = (res, tx) => {
-        if (tx.currentIndex === 0) {
-            res = tx;
-        }
-
-        return res;
-    };
-
-    return reduce(bundle, extractTail, {});
-};
-
-export const getRelevantTransfer = (bundle, addresses) => {
-    for (let i = 0; i < bundle.length; i++) {
-        if (addresses.indexOf(bundle[i].address) > -1) {
-            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
-            if (bundle[i].value < 0 && !isRemainder) {
-                return bundle[0];
-            } else if (bundle[i].value >= 0 && !isRemainder) {
-                return bundle[i];
-            }
-        } else {
-            return extractTailTransferFromBundle(bundle);
-        }
-    }
-};
-
-export const isReceivedTransfer = (bundle, addresses) => {
-    // Iterate over every bundle entry
-
-    for (let i = 0; i < bundle.length; i++) {
-        if (addresses.indexOf(bundle[i].address) > -1) {
-            // Check if it's a remainder address
-            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
-            // check if sent transaction
-            if (bundle[i].value < 0 && !isRemainder) {
-                return false;
-                // check if received transaction, or 0 value (message)
-            } else if (bundle[i].value >= 0 && !isRemainder) {
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
 };

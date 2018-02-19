@@ -1,14 +1,66 @@
 import { expect } from 'chai';
 import {
+    prepareTransferArray,
+    extractTailTransferFromBundle,
     getPendingTxTailsHashes,
     markTransfersConfirmed,
-    accumulateBalance,
-    mapBalancesToAddresses,
     hasNewTransfers,
-} from '../../libs/accountUtils';
-import _ from 'lodash';
+} from '../../../libs/iota/transfers';
 
-describe('libs: accountUtils', () => {
+describe('libs: iota/transfers', () => {
+    describe('#prepareTransferArray', () => {
+        let args;
+
+        beforeEach(() => {
+            args = ['foo', 0, 'message'];
+        });
+
+        it('should return an array', () => {
+            expect(Array.isArray(prepareTransferArray(...args))).to.equal(true);
+        });
+
+        it('should only have address, value, message and tag props in the first element of the array', () => {
+            const result = prepareTransferArray(...args);
+            ['address', 'value', 'message', 'tag'].forEach((item) => expect(item in result[0]).to.equal(true));
+            expect(Object.keys(result[0]).length).to.equal(4);
+        });
+
+        it('should not have any other props other than address, value, message and tag props in the first element of the array', () => {
+            const result = prepareTransferArray(...args);
+            ['foo', 'baz'].forEach((item) => expect(item in result[0]).to.equal(false));
+        });
+    });
+
+    describe('#extractTailTransferFromBundle', () => {
+        describe('when not passed a valid bundle', () => {
+            it('should always return an object', () => {
+                const args = [undefined, null, [], {}, 'foo', 0];
+
+                args.forEach((arg) => {
+                    const result = extractTailTransferFromBundle(arg);
+                    expect(typeof result).to.equal('object');
+                    expect(Array.isArray(result)).to.equal(false);
+                    expect(result === null).to.equal(false);
+                    expect(result === undefined).to.equal(false);
+                });
+            });
+        });
+
+        describe('when passed a valid bundle', () => {
+            it('should return an object with currentIndex prop equals 0', () => {
+                const bundle = Array.from(Array(5), (x, idx) => ({ currentIndex: idx }));
+
+                expect(extractTailTransferFromBundle(bundle)).to.eql({ currentIndex: 0 });
+            });
+
+            it('should return an empty object if there is no item with prop currentIndex 0', () => {
+                const bundle = Array.from(Array(5), (x, idx) => ({ currentIndex: idx + 1 }));
+
+                expect(extractTailTransferFromBundle(bundle)).to.eql({});
+            });
+        });
+    });
+
     describe('#getPendingTxTailsHashes', () => {
         describe('when argument passed is empty, null or undefined', () => {
             it('should return an empty array', () => {
@@ -47,7 +99,7 @@ describe('libs: accountUtils', () => {
 
         describe('when second argument passed is an array of strings', () => {
             describe('when includes hash', () => {
-                it('should assign persistence true to tx objects with currentIndex 0', () => {
+                it('should assign persistence true to all tx objects', () => {
                     const transfers = [
                         [
                             { currentIndex: 1, hash: 'foo', persistence: false },
@@ -68,79 +120,12 @@ describe('libs: accountUtils', () => {
                         ],
                         [
                             { currentIndex: 0, hash: 'waldo', persistence: true },
-                            { currentIndex: 1, hash: 'bar', persistence: false },
+                            { currentIndex: 1, hash: 'bar', persistence: true },
                         ],
                     ];
 
                     expect(markTransfersConfirmed(transfers, tailsHashes)).to.eql(result);
                 });
-            });
-        });
-    });
-
-    describe('#accumulateBalance', () => {
-        describe('when argument is not an array', () => {
-            it('should return 0', () => {
-                const args = [null, undefined, '', {}, 0, 0.5];
-
-                args.forEach((arg) => expect(accumulateBalance(arg)).to.equal(0));
-            });
-        });
-
-        describe('when argument is an array', () => {
-            it('should return 0 if array is empty', () => {
-                expect(accumulateBalance([])).to.equal(0);
-            });
-
-            it('should only calculates on numbers inside array', () => {
-                expect(accumulateBalance(['foo', 'baz'])).to.equal(0);
-            });
-
-            it('should return total after summing up', () => {
-                expect(accumulateBalance([0, 4, 10])).to.equal(14);
-            });
-        });
-    });
-
-    describe('#mapBalancesToAddresses', () => {
-        describe('when balances passed as second arg not equals size of addresses passed as third arg', () => {
-            it('should not assign balances to each address', () => {
-                const addressData = {
-                    foo: { balance: 10, spent: true, address: 'foo' },
-                };
-
-                expect(mapBalancesToAddresses(addressData, [0], [])).to.eql(addressData);
-            });
-        });
-
-        describe('when addresses passed as third arg not equals size of keys of addressData passed as first arg', () => {
-            it('should not assign balances to each address if size of ', () => {
-                const addressData = {
-                    foo: { balance: 10, spent: true, address: 'foo' },
-                };
-
-                // Balances length === addresses length
-                expect(mapBalancesToAddresses(addressData, [0, 2], ['foo', 'baz'])).to.eql(addressData);
-            });
-        });
-
-        describe('when addresses passed as third arg equals size of keys of addressData passed as first arg and balances passed as second arg ength equals addresses length', () => {
-            it('should assign balances to each address if size of ', () => {
-                const addressData = {
-                    foo: { balance: 30, spent: true, address: 'foo' },
-                    baz: { balance: 40, spent: false, address: 'baz' },
-                    bar: { balance: 50, spent: true, address: 'bar' },
-                };
-
-                const returnValue = {
-                    foo: { balance: 0, spent: true, address: 'foo' },
-                    baz: { balance: 0, spent: false, address: 'baz' },
-                    bar: { balance: 100, spent: true, address: 'bar' },
-                };
-
-                // Balances length === addresses length
-                // AddressData keys length ==== addresses length
-                expect(mapBalancesToAddresses(addressData, [0, 0, 100], ['foo', 'baz', 'bar'])).to.eql(returnValue);
             });
         });
     });

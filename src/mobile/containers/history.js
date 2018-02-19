@@ -5,14 +5,15 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl, FlatL
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/transfers';
+import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
-import { convertFromTrytes, iota } from 'iota-wallet-shared-modules/libs/iota';
+import { iota } from 'iota-wallet-shared-modules/libs/iota';
+import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
