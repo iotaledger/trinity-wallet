@@ -34,7 +34,7 @@ export function formatChartData(json, currency, timeframe) {
     const timeValue = getUrlNumberFormat(timeframe);
     const response = get(json, 'Data');
     const hasDataPoints = size(response);
-    const defaultData = [{ x: 0, y: 0 }, { x: 1, y: 1 }];
+    const failedData = [];
 
     if (response && isArray(response) && hasDataPoints) {
         const data = [];
@@ -47,5 +47,5 @@ export function formatChartData(json, currency, timeframe) {
         }
         return data;
     }
-    return defaultData;
+    return failedData;
 }
