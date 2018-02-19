@@ -196,7 +196,7 @@
         "amount": "Montant",
         "max": "MAX",
         "message": "Message",
-        "invalidMessage": "Message non valide",
+        "invalidMessage": "Message invalide",
         "invalidMessageExplanation": "Votre message contient des caractères invalides.",
         "send": "ENVOYER",
         "invalidAmount": "Montant saisi incorrect",
