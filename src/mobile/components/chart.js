@@ -136,7 +136,6 @@ class Chart extends PureComponent {
 
         const textColor = { color: theme.secondaryBackgroundColor };
         const borderColor = { borderColor: theme.secondaryBackgroundColor };
-
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
