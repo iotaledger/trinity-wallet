@@ -7,6 +7,11 @@ import PropTypes, { shape } from 'prop-types';
 import { shallow } from 'enzyme';
 import { Balance } from '../../containers/balance';
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},

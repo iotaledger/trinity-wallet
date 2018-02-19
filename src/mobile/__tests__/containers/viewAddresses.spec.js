@@ -6,6 +6,11 @@ import { Clipboard } from 'react-native';
 import { shallow } from 'enzyme';
 import { ViewAddresses } from '../../containers/viewAddresses';
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
