@@ -67,11 +67,25 @@ class TransferConfirmationModal extends Component {
         amount: PropTypes.string.isRequired,
     };
 
+    constructor() {
+        super();
+        this.state = {
+            sending: false,
+        };
+    }
+
     onSendPress() {
-        const { hideModal, setSendingTransferFlag, sendTransfer } = this.props;
+        const { hideModal, sendTransfer, setSendingTransferFlag } = this.props;
+        const { sending } = this.state;
+
+        // Prevent multiple spends
+        if (sending) return;
+        this.setState({ sending: true });
+
+        // Prevent modal close lag
         hideModal(() => {
-            setSendingTransferFlag();
             this.timeout = setTimeout(() => {
+                setSendingTransferFlag();
                 sendTransfer();
             }, 300);
         });
