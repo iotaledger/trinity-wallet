@@ -200,7 +200,7 @@
         "invalidMessageExplanation": "Deine Nachricht enthält ungültige Zeichen.",
         "send": "SENDEN",
         "invalidAmount": "Falschen Betrag eingegeben",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Bitte gib einen gültigen Transaktionsbetrag ein. Die Liste der IOTA Einheiten am unteren Rand dieser Seite könnte hilfreich sein.",
         "maximumSelected": "MAXIMALER Betrag ausgewählt",
         "iotaUnits": "IOTA Einheiten erklärt",
         "sendMax": "SENDE MAX"
