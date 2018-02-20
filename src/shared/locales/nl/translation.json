@@ -73,7 +73,7 @@
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "cannotSendToOwn": "Versturen naar eigen adres",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "U kunt geen transactie versturen naar uw adressen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De sleutel bevat ongeldige tekens",
@@ -141,7 +141,7 @@
         "useSeed": "GEBRUIK SLEUTEL",
         "login": "Aanmelden",
         "selectDifferentNode": "Wilt u een andere node selecteren?",
-        "setNode": "SET NODE",
+        "setNode": "SELECTEER NODE",
         "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
@@ -203,7 +203,7 @@
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM bedrag geselecteerd",
         "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "sendMax": "MAX VERZENDEN"
     },
     "setPassword": {
         "passwordTooShort": "Wachtwoord is te kort",
@@ -283,7 +283,7 @@
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het Klembord.",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Het adres is naar het Klembord gekopieerd.",
-        "send": "SEND",
+        "send": "VERSTUUR",
         "receive": "RECEIVE"
     },
     "accountManagement": {
@@ -379,7 +379,7 @@
         "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "U staat op het punt om {{contents}} te versturen naar het adres",
         "aMessage": "a message"
     },
     "twoFA": {
