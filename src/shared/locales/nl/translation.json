@@ -1,6 +1,6 @@
 {
     "global": {
-        "send": "Verstuur",
+        "send": "VERSTUUR",
         "cancel": "ANNULEREN",
         "continue?": "Weet u zeker dat u wilt doorgaan?",
         "noTransactions": "Geen recente geschiedenis",
@@ -46,7 +46,7 @@
         "yes": "JA",
         "no": "Nee",
         "password": "Wachtwoord",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Wachtwoord of vingeafdruk",
         "unrecognisedPassword": "Niet herkend wachtwoord",
         "unrecognisedPasswordExplanation": "Het wachtwoord is niet herkend. Probeer het opnieuw.",
         "syncInProgress": "Bezig met synchroniseren",
@@ -67,12 +67,12 @@
         "pending": "In afwachting",
         "bundleHash": "Bundel Hash",
         "addresses": "Adressen",
-        "pressBackAgain": "Press back again to close the app",
+        "pressBackAgain": "Druk opnieuw op de terug knop om de app te sluiten",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwn": "Versturen naar eigen adres",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
     },
     "addAdditionalSeed": {
