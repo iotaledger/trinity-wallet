@@ -302,7 +302,7 @@
         "createNewSeed": "新しいSeedを作成"
     },
     "advancedSettings": {
-        "selectNode": "ノードを選択",
+        "selectNode": "ノード選択",
         "addCustomNode": "カスタムノードの追加",
         "manualSync": "手動同期"
     },
