@@ -72,7 +72,7 @@
         "autoreattachingExplanation": "Erneutes anhängen der Transaktion mit dem Hash {{hash}}",
         "autopromoting": "Der Transfer wird autopromoted",
         "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
-        "cannotSendToOwn": "An eigene Adresse senden",
+        "cannotSendToOwn": "Sende an eigene Adresse...",
         "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden."
     },
     "addAdditionalSeed": {
@@ -142,7 +142,7 @@
         "login": "ANMELDEN",
         "selectDifferentNode": "Möchtest du einen anderen Server auswählen?",
         "setNode": "SERVER AUSWÄHLEN",
-        "cannotConnect": "Verbindung mit IOTA Server nicht möglich."
+        "cannotConnect": "Keine Verbindung zum IOTA Server."
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
@@ -190,7 +190,7 @@
         "invalidAddressExplanation3": "Adresse enthält eine ungültige Prüfsumme.",
         "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
-        "keyReuse": "Key Wiederverwendung",
+        "keyReuse": "Key-Wiederverwendung",
         "keyReuseExplanation": "Die Adresse, die du zum Senden verwendest, wurde bereits benutzt. Bitte versuche es mit einer anderen Adresse.",
         "recipientAddress": "Adresse des Empfängers",
         "amount": "Betrag",
@@ -374,8 +374,8 @@
         "disabled": "Deaktiviert",
         "fingerprintUnavailable": "Fingerabdrucksensor nicht vorhanden",
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt die Erkennung von Fingerabdrücken nicht oder diese Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
-        "buttonInstructionsDisable": "Drücke die untere Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
-        "buttonInstructionsEnable": "Drücke die untere Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
+        "buttonInstructionsDisable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
+        "buttonInstructionsEnable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "instructionsLogin": "Fingerabdrucksensor berühren, um sich anzumelden."
     },
     "transferConfirmation": {
@@ -385,20 +385,20 @@
     "twoFA": {
         "wrongCode": "Falscher Code",
         "wrongCodeExplanation": "Der von dir eingegebene Code ist falsch.",
-        "emptyCode": "Leeres Passwort",
-        "emptyCodeExplanation": "Bitte gebe den Code ein und versuche es erneut.",
+        "emptyCode": "Leerer Code",
+        "emptyCodeExplanation": "Bitte gib einen Code ein und versuche es erneut.",
         "keyCopied": "Schlüssel in die Zwischenablage kopiert",
         "keyCopiedExplanation": "Dein 2FA Schlüssel wurde in die Zwischenablage kopiert.",
         "addKey": "Füge diesen Schlüssel in deine 2FA App ein",
         "key": "Schlüssel",
-        "twoFAEnabled": "2FA ist nun aktiviert",
-        "twoFAEnabledExplanation": "Du hast erfolgreich Zwei-Faktor-Authentifizierung aktiviert.",
-        "enterCode": "Gebe den Code aus deiner 2FA App ein",
+        "twoFAEnabled": "2FA ist jetzt aktiviert",
+        "twoFAEnabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung aktiviert.",
+        "enterCode": "Gib den Code aus deiner 2FA App ein",
         "code": "Code"
     },
     "chart": {
         "mcap": "MCAP",
         "change": "Änderung",
-        "volume": "Volumen (24Std)"
+        "volume": "Volumen (24h)"
     }
 }
