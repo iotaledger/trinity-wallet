@@ -47,11 +47,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    noTransactions: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 27.6,
-        backgroundColor: 'transparent',
-    },
     flatList: {
         flex: 1,
         justifyContent: 'center',
@@ -60,7 +55,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: height / 20,
+        marginBottom: height / 15,
     },
     refreshButton: {
         borderWidth: 1.5,
@@ -269,9 +264,6 @@ class History extends Component {
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
                     <View style={styles.noTransactionsContainer}>
-                        <Text style={[styles.noTransactions, { color: secondaryBackgroundColor }]}>
-                            {t('global:noTransactions')}
-                        </Text>
                         {(!isRefreshing && (
                             <View style={styles.refreshButtonContainer}>
                                 <TouchableOpacity onPress={this.onRefresh}>
