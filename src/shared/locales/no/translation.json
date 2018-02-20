@@ -196,9 +196,11 @@
         "amount": "Beløp",
         "max": "MAKS",
         "message": "Melding",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "SENDE",
         "invalidAmount": "Ugyldig beløp lagt inn",
-        "invalidAmountExplanation": "Vennligst skriv inn en tallverdi for transaksjonsbeløpet.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAKSIMUM beløp valgt",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"

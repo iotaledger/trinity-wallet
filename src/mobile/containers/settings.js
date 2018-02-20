@@ -372,6 +372,8 @@ class Settings extends Component {
                     />
                 );
                 break;
+            default:
+                break;
         }
 
         this.setState({
@@ -403,6 +405,7 @@ class Settings extends Component {
             isTransitioning,
             selectedAccount,
             isAttachingToTangle,
+            navigator,
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
         const arrowLeftImagePath = isWhite ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -635,6 +638,7 @@ class Settings extends Component {
                 tickImagePath,
                 arrowLeftImagePath,
                 secondaryBarColor,
+                navigator,
             },
             advancedThemeCustomisation: {
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),

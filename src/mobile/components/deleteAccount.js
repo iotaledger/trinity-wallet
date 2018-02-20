@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        width: width / 1.15,
+        width: width / 1.2,
     },
     topContainer: {
         flex: 9,
@@ -79,6 +79,13 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
+    modalInfoText: {
+        fontFamily: Fonts.secondary,
+        fontSize: width / 25.9,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+        paddingHorizontal: width / 15,
+    },
     warningText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 25.9,
@@ -97,11 +104,11 @@ class DeleteAccount extends Component {
         backgroundColor: PropTypes.string.isRequired,
         currentAccountName: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
-        textColor: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        borderColor: PropTypes.string.isRequired,
-        arrowLeftImagePath: PropTypes.string.isRequired,
-        tickImagePath: PropTypes.string.isRequired,
+        borderColor: PropTypes.object.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        tickImagePath: PropTypes.number.isRequired,
     };
 
     constructor() {
@@ -150,13 +157,13 @@ class DeleteAccount extends Component {
         return (
             <View
                 style={{
-                    width: width / 1.15,
+                    width: width / 1.2,
                     alignItems: 'center',
                     backgroundColor,
                 }}
             >
                 <View style={[styles.modalContent, borderColor]}>
-                    <Text style={[styles.infoText, { paddingBottom: height / 16 }, textColor]}>
+                    <Text style={[styles.modalInfoText, { paddingBottom: height / 16 }, textColor]}>
                         Are you sure you want to delete your account called {currentAccountName}?
                     </Text>
                     <OnboardingButtons
@@ -164,6 +171,8 @@ class DeleteAccount extends Component {
                         onRightButtonPress={() => this.onYesPress()}
                         leftText={t('global:no')}
                         rightText={t('global:yes')}
+                        buttonWidth={{ width: width / 3.2 }}
+                        containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
             </View>
