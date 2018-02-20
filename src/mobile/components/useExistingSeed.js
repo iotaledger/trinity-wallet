@@ -7,7 +7,7 @@ import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import blackArrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right-black.png';
 import whiteArrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right-white.png';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import CustomTextInput from '../components/customTextInput';
 import QRScanner from '../components/qrScanner';
 import GENERAL from '../theme/general';

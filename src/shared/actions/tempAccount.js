@@ -6,13 +6,10 @@ import some from 'lodash/some';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
-import {
-    getStartingSearchIndexToPrepareInputs,
-    getUnspentInputs,
-    shouldAllowSendingToAddress,
-} from '../libs/transfers';
+import { prepareTransferArray } from '../libs/iota/transfers';
+import { shouldAllowSendingToAddress } from '../libs/iota/addresses';
+import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { MAX_SEED_LENGTH } from '../libs/util';
-import { prepareTransferArray } from '../libs/transfers';
 import { getSelectedAccount } from '../selectors/account';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
@@ -318,7 +315,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             // This would fail if a pre-requisite check for checksums fail.
             const isSendingToOwnAddress = some(
                 get(inputs, 'inputs'),
-                input => iota.utils.addChecksum(input.address, 9, true) === address,
+                (input) => iota.utils.addChecksum(input.address, 9, true) === address,
             );
 
             if (isSendingToOwnAddress) {
@@ -410,33 +407,17 @@ export const checkForNewAddress = (seedName, addressData, txArray) => {
 
 export const randomiseSeed = (randomBytesFn) => {
     return (dispatch) => {
-        // TODO move this to an iota util file
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
         let seed = '';
-        // uncomment for synchronous API, uses SJCL
-        // var rand = randomBytes(1)
-
-        // asynchronous API, uses iOS-side SecRandomCopyBytes
-        randomBytesFn(100, (error, bytes) => {
-            if (!error) {
-                Object.keys(bytes).forEach((key) => {
-                    if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
-                        const randomNumber = bytes[key] % 27;
-                        const randomLetter = charset.charAt(randomNumber);
-                        seed += randomLetter;
-                    }
-                });
-                dispatch(setSeed(seed));
-            } else {
-                dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:somethingWentWrong'),
-                        i18next.t('global:somethingWentWrongExplanation'),
-                        error,
-                    ),
-                );
-            }
+        randomBytesFn(100).then((bytes) => {
+            Object.keys(bytes).forEach((key) => {
+                if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
+                    const randomNumber = bytes[key] % 27;
+                    const randomLetter = charset.charAt(randomNumber);
+                    seed += randomLetter;
+                }
+            });
+            dispatch(setSeed(seed));
         });
     };
 };

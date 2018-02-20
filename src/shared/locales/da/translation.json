@@ -196,9 +196,11 @@
         "amount": "Beløb",
         "max": "MAKS.",
         "message": "Besked",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "SEND",
         "invalidAmount": "Forkert beløb indtastet",
-        "invalidAmountExplanation": "Indtast venligst en numerisk værdi som transaktionsbeløbet.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAKSIMALT beløb valgt",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"

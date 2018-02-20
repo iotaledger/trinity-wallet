@@ -72,14 +72,16 @@
         "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションを再登録",
         "autopromoting": "送金を自動促進",
         "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "自分のアドレスに送金する。",
+        "cannotSendToOwnExplanation": "自分のアドレスに送金することができません。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
-        "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "seedInvalidCharsExplanation":
+            "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。現在のSeedは{{currentLength}}文字です。もう一度やり直して下さい。",
+        "seedTooShortExplanation":
+            "Seedは{{maxLength}}文字にする必要があります。現在のSeedは{{currentLength}}文字です。もう一度やり直して下さい。",
         "nameInUse": "このアカウント名はすでに使われています。",
         "nameInUseExplanation": "あなたのSeedに唯一のアカウント名を付けてください。",
         "enterAccountName": "アカウント名を入力して下さい。",
@@ -101,7 +103,8 @@
         "passwordTooShort": "パスワードが短すぎます。",
         "passwordTooShortExplanation": "パスワードは最低12文字で設定しましょう。もう一度やり直してください。",
         "oldPassword": "古いパスワードは使えません。",
-        "oldPasswordExplanation": "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直して下さい。",
+        "oldPasswordExplanation":
+            "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直して下さい。",
         "ensureStrongPassword": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
         "currentPassword": "現在のパスワード",
         "newPassword": "新しいパスワード",
@@ -118,10 +121,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだSeedです。",
-        "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "invalidCharactersExplanation":
+            "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
-        "seedExplanation": "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "seedTooShortExplanation":
+            "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
+        "seedExplanation":
+            "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -196,20 +202,24 @@
         "amount": "金額",
         "max": "最大",
         "message": "メッセージ",
+        "invalidMessage": "無効なメッセージ",
+        "invalidMessageExplanation": "メッセージに無効な文字が含まれています。",
         "send": "送金",
         "invalidAmount": "不適切な金額が入力されました。",
-        "invalidAmountExplanation": "取引金額の数値を入力して下さい。",
+        "invalidAmountExplanation": "有効な取引金額を入力してください。ページ下にIOTAの単位の説明があります。",
         "maximumSelected": "設定した最大額",
         "iotaUnits": "IOTAの単位の説明",
         "sendMax": "全額送金"
     },
     "setPassword": {
         "passwordTooShort": "パスワードが短すぎます。",
-        "passwordTooShortExplanation": "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直して下さい。",
+        "passwordTooShortExplanation":
+            "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直して下さい。",
         "passwordMismatch": "パスワードが一致しません。",
         "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
         "nowWeNeedTo": "次にパスワードの設定です。",
-        "anEncryptedCopy": "暗号化されたSeedのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
+        "anEncryptedCopy":
+            "暗号化されたSeedのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
         "ensure": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
         "retypePassword": "パスワードを再入力して下さい。"
     },
@@ -264,7 +274,8 @@
         "okay": "それではウォレットの設定を行いましょう。",
         "doYouAlreadyHaveASeed": "IOTAのSeedはすでにお持ちでしょうか？",
         "seedExplanation": "IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
-        "explanation": "<0><0>同じSeedを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>Seedを紛失すると、口座とその預金にもアクセスできなくなります。</4></0>",
+        "explanation":
+            "<0><0>同じSeedを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>Seedを紛失すると、口座とその預金にもアクセスできなくなります。</4></0>",
         "keepSafe": "Seedは安全に保管してください。"
     },
     "welcome": {
@@ -281,8 +292,8 @@
         "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "送金",
+        "receive": "受取"
     },
     "accountManagement": {
         "viewSeed": "Seedを表示",
@@ -356,7 +367,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "この操作は元に戻せません。",
-        "warning": "<0><0>Seedやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消えます。</4></0>"
+        "warning":
+            "<0><0>Seedやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消えます。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "指紋認証を有効にするには、指紋リーダーに触れてください。",
@@ -371,7 +383,8 @@
         "enabled": "有効",
         "disabled": "無効",
         "fingerprintUnavailable": "指紋センサーが利用できません。",
-        "fingerprintUnavailableExplanation": "お使いのデバイスは指紋認識をサポートしていないか、デバイス設定で有効化されていません。",
+        "fingerprintUnavailableExplanation":
+            "お使いのデバイスは指紋認識をサポートしていないか、デバイス設定で有効化されていません。",
         "buttonInstructionsDisable": "指紋認証を無効にするには、下のボタンを押してください。",
         "buttonInstructionsEnable": "指紋認証を有効にするには、下のボタンを押してください。",
         "instructionsLogin": "指紋リーダに触れてログインしてください。"
@@ -395,8 +408,8 @@
         "code": "コード"
     },
     "chart": {
-        "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "mcap": "時価総額",
+        "change": "変化率",
+        "volume": "取引量(24h)"
     }
 }
