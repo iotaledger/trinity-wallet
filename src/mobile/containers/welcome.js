@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
+import { isRooted } from '../utils/device';
+import Modal from 'react-native-modal';
 
 import { width, height } from '../util/dimensions';
 
@@ -80,6 +82,32 @@ class Welcome extends Component {
         t: PropTypes.func.isRequired,
     };
 
+    constructor() {
+        super();
+
+        this.state = {
+            isModalVisible: false,
+        };
+    }
+
+    componentDidMount() {
+        this.showModalIfRooted();
+    }
+
+    showModalIfRooted() {
+        if (isRooted) {
+            return this.showModal();
+        }
+    }
+
+    renderModalContent() {
+        return (
+            <View style={[styles.modalContent, { backgroundColor: this.props.backgroundColor }]}>
+                {this.state.modalContent}
+            </View>
+        );
+    }
+
     onNextPress() {
         this.props.navigator.push({
             screen: 'walletSetup',
@@ -115,6 +143,14 @@ class Welcome extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
+                <LogoutConfirmationModal
+                    style={{ flex: 1 }}
+                    hideModal={() => this.hideModal()}
+                    logout={() => this.logout()}
+                    backgroundColor={backgroundColor}
+                    textColor={{ color: secondaryBackgroundColor }}
+                    borderColor={{ borderColor: secondaryBackgroundColor }}
+                />
             </View>
         );
     }
