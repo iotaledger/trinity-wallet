@@ -52,9 +52,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
     },
-    valueText: {
-        marginLeft: 8,
-    },
     message: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
@@ -90,7 +87,7 @@ export default class TransactionRow extends PureComponent {
         value: PropTypes.number.isRequired,
         unit: PropTypes.string.isRequired,
         time: PropTypes.number.isRequired,
-        message: PropTypes.string.isRequired,
+        message: PropTypes.string,
         bundle: PropTypes.string.isRequired,
         addresses: PropTypes.arrayOf(
             PropTypes.shape({
@@ -108,6 +105,10 @@ export default class TransactionRow extends PureComponent {
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
         }).isRequired,
+    };
+
+    static defaultProps = {
+        message: 'Empty',
     };
 
     constructor() {
@@ -138,9 +139,8 @@ export default class TransactionRow extends PureComponent {
                     <View style={[styles.container, style.containerBorderColor, style.containerBackgroundColor]}>
                         <View style={styles.innerWrapper}>
                             <View style={styles.statusWrapper}>
-                                <Text style={[styles.statusText, { color: style.titleColor }]}>{status}</Text>
-                                <Text style={[styles.statusText, styles.valueText, { color: style.titleColor }]}>
-                                    {value} {unit}
+                                <Text style={[styles.statusText, { color: style.titleColor }]}>
+                                    {status} {value} {unit}
                                 </Text>
                             </View>
                             <Text style={[styles.confirmationStatus, style.confirmationStatusColor]}>
