@@ -6,7 +6,7 @@ import { StyleSheet, View, Text, TouchableHighlight, FlatList, Image, BackHandle
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import { randomBytes } from 'react-native-randombytes';
+import { generateSecureRandom } from 'react-native-securerandom';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Navigation } from 'react-native-navigation';
 import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
@@ -161,7 +161,7 @@ class NewSeedSetup extends Component {
     }
 
     onGeneratePress() {
-        this.props.randomiseSeed(randomBytes);
+        this.props.randomiseSeed(generateSecureRandom);
         this.setState({ randomised: true, infoTextColor: this.props.secondaryBackgroundColor });
     }
 
@@ -195,25 +195,21 @@ class NewSeedSetup extends Component {
     onItemPress(sectionID) {
         if (this.state.randomised) {
             const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-            randomBytes(5, (error, bytes) => {
-                if (!error) {
-                    let i = 0;
-                    let seed = this.props.seed;
-                    Object.keys(bytes).forEach((key) => {
-                        if (bytes[key] < 243 && i < 1) {
-                            const randomNumber = bytes[key] % 27;
-                            const randomLetter = charset.charAt(randomNumber);
-                            const substr1 = seed.substr(0, sectionID);
-                            sectionID++;
-                            const substr2 = seed.substr(sectionID, 80);
-                            seed = substr1 + randomLetter + substr2;
-                            i++;
-                        }
-                    });
-                    this.props.setSeed(seed);
-                } else {
-                    console.log(error);
-                }
+            generateSecureRandom(5).then((bytes) => {
+                let i = 0;
+                let seed = this.props.seed;
+                Object.keys(bytes).forEach((key) => {
+                    if (bytes[key] < 243 && i < 1) {
+                        const randomNumber = bytes[key] % 27;
+                        const randomLetter = charset.charAt(randomNumber);
+                        const substr1 = seed.substr(0, sectionID);
+                        sectionID++;
+                        const substr2 = seed.substr(sectionID, 80);
+                        seed = substr1 + randomLetter + substr2;
+                        i++;
+                    }
+                });
+                this.props.setSeed(seed);
             });
         }
     }
@@ -245,6 +241,7 @@ class NewSeedSetup extends Component {
                 onPress={() => this.onItemPress(index)}
                 style={[styles.tileContainer, { backgroundColor: secondaryBackgroundColor }]}
                 underlayColor={negativeColor}
+                hitSlop={{ top: height / 80, bottom: height / 80, left: height / 80, right: height / 80 }}
             >
                 <View style={styles.tile}>
                     <Text style={[styles.tileText, { color: backgroundColor, opacity: randomised ? 1 : 0.1 }]}>

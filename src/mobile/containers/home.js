@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, BackHandler, ToastAndroid, KeyboardAvoidingView } from 'react-native';
-import RNExitApp from 'react-native-exit-app';
+import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import {
@@ -26,7 +25,8 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import UserInactivity from '../components/userInactivity';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
-import withUserActivity from '../components/withUserActivity';
+import WithUserActivity from '../components/withUserActivity';
+import WithBackPress from '../components/withBackPress';
 import Poll from './poll';
 import Tabs from '../components/tabs';
 import Tab from '../components/tab';
@@ -85,32 +85,25 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.onLoginPress = this.onLoginPress.bind(this);
     }
-    componentDidMount() {
-        const { t } = this.props;
-        BackHandler.addEventListener('homeBackPress', () => {
-            if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
-                RNExitApp.exitApp();
-            }
-            this.lastBackPressed = Date.now();
-            ToastAndroid.show(t('global:pressBackAgain'), ToastAndroid.SHORT);
-            return true;
-        });
-    }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('homeBackPress');
+    shouldComponentUpdate(newProps) {
+        const { isSyncing, isSendingTransfer, isTransitioning } = this.props;
+        if (isSyncing !== newProps.isSyncing) return false;
+        if (isSendingTransfer !== newProps.isSendingTransfer) return false;
+        if (isTransitioning !== newProps.isTransitioning) return false;
+        return true;
     }
 
     onLoginPress = (password) => {
-        const { t, tempAccount } = this.props;
+        const { t, storedPassword } = this.props;
 
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
-        } else if (password !== tempAccount.password) {
+        } else if (password !== storedPassword) {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
@@ -123,7 +116,14 @@ class Home extends Component {
 
     onTabSwitch(name) {
         this.props.changeHomeScreenRoute(name);
-        this.props.setSetting('mainSettings');
+        this.resetSettings();
+    }
+
+    resetSettings() {
+        const { currentSetting } = this.props;
+        if (currentSetting !== 'mainSettings') {
+            this.props.setSetting('mainSettings');
+        }
     }
 
     handleInactivity = () => {
@@ -132,6 +132,7 @@ class Home extends Component {
         if (doingSomething) {
             this.userInactivity.setActiveFromComponent();
         } else {
+            this.resetSettings();
             this.props.setUserActivity({ inactive: true });
         }
     };
@@ -238,9 +239,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    tempAccount: state.tempAccount,
-    settings: state.settings,
-    account: state.account,
+    storedPassword: state.tempAccount.password,
     inactive: state.tempAccount.inactive,
     minimised: state.tempAccount.minimised,
     barColor: state.settings.theme.barColor,
@@ -253,6 +252,7 @@ const mapStateToProps = (state) => ({
     isSyncing: state.tempAccount.isSyncing,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     isTransitioning: state.tempAccount.isTransitioning,
+    currentSetting: state.tempAccount.currentSetting,
 });
 
 const mapDispatchToProps = {
@@ -276,7 +276,7 @@ Home.propTypes = {
     barColor: PropTypes.string.isRequired,
     negativeColor: PropTypes.string.isRequired,
     positiveColor: PropTypes.string.isRequired,
-    tempAccount: PropTypes.object.isRequired,
+    storedPassword: PropTypes.string.isRequired,
     secondaryBarColor: PropTypes.string.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
     isTransitioning: PropTypes.bool.isRequired,
@@ -284,12 +284,13 @@ Home.propTypes = {
     isSendingTransfer: PropTypes.bool.isRequired,
     setSetting: PropTypes.func.isRequired,
     isFingerprintEnabled: PropTypes.bool,
+    currentSetting: PropTypes.string.isRequired,
 };
 
 Home.defaultProps = {
     isFingerprintEnabled: false,
 };
 
-export default withUserActivity()(
-    translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home)),
+export default WithUserActivity()(
+    WithBackPress()(translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
 );
