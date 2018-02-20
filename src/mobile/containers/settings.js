@@ -196,6 +196,7 @@ class Settings extends Component {
         isFetchingAccountInfo: PropTypes.bool.isRequired,
         completeSnapshotTransition: PropTypes.func.isRequired,
         isAttachingToTangle: PropTypes.bool.isRequired,
+        isPromoting: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -293,7 +294,11 @@ class Settings extends Component {
                 })
                 .catch((err) => console.error(err)); // eslint-disable-line no-console
         } else {
-            this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
+            this.props.generateAlert(
+                'error',
+                'Please wait',
+                'Trinity is performing another function. Please wait and try again.',
+            );
         }
     }
 
@@ -327,13 +332,21 @@ class Settings extends Component {
     }
 
     onDeleteAccountPress() {
-        const { seedCount, t } = this.props;
+        const { seedCount, t, isPromoting } = this.props;
 
         if (seedCount === 1) {
             return this.props.generateAlert(
                 'error',
                 t('global:cannotPerformAction'),
                 t('global:cannotPerformActionExplanation'),
+            );
+        }
+
+        if (isPromoting || this.shouldPreventAction()) {
+            return this.props.generateAlert(
+                'error',
+                'Please wait',
+                'Trinity is performing another function. Please wait and try again.',
             );
         }
 
@@ -848,9 +861,8 @@ class Settings extends Component {
             isFetchingAccountInfo,
             isSyncing,
         } = this.props;
-
         const isAlreadyDoingSomeHeavyLifting =
-            isSendingTransfer || isGeneratingReceiveAddress || isTransitioning || isFetchingAccountInfo || isSyncing;
+            isSyncing || isSendingTransfer || isGeneratingReceiveAddress || isTransitioning || isFetchingAccountInfo;
 
         return isAlreadyDoingSomeHeavyLifting;
     }
@@ -952,6 +964,7 @@ const mapStateToProps = (state) => ({
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
+    isPromoting: state.polling.isPromoting,
     isAttachingToTangle: state.tempAccount.isAttachingToTangle,
 });
 
