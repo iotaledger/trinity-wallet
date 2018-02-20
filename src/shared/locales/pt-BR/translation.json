@@ -196,9 +196,11 @@
         "amount": "Quantia",
         "max": "MÁXIMO",
         "message": "Mensagem",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "ENVIAR",
         "invalidAmount": "Valor inserido está incorreto",
-        "invalidAmountExplanation": "Por favor, digite um valor numérico para o valor da transação.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "Quantia MÁXIMA selecionada",
         "iotaUnits": "Unidades IOTA explicadas",
         "sendMax": "ENVIAR O MÁXIMO"

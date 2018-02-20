@@ -196,9 +196,11 @@
         "amount": "Nominal",
         "max": "Maks",
         "message": "Pesan",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "KIRIM",
         "invalidAmount": "Jumlah nilai salah",
-        "invalidAmountExplanation": "Silakan masukkan nilai numerik untuk jumlah transaksi.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "Jumlah MAKSIMUM dipilih",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"

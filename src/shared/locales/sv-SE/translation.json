@@ -196,9 +196,11 @@
         "amount": "Belopp",
         "max": "MAX",
         "message": "Meddelande",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "SKICKA",
         "invalidAmount": "Felaktigt belopp angivet",
-        "invalidAmountExplanation": "Ange ett numeriskt värde för transaktionsbeloppet.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMALA belopp valt",
         "iotaUnits": "Förklaring av IOTA enheter",
         "sendMax": "SKICKA MAX"

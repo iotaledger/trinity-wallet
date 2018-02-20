@@ -196,9 +196,11 @@
         "amount": "金额",
         "max": "最大",
         "message": "信息",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "发送",
         "invalidAmount": "输入的金额不正确",
-        "invalidAmountExplanation": "请输入交易记录金额的数值。",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "已选择最大金额",
         "iotaUnits": "IOTA单位解释",
         "sendMax": "全部发送"

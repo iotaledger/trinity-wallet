@@ -3,32 +3,7 @@ import { ActionTypes } from '../actions/marketData';
 const initialState = {
     currency: 'USD',
     timeframe: '24h',
-    chartData: {
-        USD: {
-            '24h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '7d': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '1m': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '1h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-        },
-        EUR: {
-            '24h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '7d': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '1m': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '1h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-        },
-        BTC: {
-            '24h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '7d': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '1m': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '1h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-        },
-        ETH: {
-            '24h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '7d': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '1m': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-            '1h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-        },
-    },
+    chartData: {},
     mcap: '0',
     volume: '0',
     change24h: '0.00',

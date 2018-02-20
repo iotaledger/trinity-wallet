@@ -196,9 +196,11 @@
         "amount": "Summa",
         "max": "MAX",
         "message": "Viesti",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "LÄHETÄ",
         "invalidAmount": "Syötetty arvo on virheellinen",
-        "invalidAmountExplanation": "Kirjoita lukuarvo siirtosummalle.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAKSIMI-määrä valittu",
         "iotaUnits": "IOTA-yksiköt selitettynä",
         "sendMax": "LÄHETÄ MAX"
