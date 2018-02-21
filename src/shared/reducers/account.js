@@ -73,6 +73,7 @@ const account = (
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
                 // Both these cases do a deep merge while updating existing unconfirmed bundle tails so just assign those
+                // Also they omit confirmed bundles
                 unconfirmedBundleTails: action.payload.unconfirmedBundleTails,
             };
         case ActionTypes.UPDATE_ADDRESSES:
