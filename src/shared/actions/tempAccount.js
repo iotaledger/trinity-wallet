@@ -356,24 +356,24 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
         // Make sure that the address a user is about to send to is not already used.
         // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
         // Omit input preparation in case the address is already spent from.
-        return shouldAllowSendingToAddress([address], (err, shouldAllowSending) => {
-            if (err) {
+        return shouldAllowSendingToAddress([address])
+            .then((shouldAllowSending) => {
+                if (shouldAllowSending) {
+                    return getUnspentInputs(addressData, startIndex, value, null, unspentInputs);
+                }
+
+                dispatch(sendTransferError());
+                return dispatch(
+                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
+                );
+            })
+            .catch((err) => {
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     20000,
                     err,
                 );
-            }
-
-            return shouldAllowSending
-                ? getUnspentInputs(addressData, startIndex, value, null, unspentInputs)
-                : (() => {
-                      dispatch(sendTransferError());
-                      return dispatch(
-                          generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
-                      );
-                  })();
-        });
+            });
     };
 };
 
