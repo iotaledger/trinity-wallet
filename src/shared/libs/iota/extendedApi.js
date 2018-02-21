@@ -115,6 +115,18 @@ const getBundleAsync = (tailTransactionHash) => {
     });
 };
 
+const wereAddressesSpentFromAsync = (addresses) => {
+    return new Promise((resolve, reject) => {
+        iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(wereSpent);
+            }
+        });
+    });
+};
+
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -125,4 +137,5 @@ export {
     promoteTransactionAsync,
     replayBundleAsync,
     getBundleAsync,
+    wereAddressesSpentFromAsync,
 };
