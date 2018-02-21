@@ -11,6 +11,7 @@ import isEmpty from 'lodash/isEmpty';
 import filter from 'lodash/filter';
 import omitBy from 'lodash/omitBy';
 import size from 'lodash/size';
+import some from 'lodash/some';
 import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD } from '../../config';
@@ -545,4 +546,71 @@ export const syncTransfers = (diff, accountState) => {
                 newTransfers,
             };
         });
+};
+
+/**
+ *   Accepts a bundle hash and transfers and returns
+ *   all bundles matching the bundle hash
+ *
+ *   @method findBundlesFromTransfers
+ *   @param {string} bundleHash
+ *   @param {array} transfers
+ *   @param {array} transfers - Transfers matching the bundle hash
+ *
+ *   @returns {Promise<object>} - { transfers (Updated transfers), newTransfers }
+ **/
+export const findBundlesFromTransfers = (bundleHash, transfers) => {
+    return filter(transfers, (bundle) => {
+        const topTx = head(bundle);
+
+        return topTx.bundle === bundleHash;
+    });
+};
+
+/**
+ *   Accepts tail transaction object categorized by bundles and a list of tail transaction hashes
+ *   Returns all relevant bundle hashes for tail transaction hashes
+ *
+ *   @method getBundleHashesForTailTransactionHashes
+ *   @param {object} bundleTails - { bundleHash: [{}, {}]}
+ *   @param {array} tailTransactionHashes - List of tail transaction hashes
+ *
+ *   @returns {array} bundleHashes - List of bundle hashes
+ **/
+export const getBundleHashesForTailTransactionHashes = (bundleTails, tailTransactionHashes) => {
+    const grabBundleHashes = (acc, tailTransactions, bundleHash) => {
+        if (some(tailTransactions, (tailTransaction) => includes(tailTransactionHashes, tailTransaction.hash))) {
+            acc.push(bundleHash);
+        }
+    };
+
+    return transform(bundleTails, grabBundleHashes, []);
+};
+
+/**
+ *   Accepts bundle hash, transfers and addressData and determines if the bundle associated
+ *   with bundle hash is valid or not.
+ *
+ *   @method isValidForPromotion
+ *   @param {string} bundleHash
+ *   @param {array} transfers
+ *   @param {object} addressData
+ *
+ *   @returns {Promise<boolean>} - Promise that resolves whether the bundle is valid or not
+ **/
+export const isValidForPromotion = (bundleHash, transfers, addressData) => {
+    const bundles = findBundlesFromTransfers(bundleHash, transfers);
+    const firstBundle = head(bundles);
+
+    // If no bundles found, something in the state is messed up
+    if (!firstBundle) {
+        return Promise.resolve(false);
+    }
+
+    const addresses = keys(addressData);
+    const incomingTransfer = isReceivedTransfer(firstBundle, addresses);
+
+    return incomingTransfer
+        ? isValidBundleAsync(firstBundle)
+        : Promise.resolve(isValidBundleSync(firstBundle, addressData));
 };
