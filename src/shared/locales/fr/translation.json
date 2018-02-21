@@ -3,7 +3,7 @@
         "send": "ENVOYER",
         "cancel": "ANNULER",
         "continue?": "Êtes-vous sûr(e) de vouloir continuer ?",
-        "noTransactions": "AUCUN HISTORIQUE RÉCENT",
+        "noTransactions": "AUCUN HISTORIQUE",
         "qr": "QR",
         "balanceError": "Solde insuffisant",
         "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
@@ -16,11 +16,11 @@
         "keyReuse": "Réutilisation de clé",
         "keyReuseError": "Vous ne pouvez pas effectuer de transfert vers une adresse qui a déjà été débitée.",
         "invalidResponse": "Réponse non valide",
-        "invalidResponseExplanation": "Le node a renvoyé une réponse invalide.",
-        "invalidResponsePollingExplanation": "Le node a retourné une réponse invalide lors de son interrogation.",
+        "invalidResponseExplanation": "Le serveur a renvoyé une réponse invalide.",
+        "invalidResponsePollingExplanation": "Le serveur a retourné une réponse invalide lors de son interrogation.",
         "invalidResponseFetchingAccount":
-            "Le node a renvoyé une réponse non valide lors de la récupération des informations de votre compte.",
-        "invalidResponseSendingTransfer": "Le node a renvoyé une réponse invalide lors du transfert.",
+            "Le serveur a renvoyé une réponse invalide lors de la récupération des informations de votre compte.",
+        "invalidResponseSendingTransfer": "Le serveur a renvoyé une réponse invalide lors du transfert.",
         "seed": "Seed",
         "back": "RETOUR",
         "backLowercase": "Retour",
@@ -59,8 +59,8 @@
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
         "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
         "attachToTangleUnavailableExplanation":
-            "La fonction Attacher au Tangle n'est pas disponible pour le node sélectionné.",
-        "wallet": "Wallet",
+            "La fonction Attacher au Tangle n'est pas disponible pour le serveur sélectionné.",
+        "wallet": "Portefeuille",
         "sent": "Envoyé",
         "received": "Reçu",
         "sending": "Envoi en cours",
@@ -75,8 +75,7 @@
         "autopromoting": "Promotion automatique du transfert",
         "autopromotingExplanation": "Promotion de la transaction de hash {{hash}}",
         "cannotSendToOwn": "Envoi à votre propre adresse",
-        "cannotSendToOwnExplanation":
-            "Vous ne pouvez pas effectuer un transfert de fonds vers une autre de vos adresses."
+        "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers vos propres adresses."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -92,7 +91,7 @@
         "noNickname": "Aucun nom de compte saisi",
         "noNicknameExplanation": "Veuillez saisir un nom de compte pour votre seed.",
         "seedInUse": "Seed déjà utilisée",
-        "seedInUseExplanation": "Cette seed est déjà liée à votre wallet. Veuillez en utiliser une autre."
+        "seedInUseExplanation": "Cette seed est déjà liée à votre portefeuille. Veuillez en utiliser une autre."
     },
     "changePassword": {
         "oops": "Oups. Une erreur est survenue",
@@ -150,7 +149,7 @@
         "enterPassword": "Veuillez saisir votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
         "login": "SE CONNECTER",
-        "selectDifferentNode": "Voulez-vous sélectionner un node différent ?",
+        "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
         "setNode": "CONFIGURER UN SERVEUR",
         "cannotConnect": "Impossible de se connecter à un serveur IOTA."
     },
@@ -174,7 +173,7 @@
         "storeSafely": "Conservez-la en lieu sûr.",
         "neverShare": "Ne communiquez votre seed à personne.",
         "iotaLogo": "Logo IOTA",
-        "printWallet": "IMPRIMER LE PORTEFEUILLE"
+        "printWallet": "IMPRIMER LE PORTEFEUILLE PAPIER"
     },
     "receive": {
         "addressCopied": "Adresse copiée",
@@ -210,14 +209,14 @@
         "amount": "Montant",
         "max": "MAX",
         "message": "Message",
-        "invalidMessage": "Message non valide",
+        "invalidMessage": "Message invalide",
         "invalidMessageExplanation": "Votre message contient des caractères invalides.",
         "send": "ENVOYER",
         "invalidAmount": "Montant saisi incorrect",
         "invalidAmountExplanation":
-            "Veuillez entrer un montant de la transaction valide. Il peut être utile de voir l'explication des unités IOTA au bas de cette page.",
+            "Veuillez entrer un montant valide pour la transaction. Vous pouvez vous référer à l'explication des unités IOTA au bas de cette page si besoin.",
         "maximumSelected": "Montant MAXIMAL sélectionné",
-        "iotaUnits": "Unités IOTA expliquées",
+        "iotaUnits": "Explication des unités IOTA",
         "sendMax": "ENVOYER LE MAX"
     },
     "setPassword": {
@@ -274,7 +273,7 @@
         "paste": "Coller",
         "selectAll": "Tout Sélectionner",
         "securitySettings": "Paramètres de sécurité",
-        "fingerprint": "Authentification par empreintes digitales"
+        "fingerprint": "Authentification par empreinte digitale"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
@@ -287,7 +286,7 @@
         "seedExplanation":
             "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
         "explanation":
-            "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel wallet</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
+            "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel portefeuille</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
         "keepSafe": "Merci de garder votre Seed en sécurité."
     },
     "welcome": {
@@ -307,7 +306,7 @@
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papier.",
         "send": "ENVOI",
-        "receive": "RECEPTION"
+        "receive": "RÉCEPTION"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -383,32 +382,31 @@
     "walletResetConfirmation": {
         "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
         "warning":
-            "<0><0>Toutes vos données de wallet, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
+            "<0><0>Toutes vos données de portefeuille, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable":
-            "Toucher le lecteur d’empreinte digitale de votre appareil pour activer l’authentification par empreintes digitales.",
+            "Toucher le lecteur d’empreinte digitale de votre appareil pour activer l’authentification par empreinte digitale.",
         "instructionsDisable":
-            "Toucher le lecteur d’empreinte digitale de votre appareil pour désactiver l’authentification par empreintes digitales.",
-        "fingerprintAuthEnabled": "Authentification par empreintes digitales activée",
-        "fingerprintAuthEnabledExplanation":
-            "Vous avez correctement activé l’authentification par empreintes digitales.",
-        "fingerprintAuthDisabled": "Authentification par empreintes digitales désactivée",
+            "Toucher le lecteur d’empreinte digitale de votre appareil pour désactiver l’authentification par empreinte digitale.",
+        "fingerprintAuthEnabled": "Authentification par empreinte digitale activée",
+        "fingerprintAuthEnabledExplanation": "Vous avez correctement activé l’authentification par empreinte digitale.",
+        "fingerprintAuthDisabled": "Authentification par empreinte digitale désactivée",
         "fingerprintAuthDisabledExplanation":
-            "Vous avez correctement désactivé l’authentification par empreintes digitales.",
+            "Vous avez correctement désactivé l’authentification par empreinte digitale.",
         "fingerprintAuthFailed": "Échec de l’authentification par empreinte digitale",
-        "fingerprintAuthFailedExplanation": "Échec d'authentification. Veuillez réessayer.",
+        "fingerprintAuthFailedExplanation": "Échec de l'authentification par empreinte digitale. Veuillez réessayer.",
         "status": "Statut",
         "enabled": "Activé",
         "disabled": "Désactivé",
-        "fingerprintUnavailable": "Capteur d'empreintes digitales non disponible",
+        "fingerprintUnavailable": "Capteur d'empreinte digitale non disponible",
         "fingerprintUnavailableExplanation":
-            "Votre appareil ne supporte pas de reconnaissance d’empreintes digitales ou il n’a pas été configuré dans les paramètres.",
+            "La reconnaissance d’empreinte digitale n'est pas supportée ou bien n'a pas été configurée dans les réglages de votre appareil.",
         "buttonInstructionsDisable":
-            "Appuyez sur le bouton ci-dessous pour désactiver l’authentification d’empreintes digitales.",
+            "Appuyez sur le bouton ci-dessous pour désactiver l’authentification par empreinte digitale.",
         "buttonInstructionsEnable":
-            "Appuyez sur le bouton ci-dessous pour activer l’authentification d’empreintes digitales.",
-        "instructionsLogin": "Toucher le lecteur d’empreintes digitales pour ouvrir une session."
+            "Appuyez sur le bouton ci-dessous pour activer l’authentification par empreinte digitale.",
+        "instructionsLogin": "Touchez le lecteur d’empreintes digitales pour vous connecter."
     },
     "transferConfirmation": {
         "youAreAbout": "Vous êtes sur le point d’envoyer {{contents}} à l’adresse",
@@ -418,14 +416,14 @@
         "wrongCode": "Code incorrect",
         "wrongCodeExplanation": "Le code saisi est incorrect.",
         "emptyCode": "Code vide",
-        "emptyCodeExplanation": "Veuillez entrer un code et réessayez.",
-        "keyCopied": "Clé copiée dans le presse-papiers",
-        "keyCopiedExplanation": "Votre clé 2FA a été copiée dans le presse-papiers.",
-        "addKey": "Ajouter cette clé à votre application 2FA",
+        "emptyCodeExplanation": "Veuillez entrer un code et réessayer.",
+        "keyCopied": "Clé copiée dans le presse-papier",
+        "keyCopiedExplanation": "Votre clé 2FA a été copiée dans le presse-papier.",
+        "addKey": "Ajoutez cette clé à votre application 2FA",
         "key": "Clé",
         "twoFAEnabled": "2FA est maintenant activé",
         "twoFAEnabledExplanation": "Vous avez correctement activé l’authentification à deux facteurs.",
-        "enterCode": "Entrer le code de votre application 2FA",
+        "enterCode": "Entrez le code de votre application 2FA",
         "code": "Code"
     },
     "chart": {
