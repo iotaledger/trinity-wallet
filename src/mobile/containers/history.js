@@ -28,6 +28,7 @@ import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
+import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -43,7 +44,6 @@ const styles = StyleSheet.create({
         height: height / 60,
     },
     noTransactionsContainer: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -52,10 +52,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     refreshButtonContainer: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: height / 15,
+        marginBottom: isAndroid ? null : height / 50,
     },
     refreshButton: {
         borderWidth: 1.5,
@@ -72,11 +71,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     activityIndicator: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         height: height / 5,
-        marginTop: height / 15,
     },
 });
 
