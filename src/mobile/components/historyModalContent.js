@@ -108,7 +108,7 @@ export default class HistoryModalContent extends PureComponent {
         value: PropTypes.number.isRequired,
         unit: PropTypes.string.isRequired,
         time: PropTypes.number.isRequired,
-        message: PropTypes.string.isRequired,
+        message: PropTypes.string,
         bundle: PropTypes.string.isRequired,
         addresses: PropTypes.arrayOf(
             PropTypes.shape({
@@ -126,6 +126,10 @@ export default class HistoryModalContent extends PureComponent {
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
         }).isRequired,
+    };
+
+    static defaultProps = {
+        message: 'Empty',
     };
 
     copy(item, type) {
@@ -188,9 +192,7 @@ export default class HistoryModalContent extends PureComponent {
                         <ScrollView>
                             <View style={styles.statusWrapper}>
                                 <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                    <Text>
-                                        {status} {value} {unit}
-                                    </Text>
+                                    {status} {value} {unit}
                                 </Text>
                                 <View style={styles.confirmationWrapper}>
                                     <Text style={[styles.confirmation, style.confirmationStatusColor]}>

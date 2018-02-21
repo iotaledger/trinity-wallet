@@ -41,6 +41,7 @@ export default function withChartData(ChartComponent) {
         };
 
         getTicks(dataSet) {
+            if (dataSet === undefined || dataSet.length === 0) return;
             const limit = dataSet.reduce(
                 (range, data) => ({
                     min: Math.min(range.min, data.y),
