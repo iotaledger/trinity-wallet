@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
         height: height / 60,
     },
     noAddressesContainer: {
-        flex: 8.8,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
@@ -77,6 +76,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
+    },
+    flatList: {
+        flex: 1,
+        justifyContent: 'center',
     },
 });
 
@@ -144,18 +147,20 @@ export class ViewAddresses extends Component {
     renderAddresses() {
         const { secondaryBackgroundColor } = this.props;
         const addresses = this.prepAddresses();
+        const noAddresses = addresses.length === 0;
 
         return (
             <FlatList
+                contentContainerStyle={noAddresses ? styles.flatList : null}
                 data={addresses}
                 keyExtractor={(item, index) => index}
                 renderItem={({ item }) => this.renderAddress(item)}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
-                ListEmptyComponent={() => (
+                ListEmptyComponent={
                     <View style={styles.noAddressesContainer}>
                         <Text style={[styles.noAddresses, { color: secondaryBackgroundColor }]}>NO ADDRESSES</Text>
                     </View>
-                )}
+                }
             />
         );
     }
