@@ -30,7 +30,6 @@ class TabContent extends Component {
     render() {
         const { currentRoute, navigator } = this.props;
         const Content = routeToComponent[currentRoute];
-        const isBalancePage = currentRoute === 'balance';
 
         return (
             <View style={{ flex: 1 }}>
@@ -38,7 +37,7 @@ class TabContent extends Component {
                     type={currentRoute}
                     navigator={navigator}
                     closeTopBar={this.handleCloseTopBar}
-                    switchToHistory={isBalancePage ? () => this.props.onTabSwitch('history') : null}
+                    onTabSwitch={(name) => this.props.onTabSwitch(name)}
                 />
             </View>
         );

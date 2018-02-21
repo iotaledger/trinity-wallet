@@ -80,6 +80,10 @@ describe('Testing Balance component', () => {
         it('should require a closeTopBar function as a prop', () => {
             expect(Balance.propTypes.closeTopBar).toEqual(PropTypes.func.isRequired);
         });
+
+        it('should require a onTabSwitch function as a prop', () => {
+            expect(Balance.propTypes.onTabSwitch).toEqual(PropTypes.func.isRequired);
+        });
     });
 
     describe('when renders', () => {
