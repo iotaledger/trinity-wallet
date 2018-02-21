@@ -1,3 +1,4 @@
+import isArray from 'lodash/isArray';
 import { expect } from 'chai';
 import {
     prepareTransferArray,
@@ -5,6 +6,7 @@ import {
     getPendingTxTailsHashes,
     markTransfersConfirmed,
     hasNewTransfers,
+    findBundlesFromTransfers,
 } from '../../../libs/iota/transfers';
 
 describe('libs: iota/transfers', () => {
@@ -142,6 +144,29 @@ describe('libs: iota/transfers', () => {
             expect(hasNewTransfers(null, [])).to.equal(false);
             expect(hasNewTransfers(null, undefined)).to.equal(false);
             expect(hasNewTransfers(0, 10)).to.equal(false);
+        });
+    });
+
+    describe('#findBundlesFromTransfers', () => {
+        it('should always return an array', () => {
+            expect(isArray(findBundlesFromTransfers())).to.equal(true);
+            expect(isArray(findBundlesFromTransfers(null, undefined))).to.equal(true);
+            expect(isArray(findBundlesFromTransfers({}, {}))).to.equal(true);
+            expect(isArray(findBundlesFromTransfers('', []))).to.equal(true);
+            expect(isArray(findBundlesFromTransfers(1, 2))).to.equal(true);
+        });
+
+        it('should return bundles that have first element with "bundle" prop equals first argument', () => {
+            const transfers = [
+                [{ bundle: 'foo', currentIndex: 0 }, { bundle: 'foo', currentIndex: 1 }],
+                [{ bundle: 'baz', currentIndex: 0 }, { bundle: 'baz', currentIndex: 1 }],
+                [{ bundle: 'quz', currentIndex: 0 }, { bundle: 'quz', currentIndex: 1 }],
+                [{ bundle: 'bar', currentIndex: 0 }, { bundle: 'bar', currentIndex: 1 }],
+            ];
+
+            const expected = [[{ bundle: 'foo', currentIndex: 0 }, { bundle: 'foo', currentIndex: 1 }]];
+
+            expect(findBundlesFromTransfers('foo', transfers)).to.eql(expected);
         });
     });
 });
