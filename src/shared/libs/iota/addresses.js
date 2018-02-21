@@ -9,7 +9,7 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import size from 'lodash/size';
 import { iota } from './index';
-import { getBalancesAsync } from './extendedApi';
+import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
 
 /**
@@ -183,16 +183,9 @@ export const getUnspentAddresses = (addressData) => {
  *   @returns {Promise} - A promise that resolves all inputs with unspent addresses.
  **/
 export const filterSpentAddresses = (inputs) => {
-    return new Promise((resolve, reject) => {
-        const addresses = map(inputs, (input) => input.address);
-        iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(filter(inputs, (input, idx) => !wereSpent[idx]));
-            }
-        });
-    });
+    const addresses = map(inputs, (input) => input.address);
+
+    return wereAddressesSpentFromAsync(addresses).then((wereSpent) => filter(inputs, (input, idx) => !wereSpent[idx]));
 };
 
 /**
@@ -214,14 +207,11 @@ export const getStartingSearchIndexToFetchLatestAddresses = (addressData) => {
  *   @param {array} addresses - Could also accept an address as string since wereAddressesSpentFrom casts it internally
  *   @param {function} callback
  **/
-export const shouldAllowSendingToAddress = (addresses, callback) => {
-    iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
-        if (err) {
-            callback(err);
-        } else {
-            const spentAddresses = filter(addresses, (address, idx) => wereSpent[idx]);
-            callback(null, !spentAddresses.length);
-        }
+export const shouldAllowSendingToAddress = (addresses) => {
+    return wereAddressesSpentFromAsync(addresses).then((wereSpent) => {
+        const spentAddresses = filter(addresses, (address, idx) => wereSpent[idx]);
+
+        return !spentAddresses.length;
     });
 };
 
