@@ -764,7 +764,6 @@ class Settings extends Component {
     // UseExistingSeed method
     addExistingSeed(seed, accountName) {
         const { t, seedNames } = this.props;
-
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',
@@ -793,6 +792,13 @@ class Settings extends Component {
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
         } else {
+            if (this.shouldPreventAction()) {
+                return this.props.generateAlert(
+                    'error',
+                    'Please wait',
+                    'Trinity is performing another function. Please wait and try again.',
+                );
+            }
             keychain
                 .get()
                 .then((credentials) => {
