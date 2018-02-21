@@ -17,7 +17,6 @@ import {
     getAccountInfo,
     promoteTransfer,
 } from 'iota-wallet-shared-modules/actions/polling';
-import { sortWithProp } from 'iota-wallet-shared-modules/libs/iota/utils';
 import keychain, { getSeed } from '../util/keychain';
 
 export class Poll extends Component {
@@ -33,7 +32,6 @@ export class Poll extends Component {
         fetchChartData: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         promoteTransfer: PropTypes.func.isRequired,
-        removeBundleFromUnconfirmedBundleTails: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -80,11 +78,11 @@ export class Poll extends Component {
         }
 
         const dict = {
+            promotion: this.promote,
             marketData: this.props.fetchMarketData,
             price: this.props.fetchPrice,
             chartData: this.props.fetchChartData,
             accountInfo: this.fetchLatestAccountInfo,
-            promotion: this.promote,
         };
 
         // In case something messed up, reinitialize
