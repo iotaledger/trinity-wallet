@@ -9,7 +9,7 @@ import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png
 import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
 import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
 import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
-import { extractTailTransferFromBundle, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
+import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
@@ -110,6 +110,12 @@ export class Balance extends Component {
         }
     }
 
+    shouldComponentUpdate(newProps) {
+        const { marketData } = this.props;
+        if (newProps.marketData !== marketData) return false;
+        return true;
+    }
+
     onBalanceClick() {
         if (this.state.balanceIsShort) {
             this.setState({ balanceIsShort: false });
@@ -144,7 +150,7 @@ export class Balance extends Component {
         const incomingIconPath = isSecondaryBackgroundColorWhite ? whiteReceiveImagePath : blackReceiveImagePath;
 
         return map(recentTransactions, (transfer) => {
-            const tx = extractTailTransferFromBundle(transfer);
+            const tx = getRelevantTransfer(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
             return {
@@ -194,7 +200,6 @@ export class Balance extends Component {
         const textColor = { color: secondaryBackgroundColor };
         const lineBorder = { borderBottomColor: secondaryBackgroundColor };
         const recentTransactions = this.renderTransactions();
-
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
