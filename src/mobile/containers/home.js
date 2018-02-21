@@ -177,7 +177,7 @@ class Home extends Component {
                             <View style={{ flex: 1 }}>
                                 <View style={styles.topContainer} />
                                 <View style={styles.midContainer}>
-                                    <TabContent navigator={navigator} />
+                                    <TabContent onTabSwitch={(name) => this.onTabSwitch(name)} navigator={navigator} />
                                 </View>
                                 <View style={styles.bottomContainer}>
                                     <Tabs onPress={(name) => this.onTabSwitch(name)} barColor={barColor}>
