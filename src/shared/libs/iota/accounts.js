@@ -10,6 +10,7 @@ import merge from 'lodash/merge';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
+import omit from 'lodash/omit';
 import { iota } from './index';
 import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import {
@@ -30,6 +31,7 @@ import {
     getPendingTxTailsHashes,
     getConfirmedTransactionHashes,
     markTransfersConfirmed,
+    getBundleHashesForTailTransactionHashes,
 } from './transfers';
 import {
     getAllAddresses,
@@ -271,6 +273,19 @@ export const syncAccount = (seed, existingAccountState) => {
         .then((confirmedTransactionHashes) => {
             if (!isEmpty(confirmedTransactionHashes)) {
                 thisStateCopy.transfers = markTransfersConfirmed(thisStateCopy.transfers, confirmedTransactionHashes);
+
+                // Grab all bundle hashes for confirmed transaction hashes
+                // At this point unconfirmedBundleTails (for promotion) should be updated
+                const confirmedBundleHashes = getBundleHashesForTailTransactionHashes(
+                    thisStateCopy.unconfirmedBundleTails,
+                    confirmedTransactionHashes,
+                );
+
+                // All bundle hashes that are now confirmed should be removed from the dictionary.
+                thisStateCopy.unconfirmedBundleTails = omit(
+                    thisStateCopy.unconfirmedBundleTails,
+                    confirmedBundleHashes,
+                );
 
                 return thisStateCopy;
             }
