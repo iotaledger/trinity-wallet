@@ -230,6 +230,16 @@ export class Send extends Component {
         }
     }
 
+    shouldComponentUpdate(newProps) {
+        const { isSyncing, isTransitioning, usdPrice, conversionRate, balance } = this.props;
+        if (isSyncing !== newProps.isSyncing) return false;
+        if (isTransitioning !== newProps.isTransitioning) return false;
+        if (usdPrice !== newProps.usdPrice) return false;
+        if (conversionRate !== newProps.conversionRate) return false;
+        if (balance !== newProps.balance) return false;
+        return true;
+    }
+
     onDenominationPress() {
         const { secondaryBackgroundColor, denomination } = this.props;
         const { currencySymbol } = this.state;
@@ -248,11 +258,10 @@ export class Send extends Component {
 
     onMaxPress() {
         const { sending, maxPressed } = this.state;
-        const { t, ctaColor, secondaryBackgroundColor } = this.props;
-        const max = (this.props.balance / this.getUnitMultiplier()).toString();
-        if (sending) {
-            return;
-        }
+        const { t, ctaColor, secondaryBackgroundColor, balance } = this.props;
+        const max = (balance / this.getUnitMultiplier()).toString();
+        if (sending) return;
+        if (balance === 0) return;
         if (maxPressed) {
             this.props.setSendAmountField('');
             this.setState({
@@ -272,10 +281,10 @@ export class Send extends Component {
 
     onAmountType(amount) {
         const { t } = this.props;
+        this.props.setSendAmountField(amount);
         if (amount === (this.props.balance / this.getUnitMultiplier()).toString()) {
             this.onMaxPress();
         } else {
-            this.props.setSendAmountField(amount);
             this.setState({
                 maxPressed: false,
                 maxColor: this.props.secondaryBackgroundColor,
@@ -360,7 +369,6 @@ export class Send extends Component {
             ctaBorderColor,
             address,
             amount,
-            denomination,
         } = this.props;
         switch (selectedSetting) {
             case 'qrScanner':

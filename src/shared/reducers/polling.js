@@ -41,8 +41,8 @@ export const setNextPollIfUnsuccessful = (state) => {
 
 const polling = (
     state = {
-        allPollingServices: ['marketData', 'price', 'chartData', 'accountInfo', 'promotion'],
-        pollFor: 'marketData',
+        allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'accountInfo'],
+        pollFor: 'promotion',
         retryCount: 0,
         isFetchingPrice: false,
         isFetchingChartData: false,

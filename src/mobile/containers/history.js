@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl, FlatL
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { extractTailTransferFromBundle, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
+import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
@@ -58,9 +58,14 @@ class History extends Component {
         getAccountInfo: PropTypes.func.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
+        isFetchingAccountInfo: PropTypes.bool.isRequired,
         generateAlert: PropTypes.func.isRequired,
         seedIndex: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
+        isSyncing: PropTypes.bool.isRequired,
+        isSendingTransfer: PropTypes.bool.isRequired,
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        isTransitioning: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -74,6 +79,22 @@ class History extends Component {
         if (this.props.isFetchingLatestAccountInfoOnLogin && !newProps.isFetchingLatestAccountInfoOnLogin) {
             this.setState({ refreshing: false });
         }
+    }
+
+    shouldComponentUpdate(newProps) {
+        const {
+            isFetchingAccountInfo,
+            isSyncing,
+            isSendingTransfer,
+            isGeneratingReceiveAddress,
+            isTransitioning,
+        } = this.props;
+        if (isFetchingAccountInfo !== newProps.isFetchingAccountInfo) return false;
+        if (isSyncing !== newProps.isSyncing) return false;
+        if (isSendingTransfer !== newProps.isSendingTransfer) return false;
+        if (isGeneratingReceiveAddress !== newProps.isGeneratingReceiveAddress) return false;
+        if (isTransitioning !== newProps.isTransitioning) return false;
+        return true;
     }
 
     onRefresh() {
@@ -152,7 +173,7 @@ class History extends Component {
         });
 
         return map(transfers, (transfer) => {
-            const tx = extractTailTransferFromBundle(transfer);
+            const tx = getRelevantTransfer(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
             return {

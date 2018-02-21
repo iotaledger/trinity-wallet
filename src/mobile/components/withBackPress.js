@@ -4,20 +4,21 @@ import RNExitApp from 'react-native-exit-app';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { isAndroid } from '../util/device';
 
 const mapDispatchToProps = {
     setSetting,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     currentSetting: state.tempAccount.currentSetting,
 });
 
-export default () => C => {
+export default () => (C) => {
     class WithBackPress extends Component {
         constructor(props) {
             super(props);
-            this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+            if (isAndroid) this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
         }
 
         onNavigatorEvent(event) {
