@@ -17,7 +17,7 @@ import transform from 'lodash/transform';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
-import { getBalancesAsync, getTransactionsObjectsAsync } from './extendedApi';
+import { getBalancesAsync, getTransactionsObjectsAsync, getBundleAsync, getLatestInclusionAsync } from './extendedApi';
 
 /**
  *   Returns a single transfer array
@@ -136,23 +136,23 @@ export const getRelevantTransfer = (bundle, addresses) => {
 };
 
 export const isValidBundleSync = (bundle, addressData) => {
-    const balanceOnBundle = accumulateBalanceFromBundle(bundle);
-    const addressesOnBundle = getUsedAddressesFromBundle(bundle);
+    const bundleBalance = accumulateBalanceFromBundle(bundle);
+    const bundleAddresses = getUsedAddressesFromBundle(bundle);
 
-    const balances = getBalancesSync(addressesOnBundle, addressData);
+    const balances = getBalancesSync(bundleAddresses, addressData);
     const latestBalance = accumulateBalance(balances);
 
-    return balanceOnBundle <= latestBalance;
+    return bundleBalance <= latestBalance;
 };
 
 export const isValidBundleAsync = (bundle) => {
-    const balanceOnBundle = accumulateBalanceFromBundle(bundle);
-    const addressesOnBundle = getUsedAddressesFromBundle(bundle);
+    const bundleBalance = accumulateBalanceFromBundle(bundle);
+    const bundleAddresses = getUsedAddressesFromBundle(bundle);
 
-    return getBalancesAsync(addressesOnBundle, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
+    return getBalancesAsync(bundleAddresses, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
         const latestBalance = accumulateBalance(map(balances.balances, Number));
 
-        return balanceOnBundle <= latestBalance;
+        return bundleBalance <= latestBalance;
     });
 };
 
@@ -426,27 +426,7 @@ export const isAboveMaxDepth = (timestamp) => {
 };
 
 export const getHashesWithPersistence = (hashes) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getLatestInclusion(hashes, (err, states) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ states, hashes });
-            }
-        });
-    });
-};
-
-export const getBundleWithPersistence = (tailTxHash, persistence) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getBundle(tailTxHash, (err, bundle) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(map(bundle, (tx) => assign({}, tx, { persistence })));
-            }
-        });
-    });
+    return getLatestInclusionAsync(hashes).then((states) => ({ states, hashes }));
 };
 
 export const getBundlesWithPersistence = (inclusionStates, hashes) => {
@@ -455,8 +435,8 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
         (promise, hash, idx) => {
             return promise
                 .then((result) => {
-                    return getBundleWithPersistence(hash, inclusionStates[idx]).then((bundle) => {
-                        result.push(bundle);
+                    return getBundleAsync(hash).then((bundle) => {
+                        result.push(map(bundle, (tx) => assign({}, tx, { persistence: inclusionStates[idx] })));
 
                         return result;
                     });
