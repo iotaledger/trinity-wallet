@@ -2,7 +2,7 @@ import map from 'lodash/map';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
@@ -83,6 +83,7 @@ export class Balance extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
+        switchToHistory: PropTypes.func.isRequired,
     };
 
     static getDecimalPlaces(n) {
@@ -213,7 +214,9 @@ export class Balance extends Component {
                     </View>
                     <View style={styles.transactionsContainer}>
                         <View style={[styles.line, lineBorder]} />
-                        {recentTransactions}
+                        <TouchableOpacity onPress={() => this.props.switchToHistory()}>
+                            {recentTransactions}
+                        </TouchableOpacity>
                         <View style={[styles.line, lineBorder]} />
                     </View>
                     <View style={styles.chartContainer}>

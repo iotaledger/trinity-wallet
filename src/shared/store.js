@@ -44,7 +44,7 @@ const rootReducer = (state, action) => {
     return reducers(state, action);
 };
 
-const middleware = isDevelopment ? developmentMiddleware : productionMiddleware;
+const middleware = isDevelopment ? productionMiddleware : productionMiddleware;
 
 const store = createStore(
     rootReducer,
