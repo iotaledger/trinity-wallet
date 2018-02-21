@@ -129,7 +129,7 @@
         "send": "ENVIAR",
         "receive": "RECIBIR",
         "history": "HISTORIAL",
-        "settings": "AJUSTES"
+        "settings": "OPCIONES"
     },
     "languageSetup": {
         "language": "Idioma"
