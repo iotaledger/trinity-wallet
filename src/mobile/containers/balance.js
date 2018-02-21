@@ -83,7 +83,7 @@ export class Balance extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
-        switchToHistory: PropTypes.func.isRequired,
+        onTabSwitch: PropTypes.func.isRequired,
     };
 
     static getDecimalPlaces(n) {
@@ -214,7 +214,7 @@ export class Balance extends Component {
                     </View>
                     <View style={styles.transactionsContainer}>
                         <View style={[styles.line, lineBorder]} />
-                        <TouchableOpacity onPress={() => this.props.switchToHistory()}>
+                        <TouchableOpacity onPress={() => this.props.onTabSwitch('history')}>
                             {recentTransactions}
                         </TouchableOpacity>
                         <View style={[styles.line, lineBorder]} />
