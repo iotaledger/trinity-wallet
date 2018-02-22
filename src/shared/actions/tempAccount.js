@@ -4,11 +4,16 @@ import size from 'lodash/size';
 import get from 'lodash/get';
 import some from 'lodash/some';
 import last from 'lodash/last';
+import keys from 'lodash/keys';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
 import { prepareTransferArray } from '../libs/iota/transfers';
-import { shouldAllowSendingToAddress } from '../libs/iota/addresses';
+import {
+    shouldAllowSendingToAddress,
+    getLatestAddresses,
+    getStartingSearchIndexToFetchLatestAddresses,
+} from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { MAX_SEED_LENGTH } from '../libs/util';
 import { getSelectedAccount } from '../selectors/account';
@@ -187,7 +192,6 @@ export const generateNewAddress = (seed, seedName, addresses) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
         let index = 0;
-
         size(addresses) === 0 ? (index = 0) : (index = size(addresses) - 1);
         const options = { checksum: true, index, returnAll: true };
 
@@ -196,12 +200,14 @@ export const generateNewAddress = (seed, seedName, addresses) => {
                 //const addressToCheck = [{ address: address }];
                 //Promise.resolve(filterSpentAddresses(addressToCheck)).then(value => console.log(value));
                 const updatedAddresses = cloneDeep(addresses);
+                let i = keys(addresses).length;
                 newAddresses.forEach((newAddress) => {
                     const newAddressNoChecksum = newAddress.substring(0, MAX_SEED_LENGTH);
                     // In case the newly created address is not part of the addresses object
                     // Add that as a key with a 0 balance.
                     if (!(newAddressNoChecksum in addresses)) {
-                        updatedAddresses[newAddressNoChecksum] = { index, balance: 0, spent: false };
+                        updatedAddresses[newAddressNoChecksum] = { index: i, balance: 0, spent: false };
+                        i += 1;
                     }
                 });
                 const receiveAddress = last(newAddresses);
