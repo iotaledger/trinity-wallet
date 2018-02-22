@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
-    ActivityIndicator,
     StyleSheet,
     View,
     Text,
@@ -29,8 +28,7 @@ import {
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
 import CustomTextInput from '../components/customTextInput';
-import CtaButton from '../components/ctaButton';
-
+import GenerateAddressButton from '../components/generateAddressButton';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 
@@ -50,12 +48,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 30,
         paddingBottom: isAndroid ? width / 22 : width / 30,
         width: width / 1.2,
-    },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: height / 5,
     },
     receiveAddressText: {
         fontFamily: 'Inconsolata-Bold',
@@ -97,7 +89,7 @@ const styles = StyleSheet.create({
 
 class Receive extends Component {
     static propTypes = {
-        selectedAccount: PropTypes.object.isRequired,
+        selectedAccountAddresses: PropTypes.object.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         isSyncing: PropTypes.bool.isRequired,
         seedIndex: PropTypes.number.isRequired,
@@ -127,25 +119,23 @@ class Receive extends Component {
             dataSource: ds.cloneWithRows([]),
             message: '',
         };
-
         this.onGeneratePress = this.onGeneratePress.bind(this);
+    }
+
+    shouldComponentUpdate(newProps) {
+        const { isSyncing, isTransitioning } = this.props;
+        if (isSyncing !== newProps.isSyncing) return false;
+        if (isTransitioning !== newProps.isTransitioning) return false;
+
+        return true;
     }
 
     componentWillUnmount() {
         this.resetAddress();
     }
 
-    onAddressPress(address) {
-        const { t } = this.props;
-
-        if (address !== ' ') {
-            Clipboard.setString(address);
-            this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
-        }
-    }
-
     onGeneratePress() {
-        const { t, seedIndex, selectedAccount, selectedAccountName, isSyncing, isTransitioning } = this.props;
+        const { t, seedIndex, selectedAccountAddresses, selectedAccountName, isSyncing, isTransitioning } = this.props;
 
         if (isSyncing || isTransitioning) {
             return this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
@@ -168,12 +158,21 @@ class Receive extends Component {
 
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
-                    this.props.generateNewAddress(seed, selectedAccountName, selectedAccount.addresses);
+                    this.props.generateNewAddress(seed, selectedAccountName, selectedAccountAddresses);
                 } else {
                     error();
                 }
             })
             .catch(() => this.props.getFromKeychainError('receive', 'addressGeneration'));
+    }
+
+    onAddressPress(address) {
+        const { t } = this.props;
+
+        if (address !== ' ') {
+            Clipboard.setString(address);
+            this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
+        }
     }
 
     getOpacity() {
@@ -211,14 +210,14 @@ class Receive extends Component {
     render() {
         const {
             receiveAddress,
-            isGeneratingReceiveAddress,
-            isGettingSensitiveInfoToGenerateAddress,
             t,
-            ctaColor,
             negativeColor,
             secondaryBackgroundColor,
-            secondaryCtaColor,
+            ctaColor,
             ctaBorderColor,
+            secondaryCtaColor,
+            isGeneratingReceiveAddress,
+            isGettingSensitiveInfoToGenerateAddress,
         } = this.props;
         const message = this.state.message;
         const textColor = { color: secondaryBackgroundColor };
@@ -287,32 +286,20 @@ class Receive extends Component {
                         negativeColor={negativeColor}
                     />
                     <View style={{ flex: 0.35 }} />
-                    {receiveAddress === ' ' &&
-                        (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
-                            <View style={{ flex: 0.7, justifyContent: 'center' }}>
-                                <CtaButton
-                                    ctaColor={ctaColor}
-                                    ctaBorderColor={ctaBorderColor}
-                                    secondaryCtaColor={secondaryCtaColor}
-                                    text={t('generateNewAddress')}
-                                    onPress={() => {
-                                        if (!isGeneratingReceiveAddress) {
-                                            this.onGeneratePress();
-                                        }
-                                    }}
-                                />
-                            </View>
-                        )}
-                    {(isGettingSensitiveInfoToGenerateAddress || isGeneratingReceiveAddress) && (
-                        <View style={{ flex: 0.7 }}>
-                            <ActivityIndicator
-                                animating={isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress}
-                                style={styles.activityIndicator}
-                                size="large"
-                                color={negativeColor}
-                            />
-                        </View>
-                    )}
+                    <View style={{ flex: 0.7 }}>
+                        <GenerateAddressButton
+                            ctaColor={ctaColor}
+                            ctaBorderColor={ctaBorderColor}
+                            negativeColor={negativeColor}
+                            secondaryCtaColor={secondaryCtaColor}
+                            t={t}
+                            receiveAddress={receiveAddress}
+                            isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
+                            isGeneratingReceiveAddress={isGeneratingReceiveAddress}
+                            onGeneratePress={this.onGeneratePress}
+                            message={message}
+                        />
+                    </View>
                     {receiveAddress.length > 1 &&
                         message.length >= 1 && (
                             <View style={{ flex: 0.7 }}>
@@ -332,7 +319,6 @@ class Receive extends Component {
                                 <View style={{ flex: 0.2 }} />
                             </View>
                         )}
-                    {receiveAddress.length > 1 && message.length === 0 && <View style={{ flex: 0.7 }} />}
                     <View style={{ flex: 0.65 }} />
                 </View>
             </TouchableWithoutFeedback>
@@ -341,7 +327,8 @@ class Receive extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    selectedAccountAddresses: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo)
+        .addresses,
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     isSyncing: state.tempAccount.isSyncing,
     seedIndex: state.tempAccount.seedIndex,

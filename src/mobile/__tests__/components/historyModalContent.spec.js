@@ -86,7 +86,7 @@ describe('Testing HistoryModalContent component', () => {
         });
 
         it('should require a message string as a prop', () => {
-            expect(HistoryModalContent.propTypes.message).toEqual(PropTypes.string.isRequired);
+            expect(HistoryModalContent.propTypes.message).toEqual(PropTypes.string);
         });
 
         it('should require a bundle string as a prop', () => {
@@ -109,11 +109,11 @@ describe('Testing HistoryModalContent component', () => {
             expect(wrapper.find('View').length).toEqual(6);
         });
 
-        it('should return nine Text components', () => {
+        it('should return eight Text components', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.find('Text').length).toEqual(9);
+            expect(wrapper.find('Text').length).toEqual(8);
         });
 
         it('should return a ScrollView component', () => {
@@ -123,76 +123,90 @@ describe('Testing HistoryModalContent component', () => {
             expect(wrapper.find('ScrollViewMock').length).toEqual(1);
         });
 
-        it('should return status prop as first child to second Text component', () => {
+        it('should return status prop as first child to first Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
             expect(
                 wrapper
                     .find('Text')
-                    .at(1)
+                    .at(0)
                     .children()
                     .at(0)
                     .text(),
             ).toEqual('Receive');
         });
 
-        it('should return value prop as third child to second Text component', () => {
+        it('should return value prop as third child to first Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
             expect(
                 wrapper
                     .find('Text')
-                    .at(1)
+                    .at(0)
                     .children()
                     .at(2)
                     .text(),
             ).toEqual('200');
         });
 
-        it('should return unit prop as fourth child to second Text component', () => {
+        it('should return unit prop as fourth child to first Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
             expect(
                 wrapper
                     .find('Text')
-                    .at(1)
+                    .at(0)
                     .children()
                     .at(3)
                     .text(),
             ).toEqual('i');
         });
 
-        it('should return confirmation prop as a child to third Text component', () => {
+        it('should return confirmation prop as a child to second Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
             expect(
                 wrapper
                     .find('Text')
-                    .at(2)
+                    .at(1)
                     .children()
                     .text(),
             ).toEqual('Received');
         });
 
-        it('should return a translated "Bundle Hash" message as first child to fifth Text component', () => {
+        it('should return a translated "Bundle Hash" message as first child to fourth Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
             expect(
                 wrapper
                     .find('Text')
-                    .at(4)
+                    .at(3)
                     .children()
                     .at(0)
                     .text(),
             ).toEqual('Bundle Hash');
         });
 
-        it('should return a ":" message as second child to fifth Text component', () => {
+        it('should return a ":" message as second child to fourth Text component', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<HistoryModalContent {...props} />);
+            expect(
+                wrapper
+                    .find('Text')
+                    .at(3)
+                    .children()
+                    .at(1)
+                    .text(),
+            ).toEqual(':');
+        });
+
+        it('should return bundle prop as a child to fifth Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
@@ -200,20 +214,6 @@ describe('Testing HistoryModalContent component', () => {
                 wrapper
                     .find('Text')
                     .at(4)
-                    .children()
-                    .at(1)
-                    .text(),
-            ).toEqual(':');
-        });
-
-        it('should return bundle prop as a child to sixth Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(5)
                     .children()
                     .text(),
             ).toEqual('BUNDLE');
@@ -233,7 +233,35 @@ describe('Testing HistoryModalContent component', () => {
             expect(instance.copy).toHaveBeenCalledWith('BUNDLE', 'bundle');
         });
 
-        it('should return a translated "Addresses" message as first child to seventh Text component', () => {
+        it('should return a translated "Addresses" message as first child to sixth Text component', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<HistoryModalContent {...props} />);
+            expect(
+                wrapper
+                    .find('Text')
+                    .at(5)
+                    .children()
+                    .at(0)
+                    .text(),
+            ).toEqual('Addresses');
+        });
+
+        it('should return a ":" message as second child to sixth Text component', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<HistoryModalContent {...props} />);
+            expect(
+                wrapper
+                    .find('Text')
+                    .at(5)
+                    .children()
+                    .at(1)
+                    .text(),
+            ).toEqual(':');
+        });
+
+        it('should return a translated "Message" message as first child to seventh Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
@@ -244,7 +272,7 @@ describe('Testing HistoryModalContent component', () => {
                     .children()
                     .at(0)
                     .text(),
-            ).toEqual('Addresses');
+            ).toEqual('Message');
         });
 
         it('should return a ":" message as second child to seventh Text component', () => {
@@ -261,7 +289,7 @@ describe('Testing HistoryModalContent component', () => {
             ).toEqual(':');
         });
 
-        it('should return a translated "Message" message as first child to eighth Text component', () => {
+        it('should return message prop as a child to eighth Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
@@ -269,34 +297,6 @@ describe('Testing HistoryModalContent component', () => {
                 wrapper
                     .find('Text')
                     .at(7)
-                    .children()
-                    .at(0)
-                    .text(),
-            ).toEqual('Message');
-        });
-
-        it('should return a ":" message as second child to eighth Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(7)
-                    .children()
-                    .at(1)
-                    .text(),
-            ).toEqual(':');
-        });
-
-        it('should return message prop as a child to ninth Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(8)
                     .children()
                     .text(),
             ).toEqual('Pink floyd');

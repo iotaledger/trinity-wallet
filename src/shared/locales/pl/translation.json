@@ -10,7 +10,7 @@
         "transferError": "Błąd transferu",
         "transferErrorMessage":
             "Coś poszło nie tak podczas przetwarzania Twojego transferu. Proszę spróbować ponownie.",
-        "transferSent": "Transfer zrealizowany",
+        "transferSent": "Transfer wykonany",
         "transferSentMessage": "Transfer został przekazany do sieci Tangle.",
         "messageSent": "Wiadomość wysłana",
         "messageSentMessage": "Twoja wiadomość została wysłana do sieci Tangle.",
@@ -74,8 +74,8 @@
         "autoreattachingExplanation": "Ponowne wiązanie transakcji z hashem {{hash}}",
         "autopromoting": "Autopromocja transferu",
         "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "Wysyłka na własny adres",
+        "cannotSendToOwnExplanation": "Nie możesz wykonać transferu środków na swój własny adres."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -207,9 +207,12 @@
         "amount": "Ilość",
         "max": "MAKS.",
         "message": "Wiadomość",
+        "invalidMessage": "Nieprawidłowa wiadomość",
+        "invalidMessageExplanation": "Twoja wiadomość zawiera nieprawidłowe znaki.",
         "send": "WYŚLIJ",
         "invalidAmount": "Wprowadzono niepoprawną ilość",
-        "invalidAmountExplanation": "Proszę wprowadzić liczbową wartość transakcji.",
+        "invalidAmountExplanation":
+            "Wprowadź poprawną kwotę transakcji. Pomocne może być zapoznanie się z objaśnieniem jednostek IOTA na dole tej strony.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
         "iotaUnits": "Objaśnienie jednostek IOTA",
         "sendMax": "WYŚLIJ WSZYSTKO"
@@ -233,7 +236,7 @@
     },
     "settings": {
         "transferSending": "Wykonywanie transferu",
-        "transferSendingExplanation": "Proszę zaczekać na wysłanie Twojego transferu.",
+        "transferSendingExplanation": "Proszę czekać na wykonanie Twojego transferu.",
         "generatingAddress": "Generowanie adresu odbiorczego",
         "generatingAddressExplanation": "Proszę zaczekać na wygenerowanie Twojego adresu.",
         "mode": "Tryb",
@@ -291,15 +294,15 @@
     "writeSeedDown": {
         "yourSeedIs": "Twój seed ma {{maxSeedLength}} znaków, czytany od lewej do prawej.",
         "writeDownYourSeed":
-            "<0> Zanotuj swój seed i sumę kontrolną oraz</0><1>trzykrotnie upewnij się</1><2> że są one poprawne.</2>"
+            "<0> Zanotuj swój seed i sumę kontrolną oraz</0><1>trzykrotnie upewnij się</1><2>, że są one poprawne.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Adres został skopiowany do schowka.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "WYSYŁKA",
+        "receive": "ODBIÓR"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -387,8 +390,8 @@
         "fingerprintAuthFailed": "Nie rozpoznano odcisku palca",
         "fingerprintAuthFailedExplanation": "Nie rozpoznano odcisku palca. Spróbuj ponownie.",
         "status": "Status",
-        "enabled": "Włączony",
-        "disabled": "Wyłączony",
+        "enabled": "Włączono",
+        "disabled": "Wyłączono",
         "fingerprintUnavailable": "Czytnik odcisku palca niedostępny",
         "fingerprintUnavailableExplanation":
             "Twoje urządzenie nie obsługuje funkcji rozpoznawania odcisku palca lub funkcja ta nie została skonfigurowana w ustawieniach urządzenia.",
@@ -397,7 +400,7 @@
         "instructionsLogin": "Przyłóż palec do czytnika, aby się zalogować."
     },
     "transferConfirmation": {
-        "youAreAbout": "Masz zamiar wysłać {{contents}} na ten adres",
+        "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",
         "aMessage": "wiadomość"
     },
     "twoFA": {
@@ -415,8 +418,8 @@
         "code": "Kod"
     },
     "chart": {
-        "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "mcap": "Market",
+        "change": "Zmiana",
+        "volume": "Wolumen (24h)"
     }
 }
