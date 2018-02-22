@@ -177,7 +177,7 @@ class Home extends Component {
                             <View style={{ flex: 1 }}>
                                 <View style={styles.topContainer} />
                                 <View style={styles.midContainer}>
-                                    <TabContent navigator={navigator} />
+                                    <TabContent navigator={navigator} onTabSwitch={(name) => this.onTabSwitch(name)} />
                                 </View>
                                 <View style={styles.bottomContainer}>
                                     <Tabs onPress={(name) => this.onTabSwitch(name)} barColor={barColor}>
@@ -185,31 +185,31 @@ class Home extends Component {
                                             name="balance"
                                             icon={balanceImagePath}
                                             textColor={barTextColor}
-                                            text={t('home:balance')}
+                                            text={t('home:balance').toUpperCase()}
                                         />
                                         <Tab
                                             name="send"
                                             icon={sendImagePath}
                                             textColor={barTextColor}
-                                            text={t('home:send')}
+                                            text={t('home:send').toUpperCase()}
                                         />
                                         <Tab
                                             name="receive"
                                             icon={receiveImagePath}
                                             textColor={barTextColor}
-                                            text={t('home:receive')}
+                                            text={t('home:receive').toUpperCase()}
                                         />
                                         <Tab
                                             name="history"
                                             icon={historyImagePath}
                                             textColor={barTextColor}
-                                            text={t('home:history')}
+                                            text={t('home:history').toUpperCase()}
                                         />
                                         <Tab
                                             name="settings"
                                             icon={settingsImagePath}
                                             textColor={barTextColor}
-                                            text={t('home:settings')}
+                                            text={t('home:settings').toUpperCase()}
                                         />
                                     </Tabs>
                                 </View>
