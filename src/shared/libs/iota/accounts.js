@@ -31,6 +31,8 @@ import {
     getConfirmedTransactionHashes,
     markTransfersConfirmed,
     getBundleHashesForTailTransactionHashes,
+    filterConfirmedTransfers,
+    filterInvalidTransfersSync
 } from './transfers';
 import {
     getAllAddresses,
@@ -38,6 +40,7 @@ import {
     markAddressSpend,
     getUnspentAddresses,
     markAddressesAsSpentSync,
+    getSpentAddressesWithPendingTransfersSync
 } from './addresses';
 
 /**
@@ -95,15 +98,48 @@ const organizeAccountInfo = (accountName, data) => {
  *
  *   @returns {Promise} - Resolves account argument by assigning unspentAddressesHashes (Transaction hashes associated with unspent addresses)
  **/
-export const mapUnspentAddressesHashesToState = (account) => {
+export const mapTransactionHashesForUnspentAddressesToState = (account) => {
     const unspentAddresses = getUnspentAddresses(account.addresses);
 
     if (isEmpty(unspentAddresses)) {
-        return Promise.resolve(assign({}, account, { unspentAddressesHashes: [] }));
+        return Promise.resolve(assign({}, account, { txHashesForUnspentAddresses: [] }));
     }
 
     return findTransactionsAsync({ addresses: unspentAddresses }).then((hashes) => {
-        return assign({}, account, { unspentAddressesHashes: hashes });
+        return assign({}, account, { txHashesForUnspentAddresses: hashes });
+    });
+};
+
+/**
+ *   Takes in account object, filter unspent addresses from all addresses, fetch transaction hashes associated with those and
+ *   assigns them to the account object.
+ *
+ *   @method mapUnspentAddressesHashesToAccount
+ *   @param {object} account [
+ *     addresses: {},
+ *     transfers: [],
+ *     balance: 0,
+ *     unconfirmedBundleTails: {} // (optional),
+ *     accountName; 'foo' // (optional)
+ *   ]
+ *
+ *   @returns {Promise} - Resolves account argument by assigning unspentAddressesHashes (Transaction hashes associated with unspent addresses)
+ **/
+export const mapPendingTransactionHashesForSpentAddressesToState = (account) => {
+    const pendingTransfers = filterConfirmedTransfers(account.transfers);
+    const validPendingTransfers = filterInvalidTransfersSync(pendingTransfers, account.addresses);
+
+    const spentAddressesWithPendingTransfers = getSpentAddressesWithPendingTransfersSync(
+        validPendingTransfers,
+        account.addresses
+    );
+
+    if (isEmpty(spentAddressesWithPendingTransfers)) {
+        return Promise.resolve(assign({}, account, { pendingTxHashesForSpentAddresses: [] }));
+    }
+
+    return findTransactionsAsync({ addresses: spentAddressesWithPendingTransfers }).then((hashes) => {
+        return assign({}, account, { pendingTxHashesForSpentAddresses: hashes });
     });
 };
 
