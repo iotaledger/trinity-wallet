@@ -4,6 +4,7 @@
         "cancel": "ΑΚΥΡΟ",
         "continue?": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;",
         "noTransactions": "ΚΑΜΙΑ ΠΡΟΣΦΑΤΗ ΙΣΤΟΡΙΑ",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Μη αρκετό υπόλοιπο",
         "balanceErrorMessage": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
@@ -73,7 +74,9 @@
         "autopromoting": "Αυτόματη προώθηση συναλλαγής",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
