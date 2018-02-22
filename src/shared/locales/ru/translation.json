@@ -76,7 +76,8 @@
         "cannotSendToOwn": "Отправка на собственный адрес",
         "cannotSendToOwnExplanation": "Вы не можете переводить средства на один из Ваших собственных адресов.",
         "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -173,7 +174,9 @@
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
         "generateNewAddress": "НОВЫЙ АДРЕС",
         "message": "Сообщение (опционально)",
-        "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ"
+        "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Буфер обмена очищен",
