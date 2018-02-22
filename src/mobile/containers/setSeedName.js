@@ -78,6 +78,11 @@ export class SetSeedName extends Component {
         onboardingComplete: PropTypes.bool.isRequired,
         seedCount: PropTypes.number.isRequired,
         backgroundColor: PropTypes.string.isRequired,
+        isTransitioning: PropTypes.bool.isRequired,
+        isSendingTransfer: PropTypes.bool.isRequired,
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        isFetchingAccountInfo: PropTypes.bool.isRequired,
+        isSyncing: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -107,28 +112,29 @@ export class SetSeedName extends Component {
 
                 this.navigateTo('setPassword');
             } else {
+                if (this.shouldPreventAction()) {
+                    return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+                }
                 keychain
                     .get()
                     .then((credentials) => {
                         if (isEmpty(credentials)) {
                             return fetch(trimmedAccountName);
-                        } else {
-                            if (hasDuplicateAccountName(credentials.data, trimmedAccountName)) {
-                                return this.props.generateAlert(
-                                    'error',
-                                    t('addAdditionalSeed:nameInUse'),
-                                    t('addAdditionalSeed:nameInUseExplanation'),
-                                );
-                            } else if (hasDuplicateSeed(credentials.data, seed)) {
-                                return this.props.generateAlert(
-                                    'error',
-                                    t('addAdditionalSeed:seedInUse'),
-                                    t('addAdditionalSeed:seedInUseExplanation'),
-                                );
-                            }
-
-                            return fetch(trimmedAccountName);
                         }
+                        if (hasDuplicateAccountName(credentials.data, trimmedAccountName)) {
+                            return this.props.generateAlert(
+                                'error',
+                                t('addAdditionalSeed:nameInUse'),
+                                t('addAdditionalSeed:nameInUseExplanation'),
+                            );
+                        } else if (hasDuplicateSeed(credentials.data, seed)) {
+                            return this.props.generateAlert(
+                                'error',
+                                t('addAdditionalSeed:seedInUse'),
+                                t('addAdditionalSeed:seedInUseExplanation'),
+                            );
+                        }
+                        return fetch(trimmedAccountName);
                     })
                     .catch(() => {
                         this.props.generateAlert(
@@ -171,6 +177,20 @@ export class SetSeedName extends Component {
             return t('global:otherWallet');
         }
         return '';
+    }
+
+    shouldPreventAction() {
+        const {
+            isTransitioning,
+            isSendingTransfer,
+            isGeneratingReceiveAddress,
+            isFetchingAccountInfo,
+            isSyncing,
+        } = this.props;
+        const isAlreadyDoingSomeHeavyLifting =
+            isSyncing || isSendingTransfer || isGeneratingReceiveAddress || isTransitioning || isFetchingAccountInfo;
+
+        return isAlreadyDoingSomeHeavyLifting;
     }
 
     navigateTo(screen) {
@@ -264,6 +284,11 @@ const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    isTransitioning: state.tempAccount.isTransitioning,
+    isSendingTransfer: state.tempAccount.isSendingTransfer,
+    isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
+    isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
+    isSyncing: state.tempAccount.isSyncing,
 });
 
 const mapDispatchToProps = {

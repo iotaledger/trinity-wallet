@@ -109,6 +109,9 @@ class DeleteAccount extends Component {
         borderColor: PropTypes.object.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         tickImagePath: PropTypes.number.isRequired,
+        isPromoting: PropTypes.bool.isRequired,
+        shouldPreventAction: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -140,6 +143,10 @@ class DeleteAccount extends Component {
     }
 
     onYesPress() {
+        const { t, isPromoting } = this.props;
+        if (isPromoting || this.props.shouldPreventAction()) {
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+        }
         this.hideModal();
         this.props.deleteAccount();
     }
