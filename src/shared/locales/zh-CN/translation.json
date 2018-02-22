@@ -384,8 +384,8 @@
     },
     "twoFA": {
         "wrongCode": "验证码错误",
-        "wrongCodeExplanation": "您输入的代码不正确。",
-        "emptyCode": "空代码",
+        "wrongCodeExplanation": "您输入的验证码不正确。",
+        "emptyCode": "验证码为空",
         "emptyCodeExplanation": "Please enter a code and try again.",
         "keyCopied": "Key copied to clipboard",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
