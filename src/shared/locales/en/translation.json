@@ -182,7 +182,9 @@
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "NEW ADDRESS",
         "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "removeMessage": "REMOVE MESSAGE",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Seed cleared",
