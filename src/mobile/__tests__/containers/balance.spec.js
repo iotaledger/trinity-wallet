@@ -31,6 +31,7 @@ const getProps = (overrides) =>
                 return translations[arg] ? translations[arg] : 'foo';
             },
             closeTopBar: noop,
+            onTabSwitch: noop,
         },
         overrides,
     );
