@@ -143,6 +143,8 @@ export const formatAddressesAndBalance = (addresses) => {
                     };
 
                     acc.balance = acc.balance + cached.balances[index];
+
+                    return acc;
                 },
                 { addresses: {}, balance: 0 },
             );
@@ -161,7 +163,8 @@ export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
     return addressData;
 };
 
-export const isRemainder = (transaction) => transaction.currentIndex === transaction.lastIndex && transaction.lastIndex !== 0;
+export const isRemainder = (transaction) =>
+    transaction.currentIndex === transaction.lastIndex && transaction.lastIndex !== 0;
 
 /**
  *   Accepts addresses as an array.
@@ -218,19 +221,16 @@ export const getUnspentAddresses = (addressData) => {
 /**
  *   Accepts valid pending transfers and address data.
  *   Finds all spent addresses with valid pending transfers
- *   
+ *
  *   IMPORTANT: This function should always be utilized after the account is syenced.
- * 
+ *
  *   @method getSpentAddressesWithPendingTransfersSync
  *   @param {array} validPendingTransfers - Valid unconfirmed transfers
  *   @param {object} addressData
  *   @returns {array} - Array of spent addresses with pending transfers
  **/
 export const getSpentAddressesWithPendingTransfersSync = (validPendingTransfers, addressData) => {
-    const spentAddresses = map(
-        pickBy(addressData, (addressObject) => addressObject.spent),
-        (address) => address
-    );
+    const spentAddresses = map(pickBy(addressData, (addressObject) => addressObject.spent), (address) => address);
 
     const spentAddressesWithPendingTransfers = [];
 

@@ -1,7 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 import assign from 'lodash/assign';
 import each from 'lodash/each';
-import difference from 'lodash/difference';
+import size from 'lodash/size';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import keys from 'lodash/keys';
@@ -25,14 +25,14 @@ import {
     categorizeTransactionsByPersistence,
     removeIrrelevantUnconfirmedTransfers,
     constructBundle,
-    hasNewTransfers,
     syncTransfers,
     getPendingTxTailsHashes,
     getConfirmedTransactionHashes,
     markTransfersConfirmed,
     getBundleHashesForTailTransactionHashes,
     filterConfirmedTransfers,
-    filterInvalidTransfersSync
+    filterInvalidTransfersSync,
+    getHashesDiff,
 } from './transfers';
 import {
     getAllAddresses,
@@ -40,7 +40,7 @@ import {
     markAddressSpend,
     getUnspentAddresses,
     markAddressesAsSpentSync,
-    getSpentAddressesWithPendingTransfersSync
+    getSpentAddressesWithPendingTransfersSync,
 } from './addresses';
 
 /**
@@ -131,7 +131,7 @@ export const mapPendingTransactionHashesForSpentAddressesToState = (account) => 
 
     const spentAddressesWithPendingTransfers = getSpentAddressesWithPendingTransfersSync(
         validPendingTransfers,
-        account.addresses
+        account.addresses,
     );
 
     if (isEmpty(spentAddressesWithPendingTransfers)) {
@@ -253,22 +253,30 @@ export const syncAccount = (seed, existingAccountState) => {
             thisStateCopy.addresses = addresses;
             thisStateCopy.balance = balance;
 
-            return mapUnspentAddressesHashesToState(thisStateCopy);
+            return Promise.all([
+                mapTransactionHashesForUnspentAddressesToState(thisStateCopy),
+                mapPendingTransactionHashesForSpentAddressesToState(thisStateCopy),
+            ]);
         })
-        .then((newStateCopy) => {
-            if (hasNewTransfers(thisStateCopy.unspentAddressesHashes, newStateCopy.unspentAddressesHashes)) {
-                const diff = difference(newStateCopy.unspentAddressesHashes, thisStateCopy.unspentAddressesHashes);
+        .then((newStates) => {
+            const [
+                stateWithLatestTxHashesForUnspentAddresses,
+                stateWithLatestPendingTxHashesForSpentAddresses,
+            ] = newStates;
 
-                // Update unspentAddressesHashes for this copy
-                thisStateCopy.unspentAddressesHashes = newStateCopy.unspentAddressesHashes;
+            const diff = getHashesDiff(
+                thisStateCopy.txHashesForUnspentAddresses,
+                stateWithLatestTxHashesForUnspentAddresses.txHashesForUnspentAddresses,
+                thisStateCopy.pendingTxHashesForSpentAddresses,
+                stateWithLatestPendingTxHashesForSpentAddresses.pendingTxHashesForSpentAddresses,
+            );
 
-                return syncTransfers(diff, thisStateCopy);
-            }
-
-            return Promise.resolve({
-                transfers: thisStateCopy.transfers,
-                newTransfers: [],
-            });
+            return size(diff)
+                ? syncTransfers(diff, thisStateCopy)
+                : Promise.resolve({
+                      transfers: thisStateCopy.transfers,
+                      newTransfers: [],
+                  });
         })
         .then(({ transfers, newTransfers }) => {
             thisStateCopy.transfers = transfers;
@@ -357,5 +365,10 @@ export const updateAccount = (name, newTransfer, accountState, isValueTransfer) 
         });
     }
 
-    return mapUnspentAddressesHashesToState({ ...accountState, transfers, addresses, unconfirmedBundleTails });
+    return mapTransactionHashesForUnspentAddressesToState({
+        ...accountState,
+        transfers,
+        addresses,
+        unconfirmedBundleTails,
+    }).then((newState) => mapPendingTransactionHashesForSpentAddressesToState(newState));
 };
