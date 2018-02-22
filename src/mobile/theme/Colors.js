@@ -1,5 +1,3 @@
-import tinycolor from 'tinycolor2';
-
 const BaseColors = {
     blueDarker: '#102E36',
     greenLight: '#009F3F',

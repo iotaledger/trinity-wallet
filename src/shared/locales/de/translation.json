@@ -160,8 +160,8 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
-        "seedNotGeneratedExplanation": "Bitte klicke die Schaltfläche \"Neuen Seed erzeugen\".",
-        "pressForNewSeed": "DRÜCKE FÜR NEUEN SEED",
+        "seedNotGeneratedExplanation": "Bitte klicke die Schaltfläche \"Neuen Seed erstellen\".",
+        "pressForNewSeed": "NEUEN SEED ERSTELLEN",
         "individualLetters": "Drücke beliebige Buchstaben, um sie zufällig neu zu setzen."
     },
     "onboardingComplete": {
@@ -236,7 +236,7 @@
         "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
     "settings": {
-        "transferSending": "Sende Überweisung...",
+        "transferSending": "Sende Überweisung",
         "transferSendingExplanation": "Bitte warte bis deine Überweisung gesendet wurde.",
         "generatingAddress": "Erzeuge Empfangsadresse",
         "generatingAddressExplanation": "Bitte warte bis deine Adresse erzeugt wurde.",
