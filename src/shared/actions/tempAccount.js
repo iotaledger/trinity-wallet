@@ -312,8 +312,8 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 return dispatch(
                     generateAlert(
                         'error',
-                        'Please wait',
-                        'Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.',
+                        i18next.t('global:pleaseWait'),
+                        i18next.t('global:pleaseWaitTransferExplanation'),
                         20000,
                     ),
                 );
