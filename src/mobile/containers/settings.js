@@ -294,11 +294,7 @@ class Settings extends Component {
                 })
                 .catch((err) => console.error(err)); // eslint-disable-line no-console
         } else {
-            this.props.generateAlert(
-                'error',
-                'Please wait',
-                'Trinity is performing another function. Please wait and try again.',
-            );
+            this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
     }
 
@@ -343,11 +339,7 @@ class Settings extends Component {
         }
 
         if (isPromoting || this.shouldPreventAction()) {
-            return this.props.generateAlert(
-                'error',
-                'Please wait',
-                'Trinity is performing another function. Please wait and try again.',
-            );
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
         return this.props.setSetting('deleteAccount');
@@ -793,11 +785,7 @@ class Settings extends Component {
             );
         } else {
             if (this.shouldPreventAction()) {
-                return this.props.generateAlert(
-                    'error',
-                    'Please wait',
-                    'Trinity is performing another function. Please wait and try again.',
-                );
+                return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
             keychain
                 .get()
