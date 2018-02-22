@@ -76,7 +76,8 @@
         "cannotSendToOwn": "Versturen naar eigen adres",
         "cannotSendToOwnExplanation": "U kunt geen transactie versturen naar uw adressen.",
         "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De sleutel bevat ongeldige tekens",
@@ -173,7 +174,9 @@
         "addressCopiedExplanation": "Uw adres is naar het Klembord gekopieerd.",
         "generateNewAddress": "NEW ADDRESS",
         "message": "Bericht",
-        "removeMessage": "VERWIJDER BERICHT"
+        "removeMessage": "VERWIJDER BERICHT",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Sleutel gewist",
