@@ -1,7 +1,16 @@
 import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, RefreshControl, FlatList } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableWithoutFeedback,
+    RefreshControl,
+    FlatList,
+    TouchableOpacity,
+    ActivityIndicator,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -18,6 +27,8 @@ import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
+import GENERAL from '../theme/general';
+import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -33,14 +44,36 @@ const styles = StyleSheet.create({
         height: height / 60,
     },
     noTransactionsContainer: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    noTransactions: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 27.6,
+    flatList: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    refreshButtonContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: isAndroid ? null : height / 50,
+    },
+    refreshButton: {
+        borderWidth: 1.5,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 2.7,
+        height: height / 17,
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: 'transparent',
+    },
+    refreshText: {
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 29.6,
+        backgroundColor: 'transparent',
+    },
+    activityIndicator: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: height / 5,
     },
 });
 
@@ -71,13 +104,13 @@ class History extends Component {
     constructor() {
         super();
 
-        this.state = { refreshing: false, isModalVisible: false };
+        this.state = { isRefreshing: false, isModalVisible: false };
         this.onRefresh = this.onRefresh.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
         if (this.props.isFetchingLatestAccountInfoOnLogin && !newProps.isFetchingLatestAccountInfoOnLogin) {
-            this.setState({ refreshing: false });
+            this.setState({ isRefreshing: false });
         }
     }
 
@@ -101,8 +134,10 @@ class History extends Component {
      * Triggers a refresh
      */
     onRefresh() {
+        const { isRefreshing } = this.state;
+        if (isRefreshing) return;
         if (!this.shouldPreventManualRefresh()) {
-            this.setState({ refreshing: true });
+            this.setState({ isRefreshing: true });
             this.updateAccountData();
         }
     }
@@ -212,28 +247,50 @@ class History extends Component {
 
     renderTransactions() {
         const { negativeColor, secondaryBackgroundColor, t } = this.props;
-        const { refreshing } = this.state;
-
+        const { isRefreshing } = this.state;
+        const textColor = { color: secondaryBackgroundColor };
+        const borderColor = { borderColor: secondaryBackgroundColor };
         const data = this.prepTransactions();
+        const noTransactions = data.length === 0;
 
         return (
             <FlatList
+                contentContainerStyle={noTransactions ? styles.flatList : null}
                 data={data}
                 initialNumToRender={8} // TODO: Should be dynamically computed.
                 removeClippedSubviews
                 keyExtractor={(item, index) => index}
                 renderItem={({ item }) => <TransactionRow {...item} />}
                 refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={this.onRefresh} tintColor={negativeColor} />
+                    <RefreshControl
+                        refreshing={isRefreshing && !noTransactions}
+                        onRefresh={this.onRefresh}
+                        tintColor={negativeColor}
+                    />
                 }
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
-                ListEmptyComponent={() => (
+                ListEmptyComponent={
                     <View style={styles.noTransactionsContainer}>
-                        <Text style={[styles.noTransactions, { color: secondaryBackgroundColor }]}>
-                            {t('global:noTransactions')}
-                        </Text>
+                        {(!isRefreshing && (
+                            <View style={styles.refreshButtonContainer}>
+                                <TouchableOpacity onPress={this.onRefresh}>
+                                    <View style={[styles.refreshButton, borderColor]}>
+                                        <Text style={[styles.refreshText, textColor]}>{t('global:refresh')}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        )) || (
+                            <View style={styles.refreshButtonContainer}>
+                                <ActivityIndicator
+                                    animating={isRefreshing}
+                                    style={styles.activityIndicator}
+                                    size="large"
+                                    color={negativeColor}
+                                />
+                            </View>
+                        )}
                     </View>
-                )}
+                }
             />
         );
     }
