@@ -72,8 +72,8 @@
         "autoreattachingExplanation": "使用哈希{{hash}} 的重新事务",
         "autopromoting": "自动提示转移",
         "autopromotingExplanation": "使用哈希{{hash}} 促进事务",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "发送到自己的地址",
+        "cannotSendToOwnExplanation": "您不能转账到您自己的地址。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -196,11 +196,11 @@
         "amount": "金额",
         "max": "最大",
         "message": "信息",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "无效消息",
+        "invalidMessageExplanation": "您的消息中包含无效字符.",
         "send": "发送",
         "invalidAmount": "输入的金额不正确",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "请输入有效的交易金额。查看本页底部的IOTA单位说明可能会有所帮助。",
         "maximumSelected": "已选择最大金额",
         "iotaUnits": "IOTA单位解释",
         "sendMax": "全部发送"
@@ -255,7 +255,7 @@
         "paste": "粘贴",
         "selectAll": "全选",
         "securitySettings": "安全设置",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "指纹身份验证"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
@@ -283,8 +283,8 @@
         "bundleHashCopiedExplanation": "绑定哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "地址已复制到剪贴板。",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "发送",
+        "receive": "接收"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
@@ -369,23 +369,23 @@
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "status": "状态",
+        "enabled": "已启用",
+        "disabled": "已禁用",
+        "fingerprintUnavailable": "指纹传感器不可用",
+        "fingerprintUnavailableExplanation": "您的设备不支持指纹识别, 或者在设备设置中未配置。",
+        "buttonInstructionsDisable": "点击下面的按钮禁用指纹身份验证。",
+        "buttonInstructionsEnable": "点击下面的按钮启用指纹身份验证。",
+        "instructionsLogin": "触摸指纹读取器登录。"
     },
     "transferConfirmation": {
         "youAreAbout": "您将发送{{contents}} 到地址",
         "aMessage": "一条信息"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
+        "wrongCode": "验证码错误",
+        "wrongCodeExplanation": "您输入的代码不正确。",
+        "emptyCode": "空代码",
         "emptyCodeExplanation": "Please enter a code and try again.",
         "keyCopied": "Key copied to clipboard",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
