@@ -76,7 +76,8 @@
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
         "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
@@ -173,7 +174,9 @@
         "addressCopiedExplanation": "La dirección se ha copiado en el portapapeles.",
         "generateNewAddress": "NUEVA DIRECCIÓN",
         "message": "Mensaje opcional",
-        "removeMessage": "ELIMINAR MENSAJE"
+        "removeMessage": "ELIMINAR MENSAJE",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Seed removida",
