@@ -2,7 +2,7 @@ import map from 'lodash/map';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
@@ -83,8 +83,14 @@ export class Balance extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
+        onTabSwitch: PropTypes.func.isRequired,
     };
 
+    /**
+     * Make balance human-readable
+     * @param  {int} n Balance
+     * @return {int}   Human-readable balance
+     */
     static getDecimalPlaces(n) {
         const s = `${+n}`;
         const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(s);
@@ -116,6 +122,9 @@ export class Balance extends Component {
         return true;
     }
 
+    /**
+     * Show full balance or show abbreviated balance
+     */
     onBalanceClick() {
         if (this.state.balanceIsShort) {
             this.setState({ balanceIsShort: false });
@@ -123,6 +132,11 @@ export class Balance extends Component {
             this.setState({ balanceIsShort: true });
         }
     }
+
+    /**
+     * Formats transaction data
+     * @return {Array} Formatted transaction data
+     */
 
     prepTransactions() {
         const { transfers, addresses, t, extraColor, negativeColor, secondaryBackgroundColor } = this.props;
@@ -213,7 +227,9 @@ export class Balance extends Component {
                     </View>
                     <View style={styles.transactionsContainer}>
                         <View style={[styles.line, lineBorder]} />
-                        {recentTransactions}
+                        <TouchableOpacity onPress={() => this.props.onTabSwitch('history')}>
+                            {recentTransactions}
+                        </TouchableOpacity>
                         <View style={[styles.line, lineBorder]} />
                     </View>
                     <View style={styles.chartContainer}>
