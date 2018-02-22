@@ -16,7 +16,6 @@ const updateAccountInfo = (state, payload) => ({
                 ...payload.addresses,
             },
             transfers: payload.transfers,
-            isFingerprintEnabled: false,
         },
     },
 });
@@ -30,7 +29,6 @@ const account = (
         accountInfo: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
         unspentAddressesHashes: {},
-        pendingTxTailsHashes: {},
         is2FAEnabled: false,
         isFingerprintEnabled: false,
     },
@@ -74,10 +72,9 @@ const account = (
                     ...state.unspentAddressesHashes,
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
-                pendingTxTailsHashes: {
-                    ...state.pendingTxTailsHashes,
-                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
-                },
+                // Both these cases do a deep merge while updating existing unconfirmed bundle tails so just assign those
+                // Also they omit confirmed bundles
+                unconfirmedBundleTails: action.payload.unconfirmedBundleTails,
             };
         case ActionTypes.UPDATE_ADDRESSES:
             return {
@@ -141,10 +138,6 @@ const account = (
                     ...state.unspentAddressesHashes,
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
-                pendingTxTailsHashes: {
-                    ...state.pendingTxTailsHashes,
-                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
-                },
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
@@ -155,10 +148,6 @@ const account = (
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
-                },
-                pendingTxTailsHashes: {
-                    ...state.pendingTxTailsHashes,
-                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 },
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
@@ -172,10 +161,6 @@ const account = (
                     ...state.unspentAddressesHashes,
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
-                pendingTxTailsHashes: {
-                    ...state.pendingTxTailsHashes,
-                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
-                },
             };
         case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
             return {
@@ -185,10 +170,6 @@ const account = (
                 unspentAddressesHashes: {
                     ...state.unspentAddressesHashes,
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
-                },
-                pendingTxTailsHashes: {
-                    ...state.pendingTxTailsHashes,
-                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 },
             };
         case ActionTypes.SET_2FA_STATUS:
@@ -200,14 +181,6 @@ const account = (
             return {
                 ...state,
                 isFingerprintEnabled: action.payload,
-            };
-        case ActionTypes.SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT:
-            return {
-                ...state,
-                pendingTxTailsHashes: {
-                    ...state.pendingTxTailsHashes,
-                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
-                },
             };
         case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
             return {

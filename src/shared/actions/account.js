@@ -1,18 +1,12 @@
+import assign from 'lodash/assign';
+import unionBy from 'lodash/unionBy';
 import takeRight from 'lodash/takeRight';
-
+import map from 'lodash/map';
+import find from 'lodash/find';
 import { iota } from '../libs/iota';
-import {
-    getSelectedAccount,
-    getExistingUnspentAddressesHashes,
-    getPendingTxTailsHashesForSelectedAccount,
-} from '../selectors/account';
-import {
-    syncAccount,
-    getAccountData,
-    mapUnspentAddressesHashesToAccount,
-    updateAccount,
-    formatAddresses,
-} from '../libs/accountUtils';
+import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
+import { syncAccount, getAccountData, mapUnspentAddressesHashesToState, updateAccount } from '../libs/iota/accounts';
+import { formatAddresses, syncAddresses } from '../libs/iota/addresses';
 import {
     clearTempData,
     updateTransitionBalance,
@@ -48,7 +42,6 @@ export const ActionTypes = {
     ADD_ADDRESSES: 'IOTA/ACCOUNT/ADD_ADDRESSES',
     SET_BALANCE: 'IOTA/ACCOUNT/SET_BALANCE',
     UPDATE_ACCOUNT_AFTER_TRANSITION: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_AFTER_TRANSITION',
-    SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT: 'IOTA/ACCOUNT/SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT',
     SET_NEW_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/SET_NEW_UNCONFIRMED_BUNDLE_TAILS',
     UPDATE_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/UPDATE_UNCONFIRMED_BUNDLE_TAILS',
     REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS',
@@ -200,11 +193,6 @@ export const updateAccountInfoAfterSpending = (payload) => ({
     payload,
 });
 
-export const setPendingTransactionTailsHashesForAccount = (payload) => ({
-    type: ActionTypes.SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT,
-    payload,
-});
-
 export const fetchFullAccountInfoForFirstUse = (
     seed,
     accountName,
@@ -225,7 +213,7 @@ export const fetchFullAccountInfoForFirstUse = (
     getAccountData(seed, accountName)
         .then((data) => {
             dispatch(clearTempData()); // Clean up partial state for reducer.
-            return mapUnspentAddressesHashesToAccount(data);
+            return mapUnspentAddressesHashesToState(data);
         })
         .then((dataWithUnspentAddressesHashes) => {
             storeInKeychainPromise(password, seed, accountName)
@@ -239,7 +227,7 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
     return (dispatch) => {
         dispatch(fullAccountInfoFetchRequest());
         getAccountData(seed, accountName)
-            .then((data) => mapUnspentAddressesHashesToAccount(data))
+            .then((data) => mapUnspentAddressesHashesToState(data))
             .then((dataWithUnspentAddressesHashes) =>
                 dispatch(fullAccountInfoFetchSuccess(dataWithUnspentAddressesHashes)),
             )
@@ -255,7 +243,7 @@ export const manuallySyncAccount = (seed, accountName) => {
     return (dispatch) => {
         dispatch(manualSyncRequest());
         getAccountData(seed, accountName)
-            .then((data) => mapUnspentAddressesHashesToAccount(data))
+            .then((data) => mapUnspentAddressesHashesToState(data))
             .then((dataWithUnspentAddressesHashes) => {
                 dispatch(generateSyncingCompleteAlert());
                 dispatch(manualSyncSuccess(dataWithUnspentAddressesHashes));
@@ -293,21 +281,23 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             accountName,
             getState().account.unspentAddressesHashes,
         );
-        const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
-            accountName,
-            getState().account.pendingTxTailsHashes,
-        );
+        const unconfirmedBundleTails = getState().account.unconfirmedBundleTails;
 
         const existingAccountData = {
             accountName,
             balance: selectedAccount.balance,
             addresses: selectedAccount.addresses,
             unspentAddressesHashes: existingHashes,
-            pendingTxTailsHashes,
             transfers: selectedAccount.transfers,
+            unconfirmedBundleTails,
         };
-
-        return syncAccount(seed, existingAccountData)
+        return syncAddresses(seed, existingAccountData)
+            .then((newAccountData) => {
+                if (newAccountData) {
+                    return syncAccount(seed, newAccountData);
+                }
+                return syncAccount(seed, existingAccountData);
+            })
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 if (navigator) {
@@ -332,15 +322,11 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
         accountName,
         getState().account.unspentAddressesHashes,
     );
-    const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
-        accountName,
-        getState().account.pendingTxTailsHashes,
-    );
+
     const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
 
     const existingAccountData = {
         ...selectedAccount,
-        pendingTxTailsHashes,
         unspentAddressesHashes: existingUnspentAddressesHashes,
         unconfirmedBundleTails: existingUnconfirmedBundleTails,
     };
@@ -355,6 +341,46 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
 
             console.error(err); // eslint-disable-line no-console
         });
+};
+
+export const updateAccountAfterReattachment = (accountName, reattachment) => (dispatch, getState) => {
+    const tailTransaction = find(reattachment, { currentIndex: 0 });
+
+    // Do not do anything if there is no tail transaction.
+    if (tailTransaction) {
+        const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+
+        const existingTransfers = selectedAccount.transfers;
+
+        // Append new reattachment to existing transfers
+        const updatedTransfers = [
+            ...existingTransfers,
+            ...[map(reattachment, (tx) => ({ ...tx, transferValue: tx.value, persistence: false }))],
+        ];
+
+        // Update state with latest transfers
+        dispatch(updateTransfers(accountName, updatedTransfers));
+
+        const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
+        const bundle = tailTransaction.bundle;
+
+        // Unconfirmed bundle tails stored account name with each tail transaction object
+        const normalizedTailTransaction = assign({}, tailTransaction, { account: accountName });
+
+        // This check would is very redundant but to make sure state is never messed up,
+        // We make sure we check if bundle hash exists.
+        // Also the usage of unionBy is to have a safety check that we do not end up storing duplicate hashes
+        // https://github.com/iotaledger/iri/issues/463
+        const updatedUnconfirmedBundleTails = assign({}, existingUnconfirmedBundleTails, {
+            [bundle]:
+                bundle in existingUnconfirmedBundleTails
+                    ? unionBy([normalizedTailTransaction], existingUnconfirmedBundleTails[bundle], 'hash')
+                    : [normalizedTailTransaction],
+        });
+
+        // Update state with latest unconfirmedBundleTails.
+        dispatch(setNewUnconfirmedBundleTails(updatedUnconfirmedBundleTails));
+    }
 };
 
 export const set2FAStatus = (payload) => ({
