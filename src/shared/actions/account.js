@@ -291,6 +291,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             transfers: selectedAccount.transfers,
             unconfirmedBundleTails,
         };
+
         return syncAddresses(seed, existingAccountData)
             .then((newAccountData) => {
                 if (newAccountData) {

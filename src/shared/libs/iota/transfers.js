@@ -18,7 +18,13 @@ import transform from 'lodash/transform';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
-import { getBalancesAsync, getTransactionsObjectsAsync, getBundleAsync, getLatestInclusionAsync } from './extendedApi';
+import {
+    getBalancesAsync,
+    getTransactionsObjectsAsync,
+    getBundleAsync,
+    getLatestInclusionAsync,
+    findTransactionObjectsAsync,
+} from './extendedApi';
 
 /**
  *   Returns a single transfer array
@@ -513,12 +519,29 @@ export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
  *   @returns {Promise<object>} - { transfers (Updated transfers), newTransfers }
  **/
 export const syncTransfers = (diff, accountState) => {
-    return getTransactionsObjectsAsync(diff)
-        .then((txs) => {
-            const tailTxs = filter(txs, (t) => t.currentIndex === 0);
-            const tailTxsHashes = (tx) => tx.hash;
+    const tailTransactionsHashes = new Set();
+    const nonTailBundleHashes = new Set();
 
-            return getHashesWithPersistence(map(tailTxs, tailTxsHashes));
+    return getTransactionsObjectsAsync(diff)
+        .then((transactionObjects) => {
+            each(transactionObjects, (transactionObject) => {
+                if (transactionObject.currentIndex === 0) {
+                    tailTransactionsHashes.add(transactionObject.hash);
+                } else {
+                    nonTailBundleHashes.add(transactionObject.bundle);
+                }
+            });
+
+            return findTransactionObjectsAsync({ bundles: Array.from(nonTailBundleHashes) });
+        })
+        .then((bundleObjects) => {
+            each(bundleObjects, (transaction) => {
+                if (transaction.currentIndex === 0) {
+                    tailTransactionsHashes.add(transaction.hash);
+                }
+            });
+
+            return getHashesWithPersistence(Array.from(tailTransactionsHashes));
         })
         .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
         .then((newTransfers) => {
