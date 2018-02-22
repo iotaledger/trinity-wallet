@@ -9,6 +9,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, FlatList, Clipboard } 
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
+import COLORS from '../theme/Colors';
 
 const styles = StyleSheet.create({
     container: {
@@ -37,6 +38,18 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+    },
+    infoText: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+    },
+    spentText: {
+        color: COLORS.redLight,
+        textDecorationLine: 'line-through',
+        marginRight: width / 100,
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 29.6,
     },
     bottomContainer: {
         flex: 1,
@@ -68,7 +81,6 @@ const styles = StyleSheet.create({
         height: height / 60,
     },
     noAddressesContainer: {
-        flex: 8.8,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
@@ -77,6 +89,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
+    },
+    flatList: {
+        flex: 1,
+        justifyContent: 'center',
     },
 });
 
@@ -114,7 +130,7 @@ export class ViewAddresses extends Component {
         const { secondaryBackgroundColor } = this.props;
 
         return (
-            <View style={{ flexDirection: 'row', paddingHorizontal: width / 15 }}>
+            <View style={{ flexDirection: 'row', paddingHorizontal: width / 15, height: height / 25 }}>
                 <TouchableOpacity
                     onPress={() => this.copy(address.address)}
                     style={{ alignItems: 'flex-start', flex: 8, justifyContent: 'center' }}
@@ -125,7 +141,7 @@ export class ViewAddresses extends Component {
                             style={[
                                 styles.addressText,
                                 { textDecorationLine: address.spent ? 'line-through' : 'none' },
-                                { color: secondaryBackgroundColor },
+                                { color: address.spent ? COLORS.redLight : secondaryBackgroundColor },
                             ]}
                         >
                             {address.address}
@@ -144,31 +160,36 @@ export class ViewAddresses extends Component {
     renderAddresses() {
         const { secondaryBackgroundColor } = this.props;
         const addresses = this.prepAddresses();
+        const noAddresses = addresses.length === 0;
 
         return (
             <FlatList
+                contentContainerStyle={noAddresses ? styles.flatList : null}
                 data={addresses}
+                initialNumToRender={10} // TODO: Should be dynamically computed.
                 keyExtractor={(item, index) => index}
                 renderItem={({ item }) => this.renderAddress(item)}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
-                ListEmptyComponent={() => (
+                ListEmptyComponent={
                     <View style={styles.noAddressesContainer}>
                         <Text style={[styles.noAddresses, { color: secondaryBackgroundColor }]}>NO ADDRESSES</Text>
                     </View>
-                )}
+                }
             />
         );
     }
 
     render() {
         const { secondaryBackgroundColor, arrowLeftImagePath, t } = this.props;
-        const addresses = this.renderAddresses();
-
+        const listOfAddresses = this.renderAddresses();
+        const addresses = this.prepAddresses();
         const textColor = { color: secondaryBackgroundColor };
 
         return (
             <View style={styles.container}>
-                <View style={styles.listView}>{addresses}</View>
+                <View style={styles.listView}>
+                    <View style={{ height: height / 2.5 + height / 60 * 9 }}>{listOfAddresses}</View>
+                </View>
                 <View style={{ flex: 0.2 }} />
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity
@@ -181,6 +202,12 @@ export class ViewAddresses extends Component {
                             <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
+                    {addresses.length > 0 && (
+                        <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+                            <Text style={styles.spentText}>ABC</Text>
+                            <Text style={[styles.balanceText, textColor]}> = Spent</Text>
+                        </View>
+                    )}
                 </View>
             </View>
         );

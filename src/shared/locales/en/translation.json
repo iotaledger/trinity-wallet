@@ -4,6 +4,7 @@
         "cancel": "CANCEL",
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
@@ -75,7 +76,9 @@
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",

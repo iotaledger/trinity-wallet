@@ -441,7 +441,12 @@ export const getBundleWithPersistence = (tailTxHash, persistence) => {
     return new Promise((resolve, reject) => {
         iota.api.getBundle(tailTxHash, (err, bundle) => {
             if (err) {
-                reject(err);
+                if (err.message.includes('Invalid Bundle')) {
+                    resolve(null);
+                } else {
+                    reject(err);
+                }
+                resolve(null);
             } else {
                 resolve(map(bundle, (tx) => assign({}, tx, { persistence })));
             }
@@ -456,8 +461,9 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
             return promise
                 .then((result) => {
                     return getBundleWithPersistence(hash, inclusionStates[idx]).then((bundle) => {
-                        result.push(bundle);
-
+                        if (bundle !== null) {
+                            result.push(bundle);
+                        }
                         return result;
                     });
                 })

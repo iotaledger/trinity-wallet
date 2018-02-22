@@ -35,7 +35,6 @@ import {
 } from './transfers';
 import {
     getAllAddresses,
-    getLatestAddresses,
     formatFullAddressData,
     calculateBalance,
     markAddressSpend,
@@ -43,7 +42,6 @@ import {
     getBalancesWithAddresses,
     mapBalancesToAddresses,
     accumulateBalance,
-    getStartingSearchIndexToFetchLatestAddresses,
 } from './addresses';
 
 const organizeAccountInfo = (accountName, data) => {
@@ -224,16 +222,7 @@ export const getAccountData = (seed, accountName) => {
 export const syncAccount = (seed, existingAccountState) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
-    const addressSearchIndex = getStartingSearchIndexToFetchLatestAddresses(thisStateCopy.addresses);
-
-    return getLatestAddresses(seed, addressSearchIndex)
-        .then((newAddressesObjects) => {
-            // Assign latest addresses to addresses dictionary
-            thisStateCopy.addresses = { ...thisStateCopy.addresses, ...newAddressesObjects };
-
-            // Grab latest balances with addresses transformed as array.
-            return getBalancesWithAddresses(thisStateCopy.addresses);
-        })
+    return getBalancesWithAddresses(thisStateCopy.addresses)
         .then(({ balances, addresses }) => {
             const newBalances = map(balances, Number);
 
