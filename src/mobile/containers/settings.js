@@ -328,7 +328,7 @@ class Settings extends Component {
     }
 
     onDeleteAccountPress() {
-        const { seedCount, t, isPromoting } = this.props;
+        const { seedCount, t } = this.props;
 
         if (seedCount === 1) {
             return this.props.generateAlert(
@@ -336,10 +336,6 @@ class Settings extends Component {
                 t('global:cannotPerformAction'),
                 t('global:cannotPerformActionExplanation'),
             );
-        }
-
-        if (isPromoting || this.shouldPreventAction()) {
-            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
         return this.props.setSetting('deleteAccount');
@@ -411,6 +407,7 @@ class Settings extends Component {
             selectedAccount,
             isAttachingToTangle,
             navigator,
+            isPromoting,
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
         const arrowLeftImagePath = isWhite ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -508,6 +505,9 @@ class Settings extends Component {
                 borderColor: { borderColor: secondaryBackgroundColor },
                 tickImagePath,
                 arrowLeftImagePath,
+                isPromoting,
+                shouldPreventAction: () => this.shouldPreventAction(),
+                generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
             },
             addNewAccount: {
                 addExistingSeed: () => this.props.setSetting('addExistingSeed'),
