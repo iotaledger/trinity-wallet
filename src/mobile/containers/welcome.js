@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
-import { isRooted } from '../utils/device';
+import { isRooted } from '../util/device';
 import Modal from 'react-native-modal';
 
 import { width, height } from '../util/dimensions';
