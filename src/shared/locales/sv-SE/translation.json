@@ -4,6 +4,7 @@
         "cancel": "AVBRYT",
         "continue?": "Är du säker på att du vill fortsätta?",
         "noTransactions": "Ingen historik",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Otillräckligt saldo",
         "balanceErrorMessage": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
@@ -73,7 +74,9 @@
         "autopromoting": "Auto-promotar överföring",
         "autopromotingExplanation": "Promotar transaktion med hashen {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
