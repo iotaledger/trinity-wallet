@@ -350,7 +350,7 @@ export const updateAccountAfterReattachment = (accountName, reattachment) => (di
         // Append new reattachment to existing transfers
         const updatedTransfers = [
             ...existingTransfers,
-            ...[map(reattachment, (tx) => ({ ...tx, transferValue: tx.value, persistence: false }))],
+            ...[map(reattachment, (tx) => ({ ...tx, persistence: false }))],
         ];
 
         // Update state with latest transfers
@@ -359,7 +359,7 @@ export const updateAccountAfterReattachment = (accountName, reattachment) => (di
         const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
         const bundle = tailTransaction.bundle;
 
-        // Unconfirmed bundle tails stored account name with each tail transaction object
+        // updatedUnconfirmedBundleTails prop in store needs account name with each tail transaction object.
         const normalizedTailTransaction = assign({}, tailTransaction, { account: accountName });
 
         // This check would is very redundant but to make sure state is never messed up,
