@@ -85,6 +85,9 @@ class Disable2FA extends Component {
         this.disable2FA = this.disable2FA.bind(this);
     }
 
+    /**
+     * Attempts to disable 2FA, fails if the token is not correct
+     */
     disable2FA() {
         return getTwoFactorAuthKeyFromKeychain()
             .then((key) => {
@@ -102,7 +105,7 @@ class Disable2FA extends Component {
                         );
                     }, 300);
                 } else {
-                    this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+                    this.props.generateAlert('error', 'Wrong code', 'The code you entered is not correct.');
                 }
             })
             .catch((err) => console.error(err)); // eslint-disable-line no-console

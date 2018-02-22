@@ -116,6 +116,9 @@ class CopySeedToClipboard extends Component {
         Clipboard.setString(' ');
     }
 
+    /**
+     * Clear the clipboard after pressing Done
+     */
     onDonePress() {
         this.clearTimeout();
         Clipboard.setString(' ');
@@ -126,6 +129,9 @@ class CopySeedToClipboard extends Component {
         });
     }
 
+    /**
+     * Copy the seed to the clipboard and remove it after 30 seconds
+     */
     onCopyPress() {
         const { t } = this.props;
 
@@ -139,6 +145,9 @@ class CopySeedToClipboard extends Component {
         }, 30000);
     }
 
+    /**
+     * Alert the user that the clipboard was cleared
+     */
     generateClipboardClearAlert() {
         const { t } = this.props;
 
