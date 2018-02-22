@@ -76,7 +76,8 @@
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
         "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
@@ -173,7 +174,9 @@
         "addressCopiedExplanation": "Vaš naslov je bil kopiran v odložišče.",
         "generateNewAddress": "NOV NASLOV",
         "message": "Neobvezno sporočilo",
-        "removeMessage": "ODSTRANI SPOROČILO"
+        "removeMessage": "ODSTRANI SPOROČILO",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Generiranava vrednost odstranjena",
