@@ -4,6 +4,7 @@ import each from 'lodash/each';
 import difference from 'lodash/difference';
 import get from 'lodash/get';
 import map from 'lodash/map';
+import keys from 'lodash/keys';
 import filter from 'lodash/filter';
 import isObject from 'lodash/isObject';
 import merge from 'lodash/merge';
@@ -36,9 +37,7 @@ import {
     formatAddressesAndBalance,
     markAddressSpend,
     getUnspentAddresses,
-    getBalancesWithAddresses,
-    mapBalancesToAddresses,
-    accumulateBalance,
+    markAddressesAsSpentSync,
 } from './addresses';
 
 /**
@@ -213,13 +212,10 @@ export const getAccountData = (seed, accountName) => {
 export const syncAccount = (seed, existingAccountState) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
-    return getBalancesWithAddresses(thisStateCopy.addresses)
-        .then(({ balances, addresses }) => {
-            const newBalances = map(balances, Number);
-
-            thisStateCopy.addresses = mapBalancesToAddresses(thisStateCopy.addresses, newBalances, addresses);
-
-            thisStateCopy.balance = accumulateBalance(newBalances);
+    return formatAddressesAndBalance(keys(thisStateCopy.addresses))
+        .then(({ addresses, balance }) => {
+            thisStateCopy.addresses = addresses;
+            thisStateCopy.balance = balance;
 
             return mapUnspentAddressesHashesToState(thisStateCopy);
         })
@@ -240,7 +236,9 @@ export const syncAccount = (seed, existingAccountState) => {
         })
         .then(({ transfers, newTransfers }) => {
             thisStateCopy.transfers = transfers;
-            thisStateCopy.addresses = markAddressSpend(thisStateCopy.transfers, thisStateCopy.addresses);
+
+            // Mark spent flag to true for addresses used in the newly discovered transfers
+            thisStateCopy.addresses = markAddressesAsSpentSync(thisStateCopy.transfers, thisStateCopy.addresses);
 
             // Transform new transfers by bundle for promotion.
             return getBundleTailsForPendingValidTransfers(
