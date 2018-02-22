@@ -90,12 +90,20 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
     }
 
+    shouldComponentUpdate(newProps) {
+        const { isSyncing, isSendingTransfer, isTransitioning } = this.props;
+        if (isSyncing !== newProps.isSyncing) return false;
+        if (isSendingTransfer !== newProps.isSendingTransfer) return false;
+        if (isTransitioning !== newProps.isTransitioning) return false;
+        return true;
+    }
+
     onLoginPress = (password) => {
-        const { t, tempAccount } = this.props;
+        const { t, storedPassword } = this.props;
 
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
-        } else if (password !== tempAccount.password) {
+        } else if (password !== storedPassword) {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
@@ -169,7 +177,7 @@ class Home extends Component {
                             <View style={{ flex: 1 }}>
                                 <View style={styles.topContainer} />
                                 <View style={styles.midContainer}>
-                                    <TabContent navigator={navigator} />
+                                    <TabContent navigator={navigator} onTabSwitch={(name) => this.onTabSwitch(name)} />
                                 </View>
                                 <View style={styles.bottomContainer}>
                                     <Tabs onPress={(name) => this.onTabSwitch(name)} barColor={barColor}>
@@ -177,31 +185,31 @@ class Home extends Component {
                                             name="balance"
                                             icon={balanceImagePath}
                                             textColor={barTextColor}
-                                            text={t('home:balance')}
+                                            text={t('home:balance').toUpperCase()}
                                         />
                                         <Tab
                                             name="send"
                                             icon={sendImagePath}
                                             textColor={barTextColor}
-                                            text={t('home:send')}
+                                            text={t('home:send').toUpperCase()}
                                         />
                                         <Tab
                                             name="receive"
                                             icon={receiveImagePath}
                                             textColor={barTextColor}
-                                            text={t('home:receive')}
+                                            text={t('home:receive').toUpperCase()}
                                         />
                                         <Tab
                                             name="history"
                                             icon={historyImagePath}
                                             textColor={barTextColor}
-                                            text={t('home:history')}
+                                            text={t('home:history').toUpperCase()}
                                         />
                                         <Tab
                                             name="settings"
                                             icon={settingsImagePath}
                                             textColor={barTextColor}
-                                            text={t('home:settings')}
+                                            text={t('home:settings').toUpperCase()}
                                         />
                                     </Tabs>
                                 </View>
@@ -231,9 +239,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    tempAccount: state.tempAccount,
-    settings: state.settings,
-    account: state.account,
+    storedPassword: state.tempAccount.password,
     inactive: state.tempAccount.inactive,
     minimised: state.tempAccount.minimised,
     barColor: state.settings.theme.barColor,
@@ -270,7 +276,7 @@ Home.propTypes = {
     barColor: PropTypes.string.isRequired,
     negativeColor: PropTypes.string.isRequired,
     positiveColor: PropTypes.string.isRequired,
-    tempAccount: PropTypes.object.isRequired,
+    storedPassword: PropTypes.string.isRequired,
     secondaryBarColor: PropTypes.string.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
     isTransitioning: PropTypes.bool.isRequired,

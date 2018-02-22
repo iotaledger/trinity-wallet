@@ -3,7 +3,7 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar, Keyboard } from 'react-native';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import PropTypes from 'prop-types';
@@ -106,6 +106,9 @@ class EnterSeed extends React.Component {
         };
     }
 
+    /**
+     * Validate seed
+     */
     onDonePress() {
         const { t } = this.props;
         const { seed } = this.state;
@@ -140,6 +143,10 @@ class EnterSeed extends React.Component {
         this.showModal();
     }
 
+    /**
+     * Parse and validate QR data
+     * @param  {String} data QR data
+     */
     onQRRead(data) {
         const dataString = data.toString();
         if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
@@ -156,6 +163,10 @@ class EnterSeed extends React.Component {
         this.hideModal();
     }
 
+    /**
+     * Gets the 3 character checksum
+     * @return {String} Checksum
+     */
     getChecksumValue() {
         const { seed } = this.state;
         let checksumValue = '...';

@@ -73,8 +73,9 @@
         "autoreattachingExplanation": "Anexando transação automaticamente com hash {{hash}}",
         "autopromoting": "Promovendo transferência automaticamente",
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "Enviando para próprio endereço",
+        "cannotSendToOwnExplanation":
+            "Você não pode fazer uma transferência de valor para um dos seus próprios endereços."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -206,9 +207,12 @@
         "amount": "Quantia",
         "max": "MÁXIMO",
         "message": "Mensagem",
+        "invalidMessage": "Mensagem inválida",
+        "invalidMessageExplanation": "Sua mensagem contém caracteres inválidos.",
         "send": "ENVIAR",
         "invalidAmount": "Valor inserido está incorreto",
-        "invalidAmountExplanation": "Por favor, digite um valor numérico para o valor da transação.",
+        "invalidAmountExplanation":
+            "Por favor, insira uma quantidade de transação válida. Pode ser útil ver a explicação de unidade IOTA na parte inferior desta página.",
         "maximumSelected": "Quantia MÁXIMA selecionada",
         "iotaUnits": "Unidades IOTA explicadas",
         "sendMax": "ENVIAR O MÁXIMO"
@@ -296,8 +300,8 @@
         "bundleHashCopiedExplanation": "O pacote hash foi copiado para o clipboard.",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para o clipboard.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "ENVIAR",
+        "receive": "RECEBER"
     },
     "accountManagement": {
         "viewSeed": "Ver seed",
@@ -400,22 +404,22 @@
         "aMessage": "uma mensagem"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "wrongCode": "Código incorreto",
+        "wrongCodeExplanation": "O código inserido está incorreto.",
+        "emptyCode": "Código vazio",
+        "emptyCodeExplanation": "Por favor, introduza um código e tente novamente.",
+        "keyCopied": "Chave copiada para o clipboard",
+        "keyCopiedExplanation": "Sua chave 2FA foi copiada para o clipboard.",
+        "addKey": "Adicione essa chave para seu app 2FA",
+        "key": "Chave",
+        "twoFAEnabled": "2FA foi habilitado",
+        "twoFAEnabledExplanation": "Você ativou a autenticação de dois fatores com sucesso.",
+        "enterCode": "Digite o código da sua app 2FA",
+        "code": "Código"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
+        "change": "Mudança",
         "volume": "Volume (24h)"
     }
 }
