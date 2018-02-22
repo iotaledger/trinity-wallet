@@ -97,6 +97,9 @@ class History extends Component {
         return true;
     }
 
+    /**
+     * Triggers a refresh
+     */
     onRefresh() {
         if (!this.shouldPreventManualRefresh()) {
             this.setState({ refreshing: true });
@@ -104,6 +107,9 @@ class History extends Component {
         }
     }
 
+    /**
+     * Prevents more than one refresh from occurring at the same time
+     */
     shouldPreventManualRefresh() {
         const props = this.props;
 
@@ -138,6 +144,10 @@ class History extends Component {
             .catch((err) => console.log(err));
     }
 
+    /**
+     * Formats transaction data
+     * @return {Array} Formatted transaction data
+     */
     prepTransactions() {
         const {
             transfers,
