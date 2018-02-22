@@ -158,7 +158,7 @@ export class ViewAddresses extends Component {
     }
 
     renderAddresses() {
-        const { secondaryBackgroundColor } = this.props;
+        const { secondaryBackgroundColor, t } = this.props;
         const addresses = this.prepAddresses();
         const noAddresses = addresses.length === 0;
 
@@ -172,7 +172,9 @@ export class ViewAddresses extends Component {
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
                     <View style={styles.noAddressesContainer}>
-                        <Text style={[styles.noAddresses, { color: secondaryBackgroundColor }]}>NO ADDRESSES</Text>
+                        <Text style={[styles.noAddresses, { color: secondaryBackgroundColor }]}>
+                            {t('noAddresses')}
+                        </Text>
                     </View>
                 }
             />
@@ -205,7 +207,7 @@ export class ViewAddresses extends Component {
                     {addresses.length > 0 && (
                         <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
                             <Text style={styles.spentText}>ABC</Text>
-                            <Text style={[styles.balanceText, textColor]}> = Spent</Text>
+                            <Text style={[styles.balanceText, textColor]}> = {t('spent')}</Text>
                         </View>
                     )}
                 </View>
