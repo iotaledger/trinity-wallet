@@ -76,7 +76,8 @@
         "cannotSendToOwn": "Gửi đến địa chỉ của mình",
         "cannotSendToOwnExplanation": "Bạn không thể chuyển khoản vào một trong những địa chỉ của riêng bạn.",
         "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
@@ -173,7 +174,9 @@
         "addressCopiedExplanation": "Địa chỉ đã được sao chép vào bộ nhớ tạm thời.",
         "generateNewAddress": "ĐỊA CHỈ MỚI",
         "message": "Tin nhắn tuỳ chọn",
-        "removeMessage": "HUỶ BỎ TIN NHẮN"
+        "removeMessage": "HUỶ BỎ TIN NHẮN",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Đã xoá từ khoá",
