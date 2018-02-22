@@ -10,6 +10,7 @@ import merge from 'lodash/merge';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
+import omit from 'lodash/omit';
 import { iota } from './index';
 import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import {
@@ -30,10 +31,10 @@ import {
     getPendingTxTailsHashes,
     getConfirmedTransactionHashes,
     markTransfersConfirmed,
+    getBundleHashesForTailTransactionHashes,
 } from './transfers';
 import {
     getAllAddresses,
-    getLatestAddresses,
     formatFullAddressData,
     calculateBalance,
     markAddressSpend,
@@ -41,7 +42,6 @@ import {
     getBalancesWithAddresses,
     mapBalancesToAddresses,
     accumulateBalance,
-    getStartingSearchIndexToFetchLatestAddresses,
 } from './addresses';
 
 const organizeAccountInfo = (accountName, data) => {
@@ -222,16 +222,7 @@ export const getAccountData = (seed, accountName) => {
 export const syncAccount = (seed, existingAccountState) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
-    const addressSearchIndex = getStartingSearchIndexToFetchLatestAddresses(thisStateCopy.addresses);
-
-    return getLatestAddresses(seed, addressSearchIndex)
-        .then((newAddressesObjects) => {
-            // Assign latest addresses to addresses dictionary
-            thisStateCopy.addresses = { ...thisStateCopy.addresses, ...newAddressesObjects };
-
-            // Grab latest balances with addresses transformed as array.
-            return getBalancesWithAddresses(thisStateCopy.addresses);
-        })
+    return getBalancesWithAddresses(thisStateCopy.addresses)
         .then(({ balances, addresses }) => {
             const newBalances = map(balances, Number);
 
@@ -282,6 +273,19 @@ export const syncAccount = (seed, existingAccountState) => {
         .then((confirmedTransactionHashes) => {
             if (!isEmpty(confirmedTransactionHashes)) {
                 thisStateCopy.transfers = markTransfersConfirmed(thisStateCopy.transfers, confirmedTransactionHashes);
+
+                // Grab all bundle hashes for confirmed transaction hashes
+                // At this point unconfirmedBundleTails (for promotion) should be updated
+                const confirmedBundleHashes = getBundleHashesForTailTransactionHashes(
+                    thisStateCopy.unconfirmedBundleTails,
+                    confirmedTransactionHashes,
+                );
+
+                // All bundle hashes that are now confirmed should be removed from the dictionary.
+                thisStateCopy.unconfirmedBundleTails = omit(
+                    thisStateCopy.unconfirmedBundleTails,
+                    confirmedBundleHashes,
+                );
 
                 return thisStateCopy;
             }

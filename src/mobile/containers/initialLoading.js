@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, BackHandler } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
-import RNExitApp from 'react-native-exit-app';
 import LottieView from 'lottie-react-native';
 import i18next from 'i18next';
 import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
