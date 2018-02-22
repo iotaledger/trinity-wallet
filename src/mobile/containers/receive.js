@@ -44,9 +44,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         height: width / 4.2,
         justifyContent: 'center',
-        paddingTop: width / 30,
         paddingHorizontal: width / 30,
-        paddingBottom: isAndroid ? width / 22 : width / 30,
         width: width / 1.2,
     },
     receiveAddressText: {
@@ -54,7 +52,7 @@ const styles = StyleSheet.create({
         fontSize: width / 21.8,
         backgroundColor: 'transparent',
         textAlign: 'center',
-        height: width / 20,
+        lineHeight: width / 16,
         justifyContent: 'center',
     },
     qrContainer: {
