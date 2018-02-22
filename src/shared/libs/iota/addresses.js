@@ -247,20 +247,19 @@ export const getBalancesWithAddresses = (addressData) => {
 /**
  *   Gets the latest used address from the specified index onwards
  *
- *   @method getLatestUsedAddresses
+ *   @method getLatestAddresses
  *   @param {string} seed - Seed string
  *   @param {string} index - Index to start generating addresses from
  *   @returns {array} - Array of latest used addresses
  **/
 
-export const getLatestUsedAddresses = (seed, index) => {
+export const getLatestAddresses = (seed, index) => {
     return new Promise((resolve, reject) => {
         const options = { checksum: false, index, returnAll: true };
         iota.api.getNewAddress(seed, options, (err, addresses) => {
             if (err) {
                 reject(err);
             } else {
-                addresses.pop();
                 resolve(addresses);
             }
         });
@@ -279,7 +278,9 @@ export const getLatestUsedAddresses = (seed, index) => {
 export const syncAddresses = (seed, existingAccountData) => {
     const thisAccountDataCopy = cloneDeep(existingAccountData);
     const addressSearchIndex = getStartingSearchIndexToFetchLatestAddresses(thisAccountDataCopy.addresses);
-    return getLatestUsedAddresses(seed, addressSearchIndex).then((newAddresses) => {
+    return getLatestAddresses(seed, addressSearchIndex).then((newAddresses) => {
+        // Remove unused address
+        newAddresses.pop();
         const newAddressesFormatted = reduce(
             newAddresses,
             (acc, address, index) => {
