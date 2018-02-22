@@ -4,12 +4,12 @@
         "cancel": "ANULUJ",
         "continue?": "Czy na pewno chcesz kontynuować?",
         "noTransactions": "BRAK OSTATNIEJ AKTYWNOŚCI",
+        "refresh": "REFRESH",
         "qr": "Kod QR",
         "balanceError": "Brak wystarczających środków",
         "balanceErrorMessage": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
         "transferError": "Błąd transferu",
-        "transferErrorMessage":
-            "Coś poszło nie tak podczas przetwarzania Twojego transferu. Proszę spróbować ponownie.",
+        "transferErrorMessage": "Coś poszło nie tak podczas przetwarzania Twojego transferu. Proszę spróbować ponownie.",
         "transferSent": "Transfer wykonany",
         "transferSentMessage": "Transfer został przekazany do sieci Tangle.",
         "messageSent": "Wiadomość wysłana",
@@ -19,8 +19,7 @@
         "invalidResponse": "Błędna odpowiedź",
         "invalidResponseExplanation": "Serwer zwrócił błędną odpowiedź.",
         "invalidResponsePollingExplanation": "Serwer zwrócił błędną odpowiedź podczas połączenia.",
-        "invalidResponseFetchingAccount":
-            "Serwer zwrócił błędną odpowiedź podczas pobierania informacji o Twoim koncie.",
+        "invalidResponseFetchingAccount": "Serwer zwrócił błędną odpowiedź podczas pobierania informacji o Twoim koncie.",
         "invalidResponseSendingTransfer": "Serwer zwrócił błędną odpowiedź podczas wykonywania transferu.",
         "seed": "Seed",
         "back": "WSTECZ",
@@ -75,15 +74,15 @@
         "autopromoting": "Autopromocja transferu",
         "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
         "cannotSendToOwn": "Wysyłka na własny adres",
-        "cannotSendToOwnExplanation": "Nie możesz wykonać transferu środków na swój własny adres."
+        "cannotSendToOwnExplanation": "Nie możesz wykonać transferu środków na swój własny adres.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
-        "seedInvalidCharsExplanation":
-            "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
+        "seedInvalidCharsExplanation": "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
-        "seedTooShortExplanation":
-            "Seed musi zawierać {{maxLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
+        "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
         "nameInUse": "Konto o tej nazwie już istnieje",
         "nameInUseExplanation": "Proszę użyć unikalnej nazwy konta dla Twojego klucza seed.",
         "enterAccountName": "Wprowadź nazwę konta.",
@@ -95,8 +94,7 @@
     },
     "changePassword": {
         "oops": "Ups! Coś poszło nie tak",
-        "oopsExplanation":
-            "Wygląda na to, że coś poszło nie tak podczas aktualizacji Twojego hasła. Proszę spróbować ponownie.",
+        "oopsExplanation": "Wygląda na to, że coś poszło nie tak podczas aktualizacji Twojego hasła. Proszę spróbować ponownie.",
         "passwordUpdated": "Hasło zaktualizowane",
         "passwordUpdatedExplanation": "Twoje hasło zostało pomyślnie zaktualizowane.",
         "incorrectPassword": "Nieprawidłowe hasło",
@@ -123,13 +121,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
-        "invalidCharactersExplanation":
-            "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
+        "invalidCharactersExplanation": "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
-        "seedTooShortExplanation":
-            "Seed musi zawierać {{maxLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
-        "seedExplanation":
-            "Seed powinien składać się z {{maxLength}} znaków i zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
+        "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
+        "seedExplanation": "Seed powinien składać się z {{maxLength}} znaków i zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
         "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO KLUCZA SEED"
     },
     "home": {
@@ -164,8 +159,7 @@
         "individualLetters": "Naciśnij na dane pole, aby wylosować je ponownie."
     },
     "onboardingComplete": {
-        "walletReady":
-            "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
+        "walletReady": "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
     },
     "paperWallet": {
         "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopie Twojego klucza seed.",
@@ -184,8 +178,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed wyczyszczony",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
-        "mustSaveYourSeed":
-            "<0><0>Musisz zapisać swój seed, wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji.</2></0>"
+        "mustSaveYourSeed": "<0><0>Musisz zapisać swój seed, wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Nieprawidłowy seed",
@@ -201,8 +194,7 @@
         "notEnoughFunds": "Brak wystarczających środków",
         "notEnoughFundsExplanation": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
         "keyReuse": "Ponowne użycie klucza",
-        "keyReuseExplanation":
-            "Adres, na który próbujesz wysłać, został już wcześniej użyty. Spróbuj użyć innego adresu.",
+        "keyReuseExplanation": "Adres, na który próbujesz wysłać, został już wcześniej użyty. Spróbuj użyć innego adresu.",
         "recipientAddress": "Adres odbiorcy",
         "amount": "Ilość",
         "max": "MAKS.",
@@ -211,27 +203,23 @@
         "invalidMessageExplanation": "Twoja wiadomość zawiera nieprawidłowe znaki.",
         "send": "WYŚLIJ",
         "invalidAmount": "Wprowadzono niepoprawną ilość",
-        "invalidAmountExplanation":
-            "Wprowadź poprawną kwotę transakcji. Pomocne może być zapoznanie się z objaśnieniem jednostek IOTA na dole tej strony.",
+        "invalidAmountExplanation": "Wprowadź poprawną kwotę transakcji. Pomocne może być zapoznanie się z objaśnieniem jednostek IOTA na dole tej strony.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
         "iotaUnits": "Objaśnienie jednostek IOTA",
         "sendMax": "WYŚLIJ WSZYSTKO"
     },
     "setPassword": {
         "passwordTooShort": "Hasło jest zbyt krótkie",
-        "passwordTooShortExplanation":
-            "Twoje hasło musi mieć co najmniej {{minLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
+        "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej {{minLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
         "passwordMismatch": "Hasła nie są zgodne",
         "passwordMismatchExplanation": "Wpisane hasła różnią się. Spróbuj ponownie.",
         "nowWeNeedTo": "Teraz musimy ustawić hasło.",
-        "anEncryptedCopy":
-            "Zaszyfrowana kopia Twojego klucza seed będzie przechowywana na Twoim urządzeniu. Będziesz korzystał z tego hasła w celu uzyskania dostępu do swojego portfela w przyszłości.",
+        "anEncryptedCopy": "Zaszyfrowana kopia Twojego klucza seed będzie przechowywana na Twoim urządzeniu. Będziesz korzystał z tego hasła w celu uzyskania dostępu do swojego portfela w przyszłości.",
         "ensure": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "retypePassword": "Wpisz hasło ponownie"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "Możesz używać wielu kluczy seed w tym portfelu. Każdy jeden wymaga jednak osobnej nazwy konta.",
+        "canUseMultipleSeeds": "Możesz używać wielu kluczy seed w tym portfelu. Każdy jeden wymaga jednak osobnej nazwy konta.",
         "youCanAdd": "Możesz dodać więcej kluczy seed w menu ustawień."
     },
     "settings": {
@@ -280,10 +268,8 @@
     "walletSetup": {
         "okay": "W porządku. Ustawmy Twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz już seed, którego chciałbyś użyć?",
-        "seedExplanation":
-            "Seed IOTA jest swego rodzaju połączeniem nazwy użytkownika oraz hasła do Twojego konta, składającym się na ciąg 81 znaków.",
-        "explanation":
-            "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed, stracisz swoje środki IOTA.</4></0>",
+        "seedExplanation": "Seed IOTA jest swego rodzaju połączeniem nazwy użytkownika oraz hasła do Twojego konta, składającym się na ciąg 81 znaków.",
+        "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed, stracisz swoje środki IOTA.</4></0>",
         "keepSafe": "Proszę dbaj o bezpieczeństwo swojego klucza seed."
     },
     "welcome": {
@@ -293,8 +279,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Twój seed ma {{maxSeedLength}} znaków, czytany od lewej do prawej.",
-        "writeDownYourSeed":
-            "<0> Zanotuj swój seed i sumę kontrolną oraz</0><1>trzykrotnie upewnij się</1><2>, że są one poprawne.</2>"
+        "writeDownYourSeed": "<0> Zanotuj swój seed i sumę kontrolną oraz</0><1>trzykrotnie upewnij się</1><2>, że są one poprawne.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
@@ -372,13 +357,11 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Zapisałem swój seed",
         "reenter": "Teraz będziesz poproszony/a o ponowne wprowadzenie swojego klucza seed.",
-        "reenterWarning":
-            "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego klucza seed, stracisz swoje środki IOTA."
+        "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego klucza seed, stracisz swoje środki IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TEJ CZYNNOŚCI NIE MOŻNA COFNĄĆ.",
-        "warning":
-            "<0><0>Wszystkie dane portfela, w tym </0><1>seed, hasło</1><2> oraz </2><3>pozostałe dane konta</3><4>, zostaną utracone.</4></0>"
+        "warning": "<0><0>Wszystkie dane portfela, w tym </0><1>seed, hasło</1><2> oraz </2><3>pozostałe dane konta</3><4>, zostaną utracone.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Przyłóż palec do czytnika, aby włączyć funkcję logowania odciskiem palca.",
@@ -393,8 +376,7 @@
         "enabled": "Włączono",
         "disabled": "Wyłączono",
         "fingerprintUnavailable": "Czytnik odcisku palca niedostępny",
-        "fingerprintUnavailableExplanation":
-            "Twoje urządzenie nie obsługuje funkcji rozpoznawania odcisku palca lub funkcja ta nie została skonfigurowana w ustawieniach urządzenia.",
+        "fingerprintUnavailableExplanation": "Twoje urządzenie nie obsługuje funkcji rozpoznawania odcisku palca lub funkcja ta nie została skonfigurowana w ustawieniach urządzenia.",
         "buttonInstructionsDisable": "Naciśnij poniższy przycisk, aby wyłączyć logowanie odciskiem palca.",
         "buttonInstructionsEnable": "Naciśnij poniższy przycisk, aby włączyć logowanie odciskiem palca.",
         "instructionsLogin": "Przyłóż palec do czytnika, aby się zalogować."
