@@ -361,11 +361,11 @@
         "warning": "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会迷路。</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "instructionsEnable": "触摸设备的指纹读取器以启用指纹验证。",
+        "instructionsDisable": "触摸设备的指纹读取器以禁用指纹验证。",
+        "fingerprintAuthEnabled": "已启用指纹身份验证",
+        "fingerprintAuthEnabledExplanation": "您已成功启用指纹身份验证。",
+        "fingerprintAuthDisabled": "已禁用指纹身份验证",
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
@@ -386,19 +386,19 @@
         "wrongCode": "验证码错误",
         "wrongCodeExplanation": "您输入的验证码不正确。",
         "emptyCode": "验证码为空",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "emptyCodeExplanation": "请输入验证码并重试。",
+        "keyCopied": "密钥已复制到剪贴板",
+        "keyCopiedExplanation": "您的2FA 密钥已复制到剪贴板。",
+        "addKey": "将此密钥添加到您的2FA 应用程序中",
+        "key": "密钥",
+        "twoFAEnabled": "2FA 现在已启用",
+        "twoFAEnabledExplanation": "您已成功启用了双因子验证（2FA）。",
+        "enterCode": "输入您的2FA 应用程序中的验证码",
+        "code": "验证码"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "change": "变化率",
+        "volume": "交易量(24h)"
     }
 }
