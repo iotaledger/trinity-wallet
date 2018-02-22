@@ -85,6 +85,11 @@ export class Balance extends Component {
         closeTopBar: PropTypes.func.isRequired,
     };
 
+    /**
+     * Make balance human-readable
+     * @param  {int} n Balance
+     * @return {int}   Human-readable balance
+     */
     static getDecimalPlaces(n) {
         const s = `${+n}`;
         const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(s);
@@ -116,6 +121,9 @@ export class Balance extends Component {
         return true;
     }
 
+    /**
+     * Show full balance or show abbreviated balance
+     */
     onBalanceClick() {
         if (this.state.balanceIsShort) {
             this.setState({ balanceIsShort: false });
@@ -123,6 +131,11 @@ export class Balance extends Component {
             this.setState({ balanceIsShort: true });
         }
     }
+
+    /**
+     * Formats transaction data
+     * @return {Array} Formatted transaction data
+     */
 
     prepTransactions() {
         const { transfers, addresses, t, extraColor, negativeColor, secondaryBackgroundColor } = this.props;
