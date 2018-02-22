@@ -4,6 +4,7 @@
         "cancel": "ANNULEREN",
         "continue?": "Weet u zeker dat u wilt doorgaan?",
         "noTransactions": "Geen recente geschiedenis",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Niet genoeg saldo",
         "balanceErrorMessage": "U hoeft niet genoeg IOTA om deze overdracht te voltooien.",
@@ -73,7 +74,9 @@
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "cannotSendToOwn": "Versturen naar eigen adres",
-        "cannotSendToOwnExplanation": "U kunt geen transactie versturen naar uw adressen."
+        "cannotSendToOwnExplanation": "U kunt geen transactie versturen naar uw adressen.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De sleutel bevat ongeldige tekens",
