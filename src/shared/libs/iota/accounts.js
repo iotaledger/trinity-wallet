@@ -12,13 +12,11 @@ import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import { iota } from './index';
-import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import {
     findTransactionsAsync,
     getNodeInfoAsync,
     findTransactionObjectsAsync,
     getLatestInclusionAsync,
-    getBalancesAsync,
 } from './extendedApi';
 import {
     formatTransfers,
@@ -36,8 +34,7 @@ import {
 import {
     getAllAddresses,
     getLatestAddresses,
-    formatFullAddressData,
-    calculateBalance,
+    formatAddressesAndBalance,
     markAddressSpend,
     getUnspentAddresses,
     getBalancesWithAddresses,
@@ -46,24 +43,44 @@ import {
     getStartingSearchIndexToFetchLatestAddresses,
 } from './addresses';
 
+/**
+ *   Takes in account data fetched from ledger.
+ *   Formats transfers - Sort by latest to old.
+ *   Formats addresses by assigning spent and balance with each address (formatAddressesAndBalance).
+ *   Accumulates total balance (formatAddressesAndBalance).
+ *   Categorise valid transfers by bundle hashes and tail transactions (getBundleTailsForPendingValidTransfers).
+ *
+ *   @method organizeAccountInfo
+ *   @param {string} accountName
+ *   @param {data} [ addresses: <array>, transfers: <array> ]
+ *
+ *   @returns {Promise<object>}
+ **/
 const organizeAccountInfo = (accountName, data) => {
-    const transfers = formatTransfers(data.transfers, data.addresses);
-    const addressData = formatFullAddressData(data);
+    const organizedData = {
+        accountName,
+        transfers: formatTransfers(data.transfers, data.addresses),
+        balance: 0,
+        addresses: {},
+        unconfirmedBundleTails: {},
+    };
 
-    const balance = calculateBalance(addressData);
-    const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
+    return formatAddressesAndBalance(data.addresses)
+        .then(({ addresses, balance }) => {
+            organizedData.addresses = addresses;
+            organizedData.balance = balance;
 
-    return getBundleTailsForPendingValidTransfers(transfers, addressData, accountName).then(
-        (unconfirmedBundleTails) => {
-            return {
+            return getBundleTailsForPendingValidTransfers(
+                organizedData.transfers,
+                organizedData.addresses,
                 accountName,
-                transfers,
-                addresses: addressDataWithSpentFlag,
-                balance,
-                unconfirmedBundleTails,
-            };
-        },
-    );
+            );
+        })
+        .then((unconfirmedBundleTails) => {
+            organizedData.unconfirmedBundleTails = unconfirmedBundleTails;
+
+            return organizedData;
+        });
 };
 
 /**
@@ -120,13 +137,9 @@ export const getAccountData = (seed, accountName) => {
 
     let allBundleObjects = [];
 
-    const transfers = [];
-
     const data = {
         addresses: [],
         transfers: [],
-        inputs: [],
-        balance: 0,
     };
 
     const pushIfNew = (pushTo, value) => {
@@ -174,32 +187,12 @@ export const getAccountData = (seed, accountName) => {
 
                 if (iota.utils.isBundle(bundle)) {
                     // Map persistence from tail transaction object to all transfer objects in the bundle
-                    transfers.push(map(bundle, (transfer) => ({ ...transfer, persistence: tx.persistence })));
-                }
-            });
-
-            data.transfers = transfers;
-
-            return getBalancesAsync(data.addresses, DEFAULT_BALANCES_THRESHOLD);
-        })
-        .then((balances) => {
-            each(balances.balances, (balance, idx) => {
-                const balanceAsNumber = parseInt(balance);
-                data.balance += balanceAsNumber;
-
-                if (balanceAsNumber > 0) {
-                    data.inputs.push({
-                        address: data.addresses[idx],
-                        keyIndex: idx,
-                        security: 2,
-                        balance: balanceAsNumber,
-                    });
+                    data.transfers.push(map(bundle, (transfer) => ({ ...transfer, persistence: tx.persistence })));
                 }
             });
 
             return organizeAccountInfo(accountName, data);
-        })
-        .then((organizedData) => organizedData);
+        });
 };
 
 /**

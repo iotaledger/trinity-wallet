@@ -11,6 +11,8 @@ import size from 'lodash/size';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
+import { Number } from 'core-js/library/web/timers';
+import isEmpty from '../../../../../../.cache/typescript/2.6/node_modules/@types/lodash-es/isEmpty';
 
 /**
  *   Starts traversing from specified index backwards
@@ -103,23 +105,39 @@ export const getAllAddresses = (
     },
 ) => new Promise((res, rej) => getRelevantAddresses(res, rej, seed, addressesOpts, []));
 
-export const formatFullAddressData = (data) => {
-    const addresses = data.addresses;
-    const addressData = reduce(
-        addresses,
-        (acc, address, index) => {
-            acc[address] = { index, balance: 0, spent: false };
-
-            return acc;
-        },
-        {},
-    );
-
-    for (let i = 0; i < data.inputs.length; i++) {
-        addressData[data.inputs[i].address].balance = data.inputs[i].balance;
+export const formatAddressesAndBalance = (addresses) => {
+    if (isEmpty(addresses)) {
+        return Promise.resolve({ addresses: {}, balance: 0 });
     }
 
-    return addressData;
+    const cached = {
+        balances: [],
+        wereSpent: [],
+    };
+
+    return getBalancesAsync(addresses)
+        .then((balances) => {
+            cached.balances = map(balances.balances, Number);
+
+            return wereAddressesSpentFromAsync(addresses);
+        })
+        .then((wereSpent) => {
+            cached.wereSpent = wereSpent;
+
+            return reduce(
+                addresses,
+                (acc, address, index) => {
+                    acc.addresses[address] = {
+                        index,
+                        wereSpent: cached.wereSpent[index],
+                        balance: cached.balances[index],
+                    };
+
+                    acc.balance = acc.balance + cached.balances[index];
+                },
+                { addresses: {}, balance: 0 },
+            );
+        });
 };
 
 export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
@@ -280,57 +298,4 @@ export const mapBalancesToAddresses = (addressData, balances, addresses) => {
     });
 
     return addressesDataClone;
-};
-
-export const calculateBalance = (data) => {
-    let balance = 0;
-    if (Object.keys(data).length > 0) {
-        const balanceArray = Object.values(data).map((x) => x.balance);
-        balance = balanceArray.reduce((a, b) => a + b);
-    }
-    return balance;
-};
-
-/**
- *   Takes in an array of balances (numbers) and calculates the total balance
- *
- *   @method accumulateBalance
- *   @param {array} balances - Array of integers
- *
- *   @returns {number} - Total balance
- **/
-export const accumulateBalance = (balances) =>
-    reduce(
-        balances,
-        (res, val) => {
-            if (isNumber(val)) {
-                res = res + val;
-            }
-
-            return res;
-        },
-        0,
-    );
-
-/**
- *   Takes in transfer bundles and grab hashes for transfer objects that are unconfirmed.
- *
- *   @method getBalancesSync
- *   @param {array} addresses
- *   @param {object} addressData
- *
- *   @returns {array} - array of balances
- **/
-export const getBalancesSync = (addresses, addressData) => {
-    const balances = [];
-
-    each(addresses, (address) => {
-        // Just a safety check.
-        if (address in addressData) {
-            const balance = addressData[address].balance;
-            balances.push(balance);
-        }
-    });
-
-    return balances;
 };
