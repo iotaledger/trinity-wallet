@@ -6,7 +6,7 @@ import find from 'lodash/find';
 import { iota } from '../libs/iota';
 import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
 import { syncAccount, getAccountData, mapUnspentAddressesHashesToState, updateAccount } from '../libs/iota/accounts';
-import { formatAddresses } from '../libs/iota/addresses';
+import { formatAddresses, syncAddresses } from '../libs/iota/addresses';
 import {
     clearTempData,
     updateTransitionBalance,
@@ -291,8 +291,13 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             transfers: selectedAccount.transfers,
             unconfirmedBundleTails,
         };
-
-        return syncAccount(seed, existingAccountData)
+        return syncAddresses(seed, existingAccountData)
+            .then((newAccountData) => {
+                if (newAccountData) {
+                    return syncAccount(seed, newAccountData);
+                }
+                return syncAccount(seed, existingAccountData);
+            })
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 if (navigator) {
