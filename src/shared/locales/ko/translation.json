@@ -196,11 +196,11 @@
         "amount": "금액",
         "max": "최대",
         "message": "메시지",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "잘못된 메시지",
+        "invalidMessageExplanation": "메시지에 유효하지 않은 문자가 포함되어 있습니다.",
         "send": "보내기",
-        "invalidAmount": "잘못된 금액이 입력됨",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmount": "잘못된 금액",
+        "invalidAmountExplanation": "유효한 거래 금액을 입력해 주십시오. 아래의 IOTA 단위 체계를 참고하십시오.",
         "maximumSelected": "최대 금액 선택됨",
         "iotaUnits": "IOTA 단위 체계",
         "sendMax": "최대 금액"
@@ -283,8 +283,8 @@
         "bundleHashCopiedExplanation": "번들 해시가 클립보드에 복사되었습니다.",
         "addressCopied": "주소 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "보냄",
+        "receive": "받음"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
