@@ -4,11 +4,13 @@ import each from 'lodash/each';
 import get from 'lodash/get';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
+import includes from 'lodash/includes';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import size from 'lodash/size';
 import merge from 'lodash/merge';
+import pickBy from 'lodash/pickBy';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 
@@ -159,6 +161,8 @@ export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
     return addressData;
 };
 
+export const isRemainder = (transaction) => transaction.currentIndex === transaction.lastIndex && transaction.lastIndex !== 0;
+
 /**
  *   Accepts addresses as an array.
  *   Finds latest balances on those addresses.
@@ -209,6 +213,38 @@ export const getUnspentAddresses = (addressData) => {
     }
 
     return unspentAddresses;
+};
+
+/**
+ *   Accepts valid pending transfers and address data.
+ *   Finds all spent addresses with valid pending transfers
+ *   
+ *   IMPORTANT: This function should always be utilized after the account is syenced.
+ * 
+ *   @method getSpentAddressesWithPendingTransfersSync
+ *   @param {array} validPendingTransfers - Valid unconfirmed transfers
+ *   @param {object} addressData
+ *   @returns {array} - Array of spent addresses with pending transfers
+ **/
+export const getSpentAddressesWithPendingTransfersSync = (validPendingTransfers, addressData) => {
+    const spentAddresses = map(
+        pickBy(addressData, (addressObject) => addressObject.spent),
+        (address) => address
+    );
+
+    const spentAddressesWithPendingTransfers = [];
+
+    each(validPendingTransfers, (pendingBundle) => {
+        each(pendingBundle, (transactionObject) => {
+            if (
+                includes(spentAddresses, transactionObject.addresses) &&
+                transactionObject.value < 0 &&
+                !isRemainder(transactionObject)
+            ) {
+                spentAddressesWithPendingTransfers.push(transactionObject.address);
+            }
+        });
+    });
 };
 
 /**
