@@ -27,9 +27,11 @@ const currentAccountNameSelectorBySeedIndex = (seedIndex, seedNames) => {
     return seedNames[seedIndex];
 };
 
-const unspentAddressesHashesSelector = (seedName, hashesDict) => get(hashesDict, seedName);
+const hashesSelector = (seedName, hashesDict) => get(hashesDict, seedName);
 
-export const getExistingUnspentAddressesHashes = createSelector(unspentAddressesHashesSelector, (hashes) => hashes);
+export const getTxHashesForUnspentAddresses = createSelector(hashesSelector, (hashes) => hashes);
+
+export const getPendingTxHashesForSpentAddresses = createSelector(hashesSelector, (hashes) => hashes);
 
 export const getSelectedAccount = createSelector(currentAccountSelector, (account) => account);
 
