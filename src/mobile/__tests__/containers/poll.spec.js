@@ -50,25 +50,6 @@ describe('Testing Poll component', () => {
         });
     });
 
-    describe('static methods', () => {
-        describe('#shouldPromote', () => {
-            let now;
-
-            beforeEach(() => {
-                now = new Date();
-            });
-            it('should return true if attachmentTimestamp prop in argument is less than a day older', () => {
-                expect(Poll.shouldPromote({ attachmentTimestamp: now })).toEqual(true);
-                expect(Poll.shouldPromote({ attachmentTimestamp: now.setHours(now.getHours() - 10) })).toEqual(true);
-            });
-
-            it('should return false if attachmentTimestamp prop in argument is not less than a day older', () => {
-                expect(Poll.shouldPromote({ attachmentTimestamp: now.setHours(now.getHours() - 48) })).toEqual(false);
-                expect(Poll.shouldPromote({ attachmentTimestamp: now.setHours(now.getHours() - 25) })).toEqual(false);
-            });
-        });
-    });
-
     describe('lifecycle methods', () => {
         describe('#componentDidMount', () => {
             afterEach(() => {

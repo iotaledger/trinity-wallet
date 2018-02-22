@@ -55,7 +55,7 @@
         "somethingWentWrongExplanation": "Vui lòng khởi động lại chương trình.",
         "node": "Nút mạng",
         "cannotPerformAction": "Không thể thực hiện thao tác này",
-        "cannotPerformActionExplanation": "Vào cài đặt nâng cao để khởi động lại ví điện tử.",
+        "cannotPerformActionExplanation": "Vào thiết lập nâng cao để cài lại ví điện tử.",
         "attachToTangleUnavailable": "Không thể kết nối vào Tangle",
         "attachToTangleUnavailableExplanation": "Không thể kết nối vào Tangle khi xài nút mạng đang chọn.",
         "wallet": "Ví Điện Tử",
@@ -72,8 +72,8 @@
         "autoreattachingExplanation": "Đang kết nối giao dịch với dữ liệu {{hash}}",
         "autopromoting": "Tự động thúc đẩy chuyển khoảng",
         "autopromotingExplanation": "Tự động thúc đẩy chuyển khoản với dữ liệu {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "Gửi đến địa chỉ của mình",
+        "cannotSendToOwnExplanation": "Bạn không thể chuyển khoản vào một trong những địa chỉ của riêng bạn."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
@@ -135,7 +135,7 @@
         "send": "GỬI",
         "receive": "NHẬN",
         "history": "BẢN GHI",
-        "settings": "CÀI ĐẶT"
+        "settings": "THIẾT LẬP"
     },
     "languageSetup": {
         "language": "Ngôn Ngữ"
@@ -147,8 +147,8 @@
         "useSeed": "DÙNG TỪ KHOÁ",
         "login": "ĐĂNG NHẬP",
         "selectDifferentNode": "Bạn muốn chọn một nút mạng khác không?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "CHỌN NÚT MẠNG",
+        "cannotConnect": "Không thể kết nối vào nút mạng của IOTA."
     },
     "loading": {
         "loadingFirstTime": "Đang tải từ khoá lần đầu tiên.",
@@ -163,7 +163,7 @@
     },
     "onboardingComplete": {
         "walletReady":
-            "Ví điện tử đã được thiết lập và sẵn sàng để sử dụng. Nếu bạn muốn thay đổi bất kỳ điều gì trong tương lai, hãy vào Cài Đặt."
+            "Ví điện tử đã được thiết lập và sẵn sàng để sử dụng. Nếu bạn muốn thay đổi bất kỳ điều gì trong tương lai, hãy vào mục Thiết Lập."
     },
     "paperWallet": {
         "clickToPrint": "Nhấn vào nút dưới đây để in ra giấy bản sao từ khoá của bạn.",
@@ -204,9 +204,12 @@
         "amount": "Số Lượng",
         "max": "TỐI ĐA",
         "message": "Tin nhắn",
+        "invalidMessage": "Tin nhắn không hợp lệ",
+        "invalidMessageExplanation": "Tin nhắn có chứa ký tự không hợp lệ.",
         "send": "Gửi",
         "invalidAmount": "Số lượng nhập không đúng",
-        "invalidAmountExplanation": "Xin vui lòng nhập giá trị số cho số tiền giao dịch.",
+        "invalidAmountExplanation":
+            "Xin vui lòng nhập số tiền muốn giao dịch. Các bạn nên đọc chú thích ở cuối trang này để hiểu thêm về đơn vị của IOTA.",
         "maximumSelected": "Số lượng TỐI ĐA được chọn",
         "iotaUnits": "Đơn vị IOTA được giải thích",
         "sendMax": "GỬI TỐI ĐA"
@@ -226,7 +229,7 @@
     "setSeedName": {
         "canUseMultipleSeeds":
             "Bạn có thể sử dụng nhiều từ khoá cho ví điện tử này. Mỗi từ khoá cần một tên tài khoản khác.",
-        "youCanAdd": "Bạn có thể cho thêm nhiều từ khoá nữa trong mục Cài Đặt."
+        "youCanAdd": "Bạn có thể cho thêm nhiều từ khoá nữa trong mục Thiết Lập."
     },
     "settings": {
         "transferSending": "Đang chuyển khoản",
@@ -241,44 +244,44 @@
         "addNewSeed": "Thêm từ khoá mới",
         "twoFA": "Xác thực 2 nhân tố",
         "changePassword": "Đổi mật khẩu",
-        "advanced": "Advanced settings",
+        "advanced": "Thiết lập nâng cao",
         "logout": "Đăng xuất",
-        "reset": "Reset wallet",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "reset": "Cài lại ví điện tử",
+        "syncingComplete": "Đồng bộ hoàn tất",
+        "syncingCompleteExplanation": "Tài khoản của bạn đã được đồng bộ hoá thành công.",
         "nicknameChanged": "Tên tài khoản đã thay đổi",
         "nicknameChangedExplanation": "Tên tài khoản của bạn đã được thay đổi.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All",
-        "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "accountDeleted": "Tài khoản đã bị xóa",
+        "accountDeletedExplanation": "Tài khoản của bạn đã bị xoá khỏi ví điện tử.",
+        "cannotPerformAction": "Không thể thực hiện thao tác này",
+        "cannotPerformActionExplanation": "Vào thiết lập nâng cao để cài lại ví điện tử.",
+        "poorConnection": "Mạng kết nối quá yếu",
+        "poorConnectionExplanation": "Không thể đổi đơn vị tiền tệ do mạng kết nối quá yếu.",
+        "hide": "Ẩn",
+        "hideOthers": "Ẩn Mục Khác",
+        "showAll": "Hiện Tất Cả",
+        "quit": "Thoát",
+        "edit": "Sửa",
+        "cut": "Cắt",
+        "copy": "Sao Chép",
+        "paste": "Dán",
+        "selectAll": "Chọn Tất Cả",
+        "securitySettings": "Thiết lập bảo mật",
+        "fingerprint": "Xác thực bằng dấu vân tay"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Nhập mật khẩu để cài lại ví điện tử.",
+        "cancel": "HUỶ BỎ",
+        "reset": "CÀI LẠI"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
+        "okay": "Ok. Hãy thiết lập ví điện tử của bạn!",
+        "doYouAlreadyHaveASeed": "Bạn đã có từ khoá mà bạn muốn dùng chưa?",
         "seedExplanation":
-            "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+            "Từ khoá của IOTA giống như là tên tài khoản và mật khẩu hợp lại với một dãy chữ có 81 ký tự.",
         "explanation":
-            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
-        "keepSafe": "Please keep your seed safe."
+            "<0><0>Bạn có thể xài nó để truy cập vào tài khoản từ</0><1> bất kỳ ví điện tử nào</1><2>trên</2><3>bất kỳ máy nào</3><4>. Nhưng nếu bạn mất từ khoá, bạn sẽ mất hết IOTA của bạn.</4></0>",
+        "keepSafe": "Vui lòng giữ từ khoá ở một nơi an toàn."
     },
     "welcome": {
         "thankYou": "Thank you for downloading the IOTA wallet.",

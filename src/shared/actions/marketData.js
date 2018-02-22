@@ -1,6 +1,5 @@
 import get from 'lodash/get';
-import isArray from 'lodash/isArray';
-import size from 'lodash/size';
+import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/marketData';
 
 // FIXME: Hacking no-console linting.
 // FIXME: Get rid of the unnecessary break statements.
@@ -67,56 +66,30 @@ export function setPrice(data) {
     };
 }
 
-export function getUrlTimeFormat(timeframe) {
-    // Used for setting correct CryptoCompare URL when fetching chart data
-    switch (timeframe) {
-        case '24h':
-            return 'hour';
-        case '7d':
-            return 'day';
-        case '1m':
-            return 'day';
-        case '1h':
-            return 'minute';
-    }
-}
-
-export function getUrlNumberFormat(timeframe) {
-    // Used for setting correct CryptoCompare URL when fetching chart data
-    switch (timeframe) {
-        case '24h':
-            return '23';
-        case '7d':
-            return '6';
-        case '1m':
-            return '29';
-        case '1h':
-            return '59';
-    }
-}
-
 export function getPrice() {
-    return dispatch =>
+    return (dispatch) => {
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,EUR,BTC,ETH')
-            .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
-            .then(json => dispatch(setPrice(json)));
+            .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error))
+            .then((json) => dispatch(setPrice(json)));
+    };
 }
 
 export function getChartData() {
-    return dispatch => {
+    return (dispatch) => {
         const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
 
-        currencies.forEach(currency => {
-            timeframes.forEach(timeframe => {
+        currencies.forEach((currency) => {
+            timeframes.forEach((timeframe) => {
                 const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
                     timeframe,
                 )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeframe)}`;
                 return fetch(url)
-                    .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
-                    .then(json => {
+                    .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error))
+                    .then((json) => {
                         if (json) {
-                            dispatch(setChartData(json, currency, timeframe));
+                            const data = formatChartData(json, currency, timeframe);
+                            dispatch(setChartData(data, currency, timeframe));
                         }
                     });
             });
@@ -124,53 +97,31 @@ export function getChartData() {
     };
 }
 
-export function setChartData(json, currency, timeframe) {
-    const timeValue = getUrlNumberFormat(timeframe);
-    const response = get(json, 'Data');
-    const hasDataPoints = size(response);
-
-    if (response && isArray(response) && hasDataPoints) {
-        const data = [];
-        for (let i = 0; i <= timeValue; i++) {
-            const y = get(response, `[${i}].close`);
-            data[i] = {
-                x: i,
-                y: parseFloat(y),
-            };
-        }
-
-        return {
-            type: ActionTypes.SET_CHART_DATA,
-            data: data,
-            currency: currency,
-            timeframe: timeframe,
-        };
-    }
-
+export function setChartData(data, currency, timeframe) {
     return {
         type: ActionTypes.SET_CHART_DATA,
-        data: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-        currency: currency,
-        timeframe: timeframe,
+        data,
+        currency,
+        timeframe,
     };
 }
 
 export function getMarketData() {
-    return dispatch =>
+    return (dispatch) =>
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD')
-            .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
-            .then(json => dispatch(setMarketData(json)));
+            .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error))
+            .then((json) => dispatch(setMarketData(json)));
 }
 
 export function changeCurrency(currency, timeframe) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(setCurrency(currency));
         dispatch(getPrice(currency));
         dispatch(getChartData(currency, timeframe));
     };
 }
 export function changeTimeframe(currency, timeframe) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(setTimeframe(timeframe));
         dispatch(getPrice(currency));
         dispatch(getChartData(currency, timeframe));

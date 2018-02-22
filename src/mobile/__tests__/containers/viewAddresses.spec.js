@@ -67,7 +67,7 @@ describe('Testing ViewAddresses component', () => {
             expect(wrapper.childAt(0).name()).toEqual('View');
         });
 
-        it('should return a FlatList component', () => {
+        it('should return a View component', () => {
             const props = getProps({ addressData: { ['U'.repeat(81)]: {} } });
             const wrapper = shallow(<ViewAddresses {...props} />);
 
@@ -76,7 +76,7 @@ describe('Testing ViewAddresses component', () => {
                     .childAt(0)
                     .childAt(0)
                     .name(),
-            ).toEqual('FlatList');
+            ).toEqual('View');
         });
     });
 
