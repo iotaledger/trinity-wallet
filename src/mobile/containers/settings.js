@@ -196,6 +196,7 @@ class Settings extends Component {
         isFetchingAccountInfo: PropTypes.bool.isRequired,
         completeSnapshotTransition: PropTypes.func.isRequired,
         isAttachingToTangle: PropTypes.bool.isRequired,
+        isPromoting: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -293,7 +294,7 @@ class Settings extends Component {
                 })
                 .catch((err) => console.error(err)); // eslint-disable-line no-console
         } else {
-            this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
+            this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
     }
 
@@ -327,7 +328,7 @@ class Settings extends Component {
     }
 
     onDeleteAccountPress() {
-        const { seedCount, t } = this.props;
+        const { seedCount, t, isPromoting } = this.props;
 
         if (seedCount === 1) {
             return this.props.generateAlert(
@@ -335,6 +336,10 @@ class Settings extends Component {
                 t('global:cannotPerformAction'),
                 t('global:cannotPerformActionExplanation'),
             );
+        }
+
+        if (isPromoting || this.shouldPreventAction()) {
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
         return this.props.setSetting('deleteAccount');
@@ -751,7 +756,6 @@ class Settings extends Component {
     // UseExistingSeed method
     addExistingSeed(seed, accountName) {
         const { t, seedNames } = this.props;
-
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',
@@ -780,6 +784,9 @@ class Settings extends Component {
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
         } else {
+            if (this.shouldPreventAction()) {
+                return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+            }
             keychain
                 .get()
                 .then((credentials) => {
@@ -848,9 +855,8 @@ class Settings extends Component {
             isFetchingAccountInfo,
             isSyncing,
         } = this.props;
-
         const isAlreadyDoingSomeHeavyLifting =
-            isSendingTransfer || isGeneratingReceiveAddress || isTransitioning || isFetchingAccountInfo || isSyncing;
+            isSyncing || isSendingTransfer || isGeneratingReceiveAddress || isTransitioning || isFetchingAccountInfo;
 
         return isAlreadyDoingSomeHeavyLifting;
     }
@@ -952,6 +958,7 @@ const mapStateToProps = (state) => ({
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
+    isPromoting: state.polling.isPromoting,
     isAttachingToTangle: state.tempAccount.isAttachingToTangle,
 });
 
