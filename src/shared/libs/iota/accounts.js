@@ -92,8 +92,6 @@ const organizeAccountInfo = (accountName, data) => {
  *     addresses: {},
  *     transfers: [],
  *     balance: 0,
- *     pendingTxTailsHashes: {},
- *     inputs: [], // (optional)
  *     unconfirmedBundleTails: {} // (optional),
  *     accountName; 'foo' // (optional)
  *   ]
@@ -310,14 +308,14 @@ export const syncAccount = (seed, existingAccountState) => {
  *   @returns {Promise<object>} - Resolved a new updated account state object.
  **/
 export const updateAccount = (name, newTransfer, accountState, isValueTransfer) => {
-    // Assign persistence and transferValue props to the newly sent transfer
-    const newTransferBundleWithPersistenceAndTransferValue = map(newTransfer, (bundle) => ({
+    // Assign persistence to the newly sent transfer.
+    const newTransferBundleWithPersistence = map(newTransfer, (bundle) => ({
         ...bundle,
-        ...{ transferValue: -bundle.value, persistence: false },
+        persistence: false,
     }));
 
     // Append new transfer to existing transfers
-    const transfers = [...[newTransferBundleWithPersistenceAndTransferValue], ...accountState.transfers];
+    const transfers = [...[newTransferBundleWithPersistence], ...accountState.transfers];
 
     // Turn on spent flag for addresses that were used in this transfer
     const addresses = markAddressSpend([newTransfer], accountState.addresses);
