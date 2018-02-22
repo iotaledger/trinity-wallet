@@ -76,7 +76,8 @@
         "cannotSendToOwn": "Wysyłka na własny adres",
         "cannotSendToOwnExplanation": "Nie możesz wykonać transferu środków na swój własny adres.",
         "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -173,7 +174,9 @@
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
         "generateNewAddress": "NOWY ADRES",
         "message": "Wiadomość opcjonalna",
-        "removeMessage": "USUŃ WIADOMOŚĆ"
+        "removeMessage": "USUŃ WIADOMOŚĆ",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Seed wyczyszczony",
