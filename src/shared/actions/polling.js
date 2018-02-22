@@ -1,24 +1,17 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
-import clone from 'lodash/clone';
-import concat from 'lodash/concat';
-import merge from 'lodash/merge';
-import map from 'lodash/map';
-import filter from 'lodash/filter';
-import size from 'lodash/size';
-import some from 'lodash/some';
+import find from 'lodash/find';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/marketData';
 import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
 import {
     setNewUnconfirmedBundleTails,
-    updateUnconfirmedBundleTails,
     removeBundleFromUnconfirmedBundleTails,
-    updateTransfers,
+    updateAccountAfterReattachment,
 } from './account';
-import { getFirstConsistentTail } from '../libs/iota/transfers';
+import { replayBundleAsync, promoteTransactionAsync } from '../libs/iota/extendedApi';
+import { getFirstConsistentTail, isValidForPromotion } from '../libs/iota/transfers';
 import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
-import { iota } from '../libs/iota';
 import { syncAccount } from '../libs/iota/accounts';
 import { rearrangeObjectKeys } from '../libs/util';
 import i18next from '../i18next.js';
@@ -221,141 +214,71 @@ export const getAccountInfo = (seed, accountName) => {
     };
 };
 
-export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
-    dispatch(promoteTransactionRequest());
+const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispatch) => {
+    if (!consistentTail) {
+        // Grab hash from the top tail to replay
+        const topTx = head(tails);
+        const hash = topTx.hash;
 
-    // Create a copy so you can mutate easily
-    let consistentTails = map(tails, clone);
-    let allTails = map(tails, clone);
-    const txAccount = get(tails, '[0].account');
-
-    const alertArguments = (title, message, status = 'success') => [status, title, message];
-
-    const promote = (tail) => {
-        const spamTransfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }];
-
-        return iota.api.promoteTransaction(tail.hash, 3, 14, spamTransfer, { interrupt: false, delay: 0 }, (err) => {
-            if (err) {
-                if (err.message.indexOf('Inconsistent subtangle') > -1) {
-                    consistentTails = filter(consistentTails, (t) => t.hash !== tail.hash);
-
-                    return getFirstConsistentTail(consistentTails, 0).then((consistentTail) => {
-                        if (!consistentTail) {
-                            return dispatch(promoteTransactionError());
-                        }
-
-                        return promote(consistentTail);
-                    });
-                }
-
-                return dispatch(promoteTransactionError());
-            }
-
+        return replayBundleAsync(hash).then((reattachedTxs) => {
             dispatch(
                 generateAlert(
-                    ...alertArguments(
-                        i18next.t('global:autopromoting'),
-                        i18next.t('global:autopromotingExplanation', { hash: tail.hash }),
-                    ),
+                    'success',
+                    i18next.t('global:autoreattaching'),
+                    i18next.t('global:autoreattachingExplanation', { hash }),
+                    2500,
                 ),
             );
 
-            const existingBundlesInStore = getState().account.unconfirmedBundleTails;
-            const updatedBundles = merge({}, existingBundlesInStore, { [bundle]: allTails });
+            dispatch(updateAccountAfterReattachment(accountName, reattachedTxs));
 
-            dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updatedBundles, bundle)));
-            return dispatch(promoteTransactionSuccess());
+            const tailTransaction = find(reattachedTxs, { currentIndex: 0 });
+            return promoteTransactionAsync(tailTransaction.hash);
         });
-    };
+    }
 
-    return iota.api.findTransactionObjects({ bundles: [bundle] }, (err, txs) => {
-        if (err) {
-            return dispatch(promoteTransactionError());
-        }
+    return promoteTransactionAsync(consistentTail.hash);
+};
 
-        const tailsFromLatestTransactionObjects = filter(txs, (t) => {
-            // TODO: Validate transfers
-            return !t.persistence && t.currentIndex === 0 && t.value > 0;
-        });
+export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
+    dispatch(promoteTransactionRequest());
 
-        if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
-            dispatch(
-                updateUnconfirmedBundleTails({
-                    [bundle]: map(tailsFromLatestTransactionObjects, (t) => ({ ...t, account: txAccount })),
-                }),
-            );
+    const accountName = get(tails, '[0].account');
+    const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
 
-            // Assign updated tails to the local copy
-            allTails = tailsFromLatestTransactionObjects;
-        }
+    return isValidForPromotion(bundle, selectedAccount.transfers, selectedAccount.addresses)
+        .then((isValid) => {
+            if (!isValid) {
+                dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
 
-        return iota.api.getLatestInclusion(map(allTails, (t) => t.hash), (err, states) => {
-            if (err) {
+                // Polling retries in case of errors
+                // If the chosen bundle for promotion is no longer valid
+                // dispatch an error action, so that the next bundle could be picked up
+                // immediately for promotion.
                 return dispatch(promoteTransactionError());
             }
 
-            if (some(states, (state) => state)) {
-                dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
+            return getFirstConsistentTail(tails, 0);
+        })
+        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tails)))
+        .then((hash) => {
+            dispatch(
+                generateAlert(
+                    'success',
+                    i18next.t('global:autopromoting'),
+                    i18next.t('global:autopromotingExplanation', { hash }),
+                ),
+            );
 
-                return dispatch(promoteTransactionSuccess()); // In case the transaction is approved, no need to go further and promote it.
-            }
+            const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
 
-            return getFirstConsistentTail(consistentTails, 0).then((consistentTail) => {
-                if (!consistentTail) {
-                    // Grab hash from the top tail to replay
-                    const topTx = head(allTails);
-                    const txHash = get(topTx, 'hash');
+            // Rearrange bundles so that the next cycle picks up a new bundle for promotion
+            dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(existingUnconfirmedBundleTails, bundle)));
 
-                    return iota.api.replayBundle(txHash, 3, 14, (err, newTxs) => {
-                        if (err) {
-                            return dispatch(promoteTransactionError());
-                        }
-
-                        dispatch(
-                            generateAlert(
-                                ...alertArguments(
-                                    i18next.t('global:autoreattaching'),
-                                    i18next.t('global:autoreattachingExplanation', { hash: txHash }),
-                                ),
-                            ),
-                        );
-
-                        const newTxsWithAccount = map(newTxs, (t) => ({ ...t, account: txAccount }));
-                        const newTail = filter(newTxsWithAccount, (t) => t.currentIndex === 0);
-                        // Update local copy for all tails
-                        allTails = concat([], newTail, allTails);
-
-                        // Probably unnecessary at this point
-                        consistentTails = concat([], newTail, consistentTails);
-
-                        const selectedAccountInfo = getSelectedAccount(txAccount, getState().account.accountInfo);
-                        const existingTransfers = selectedAccountInfo.transfers;
-
-                        // Prepare/Transform new transfer bundle
-                        const newTransferBundleWithPersistenceAndTransferValue = map(newTxs, (bundle) => ({
-                            ...bundle,
-                            ...{ transferValue: bundle.value, persistence: false },
-                        }));
-
-                        // Append new transfer to existing transfers
-                        const updatedTransfers = [
-                            ...[newTransferBundleWithPersistenceAndTransferValue],
-                            ...existingTransfers,
-                        ];
-
-                        dispatch(updateTransfers(txAccount, updatedTransfers));
-
-                        const existingBundlesInStore = getState().account.unconfirmedBundleTails;
-
-                        const updateBundles = merge({}, existingBundlesInStore, { [bundle]: allTails });
-                        dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updateBundles, bundle)));
-
-                        return dispatch(promoteTransactionError());
-                    });
-                }
-
-                return promote(consistentTail);
-            });
+            return dispatch(promoteTransactionSuccess());
+        })
+        .catch((err) => {
+            console.log('err', err);
+            return dispatch(promoteTransactionError());
         });
-    });
 };

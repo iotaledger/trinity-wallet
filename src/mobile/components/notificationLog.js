@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         width: width / 1.15,
         alignItems: 'center',
         justifyContent: 'center',
+        maxHeight: height / 1.05,
     },
     titleText: {
         backgroundColor: 'transparent',

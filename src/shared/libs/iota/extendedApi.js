@@ -80,7 +80,19 @@ const promoteTransactionAsync = (
     options = { interrupt: false, delay: 0 },
 ) => {
     return new Promise((resolve, reject) => {
-        iota.api.promoteTransaction(hash, depth, minWeightMagnitude, transfer, options, (err, txs) => {
+        iota.api.promoteTransaction(hash, depth, minWeightMagnitude, transfer, options, (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(hash);
+            }
+        });
+    });
+};
+
+const replayBundleAsync = (hash, depth = 3, minWeightMagnitude = 14) => {
+    return new Promise((resolve, reject) => {
+        iota.api.replayBundle(hash, depth, minWeightMagnitude, (err, txs) => {
             if (err) {
                 reject(err);
             } else {
@@ -98,4 +110,5 @@ export {
     findTransactionsAsync,
     getLatestInclusionAsync,
     promoteTransactionAsync,
+    replayBundleAsync,
 };
