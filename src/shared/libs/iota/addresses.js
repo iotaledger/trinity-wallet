@@ -8,11 +8,10 @@ import keys from 'lodash/keys';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import size from 'lodash/size';
+import merge from 'lodash/merge';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
-import { Number } from 'core-js/library/web/timers';
-import isEmpty from '../../../../../../.cache/typescript/2.6/node_modules/@types/lodash-es/isEmpty';
 
 /**
  *   Starts traversing from specified index backwards
@@ -215,7 +214,7 @@ export const filterSpentAddresses = (inputs) => {
  **/
 export const getStartingSearchIndexToFetchLatestAddresses = (addressData) => {
     const addresses = keys(addressData);
-    return addresses.length ? addresses.length - 1 : 0;
+    return addresses.length ? addresses.length : 0;
 };
 
 /**
@@ -251,24 +250,54 @@ export const getBalancesWithAddresses = (addressData) => {
     }));
 };
 
+/**
+ *   Gets the latest used address from the specified index onwards
+ *
+ *   @method getLatestAddresses
+ *   @param {string} seed - Seed string
+ *   @param {string} index - Index to start generating addresses from
+ *   @returns {array} - Array of latest used addresses
+ **/
+
 export const getLatestAddresses = (seed, index) => {
     return new Promise((resolve, reject) => {
-        iota.api.getInputs(seed, { start: index }, (err, data) => {
+        const options = { checksum: false, index, returnAll: true };
+        iota.api.getNewAddress(seed, options, (err, addresses) => {
             if (err) {
                 reject(err);
             } else {
-                const addresses = reduce(
-                    data.inputs,
-                    (obj, x) => {
-                        obj[x.address] = { index: x.keyIndex, balance: x.balance, spent: false };
-                        return obj;
-                    },
-                    {},
-                );
-
                 resolve(addresses);
             }
         });
+    });
+};
+
+/**
+ *   Takes current address data as input and adds latest used addresses
+ *
+ *   @method syncAddresses
+ *   @param {string} seed - Seed string
+ *   @param {string} currentAddressData - currentAddressData from store
+ *   @returns {object} - Updated address data including latest used addresses
+ **/
+
+export const syncAddresses = (seed, existingAccountData) => {
+    const thisAccountDataCopy = cloneDeep(existingAccountData);
+    const addressSearchIndex = getStartingSearchIndexToFetchLatestAddresses(thisAccountDataCopy.addresses);
+    return getLatestAddresses(seed, addressSearchIndex).then((newAddresses) => {
+        // Remove unused address
+        newAddresses.pop();
+        const newAddressesFormatted = reduce(
+            newAddresses,
+            (acc, address, index) => {
+                const i = index + addressSearchIndex;
+                acc[address] = { index: i, balance: 0, spent: false };
+                return acc;
+            },
+            {},
+        );
+        thisAccountDataCopy.addresses = merge(thisAccountDataCopy.addresses, newAddressesFormatted);
+        return thisAccountDataCopy;
     });
 };
 

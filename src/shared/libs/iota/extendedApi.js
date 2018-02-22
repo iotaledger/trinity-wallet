@@ -81,7 +81,7 @@ const promoteTransactionAsync = (
     options = { interrupt: false, delay: 0 },
 ) => {
     return new Promise((resolve, reject) => {
-        iota.api.promoteTransaction(hash, depth, minWeightMagnitude, transfer, options, (err, txs) => {
+        iota.api.promoteTransaction(hash, depth, minWeightMagnitude, transfer, options, (err) => {
             if (err) {
                 reject(err);
             } else {

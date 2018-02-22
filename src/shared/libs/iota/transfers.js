@@ -7,6 +7,7 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
+import isNull from 'lodash/isNull';
 import isEmpty from 'lodash/isEmpty';
 import filter from 'lodash/filter';
 import omitBy from 'lodash/omitBy';
@@ -436,7 +437,9 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
             return promise
                 .then((result) => {
                     return getBundleAsync(hash).then((bundle) => {
-                        result.push(map(bundle, (tx) => assign({}, tx, { persistence: inclusionStates[idx] })));
+                        if (!isNull(bundle)) {
+                            result.push(map(bundle, (tx) => assign({}, tx, { persistence: inclusionStates[idx] })));
+                        }
 
                         return result;
                     });
