@@ -15,6 +15,8 @@ import size from 'lodash/size';
 import some from 'lodash/some';
 import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
+import difference from 'lodash/difference';
+import union from 'lodash/union';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
@@ -619,4 +621,27 @@ export const isValidForPromotion = (bundleHash, transfers, addressData) => {
     return incomingTransfer
         ? isValidBundleAsync(firstBundle)
         : Promise.resolve(isValidBundleSync(firstBundle, addressData));
+};
+
+export const getHashesDiff = (
+    oldTxHashesForUnspentAddresses,
+    newTxHashesForUnspentAddresses,
+    oldPendingTxHashesForSpentAddresses,
+    newPendingTxHashesForSpentAddresses,
+) => {
+    let diffForUnspentAddresses = [];
+    let diffForSpentAddressesWithPendingTxs = [];
+
+    if (hasNewTransfers(oldTxHashesForUnspentAddresses, newTxHashesForUnspentAddresses)) {
+        diffForUnspentAddresses = difference(newTxHashesForUnspentAddresses, oldTxHashesForUnspentAddresses);
+    }
+
+    if (hasNewTransfers(oldPendingTxHashesForSpentAddresses, newPendingTxHashesForSpentAddresses)) {
+        diffForSpentAddressesWithPendingTxs = difference(
+            newPendingTxHashesForSpentAddresses,
+            oldPendingTxHashesForSpentAddresses,
+        );
+    }
+
+    return union(diffForUnspentAddresses, diffForSpentAddressesWithPendingTxs);
 };
