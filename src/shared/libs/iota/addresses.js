@@ -204,18 +204,7 @@ export const markAddressesAsSpentSync = (transfers, addressData) => {
 };
 
 export const getUnspentAddresses = (addressData) => {
-    const addresses = keys(addressData);
-    const addressesSpendStatus = Object.values(addressData).map((x) => x.spent);
-
-    const unspentAddresses = [];
-
-    for (let i = 0; i < addresses.length; i++) {
-        if (addressesSpendStatus[i] === false) {
-            unspentAddresses.push(addresses[i]);
-        }
-    }
-
-    return unspentAddresses;
+    return map(pickBy(addressData, (addressObject) => !addressObject.spent), (address) => address);
 };
 
 /**
@@ -237,7 +226,7 @@ export const getSpentAddressesWithPendingTransfersSync = (validPendingTransfers,
     each(validPendingTransfers, (pendingBundle) => {
         each(pendingBundle, (transactionObject) => {
             if (
-                includes(spentAddresses, transactionObject.addresses) &&
+                includes(spentAddresses, transactionObject.address) &&
                 transactionObject.value < 0 &&
                 !isRemainder(transactionObject)
             ) {
