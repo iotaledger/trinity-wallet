@@ -76,7 +76,8 @@
         "cannotSendToOwn": "发送到自己的地址",
         "cannotSendToOwnExplanation": "您不能转账到您自己的地址。",
         "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -173,7 +174,9 @@
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
         "generateNewAddress": "新地址",
         "message": "可选消息",
-        "removeMessage": "移除消息"
+        "removeMessage": "移除消息",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "种子已清除",
