@@ -28,7 +28,8 @@ const account = (
         onboardingComplete: false,
         accountInfo: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
-        unspentAddressesHashes: {},
+        txHashesForUnspentAddresses: {},
+        pendingTxHashesForSpentAddresses: {},
         is2FAEnabled: false,
         isFingerprintEnabled: false,
     },
@@ -68,7 +69,7 @@ const account = (
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     ...state.unspentAddressesHashes,
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
@@ -134,7 +135,7 @@ const account = (
                 ...state,
                 ...updateAccountInfo(state, action.payload),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     ...state.unspentAddressesHashes,
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
@@ -145,7 +146,7 @@ const account = (
                 ...updateAccountInfo(state, action.payload),
                 firstUse: false,
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     ...state.unspentAddressesHashes,
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
@@ -157,7 +158,7 @@ const account = (
                 seedCount: state.seedCount + 1,
                 seedNames: [...state.seedNames, action.payload.accountName],
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     ...state.unspentAddressesHashes,
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
@@ -167,7 +168,7 @@ const account = (
                 ...state,
                 ...updateAccountInfo(state, action.payload),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     ...state.unspentAddressesHashes,
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 },
