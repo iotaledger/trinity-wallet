@@ -76,7 +76,8 @@
         "cannotSendToOwn": "自分のアドレスに送金する。",
         "cannotSendToOwnExplanation": "自分のアドレスに送金することができません。",
         "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -173,7 +174,9 @@
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
         "generateNewAddress": "新しいアドレス",
         "message": "任意のメッセージ",
-        "removeMessage": "メッセージを削除します。"
+        "removeMessage": "メッセージを削除します。",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Seedが消去されました",
