@@ -4,6 +4,7 @@
         "cancel": "إلغاء",
         "continue?": "هل تريد بالتأكيد المتابعة؟",
         "noTransactions": "لا يوجد تاريخ حديث",
+        "refresh": "REFRESH",
         "qr": "رمز QR",
         "balanceError": "لا يوجد رصيد كاف",
         "balanceErrorMessage": "ليس لديك ما يكفي من يوتا لإتمام عملية النقل هذه.",
@@ -73,7 +74,9 @@
         "autopromoting": "نقل أوتوبروموتينج",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "أوتورياتاتشينج إلى تشابك",
