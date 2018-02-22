@@ -106,6 +106,9 @@ class EnterSeed extends React.Component {
         };
     }
 
+    /**
+     * Validate seed
+     */
     onDonePress() {
         const { t } = this.props;
         const { seed } = this.state;
@@ -140,6 +143,10 @@ class EnterSeed extends React.Component {
         this.showModal();
     }
 
+    /**
+     * Parse and validate QR data
+     * @param  {String} data QR data
+     */
     onQRRead(data) {
         const dataString = data.toString();
         if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
@@ -156,6 +163,10 @@ class EnterSeed extends React.Component {
         this.hideModal();
     }
 
+    /**
+     * Gets the 3 character checksum
+     * @return {String} Checksum
+     */
     getChecksumValue() {
         const { seed } = this.state;
         let checksumValue = '...';

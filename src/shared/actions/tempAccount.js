@@ -3,6 +3,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import size from 'lodash/size';
 import get from 'lodash/get';
 import some from 'lodash/some';
+import last from 'lodash/last';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
@@ -188,23 +189,24 @@ export const generateNewAddress = (seed, seedName, addresses) => {
         let index = 0;
 
         size(addresses) === 0 ? (index = 0) : (index = size(addresses) - 1);
-        const options = { checksum: true, index };
+        const options = { checksum: true, index, returnAll: true };
 
-        iota.api.getNewAddress(seed, options, (error, address) => {
+        iota.api.getNewAddress(seed, options, (error, newAddresses) => {
             if (!error) {
                 //const addressToCheck = [{ address: address }];
                 //Promise.resolve(filterSpentAddresses(addressToCheck)).then(value => console.log(value));
-
                 const updatedAddresses = cloneDeep(addresses);
-                const addressNoChecksum = address.substring(0, MAX_SEED_LENGTH);
-                // In case the newly created address is not part of the addresses object
-                // Add that as a key with a 0 balance.
-                if (!(addressNoChecksum in addresses)) {
-                    updatedAddresses[addressNoChecksum] = { index, balance: 0, spent: false };
-                }
-
+                newAddresses.forEach((newAddress) => {
+                    const newAddressNoChecksum = newAddress.substring(0, MAX_SEED_LENGTH);
+                    // In case the newly created address is not part of the addresses object
+                    // Add that as a key with a 0 balance.
+                    if (!(newAddressNoChecksum in addresses)) {
+                        updatedAddresses[newAddressNoChecksum] = { index, balance: 0, spent: false };
+                    }
+                });
+                const receiveAddress = last(newAddresses);
                 dispatch(updateAddresses(seedName, updatedAddresses));
-                dispatch(generateNewAddressSuccess(address));
+                dispatch(generateNewAddressSuccess(receiveAddress));
             } else {
                 dispatch(generateNewAddressError());
             }
@@ -304,8 +306,8 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 return dispatch(
                     generateAlert(
                         'error',
-                        'Please wait',
-                        'Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.',
+                        i18next.t('global:pleaseWait'),
+                        i18next.t('global:pleaseWaitTransferExplanation'),
                         20000,
                     ),
                 );
