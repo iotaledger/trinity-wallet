@@ -4,6 +4,7 @@
         "cancel": "ABBRECHEN",
         "continue?": "Bist du sicher, dass du fortfahren möchtest?",
         "noTransactions": "KEIN AKTUELLER VERLAUF",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Nicht genügend Guthaben",
         "balanceErrorMessage": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
@@ -26,7 +27,7 @@
         "done": "FERTIG",
         "doneLowercase": "Fertig",
         "next": "WEITER",
-        "apply": "Verwenden",
+        "apply": "Anwenden",
         "save": "Speichern",
         "close": "SCHLIEßEN",
         "continue": "Fortfahren",
@@ -52,7 +53,7 @@
         "syncInProgress": "Synchronisiere...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
-        "somethingWentWrongExplanation": "Bitte die App neu starten.",
+        "somethingWentWrongExplanation": "Bitte starte die App neu.",
         "node": "Server",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
@@ -73,7 +74,9 @@
         "autopromoting": "Der Transfer wird autopromoted",
         "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
         "cannotSendToOwn": "Sende an eigene Adresse...",
-        "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden."
+        "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
