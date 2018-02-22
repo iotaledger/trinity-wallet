@@ -76,7 +76,8 @@
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
         "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again."
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -173,7 +174,9 @@
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
         "generateNewAddress": "NEW ADDRESS",
         "message": "選擇性訊息",
-        "removeMessage": "移除訊息"
+        "removeMessage": "移除訊息",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "種子已清除",
