@@ -3,7 +3,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 import get from 'lodash/get';
 import filter from 'lodash/filter';
-import isNumber from 'lodash/isNumber';
+import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
@@ -11,7 +11,6 @@ import size from 'lodash/size';
 import merge from 'lodash/merge';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
-import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
 
 /**
  *   Starts traversing from specified index backwards
@@ -93,7 +92,6 @@ const getRelevantAddresses = (resolve, reject, seed, opts, allAddresses) => {
  *   @param {object} [addressesOpts={index: 0, total: 10, returnAll: true, security: 2}] - Default options for address generation
  *   @returns {promise}
  **/
-
 export const getAllAddresses = (
     seed,
     addressesOpts = {
@@ -104,6 +102,16 @@ export const getAllAddresses = (
     },
 ) => new Promise((res, rej) => getRelevantAddresses(res, rej, seed, addressesOpts, []));
 
+/**
+ *   Accepts addresses as an array.
+ *   Finds latest balances on those addresses.
+ *   Finds latest spent statuses on addresses.
+ *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0 }}]
+ *
+ *   @method formatAddressesAndBalance
+ *   @param {array} addresses
+ *   @returns {promise<object>} - [ addresses: {}, balance: 0 ]
+ **/
 export const formatAddressesAndBalance = (addresses) => {
     if (isEmpty(addresses)) {
         return Promise.resolve({ addresses: {}, balance: 0 });
@@ -151,7 +159,18 @@ export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
     return addressData;
 };
 
-export const markAddressSpend = (transfers, addressData) => {
+/**
+ *   Accepts addresses as an array.
+ *   Finds latest balances on those addresses.
+ *   Finds latest spent statuses on addresses.
+ *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0 }}]
+ *
+ *   @method markAddressesAsSpentSync
+ *   @param {array} transfers
+ *   @param {object} markAddressesAsSpentSync
+ *   @returns {promise<object>} - [ addresses: {}, balance: 0 ]
+ **/
+export const markAddressesAsSpentSync = (transfers, addressData) => {
     const addressDataClone = cloneDeep(addressData);
     const addresses = keys(addressDataClone);
 
@@ -233,24 +252,6 @@ export const shouldAllowSendingToAddress = (addresses) => {
 };
 
 /**
- *   A wrapper over getBalances.
- *   Main purpose of this wrapper is to keep addresses and balances indexes intact.
- *
- *   @method mapBalancesToAddresses
- *   @param {object} addressData - Addresses dictionary with balance and spend status
- *
- *   @returns {Promise|<object>} - Resolves { balances: [], addresses: [] } after getting latest balances against addresses
- **/
-export const getBalancesWithAddresses = (addressData) => {
-    const addresses = keys(addressData);
-
-    return getBalancesAsync(addresses, DEFAULT_BALANCES_THRESHOLD).then((balances) => ({
-        balances: get(balances, 'balances'),
-        addresses,
-    }));
-};
-
-/**
  *   Gets the latest used address from the specified index onwards
  *
  *   @method getLatestAddresses
@@ -299,32 +300,4 @@ export const syncAddresses = (seed, existingAccountData) => {
         thisAccountDataCopy.addresses = merge(thisAccountDataCopy.addresses, newAddressesFormatted);
         return thisAccountDataCopy;
     });
-};
-
-/**
- *   Get state partials for addressData and assigns balances to those
- *
- *   @method mapBalancesToAddresses
- *   @param {object} addressData - Addresses dictionary with balance and spend status
- *   @param {array} balances - Array of integers
- *   @param {array} addresses - Array of strings (addresses)
- *
- *   @returns {object} - A new copy of the addressData object after assigning each nested object its updated balance.
- **/
-export const mapBalancesToAddresses = (addressData, balances, addresses) => {
-    const addressesDataClone = cloneDeep(addressData);
-    const addressesLength = size(addresses);
-
-    // Return prematurely if balances length are not equal to addresses length
-    // Or address data keys length is not equal to addresses length
-    // A strict check to make sure everything is up-to-date when new balances are assigned.
-    if (size(balances) !== addressesLength || size(keys(addressesDataClone)) !== addressesLength) {
-        return addressesDataClone;
-    }
-
-    each(addresses, (address, idx) => {
-        addressesDataClone[address] = { ...get(addressesDataClone, `${address}`), balance: balances[idx] };
-    });
-
-    return addressesDataClone;
 };
