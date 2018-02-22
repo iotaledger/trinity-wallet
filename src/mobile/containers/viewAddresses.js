@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { iota } from 'iota-wallet-shared-modules/libs/iota';
-import { Image, View, Text, StyleSheet, TouchableOpacity, FlatList, Clipboard } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-native';
+import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
@@ -163,7 +164,7 @@ export class ViewAddresses extends Component {
         const noAddresses = addresses.length === 0;
 
         return (
-            <FlatList
+            <OptimizedFlatList
                 contentContainerStyle={noAddresses ? styles.flatList : null}
                 data={addresses}
                 initialNumToRender={10} // TODO: Should be dynamically computed.
