@@ -66,6 +66,7 @@
     "react-native-level-fs": "^3.0.0",
     "react-native-modal": "^4.0.0",
     "react-native-navigation": "^v1.1.367",
+    "react-native-optimized-flatlist": "^1.0.4",
     "react-native-os": "git+https://github.com/laumair/react-native-os.git#527b0ae",
     "react-native-print": "^0.3.0",
     "react-native-qrcode-scanner": "^0.0.22",

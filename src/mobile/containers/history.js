@@ -7,7 +7,6 @@ import {
     Text,
     TouchableWithoutFeedback,
     RefreshControl,
-    FlatList,
     TouchableOpacity,
     ActivityIndicator,
 } from 'react-native';
@@ -21,7 +20,7 @@ import {
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
-import { iota } from 'iota-wallet-shared-modules/libs/iota';
+import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import TransactionRow from '../components/transactionRow';
@@ -202,7 +201,7 @@ class History extends Component {
         const containerBackgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
         const withValueAndUnit = (item) => ({
-            address: iota.utils.addChecksum(item.address, 9, true),
+            address: item.address,
             value: round(formatValue(item.value), 1),
             unit: formatUnit(item.value),
         });
@@ -244,7 +243,7 @@ class History extends Component {
         const noTransactions = data.length === 0;
 
         return (
-            <FlatList
+            <OptimizedFlatList
                 contentContainerStyle={noTransactions ? styles.flatList : null}
                 data={data}
                 initialNumToRender={8} // TODO: Should be dynamically computed.
