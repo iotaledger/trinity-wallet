@@ -1,4 +1,5 @@
 import assign from 'lodash/assign';
+import get from 'lodash/get';
 import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
@@ -162,9 +163,6 @@ export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
     return addressData;
 };
 
-export const isRemainder = (transaction) =>
-    transaction.currentIndex === transaction.lastIndex && transaction.lastIndex !== 0;
-
 /**
  *   Accepts addresses as an array.
  *   Finds latest balances on those addresses.
@@ -202,8 +200,18 @@ export const markAddressesAsSpentSync = (transfers, addressData) => {
     return addressDataClone;
 };
 
-export const getUnspentAddresses = (addressData) => {
-    return map(pickBy(addressData, (addressObject) => !addressObject.spent), (address) => address);
+/**
+ *   Accepts address data.
+ *   Finds all unspent addresses.
+ *
+ *   IMPORTANT: This function should always be utilized after the account is sycnced.
+ *
+ *   @method getUnspentAddressesSync
+ *   @param {object} addressData
+ *   @returns {array} - Array of unspent addresses
+ **/
+export const getUnspentAddressesSync = (addressData) => {
+    return map(pickBy(addressData, (addressObject) => !addressObject.spent), (addressObject, address) => address);
 };
 
 /**
@@ -224,11 +232,10 @@ export const getSpentAddressesWithPendingTransfersSync = (pendingTransfers, addr
 
     each(pendingTransfers, (pendingBundle) => {
         each(pendingBundle, (transactionObject) => {
-            if (
-                transactionObject.address in spentAddresses &&
-                transactionObject.value < 0 &&
-                !isRemainder(transactionObject)
-            ) {
+            const isRemainder =
+                transactionObject.currentIndex === transactionObject.lastIndex && transactionObject.lastIndex !== 0;
+
+            if (transactionObject.address in spentAddresses && transactionObject.value < 0 && !isRemainder) {
                 spentAddressesWithPendingTransfers.add(transactionObject.address);
             }
         });
