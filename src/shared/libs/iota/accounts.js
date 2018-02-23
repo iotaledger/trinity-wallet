@@ -31,7 +31,6 @@ import {
     markTransfersConfirmed,
     getBundleHashesForTailTransactionHashes,
     filterConfirmedTransfers,
-    filterInvalidTransfersSync,
     getHashesDiff,
 } from './transfers';
 import {
@@ -46,7 +45,7 @@ import {
 /**
  *   Takes in account data fetched from ledger.
  *   Formats transfers - Sort by latest to old.
- *   Formats addresses by assigning spent and balance with each address (formatAddressesAndBalance).
+ *   Formats addresses by assigning spent status and balance with each address (formatAddressesAndBalance).
  *   Accumulates total balance (formatAddressesAndBalance).
  *   Categorise valid transfers by bundle hashes and tail transactions (getBundleTailsForPendingValidTransfers).
  *
@@ -84,19 +83,15 @@ const organizeAccountInfo = (accountName, data) => {
 };
 
 /**
- *   Takes in account object, filter unspent addresses from all addresses, fetch transaction hashes associated with those and
- *   assigns them to the account object.
- *
+ *   Takes in account object, get unspent addresses from all addresses, fetch transaction hashes associated with those
+ *   and assigns them to the account object under a prop name txHashesForUnspentAddresses.
+ *  
+ *   IMPORTANT: This function should always be utilized after the account is sycnced.
+ *   
  *   @method mapUnspentAddressesHashesToAccount
- *   @param {object} account [
- *     addresses: {},
- *     transfers: [],
- *     balance: 0,
- *     unconfirmedBundleTails: {} // (optional),
- *     accountName; 'foo' // (optional)
- *   ]
+ *   @param {object} account
  *
- *   @returns {Promise} - Resolves account argument by assigning unspentAddressesHashes (Transaction hashes associated with unspent addresses)
+ *   @returns {Promise} - Resolves account object.
  **/
 export const mapTransactionHashesForUnspentAddressesToState = (account) => {
     const unspentAddresses = getUnspentAddresses(account.addresses);
@@ -111,26 +106,22 @@ export const mapTransactionHashesForUnspentAddressesToState = (account) => {
 };
 
 /**
- *   Takes in account object, filter unspent addresses from all addresses, fetch transaction hashes associated with those and
- *   assigns them to the account object.
+ *   Takes in account object, get spent addresses with pending transfers,
+ *   fetch transaction hashes associated with those
+ *   and assigns them to the account object under a prop name pendingTxHashesForSpentAddresses.
+ *  
+ *   IMPORTANT: This function should always be utilized after the account is sycnced.
+ *   
+ *   @method mapPendingTransactionHashesForSpentAddressesToState
+ *   @param {object} account
  *
- *   @method mapUnspentAddressesHashesToAccount
- *   @param {object} account [
- *     addresses: {},
- *     transfers: [],
- *     balance: 0,
- *     unconfirmedBundleTails: {} // (optional),
- *     accountName; 'foo' // (optional)
- *   ]
- *
- *   @returns {Promise} - Resolves account argument by assigning unspentAddressesHashes (Transaction hashes associated with unspent addresses)
+ *   @returns {Promise} - Resolves account object.
  **/
 export const mapPendingTransactionHashesForSpentAddressesToState = (account) => {
     const pendingTransfers = filterConfirmedTransfers(account.transfers);
-    const validPendingTransfers = filterInvalidTransfersSync(pendingTransfers, account.addresses);
 
     const spentAddressesWithPendingTransfers = getSpentAddressesWithPendingTransfersSync(
-        validPendingTransfers,
+        pendingTransfers,
         account.addresses,
     );
 
@@ -144,23 +135,20 @@ export const mapPendingTransactionHashesForSpentAddressesToState = (account) => 
 };
 
 /**
- *   Gets seed associated information from the ledger.
+ *   Gets information associated with a seed from the ledger.
  *   - Communicates with node by checking its information. (getNodeInfoAsync)
- *   - Get all used addresses (addresses with transactions) from the ledger. (getAllAddresses)
- *   - Get all transaction objects associated with the addresses. (findTransactionObjectsAsync({ addresses }))
- *   - Grab all bundle hashes and get transaction objects associated with those. (findTransactionObjectsAsync({ bundles }))
- *   - Get confirmation states from all transactions from the ledger. (getLatestInclusionAsync)
- *   - Map confirmations on transaction objects.
- *   - Remove duplicates (reattachments) for confirmed transfers - A neat trick to avoid expensive bundle creation for reattachments.
- *   - Get balances associated with addresses. (getBalancesAsync)
- *   - Set balance
- *   - Prepare inputs from balances and all addresses.
- *   - Organize account info - Formats and transform account objects.
+ *   - Gets all used addresses (addresses with transactions) from the ledger. (getAllAddresses)
+ *   - Gets all transaction objects associated with the addresses. (findTransactionObjectsAsync({ addresses }))
+ *   - Grabs all bundle hashes and get transaction objects associated with those. (findTransactionObjectsAsync({ bundles }))
+ *   - Gets confirmation states from all transactions from the ledger. (getLatestInclusionAsync)
+ *   - Maps confirmations on transaction objects.
+ *   - Removes duplicates (reattachments) for confirmed transfers - A neat trick to avoid expensive bundle creation for reattachments.
+ *   - Organizes account info. (organizeAccountInfo({ transfers: [], addresses: [] }))
  *
  *   @method getAccountData
  *   @param {string} seed
  *   @param {string} accountName - Account name selected by the user.
- *   @returns {Promise} - Account object [addresses: {}, transfers: [], balance: 0, pendingTxTailsHashes: {}, unconfirmedBundleTails: {} ]
+ *   @returns {Promise} - Account object
  **/
 export const getAccountData = (seed, accountName) => {
     const tailTransactions = [];
@@ -227,23 +215,21 @@ export const getAccountData = (seed, accountName) => {
 };
 
 /**
- *   Aims to update cached state with the ledger's.
- *   - Grab search index for checking latest addresses and update address data dictionary.
- *   - Grab balances against latest addresses.
- *   - Assign new balances to latest addresses.
- *   - Grab unspentAddressesHashes by filtering unspent addresses and checking for their hashes.
- *   - Checks for new transfers by comparing old unspentAddressesHashes with newUnspentAddressesHashes.
- *   - Sync transfers by calling syncTransfers.
- *   - Update transfers, addresses by marking addresses as spent.
- *   - Recompute, filter latest pending tail hashes from latest transfer objects and update pendingTxTailHashes in state.
- *   - Check confirmation states for pending tail hashes.
- *   - Update those transfer objects with persistence true.
+ *   Aims to sync cached state with the ledger's.
+ *   - Updates balances and spent statuses for all seen addresses in local state. (formatAddressesAndBalance)
+ *   - Checks for new transfers on unspent addresses.
+ *   - Checks for new transfers on spent addresses with pending transfers.
+ *   - Syncs new transfers if found on the ledger.
+ *   - Updates addresses used in newly found transfers, by marking them as spent.
+ *   - Adds newly found (valid and pending) transfers for promotion.
+ *   - Checks confirmation states for pending tail transaction hashes.
+ *   - Removes bundle hashes for confirmed transfers for (unconfirmedBundleTails) to avoid promotion.
  *
  *   @method syncAccount
  *   @param {string} seed
  *   @param {object} existingAccountState - Account object
  *
- *   @returns {Promise<object>} - Resolved a new updated account state object.
+ *   @returns {Promise<object>}
  **/
 export const syncAccount = (seed, existingAccountState) => {
     const thisStateCopy = cloneDeep(existingAccountState);
@@ -274,9 +260,9 @@ export const syncAccount = (seed, existingAccountState) => {
             return size(diff)
                 ? syncTransfers(diff, thisStateCopy)
                 : Promise.resolve({
-                      transfers: thisStateCopy.transfers,
-                      newTransfers: [],
-                  });
+                    transfers: thisStateCopy.transfers,
+                    newTransfers: [],
+                });
         })
         .then(({ transfers, newTransfers }) => {
             thisStateCopy.transfers = transfers;
@@ -333,10 +319,10 @@ export const syncAccount = (seed, existingAccountState) => {
  *   @method syncAccount
  *   @param {string} name
  *   @param {array} newTransfer
- *   @param {object} existingAccountState - Account object
+ *   @param {object} accountState
  *   @param {boolean} isValueTransfer
  *
- *   @returns {Promise<object>} - Resolved a new updated account state object.
+ *   @returns {Promise<object>}
  **/
 export const updateAccount = (name, newTransfer, accountState, isValueTransfer) => {
     // Assign persistence to the newly sent transfer.
