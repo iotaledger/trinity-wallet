@@ -250,7 +250,7 @@ class ThemeCustomisation extends Component {
                             style={[
                                 styles.demoContainer,
                                 {
-                                    backgroundColor: backgroundColor,
+                                    backgroundColor,
                                     borderColor: secondaryBackgroundColor,
                                 },
                             ]}
