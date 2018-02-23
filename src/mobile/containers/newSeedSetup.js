@@ -175,6 +175,7 @@ class NewSeedSetup extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     drawUnderStatusBar: true,
+                    screenBackgroundColor: this.props.backgroundColor,
                     statusBarColor: this.props.backgroundColor,
                 },
                 animated: false,
