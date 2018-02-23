@@ -4,6 +4,7 @@
         "cancel": "取消",
         "continue?": "是否确定继续？",
         "noTransactions": "没有最近的历史记录",
+        "refresh": "REFRESH",
         "qr": "二维码",
         "balanceError": "余额不足",
         "balanceErrorMessage": "您的IOTA不足以完成本次交易。",
@@ -72,8 +73,11 @@
         "autoreattachingExplanation": "使用哈希{{hash}} 的重新事务",
         "autopromoting": "自动提示转移",
         "autopromotingExplanation": "使用哈希{{hash}} 促进事务",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "发送到自己的地址",
+        "cannotSendToOwnExplanation": "您不能转账到您自己的地址。",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
         "generateNewAddress": "新地址",
         "message": "可选消息",
-        "removeMessage": "移除消息"
+        "removeMessage": "移除消息",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "种子已清除",
@@ -196,11 +202,11 @@
         "amount": "金额",
         "max": "最大",
         "message": "信息",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "无效消息",
+        "invalidMessageExplanation": "您的消息中包含无效字符.",
         "send": "发送",
         "invalidAmount": "输入的金额不正确",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "请输入有效的交易金额。查看本页底部的IOTA单位说明可能会有所帮助。",
         "maximumSelected": "已选择最大金额",
         "iotaUnits": "IOTA单位解释",
         "sendMax": "全部发送"
@@ -255,7 +261,7 @@
         "paste": "粘贴",
         "selectAll": "全选",
         "securitySettings": "安全设置",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
@@ -283,8 +289,8 @@
         "bundleHashCopiedExplanation": "绑定哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "地址已复制到剪贴板。",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "发送",
+        "receive": "接收"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
@@ -361,44 +367,44 @@
         "warning": "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会迷路。</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "instructionsEnable": "触摸设备的指纹读取器以启用指纹验证。",
+        "instructionsDisable": "触摸设备的指纹读取器以禁用指纹验证。",
+        "fingerprintAuthEnabled": "已启用指纹身份验证",
+        "fingerprintAuthEnabledExplanation": "您已成功启用指纹身份验证。",
+        "fingerprintAuthDisabled": "已禁用指纹身份验证",
+        "fingerprintAuthDisabledExplanation": "您已成功禁用指纹身份验证。",
+        "fingerprintAuthFailed": "指纹验证失败",
+        "fingerprintAuthFailedExplanation": "指纹验证失败。请重试。",
+        "status": "状态",
+        "enabled": "已启用",
+        "disabled": "已禁用",
+        "fingerprintUnavailable": "指纹传感器不可用",
+        "fingerprintUnavailableExplanation": "您的设备不支持指纹识别, 或者在设备设置中未配置。",
+        "buttonInstructionsDisable": "点击下面的按钮禁用指纹身份验证。",
+        "buttonInstructionsEnable": "点击下面的按钮启用指纹身份验证。",
+        "instructionsLogin": "触摸指纹读取器登录。"
     },
     "transferConfirmation": {
         "youAreAbout": "您将发送{{contents}} 到地址",
         "aMessage": "一条信息"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "wrongCode": "验证码错误",
+        "wrongCodeExplanation": "您输入的验证码不正确。",
+        "emptyCode": "验证码为空",
+        "emptyCodeExplanation": "请输入验证码并重试。",
+        "keyCopied": "密钥已复制到剪贴板",
+        "keyCopiedExplanation": "您的2FA 密钥已复制到剪贴板。",
+        "addKey": "将此密钥添加到您的2FA 应用程序中",
+        "key": "密钥",
+        "twoFAEnabled": "2FA 现在已启用",
+        "twoFAEnabledExplanation": "您已成功启用了双因子验证（2FA）。",
+        "enterCode": "输入您的2FA 应用程序中的验证码",
+        "code": "验证码"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "change": "变化率",
+        "volume": "交易量(24h)"
     }
 }
