@@ -6,11 +6,17 @@ import some from 'lodash/some';
 import last from 'lodash/last';
 import keys from 'lodash/keys';
 import { iota } from '../libs/iota';
-import { updateAddresses, updateAccountInfo } from '../actions/account';
+import {
+    updateAddresses,
+    updateAccountInfo,
+    prepareAccountInfoForSync,
+    accountInfoFetchSuccess,
+} from '../actions/account';
 import { clearSendFields } from '../actions/ui';
 import { generateAlert } from '../actions/alerts';
 import { prepareTransferArray } from '../libs/iota/transfers';
-import { shouldAllowSendingToAddress } from '../libs/iota/addresses';
+import { syncAccount } from '../libs/iota/accounts';
+import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { MAX_SEED_LENGTH } from '../libs/util';
 import { getSelectedAccount } from '../selectors/account';
@@ -185,32 +191,17 @@ export const setAdditionalAccountInfo = (payload) => ({
     payload,
 });
 
-export const generateNewAddress = (seed, seedName, addresses) => {
+export const generateNewAddress = (seed, accountName, existingAccountData) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        let index = 0;
-        size(addresses) === 0 ? (index = 0) : (index = size(addresses) - 1);
-        const options = { checksum: false, index, returnAll: true };
 
-        iota.api.getNewAddress(seed, options, (error, newAddresses) => {
-            if (!error) {
-                const updatedAddresses = cloneDeep(addresses);
-                index = keys(addresses).length;
-                newAddresses.forEach((newAddress) => {
-                    // In case the newly created address is not part of the addresses object
-                    // Add that as a key with a 0 balance.
-                    if (!(newAddress in addresses)) {
-                        updatedAddresses[newAddress] = { index, balance: 0, spent: false };
-                        index += 1;
-                    }
-                });
-                const receiveAddress = iota.utils.addChecksum(last(newAddresses));
-                dispatch(updateAddresses(seedName, updatedAddresses));
+        return syncAddresses(seed, existingAccountData, true)
+            .then((newAccountData) => {
+                const receiveAddress = iota.utils.addChecksum(getLatestAddress(newAccountData.addresses));
+                dispatch(updateAddresses(accountName, newAccountData.addresses));
                 dispatch(generateNewAddressSuccess(receiveAddress));
-            } else {
-                dispatch(generateNewAddressError());
-            }
-        });
+            })
+            .catch((err) => dispatch(generateNewAddressError()));
     };
 };
 
@@ -227,9 +218,7 @@ export const completeTransfer = (payload) => {
     };
 };
 
-const makeTransfer = (seed, address, value, accountName, transfer, options = null) => (dispatch, getState) => {
-    const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-    const addressData = selectedAccount.addresses;
+const makeTransfer = (seed, address, value, accountName, transfer, options = null) => (dispatch) => {
     let args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, transfer];
 
     if (options) {
@@ -238,9 +227,6 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
 
     return iota.api.sendTransfer(...args, (error, success) => {
         if (!error) {
-            if (value > 0) {
-                dispatch(updateRemainderAddressValue(accountName, addressData, options.address));
-            }
             dispatch(updateAccountInfo(accountName, success, value));
             if (value === 0) {
                 dispatch(
@@ -288,7 +274,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
 };
 
 export const prepareTransfer = (seed, address, value, message, accountName) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(sendTransferRequest());
 
         const transfer = prepareTransferArray(address, value, message);
@@ -297,7 +283,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             return dispatch(makeTransfer(seed, address, value, accountName, transfer));
         }
 
-        const makeTransferWithBalanceCheck = (inputs, remainderAddress) => {
+        const makeTransferWithBalanceCheck = (inputs) => {
             // allBalance -> total balance associated with addresses.
             // Contains balance from addresses regardless of the fact they are spent from.
             // Less than the value user is about to send to -> Not enough balance.
@@ -346,13 +332,33 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                     ),
                 );
             }
-
+            const remainderAddress = getLatestAddress(newAccountData.addresses);
             return dispatch(
                 makeTransfer(seed, address, value, accountName, transfer, {
                     inputs: get(inputs, 'inputs'),
                     address: remainderAddress,
                 }),
             );
+        };
+
+        let newAccountData = {};
+
+        const syncAndGetInputs = () => {
+            const existingAccountData = dispatch(prepareAccountInfoForSync(accountName));
+            return syncAddresses(seed, existingAccountData, true)
+                .then((accountData) => {
+                    return syncAccount(seed, accountData);
+                })
+                .then((accountData) => {
+                    dispatch(accountInfoFetchSuccess(accountData));
+                    newAccountData = accountData;
+                    const newAddressData = accountData.addresses;
+                    const startIndex = getStartingSearchIndexToPrepareInputs(newAddressData);
+                    getUnspentInputs(newAddressData, startIndex, value, null, unspentInputs);
+                })
+                .catch((err) => {
+                    dispatch(sendTransferError());
+                });
         };
 
         const unspentInputs = (err, inputs) => {
@@ -364,20 +370,8 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                     err,
                 );
             }
-
-            const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-            const existingAddressData = selectedAccount.addresses;
-
-            return dispatch(getRemainderAddressAndSyncAddresses(accountName, seed, existingAddressData)).then(
-                (remainderAddress) => {
-                    return makeTransferWithBalanceCheck(inputs, remainderAddress);
-                },
-            );
+            return makeTransferWithBalanceCheck(inputs);
         };
-
-        const addressData = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
-
-        const startIndex = getStartingSearchIndexToPrepareInputs(addressData);
 
         // Make sure that the address a user is about to send to is not already used.
         // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
@@ -392,76 +386,13 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             }
 
             return shouldAllowSending
-                ? getUnspentInputs(addressData, startIndex, value, null, unspentInputs)
+                ? syncAndGetInputs()
                 : (() => {
                       dispatch(sendTransferError());
                       return dispatch(
                           generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                       );
                   })();
-        });
-    };
-};
-
-/**
- *   Makes sure addresses are in sync and returns the first unused address to be used as a remainder
- *   @method getRemainderAddressAndSyncAddresses
- *   @param {string} accountName - Seed string
- *   @param {number} index - Index to start generating addresses from
- *   @param {object} addressData - Existing address data
- *   @returns {string} - Remainder address
- **/
-
-export const getRemainderAddressAndSyncAddresses = (accountName, seed, addressData) => {
-    return (dispatch) => {
-        return new Promise((resolve, reject) => {
-            let index = 0;
-            size(addressData) === 0 ? (index = 0) : (index = size(addressData) - 1);
-            const options = { checksum: false, index, returnAll: true };
-
-            iota.api.getNewAddress(seed, options, (error, newAddresses) => {
-                if (!error) {
-                    const updatedAddresses = cloneDeep(addressData);
-                    index = keys(updatedAddresses).length;
-                    newAddresses.forEach((newAddress) => {
-                        // In case the newly created address is not part of the addresses object
-                        // Add that as a key with a 0 balance.
-                        if (!(newAddress in addressData)) {
-                            updatedAddresses[newAddress] = { index, balance: 0, spent: false };
-                            index += 1;
-                        }
-                    });
-                    dispatch(updateAddresses(accountName, updatedAddresses));
-                    const remainderAddress = last(newAddresses);
-                    resolve(remainderAddress);
-                } else {
-                    dispatch(sendTransferError());
-                }
-            });
-        });
-    };
-};
-
-/**
- *   Updates the value of the remainder address after send
- *   @method updateRemainderAddressValue
- *   @param {string} accountName - Account name string
- *   @param {object} addressData - Existing address data
- *   @param {string} remainderAddress - Remainder address from sent transaction
- **/
-
-export const updateRemainderAddressValue = (accountName, addressData, remainderAddress) => {
-    return (dispatch) => {
-        const addressDataCopy = cloneDeep(addressData);
-        const addressArray = [remainderAddress];
-        // Check change address balance
-        iota.api.getBalances(addressArray, 1, (error, success) => {
-            if (!error) {
-                const addressBalance = parseInt(success.balances[0]);
-                addressDataCopy[remainderAddress].balance = addressBalance;
-                dispatch(updateAddresses(accountName, addressDataCopy));
-            }
-            // Do nothing if error, balance update will be picked up by polling anyway
         });
     };
 };
