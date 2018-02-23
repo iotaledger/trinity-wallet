@@ -261,7 +261,7 @@
         "paste": "Yapıştır",
         "selectAll": "Hepsini seç",
         "securitySettings": "Güvenlik ayarları",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Cüzdanınızı sıfırlamak için şifrenizi girin.",
