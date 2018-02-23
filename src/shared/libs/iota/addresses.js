@@ -1,5 +1,4 @@
 import assign from 'lodash/assign';
-import get from 'lodash/get';
 import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
