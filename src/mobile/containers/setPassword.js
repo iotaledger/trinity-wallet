@@ -150,6 +150,12 @@ class SetPassword extends Component {
                             navBarHidden: true,
                             navBarTransparent: true,
                             screenBackgroundColor: COLORS.backgroundGreen,
+                            drawUnderStatusBar: true,
+                            statusBarColor: COLORS.backgroundColor,
+                        },
+                        appStyle: {
+                            orientation: 'portrait',
+                            keepStyleAcrossPush: false,
                         },
                         animated: false,
                     });
@@ -293,7 +299,7 @@ class SetPassword extends Component {
                         {this.renderContent()}
                     </KeyboardAwareScrollView>
                 )}
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor={'white'} backgroundColor={COLORS.backgroundGreen} />
             </View>
         );
     }

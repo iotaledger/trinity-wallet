@@ -227,11 +227,13 @@ class Settings extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundColor: backgroundColor,
-                        generateAlert: this.props.generateAlert,
+                        drawUnderStatusBar: true,
+                        statusBarColor: this.props.backgroundColor,
                     },
                 },
                 appStyle: {
                     orientation: 'portrait',
+                    keepStyleAcrossPush: false,
                 },
             });
         } else {
@@ -242,11 +244,13 @@ class Settings extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundColor: backgroundColor,
-                        generateAlert: this.props.generateAlert,
+                        drawUnderStatusBar: true,
+                        statusBarColor: this.props.backgroundColor,
                     },
                 },
                 appStyle: {
                     orientation: 'portrait',
+                    keepStyleAcrossPush: false,
                 },
             });
         }
@@ -264,11 +268,13 @@ class Settings extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundColor: backgroundColor,
-                        generateAlert: this.props.generateAlert,
+                        drawUnderStatusBar: true,
+                        statusBarColor: this.props.backgroundColor,
                     },
                 },
                 appStyle: {
                     orientation: 'portrait',
+                    keepStyleAcrossPush: false,
                 },
             });
         }
@@ -349,10 +355,13 @@ class Settings extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: false,
             },
         });
     }
@@ -686,11 +695,14 @@ class Settings extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
                 overrideBackPress: true,
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: false,
             },
         });
     }
@@ -703,10 +715,13 @@ class Settings extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: false,
             },
         });
         BackHandler.removeEventListener('homeBackPress');
@@ -731,6 +746,8 @@ class Settings extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
             },
             animated: false,
             overrideBackPress: true,

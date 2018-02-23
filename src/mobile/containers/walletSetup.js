@@ -142,6 +142,8 @@ class WalletSetup extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: COLORS.backgroundGreen,
+                drawUnderStatusBar: true,
+                statusBarColor: COLORS.backgroundGreen,
             },
             animated: false,
         });
@@ -154,6 +156,8 @@ class WalletSetup extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: COLORS.backgroundGreen,
+                drawUnderStatusBar: true,
+                statusBarColor: COLORS.backgroundGreen,
             },
             animated: false,
         });
@@ -163,7 +167,7 @@ class WalletSetup extends Component {
         const { t } = this.props;
         return (
             <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
+                <StatusBar barStyle="light-content" backgroundColor={COLORS.backgroundGreen} />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>

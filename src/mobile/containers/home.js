@@ -32,19 +32,12 @@ import Tabs from '../components/tabs';
 import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
 import EnterPassword from '../components/enterPassword';
-import { width, height } from '../util/dimensions';
+import { height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     topContainer: {
         flex: 0.8,
         marginBottom: height / 100,
-    },
-    balance: {
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 27.9,
-        paddingTop: height / 150,
     },
     midContainer: {
         flex: 4.62,
@@ -52,35 +45,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 0.68,
-    },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
     },
 });
 
@@ -171,7 +135,7 @@ class Home extends Component {
                 onInactivity={this.handleInactivity}
             >
                 <KeyboardAvoidingView style={{ flex: 1, backgroundColor }}>
-                    <DynamicStatusBar textColor={secondaryBarColor} />
+                    <DynamicStatusBar textColor={secondaryBarColor} backgroundColor={barColor} />
                     {!inactive &&
                         !minimised && (
                             <View style={{ flex: 1 }}>
@@ -231,7 +195,7 @@ class Home extends Component {
                     )}
                     {minimised && <View />}
                     <Poll />
-                    <StatefulDropdownAlert />
+                    <StatefulDropdownAlert textColor={secondaryBarColor} backgroundColor={barColor} />
                 </KeyboardAvoidingView>
             </UserInactivity>
         );
