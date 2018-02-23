@@ -261,7 +261,7 @@
         "paste": "Coller",
         "selectAll": "Tout Sélectionner",
         "securitySettings": "Paramètres de sécurité",
-        "fingerprint": "Authentification par empreinte digitale"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
