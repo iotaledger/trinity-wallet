@@ -261,7 +261,7 @@
         "paste": "粘贴",
         "selectAll": "全选",
         "securitySettings": "安全设置",
-        "fingerprint": "指纹身份验证"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
