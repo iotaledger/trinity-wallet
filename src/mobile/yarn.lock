@@ -5405,6 +5405,12 @@ react-native-navigation@^v1.1.367:
   dependencies:
     lodash "4.x.x"
 
+react-native-optimized-flatlist@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-optimized-flatlist/-/react-native-optimized-flatlist-1.0.4.tgz#15c817ffb545e3c62e56a1b3c4654c1316414941"
+  dependencies:
+    prop-types "^15.6.0"
+
 "react-native-os@git+https://github.com/laumair/react-native-os.git#527b0ae":
   version "1.1.0"
   resolved "git+https://github.com/laumair/react-native-os.git#527b0aef4e30041b5230f5b901767dd9f54903fe"
