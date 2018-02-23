@@ -261,7 +261,7 @@
         "paste": "הדבק",
         "selectAll": "בחר הכל",
         "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
