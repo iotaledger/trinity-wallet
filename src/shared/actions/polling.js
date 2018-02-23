@@ -174,7 +174,7 @@ export const fetchChartData = () => {
 
 /**
  *   Accepts a user's seed and account name and sync local account state with ledger's.
- *
+ * 
  *   @method getAccountInfo
  *   @param {string} seed
  *   @param {string} accountName
