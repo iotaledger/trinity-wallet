@@ -137,7 +137,7 @@ export const formatAddressesAndBalance = (addresses) => {
                 (acc, address, index) => {
                     acc.addresses[address] = {
                         index,
-                        wereSpent: cached.wereSpent[index],
+                        spent: cached.wereSpent[index],
                         balance: cached.balances[index],
                     };
 
@@ -226,7 +226,6 @@ export const getUnspentAddressesSync = (addressData) => {
  **/
 export const getSpentAddressesWithPendingTransfersSync = (pendingTransfers, addressData) => {
     const spentAddresses = pickBy(addressData, (addressObject) => addressObject.spent);
-
     const spentAddressesWithPendingTransfers = new Set();
 
     each(pendingTransfers, (pendingBundle) => {
