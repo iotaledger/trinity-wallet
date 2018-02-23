@@ -329,7 +329,7 @@ class NewSeedSetup extends Component {
                         rightButtonTestID="newSeedSetup-next"
                     />
                 </View>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
             </View>
         );
     }

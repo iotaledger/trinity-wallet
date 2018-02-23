@@ -215,7 +215,7 @@ class CopySeedToClipboard extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
             </View>
         );
     }

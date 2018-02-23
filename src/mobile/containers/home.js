@@ -195,7 +195,7 @@ class Home extends Component {
                     )}
                     {minimised && <View />}
                     <Poll />
-                    <StatefulDropdownAlert />
+                    <StatefulDropdownAlert textColor={secondaryBarColor} backgroundColor={barColor} />
                 </KeyboardAvoidingView>
             </UserInactivity>
         );

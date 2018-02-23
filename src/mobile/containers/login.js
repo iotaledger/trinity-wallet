@@ -320,7 +320,7 @@ class Login extends Component {
                         <View style={{ flex: 0.2 }} />
                     </View>
                 )}
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
