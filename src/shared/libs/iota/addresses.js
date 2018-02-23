@@ -8,7 +8,6 @@ import keys from 'lodash/keys';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import size from 'lodash/size';
-import merge from 'lodash/merge';
 import { iota } from './index';
 import { getBalancesAsync } from './extendedApi';
 import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
@@ -205,7 +204,7 @@ export const filterSpentAddresses = (inputs) => {
  **/
 export const getStartingSearchIndexToFetchLatestAddresses = (addressData) => {
     const addresses = keys(addressData);
-    return addresses.length ? addresses.length : 0;
+    return addresses.length;
 };
 
 /**
@@ -249,7 +248,7 @@ export const getBalancesWithAddresses = (addressData) => {
  *
  *   @method getLatestAddresses
  *   @param {string} seed - Seed string
- *   @param {string} index - Index to start generating addresses from
+ *   @param {number} index - Index to start generating addresses from
  *   @returns {array} - Array of latest used addresses
  **/
 
@@ -267,30 +266,34 @@ export const getLatestAddresses = (seed, index) => {
 };
 
 /**
- *   Takes current address data as input and adds latest used addresses
+ *   Takes current account data as input and adds latest used addresses
  *
  *   @method syncAddresses
  *   @param {string} seed - Seed string
- *   @param {string} currentAddressData - currentAddressData from store
- *   @returns {object} - Updated address data including latest used addresses
+ *   @param {string} existingAccountData - existingAccountData from store
+ *   @returns {object} - Updated account data data including latest used addresses
  **/
 
 export const syncAddresses = (seed, existingAccountData) => {
     const thisAccountDataCopy = cloneDeep(existingAccountData);
-    const addressSearchIndex = getStartingSearchIndexToFetchLatestAddresses(thisAccountDataCopy.addresses);
-    return getLatestAddresses(seed, addressSearchIndex).then((newAddresses) => {
+    let index = getStartingSearchIndexToFetchLatestAddresses(thisAccountDataCopy.addresses);
+    return getLatestAddresses(seed, index).then((newAddresses) => {
         // Remove unused address
         newAddresses.pop();
-        const newAddressesFormatted = reduce(
-            newAddresses,
-            (acc, address, index) => {
-                const i = index + addressSearchIndex;
-                acc[address] = { index: i, balance: 0, spent: false };
-                return acc;
-            },
-            {},
-        );
-        thisAccountDataCopy.addresses = merge(thisAccountDataCopy.addresses, newAddressesFormatted);
+        // If no new addresses return
+        if (newAddresses.length === 0) {
+            return existingAccountData;
+        }
+        const updatedAddresses = cloneDeep(thisAccountDataCopy.addresses);
+        newAddresses.forEach((newAddress) => {
+            // In case the newly created address is not part of the addresses object
+            // Add that as a key with a 0 balance.
+            if (!(newAddress in thisAccountDataCopy.addresses)) {
+                updatedAddresses[newAddress] = { index, balance: 0, spent: false };
+                index += 1;
+            }
+        });
+        thisAccountDataCopy.addresses = updatedAddresses;
         return thisAccountDataCopy;
     });
 };
