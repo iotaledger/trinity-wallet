@@ -100,7 +100,16 @@ class WalletResetRequirePassword extends Component {
     }
 
     goBack() {
-        this.props.navigator.pop({ animated: false });
+        this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
+            },
+            animated: false,
+        });
     }
 
     isAuthenticated() {
@@ -115,11 +124,14 @@ class WalletResetRequirePassword extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    statusBarColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
                 },
                 overrideBackPress: true,
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: false,
             },
         });
     }
@@ -163,7 +175,7 @@ class WalletResetRequirePassword extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={this.props.backgroundColor} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>

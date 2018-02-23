@@ -155,6 +155,13 @@ export class SetSeedName extends Component {
 
     onBackPress() {
         this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
+            },
             animated: false,
         });
     }
@@ -202,6 +209,8 @@ export class SetSeedName extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
                 animated: false,
                 overrideBackPress: true,
@@ -213,6 +222,8 @@ export class SetSeedName extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -226,7 +237,7 @@ export class SetSeedName extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View>
                         <View style={styles.topContainer}>
