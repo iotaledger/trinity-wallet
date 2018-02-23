@@ -261,7 +261,7 @@
         "paste": "Incolla",
         "selectAll": "Seleziona tutto",
         "securitySettings": "Impostazioni di sicurezza",
-        "fingerprint": "Autenticazione tramite impronta digitale"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Immetti la tua password per reimpostare il portafoglio.",
