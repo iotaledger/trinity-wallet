@@ -261,7 +261,7 @@
         "paste": "Liitä",
         "selectAll": "Valitse kaikki",
         "securitySettings": "Turvallisuusasetukset",
-        "fingerprint": "Sormenjälkitunnistuksen varmennus"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
