@@ -4,7 +4,7 @@
         "cancel": "AVBRYT",
         "continue?": "Är du säker på att du vill fortsätta?",
         "noTransactions": "Ingen historik",
-        "refresh": "REFRESH",
+        "refresh": "UPPDATERA",
         "qr": "QR",
         "balanceError": "Otillräckligt saldo",
         "balanceErrorMessage": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
@@ -47,7 +47,7 @@
         "yes": "JA",
         "no": "NEJ",
         "password": "Lösenord",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Lösenord eller fingeravtryck",
         "unrecognisedPassword": "Fel lösenord",
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
         "syncInProgress": "Synkronisering pågår",
@@ -73,11 +73,11 @@
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
         "autopromoting": "Auto-promotar överföring",
         "autopromotingExplanation": "Promotar transaktion med hashen {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "cannotSendToOwn": "Skickar till egen adress",
+        "cannotSendToOwnExplanation": "Du kan inte göra en värdetransaktion till en av dina egna adresser.",
+        "pleaseWait": "Var god vänta",
+        "pleaseWaitExplanation": "Trinity utför en annan funktion. Vänta och försök igen.",
+        "pleaseWaitTransferExplanation": "Ditt tillgängliga saldo används för närvarande i andra transaktioner. Var god vänta tills en av de är godkända och försök igen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -175,8 +175,8 @@
         "generateNewAddress": "NY ADRESS",
         "message": "Valfritt meddelande",
         "removeMessage": "TA BORT MEDDELANDE",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "INGA ADRESSER",
+        "spent": "Förbrukat"
     },
     "saveYourSeed": {
         "seedCleared": "Seed rensad",
@@ -202,8 +202,8 @@
         "amount": "Belopp",
         "max": "MAX",
         "message": "Meddelande",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "Ogiltigt meddelande",
+        "invalidMessageExplanation": "Ditt meddelande innehåller ogiltiga tecken.",
         "send": "SKICKA",
         "invalidAmount": "Felaktigt belopp angivet",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
@@ -399,12 +399,12 @@
         "key": "Key",
         "twoFAEnabled": "2FA is now enabled",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "enterCode": "Ange koden från din 2FA app",
+        "code": "Kod"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "change": "Ändring",
+        "volume": "Volym (24h)"
     }
 }
