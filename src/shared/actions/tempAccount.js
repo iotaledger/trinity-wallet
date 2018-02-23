@@ -7,6 +7,7 @@ import last from 'lodash/last';
 import keys from 'lodash/keys';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo } from '../actions/account';
+import { clearSendFields } from '../actions/ui';
 import { generateAlert } from '../actions/alerts';
 import { prepareTransferArray } from '../libs/iota/transfers';
 import { shouldAllowSendingToAddress } from '../libs/iota/addresses';
@@ -213,6 +214,19 @@ export const generateNewAddress = (seed, seedName, addresses) => {
     };
 };
 
+/**
+ *   On successful transfer, update store, generate alert and clear send text fields
+ *   @method completeTransfer
+ *   @param {object} payload - sending status, address, transfer value
+ **/
+
+export const completeTransfer = (payload) => {
+    return (dispatch) => {
+        dispatch(clearSendFields());
+        dispatch(sendTransferSuccess(payload));
+    };
+};
+
 const makeTransfer = (seed, address, value, accountName, transfer, options = null) => (dispatch, getState) => {
     const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
     const addressData = selectedAccount.addresses;
@@ -247,7 +261,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
                     ),
                 );
             }
-            dispatch(sendTransferSuccess({ address, value }));
+            dispatch(completeTransfer({ address, value }));
         } else {
             dispatch(sendTransferError());
             const alerts = {
