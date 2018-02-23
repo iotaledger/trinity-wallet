@@ -261,7 +261,7 @@
         "paste": "Klistra in",
         "selectAll": "Välj alla",
         "securitySettings": "Säkerhetsinställningar",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Fingeravtryck autentisering"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ange ditt lösenord för att återställa plånboken.",
@@ -289,8 +289,8 @@
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "SKICKAR",
+        "receive": "TAR EMOT"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
