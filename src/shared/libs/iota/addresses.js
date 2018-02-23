@@ -219,21 +219,23 @@ export const getUnspentAddresses = (addressData) => {
  *   @returns {array} - Array of spent addresses with pending transfers
  **/
 export const getSpentAddressesWithPendingTransfersSync = (validPendingTransfers, addressData) => {
-    const spentAddresses = map(pickBy(addressData, (addressObject) => addressObject.spent), (address) => address);
+    const spentAddresses = pickBy(addressData, (addressObject) => addressObject.spent);
 
-    const spentAddressesWithPendingTransfers = [];
+    const spentAddressesWithPendingTransfers = new Set();
 
     each(validPendingTransfers, (pendingBundle) => {
         each(pendingBundle, (transactionObject) => {
             if (
-                includes(spentAddresses, transactionObject.address) &&
+                transactionObject.address in spentAddresses &&
                 transactionObject.value < 0 &&
                 !isRemainder(transactionObject)
             ) {
-                spentAddressesWithPendingTransfers.push(transactionObject.address);
+                spentAddressesWithPendingTransfers.add(transactionObject.address);
             }
         });
     });
+
+    return Array.from(spentAddressesWithPendingTransfers);
 };
 
 /**
