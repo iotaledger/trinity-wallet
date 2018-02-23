@@ -261,7 +261,7 @@
         "paste": "لصق",
         "selectAll": "تحديد الكل",
         "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "الرجاء ادخال كلمة المرور لإعادة المحفظة.",
