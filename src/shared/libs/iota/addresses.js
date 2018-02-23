@@ -7,8 +7,8 @@ import isNumber from 'lodash/isNumber';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
+import findKey from 'lodash/findKey';
 import size from 'lodash/size';
-import merge from 'lodash/merge';
 import pickBy from 'lodash/pickBy';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
@@ -264,7 +264,7 @@ export const filterSpentAddresses = (inputs) => {
  **/
 export const getStartingSearchIndexToFetchLatestAddresses = (addressData) => {
     const addresses = keys(addressData);
-    return addresses.length ? addresses.length : 0;
+    return size(addresses) ? addresses.length - 1 : 0;
 };
 
 /**
@@ -331,7 +331,7 @@ export const getBalancesSync = (addresses, addressData) => {
  *
  *   @method getLatestAddresses
  *   @param {string} seed - Seed string
- *   @param {string} index - Index to start generating addresses from
+ *   @param {number} index - Index to start generating addresses from
  *   @returns {array} - Array of latest used addresses
  **/
 
@@ -349,30 +349,52 @@ export const getLatestAddresses = (seed, index) => {
 };
 
 /**
- *   Takes current address data as input and adds latest used addresses
+ *   Takes address data and returns the latest address
+ *
+ *   @method getLatestAddress
+ *   @param {string} seed - Seed string
+ *   @param {string} existingAccountData - existingAccountData from store
+ *   @returns {object} - Updated account data data including latest used addresses
+ **/
+export const getLatestAddress = (addressData) => {
+    const address = findKey(addressData, (addressObject) => addressObject.index === keys(addressData).length - 1);
+    return address;
+};
+
+/**
+ *   Takes current account data as input and adds latest used addresses
  *
  *   @method syncAddresses
  *   @param {string} seed - Seed string
- *   @param {string} currentAddressData - currentAddressData from store
- *   @returns {object} - Updated address data including latest used addresses
+ *   @param {string} accountData - existing account data
+ *   @returns {object} - Updated account data data including latest used addresses
  **/
 
-export const syncAddresses = (seed, existingAccountData) => {
-    const thisAccountDataCopy = cloneDeep(existingAccountData);
-    const addressSearchIndex = getStartingSearchIndexToFetchLatestAddresses(thisAccountDataCopy.addresses);
-    return getLatestAddresses(seed, addressSearchIndex).then((newAddresses) => {
+export const syncAddresses = (seed, accountData, addNewAddress = false) => {
+    const thisAccountDataCopy = cloneDeep(accountData);
+    let index = getStartingSearchIndexToFetchLatestAddresses(thisAccountDataCopy.addresses);
+    return getLatestAddresses(seed, index).then((newAddresses) => {
         // Remove unused address
-        newAddresses.pop();
-        const newAddressesFormatted = reduce(
-            newAddresses,
-            (acc, address, index) => {
-                const i = index + addressSearchIndex;
-                acc[address] = { index: i, balance: 0, spent: false };
-                return acc;
-            },
-            {},
-        );
-        thisAccountDataCopy.addresses = merge(thisAccountDataCopy.addresses, newAddressesFormatted);
+        if (!addNewAddress) {
+            newAddresses.pop();
+        }
+        // If no new addresses return
+        if (newAddresses.length === 0) {
+            return accountData;
+        }
+        const updatedAddresses = cloneDeep(thisAccountDataCopy.addresses);
+        newAddresses.forEach((newAddress) => {
+            // In case the newly created address is not part of the addresses object
+            // Add that as a key with a 0 balance.
+            if (size(updatedAddresses) === 0) {
+                updatedAddresses[newAddress] = { index, balance: 0, spent: false };
+                index += 1;
+            } else if (!(newAddress in thisAccountDataCopy.addresses)) {
+                index += 1;
+                updatedAddresses[newAddress] = { index, balance: 0, spent: false };
+            }
+        });
+        thisAccountDataCopy.addresses = updatedAddresses;
         return thisAccountDataCopy;
     });
 };

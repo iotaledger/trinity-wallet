@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 import { translate } from 'react-i18next';
@@ -140,10 +140,20 @@ class Chart extends PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        getPriceForCurrency: PropTypes.func.isRequired,
     };
 
     render() {
-        const { priceData, chartData, theme, setCurrency, setTimeframe, getPriceFormat, t } = this.props;
+        const {
+            t,
+            priceData,
+            chartData,
+            theme,
+            setCurrency,
+            setTimeframe,
+            getPriceFormat,
+            getPriceForCurrency,
+        } = this.props;
 
         const textColor = { color: theme.secondaryBackgroundColor };
         const borderColor = { borderColor: theme.secondaryBackgroundColor };
@@ -163,7 +173,8 @@ class Chart extends PureComponent {
                     </View>
                     <View style={styles.priceContainer}>
                         <Text style={[styles.iotaPrice, textColor]}>
-                            {getChartCurrencySymbol(priceData.currency)} {getPriceFormat(priceData.price)} / Mi
+                            {getChartCurrencySymbol(priceData.currency)}{' '}
+                            {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
                         </Text>
                     </View>
                     <View style={[styles.buttonContainer, borderColor]}>

@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { iota } from 'iota-wallet-shared-modules/libs/iota';
-import { Image, View, Text, StyleSheet, TouchableOpacity, FlatList, Clipboard } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-native';
+import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
@@ -158,12 +159,12 @@ export class ViewAddresses extends Component {
     }
 
     renderAddresses() {
-        const { secondaryBackgroundColor } = this.props;
+        const { secondaryBackgroundColor, t } = this.props;
         const addresses = this.prepAddresses();
         const noAddresses = addresses.length === 0;
 
         return (
-            <FlatList
+            <OptimizedFlatList
                 contentContainerStyle={noAddresses ? styles.flatList : null}
                 data={addresses}
                 initialNumToRender={10} // TODO: Should be dynamically computed.
@@ -172,7 +173,9 @@ export class ViewAddresses extends Component {
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
                     <View style={styles.noAddressesContainer}>
-                        <Text style={[styles.noAddresses, { color: secondaryBackgroundColor }]}>NO ADDRESSES</Text>
+                        <Text style={[styles.noAddresses, { color: secondaryBackgroundColor }]}>
+                            {t('noAddresses')}
+                        </Text>
                     </View>
                 }
             />
@@ -205,7 +208,7 @@ export class ViewAddresses extends Component {
                     {addresses.length > 0 && (
                         <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
                             <Text style={styles.spentText}>ABC</Text>
-                            <Text style={[styles.balanceText, textColor]}> = Spent</Text>
+                            <Text style={[styles.balanceText, textColor]}> = {t('spent')}</Text>
                         </View>
                     )}
                 </View>
