@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
         flexDirection: 'row',
-        borderWidth: height / 2000,
+        borderWidth: height / 1000,
         borderRadius: GENERAL.borderRadiusSmall,
-        paddingHorizontal: width / 40,
+        paddingHorizontal: width / 50,
         paddingVertical: height / 110,
     },
     button: {

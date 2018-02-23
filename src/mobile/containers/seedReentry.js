@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     topContainer: {
         flex: 0.5,
         paddingTop: height / 22,
+        justifyContent: 'flex-start',
     },
     midContainer: {
         flex: 3.7,
@@ -128,6 +129,8 @@ class SeedReentry extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
                 animated: false,
             });
@@ -138,6 +141,13 @@ class SeedReentry extends Component {
 
     onBackPress() {
         this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
+            },
             animated: false,
         });
     }
@@ -150,53 +160,49 @@ class SeedReentry extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
-                        <View style={styles.container}>
-                            <View style={styles.topContainer}>
-                                <View style={styles.logoContainer}>
-                                    <Image source={iotaImagePath} style={styles.iotaLogo} />
-                                </View>
+                        <View style={styles.topContainer}>
+                            <View style={styles.logoContainer}>
+                                <Image source={iotaImagePath} style={styles.iotaLogo} />
                             </View>
-                            <View style={styles.midContainer}>
-                                <View style={{ flex: 0.5 }} />
-                                <CustomTextInput
-                                    label={t('global:seed')}
-                                    onChangeText={(text) => this.setState({ seed: text })}
-                                    containerStyle={{ width: width / 1.2 }}
-                                    maxLength={MAX_SEED_LENGTH}
-                                    autoCapitalize={'characters'}
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    onSubmitEditing={() => this.onDonePress()}
-                                    secondaryBackgroundColor={secondaryBackgroundColor}
-                                    negativeColor={negativeColor}
-                                    value={seed}
-                                />
-                                <View style={{ flex: 0.3 }} />
-                                <InfoBox
-                                    text={
-                                        <View>
-                                            <Text style={[styles.infoTextTop, textColor]}>{t('thisIsACheck')}</Text>
-                                            <Text style={[styles.infoTextBottom, textColor]}>
-                                                {t('ifYouHaveNotSaved')}
-                                            </Text>
-                                        </View>
-                                    }
-                                    secondaryBackgroundColor={secondaryBackgroundColor}
-                                />
-                                <View style={{ flex: 0.5 }} />
-                            </View>
-                            <View style={styles.bottomContainer}>
-                                <OnboardingButtons
-                                    onLeftButtonPress={() => this.onBackPress()}
-                                    onRightButtonPress={() => this.onDonePress()}
-                                    leftText={t('global:back')}
-                                    rightText={t('global:done')}
-                                />
-                            </View>
+                        </View>
+                        <View style={styles.midContainer}>
+                            <View style={{ flex: 0.5 }} />
+                            <CustomTextInput
+                                label={t('global:seed')}
+                                onChangeText={(text) => this.setState({ seed: text })}
+                                containerStyle={{ width: width / 1.2 }}
+                                maxLength={MAX_SEED_LENGTH}
+                                autoCapitalize={'characters'}
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
+                                onSubmitEditing={() => this.onDonePress()}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                negativeColor={negativeColor}
+                                value={seed}
+                            />
+                            <View style={{ flex: 0.3 }} />
+                            <InfoBox
+                                text={
+                                    <View>
+                                        <Text style={[styles.infoTextTop, textColor]}>{t('thisIsACheck')}</Text>
+                                        <Text style={[styles.infoTextBottom, textColor]}>{t('ifYouHaveNotSaved')}</Text>
+                                    </View>
+                                }
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                            />
+                            <View style={{ flex: 0.5 }} />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <OnboardingButtons
+                                onLeftButtonPress={() => this.onBackPress()}
+                                onRightButtonPress={() => this.onDonePress()}
+                                leftText={t('global:back')}
+                                rightText={t('global:done')}
+                            />
                         </View>
                     </View>
                 </TouchableWithoutFeedback>

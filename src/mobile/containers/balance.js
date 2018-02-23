@@ -19,6 +19,7 @@ import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -46,7 +47,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     fiatBalance: {
-        paddingTop: height / 150,
+        paddingTop: isAndroid ? null : height / 200,
+        paddingBottom: isAndroid ? height / 200 : null,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',

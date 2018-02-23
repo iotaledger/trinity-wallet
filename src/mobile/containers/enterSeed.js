@@ -127,7 +127,8 @@ class EnterSeed extends React.Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: COLORS.backgroundGreen,
+                    drawUnderStatusBar: true,
+                    statusBarColor: COLORS.backgroundGreen,
                 },
                 animated: false,
             });
@@ -208,7 +209,7 @@ class EnterSeed extends React.Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
                 <View style={styles.container}>
-                    <StatusBar barStyle="light-content" />
+                    <StatusBar barStyle="light-content" backgroundColor={COLORS.backgroundGreen} />
                     <View style={styles.topContainer}>
                         <View style={styles.logoContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />

@@ -145,10 +145,13 @@ class Loading extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundColor: this.props.backgroundColor,
+                        statusBarColor: this.props.backgroundColor,
+                        drawUnderStatusBar: true,
                     },
                 },
                 appStyle: {
                     orientation: 'portrait',
+                    keepStyleAcrossPush: false,
                 },
             });
         }
@@ -185,7 +188,7 @@ class Loading extends Component {
         if (firstUse || addingAdditionalAccount) {
             return (
                 <View style={[styles.container, { backgroundColor }]}>
-                    <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                    <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                     <View style={{ flex: 1 }} />
                     <View style={styles.animationContainer}>
                         <View>
@@ -201,14 +204,13 @@ class Loading extends Component {
                     </View>
                     <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: height / 15 }}>
                         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
                                 <View style={{ alignItems: 'flex-start', width: width / 30 }}>
                                     <Text style={[styles.infoText, textColor]}>{this.state.elipsis}</Text>
                                 </View>
                             </View>
-
-                            <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
                         </View>
                     </View>
                 </View>
@@ -217,7 +219,7 @@ class Loading extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <View style={styles.animationContainer}>
                     <View>
                         <LottieView
