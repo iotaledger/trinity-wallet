@@ -214,7 +214,10 @@ class FingerprintEnable extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <StatefulDropdownAlert />
+                    <StatefulDropdownAlert
+                        textColor={secondaryBackgroundColor}
+                        backgroundColor={this.props.backgroundColor}
+                    />
                 </View>
             </TouchableWithoutFeedback>
         );

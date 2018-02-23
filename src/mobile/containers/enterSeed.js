@@ -266,7 +266,7 @@ class EnterSeed extends React.Component {
                             rightButtonTestID="enterSeed-next"
                         />
                     </View>
-                    <StatefulDropdownAlert />
+                    <StatefulDropdownAlert textColor={'white'} backgroundColor={COLORS.backgroundGreen} />
                     <Modal
                         animationIn={'bounceInUp'}
                         animationOut={'bounceOut'}

@@ -7,8 +7,6 @@ import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from '../util/dimensions';
 
-const StatusBarDefaultBarStyle = 'light-content';
-
 const styles = StyleSheet.create({
     dropdownTitle: {
         fontSize: width / 25.9,
@@ -46,6 +44,8 @@ class StatefulDropdownAlert extends Component {
         alerts: PropTypes.object.isRequired,
         disposeOffAlert: PropTypes.func.isRequired,
         closeInterval: PropTypes.number,
+        backgroundColor: PropTypes.string.isRequired,
+        textColor: PropTypes.string.isRequired,
     };
 
     static defaultProps = {
@@ -71,10 +71,13 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
+        const { textColor, backgroundColor } = this.props;
         const closeAfter = closeInterval;
+        const statusBarStyle = textColor === 'white' ? 'light-content' : 'dark-content';
+
         return (
             <DropdownAlert
-                ref={ref => (this.dropdown = ref)}
+                ref={(ref) => (this.dropdown = ref)}
                 elevation={120}
                 successColor="#009f3f"
                 errorColor="#A10702"
@@ -82,10 +85,12 @@ class StatefulDropdownAlert extends Component {
                 defaultTextContainer={styles.dropdownTextContainer}
                 messageStyle={styles.dropdownMessage}
                 imageStyle={styles.dropdownImage}
-                inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                inactiveStatusBarStyle={statusBarStyle}
+                inactiveStatusBarBackgroundColor={backgroundColor}
                 onCancel={this.props.disposeOffAlert}
                 onClose={this.props.disposeOffAlert}
                 closeInterval={closeAfter}
+                translucent
             />
         );
     }
