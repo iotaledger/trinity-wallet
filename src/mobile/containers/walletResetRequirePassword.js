@@ -208,7 +208,10 @@ class WalletResetRequirePassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert
+                    textColor={secondaryBackgroundColor}
+                    backgroundColor={this.props.backgroundColor}
+                />
             </View>
         );
     }

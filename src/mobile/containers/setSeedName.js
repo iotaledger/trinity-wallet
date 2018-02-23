@@ -282,7 +282,7 @@ export class SetSeedName extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
             </View>
         );
     }

@@ -237,7 +237,7 @@ class SaveYourSeed extends Component {
                         rightText={t('global:done')}
                     />
                 </View>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
             </View>
         );
     }
