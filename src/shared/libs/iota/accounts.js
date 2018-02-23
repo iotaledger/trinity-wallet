@@ -37,7 +37,7 @@ import {
     getAllAddresses,
     formatAddressesAndBalance,
     markAddressSpend,
-    getUnspentAddresses,
+    getUnspentAddressesSync,
     markAddressesAsSpentSync,
     getSpentAddressesWithPendingTransfersSync,
 } from './addresses';
@@ -58,7 +58,7 @@ import {
 const organizeAccountInfo = (accountName, data) => {
     const organizedData = {
         accountName,
-        transfers: formatTransfers(data.transfers, data.addresses),
+        transfers: formatTransfers(data.transfers),
         balance: 0,
         addresses: {},
         unconfirmedBundleTails: {},
@@ -85,16 +85,16 @@ const organizeAccountInfo = (accountName, data) => {
 /**
  *   Takes in account object, get unspent addresses from all addresses, fetch transaction hashes associated with those
  *   and assigns them to the account object under a prop name txHashesForUnspentAddresses.
- *  
+ *
  *   IMPORTANT: This function should always be utilized after the account is sycnced.
- *   
- *   @method mapUnspentAddressesHashesToAccount
+ *
+ *   @method mapTransactionHashesForUnspentAddressesToState
  *   @param {object} account
  *
  *   @returns {Promise} - Resolves account object.
  **/
 export const mapTransactionHashesForUnspentAddressesToState = (account) => {
-    const unspentAddresses = getUnspentAddresses(account.addresses);
+    const unspentAddresses = getUnspentAddressesSync(account.addresses);
 
     if (isEmpty(unspentAddresses)) {
         return Promise.resolve(assign({}, account, { txHashesForUnspentAddresses: [] }));
@@ -109,9 +109,9 @@ export const mapTransactionHashesForUnspentAddressesToState = (account) => {
  *   Takes in account object, get spent addresses with pending transfers,
  *   fetch transaction hashes associated with those
  *   and assigns them to the account object under a prop name pendingTxHashesForSpentAddresses.
- *  
+ *
  *   IMPORTANT: This function should always be utilized after the account is sycnced.
- *   
+ *
  *   @method mapPendingTransactionHashesForSpentAddressesToState
  *   @param {object} account
  *
@@ -260,9 +260,9 @@ export const syncAccount = (seed, existingAccountState) => {
             return size(diff)
                 ? syncTransfers(diff, thisStateCopy)
                 : Promise.resolve({
-                    transfers: thisStateCopy.transfers,
-                    newTransfers: [],
-                });
+                      transfers: thisStateCopy.transfers,
+                      newTransfers: [],
+                  });
         })
         .then(({ transfers, newTransfers }) => {
             thisStateCopy.transfers = transfers;
@@ -335,7 +335,7 @@ export const updateAccount = (name, newTransfer, accountState, isValueTransfer) 
     const transfers = [...[newTransferBundleWithPersistence], ...accountState.transfers];
 
     // Turn on spent flag for addresses that were used in this transfer
-    const addresses = markAddressSpend([newTransfer], accountState.addresses);
+    const addresses = markAddressesAsSpentSync([newTransfer], accountState.addresses);
 
     let unconfirmedBundleTails = accountState.unconfirmedBundleTails;
 
