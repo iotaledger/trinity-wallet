@@ -332,24 +332,6 @@ export const formatTransfers = (transfers, addresses) => {
     return sortedTransfers;
 };
 
-export const addTransferValues = (transfers, addresses) => {
-    // Add transaction value property to each transaction object
-    return transfers.map((arr) => {
-        /* eslint-disable no-param-reassign */
-        arr[0].transferValue = 0;
-        arr.map((obj) => {
-            if (addresses.includes(obj.address)) {
-                arr[0].transferValue += obj.value;
-            }
-
-            /* eslint-enable no-param-reassign */
-            return obj;
-        });
-
-        return arr;
-    });
-};
-
 /**
  *   Takes in transfer bundles and only keep a single copy
  *
@@ -534,6 +516,7 @@ export const syncTransfers = (diff, accountState) => {
                 }
             });
 
+            // Find tail transactions for non-tail bundle hashes
             return findTransactionObjectsAsync({ bundles: Array.from(nonTailBundleHashes) });
         })
         .then((bundleObjects) => {
