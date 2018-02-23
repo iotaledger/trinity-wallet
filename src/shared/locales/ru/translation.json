@@ -261,7 +261,7 @@
         "paste": "Вставить",
         "selectAll": "Выбрать всё",
         "securitySettings": "Настройки безопасности",
-        "fingerprint": "Аутентификация на основе отпечатков пальцев"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите Ваш пароль для сброса настроек кошелька.",
