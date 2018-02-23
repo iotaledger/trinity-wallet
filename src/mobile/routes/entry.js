@@ -6,6 +6,7 @@ import { setRandomlySelectedNode } from 'iota-wallet-shared-modules/actions/sett
 import { changeIotaNode, getRandomNode } from 'iota-wallet-shared-modules/libs/iota';
 import registerScreens from './navigation';
 import i18 from '../i18next';
+import COLORS from '../theme/Colors';
 
 const renderInitialScreen = () => {
     Navigation.startSingleScreenApp({
@@ -14,11 +15,15 @@ const renderInitialScreen = () => {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                drawUnderStatusBar: true,
+                statusBarColor: COLORS.backgroundGreen,
+                screenBackgroundColor: COLORS.backgroundGreen,
             },
             overrideBackPress: true,
         },
         appStyle: {
             orientation: 'portrait',
+            keepStyleAcrossPush: false,
         },
     });
 };

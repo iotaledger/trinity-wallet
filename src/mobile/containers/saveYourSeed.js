@@ -120,6 +120,8 @@ class SaveYourSeed extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -127,6 +129,13 @@ class SaveYourSeed extends Component {
 
     onBackPress() {
         this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
+            },
             animated: false,
         });
     }
@@ -138,6 +147,8 @@ class SaveYourSeed extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -149,6 +160,8 @@ class SaveYourSeed extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -160,6 +173,8 @@ class SaveYourSeed extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -174,7 +189,7 @@ class SaveYourSeed extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
@@ -222,7 +237,7 @@ class SaveYourSeed extends Component {
                         rightText={t('global:done')}
                     />
                 </View>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
             </View>
         );
     }
