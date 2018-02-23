@@ -1,10 +1,8 @@
 import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
-import get from 'lodash/get';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
-import includes from 'lodash/includes';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
@@ -208,22 +206,22 @@ export const getUnspentAddresses = (addressData) => {
 };
 
 /**
- *   Accepts valid pending transfers and address data.
- *   Finds all spent addresses with valid pending transfers
+ *   Accepts pending transfers and address data.
+ *   Finds all spent addresses with pending transfers.
  *
- *   IMPORTANT: This function should always be utilized after the account is syenced.
+ *   IMPORTANT: This function should always be utilized after the account is sycnced.
  *
  *   @method getSpentAddressesWithPendingTransfersSync
- *   @param {array} validPendingTransfers - Valid unconfirmed transfers
+ *   @param {array} pendingTransfers - Unconfirmed transfers
  *   @param {object} addressData
  *   @returns {array} - Array of spent addresses with pending transfers
  **/
-export const getSpentAddressesWithPendingTransfersSync = (validPendingTransfers, addressData) => {
+export const getSpentAddressesWithPendingTransfersSync = (pendingTransfers, addressData) => {
     const spentAddresses = pickBy(addressData, (addressObject) => addressObject.spent);
 
     const spentAddressesWithPendingTransfers = new Set();
 
-    each(validPendingTransfers, (pendingBundle) => {
+    each(pendingTransfers, (pendingBundle) => {
         each(pendingBundle, (transactionObject) => {
             if (
                 transactionObject.address in spentAddresses &&
