@@ -1,6 +1,8 @@
 import get from 'lodash/get';
+import some from 'lodash/some';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
+import omitBy from 'lodash/omitBy';
 import filter from 'lodash/filter';
 import { ActionTypes } from '../actions/account';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
@@ -61,6 +63,11 @@ const account = (
             return {
                 ...state,
                 accountInfo: omit(state.accountInfo, action.payload),
+                txHashesForUnspentAddresses: omit(state.txHashesForUnspentAddresses, action.payload),
+                pendingTxHashesForSpentAddresses: omit(state.pendingTxHashesForSpentAddresses, action.payload),
+                unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
+                    some(tailTransactions, (tx) => tx.account === action.payload),
+                ),
                 seedNames: filter(state.seedNames, (name) => name !== action.payload),
                 seedCount: state.seedCount - 1,
             };
