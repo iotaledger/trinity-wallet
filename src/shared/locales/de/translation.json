@@ -4,7 +4,7 @@
         "cancel": "ABBRECHEN",
         "continue?": "Bist du sicher, dass du fortfahren möchtest?",
         "noTransactions": "KEIN AKTUELLER VERLAUF",
-        "refresh": "REFRESH",
+        "refresh": "AKTUALISIEREN",
         "qr": "QR",
         "balanceError": "Nicht genügend Guthaben",
         "balanceErrorMessage": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
@@ -75,9 +75,9 @@
         "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
         "cannotSendToOwn": "Sende an eigene Adresse...",
         "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWait": "Bitte warten",
+        "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
+        "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Überweisungen verwendet. Bitte warte bis diese Überweisungen bestätigt sind und versuche es erneut."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -175,8 +175,8 @@
         "generateNewAddress": "NEUE ADRESSE",
         "message": "Optionale Nachricht",
         "removeMessage": "NACHRICHT LÖSCHEN",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "KEINE ADRESSEN",
+        "spent": "Ausgegeben"
     },
     "saveYourSeed": {
         "seedCleared": "Seed gelöscht",
