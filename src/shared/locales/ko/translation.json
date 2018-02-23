@@ -4,7 +4,7 @@
         "cancel": "취소",
         "continue?": "계속하시겠습니까?",
         "noTransactions": "최근 기록 없음",
-        "refresh": "REFRESH",
+        "refresh": "새로고침",
         "qr": "QR",
         "balanceError": "잔고 부족",
         "balanceErrorMessage": "IOTA 잔고가 부족하여 거래를 완료할 수 없습니다.",
@@ -75,8 +75,8 @@
         "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}",
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWait": "잠시 기다려 주세요",
+        "pleaseWaitExplanation": "트리니티가 다른 작업을 수행하는 중입니다. 잠시 후 다시 시도해 주십시오.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
@@ -175,7 +175,7 @@
         "generateNewAddress": "새 주소",
         "message": "메시지 (선택)",
         "removeMessage": "메시지 삭제하기",
-        "noAddresses": "NO ADDRESSES",
+        "noAddresses": "주소 없음",
         "spent": "Spent"
     },
     "saveYourSeed": {
