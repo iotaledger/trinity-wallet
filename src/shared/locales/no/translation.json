@@ -261,7 +261,7 @@
         "paste": "Lim inn",
         "selectAll": "Velg alt",
         "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
