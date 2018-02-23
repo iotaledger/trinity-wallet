@@ -36,7 +36,6 @@ import {
 import {
     getAllAddresses,
     formatAddressesAndBalance,
-    markAddressSpend,
     getUnspentAddressesSync,
     markAddressesAsSpentSync,
     getSpentAddressesWithPendingTransfersSync,

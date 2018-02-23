@@ -140,6 +140,57 @@ describe('Reducer: account', () => {
 
             expect(newState.seedCount).to.eql(expectedState.seedCount);
         });
+
+        it('should omit "payload" prop in action from "txHashesForUnspentAddresses" in state', () => {
+            const initialState = {
+                txHashesForUnspentAddresses: { foo: {} },
+            };
+
+            const action = actions.removeAccount('foo');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                txHashesForUnspentAddresses: {},
+            };
+
+            expect(newState.txHashesForUnspentAddresses).to.eql(expectedState.txHashesForUnspentAddresses);
+        });
+
+        it('should omit "payload" prop in action from "pendingTxHashesForSpentAddresses" in state', () => {
+            const initialState = {
+                pendingTxHashesForSpentAddresses: { foo: {} },
+            };
+
+            const action = actions.removeAccount('foo');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                pendingTxHashesForSpentAddresses: {},
+            };
+
+            expect(newState.pendingTxHashesForSpentAddresses).to.eql(expectedState.pendingTxHashesForSpentAddresses);
+        });
+
+        it('should omit all keys from "unconfrimedBundleTails" that have any "account" prop equal to "payload" prop in action', () => {
+            const initialState = {
+                unconfirmedBundleTails: {
+                    foo: [{ account: 'account-one' }, { account: 'account-one' }],
+                    baz: [{ account: 'account-one' }, { account: 'account-one' }],
+                    bar: [{ account: 'account-two' }, { account: 'account-two' }],
+                },
+            };
+
+            const action = actions.removeAccount('account-one');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                unconfirmedBundleTails: {
+                    bar: [{ account: 'account-two' }, { account: 'account-two' }],
+                },
+            };
+
+            expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
+        });
     });
 
     describe('SET_FIRST_USE', () => {
