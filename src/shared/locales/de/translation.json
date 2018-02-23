@@ -56,7 +56,7 @@
         "somethingWentWrongExplanation": "Bitte starte die App neu.",
         "node": "Server",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
-        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
+        "cannotPerformActionExplanation": "Öffne die erweiterten Einstellungen, um das Wallet zurückzusetzen.",
         "attachToTangleUnavailable": "Anhängen an den Tangle nicht möglich",
         "attachToTangleUnavailableExplanation": "Anhängen an den Tangle ist mit dem ausgewählten Server nicht möglich.",
         "wallet": "Wallet",
@@ -272,13 +272,13 @@
         "okay": "Okay. Lass uns dein Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
-        "explanation": "<0><0>Du kannst ihn verwenden um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Guthaben zuzugreifen. Aber wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
+        "explanation": "<0><0>Du kannst ihn verwenden, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Guthaben zuzugreifen. Aber wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
         "thankYou": "Vielen Dank für das Herunterladen des IOTA Wallets.",
         "weWillSpend": "Dein Wallet wird in den nächsten Minuten eingerichtet.",
-        "reminder": "Wir raten dazu, den Prozess vollständig zu durchlaufen."
+        "reminder": "Du könntest in Versuchung geraten, einige Schritte zu überspringen. Wir raten dir aber dringend dazu, den Prozess vollständig zu durchlaufen."
     },
     "writeSeedDown": {
         "yourSeedIs": "Dein Seed besteht aus {{maxSeedLength}} Zeichen, gelesen von links nach rechts.",
