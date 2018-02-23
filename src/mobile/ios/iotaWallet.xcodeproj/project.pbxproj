@@ -281,6 +281,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNIsDeviceRooted;
 		};
+		607DB7A42040A4F5004FF321 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 604AFFAB1FAF8B71003CBDFE /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BD358D59D9AD68B344E540D3FE37870D;
+			remoteInfo = "UIDevice-PasscodeStatus";
+		};
 		60D2988C201A85F800143895 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -876,6 +883,7 @@
 				604AFFB81FAF8B71003CBDFE /* libPods-iotaWallet-tvOS.a */,
 				604AFFBA1FAF8B71003CBDFE /* libPods-iotaWallet-tvOSTests.a */,
 				604AFFBC1FAF8B71003CBDFE /* libPods-iotaWalletTests.a */,
+				607DB7A52040A4F5004FF321 /* libUIDevice-PasscodeStatus.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1654,6 +1662,13 @@
 			remoteRef = 607DB63820365F7F004FF321 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		607DB7A52040A4F5004FF321 /* libUIDevice-PasscodeStatus.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libUIDevice-PasscodeStatus.a";
+			remoteRef = 607DB7A42040A4F5004FF321 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		60F4FC781FD50249001F5A1E /* libRNDeviceInfo.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2375,6 +2390,7 @@
 					"$(BUILT_PRODUCTS_DIR)/usr/local/include/**",
 					"${PODS_DEV_ROOT}/React/**",
 					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
+					"${PODS_DEV_ROOT}/UIDevice-PasscodeStatus/**",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -2417,6 +2433,7 @@
 					"${PODS_DEV_ROOT}/React/**",
 					"$(BUILT_PRODUCTS_DIR)/usr/local/include/**",
 					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
+					"${PODS_DEV_ROOT}/UIDevice-PasscodeStatus/**",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;

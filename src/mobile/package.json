@@ -59,7 +59,7 @@
     "react-native-git-upgrade": "^0.2.7",
     "react-native-html-to-pdf": "^0.4.0",
     "react-native-http": "github:tradle/react-native-http#834492d",
-    "react-native-is-device-rooted": "https://github.com/rajivshah3/react-native-isDeviceRooted",
+    "react-native-is-device-rooted": "https://github.com/rajivshah3/react-native-isDeviceRooted#no-islocked",
     "react-native-keep-awake": "^2.0.6",
     "react-native-keyboard-aware-scroll-view": "^0.4.1",
     "react-native-keychain": "2.0.0-rc",
