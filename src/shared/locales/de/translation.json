@@ -272,7 +272,7 @@
         "okay": "Okay. Lass uns dein Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
-        "explanation": "<0><0>Du kannst ihn benutzen, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Geld zuzugreifen. Aber, wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
+        "explanation": "<0><0>Du kannst ihn verwenden um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Guthaben zuzugreifen. Aber wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
@@ -405,6 +405,6 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Änderung",
-        "volume": "Volumen (24h)"
+        "volume": "Volumen (24Std)"
     }
 }
