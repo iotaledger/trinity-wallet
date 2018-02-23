@@ -41,7 +41,6 @@ const getProps = (overrides) =>
             setSendAddressField: noop,
             setSendAmountField: noop,
             setSendMessageField: noop,
-            clearSendFields: noop,
             setSendDenomination: noop,
             denomination: 'i',
         },
