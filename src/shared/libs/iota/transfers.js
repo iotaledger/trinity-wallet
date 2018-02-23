@@ -321,9 +321,9 @@ export const getFirstConsistentTail = (tails, idx) => {
         .catch(() => false);
 };
 
-export const formatTransfers = (transfers, addresses) => {
+export const formatTransfers = (transfers) => {
     // Order transfers from oldest to newest
-    let sortedTransfers = transfers.sort((a, b) => {
+    return transfers.slice().sort((a, b) => {
         if (a[0].timestamp > b[0].timestamp) {
             return -1;
         }
@@ -332,11 +332,6 @@ export const formatTransfers = (transfers, addresses) => {
         }
         return 0;
     });
-
-    // add transaction values to transactions
-    sortedTransfers = addTransferValues(sortedTransfers, addresses);
-
-    return sortedTransfers;
 };
 
 /**
