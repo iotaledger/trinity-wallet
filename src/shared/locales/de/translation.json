@@ -160,7 +160,7 @@
         "individualLetters": "Drücke beliebige Buchstaben, um sie zufällig neu zu setzen."
     },
     "onboardingComplete": {
-        "walletReady": "Das Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, benutze das Einstellungsmenü."
+        "walletReady": "Dein Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen möchtest, verwende das Einstellungsmenü."
     },
     "paperWallet": {
         "clickToPrint": "Klicke die Schaltfläche unten, um deinen Seed als Paper-Wallet auszudrucken.",
