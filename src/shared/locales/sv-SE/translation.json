@@ -4,6 +4,7 @@
         "cancel": "AVBRYT",
         "continue?": "Är du säker på att du vill fortsätta?",
         "noTransactions": "Ingen historik",
+        "refresh": "UPPDATERA",
         "qr": "QR",
         "balanceError": "Otillräckligt saldo",
         "balanceErrorMessage": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
@@ -46,7 +47,7 @@
         "yes": "JA",
         "no": "NEJ",
         "password": "Lösenord",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Lösenord eller fingeravtryck",
         "unrecognisedPassword": "Fel lösenord",
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
         "syncInProgress": "Synkronisering pågår",
@@ -72,8 +73,11 @@
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
         "autopromoting": "Auto-promotar överföring",
         "autopromotingExplanation": "Promotar transaktion med hashen {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "Skickar till egen adress",
+        "cannotSendToOwnExplanation": "Du kan inte göra en värdetransaktion till en av dina egna adresser.",
+        "pleaseWait": "Var god vänta",
+        "pleaseWaitExplanation": "Trinity utför en annan funktion. Vänta och försök igen.",
+        "pleaseWaitTransferExplanation": "Ditt tillgängliga saldo används för närvarande i andra transaktioner. Var god vänta tills en av de är godkända och försök igen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
         "generateNewAddress": "NY ADRESS",
         "message": "Valfritt meddelande",
-        "removeMessage": "TA BORT MEDDELANDE"
+        "removeMessage": "TA BORT MEDDELANDE",
+        "noAddresses": "INGA ADRESSER",
+        "spent": "Förbrukat"
     },
     "saveYourSeed": {
         "seedCleared": "Seed rensad",
@@ -196,11 +202,11 @@
         "amount": "Belopp",
         "max": "MAX",
         "message": "Meddelande",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "Ogiltigt meddelande",
+        "invalidMessageExplanation": "Ditt meddelande innehåller ogiltiga tecken.",
         "send": "SKICKA",
         "invalidAmount": "Felaktigt belopp angivet",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Vänligen ange ett giltigt transaktionsbelopp. Det kan vara hjälpsamt att titta på IOTA enhetsförklaringen längst ner på sidan.",
         "maximumSelected": "MAXIMALA belopp valt",
         "iotaUnits": "Förklaring av IOTA enheter",
         "sendMax": "SKICKA MAX"
@@ -255,7 +261,7 @@
         "paste": "Klistra in",
         "selectAll": "Välj alla",
         "securitySettings": "Säkerhetsinställningar",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ange ditt lösenord för att återställa plånboken.",
@@ -283,8 +289,8 @@
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "SKICKAR",
+        "receive": "TAR EMOT"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -361,44 +367,44 @@
         "warning": "<0><0>All data i din plånbok inklusive dina </0><1>seeds, lösenord,</1><2> och </2><3>annan kontoinformation</3><4> kommer att förloras.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "instructionsEnable": "Rör din enhets fingeravtrycksläsare för att aktivera fingeravtryck autentisering.",
+        "instructionsDisable": "Rör din enhets fingeravtrycksläsare för att avaktivera fingeravtryck autentisering.",
+        "fingerprintAuthEnabled": "Fingeravtryck autentisering aktiverad",
+        "fingerprintAuthEnabledExplanation": "Du har framgångsrikt aktiverat fingeravtryck autentisering.",
+        "fingerprintAuthDisabled": "Fingeravtryck autentisering avaktiverad",
+        "fingerprintAuthDisabledExplanation": "Du har framgångsrikt avaktiverat fingeravtryck autentisering.",
+        "fingerprintAuthFailed": "Fingeravtryck autentisering misslyckades",
+        "fingerprintAuthFailedExplanation": "Fingeravtryck autentisering misslyckades. Var god försök igen.",
         "status": "Status",
         "enabled": "Aktiverad",
         "disabled": "Inaktiverad",
         "fingerprintUnavailable": "Fingeravtrycksläsare ej tillgänglig",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "fingerprintUnavailableExplanation": "Din enhet stödjer ej fingeravtryck autentisering eller så har det ej konfigurerats i enhetens inställningar.",
+        "buttonInstructionsDisable": "Tryck på knappen nedan för att avaktivera fingeravtryck autentisering.",
+        "buttonInstructionsEnable": "Tryck på knappen nedan för att aktivera fingeravtryck autentisering.",
+        "instructionsLogin": "Lägg fingret på fingeravtrycksläsaren för att logga in."
     },
     "transferConfirmation": {
         "youAreAbout": "Du kommer att skicka {{contents}} till adressen",
         "aMessage": "ett meddelande"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "wrongCode": "Fel kod",
+        "wrongCodeExplanation": "Koden du angett är inkorrekt.",
+        "emptyCode": "Tom kod",
+        "emptyCodeExplanation": "Var vänlig och ange en kod och försök igen.",
+        "keyCopied": "Nyckel kopierad till urklipp",
+        "keyCopiedExplanation": "Din 2FA nyckel har kopierats till urklipp.",
+        "addKey": "Lägg till denna nyckeln till din 2FA app",
+        "key": "Nyckel",
+        "twoFAEnabled": "2FA är nu aktiverat",
+        "twoFAEnabledExplanation": "Du har aktiverat Två Faktor Autentisering framgångsrikt.",
+        "enterCode": "Ange koden från din 2FA app",
+        "code": "Kod"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "change": "Ändring",
+        "volume": "Volym (24h)"
     }
 }
