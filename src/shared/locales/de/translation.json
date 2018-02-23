@@ -77,7 +77,7 @@
         "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden.",
         "pleaseWait": "Bitte warten",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
-        "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Überweisungen verwendet. Bitte warte bis diese Überweisungen bestätigt sind und versuche es erneut."
+        "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Überweisungen verwendet. Bitte warte, bis diese Überweisungen bestätigt sind, und versuche es erneut."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
