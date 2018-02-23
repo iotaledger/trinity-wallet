@@ -125,6 +125,13 @@ class CopySeedToClipboard extends Component {
         this.props.setCopiedToClipboard(true);
 
         this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
+            },
             animated: false,
         });
     }
@@ -176,7 +183,7 @@ class CopySeedToClipboard extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
                 </View>

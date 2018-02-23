@@ -119,7 +119,13 @@ class Disable2FA extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: false,
             },
         });
     }
