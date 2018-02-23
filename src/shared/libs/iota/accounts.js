@@ -36,7 +36,6 @@ import {
 import {
     getAllAddresses,
     formatAddressesAndBalance,
-    markAddressSpend,
     getUnspentAddressesSync,
     markAddressesAsSpentSync,
     getSpentAddressesWithPendingTransfersSync,
@@ -86,7 +85,7 @@ const organizeAccountInfo = (accountName, data) => {
  *   Takes in account object, get unspent addresses from all addresses, fetch transaction hashes associated with those
  *   and assigns them to the account object under a prop name txHashesForUnspentAddresses.
  *
- *   IMPORTANT: This function should always be utilized after the account is sycnced.
+ *   IMPORTANT: This function should always be utilized after the account is synced.
  *
  *   @method mapTransactionHashesForUnspentAddressesToState
  *   @param {object} account
