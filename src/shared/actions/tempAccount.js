@@ -1,10 +1,6 @@
 import i18next from '../i18next.js';
-import cloneDeep from 'lodash/cloneDeep';
-import size from 'lodash/size';
 import get from 'lodash/get';
 import some from 'lodash/some';
-import last from 'lodash/last';
-import keys from 'lodash/keys';
 import { iota } from '../libs/iota';
 import {
     updateAddresses,
@@ -19,7 +15,6 @@ import { syncAccount } from '../libs/iota/accounts';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { MAX_SEED_LENGTH } from '../libs/util';
-import { getSelectedAccount } from '../selectors/account';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
 /* eslint-disable no-console */
@@ -376,24 +371,24 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
         // Make sure that the address a user is about to send to is not already used.
         // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
         // Omit input preparation in case the address is already spent from.
-        return shouldAllowSendingToAddress([address], (err, shouldAllowSending) => {
-            if (err) {
+        return shouldAllowSendingToAddress([address])
+            .then((shouldAllowSending) => {
+                if (shouldAllowSending) {
+                    return syncAndGetInputs();
+                }
+
+                dispatch(sendTransferError());
+                return dispatch(
+                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
+                );
+            })
+            .catch((err) => {
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     20000,
                     err,
                 );
-            }
-
-            return shouldAllowSending
-                ? syncAndGetInputs()
-                : (() => {
-                      dispatch(sendTransferError());
-                      return dispatch(
-                          generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
-                      );
-                  })();
-        });
+            });
     };
 };
 
