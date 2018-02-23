@@ -179,7 +179,10 @@ class TwoFactorSetupEnterToken extends Component {
                             rightText={t('global:done')}
                         />
                     </View>
-                    <StatefulDropdownAlert />
+                    <StatefulDropdownAlert
+                        textColor={secondaryBackgroundColor}
+                        backgroundColor={this.props.backgroundColor}
+                    />
                 </View>
             </TouchableWithoutFeedback>
         );

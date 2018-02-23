@@ -183,7 +183,10 @@ export class TwoFactorSetupAddKey extends Component {
                         rightText={t('global:next')}
                     />
                 </View>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert
+                    textColor={secondaryBackgroundColor}
+                    backgroundColor={this.props.backgroundColor}
+                />
             </View>
         );
     }

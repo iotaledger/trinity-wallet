@@ -299,7 +299,7 @@ class SetPassword extends Component {
                         {this.renderContent()}
                     </KeyboardAwareScrollView>
                 )}
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor={'white'} backgroundColor={COLORS.backgroundGreen} />
             </View>
         );
     }
