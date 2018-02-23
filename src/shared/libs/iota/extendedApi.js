@@ -107,7 +107,11 @@ const getBundleAsync = (tailTransactionHash) => {
     return new Promise((resolve, reject) => {
         iota.api.getBundle(tailTransactionHash, (err, bundle) => {
             if (err) {
-                reject(err);
+                if (err.message.includes('Invalid Bundle')) {
+                    resolve(null);
+                } else {
+                    reject(err);
+                }
             } else {
                 resolve(bundle);
             }
