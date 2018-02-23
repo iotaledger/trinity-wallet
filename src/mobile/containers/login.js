@@ -228,6 +228,8 @@ class Login extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
             },
             animated: false,
             overrideBackPress: true,
@@ -268,7 +270,7 @@ class Login extends Component {
         const tickImagePath = secondaryBackgroundColor === 'white' ? whiteTickImagePath : blackTickImagePath;
         return (
             <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 {!this.state.changingNode &&
                     !this.state.completing2FA && (
                         <EnterPasswordOnLogin

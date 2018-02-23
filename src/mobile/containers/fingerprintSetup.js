@@ -164,7 +164,13 @@ class FingerprintEnable extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: false,
             },
         });
     }
@@ -182,7 +188,10 @@ class FingerprintEnable extends Component {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, backgroundColor]}>
-                    <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                    <DynamicStatusBar
+                        textColor={secondaryBackgroundColor}
+                        backgroundColor={this.props.backgroundColor}
+                    />
                     <View style={styles.topWrapper}>
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                     </View>

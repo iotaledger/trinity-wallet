@@ -150,6 +150,12 @@ class SetPassword extends Component {
                             navBarHidden: true,
                             navBarTransparent: true,
                             screenBackgroundColor: COLORS.backgroundGreen,
+                            drawUnderStatusBar: true,
+                            statusBarColor: COLORS.backgroundColor,
+                        },
+                        appStyle: {
+                            orientation: 'portrait',
+                            keepStyleAcrossPush: false,
                         },
                         animated: false,
                     });

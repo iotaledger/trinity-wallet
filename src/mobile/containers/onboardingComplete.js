@@ -89,6 +89,8 @@ class OnboardingComplete extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: COLORS.backgroundGreen,
+                drawUnderStatusBar: true,
+                statusBarColor: COLORS.backgroundGreen,
             },
             animated: false,
             overrideBackPress: true,
@@ -100,7 +102,7 @@ class OnboardingComplete extends Component {
 
         return (
             <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
+                <StatusBar barStyle="light-content" backgroundColor={COLORS.backgroundGreen} />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
