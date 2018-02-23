@@ -80,6 +80,13 @@ export const extractTailTransferFromBundle = (bundle) => {
  *   @returns {object} Categorized transactions by confirmed/unconfirmed.
  **/
 export const categorizeTransactionsByPersistence = (tailTransactions, states) => {
+    if (!isArray(states) || !isArray(tailTransactions)) {
+        return {
+            confirmed: {},
+            unconfirmed: {},
+        };
+    }
+
     return reduce(
         tailTransactions,
         (acc, tx, idx) => {
@@ -606,6 +613,18 @@ export const isValidForPromotion = (bundleHash, transfers, addressData) => {
         : Promise.resolve(isValidBundleSync(firstBundle, addressData));
 };
 
+/**
+ *
+ *   with bundle hash is valid or not.
+ *
+ *   @method getHashesDiff
+ *   @param {object} oldTxHashesForUnspentAddresses
+ *   @param {object} newTxHashesForUnspentAddresses
+ *   @param {object} oldPendingTxHashesForSpentAddresses
+ *   @param {object} newPendingTxHashesForSpentAddresses
+ *
+ *   @returns {boolean}
+ **/
 export const getHashesDiff = (
     oldTxHashesForUnspentAddresses,
     newTxHashesForUnspentAddresses,
