@@ -273,9 +273,29 @@ export const manuallySyncAccount = (seed, accountName) => {
  **/
 
 export const getAccountInfo = (seed, accountName, navigator = null) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(accountInfoFetchRequest());
 
+        const existingAccountData = dispatch(prepareAccountInfoForSync(accountName));
+
+        return syncAddresses(seed, existingAccountData)
+            .then((accountData) => {
+                return syncAccount(seed, accountData);
+            })
+            .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
+            .catch((err) => {
+                if (navigator) {
+                    navigator.pop({ animated: false });
+                }
+
+                dispatch(accountInfoFetchError());
+                dispatch(generateAccountInfoErrorAlert(err));
+            });
+    };
+};
+
+export const prepareAccountInfoForSync = (accountName) => {
+    return (dispatch, getState) => {
         const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
         const existingHashes = getExistingUnspentAddressesHashes(
             accountName,
@@ -291,22 +311,8 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             transfers: selectedAccount.transfers,
             unconfirmedBundleTails,
         };
-        return syncAddresses(seed, existingAccountData)
-            .then((newAccountData) => {
-                if (newAccountData) {
-                    return syncAccount(seed, newAccountData);
-                }
-                return syncAccount(seed, existingAccountData);
-            })
-            .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
-            .catch((err) => {
-                if (navigator) {
-                    navigator.pop({ animated: false });
-                }
 
-                dispatch(accountInfoFetchError());
-                dispatch(generateAccountInfoErrorAlert(err));
-            });
+        return existingAccountData;
     };
 };
 
