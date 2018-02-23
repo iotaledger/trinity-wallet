@@ -11,7 +11,11 @@ import {
 } from './account';
 import { replayBundleAsync, promoteTransactionAsync } from '../libs/iota/extendedApi';
 import { getFirstConsistentTail, isValidForPromotion } from '../libs/iota/transfers';
-import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
+import {
+    getSelectedAccount,
+    getTxHashesForUnspentAddresses,
+    getPendingTxHashesForSpentAddresses,
+} from '../selectors/account';
 import { syncAccount } from '../libs/iota/accounts';
 import { rearrangeObjectKeys } from '../libs/util';
 import i18next from '../i18next.js';
@@ -169,40 +173,35 @@ export const fetchChartData = () => {
 };
 
 /**
- *   Poll for updated account information.
- *   - Starts by checking if there are pending transaction hashes. In case there are it would grab persistence on those.
- *   - Checks for latest addresses.
- *   - Grabs balance on latest addresses
- *   - Grabs transaction hashes on all unspent addresses
- *   - Checks if there are new transaction hashes by comparing it with a local copy of transaction hashes.
- *     In case there are new hashes, constructs the bundle and dispatch with latest account information
- *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
+ *   Accepts a user's seed and account name and sync local account state with ledger's.
  *
  *   @method getAccountInfo
  *   @param {string} seed
  *   @param {string} accountName
  *   @returns {function} dispatch
  **/
-
 export const getAccountInfo = (seed, accountName) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
-        const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-        const existingHashes = getExistingUnspentAddressesHashes(
-            accountName,
-            getState().account.unspentAddressesHashes,
-        );
+        const {
+            accountInfo,
+            txHashesForUnspentAddresses,
+            pendingTxHashesForSpentAddresses,
+            unconfirmedBundleTails,
+        } = getState().account;
 
-        const unconfirmedBundleTails = getState().account.unconfirmedBundleTails;
+        const selectedAccount = getSelectedAccount(accountName, accountInfo);
 
         const existingAccountData = {
+            ...selectedAccount,
             accountName,
-            balance: selectedAccount.balance,
-            addresses: selectedAccount.addresses,
-            unspentAddressesHashes: existingHashes,
-            transfers: selectedAccount.transfers,
             unconfirmedBundleTails,
+            txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(accountName, txHashesForUnspentAddresses),
+            pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
+                accountName,
+                pendingTxHashesForSpentAddresses,
+            ),
         };
 
         return syncAccount(seed, existingAccountData)
@@ -214,6 +213,19 @@ export const getAccountInfo = (seed, accountName) => {
     };
 };
 
+/**
+ *   Accepts a consistent tail boolean with all tails associated with a bundle.
+ *   - Case (when no consistent tail)
+ *      > Replays bundle and promotes with the reattachment's transaction hash
+ *   - Case (when there is a consistent tail)
+ *      > Just directly promote transaction with the consistent tail hash
+ *
+ *   @method forceTransactionPromotion
+ *   @param {string} accountName
+ *   @param {boolean} consistentTail
+ *   @param {array} tails
+ *   @returns {Promise}
+ **/
 const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispatch) => {
     if (!consistentTail) {
         // Grab hash from the top tail to replay
@@ -240,6 +252,17 @@ const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispa
     return promoteTransactionAsync(consistentTail.hash);
 };
 
+/**
+ *   Accepts a bundle hash and all tail transaction objects relevant to the bundle.
+ *   Check if a bundle is still valid.
+ *   For cases where a bundle is invalid, it would remove it for promotion.
+ *   For cases where a bundle in valid, find first consistent tail and promote it.
+ *
+ *   @method promoteTransfer
+ *   @param {string} bundle
+ *   @param {array} tails - All tail transaction objects for the bundle
+ *   @returns {function} - dispatch
+ **/
 export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest());
 
@@ -278,7 +301,6 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
             return dispatch(promoteTransactionSuccess());
         })
         .catch((err) => {
-            console.log('err', err);
             return dispatch(promoteTransactionError());
         });
 };
