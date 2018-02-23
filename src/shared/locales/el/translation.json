@@ -261,7 +261,7 @@
         "paste": "Επικόλληση",
         "selectAll": "Επιλογή όλων",
         "securitySettings": "Ρυθμίσεις ασφαλείας",
-        "fingerprint": "Ταυτοποίηση με χρήση δακτυλικών αποτυπωμάτων"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",
