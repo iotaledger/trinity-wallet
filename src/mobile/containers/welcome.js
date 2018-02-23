@@ -8,6 +8,7 @@ import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { isRooted } from '../util/device';
 import Modal from 'react-native-modal';
+import RootDetectionModal from '../components/rootDetectionModal';
 
 import { width, height } from '../util/dimensions';
 
@@ -80,6 +81,8 @@ class Welcome extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -87,6 +90,7 @@ class Welcome extends Component {
 
         this.state = {
             isModalVisible: false,
+            modalContent: <RootDetectionModal />,
         };
     }
 
@@ -96,7 +100,7 @@ class Welcome extends Component {
 
     showModalIfRooted() {
         if (isRooted) {
-            return this.showModal();
+            this.setState({ isModalVisible: true });
         }
     }
 
@@ -121,7 +125,7 @@ class Welcome extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor, secondaryBackgroundColor } = this.props;
 
         return (
             <View style={styles.container}>
@@ -143,17 +147,29 @@ class Welcome extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <LogoutConfirmationModal
-                    style={{ flex: 1 }}
-                    hideModal={() => this.hideModal()}
-                    logout={() => this.logout()}
-                    backgroundColor={backgroundColor}
-                    textColor={{ color: secondaryBackgroundColor }}
-                    borderColor={{ borderColor: secondaryBackgroundColor }}
-                />
+                <Modal
+                    animationIn={'bounceInUp'}
+                    animationOut={'bounceOut'}
+                    animationInTiming={1000}
+                    animationOutTiming={200}
+                    backdropTransitionInTiming={500}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={this.props.backgroundColor}
+                    backdropOpacity={0.8}
+                    style={{ alignItems: 'center' }}
+                    isVisible={this.state.isModalVisible}
+                    onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                >
+                    {this.renderModalContent()}
+                </Modal>
             </View>
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    backgroundColor: state.settings.theme.backgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+});
 
 export default translate(['welcome', 'global'])(Welcome);

@@ -30,7 +30,7 @@ class RootDetectionModal extends Component {
         return (
             <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
-                    <Text style={[styles.questionText, textColor]}>{t('logoutConfirmation')}</Text>
+                    <Text style={[styles.questionText, textColor]}>{t('warning')}</Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.hideModal()}
                         onRightButtonPress={() => this.props.logout()}
