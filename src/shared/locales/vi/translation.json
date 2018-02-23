@@ -261,7 +261,7 @@
         "paste": "Dán",
         "selectAll": "Chọn Tất Cả",
         "securitySettings": "Thiết lập bảo mật",
-        "fingerprint": "Xác thực bằng dấu vân tay"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Nhập mật khẩu để cài lại ví điện tử.",
