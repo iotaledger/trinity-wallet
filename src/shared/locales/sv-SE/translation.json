@@ -261,7 +261,7 @@
         "paste": "Klistra in",
         "selectAll": "Välj alla",
         "securitySettings": "Säkerhetsinställningar",
-        "fingerprint": "Fingeravtryck autentisering"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ange ditt lösenord för att återställa plånboken.",
