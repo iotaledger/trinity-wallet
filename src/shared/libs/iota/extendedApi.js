@@ -1,6 +1,7 @@
 import { iota } from './index';
+import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
 
-const getBalancesAsync = (addresses, threshold) => {
+const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => {
     return new Promise((resolve, reject) => {
         iota.api.getBalances(addresses, threshold, (err, balances) => {
             if (err) {
@@ -102,6 +103,30 @@ const replayBundleAsync = (hash, depth = 3, minWeightMagnitude = 14) => {
     });
 };
 
+const getBundleAsync = (tailTransactionHash) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getBundle(tailTransactionHash, (err, bundle) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(bundle);
+            }
+        });
+    });
+};
+
+const wereAddressesSpentFromAsync = (addresses) => {
+    return new Promise((resolve, reject) => {
+        iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(wereSpent);
+            }
+        });
+    });
+};
+
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -111,4 +136,6 @@ export {
     getLatestInclusionAsync,
     promoteTransactionAsync,
     replayBundleAsync,
+    getBundleAsync,
+    wereAddressesSpentFromAsync,
 };
