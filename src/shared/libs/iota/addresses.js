@@ -1,17 +1,17 @@
 import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
-import get from 'lodash/get';
 import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
 import isNumber from 'lodash/isNumber';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import findKey from 'lodash/findKey';
 import size from 'lodash/size';
+import pickBy from 'lodash/pickBy';
 import { iota } from './index';
-import { getBalancesAsync } from './extendedApi';
-import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
+import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 
 /**
  *   Starts traversing from specified index backwards
@@ -93,7 +93,6 @@ const getRelevantAddresses = (resolve, reject, seed, opts, allAddresses) => {
  *   @param {object} [addressesOpts={index: 0, total: 10, returnAll: true, security: 2}] - Default options for address generation
  *   @returns {promise}
  **/
-
 export const getAllAddresses = (
     seed,
     addressesOpts = {
@@ -104,23 +103,51 @@ export const getAllAddresses = (
     },
 ) => new Promise((res, rej) => getRelevantAddresses(res, rej, seed, addressesOpts, []));
 
-export const formatFullAddressData = (data) => {
-    const addresses = data.addresses;
-    const addressData = reduce(
-        addresses,
-        (acc, address, index) => {
-            acc[address] = { index, balance: 0, spent: false };
-
-            return acc;
-        },
-        {},
-    );
-
-    for (let i = 0; i < data.inputs.length; i++) {
-        addressData[data.inputs[i].address].balance = data.inputs[i].balance;
+/**
+ *   Accepts addresses as an array.
+ *   Finds latest balances on those addresses.
+ *   Finds latest spent statuses on addresses.
+ *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0 }}]
+ *
+ *   @method formatAddressesAndBalance
+ *   @param {array} addresses
+ *   @returns {promise<object>} - [ addresses: {}, balance: 0 ]
+ **/
+export const formatAddressesAndBalance = (addresses) => {
+    if (isEmpty(addresses)) {
+        return Promise.resolve({ addresses: {}, balance: 0 });
     }
 
-    return addressData;
+    const cached = {
+        balances: [],
+        wereSpent: [],
+    };
+
+    return getBalancesAsync(addresses)
+        .then((balances) => {
+            cached.balances = map(balances.balances, Number);
+
+            return wereAddressesSpentFromAsync(addresses);
+        })
+        .then((wereSpent) => {
+            cached.wereSpent = wereSpent;
+
+            return reduce(
+                addresses,
+                (acc, address, index) => {
+                    acc.addresses[address] = {
+                        index,
+                        spent: cached.wereSpent[index],
+                        balance: cached.balances[index],
+                    };
+
+                    acc.balance = acc.balance + cached.balances[index];
+
+                    return acc;
+                },
+                { addresses: {}, balance: 0 },
+            );
+        });
 };
 
 export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
@@ -135,7 +162,18 @@ export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
     return addressData;
 };
 
-export const markAddressSpend = (transfers, addressData) => {
+/**
+ *   Accepts addresses as an array.
+ *   Finds latest balances on those addresses.
+ *   Finds latest spent statuses on addresses.
+ *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0 }}]
+ *
+ *   @method markAddressesAsSpentSync
+ *   @param {array} transfers
+ *   @param {object} markAddressesAsSpentSync
+ *   @returns {promise<object>} - [ addresses: {}, balance: 0 ]
+ **/
+export const markAddressesAsSpentSync = (transfers, addressData) => {
     const addressDataClone = cloneDeep(addressData);
     const addresses = keys(addressDataClone);
 
@@ -161,19 +199,47 @@ export const markAddressSpend = (transfers, addressData) => {
     return addressDataClone;
 };
 
-export const getUnspentAddresses = (addressData) => {
-    const addresses = keys(addressData);
-    const addressesSpendStatus = Object.values(addressData).map((x) => x.spent);
+/**
+ *   Accepts address data.
+ *   Finds all unspent addresses.
+ *
+ *   IMPORTANT: This function should always be utilized after the account is sycnced.
+ *
+ *   @method getUnspentAddressesSync
+ *   @param {object} addressData
+ *   @returns {array} - Array of unspent addresses
+ **/
+export const getUnspentAddressesSync = (addressData) => {
+    return map(pickBy(addressData, (addressObject) => !addressObject.spent), (addressObject, address) => address);
+};
 
-    const unspentAddresses = [];
+/**
+ *   Accepts pending transfers and address data.
+ *   Finds all spent addresses with pending transfers.
+ *
+ *   IMPORTANT: This function should always be utilized after the account is sycnced.
+ *
+ *   @method getSpentAddressesWithPendingTransfersSync
+ *   @param {array} pendingTransfers - Unconfirmed transfers
+ *   @param {object} addressData
+ *   @returns {array} - Array of spent addresses with pending transfers
+ **/
+export const getSpentAddressesWithPendingTransfersSync = (pendingTransfers, addressData) => {
+    const spentAddresses = pickBy(addressData, (addressObject) => addressObject.spent);
+    const spentAddressesWithPendingTransfers = new Set();
 
-    for (let i = 0; i < addresses.length; i++) {
-        if (addressesSpendStatus[i] === false) {
-            unspentAddresses.push(addresses[i]);
-        }
-    }
+    each(pendingTransfers, (pendingBundle) => {
+        each(pendingBundle, (transactionObject) => {
+            const isRemainder =
+                transactionObject.currentIndex === transactionObject.lastIndex && transactionObject.lastIndex !== 0;
 
-    return unspentAddresses;
+            if (transactionObject.address in spentAddresses && transactionObject.value < 0 && !isRemainder) {
+                spentAddressesWithPendingTransfers.add(transactionObject.address);
+            }
+        });
+    });
+
+    return Array.from(spentAddressesWithPendingTransfers);
 };
 
 /**
@@ -184,16 +250,9 @@ export const getUnspentAddresses = (addressData) => {
  *   @returns {Promise} - A promise that resolves all inputs with unspent addresses.
  **/
 export const filterSpentAddresses = (inputs) => {
-    return new Promise((resolve, reject) => {
-        const addresses = map(inputs, (input) => input.address);
-        iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(filter(inputs, (input, idx) => !wereSpent[idx]));
-            }
-        });
-    });
+    const addresses = map(inputs, (input) => input.address);
+
+    return wereAddressesSpentFromAsync(addresses).then((wereSpent) => filter(inputs, (input, idx) => !wereSpent[idx]));
 };
 
 /**
@@ -215,33 +274,56 @@ export const getStartingSearchIndexToFetchLatestAddresses = (addressData) => {
  *   @param {array} addresses - Could also accept an address as string since wereAddressesSpentFrom casts it internally
  *   @param {function} callback
  **/
-export const shouldAllowSendingToAddress = (addresses, callback) => {
-    iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
-        if (err) {
-            callback(err);
-        } else {
-            const spentAddresses = filter(addresses, (address, idx) => wereSpent[idx]);
-            callback(null, !spentAddresses.length);
-        }
+export const shouldAllowSendingToAddress = (addresses) => {
+    return wereAddressesSpentFromAsync(addresses).then((wereSpent) => {
+        const spentAddresses = filter(addresses, (address, idx) => wereSpent[idx]);
+
+        return !spentAddresses.length;
     });
 };
 
 /**
- *   A wrapper over getBalances.
- *   Main purpose of this wrapper is to keep addresses and balances indexes intact.
+ *   Takes in an array of balances (numbers) and calculates the total balance
  *
- *   @method mapBalancesToAddresses
- *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *   @method accumulateBalance
+ *   @param {array} balances - Array of integers
  *
- *   @returns {Promise|<object>} - Resolves { balances: [], addresses: [] } after getting latest balances against addresses
+ *   @returns {number} - Total balance
  **/
-export const getBalancesWithAddresses = (addressData) => {
-    const addresses = keys(addressData);
+export const accumulateBalance = (balances) =>
+    reduce(
+        balances,
+        (res, val) => {
+            if (isNumber(val)) {
+                res = res + val;
+            }
 
-    return getBalancesAsync(addresses, DEFAULT_BALANCES_THRESHOLD).then((balances) => ({
-        balances: get(balances, 'balances'),
-        addresses,
-    }));
+            return res;
+        },
+        0,
+    );
+
+/**
+ *   Takes in transfer bundles and grab hashes for transfer objects that are unconfirmed.
+ *
+ *   @method getBalancesSync
+ *   @param {array} addresses
+ *   @param {object} addressData
+ *
+ *   @returns {array} - array of balances
+ **/
+export const getBalancesSync = (addresses, addressData) => {
+    const balances = [];
+
+    each(addresses, (address) => {
+        // Just a safety check.
+        if (address in addressData) {
+            const balance = addressData[address].balance;
+            balances.push(balance);
+        }
+    });
+
+    return balances;
 };
 
 /**
@@ -315,85 +397,4 @@ export const syncAddresses = (seed, accountData, addNewAddress = false) => {
         thisAccountDataCopy.addresses = updatedAddresses;
         return thisAccountDataCopy;
     });
-};
-
-/**
- *   Get state partials for addressData and assigns balances to those
- *
- *   @method mapBalancesToAddresses
- *   @param {object} addressData - Addresses dictionary with balance and spend status
- *   @param {array} balances - Array of integers
- *   @param {array} addresses - Array of strings (addresses)
- *
- *   @returns {object} - A new copy of the addressData object after assigning each nested object its updated balance.
- **/
-export const mapBalancesToAddresses = (addressData, balances, addresses) => {
-    const addressesDataClone = cloneDeep(addressData);
-    const addressesLength = size(addresses);
-
-    // Return prematurely if balances length are not equal to addresses length
-    // Or address data keys length is not equal to addresses length
-    // A strict check to make sure everything is up-to-date when new balances are assigned.
-    if (size(balances) !== addressesLength || size(keys(addressesDataClone)) !== addressesLength) {
-        return addressesDataClone;
-    }
-
-    each(addresses, (address, idx) => {
-        addressesDataClone[address] = { ...get(addressesDataClone, `${address}`), balance: balances[idx] };
-    });
-
-    return addressesDataClone;
-};
-
-export const calculateBalance = (data) => {
-    let balance = 0;
-    if (Object.keys(data).length > 0) {
-        const balanceArray = Object.values(data).map((x) => x.balance);
-        balance = balanceArray.reduce((a, b) => a + b);
-    }
-    return balance;
-};
-
-/**
- *   Takes in an array of balances (numbers) and calculates the total balance
- *
- *   @method accumulateBalance
- *   @param {array} balances - Array of integers
- *
- *   @returns {number} - Total balance
- **/
-export const accumulateBalance = (balances) =>
-    reduce(
-        balances,
-        (res, val) => {
-            if (isNumber(val)) {
-                res = res + val;
-            }
-
-            return res;
-        },
-        0,
-    );
-
-/**
- *   Takes in transfer bundles and grab hashes for transfer objects that are unconfirmed.
- *
- *   @method getBalancesSync
- *   @param {array} addresses
- *   @param {object} addressData
- *
- *   @returns {array} - array of balances
- **/
-export const getBalancesSync = (addresses, addressData) => {
-    const balances = [];
-
-    each(addresses, (address) => {
-        // Just a safety check.
-        if (address in addressData) {
-            const balance = addressData[address].balance;
-            balances.push(balance);
-        }
-    });
-
-    return balances;
 };
