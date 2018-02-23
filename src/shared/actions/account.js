@@ -292,11 +292,8 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             unconfirmedBundleTails,
         };
         return syncAddresses(seed, existingAccountData)
-            .then((newAccountData) => {
-                if (newAccountData) {
-                    return syncAccount(seed, newAccountData);
-                }
-                return syncAccount(seed, existingAccountData);
+            .then((accountData) => {
+                return syncAccount(seed, accountData);
             })
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
