@@ -36,7 +36,6 @@ import {
     setSendAddressField,
     setSendAmountField,
     setSendMessageField,
-    clearSendFields,
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -155,7 +154,6 @@ export class Send extends Component {
         setSendAddressField: PropTypes.func.isRequired,
         setSendAmountField: PropTypes.func.isRequired,
         setSendMessageField: PropTypes.func.isRequired,
-        clearSendFields: PropTypes.func.isRequired,
         setSendDenomination: PropTypes.func.isRequired,
         denomination: PropTypes.string.isRequired,
     };
@@ -221,10 +219,8 @@ export class Send extends Component {
             KeepAwake.activate();
         } else if (this.props.isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
-            this.props.clearSendFields();
             this.props.setSendDenomination('i');
             this.setState({ sending: false });
-
             // Reset toggle switch in case maximum was on
             this.resetToggleSwitch();
         }
@@ -793,7 +789,6 @@ const mapDispatchToProps = {
     setSendAddressField,
     setSendAmountField,
     setSendMessageField,
-    clearSendFields,
     setSendDenomination,
 };
 
