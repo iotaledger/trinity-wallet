@@ -12,6 +12,7 @@ import find from 'lodash/find';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
+import unionBy from 'lodash/unionBy';
 import { iota } from './index';
 import {
     findTransactionsAsync,
@@ -233,16 +234,10 @@ export const getAccountData = (seed, accountName) => {
 export const syncAccount = (seed, existingAccountState) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
-    return formatAddressesAndBalance(keys(thisStateCopy.addresses))
-        .then(({ addresses, balance }) => {
-            thisStateCopy.addresses = addresses;
-            thisStateCopy.balance = balance;
-
-            return Promise.all([
-                mapTransactionHashesForUnspentAddressesToState(thisStateCopy),
-                mapPendingTransactionHashesForSpentAddressesToState(thisStateCopy),
-            ]);
-        })
+    return Promise.all([
+        mapTransactionHashesForUnspentAddressesToState(thisStateCopy),
+        mapPendingTransactionHashesForSpentAddressesToState(thisStateCopy),
+    ])
         .then((newStates) => {
             const [
                 stateWithLatestTxHashesForUnspentAddresses,
@@ -256,6 +251,11 @@ export const syncAccount = (seed, existingAccountState) => {
                 stateWithLatestPendingTxHashesForSpentAddresses.pendingTxHashesForSpentAddresses,
             );
 
+            thisStateCopy.txHashesForUnspentAddresses =
+                stateWithLatestTxHashesForUnspentAddresses.txHashesForUnspentAddresses;
+            thisStateCopy.pendingTxHashesForSpentAddresses =
+                stateWithLatestPendingTxHashesForSpentAddresses.pendingTxHashesForSpentAddresses;
+
             return size(diff)
                 ? syncTransfers(diff, thisStateCopy)
                 : Promise.resolve({
@@ -265,9 +265,6 @@ export const syncAccount = (seed, existingAccountState) => {
         })
         .then(({ transfers, newTransfers }) => {
             thisStateCopy.transfers = transfers;
-
-            // Mark spent flag to true for addresses used in the newly discovered transfers
-            thisStateCopy.addresses = markAddressesAsSpentSync(thisStateCopy.transfers, thisStateCopy.addresses);
 
             // Transform new transfers by bundle for promotion.
             return getBundleTailsForPendingValidTransfers(
@@ -304,9 +301,13 @@ export const syncAccount = (seed, existingAccountState) => {
                     thisStateCopy.unconfirmedBundleTails,
                     confirmedBundleHashes,
                 );
-
-                return thisStateCopy;
             }
+
+            return formatAddressesAndBalance(keys(thisStateCopy.addresses));
+        })
+        .then(({ addresses, balance }) => {
+            thisStateCopy.addresses = addresses;
+            thisStateCopy.balance = balance;
 
             return thisStateCopy;
         });
@@ -315,7 +316,7 @@ export const syncAccount = (seed, existingAccountState) => {
 /**
  *   Aims to update local account information after a spend.
  *
- *   @method syncAccount
+ *   @method updateAccountAfterSpending
  *   @param {string} name
  *   @param {array} newTransfer
  *   @param {object} accountState
@@ -323,7 +324,7 @@ export const syncAccount = (seed, existingAccountState) => {
  *
  *   @returns {Promise<object>}
  **/
-export const updateAccount = (name, newTransfer, accountState, isValueTransfer) => {
+export const syncAccountAfterSpending = (name, newTransfer, accountState, isValueTransfer) => {
     // Assign persistence to the newly sent transfer.
     const newTransferBundleWithPersistence = map(newTransfer, (bundle) => ({
         ...bundle,
@@ -356,4 +357,32 @@ export const updateAccount = (name, newTransfer, accountState, isValueTransfer) 
         addresses,
         unconfirmedBundleTails,
     }).then((newState) => mapPendingTransactionHashesForSpentAddressesToState(newState));
+};
+
+export const syncAccountAfterReattachment = (accountName, reattachment, accountState) => {
+    // Append new reattachment to existing transfers
+    const transfers = [...[map(reattachment, (tx) => ({ ...tx, persistence: false }))], ...accountState.transfers];
+
+    const tailTransaction = find(reattachment, { currentIndex: 0 });
+    const normalizedTailTransaction = assign({}, tailTransaction, { account: accountName });
+    const bundle = tailTransaction.bundle;
+
+    // This check would is very redundant but to make sure state is never messed up,
+    // We make sure we check if bundle hash exists.
+    // Also the usage of unionBy is to have a safety check that we do not end up storing duplicate hashes
+    // https://github.com/iotaledger/iri/issues/463
+    const updatedUnconfirmedBundleTails = assign({}, accountState.unconfirmedBundleTails, {
+        [bundle]:
+            bundle in accountState.unconfirmedBundleTails
+                ? unionBy([normalizedTailTransaction], accountState.unconfirmedBundleTails[bundle], 'hash')
+                : [normalizedTailTransaction],
+    });
+
+    return mapTransactionHashesForUnspentAddressesToState({
+        ...accountState,
+        transfers,
+        unconfirmedBundleTails: updatedUnconfirmedBundleTails,
+    })
+        .then((newState) => mapPendingTransactionHashesForSpentAddressesToState(newState))
+        .then((newState) => ({ newState, reattachment }));
 };
