@@ -261,7 +261,7 @@
         "paste": "Wklej",
         "selectAll": "Zaznacz wszystko",
         "securitySettings": "Ustawienia zabezpieczeń",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Autoryzacja biometryczna"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź swoje hasło, aby zresetować portfel.",
