@@ -135,6 +135,7 @@ class SaveSeedConfirmation extends Component {
                 navBarTransparent: true,
                 drawUnderStatusBar: true,
                 statusBarColor: this.props.backgroundColor,
+                screenBackgroundColor: this.props.backgroundColor,
             },
             animated: false,
         });
