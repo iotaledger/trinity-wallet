@@ -1,6 +1,6 @@
 {
     "global": {
-        "send": "Gửi",
+        "send": "GỬI",
         "cancel": "Huỷ Bỏ",
         "continue?": "Bạn có muốn tiếp tục không?",
         "noTransactions": "KHÔNG CÓ LỊCH SỬ",
@@ -77,7 +77,7 @@
         "cannotSendToOwnExplanation": "Bạn không thể chuyển khoản vào một trong những địa chỉ của riêng bạn.",
         "pleaseWait": "Vui lòng đợi",
         "pleaseWaitExplanation": "Trinity đang thực hiện một chức năng khác. Vui lòng đợi và thử lại.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWaitTransferExplanation": "Số tiền của bạn đang được sử dụng trong một giao dịch khác. Vui lòng đợi xác nhận xong trước khi thử gửi lại."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
@@ -175,8 +175,8 @@
         "generateNewAddress": "ĐỊA CHỈ MỚI",
         "message": "Tin nhắn tuỳ chọn",
         "removeMessage": "HUỶ BỎ TIN NHẮN",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "KHÔNG CÓ ĐỊA CHỈ",
+        "spent": "Đã Gửi"
     },
     "saveYourSeed": {
         "seedCleared": "Đã xoá từ khoá",
@@ -204,7 +204,7 @@
         "message": "Tin nhắn",
         "invalidMessage": "Tin nhắn không hợp lệ",
         "invalidMessageExplanation": "Tin nhắn có chứa ký tự không hợp lệ.",
-        "send": "Gửi",
+        "send": "GỬI",
         "invalidAmount": "Số lượng nhập không đúng",
         "invalidAmountExplanation": "Xin vui lòng nhập số tiền muốn giao dịch. Các bạn nên đọc chú thích ở cuối trang này để hiểu thêm về đơn vị của IOTA.",
         "maximumSelected": "Số lượng TỐI ĐA được chọn",
@@ -261,7 +261,7 @@
         "paste": "Dán",
         "selectAll": "Chọn Tất Cả",
         "securitySettings": "Thiết lập bảo mật",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Xác thực bằng sinh trắc học"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Nhập mật khẩu để cài lại ví điện tử.",
@@ -282,19 +282,19 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Từ khoá của bạn có {{maxSeedLength}} ký tự đọc từ trái sang phải.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed": "<0> Ghi từ khoá và mã kiểm tra xuống và </0><1>kiểm tra 3 lần</1><2>để chắc chắn nó đúng.</2>"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "The address has been copied to the clipboard.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "bundleHashCopied": "Đã sao chép nhóm hash",
+        "bundleHashCopiedExplanation": "Nhóm hash đã được sao chép vào bộ nhớ tạm thời.",
+        "addressCopied": "Đã sao chép địa chỉ",
+        "addressCopiedExplanation": "Địa chỉ đã được sao chép vào bộ nhớ tạm thời.",
+        "send": "GỬI",
+        "receive": "NHẬN"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
+        "viewSeed": "Xem từ khoá",
+        "viewAddresses": "Xem địa chỉ",
         "editAccountName": "Edit account name",
         "deleteAccount": "Delete account",
         "addNewAccount": "Add new account"
