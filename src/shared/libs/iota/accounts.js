@@ -129,6 +129,7 @@ export const mapPendingTransactionHashesForSpentAddressesToState = (account) => 
     }
 
     return findTransactionsAsync({ addresses: spentAddressesWithPendingTransfers }).then((hashes) => {
+        console.log('Hashes', hashes.length);
         return assign({}, account, { pendingTxHashesForSpentAddresses: hashes });
     });
 };
@@ -233,16 +234,10 @@ export const getAccountData = (seed, accountName) => {
 export const syncAccount = (seed, existingAccountState) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
-    return formatAddressesAndBalance(keys(thisStateCopy.addresses))
-        .then(({ addresses, balance }) => {
-            thisStateCopy.addresses = addresses;
-            thisStateCopy.balance = balance;
-
-            return Promise.all([
-                mapTransactionHashesForUnspentAddressesToState(thisStateCopy),
-                mapPendingTransactionHashesForSpentAddressesToState(thisStateCopy),
-            ]);
-        })
+    return Promise.all([
+        mapTransactionHashesForUnspentAddressesToState(thisStateCopy),
+        mapPendingTransactionHashesForSpentAddressesToState(thisStateCopy),
+    ])
         .then((newStates) => {
             const [
                 stateWithLatestTxHashesForUnspentAddresses,
@@ -256,6 +251,11 @@ export const syncAccount = (seed, existingAccountState) => {
                 stateWithLatestPendingTxHashesForSpentAddresses.pendingTxHashesForSpentAddresses,
             );
 
+            thisStateCopy.txHashesForUnspentAddresses =
+                stateWithLatestTxHashesForUnspentAddresses.txHashesForUnspentAddresses;
+            thisStateCopy.pendingTxHashesForSpentAddresses =
+                stateWithLatestPendingTxHashesForSpentAddresses.pendingTxHashesForSpentAddresses;
+
             return size(diff)
                 ? syncTransfers(diff, thisStateCopy)
                 : Promise.resolve({
@@ -265,9 +265,6 @@ export const syncAccount = (seed, existingAccountState) => {
         })
         .then(({ transfers, newTransfers }) => {
             thisStateCopy.transfers = transfers;
-
-            // Mark spent flag to true for addresses used in the newly discovered transfers
-            thisStateCopy.addresses = markAddressesAsSpentSync(thisStateCopy.transfers, thisStateCopy.addresses);
 
             // Transform new transfers by bundle for promotion.
             return getBundleTailsForPendingValidTransfers(
@@ -304,9 +301,13 @@ export const syncAccount = (seed, existingAccountState) => {
                     thisStateCopy.unconfirmedBundleTails,
                     confirmedBundleHashes,
                 );
-
-                return thisStateCopy;
             }
+
+            return formatAddressesAndBalance(keys(thisStateCopy.addresses));
+        })
+        .then(({ addresses, balance }) => {
+            thisStateCopy.addresses = addresses;
+            thisStateCopy.balance = balance;
 
             return thisStateCopy;
         });
