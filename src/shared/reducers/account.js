@@ -179,6 +179,7 @@ const account = (
                     [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
             };
+        case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
         case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
             return {
                 ...state,
