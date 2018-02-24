@@ -179,7 +179,6 @@ class NewSeedSetup extends Component {
                     statusBarColor: this.props.backgroundColor,
                 },
                 animated: false,
-                screenBackgroundColor: this.props.backgroundColor,
             });
         } else {
             this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));

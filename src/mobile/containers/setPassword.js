@@ -155,7 +155,7 @@ class SetPassword extends Component {
                         },
                         appStyle: {
                             orientation: 'portrait',
-                            keepStyleAcrossPush: false,
+                            keepStyleAcrossPush: true,
                         },
                         animated: false,
                     });

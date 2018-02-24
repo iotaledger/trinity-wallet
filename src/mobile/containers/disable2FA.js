@@ -125,7 +125,7 @@ class Disable2FA extends Component {
             },
             appStyle: {
                 orientation: 'portrait',
-                keepStyleAcrossPush: false,
+                keepStyleAcrossPush: true,
             },
         });
     }

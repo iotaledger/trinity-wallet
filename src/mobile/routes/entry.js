@@ -23,7 +23,7 @@ const renderInitialScreen = () => {
         },
         appStyle: {
             orientation: 'portrait',
-            keepStyleAcrossPush: false,
+            keepStyleAcrossPush: true,
         },
     });
 };
