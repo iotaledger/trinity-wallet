@@ -14,7 +14,7 @@ import {
     getAccountData,
     mapTransactionHashesForUnspentAddressesToState,
     mapPendingTransactionHashesForSpentAddressesToState,
-    updateAccount,
+    syncAccountAfterSpending,
 } from '../libs/iota/accounts';
 import { formatAddresses, syncAddresses } from '../libs/iota/addresses';
 import {
@@ -69,6 +69,7 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNT/ACCOUNT_INFO_FETCH_ERROR',
     SET_2FA_STATUS: 'IOTA/ACCOUNT/SET_2FA_STATUS',
     SET_FINGERPRINT_STATUS: 'IOTA/ACCOUNT/SET_FINGERPRINT_STATUS',
+    UPDATE_ACCOUNT_AFTER_REATTACHMENT: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
 };
 
 export const manualSyncRequest = () => ({
@@ -203,6 +204,11 @@ export const updateAccountInfoAfterSpending = (payload) => ({
     payload,
 });
 
+export const updateAccountAfterReattachment = (payload) => ({
+    type: ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT,
+    payload,
+});
+
 export const fetchFullAccountInfoForFirstUse = (
     seed,
     accountName,
@@ -327,6 +333,7 @@ export const prepareAccountInfoForSync = (accountName) => {
         const selectedAccount = getSelectedAccount(accountName, accountInfo);
         const existingAccountData = {
             ...selectedAccount,
+            accountName,
             unconfirmedBundleTails,
             txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(accountName, txHashesForUnspentAddresses),
             pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
@@ -364,7 +371,7 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
         ),
     };
 
-    return updateAccount(accountName, newTransferBundle, existingAccountData, value > 0)
+    return syncAccountAfterSpending(accountName, newTransferBundle, existingAccountData, value > 0)
         .then((newAccountState) => dispatch(updateAccountInfoAfterSpending({ ...newAccountState, accountName })))
         .catch((err) => {
             // Most probable reason for error here would be some network communication error
@@ -374,46 +381,6 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
 
             console.error(err); // eslint-disable-line no-console
         });
-};
-
-export const updateAccountAfterReattachment = (accountName, reattachment) => (dispatch, getState) => {
-    const tailTransaction = find(reattachment, { currentIndex: 0 });
-
-    // Do not do anything if there is no tail transaction.
-    if (tailTransaction) {
-        const { accountInfo, unconfirmedBundleTails } = getState().account;
-
-        const selectedAccount = getSelectedAccount(accountName, accountInfo);
-        const existingTransfers = selectedAccount.transfers;
-
-        // Append new reattachment to existing transfers
-        const updatedTransfers = [
-            ...existingTransfers,
-            ...[map(reattachment, (tx) => ({ ...tx, persistence: false }))],
-        ];
-
-        // Update state with latest transfers
-        dispatch(updateTransfers(accountName, updatedTransfers));
-
-        const bundle = tailTransaction.bundle;
-
-        // updatedUnconfirmedBundleTails prop in store needs account name with each tail transaction object.
-        const normalizedTailTransaction = assign({}, tailTransaction, { account: accountName });
-
-        // This check would is very redundant but to make sure state is never messed up,
-        // We make sure we check if bundle hash exists.
-        // Also the usage of unionBy is to have a safety check that we do not end up storing duplicate hashes
-        // https://github.com/iotaledger/iri/issues/463
-        const updatedUnconfirmedBundleTails = assign({}, unconfirmedBundleTails, {
-            [bundle]:
-                bundle in unconfirmedBundleTails
-                    ? unionBy([normalizedTailTransaction], unconfirmedBundleTails[bundle], 'hash')
-                    : [normalizedTailTransaction],
-        });
-
-        // Update state with latest unconfirmedBundleTails.
-        dispatch(setNewUnconfirmedBundleTails(updatedUnconfirmedBundleTails));
-    }
 };
 
 export const set2FAStatus = (payload) => ({
