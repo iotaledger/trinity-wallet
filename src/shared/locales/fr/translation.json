@@ -106,7 +106,7 @@
         "passwordTooShortExplanation": "Votre mot de passe doit contenir au moins 12 caractères. Veuillez réessayer.",
         "oldPassword": "Impossible de réutiliser l'ancien mot de passe",
         "oldPasswordExplanation": "Vous ne pouvez pas réutiliser l’ancien mot de passe. Veuillez utiliser un nouveau mot de passe.",
-        "ensureStrongPassword": "Veillez à utiliser un mot de passe complexe composé d'au moins 12 caractères.",
+        "ensureStrongPassword": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "currentPassword": "Mot de passe actuel",
         "newPassword": "Nouveau mot de passe",
         "confirmPassword": "Confirmer le nouveau mot de passe"
@@ -397,7 +397,7 @@
         "keyCopiedExplanation": "Votre clé 2FA a été copiée dans le presse-papier.",
         "addKey": "Ajoutez cette clé à votre application 2FA",
         "key": "Clé",
-        "twoFAEnabled": "2FA est maintenant activé",
+        "twoFAEnabled": "L'authentification 2FA est maintenant activé",
         "twoFAEnabledExplanation": "Vous avez correctement activé l’authentification à deux facteurs.",
         "enterCode": "Entrez le code de votre application 2FA",
         "code": "Code"
