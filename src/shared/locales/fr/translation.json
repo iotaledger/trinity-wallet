@@ -4,7 +4,7 @@
         "cancel": "ANNULER",
         "continue?": "Êtes-vous sûr(e) de vouloir continuer ?",
         "noTransactions": "AUCUN HISTORIQUE",
-        "refresh": "REFRESH",
+        "refresh": "ACTUALISER",
         "qr": "QR",
         "balanceError": "Solde insuffisant",
         "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
@@ -76,8 +76,8 @@
         "cannotSendToOwn": "Envoi à votre propre adresse",
         "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers vos propres adresses.",
         "pleaseWait": "Veuillez patienter",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWaitExplanation": "Trinity est en train d'effectuer une autre tâche. Veuillez réessayer plus tard.",
+        "pleaseWaitTransferExplanation": "Votre solde disponible est actuellement utilisé dans d'autres transferts. Veuillez attendre qu'un des transferts soit confirmé avant de réessayer."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -176,7 +176,7 @@
         "message": "Message facultatif",
         "removeMessage": "SUPPRIMER LE MESSAGE",
         "noAddresses": "AUCUNE ADRESSE",
-        "spent": "Spent"
+        "spent": "Envoyé"
     },
     "saveYourSeed": {
         "seedCleared": "Seed effacée",
@@ -261,7 +261,7 @@
         "paste": "Coller",
         "selectAll": "Tout Sélectionner",
         "securitySettings": "Paramètres de sécurité",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Authentification biométrique"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
