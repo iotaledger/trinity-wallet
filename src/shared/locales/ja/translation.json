@@ -261,7 +261,7 @@
         "paste": "貼り付け",
         "selectAll": "すべてを選択",
         "securitySettings": "セキュリティ設定",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "指紋認証"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
