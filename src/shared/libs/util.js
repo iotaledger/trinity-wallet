@@ -171,7 +171,11 @@ export const rearrangeObjectKeys = (obj, prop) => {
 };
 
 export const updatePersistedState = (incomingState, restoredState) => {
-    const { app: { versions }, settings: { availablePoWNodes, theme } } = incomingState;
+    const {
+        app: { versions },
+        settings: { availablePoWNodes, theme },
+        account: { txHashesForUnspentAddresses },
+    } = incomingState;
     const restoredCopy = cloneDeep(restoredState);
 
     if ('app' in restoredCopy) {

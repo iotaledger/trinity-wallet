@@ -327,6 +327,7 @@ export const prepareAccountInfoForSync = (accountName) => {
         const selectedAccount = getSelectedAccount(accountName, accountInfo);
         const existingAccountData = {
             ...selectedAccount,
+            accountName,
             unconfirmedBundleTails,
             txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(accountName, txHashesForUnspentAddresses),
             pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
