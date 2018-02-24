@@ -115,7 +115,7 @@ export class TwoFactorSetupAddKey extends Component {
             },
             appStyle: {
                 orientation: 'portrait',
-                keepStyleAcrossPush: false,
+                keepStyleAcrossPush: true,
             },
         });
     }
@@ -137,7 +137,7 @@ export class TwoFactorSetupAddKey extends Component {
                     animated: false,
                     appStyle: {
                         orientation: 'portrait',
-                        keepStyleAcrossPush: false,
+                        keepStyleAcrossPush: true,
                     },
                 });
             })
