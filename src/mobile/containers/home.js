@@ -54,6 +54,10 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
     }
 
+    componentDidMount() {
+        this.userInactivity.setActiveFromComponent();
+    }
+
     shouldComponentUpdate(newProps) {
         const { isSyncing, isSendingTransfer, isTransitioning } = this.props;
         if (isSyncing !== newProps.isSyncing) return false;
