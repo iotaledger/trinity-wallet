@@ -1,4 +1,5 @@
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -216,7 +217,7 @@ class History extends Component {
             unit: formatUnit(item.value),
         });
 
-        return map(transfers, (transfer) => {
+        const formattedTransfers = map(transfers, (transfer) => {
             const tx = getRelevantTransfer(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
@@ -242,6 +243,8 @@ class History extends Component {
                 },
             };
         });
+
+        return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
     renderTransactions() {
