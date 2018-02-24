@@ -535,7 +535,7 @@ export const syncTransfers = (diff, accountState) => {
             const updatedTransfers = [...accountState.transfers, ...newTransfers];
 
             return {
-                transfers: formatTransfers(updatedTransfers, keys(accountState.addresses)),
+                transfers: formatTransfers(updatedTransfers),
                 newTransfers,
             };
         });
