@@ -4,7 +4,7 @@
         "cancel": "Huỷ Bỏ",
         "continue?": "Bạn có muốn tiếp tục không?",
         "noTransactions": "KHÔNG CÓ LỊCH SỬ",
-        "refresh": "REFRESH",
+        "refresh": "LÀM MỚI",
         "qr": "QR",
         "balanceError": "Tài khoản không đủ",
         "balanceErrorMessage": "Bạn không có đủ IOTA để hoàn thành giao dịch này.",
@@ -75,8 +75,8 @@
         "autopromotingExplanation": "Tự động thúc đẩy chuyển khoản với dữ liệu {{hash}}",
         "cannotSendToOwn": "Gửi đến địa chỉ của mình",
         "cannotSendToOwnExplanation": "Bạn không thể chuyển khoản vào một trong những địa chỉ của riêng bạn.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWait": "Vui lòng đợi",
+        "pleaseWaitExplanation": "Trinity đang thực hiện một chức năng khác. Vui lòng đợi và thử lại.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
