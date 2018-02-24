@@ -16,7 +16,7 @@ import {
     getTxHashesForUnspentAddresses,
     getPendingTxHashesForSpentAddresses,
 } from '../selectors/account';
-import { syncAccount } from '../libs/iota/accounts';
+import { syncAccount, syncAccountAfterReattachment } from '../libs/iota/accounts';
 import { rearrangeObjectKeys } from '../libs/util';
 import i18next from '../i18next.js';
 
@@ -174,7 +174,7 @@ export const fetchChartData = () => {
 
 /**
  *   Accepts a user's seed and account name and sync local account state with ledger's.
- * 
+ *
  *   @method getAccountInfo
  *   @param {string} seed
  *   @param {string} accountName
@@ -226,27 +226,53 @@ export const getAccountInfo = (seed, accountName) => {
  *   @param {array} tails
  *   @returns {Promise}
  **/
-const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispatch) => {
+const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispatch, getState) => {
     if (!consistentTail) {
         // Grab hash from the top tail to replay
         const topTx = head(tails);
         const hash = topTx.hash;
 
-        return replayBundleAsync(hash).then((reattachedTxs) => {
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('global:autoreattaching'),
-                    i18next.t('global:autoreattachingExplanation', { hash }),
-                    2500,
-                ),
-            );
+        return replayBundleAsync(hash)
+            .then((reattachment) => {
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('global:autoreattaching'),
+                        i18next.t('global:autoreattachingExplanation', { hash }),
+                        2500,
+                    ),
+                );
 
-            dispatch(updateAccountAfterReattachment(accountName, reattachedTxs));
+                const {
+                    accountInfo,
+                    txHashesForUnspentAddresses,
+                    pendingTxHashesForSpentAddresses,
+                    unconfirmedBundleTails,
+                } = getState().account;
 
-            const tailTransaction = find(reattachedTxs, { currentIndex: 0 });
-            return promoteTransactionAsync(tailTransaction.hash);
-        });
+                const selectedAccount = getSelectedAccount(accountName, accountInfo);
+                const existingAccountData = {
+                    ...selectedAccount,
+                    accountName,
+                    unconfirmedBundleTails,
+                    txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(
+                        accountName,
+                        txHashesForUnspentAddresses,
+                    ),
+                    pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
+                        accountName,
+                        pendingTxHashesForSpentAddresses,
+                    ),
+                };
+
+                return syncAccountAfterReattachment(accountName, reattachment, existingAccountData);
+            })
+            .then(({ newState, reattachment }) => {
+                dispatch(updateAccountAfterReattachment({ ...newState, accountName }));
+
+                const tailTransaction = find(reattachment, { currentIndex: 0 });
+                return promoteTransactionAsync(tailTransaction.hash);
+            });
     }
 
     return promoteTransactionAsync(consistentTail.hash);
