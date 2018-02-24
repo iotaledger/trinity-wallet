@@ -129,7 +129,6 @@ export const mapPendingTransactionHashesForSpentAddressesToState = (account) => 
     }
 
     return findTransactionsAsync({ addresses: spentAddressesWithPendingTransfers }).then((hashes) => {
-        console.log('Hashes', hashes.length);
         return assign({}, account, { pendingTxHashesForSpentAddresses: hashes });
     });
 };
