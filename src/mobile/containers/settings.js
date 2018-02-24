@@ -228,7 +228,7 @@ class Settings extends Component {
                         navBarTransparent: true,
                         screenBackgroundColor: backgroundColor,
                         drawUnderStatusBar: true,
-                        statusBarColor: this.props.backgroundColor,
+                        statusBarColor: backgroundColor,
                     },
                 },
                 appStyle: {
@@ -245,7 +245,7 @@ class Settings extends Component {
                         navBarTransparent: true,
                         screenBackgroundColor: backgroundColor,
                         drawUnderStatusBar: true,
-                        statusBarColor: this.props.backgroundColor,
+                        statusBarColor: backgroundColor,
                     },
                 },
                 appStyle: {
@@ -269,7 +269,7 @@ class Settings extends Component {
                         navBarTransparent: true,
                         screenBackgroundColor: backgroundColor,
                         drawUnderStatusBar: true,
-                        statusBarColor: this.props.backgroundColor,
+                        statusBarColor: backgroundColor,
                     },
                 },
                 appStyle: {
@@ -702,7 +702,7 @@ class Settings extends Component {
             },
             appStyle: {
                 orientation: 'portrait',
-                keepStyleAcrossPush: false,
+                keepStyleAcrossPush: true,
             },
         });
     }

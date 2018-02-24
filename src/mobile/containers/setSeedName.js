@@ -210,7 +210,7 @@ export class SetSeedName extends Component {
                     navBarTransparent: true,
                     screenBackgroundColor: backgroundColor,
                     drawUnderStatusBar: true,
-                    statusBarColor: this.props.backgroundColor,
+                    statusBarColor: backgroundColor,
                 },
                 animated: false,
                 overrideBackPress: true,
@@ -223,7 +223,7 @@ export class SetSeedName extends Component {
                 navBarTransparent: true,
                 screenBackgroundColor: backgroundColor,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
+                statusBarColor: backgroundColor,
             },
             animated: false,
         });

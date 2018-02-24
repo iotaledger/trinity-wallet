@@ -131,7 +131,7 @@ class WalletResetRequirePassword extends Component {
             },
             appStyle: {
                 orientation: 'portrait',
-                keepStyleAcrossPush: false,
+                keepStyleAcrossPush: true,
             },
         });
     }
