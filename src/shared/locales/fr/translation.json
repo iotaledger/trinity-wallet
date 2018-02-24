@@ -61,7 +61,7 @@
         "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible pour le serveur sélectionné.",
         "wallet": "Portefeuille",
         "sent": "Envoyé",
-        "received": "Reçu",
+        "received": "Reçue",
         "sending": "Envoi en cours",
         "receiving": "En cours de réception",
         "confirmed": "Confirmée",
@@ -360,7 +360,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "J’ai enregistré ma seed",
         "reenter": "Vous allez devoir saisir à nouveau votre seed.",
-        "reenterWarning": "Si votre appareil tombe en panne et vous n’avez pas enregistré votre seed, vous perdrez vos IOTA."
+        "reenterWarning": "Si votre appareil tombe en panne et que vous n’avez pas enregistré votre seed, vous perdrez vos IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
