@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -18,9 +19,8 @@ const styles = StyleSheet.create({
     },
     text: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
+        fontFamily: isAndroid ? 'Lato-Regular' : 'Lato-Bold',
         fontSize: width / 32,
-        fontWeight: '400',
     },
 });
 
