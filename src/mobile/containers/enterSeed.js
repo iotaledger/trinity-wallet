@@ -129,6 +129,7 @@ class EnterSeed extends React.Component {
                     navBarTransparent: true,
                     drawUnderStatusBar: true,
                     statusBarColor: COLORS.backgroundGreen,
+                    screenBackgroundColor: COLORS.backgroundGreen,
                 },
                 animated: false,
             });
