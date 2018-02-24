@@ -1,4 +1,5 @@
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -165,7 +166,7 @@ export class Balance extends Component {
         const outgoingIconPath = isSecondaryBackgroundColorWhite ? whiteSendImagePath : blackSendImagePath;
         const incomingIconPath = isSecondaryBackgroundColorWhite ? whiteReceiveImagePath : blackReceiveImagePath;
 
-        return map(recentTransactions, (transfer) => {
+        const formattedTransfers = map(recentTransactions, (transfer) => {
             const tx = getRelevantTransfer(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
@@ -182,6 +183,8 @@ export class Balance extends Component {
                 },
             };
         });
+
+        return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
     renderTransactions() {
