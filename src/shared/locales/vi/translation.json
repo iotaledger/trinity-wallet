@@ -295,21 +295,21 @@
     "accountManagement": {
         "viewSeed": "Xem từ khoá",
         "viewAddresses": "Xem địa chỉ",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "editAccountName": "Sửa tên tài khoản",
+        "deleteAccount": "Xoá tài khoản",
+        "addNewAccount": "Thêm tài khoản mới"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Nút mạng tuỳ chỉnh",
+        "add": "Thêm"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Sử dụng từ khoá có sẵn",
+        "createNewSeed": "Tạo từ khoá mới"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
+        "selectNode": "Chọn nút mạng",
+        "addCustomNode": "Thêm nút mạng tuỳ chỉnh",
         "manualSync": "Manual sync"
     },
     "advancedThemeCustomisation": {
