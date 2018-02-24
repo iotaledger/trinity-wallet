@@ -4,7 +4,7 @@
         "cancel": "إلغاء",
         "continue?": "هل تريد بالتأكيد المتابعة؟",
         "noTransactions": "لا يوجد تاريخ حديث",
-        "refresh": "REFRESH",
+        "refresh": "تحديث",
         "qr": "رمز QR",
         "balanceError": "لا يوجد رصيد كاف",
         "balanceErrorMessage": "ليس لديك ما يكفي من يوتا لإتمام عملية النقل هذه.",
@@ -47,7 +47,7 @@
         "yes": "نعم",
         "no": "لا",
         "password": "كلمة المرور",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "كلمة المرور أو البصمة",
         "unrecognisedPassword": "كلمة المرور غير المعترف بها",
         "unrecognisedPasswordExplanation": "كلمة المرور غير مطابقة. يرجى المحاولة مره اخرى.",
         "syncInProgress": "المزامنة قيد التقدم",
@@ -75,7 +75,7 @@
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
-        "pleaseWait": "Please wait",
+        "pleaseWait": "يرجى الانتظار",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
@@ -175,8 +175,8 @@
         "generateNewAddress": "عنوان جديد",
         "message": "رسالة اختيارية",
         "removeMessage": "احذف الرسالة",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "لا توجد عناوين",
+        "spent": "اُنفق"
     },
     "saveYourSeed": {
         "seedCleared": "تم مسح القيم",
@@ -202,8 +202,8 @@
         "amount": "الكمية",
         "max": "أقصى",
         "message": "رسالة",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "رسالة غير صحيحة",
+        "invalidMessageExplanation": "رسالتك تحتوي على أحرف غير صالحة.",
         "send": "إرسال",
         "invalidAmount": "المبلغ المدخل غير صحيح",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
@@ -260,7 +260,7 @@
         "copy": "نسخ",
         "paste": "لصق",
         "selectAll": "تحديد الكل",
-        "securitySettings": "Security settings",
+        "securitySettings": "إعدادات الأمان",
         "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
@@ -288,9 +288,9 @@
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "تم نسخ العنوان",
-        "addressCopiedExplanation": "The address has been copied to the clipboard.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "addressCopiedExplanation": "تم نسخ العنوان إلى الحافظة.",
+        "send": "إرسال",
+        "receive": "إستلام"
     },
     "accountManagement": {
         "viewSeed": "عرض السييد",
@@ -375,9 +375,9 @@
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
+        "status": "الحالة",
+        "enabled": "مفعل",
+        "disabled": "معطّل",
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
