@@ -4,6 +4,7 @@
         "cancel": "PREKLIČI",
         "continue?": "Ali ste prepričani da želite nadaljevati?",
         "noTransactions": "NO RECENT HISTORY",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "Nimate dovolj IOTA za dokončanje tega prenosa.",
@@ -73,7 +74,10 @@
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "Vaš naslov je bil kopiran v odložišče.",
         "generateNewAddress": "NOV NASLOV",
         "message": "Neobvezno sporočilo",
-        "removeMessage": "ODSTRANI SPOROČILO"
+        "removeMessage": "ODSTRANI SPOROČILO",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Generiranava vrednost odstranjena",
@@ -196,9 +202,11 @@
         "amount": "Količina",
         "max": "MAKSIMALNO",
         "message": "Sporočilo",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "Pošlji",
         "invalidAmount": "Neveljavna vsota",
-        "invalidAmountExplanation": "Prosimo vnesite vrednost za znesek transakcije.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "NAJVIŠJI izbrani znesek",
         "iotaUnits": "IOTA units explained",
         "sendMax": "POŠLJI MAX"
@@ -253,7 +261,7 @@
         "paste": "Prilepi",
         "selectAll": "Select All",
         "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",

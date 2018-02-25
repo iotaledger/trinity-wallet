@@ -4,6 +4,7 @@
         "cancel": "ABBRECHEN",
         "continue?": "Bist du sicher, dass du fortfahren möchtest?",
         "noTransactions": "KEIN AKTUELLER VERLAUF",
+        "refresh": "AKTUALISIEREN",
         "qr": "QR",
         "balanceError": "Nicht genügend Guthaben",
         "balanceErrorMessage": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
@@ -26,9 +27,9 @@
         "done": "FERTIG",
         "doneLowercase": "Fertig",
         "next": "WEITER",
-        "apply": "Verwenden",
+        "apply": "Anwenden",
         "save": "Speichern",
-        "close": "SCHLIEẞEN",
+        "close": "SCHLIEßEN",
         "continue": "Fortfahren",
         "manualCopy": "Seed aufschreiben",
         "paperWallet": "Ausdrucken",
@@ -52,10 +53,10 @@
         "syncInProgress": "Synchronisiere...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
-        "somethingWentWrongExplanation": "Bitte die App neu starten.",
+        "somethingWentWrongExplanation": "Bitte starte die App neu.",
         "node": "Server",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
-        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
+        "cannotPerformActionExplanation": "Öffne die erweiterten Einstellungen, um das Wallet zurückzusetzen.",
         "attachToTangleUnavailable": "Anhängen an den Tangle nicht möglich",
         "attachToTangleUnavailableExplanation": "Anhängen an den Tangle ist mit dem ausgewählten Server nicht möglich.",
         "wallet": "Wallet",
@@ -72,8 +73,11 @@
         "autoreattachingExplanation": "Erneutes anhängen der Transaktion mit dem Hash {{hash}}",
         "autopromoting": "Der Transfer wird autopromoted",
         "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "An eigene Adresse senden",
+        "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden.",
+        "pleaseWait": "Bitte warten",
+        "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
+        "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Überweisungen verwendet. Bitte warte, bis diese Überweisungen bestätigt sind, und versuche es erneut."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -142,7 +146,7 @@
         "login": "ANMELDEN",
         "selectDifferentNode": "Möchtest du einen anderen Server auswählen?",
         "setNode": "SERVER AUSWÄHLEN",
-        "cannotConnect": "Verbindung mit IOTA Server nicht möglich."
+        "cannotConnect": "Keine Verbindung zum IOTA Server."
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
@@ -151,12 +155,12 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
-        "seedNotGeneratedExplanation": "Bitte klicke die Schaltfläche \"Neuen Seed erzeugen\".",
-        "pressForNewSeed": "DRÜCKE FÜR NEUEN SEED",
+        "seedNotGeneratedExplanation": "Bitte klicke die Schaltfläche \"Neuen Seed erstellen\".",
+        "pressForNewSeed": "NEUEN SEED ERSTELLEN",
         "individualLetters": "Drücke beliebige Buchstaben, um sie zufällig neu zu setzen."
     },
     "onboardingComplete": {
-        "walletReady": "Das Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, benutze das Einstellungsmenü."
+        "walletReady": "Dein Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen möchtest, verwende das Einstellungsmenü."
     },
     "paperWallet": {
         "clickToPrint": "Klicke die Schaltfläche unten, um deinen Seed als Paper-Wallet auszudrucken.",
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert.",
         "generateNewAddress": "NEUE ADRESSE",
         "message": "Optionale Nachricht",
-        "removeMessage": "NACHRICHT LÖSCHEN"
+        "removeMessage": "NACHRICHT LÖSCHEN",
+        "noAddresses": "KEINE ADRESSEN",
+        "spent": "Ausgegeben"
     },
     "saveYourSeed": {
         "seedCleared": "Seed gelöscht",
@@ -190,15 +196,17 @@
         "invalidAddressExplanation3": "Adresse enthält eine ungültige Prüfsumme.",
         "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
-        "keyReuse": "Key Wiederverwendung",
+        "keyReuse": "Key-Wiederverwendung",
         "keyReuseExplanation": "Die Adresse, die du zum Senden verwendest, wurde bereits benutzt. Bitte versuche es mit einer anderen Adresse.",
         "recipientAddress": "Adresse des Empfängers",
         "amount": "Betrag",
         "max": "MAX",
         "message": "Nachricht",
+        "invalidMessage": "Ungültige Nachricht",
+        "invalidMessageExplanation": "Deine Nachricht enthält ungültige Zeichen.",
         "send": "SENDEN",
         "invalidAmount": "Falschen Betrag eingegeben",
-        "invalidAmountExplanation": "Bitte gib einen numerischen Wert als Betrag ein.",
+        "invalidAmountExplanation": "Bitte gib einen gültigen Transaktionsbetrag ein. Die Liste der IOTA Einheiten am unteren Rand dieser Seite könnte hilfreich sein.",
         "maximumSelected": "MAXIMALER Betrag ausgewählt",
         "iotaUnits": "IOTA Einheiten erklärt",
         "sendMax": "SENDE MAX"
@@ -218,7 +226,7 @@
         "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
     "settings": {
-        "transferSending": "Sende Überweisung...",
+        "transferSending": "Sende Überweisung",
         "transferSendingExplanation": "Bitte warte bis deine Überweisung gesendet wurde.",
         "generatingAddress": "Erzeuge Empfangsadresse",
         "generatingAddressExplanation": "Bitte warte bis deine Adresse erzeugt wurde.",
@@ -253,7 +261,7 @@
         "paste": "Einfügen",
         "selectAll": "Alle auswählen",
         "securitySettings": "Sicherheitseinstellungen",
-        "fingerprint": "Fingerabdruck-Authentifizierung"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -264,13 +272,13 @@
         "okay": "Okay. Lass uns dein Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
-        "explanation": "<0><0>Du kannst ihn benutzen, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Geld zuzugreifen. Aber, wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
+        "explanation": "<0><0>Du kannst ihn verwenden, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Guthaben zuzugreifen. Aber wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
         "thankYou": "Vielen Dank für das Herunterladen des IOTA Wallets.",
         "weWillSpend": "Dein Wallet wird in den nächsten Minuten eingerichtet.",
-        "reminder": "Wir raten dazu, den Prozess vollständig zu durchlaufen."
+        "reminder": "Du könntest in Versuchung geraten, einige Schritte zu überspringen. Wir raten dir aber dringend dazu, den Prozess vollständig zu durchlaufen."
     },
     "writeSeedDown": {
         "yourSeedIs": "Dein Seed besteht aus {{maxSeedLength}} Zeichen, gelesen von links nach rechts.",
@@ -281,8 +289,8 @@
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "SENDEN",
+        "receive": "EMPFANGEN"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -372,8 +380,8 @@
         "disabled": "Deaktiviert",
         "fingerprintUnavailable": "Fingerabdrucksensor nicht vorhanden",
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt die Erkennung von Fingerabdrücken nicht oder diese Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
-        "buttonInstructionsDisable": "Drücke die untere Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
-        "buttonInstructionsEnable": "Drücke die untere Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
+        "buttonInstructionsDisable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
+        "buttonInstructionsEnable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "instructionsLogin": "Fingerabdrucksensor berühren, um sich anzumelden."
     },
     "transferConfirmation": {
@@ -383,20 +391,20 @@
     "twoFA": {
         "wrongCode": "Falscher Code",
         "wrongCodeExplanation": "Der von dir eingegebene Code ist falsch.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Bitte gebe den Code ein und versuche es erneut.",
+        "emptyCode": "Leerer Code",
+        "emptyCodeExplanation": "Bitte gib einen Code ein und versuche es erneut.",
         "keyCopied": "Schlüssel in die Zwischenablage kopiert",
         "keyCopiedExplanation": "Dein 2FA Schlüssel wurde in die Zwischenablage kopiert.",
         "addKey": "Füge diesen Schlüssel in deine 2FA App ein",
         "key": "Schlüssel",
-        "twoFAEnabled": "2FA ist nun aktiviert",
-        "twoFAEnabledExplanation": "Du hast erfolgreich Zwei-Faktor-Authentifizierung aktiviert.",
-        "enterCode": "Gebe den Code aus deiner 2FA App ein",
+        "twoFAEnabled": "2FA ist jetzt aktiviert",
+        "twoFAEnabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung aktiviert.",
+        "enterCode": "Gib den Code aus deiner 2FA App ein",
         "code": "Code"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "change": "Änderung",
+        "volume": "Volumen (24Std)"
     }
 }

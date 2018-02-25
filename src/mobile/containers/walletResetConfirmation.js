@@ -1,11 +1,12 @@
 import { translate, Trans } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, Image, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
+import WithBackPressGoToHome from '../components/withBackPressGoToHome';
 import { width, height } from '../util/dimensions';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
@@ -43,11 +44,13 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontSize: width / 22.7,
+        fontFamily: 'Lato-Regular',
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoText: {
         fontSize: width / 27.6,
+        fontFamily: 'Lato-Light',
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },
@@ -63,10 +66,6 @@ const styles = StyleSheet.create({
     infoIcon: {
         width: width / 20,
         height: width / 20,
-    },
-    confirmationTextWrapper: {
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     confirmationText: {
         fontFamily: Fonts.secondary,
@@ -96,17 +95,6 @@ class WalletResetConfirmation extends Component {
         this.requirePassword = this.requirePassword.bind(this);
     }
 
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', () => {
-            this.goBack();
-            return true;
-        });
-    }
-
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress');
-    }
-
     navigateTo(url) {
         this.props.navigator.push({
             screen: url,
@@ -114,6 +102,8 @@ class WalletResetConfirmation extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -128,10 +118,13 @@ class WalletResetConfirmation extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: true,
             },
         });
     }
@@ -149,16 +142,12 @@ class WalletResetConfirmation extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={this.props.backgroundColor} />
                 <View style={styles.topWrapper}>
                     <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midWrapper}>
-                    <View style={styles.subHeaderWrapper}>
-                        <Text style={[styles.subHeaderText, negativeColor]}>
-                            {t('walletResetConfirmation:cannotUndo')}
-                        </Text>
-                    </View>
+                    <View style={{ flex: 0.2 }} />
                     <InfoBox
                         text={
                             <Trans i18nKey="walletResetConfirmation:warning">
@@ -173,9 +162,10 @@ class WalletResetConfirmation extends Component {
                         }
                         secondaryBackgroundColor={secondaryBackgroundColor}
                     />
-                    <View style={styles.confirmationTextWrapper}>
-                        <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
-                    </View>
+                    <View style={{ flex: 0.4 }} />
+                    <Text style={[styles.subHeaderText, negativeColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
+                    <View style={{ flex: 0.2 }} />
+                    <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                 </View>
                 <View style={styles.bottomWrapper}>
                     <OnboardingButtons
@@ -197,4 +187,6 @@ const mapStateToProps = (state) => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
-export default translate(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation));
+export default WithBackPressGoToHome()(
+    translate(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation)),
+);

@@ -250,7 +250,7 @@ class ThemeCustomisation extends Component {
                             style={[
                                 styles.demoContainer,
                                 {
-                                    backgroundColor: backgroundColor,
+                                    backgroundColor,
                                     borderColor: secondaryBackgroundColor,
                                 },
                             ]}
@@ -268,19 +268,19 @@ class ThemeCustomisation extends Component {
                             </View>
                             <View style={[styles.frameBar, { backgroundColor: barColor }]}>
                                 <Text style={[styles.frameBarTitle, { color: secondaryBarColor }]}>
-                                    {t('global:mainWallet')}
+                                    {t('global:mainWallet').toUpperCase()}
                                 </Text>
                                 <Image style={styles.chevron} source={chevronDownImagePath} />
                             </View>
                             <View style={styles.buttonsContainer}>
                                 <View style={[styles.button, { borderColor: negativeColor }]}>
                                     <Text style={[styles.buttonText, { color: negativeColor }]}>
-                                        {t('global:back')}
+                                        {t('global:back').toUpperCase()}
                                     </Text>
                                 </View>
                                 <View style={[styles.button, { borderColor: positiveColor }]}>
                                     <Text style={[styles.buttonText, { color: positiveColor }]}>
-                                        {t('global:next')}
+                                        {t('global:next').toUpperCase()}
                                     </Text>
                                 </View>
                             </View>
@@ -297,7 +297,7 @@ class ThemeCustomisation extends Component {
                                     ]}
                                 >
                                     <Text style={[styles.ctaText, { color: secondaryCtaColor }]}>
-                                        {t('global:send')}
+                                        {t('global:send').toUpperCase()}
                                     </Text>
                                 </View>
                             </View>

@@ -4,6 +4,7 @@
         "cancel": "CANCELAR",
         "continue?": "Tem a certeza que deseja continuar?",
         "noTransactions": "NÃO EXISTE HISTÓRICO RECENTE",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Saldo insuficiente",
         "balanceErrorMessage": "Não tem fundos suficientes para realizar esta transferência.",
@@ -73,7 +74,10 @@
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "generateNewAddress": "NEW ADDRESS",
         "message": "Mensagem opcional",
-        "removeMessage": "REMOVER MENSAGEM"
+        "removeMessage": "REMOVER MENSAGEM",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Seed removida",
@@ -196,9 +202,11 @@
         "amount": "Quantia",
         "max": "MAX",
         "message": "Mensagem",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "ENVIAR",
         "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "Selecionado o montante MÁXIMO",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"
@@ -253,7 +261,7 @@
         "paste": "Paste",
         "selectAll": "Select All",
         "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
