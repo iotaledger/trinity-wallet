@@ -1,25 +1,26 @@
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-import { isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
 import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
 import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
 import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
 import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
-import { extractTailTransferFromBundle } from 'iota-wallet-shared-modules/libs/transfers';
-import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
-import SimpleTransactionRow from '../components/simpleTransactionRow';
-import Chart from '../components/chart';
+import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getBalanceForSelectedAccountViaSeedIndex,
-} from '../../shared/selectors/account';
+} from 'iota-wallet-shared-modules/selectors/account';
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
+import SimpleTransactionRow from '../components/simpleTransactionRow';
+import Chart from '../components/chart';
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -47,7 +48,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     fiatBalance: {
-        paddingTop: height / 150,
+        paddingTop: isAndroid ? null : height / 200,
+        paddingBottom: isAndroid ? height / 200 : null,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
@@ -84,6 +86,7 @@ export class Balance extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
+        onTabSwitch: PropTypes.func.isRequired,
     };
 
     /**
@@ -114,6 +117,12 @@ export class Balance extends Component {
         if (newProps.seedIndex !== this.props.seedIndex) {
             this.setState({ balanceIsShort: true });
         }
+    }
+
+    shouldComponentUpdate(newProps) {
+        const { marketData } = this.props;
+        if (newProps.marketData !== marketData) return false;
+        return true;
     }
 
     /**
@@ -157,8 +166,8 @@ export class Balance extends Component {
         const outgoingIconPath = isSecondaryBackgroundColorWhite ? whiteSendImagePath : blackSendImagePath;
         const incomingIconPath = isSecondaryBackgroundColorWhite ? whiteReceiveImagePath : blackReceiveImagePath;
 
-        return map(recentTransactions, (transfer) => {
-            const tx = extractTailTransferFromBundle(transfer);
+        const formattedTransfers = map(recentTransactions, (transfer) => {
+            const tx = getRelevantTransfer(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
             return {
@@ -174,6 +183,8 @@ export class Balance extends Component {
                 },
             };
         });
+
+        return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
     renderTransactions() {
@@ -208,7 +219,6 @@ export class Balance extends Component {
         const textColor = { color: secondaryBackgroundColor };
         const lineBorder = { borderBottomColor: secondaryBackgroundColor };
         const recentTransactions = this.renderTransactions();
-
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
@@ -222,7 +232,9 @@ export class Balance extends Component {
                     </View>
                     <View style={styles.transactionsContainer}>
                         <View style={[styles.line, lineBorder]} />
-                        {recentTransactions}
+                        <TouchableOpacity onPress={() => this.props.onTabSwitch('history')}>
+                            {recentTransactions}
+                        </TouchableOpacity>
                         <View style={[styles.line, lineBorder]} />
                     </View>
                     <View style={styles.chartContainer}>

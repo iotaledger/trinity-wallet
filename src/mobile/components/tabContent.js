@@ -29,18 +29,22 @@ class TabContent extends Component {
 
     render() {
         const { currentRoute, navigator } = this.props;
-
         const Content = routeToComponent[currentRoute];
 
         return (
             <View style={{ flex: 1 }}>
-                <Content type={currentRoute} navigator={navigator} closeTopBar={this.handleCloseTopBar} />
+                <Content
+                    type={currentRoute}
+                    navigator={navigator}
+                    closeTopBar={this.handleCloseTopBar}
+                    onTabSwitch={(name) => this.props.onTabSwitch(name)}
+                />
             </View>
         );
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     currentRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
 });
@@ -54,6 +58,7 @@ TabContent.propTypes = {
     currentRoute: PropTypes.oneOf(Object.keys(routeToComponent)),
     isTopBarActive: PropTypes.bool.isRequired,
     toggleTopBarDisplay: PropTypes.func.isRequired,
+    onTabSwitch: PropTypes.func.isRequired,
 };
 
 TabContent.defaultProps = {

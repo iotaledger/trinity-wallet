@@ -3,7 +3,7 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar, Keyboard } from 'react-native';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import PropTypes from 'prop-types';
@@ -127,6 +127,8 @@ class EnterSeed extends React.Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
+                    drawUnderStatusBar: true,
+                    statusBarColor: COLORS.backgroundGreen,
                     screenBackgroundColor: COLORS.backgroundGreen,
                 },
                 animated: false,
@@ -208,7 +210,7 @@ class EnterSeed extends React.Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
                 <View style={styles.container}>
-                    <StatusBar barStyle="light-content" />
+                    <StatusBar barStyle="light-content" backgroundColor={COLORS.backgroundGreen} />
                     <View style={styles.topContainer}>
                         <View style={styles.logoContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -265,7 +267,7 @@ class EnterSeed extends React.Component {
                             rightButtonTestID="enterSeed-next"
                         />
                     </View>
-                    <StatefulDropdownAlert />
+                    <StatefulDropdownAlert textColor={'white'} backgroundColor={COLORS.backgroundGreen} />
                     <Modal
                         animationIn={'bounceInUp'}
                         animationOut={'bounceOut'}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, BackHandler } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import LottieView from 'lottie-react-native';
 import i18next from 'i18next';
@@ -12,6 +12,7 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
+import COLORS from '../theme/Colors';
 
 const version = getVersion();
 const build = getBuildNumber();
@@ -76,17 +77,11 @@ class InitialLoading extends Component {
     componentWillMount() {
         const { language } = this.props;
         i18next.changeLanguage(getLocaleFromLabel(language));
-        BackHandler.removeEventListener('backPress');
     }
 
     componentDidMount() {
         this.animation.play();
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
-
-        BackHandler.addEventListener('backPress', () => {
-            BackHandler.exitApp();
-            return true;
-        });
     }
 
     onLoaded() {
@@ -98,9 +93,10 @@ class InitialLoading extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
                 animated: false,
-                overrideBackPress: true,
             });
         } else {
             this.props.navigator.push({
@@ -109,6 +105,8 @@ class InitialLoading extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
                 animated: false,
             });
@@ -123,7 +121,7 @@ class InitialLoading extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <View style={styles.logoContainer}>
                     <View style={styles.animationContainer}>
                         <LottieView

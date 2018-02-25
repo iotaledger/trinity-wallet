@@ -4,6 +4,7 @@
         "cancel": "ΑΚΥΡΟ",
         "continue?": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;",
         "noTransactions": "ΚΑΜΙΑ ΠΡΟΣΦΑΤΗ ΙΣΤΟΡΙΑ",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Μη αρκετό υπόλοιπο",
         "balanceErrorMessage": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
@@ -73,7 +74,10 @@
         "autopromoting": "Αυτόματη προώθηση συναλλαγής",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "Η διεύθυνσή σας έχει αντιγραφεί στο Πρόχειρο.",
         "generateNewAddress": "ΝΕΑ ΔΙΕΥΘΥΝΣΗ",
         "message": "Προαιρετικό μήνυμα",
-        "removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ"
+        "removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Σπόρος εκκαθαρίστηκε",
@@ -196,9 +202,11 @@
         "amount": "Ποσό",
         "max": "ΜΕΓΙΣΤΟ",
         "message": "Μήνυμα",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "ΑΠΟΣΤΟΛΗ",
         "invalidAmount": "Εισήχθη λάθος ποσό",
-        "invalidAmountExplanation": "Παρακαλώ εισάγετε μια αριθμητική τιμή για το ποσό της συναλλαγής.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "ΜΕΓΙΣΤΟ ποσό επιλέχθηκε",
         "iotaUnits": "Επεξήγηση των υποδιαιρέσεων του IOTA",
         "sendMax": "ΑΠΟΣΤΟΛΗ ΜΕΓΙΣΤΟΥ ΠΟΣΟΥ"
@@ -253,7 +261,7 @@
         "paste": "Επικόλληση",
         "selectAll": "Επιλογή όλων",
         "securitySettings": "Ρυθμίσεις ασφαλείας",
-        "fingerprint": "Ταυτοποίηση με χρήση δακτυλικών αποτυπωμάτων"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",

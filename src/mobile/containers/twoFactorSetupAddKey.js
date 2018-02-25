@@ -7,8 +7,10 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
-import { Clipboard, StyleSheet, View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
+import { Clipboard, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { translate } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
+import WithBackPressGoToHome from '../components/withBackPressGoToHome';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { storeTwoFactorAuthKeyInKeychain } from '../util/keychain';
 import Fonts from '../theme/Fonts';
@@ -16,7 +18,6 @@ import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
-import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -78,6 +79,7 @@ export class TwoFactorSetupAddKey extends Component {
         generateAlert: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         navigator: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -91,18 +93,10 @@ export class TwoFactorSetupAddKey extends Component {
         };
     }
 
-    componentDidMount() {
-        BackHandler.addEventListener('newSeedSetupBackPress', () => {
-            this.goBack();
-            return true;
-        });
-    }
-
     onKeyPress(key) {
         const { t } = this.props;
         if (key) {
             Clipboard.setString(key);
-
             this.props.generateAlert('success', t('keyCopied'), t('keyCopiedExplanation'));
         }
     }
@@ -115,10 +109,13 @@ export class TwoFactorSetupAddKey extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: true,
             },
         });
     }
@@ -134,10 +131,13 @@ export class TwoFactorSetupAddKey extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundColor: this.props.backgroundColor,
+                        drawUnderStatusBar: true,
+                        statusBarColor: this.props.backgroundColor,
                     },
                     animated: false,
                     appStyle: {
                         orientation: 'portrait',
+                        keepStyleAcrossPush: true,
                     },
                 });
             })
@@ -152,7 +152,7 @@ export class TwoFactorSetupAddKey extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={this.props.backgroundColor} />
                 <View style={styles.topWrapper}>
                     <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                 </View>
@@ -171,7 +171,7 @@ export class TwoFactorSetupAddKey extends Component {
                         <Text style={[styles.infoText, textColor]}>
                             <Text style={styles.infoText}>{t('key')}</Text>
                             <Text style={styles.infoText}>: </Text>
-                            <Text style={styles.infoTextLight}>{this.state.authkey}</Text>
+                            <Text style={styles.infoTextLight}>{this.state.authKey}</Text>
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -183,7 +183,10 @@ export class TwoFactorSetupAddKey extends Component {
                         rightText={t('global:next')}
                     />
                 </View>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert
+                    textColor={secondaryBackgroundColor}
+                    backgroundColor={this.props.backgroundColor}
+                />
             </View>
         );
     }
@@ -199,4 +202,6 @@ const mapStateToProps = (state) => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
-export default translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey));
+export default WithBackPressGoToHome()(
+    translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey)),
+);

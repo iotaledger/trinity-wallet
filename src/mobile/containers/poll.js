@@ -6,7 +6,9 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
+import { AppState } from 'react-native';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import { removeBundleFromUnconfirmedBundleTails } from 'iota-wallet-shared-modules/actions/account';
 import {
     fetchMarketData,
     fetchChartData,
@@ -14,11 +16,8 @@ import {
     setPollFor,
     getAccountInfo,
     promoteTransfer,
-} from '../../shared/actions/polling';
-import { removeBundleFromUnconfirmedBundleTails } from '../../shared/actions/account';
+} from 'iota-wallet-shared-modules/actions/polling';
 import keychain, { getSeed } from '../util/keychain';
-import { isWithinADay } from '../../shared/libs/promoter';
-import { sortWithProp } from '../../shared/libs/accountUtils';
 
 export class Poll extends Component {
     static propTypes = {
@@ -33,13 +32,7 @@ export class Poll extends Component {
         fetchChartData: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         promoteTransfer: PropTypes.func.isRequired,
-        removeBundleFromUnconfirmedBundleTails: PropTypes.func.isRequired,
     };
-
-    static shouldPromote(latestTail) {
-        const attachmentTimestamp = get(latestTail, 'attachmentTimestamp');
-        return isWithinADay(attachmentTimestamp);
-    }
 
     constructor() {
         super();
@@ -50,10 +43,12 @@ export class Poll extends Component {
 
     componentDidMount() {
         this.startBackgroundProcesses();
+        AppState.addEventListener('change', this.handleAppStateChange);
     }
 
     componentWillUnmount() {
         timer.clearInterval(this, 'polling');
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
     shouldSkipCycle() {
@@ -83,11 +78,11 @@ export class Poll extends Component {
         }
 
         const dict = {
+            promotion: this.promote,
             marketData: this.props.fetchMarketData,
             price: this.props.fetchPrice,
             chartData: this.props.fetchChartData,
             accountInfo: this.fetchLatestAccountInfo,
-            promotion: this.promote,
         };
 
         // In case something messed up, reinitialize
@@ -112,6 +107,18 @@ export class Poll extends Component {
         timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 15000);
     }
 
+    handleAppStateChange = (nextAppState) => {
+        if (nextAppState.match(/inactive|background/)) {
+            this.stopBackgroundProcesses();
+        } else if (nextAppState === 'active') {
+            this.startBackgroundProcesses();
+        }
+    };
+
+    stopBackgroundProcesses() {
+        timer.clearInterval(this, 'polling');
+    }
+
     promote() {
         const { unconfirmedBundleTails, allPollingServices, pollFor } = this.props;
 
@@ -122,23 +129,11 @@ export class Poll extends Component {
             const bundles = keys(unconfirmedBundleTails);
             const top = bundles[0];
 
-            const tails = unconfirmedBundleTails[top];
-
-            const tailsSortedWithAttachmentTimestamp = sortWithProp(tails, 'attachmentTimestamp');
-            const tailWithMostRecentTimestamp = get(tailsSortedWithAttachmentTimestamp, '[0]');
-
-            // Check if lies within a day
-            if (Poll.shouldPromote(tailWithMostRecentTimestamp)) {
-                this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
-            } else {
-                // Otherwise get rid of it and move on
-                this.props.removeBundleFromUnconfirmedBundleTails(top);
-                this.props.setPollFor(allPollingServices[next]);
-            }
-        } else {
-            // In case there are no unconfirmed bundle tails, move to the next service item
-            this.props.setPollFor(allPollingServices[next]);
+            return this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
         }
+
+        // In case there are no unconfirmed bundle tails, move to the next service item
+        return this.props.setPollFor(allPollingServices[next]);
     }
 
     render() {

@@ -6,20 +6,12 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-white.png';
 import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-black.png';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
-import { Navigation } from 'react-native-navigation';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Text,
-    Image,
-    TouchableWithoutFeedback,
-    Keyboard,
-    BackHandler,
-    TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
+import WithBackPressGoToHome from '../components/withBackPressGoToHome';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import Fonts from '../theme/Fonts';
 import StatefulDropdownAlert from './statefulDropdownAlert';
@@ -97,13 +89,6 @@ class FingerprintEnable extends Component {
         this.navigateToHome = this.navigateToHome.bind(this);
     }
 
-    componentDidMount() {
-        BackHandler.addEventListener('newSeedSetupBackPress', () => {
-            this.navigateToHome();
-            return true;
-        });
-    }
-
     componentWillUnmount() {
         FingerprintScanner.release();
     }
@@ -179,7 +164,13 @@ class FingerprintEnable extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: false,
             },
         });
     }
@@ -197,7 +188,10 @@ class FingerprintEnable extends Component {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, backgroundColor]}>
-                    <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                    <DynamicStatusBar
+                        textColor={secondaryBackgroundColor}
+                        backgroundColor={this.props.backgroundColor}
+                    />
                     <View style={styles.topWrapper}>
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                     </View>
@@ -220,7 +214,10 @@ class FingerprintEnable extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <StatefulDropdownAlert />
+                    <StatefulDropdownAlert
+                        textColor={secondaryBackgroundColor}
+                        backgroundColor={this.props.backgroundColor}
+                    />
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -239,6 +236,6 @@ const mapStateToProps = (state) => ({
     isFingerprintEnabled: state.account.isFingerprintEnabled,
 });
 
-export default translate(['fingerprintSetup', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(FingerprintEnable),
+export default WithBackPressGoToHome()(
+    translate(['fingerprintSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(FingerprintEnable)),
 );
