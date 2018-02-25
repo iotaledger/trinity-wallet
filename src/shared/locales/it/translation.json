@@ -75,9 +75,9 @@
         "autopromotingExplanation": "Promozione della transazione con hash {{hash}}",
         "cannotSendToOwn": "Invio a un indirizzo proprio",
         "cannotSendToOwnExplanation": "Non puoi fare un trasferimento verso uno dei tuoi indirizzi.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWait": "Attendere, per favore",
+        "pleaseWaitExplanation": "Trinity sta eseguendo un altro lavoro. Attendere e riprovare.",
+        "pleaseWaitTransferExplanation": "Il tuo saldo disponibile è attualmente in uso in altri trasferimenti. Si prega di attendere la conferma di uno di questi prima di riprovare."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -175,8 +175,8 @@
         "generateNewAddress": "NUOVO INDIRIZZO",
         "message": "Messaggio opzionale",
         "removeMessage": "RIMUOVI IL MESSAGGIO",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "NESSUN INDIRIZZO",
+        "spent": "Speso"
     },
     "saveYourSeed": {
         "seedCleared": "Seme cancellato",
