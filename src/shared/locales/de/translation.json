@@ -261,7 +261,7 @@
         "paste": "Einfügen",
         "selectAll": "Alle auswählen",
         "securitySettings": "Sicherheitseinstellungen",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Fingerabdruck-Authentifizierung"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -391,7 +391,7 @@
     "twoFA": {
         "wrongCode": "Falscher Code",
         "wrongCodeExplanation": "Der von dir eingegebene Code ist falsch.",
-        "emptyCode": "Leerer Code",
+        "emptyCode": "Fehlender 2FA-Code",
         "emptyCodeExplanation": "Bitte gib einen Code ein und versuche es erneut.",
         "keyCopied": "Schlüssel in die Zwischenablage kopiert",
         "keyCopiedExplanation": "Dein 2FA Schlüssel wurde in die Zwischenablage kopiert.",
