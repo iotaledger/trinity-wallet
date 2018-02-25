@@ -114,7 +114,7 @@
     "copyToClipboard": {
         "seedCleared": "Seed-luku tyhjennetty",
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
-        "seedCopied": "Kopioitu seed-luku leikepöydälle",
+        "seedCopied": "Seed-luku kopioitu leikepöydälle",
         "seedCopiedExplanation": "Seed-luku poistetaan, kun painat ”VALMIS” tai kun 60 sekuntia on kulunut.",
         "clickToCopy": "Klikkaa alla olevaa painiketta ja kopioi seed-lukusi salasanan hallintaohjelmaan.",
         "doNotStore": "Älä säilytä seed-lukuasi pelkkänä tekstinä.",
@@ -286,7 +286,7 @@
     },
     "history": {
         "bundleHashCopied": "Kokoelman tiiviste-luku kopioitu",
-        "bundleHashCopiedExplanation": "Kokoelman tiiviste-luku kopioitu leikepöydälle.",
+        "bundleHashCopiedExplanation": "Kokoelman tiiviste-luku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
         "send": "LÄHETÄ",
@@ -300,7 +300,7 @@
         "addNewAccount": "Lisää uusi tili"
     },
     "addCustomNode": {
-        "customNode": "Mukautettu palvelin",
+        "customNode": "Omavalintainen palvelin",
         "add": "Lisää"
     },
     "addNewAccount": {
@@ -309,7 +309,7 @@
     },
     "advancedSettings": {
         "selectNode": "Valitse palvelin",
-        "addCustomNode": "Lisää oma palvelin",
+        "addCustomNode": "Lisää mukautettu palvelin",
         "manualSync": "Manuaalinen synkronointi"
     },
     "advancedThemeCustomisation": {
@@ -345,7 +345,7 @@
     "manualSync": {
         "pressToSync": "Paina alla olevaa nappia synkronoidaksesi tilisi.",
         "thisMayTake": "Tämä saattaa kestää hetken.",
-        "youMayNotice": "Laitteessa voi ilmetä hitautta.",
+        "youMayNotice": "Laitteesi voi toimia hitaasti tämän toiminnon aikana.",
         "syncAccount": "SYNKRONOI TILI",
         "syncingYourAccount": "Synkronoidaan tiliäsi."
     },
