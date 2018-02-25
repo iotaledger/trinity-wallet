@@ -240,7 +240,7 @@
         "changePassword": "Vaihda salasana",
         "advanced": "Lisäasetukset",
         "logout": "Kirjaudu ulos",
-        "reset": "Resetoi lompakko",
+        "reset": "Tyhjennä lompakko",
         "syncingComplete": "Synkronointi valmis",
         "syncingCompleteExplanation": "Tilisi on synkronoitu onnistuneesti.",
         "nicknameChanged": "Tilin nimi muutettu",
@@ -309,7 +309,7 @@
     },
     "advancedSettings": {
         "selectNode": "Valitse palvelin",
-        "addCustomNode": "Lisää mukautettu palvelin",
+        "addCustomNode": "Lisää oma palvelin",
         "manualSync": "Manuaalinen synkronointi"
     },
     "advancedThemeCustomisation": {
