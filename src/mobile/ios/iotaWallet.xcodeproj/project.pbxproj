@@ -57,6 +57,7 @@
 		CB262D1A1FE04020004E06D5 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB262D191FE04011004E06D5 /* libRNKeychain.a */; };
 		CB3E91DB1F55A2E5007EFF4C /* libRNRandomBytes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB3E91D81F55A2CE007EFF4C /* libRNRandomBytes.a */; };
 		CB87E5C01F550673009DB5ED /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB87E5BF1F55064B009DB5ED /* libReactNativeNavigation.a */; };
+		CBD250C22032537F00D9A6B0 /* libRNSecureRandom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD250BF2032536D00D9A6B0 /* libRNSecureRandom.a */; };
 		CBDB98A11F8EAE1500035DC3 /* libRNPrint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDB989D1F8EAE0200035DC3 /* libRNPrint.a */; };
 		CBDB98A21F8EAE1C00035DC3 /* libRNHTMLtoPDF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDB988E1F8EADC300035DC3 /* libRNHTMLtoPDF.a */; };
 		CBFE03461FD648E000094FBB /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE033F1FD648DA00094FBB /* Lato-Bold.ttf */; };
@@ -475,6 +476,13 @@
 			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
 			remoteInfo = "privatedata-tvOS";
 		};
+		CBD250BE2032536D00D9A6B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBD250832032536D00D9A6B0 /* RNSecureRandom.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNSecureRandom;
+		};
 		CBDB988D1F8EADC300035DC3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CBDB986A1F8EAD9800035DC3 /* RNHTMLtoPDF.xcodeproj */;
@@ -608,6 +616,7 @@
 		CB262D141FE04011004E06D5 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
 		CB3E91B51F55A2B8007EFF4C /* RNRandomBytes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNRandomBytes.xcodeproj; path = "../node_modules/react-native-randombytes/RNRandomBytes.xcodeproj"; sourceTree = "<group>"; };
 		CB87E5951F550649009DB5ED /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
+		CBD250832032536D00D9A6B0 /* RNSecureRandom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSecureRandom.xcodeproj; path = "../node_modules/react-native-securerandom/ios/RNSecureRandom.xcodeproj"; sourceTree = "<group>"; };
 		CBDB986A1F8EAD9800035DC3 /* RNHTMLtoPDF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNHTMLtoPDF.xcodeproj; path = "../node_modules/react-native-html-to-pdf/ios/RNHTMLtoPDF.xcodeproj"; sourceTree = "<group>"; };
 		CBDB98971F8EAE0200035DC3 /* RNPrint.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNPrint.xcodeproj; path = "../node_modules/react-native-print/ios/RNPrint.xcodeproj"; sourceTree = "<group>"; };
 		CBFE033F1FD648DA00094FBB /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../../shared/custom-fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -635,6 +644,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBD250C22032537F00D9A6B0 /* libRNSecureRandom.a in Frameworks */,
 				CB17C67E1FFE9290006C7ACD /* libLottie.a in Frameworks */,
 				CB17C6711FFE91D0006C7ACD /* libLottieReactNative.a in Frameworks */,
 				CB262D1A1FE04020004E06D5 /* libRNKeychain.a in Frameworks */,
@@ -903,6 +913,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CBD250832032536D00D9A6B0 /* RNSecureRandom.xcodeproj */,
 				CB17C6721FFE9255006C7ACD /* Lottie.xcodeproj */,
 				CB17C6391FFE91C1006C7ACD /* LottieReactNative.xcodeproj */,
 				CB262D141FE04011004E06D5 /* RNKeychain.xcodeproj */,
@@ -1066,6 +1077,14 @@
 			isa = PBXGroup;
 			children = (
 				CB87E5BF1F55064B009DB5ED /* libReactNativeNavigation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CBD250842032536D00D9A6B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CBD250BF2032536D00D9A6B0 /* libRNSecureRandom.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1394,6 +1413,10 @@
 				{
 					ProductGroup = CB3E91B61F55A2B8007EFF4C /* Products */;
 					ProjectRef = CB3E91B51F55A2B8007EFF4C /* RNRandomBytes.xcodeproj */;
+				},
+				{
+					ProductGroup = CBD250842032536D00D9A6B0 /* Products */;
+					ProjectRef = CBD250832032536D00D9A6B0 /* RNSecureRandom.xcodeproj */;
 				},
 				{
 					ProductGroup = CB653CBE1F5593310071E2B1 /* Products */;
@@ -1788,6 +1811,13 @@
 			fileType = archive.ar;
 			path = "libprivatedata-tvOS.a";
 			remoteRef = CBB3520B20163EF800AC8449 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CBD250BF2032536D00D9A6B0 /* libRNSecureRandom.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSecureRandom.a;
+			remoteRef = CBD250BE2032536D00D9A6B0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CBDB988E1F8EADC300035DC3 /* libRNHTMLtoPDF.a */ = {

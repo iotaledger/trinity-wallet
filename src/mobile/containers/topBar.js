@@ -35,7 +35,6 @@ import whiteChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron
 import whiteNotificationImagePath from 'iota-wallet-shared-modules/images/notification-white.png';
 import blackNotificationImagePath from 'iota-wallet-shared-modules/images/notification-black.png';
 import NotificationLog from '../components/notificationLog';
-import DynamicStatusBar from '../components/dynamicStatusBar';
 
 const { height, width } = Dimensions.get('window');
 
@@ -50,6 +49,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 25,
         paddingBottom: height / 50,
         opacity: 0.98,
+        flex: 1,
     },
     titleWrapper: {
         paddingHorizontal: width / 40,
@@ -392,7 +392,6 @@ class TopBar extends Component {
                         },
                     ]}
                 >
-                    <DynamicStatusBar textColor={secondaryBarColor} />
                     <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                         {(hasNotifications && (
                             <TouchableOpacity

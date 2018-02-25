@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import Seedbox from '../components/seedBox';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
@@ -175,7 +175,7 @@ class WriteSeedDown extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
                 </View>

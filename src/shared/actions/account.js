@@ -1,18 +1,22 @@
+import assign from 'lodash/assign';
+import unionBy from 'lodash/unionBy';
 import takeRight from 'lodash/takeRight';
-
+import map from 'lodash/map';
+import find from 'lodash/find';
 import { iota } from '../libs/iota';
 import {
     getSelectedAccount,
-    getExistingUnspentAddressesHashes,
-    getPendingTxTailsHashesForSelectedAccount,
+    getTxHashesForUnspentAddresses,
+    getPendingTxHashesForSpentAddresses,
 } from '../selectors/account';
 import {
     syncAccount,
     getAccountData,
-    mapUnspentAddressesHashesToAccount,
-    updateAccount,
-    formatAddresses,
-} from '../libs/accountUtils';
+    mapTransactionHashesForUnspentAddressesToState,
+    mapPendingTransactionHashesForSpentAddressesToState,
+    syncAccountAfterSpending,
+} from '../libs/iota/accounts';
+import { formatAddresses, syncAddresses } from '../libs/iota/addresses';
 import {
     clearTempData,
     updateTransitionBalance,
@@ -48,7 +52,6 @@ export const ActionTypes = {
     ADD_ADDRESSES: 'IOTA/ACCOUNT/ADD_ADDRESSES',
     SET_BALANCE: 'IOTA/ACCOUNT/SET_BALANCE',
     UPDATE_ACCOUNT_AFTER_TRANSITION: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_AFTER_TRANSITION',
-    SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT: 'IOTA/ACCOUNT/SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT',
     SET_NEW_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/SET_NEW_UNCONFIRMED_BUNDLE_TAILS',
     UPDATE_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/UPDATE_UNCONFIRMED_BUNDLE_TAILS',
     REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS',
@@ -66,6 +69,7 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNT/ACCOUNT_INFO_FETCH_ERROR',
     SET_2FA_STATUS: 'IOTA/ACCOUNT/SET_2FA_STATUS',
     SET_FINGERPRINT_STATUS: 'IOTA/ACCOUNT/SET_FINGERPRINT_STATUS',
+    UPDATE_ACCOUNT_AFTER_REATTACHMENT: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
 };
 
 export const manualSyncRequest = () => ({
@@ -200,8 +204,8 @@ export const updateAccountInfoAfterSpending = (payload) => ({
     payload,
 });
 
-export const setPendingTransactionTailsHashesForAccount = (payload) => ({
-    type: ActionTypes.SET_PENDING_TRANSACTION_TAILS_HASHES_FOR_ACCOUNT,
+export const updateAccountAfterReattachment = (payload) => ({
+    type: ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT,
     payload,
 });
 
@@ -225,11 +229,14 @@ export const fetchFullAccountInfoForFirstUse = (
     getAccountData(seed, accountName)
         .then((data) => {
             dispatch(clearTempData()); // Clean up partial state for reducer.
-            return mapUnspentAddressesHashesToAccount(data);
+            return mapTransactionHashesForUnspentAddressesToState(data);
         })
-        .then((dataWithUnspentAddressesHashes) => {
+        .then((dataWithTxHashesForUnspentAddresses) =>
+            mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
+        )
+        .then((dataWithPendingTxHashesForSpentAddresses) => {
             storeInKeychainPromise(password, seed, accountName)
-                .then(() => dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithUnspentAddressesHashes)))
+                .then(() => dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithPendingTxHashesForSpentAddresses)))
                 .catch((err) => onError(err));
         })
         .catch((err) => onError(err));
@@ -238,10 +245,14 @@ export const fetchFullAccountInfoForFirstUse = (
 export const getFullAccountInfo = (seed, accountName, navigator = null) => {
     return (dispatch) => {
         dispatch(fullAccountInfoFetchRequest());
+
         getAccountData(seed, accountName)
-            .then((data) => mapUnspentAddressesHashesToAccount(data))
-            .then((dataWithUnspentAddressesHashes) =>
-                dispatch(fullAccountInfoFetchSuccess(dataWithUnspentAddressesHashes)),
+            .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
+            .then((dataWithTxHashesForUnspentAddresses) =>
+                mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
+            )
+            .then((dataWithPendingTxHashesForSpentAddresses) =>
+                dispatch(fullAccountInfoFetchSuccess(dataWithPendingTxHashesForSpentAddresses)),
             )
             .catch((err) => {
                 pushScreen(navigator, 'login');
@@ -254,11 +265,15 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
 export const manuallySyncAccount = (seed, accountName) => {
     return (dispatch) => {
         dispatch(manualSyncRequest());
+
         getAccountData(seed, accountName)
-            .then((data) => mapUnspentAddressesHashesToAccount(data))
-            .then((dataWithUnspentAddressesHashes) => {
+            .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
+            .then((dataWithTxHashesForUnspentAddresses) =>
+                mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
+            )
+            .then((dataWithPendingTxHashesForSpentAddresses) => {
                 dispatch(generateSyncingCompleteAlert());
-                dispatch(manualSyncSuccess(dataWithUnspentAddressesHashes));
+                dispatch(manualSyncSuccess(dataWithPendingTxHashesForSpentAddresses));
             })
             .catch((err) => {
                 dispatch(generateSyncingErrorAlert(err));
@@ -285,29 +300,15 @@ export const manuallySyncAccount = (seed, accountName) => {
  **/
 
 export const getAccountInfo = (seed, accountName, navigator = null) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(accountInfoFetchRequest());
 
-        const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-        const existingHashes = getExistingUnspentAddressesHashes(
-            accountName,
-            getState().account.unspentAddressesHashes,
-        );
-        const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
-            accountName,
-            getState().account.pendingTxTailsHashes,
-        );
+        const existingAccountData = dispatch(prepareAccountInfoForSync(accountName));
 
-        const existingAccountData = {
-            accountName,
-            balance: selectedAccount.balance,
-            addresses: selectedAccount.addresses,
-            unspentAddressesHashes: existingHashes,
-            pendingTxTailsHashes,
-            transfers: selectedAccount.transfers,
-        };
-
-        return syncAccount(seed, existingAccountData)
+        return syncAddresses(seed, existingAccountData)
+            .then((accountData) => {
+                return syncAccount(seed, accountData);
+            })
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 if (navigator) {
@@ -320,6 +321,31 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
     };
 };
 
+export const prepareAccountInfoForSync = (accountName) => {
+    return (dispatch, getState) => {
+        const {
+            accountInfo,
+            txHashesForUnspentAddresses,
+            pendingTxHashesForSpentAddresses,
+            unconfirmedBundleTails,
+        } = getState().account;
+
+        const selectedAccount = getSelectedAccount(accountName, accountInfo);
+        const existingAccountData = {
+            ...selectedAccount,
+            accountName,
+            unconfirmedBundleTails,
+            txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(accountName, txHashesForUnspentAddresses),
+            pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
+                accountName,
+                pendingTxHashesForSpentAddresses,
+            ),
+        };
+
+        return existingAccountData;
+    };
+};
+
 export const deleteAccount = (accountName) => (dispatch) => {
     dispatch(removeAccount(accountName));
     dispatch(generateAccountDeletedAlert());
@@ -327,26 +353,26 @@ export const deleteAccount = (accountName) => (dispatch) => {
 
 // Aim to update local transfers, addresses, hashes in store after a new transaction is made.
 export const updateAccountInfo = (accountName, newTransferBundle, value) => (dispatch, getState) => {
-    const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-    const existingUnspentAddressesHashes = getExistingUnspentAddressesHashes(
-        accountName,
-        getState().account.unspentAddressesHashes,
-    );
-    const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
-        accountName,
-        getState().account.pendingTxTailsHashes,
-    );
-    const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
+    const {
+        accountInfo,
+        txHashesForUnspentAddresses,
+        pendingTxHashesForSpentAddresses,
+        unconfirmedBundleTails,
+    } = getState().account;
 
+    const selectedAccount = getSelectedAccount(accountName, accountInfo);
     const existingAccountData = {
         ...selectedAccount,
-        pendingTxTailsHashes,
-        unspentAddressesHashes: existingUnspentAddressesHashes,
-        unconfirmedBundleTails: existingUnconfirmedBundleTails,
+        unconfirmedBundleTails,
+        txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(accountName, txHashesForUnspentAddresses),
+        pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
+            accountName,
+            pendingTxHashesForSpentAddresses,
+        ),
     };
 
-    return updateAccount(accountName, newTransferBundle, existingAccountData, value > 0)
-        .then((newAccountState) => dispatch(updateAccountInfoAfterSpending({ ...newAccountState, ...{ accountName } })))
+    return syncAccountAfterSpending(accountName, newTransferBundle, existingAccountData, value > 0)
+        .then((newAccountState) => dispatch(updateAccountInfoAfterSpending({ ...newAccountState, accountName })))
         .catch((err) => {
             // Most probable reason for error here would be some network communication error
             // for finding transactions associated with new unspent addresses.

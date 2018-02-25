@@ -4,6 +4,7 @@
         "cancel": "キャンセル",
         "continue?": "本当に続行しますか？",
         "noTransactions": "最近の履歴なし",
+        "refresh": "更新",
         "qr": "QRコード",
         "balanceError": "残高が足りません",
         "balanceErrorMessage": "送金を完了するための十分なIOTAが有りません。",
@@ -72,8 +73,11 @@
         "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションを再登録",
         "autopromoting": "送金を自動促進",
         "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "自分のアドレスに送金する。",
+        "cannotSendToOwnExplanation": "自分のアドレスに送金することができません。",
+        "pleaseWait": "少々お待ちください。",
+        "pleaseWaitExplanation": "Trinityは別の機能を実行しています。お待ち頂き、もう一度実行してください。",
+        "pleaseWaitTransferExplanation": "利用可能な残高は、現在、別の送金で使用されています。送金が承認されるまで少々お待ちください。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
         "generateNewAddress": "新しいアドレス",
         "message": "任意のメッセージ",
-        "removeMessage": "メッセージを削除します。"
+        "removeMessage": "メッセージを削除します。",
+        "noAddresses": "アドレスなし",
+        "spent": "使用済"
     },
     "saveYourSeed": {
         "seedCleared": "Seedが消去されました",
@@ -196,9 +202,11 @@
         "amount": "金額",
         "max": "最大",
         "message": "メッセージ",
+        "invalidMessage": "無効なメッセージ",
+        "invalidMessageExplanation": "メッセージに無効な文字が含まれています。",
         "send": "送金",
         "invalidAmount": "不適切な金額が入力されました。",
-        "invalidAmountExplanation": "取引金額の数値を入力して下さい。",
+        "invalidAmountExplanation": "有効な取引金額を入力してください。ページ下にIOTAの単位の説明があります。",
         "maximumSelected": "設定した最大額",
         "iotaUnits": "IOTAの単位の説明",
         "sendMax": "全額送金"
@@ -253,7 +261,7 @@
         "paste": "貼り付け",
         "selectAll": "すべてを選択",
         "securitySettings": "セキュリティ設定",
-        "fingerprint": "指紋認証"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
@@ -281,8 +289,8 @@
         "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "送金",
+        "receive": "受取"
     },
     "accountManagement": {
         "viewSeed": "Seedを表示",
@@ -300,7 +308,7 @@
         "createNewSeed": "新しいSeedを作成"
     },
     "advancedSettings": {
-        "selectNode": "ノードを選択",
+        "selectNode": "ノード選択",
         "addCustomNode": "カスタムノードの追加",
         "manualSync": "手動同期"
     },
@@ -395,8 +403,8 @@
         "code": "コード"
     },
     "chart": {
-        "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "mcap": "時価総額",
+        "change": "変化率",
+        "volume": "取引量(24h)"
     }
 }

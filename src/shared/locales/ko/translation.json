@@ -4,6 +4,7 @@
         "cancel": "취소",
         "continue?": "계속하시겠습니까?",
         "noTransactions": "최근 기록 없음",
+        "refresh": "새로고침",
         "qr": "QR",
         "balanceError": "잔고 부족",
         "balanceErrorMessage": "IOTA 잔고가 부족하여 거래를 완료할 수 없습니다.",
@@ -73,7 +74,10 @@
         "autopromoting": "거래 자동 프로모트 중",
         "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "잠시 기다려 주세요",
+        "pleaseWaitExplanation": "트리니티가 다른 작업을 수행하는 중입니다. 잠시 후 다시 시도해 주십시오.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
         "generateNewAddress": "새 주소",
         "message": "메시지 (선택)",
-        "removeMessage": "메시지 삭제하기"
+        "removeMessage": "메시지 삭제하기",
+        "noAddresses": "주소 없음",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "시드 삭제됨",
@@ -196,9 +202,11 @@
         "amount": "금액",
         "max": "최대",
         "message": "메시지",
+        "invalidMessage": "잘못된 메시지",
+        "invalidMessageExplanation": "메시지에 유효하지 않은 문자가 포함되어 있습니다.",
         "send": "보내기",
-        "invalidAmount": "잘못된 금액이 입력됨",
-        "invalidAmountExplanation": "거래 금액에는 숫자만 입력할 수 있습니다.",
+        "invalidAmount": "잘못된 금액",
+        "invalidAmountExplanation": "유효한 거래 금액을 입력해 주십시오. 아래의 IOTA 단위 체계를 참고하십시오.",
         "maximumSelected": "최대 금액 선택됨",
         "iotaUnits": "IOTA 단위 체계",
         "sendMax": "최대 금액"
@@ -253,7 +261,7 @@
         "paste": "붙여넣기",
         "selectAll": "전체 선택",
         "securitySettings": "보안 설정",
-        "fingerprint": "지문 인증"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "지갑을 초기화하려면 비밀번호를 입력하세요.",
@@ -281,8 +289,8 @@
         "bundleHashCopiedExplanation": "번들 해시가 클립보드에 복사되었습니다.",
         "addressCopied": "주소 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "보냄",
+        "receive": "받음"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
@@ -368,8 +376,8 @@
         "fingerprintAuthFailed": "지문 인증 실패",
         "fingerprintAuthFailedExplanation": "지문 인증이 실패했습니다. 다시 시도해 주십시오.",
         "status": "상태",
-        "enabled": "사용 중",
-        "disabled": "사용 중지됨",
+        "enabled": "활성화됨",
+        "disabled": "비활성화됨",
         "fingerprintUnavailable": "지문 센서 사용 불가능",
         "fingerprintUnavailableExplanation": "이 기기는 지문인식 기능을 지원하지 않거나, 지문인식 기능을 사용하지 않도록 설정되어 있습니다.",
         "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다.",
@@ -395,8 +403,8 @@
         "code": "코드"
     },
     "chart": {
-        "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "mcap": "시가총액",
+        "change": "전일대비",
+        "volume": "거래량 (24시간)"
     }
 }
