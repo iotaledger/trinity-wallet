@@ -282,7 +282,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Twój seed ma {{maxSeedLength}} znaków, czytany od lewej do prawej.",
-        "writeDownYourSeed": "<0> Zanotuj swój seed i sumę kontrolną oraz</0><1>trzykrotnie upewnij się</1><2>, że są one poprawne.</2>"
+        "writeDownYourSeed": "<0> Zanotuj swój seed i sumę kontrolną oraz </0><1>trzykrotnie upewnij się</1><2>, że są one poprawne.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
