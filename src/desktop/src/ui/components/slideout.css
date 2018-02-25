@@ -1,0 +1,53 @@
+.slideout {
+    pointer-events: none;
+    > div:first-child {
+        position: absolute;
+        top: 0px;
+        left: auto;
+        right: -70%;
+        width: 70%;
+        max-width: 640px;
+        background: var(--body-bg);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding-top: var(--header-height);
+        z-index: 2;
+        transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    > div:last-child {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        opacity: 0;
+        background: var(--bar-bg);
+        z-index: 1;
+        transition: opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+        cursor: pointer;
+    }
+
+    &.active {
+        pointer-events: all;
+
+        > div:first-child {
+            right: 0px;
+        }
+        > div:last-child {
+            opacity: 0.6;
+        }
+    }
+
+    @media (max-width: 910px) {
+        > div:first-child {
+            max-width: none;
+            width: calc(100% - var(--sidebar-width-narrow));
+        }
+    }
+
+    &.active {
+        right: 0px;
+    }
+}

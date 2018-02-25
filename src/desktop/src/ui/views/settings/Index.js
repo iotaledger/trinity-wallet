@@ -4,8 +4,6 @@ import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { showNotification } from 'actions/notifications';
-import { clearTempData } from 'actions/tempAccount';
-import Confirm from 'ui/components/modal/Confirm';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 
@@ -31,10 +29,6 @@ class Settings extends React.PureComponent {
          * @ignore
          */
         tempAccount: PropTypes.object,
-        /** Clear temporary seed state data
-         * @ignore
-         */
-        clearTempData: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
@@ -42,24 +36,8 @@ class Settings extends React.PureComponent {
         t: PropTypes.func.isRequired,
     };
 
-    state = {
-        modalLogout: false,
-    };
-
-    toggleLogout = () => {
-        this.setState({
-            modalLogout: !this.state.modalLogout,
-        });
-    };
-
-    doLogout = () => {
-        this.props.clearTempData();
-        this.props.history.push('/login');
-    };
-
     render() {
         const { t, location, tempAccount, history } = this.props;
-        const { modalLogout } = this.state;
 
         return (
             <main className={!tempAccount || !tempAccount.ready ? css.public : css.settings}>
@@ -94,20 +72,12 @@ class Settings extends React.PureComponent {
                         ) : null}
                     </nav>
                     {!this.props.tempAccount || !this.props.tempAccount.ready ? (
-                        <Button onClick={() => history.push('/')}>{t('global:back')}</Button>
+                        <Button variant="secondary" onClick={() => history.push('/')}>
+                            {t('global:back')}
+                        </Button>
                     ) : null}
                 </section>
                 <section className={css.content}>
-                    <Confirm
-                        isOpen={modalLogout}
-                        content={{
-                            title: t('logoutConfirmationModal:logoutConfirmation'),
-                            confirm: t('global:yes'),
-                            cancel: t('global:no'),
-                        }}
-                        onCancel={this.toggleLogout}
-                        onConfirm={this.doLogout}
-                    />
                     <Switch location={location}>
                         <Route path="/settings/language" component={Language} />
                         <Route path="/settings/theme" component={Theme} />
@@ -129,7 +99,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     showNotification,
-    clearTempData,
 };
 
 export default translate()(connect(mapStateToProps, mapDispatchToProps)(Settings));
