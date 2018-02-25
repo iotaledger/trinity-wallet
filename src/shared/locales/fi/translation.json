@@ -4,7 +4,7 @@
         "cancel": "PERUUTA",
         "continue?": "Oletko varma, että haluat jatkaa?",
         "noTransactions": "EI HISTORIATIETOJA",
-        "refresh": "REFRESH",
+        "refresh": "PÄIVITÄ",
         "qr": "QR",
         "balanceError": "Ei tarpeeksi katetta",
         "balanceErrorMessage": "Sinulla ei ole tarpeeksi IOTAa siirron loppuun suorittamiseksi.",
@@ -73,11 +73,11 @@
         "autoreattachingExplanation": "Liitetään siirto uudelleen tiiviste-luvulla {{hash}}",
         "autopromoting": "Edistetään siirtoa automaattisesti",
         "autopromotingExplanation": "Edistetään siirtoa tiiviste-luvulla {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "cannotSendToOwn": "Lähetys omaan osoitteeseen",
+        "cannotSendToOwnExplanation": "Et voi siirtää varallisuutta yhteen omista osoitteistasi.",
+        "pleaseWait": "Odota hetki",
+        "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
+        "pleaseWaitTransferExplanation": "Varallisuuttasi käytetään jo olemassa olevissa siirroissa. Odota että ne on vahvistettu ennen kuin yrität uudelleen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -175,8 +175,8 @@
         "generateNewAddress": "UUSI OSOITE",
         "message": "Valinnainen viesti",
         "removeMessage": "POISTA VIESTI",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "EI OSOITTEITA",
+        "spent": "Käytetty"
     },
     "saveYourSeed": {
         "seedCleared": "Seed-luku tyhjennetty",
@@ -202,8 +202,8 @@
         "amount": "Summa",
         "max": "MAX",
         "message": "Viesti",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "Virheellinen viesti",
+        "invalidMessageExplanation": "Viestisi sisältää virheellisiä merkkejä.",
         "send": "LÄHETÄ",
         "invalidAmount": "Syötetty arvo on virheellinen",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
@@ -261,7 +261,7 @@
         "paste": "Liitä",
         "selectAll": "Valitse kaikki",
         "securitySettings": "Turvallisuusasetukset",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Sormenjälkitunnistus"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
@@ -289,8 +289,8 @@
         "bundleHashCopiedExplanation": "Kokoelman tiiviste-luku kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "LÄHETÄ",
+        "receive": "VASTAANOTA"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -403,8 +403,8 @@
         "code": "Tunnusluku"
     },
     "chart": {
-        "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "mcap": "MARVO",
+        "change": "Muutos",
+        "volume": "Vaihto (24h)"
     }
 }
