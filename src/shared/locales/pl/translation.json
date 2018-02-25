@@ -61,7 +61,7 @@
         "attachToTangleUnavailableExplanation": "Dowiązanie do sieci Tangle nie jest dostępne na wybranym serwerze.",
         "wallet": "Portfel",
         "sent": "Wysłano",
-        "received": "Odebrano",
+        "received": "Otrzymano",
         "sending": "Wysyłanie",
         "receiving": "Odbieranie",
         "confirmed": "Potwierdzono",
@@ -289,8 +289,8 @@
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Adres został skopiowany do schowka.",
-        "send": "WYSYŁKA",
-        "receive": "ODBIÓR"
+        "send": "WYPŁATA",
+        "receive": "WPŁATA"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
