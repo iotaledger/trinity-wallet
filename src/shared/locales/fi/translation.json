@@ -160,7 +160,7 @@
         "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi."
     },
     "onboardingComplete": {
-        "walletReady": "Lompakko on nyt käyttövalmis. Jos sinun tarvitsee jatkossa tehdä muutoksia, katso Asetukset-valikosta."
+        "walletReady": "Lompakkosi on nyt käyttövalmis. Jos haluat tehdä muutoksia lompakkoosi, voit tehdä sen Asetukset-valikosta."
     },
     "paperWallet": {
         "clickToPrint": "Kilkkaa alla olevaa nappia tulostaaksesi paperikopion seed-luvustasi.",
@@ -186,7 +186,7 @@
     "seedReentry": {
         "incorrectSeed": "Virheellinen seed-luku",
         "incorrectSeedExplanation": "Antamasi seed-luku on virheellinen. Yritä uudelleen.",
-        "thisIsACheck": "Tämä on tarkistus siitä, että olet tallentanut seed-lukusi.",
+        "thisIsACheck": "Tässä varmistamme, että olet tallentanut seed-lukusi.",
         "ifYouHaveNotSaved": "Jos et ole tallentanut seed-lukuasi, palaa takaisin ja tee se."
     },
     "send": {
@@ -222,7 +222,7 @@
         "retypePassword": "Kirjoita Salasana Uudelleen"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Voit käyttää useita seed-lukuja tässä lompakossa. Jokainen seed-luku tarvitsee oman tilin nimen.",
+        "canUseMultipleSeeds": "Voit lisätä useita seed-lukuja lompakkoosi. Jokainen seed-luku tulee nimetä erikseen.",
         "youCanAdd": "Voit lisätä useampia seed-lukuja Asetukset-valikossa."
     },
     "settings": {
@@ -354,13 +354,13 @@
     },
     "viewSeed": {
         "enterPassword": "Syötä salasana nähdäksesi seed-lukusi.",
-        "viewSeed": "KATSO SEED-LUKU",
+        "viewSeed": "NÄYTÄ SEED-LUKU",
         "hideSeed": "PIILOTA SEED-LUKU"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Olen tallettanut seed-lukuni",
         "reenter": "Sinua pyydetään nyt uudelleensyöttämään seed-lukusi.",
-        "reenterWarning": "Jos laitteesi hajoaa, etkä ole tallettanut seed-lukuasi, menetät sinun IOTAt."
+        "reenterWarning": "Jos laitteesi hajoaa, etkä ole tallettanut seed-lukuasi, menetät IOTA-varasi."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TÄTÄ TOIMINTOA EI VOI KUMOTA.",
@@ -395,7 +395,7 @@
         "emptyCodeExplanation": "Syötä tunnusluku ja yritä uudelleen.",
         "keyCopied": "Avain kopioitu leikepöydälle",
         "keyCopiedExplanation": "Sinun 2FA-avaimesi on kopioitu leikepöydälle.",
-        "addKey": "Lisää tämä avain sinun 2FA-ohjelmaan",
+        "addKey": "Lisää alla oleva avain 2FA-ohjelmaasi",
         "key": "Avain",
         "twoFAEnabled": "2FA on nyt käytössä",
         "twoFAEnabledExplanation": "Olet onnistuneesti ottanut käyttöön kaksivaihetunnistautumisen (2FA).",
