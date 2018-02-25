@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
-
+import { translate } from 'react-i18next';
 import withChartData from 'iota-wallet-shared-modules/containers/components/Chart';
-
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 import GENERAL from '../theme/general';
-import { translate } from 'react-i18next';
 
 const chartWidth = width * 0.98;
 const chartHeight = height * 0.38;
@@ -18,9 +16,9 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
         flexDirection: 'row',
-        borderWidth: height / 2000,
+        borderWidth: height / 1000,
         borderRadius: GENERAL.borderRadiusSmall,
-        paddingHorizontal: width / 40,
+        paddingHorizontal: width / 50,
         paddingVertical: height / 110,
     },
     button: {
@@ -52,6 +50,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         zIndex: 0,
         paddingLeft: width / 8,
+    },
+    emptyChartContainer: {
+        flex: 5,
+        width: width / 1.15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 0,
+    },
+    emptyChartText: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
     },
     marketDataContainer: {
         flex: 1,
@@ -131,14 +140,23 @@ class Chart extends PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        getPriceForCurrency: PropTypes.func.isRequired,
     };
 
     render() {
-        const { priceData, chartData, theme, setCurrency, setTimeframe, getPriceFormat, t } = this.props;
+        const {
+            t,
+            priceData,
+            chartData,
+            theme,
+            setCurrency,
+            setTimeframe,
+            getPriceFormat,
+            getPriceForCurrency,
+        } = this.props;
 
         const textColor = { color: theme.secondaryBackgroundColor };
         const borderColor = { borderColor: theme.secondaryBackgroundColor };
-
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
@@ -155,7 +173,8 @@ class Chart extends PureComponent {
                     </View>
                     <View style={styles.priceContainer}>
                         <Text style={[styles.iotaPrice, textColor]}>
-                            {getChartCurrencySymbol(priceData.currency)} {getPriceFormat(priceData.price)} / Mi
+                            {getChartCurrencySymbol(priceData.currency)}{' '}
+                            {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
                         </Text>
                     </View>
                     <View style={[styles.buttonContainer, borderColor]}>
@@ -170,49 +189,56 @@ class Chart extends PureComponent {
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
-                <View style={styles.chartContainer}>
-                    <VictoryChart domainPadding={isAndroid ? 0 : 15} height={chartHeight} width={chartWidth}>
-                        <Defs>
-                            <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
-                                <Stop stopColor={theme.chartLineColorPrimary} stopOpacity="1" offset="100%" />
-                                <Stop stopColor={theme.chartLineColorSecondary} stopOpacity="1" offset="25%" />
-                            </LinearGradient>
-                        </Defs>
-                        <VictoryLine
-                            data={chartData.data}
-                            style={{
-                                data: {
-                                    stroke: 'url(#gradient)',
-                                    strokeWidth: 1.2,
-                                },
-                            }}
-                            scale={{ x: 'time', y: 'linear' }}
-                            animate={{
-                                duration: 450,
-                            }}
-                        />
-                        <VictoryAxis
-                            dependentAxis
-                            tickFormat={(x) => getPriceFormat(x)}
-                            style={{
-                                axis: { stroke: 'transparent' },
-                                tickLabels: {
-                                    fill: theme.secondaryBackgroundColor,
-                                    fontSize: width / 44,
-                                    fontFamily: 'Lato-Regular',
-                                },
-                            }}
-                            gridComponent={
-                                <Line
-                                    type={'grid'}
-                                    style={{ stroke: theme.secondaryBackgroundColor, strokeWidth: 0.1 }}
-                                />
-                            }
-                            tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
-                            tickValues={chartData.yAxis.ticks}
-                        />
-                    </VictoryChart>
-                </View>
+                {((chartData.data.length === 0 || chartData.data === undefined) && (
+                    <View style={styles.emptyChartContainer}>
+                        <Text style={[styles.emptyChartText, textColor]}>Error fetching chart data</Text>
+                    </View>
+                )) || (
+                    <View style={styles.chartContainer}>
+                        <VictoryChart domainPadding={isAndroid ? 0 : 15} height={chartHeight} width={chartWidth}>
+                            <Defs>
+                                <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
+                                    <Stop stopColor={theme.chartLineColorPrimary} stopOpacity="1" offset="100%" />
+                                    <Stop stopColor={theme.chartLineColorSecondary} stopOpacity="1" offset="25%" />
+                                </LinearGradient>
+                            </Defs>
+                            <VictoryLine
+                                data={chartData.data}
+                                style={{
+                                    data: {
+                                        stroke: 'url(#gradient)',
+                                        strokeWidth: 1.2,
+                                    },
+                                }}
+                                scale={{ x: 'time', y: 'linear' }}
+                                animate={{
+                                    duration: 450,
+                                }}
+                            />
+                            <VictoryAxis
+                                dependentAxis
+                                tickFormat={(x) => getPriceFormat(x)}
+                                style={{
+                                    axis: { stroke: 'transparent' },
+                                    tickLabels: {
+                                        fill: theme.secondaryBackgroundColor,
+                                        fontSize: width / 44,
+                                        fontFamily: 'Lato-Regular',
+                                    },
+                                }}
+                                gridComponent={
+                                    <Line
+                                        type={'grid'}
+                                        style={{ stroke: theme.secondaryBackgroundColor, strokeWidth: 0.1 }}
+                                    />
+                                }
+                                tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
+                                tickValues={chartData.yAxis.ticks}
+                            />
+                        </VictoryChart>
+                    </View>
+                )}
+
                 <View style={styles.marketDataContainer}>
                     <Text style={[styles.marketFigure, textColor]}>
                         <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text> $ {priceData.mcap}

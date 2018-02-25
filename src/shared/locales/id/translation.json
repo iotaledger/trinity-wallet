@@ -4,6 +4,7 @@
         "cancel": "BATAL",
         "continue?": "Anda yakin ingin melanjutkan?",
         "noTransactions": "TIDAK ADA RIWAYAT TERKINI",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Saldo tidak mencukupi",
         "balanceErrorMessage": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
@@ -73,7 +74,10 @@
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "Alamat Anda telah disalin ke papan klip.",
         "generateNewAddress": "ALAMAT BARU",
         "message": "Pesan opsional",
-        "removeMessage": "HAPUS PESAN"
+        "removeMessage": "HAPUS PESAN",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Seed telah dihapus",
@@ -196,9 +202,11 @@
         "amount": "Nominal",
         "max": "Maks",
         "message": "Pesan",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "KIRIM",
         "invalidAmount": "Jumlah nilai salah",
-        "invalidAmountExplanation": "Silakan masukkan nilai numerik untuk jumlah transaksi.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "Jumlah MAKSIMUM dipilih",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"
@@ -253,7 +261,7 @@
         "paste": "Tempelkan",
         "selectAll": "Pilih Semua",
         "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda.",

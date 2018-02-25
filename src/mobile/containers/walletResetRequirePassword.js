@@ -13,8 +13,7 @@ import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, Image, BackHandle
 import OnboardingButtons from '../components/onboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-import COLORS from '../theme/Colors';
-import Fonts from '../theme/Fonts';
+import FONTS from '../theme/Fonts';
 import keychain from '../util/keychain';
 import CustomTextInput from '../components/customTextInput';
 import StatefulDropdownAlert from './statefulDropdownAlert';
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     generalText: {
-        fontFamily: Fonts.secondary,
+        fontFamily: FONTS.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         paddingBottom: height / 10,
@@ -75,6 +74,7 @@ class WalletResetRequirePassword extends Component {
         negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
+        navigator: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -100,19 +100,15 @@ class WalletResetRequirePassword extends Component {
     }
 
     goBack() {
-        // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
-                },
+        this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
             },
-            appStyle: {
-                orientation: 'portrait',
-            },
+            animated: false,
         });
     }
 
@@ -128,11 +124,14 @@ class WalletResetRequirePassword extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    statusBarColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
                 },
                 overrideBackPress: true,
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: true,
             },
         });
     }
@@ -174,25 +173,9 @@ class WalletResetRequirePassword extends Component {
         const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
-        const onboardingButtonsOverride = {
-            rightButton: {
-                borderColor: COLORS.red,
-            },
-            rightText: {
-                color: COLORS.red,
-                fontFamily: Fonts.secondary,
-            },
-            leftButton: {
-                borderColor: negativeColor,
-            },
-            leftText: {
-                color: negativeColor,
-            },
-        };
-
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={this.props.backgroundColor} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
@@ -217,7 +200,6 @@ class WalletResetRequirePassword extends Component {
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
-                                style={onboardingButtonsOverride}
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.resetWallet}
                                 leftText={t('cancel')}
@@ -226,7 +208,10 @@ class WalletResetRequirePassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert
+                    textColor={secondaryBackgroundColor}
+                    backgroundColor={this.props.backgroundColor}
+                />
             </View>
         );
     }

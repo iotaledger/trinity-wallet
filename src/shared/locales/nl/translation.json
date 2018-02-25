@@ -1,9 +1,10 @@
 {
     "global": {
-        "send": "Verstuur",
+        "send": "VERSTUUR",
         "cancel": "ANNULEREN",
         "continue?": "Weet u zeker dat u wilt doorgaan?",
         "noTransactions": "Geen recente geschiedenis",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Niet genoeg saldo",
         "balanceErrorMessage": "U hoeft niet genoeg IOTA om deze overdracht te voltooien.",
@@ -46,7 +47,7 @@
         "yes": "JA",
         "no": "Nee",
         "password": "Wachtwoord",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Wachtwoord of vingeafdruk",
         "unrecognisedPassword": "Niet herkend wachtwoord",
         "unrecognisedPasswordExplanation": "Het wachtwoord is niet herkend. Probeer het opnieuw.",
         "syncInProgress": "Bezig met synchroniseren",
@@ -67,13 +68,16 @@
         "pending": "In afwachting",
         "bundleHash": "Bundel Hash",
         "addresses": "Adressen",
-        "pressBackAgain": "Press back again to close the app",
+        "pressBackAgain": "Druk opnieuw op de terug knop om de app te sluiten",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwn": "Versturen naar eigen adres",
+        "cannotSendToOwnExplanation": "U kunt geen transactie versturen naar uw adressen.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De sleutel bevat ongeldige tekens",
@@ -141,7 +145,7 @@
         "useSeed": "GEBRUIK SLEUTEL",
         "login": "Aanmelden",
         "selectDifferentNode": "Wilt u een andere node selecteren?",
-        "setNode": "SET NODE",
+        "setNode": "SELECTEER NODE",
         "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "Uw adres is naar het Klembord gekopieerd.",
         "generateNewAddress": "NEW ADDRESS",
         "message": "Bericht",
-        "removeMessage": "VERWIJDER BERICHT"
+        "removeMessage": "VERWIJDER BERICHT",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Sleutel gewist",
@@ -196,12 +202,14 @@
         "amount": "Aantal",
         "max": "MAX",
         "message": "Bericht",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "VERSTUUR",
         "invalidAmount": "Onjuiste hoeveelheid ingevoerd",
-        "invalidAmountExplanation": "Voer het bedrag van uw transactie in.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM bedrag geselecteerd",
         "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "sendMax": "MAX VERZENDEN"
     },
     "setPassword": {
         "passwordTooShort": "Wachtwoord is te kort",
@@ -253,7 +261,7 @@
         "paste": "Plakken",
         "selectAll": "Selecteer Alles",
         "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -281,7 +289,7 @@
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het Klembord.",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Het adres is naar het Klembord gekopieerd.",
-        "send": "SEND",
+        "send": "VERSTUUR",
         "receive": "RECEIVE"
     },
     "accountManagement": {
@@ -377,7 +385,7 @@
         "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "U staat op het punt om {{contents}} te versturen naar het adres",
         "aMessage": "a message"
     },
     "twoFA": {

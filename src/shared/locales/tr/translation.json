@@ -4,6 +4,7 @@
         "cancel": "İPTAL",
         "continue?": "Devam etmek istediğine emin misin?",
         "noTransactions": "GÖNDERİ GEÇMİŞİ YOK",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Yetersiz bakiye",
         "balanceErrorMessage": "Bu aktarımı tamamlamak için yeterli Iota'nız yok.",
@@ -73,7 +74,10 @@
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "Adresin panoya kopyalanmış.",
         "generateNewAddress": "YENİ ADRES",
         "message": "İsteğe bağlı mesaj",
-        "removeMessage": "MESAJI SİL"
+        "removeMessage": "MESAJI SİL",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Cüzdan şifresi temizlendi",
@@ -196,9 +202,11 @@
         "amount": "Tutar",
         "max": "MAKS",
         "message": "Mesaj",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "Gönder",
         "invalidAmount": "Yanlış tutar girildi",
-        "invalidAmountExplanation": "Lütfen sayısal bir transfer tutarı girin.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "En fazla tutar seçildi",
         "iotaUnits": "IOTA birim açıklaması",
         "sendMax": "TÜMÜNÜ GÖNDER"
@@ -253,7 +261,7 @@
         "paste": "Yapıştır",
         "selectAll": "Hepsini seç",
         "securitySettings": "Güvenlik ayarları",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Cüzdanınızı sıfırlamak için şifrenizi girin.",

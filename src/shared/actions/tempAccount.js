@@ -1,19 +1,20 @@
 import i18next from '../i18next.js';
-import cloneDeep from 'lodash/cloneDeep';
-import size from 'lodash/size';
 import get from 'lodash/get';
 import some from 'lodash/some';
 import { iota } from '../libs/iota';
-import { updateAddresses, updateAccountInfo } from '../actions/account';
-import { generateAlert } from '../actions/alerts';
 import {
-    getStartingSearchIndexToPrepareInputs,
-    getUnspentInputs,
-    shouldAllowSendingToAddress,
-} from '../libs/transfers';
+    updateAddresses,
+    updateAccountInfo,
+    prepareAccountInfoForSync,
+    accountInfoFetchSuccess,
+} from '../actions/account';
+import { clearSendFields } from '../actions/ui';
+import { generateAlert } from '../actions/alerts';
+import { prepareTransferArray } from '../libs/iota/transfers';
+import { syncAccount } from '../libs/iota/accounts';
+import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
+import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { MAX_SEED_LENGTH } from '../libs/util';
-import { prepareTransferArray } from '../libs/transfers';
-import { getSelectedAccount } from '../selectors/account';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
 /* eslint-disable no-console */
@@ -185,39 +186,34 @@ export const setAdditionalAccountInfo = (payload) => ({
     payload,
 });
 
-export const generateNewAddress = (seed, seedName, addresses) => {
+export const generateNewAddress = (seed, accountName, existingAccountData) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        let index = 0;
 
-        size(addresses) === 0 ? (index = 0) : (index = size(addresses) - 1);
-        const options = { checksum: true, index };
-
-        iota.api.getNewAddress(seed, options, (error, address) => {
-            if (!error) {
-                //const addressToCheck = [{ address: address }];
-                //Promise.resolve(filterSpentAddresses(addressToCheck)).then(value => console.log(value));
-
-                const updatedAddresses = cloneDeep(addresses);
-                const addressNoChecksum = address.substring(0, MAX_SEED_LENGTH);
-                // In case the newly created address is not part of the addresses object
-                // Add that as a key with a 0 balance.
-                if (!(addressNoChecksum in addresses)) {
-                    updatedAddresses[addressNoChecksum] = { index, balance: 0, spent: false };
-                }
-
-                dispatch(updateAddresses(seedName, updatedAddresses));
-                dispatch(generateNewAddressSuccess(address));
-            } else {
-                dispatch(generateNewAddressError());
-            }
-        });
+        return syncAddresses(seed, existingAccountData, true)
+            .then((newAccountData) => {
+                const receiveAddress = iota.utils.addChecksum(getLatestAddress(newAccountData.addresses));
+                dispatch(updateAddresses(accountName, newAccountData.addresses));
+                dispatch(generateNewAddressSuccess(receiveAddress));
+            })
+            .catch((err) => dispatch(generateNewAddressError()));
     };
 };
 
-const makeTransfer = (seed, address, value, accountName, transfer, options = null) => (dispatch, getState) => {
-    const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-    const addressData = selectedAccount.addresses;
+/**
+ *   On successful transfer, update store, generate alert and clear send text fields
+ *   @method completeTransfer
+ *   @param {object} payload - sending status, address, transfer value
+ **/
+
+export const completeTransfer = (payload) => {
+    return (dispatch) => {
+        dispatch(clearSendFields());
+        dispatch(sendTransferSuccess(payload));
+    };
+};
+
+const makeTransfer = (seed, address, value, accountName, transfer, options = null) => (dispatch) => {
     let args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, transfer];
 
     if (options) {
@@ -226,7 +222,6 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
 
     return iota.api.sendTransfer(...args, (error, success) => {
         if (!error) {
-            dispatch(checkForNewAddress(accountName, addressData, success));
             dispatch(updateAccountInfo(accountName, success, value));
             if (value === 0) {
                 dispatch(
@@ -247,7 +242,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
                     ),
                 );
             }
-            dispatch(sendTransferSuccess({ address, value }));
+            dispatch(completeTransfer({ address, value }));
         } else {
             dispatch(sendTransferError());
             const alerts = {
@@ -274,7 +269,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
 };
 
 export const prepareTransfer = (seed, address, value, message, accountName) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(sendTransferRequest());
 
         const transfer = prepareTransferArray(address, value, message);
@@ -307,8 +302,8 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 return dispatch(
                     generateAlert(
                         'error',
-                        'Please wait',
-                        'Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.',
+                        i18next.t('global:pleaseWait'),
+                        i18next.t('global:pleaseWaitTransferExplanation'),
                         20000,
                     ),
                 );
@@ -318,7 +313,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
             // This would fail if a pre-requisite check for checksums fail.
             const isSendingToOwnAddress = some(
                 get(inputs, 'inputs'),
-                input => iota.utils.addChecksum(input.address, 9, true) === address,
+                (input) => iota.utils.addChecksum(input.address, 9, true) === address,
             );
 
             if (isSendingToOwnAddress) {
@@ -332,111 +327,84 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                     ),
                 );
             }
-
+            const remainderAddress = getLatestAddress(newAccountData.addresses);
             return dispatch(
-                makeTransfer(seed, address, value, accountName, transfer, { inputs: get(inputs, 'inputs') }),
+                makeTransfer(seed, address, value, accountName, transfer, {
+                    inputs: get(inputs, 'inputs'),
+                    address: remainderAddress,
+                }),
             );
+        };
+
+        let newAccountData = {};
+
+        const syncAndGetInputs = () => {
+            const existingAccountData = dispatch(prepareAccountInfoForSync(accountName));
+            return syncAddresses(seed, existingAccountData, true)
+                .then((accountData) => {
+                    return syncAccount(seed, accountData);
+                })
+                .then((accountData) => {
+                    dispatch(accountInfoFetchSuccess(accountData));
+                    newAccountData = accountData;
+                    const newAddressData = accountData.addresses;
+                    const startIndex = getStartingSearchIndexToPrepareInputs(newAddressData);
+                    getUnspentInputs(newAddressData, startIndex, value, null, unspentInputs);
+                })
+                .catch((err) => {
+                    dispatch(sendTransferError());
+                });
         };
 
         const unspentInputs = (err, inputs) => {
             if (err) {
                 dispatch(sendTransferError());
-
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     20000,
                     err,
                 );
             }
-
             return makeTransferWithBalanceCheck(inputs);
         };
-
-        const addressData = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
-
-        const startIndex = getStartingSearchIndexToPrepareInputs(addressData);
 
         // Make sure that the address a user is about to send to is not already used.
         // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
         // Omit input preparation in case the address is already spent from.
-        return shouldAllowSendingToAddress([address], (err, shouldAllowSending) => {
-            if (err) {
+        return shouldAllowSendingToAddress([address])
+            .then((shouldAllowSending) => {
+                if (shouldAllowSending) {
+                    return syncAndGetInputs();
+                }
+
+                dispatch(sendTransferError());
+                return dispatch(
+                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
+                );
+            })
+            .catch((err) => {
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     20000,
                     err,
                 );
-            }
-
-            return shouldAllowSending
-                ? getUnspentInputs(addressData, startIndex, value, null, unspentInputs)
-                : (() => {
-                      dispatch(sendTransferError());
-                      return dispatch(
-                          generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
-                      );
-                  })();
-        });
-    };
-};
-
-export const checkForNewAddress = (seedName, addressData, txArray) => {
-    return (dispatch) => {
-        // Check if 0 value transfer
-        if (txArray[0].value !== 0) {
-            const changeAddress = txArray[txArray.length - 1].address;
-            const addresses = Object.keys(addressData);
-            // Remove checksum
-            const addressNoChecksum = changeAddress.substring(0, MAX_SEED_LENGTH);
-            // If current addresses does not include change address, add new address and balance
-            if (!addresses.includes(addressNoChecksum)) {
-                const addressArray = [addressNoChecksum];
-                const index = addresses.length + 1;
-
-                // Check change address balance
-                iota.api.getBalances(addressArray, 1, (error, success) => {
-                    if (!error) {
-                        const addressBalance = parseInt(success.balances[0]);
-                        addressData[addressNoChecksum] = { index, balance: addressBalance, spent: false };
-                    } else {
-                        addressData[addressNoChecksum] = { index, balance: 0, spent: false };
-                    }
-                });
-            }
-            dispatch(updateAddresses(seedName, addressData));
-        }
+            });
     };
 };
 
 export const randomiseSeed = (randomBytesFn) => {
     return (dispatch) => {
-        // TODO move this to an iota util file
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
         let seed = '';
-        // uncomment for synchronous API, uses SJCL
-        // var rand = randomBytes(1)
-
-        // asynchronous API, uses iOS-side SecRandomCopyBytes
-        randomBytesFn(100, (error, bytes) => {
-            if (!error) {
-                Object.keys(bytes).forEach((key) => {
-                    if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
-                        const randomNumber = bytes[key] % 27;
-                        const randomLetter = charset.charAt(randomNumber);
-                        seed += randomLetter;
-                    }
-                });
-                dispatch(setSeed(seed));
-            } else {
-                dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:somethingWentWrong'),
-                        i18next.t('global:somethingWentWrongExplanation'),
-                        error,
-                    ),
-                );
-            }
+        randomBytesFn(100).then((bytes) => {
+            Object.keys(bytes).forEach((key) => {
+                if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
+                    const randomNumber = bytes[key] % 27;
+                    const randomLetter = charset.charAt(randomNumber);
+                    seed += randomLetter;
+                }
+            });
+            dispatch(setSeed(seed));
         });
     };
 };

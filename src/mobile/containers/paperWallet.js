@@ -17,7 +17,7 @@ import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/c
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
 import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import GENERAL from '../theme/general';
 import CtaButton from '../components/ctaButton';
 import { isAndroid, isIOS } from '../util/device';
@@ -240,7 +240,16 @@ class PaperWallet extends Component {
     }
 
     onDonePress() {
-        this.props.navigator.pop({ animated: false });
+        this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
+            },
+            animated: false,
+        });
         if (this.state.pressedPrint) {
             RNFS.unlink(qrPath);
 
@@ -471,7 +480,7 @@ class PaperWallet extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
                     <Text style={[styles.infoText, textColor]}>

@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'reac
 import PropTypes from 'prop-types';
 import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
@@ -88,6 +89,8 @@ class OnboardingComplete extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: COLORS.backgroundGreen,
+                drawUnderStatusBar: true,
+                statusBarColor: COLORS.backgroundGreen,
             },
             animated: false,
             overrideBackPress: true,
@@ -99,7 +102,7 @@ class OnboardingComplete extends Component {
 
         return (
             <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
+                <StatusBar barStyle="light-content" backgroundColor={COLORS.backgroundGreen} />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
@@ -121,4 +124,4 @@ class OnboardingComplete extends Component {
     }
 }
 
-export default translate(['onboardingComplete', 'global'])(OnboardingComplete);
+export default WithBackPressCloseApp()(translate(['onboardingComplete', 'global'])(OnboardingComplete));

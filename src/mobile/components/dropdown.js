@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    ListView,
-    LayoutAnimation,
-    TouchableWithoutFeedback,
-} from 'react-native';
+import { View, Text, StyleSheet, ListView, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
 import Triangle from 'react-native-triangle';
 import { connect } from 'react-redux';
 import { isAndroid } from '../util/device';
@@ -249,7 +241,7 @@ export class Dropdown extends Component {
                                     if (rowId.toString() === lastItem.toString()) {
                                         return (
                                             <View>
-                                                <TouchableOpacity
+                                                <TouchableWithoutFeedback
                                                     onPress={() => this.onOptionPress(rowData)}
                                                     style={{ alignItems: 'flex-start', flex: 1 }}
                                                 >
@@ -271,13 +263,13 @@ export class Dropdown extends Component {
                                                             {rowData}
                                                         </Text>
                                                     </View>
-                                                </TouchableOpacity>
+                                                </TouchableWithoutFeedback>
                                                 <View style={[styles.additionalPadding, backgroundColor]} />
                                             </View>
                                         );
                                     }
                                     return (
-                                        <TouchableOpacity
+                                        <TouchableWithoutFeedback
                                             onPress={() => this.onOptionPress(rowData)}
                                             style={{ alignItems: 'flex-start', flex: 1 }}
                                         >
@@ -295,7 +287,7 @@ export class Dropdown extends Component {
                                                     {rowData}
                                                 </Text>
                                             </View>
-                                        </TouchableOpacity>
+                                        </TouchableWithoutFeedback>
                                     );
                                 }}
                                 contentContainerView={styles.listView}
