@@ -272,13 +272,13 @@
         "okay": "Okei. Luodaan sinulle lompakko!",
         "doYouAlreadyHaveASeed": "Onko sinulla jo seed-luku jota haluat käyttää?",
         "seedExplanation": "IOTA seed-luku on käyttäjänimen ja salasanan yhdistelmä tilillesi. Seed-luku koostuu yhdestä 81-merkin pituisesta merkkijonosta.",
-        "explanation": "<0><0>Voit käyttää sitä päästäksesi käsiksi varoihisi mistä</0> <1>tahansa lompakosta</1> <2>, millä</2> <3>tahansa laitteella</3> <4>. Mutta jos hävität seed-lukusi, menetät myös sinun IOTAt.</4></0>",
+        "explanation": "<0><0>Voit käyttää seed-lukuasi päästäksesi käsiksi varoihisi mistä</0><1> tahansa lompakosta</1><2>, millä</2><3>tahansa tuetulla laitteella</3><4>. Muista kuitenkin että jos hävität seed-lukusi, menetät myös pääsyn varoihisi.</4></0>",
         "keepSafe": "Muista aina pitää seed-lukusi turvassa."
     },
     "welcome": {
         "thankYou": "Kiitos, että olet ladannut IOTA-lompakon.",
-        "weWillSpend": "Käytämme seuraavat pari minuuttia luodaksemme sinulle lompakkosi.",
-        "reminder": "Joidenkin vaiheiden ohittaminen voi houkutella, mutta painotamme sinulle, että seuraat koko prosessin läpi."
+        "weWillSpend": "Seuraavaksi määritämme lompakkosi asetukset.",
+        "reminder": "Kaikki tulevat vaiheet ovat tärkeitä lompakon toimivuuden kannalta, suorite ne huolellisesti loppuun asti."
     },
     "writeSeedDown": {
         "yourSeedIs": "Sinun seed-lukusi on {{maxSeedLength}} merkkiä luettuna vasemmalta oikealle.",
