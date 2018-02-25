@@ -31,9 +31,9 @@
         "save": "Tallenna",
         "close": "SULJE",
         "continue": "Jatka",
-        "manualCopy": "Kirjoita seed-luku talteen",
+        "manualCopy": "Kirjoita seed-luku paperille",
         "paperWallet": "Tulosta paperikopio",
-        "copyToClipboard": "Lisää salasanan hallintaohjelmaan",
+        "copyToClipboard": "Lisää salasanojen hallintaohjelmaan",
         "notAvailable": "Tämä toiminto ei ole käytettävissä",
         "notAvailableExplanation": "Se tullaan lisäämään myöhemmässä kehitysvaiheessa.",
         "enterSeed": "Anna seed-lukusi.",
@@ -181,7 +181,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed-luku tyhjennetty",
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
-        "mustSaveYourSeed": "<0><0>Sinun on tallennettava seed-lukusi käyttäen </0> <1>vähintään yhtä</1> <2>alla olevista vaihtoehdoista.</2></0>"
+        "mustSaveYourSeed": "<0><0>Sinun on tulee tallentaa seed-lukusi käyttäen </0><1>vähintään yhtä</1><2>alla olevista vaihtoehdoista.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Virheellinen seed-luku",
