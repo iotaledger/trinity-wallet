@@ -5,13 +5,19 @@ import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
 import { formatValue, formatUnit, round } from 'libs/util';
 import { getCurrencySymbol } from 'libs/currency';
+
 import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
+import Button from 'ui/components/Button';
 
 import css from './balance.css';
 
 class Balance extends React.PureComponent {
     static propTypes = {
+        /** Browser history object */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
         t: PropTypes.func.isRequired,
         seed: PropTypes.object.isRequired,
         account: PropTypes.object.isRequired,
@@ -20,7 +26,7 @@ class Balance extends React.PureComponent {
     };
 
     render() {
-        const { t, account, settings, marketData, seed } = this.props;
+        const { t, account, settings, marketData, seed, history } = this.props;
         const accountInfo = account.accountInfo[seed.name];
 
         const currencySymbol = getCurrencySymbol(settings.currency);
@@ -36,6 +42,9 @@ class Balance extends React.PureComponent {
                         <strong>{`${formatValue(accountInfo.balance)} ${formatUnit(accountInfo.balance)}`}</strong>
                         <small>{`${currencySymbol} ${fiatBalance}`}</small>
                     </div>
+                    <Button onClick={() => history.push('/wallet/send')} variant="secondary">
+                        Send
+                    </Button>
                     <List compact limit={10} />
                 </section>
                 <section className={css.flex}>

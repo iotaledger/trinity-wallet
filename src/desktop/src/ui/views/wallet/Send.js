@@ -128,7 +128,7 @@ class Send extends React.PureComponent {
                                 label={t('send:message')}
                                 onChange={(value) => this.setState({ message: value })}
                             />
-                            <Button loading={isSending} variant="primary">
+                            <Button loading={isSending} className="outline" variant="primary">
                                 {t('send:send')}
                             </Button>
                         </form>

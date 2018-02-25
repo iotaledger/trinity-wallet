@@ -1,36 +1,62 @@
 .wrapper {
-    display: block;
-    margin: 30px auto;
-    height: calc(100vh - 350px);
-    width: calc(100vh - 350px);
-    max-width: 450px;
-    max-height: 450px;
-    border-top: 1px solid var(--body-alt);
-    border-left: 1px solid var(--body-alt);
-
-    &.disabled {
-        pointer-events: none;
-    }
-
-    button {
-        background: transparent;
-        border: 1px solid var(--body-alt);
-        border-top: 1px solid var(--body-color);
-        border-left: 1px solid var(--body-color);
-        color: var(--body-color);
-        display: block;
-        float: left;
-        width: 11.111%;
-        height: 11.111%;
-        transition: 0.3s all ease;
-
+    position: relative;
+    > button {
+        position: absolute;
+        top: calc(100% + 16px);
+        left: 50%;
+        background: var(--body-bg);
+        transform: translate(-50%, -50%);
+        line-height: 24px;
+        height: 34px;
+        padding: 0 12px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         &:hover {
-            cursor: pointer;
-            background: var(--body-alt);
+            background: var(--body-bg);
         }
+    }
+    > div {
+        display: block;
+        margin: 30px auto 12px;
+        height: calc(100vh - 350px);
+        width: calc(100vh - 350px);
+        max-width: 450px;
+        max-height: 450px;
+        border-top: 1px solid var(--body-alt);
+        border-left: 1px solid var(--body-alt);
 
-        &:focus {
-            outline: 0;
+        button {
+            background: transparent;
+            border: 1px solid var(--body-alt);
+            border-top: 1px solid var(--body-color);
+            border-left: 1px solid var(--body-color);
+            color: var(--body-color);
+            display: block;
+            float: left;
+            width: 11.111%;
+            height: 11.111%;
+
+            &:hover {
+                position: relative;
+                cursor: pointer;
+                background: var(--body-alt);
+            }
+
+            &:focus {
+                outline: 0;
+            }
+        }
+    }
+    &.disabled {
+        > div {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        > button {
+            top: 50%;
+            z-index: 2;
+            line-height: 42px;
+            height: 42px;
+            padding: 0 24px;
         }
     }
 }
