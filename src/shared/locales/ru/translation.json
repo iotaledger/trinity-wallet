@@ -77,7 +77,7 @@
         "cannotSendToOwnExplanation": "Вы не можете переводить средства на один из Ваших собственных адресов.",
         "pleaseWait": "Please wait",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWaitTransferExplanation": "Ваш баланс используется в данный момент в одной из транзакций. Пожалуйста, подождите до тех пор пока транзакции побудут завершены и затем повторите попытку."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -175,8 +175,8 @@
         "generateNewAddress": "НОВЫЙ АДРЕС",
         "message": "Сообщение (опционально)",
         "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "НЕТ АДРЕСОВ",
+        "spent": "Использованный адрес"
     },
     "saveYourSeed": {
         "seedCleared": "Буфер обмена очищен",
@@ -261,7 +261,7 @@
         "paste": "Вставить",
         "selectAll": "Выбрать всё",
         "securitySettings": "Настройки безопасности",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Аутентификация на основе отпечатков пальцев"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите Ваш пароль для сброса настроек кошелька.",
