@@ -4,7 +4,7 @@
         "cancel": "ANNULLA",
         "continue?": "Sei sicuro di voler continuare?",
         "noTransactions": "NIENTE NELLA CRONOLOGIA RECENTE",
-        "refresh": "REFRESH",
+        "refresh": "AGGIORNA",
         "qr": "QR",
         "balanceError": "Saldo insufficiente",
         "balanceErrorMessage": "Non hai abbastanza IOTA per completare questo trasferimento.",
