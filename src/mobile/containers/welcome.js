@@ -99,8 +99,10 @@ class Welcome extends Component {
     }
 
     showModalIfRooted() {
-        if (isRooted) {
+        if (isRooted()) {
             this.setState({ isModalVisible: true });
+            console.log('Rooted');
+            console.log(isRooted());
         }
     }
 
