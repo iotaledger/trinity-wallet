@@ -206,7 +206,7 @@
         "invalidMessageExplanation": "Viestisi sisältää virheellisiä merkkejä.",
         "send": "LÄHETÄ",
         "invalidAmount": "Syötetty arvo on virheellinen",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Anna summa oikein. Voit saada apua sivun alareunan selvityksestä.",
         "maximumSelected": "MAKSIMI-määrä valittu",
         "iotaUnits": "IOTA-yksiköt selitettynä",
         "sendMax": "LÄHETÄ MAX"
