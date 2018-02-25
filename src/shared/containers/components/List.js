@@ -15,18 +15,20 @@ export default function withListData(ListComponent) {
             accountName: PropTypes.string.isRequired,
             limit: PropTypes.number,
             filter: PropTypes.string,
+            compact: PropTypes.bool,
             t: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
         };
 
         render() {
-            const { account, accountName, limit, filter, theme, t } = this.props;
+            const { account, accountName, limit, compact, filter, theme, t } = this.props;
 
             const accountInfo = account.accountInfo[accountName];
 
             const ListProps = {
                 transfers: accountInfo.transfers.length ? accountInfo.transfers : [],
                 addresses: Object.keys(accountInfo.addresses),
+                compact,
                 theme,
                 limit,
                 filter,

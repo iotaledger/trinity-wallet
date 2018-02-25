@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
-import { Switch, Route, withRouter, NavLink } from 'react-router-dom';
+import classNames from 'classnames';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
-import Header from 'ui/views/wallet/Header';
-
+import Sidebar from 'ui/views/wallet/Sidebar';
 import Balance from 'ui/views/wallet/Balance';
 import Receive from 'ui/views/wallet/Receive';
 import Send from 'ui/views/wallet/Send';
-import HistoryView from 'ui/views/wallet/History';
-import Settings from 'ui/views/settings/Index';
 
-import Icon from 'ui/components/Icon';
+import Slideout from 'ui/components/Slideout';
 
 import css from 'ui/index.css';
 
@@ -22,56 +19,37 @@ class Wallet extends React.PureComponent {
     static propTypes = {
         /* Browser location objects */
         location: PropTypes.object,
-        /* Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
-        t: PropTypes.func.isRequired,
+        /** Browser history object */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
     };
 
     render() {
-        const { location, t } = this.props;
+        const { location, history } = this.props;
+
         return (
-            <div className={css.main}>
-                <Header />
+            <div className={classNames(css.main, location.pathname === '/wallet/send' ? css.slided : null)}>
                 <div className={css.columns}>
-                    <aside>
-                        <nav>
-                            <NavLink to="/wallet/balance">
-                                <Icon icon="wallet" size={20} />
-                                {t('home:balance')}
-                            </NavLink>
-                            <NavLink to="/wallet/send">
-                                <Icon icon="send" size={20} />
-                                {t('home:send')}
-                            </NavLink>
-                            <NavLink to="/wallet/receive">
-                                <Icon icon="receive" size={20} />
-                                {t('home:receive')}
-                            </NavLink>
-                            <NavLink to="/wallet/history">
-                                <Icon icon="history" size={20} />
-                                {t('home:history')}
-                            </NavLink>
-                            <NavLink to="/settings">
-                                <Icon icon="settings" size={20} />
-                                {t('home:settings')}
-                            </NavLink>
-                        </nav>
-                    </aside>
+                    <Sidebar history={history} />
                     <section>
-                        <Switch location={location}>
-                            <Route path="/wallet/balance" component={Balance} />
-                            <Route path="/wallet/send" component={Send} />
-                            <Route path="/wallet/receive" component={Receive} />
-                            <Route path="/wallet/history" component={HistoryView} />
-                            <Route exact path="/settings/:setting?" component={Settings} />
-                        </Switch>
+                        <Balance history={history} />
                     </section>
                 </div>
+                <Slideout
+                    active={location.pathname === '/wallet/send'}
+                    onClose={() => {
+                        history.push('/wallet/');
+                    }}
+                >
+                    <Switch location={location}>
+                        <Route path="/wallet/send" component={Send} />
+                        <Route path="/wallet/receive" component={Receive} />
+                    </Switch>
+                </Slideout>
             </div>
         );
     }
 }
 
-export default withRouter(translate()(Wallet));
+export default withRouter(Wallet);

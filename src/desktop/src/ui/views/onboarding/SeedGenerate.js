@@ -98,11 +98,12 @@ class GenerateSeed extends React.PureComponent {
 
         return (
             <main>
-                <section>
-                    <Button type="button" onClick={this.generateNewSeed} variant="primary">
+                <section className={classNames(css.wrapper, seed ? css.enabled : css.disabled)}>
+                    <Button type="button" onClick={this.generateNewSeed} className="outline" variant="primary">
                         {t('newSeedSetup:pressForNewSeed')}
                     </Button>
-                    <div className={classNames(css.wrapper, seed ? css.enabled : css.disabled)}>
+                    <small>{this.state.seed ? t('newSeedSetup:individualLetters') : '\u00A0'}</small>
+                    <div>
                         {letters.map((letter, index) => {
                             return (
                                 <button
@@ -115,7 +116,6 @@ class GenerateSeed extends React.PureComponent {
                             );
                         })}
                     </div>
-                    <p>{this.state.seed ? t('newSeedSetup:individualLetters') : '\u00A0'}</p>
                 </section>
                 <footer>
                     <Button onClick={this.onRequestPrevious} className="outline" variant="highlight">

@@ -71,7 +71,7 @@ class AccountName extends React.PureComponent {
                             {t('global:back')}
                         </Button>
                         <Button className="outline" variant="primary">
-                            {t('global:done')}
+                            {t('global:next')}
                         </Button>
                     </footer>
                 </main>

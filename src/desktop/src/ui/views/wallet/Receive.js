@@ -50,7 +50,7 @@ class Receive extends React.PureComponent {
                     </Button>
                 </section>
                 <section>
-                    <List filter="received" limit={10} />
+                    <List filter="received" limit={5} />
                 </section>
             </main>
         );

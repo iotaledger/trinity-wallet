@@ -25,7 +25,7 @@ class Welcome extends React.PureComponent {
                     <Language />
                 </section>
                 <footer>
-                    <Button to="/onboarding/instructions" className="outline" variant="primary">
+                    <Button to="/onboarding/instructions" className="outline" variant="positive">
                         {t('global:next')}
                     </Button>
                 </footer>
