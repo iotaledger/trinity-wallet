@@ -433,6 +433,8 @@ class TopBar extends Component {
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.hideModal()}
                         onBackdropPress={() => this.hideModal()}
+                        useNativeDriver
+                        hideModalContentWhileAnimating
                     >
                         <NotificationLog
                             backgroundColor={barColor}
