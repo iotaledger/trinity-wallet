@@ -253,11 +253,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
     const accountName = get(tails, '[0].account');
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-    return isValidForPromotion(
-        bundle,
-        existingAccountState.accountInfo.transfers,
-        existingAccountState.accountInfo.addresses,
-    )
+    return isValidForPromotion(bundle, existingAccountState.transfers, existingAccountState.addresses)
         .then((isValid) => {
             if (!isValid) {
                 dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
