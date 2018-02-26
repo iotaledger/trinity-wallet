@@ -105,9 +105,11 @@ describe('selectors: account', () => {
             };
         });
 
-        it('should return an object with props "accountName", "unconfirmedBundleTails", "accountInfo", "txHashesForUnspentAddresses" and "pendingTxHashesForSpentAddresses"', () => {
+        it('should return an object with props "transfers", "addresses", "balance", "unconfirmedBundleTails", "accountInfo", "txHashesForUnspentAddresses" and "pendingTxHashesForSpentAddresses"', () => {
             expect(selectedAccountStateFactory('valid')(state)).to.have.keys([
-                'accountInfo',
+                'transfers',
+                'addresses',
+                'balance',
                 'txHashesForUnspentAddresses',
                 'pendingTxHashesForSpentAddresses',
                 'unconfirmedBundleTails',
