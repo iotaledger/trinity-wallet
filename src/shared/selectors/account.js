@@ -3,12 +3,6 @@ import isEmpty from 'lodash/isEmpty';
 import { createSelector } from 'reselect';
 import { deduplicateTransferBundles } from '../libs/iota/transfers';
 
-export const getAccountFromState = (state) => state.account || {};
-
-export const getAccountInfoFromState = createSelector(getAccountFromState, (state) => {
-    return state.accountInfo || {};
-});
-
 export const currentAccountSelector = (seedName, accountInfo) => get(accountInfo, seedName);
 
 export const currentAccountSelectorBySeedIndex = (seedIndex, accountInfo) => {
@@ -26,12 +20,6 @@ export const currentAccountSelectorBySeedIndex = (seedIndex, accountInfo) => {
 const currentAccountNameSelectorBySeedIndex = (seedIndex, seedNames) => {
     return seedNames[seedIndex];
 };
-
-const hashesSelector = (seedName, hashesDict) => get(hashesDict, seedName);
-
-export const getTxHashesForUnspentAddresses = createSelector(hashesSelector, (hashes) => hashes);
-
-export const getPendingTxHashesForSpentAddresses = createSelector(hashesSelector, (hashes) => hashes);
 
 export const getSelectedAccount = createSelector(currentAccountSelector, (account) => account);
 
@@ -61,3 +49,38 @@ export const getDeduplicatedTransfersForSelectedAccountViaSeedIndex = createSele
     currentAccountSelectorBySeedIndex,
     (account) => deduplicateTransferBundles(get(account, 'transfers')),
 );
+
+export const getAccountFromState = (state) => state.account || {};
+
+export const getAccountInfoFromState = createSelector(getAccountFromState, (state) => state.accountInfo || {});
+
+export const getUnconfirmedBundleTailsFromState = createSelector(
+    getAccountFromState,
+    (state) => state.unconfirmedBundleTails || {},
+);
+
+export const getTxHashesForUnspentAddressesFromState = createSelector(
+    getAccountFromState,
+    (state) => state.txHashesForUnspentAddresses || {},
+);
+
+export const getPendingTxHashesForSpentAddressesFromState = createSelector(
+    getAccountFromState,
+    (state) => state.pendingTxHashesForSpentAddresses || {},
+);
+
+export const accountStateFactory = (accountName) => {
+    return createSelector(
+        getAccountInfoFromState,
+        getUnconfirmedBundleTailsFromState,
+        getTxHashesForUnspentAddressesFromState,
+        getPendingTxHashesForSpentAddressesFromState,
+        (accountInfo, unconfirmedBundleTails, txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses) => ({
+            accountName,
+            unconfirmedBundleTails,
+            accountInfo: accountInfo[accountName] || {},
+            txHashesForUnspentAddresses: txHashesForUnspentAddresses[accountName] || [],
+            pendingTxHashesForSpentAddresses: pendingTxHashesForSpentAddresses[accountName] || [],
+        }),
+    );
+};
