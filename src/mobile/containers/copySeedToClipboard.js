@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, Clipboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, Clipboard, Share } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -9,6 +9,7 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import Seedbox from '../components/seedBox';
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
 import GENERAL from '../theme/general';
 import CtaButton from '../components/ctaButton';
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
 
 class CopySeedToClipboard extends Component {
     static propTypes = {
-        tempAccount: PropTypes.object.isRequired,
+        seed: PropTypes.string.isRequired,
         navigator: PropTypes.object.isRequired,
         setCopiedToClipboard: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
@@ -140,12 +141,21 @@ class CopySeedToClipboard extends Component {
      * Copy the seed to the clipboard and remove it after 30 seconds
      */
     onCopyPress() {
-        const { t } = this.props;
+        const { t, seed } = this.props;
 
-        Clipboard.setString(this.props.tempAccount.seed);
+        if (isAndroid) {
+            return Share.share(
+                {
+                    message: seed,
+                },
+                {
+                    dialogTitle: t('shareSeed'),
+                },
+            );
+        }
 
+        Clipboard.setString(seed);
         this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
-
         this.timeout = setTimeout(() => {
             Clipboard.setString(' ');
             this.generateClipboardClearAlert();
@@ -176,6 +186,7 @@ class CopySeedToClipboard extends Component {
             secondaryBackgroundColor,
             secondaryCtaColor,
             ctaBorderColor,
+            seed,
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
@@ -194,7 +205,7 @@ class CopySeedToClipboard extends Component {
                         secondaryBackgroundColor={secondaryBackgroundColor}
                         borderColor={borderColor}
                         textColor={textColor}
-                        seed={this.props.tempAccount.seed}
+                        seed={seed}
                     />
                     <View style={{ flex: 0.2 }} />
                     <CtaButton
@@ -222,7 +233,7 @@ class CopySeedToClipboard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    tempAccount: state.tempAccount,
+    seed: state.tempAccount.seed,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
