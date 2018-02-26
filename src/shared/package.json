@@ -38,6 +38,8 @@
         "babel-preset-stage-2": "^6.24.1",
         "chai": "^4.1.2",
         "mocha": "^4.0.1",
-        "redux-logger": "^3.0.6"
+        "redux-logger": "^3.0.6",
+        "svg2ttf": "^4.1.0",
+        "svgicons2svgfont": "^9.0.1"
     }
 }
