@@ -63,7 +63,7 @@
         "sent": "Lähetetty",
         "received": "Vastaanotettu",
         "sending": "Lähettää",
-        "receiving": "Vastaanotetaan",
+        "receiving": "Odotetaan",
         "confirmed": "Vahvistettu",
         "pending": "Odottaa",
         "bundleHash": "Kokoelman Tiiviste-luku",
