@@ -356,12 +356,16 @@ export const syncAccountAfterSpending = (name, newTransfer, accountState, isValu
         transfers,
         addresses,
         unconfirmedBundleTails,
-    }).then((newState) => mapPendingTransactionHashesForSpentAddressesToState(newState));
+    })
+        .then((newState) => mapPendingTransactionHashesForSpentAddressesToState(newState))
+        .then((newState) => ({ newState, transfer: newTransferBundleWithPersistence }));
 };
 
 export const syncAccountAfterReattachment = (accountName, reattachment, accountState) => {
+    const newReattachmentWithPersistence = map(reattachment, (tx) => ({ ...tx, persistence: false }));
+
     // Append new reattachment to existing transfers
-    const transfers = [...[map(reattachment, (tx) => ({ ...tx, persistence: false }))], ...accountState.transfers];
+    const transfers = [...[newReattachmentWithPersistence], ...accountState.transfers];
 
     const tailTransaction = find(reattachment, { currentIndex: 0 });
     const normalizedTailTransaction = assign({}, tailTransaction, { account: accountName });
@@ -384,5 +388,5 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
         unconfirmedBundleTails: updatedUnconfirmedBundleTails,
     })
         .then((newState) => mapPendingTransactionHashesForSpentAddressesToState(newState))
-        .then((newState) => ({ newState, reattachment }));
+        .then((newState) => ({ newState, reattachment: newReattachmentWithPersistence }));
 };
