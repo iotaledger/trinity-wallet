@@ -124,9 +124,9 @@ export const selectedAccountStateFactory = (accountName) => {
         getTxHashesForUnspentAddressesFromState,
         getPendingTxHashesForSpentAddressesFromState,
         (accountInfo, unconfirmedBundleTails, txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses) => ({
+            ...(accountInfo[accountName] || {}),
             accountName,
             unconfirmedBundleTails,
-            accountInfo: accountInfo[accountName] || {},
             txHashesForUnspentAddresses: txHashesForUnspentAddresses[accountName] || [],
             pendingTxHashesForSpentAddresses: pendingTxHashesForSpentAddresses[accountName] || [],
         }),
