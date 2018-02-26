@@ -308,6 +308,8 @@ class UseExistingSeed extends React.Component {
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                        useNativeDriver
+                        hideModalContentWhileAnimating
                     >
                         {this.renderModalContent()}
                     </Modal>
