@@ -20,7 +20,7 @@ class Welcome extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <main>
+            <React.Fragment>
                 <section>
                     <Language />
                 </section>
@@ -29,7 +29,7 @@ class Welcome extends React.PureComponent {
                         {t('global:next')}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }

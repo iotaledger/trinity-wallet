@@ -69,31 +69,30 @@ class AccountPassword extends React.PureComponent {
         const { t } = this.props;
         return (
             <form onSubmit={this.setPassword}>
-                <main>
-                    <section>
-                        <PasswordInput
-                            value={this.state.password}
-                            label={t('global:password')}
-                            onChange={(value) => this.setState({ password: value })}
-                        />
-                        <PasswordInput
-                            value={this.state.passwordConfirm}
-                            label={t('setPassword:retypePassword')}
-                            onChange={(value) => this.setState({ passwordConfirm: value })}
-                        />
-                        <Infobox>
-                            <p>{t('setPassword:anEncryptedCopy')}</p>
-                        </Infobox>
-                    </section>
-                    <footer>
-                        <Button to="/seed/name" className="outline" variant="highlight">
-                            {t('global:back')}
-                        </Button>
-                        <Button className="outline" variant="primary">
-                            {t('global:done')}
-                        </Button>
-                    </footer>
-                </main>
+                <div />
+                <section>
+                    <PasswordInput
+                        value={this.state.password}
+                        label={t('global:password')}
+                        onChange={(value) => this.setState({ password: value })}
+                    />
+                    <PasswordInput
+                        value={this.state.passwordConfirm}
+                        label={t('setPassword:retypePassword')}
+                        onChange={(value) => this.setState({ passwordConfirm: value })}
+                    />
+                    <Infobox>
+                        <p>{t('setPassword:anEncryptedCopy')}</p>
+                    </Infobox>
+                </section>
+                <footer>
+                    <Button to="/seed/name" className="outline" variant="highlight">
+                        {t('global:back')}
+                    </Button>
+                    <Button className="outline" variant="primary">
+                        {t('global:done')}
+                    </Button>
+                </footer>
             </form>
         );
     }

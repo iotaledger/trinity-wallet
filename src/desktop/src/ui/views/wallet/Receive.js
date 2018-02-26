@@ -5,9 +5,10 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import QRCode from 'qrcode.react';
 import { runTask } from 'worker';
-import List from 'ui/components/List';
+
 import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
+import Text from 'ui/components/input/Text.js';
 
 import css from './receive.css';
 
@@ -19,7 +20,9 @@ class Receive extends React.PureComponent {
         seeds: PropTypes.object,
     };
 
-    state = {};
+    state = {
+        message: '',
+    };
 
     onGeneratePress = () => {
         const { seeds, account } = this.props;
@@ -28,31 +31,31 @@ class Receive extends React.PureComponent {
         const seedName = seedInfo.name;
         const accountInfo = account.accountInfo[seedName];
 
-        runTask('generateNewAddress', [seedInfo.seed, seedName, accountInfo.addresses]);
+        runTask('generateNewAddress', [seedInfo.seed, seedName, accountInfo]);
     };
 
     render() {
         const { t, tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
+        const { message } = this.state;
+
+        const content =
+            receiveAddress.length > 2 ? receiveAddress.match(/.{1,3}/g).join(' ') : new Array(27).join('ABC ');
 
         return (
-            <main>
-                <section className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : null)}>
-                    <p className={css.address}>
-                        <Clipboard
-                            text={receiveAddress}
-                            title={t('receive:addressCopied')}
-                            success={t('receive:addressCopiedExplanation')}
-                        />
-                    </p>
-                    <QRCode value={receiveAddress} size={220} />
-                    <Button onClick={this.onGeneratePress} loading={isGeneratingReceiveAddress}>
-                        {t('receive:generateNewAddress')}
-                    </Button>
-                </section>
-                <section>
-                    <List filter="received" limit={5} />
-                </section>
-            </main>
+            <div className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : null)}>
+                <QRCode value={JSON.stringify({ address: receiveAddress, message })} size={200} />
+                <p className={css.address}>
+                    <Clipboard
+                        text={content}
+                        title={t('receive:addressCopied')}
+                        success={t('receive:addressCopiedExplanation')}
+                    />
+                </p>
+                <Text value={message} label="Custom message" onChange={(value) => this.setState({ message: value })} />
+                <Button onClick={this.onGeneratePress} className="outline" loading={isGeneratingReceiveAddress}>
+                    {t('receive:generateNewAddress')}
+                </Button>
+            </div>
         );
     }
 }

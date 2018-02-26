@@ -19,7 +19,7 @@ class SeedIntro extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <main>
+            <React.Fragment>
                 <section>
                     <h2>{t('walletSetup:okay')}</h2>
                     <Infobox>
@@ -47,7 +47,7 @@ class SeedIntro extends React.PureComponent {
                         {t('global:yes')}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }

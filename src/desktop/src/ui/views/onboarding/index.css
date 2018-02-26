@@ -1,0 +1,45 @@
+.onboarding {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    > form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
+    }
+
+    header {
+        width: 100%;
+        height: var(--header-height);
+        -webkit-app-region: drag;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    section {
+        max-width: 540px;
+        width: 100vw;
+        padding: 0 20px;
+    }
+
+    footer {
+        height: var(--footer-height);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        p {
+            position: absolute;
+            top: -16px;
+        }
+
+        @media print {
+            display: none;
+        }
+    }
+}

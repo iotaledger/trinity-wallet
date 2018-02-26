@@ -14,6 +14,10 @@ function createWindow() {
     windows.main = new BrowserWindow({
         width: 1024,
         height: 768,
+        maxWidth: 1280,
+        maxHeight: 820,
+        minWidth: 440,
+        minHeight: 720,
         titleBarStyle: 'hidden',
         backgroundColor: '#18373D',
         webPreferences: {
