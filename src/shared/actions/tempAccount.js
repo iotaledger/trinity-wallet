@@ -2,12 +2,8 @@ import i18next from '../i18next.js';
 import get from 'lodash/get';
 import some from 'lodash/some';
 import { iota } from '../libs/iota';
-import {
-    updateAddresses,
-    updateAccountInfo,
-    prepareAccountInfoForSync,
-    accountInfoFetchSuccess,
-} from '../actions/account';
+import { updateAddresses, updateAccountInfo, accountInfoFetchSuccess } from '../actions/account';
+import { accountStateFactory } from '../selectors/account';
 import { clearSendFields } from '../actions/ui';
 import { generateAlert } from '../actions/alerts';
 import { prepareTransferArray } from '../libs/iota/transfers';
@@ -223,6 +219,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
     return iota.api.sendTransfer(...args, (error, success) => {
         if (!error) {
             dispatch(updateAccountInfo(accountName, success, value));
+
             if (value === 0) {
                 dispatch(
                     generateAlert(
@@ -269,7 +266,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
 };
 
 export const prepareTransfer = (seed, address, value, message, accountName) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(sendTransferRequest());
 
         const transfer = prepareTransferArray(address, value, message);
@@ -339,8 +336,9 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
         let newAccountData = {};
 
         const syncAndGetInputs = () => {
-            const existingAccountData = dispatch(prepareAccountInfoForSync(accountName));
-            return syncAddresses(seed, existingAccountData, true)
+            const existingAccountState = accountStateFactory(accountName)(getState());
+
+            return syncAddresses(seed, existingAccountState, true)
                 .then((accountData) => {
                     return syncAccount(seed, accountData);
                 })
@@ -349,6 +347,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                     newAccountData = accountData;
                     const newAddressData = accountData.addresses;
                     const startIndex = getStartingSearchIndexToPrepareInputs(newAddressData);
+
                     getUnspentInputs(newAddressData, startIndex, value, null, unspentInputs);
                 })
                 .catch((err) => {
