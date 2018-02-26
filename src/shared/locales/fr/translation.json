@@ -397,7 +397,7 @@
         "keyCopiedExplanation": "Votre clé 2FA a été copiée dans le presse-papier.",
         "addKey": "Ajoutez cette clé à votre application 2FA",
         "key": "Clé",
-        "twoFAEnabled": "L'authentification 2FA est maintenant activé",
+        "twoFAEnabled": "L'authentification 2FA est maintenant activée",
         "twoFAEnabledExplanation": "Vous avez correctement activé l’authentification à deux facteurs.",
         "enterCode": "Entrez le code de votre application 2FA",
         "code": "Code"
