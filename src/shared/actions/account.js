@@ -1,14 +1,6 @@
-import assign from 'lodash/assign';
-import unionBy from 'lodash/unionBy';
 import takeRight from 'lodash/takeRight';
-import map from 'lodash/map';
-import find from 'lodash/find';
 import { iota } from '../libs/iota';
-import {
-    getSelectedAccount,
-    getTxHashesForUnspentAddresses,
-    getPendingTxHashesForSpentAddresses,
-} from '../selectors/account';
+import { accountStateFactory } from '../selectors/account';
 import {
     syncAccount,
     getAccountData,
@@ -300,12 +292,12 @@ export const manuallySyncAccount = (seed, accountName) => {
  **/
 
 export const getAccountInfo = (seed, accountName, navigator = null) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
-        const existingAccountData = dispatch(prepareAccountInfoForSync(accountName));
+        const existingAccountState = accountStateFactory(accountName)(getState());
 
-        return syncAddresses(seed, existingAccountData)
+        return syncAddresses(seed, existingAccountState)
             .then((accountData) => {
                 return syncAccount(seed, accountData);
             })
@@ -321,31 +313,6 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
     };
 };
 
-export const prepareAccountInfoForSync = (accountName) => {
-    return (dispatch, getState) => {
-        const {
-            accountInfo,
-            txHashesForUnspentAddresses,
-            pendingTxHashesForSpentAddresses,
-            unconfirmedBundleTails,
-        } = getState().account;
-
-        const selectedAccount = getSelectedAccount(accountName, accountInfo);
-        const existingAccountData = {
-            ...selectedAccount,
-            accountName,
-            unconfirmedBundleTails,
-            txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(accountName, txHashesForUnspentAddresses),
-            pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
-                accountName,
-                pendingTxHashesForSpentAddresses,
-            ),
-        };
-
-        return existingAccountData;
-    };
-};
-
 export const deleteAccount = (accountName) => (dispatch) => {
     dispatch(removeAccount(accountName));
     dispatch(generateAccountDeletedAlert());
@@ -353,26 +320,10 @@ export const deleteAccount = (accountName) => (dispatch) => {
 
 // Aim to update local transfers, addresses, hashes in store after a new transaction is made.
 export const updateAccountInfo = (accountName, newTransferBundle, value) => (dispatch, getState) => {
-    const {
-        accountInfo,
-        txHashesForUnspentAddresses,
-        pendingTxHashesForSpentAddresses,
-        unconfirmedBundleTails,
-    } = getState().account;
+    const existingAccountState = accountStateFactory(accountName)(getState());
 
-    const selectedAccount = getSelectedAccount(accountName, accountInfo);
-    const existingAccountData = {
-        ...selectedAccount,
-        unconfirmedBundleTails,
-        txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(accountName, txHashesForUnspentAddresses),
-        pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
-            accountName,
-            pendingTxHashesForSpentAddresses,
-        ),
-    };
-
-    return syncAccountAfterSpending(accountName, newTransferBundle, existingAccountData, value > 0)
-        .then((newAccountState) => dispatch(updateAccountInfoAfterSpending({ ...newAccountState, accountName })))
+    return syncAccountAfterSpending(accountName, newTransferBundle, existingAccountState, value > 0)
+        .then(({ newState }) => dispatch(updateAccountInfoAfterSpending(newState)))
         .catch((err) => {
             // Most probable reason for error here would be some network communication error
             // for finding transactions associated with new unspent addresses.
