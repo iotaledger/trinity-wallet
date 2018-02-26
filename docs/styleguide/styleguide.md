@@ -250,7 +250,8 @@ describe('component: Poll', () => {
     });
 });
 ```
-
+- Test all instance methods that lead to state updates.
+- Test all instance methods that dispatch redux actions.
 
 ### Reducers
 - Always test initial state for a reducer.
@@ -268,8 +269,6 @@ it('should have an initial state', () => {
 ```
 
 - Use action creators in tests for returing type and payloads.
-- Test all instance methods that lead to state updates.
-- Test all instance methods that dispatch redux actions.
 
 ```javascript
 it('should assign payload to unconfirmedBundleTails prop in state', () => {
