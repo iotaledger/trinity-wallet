@@ -9,6 +9,7 @@ import GENERAL from '../theme/general';
 import { isRooted } from '../util/device';
 import Modal from 'react-native-modal';
 import RootDetectionModal from '../components/rootDetectionModal';
+import RNIsDeviceRooted from 'react-native-is-device-rooted';
 
 import { width, height } from '../util/dimensions';
 
@@ -94,24 +95,26 @@ class Welcome extends Component {
         };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.showModalIfRooted();
+        console.log(this.state.isModalVisible);
     }
 
     showModalIfRooted() {
-        if (isRooted()) {
-            this.setState({ isModalVisible: true });
-            console.log('Rooted');
-            console.log(isRooted());
+        const isDeviceRooted = RNIsDeviceRooted.isDeviceRooted();
+        if (Promise && Promise.resolve && Promise.resolve(isDeviceRooted) == isDeviceRooted) {
+            isDeviceRooted.then((isRooted) => {
+                if (isRooted) {
+                    this.setState({ isModalVisible: true });
+                    console.log('Rooted');
+                }
+            });
+        } else {
+            if (isDeviceRooted) {
+                this.setState({ isModalVisible: true });
+                console.log('Rooted');
+            }
         }
-    }
-
-    renderModalContent() {
-        return (
-            <View style={[styles.modalContent, { backgroundColor: this.props.backgroundColor }]}>
-                {this.state.modalContent}
-            </View>
-        );
     }
 
     onNextPress() {
@@ -128,6 +131,8 @@ class Welcome extends Component {
 
     render() {
         const { t, backgroundColor, secondaryBackgroundColor } = this.props;
+        const { isModalVisible } = this.state;
+        console.log(isModalVisible);
 
         return (
             <View style={styles.container}>
@@ -159,10 +164,12 @@ class Welcome extends Component {
                     backdropColor={this.props.backgroundColor}
                     backdropOpacity={0.8}
                     style={{ alignItems: 'center' }}
-                    isVisible={this.state.isModalVisible}
+                    isVisible={isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
                 >
-                    {this.renderModalContent()}
+                    <View style={[styles.modalContent, { backgroundColor: this.props.backgroundColor }]}>
+                        {this.state.modalContent}
+                    </View>
                 </Modal>
             </View>
         );
