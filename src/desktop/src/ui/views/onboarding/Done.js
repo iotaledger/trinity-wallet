@@ -30,7 +30,7 @@ class Done extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <main>
+            <React.Fragment>
                 <section>
                     <p>{t('onboardingComplete:walletReady')}</p>
                 </section>
@@ -39,7 +39,7 @@ class Done extends React.PureComponent {
                         {t('global:done')}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }

@@ -157,24 +157,23 @@ class Login extends React.Component {
 
         return (
             <form onSubmit={this.handleSubmit}>
-                <main>
-                    <section>
-                        <PasswordInput
-                            value={this.state.password}
-                            label={t('global:password')}
-                            name="password"
-                            onChange={this.setPassword}
-                        />
-                    </section>
-                    <footer>
-                        <Button to="/seedlogin" className="outline" variant="highlight">
-                            {t('login:useSeed')}
-                        </Button>
-                        <Button className="outline" variant="primary">
-                            {t('login:login')}
-                        </Button>
-                    </footer>
-                </main>
+                <div />
+                <section>
+                    <PasswordInput
+                        value={this.state.password}
+                        label={t('global:password')}
+                        name="password"
+                        onChange={this.setPassword}
+                    />
+                </section>
+                <footer>
+                    <Button to="/seedlogin" className="outline" variant="highlight">
+                        {t('login:useSeed')}
+                    </Button>
+                    <Button className="outline" variant="primary">
+                        {t('login:login')}
+                    </Button>
+                </footer>
             </form>
         );
     }

@@ -1,0 +1,80 @@
+.balance {
+    margin: 0 auto;
+    text-align: center;
+    > div:first-child {
+        text-align: center;
+        padding: 26px 0;
+        border-radius: 4px;
+
+        h1 {
+            font-size: 14px;
+            font-weight: 200;
+            margin-bottom: 10px;
+        }
+
+        strong {
+            font-size: 58px;
+            display: block;
+            line-height: 58px;
+            font-weight: 300;
+        }
+
+        small {
+            font-size: var(--font-size-default);
+        }
+    }
+    > div:nth-child(2) {
+        padding: 20px 0;
+        margin-bottom: 20px;
+        button {
+            margin: 0 20px;
+            &:first-of-type {
+                margin-left: 0px;
+            }
+            &:last-of-type {
+                margin-right: 0px;
+            }
+        }
+    }
+}
+
+.news {
+    border-top: 1px solid var(--body-alt);
+    margin-top: 20px;
+    padding: 21px 0;
+}
+
+.market {
+    article {
+        display: flex;
+        text-align: left;
+        margin-bottom: 24px;
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+
+        > div {
+            height: 40px;
+            width: 40px;
+            flex: 0 0 40px;
+            margin-right: 20px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        p {
+            margin-bottom: 0px;
+        }
+    }
+}
+
+.tabs {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    background: red;
+    z-index: 3;
+}

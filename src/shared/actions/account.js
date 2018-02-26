@@ -300,10 +300,10 @@ export const manuallySyncAccount = (seed, accountName) => {
  **/
 
 export const getAccountInfo = (seed, accountName, navigator = null) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
-        const existingAccountData = dispatch(prepareAccountInfoForSync(accountName));
+        const existingAccountData = prepareAccountInfoForSync(accountName, getState);
 
         return syncAddresses(seed, existingAccountData)
             .then((accountData) => {
@@ -321,29 +321,27 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
     };
 };
 
-export const prepareAccountInfoForSync = (accountName) => {
-    return (dispatch, getState) => {
-        const {
-            accountInfo,
-            txHashesForUnspentAddresses,
-            pendingTxHashesForSpentAddresses,
-            unconfirmedBundleTails,
-        } = getState().account;
+export const prepareAccountInfoForSync = (accountName, getState) => {
+    const {
+        accountInfo,
+        txHashesForUnspentAddresses,
+        pendingTxHashesForSpentAddresses,
+        unconfirmedBundleTails,
+    } = getState().account;
 
-        const selectedAccount = getSelectedAccount(accountName, accountInfo);
-        const existingAccountData = {
-            ...selectedAccount,
+    const selectedAccount = getSelectedAccount(accountName, accountInfo);
+    const existingAccountData = {
+        ...selectedAccount,
+        accountName,
+        unconfirmedBundleTails,
+        txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(accountName, txHashesForUnspentAddresses),
+        pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
             accountName,
-            unconfirmedBundleTails,
-            txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(accountName, txHashesForUnspentAddresses),
-            pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
-                accountName,
-                pendingTxHashesForSpentAddresses,
-            ),
-        };
-
-        return existingAccountData;
+            pendingTxHashesForSpentAddresses,
+        ),
     };
+
+    return existingAccountData;
 };
 
 export const deleteAccount = (accountName) => (dispatch) => {

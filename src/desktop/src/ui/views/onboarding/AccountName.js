@@ -55,26 +55,25 @@ class AccountName extends React.PureComponent {
         const { name } = this.state;
         return (
             <form onSubmit={this.setName}>
-                <main>
-                    <section>
-                        <Input
-                            value={name}
-                            label={t('addAdditionalSeed:accountName')}
-                            onChange={(value) => this.setState({ name: value })}
-                        />
-                        <Infobox>
-                            <p>{t('setSeedName:canUseMultipleSeeds')}</p>
-                        </Infobox>
-                    </section>
-                    <footer>
-                        <Button to="/seed/enter" className="outline" variant="highlight">
-                            {t('global:back')}
-                        </Button>
-                        <Button className="outline" variant="primary">
-                            {t('global:next')}
-                        </Button>
-                    </footer>
-                </main>
+                <div />
+                <section>
+                    <Input
+                        value={name}
+                        label={t('addAdditionalSeed:accountName')}
+                        onChange={(value) => this.setState({ name: value })}
+                    />
+                    <Infobox>
+                        <p>{t('setSeedName:canUseMultipleSeeds')}</p>
+                    </Infobox>
+                </section>
+                <footer>
+                    <Button to="/seed/enter" className="outline" variant="highlight">
+                        {t('global:back')}
+                    </Button>
+                    <Button className="outline" variant="primary">
+                        {t('global:next')}
+                    </Button>
+                </footer>
             </form>
         );
     }

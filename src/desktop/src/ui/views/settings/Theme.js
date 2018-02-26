@@ -10,7 +10,7 @@ import Button from 'ui/components/Button';
 import inputCSS from 'ui/components/input/input.css';
 import Icon from 'ui/components/Icon';
 
-import css from 'ui/index.css';
+import css from './index.css';
 
 /** Theme switch component */
 class Theme extends React.PureComponent {
@@ -43,7 +43,14 @@ class Theme extends React.PureComponent {
         const theme = themeName ? themes[themeName] : themes[this.props.themeName];
 
         return (
-            <div>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    if (themeName) {
+                        updateTheme(themes[themeName], themeName);
+                    }
+                }}
+            >
                 <Select
                     label="Theme"
                     value={themeName || this.props.themeName}
@@ -115,13 +122,10 @@ class Theme extends React.PureComponent {
                         {t('global:next')}
                     </Button>
                 </div>
-                <Button
-                    disabled={!themeName || themeName === this.props.themeName}
-                    onClick={() => updateTheme(themes[themeName], themeName)}
-                >
-                    Save
-                </Button>
-            </div>
+                <fieldset>
+                    <Button disabled={!themeName || themeName === this.props.themeName}>Save</Button>
+                </fieldset>
+            </form>
         );
     }
 }
