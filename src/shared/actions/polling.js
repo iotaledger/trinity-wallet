@@ -11,11 +11,7 @@ import {
 } from './account';
 import { replayBundleAsync, promoteTransactionAsync } from '../libs/iota/extendedApi';
 import { getFirstConsistentTail, isValidForPromotion } from '../libs/iota/transfers';
-import {
-    getSelectedAccount,
-    getTxHashesForUnspentAddresses,
-    getPendingTxHashesForSpentAddresses,
-} from '../selectors/account';
+import { selectedAccountStateFactory } from '../selectors/account';
 import { syncAccount, syncAccountAfterReattachment } from '../libs/iota/accounts';
 import { rearrangeObjectKeys } from '../libs/util';
 import i18next from '../i18next.js';
@@ -184,27 +180,9 @@ export const getAccountInfo = (seed, accountName) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
-        const {
-            accountInfo,
-            txHashesForUnspentAddresses,
-            pendingTxHashesForSpentAddresses,
-            unconfirmedBundleTails,
-        } = getState().account;
+        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        const selectedAccount = getSelectedAccount(accountName, accountInfo);
-
-        const existingAccountData = {
-            ...selectedAccount,
-            accountName,
-            unconfirmedBundleTails,
-            txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(accountName, txHashesForUnspentAddresses),
-            pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
-                accountName,
-                pendingTxHashesForSpentAddresses,
-            ),
-        };
-
-        return syncAccount(seed, existingAccountData)
+        return syncAccount(seed, existingAccountState)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 dispatch(accountInfoFetchError());
@@ -243,32 +221,12 @@ const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispa
                     ),
                 );
 
-                const {
-                    accountInfo,
-                    txHashesForUnspentAddresses,
-                    pendingTxHashesForSpentAddresses,
-                    unconfirmedBundleTails,
-                } = getState().account;
+                const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-                const selectedAccount = getSelectedAccount(accountName, accountInfo);
-                const existingAccountData = {
-                    ...selectedAccount,
-                    accountName,
-                    unconfirmedBundleTails,
-                    txHashesForUnspentAddresses: getTxHashesForUnspentAddresses(
-                        accountName,
-                        txHashesForUnspentAddresses,
-                    ),
-                    pendingTxHashesForSpentAddresses: getPendingTxHashesForSpentAddresses(
-                        accountName,
-                        pendingTxHashesForSpentAddresses,
-                    ),
-                };
-
-                return syncAccountAfterReattachment(accountName, reattachment, existingAccountData);
+                return syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
             })
             .then(({ newState, reattachment }) => {
-                dispatch(updateAccountAfterReattachment({ ...newState, accountName }));
+                dispatch(updateAccountAfterReattachment(newState));
 
                 const tailTransaction = find(reattachment, { currentIndex: 0 });
                 return promoteTransactionAsync(tailTransaction.hash);
@@ -293,9 +251,13 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest());
 
     const accountName = get(tails, '[0].account');
-    const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-    return isValidForPromotion(bundle, selectedAccount.transfers, selectedAccount.addresses)
+    return isValidForPromotion(
+        bundle,
+        existingAccountState.accountInfo.transfers,
+        existingAccountState.accountInfo.addresses,
+    )
         .then((isValid) => {
             if (!isValid) {
                 dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
@@ -319,10 +281,10 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                 ),
             );
 
-            const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
-
             // Rearrange bundles so that the next cycle picks up a new bundle for promotion
-            dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(existingUnconfirmedBundleTails, bundle)));
+            dispatch(
+                setNewUnconfirmedBundleTails(rearrangeObjectKeys(existingAccountState.unconfirmedBundleTails, bundle)),
+            );
 
             return dispatch(promoteTransactionSuccess());
         })

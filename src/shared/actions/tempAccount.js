@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import some from 'lodash/some';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo, accountInfoFetchSuccess } from '../actions/account';
-import { accountStateFactory } from '../selectors/account';
+import { selectedAccountStateFactory } from '../selectors/account';
 import { clearSendFields } from '../actions/ui';
 import { generateAlert } from '../actions/alerts';
 import { prepareTransferArray } from '../libs/iota/transfers';
@@ -336,7 +336,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
         let newAccountData = {};
 
         const syncAndGetInputs = () => {
-            const existingAccountState = accountStateFactory(accountName)(getState());
+            const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
             return syncAddresses(seed, existingAccountState, true)
                 .then((accountData) => {
