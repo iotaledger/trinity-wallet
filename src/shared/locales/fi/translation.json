@@ -63,7 +63,7 @@
         "sent": "Lähetetty",
         "received": "Vastaanotettu",
         "sending": "Lähettää",
-        "receiving": "Odotetaan",
+        "receiving": "Odottaa",
         "confirmed": "Vahvistettu",
         "pending": "Odottaa",
         "bundleHash": "Kokoelman Tiiviste-luku",
@@ -106,7 +106,7 @@
         "passwordTooShortExplanation": "Salasanan tulee olla vähintään 12 merkkiä pitkä. Yritä uudelleen.",
         "oldPassword": "Vanhaa salasanaa ei voi käyttää",
         "oldPasswordExplanation": "Et voi käyttää vanhaa salasanaa toista kertaa. Yritä uudelleen.",
-        "ensureStrongPassword": "Varmista että käytät hyvää salasanaa joka on vähintään 12-merkkiä pitkä.",
+        "ensureStrongPassword": "Varmista että käytät hyvää salasanaa joka on vähintään 12-merkkiä pitkä ja sisältää erikoismerkkejä.",
         "currentPassword": "Nykyinen Salasana",
         "newPassword": "Uusi Salasana",
         "confirmPassword": "Vahvista Uusi Salasana"
@@ -173,7 +173,7 @@
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoitteesi on kopioitu leikepöydälle.",
         "generateNewAddress": "UUSI OSOITE",
-        "message": "Valinnainen viesti",
+        "message": "Viesti",
         "removeMessage": "POISTA VIESTI",
         "noAddresses": "EI OSOITTEITA",
         "spent": "Käytetty"
@@ -218,7 +218,7 @@
         "passwordMismatchExplanation": "Annetut salasanat eivät täsmää. Yritä uudelleen.",
         "nowWeNeedTo": "Nyt meidän on luotava salasana.",
         "anEncryptedCopy": "Seed-lukusi salattu kopio tallennetaan laitteellesi. Tällä salasanalla pääset käyttämään lompakkoasi jatkossa.",
-        "ensure": "Varmista, että käytät hyvää salasanaa, joka on vähintään 12 merkkiä pitkä.",
+        "ensure": "Varmista, että käytät hyvää salasanaa, joka on vähintään 12 merkkiä pitkä ja sisältää erikoismerkkejä.",
         "retypePassword": "Kirjoita Salasana Uudelleen"
     },
     "setSeedName": {
@@ -326,7 +326,7 @@
         "logoutConfirmation": "Haluatko varmasti kirjautua ulos?"
     },
     "qrScanner": {
-        "scan": "Skannaa QR-koodisi"
+        "scan": "Skannaa QR-koodi"
     },
     "unitInfoModal": {
         "unitSystem": "YKSIKKÖJÄRJESTELMÄ",
