@@ -4,7 +4,7 @@
         "cancel": "CANCELAR",
         "continue?": "Tem a certeza que deseja continuar?",
         "noTransactions": "NENHUM HISTÓRICO RECENTE",
-        "refresh": "REFRESH",
+        "refresh": "ATUALIZAR",
         "qr": "QR",
         "balanceError": "Saldo insuficiente",
         "balanceErrorMessage": "Você não tem IOTA suficiente para realizar esta transferência.",
@@ -75,9 +75,9 @@
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
         "cannotSendToOwn": "Enviando para próprio endereço",
         "cannotSendToOwnExplanation": "Você não pode fazer uma transferência de valor para um dos seus próprios endereços.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWait": "Por favor aguarde",
+        "pleaseWaitExplanation": "A Trinity está efetuando outra função. Por favor, aguarde e tente novamente.",
+        "pleaseWaitTransferExplanation": "Seu saldo atual disponível está sendo usado em outras transferências. Por favor aguarde uma confirmação antes de tentar novamente."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -175,8 +175,8 @@
         "generateNewAddress": "NOVO ENDEREÇO",
         "message": "Mensagem opcional",
         "removeMessage": "REMOVER MENSAGEM",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "SEM ENDEREÇOS",
+        "spent": "Gasto"
     },
     "saveYourSeed": {
         "seedCleared": "Seed removida",
@@ -261,7 +261,7 @@
         "paste": "Colar",
         "selectAll": "Selecionar Tudo",
         "securitySettings": "Opções de segurança",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Autenticação biométrica"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
