@@ -249,6 +249,8 @@ class Login extends Component {
                         onRightButtonPress={() => this.navigateToNodeSelection()}
                         leftText={'NO'}
                         rightText={'YES'}
+                        buttonWidth={{ width: width / 3.2 }}
+                        containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
             </View>
