@@ -1,6 +1,6 @@
 import takeRight from 'lodash/takeRight';
 import { iota } from '../libs/iota';
-import { accountStateFactory } from '../selectors/account';
+import { selectedAccountStateFactory } from '../selectors/account';
 import {
     syncAccount,
     getAccountData,
@@ -290,12 +290,11 @@ export const manuallySyncAccount = (seed, accountName) => {
  *   @param {object} [navigator=null]
  *   @returns {function} dispatch
  **/
-
 export const getAccountInfo = (seed, accountName, navigator = null) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
-        const existingAccountState = accountStateFactory(accountName)(getState());
+        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
         return syncAddresses(seed, existingAccountState)
             .then((accountData) => {
@@ -320,7 +319,7 @@ export const deleteAccount = (accountName) => (dispatch) => {
 
 // Aim to update local transfers, addresses, hashes in store after a new transaction is made.
 export const updateAccountInfo = (accountName, newTransferBundle, value) => (dispatch, getState) => {
-    const existingAccountState = accountStateFactory(accountName)(getState());
+    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
     return syncAccountAfterSpending(accountName, newTransferBundle, existingAccountState, value > 0)
         .then(({ newState }) => dispatch(updateAccountInfoAfterSpending(newState)))
