@@ -4,11 +4,11 @@
     background: var(--body-hover);
     border-top: 20px solid var(--input-bg);
     font-size: var(--font-size-small);
-    margin: 16px 0;
+    margin: 0 0 20px;
     padding: 21px 16px 21px 57px;
     text-align: left;
     position: relative;
-    max-width: 512px;
+    width: 100%;
     > span {
         position: absolute;
         top: 16px;

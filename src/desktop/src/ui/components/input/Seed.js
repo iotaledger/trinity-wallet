@@ -2,7 +2,7 @@ import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
 import { MAX_SEED_LENGTH } from 'libs/util';
-import { getChecksum } from 'libs/iota';
+import { getChecksum } from 'libs/iota/utils';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';

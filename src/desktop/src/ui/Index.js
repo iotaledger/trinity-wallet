@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 import { clearTempData } from 'actions/tempAccount';
@@ -15,12 +15,18 @@ import Notifications from 'ui/global/Notifications';
 import Updates from 'ui/global/Updates';
 
 import Loading from 'ui/components/Loading';
+
 import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
+import Settings from 'ui/views/settings/Index';
+
+import css from './index.css';
 
 /** Main wallet wrapper component */
 class App extends React.Component {
     static propTypes = {
+        /** Browser location */
+        location: PropTypes.object,
         /** Browser histoty object */
         history: PropTypes.object.isRequired,
         /** Settings state state data
@@ -109,21 +115,19 @@ class App extends React.Component {
     }
 
     render() {
-        const { account, tempAccount } = this.props;
+        const { account, tempAccount, location } = this.props;
+        const mainComponent = !this.state.initialized ? Loading : tempAccount.ready ? Wallet : Onboarding;
 
         return (
-            <div>
+            <div className={css.trintiy}>
                 <Theme />
                 <Notifications />
                 <Alerts />
                 <Updates />
-                {!this.state.initialized ? (
-                    <Loading loop={false} />
-                ) : account.onboardingComplete && tempAccount.ready ? (
-                    <Wallet />
-                ) : (
-                    <Onboarding complete={account.onboardingComplete} />
-                )}
+                <Switch location={location}>
+                    <Route path="/settings/:setting?" component={Settings} />
+                    <Route path="/" complete={account.onboardingComplete} component={mainComponent} />
+                </Switch>
             </div>
         );
     }

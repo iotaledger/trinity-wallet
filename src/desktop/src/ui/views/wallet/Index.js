@@ -4,13 +4,15 @@ import classNames from 'classnames';
 import { Switch, Route, withRouter } from 'react-router-dom';
 
 import Sidebar from 'ui/views/wallet/Sidebar';
-import Balance from 'ui/views/wallet/Balance';
+import Dashboard from 'ui/views/wallet/Dashboard';
 import Receive from 'ui/views/wallet/Receive';
 import Send from 'ui/views/wallet/Send';
 
 import Slideout from 'ui/components/Slideout';
+import Balance from 'ui/components/Balance';
+import Icon from 'ui/components/Icon';
 
-import css from 'ui/index.css';
+import css from './index.css';
 
 /**
  * Wallet functionallity router wrapper component
@@ -28,26 +30,34 @@ class Wallet extends React.PureComponent {
     render() {
         const { location, history } = this.props;
 
+        const hasSlideout = location.pathname === '/wallet/send' || location.pathname === '/wallet/receive';
+
         return (
-            <div className={classNames(css.main, location.pathname === '/wallet/send' ? css.slided : null)}>
-                <div className={css.columns}>
-                    <Sidebar history={history} />
-                    <section>
-                        <Balance history={history} />
-                    </section>
-                </div>
+            <main className={classNames(css.wallet, hasSlideout ? css.slided : null)}>
+                <Sidebar history={history} />
+                <section>
+                    <Dashboard history={history} />
+                </section>
                 <Slideout
-                    active={location.pathname === '/wallet/send'}
+                    active={hasSlideout}
                     onClose={() => {
                         history.push('/wallet/');
                     }}
                 >
+                    <header>
+                        <div>
+                            <Balance />
+                            <a onClick={() => history.push('/wallet/')}>
+                                <Icon icon="cross" size={40} />
+                            </a>
+                        </div>
+                    </header>
                     <Switch location={location}>
                         <Route path="/wallet/send" component={Send} />
                         <Route path="/wallet/receive" component={Receive} />
                     </Switch>
                 </Slideout>
-            </div>
+            </main>
         );
     }
 }

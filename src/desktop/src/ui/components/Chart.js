@@ -53,17 +53,6 @@ class Chart extends PureComponent {
 
         return (
             <div className={css.chart}>
-                <nav>
-                    <Button variant="secondary" className="small" onClick={() => setCurrency()}>
-                        {priceData.currency}
-                    </Button>
-                    <p>
-                        {priceData.symbol} {getPriceFormat(priceData.price)} / Mi
-                    </p>
-                    <Button variant="secondary" className="small" onClick={() => setTimeframe()}>
-                        {chartData.timeframe}
-                    </Button>
-                </nav>
                 <div>
                     <VictoryChart>
                         <VictoryLine
@@ -86,14 +75,25 @@ class Chart extends PureComponent {
                             tickValues={chartData.yAxis.ticks}
                             style={{
                                 axis: { stroke: 'transparent' },
-                                tickLabels: { fill: 'white', fontSize: 9, fontFamily: 'Lato-Regular' },
+                                tickLabels: { fill: theme.body.color, fontSize: 8, fontFamily: 'Lato-Regular' },
                                 ticks: { padding: 0 },
                             }}
-                            gridComponent={<Line type="grid" style={{ stroke: 'white', strokeWidth: 0.1 }} />}
+                            gridComponent={<Line type="grid" style={{ stroke: theme.body.alt, strokeWidth: 0.1 }} />}
                             tickLabelComponent={<VictoryLabel x={0} textAnchor="start" />}
                         />
                     </VictoryChart>
                 </div>
+                <nav>
+                    <Button variant="secondary" className="outline" onClick={() => setCurrency()}>
+                        {priceData.currency}
+                    </Button>
+                    <p>
+                        {priceData.symbol} {getPriceFormat(priceData.price)} / Mi
+                    </p>
+                    <Button variant="secondary" className="outline" onClick={() => setTimeframe()}>
+                        {chartData.timeframe}
+                    </Button>
+                </nav>
                 <ul>
                     <li>
                         {t('mcap')}: $ {priceData.mcap}

@@ -1,7 +1,7 @@
 .chart {
     width: 100%;
     overflow: hidden;
-
+    margin-top: -50px;
     nav,
     ul {
         width: 100%;
@@ -9,20 +9,24 @@
         justify-content: space-between;
     }
     nav {
+        border-top: 1px solid var(--body-alt);
+        margin: -45px 0 20px;
+        padding: 20px 0 0;
         button,
         p {
             margin: 0px;
         }
         p {
-            line-height: 21px;
+            line-height: 28px;
             font-size: 21px;
             text-align: center;
         }
         button {
             display: block;
-            span {
-                margin-right: 6px;
-            }
+            height: 28px;
+            line-height: 26px;
+            font-size: 11px;
+            min-width: 60px;
         }
     }
     ul {
@@ -35,9 +39,6 @@
     }
     > div {
         width: calc(100% + 55px);
-        > svg {
-            width: 0px;
-            height: 0px;
-        }
+        height: 360px;
     }
 }

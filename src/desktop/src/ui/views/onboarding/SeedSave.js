@@ -35,7 +35,7 @@ class SeedSave extends PureComponent {
         const { t, seed, showNotification } = this.props;
 
         return (
-            <main>
+            <React.Fragment>
                 <section>
                     <div className={css.seed}>
                         <QRCode size={148} value={seed} />
@@ -79,7 +79,7 @@ class SeedSave extends PureComponent {
                         {t('global:done')}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }

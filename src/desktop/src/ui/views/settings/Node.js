@@ -45,7 +45,15 @@ class SetNode extends PureComponent {
         const selectedNode = this.validNode(customNode) ? customNode : selection;
 
         return (
-            <div>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    setNode(selectedNode);
+                    this.setState({
+                        customNode: '',
+                    });
+                }}
+            >
                 <Select
                     value={selection || node}
                     label={t('global:node')}
@@ -64,20 +72,12 @@ class SetNode extends PureComponent {
                     label={t('addCustomNode:customNode')}
                     onChange={(value) => this.setState({ customNode: value })}
                 />
-
-                <Button
-                    loading={loading}
-                    disabled={!selectedNode || selectedNode === node}
-                    onClick={() => {
-                        setNode(selectedNode);
-                        this.setState({
-                            customNode: '',
-                        });
-                    }}
-                >
-                    {t('global:save')}
-                </Button>
-            </div>
+                <fieldset>
+                    <Button loading={loading} disabled={!selectedNode || selectedNode === node}>
+                        {t('global:save')}
+                    </Button>
+                </fieldset>
+            </form>
         );
     }
 }

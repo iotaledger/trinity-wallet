@@ -14,7 +14,7 @@ import Currency from 'ui/views/settings/Currency';
 import Password from 'ui/views/settings/Password';
 import Advanced from 'ui/views/settings/Advanced';
 
-import css from 'ui/index.css';
+import css from './index.css';
 
 /** Settings main wrapper component */
 class Settings extends React.PureComponent {
@@ -40,42 +40,37 @@ class Settings extends React.PureComponent {
         const { t, location, tempAccount, history } = this.props;
 
         return (
-            <main className={!tempAccount || !tempAccount.ready ? css.public : css.settings}>
+            <main className={css.settings}>
                 <section>
-                    <nav className={css.nav}>
+                    <nav>
                         <NavLink to="/settings/language">
-                            <Icon icon="language" size={16} /> {t('settings:language')}
+                            <Icon icon="language" size={20} /> {t('settings:language')}
                         </NavLink>
                         <NavLink to="/settings/node">
-                            <Icon icon="node" size={16} /> {t('global:node')}
+                            <Icon icon="node" size={20} /> {t('global:node')}
                         </NavLink>
                         <NavLink to="/settings/theme">
-                            <Icon icon="theme" size={16} /> {t('settings:theme')}
+                            <Icon icon="theme" size={20} /> {t('settings:theme')}
                         </NavLink>
                         <NavLink to="/settings/currency">
-                            <Icon icon="currency" size={16} /> {t('settings:currency')}
+                            <Icon icon="currency" size={20} /> {t('settings:currency')}
                         </NavLink>
                         {tempAccount && tempAccount.ready ? (
                             <div>
                                 <hr />
                                 <NavLink to="/settings/password">
-                                    <Icon icon="password" size={16} /> {t('settings:changePassword')}
+                                    <Icon icon="password" size={20} /> {t('settings:changePassword')}
                                 </NavLink>
                                 <hr />
                                 <NavLink to="/settings/advanced">
-                                    <Icon icon="advanced" size={16} /> {t('settings:advanced')}
+                                    <Icon icon="advanced" size={20} /> {t('settings:advanced')}
                                 </NavLink>
-                                <a onClick={this.toggleLogout}>
-                                    <Icon icon="logout" size={16} /> {t('settings:logout')}
-                                </a>
                             </div>
                         ) : null}
                     </nav>
-                    {!this.props.tempAccount || !this.props.tempAccount.ready ? (
-                        <Button variant="secondary" onClick={() => history.push('/')}>
-                            {t('global:back')}
-                        </Button>
-                    ) : null}
+                    <Button variant="secondary" onClick={() => history.push('/')}>
+                        {t('global:back')}
+                    </Button>
                 </section>
                 <section className={css.content}>
                     <Switch location={location}>
