@@ -97,7 +97,7 @@ class GenerateSeed extends React.PureComponent {
         const letters = seed ? seed.split('') : Array(MAX_SEED_LENGTH).fill('');
 
         return (
-            <main>
+            <React.Fragment>
                 <section className={classNames(css.wrapper, seed ? css.enabled : css.disabled)}>
                     <Button type="button" onClick={this.generateNewSeed} className="outline" variant="primary">
                         {t('newSeedSetup:pressForNewSeed')}
@@ -125,7 +125,7 @@ class GenerateSeed extends React.PureComponent {
                         {t('global:next')}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }

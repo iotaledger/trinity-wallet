@@ -6,8 +6,7 @@
 
     &.compact {
         border-top: 1px solid var(--body-alt);
-        border-bottom: 1px solid var(--body-alt);
-        padding: 20px 0;
+        padding: 10px 0;
     }
 
     a {
@@ -16,7 +15,7 @@
         > div {
             list-style: none;
             display: flex;
-            line-height: 32px;
+            line-height: 38px;
             cursor: pointer;
             width: 100%;
             > span {
@@ -25,7 +24,7 @@
             }
             > span:nth-child(1) {
                 width: 24px;
-                line-height: 32px;
+                line-height: 38px;
             }
             > span:nth-child(2) {
                 text-align: left;

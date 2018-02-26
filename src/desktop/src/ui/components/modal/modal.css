@@ -7,7 +7,7 @@
     width: 100vw;
     height: 100vh;
     position: fixed;
-    z-index: var(--z-index-modal);
+    z-index: 2048;
     &:before {
         content: '';
         position: absolute;

@@ -2,7 +2,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    z-index: var(--z-index-overlay);
+    z-index: 2048;
 }
 
 .notification {

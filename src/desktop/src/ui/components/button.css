@@ -114,11 +114,11 @@ footer .button + .button {
 }
 
 .outline {
-    background: none;
+    background: var(--body-bg);
     border: 1px solid;
 
     &:hover {
-        background: none;
+        background: var(--body-bg);
     }
 
     &.primary {
