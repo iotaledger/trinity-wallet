@@ -14,7 +14,11 @@ import {
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
+import {
+    getRelevantTransfer,
+    isReceivedTransfer,
+    getTransferValue,
+} from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
@@ -219,6 +223,7 @@ class History extends Component {
 
         const formattedTransfers = map(transfers, (transfer) => {
             const tx = getRelevantTransfer(transfer, addresses);
+            const value = getTransferValue(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
             return {
@@ -227,8 +232,8 @@ class History extends Component {
                 addresses: map(transfer, withValueAndUnit),
                 status: incoming ? t('history:receive') : t('history:send'),
                 confirmation: computeConfirmationStatus(tx.persistence, incoming),
-                value: round(formatValue(tx.value), 1),
-                unit: formatUnit(tx.value),
+                value: round(formatValue(value), 1),
+                unit: formatUnit(value),
                 time: tx.timestamp,
                 message: convertFromTrytes(tx.signatureMessageFragment),
                 bundle: tx.bundle,
