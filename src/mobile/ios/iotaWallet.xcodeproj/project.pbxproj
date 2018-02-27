@@ -40,6 +40,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		607DB64120365F9A004FF321 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 607DB63920365F7F004FF321 /* libRNIsDeviceRooted.a */; };
 		60ABE45D4856C876EFB3E718 /* libPods-iotaWallet-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D215E82DADAEAE41E8BB76DC /* libPods-iotaWallet-tvOSTests.a */; };
+		60B9019D2044EDEC00AC04AD /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B901902044EDD400AC04AD /* libRNExitApp.a */; };
 		60D2988A201A85F800143895 /* iotaWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D29889201A85F800143895 /* iotaWalletUITests.swift */; };
 		60D29892201A862400143895 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D29891201A862300143895 /* SnapshotHelper.swift */; };
 		60F4FC861FD502A2001F5A1E /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F4FC781FD50249001F5A1E /* libRNDeviceInfo.a */; };
@@ -281,12 +282,12 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNIsDeviceRooted;
 		};
-		607DB7A42040A4F5004FF321 /* PBXContainerItemProxy */ = {
+		60B9018F2044EDD400AC04AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 604AFFAB1FAF8B71003CBDFE /* Pods.xcodeproj */;
+			containerPortal = 60B9015C2044EDD400AC04AD /* RNExitApp.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BD358D59D9AD68B344E540D3FE37870D;
-			remoteInfo = "UIDevice-PasscodeStatus";
+			remoteGlobalIDString = 15209BEF1D250F63000D0F44;
+			remoteInfo = RNExitApp;
 		};
 		60D2988C201A85F800143895 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -581,6 +582,7 @@
 		6083B2D11FB5594F00DF3681 /* iotaWalletTests-release-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWalletTests-release-config.xcconfig"; sourceTree = "<group>"; };
 		6083B2D31FB5597B00DF3681 /* buildnumber.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = buildnumber.xcconfig; sourceTree = "<group>"; };
 		6083B2D41FB559C300DF3681 /* iotaWalletTests-debug-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWalletTests-debug-config.xcconfig"; sourceTree = "<group>"; };
+		60B9015C2044EDD400AC04AD /* RNExitApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNExitApp.xcodeproj; path = "../node_modules/react-native-exit-app/ios/RNExitApp.xcodeproj"; sourceTree = "<group>"; };
 		60D29887201A85F800143895 /* iotaWalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iotaWalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60D29889201A85F800143895 /* iotaWalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iotaWalletUITests.swift; sourceTree = "<group>"; };
 		60D2988B201A85F800143895 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B9019D2044EDEC00AC04AD /* libRNExitApp.a in Frameworks */,
 				607DB64120365F9A004FF321 /* libRNIsDeviceRooted.a in Frameworks */,
 				CBD250C22032537F00D9A6B0 /* libRNSecureRandom.a in Frameworks */,
 				CB17C67E1FFE9290006C7ACD /* libLottie.a in Frameworks */,
@@ -883,7 +886,6 @@
 				604AFFB81FAF8B71003CBDFE /* libPods-iotaWallet-tvOS.a */,
 				604AFFBA1FAF8B71003CBDFE /* libPods-iotaWallet-tvOSTests.a */,
 				604AFFBC1FAF8B71003CBDFE /* libPods-iotaWalletTests.a */,
-				607DB7A52040A4F5004FF321 /* libUIDevice-PasscodeStatus.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -906,6 +908,14 @@
 				6083B2D41FB559C300DF3681 /* iotaWalletTests-debug-config.xcconfig */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		60B9015D2044EDD400AC04AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60B901902044EDD400AC04AD /* libRNExitApp.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		60D29888201A85F800143895 /* iotaWalletUITests */ = {
@@ -939,6 +949,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				60B9015C2044EDD400AC04AD /* RNExitApp.xcodeproj */,
 				607DB60120365F7F004FF321 /* RNIsDeviceRooted.xcodeproj */,
 				CBD250832032536D00D9A6B0 /* RNSecureRandom.xcodeproj */,
 				CB17C6721FFE9255006C7ACD /* Lottie.xcodeproj */,
@@ -1422,6 +1433,10 @@
 					ProjectRef = 60F4FC4A1FD50248001F5A1E /* RNDeviceInfo.xcodeproj */;
 				},
 				{
+					ProductGroup = 60B9015D2044EDD400AC04AD /* Products */;
+					ProjectRef = 60B9015C2044EDD400AC04AD /* RNExitApp.xcodeproj */;
+				},
+				{
 					ProductGroup = CB1C684F1F9CC62900229848 /* Products */;
 					ProjectRef = CB1C684E1F9CC62900229848 /* RNFS.xcodeproj */;
 				},
@@ -1662,11 +1677,11 @@
 			remoteRef = 607DB63820365F7F004FF321 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		607DB7A52040A4F5004FF321 /* libUIDevice-PasscodeStatus.a */ = {
+		60B901902044EDD400AC04AD /* libRNExitApp.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libUIDevice-PasscodeStatus.a";
-			remoteRef = 607DB7A42040A4F5004FF321 /* PBXContainerItemProxy */;
+			path = libRNExitApp.a;
+			remoteRef = 60B9018F2044EDD400AC04AD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		60F4FC781FD50249001F5A1E /* libRNDeviceInfo.a */ = {

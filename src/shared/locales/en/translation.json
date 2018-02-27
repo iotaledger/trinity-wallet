@@ -428,7 +428,8 @@
         "volume": "Volume (24h)"
     },
     "rootDetection": {
-        "warning":
-            "Your device appears to be rooted/jailbroken. This can pose a significant risk to the security of your wallet. Do you wish to continue?"
+        "warning": "WARNING",
+        "rootDetected":
+            "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }
