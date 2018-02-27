@@ -215,9 +215,9 @@ export const filterInvalidTransfersAsync = (transfers) => {
  **/
 export const filterZeroValueTransfers = (transfers) => {
     const keepValueTransfers = (acc, bundle) => {
-        const topTx = head(bundle);
+        const tailTransaction = find(bundle, { currentIndex: 0 });
 
-        if (topTx.value !== 0) {
+        if (tailTransaction.value !== 0) {
             acc.push(bundle);
         }
 
@@ -651,7 +651,7 @@ export const getHashesDiff = (
  *   @param {array} transfers
  *   @returns {Promise<array>} - Array of addresses with no pending receive transfers
  **/
-export const findValidPendingReceivedValueTransfers = (transfers, addressData) => {
+export const filterInvalidPendingReceivedTransfers = (transfers, addressData) => {
     const pendingTransfers = filterConfirmedTransfers(transfers);
 
     if (isEmpty(pendingTransfers)) {
@@ -659,8 +659,9 @@ export const findValidPendingReceivedValueTransfers = (transfers, addressData) =
     }
 
     const allAddresses = keys(addressData);
-    const { received } = iota.utils.categorizeTransfers(pendingTransfers, allAddresses);
-    const receivedValueTransfers = filterZeroValueTransfers(received);
+    const { sent, received } = iota.utils.categorizeTransfers(pendingTransfers, allAddresses);
 
-    return filterInvalidTransfersAsync(receivedValueTransfers);
+    return filterInvalidTransfersAsync(received).then((validReceivedTransfers) => {
+        return [...sent, ...validReceivedTransfers];
+    });
 };

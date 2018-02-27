@@ -3,7 +3,7 @@ import each from 'lodash/each';
 import isNull from 'lodash/isNull';
 import keys from 'lodash/keys';
 import size from 'lodash/size';
-import { filterSpentAddresses } from './addresses';
+import { filterSpentAddresses, filterSoonToBeSpentAddresses } from './addresses';
 import { DEFAULT_SECURITY } from '../../config';
 
 /**
@@ -63,14 +63,7 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  *   @param {object} inputs - Could be initialized with null. In case its null default inputs would be defined.
  *   @param {function} callback
  **/
-export const getUnspentInputs = (
-    addressData,
-    validPendingReceivedValueTransfers,
-    start,
-    threshold,
-    inputs,
-    callback,
-) => {
+export const getUnspentInputs = (addressData, pendingValueTransfers, start, threshold, inputs, callback) => {
     if (isNull(inputs)) {
         inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
     }
@@ -79,7 +72,9 @@ export const getUnspentInputs = (
     inputs.allBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
 
     filterSpentAddresses(preparedInputs.inputs)
-        .then((filtered) => {
+        .then((unspentInputs) => {
+            const filtered = filterSoonToBeSpentAddresses(unspentInputs, pendingValueTransfers);
+
             const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
 
             const diff = threshold - collected;
