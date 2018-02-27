@@ -10,7 +10,11 @@ import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png
 import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
 import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
 import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
-import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
+import {
+    getRelevantTransfer,
+    isReceivedTransfer,
+    getTransferValue,
+} from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
@@ -168,14 +172,15 @@ export class Balance extends Component {
 
         const formattedTransfers = map(recentTransactions, (transfer) => {
             const tx = getRelevantTransfer(transfer, addresses);
+            const value = getTransferValue(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
             return {
                 time: tx.timestamp,
                 confirmationStatus: computeConfirmationStatus(tx.persistence, incoming),
-                value: round(formatValue(tx.value), 1),
-                unit: formatUnit(tx.value),
-                sign: getSign(tx.value, incoming),
+                value: round(formatValue(value), 1),
+                unit: formatUnit(value),
+                sign: getSign(value, incoming),
                 iconPath: incoming ? incomingIconPath : outgoingIconPath,
                 style: {
                     titleColor: incoming ? extraColor : negativeColor,
