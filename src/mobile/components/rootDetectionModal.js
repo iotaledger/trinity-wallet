@@ -22,13 +22,14 @@ const styles = StyleSheet.create({
         fontSize: width / 22,
         textAlign: 'center',
         color: COLORS.redLight,
-        paddingBottom: height / 30,
+        paddingBottom: height / 40,
     },
     questionText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 24,
-        paddingBottom: height / 60,
+        paddingBottom: height / 35,
+        paddingHorizontal: width / 75,
         textAlign: 'center',
     },
 });
@@ -38,18 +39,22 @@ class RootDetectionModal extends Component {
         const { t, backgroundColor, textColor, borderColor } = this.props;
 
         return (
-            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: backgroundColor }}>
+            <View style={{ width: width / 1.1, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={styles.warningText}>{t('warning')}</Text>
-                    <Trans i18nKey="rootDetected">
-                        <Text style={[styles.questionText, textColor]}>
-                            Your device appears to be rooted/jailbroken.
-                        </Text>
-                        <Text style={[styles.questionText, textColor]}>
-                            This can pose a significant risk to the security of your wallet.
-                        </Text>
-                        <Text style={[styles.questionText, textColor]}>Do you wish to continue despite this risk?</Text>
-                    </Trans>
+                    <View style={{ marginBottom: height / 35 }}>
+                        <Trans i18nKey="rootDetected">
+                            <Text style={[styles.questionText, textColor]}>
+                                Your device appears to be rooted/jailbroken.
+                            </Text>
+                            <Text style={[styles.questionText, textColor]}>
+                                This can pose a significant risk to the security of your wallet.
+                            </Text>
+                            <Text style={[styles.questionText, textColor]}>
+                                Do you wish to continue despite this risk?
+                            </Text>
+                        </Trans>
+                    </View>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.closeApp()}
                         onRightButtonPress={() => this.props.hideModal()}
