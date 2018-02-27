@@ -3,6 +3,8 @@ import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
+import transform from 'lodash/transform';
+import includes from 'lodash/includes';
 import isNumber from 'lodash/isNumber';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
@@ -397,4 +399,54 @@ export const syncAddresses = (seed, accountData, addNewAddress = false) => {
         thisAccountDataCopy.addresses = updatedAddresses;
         return thisAccountDataCopy;
     });
+};
+
+/**
+ *   Takes current account data as input and adds latest used addresses
+ *
+ *   @method filterAddressesWithValidPendingReceivedTranfers
+ *   @param {string} seed - Seed string
+ *   @param {string} accountData - existing account data
+ *   @returns {object} - Updated account data data including latest used addresses
+ **/
+export const filterSoonToBeSpentAddresses = (inputs, pendingValueTransfers) => {
+    if (isEmpty(pendingValueTransfers) || isEmpty(inputs)) {
+        return inputs;
+    }
+
+    const inputsByAddress = transform(
+        inputs,
+        (acc, input) => {
+            acc[input.address] = input;
+        },
+        {},
+    );
+
+    const { sent, received } = iota.utils.categorizeTransfers(
+        pendingValueTransfers,
+        map(inputsByAddress, (input, address) => address),
+    );
+
+    const soonToBeSpentAddresses = new Set();
+
+    each(sent, (bundle) => {
+        const remainder = find(bundle, (tx) => tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0);
+
+        if (remainder.address in inputsByAddress) {
+            soonToBeSpentAddresses.add(remainder.address);
+        }
+    });
+
+    each(received, (bundle) => {
+        const tailTransaction = find(bundle, { currentIndex: 0 });
+
+        if (tailTransaction.address in inputsByAddress) {
+            soonToBeSpentAddresses.add(tailTransaction.address);
+        }
+    });
+
+    return map(
+        pickBy(inputsByAddress, (input, address) => includes(Array.from(soonToBeSpentAddresses), address)),
+        (input) => input,
+    );
 };
