@@ -12,6 +12,7 @@ import reduce from 'lodash/reduce';
 import findKey from 'lodash/findKey';
 import size from 'lodash/size';
 import pickBy from 'lodash/pickBy';
+import omitBy from 'lodash/omitBy';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 
@@ -446,7 +447,7 @@ export const filterSoonToBeSpentAddresses = (inputs, pendingValueTransfers) => {
     });
 
     return map(
-        pickBy(inputsByAddress, (input, address) => includes(Array.from(soonToBeSpentAddresses), address)),
+        omitBy(inputsByAddress, (input, address) => includes(Array.from(soonToBeSpentAddresses), address)),
         (input) => input,
     );
 };
