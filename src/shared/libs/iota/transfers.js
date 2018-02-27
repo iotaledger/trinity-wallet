@@ -157,8 +157,8 @@ export const getTransferValue = (bundle, addresses) => {
         if (addresses.indexOf(bundle[i].address) > -1) {
             const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
             if (bundle[i].value < 0 && !isRemainder) {
-                value += bundle[0].value;
-                j++;
+                value = bundle[0].value;
+                return value;
             } else if (bundle[i].value >= 0 && !isRemainder) {
                 value += bundle[i].value;
                 j++;
