@@ -88,7 +88,7 @@ class Welcome extends Component {
         super();
 
         this.state = {
-            isModalVisible: false,
+            isModalVisible: true,
             modalContent: (
                 <RootDetectionModal
                     style={{ flex: 1 }}
