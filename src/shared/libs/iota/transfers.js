@@ -145,10 +145,9 @@ export const getRelevantTransfer = (bundle, addresses) => {
             } else if (bundle[i].value >= 0 && !isRemainder) {
                 return bundle[i];
             }
-        } else {
-            return extractTailTransferFromBundle(bundle);
         }
     }
+    return extractTailTransferFromBundle(bundle);
 };
 
 export const isValidBundleSync = (bundle, addressData) => {
