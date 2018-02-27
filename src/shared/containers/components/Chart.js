@@ -20,7 +20,7 @@ export default function withChartData(ChartComponent) {
             theme: PropTypes.object.isRequired,
         };
 
-        currencies = ['USD', 'BTC', 'ETH', 'USD'];
+        currencies = ['USD', 'EUR', 'ETH', 'USD'];
         timeframes = ['1h', '24h', '7d', '1m', '1h'];
 
         changeCurrency = () => {
