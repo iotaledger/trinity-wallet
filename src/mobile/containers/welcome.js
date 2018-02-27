@@ -82,16 +82,23 @@ class Welcome extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
         super();
 
         this.state = {
-            isModalVisible: true,
-            modalContent: <RootDetectionModal />,
+            isModalVisible: false,
+            modalContent: (
+                <RootDetectionModal
+                    style={{ flex: 1 }}
+                    hideModal={() => this.hideModal()}
+                    closeApp={() => this.closeApp()}
+                    backgroundColor={COLORS.backgroundGreen}
+                    textColor={{ color: COLORS.white }}
+                    borderColor={{ borderColor: COLORS.white }}
+                />
+            ),
         };
     }
 
@@ -126,8 +133,17 @@ class Welcome extends Component {
         });
     }
 
+    hideModal() {
+        this.setState({ isModalVisible: false });
+    }
+
+    closeApp() {
+        this.hideModal();
+        RNExitApp.exitApp();
+    }
+
     render() {
-        const { t, backgroundColor, secondaryBackgroundColor } = this.props;
+        const { t } = this.props;
         const { isModalVisible } = this.state;
 
         return (
@@ -157,13 +173,13 @@ class Welcome extends Component {
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
-                    backdropColor={this.props.backgroundColor}
+                    backdropColor={COLORS.backgroundGreen}
                     backdropOpacity={0.8}
                     style={{ alignItems: 'center' }}
                     isVisible={isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
                 >
-                    <View style={[styles.modalContent, { backgroundColor: this.props.backgroundColor }]}>
+                    <View style={[styles.modalContent, { backgroundColor: COLORS.backgroundGreen }]}>
                         {this.state.modalContent}
                     </View>
                 </Modal>
@@ -171,10 +187,5 @@ class Welcome extends Component {
         );
     }
 }
-
-const mapStateToProps = (state) => ({
-    backgroundColor: state.settings.theme.backgroundColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-});
 
 export default translate(['welcome', 'global'])(Welcome);
