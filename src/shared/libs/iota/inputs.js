@@ -63,7 +63,14 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  *   @param {object} inputs - Could be initialized with null. In case its null default inputs would be defined.
  *   @param {function} callback
  **/
-export const getUnspentInputs = (addressData, start, threshold, inputs, callback) => {
+export const getUnspentInputs = (
+    addressData,
+    validPendingReceivedValueTransfers,
+    start,
+    threshold,
+    inputs,
+    callback,
+) => {
     if (isNull(inputs)) {
         inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
     }
