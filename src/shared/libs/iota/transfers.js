@@ -642,3 +642,25 @@ export const getHashesDiff = (
 
     return union(diffForUnspentAddresses, diffForSpentAddressesWithPendingTxs);
 };
+
+/**
+ *   Takes current account data as input and adds latest used addresses
+ *
+ *   @method findValidPendingReceivedValueTransfers
+ *   @param {array} addresses
+ *   @param {array} transfers
+ *   @returns {Promise<array>} - Array of addresses with no pending receive transfers
+ **/
+export const findValidPendingReceivedValueTransfers = (transfers, addressData) => {
+    const pendingTransfers = filterConfirmedTransfers(transfers);
+
+    if (isEmpty(pendingTransfers)) {
+        return Promise.resolve([]);
+    }
+
+    const allAddresses = keys(addressData);
+    const { received } = iota.utils.categorizeTransfers(pendingTransfers, allAddresses);
+    const receivedValueTransfers = filterZeroValueTransfers(received);
+
+    return filterInvalidTransfersAsync(receivedValueTransfers);
+};
