@@ -13,6 +13,10 @@ The goal of this documentation is to comprehensively define best practice for th
    1. [State](#state)
       1. [Reducers](#reducers)
       1. [Actions](#actions)
+   1. [Unit Testing](#unit-testing)
+      1. [React components](#react-components)
+      1. [Reducers](#reducers)
+      1. [Actions](#actions)
 
 ### Assets and themes
    1. [Assets](#assets)
@@ -197,7 +201,110 @@ export default (state = initialState, action) => {
 ```
 - Blacklist reducer in case the state does not need to be persisted to local storage.
 
-### Actions
+### [WIP]: Actions
+[WIP]
+
+## Unit Testing
+
+- **Filenames**: Use `*.spec.js` for test filenames.
+- **Structure**: Nest test suites to logically structure tests in subsets.
+
+```javascript
+describe('selectors: account', () => {
+      describe('#getAccountFromState', () => {
+        describe('when "account" prop is not defined in argument', () => {
+            it('should return an empty object', () => { });
+        });
+
+        describe('when "account" prop is defined in argument', () => {
+            it('should return value for "account" prop', () => { });
+        });
+    });
+});
+```
+
+- **Expectations**: Do not write unnecessary expectations in a single test. A test should just be a design specification of a certain behavior for how it should work.
+- **Multiple Concerns**: Always test a single concern. If a function has different end results, each of them should be tested separately.
+
+### React components
+- Test named exports for container components.
+- Define a global `getProps` function for injecting props to a component.
+
+```javascript
+const getProps = (overrides) => {
+    return assign({}, {
+        pollFor: 'accountInfo',
+        allPollingServices: ['accountInfo', 'marketData'],
+        setPollFor: noop
+    }, overrides);
+};
+
+describe('component: Poll', () => {
+    describe('when renders', () => {
+        it('should return null', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<Poll {...props} />);
+            expect(wrapper.type()).toEqual(null);
+        });
+    });
+});
+```
+- Test all instance methods that lead to state updates.
+- Test all instance methods that dispatch redux actions.
+
+### Reducers
+- Always test initial state for a reducer.
+
+```javascript
+it('should have an initial state', () => {
+    const initialState = {
+        firstUse: true,
+        onboardingComplete: false,
+        accountInfo: {}
+    };
+
+    expect(reducer(undefined, {})).to.eql(initialState);
+});
+```
+
+- Use action creators in tests for returing type and payloads.
+
+```javascript
+it('should assign payload to unconfirmedBundleTails prop in state', () => {
+    const action = actions.updateUnconfirmedBundleTails({ foo: {} });
+
+    const newState = reducer({}, action);
+    const expectedState = {
+        unconfirmedBundleTails: { foo: {} },
+    };
+
+    expect(newState).to.eql(expectedState);
+});
+```
+
+- Test handlers as separate functions.
+
+```javascript
+describe('#setNetPollIfSuccessful', () => {
+    let state;
+
+    beforeEach(() => {
+        state = {
+            allPollingServices: ['marketData', 'price', 'chartData', 'accountInfo', 'promotion'],
+            pollFor: 'marketData',
+        };
+    });
+
+    describe('when pollFor value exists in allPollingServices array', () => {
+        it('should return an object with prop pollFor equals value of next element in allPollingServices array', () => {
+            expect(setNextPollIfSuccessful(state)).to.eql({ pollFor: 'price' });
+        });
+    });
+});
+```
+
+### WIP: Actions
 [WIP]
 
 ## Assets
