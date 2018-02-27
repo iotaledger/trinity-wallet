@@ -90,14 +90,13 @@ class Welcome extends Component {
         super();
 
         this.state = {
-            isModalVisible: false,
+            isModalVisible: true,
             modalContent: <RootDetectionModal />,
         };
     }
 
     componentWillMount() {
         this.showModalIfRooted();
-        console.log(this.state.isModalVisible);
     }
 
     showModalIfRooted() {
@@ -106,13 +105,11 @@ class Welcome extends Component {
             isDeviceRooted.then((isRooted) => {
                 if (isRooted) {
                     this.setState({ isModalVisible: true });
-                    console.log('Rooted');
                 }
             });
         } else {
             if (isDeviceRooted) {
                 this.setState({ isModalVisible: true });
-                console.log('Rooted');
             }
         }
     }
@@ -132,7 +129,6 @@ class Welcome extends Component {
     render() {
         const { t, backgroundColor, secondaryBackgroundColor } = this.props;
         const { isModalVisible } = this.state;
-        console.log(isModalVisible);
 
         return (
             <View style={styles.container}>
