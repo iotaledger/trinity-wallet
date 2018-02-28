@@ -2,9 +2,7 @@ import { iota } from './index';
 
 export const convertFromTrytes = (trytes) => {
     const trytesWithoutNines = trytes.replace(/9+$/, '');
-    console.log(iota);
-
-    const message = iota.utils.fromTrytes('UMAIRSSSSS');
+    const message = iota.utils.fromTrytes(trytesWithoutNines);
 
     if (trytesWithoutNines && message) {
         return message;
