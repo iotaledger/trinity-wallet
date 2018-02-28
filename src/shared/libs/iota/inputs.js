@@ -3,7 +3,7 @@ import each from 'lodash/each';
 import isNull from 'lodash/isNull';
 import keys from 'lodash/keys';
 import size from 'lodash/size';
-import { filterSpentAddresses, filterSoonToBeSpentAddresses } from './addresses';
+import { filterSpentAddresses, filterAddressesWithIncomingTransfers } from './addresses';
 import { DEFAULT_SECURITY } from '../../config';
 
 /**
@@ -73,7 +73,7 @@ export const getUnspentInputs = (addressData, pendingValueTransfers, start, thre
 
     filterSpentAddresses(preparedInputs.inputs)
         .then((unspentInputs) => {
-            const filtered = filterSoonToBeSpentAddresses(unspentInputs, pendingValueTransfers);
+            const filtered = filterAddressesWithIncomingTransfers(unspentInputs, pendingValueTransfers);
 
             const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
 

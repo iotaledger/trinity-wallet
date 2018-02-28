@@ -406,12 +406,12 @@ export const syncAddresses = (seed, accountData, addNewAddress = false) => {
  *   Filters inputs with addresses that have pending incoming transfers or
  *   are change addresses.
  *
- *   @method filterSoonToBeSpentAddresses
+ *   @method filterAddressesWithIncomingTransfers
  *   @param {array} inputs
  *   @param {array} pendingValueTransfers
  *   @returns {array}
  **/
-export const filterSoonToBeSpentAddresses = (inputs, pendingValueTransfers) => {
+export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfers) => {
     if (isEmpty(pendingValueTransfers) || isEmpty(inputs)) {
         return inputs;
     }
@@ -429,23 +429,26 @@ export const filterSoonToBeSpentAddresses = (inputs, pendingValueTransfers) => {
         map(inputsByAddress, (input, address) => address),
     );
 
-    const soonToBeSpentAddresses = new Set();
+    const addressesWithIncomingTransfers = new Set();
 
     each(sent, (bundle) => {
         const remainder = find(bundle, (tx) => tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0);
 
         if (remainder.address in inputsByAddress) {
-            soonToBeSpentAddresses.add(remainder.address);
+            addressesWithIncomingTransfers.add(remainder.address);
         }
     });
 
     each(received, (bundle) => {
         each(bundle, (tx) => {
             if (tx.address in inputsByAddress && tx.value > 0) {
-                soonToBeSpentAddresses.add(tx.address);
+                addressesWithIncomingTransfers.add(tx.address);
             }
         });
     });
 
-    return map(omitBy(inputsByAddress, (input, address) => soonToBeSpentAddresses.has(address)), (input) => input);
+    return map(
+        omitBy(inputsByAddress, (input, address) => addressesWithIncomingTransfers.has(address)),
+        (input) => input,
+    );
 };
