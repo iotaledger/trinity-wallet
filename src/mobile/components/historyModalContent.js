@@ -136,6 +136,7 @@ export default class HistoryModalContent extends PureComponent {
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
         confirmationBool: PropTypes.bool.isRequired,
+        mode: PropTypes.string.isRequired,
         value: PropTypes.number.isRequired,
         unit: PropTypes.string.isRequired,
         time: PropTypes.number.isRequired,
@@ -226,6 +227,7 @@ export default class HistoryModalContent extends PureComponent {
             message,
             t,
             style,
+            mode,
         } = this.props;
 
         return (
@@ -260,29 +262,36 @@ export default class HistoryModalContent extends PureComponent {
                                             <View style={styles.bundleSeparator} />
                                         </TouchableOpacity>
                                     </View>
-                                    <Text style={[styles.heading, style.defaultTextColor]}>{t('addresses')}:</Text>
-                                    {this.renderAddresses()}
-                                    <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
-                                    <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
-                                    {!confirmationBool && (
-                                        <View style={styles.buttonsContainer}>
-                                            <TouchableOpacity style={[styles.button, style.borderColor]}>
-                                                <Text style={[styles.buttonText, style.defaultTextColor]}>
-                                                    {t('reattach')}
-                                                </Text>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity style={[styles.button, style.borderColor]}>
-                                                <Text style={[styles.buttonText, style.defaultTextColor]}>
-                                                    {t('promote')}
-                                                </Text>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity style={[styles.button, style.borderColor]}>
-                                                <Text style={[styles.buttonText, style.defaultTextColor]}>
-                                                    {t('rebroadcast')}
-                                                </Text>
-                                            </TouchableOpacity>
+                                    {mode === 'Expert' && (
+                                        <View>
+                                            <Text style={[styles.heading, style.defaultTextColor]}>
+                                                {t('addresses')}:
+                                            </Text>
+                                            {this.renderAddresses()}
                                         </View>
                                     )}
+                                    <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
+                                    <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
+                                    {!confirmationBool &&
+                                        mode === 'Expert' && (
+                                            <View style={styles.buttonsContainer}>
+                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
+                                                    <Text style={[styles.buttonText, style.defaultTextColor]}>
+                                                        {t('reattach')}
+                                                    </Text>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
+                                                    <Text style={[styles.buttonText, style.defaultTextColor]}>
+                                                        {t('promote')}
+                                                    </Text>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
+                                                    <Text style={[styles.buttonText, style.defaultTextColor]}>
+                                                        {t('rebroadcast')}
+                                                    </Text>
+                                                </TouchableOpacity>
+                                            </View>
+                                        )}
                                 </View>
                             </TouchableWithoutFeedback>
                         </ScrollView>
