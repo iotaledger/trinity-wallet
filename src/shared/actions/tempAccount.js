@@ -6,11 +6,7 @@ import { updateAddresses, updateAccountInfo, accountInfoFetchSuccess } from '../
 import { selectedAccountStateFactory } from '../selectors/account';
 import { clearSendFields } from '../actions/ui';
 import { generateAlert } from '../actions/alerts';
-import {
-    prepareTransferArray,
-    filterInvalidPendingReceivedTransfers,
-    filterZeroValueTransfers,
-} from '../libs/iota/transfers';
+import { prepareTransferArray, filterInvalidPendingTransfers, filterZeroValueTransfers } from '../libs/iota/transfers';
 import { syncAccount } from '../libs/iota/accounts';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
@@ -351,7 +347,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                     newAccountData = accountData;
 
                     const valueTransfers = filterZeroValueTransfers(newAccountData.transfers);
-                    return filterInvalidPendingReceivedTransfers(valueTransfers, newAccountData.addresses);
+                    return filterInvalidPendingTransfers(valueTransfers, newAccountData.addresses);
                 })
                 .then((filteredTransfers) => {
                     const newAddressData = newAccountData.addresses;
