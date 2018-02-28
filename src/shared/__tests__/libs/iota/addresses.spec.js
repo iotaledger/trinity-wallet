@@ -185,7 +185,7 @@ describe('libs: iota/addresses', () => {
             const firstOwnAddress = 'A'.repeat(81);
             const secondOwnAddress = 'B'.repeat(81);
             const changeAddress = 'C'.repeat(81);
-            const otherAddress = 'U'.repeat(91);
+            const otherAddress = 'U'.repeat(81);
 
             beforeEach(() => {
                 pendingTransfers = [
