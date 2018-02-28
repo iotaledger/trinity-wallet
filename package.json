@@ -33,8 +33,8 @@
     },
     "homepage": "https://gitlab.com/iota-community/wallet#README",
     "devDependencies": {
-        "babel-eslint": "^8.0.3",
-        "eslint": "^4.17.0",
+        "babel-eslint": "^8.2.2",
+        "eslint": "^4.18.1",
         "eslint-config-airbnb": "^16.1.0",
         "eslint-config-prettier": "^2.9.0",
         "eslint-plugin-babel": "^4.1.2",
@@ -47,5 +47,6 @@
         "node-cmd": "^3.0.0",
         "os": "^0.1.1",
         "prettier": "1.9.2"
-    }
+    },
+    "dependencies": {}
 }
