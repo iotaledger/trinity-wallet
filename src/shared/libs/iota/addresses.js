@@ -2,7 +2,9 @@ import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
+import transform from 'lodash/transform';
 import isNumber from 'lodash/isNumber';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
@@ -10,6 +12,7 @@ import reduce from 'lodash/reduce';
 import findKey from 'lodash/findKey';
 import size from 'lodash/size';
 import pickBy from 'lodash/pickBy';
+import omitBy from 'lodash/omitBy';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 
@@ -397,4 +400,55 @@ export const syncAddresses = (seed, accountData, addNewAddress = false) => {
         thisAccountDataCopy.addresses = updatedAddresses;
         return thisAccountDataCopy;
     });
+};
+
+/**
+ *   Filters inputs with addresses that have pending incoming transfers or
+ *   are change addresses.
+ *
+ *   @method filterAddressesWithIncomingTransfers
+ *   @param {array} inputs
+ *   @param {array} pendingValueTransfers
+ *   @returns {array}
+ **/
+export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfers) => {
+    if (isEmpty(pendingValueTransfers) || isEmpty(inputs)) {
+        return inputs;
+    }
+
+    const inputsByAddress = transform(
+        inputs,
+        (acc, input) => {
+            acc[input.address] = input;
+        },
+        {},
+    );
+
+    const { sent, received } = iota.utils.categorizeTransfers(
+        pendingValueTransfers,
+        map(inputsByAddress, (input, address) => address),
+    );
+
+    const addressesWithIncomingTransfers = new Set();
+
+    each(sent, (bundle) => {
+        const remainder = find(bundle, (tx) => tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0);
+
+        if (remainder && remainder.address in inputsByAddress) {
+            addressesWithIncomingTransfers.add(remainder.address);
+        }
+    });
+
+    each(received, (bundle) => {
+        each(bundle, (tx) => {
+            if (tx.address in inputsByAddress && tx.value > 0) {
+                addressesWithIncomingTransfers.add(tx.address);
+            }
+        });
+    });
+
+    return map(
+        omitBy(inputsByAddress, (input, address) => addressesWithIncomingTransfers.has(address)),
+        (input) => input,
+    );
 };
