@@ -661,7 +661,10 @@ export const filterInvalidPendingReceivedTransfers = (transfers, addressData) =>
     const allAddresses = keys(addressData);
     const { sent, received } = iota.utils.categorizeTransfers(pendingTransfers, allAddresses);
 
+    // In case a user sent to one of his own addresses
+    const validSentTransfers = filterInvalidTransfersSync(sent, addressData);
+
     return filterInvalidTransfersAsync(received).then((validReceivedTransfers) => {
-        return [...sent, ...validReceivedTransfers];
+        return [...validSentTransfers, ...validReceivedTransfers];
     });
 };

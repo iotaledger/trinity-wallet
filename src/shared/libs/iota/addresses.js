@@ -2,6 +2,7 @@ import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 import transform from 'lodash/transform';
 import includes from 'lodash/includes';
@@ -439,15 +440,12 @@ export const filterSoonToBeSpentAddresses = (inputs, pendingValueTransfers) => {
     });
 
     each(received, (bundle) => {
-        const tailTransaction = find(bundle, { currentIndex: 0 });
-
-        if (tailTransaction.address in inputsByAddress) {
-            soonToBeSpentAddresses.add(tailTransaction.address);
-        }
+        each(bundle, (tx) => {
+            if (tx.address in inputsByAddress && tx.value > 0) {
+                soonToBeSpentAddresses.add(tx.address);
+            }
+        });
     });
 
-    return map(
-        omitBy(inputsByAddress, (input, address) => includes(Array.from(soonToBeSpentAddresses), address)),
-        (input) => input,
-    );
+    return map(omitBy(inputsByAddress, (input, address) => soonToBeSpentAddresses.has(address)), (input) => input);
 };
