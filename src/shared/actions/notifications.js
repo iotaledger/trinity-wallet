@@ -6,7 +6,7 @@ export const ActionTypes = {
 };
 
 export function showNotification(notification) {
-    return dispatch => {
+    return (dispatch) => {
         let timeout = 15000;
         const id = guid();
 
@@ -36,15 +36,15 @@ export function showNotification(notification) {
     };
 }
 
-export const hideNotification = id => {
+export const hideNotification = (id) => {
     return {
         type: ActionTypes.REMOVE,
         payload: id,
     };
 };
 
-export const showError = notification => {
-    return dispatch => {
+export const showError = (notification) => {
+    return (dispatch) => {
         dispatch(
             showNotification({
                 ...notification,
