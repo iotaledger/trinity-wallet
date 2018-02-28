@@ -1,3 +1,4 @@
+import omit from 'lodash/omit';
 import { ActionTypes } from '../actions/notifications.js';
 
 const initialState = {};
@@ -11,16 +12,8 @@ export default (state = initialState, action) => {
             };
 
         case ActionTypes.REMOVE:
-            const notifications = {
-                ...state,
-            };
-
-            delete notifications[action.payload];
-
-            return notifications;
-
-        // case ActionTypes.REMOVE_ALL:
+            return omit(state, action.payload);
+        default:
+            return state;
     }
-
-    return state;
 };
