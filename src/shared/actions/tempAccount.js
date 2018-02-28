@@ -391,6 +391,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 );
             })
             .catch((err) => {
+                console.log('Err', err);
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     20000,
