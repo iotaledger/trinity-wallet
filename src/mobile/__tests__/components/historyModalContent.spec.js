@@ -101,14 +101,14 @@ describe('Testing HistoryModalContent component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.find('View').length).toEqual(6);
+            expect(wrapper.find('View').length).toEqual(7);
         });
 
         it('should return eight Text components', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.find('Text').length).toEqual(8);
+            expect(wrapper.find('Text').length).toEqual(7);
         });
 
         it('should return a ScrollView component', () => {
@@ -228,7 +228,21 @@ describe('Testing HistoryModalContent component', () => {
             expect(instance.copy).toHaveBeenCalledWith('BUNDLE', 'bundle');
         });
 
-        it('should return a translated "Addresses" message as first child to sixth Text component', () => {
+        it('should return a ":" message as second child to sixth Text component', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<HistoryModalContent {...props} />);
+            expect(
+                wrapper
+                    .find('Text')
+                    .at(5)
+                    .children()
+                    .at(1)
+                    .text(),
+            ).toEqual(':');
+        });
+
+        it('should return a translated "Message" message as first child to sixth Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
@@ -239,7 +253,7 @@ describe('Testing HistoryModalContent component', () => {
                     .children()
                     .at(0)
                     .text(),
-            ).toEqual('Addresses');
+            ).toEqual('Message');
         });
 
         it('should return a ":" message as second child to sixth Text component', () => {
@@ -256,7 +270,7 @@ describe('Testing HistoryModalContent component', () => {
             ).toEqual(':');
         });
 
-        it('should return a translated "Message" message as first child to seventh Text component', () => {
+        it('should return message prop as a child to seventh Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
@@ -264,34 +278,6 @@ describe('Testing HistoryModalContent component', () => {
                 wrapper
                     .find('Text')
                     .at(6)
-                    .children()
-                    .at(0)
-                    .text(),
-            ).toEqual('Message');
-        });
-
-        it('should return a ":" message as second child to seventh Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(6)
-                    .children()
-                    .at(1)
-                    .text(),
-            ).toEqual(':');
-        });
-
-        it('should return message prop as a child to eighth Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(7)
                     .children()
                     .text(),
             ).toEqual('Pink floyd');
