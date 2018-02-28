@@ -4,6 +4,7 @@ import {
     getUnspentAddressesSync,
     getSpentAddressesWithPendingTransfersSync,
     getBalancesSync,
+    filterAddressesWithIncomingTransfers,
 } from '../../../libs/iota/addresses';
 
 describe('libs: iota/addresses', () => {
@@ -162,6 +163,101 @@ describe('libs: iota/addresses', () => {
                 };
 
                 expect(getBalancesSync(addresses, addressData)).to.eql([10]);
+            });
+        });
+    });
+
+    describe('#filterAddressesWithIncomingTransfers', () => {
+        describe('when inputs passed as first argument is an empty array', () => {
+            it('should return an empty array', () => {
+                expect(filterAddressesWithIncomingTransfers([], [{}, {}])).to.eql([]);
+            });
+        });
+
+        describe('when pendingValueTransfers passed as second argument is an empty array', () => {
+            it('should return inputs passed as first argument', () => {
+                expect(filterAddressesWithIncomingTransfers([{}], [])).to.eql([{}]);
+            });
+        });
+
+        describe('when inputs passed as first argument is not an empty array and pendingValueTransfers passed as second argument is not an empty array', () => {
+            let pendingTransfers;
+            const firstOwnAddress = 'A'.repeat(81);
+            const secondOwnAddress = 'B'.repeat(81);
+            const changeAddress = 'C'.repeat(81);
+            const otherAddress = 'U'.repeat(91);
+
+            beforeEach(() => {
+                pendingTransfers = [
+                    // Outgoing
+                    [
+                        {
+                            value: 1,
+                            currentIndex: 0,
+                            address: otherAddress,
+                            lastIndex: 3,
+                        },
+                        {
+                            value: -1,
+                            currentIndex: 1,
+                            address: firstOwnAddress,
+                            lastIndex: 3,
+                        },
+                        {
+                            value: 0,
+                            currentIndex: 2,
+                            address: firstOwnAddress,
+                            lastIndex: 3,
+                        },
+                        {
+                            value: -1,
+                            currentIndex: 3,
+                            address: changeAddress,
+                            lastIndex: 3,
+                        },
+                    ],
+                    // Incoming
+                    [
+                        {
+                            value: 1,
+                            currentIndex: 0,
+                            address: firstOwnAddress,
+                            lastIndex: 2,
+                        },
+                        {
+                            value: 1,
+                            currentIndex: 1,
+                            address: otherAddress,
+                            lastIndex: 2,
+                        },
+                        {
+                            value: 0,
+                            currentIndex: 2,
+                            address: otherAddress,
+                            lastIndex: 2,
+                        },
+                    ],
+                ];
+            });
+
+            it('should filter inputs that have pending incoming value transfers ', () => {
+                const inputs = [{ address: firstOwnAddress }, { address: secondOwnAddress }];
+
+                expect(filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
+                    { address: secondOwnAddress },
+                ]);
+            });
+
+            it('should filter inputs that have pending outgoing value transfers on change addresses', () => {
+                const inputs = [
+                    { address: firstOwnAddress },
+                    { address: secondOwnAddress },
+                    { address: changeAddress },
+                ];
+
+                expect(filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
+                    { address: secondOwnAddress },
+                ]);
             });
         });
     });
