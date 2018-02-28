@@ -6,7 +6,7 @@ import { updateAddresses, updateAccountInfo, accountInfoFetchSuccess } from '../
 import { selectedAccountStateFactory } from '../selectors/account';
 import { clearSendFields } from '../actions/ui';
 import { generateAlert } from '../actions/alerts';
-import { prepareTransferArray } from '../libs/iota/transfers';
+import { prepareTransferArray, filterInvalidPendingTransfers, filterZeroValueTransfers } from '../libs/iota/transfers';
 import { syncAccount } from '../libs/iota/accounts';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
@@ -345,10 +345,15 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 .then((accountData) => {
                     dispatch(accountInfoFetchSuccess(accountData));
                     newAccountData = accountData;
-                    const newAddressData = accountData.addresses;
+
+                    const valueTransfers = filterZeroValueTransfers(newAccountData.transfers);
+                    return filterInvalidPendingTransfers(valueTransfers, newAccountData.addresses);
+                })
+                .then((filteredTransfers) => {
+                    const newAddressData = newAccountData.addresses;
                     const startIndex = getStartingSearchIndexToPrepareInputs(newAddressData);
 
-                    getUnspentInputs(newAddressData, startIndex, value, null, unspentInputs);
+                    getUnspentInputs(newAddressData, filteredTransfers, startIndex, value, null, unspentInputs);
                 })
                 .catch((err) => {
                     dispatch(sendTransferError());
@@ -382,6 +387,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 );
             })
             .catch((err) => {
+                console.log('Err', err);
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     20000,
