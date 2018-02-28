@@ -25,13 +25,21 @@ export default function withChartData(ChartComponent) {
 
         changeCurrency = () => {
             const { marketData, setCurrency } = this.props;
-            const nextCurrency = this.currencies[this.currencies.indexOf(marketData.currency) + 1];
+            const nextCurrency = this.currencies[
+                this.currencies.indexOf(marketData.currency) < this.currencies.length - 1
+                    ? this.currencies.indexOf(marketData.currency) + 1
+                    : 0
+            ];
             setCurrency(nextCurrency);
         };
 
         changeTimeframe = () => {
             const { marketData, setTimeframe } = this.props;
-            const nextTimeframe = this.timeframes[this.timeframes.indexOf(marketData.timeframe) + 1];
+            const nextTimeframe = this.timeframes[
+                this.timeframes.indexOf(marketData.timeframe) < this.timeframes.length - 1
+                    ? this.timeframes.indexOf(marketData.timeframe) + 1
+                    : 0
+            ];
             setTimeframe(nextTimeframe);
         };
 
