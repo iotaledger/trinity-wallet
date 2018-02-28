@@ -314,7 +314,13 @@ export const syncAccount = (seed, existingAccountState) => {
 };
 
 /**
- *   Aims to update local account information after a spend.
+ *   Sync local account after a new transfer is made.
+ *   - Assign persistence to each tx object.
+ *   - Append new transfer to existing transfers.
+ *   - Mark used addresses as spent from local account state.
+ *   - Keep a copy of tail transaction categorized by bundle hash for promotion in case its a value transfer.
+ *   - Sync transaction hashes for unspent addresses.
+ *   - Sync pending transaction hashes for spent addresses.
  *
  *   @method updateAccountAfterSpending
  *   @param {string} name
@@ -356,12 +362,31 @@ export const syncAccountAfterSpending = (name, newTransfer, accountState, isValu
         transfers,
         addresses,
         unconfirmedBundleTails,
-    }).then((newState) => mapPendingTransactionHashesForSpentAddressesToState(newState));
+    })
+        .then((newState) => mapPendingTransactionHashesForSpentAddressesToState(newState))
+        .then((newState) => ({ newState, transfer: newTransferBundleWithPersistence }));
 };
 
+/**
+ *   Sync local account after a bundle is replayed.
+ *   - Assign persistence to each tx object.
+ *   - Append new reattachment to existing transfers.
+ *   - Assign account name to tail transaction of reattachment and appends it to the list of tail transactions categorized by bundle hashes.
+ *   - Sync transaction hashes for unspent addresses.
+ *   - Sync pending transaction hashes for spent addresses.
+ *
+ *   @method syncAccountAfterReattachment
+ *   @param {string} accountName
+ *   @param {array} reattachment
+ *   @param {object} accountState
+ *
+ *   @returns {Promise<object>} - Resolves an object with new account state and the new reattachment.
+ **/
 export const syncAccountAfterReattachment = (accountName, reattachment, accountState) => {
+    const newReattachmentWithPersistence = map(reattachment, (tx) => ({ ...tx, persistence: false }));
+
     // Append new reattachment to existing transfers
-    const transfers = [...[map(reattachment, (tx) => ({ ...tx, persistence: false }))], ...accountState.transfers];
+    const transfers = [...[newReattachmentWithPersistence], ...accountState.transfers];
 
     const tailTransaction = find(reattachment, { currentIndex: 0 });
     const normalizedTailTransaction = assign({}, tailTransaction, { account: accountName });
@@ -384,5 +409,5 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
         unconfirmedBundleTails: updatedUnconfirmedBundleTails,
     })
         .then((newState) => mapPendingTransactionHashesForSpentAddressesToState(newState))
-        .then((newState) => ({ newState, reattachment }));
+        .then((newState) => ({ newState, reattachment: newReattachmentWithPersistence }));
 };
