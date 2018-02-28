@@ -5,7 +5,6 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 import transform from 'lodash/transform';
-import includes from 'lodash/includes';
 import isNumber from 'lodash/isNumber';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
@@ -404,12 +403,13 @@ export const syncAddresses = (seed, accountData, addNewAddress = false) => {
 };
 
 /**
- *   Takes current account data as input and adds latest used addresses
+ *   Filters inputs with addresses that have pending incoming transfers or
+ *   are change addresses.
  *
- *   @method filterAddressesWithValidPendingReceivedTranfers
- *   @param {string} seed - Seed string
- *   @param {string} accountData - existing account data
- *   @returns {object} - Updated account data data including latest used addresses
+ *   @method filterSoonToBeSpentAddresses
+ *   @param {array} inputs
+ *   @param {array} pendingValueTransfers
+ *   @returns {array}
  **/
 export const filterSoonToBeSpentAddresses = (inputs, pendingValueTransfers) => {
     if (isEmpty(pendingValueTransfers) || isEmpty(inputs)) {

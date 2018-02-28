@@ -644,12 +644,12 @@ export const getHashesDiff = (
 };
 
 /**
- *   Takes current account data as input and adds latest used addresses
+ *   Filters all invalid transfers from all pending transfers.
  *
  *   @method filterInvalidPendingTransfers
- *   @param {array} addresses
  *   @param {array} transfers
- *   @returns {Promise<array>} - Array of addresses with no pending receive transfers
+ *   @param {object} addressData
+ *   @returns {Promise<array>}
  **/
 export const filterInvalidPendingTransfers = (transfers, addressData) => {
     const pendingTransfers = filterConfirmedTransfers(transfers);
@@ -661,7 +661,6 @@ export const filterInvalidPendingTransfers = (transfers, addressData) => {
     const allAddresses = keys(addressData);
     const { sent, received } = iota.utils.categorizeTransfers(pendingTransfers, allAddresses);
 
-    // In case a user sent to one of his own addresses
     const validSentTransfers = filterInvalidTransfersSync(sent, addressData);
 
     return filterInvalidTransfersAsync(received).then((validReceivedTransfers) => {
