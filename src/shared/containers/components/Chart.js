@@ -20,7 +20,7 @@ export default function withChartData(ChartComponent) {
             theme: PropTypes.object.isRequired,
         };
 
-        currencies = ['USD', 'BTC', 'ETH', 'USD'];
+        currencies = ['USD', 'BTC', 'ETH', 'USD']; // eslint-disable-line react/sort-comp
         timeframes = ['1h', '24h', '7d', '1m', '1h'];
 
         changeCurrency = () => {
@@ -55,7 +55,10 @@ export default function withChartData(ChartComponent) {
         };
 
         getTicks(dataSet) {
-            if (dataSet === undefined || dataSet.length === 0) return;
+            if (dataSet === undefined || dataSet.length === 0) {
+                return;
+            }
+
             const limit = dataSet.reduce(
                 (range, data) => ({
                     min: Math.min(range.min, data.y),

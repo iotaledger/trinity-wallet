@@ -46,7 +46,7 @@
         "lint-staged": "^4.2.3",
         "node-cmd": "^3.0.0",
         "os": "^0.1.1",
-        "prettier": "1.9.2"
+        "prettier": "^1.11.0"
     },
     "dependencies": {}
 }

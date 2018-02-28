@@ -48,7 +48,7 @@ rules:
     keyword-spacing: 2
     linebreak-style: [2, "unix"]
     no-alert: 2
-    no-console: 0
+    no-console: 1
     no-else-return: 1
     no-empty: [2, { "allowEmptyCatch": true }]
     no-eq-null: 2
