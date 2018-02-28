@@ -86,6 +86,7 @@ export const getUnspentInputs = (addressData, pendingValueTransfers, start, thre
 
                 getUnspentInputs(
                     addressData,
+                    pendingValueTransfers,
                     end + 1,
                     diff,
                     {
