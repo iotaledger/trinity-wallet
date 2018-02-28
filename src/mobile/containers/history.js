@@ -103,6 +103,7 @@ class History extends Component {
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
+        mode: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -197,6 +198,7 @@ class History extends Component {
             pendingColor,
             secondaryBackgroundColor,
             backgroundColor,
+            mode,
             t,
         } = this.props;
 
@@ -238,6 +240,7 @@ class History extends Component {
                 time: tx.timestamp,
                 message: convertFromTrytes(tx.signatureMessageFragment),
                 bundle: tx.bundle,
+                mode,
                 style: {
                     titleColor: incoming ? extraColor : negativeColor,
                     containerBorderColor: { borderColor: containerBorderColor },
@@ -320,6 +323,7 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.seedNames),
     seedIndex: tempAccount.seedIndex,
+    mode: settings.mode,
     negativeColor: settings.theme.negativeColor,
     positiveColor: settings.theme.positiveColor,
     backgroundColor: settings.theme.backgroundColor,
