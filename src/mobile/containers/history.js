@@ -232,6 +232,7 @@ class History extends Component {
                 addresses: map(transfer, withValueAndUnit),
                 status: incoming ? t('history:receive') : t('history:send'),
                 confirmation: computeConfirmationStatus(tx.persistence, incoming),
+                confirmationBool: tx.persistence,
                 value: round(formatValue(value), 1),
                 unit: formatUnit(value),
                 time: tx.timestamp,
