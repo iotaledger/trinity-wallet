@@ -2,15 +2,11 @@ import i18next from '../i18next.js';
 import get from 'lodash/get';
 import some from 'lodash/some';
 import { iota } from '../libs/iota';
-import {
-    updateAddresses,
-    updateAccountInfo,
-    prepareAccountInfoForSync,
-    accountInfoFetchSuccess,
-} from '../actions/account';
+import { updateAddresses, updateAccountInfo, accountInfoFetchSuccess } from '../actions/account';
+import { selectedAccountStateFactory } from '../selectors/account';
 import { clearSendFields } from '../actions/ui';
 import { generateAlert } from '../actions/alerts';
-import { prepareTransferArray } from '../libs/iota/transfers';
+import { prepareTransferArray, filterInvalidPendingTransfers, filterZeroValueTransfers } from '../libs/iota/transfers';
 import { syncAccount } from '../libs/iota/accounts';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
@@ -223,6 +219,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
     return iota.api.sendTransfer(...args, (error, success) => {
         if (!error) {
             dispatch(updateAccountInfo(accountName, success, value));
+
             if (value === 0) {
                 dispatch(
                     generateAlert(
@@ -269,7 +266,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
 };
 
 export const prepareTransfer = (seed, address, value, message, accountName) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(sendTransferRequest());
 
         const transfer = prepareTransferArray(address, value, message);
@@ -339,17 +336,24 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
         let newAccountData = {};
 
         const syncAndGetInputs = () => {
-            const existingAccountData = dispatch(prepareAccountInfoForSync(accountName));
-            return syncAddresses(seed, existingAccountData, true)
+            const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+
+            return syncAddresses(seed, existingAccountState, true)
                 .then((accountData) => {
                     return syncAccount(seed, accountData);
                 })
                 .then((accountData) => {
                     dispatch(accountInfoFetchSuccess(accountData));
                     newAccountData = accountData;
-                    const newAddressData = accountData.addresses;
+
+                    const valueTransfers = filterZeroValueTransfers(newAccountData.transfers);
+                    return filterInvalidPendingTransfers(valueTransfers, newAccountData.addresses);
+                })
+                .then((filteredTransfers) => {
+                    const newAddressData = newAccountData.addresses;
                     const startIndex = getStartingSearchIndexToPrepareInputs(newAddressData);
-                    getUnspentInputs(newAddressData, startIndex, value, null, unspentInputs);
+
+                    getUnspentInputs(newAddressData, filteredTransfers, startIndex, value, null, unspentInputs);
                 })
                 .catch((err) => {
                     dispatch(sendTransferError());
@@ -383,6 +387,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 );
             })
             .catch((err) => {
+                console.log('Err', err);
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     20000,
