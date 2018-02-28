@@ -646,12 +646,12 @@ export const getHashesDiff = (
 /**
  *   Takes current account data as input and adds latest used addresses
  *
- *   @method findValidPendingReceivedValueTransfers
+ *   @method filterInvalidPendingTransfers
  *   @param {array} addresses
  *   @param {array} transfers
  *   @returns {Promise<array>} - Array of addresses with no pending receive transfers
  **/
-export const filterInvalidPendingReceivedTransfers = (transfers, addressData) => {
+export const filterInvalidPendingTransfers = (transfers, addressData) => {
     const pendingTransfers = filterConfirmedTransfers(transfers);
 
     if (isEmpty(pendingTransfers)) {
