@@ -434,7 +434,7 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
     each(sent, (bundle) => {
         const remainder = find(bundle, (tx) => tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0);
 
-        if (remainder.address in inputsByAddress) {
+        if (remainder && remainder.address in inputsByAddress) {
             addressesWithIncomingTransfers.add(remainder.address);
         }
     });
