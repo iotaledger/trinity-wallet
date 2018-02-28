@@ -12,6 +12,8 @@ describe('libs: iota/utils', () => {
 
         describe('when conversion from trytes returns null', () => {
             it('should return a string "Empty"', () => {
+                // fromTrytes would return null if the message length is odd
+                // https://github.com/iotaledger/iota.lib.js/blob/master/lib/utils/asciiToTrytes.js#L74
                 const messageFramgement = `FOO${'9'.repeat(2184)}`;
                 expect(convertFromTrytes(messageFramgement)).to.equal('Empty');
             });
