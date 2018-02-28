@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         width: width / 1.2,
         height: height / 10,
         justifyContent: 'center',
+        marginBottom: height / 60,
     },
     topWrapper: {
         flex: 1,

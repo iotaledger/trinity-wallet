@@ -275,7 +275,6 @@ class History extends Component {
                         tintColor={negativeColor}
                     />
                 }
-                ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
                     <View style={styles.noTransactionsContainer}>
                         {(!isRefreshing && (
