@@ -1,6 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Clipboard, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
+import {
+    Clipboard,
+    TouchableOpacity,
+    View,
+    Text,
+    StyleSheet,
+    FlatList,
+    ScrollView,
+    TouchableWithoutFeedback,
+} from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
@@ -96,6 +105,27 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textAlign: 'right',
     },
+    button: {
+        borderWidth: 1.5,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 4,
+        height: height / 17,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'transparent',
+    },
+    buttonText: {
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 34.5,
+        backgroundColor: 'transparent',
+    },
+    buttonsContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: height / 40,
+    },
 });
 
 export default class HistoryModalContent extends PureComponent {
@@ -105,6 +135,8 @@ export default class HistoryModalContent extends PureComponent {
         t: PropTypes.func.isRequired,
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
+        confirmationBool: PropTypes.bool.isRequired,
+        mode: PropTypes.string.isRequired,
         value: PropTypes.number.isRequired,
         unit: PropTypes.string.isRequired,
         time: PropTypes.number.isRequired,
@@ -183,42 +215,85 @@ export default class HistoryModalContent extends PureComponent {
     }
 
     render() {
-        const { status, onPress, value, unit, confirmation, time, bundle, message, t, style } = this.props;
+        const {
+            status,
+            onPress,
+            value,
+            unit,
+            confirmation,
+            confirmationBool,
+            time,
+            bundle,
+            message,
+            t,
+            style,
+            mode,
+        } = this.props;
 
         return (
             <TouchableOpacity style={styles.container} onPress={onPress}>
                 <View style={styles.wrapper}>
                     <View style={[styles.content, style.borderColor, { backgroundColor: style.backgroundColor }]}>
                         <ScrollView>
-                            <View style={styles.statusWrapper}>
-                                <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                    {status} {value} {unit}
-                                </Text>
-                                <View style={styles.confirmationWrapper}>
-                                    <Text style={[styles.confirmation, style.confirmationStatusColor]}>
-                                        {confirmation}
-                                    </Text>
-                                    <Text style={[styles.timestamp, style.defaultTextColor]}>
-                                        {formatModalTime(convertUnixTimeToJSDate(time))}
-                                    </Text>
+                            <TouchableWithoutFeedback style={{ flex: 1 }}>
+                                <View style={{ flex: 1 }}>
+                                    <View style={styles.statusWrapper}>
+                                        <Text style={[styles.statusText, { color: style.titleColor }]}>
+                                            {status} {value} {unit}
+                                        </Text>
+                                        <View style={styles.confirmationWrapper}>
+                                            <Text style={[styles.confirmation, style.confirmationStatusColor]}>
+                                                {confirmation}
+                                            </Text>
+                                            <Text style={[styles.timestamp, style.defaultTextColor]}>
+                                                {formatModalTime(convertUnixTimeToJSDate(time))}
+                                            </Text>
+                                        </View>
+                                    </View>
+                                    <Text style={[styles.heading, style.defaultTextColor]}>{t('bundleHash')}:</Text>
+                                    <View style={styles.bundleWrapper}>
+                                        <TouchableOpacity
+                                            onPress={() => this.copy(bundle, 'bundle')}
+                                            style={styles.bundleInnerWrapper}
+                                        >
+                                            <Text style={[styles.bundleHash, style.defaultTextColor]} numberOfLines={2}>
+                                                {bundle}
+                                            </Text>
+                                            <View style={styles.bundleSeparator} />
+                                        </TouchableOpacity>
+                                    </View>
+                                    {mode === 'Expert' && (
+                                        <View>
+                                            <Text style={[styles.heading, style.defaultTextColor]}>
+                                                {t('addresses')}:
+                                            </Text>
+                                            {this.renderAddresses()}
+                                        </View>
+                                    )}
+                                    <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
+                                    <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
+                                    {!confirmationBool &&
+                                        mode === 'Expert' && (
+                                            <View style={styles.buttonsContainer}>
+                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
+                                                    <Text style={[styles.buttonText, style.defaultTextColor]}>
+                                                        {t('reattach')}
+                                                    </Text>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
+                                                    <Text style={[styles.buttonText, style.defaultTextColor]}>
+                                                        {t('promote')}
+                                                    </Text>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
+                                                    <Text style={[styles.buttonText, style.defaultTextColor]}>
+                                                        {t('rebroadcast')}
+                                                    </Text>
+                                                </TouchableOpacity>
+                                            </View>
+                                        )}
                                 </View>
-                            </View>
-                            <Text style={[styles.heading, style.defaultTextColor]}>{t('bundleHash')}:</Text>
-                            <View style={styles.bundleWrapper}>
-                                <TouchableOpacity
-                                    onPress={() => this.copy(bundle, 'bundle')}
-                                    style={styles.bundleInnerWrapper}
-                                >
-                                    <Text style={[styles.bundleHash, style.defaultTextColor]} numberOfLines={2}>
-                                        {bundle}
-                                    </Text>
-                                    <View style={styles.bundleSeparator} />
-                                </TouchableOpacity>
-                            </View>
-                            <Text style={[styles.heading, style.defaultTextColor]}>{t('addresses')}:</Text>
-                            {this.renderAddresses()}
-                            <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
-                            <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
+                            </TouchableWithoutFeedback>
                         </ScrollView>
                     </View>
                 </View>

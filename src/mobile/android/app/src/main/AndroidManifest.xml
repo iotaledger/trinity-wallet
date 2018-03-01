@@ -25,11 +25,13 @@
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
       android:theme="@style/AppTheme"
-    >
+      tools:replace="android:allowBackup"
+        >
     <meta-data
         android:name="io.fabric.ApiKey"
         android:value="e741ca311eddc2a22fa56c2dad19b440babbddbc"
-    />
+        tools:replace="android:value"
+        />
       <activity
         android:name=".MainActivity"
         android:theme="@style/SplashTheme"

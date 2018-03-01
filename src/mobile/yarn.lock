@@ -5027,6 +5027,12 @@ react-native-svg@^6.0.1-rc.1:
     github-download "^0.5.0"
     lodash "^4.16.6"
 
+react-native-switch-pro@^0.4.8:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/react-native-switch-pro/-/react-native-switch-pro-0.4.8.tgz#e4346bbc748239e46e93e6faad67628834e9a8e6"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-tab-view@^0.0.70:
   version "0.0.70"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.70.tgz#1dd2ded32acd0cb6bfef38d26e53675db733b37b"

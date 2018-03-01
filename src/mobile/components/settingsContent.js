@@ -12,6 +12,7 @@ import UseExistingSeed from './useExistingSeed';
 import NodeSelection from './nodeSelection';
 import AddCustomNode from './addCustomNode';
 import CurrencySelectionComponent from './currencySelection';
+import ModeSelection from './modeSelection';
 import LanguageSelection from './languageSelection';
 import ChangePassword from './changePassword';
 import ManualSync from './manualSync';
@@ -40,6 +41,7 @@ const SETTINGS_COMPONENTS = {
     advancedThemeCustomisation: AdvancedThemeCustomisation,
     snapshotTransition: SnapshotTransition,
     securitySettings: SecuritySettings,
+    modeSelection: ModeSelection,
 };
 
 const SettingsContent = ({ component, ...props }) => {
