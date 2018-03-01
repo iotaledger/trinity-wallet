@@ -274,7 +274,6 @@ class History extends Component {
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
 
-        /* eslint-disable react/jsx-wrap-multilines */
         return (
             <OptimizedFlatList
                 contentContainerStyle={noTransactions ? styles.flatList : null}
