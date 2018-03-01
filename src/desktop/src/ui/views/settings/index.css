@@ -1,13 +1,37 @@
 .settings {
-    justify-content: center;
-    padding-top: 100px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    > header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        max-width: 680px;
+        height: var(--header-height);
+        padding: 0 20px;
+
+        a:hover {
+            color: var(--primary);
+        }
+    }
+
+    > div {
+        display: flex;
+        justify-content: center;
+        max-width: 680px;
+        width: 100%;
+    }
 
     section:first-of-type {
-        flex: 0 0 200px;
+        flex: 0 0 30%;
+        padding: 0 20px;
     }
 
     section:last-of-type {
-        flex: 0 0 560px;
+        flex: 0 0 70%;
+        padding: 0 20px;
     }
 
     nav {

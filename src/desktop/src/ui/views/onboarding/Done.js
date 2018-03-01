@@ -24,7 +24,7 @@ class Done extends React.PureComponent {
     setComplete = () => {
         const { history, setOnboardingComplete } = this.props;
         setOnboardingComplete(true);
-        history.push('/');
+        history.push('/onboarding/');
     };
 
     render() {

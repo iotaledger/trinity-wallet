@@ -2,7 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 import { clearTempData } from 'actions/tempAccount';
@@ -61,20 +62,6 @@ class App extends React.Component {
         t: PropTypes.func.isRequired,
     };
 
-    state = {
-        initialized: false,
-    };
-
-    componentWillMount() {
-        setTimeout(
-            () =>
-                this.setState(() => ({
-                    initialized: true,
-                })),
-            3200,
-        );
-    }
-
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
@@ -90,7 +77,7 @@ class App extends React.Component {
         /* On Login */
         if (!this.props.tempAccount.ready && nextProps.tempAccount.ready) {
             Electron.updateMenu('authorised', true);
-            this.props.history.push('/wallet/balance');
+            this.props.history.push('/wallet/');
         }
     }
 
@@ -114,9 +101,14 @@ class App extends React.Component {
         }
     }
 
+    Init = (props) => {
+        return <Loading {...props} loop={false} onEnd={() => this.props.history.push('/onboarding/')} />;
+    };
+
     render() {
-        const { account, tempAccount, location } = this.props;
-        const mainComponent = !this.state.initialized ? Loading : tempAccount.ready ? Wallet : Onboarding;
+        const { account, location } = this.props;
+
+        const currentKey = location.pathname.split('/')[1] || '/';
 
         return (
             <div className={css.trintiy}>
@@ -124,10 +116,22 @@ class App extends React.Component {
                 <Notifications />
                 <Alerts />
                 <Updates />
-                <Switch location={location}>
-                    <Route path="/settings/:setting?" component={Settings} />
-                    <Route path="/" complete={account.onboardingComplete} component={mainComponent} />
-                </Switch>
+                <TransitionGroup>
+                    <CSSTransition key={currentKey} classNames="fade" timeout={300}>
+                        <div>
+                            <Switch location={location}>
+                                <Route exact path="/settings/:setting?" component={Settings} />
+                                <Route path="/wallet" component={Wallet} />
+                                <Route
+                                    path="/onboarding"
+                                    complete={account.onboardingComplete}
+                                    component={Onboarding}
+                                />
+                                <Route exact path="/" loop={false} component={this.Init} />
+                            </Switch>
+                        </div>
+                    </CSSTransition>
+                </TransitionGroup>
             </div>
         );
     }

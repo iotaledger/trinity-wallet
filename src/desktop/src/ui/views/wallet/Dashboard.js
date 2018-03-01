@@ -10,22 +10,24 @@ import Balance from 'ui/components/Balance';
 
 import css from './dashboard.css';
 
+/**
+ * Wallet dashboard component
+ */
 class Dashboard extends React.PureComponent {
     static propTypes = {
         /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         * @ignore
+         */
         t: PropTypes.func.isRequired,
-    };
-
-    state = {
-        tab: 0,
     };
 
     render() {
         const { t, history } = this.props;
-        const { tab } = this.state;
 
         return (
             <React.Fragment>

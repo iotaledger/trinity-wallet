@@ -4,7 +4,7 @@ import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { showNotification } from 'actions/notifications';
-import Button from 'ui/components/Button';
+
 import Icon from 'ui/components/Icon';
 
 import Language from 'ui/views/settings/Language';
@@ -39,50 +39,56 @@ class Settings extends React.PureComponent {
     render() {
         const { t, location, tempAccount, history } = this.props;
 
+        const backRoute = tempAccount.ready ? '/wallet/' : '/onboarding/';
+
         return (
             <main className={css.settings}>
-                <section>
-                    <nav>
-                        <NavLink to="/settings/language">
-                            <Icon icon="language" size={20} /> {t('settings:language')}
-                        </NavLink>
-                        <NavLink to="/settings/node">
-                            <Icon icon="node" size={20} /> {t('global:node')}
-                        </NavLink>
-                        <NavLink to="/settings/theme">
-                            <Icon icon="theme" size={20} /> {t('settings:theme')}
-                        </NavLink>
-                        <NavLink to="/settings/currency">
-                            <Icon icon="currency" size={20} /> {t('settings:currency')}
-                        </NavLink>
-                        {tempAccount && tempAccount.ready ? (
-                            <div>
-                                <hr />
-                                <NavLink to="/settings/password">
-                                    <Icon icon="password" size={20} /> {t('settings:changePassword')}
-                                </NavLink>
-                                <hr />
-                                <NavLink to="/settings/advanced">
-                                    <Icon icon="advanced" size={20} /> {t('settings:advanced')}
-                                </NavLink>
-                            </div>
-                        ) : null}
-                    </nav>
-                    <Button variant="secondary" onClick={() => history.push('/')}>
-                        {t('global:back')}
-                    </Button>
-                </section>
-                <section className={css.content}>
-                    <Switch location={location}>
-                        <Route path="/settings/language" component={Language} />
-                        <Route path="/settings/theme" component={Theme} />
-                        <Route path="/settings/node" component={SetNode} />
-                        <Route path="/settings/currency" component={Currency} />
-                        <Route path="/settings/password" component={Password} />
-                        <Route path="/settings/advanced" component={Advanced} />
-                        <Redirect from="/settings" to="/settings/language" />
-                    </Switch>
-                </section>
+                <header>
+                    <a onClick={() => history.push(backRoute)}>
+                        <Icon icon="cross" size={40} />
+                    </a>
+                </header>
+                <div>
+                    <section>
+                        <nav>
+                            <NavLink to="/settings/language">
+                                <Icon icon="language" size={20} /> {t('settings:language')}
+                            </NavLink>
+                            <NavLink to="/settings/node">
+                                <Icon icon="node" size={20} /> {t('global:node')}
+                            </NavLink>
+                            <NavLink to="/settings/theme">
+                                <Icon icon="theme" size={20} /> {t('settings:theme')}
+                            </NavLink>
+                            <NavLink to="/settings/currency">
+                                <Icon icon="currency" size={20} /> {t('settings:currency')}
+                            </NavLink>
+                            {tempAccount && tempAccount.ready ? (
+                                <div>
+                                    <hr />
+                                    <NavLink to="/settings/password">
+                                        <Icon icon="password" size={20} /> {t('settings:changePassword')}
+                                    </NavLink>
+                                    <hr />
+                                    <NavLink to="/settings/advanced">
+                                        <Icon icon="advanced" size={20} /> {t('settings:advanced')}
+                                    </NavLink>
+                                </div>
+                            ) : null}
+                        </nav>
+                    </section>
+                    <section className={css.content}>
+                        <Switch location={location}>
+                            <Route path="/settings/language" component={Language} />
+                            <Route path="/settings/theme" component={Theme} />
+                            <Route path="/settings/node" component={SetNode} />
+                            <Route path="/settings/currency" component={Currency} />
+                            <Route path="/settings/password" component={Password} />
+                            <Route path="/settings/advanced" component={Advanced} />
+                            <Redirect from="/settings/" to="/settings/language" />
+                        </Switch>
+                    </section>
+                </div>
             </main>
         );
     }

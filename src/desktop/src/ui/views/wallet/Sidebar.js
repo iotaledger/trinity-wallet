@@ -16,6 +16,8 @@ import Confirm from 'ui/components/modal/Confirm';
  */
 class Sidebar extends React.PureComponent {
     static propTypes = {
+        /* Browser location objects */
+        location: PropTypes.object,
         /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -55,12 +57,15 @@ class Sidebar extends React.PureComponent {
     };
 
     doLogout = () => {
+        this.setState({
+            modalLogout: false,
+        });
         this.props.clearTempData();
-        this.props.history.push('/login');
+        this.props.history.push('/onboarding/');
     };
 
     render() {
-        const { seeds, selectedSeedIndex, selectSeed, t } = this.props;
+        const { seeds, selectedSeedIndex, selectSeed, t, history, location } = this.props;
         const { modalLogout } = this.state;
 
         return (
@@ -68,19 +73,32 @@ class Sidebar extends React.PureComponent {
                 <div>
                     <Logo size={60} />
                 </div>
+
                 <nav>
-                    {seeds.map((seed, index) => {
-                        return (
-                            <a
-                                aria-current={selectedSeedIndex === index}
-                                key={seed.seed}
-                                onClick={() => selectSeed(index)}
-                            >
-                                <Icon icon="wallet" size={20} />
-                                <strong>My acc</strong>
-                            </a>
-                        );
-                    })}
+                    <div>
+                        <a aria-current={location.pathname === '/wallet/'}>
+                            <Icon icon="wallet" size={20} />
+                        </a>
+                        <ul>
+                            {seeds.map((seed, index) => {
+                                return (
+                                    <a
+                                        aria-current={selectedSeedIndex === index}
+                                        key={seed.seed}
+                                        onClick={() => {
+                                            selectSeed(index);
+                                            history.push('/wallet/');
+                                        }}
+                                    >
+                                        <strong>My acc</strong>
+                                    </a>
+                                );
+                            })}
+                        </ul>
+                    </div>
+                    <NavLink to="/wallet/charts">
+                        <Icon icon="chart" size={20} />
+                    </NavLink>
                 </nav>
                 <nav>
                     <NavLink to="/settings">
