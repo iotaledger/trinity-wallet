@@ -70,7 +70,7 @@ class AccountName extends React.PureComponent {
                     <Button to="/seed/enter" className="outline" variant="highlight">
                         {t('global:back')}
                     </Button>
-                    <Button className="outline" variant="primary">
+                    <Button type="submit" className="outline" variant="primary">
                         {t('global:next')}
                     </Button>
                 </footer>

@@ -2,7 +2,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 2048;
+    z-index: 1002;
 }
 
 .notification {
