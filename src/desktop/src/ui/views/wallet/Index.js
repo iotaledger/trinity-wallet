@@ -34,8 +34,8 @@ class Wallet extends React.PureComponent {
 
         return (
             <main className={classNames(css.wallet, hasSlideout ? css.slided : null)}>
-                <Sidebar history={history} />
-                <section>
+                <Sidebar history={history} location={location} />
+                <section className={location.pathname === '/wallet/charts' ? css.slided : null}>
                     <Dashboard history={history} />
                 </section>
                 <Slideout

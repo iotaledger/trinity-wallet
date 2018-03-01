@@ -66,7 +66,6 @@
         "react-qr-reader": "^2.0.1",
         "react-redux": "^5.0.6",
         "react-router-dom": "^4.2.2",
-        "react-transition-group": "^2.2.1",
         "redux": "^3.7.2",
         "sjcl": "^1.0.7",
         "style-loader": "^0.20.1",
@@ -129,6 +128,7 @@
         "react-lottie": "^1.0.0",
         "react-markdown": "^3.2.0",
         "react-textarea-autosize": "^5.2.1",
-        "victory": "^0.25.5"
+        "react-transition-group": "^2.2.1",
+        "recharts": "^1.0.0-beta.10"
     }
 }

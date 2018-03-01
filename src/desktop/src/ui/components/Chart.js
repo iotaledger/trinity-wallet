@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory';
+import { LineChart, ResponsiveContainer, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 import withChartData from 'containers/components/Chart';
 
@@ -54,34 +54,18 @@ class Chart extends PureComponent {
         return (
             <div className={css.chart}>
                 <div>
-                    <VictoryChart>
-                        <VictoryLine
-                            data={chartData.data}
-                            style={{
-                                data: {
-                                    stroke: theme.chart.color,
-                                    strokeWidth: 1.2,
-                                },
-                            }}
-                            scale={{ x: 'time', y: 'linear' }}
-                            animate={{
-                                duration: 1500,
-                                onLoad: { duration: 2000 },
-                            }}
-                        />
-                        <VictoryAxis
-                            dependentAxis
-                            tickFormat={(x) => getPriceFormat(x)}
-                            tickValues={chartData.yAxis.ticks}
-                            style={{
-                                axis: { stroke: 'transparent' },
-                                tickLabels: { fill: theme.body.color, fontSize: 8, fontFamily: 'Lato-Regular' },
-                                ticks: { padding: 0 },
-                            }}
-                            gridComponent={<Line type="grid" style={{ stroke: theme.body.alt, strokeWidth: 0.1 }} />}
-                            tickLabelComponent={<VictoryLabel x={0} textAnchor="start" />}
-                        />
-                    </VictoryChart>
+                    <ResponsiveContainer height="100%" width="100%">
+                        <LineChart data={chartData.data}>
+                            <Line strokeWidth={2} type="linear" dataKey="y" stroke={theme.chart.color} dot={false} />
+                            <YAxis
+                                interval="preserveStartEnd"
+                                strokeWidth={0}
+                                width={60}
+                                dataKey="y"
+                                domain={['dataMin', 'dataMax']}
+                            />
+                        </LineChart>
+                    </ResponsiveContainer>
                 </div>
                 <nav>
                     <Button variant="secondary" className="outline" onClick={() => setCurrency()}>
@@ -96,13 +80,13 @@ class Chart extends PureComponent {
                 </nav>
                 <ul>
                     <li>
-                        {t('mcap')}: $ {priceData.mcap}
+                        {t('chart:mcap')}: $ {priceData.mcap}
                     </li>
                     <li>
-                        {t('Change')}: {priceData.change24h}%
+                        {t('chart:change')}: {priceData.change24h}%
                     </li>
                     <li>
-                        {t('Volume')} (24h): $ {priceData.volume}
+                        {t('chart:volume')} (24h): $ {priceData.volume}
                     </li>
                 </ul>
             </div>
