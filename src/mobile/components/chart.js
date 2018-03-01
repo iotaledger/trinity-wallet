@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 import { translate } from 'react-i18next';
@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
         flexDirection: 'row',
-        borderWidth: height / 2000,
+        borderWidth: height / 1000,
         borderRadius: GENERAL.borderRadiusSmall,
-        paddingHorizontal: width / 40,
+        paddingHorizontal: width / 50,
         paddingVertical: height / 110,
     },
     button: {
@@ -140,10 +140,20 @@ class Chart extends PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        getPriceForCurrency: PropTypes.func.isRequired,
     };
 
     render() {
-        const { priceData, chartData, theme, setCurrency, setTimeframe, getPriceFormat, t } = this.props;
+        const {
+            t,
+            priceData,
+            chartData,
+            theme,
+            setCurrency,
+            setTimeframe,
+            getPriceFormat,
+            getPriceForCurrency,
+        } = this.props;
 
         const textColor = { color: theme.secondaryBackgroundColor };
         const borderColor = { borderColor: theme.secondaryBackgroundColor };
@@ -163,7 +173,8 @@ class Chart extends PureComponent {
                     </View>
                     <View style={styles.priceContainer}>
                         <Text style={[styles.iotaPrice, textColor]}>
-                            {getChartCurrencySymbol(priceData.currency)} {getPriceFormat(priceData.price)} / Mi
+                            {getChartCurrencySymbol(priceData.currency)}{' '}
+                            {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
                         </Text>
                     </View>
                     <View style={[styles.buttonContainer, borderColor]}>
@@ -178,11 +189,11 @@ class Chart extends PureComponent {
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
-                {((chartData.data.length === 0 || chartData.data === undefined) && (
+                {chartData.data.length === 0 || chartData.data === undefined ? (
                     <View style={styles.emptyChartContainer}>
                         <Text style={[styles.emptyChartText, textColor]}>Error fetching chart data</Text>
                     </View>
-                )) || (
+                ) : (
                     <View style={styles.chartContainer}>
                         <VictoryChart domainPadding={isAndroid ? 0 : 15} height={chartHeight} width={chartWidth}>
                             <Defs>
@@ -217,7 +228,7 @@ class Chart extends PureComponent {
                                 }}
                                 gridComponent={
                                     <Line
-                                        type={'grid'}
+                                        type="grid"
                                         style={{ stroke: theme.secondaryBackgroundColor, strokeWidth: 0.1 }}
                                     />
                                 }
@@ -227,7 +238,6 @@ class Chart extends PureComponent {
                         </VictoryChart>
                     </View>
                 )}
-
                 <View style={styles.marketDataContainer}>
                     <Text style={[styles.marketFigure, textColor]}>
                         <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text> $ {priceData.mcap}

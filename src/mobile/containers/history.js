@@ -1,4 +1,5 @@
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -7,7 +8,6 @@ import {
     Text,
     TouchableWithoutFeedback,
     RefreshControl,
-    FlatList,
     TouchableOpacity,
     ActivityIndicator,
 } from 'react-native';
@@ -21,7 +21,7 @@ import {
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
-import { iota } from 'iota-wallet-shared-modules/libs/iota';
+import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import TransactionRow from '../components/transactionRow';
@@ -104,7 +104,7 @@ class History extends Component {
     constructor() {
         super();
 
-        this.state = { isRefreshing: false, isModalVisible: false };
+        this.state = { isRefreshing: false };
         this.onRefresh = this.onRefresh.bind(this);
     }
 
@@ -122,11 +122,26 @@ class History extends Component {
             isGeneratingReceiveAddress,
             isTransitioning,
         } = this.props;
-        if (isFetchingAccountInfo !== newProps.isFetchingAccountInfo) return false;
-        if (isSyncing !== newProps.isSyncing) return false;
-        if (isSendingTransfer !== newProps.isSendingTransfer) return false;
-        if (isGeneratingReceiveAddress !== newProps.isGeneratingReceiveAddress) return false;
-        if (isTransitioning !== newProps.isTransitioning) return false;
+
+        if (isFetchingAccountInfo !== newProps.isFetchingAccountInfo) {
+            return false;
+        }
+
+        if (isSyncing !== newProps.isSyncing) {
+            return false;
+        }
+
+        if (isSendingTransfer !== newProps.isSendingTransfer) {
+            return false;
+        }
+        if (isGeneratingReceiveAddress !== newProps.isGeneratingReceiveAddress) {
+            return false;
+        }
+
+        if (isTransitioning !== newProps.isTransitioning) {
+            return false;
+        }
+
         return true;
     }
 
@@ -135,7 +150,11 @@ class History extends Component {
      */
     onRefresh() {
         const { isRefreshing } = this.state;
-        if (isRefreshing) return;
+
+        if (isRefreshing) {
+            return;
+        }
+
         if (!this.shouldPreventManualRefresh()) {
             this.setState({ isRefreshing: true });
             this.updateAccountData();
@@ -212,12 +231,12 @@ class History extends Component {
         const containerBackgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
         const withValueAndUnit = (item) => ({
-            address: iota.utils.addChecksum(item.address, 9, true),
+            address: item.address,
             value: round(formatValue(item.value), 1),
             unit: formatUnit(item.value),
         });
 
-        return map(transfers, (transfer) => {
+        const formattedTransfers = map(transfers, (transfer) => {
             const tx = getRelevantTransfer(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
@@ -243,6 +262,8 @@ class History extends Component {
                 },
             };
         });
+
+        return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
     renderTransactions() {
@@ -254,7 +275,7 @@ class History extends Component {
         const noTransactions = data.length === 0;
 
         return (
-            <FlatList
+            <OptimizedFlatList
                 contentContainerStyle={noTransactions ? styles.flatList : null}
                 data={data}
                 initialNumToRender={8} // TODO: Should be dynamically computed.
@@ -271,7 +292,7 @@ class History extends Component {
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
                     <View style={styles.noTransactionsContainer}>
-                        {(!isRefreshing && (
+                        {!isRefreshing ? (
                             <View style={styles.refreshButtonContainer}>
                                 <TouchableOpacity onPress={this.onRefresh}>
                                     <View style={[styles.refreshButton, borderColor]}>
@@ -279,7 +300,7 @@ class History extends Component {
                                     </View>
                                 </TouchableOpacity>
                             </View>
-                        )) || (
+                        ) : (
                             <View style={styles.refreshButtonContainer}>
                                 <ActivityIndicator
                                     animating={isRefreshing}

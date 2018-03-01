@@ -150,6 +150,12 @@ class SetPassword extends Component {
                             navBarHidden: true,
                             navBarTransparent: true,
                             screenBackgroundColor: COLORS.backgroundGreen,
+                            drawUnderStatusBar: true,
+                            statusBarColor: COLORS.backgroundColor,
+                        },
+                        appStyle: {
+                            orientation: 'portrait',
+                            keepStyleAcrossPush: true,
                         },
                         animated: false,
                     });
@@ -236,7 +242,7 @@ class SetPassword extends Component {
                                 label={t('global:password')}
                                 onChangeText={(password) => this.setState({ password })}
                                 containerStyle={{ width: width / 1.2 }}
-                                autoCapitalize={'none'}
+                                autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="next"
@@ -253,7 +259,7 @@ class SetPassword extends Component {
                                 label={t('retypePassword')}
                                 onChangeText={(reentry) => this.setState({ reentry })}
                                 containerStyle={{ width: width / 1.2 }}
-                                autoCapitalize={'none'}
+                                autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
@@ -293,7 +299,7 @@ class SetPassword extends Component {
                         {this.renderContent()}
                     </KeyboardAwareScrollView>
                 )}
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor="white" backgroundColor={COLORS.backgroundGreen} />
             </View>
         );
     }
