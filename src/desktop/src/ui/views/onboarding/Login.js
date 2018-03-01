@@ -3,17 +3,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSecurelyPersistedSeeds } from 'libs/crypto';
+import authenticator from 'authenticator';
+
+import { getVault } from 'libs/crypto';
+
 import { addAccountName } from 'actions/account';
 import { showError } from 'actions/notifications';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
 import { clearTempData } from 'actions/tempAccount';
 import { loadSeeds, clearSeeds } from 'actions/seeds';
+
 import { runTask } from 'worker';
+
 import PasswordInput from 'ui/components/input/Password';
+import Text from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
+import Modal from 'ui/components/modal/Modal';
 
 /** Login component */
 class Login extends React.Component {
@@ -69,6 +76,8 @@ class Login extends React.Component {
 
     state = {
         loading: false,
+        verifyTwoFA: false,
+        code: '',
         password: '',
     };
 
@@ -115,13 +124,28 @@ class Login extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { password } = this.state;
+        const { password, code, verifyTwoFA } = this.state;
         const { t, loadSeeds, showError } = this.props;
 
         let seeds = null;
 
         try {
-            seeds = getSecurelyPersistedSeeds(password);
+            seeds = getVault(password);
+
+            if (seeds.twoFAkey && !authenticator.verifyToken(seeds.twoFAkey, code)) {
+                if (verifyTwoFA) {
+                    showError({
+                        title: t('twoFA:wrongCode'),
+                        text: t('twoFA:wrongCodeExplanation'),
+                    });
+                }
+
+                this.setState({
+                    verifyTwoFA: true,
+                });
+
+                return;
+            }
         } catch (err) {
             showError({
                 title: t('global:unrecognisedPassword'),
@@ -130,7 +154,10 @@ class Login extends React.Component {
         }
 
         if (seeds) {
+            delete seeds.twoFAkey;
+
             loadSeeds(seeds);
+
             const seed = seeds.items[seeds.selectedSeedIndex];
 
             this.setState({
@@ -143,7 +170,7 @@ class Login extends React.Component {
 
     render() {
         const { t, account } = this.props;
-        const { loading } = this.state;
+        const { loading, verifyTwoFA, code } = this.state;
 
         if (loading) {
             return (
@@ -156,25 +183,48 @@ class Login extends React.Component {
         }
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div />
-                <section>
-                    <PasswordInput
-                        value={this.state.password}
-                        label={t('global:password')}
-                        name="password"
-                        onChange={this.setPassword}
-                    />
-                </section>
-                <footer>
-                    <Button to="/seedlogin" className="outline" variant="highlight">
-                        {t('login:useSeed')}
-                    </Button>
-                    <Button className="outline" variant="primary">
-                        {t('login:login')}
-                    </Button>
-                </footer>
-            </form>
+            <React.Fragment>
+                <form onSubmit={this.handleSubmit}>
+                    <div />
+                    <section>
+                        <PasswordInput
+                            value={this.state.password}
+                            label={t('global:password')}
+                            name="password"
+                            onChange={this.setPassword}
+                        />
+                    </section>
+                    <footer>
+                        <Button to="/seedlogin" className="outline" variant="highlight">
+                            {t('login:useSeed')}
+                        </Button>
+                        <Button type="submit" className="outline" variant="primary">
+                            {t('login:login')}
+                        </Button>
+                    </footer>
+                </form>
+                <Modal variant="confirm" isOpen={verifyTwoFA} onClose={() => this.setState({ verifyTwoFA: false })}>
+                    <p>{t('twoFA:enterCode')}</p>
+                    <form onSubmit={this.handleSubmit}>
+                        <Text
+                            value={code}
+                            label={t('twoFA:code')}
+                            onChange={(value) => this.setState({ code: value })}
+                        />
+                        <Button
+                            onClick={() => {
+                                this.setState({ verifyTwoFA: false });
+                            }}
+                            variant="secondary"
+                        >
+                            {t('global:back')}
+                        </Button>
+                        <Button type="submit" variant="primary">
+                            {t('glboal:done')}
+                        </Button>
+                    </form>
+                </Modal>
+            </React.Fragment>
         );
     }
 }
