@@ -57,7 +57,7 @@
         "node": "Palvelin",
         "cannotPerformAction": "Toimintoa ei voi suorittaa",
         "cannotPerformActionExplanation": "Siirry lisäasetuksiin resetoidaksesi lompakkosi.",
-        "attachToTangleUnavailable": "Yhteys Tangle-verkkoon ei ole käytettävissä",
+        "attachToTangleUnavailable": "Yhteys Tangle-verkkoon ei käytettävissä",
         "attachToTangleUnavailableExplanation": "Tangle-verkkoon liittäminen ei ole mahdollista valitsemallasi palvelimella.",
         "wallet": "Lompakko",
         "sent": "Lähetetty",
