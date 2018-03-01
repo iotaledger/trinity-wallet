@@ -310,26 +310,26 @@
     "advancedSettings": {
         "selectNode": "Chọn nút mạng",
         "addCustomNode": "Thêm nút mạng tuỳ chỉnh",
-        "manualSync": "Manual sync"
+        "manualSync": "Đồng bộ bằng tay"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Hình nền",
+        "frame": "Khung"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Giao Diện"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "Tiền Tệ"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Bạn có muốn đăng xuất không?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Quét mã QR"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "HỆ THỐNG ĐƠN VỊ",
         "trillion": "Nghìn Tỷ",
         "billion": "Tỷ",
         "million": "Triệu",
@@ -337,8 +337,8 @@
         "one": "Một"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "Bạn có chắc chắn là muốn xóa tài khoản này không?",
+        "yourSeedWillBeRemoved": "Từ khóa và lịch sử của các giao dịch sẽ bị xóa.",
         "thisAction": "This action cannot be undone.",
         "enterPassword": "Enter your password to delete this account."
     },
