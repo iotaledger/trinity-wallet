@@ -11,7 +11,6 @@ const getProps = (overrides) =>
         {},
         {
             onPress: noop,
-            generateAlert: noop,
             t: (arg) => {
                 const translations = {
                     'send:message': 'Message',
@@ -41,6 +40,8 @@ const getProps = (overrides) =>
                 defaultTextColor: { color: 'green' },
                 backgroundColor: 'yellow',
                 borderColor: { borderColor: 'orange' },
+                barColor: 'black',
+                secondaryBarColor: 'white',
             },
         },
         overrides,
@@ -303,15 +304,15 @@ describe('Testing HistoryModalContent component', () => {
                     expect(Clipboard.setString).toHaveBeenCalledWith('arg');
                 });
 
-                it('should not call prop method generateAlert if second argument is not "bundle" or "address"', () => {
+                it('should not call method alertWithType if second argument is not "bundle" or "address"', () => {
                     const props = getProps({
-                        generateAlert: jest.fn(),
+                        alertWithType: jest.fn(),
                     });
 
                     const instance = shallow(<HistoryModalContent {...props} />).instance();
                     instance.copy('arg', 'not-bundle-or-address');
 
-                    expect(props.generateAlert).toHaveBeenCalledTimes(0);
+                    expect(this.alertWithType).toHaveBeenCalledTimes(0);
                 });
 
                 it('should call prop method generateAlert if second argument is "bundle"', () => {
@@ -331,13 +332,13 @@ describe('Testing HistoryModalContent component', () => {
 
                 it('should call prop method generateAlert if second argument is "address"', () => {
                     const props = getProps({
-                        generateAlert: jest.fn(),
+                        alertWithType: jest.fn(),
                     });
 
                     const instance = shallow(<HistoryModalContent {...props} />).instance();
                     instance.copy('arg', 'address');
 
-                    expect(props.generateAlert).toHaveBeenCalledWith(
+                    expect(this.alertWithType).toHaveBeenCalledWith(
                         'success',
                         'Address copied',
                         'Your address has been copied to clipboard',
