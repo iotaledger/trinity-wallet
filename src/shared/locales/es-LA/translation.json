@@ -19,7 +19,7 @@
         "invalidResponse": "Respuesta inválida",
         "invalidResponseExplanation": "El servidor devuelve una respuesta inválida.",
         "invalidResponsePollingExplanation": "El servidor devuelve una respuesta inválida durante la obtención de datos de cartera.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "VOLVER",
@@ -68,6 +68,9 @@
         "pending": "Pendiente",
         "bundleHash": "Bundle Hash",
         "addresses": "Direcciones",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Press back again to close the app",
         "autoreattaching": "Auto-revinculando al Tangle",
         "autoreattachingExplanation": "Revinculando la transacción con hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "La seed será borrada al presionar “Listo” o al osar 60 segundos.",
         "clickToCopy": "Haz click en el botón y copia tu seed a un administrador de contraseñas.",
         "doNotStore": "No almacenes tu seed en texto plano.",
-        "copyToClipboard": "Copiar al portapapeles"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contiene caracteres inválidos",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
         "youCanAdd": "You can add more seeds in the Settings menu."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Transfer sending",
