@@ -145,10 +145,30 @@ export const getRelevantTransfer = (bundle, addresses) => {
             } else if (bundle[i].value >= 0 && !isRemainder) {
                 return bundle[i];
             }
-        } else {
-            return extractTailTransferFromBundle(bundle);
         }
     }
+    return extractTailTransferFromBundle(bundle);
+};
+
+export const getTransferValue = (bundle, addresses) => {
+    let value = 0;
+    let j = 0;
+    for (let i = 0; i < bundle.length; i++) {
+        if (addresses.indexOf(bundle[i].address) > -1) {
+            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
+            if (bundle[i].value < 0 && !isRemainder) {
+                value = bundle[0].value;
+                return value;
+            } else if (bundle[i].value >= 0 && !isRemainder) {
+                value += bundle[i].value;
+                j++;
+            }
+        }
+    }
+    if (j === 0) {
+        return extractTailTransferFromBundle(bundle).value;
+    }
+    return value;
 };
 
 export const isValidBundleSync = (bundle, addressData) => {

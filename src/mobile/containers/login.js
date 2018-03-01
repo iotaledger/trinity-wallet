@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
-import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
 import { StyleSheet, View, Text } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
@@ -22,13 +21,11 @@ import whiteTickImagePath from 'iota-wallet-shared-modules/images/tick-white.png
 import blackTickImagePath from 'iota-wallet-shared-modules/images/tick-black.png';
 import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import keychain, { getPasswordFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
-import GENERAL from '../theme/general';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
 import { width, height } from '../util/dimensions';
@@ -38,15 +35,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    modalContent: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
-        borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.8)',
-        paddingVertical: height / 18,
-        width: width / 1.15,
     },
     questionText: {
         backgroundColor: 'transparent',
@@ -64,7 +52,6 @@ const styles = StyleSheet.create({
 
 class Login extends Component {
     static propTypes = {
-        hasErrorFetchingAccountInfoOnLogin: PropTypes.bool.isRequired,
         fullNode: PropTypes.string.isRequired,
         availablePoWNodes: PropTypes.array.isRequired,
         versions: PropTypes.object.isRequired,
@@ -89,7 +76,6 @@ class Login extends Component {
         super();
 
         this.state = {
-            isModalVisible: false,
             changingNode: false,
             completing2FA: false,
         };
@@ -104,12 +90,6 @@ class Login extends Component {
         this.checkForUpdates();
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
-    }
-
-    componentWillReceiveProps(newProps) {
-        if (newProps.hasErrorFetchingAccountInfoOnLogin && !this.props.hasErrorFetchingAccountInfoOnLogin) {
-            this.showModal();
-        }
     }
 
     componentWillUnmount() {
@@ -211,12 +191,7 @@ class Login extends Component {
         }
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
-
-    hideModal = () => this.setState({ isModalVisible: false });
-
     navigateToNodeSelection() {
-        this.hideModal();
         this.setState({ changingNode: true });
     }
 
@@ -234,25 +209,6 @@ class Login extends Component {
             overrideBackPress: true,
         });
     }
-
-    renderModalContent = () => {
-        const { backgroundColor, secondaryBackgroundColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-        return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
-                <View style={styles.modalContent}>
-                    <Text style={[styles.questionText, textColor]}>Cannot connect to IOTA node.</Text>
-                    <Text style={[styles.infoText, textColor]}>Do you want to select a different node?</Text>
-                    <OnboardingButtons
-                        onLeftButtonPress={() => this.hideModal()}
-                        onRightButtonPress={() => this.navigateToNodeSelection()}
-                        leftText="NO"
-                        rightText="YES"
-                    />
-                </View>
-            </View>
-        );
-    };
 
     render() {
         const {
@@ -320,21 +276,6 @@ class Login extends Component {
                     </View>
                 )}
                 <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
-                <Modal
-                    animationIn="bounceInUp"
-                    animationOut="bounceOut"
-                    animationInTiming={1000}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={500}
-                    backdropTransitionOutTiming={200}
-                    backdropColor="#132d38"
-                    backdropOpacity={0.6}
-                    style={{ alignItems: 'center' }}
-                    isVisible={this.state.isModalVisible}
-                    onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                >
-                    {this.renderModalContent()}
-                </Modal>
             </View>
         );
     }
@@ -345,7 +286,6 @@ const mapStateToProps = (state) => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
-    hasErrorFetchingAccountInfoOnLogin: state.tempAccount.hasErrorFetchingAccountInfoOnLogin,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,

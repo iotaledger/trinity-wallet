@@ -14,7 +14,11 @@ import {
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
+import {
+    getRelevantTransfer,
+    isReceivedTransfer,
+    getTransferValue,
+} from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
@@ -99,6 +103,7 @@ class History extends Component {
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
+        mode: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -212,6 +217,7 @@ class History extends Component {
             pendingColor,
             secondaryBackgroundColor,
             backgroundColor,
+            mode,
             t,
         } = this.props;
 
@@ -238,6 +244,7 @@ class History extends Component {
 
         const formattedTransfers = map(transfers, (transfer) => {
             const tx = getRelevantTransfer(transfer, addresses);
+            const value = getTransferValue(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
             return {
@@ -246,11 +253,13 @@ class History extends Component {
                 addresses: map(transfer, withValueAndUnit),
                 status: incoming ? t('history:receive') : t('history:send'),
                 confirmation: computeConfirmationStatus(tx.persistence, incoming),
-                value: round(formatValue(tx.value), 1),
-                unit: formatUnit(tx.value),
+                confirmationBool: tx.persistence,
+                value: round(formatValue(value), 1),
+                unit: formatUnit(value),
                 time: tx.timestamp,
                 message: convertFromTrytes(tx.signatureMessageFragment),
                 bundle: tx.bundle,
+                mode,
                 style: {
                     titleColor: incoming ? extraColor : negativeColor,
                     containerBorderColor: { borderColor: containerBorderColor },
@@ -289,7 +298,6 @@ class History extends Component {
                         tintColor={negativeColor}
                     />
                 }
-                ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
                     <View style={styles.noTransactionsContainer}>
                         {!isRefreshing ? (
@@ -334,6 +342,7 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.seedNames),
     seedIndex: tempAccount.seedIndex,
+    mode: settings.mode,
     negativeColor: settings.theme.negativeColor,
     positiveColor: settings.theme.positiveColor,
     backgroundColor: settings.theme.backgroundColor,

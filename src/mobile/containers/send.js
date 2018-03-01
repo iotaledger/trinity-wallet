@@ -209,8 +209,8 @@ export class Send extends Component {
 
     componentWillMount() {
         const { t, balance, amount, ctaColor } = this.props;
-
-        if (amount === (balance / this.getUnitMultiplier()).toString()) {
+        const amountAsNumber = parseFloat(amount);
+        if (amountAsNumber === balance / this.getUnitMultiplier() && amountAsNumber !== 0) {
             this.setState({
                 maxPressed: true,
                 maxColor: ctaColor,
@@ -784,6 +784,8 @@ export class Send extends Component {
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                        useNativeDriver
+                        hideModalContentWhileAnimating
                     >
                         {this.renderModalContent()}
                     </Modal>
