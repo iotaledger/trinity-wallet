@@ -17,7 +17,7 @@ export const ActionTypes = {
     LOAD_SEEDS: 'IOTA/SEEDS/LOAD_SEEDS',
 };
 
-export const loadSeeds = seeds => {
+export const loadSeeds = (seeds) => {
     return {
         type: ActionTypes.LOAD_SEEDS,
         payload: seeds,
@@ -32,7 +32,7 @@ type SeedT = {
     addresses: array,
 };
 */
-export const addSeed = seed => {
+export const addSeed = (seed) => {
     if (Array.isArray(seed.addresses)) {
         seed.addresses = [];
     }
@@ -43,17 +43,17 @@ export const addSeed = seed => {
     };
 };
 
-export const selectSeed = index => {
+export const selectSeed = (index) => {
     return {
         type: ActionTypes.SELECT_SEED,
         payload: index,
     };
 };
 
-export const addAndSelectSeed = seed => {
+export const addAndSelectSeed = (seed) => {
     return (dispatch, getState) => {
         const seeds = getSeedItems(getState());
-        const index = seeds.findIndex(item => item.seed === seed.seed);
+        const index = seeds.findIndex((item) => item.seed === seed.seed);
         if (index !== -1) {
             dispatch(selectSeed(index));
             return;
@@ -64,21 +64,21 @@ export const addAndSelectSeed = seed => {
     };
 };
 
-export const renameCurrentSeed = name => {
+export const renameCurrentSeed = (name) => {
     return (dispatch, getState) => {
         const index = getSelectedIndex(getState());
         dispatch(patchSeed(index, { name }));
     };
 };
 
-export const updateCurrentSeed = values => {
+export const updateCurrentSeed = (values) => {
     return (dispatch, getState) => {
         const selectedSeedIndex = getSelectedIndex(getState());
         return dispatch(patchSeed(selectedSeedIndex, values));
     };
 };
 
-export const addAddress = address => {
+export const addAddress = (address) => {
     return (dispatch, getState) => {
         const seed = getSelectedSeed(getState());
         const addresses = (seed.addresses || []).slice();
@@ -106,7 +106,7 @@ export const patchSeed = (index, values) => {
     };
 };
 
-export const removeSeed = seed => {
+export const removeSeed = (seed) => {
     return {
         type: ActionTypes.REMOVE_SEED,
         payload: seed,
@@ -119,21 +119,21 @@ export const clearSeeds = () => {
     };
 };
 
-export const persistSeeds = password => {
+export const persistSeeds = (password) => {
     return (dispatch, getState) => {
         const seeds = seedsSelector(getState);
         securelyPersistSeeds(password, seeds);
     };
 };
 
-export const restorePersistedSeeds = password => {
-    return dispatch => {
+export const restorePersistedSeeds = (password) => {
+    return (dispatch) => {
         const seeds = getSecurelyPersistedSeeds(password);
         dispatch(loadSeeds(seeds));
     };
 };
 
-export const getAccountInfoAsync = (seed, seedName) => {
+export const getAccountInfoAsync = (seed) => {
     return async (dispatch, getState) => {
         const accountData = await iota.api.getAccountDataAsync(seed);
         const addresses = getSelectedSeed(getState()).addresses;
