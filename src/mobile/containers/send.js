@@ -12,7 +12,6 @@ import {
     Text,
     Image,
     TouchableOpacity,
-    ListView,
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
@@ -198,7 +197,7 @@ export class Send extends Component {
         const { t } = this.props;
 
         this.state = {
-            selectedSetting: '',
+            selectedSetting: '', // eslint-disable-line react/no-unused-state
             modalContent: '',
             maxPressed: false,
             maxColor: props.secondaryBackgroundColor,
@@ -483,7 +482,9 @@ export class Send extends Component {
     getConversionTextFiat() {
         const { amount, usdPrice, conversionRate } = this.props;
 
-        if (this.shouldConversionTextShowInvalid()) return 'INVALID';
+        if (this.shouldConversionTextShowInvalid()) {
+            return 'INVALID';
+        }
 
         const convertedValue = round(amount / usdPrice / conversionRate, 10);
         let conversionText = '';
@@ -544,7 +545,7 @@ export class Send extends Component {
 
     openModal(selectedSetting) {
         this.setModalContent(selectedSetting);
-        this.setState({ selectedSetting });
+        this.setState({ selectedSetting }); // eslint-disable-line react/no-unused-state
         this.showModal();
     }
 
