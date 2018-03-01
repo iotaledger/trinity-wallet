@@ -318,6 +318,8 @@ class SnapshotTransition extends Component {
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
                     onBackButtonPress={() => this.hideModal()}
+                    useNativeDriver
+                    hideModalContentWhileAnimating
                 >
                     {this.renderModalContent()}
                 </Modal>

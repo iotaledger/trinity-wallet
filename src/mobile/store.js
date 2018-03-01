@@ -1,6 +1,6 @@
-import { AsyncStorage } from 'react-native';
 import get from 'lodash/get';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
+import { AsyncStorage } from 'react-native';
 import store, { persistStore, purgeStoredState, createPersistor } from '../shared/store';
 import initializeApp from './routes/entry';
 import { setAppVersions, resetWallet } from '../shared/actions/app';
