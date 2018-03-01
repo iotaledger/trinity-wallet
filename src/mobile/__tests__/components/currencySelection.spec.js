@@ -7,6 +7,11 @@ import { CurrencySelection } from '../../components/currencySelection';
 
 /* eslint-disable no-undef */
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
