@@ -21,8 +21,8 @@ extends:
     - airbnb
     - eslint:recommended
     - plugin:react/recommended
-    - prettier
     - prettier/react
+    - prettier
 plugins:
     - babel
     - react
@@ -44,7 +44,6 @@ rules:
     dot-notation: 2
     eol-last: 2
     eqeqeq: 2
-    indent: [2, 4, { "SwitchCase": 1 }]
     key-spacing: 2
     keyword-spacing: 2
     linebreak-style: [2, "unix"]
@@ -109,7 +108,7 @@ rules:
             assignment: parens-new-line
             return: parens-new-line
             arrow: parens-new-line
-            prop: parens-new-line
+            prop: ignore
     react/no-array-index-key: 0
     react/prefer-stateless-function: [1, {"ignorePureComponents": true}]
     react/require-default-props: 0

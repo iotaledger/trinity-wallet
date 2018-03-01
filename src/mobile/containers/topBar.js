@@ -393,14 +393,14 @@ class TopBar extends Component {
                     ]}
                 >
                     <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-                        {(hasNotifications && (
+                        {hasNotifications ? (
                             <TouchableOpacity
                                 style={styles.notificationContainer}
                                 onPress={() => this.setState({ isModalVisible: true })}
                             >
                                 <Image style={styles.notification} source={notificationImagePath} />
                             </TouchableOpacity>
-                        )) || (
+                        ) : (
                             <View style={styles.notificationContainer}>
                                 <View style={styles.notification} />
                             </View>
