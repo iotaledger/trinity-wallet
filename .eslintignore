@@ -3,3 +3,4 @@ ios/*
 node_modules/*
 **/node_modules/*
 *.min.js
+src/mobile/shim.js

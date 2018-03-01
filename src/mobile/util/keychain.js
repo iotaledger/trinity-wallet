@@ -5,8 +5,8 @@ import some from 'lodash/some';
 import map from 'lodash/map';
 import isString from 'lodash/isString';
 import filter from 'lodash/filter';
-import { serialize, parse } from '../../shared/libs/util';
 import * as Keychain from 'react-native-keychain';
+import { serialize, parse } from 'iota-wallet-shared-modules/libs/util';
 
 const keychain = {
     get: () => {

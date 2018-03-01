@@ -6,7 +6,7 @@ import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import { StyleSheet, View, Text, AppState } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
@@ -92,7 +92,6 @@ class Login extends Component {
             isModalVisible: false,
             changingNode: false,
             completing2FA: false,
-            appState: AppState.currentState,
         };
 
         this.onComplete2FA = this.onComplete2FA.bind(this);
@@ -247,8 +246,8 @@ class Login extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.hideModal()}
                         onRightButtonPress={() => this.navigateToNodeSelection()}
-                        leftText={'NO'}
-                        rightText={'YES'}
+                        leftText="NO"
+                        rightText="YES"
                     />
                 </View>
             </View>
@@ -322,13 +321,13 @@ class Login extends Component {
                 )}
                 <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
+                    animationIn="bounceInUp"
+                    animationOut="bounceOut"
                     animationInTiming={1000}
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
-                    backdropColor={'#132d38'}
+                    backdropColor="#132d38"
                     backdropOpacity={0.6}
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
