@@ -100,7 +100,9 @@ class AddCustomNode extends Component {
         } = this.props;
         const { customNode } = this.state;
 
-        if (!customNode.startsWith('http')) return onAddNodeError();
+        if (!customNode.startsWith('http')) {
+            return onAddNodeError();
+        }
 
         if (!nodes.includes(customNode.replace(/ /g, ''))) {
             setNode(customNode);
@@ -138,7 +140,7 @@ class AddCustomNode extends Component {
                             label={t('customNode')}
                             onChangeText={(customNode) => this.setState({ customNode })}
                             containerStyle={{ width: width / 1.36 }}
-                            autoCapitalize={'none'}
+                            autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
