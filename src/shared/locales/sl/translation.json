@@ -19,7 +19,7 @@
         "invalidResponse": "Neveljaven odziv",
         "invalidResponseExplanation": "Vozlišče je vrnilo neveljaven odziv.",
         "invalidResponsePollingExplanation": "Vozlišče ke vrnilo neveljaven odziv med pozivanjem.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Generirano število",
         "back": "NAZAJ",
@@ -68,6 +68,9 @@
         "pending": "Na čakanju",
         "bundleHash": "Bundle Hash",
         "addresses": "Naslovi",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Press back again to close the app",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Generirana vrednost bo izbrisana ko pritisnete \"KONČANO\" ali mine 60 sekund.",
         "clickToCopy": "Pritisnite gumb spodaj in kopirajte generirano vrednost v svojega upravitelja gesel.",
         "doNotStore": "Ne spravljajte generirane vrednost samo v tekst.",
-        "copyToClipboard": "Kopiraj v odložišče"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Generirana vrednost vsebuje beveljavne znake",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "Uporabite lahko več generiranih vrednosti s to denarnico. Vsaka generirana vrednost potrebuje ime računa.",
         "youCanAdd": "Dodate lahko več generiranih vrednosti v meniju za nastavitve."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Prenos pošiljanja",
