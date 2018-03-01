@@ -36,6 +36,11 @@ export const setRandomlySelectedNode = (payload) => ({
     payload,
 });
 
+export const setMode = (payload) => ({
+    type: ActionTypes.SET_MODE,
+    payload,
+});
+
 export function setLocale(locale) {
     return {
         type: ActionTypes.SET_LOCALE,

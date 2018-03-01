@@ -30,10 +30,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-    logo: {
-        height: width / 5,
-        width: width / 5,
-    },
     infoTextWrapper: {
         borderWidth: 1,
         borderRadius: GENERAL.borderRadius,
