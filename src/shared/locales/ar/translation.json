@@ -19,7 +19,7 @@
         "invalidResponse": "استجابة غير صالحة",
         "invalidResponseExplanation": "الخادم اعاد ردا غير صالحا.",
         "invalidResponsePollingExplanation": "عادت العقدة ردا غير صالح أثناء\nالاقتراع.",
-        "invalidResponseFetchingAccount": "عادت العقدة ردا غير صالح أثناء جلب معلومات\nحسابك.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "عادت العقدة ردا غير صالح أثناء إرسال التحويل.",
         "seed": "سييد",
         "back": "رجوع",
@@ -68,6 +68,9 @@
         "pending": "معلقة",
         "bundleHash": "تجزئة الحزمة",
         "addresses": "عناوين",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "تجزئة الحزمة",
         "autoreattaching": "اضغط على العودة مرة أخرى لإغلاق التطبيق",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "سيتم مسح السييد بمجرد الضغط على \"انتهى\" أو مرور 60 ثانية.",
         "clickToCopy": "انقر على الزر أدناه وانسخ السييد الخاص بك إلى مكان آمن.",
         "doNotStore": "لا تخزن السييد الخاص بك في نص عادي.",
-        "copyToClipboard": "نسخ إلى الحافظة"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "السييد يحتوي على أحرف غير صالحة",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "يمكنك استخدام اكثر من سييد مع هذه المحفظة. كل سييد يتطلب اسم حساب.",
         "youCanAdd": "يمكنك إضافة سييد آخر في قائمة الإعدادات."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "جاري التحويل",
