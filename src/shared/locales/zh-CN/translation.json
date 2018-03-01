@@ -416,5 +416,9 @@
         "mcap": "MCAP",
         "change": "变化率",
         "volume": "交易量(24h)"
+    },
+    "rootDetection": {
+        "warning": "WARNING",
+        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }
