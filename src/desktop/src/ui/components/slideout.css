@@ -41,9 +41,8 @@
                     display: none;
                 }
             }
-            a {
-                &:hover {
-                }
+            a :hover {
+                color: var(--primary);
             }
 
             @media (max-width: 910px) {

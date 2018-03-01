@@ -27,7 +27,7 @@ class Instructions extends React.PureComponent {
                     </p>
                 </section>
                 <footer>
-                    <Button to="/" className="outline" variant="primary">
+                    <Button to="/onboarding/" className="outline" variant="primary">
                         {t('global:back')}
                     </Button>
                     <Button to="/onboarding/seed-intro" className="outline" variant="positive">
