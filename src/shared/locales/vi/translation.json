@@ -19,7 +19,7 @@
         "invalidResponse": "Đáp ứng không hợp lệ",
         "invalidResponseExplanation": "Nút mạng phản hồi không hợp lệ.",
         "invalidResponsePollingExplanation": "Nút mạng phản hồi lỗi khi lấy thông tin tài khoản từ nút mạng.",
-        "invalidResponseFetchingAccount": "Nút mạng phản hồi không hợp lệ khi lấy thông tin tài khoản của bạn.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "Nút mạng phản hồi không hợp lệ khi chuyển khoản.",
         "seed": "Từ Khoá",
         "back": "TRỞ LẠI",
@@ -68,6 +68,9 @@
         "pending": "Chờ Duyệt",
         "bundleHash": "Nhóm Hash",
         "addresses": "Địa Chỉ",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Nhấn nút lui lại lần nữa để đóng chương trình",
         "autoreattaching": "Đang tự động kết nối vào Tangle",
         "autoreattachingExplanation": "Đang kết nối giao dịch với dữ liệu {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Từ khoá sẽ bị xoá sau khi bạn nhấn nút \"XONG\" hoặc sau khi 60 giây trôi qua.",
         "clickToCopy": "Nhấn vào nút bên dưới và sao chép từ khoá vào chương trình quản lý mật khẩu.",
         "doNotStore": "Không nên lưu trữ từ khoá ở dạng phiên bản chữ.",
-        "copyToClipboard": "Sao chép vào bộ nhớ tạm"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Từ khoá chứa ký tự không hợp lệ",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "Bạn có thể sử dụng nhiều từ khoá cho ví điện tử này. Mỗi từ khoá cần một tên tài khoản khác.",
         "youCanAdd": "Bạn có thể cho thêm nhiều từ khoá nữa trong mục Thiết Lập."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Đang chuyển khoản",
