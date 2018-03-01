@@ -12,7 +12,6 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
-import COLORS from '../theme/Colors';
 
 const version = getVersion();
 const build = getBuildNumber();

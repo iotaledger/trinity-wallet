@@ -220,7 +220,7 @@ class CustomTextInput extends React.Component {
                         onBlur={() => this.onBlur()}
                         onChangeText={onChangeText}
                         selectionColor={negativeColor}
-                        underlineColorAndroid={'transparent'}
+                        underlineColorAndroid="transparent"
                     />
                     {(widget === 'qr' && this.renderQR(widgetBorderColor)) ||
                         (widget === 'denomination' && this.renderDenomination(widgetBorderColor))}

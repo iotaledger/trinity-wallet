@@ -13,7 +13,10 @@ export default () => (C) => {
     class WithBackPressGoToHome extends Component {
         constructor(props) {
             super(props);
-            if (isAndroid) this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+
+            if (isAndroid) {
+                this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+            }
         }
 
         onNavigatorEvent(event) {

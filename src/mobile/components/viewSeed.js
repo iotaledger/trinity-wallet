@@ -118,7 +118,7 @@ class ViewSeed extends Component {
             password: '',
             showSeed: false,
             seed: '',
-            appState: AppState.currentState,
+            appState: AppState.currentState, // eslint-disable-line react/no-unused-state
         };
 
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
@@ -164,7 +164,7 @@ class ViewSeed extends Component {
             this.hideSeed();
         }
 
-        this.setState({ appState: nextAppState });
+        this.setState({ appState: nextAppState }); // eslint-disable-line react/no-unused-state
     }
 
     hideSeed() {
@@ -192,7 +192,7 @@ class ViewSeed extends Component {
                                     label={t('global:password')}
                                     onChangeText={(password) => this.setState({ password })}
                                     containerStyle={{ width: width / 1.2 }}
-                                    autoCapitalize={'none'}
+                                    autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
