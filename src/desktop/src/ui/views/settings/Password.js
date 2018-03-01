@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { showError, showNotification } from 'actions/notifications';
 
 import { isValidPassword } from 'libs/util';
-import { getSecurelyPersistedSeeds, securelyPersistSeeds } from 'libs/crypto';
+import { getVault, setVault } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -60,9 +60,7 @@ class SetPassword extends PureComponent {
         }
 
         try {
-            const seeds = getSecurelyPersistedSeeds(passwordCurrent);
-
-            securelyPersistSeeds(passwordNew, seeds);
+            setVault(passwordCurrent, passwordNew);
 
             this.setState({
                 passwordCurrent: '',
