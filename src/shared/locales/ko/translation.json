@@ -19,7 +19,7 @@
         "invalidResponse": "잘못된 응답",
         "invalidResponseExplanation": "노드가 잘못된 응답을 보냈습니다.",
         "invalidResponsePollingExplanation": "폴링 중에 노드가 잘못된 응답을 보냈습니다.",
-        "invalidResponseFetchingAccount": "계정 정보를 불러오는 중에 노드가 잘못된 응답을 보냈습니다.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "전송 중에 노드가 잘못된 응답을 보냈습니다.",
         "seed": "시드",
         "back": "뒤로",
@@ -68,6 +68,9 @@
         "pending": "처리 중",
         "bundleHash": "번들 해시",
         "addresses": "주소",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "앱을 닫으려면 뒤로가기를 다시 누르세요.",
         "autoreattaching": "어태치 자동 재시도중",
         "autoreattachingExplanation": "아래의 트랜잭션 해시를 다시 어태치합니다: {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "'완료'를 누르거나 60초가 지나면 시드가 삭제됩니다.",
         "clickToCopy": "아래 버튼을 눌러 시드를 복사하고, 비밀번호 관리자에 저장하십시오.",
         "doNotStore": "시드를 암호화하지 않은 채로 저장하지 마십시오.",
-        "copyToClipboard": "클립보드에 복사"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "시드에 잘못된 문자 포함",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "하나의 지갑에 여러 개의 시드를 등록하여 사용할 수 있습니다. 각각의 시드는 계정 이름이 필요합니다.",
         "youCanAdd": "설정 메뉴에서 시드를 추가할 수 있습니다."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "거래 전송중",
