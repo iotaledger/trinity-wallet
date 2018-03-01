@@ -175,7 +175,7 @@ class SeedReentry extends Component {
                                 onChangeText={(text) => this.setState({ seed: text })}
                                 containerStyle={{ width: width / 1.2 }}
                                 maxLength={MAX_SEED_LENGTH}
-                                autoCapitalize={'characters'}
+                                autoCapitalize="characters"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"

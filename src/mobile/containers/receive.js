@@ -111,8 +111,13 @@ class Receive extends Component {
     shouldComponentUpdate(newProps) {
         const { isSyncing, isTransitioning } = this.props;
 
-        if (isSyncing !== newProps.isSyncing) return false;
-        if (isTransitioning !== newProps.isTransitioning) return false;
+        if (isSyncing !== newProps.isSyncing) {
+            return false;
+        }
+
+        if (isTransitioning !== newProps.isTransitioning) {
+            return false;
+        }
 
         return true;
     }

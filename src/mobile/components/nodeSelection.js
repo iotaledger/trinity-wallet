@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
-import Dropdown from '../components/dropdown';
+import DropdownComponent from '../components/dropdown';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -92,7 +92,7 @@ class NodeSelection extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 0.25 }} />
-                        <Dropdown
+                        <DropdownComponent
                             onRef={(c) => {
                                 this.dropdown = c;
                             }}
