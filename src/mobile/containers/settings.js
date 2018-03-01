@@ -204,7 +204,7 @@ class Settings extends Component {
 
         this.state = {
             isModalVisible: false,
-            modalSetting: 'addNewSeed',
+            modalSetting: 'addNewSeed', // eslint-disable-line react/no-unused-state
             modalContent: <LogoutConfirmationModal />,
         };
     }
@@ -387,7 +387,7 @@ class Settings extends Component {
         }
 
         this.setState({
-            modalSetting,
+            modalSetting, // eslint-disable-line react/no-unused-state
             modalContent,
         });
 
@@ -897,8 +897,8 @@ class Settings extends Component {
                 </View>
                 <View style={{ flex: 1 }} />
                 <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
+                    animationIn="bounceInUp"
+                    animationOut="bounceOut"
                     animationInTiming={1000}
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}

@@ -228,7 +228,7 @@ class Chart extends PureComponent {
                                 }}
                                 gridComponent={
                                     <Line
-                                        type={'grid'}
+                                        type="grid"
                                         style={{ stroke: theme.secondaryBackgroundColor, strokeWidth: 0.1 }}
                                     />
                                 }
@@ -238,7 +238,6 @@ class Chart extends PureComponent {
                         </VictoryChart>
                     </View>
                 )}
-
                 <View style={styles.marketDataContainer}>
                     <Text style={[styles.marketFigure, textColor]}>
                         <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text> $ {priceData.mcap}

@@ -1,4 +1,3 @@
-import React from 'react';
 import keychain from 'react-native-keychain';
 import keychainWrapper, {
     storeSeedInKeychain,
@@ -13,7 +12,7 @@ import keychainWrapper, {
 } from '../../util/keychain';
 
 jest.mock('react-native-keychain', () => ({
-    setGenericPassword: jest.fn((username, password) => Promise.resolve({})),
+    setGenericPassword: jest.fn(() => Promise.resolve({})),
     getGenericPassword: jest.fn(() => Promise.resolve({ username: '', password: '', service: 'bundleId' })),
     resetGenericPassword: jest.fn(() => Promise.resolve({})),
 }));

@@ -156,7 +156,7 @@ class TopBar extends Component {
 
     static humanizeBalance(balance) {
         const decimalPlaces = (n) => {
-            const s = ` ${+n}`;
+            const s = ` +${n}`;
             const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(s);
             if (!match) {
                 return 0;
@@ -422,8 +422,8 @@ class TopBar extends Component {
                         </View>
                     </View>
                     <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
+                        animationIn="bounceInUp"
+                        animationOut="bounceOut"
                         animationInTiming={1000}
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
