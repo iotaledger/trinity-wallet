@@ -274,6 +274,7 @@ class History extends Component {
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
 
+        /* eslint-disable react/jsx-wrap-multilines */
         return (
             <OptimizedFlatList
                 contentContainerStyle={noTransactions ? styles.flatList : null}
@@ -292,7 +293,7 @@ class History extends Component {
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
                     <View style={styles.noTransactionsContainer}>
-                        {(!isRefreshing && (
+                        {!isRefreshing ? (
                             <View style={styles.refreshButtonContainer}>
                                 <TouchableOpacity onPress={this.onRefresh}>
                                     <View style={[styles.refreshButton, borderColor]}>
@@ -300,7 +301,7 @@ class History extends Component {
                                     </View>
                                 </TouchableOpacity>
                             </View>
-                        )) || (
+                        ) : (
                             <View style={styles.refreshButtonContainer}>
                                 <ActivityIndicator
                                     animating={isRefreshing}
