@@ -187,7 +187,7 @@ class WalletResetRequirePassword extends Component {
                                 onChangeText={(password) => this.setState({ password })}
                                 value={this.state.password}
                                 containerStyle={{ width: width / 1.2 }}
-                                autoCapitalize={'none'}
+                                autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"

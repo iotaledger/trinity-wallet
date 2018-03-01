@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { Dropdown } from '../../components/dropdown';
 
-const getProps = overrides =>
+const getProps = (overrides) =>
     assign(
         {},
         {

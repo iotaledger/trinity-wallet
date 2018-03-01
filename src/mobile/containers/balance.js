@@ -99,7 +99,7 @@ export class Balance extends Component {
      * @return {int}   Human-readable balance
      */
     static getDecimalPlaces(n) {
-        const s = `${+n}`;
+        const s = `+${n}`;
         const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(s);
 
         if (!match) {
@@ -125,7 +125,11 @@ export class Balance extends Component {
 
     shouldComponentUpdate(newProps) {
         const { marketData } = this.props;
-        if (newProps.marketData !== marketData) return false;
+
+        if (newProps.marketData !== marketData) {
+            return false;
+        }
+
         return true;
     }
 

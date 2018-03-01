@@ -1,4 +1,3 @@
-import i18next from '../i18next.js';
 import get from 'lodash/get';
 import some from 'lodash/some';
 import { iota } from '../libs/iota';
@@ -12,6 +11,7 @@ import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '..
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { MAX_SEED_LENGTH } from '../libs/util';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
+import i18next from '../i18next.js';
 
 /* eslint-disable no-console */
 
@@ -192,7 +192,7 @@ export const generateNewAddress = (seed, accountName, existingAccountData) => {
                 dispatch(updateAddresses(accountName, newAccountData.addresses));
                 dispatch(generateNewAddressSuccess(receiveAddress));
             })
-            .catch((err) => dispatch(generateNewAddressError()));
+            .catch(() => dispatch(generateNewAddressError()));
     };
 };
 
@@ -355,7 +355,7 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
 
                     getUnspentInputs(newAddressData, filteredTransfers, startIndex, value, null, unspentInputs);
                 })
-                .catch((err) => {
+                .catch(() => {
                     dispatch(sendTransferError());
                 });
         };
