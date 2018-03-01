@@ -227,12 +227,10 @@ class Chart extends PureComponent {
                                     },
                                 }}
                                 gridComponent={
-                                    /* eslint-disable react/jsx-wrap-multilines */
                                     <Line
                                         type="grid"
                                         style={{ stroke: theme.secondaryBackgroundColor, strokeWidth: 0.1 }}
                                     />
-                                    /* eslint-enable react/jsx-wrap-multilines */
                                 }
                                 tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
                                 tickValues={chartData.yAxis.ticks}
