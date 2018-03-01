@@ -27,6 +27,10 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
+    logoContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     midContainer: {
         flex: 3,
         alignItems: 'center',
@@ -111,7 +115,6 @@ class SaveSeedConfirmation extends Component {
                     ? whiteCheckboxUncheckedImagePath
                     : blackCheckboxUncheckedImagePath,
             hasSavedSeed: false,
-            iotaLogoVisibility: 'hidden',
             showCheckbox: false,
         };
     }
@@ -129,6 +132,9 @@ class SaveSeedConfirmation extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
+                screenBackgroundColor: this.props.backgroundColor,
             },
             animated: false,
         });
@@ -143,6 +149,8 @@ class SaveSeedConfirmation extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
                 animated: false,
             });
@@ -160,13 +168,11 @@ class SaveSeedConfirmation extends Component {
             this.setState({
                 checkboxImage: checkboxUncheckedImagePath,
                 hasSavedSeed: false,
-                iotaLogoVisibility: 'hidden',
             });
         } else {
             this.setState({
                 checkboxImage: checkboxCheckedImagePath,
                 hasSavedSeed: true,
-                iotaLogoVisibility: 'visible',
             });
         }
     }
@@ -180,7 +186,7 @@ class SaveSeedConfirmation extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
                 </View>

@@ -1,6 +1,8 @@
 import get from 'lodash/get';
+import some from 'lodash/some';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
+import omitBy from 'lodash/omitBy';
 import filter from 'lodash/filter';
 import { ActionTypes } from '../actions/account';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
@@ -28,7 +30,8 @@ const account = (
         onboardingComplete: false,
         accountInfo: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
-        unspentAddressesHashes: {},
+        txHashesForUnspentAddresses: {},
+        pendingTxHashesForSpentAddresses: {},
         is2FAEnabled: false,
         isFingerprintEnabled: false,
     },
@@ -60,6 +63,11 @@ const account = (
             return {
                 ...state,
                 accountInfo: omit(state.accountInfo, action.payload),
+                txHashesForUnspentAddresses: omit(state.txHashesForUnspentAddresses, action.payload),
+                pendingTxHashesForSpentAddresses: omit(state.pendingTxHashesForSpentAddresses, action.payload),
+                unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
+                    some(tailTransactions, (tx) => tx.account === action.payload),
+                ),
                 seedNames: filter(state.seedNames, (name) => name !== action.payload),
                 seedCount: state.seedCount - 1,
             };
@@ -68,9 +76,13 @@ const account = (
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
-                unspentAddressesHashes: {
-                    ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
+                txHashesForUnspentAddresses: {
+                    ...state.txHashesForUnspentAddresses,
+                    [action.payload.accountName]: action.payload.txHashesForUnspentAddresses,
+                },
+                pendingTxHashesForSpentAddresses: {
+                    ...state.pendingTxHashesForSpentAddresses,
+                    [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
                 // Both these cases do a deep merge while updating existing unconfirmed bundle tails so just assign those
                 // Also they omit confirmed bundles
@@ -134,9 +146,13 @@ const account = (
                 ...state,
                 ...updateAccountInfo(state, action.payload),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-                unspentAddressesHashes: {
-                    ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
+                txHashesForUnspentAddresses: {
+                    ...state.txHashesForUnspentAddresses,
+                    [action.payload.accountName]: action.payload.txHashesForUnspentAddresses,
+                },
+                pendingTxHashesForSpentAddresses: {
+                    ...state.pendingTxHashesForSpentAddresses,
+                    [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
@@ -145,9 +161,13 @@ const account = (
                 ...updateAccountInfo(state, action.payload),
                 firstUse: false,
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-                unspentAddressesHashes: {
-                    ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
+                txHashesForUnspentAddresses: {
+                    ...state.txHashesForUnspentAddresses,
+                    [action.payload.accountName]: action.payload.txHashesForUnspentAddresses,
+                },
+                pendingTxHashesForSpentAddresses: {
+                    ...state.pendingTxHashesForSpentAddresses,
+                    [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
@@ -157,19 +177,28 @@ const account = (
                 seedCount: state.seedCount + 1,
                 seedNames: [...state.seedNames, action.payload.accountName],
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-                unspentAddressesHashes: {
-                    ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
+                txHashesForUnspentAddresses: {
+                    ...state.txHashesForUnspentAddresses,
+                    [action.payload.accountName]: action.payload.txHashesForUnspentAddresses,
+                },
+                pendingTxHashesForSpentAddresses: {
+                    ...state.pendingTxHashesForSpentAddresses,
+                    [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
             };
+        case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
         case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-                unspentAddressesHashes: {
-                    ...state.unspentAddressesHashes,
-                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
+                txHashesForUnspentAddresses: {
+                    ...state.txHashesForUnspentAddresses,
+                    [action.payload.accountName]: action.payload.txHashesForUnspentAddresses,
+                },
+                pendingTxHashesForSpentAddresses: {
+                    ...state.pendingTxHashesForSpentAddresses,
+                    [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
             };
         case ActionTypes.SET_2FA_STATUS:

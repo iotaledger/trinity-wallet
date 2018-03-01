@@ -4,6 +4,7 @@
         "cancel": "PERUUTA",
         "continue?": "Oletko varma, että haluat jatkaa?",
         "noTransactions": "EI HISTORIATIETOJA",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Ei tarpeeksi katetta",
         "balanceErrorMessage": "Sinulla ei ole tarpeeksi IOTAa siirron loppuun suorittamiseksi.",
@@ -73,7 +74,10 @@
         "autopromoting": "Edistetään siirtoa automaattisesti",
         "autopromotingExplanation": "Edistetään siirtoa tiiviste-luvulla {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "Osoitteesi on kopioitu leikepöydälle.",
         "generateNewAddress": "UUSI OSOITE",
         "message": "Valinnainen viesti",
-        "removeMessage": "POISTA VIESTI"
+        "removeMessage": "POISTA VIESTI",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Seed-luku tyhjennetty",
@@ -255,7 +261,7 @@
         "paste": "Liitä",
         "selectAll": "Valitse kaikki",
         "securitySettings": "Turvallisuusasetukset",
-        "fingerprint": "Sormenjälkitunnistuksen varmennus"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",

@@ -109,10 +109,13 @@ export class TwoFactorSetupAddKey extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: true,
             },
         });
     }
@@ -128,10 +131,13 @@ export class TwoFactorSetupAddKey extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundColor: this.props.backgroundColor,
+                        drawUnderStatusBar: true,
+                        statusBarColor: this.props.backgroundColor,
                     },
                     animated: false,
                     appStyle: {
                         orientation: 'portrait',
+                        keepStyleAcrossPush: true,
                     },
                 });
             })
@@ -146,7 +152,7 @@ export class TwoFactorSetupAddKey extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={this.props.backgroundColor} />
                 <View style={styles.topWrapper}>
                     <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                 </View>
@@ -177,7 +183,10 @@ export class TwoFactorSetupAddKey extends Component {
                         rightText={t('global:next')}
                     />
                 </View>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert
+                    textColor={secondaryBackgroundColor}
+                    backgroundColor={this.props.backgroundColor}
+                />
             </View>
         );
     }

@@ -119,7 +119,13 @@ class Disable2FA extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: true,
             },
         });
     }
@@ -160,14 +166,14 @@ class Disable2FA extends Component {
                                 label="Token"
                                 onChangeText={(token) => this.setState({ token })}
                                 containerStyle={{ width: width / 1.36 }}
-                                autoCapitalize={'none'}
+                                autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 value={this.state.token}
-                                keyboardType={'numeric'}
+                                keyboardType="numeric"
                             />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -181,7 +187,10 @@ class Disable2FA extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert
+                    textColor={secondaryBackgroundColor}
+                    backgroundColor={this.props.backgroundColor}
+                />
             </View>
         );
     }

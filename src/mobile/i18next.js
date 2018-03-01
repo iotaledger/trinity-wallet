@@ -1,6 +1,5 @@
 import i18next from 'i18next';
 import { reactI18nextModule } from 'react-i18next';
-// import LanguageDetector from 'i18next-browser-languagedetector';
 
 export default i18next.use(reactI18nextModule).init(
     {
@@ -41,8 +40,11 @@ export default i18next.use(reactI18nextModule).init(
         },
         interpolation: {
             escapeValue: false,
-            format: function(value, format, lng) {
-                if (format === 'uppercase') return value.toUpperCase();
+            format: (value, format) => {
+                if (format === 'uppercase') {
+                    return value.toUpperCase();
+                }
+
                 return value;
             },
         },
@@ -53,7 +55,7 @@ export default i18next.use(reactI18nextModule).init(
             nsMode: 'default',
         },
     },
-    function(err, t) {
+    (err) => {
         if (err) {
             console.error(err);
         }

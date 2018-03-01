@@ -18,9 +18,8 @@ const styles = StyleSheet.create({
     },
     text: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'Lato-Regular',
         fontSize: width / 32,
-        fontWeight: '400',
     },
 });
 
