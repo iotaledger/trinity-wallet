@@ -6,7 +6,7 @@ import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { seedsSelector } from 'selectors/seeds';
 import { isValidPassword } from 'libs/util';
-import { securelyPersistSeeds } from 'libs/crypto';
+import { setVault } from 'libs/crypto';
 import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
 import PasswordInput from 'ui/components/input/Password';
@@ -60,7 +60,7 @@ class AccountPassword extends React.PureComponent {
             });
         }
 
-        securelyPersistSeeds(password, seeds);
+        setVault(null, password, seeds);
         clearSeeds();
         history.push('/onboarding/done');
     };
@@ -89,7 +89,7 @@ class AccountPassword extends React.PureComponent {
                     <Button to="/seed/name" className="outline" variant="highlight">
                         {t('global:back')}
                     </Button>
-                    <Button className="outline" variant="primary">
+                    <Button type="submit" className="outline" variant="primary">
                         {t('global:done')}
                     </Button>
                 </footer>
