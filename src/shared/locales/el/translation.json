@@ -19,7 +19,7 @@
         "invalidResponse": "Μη έγκυρη απόκριση",
         "invalidResponseExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση.",
         "invalidResponsePollingExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη σταθμοσκόπηση.",
-        "invalidResponseFetchingAccount": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη λήψη των πληροφοριών λογαριασμού σας.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά την αποστολή της μεταφοράς.",
         "seed": "Seed",
         "back": "ΠΙΣΩ",
@@ -68,6 +68,9 @@
         "pending": "Εκκρεμεί",
         "bundleHash": "Bundle Hash",
         "addresses": "Διευθύνσεις",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Πατήστε ξανά πίσω για να κλείσετε την εφαρμογή",
         "autoreattaching": "Αυτόματη επισύναψη στο Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "O σπόρος θα εκκαθαριστεί μόλις πατήσετε \"ΤΕΛΟΣ\" ή περάσουν 60 δευτερόλεπτα.",
         "clickToCopy": "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
         "doNotStore": "Μην αποθηκεύετε το σπόρο σας σε μορφή απλού κειμένου.",
-        "copyToClipboard": "Αντιγραφή στο πρόχειρο"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "Μπορείτε να χρησιμοποιήσετε πολλούς σπόρους με αυτό το πορτοφόλι. Κάθε Σπόρος απαιτεί ένα όνομα λογαριασμού.",
         "youCanAdd": "Μπορείτε να προσθέσετε περισσότερους σπόρους από το μενού ρυθμίσεων."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Αποστολή μεταφοράς",
