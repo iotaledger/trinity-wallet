@@ -19,7 +19,7 @@
         "invalidResponse": "Ogiltigt svar",
         "invalidResponseExplanation": "Noden returnerade ett ogiltigt svar.",
         "invalidResponsePollingExplanation": "Noden returnerade ett ogiltigt svar.",
-        "invalidResponseFetchingAccount": "Noden returnerade ett ogiltigt svar vid hämtning av din kontoinformation.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "Noden returnerade ett ogiltigt svar vid försök av din överföring.",
         "seed": "Seed",
         "back": "TILLBAKA",
@@ -68,6 +68,9 @@
         "pending": "Väntar",
         "bundleHash": "Hashbunt",
         "addresses": "Adresser",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
         "autoreattaching": "Auto-fastsättning till Tangle",
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Din seed kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
         "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till en lösenordshanterare.",
         "doNotStore": "Förvara inte din seed i oformaterad text.",
-        "copyToClipboard": "Kopiera till urklipp"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "Du kan använda flera seeds med denna plånbok. Varje seed kräver ett kontonamn.",
         "youCanAdd": "Du kan lägga till fler seeds i inställningsmenyn."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Överföring pågår",
