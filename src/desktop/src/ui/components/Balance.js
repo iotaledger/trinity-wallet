@@ -17,6 +17,10 @@ class Balance extends React.PureComponent {
         const { account, settings, marketData, seed } = this.props;
         const accountInfo = account.accountInfo[seed.name];
 
+        if (!accountInfo) {
+            return null;
+        }
+
         const currencySymbol = getCurrencySymbol(settings.currency);
         const fiatBalance = round(
             accountInfo.balance * marketData.usdPrice / 1000000 * settings.conversionRate,

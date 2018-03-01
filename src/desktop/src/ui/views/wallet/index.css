@@ -33,10 +33,23 @@
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                left: 50%;
-                transform: translate(-50%, 0);
+                left: 0%;
+                transition: left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
                 &:last-of-type {
-                    display: none;
+                    left: 100%;
+                }
+            }
+        }
+
+        &.slided {
+            @media (max-width: 810px) {
+                > section {
+                    &:first-of-type {
+                        left: 100%;
+                    }
+                    &:last-of-type {
+                        left: 0%;
+                    }
                 }
             }
         }
@@ -97,22 +110,30 @@
                     font-weight: 300;
                 }
             }
+
+            ul {
+                margin: 0px;
+                padding: 0px;
+            }
         }
 
         @media (max-width: 910px) {
             flex: 0 0 var(--sidebar-width-narrow);
             transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
-            strong {
-                display: none;
-            }
             nav {
                 &:first-of-type {
+                    position: relative;
                     span {
                         display: inline-block;
                     }
                 }
-                a {
+                > div > ul {
+                    display: none;
+                }
+
+                > a,
+                > div > a {
                     padding-left: 0px;
                     text-align: center;
                     width: 100%;
@@ -121,6 +142,34 @@
                         font-size: 24px !important;
                         width: 100%;
                         text-align: center;
+                    }
+                    strong {
+                        display: none;
+                    }
+                }
+
+                > div {
+                    position: relative;
+                    &:hover {
+                        > a {
+                            background: var(--bar-alt);
+                        }
+                        ul {
+                            display: inline-block;
+                            position: absolute;
+                            top: 0px;
+                            left: 100%;
+                            width: 200px;
+                            z-index: 3;
+
+                            a[aria-current='true'] {
+                                background: var(--bar-bg);
+                                border-right: 2px solid transparent;
+                                &:hover {
+                                    background: var(--bar-alt);
+                                }
+                            }
+                        }
                     }
                 }
             }

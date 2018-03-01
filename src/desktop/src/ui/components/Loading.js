@@ -14,15 +14,17 @@ export default class Loading extends React.PureComponent {
         title: PropTypes.string,
         /** Loading screen subtitle content */
         subtitle: PropTypes.string,
+        /** On animation end  event */
+        onEnd: PropTypes.func,
     };
 
     render() {
-        const { loop, title, subtitle } = this.props;
+        const { loop, title, subtitle, onEnd } = this.props;
 
         return (
             <div className={css.loading}>
                 <div>
-                    <Logo size={200} animate loop={loop} />
+                    <Logo size={200} animate loop={loop} onEnd={onEnd} />
                     {title && <h1>{title}</h1>}
                     {subtitle && <h2>{subtitle}</h2>}
                 </div>
