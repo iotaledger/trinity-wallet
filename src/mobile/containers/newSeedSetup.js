@@ -171,9 +171,14 @@ class NewSeedSetup extends Component {
         if (this.state.randomised) {
             this.props.navigator.push({
                 screen: 'saveYourSeed',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    drawUnderStatusBar: true,
+                    screenBackgroundColor: this.props.backgroundColor,
+                    statusBarColor: this.props.backgroundColor,
+                },
                 animated: false,
-                screenBackgroundColor: this.props.backgroundColor,
             });
         } else {
             this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
@@ -184,6 +189,13 @@ class NewSeedSetup extends Component {
         this.props.clearSeed();
         if (!this.props.onboardingComplete) {
             this.props.navigator.pop({
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
+                },
                 animated: false,
             });
         } else {
@@ -267,7 +279,7 @@ class NewSeedSetup extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
                     <View style={{ flex: 150 }} />
@@ -317,7 +329,7 @@ class NewSeedSetup extends Component {
                         rightButtonTestID="newSeedSetup-next"
                     />
                 </View>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
             </View>
         );
     }

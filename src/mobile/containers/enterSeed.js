@@ -127,6 +127,8 @@ class EnterSeed extends React.Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
+                    drawUnderStatusBar: true,
+                    statusBarColor: COLORS.backgroundGreen,
                     screenBackgroundColor: COLORS.backgroundGreen,
                 },
                 animated: false,
@@ -208,7 +210,7 @@ class EnterSeed extends React.Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
                 <View style={styles.container}>
-                    <StatusBar barStyle="light-content" />
+                    <StatusBar barStyle="light-content" backgroundColor={COLORS.backgroundGreen} />
                     <View style={styles.topContainer}>
                         <View style={styles.logoContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -220,7 +222,7 @@ class EnterSeed extends React.Component {
                             label={t('global:seed')}
                             onChangeText={(text) => this.setState({ seed: text.toUpperCase() })}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'characters'}
+                            autoCapitalize="characters"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
@@ -265,15 +267,15 @@ class EnterSeed extends React.Component {
                             rightButtonTestID="enterSeed-next"
                         />
                     </View>
-                    <StatefulDropdownAlert />
+                    <StatefulDropdownAlert textColor="white" backgroundColor={COLORS.backgroundGreen} />
                     <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
+                        animationIn="bounceInUp"
+                        animationOut="bounceOut"
                         animationInTiming={1000}
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={'#102832'}
+                        backdropColor="#102832"
                         backdropOpacity={1}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}

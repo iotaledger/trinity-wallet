@@ -4,6 +4,7 @@
         "cancel": "CANCELAR",
         "continue?": "¿Seguro que quieres continuar?",
         "noTransactions": "NO HAY HISTORIAL RECIENTE",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "No hay suficiente balance",
         "balanceErrorMessage": "No tienes suficiente IOTA para completar esta transferencia.",
@@ -73,7 +74,10 @@
         "autopromoting": "Auto-promoviendo la transferencia",
         "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses."
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
@@ -129,7 +133,7 @@
         "send": "ENVIAR",
         "receive": "RECIBIR",
         "history": "HISTORIAL",
-        "settings": "AJUSTES"
+        "settings": "OPCIONES"
     },
     "languageSetup": {
         "language": "Idioma"
@@ -170,7 +174,9 @@
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "NEW ADDRESS",
         "message": "Mensaje opcional",
-        "removeMessage": "ELIMINAR MENSAJE"
+        "removeMessage": "ELIMINAR MENSAJE",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Seed removida",
@@ -255,7 +261,7 @@
         "paste": "Pegar",
         "selectAll": "Seleccionar todo",
         "securitySettings": "Security settings",
-        "fingerprint": "Fingerprint authentication"
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",

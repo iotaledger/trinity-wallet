@@ -119,7 +119,7 @@ class EnterPassword extends Component {
                             label={t('global:password')}
                             onChangeText={(text) => this.setState({ password: text })}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'none'}
+                            autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"

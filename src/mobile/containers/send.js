@@ -12,7 +12,6 @@ import {
     Text,
     Image,
     TouchableOpacity,
-    ListView,
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
@@ -36,7 +35,6 @@ import {
     setSendAddressField,
     setSendAmountField,
     setSendMessageField,
-    clearSendFields,
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -57,8 +55,6 @@ import UnitInfoModal from '../components/unitInfoModal';
 import CustomTextInput from '../components/customTextInput';
 import CtaButton from '../components/ctaButton';
 import { width, height } from '../util/dimensions';
-
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const styles = StyleSheet.create({
     container: {
@@ -155,7 +151,6 @@ export class Send extends Component {
         setSendAddressField: PropTypes.func.isRequired,
         setSendAmountField: PropTypes.func.isRequired,
         setSendMessageField: PropTypes.func.isRequired,
-        clearSendFields: PropTypes.func.isRequired,
         setSendDenomination: PropTypes.func.isRequired,
         denomination: PropTypes.string.isRequired,
     };
@@ -178,12 +173,21 @@ export class Send extends Component {
     static isValidAmount(amount, multiplier, isFiat = false) {
         const value = parseFloat(amount) * multiplier;
         // For sending a message
-        if (amount === '') return true;
+        if (amount === '') {
+            return true;
+        }
+
         // Ensure iota value is an integer
         if (!isFiat) {
-            if (value % 1 !== 0) return false;
+            if (value % 1 !== 0) {
+                return false;
+            }
         }
-        if (value < 0) return false;
+
+        if (value < 0) {
+            return false;
+        }
+
         return !isNaN(amount);
     }
 
@@ -193,8 +197,7 @@ export class Send extends Component {
         const { t } = this.props;
 
         this.state = {
-            dataSource: ds.cloneWithRows([]),
-            selectedSetting: '',
+            selectedSetting: '', // eslint-disable-line react/no-unused-state
             modalContent: '',
             maxPressed: false,
             maxColor: props.secondaryBackgroundColor,
@@ -221,10 +224,8 @@ export class Send extends Component {
             KeepAwake.activate();
         } else if (this.props.isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
-            this.props.clearSendFields();
             this.props.setSendDenomination('i');
             this.setState({ sending: false });
-
             // Reset toggle switch in case maximum was on
             this.resetToggleSwitch();
         }
@@ -232,11 +233,27 @@ export class Send extends Component {
 
     shouldComponentUpdate(newProps) {
         const { isSyncing, isTransitioning, usdPrice, conversionRate, balance } = this.props;
-        if (isSyncing !== newProps.isSyncing) return false;
-        if (isTransitioning !== newProps.isTransitioning) return false;
-        if (usdPrice !== newProps.usdPrice) return false;
-        if (conversionRate !== newProps.conversionRate) return false;
-        if (balance !== newProps.balance) return false;
+
+        if (isSyncing !== newProps.isSyncing) {
+            return false;
+        }
+
+        if (isTransitioning !== newProps.isTransitioning) {
+            return false;
+        }
+
+        if (usdPrice !== newProps.usdPrice) {
+            return false;
+        }
+
+        if (conversionRate !== newProps.conversionRate) {
+            return false;
+        }
+
+        if (balance !== newProps.balance) {
+            return false;
+        }
+
         return true;
     }
 
@@ -260,8 +277,15 @@ export class Send extends Component {
         const { sending, maxPressed } = this.state;
         const { t, ctaColor, secondaryBackgroundColor, balance } = this.props;
         const max = (balance / this.getUnitMultiplier()).toString();
-        if (sending) return;
-        if (balance === 0) return;
+
+        if (sending) {
+            return;
+        }
+
+        if (balance === 0) {
+            return;
+        }
+
         if (maxPressed) {
             this.props.setSendAmountField('');
             this.setState({
@@ -305,15 +329,21 @@ export class Send extends Component {
         const addressIsValid = Send.isValidAddress(address);
         const amountIsValid = Send.isValidAmount(amount, multiplier, isFiat);
 
-        if (!addressIsValid) return this.getInvalidAddressError(address);
+        if (!addressIsValid) {
+            return this.getInvalidAddressError(address);
+        }
 
-        if (!amountIsValid) return this.props.generateAlert('error', t('invalidAmount'), t('invalidAmountExplanation'));
+        if (!amountIsValid) {
+            return this.props.generateAlert('error', t('invalidAmount'), t('invalidAmountExplanation'));
+        }
 
-        if (!enoughBalance)
+        if (!enoughBalance) {
             return this.props.generateAlert('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
+        }
 
-        if (!messageIsValid)
+        if (!messageIsValid) {
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
+        }
 
         return this.openModal('transferConfirmation');
     }
@@ -452,7 +482,9 @@ export class Send extends Component {
     getConversionTextFiat() {
         const { amount, usdPrice, conversionRate } = this.props;
 
-        if (this.shouldConversionTextShowInvalid()) return 'INVALID';
+        if (this.shouldConversionTextShowInvalid()) {
+            return 'INVALID';
+        }
 
         const convertedValue = round(amount / usdPrice / conversionRate, 10);
         let conversionText = '';
@@ -468,7 +500,9 @@ export class Send extends Component {
         const { amount, usdPrice, conversionRate } = this.props;
         const { currencySymbol } = this.state;
 
-        if (this.shouldConversionTextShowInvalid()) return 'INVALID';
+        if (this.shouldConversionTextShowInvalid()) {
+            return 'INVALID';
+        }
 
         const convertedValue = round(
             parseFloat(amount) * usdPrice / 1000000 * this.getUnitMultiplier() * conversionRate,
@@ -511,7 +545,7 @@ export class Send extends Component {
 
     openModal(selectedSetting) {
         this.setModalContent(selectedSetting);
-        this.setState({ selectedSetting });
+        this.setState({ selectedSetting }); // eslint-disable-line react/no-unused-state
         this.showModal();
     }
 
@@ -612,7 +646,7 @@ export class Send extends Component {
                             label={t('recipientAddress')}
                             onChangeText={(text) => this.props.setSendAddressField(text)}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'characters'}
+                            autoCapitalize="characters"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
@@ -631,7 +665,7 @@ export class Send extends Component {
                                 onRef={(c) => {
                                     this.amountField = c;
                                 }}
-                                keyboardType={'numeric'}
+                                keyboardType="numeric"
                                 label={t('amount')}
                                 onChangeText={(text) => this.onAmountType(text)}
                                 containerStyle={{ width: width / 1.2 }}
@@ -678,7 +712,7 @@ export class Send extends Component {
                             onRef={(c) => {
                                 this.messageField = c;
                             }}
-                            keyboardType={'default'}
+                            keyboardType="default"
                             label={t('message')}
                             onChangeText={(text) => this.props.setSendMessageField(text)}
                             containerStyle={{ width: width / 1.2 }}
@@ -740,8 +774,8 @@ export class Send extends Component {
                         </View>
                     </View>
                     <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
+                        animationIn="bounceInUp"
+                        animationOut="bounceOut"
                         animationInTiming={1000}
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
@@ -793,7 +827,6 @@ const mapDispatchToProps = {
     setSendAddressField,
     setSendAmountField,
     setSendMessageField,
-    clearSendFields,
     setSendDenomination,
 };
 
