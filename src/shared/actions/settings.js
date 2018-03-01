@@ -56,7 +56,7 @@ export function getCurrencyData(currency, withAlerts = false) {
         return fetch(url)
             .then(
                 (response) => response.json(),
-                (error) => {
+                () => {
                     dispatch(currencyDataFetchError());
 
                     if (withAlerts) {

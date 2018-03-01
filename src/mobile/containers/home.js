@@ -27,7 +27,7 @@ import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import WithUserActivity from '../components/withUserActivity';
 import WithBackPress from '../components/withBackPress';
-import Poll from './poll';
+import PollComponent from './poll';
 import Tabs from '../components/tabs';
 import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
@@ -60,9 +60,19 @@ class Home extends Component {
 
     shouldComponentUpdate(newProps) {
         const { isSyncing, isSendingTransfer, isTransitioning } = this.props;
-        if (isSyncing !== newProps.isSyncing) return false;
-        if (isSendingTransfer !== newProps.isSendingTransfer) return false;
-        if (isTransitioning !== newProps.isTransitioning) return false;
+
+        if (isSyncing !== newProps.isSyncing) {
+            return false;
+        }
+
+        if (isSendingTransfer !== newProps.isSendingTransfer) {
+            return false;
+        }
+
+        if (isTransitioning !== newProps.isTransitioning) {
+            return false;
+        }
+
         return true;
     }
 
@@ -198,7 +208,7 @@ class Home extends Component {
                         </View>
                     )}
                     {minimised && <View />}
-                    <Poll />
+                    <PollComponent />
                     <StatefulDropdownAlert textColor={secondaryBarColor} backgroundColor={barColor} />
                 </KeyboardAvoidingView>
             </UserInactivity>

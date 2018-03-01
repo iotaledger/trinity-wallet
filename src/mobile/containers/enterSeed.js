@@ -222,7 +222,7 @@ class EnterSeed extends React.Component {
                             label={t('global:seed')}
                             onChangeText={(text) => this.setState({ seed: text.toUpperCase() })}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'characters'}
+                            autoCapitalize="characters"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
@@ -267,15 +267,15 @@ class EnterSeed extends React.Component {
                             rightButtonTestID="enterSeed-next"
                         />
                     </View>
-                    <StatefulDropdownAlert textColor={'white'} backgroundColor={COLORS.backgroundGreen} />
+                    <StatefulDropdownAlert textColor="white" backgroundColor={COLORS.backgroundGreen} />
                     <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
+                        animationIn="bounceInUp"
+                        animationOut="bounceOut"
                         animationInTiming={1000}
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={'#102832'}
+                        backdropColor="#102832"
                         backdropOpacity={1}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}

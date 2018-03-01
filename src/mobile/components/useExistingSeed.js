@@ -239,7 +239,7 @@ class UseExistingSeed extends React.Component {
                             label={t('global:seed')}
                             onChangeText={(value) => this.setState({ seed: value })}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'characters'}
+                            autoCapitalize="characters"
                             maxLength={MAX_SEED_LENGTH}
                             value={seed}
                             autoCorrect={false}
@@ -263,7 +263,7 @@ class UseExistingSeed extends React.Component {
                             label={t('addAdditionalSeed:accountName')}
                             onChangeText={(value) => this.setState({ accountName: value })}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'words'}
+                            autoCapitalize="words"
                             maxLength={MAX_SEED_LENGTH}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -297,13 +297,13 @@ class UseExistingSeed extends React.Component {
                         </TouchableOpacity>
                     </View>
                     <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
+                        animationIn="bounceInUp"
+                        animationOut="bounceOut"
                         animationInTiming={1000}
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={'#102832'}
+                        backdropColor="#102832"
                         backdropOpacity={1}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}

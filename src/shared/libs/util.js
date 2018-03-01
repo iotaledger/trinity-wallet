@@ -16,7 +16,7 @@ export const VALID_SEED_REGEX = /^[A-Z9]+$/;
 export const VALID_ADDRESS_WITH_CHECKSUM_REGEX = /^[A-Z9]{90}$/;
 
 export const formatValue = (value) => {
-    var negative = false;
+    let negative = false;
     if (value < 0) {
         negative = true;
         value = -value;
@@ -37,7 +37,7 @@ export const formatValue = (value) => {
             value /= 1000000000000;
             break;
     }
-    if (negative == true) {
+    if (negative === true) {
         return -value;
     } else {
         return value;
@@ -48,7 +48,7 @@ export const formatUnit = (value) => {
     if (value < 0) {
         value = -value;
     }
-    const unit = '';
+
     switch (true) {
         case value < 1000:
             return 'i';

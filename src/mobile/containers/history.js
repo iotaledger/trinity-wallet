@@ -109,7 +109,7 @@ class History extends Component {
     constructor() {
         super();
 
-        this.state = { isRefreshing: false, isModalVisible: false };
+        this.state = { isRefreshing: false };
         this.onRefresh = this.onRefresh.bind(this);
     }
 
@@ -127,11 +127,26 @@ class History extends Component {
             isGeneratingReceiveAddress,
             isTransitioning,
         } = this.props;
-        if (isFetchingAccountInfo !== newProps.isFetchingAccountInfo) return false;
-        if (isSyncing !== newProps.isSyncing) return false;
-        if (isSendingTransfer !== newProps.isSendingTransfer) return false;
-        if (isGeneratingReceiveAddress !== newProps.isGeneratingReceiveAddress) return false;
-        if (isTransitioning !== newProps.isTransitioning) return false;
+
+        if (isFetchingAccountInfo !== newProps.isFetchingAccountInfo) {
+            return false;
+        }
+
+        if (isSyncing !== newProps.isSyncing) {
+            return false;
+        }
+
+        if (isSendingTransfer !== newProps.isSendingTransfer) {
+            return false;
+        }
+        if (isGeneratingReceiveAddress !== newProps.isGeneratingReceiveAddress) {
+            return false;
+        }
+
+        if (isTransitioning !== newProps.isTransitioning) {
+            return false;
+        }
+
         return true;
     }
 
@@ -140,7 +155,11 @@ class History extends Component {
      */
     onRefresh() {
         const { isRefreshing } = this.state;
-        if (isRefreshing) return;
+
+        if (isRefreshing) {
+            return;
+        }
+
         if (!this.shouldPreventManualRefresh()) {
             this.setState({ isRefreshing: true });
             this.updateAccountData();
@@ -281,7 +300,7 @@ class History extends Component {
                 }
                 ListEmptyComponent={
                     <View style={styles.noTransactionsContainer}>
-                        {(!isRefreshing && (
+                        {!isRefreshing ? (
                             <View style={styles.refreshButtonContainer}>
                                 <TouchableOpacity onPress={this.onRefresh}>
                                     <View style={[styles.refreshButton, borderColor]}>
@@ -289,7 +308,7 @@ class History extends Component {
                                     </View>
                                 </TouchableOpacity>
                             </View>
-                        )) || (
+                        ) : (
                             <View style={styles.refreshButtonContainer}>
                                 <ActivityIndicator
                                     animating={isRefreshing}
