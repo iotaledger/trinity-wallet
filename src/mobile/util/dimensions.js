@@ -22,7 +22,10 @@ global.height = DetectNavbar.hasSoftKeys()
 const iPhoneXTop = 44;
 // Area below tabs where we avoid drawing
 const iPhoneXBottom = 34;
-if (isIPhoneX) global.height -= iPhoneXTop + iPhoneXBottom;
+
+if (isIPhoneX) {
+    global.height -= iPhoneXTop + iPhoneXBottom;
+}
 
 export const width = Dimensions.get('window').width;
 export const height = global.height;

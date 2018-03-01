@@ -2,16 +2,7 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Text,
-    ListView,
-    TouchableOpacity,
-    Clipboard,
-    TouchableWithoutFeedback,
-    Keyboard,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Clipboard, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
 import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -31,8 +22,6 @@ import CustomTextInput from '../components/customTextInput';
 import GenerateAddressButton from '../components/generateAddressButton';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
-
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const styles = StyleSheet.create({
     container: {
@@ -114,7 +103,6 @@ class Receive extends Component {
         super();
 
         this.state = {
-            dataSource: ds.cloneWithRows([]),
             message: '',
         };
         this.onGeneratePress = this.onGeneratePress.bind(this);
@@ -122,6 +110,7 @@ class Receive extends Component {
 
     shouldComponentUpdate(newProps) {
         const { isSyncing, isTransitioning } = this.props;
+
         if (isSyncing !== newProps.isSyncing) return false;
         if (isTransitioning !== newProps.isTransitioning) return false;
 
@@ -235,8 +224,8 @@ class Receive extends Component {
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
                             size={width / 2.8}
-                            color={'black'}
-                            backgroundColor={'transparent'}
+                            color="black"
+                            backgroundColor="transparent"
                         />
                     </View>
                     <View style={{ flex: 0.25 }} />
