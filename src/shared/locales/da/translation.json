@@ -19,7 +19,7 @@
         "invalidResponse": "Ugyldigt svar",
         "invalidResponseExplanation": "Noden returnerede et ugyldigt svar.",
         "invalidResponsePollingExplanation": "Noden returnerede et ugyldigt svar under polling.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "TILBAGE",
@@ -68,6 +68,9 @@
         "pending": "Pending",
         "bundleHash": "Bundle Hash",
         "addresses": "Addresses",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Press back again to close the app",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Klik på knappen nedenfor for at kopiere dit seed til en adgangskodemanager.",
         "doNotStore": "Opbevar ikke dit seed i klartekst.",
-        "copyToClipboard": "Copy to clipboard"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seedet indeholder ugyldige tegn",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "Du kan bruge adskillige seeds med denne tegnebog. Hvert seed kræver et kontonavn.",
         "youCanAdd": "Du kan tilføje flere seeds i menuen \"Indstillinger\"."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Overførsel sendes",
