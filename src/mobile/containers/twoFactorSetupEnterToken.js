@@ -162,7 +162,7 @@ class TwoFactorSetupEnterToken extends Component {
                             label={t('code')}
                             onChangeText={(code) => this.setState({ code })}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'none'}
+                            autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"

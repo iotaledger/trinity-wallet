@@ -284,7 +284,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
 
             return dispatch(promoteTransactionSuccess());
         })
-        .catch((err) => {
+        .catch(() => {
             return dispatch(promoteTransactionError());
         });
 };
