@@ -19,7 +19,7 @@
         "invalidResponse": "Geçersiz yanıt",
         "invalidResponseExplanation": "Düğümü geçersiz yanıt döndürdü.",
         "invalidResponsePollingExplanation": "Düğüm yoklama sırasında geçersiz bir yanıt döndürdü.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Oluşum",
         "back": "Geri",
@@ -68,6 +68,9 @@
         "pending": "Bekleniyor",
         "bundleHash": "Bundle Hash",
         "addresses": "Adresler",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Uygulamayı kapatmak için geri tuşuna bir daha bas",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "\"Bitti\" ya da 60 saniye geçtiğinizde cüzdan şifresi temizlenecektir.",
         "clickToCopy": "Aşağıdaki düğmeyi tıklayın ve cüzdan şifrenizi bir şifre yöneticisine kopyalayın.",
         "doNotStore": "Cüzdan şifresini düz metin halinde saklamayın.",
-        "copyToClipboard": "Panoya kopyala"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Cüzdan şifresi geçersiz karakterler içerir",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "Bu cüzdanı ile birden çok tohum kullanabilirsiniz. Her tohum bir hesap adı gerektirir.",
         "youCanAdd": "Ayarlar menüsünden daha fazla tohum ekleyebilirsiniz."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Transfer gönderiliyor",
