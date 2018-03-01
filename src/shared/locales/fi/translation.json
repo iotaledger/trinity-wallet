@@ -19,7 +19,7 @@
         "invalidResponse": "Virheellinen vastaus",
         "invalidResponseExplanation": "Palvelin palautti virheilmoituksen.",
         "invalidResponsePollingExplanation": "Palvelin palautti virheilmoituksen yhdistysvaiheessa.",
-        "invalidResponseFetchingAccount": "Palvelin palautti virheilmoituksen hakiessaan tilitietojasi.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "Palvelin palautti virheilmoituksen siirron yhteydessä.",
         "seed": "Seed-luku",
         "back": "TAKAISIN",
@@ -68,6 +68,9 @@
         "pending": "Odottaa",
         "bundleHash": "Kokoelman Tiiviste-luku",
         "addresses": "Osoitteet",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Paina paluu-painiketta sulkeaksesi sovelluksen",
         "autoreattaching": "Liitetään Tangle-verkkoon automaattisesti",
         "autoreattachingExplanation": "Liitetään siirto uudelleen tiiviste-luvulla {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Seed-luku poistetaan, kun painat ”VALMIS” tai kun 60 sekuntia on kulunut.",
         "clickToCopy": "Klikkaa alla olevaa painiketta ja kopioi seed-lukusi salasanan hallintaohjelmaan.",
         "doNotStore": "Älä säilytä seed-lukuasi pelkkänä tekstinä.",
-        "copyToClipboard": "Kopioi leikepöydälle"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "Voit lisätä useita seed-lukuja lompakkoosi. Jokainen seed-luku tulee nimetä erikseen.",
         "youCanAdd": "Voit lisätä useampia seed-lukuja Asetukset-valikossa."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Siirto käynnissä",
