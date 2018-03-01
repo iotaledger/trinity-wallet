@@ -1,4 +1,3 @@
-import { AsyncStorage } from 'react-native';
 import get from 'lodash/get';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { AsyncStorage } from 'react-native';
