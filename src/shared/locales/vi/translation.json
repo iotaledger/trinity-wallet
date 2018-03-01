@@ -150,7 +150,7 @@
     },
     "loading": {
         "loadingFirstTime": "Đang tải từ khoá lần đầu tiên.",
-        "thisMayTake": "Có thể kéo dài hơi lâu.",
+        "thisMayTake": "Thao tác này sẽ hơi lâu.",
         "youMayNotice": "Bạn có thể thấy máy của bạn chậm lại."
     },
     "newSeedSetup": {
@@ -339,32 +339,32 @@
     "deleteAccount": {
         "areYouSure": "Bạn có chắc chắn là muốn xóa tài khoản này không?",
         "yourSeedWillBeRemoved": "Từ khóa và lịch sử của các giao dịch sẽ bị xóa.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "thisAction": "Thao tác này không thể đảo ngược.",
+        "enterPassword": "Nhập mật khẩu để xóa tài khoản này."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "pressToSync": "Nhấn vào nút dưới đây để đồng bộ hóa tài khoản.",
+        "thisMayTake": "Thao tác này sẽ hơi lâu.",
+        "youMayNotice": "Bạn có thể thấy máy của bạn chậm lại.",
+        "syncAccount": "ĐỒNG BỘ TÀI KHOẢN",
+        "syncingYourAccount": "Đang đồng bộ tài khoản."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Nhập từ khóa và tên tài khoản."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Nhập mật khẩu để xem từ khóa.",
+        "viewSeed": "XEM TỪ KHÓA",
+        "hideSeed": "ẨN TỪ KHÓA"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "alreadyHave": "Tôi đã lưu từ khóa",
+        "reenter": "Bây giờ bạn sẽ được yêu cầu nhập lại từ khóa.",
+        "reenterWarning": "Nếu máy của bạn bị hư và bạn chưa lưu từ khóa của mình, bạn sẽ mất hết IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "cannotUndo": "THAO TÁC NÀY KHÔNG THỂ ĐẢO NGƯỢC.",
+        "warning": "<0><0>Tất cả những dữ liệu trong ví điện tử của bạn như </0><1>từ khóa, mật khẩu,</1><2> và</2><3>những thông tin khác</3><4> sẽ bị mất.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
