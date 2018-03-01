@@ -19,7 +19,7 @@
         "invalidResponse": "Ongeldig antwoord",
         "invalidResponseExplanation": "De node heeft een ongeldig antwoord teruggestuurd.",
         "invalidResponsePollingExplanation": "De node heeft een ongeldig antwoord teruggestuurd tijdens het pollen.",
-        "invalidResponseFetchingAccount": "De node heeft een ongeldige waarde teruggegeven bij het opvragen van je account informatie.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "De node heeft een ongeldig antwoord teruggestuurd tijdens het verzenden van de transactie.",
         "seed": "Sleutel",
         "back": "Terug",
@@ -68,6 +68,9 @@
         "pending": "In afwachting",
         "bundleHash": "Bundel Hash",
         "addresses": "Adressen",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Druk opnieuw op de terug knop om de app te sluiten",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "De sleutel zal worden gewist zodra u op \"klaar\" drukt of 60 seconden wacht.",
         "clickToCopy": "Klik op de knop hieronder en kopieer uw sleutel naar de wachtwoord manager.",
         "doNotStore": "Bewaar je sleutel niet als tekst.",
-        "copyToClipboard": "Kopiëren naar het klembord"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Sleutel bevat ongeldige tekens",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "U kunt meerdere sleutels gebruiken met deze portefeuille. Elke sleutel vereist een accountnaam.",
         "youCanAdd": "U kunt meer sleutels toevoegen in het menu instellingen."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Overdracht in behandeling",
