@@ -91,6 +91,8 @@ class History extends Component {
         extraColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        secondaryBarColor: PropTypes.string.isRequired,
+        barColor: PropTypes.string.isRequired,
         pendingColor: PropTypes.string.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
@@ -217,6 +219,8 @@ class History extends Component {
             pendingColor,
             secondaryBackgroundColor,
             backgroundColor,
+            barColor,
+            secondaryBarColor,
             mode,
             t,
         } = this.props;
@@ -268,6 +272,8 @@ class History extends Component {
                     defaultTextColor: { color: secondaryBackgroundColor },
                     backgroundColor,
                     borderColor: { borderColor: secondaryBackgroundColor },
+                    barColor,
+                    secondaryBarColor,
                 },
             };
         });
@@ -348,6 +354,8 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     backgroundColor: settings.theme.backgroundColor,
     extraColor: settings.theme.extraColor,
     secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
+    secondaryBarColor: settings.theme.secondaryBarColor,
+    barColor: settings.theme.barColor,
     pendingColor: settings.theme.pendingColor,
     isFetchingLatestAccountInfoOnLogin: tempAccount.isFetchingLatestAccountInfoOnLogin,
     isFetchingAccountInfo: polling.isFetchingAccountInfo,

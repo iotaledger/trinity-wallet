@@ -11,6 +11,7 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
+import StatefulDropdownAlert from '../containers/statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
@@ -131,7 +132,6 @@ const styles = StyleSheet.create({
 export default class HistoryModalContent extends PureComponent {
     static propTypes = {
         onPress: PropTypes.func.isRequired,
-        generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
@@ -175,7 +175,7 @@ export default class HistoryModalContent extends PureComponent {
         Clipboard.setString(item);
 
         if (types[type]) {
-            this.props.generateAlert('success', ...types[type]);
+            this.dropdown.alertWithType('success', ...types[type]);
         }
     }
 
@@ -297,6 +297,13 @@ export default class HistoryModalContent extends PureComponent {
                         </ScrollView>
                     </View>
                 </View>
+                <StatefulDropdownAlert
+                    textColor={style.secondaryBarColor}
+                    backgroundColor={style.barColor}
+                    onRef={(c) => {
+                        this.dropdown = c;
+                    }}
+                />
             </TouchableOpacity>
         );
     }

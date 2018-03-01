@@ -46,11 +46,17 @@ class StatefulDropdownAlert extends Component {
         closeInterval: PropTypes.number,
         backgroundColor: PropTypes.string.isRequired,
         textColor: PropTypes.string.isRequired,
+        onRef: PropTypes.func,
     };
 
     static defaultProps = {
         closeInterval: 5500,
     };
+
+    constructor() {
+        super();
+        this.refFunc = this.refFunc.bind(this);
+    }
 
     componentWillReceiveProps(newProps) {
         const { alerts } = this.props;
@@ -69,17 +75,19 @@ class StatefulDropdownAlert extends Component {
         this.props.disposeOffAlert();
     }
 
+    refFunc = (ref) => {
+        this.dropdown = ref;
+    };
+
     render() {
         const { closeInterval } = this.props.alerts;
-        const { textColor, backgroundColor } = this.props;
+        const { textColor, backgroundColor, onRef } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = textColor === 'white' ? 'light-content' : 'dark-content';
 
         return (
             <DropdownAlert
-                ref={(ref) => {
-                    this.dropdown = ref;
-                }}
+                ref={onRef || this.refFunc}
                 elevation={120}
                 successColor="#009f3f"
                 errorColor="#A10702"
