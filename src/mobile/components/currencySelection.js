@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { translate } from 'react-i18next';
 import { width, height } from '../util/dimensions';
-import Dropdown from './dropdown';
+import DropdownComponent from './dropdown';
 
 const styles = StyleSheet.create({
     container: {
@@ -164,7 +164,7 @@ export class CurrencySelection extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 1.2 }} />
-                        <Dropdown
+                        <DropdownComponent
                             onRef={(c) => {
                                 this.dropdown = c;
                             }}
