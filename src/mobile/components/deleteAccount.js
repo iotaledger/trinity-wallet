@@ -217,7 +217,7 @@ class DeleteAccount extends Component {
                                     label={t('global:password')}
                                     onChangeText={(password) => this.setState({ password })}
                                     containerStyle={{ width: width / 1.36 }}
-                                    autoCapitalize={'none'}
+                                    autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
@@ -253,8 +253,8 @@ class DeleteAccount extends Component {
                     </View>
 
                     <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
+                        animationIn="bounceInUp"
+                        animationOut="bounceOut"
                         animationInTiming={1000}
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}

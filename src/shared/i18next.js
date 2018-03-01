@@ -5,7 +5,7 @@ export default i18next.init(
     {
         fallbackLng: 'en',
         fallbackNS: 'global',
-        parseMissingKeyHandler: value => `Translation not available for ${value}`,
+        parseMissingKeyHandler: (value) => `Translation not available for ${value}`,
         resources: {
             ar: require('./locales/ar/translation.json'),
             da: require('./locales/da/translation.json'),
@@ -39,15 +39,18 @@ export default i18next.init(
         },
         interpolation: {
             escapeValue: false,
-            format: function(value, format, lng) {
-                if (format === 'uppercase') return value.toUpperCase();
+            format: (value, format) => {
+                if (format === 'uppercase') {
+                    return value.toUpperCase();
+                }
+
                 return value;
             },
         },
     },
-    function(err, t) {
+    (err) => {
         if (err) {
-            console.error(err);
+            console.error(err); // eslint-disable no-console
         }
     },
 );

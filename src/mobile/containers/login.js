@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
-import { StyleSheet, View, Text, AppState } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
@@ -78,7 +78,6 @@ class Login extends Component {
         this.state = {
             changingNode: false,
             completing2FA: false,
-            appState: AppState.currentState,
         };
 
         this.onComplete2FA = this.onComplete2FA.bind(this);

@@ -79,7 +79,10 @@ class TransferConfirmationModal extends Component {
         const { sending } = this.state;
 
         // Prevent multiple spends
-        if (sending) return;
+        if (sending) {
+            return;
+        }
+
         this.setState({ sending: true });
 
         // Prevent modal close lag
