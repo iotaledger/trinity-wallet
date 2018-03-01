@@ -19,7 +19,7 @@
         "invalidResponse": "Ошибка сервера",
         "invalidResponseExplanation": "На узле произошла ошибка.",
         "invalidResponsePollingExplanation": "На узле произошла ошибка во время запроса.",
-        "invalidResponseFetchingAccount": "На узле произошла ошибка во время запроса информации по Вашему счёту.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "На узле произошла ошибка во время отсылки перевода.",
         "seed": "Ключ",
         "back": "НАЗАД",
@@ -68,6 +68,9 @@
         "pending": "В ожидании",
         "bundleHash": "Пакет данных",
         "addresses": "Адреса",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Нажмите еще раз назад чтобы закрыть приложение",
         "autoreattaching": "Автоматическое прикрепление к Tangle",
         "autoreattachingExplanation": "Повторное присоединение транзакций с хэш {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Ключ будет удалён из буфера обмена после нажатия кнопки «ГОТОВО» или по истечению 60 секунд.",
         "clickToCopy": "Нажмите на кнопку ниже и скопируйте свой ключ в менеджер паролей.",
         "doNotStore": "Не храните Ваш ключ в незашифрованном виде.",
-        "copyToClipboard": "Скопировать в буфер обмена"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Ключ содержит недопустимые символы",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "Вы можете использовать несколько ключей в данном кошельке. Каждому ключу нужно дать своё название.",
         "youCanAdd": "Вы можете добавить больше ключей в меню настроек."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Осуществляется перевод",
