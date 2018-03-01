@@ -5,6 +5,10 @@ import { shallow } from 'enzyme';
 import { Send } from '../../containers/send';
 
 jest.mock('react-native-camera', () => {});
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
 
 const getProps = (overrides) =>
     assign(

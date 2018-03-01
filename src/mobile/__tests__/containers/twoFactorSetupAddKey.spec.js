@@ -7,6 +7,11 @@ import { shallow } from 'enzyme';
 import { TwoFactorSetupAddKey } from '../../containers/twoFactorSetupAddKey';
 import * as keychainUtils from '../../util/keychain';
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 jest.mock('react-native-keychain', () => ({
     setGenericPassword: jest.fn(() => Promise.resolve({})),
     getGenericPassword: jest.fn(() => Promise.resolve({ username: 'foo', password: [{}], service: 'bundleId' })),
