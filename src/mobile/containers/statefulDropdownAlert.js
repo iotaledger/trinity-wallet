@@ -77,7 +77,9 @@ class StatefulDropdownAlert extends Component {
 
         return (
             <DropdownAlert
-                ref={(ref) => (this.dropdown = ref)}
+                ref={(ref) => {
+                    this.dropdown = ref;
+                }}
                 elevation={120}
                 successColor="#009f3f"
                 errorColor="#A10702"
