@@ -244,6 +244,7 @@ class EnterSeed extends React.Component {
                         <View style={{ flex: 0.4 }} />
                         <InfoBox
                             text={
+                                /* eslint-disable react/jsx-wrap-multilines */
                                 <View>
                                     <Text style={styles.infoText}>
                                         {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
@@ -253,6 +254,7 @@ class EnterSeed extends React.Component {
                                         {t('neverShare')}
                                     </Text>
                                 </View>
+                                /* eslint-enable react/jsx-wrap-multilines */
                             }
                         />
                         <View style={{ flex: 0.7 }} />

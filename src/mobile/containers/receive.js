@@ -234,7 +234,7 @@ class Receive extends Component {
                         />
                     </View>
                     <View style={{ flex: 0.25 }} />
-                    {(receiveAddress.length > 1 && (
+                    {receiveAddress.length > 1 ? (
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                             <View
                                 style={[
@@ -254,7 +254,7 @@ class Receive extends Component {
                                 </Text>
                             </View>
                         </TouchableOpacity>
-                    )) || (
+                    ) : (
                         // Place holder
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                             <View style={[styles.receiveAddressContainer, receiveAddressContainerBackgroundColor]}>
