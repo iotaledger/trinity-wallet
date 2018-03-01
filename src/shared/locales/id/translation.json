@@ -19,7 +19,7 @@
         "invalidResponse": "Respon tidak sah",
         "invalidResponseExplanation": "Node mengembalikan response yang tidak valid.",
         "invalidResponsePollingExplanation": "Node mengembalikan response yang tidak valid ketika memungut suara.",
-        "invalidResponseFetchingAccount": "Node memberikan tanggapan yang tidak benar ketika menarik informasi dari akun anda.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "Node memberikan tanggapan yang tidak benar ketika melakukan pengiriman.",
         "seed": "Benih",
         "back": "KEMBALI",
@@ -68,6 +68,9 @@
         "pending": "Pending",
         "bundleHash": "Bundle Hash",
         "addresses": "Addresses",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Press back again to close the app",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Seed akan dihapus setelah menekan \"SELESAI\" atau 60 detik telah berlalu.",
         "clickToCopy": "Klik tombol dibawah ini dan salin Seed Anda ke dalam manajer kata sandi.",
         "doNotStore": "Jangan simpan Seed Anda di dalam teks biasa.",
-        "copyToClipboard": "Salin ke papan klip"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "Anda dapat menggunakan beberapa Seed dengan dompet ini. Setiap Seed membutuhkan nama akun.",
         "youCanAdd": "Anda dapat menambahkan Seed di menu Perkakas."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Sedang mentransfer",
