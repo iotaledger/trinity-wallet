@@ -204,7 +204,7 @@ class Settings extends Component {
 
         this.state = {
             isModalVisible: false,
-            modalSetting: 'addNewSeed',
+            modalSetting: 'addNewSeed', // eslint-disable-line react/no-unused-state
             modalContent: <LogoutConfirmationModal />,
         };
     }
@@ -227,11 +227,13 @@ class Settings extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundColor: backgroundColor,
-                        generateAlert: this.props.generateAlert,
+                        drawUnderStatusBar: true,
+                        statusBarColor: backgroundColor,
                     },
                 },
                 appStyle: {
                     orientation: 'portrait',
+                    keepStyleAcrossPush: false,
                 },
             });
         } else {
@@ -242,11 +244,13 @@ class Settings extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundColor: backgroundColor,
-                        generateAlert: this.props.generateAlert,
+                        drawUnderStatusBar: true,
+                        statusBarColor: backgroundColor,
                     },
                 },
                 appStyle: {
                     orientation: 'portrait',
+                    keepStyleAcrossPush: false,
                 },
             });
         }
@@ -264,11 +268,13 @@ class Settings extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundColor: backgroundColor,
-                        generateAlert: this.props.generateAlert,
+                        drawUnderStatusBar: true,
+                        statusBarColor: backgroundColor,
                     },
                 },
                 appStyle: {
                     orientation: 'portrait',
+                    keepStyleAcrossPush: false,
                 },
             });
         }
@@ -328,7 +334,7 @@ class Settings extends Component {
     }
 
     onDeleteAccountPress() {
-        const { seedCount, t, isPromoting } = this.props;
+        const { seedCount, t } = this.props;
 
         if (seedCount === 1) {
             return this.props.generateAlert(
@@ -336,10 +342,6 @@ class Settings extends Component {
                 t('global:cannotPerformAction'),
                 t('global:cannotPerformActionExplanation'),
             );
-        }
-
-        if (isPromoting || this.shouldPreventAction()) {
-            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
         return this.props.setSetting('deleteAccount');
@@ -353,10 +355,13 @@ class Settings extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: false,
             },
         });
     }
@@ -382,7 +387,7 @@ class Settings extends Component {
         }
 
         this.setState({
-            modalSetting,
+            modalSetting, // eslint-disable-line react/no-unused-state
             modalContent,
         });
 
@@ -411,6 +416,7 @@ class Settings extends Component {
             selectedAccount,
             isAttachingToTangle,
             navigator,
+            isPromoting,
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
         const arrowLeftImagePath = isWhite ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -508,6 +514,9 @@ class Settings extends Component {
                 borderColor: { borderColor: secondaryBackgroundColor },
                 tickImagePath,
                 arrowLeftImagePath,
+                isPromoting,
+                shouldPreventAction: () => this.shouldPreventAction(),
+                generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
             },
             addNewAccount: {
                 addExistingSeed: () => this.props.setSetting('addExistingSeed'),
@@ -686,11 +695,14 @@ class Settings extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
                 overrideBackPress: true,
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: true,
             },
         });
     }
@@ -703,10 +715,13 @@ class Settings extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: false,
             },
         });
         BackHandler.removeEventListener('homeBackPress');
@@ -731,6 +746,8 @@ class Settings extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
             },
             animated: false,
             overrideBackPress: true,
@@ -880,8 +897,8 @@ class Settings extends Component {
                 </View>
                 <View style={{ flex: 1 }} />
                 <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
+                    animationIn="bounceInUp"
+                    animationOut="bounceOut"
                     animationInTiming={1000}
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}

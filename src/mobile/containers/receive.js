@@ -2,16 +2,7 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Text,
-    ListView,
-    TouchableOpacity,
-    Clipboard,
-    TouchableWithoutFeedback,
-    Keyboard,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Clipboard, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
 import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -32,8 +23,6 @@ import GenerateAddressButton from '../components/generateAddressButton';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
@@ -44,9 +33,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         height: width / 4.2,
         justifyContent: 'center',
-        paddingTop: width / 30,
         paddingHorizontal: width / 30,
-        paddingBottom: isAndroid ? width / 22 : width / 30,
         width: width / 1.2,
     },
     receiveAddressText: {
@@ -54,7 +41,7 @@ const styles = StyleSheet.create({
         fontSize: width / 21.8,
         backgroundColor: 'transparent',
         textAlign: 'center',
-        height: width / 20,
+        lineHeight: width / 16,
         justifyContent: 'center',
     },
     qrContainer: {
@@ -89,7 +76,7 @@ const styles = StyleSheet.create({
 
 class Receive extends Component {
     static propTypes = {
-        selectedAccountAddresses: PropTypes.object.isRequired,
+        selectedAccountData: PropTypes.object.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         isSyncing: PropTypes.bool.isRequired,
         seedIndex: PropTypes.number.isRequired,
@@ -116,7 +103,6 @@ class Receive extends Component {
         super();
 
         this.state = {
-            dataSource: ds.cloneWithRows([]),
             message: '',
         };
         this.onGeneratePress = this.onGeneratePress.bind(this);
@@ -124,8 +110,14 @@ class Receive extends Component {
 
     shouldComponentUpdate(newProps) {
         const { isSyncing, isTransitioning } = this.props;
-        if (isSyncing !== newProps.isSyncing) return false;
-        if (isTransitioning !== newProps.isTransitioning) return false;
+
+        if (isSyncing !== newProps.isSyncing) {
+            return false;
+        }
+
+        if (isTransitioning !== newProps.isTransitioning) {
+            return false;
+        }
 
         return true;
     }
@@ -135,7 +127,7 @@ class Receive extends Component {
     }
 
     onGeneratePress() {
-        const { t, seedIndex, selectedAccountAddresses, selectedAccountName, isSyncing, isTransitioning } = this.props;
+        const { t, seedIndex, selectedAccountData, selectedAccountName, isSyncing, isTransitioning } = this.props;
 
         if (isSyncing || isTransitioning) {
             return this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
@@ -158,7 +150,7 @@ class Receive extends Component {
 
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
-                    this.props.generateNewAddress(seed, selectedAccountName, selectedAccountAddresses);
+                    this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData);
                 } else {
                     error();
                 }
@@ -237,12 +229,12 @@ class Receive extends Component {
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
                             size={width / 2.8}
-                            color={'black'}
-                            backgroundColor={'transparent'}
+                            color="black"
+                            backgroundColor="transparent"
                         />
                     </View>
                     <View style={{ flex: 0.25 }} />
-                    {(receiveAddress.length > 1 && (
+                    {receiveAddress.length > 1 ? (
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                             <View
                                 style={[
@@ -262,7 +254,7 @@ class Receive extends Component {
                                 </Text>
                             </View>
                         </TouchableOpacity>
-                    )) || (
+                    ) : (
                         // Place holder
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                             <View style={[styles.receiveAddressContainer, receiveAddressContainerBackgroundColor]}>
@@ -327,8 +319,7 @@ class Receive extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    selectedAccountAddresses: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo)
-        .addresses,
+    selectedAccountData: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     isSyncing: state.tempAccount.isSyncing,
     seedIndex: state.tempAccount.seedIndex,

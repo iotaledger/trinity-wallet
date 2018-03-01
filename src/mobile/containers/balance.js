@@ -1,4 +1,5 @@
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -19,6 +20,7 @@ import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -46,7 +48,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     fiatBalance: {
-        paddingTop: height / 150,
+        paddingTop: isAndroid ? null : height / 200,
+        paddingBottom: isAndroid ? height / 200 : null,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
@@ -92,7 +95,7 @@ export class Balance extends Component {
      * @return {int}   Human-readable balance
      */
     static getDecimalPlaces(n) {
-        const s = `${+n}`;
+        const s = `+${n}`;
         const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(s);
 
         if (!match) {
@@ -118,7 +121,11 @@ export class Balance extends Component {
 
     shouldComponentUpdate(newProps) {
         const { marketData } = this.props;
-        if (newProps.marketData !== marketData) return false;
+
+        if (newProps.marketData !== marketData) {
+            return false;
+        }
+
         return true;
     }
 
@@ -163,7 +170,7 @@ export class Balance extends Component {
         const outgoingIconPath = isSecondaryBackgroundColorWhite ? whiteSendImagePath : blackSendImagePath;
         const incomingIconPath = isSecondaryBackgroundColorWhite ? whiteReceiveImagePath : blackReceiveImagePath;
 
-        return map(recentTransactions, (transfer) => {
+        const formattedTransfers = map(recentTransactions, (transfer) => {
             const tx = getRelevantTransfer(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
@@ -180,6 +187,8 @@ export class Balance extends Component {
                 },
             };
         });
+
+        return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
     renderTransactions() {

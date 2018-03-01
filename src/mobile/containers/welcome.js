@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar, BackHandler, ToastAndroid } from 'react-native';
-import RNExitApp from 'react-native-exit-app';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import COLORS from '../theme/Colors';
@@ -128,6 +127,8 @@ class Welcome extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: COLORS.backgroundGreen,
+                drawUnderStatusBar: true,
+                statusBarColor: COLORS.backgroundGreen,
             },
             animated: false,
         });
@@ -148,7 +149,7 @@ class Welcome extends Component {
 
         return (
             <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
+                <StatusBar barStyle="light-content" backgroundColor={COLORS.backgroundGreen} />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>

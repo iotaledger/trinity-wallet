@@ -9,7 +9,7 @@ import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import { width, height } from '../util/dimensions';
-import Dropdown from '../components/dropdown';
+import DropdownComponent from '../components/dropdown';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { detectLocale, selectLocale } from '../components/locale';
@@ -89,6 +89,8 @@ class LanguageSetup extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: COLORS.backgroundGreen,
+                drawUnderStatusBar: true,
+                statusBarColor: COLORS.backgroundGreen,
             },
             animated: false,
         });
@@ -108,14 +110,16 @@ class LanguageSetup extends Component {
                 <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
                     <View style={styles.container}>
                         <Image style={styles.helloBackground} source={helloBackImagePath} />
-                        <StatusBar barStyle="light-content" />
+                        <StatusBar barStyle="light-content" backgroundColor={COLORS.backgroundGreen} />
                         <View style={styles.topContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midContainer}>
                             <View style={{ flex: 0.5 }} />
-                            <Dropdown
-                                onRef={(c) => (this.dropdown = c)}
+                            <DropdownComponent
+                                onRef={(c) => {
+                                    this.dropdown = c;
+                                }}
                                 title={t('language')}
                                 dropdownWidth={{ width: width / 1.5 }}
                                 defaultOption={defaultLanguageLabel}

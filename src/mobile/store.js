@@ -1,8 +1,8 @@
+import { AsyncStorage } from 'react-native';
 import get from 'lodash/get';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import store, { persistStore, purgeStoredState, createPersistor } from '../shared/store';
 import initializeApp from './routes/entry';
-import { AsyncStorage } from 'react-native';
 import { setAppVersions, resetWallet } from '../shared/actions/app';
 import { updatePersistedState } from '../shared/libs/util';
 
@@ -11,7 +11,7 @@ export const persistConfig = {
     blacklist: ['tempAccount', 'keychain', 'polling', 'ui'],
 };
 
-const shouldMigrate = restoredState => {
+const shouldMigrate = (restoredState) => {
     const restoredVersion = get(restoredState, 'app.versions.version');
     const restoredBuildNumber = get(restoredState, 'app.versions.buildNumber');
 

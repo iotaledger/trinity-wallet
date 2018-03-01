@@ -109,6 +109,9 @@ class DeleteAccount extends Component {
         borderColor: PropTypes.object.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         tickImagePath: PropTypes.number.isRequired,
+        isPromoting: PropTypes.bool.isRequired,
+        shouldPreventAction: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -140,6 +143,10 @@ class DeleteAccount extends Component {
     }
 
     onYesPress() {
+        const { t, isPromoting } = this.props;
+        if (isPromoting || this.props.shouldPreventAction()) {
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+        }
         this.hideModal();
         this.props.deleteAccount();
     }
@@ -210,7 +217,7 @@ class DeleteAccount extends Component {
                                     label={t('global:password')}
                                     onChangeText={(password) => this.setState({ password })}
                                     containerStyle={{ width: width / 1.36 }}
-                                    autoCapitalize={'none'}
+                                    autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
@@ -246,8 +253,8 @@ class DeleteAccount extends Component {
                     </View>
 
                     <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
+                        animationIn="bounceInUp"
+                        animationOut="bounceOut"
                         animationInTiming={1000}
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
