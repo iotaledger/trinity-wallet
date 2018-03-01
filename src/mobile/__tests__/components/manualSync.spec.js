@@ -5,6 +5,11 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import ManualSync from '../../components/manualSync';
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},

@@ -6,6 +6,10 @@ import { shallow } from 'enzyme';
 import { EditAccountName } from '../../components/editAccountName';
 
 jest.mock('react-native-device-info');
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
 
 const getProps = (overrides) =>
     assign(
