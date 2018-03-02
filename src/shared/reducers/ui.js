@@ -1,9 +1,11 @@
 import { ActionTypes as SettingsActionTypes } from '../actions/settings';
 import { ActionTypes as UiActionTypes } from '../actions/ui';
+import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 
 const initialState = {
     isFetchingCurrencyData: false,
     hasErrorFetchingCurrencyData: false,
+    isBroadcastingBundle: false,
     sendAddressFieldText: '',
     sendAmountFieldText: '',
     sendMessageFieldText: '',
@@ -61,6 +63,17 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 sendDenomination: action.payload,
+            };
+        case TransfersActionTypes.BROADCAST_BUNDLE_REQUEST:
+            return {
+                ...state,
+                isBroadcastingBundle: true,
+            };
+        case TransfersActionTypes.BROADCAST_BUNDLE_SUCCESS:
+        case TransfersActionTypes.BROADCAST_BUNDLE_ERROR:
+            return {
+                ...state,
+                isBroadcastingBundle: false,
             };
         default:
             return state;

@@ -17,6 +17,7 @@ import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
 import difference from 'lodash/difference';
 import union from 'lodash/union';
+import flatten from 'lodash/flatten';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
@@ -686,4 +687,18 @@ export const filterInvalidPendingTransfers = (transfers, addressData) => {
     return filterInvalidTransfersAsync(received).then((validReceivedTransfers) => {
         return [...validSentTransfers, ...validReceivedTransfers];
     });
+};
+
+/**
+ *   Finds a tail transaction object from transfers
+ *
+ *   @method getTailTransactionForBundle
+ *   @param {string} bundleHash
+ *   @param {array} transfers
+ *   @returns {object}
+ **/
+export const getTailTransactionForBundle = (bundleHash, transfers) => {
+    const bundles = findBundlesFromTransfers(bundleHash, transfers);
+
+    return find(flatten(bundles), { currentIndex: 0 });
 };

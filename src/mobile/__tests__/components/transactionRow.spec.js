@@ -22,6 +22,7 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
+            rebroadcast: noop,
             status: 'Receive',
             confirmation: 'Received',
             value: 200,
@@ -79,6 +80,10 @@ describe('Testing TransactionRow component', () => {
 
         it('should require a bundle string as a prop', () => {
             expect(TransactionRow.propTypes.bundle).toEqual(PropTypes.string.isRequired);
+        });
+
+        it('should require a rebroadcast function as a prop', () => {
+            expect(TransactionRow.propTypes.rebroadcast).toEqual(PropTypes.func.isRequired);
         });
     });
 
