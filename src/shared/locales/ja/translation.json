@@ -274,7 +274,7 @@
         "fingerprint": "指紋認証",
         "couldNotFetchRates": "レートを取得できませんでした。",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRates": "換算率を取得しました。",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
