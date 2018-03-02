@@ -159,6 +159,7 @@ export default class HistoryModalContent extends PureComponent {
             defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
+            buttonsOpacity: PropTypes.shape({ opacity: PropTypes.number.isRequire }).isRequired,
         }).isRequired,
     };
 
@@ -279,13 +280,15 @@ export default class HistoryModalContent extends PureComponent {
                                     {!confirmationBool &&
                                         mode === 'Expert' && (
                                             <View style={styles.buttonsContainer}>
-                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
+                                                <TouchableOpacity
+                                                    style={[styles.button, style.borderColor, style.buttonsOpacity]}
+                                                >
                                                     <Text style={[styles.buttonText, style.defaultTextColor]}>
                                                         {t('promote')}
                                                     </Text>
                                                 </TouchableOpacity>
                                                 <TouchableOpacity
-                                                    style={[styles.button, style.borderColor]}
+                                                    style={[styles.button, style.borderColor, style.buttonsOpacity]}
                                                     onPress={() => {
                                                         if (!disableWhen) {
                                                             rebroadcast(bundle);
