@@ -271,7 +271,11 @@
         "paste": "لصق",
         "selectAll": "تحديد الكل",
         "securitySettings": "إعدادات الأمان",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "الرجاء ادخال كلمة المرور لإعادة المحفظة.",
@@ -320,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "اختيار العقدة",
         "addCustomNode": "إضافة عقده معينة",
-        "manualSync": "مزامنة يدوية"
+        "manualSync": "مزامنة يدوية",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "خلفية",
@@ -347,7 +352,7 @@
         "one": "واحد"
     },
     "deleteAccount": {
-        "areYouSure": "هل أنت متأكد أنك تريد حذف هذا الحساب؟",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "سيتم إزالة السييد و تاريخ الحوالات الخاصة بك.",
         "thisAction": "لا يمكن التراجع عن هذا الإجراء.",
         "enterPassword": "الرجاء ادخال كلمة المرور لحذف هذا الحساب."
