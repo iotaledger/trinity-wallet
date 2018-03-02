@@ -251,9 +251,11 @@ class History extends Component {
             const tx = getRelevantTransfer(transfer, addresses);
             const value = getTransferValue(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
+            const disableWhen = isBroadcastingBundle;
 
             return {
                 t,
+                disableWhen,
                 rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
                 addresses: map(transfer, withValueAndUnit),
@@ -265,7 +267,6 @@ class History extends Component {
                 time: tx.timestamp,
                 message: convertFromTrytes(tx.signatureMessageFragment),
                 bundle: tx.bundle,
-                disableWhen: isBroadcastingBundle,
                 mode,
                 style: {
                     titleColor: incoming ? extraColor : negativeColor,
@@ -275,6 +276,7 @@ class History extends Component {
                     defaultTextColor: { color: secondaryBackgroundColor },
                     backgroundColor,
                     borderColor: { borderColor: secondaryBackgroundColor },
+                    buttonsOpacity: { opacity: disableWhen ? 0.4 : 1 },
                 },
             };
         });
