@@ -19,7 +19,7 @@
         "invalidResponse": "Resposta inválida",
         "invalidResponseExplanation": "O servidor retornou uma resposta inválida.",
         "invalidResponsePollingExplanation": "O servidor retornou uma resposta inválida ao obter os dados.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "O servidor retornou uma resposta inválida ao transmitir informações da sua conta. Tente trocar de servidor.",
         "invalidResponseSendingTransfer": "O servidor retornou uma resposta inválida ao enviar a transferência.",
         "seed": "Seed",
         "back": "VOLTAR",
@@ -68,9 +68,9 @@
         "pending": "Pendente",
         "bundleHash": "Pacote Hash",
         "addresses": "Endereços",
-        "reattach": "REATTACH",
-        "promote": "PROMOTE",
-        "rebroadcast": "REBROADCAST",
+        "reattach": "REANEXAR",
+        "promote": "PROMOVER",
+        "rebroadcast": "RETRANSMITIR",
         "pressBackAgain": "Toque novamente para fechar o app",
         "autoreattaching": "Anexando automaticamente ao Tangle",
         "autoreattachingExplanation": "Anexando transação automaticamente com hash {{hash}}",
@@ -121,8 +121,8 @@
         "seedCopiedExplanation": "A Seed será removida quando pressionar \"CONCLUÍDO\" ou ao passar de 60 segundos.",
         "clickToCopy": "Clique no botão abaixo e copie a sua Seed para o gerenciador de senha.",
         "doNotStore": "Não grave a seed em arquivo de texto descriptografado.",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "copyToClipboard": "Copiar seed",
+        "shareSeed": "Compartilhe sua seed para um gerenciador de senhas seguro"
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém carateres inválidos",
@@ -230,9 +230,9 @@
         "youCanAdd": "Pode adicionar mais Seeds no menu de opções."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "expert": "Avançado",
+        "standard": "Normal",
+        "expertModeExplanation": "Modo avançado fornecerá acesso aos recursos adicionais como promoção manual e reanexo.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
