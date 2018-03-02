@@ -1,18 +1,12 @@
 import get from 'lodash/get';
-import head from 'lodash/head';
-import find from 'lodash/find';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/marketData';
 import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
-import {
-    setNewUnconfirmedBundleTails,
-    removeBundleFromUnconfirmedBundleTails,
-    updateAccountAfterReattachment,
-} from './account';
-import { replayBundleAsync, promoteTransactionAsync } from '../libs/iota/extendedApi';
+import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './account';
 import { getFirstConsistentTail, isValidForPromotion } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/account';
-import { syncAccount, syncAccountAfterReattachment } from '../libs/iota/accounts';
+import { syncAccount } from '../libs/iota/accounts';
+import { forceTransactionPromotion } from './transfers';
 import { rearrangeObjectKeys } from '../libs/util';
 import i18next from '../i18next.js';
 
@@ -189,51 +183,6 @@ export const getAccountInfo = (seed, accountName) => {
                 dispatch(generateAccountInfoErrorAlert(err));
             });
     };
-};
-
-/**
- *   Accepts a consistent tail boolean with all tails associated with a bundle.
- *   - Case (when no consistent tail)
- *      > Replays bundle and promotes with the reattachment's transaction hash
- *   - Case (when there is a consistent tail)
- *      > Just directly promote transaction with the consistent tail hash
- *
- *   @method forceTransactionPromotion
- *   @param {string} accountName
- *   @param {boolean} consistentTail
- *   @param {array} tails
- *   @returns {Promise}
- **/
-const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispatch, getState) => {
-    if (!consistentTail) {
-        // Grab hash from the top tail to replay
-        const topTx = head(tails);
-        const hash = topTx.hash;
-
-        return replayBundleAsync(hash)
-            .then((reattachment) => {
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('global:autoreattaching'),
-                        i18next.t('global:autoreattachingExplanation', { hash }),
-                        2500,
-                    ),
-                );
-
-                const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-
-                return syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
-            })
-            .then(({ newState, reattachment }) => {
-                dispatch(updateAccountAfterReattachment(newState));
-
-                const tailTransaction = find(reattachment, { currentIndex: 0 });
-                return promoteTransactionAsync(tailTransaction.hash);
-            });
-    }
-
-    return promoteTransactionAsync(consistentTail.hash);
 };
 
 /**

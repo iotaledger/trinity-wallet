@@ -702,3 +702,17 @@ export const getTailTransactionForBundle = (bundleHash, transfers) => {
 
     return find(flatten(bundles), { currentIndex: 0 });
 };
+
+/**
+ *   Finds all tail transaction objects from transfers
+ *
+ *   @method getAllTailTransactionsForBundle
+ *   @param {string} bundleHash
+ *   @param {array} transfers
+ *   @returns {array}
+ **/
+export const getAllTailTransactionsForBundle = (bundleHash, transfers) => {
+    const bundles = findBundlesFromTransfers(bundleHash, transfers);
+
+    return filter(flatten(bundles), { currentIndex: 0 });
+};
