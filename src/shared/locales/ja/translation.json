@@ -419,6 +419,6 @@
     },
     "rootDetection": {
         "warning": "警告",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>あなたのデバイスはルート化もしくは脱獄されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
     }
 }
