@@ -19,7 +19,7 @@
         "invalidResponse": "Đáp ứng không hợp lệ",
         "invalidResponseExplanation": "Nút mạng phản hồi không hợp lệ.",
         "invalidResponsePollingExplanation": "Nút mạng phản hồi lỗi khi lấy thông tin tài khoản từ nút mạng.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "Nút mạng phản hồi không hợp lệ khi lấy thông tin tài khoản của bạn. Xin vui lòng thay đổi nút mạng.",
         "invalidResponseSendingTransfer": "Nút mạng phản hồi không hợp lệ khi chuyển khoản.",
         "seed": "Từ Khoá",
         "back": "TRỞ LẠI",
@@ -121,7 +121,7 @@
         "seedCopiedExplanation": "Từ khoá sẽ bị xoá sau khi bạn nhấn nút \"XONG\" hoặc sau khi 60 giây trôi qua.",
         "clickToCopy": "Nhấn vào nút bên dưới và sao chép từ khoá vào chương trình quản lý mật khẩu.",
         "doNotStore": "Không nên lưu trữ từ khoá ở dạng phiên bản chữ.",
-        "copyToClipboard": "Copy seed",
+        "copyToClipboard": "Chép từ khóa",
         "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
@@ -418,7 +418,7 @@
         "volume": "Volume (24h)"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "warning": "CẢNH BÁO",
+        "rootDetected": "<0>Máy của bạn đã root/jailbreak.</0><1>Điều này sẽ mang đến một nguy cơ đáng kể cho sự an toàn của ví điện tử của bạn.</1><2>Bạn có muốn tiếp tục bất chấp nguy cơ này?</2>"
     }
 }
