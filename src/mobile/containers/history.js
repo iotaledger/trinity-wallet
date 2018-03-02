@@ -105,6 +105,7 @@ class History extends Component {
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
+        isBroadcastingBundle: PropTypes.bool.isRequired,
         mode: PropTypes.string.isRequired,
     };
 
@@ -221,6 +222,7 @@ class History extends Component {
             backgroundColor,
             mode,
             selectedAccountName,
+            isBroadcastingBundle,
             t,
         } = this.props;
 
@@ -263,6 +265,7 @@ class History extends Component {
                 time: tx.timestamp,
                 message: convertFromTrytes(tx.signatureMessageFragment),
                 bundle: tx.bundle,
+                disableWhen: isBroadcastingBundle,
                 mode,
                 style: {
                     titleColor: incoming ? extraColor : negativeColor,
@@ -341,7 +344,7 @@ class History extends Component {
     }
 }
 
-const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
+const mapStateToProps = ({ tempAccount, account, settings, polling, ui }) => ({
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.seedNames),
@@ -359,6 +362,7 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     isSendingTransfer: tempAccount.isSendingTransfer,
     isSyncing: tempAccount.isSyncing,
     isTransitioning: tempAccount.isTransitioning,
+    isBroadcastingBundle: ui.isBroadcastingBundle,
 });
 
 const mapDispatchToProps = {

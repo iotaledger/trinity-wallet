@@ -91,6 +91,7 @@ export default class TransactionRow extends PureComponent {
         time: PropTypes.number.isRequired,
         message: PropTypes.string,
         bundle: PropTypes.string.isRequired,
+        disableWhen: PropTypes.bool.isRequired,
         addresses: PropTypes.arrayOf(
             PropTypes.shape({
                 address: PropTypes.string.isRequired,

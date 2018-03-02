@@ -97,6 +97,10 @@ describe('Testing HistoryModalContent component', () => {
         it('should require a rebroadcast function as a prop', () => {
             expect(HistoryModalContent.propTypes.rebroadcast).toEqual(PropTypes.func.isRequired);
         });
+
+        it('should require a disableWhen boolean as a prop', () => {
+            expect(HistoryModalContent.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
+        });
     });
 
     describe('when renders', () => {
