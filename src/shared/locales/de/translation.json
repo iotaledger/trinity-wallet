@@ -150,7 +150,7 @@
         "login": "ANMELDEN",
         "selectDifferentNode": "Möchtest du einen anderen Server auswählen?",
         "setNode": "SERVER AUSWÄHLEN",
-        "cannotConnect": "Keine Verbindung zum IOTA Server."
+        "cannotConnect": "Verbindung zum IOTA-Server nicht möglich."
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
@@ -232,8 +232,8 @@
     "modeSelection": {
         "expert": "Experte",
         "standard": "Standard",
-        "expertModeExplanation": "Der Modus \"Experte\" bieten Zugriff auf zusätzliche Funktionen wie manuelles Promoten und Reattachen.",
-        "modesExplanation": "Aktiviere den Modus \"Experte\" nur, wenn du ein erfahrener Tangle-Benutzer bist. Es könnte dich sonst verwirren."
+        "expertModeExplanation": "Der Experten-Modus bietet Zugriff auf zusätzliche Funktionen wie manuelles Promoten und Reattachen.",
+        "modesExplanation": "Aktiviere den Experten-Modus nur, wenn du ein erfahrener Tangle-Benutzer bist. Es könnte dich sonst verwirren."
     },
     "settings": {
         "transferSending": "Sende Überweisung",
