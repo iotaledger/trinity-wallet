@@ -419,6 +419,6 @@
     },
     "rootDetection": {
         "warning": "AVISO",
-        "rootDetected": "<0>Seu dispositivo parece estar rooted/jailbroken.</0> <1>Isso pode representar um risco significativo para a segurança de sua carteira.</1> <2>Você deseja continuar apesar deste risco?</2>"
+        "rootDetected": "<0>Seu dispositivo parece ter root/jailbrake.</0> <1>Isso pode representar um risco significativo para a segurança de sua carteira.</1> <2>Você deseja continuar apesar deste risco?</2>"
     }
 }
