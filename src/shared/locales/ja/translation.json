@@ -70,7 +70,7 @@
         "addresses": "アドレス",
         "reattach": "再添付",
         "promote": "促進",
-        "rebroadcast": "REBROADCAST",
+        "rebroadcast": "再放送",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "autoreattaching": "Tangleに自動再登録",
         "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションを再登録",
