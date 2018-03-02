@@ -19,7 +19,7 @@
         "invalidResponse": "Ungültige Antwort",
         "invalidResponseExplanation": "Der Server hat eine ungültige Antwort zurückgegeben.",
         "invalidResponsePollingExplanation": "Der Server hat beim Aktualisieren eine ungültige Antwort zurückgegeben.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "Der Server hat eine ungültige Antwort beim Abrufen der Kontoinformationen zurückgegeben. Versuche einen anderen Server.",
         "invalidResponseSendingTransfer": "Beim Senden deiner Transaktion gab es einen Fehler auf dem Server.",
         "seed": "Seed",
         "back": "ZURÜCK",
@@ -121,8 +121,8 @@
         "seedCopiedExplanation": "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst oder 60 Sekunden vergangen sind.",
         "clickToCopy": "Klicke die Schaltfläche unten, um den Seed in einen Passwort-Manager zu kopieren.",
         "doNotStore": "Speichere deinen Seed nicht als Klartext.",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "copyToClipboard": "Seed kopieren",
+        "shareSeed": "Teile deinen Seed mit einem sicheren Passwort-manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seed enthält ungültige Zeichen",
@@ -230,10 +230,10 @@
         "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "expert": "Experte",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "Der Modus \"Experte\" bieten Zugriff auf zusätzliche Funktionen wie manuelles Promoten und Reattachen.",
+        "modesExplanation": "Aktiviere den Modus \"Experte\" nur, wenn du ein erfahrener Tangle-Benutzer bist. Es könnte dich sonst verwirren."
     },
     "settings": {
         "transferSending": "Sende Überweisung",
@@ -418,7 +418,7 @@
         "volume": "Volumen (24Std)"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "warning": "WARNUNG",
+        "rootDetected": "<0>Dein Gerät scheint gerooted/jailbroken zu sein.</0> <1>Dies kann ein erhebliches Risiko für die Sicherheit Ihrer Wallet nach sich ziehen.</1> <2>Möchtest du trotz dieses Risikos fortfahren?</2>"
     }
 }
