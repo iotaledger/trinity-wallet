@@ -271,7 +271,11 @@
         "paste": "Klistra in",
         "selectAll": "Välj alla",
         "securitySettings": "Säkerhetsinställningar",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ange ditt lösenord för att återställa plånboken.",
@@ -320,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "Välj nod",
         "addCustomNode": "Lägg till anpassad nod",
-        "manualSync": "Synka manuellt"
+        "manualSync": "Synka manuellt",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrund",
@@ -347,7 +352,7 @@
         "one": "Ett"
     },
     "deleteAccount": {
-        "areYouSure": "Är du säker på att du vill ta bort detta kontot?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Din seed och transaktionshistorik kommer tas bort.",
         "thisAction": "Denna åtgärd kan inte ångras.",
         "enterPassword": "Ange ditt lösenord för att radera detta kontot."
