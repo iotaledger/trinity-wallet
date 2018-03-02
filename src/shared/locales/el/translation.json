@@ -271,7 +271,11 @@
         "paste": "Επικόλληση",
         "selectAll": "Επιλογή όλων",
         "securitySettings": "Ρυθμίσεις ασφαλείας",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",
@@ -320,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "Επιλέξτε κόμβο",
         "addCustomNode": "Προσθήκη προσαρμοσμένου κόμβου",
-        "manualSync": "Χειροκίνητος συγχρονισμός"
+        "manualSync": "Χειροκίνητος συγχρονισμός",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "Φόντο",
@@ -347,7 +352,7 @@
         "one": "Ένα"
     },
     "deleteAccount": {
-        "areYouSure": "Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το λογαριασμό;",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Ο σπόρος σας και το ιστορικό συναλλαγών θα διαγραφούν.",
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να διαγράψετε αυτό το λογαριασμό."
