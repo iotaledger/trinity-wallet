@@ -19,7 +19,7 @@
         "invalidResponse": "Risposta non valida",
         "invalidResponseExplanation": "Il nodo ha restituito una risposta non valida.",
         "invalidResponsePollingExplanation": "Il nodo ha restituito una risposta non valida durante il polling.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "Il nodo ha restituito una risposta non valida durante il recupero di informazioni del tuo conto. Prova a cambiare nodo.",
         "invalidResponseSendingTransfer": "Il nodo ha restituito una risposta non valida durante l'invio del trasferimento.",
         "seed": "Seme",
         "back": "INDIETRO",
@@ -68,9 +68,9 @@
         "pending": "In attesa",
         "bundleHash": "Hash del pacchetto",
         "addresses": "Indirizzi",
-        "reattach": "REATTACH",
-        "promote": "PROMOTE",
-        "rebroadcast": "REBROADCAST",
+        "reattach": "RICOLLEGA",
+        "promote": "PROMUOVI",
+        "rebroadcast": "RITRASMETTI",
         "pressBackAgain": "Premi di nuovo Indietro per chiudere la app",
         "autoreattaching": "Ricollegamento automatico al Tangle",
         "autoreattachingExplanation": "Ricollegamento della transazione con hash {{hash}}",
@@ -122,7 +122,7 @@
         "clickToCopy": "Fai clic sul pulsante qui sotto e copia il tuo seme su un gestore di password.",
         "doNotStore": "Non salvare il tuo seme in un file non crittografato.",
         "copyToClipboard": "Copiare seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "Passa il seme ad un gestore di password sicuro"
     },
     "enterSeed": {
         "invalidCharacters": "Il seme contiene caratteri non validi",
@@ -210,7 +210,7 @@
         "invalidMessageExplanation": "Il tuo messaggio contiene caratteri non validi.",
         "send": "INVIA",
         "invalidAmount": "Inserito un importo non corretto",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Inserisci un importo di transazione valido. Può essere utile visualizzare la spiegazione di unità IOTA nella parte inferiore di questa pagina.",
         "maximumSelected": "Selezionato importo MASSIMO",
         "iotaUnits": "Spiegazione delle unità IOTA",
         "sendMax": "INVIA MASSIMO"
@@ -232,8 +232,8 @@
     "modeSelection": {
         "expert": "Esperto",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "La modalità Esperto fornirà accesso a funzioni aggiuntive come promozione e ricollegamento manuali.",
+        "modesExplanation": "Abilita la modalità Esperto solo se hai esperienza nell'uso del Tangle. Altrimenti potresti trovarti disorientato."
     },
     "settings": {
         "transferSending": "Invio transazione",
@@ -271,7 +271,7 @@
         "paste": "Incolla",
         "selectAll": "Seleziona tutto",
         "securitySettings": "Impostazioni di sicurezza",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Autenticazione biometrica"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Immetti la tua password per reimpostare il portafoglio.",
@@ -419,6 +419,6 @@
     },
     "rootDetection": {
         "warning": "ATTENZIONE",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Il dispositivo sembra essere rooted/jailbroken.</0> <1>Ciò può rappresentare un rischio significativo per la sicurezza del tuo portafoglio.</1> <2>Vuoi continuare nonostante questo rischio?</2>"
     }
 }
