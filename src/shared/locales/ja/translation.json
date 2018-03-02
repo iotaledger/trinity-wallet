@@ -122,7 +122,7 @@
         "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。",
         "doNotStore": "Seedは平文では絶対に保存しないでください。",
         "copyToClipboard": "Seedをコピー",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "シードを安全なパスワードマネージャーで管理してください。"
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだSeedです。",
@@ -230,10 +230,10 @@
         "youCanAdd": "設定メニューでSeedを追加できます。"
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expert": "上級",
+        "standard": "標準",
+        "expertModeExplanation": "上級モードでは手動促進や再添付などの追加機能をご利用になれます。",
+        "modesExplanation": "経験豊富なTangleユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
     },
     "settings": {
         "transferSending": "送金中",
@@ -418,7 +418,7 @@
         "volume": "取引量(24h)"
     },
     "rootDetection": {
-        "warning": "WARNING",
+        "warning": "警告",
         "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }
