@@ -272,7 +272,7 @@
         "selectAll": "すべてを選択",
         "securitySettings": "セキュリティ設定",
         "fingerprint": "指紋認証",
-        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRates": "レートを取得できませんでした。",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
@@ -325,7 +325,7 @@
         "selectNode": "ノード選択",
         "addCustomNode": "カスタムノードの追加",
         "manualSync": "手動同期",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "スナップショットの遷移"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -352,7 +352,7 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "{{accountName}}のアカウントデータを削除してもよろしいですか？",
         "yourSeedWillBeRemoved": "Seedとトランザクションの履歴を削除します。",
         "thisAction": "この操作は元に戻せません。",
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
