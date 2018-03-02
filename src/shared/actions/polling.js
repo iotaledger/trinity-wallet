@@ -207,11 +207,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
             if (!isValid) {
                 dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
 
-                // Polling retries in case of errors
-                // If the chosen bundle for promotion is no longer valid
-                // dispatch an error action, so that the next bundle could be picked up
-                // immediately for promotion.
-                return dispatch(promoteTransactionError());
+                throw new Error('Bundle no longer valid');
             }
 
             return getFirstConsistentTail(tails, 0);
@@ -233,7 +229,5 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
 
             return dispatch(promoteTransactionSuccess());
         })
-        .catch(() => {
-            return dispatch(promoteTransactionError());
-        });
+        .catch(() => dispatch(promoteTransactionError()));
 };

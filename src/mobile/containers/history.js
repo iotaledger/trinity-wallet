@@ -14,7 +14,7 @@ import {
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { broadcastBundle } from 'iota-wallet-shared-modules/actions/transfers';
+import { broadcastBundle, promoteTransaction } from 'iota-wallet-shared-modules/actions/transfers';
 import {
     getRelevantTransfer,
     isReceivedTransfer,
@@ -101,11 +101,13 @@ class History extends Component {
         seedIndex: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
         broadcastBundle: PropTypes.func.isRequired,
+        promoteTransaction: PropTypes.func.isRequired,
         isSyncing: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
         isBroadcastingBundle: PropTypes.bool.isRequired,
+        isPromotingTransaction: PropTypes.bool.isRequired,
         mode: PropTypes.string.isRequired,
     };
 
@@ -142,6 +144,7 @@ class History extends Component {
         if (isSendingTransfer !== newProps.isSendingTransfer) {
             return false;
         }
+
         if (isGeneratingReceiveAddress !== newProps.isGeneratingReceiveAddress) {
             return false;
         }
@@ -223,6 +226,7 @@ class History extends Component {
             mode,
             selectedAccountName,
             isBroadcastingBundle,
+            isPromotingTransaction,
             t,
         } = this.props;
 
@@ -251,12 +255,13 @@ class History extends Component {
             const tx = getRelevantTransfer(transfer, addresses);
             const value = getTransferValue(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
-            const disableWhen = isBroadcastingBundle;
+            const disableWhen = isBroadcastingBundle || isPromotingTransaction;
 
             return {
                 t,
                 disableWhen,
                 rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
+                promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName),
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
                 addresses: map(transfer, withValueAndUnit),
                 status: incoming ? t('history:receive') : t('history:send'),
@@ -276,7 +281,6 @@ class History extends Component {
                     defaultTextColor: { color: secondaryBackgroundColor },
                     backgroundColor,
                     borderColor: { borderColor: secondaryBackgroundColor },
-                    buttonsOpacity: { opacity: disableWhen ? 0.4 : 1 },
                 },
             };
         });
@@ -365,12 +369,14 @@ const mapStateToProps = ({ tempAccount, account, settings, polling, ui }) => ({
     isSyncing: tempAccount.isSyncing,
     isTransitioning: tempAccount.isTransitioning,
     isBroadcastingBundle: ui.isBroadcastingBundle,
+    isPromotingTransaction: ui.isPromotingTransaction,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     getAccountInfo,
     broadcastBundle,
+    promoteTransaction,
 };
 
 export default translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History));

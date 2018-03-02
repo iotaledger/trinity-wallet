@@ -6,6 +6,7 @@ const initialState = {
     isFetchingCurrencyData: false,
     hasErrorFetchingCurrencyData: false,
     isBroadcastingBundle: false,
+    isPromotingTransaction: false,
     sendAddressFieldText: '',
     sendAmountFieldText: '',
     sendMessageFieldText: '',
@@ -74,6 +75,17 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isBroadcastingBundle: false,
+            };
+        case TransfersActionTypes.PROMOTE_TRANSACTION_REQUEST:
+            return {
+                ...state,
+                isPromotingTransaction: true,
+            };
+        case TransfersActionTypes.PROMOTE_TRANSACTION_SUCCESS:
+        case TransfersActionTypes.PROMOTE_TRANSACTION_ERROR:
+            return {
+                ...state,
+                isPromotingTransaction: false,
             };
         default:
             return state;

@@ -62,12 +62,13 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
 
     const accountState = selectedAccountStateFactory(accountName)(getState());
     const tailTransactions = getAllTailTransactionsForBundle(bundleHash, accountState.transfers);
+    let chainBrokenInternally = false;
 
     return isValidForPromotion(bundleHash, accountState.transfers, accountState.addresses)
         .then((isValid) => {
             if (!isValid) {
-                // TODO: Generate an alert at this point
-                return dispatch(promoteTransactionError());
+                chainBrokenInternally = true;
+                throw new Error('Bundle no longer valid');
             }
 
             return getFirstConsistentTail(tailTransactions, 0);
@@ -84,7 +85,13 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
 
             return dispatch(promoteTransactionSuccess());
         })
-        .catch(() => dispatch(promoteTransactionError()));
+        .catch((err) => {
+            if (err.message.includes('no longer valid') && chainBrokenInternally) {
+                console.log('Should be displaying an alert here.');
+            }
+
+            return dispatch(promoteTransactionError());
+        });
 };
 
 /**
