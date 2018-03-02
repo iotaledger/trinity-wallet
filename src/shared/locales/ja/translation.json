@@ -271,7 +271,11 @@
         "paste": "貼り付け",
         "selectAll": "すべてを選択",
         "securitySettings": "セキュリティ設定",
-        "fingerprint": "指紋認証"
+        "fingerprint": "指紋認証",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
@@ -320,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "ノード選択",
         "addCustomNode": "カスタムノードの追加",
-        "manualSync": "手動同期"
+        "manualSync": "手動同期",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -347,7 +352,7 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "このアカウントを削除しますか？",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Seedとトランザクションの履歴を削除します。",
         "thisAction": "この操作は元に戻せません。",
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
