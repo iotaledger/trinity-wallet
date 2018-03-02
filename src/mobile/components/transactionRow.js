@@ -84,6 +84,7 @@ export default class TransactionRow extends PureComponent {
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         rebroadcast: PropTypes.func.isRequired,
+        promote: PropTypes.func.isRequired,
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
         value: PropTypes.number.isRequired,
@@ -107,7 +108,6 @@ export default class TransactionRow extends PureComponent {
             defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
-            buttonsOpacity: PropTypes.shape({ opacity: PropTypes.number.isRequire }).isRequired,
         }).isRequired,
     };
 
