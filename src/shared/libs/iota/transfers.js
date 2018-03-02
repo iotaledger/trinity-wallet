@@ -450,7 +450,7 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
             return promise
                 .then((result) => {
                     return getBundleAsync(hash).then((bundle) => {
-                        if (!isNull(bundle)) {
+                        if (!isNull(bundle) && iota.utils.isBundle(bundle)) {
                             result.push(map(bundle, (tx) => assign({}, tx, { persistence: inclusionStates[idx] })));
                         }
 

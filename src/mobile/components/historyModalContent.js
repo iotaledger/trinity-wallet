@@ -108,9 +108,6 @@ const styles = StyleSheet.create({
     buttonWhenDisabled: {
         opacity: 0.4,
     },
-    buttonWhenEnabled: {
-        opacity: 1,
-    },
     button: {
         borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
@@ -119,6 +116,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'transparent',
+        opacity: 1,
     },
     buttonText: {
         fontFamily: 'Lato-Bold',
@@ -166,6 +164,7 @@ export default class HistoryModalContent extends PureComponent {
             defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
+            buttonsOpacity: PropTypes.shape({ opacity: PropTypes.number.isRequired }).isRequired,
         }).isRequired,
     };
 
@@ -242,8 +241,6 @@ export default class HistoryModalContent extends PureComponent {
             disableWhen,
         } = this.props;
 
-        const buttonStylesOverride = disableWhen ? styles.buttonWhenDisabled : styles.buttonWhenEnabled;
-
         return (
             <TouchableOpacity style={styles.container} onPress={onPress}>
                 <View style={styles.wrapper}>
@@ -288,9 +285,9 @@ export default class HistoryModalContent extends PureComponent {
                                     <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
                                     {!confirmationBool &&
                                         mode === 'Expert' && (
-                                            <View style={styles.buttonsContainer}>
+                                            <View style={[styles.buttonsContainer, style.buttonsOpacity]}>
                                                 <TouchableOpacity
-                                                    style={[styles.button, style.borderColor, buttonStylesOverride]}
+                                                    style={[styles.button, style.borderColor]}
                                                     onPress={() => {
                                                         if (!disableWhen) {
                                                             promote(bundle);
@@ -302,7 +299,7 @@ export default class HistoryModalContent extends PureComponent {
                                                     </Text>
                                                 </TouchableOpacity>
                                                 <TouchableOpacity
-                                                    style={[styles.button, style.borderColor, buttonStylesOverride]}
+                                                    style={[styles.button, style.borderColor]}
                                                     onPress={() => {
                                                         if (!disableWhen) {
                                                             rebroadcast(bundle);
