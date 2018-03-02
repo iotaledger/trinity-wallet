@@ -19,7 +19,7 @@
         "invalidResponse": "無効な応答",
         "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
         "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "アカウント情報を取得中にノードが無効な返答をしました。ノードを変更してみてください。",
         "invalidResponseSendingTransfer": "送金中にノードが無効な応答をしました。",
         "seed": "Seed",
         "back": "戻る",
@@ -68,8 +68,8 @@
         "pending": "ペンディング中",
         "bundleHash": "バンドル ハッシュ",
         "addresses": "アドレス",
-        "reattach": "REATTACH",
-        "promote": "PROMOTE",
+        "reattach": "再添付",
+        "promote": "促進",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "autoreattaching": "Tangleに自動再登録",
@@ -121,7 +121,7 @@
         "seedCopiedExplanation": "\"完了\"を押す、または60秒後にはSeedは消去されます。",
         "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。",
         "doNotStore": "Seedは平文では絶対に保存しないでください。",
-        "copyToClipboard": "Copy seed",
+        "copyToClipboard": "Seedをコピー",
         "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
