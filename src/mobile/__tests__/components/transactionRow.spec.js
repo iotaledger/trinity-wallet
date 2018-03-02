@@ -85,6 +85,10 @@ describe('Testing TransactionRow component', () => {
         it('should require a rebroadcast function as a prop', () => {
             expect(TransactionRow.propTypes.rebroadcast).toEqual(PropTypes.func.isRequired);
         });
+
+        it('should require a disableWHen boolean as a prop', () => {
+            expect(TransactionRow.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
+        });
     });
 
     describe('when renders', () => {

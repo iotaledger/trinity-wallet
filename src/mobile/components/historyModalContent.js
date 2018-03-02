@@ -143,6 +143,7 @@ export default class HistoryModalContent extends PureComponent {
         time: PropTypes.number.isRequired,
         message: PropTypes.string,
         bundle: PropTypes.string.isRequired,
+        disableWhen: PropTypes.bool.isRequired,
         addresses: PropTypes.arrayOf(
             PropTypes.shape({
                 address: PropTypes.string.isRequired,
@@ -230,6 +231,7 @@ export default class HistoryModalContent extends PureComponent {
             style,
             mode,
             rebroadcast,
+            disableWhen,
         } = this.props;
 
         return (
@@ -284,7 +286,11 @@ export default class HistoryModalContent extends PureComponent {
                                                 </TouchableOpacity>
                                                 <TouchableOpacity
                                                     style={[styles.button, style.borderColor]}
-                                                    onPress={() => rebroadcast(bundle)}
+                                                    onPress={() => {
+                                                        if (!disableWhen) {
+                                                            rebroadcast(bundle);
+                                                        }
+                                                    }}
                                                 >
                                                     <Text style={[styles.buttonText, style.defaultTextColor]}>
                                                         {t('rebroadcast')}
