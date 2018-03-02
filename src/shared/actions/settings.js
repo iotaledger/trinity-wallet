@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import { generateAlert } from './alerts';
 import { showError } from './notifications';
+import i18next from '../i18next';
 
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
@@ -63,8 +64,8 @@ export function getCurrencyData(currency, withAlerts = false) {
                         dispatch(
                             generateAlert(
                                 'error',
-                                'Could not fetch',
-                                `Something went wrong while fetching conversion rates for ${currency}.`,
+                                i18next.t('settings:couldNotFetchRates'),
+                                i18next.t('settings:couldNotFetchRatesExplanation', { currency: currency }),
                             ),
                         );
                     }
@@ -83,8 +84,8 @@ export function getCurrencyData(currency, withAlerts = false) {
                     dispatch(
                         generateAlert(
                             'success',
-                            'Conversion rates',
-                            `Successfully fetched latest conversion rates for ${currency}.`,
+                            i18next.t('settings:fetchedConversionRates'),
+                            i18next.t('settings:fetchedConversionRatesExplanation', { currency: currency }),
                         ),
                     );
                 }
