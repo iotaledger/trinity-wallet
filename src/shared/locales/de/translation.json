@@ -122,7 +122,7 @@
         "clickToCopy": "Klicke die Schaltfläche unten, um den Seed in einen Passwort-Manager zu kopieren.",
         "doNotStore": "Speichere deinen Seed nicht als Klartext.",
         "copyToClipboard": "Seed kopieren",
-        "shareSeed": "Teile deinen Seed mit einem sicheren Passwort-manager"
+        "shareSeed": "Teile deinen Seed mit einem sicheren Passwort-Manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seed enthält ungültige Zeichen",
@@ -279,14 +279,14 @@
         "reset": "ZURÜCKSETZEN"
     },
     "walletSetup": {
-        "okay": "Okay. Lass uns dein Wallet einrichten!",
+        "okay": "Okay. Lass uns deine Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
         "explanation": "<0><0>Du kannst ihn verwenden, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Guthaben zuzugreifen. Aber wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
-        "thankYou": "Vielen Dank für das Herunterladen des IOTA Wallets.",
+        "thankYou": "Vielen Dank für das Herunterladen der IOTA Wallet.",
         "weWillSpend": "Dein Wallet wird in den nächsten Minuten eingerichtet.",
         "reminder": "Du könntest in Versuchung geraten, einige Schritte zu überspringen. Wir raten dir aber dringend dazu, den Prozess vollständig zu durchlaufen."
     },
