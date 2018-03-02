@@ -272,10 +272,10 @@
         "selectAll": "Zaznacz wszystko",
         "securitySettings": "Ustawienia zabezpieczeń",
         "fingerprint": "Autoryzacja biometryczna",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "couldNotFetchRates": "Nie można kursów przeliczeniowych",
+        "couldNotFetchRatesExplanation": "Coś poszło nie tak podczas pobierania kursów przeliczeniowych dla waluty {{currency}}.",
+        "fetchedConversionRates": "Pobrano kursy przeliczniowe",
+        "fetchedConversionRatesExplanation": "Pomyślnie pobrano najnowszy kurs przeliczeniowy dla waluty {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź swoje hasło, aby zresetować portfel.",
@@ -325,7 +325,7 @@
         "selectNode": "Wybierz serwer",
         "addCustomNode": "Dodaj niestandardowy serwer",
         "manualSync": "Ręczna synchronizacja",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot asystent"
     },
     "advancedThemeCustomisation": {
         "background": "Tło",
@@ -424,6 +424,6 @@
     },
     "rootDetection": {
         "warning": "OSTRZEŻENIE",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Twoje urządzenie wydaje się być odblokowane (dostęp root).</0><1>To może stanowić istotne zagrożenie dla bezpieczeństwa Twojego portfela.</1><2>Czy chcesz kontynuować pomimo tego ryzyka?</2>"
     }
 }
