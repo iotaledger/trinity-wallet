@@ -23,8 +23,10 @@ const getProps = (overrides) =>
                 return translations[arg] ? translations[arg] : 'foo';
             },
             rebroadcast: noop,
+            promote: noop,
             status: 'Receive',
             confirmation: 'Received',
+            disableWhen: false,
             value: 200,
             unit: 'i',
             time: Date.now(),
@@ -39,6 +41,7 @@ const getProps = (overrides) =>
                 defaultTextColor: { color: 'green' },
                 backgroundColor: 'yellow',
                 borderColor: { borderColor: 'orange' },
+                buttonsOpacity: { opacity: 1 },
             },
         },
         overrides,
