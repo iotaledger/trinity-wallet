@@ -281,6 +281,7 @@ class History extends Component {
                     defaultTextColor: { color: secondaryBackgroundColor },
                     backgroundColor,
                     borderColor: { borderColor: secondaryBackgroundColor },
+                    buttonsOpacity: { opacity: disableWhen ? 0.5 : 1 },
                 },
             };
         });

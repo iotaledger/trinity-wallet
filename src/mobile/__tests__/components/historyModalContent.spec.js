@@ -31,6 +31,8 @@ const getProps = (overrides) =>
                 return translations[arg] ? translations[arg] : 'foo';
             },
             rebroadcast: noop,
+            promote: noop,
+            disableWhen: false,
             status: 'Receive',
             confirmation: 'Received',
             value: 200,
@@ -47,6 +49,7 @@ const getProps = (overrides) =>
                 defaultTextColor: { color: 'green' },
                 backgroundColor: 'yellow',
                 borderColor: { borderColor: 'orange' },
+                buttonsOpacity: { opacity: 1 },
             },
         },
         overrides,
