@@ -83,6 +83,7 @@ export default class TransactionRow extends PureComponent {
     static propTypes = {
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        rebroadcast: PropTypes.func.isRequired,
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
         value: PropTypes.number.isRequired,
