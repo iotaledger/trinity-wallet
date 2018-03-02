@@ -273,7 +273,7 @@
         "securitySettings": "セキュリティ設定",
         "fingerprint": "指紋認証",
         "couldNotFetchRates": "換算率を取得できませんでした。",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "couldNotFetchRatesExplanation": "{{currency}}の換算率の取得中に何らかの問題が発生しました。",
         "fetchedConversionRates": "換算率を取得しました。",
         "fetchedConversionRatesExplanation": "{{currency}}の最新の換算率の取得に成功しました。"
     },
