@@ -14,6 +14,7 @@ import {
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { broadcastBundle } from 'iota-wallet-shared-modules/actions/transfers';
 import {
     getRelevantTransfer,
     isReceivedTransfer,
@@ -99,6 +100,7 @@ class History extends Component {
         generateAlert: PropTypes.func.isRequired,
         seedIndex: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
+        broadcastBundle: PropTypes.func.isRequired,
         isSyncing: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
@@ -218,6 +220,7 @@ class History extends Component {
             secondaryBackgroundColor,
             backgroundColor,
             mode,
+            selectedAccountName,
             t,
         } = this.props;
 
@@ -249,6 +252,7 @@ class History extends Component {
 
             return {
                 t,
+                rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
                 addresses: map(transfer, withValueAndUnit),
                 status: incoming ? t('history:receive') : t('history:send'),
@@ -360,6 +364,7 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
 const mapDispatchToProps = {
     generateAlert,
     getAccountInfo,
+    broadcastBundle,
 };
 
 export default translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History));

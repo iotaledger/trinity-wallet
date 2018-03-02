@@ -133,6 +133,7 @@ export default class HistoryModalContent extends PureComponent {
         onPress: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        rebroadcast: PropTypes.func.isRequired,
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
         confirmationBool: PropTypes.bool.isRequired,
@@ -228,6 +229,7 @@ export default class HistoryModalContent extends PureComponent {
             t,
             style,
             mode,
+            rebroadcast,
         } = this.props;
 
         return (
@@ -277,15 +279,13 @@ export default class HistoryModalContent extends PureComponent {
                                             <View style={styles.buttonsContainer}>
                                                 <TouchableOpacity style={[styles.button, style.borderColor]}>
                                                     <Text style={[styles.buttonText, style.defaultTextColor]}>
-                                                        {t('reattach')}
-                                                    </Text>
-                                                </TouchableOpacity>
-                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
-                                                    <Text style={[styles.buttonText, style.defaultTextColor]}>
                                                         {t('promote')}
                                                     </Text>
                                                 </TouchableOpacity>
-                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
+                                                <TouchableOpacity
+                                                    style={[styles.button, style.borderColor]}
+                                                    onPress={() => rebroadcast(bundle)}
+                                                >
                                                     <Text style={[styles.buttonText, style.defaultTextColor]}>
                                                         {t('rebroadcast')}
                                                     </Text>
