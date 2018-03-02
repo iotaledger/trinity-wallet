@@ -271,7 +271,11 @@
         "paste": "粘贴",
         "selectAll": "全选",
         "securitySettings": "安全设置",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
@@ -320,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "选择节点",
         "addCustomNode": "添加自定义节点",
-        "manualSync": "手动同步"
+        "manualSync": "手动同步",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -347,7 +352,7 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "您确定要删除此账户？",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
         "thisAction": "本操作无法撤销。",
         "enterPassword": "请输入您的密码以确认将帐号删除。"
