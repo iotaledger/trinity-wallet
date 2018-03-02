@@ -233,7 +233,7 @@
         "expert": "Ekspert",
         "standard": "Standardowy",
         "expertModeExplanation": "Tryb eksperta zapewni dostęp do dodatkowych funkcji, takich jak manualne promowanie i ponawianie transakcji.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "modesExplanation": "Włącz tryb eksperta jedynie, jeśli jesteś doświadczonym użytkownikiem sieci Tangle. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe."
     },
     "settings": {
         "transferSending": "Wykonywanie transferu",
