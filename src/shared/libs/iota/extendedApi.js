@@ -169,7 +169,14 @@ const getTransactionsToApproveAsync = (depth = DEFAULT_DEPTH) => {
 
 const prepareTransfersAsync = (seed, transfers, options = null) => {
     return new Promise((resolve, reject) => {
-        iota.api.prepareTransfers(seed, transfers, options, (err, trytes) => {
+        // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
+        let args = [seed, transfers];
+
+        if (options) {
+            args = [...args, options];
+        }
+
+        iota.api.prepareTransfers(...args, (err, trytes) => {
             if (err) {
                 reject(err);
             } else {
