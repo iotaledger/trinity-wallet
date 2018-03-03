@@ -1,5 +1,5 @@
 import { iota } from './index';
-import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
+import { DEFAULT_BALANCES_THRESHOLD, DEFAULT_DEPTH } from '../../config';
 
 const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => {
     return new Promise((resolve, reject) => {
@@ -143,6 +143,54 @@ const broadcastBundleAsync = (tail) => {
     });
 };
 
+const sendTransferAsync = (seed, depth, minWeightMagnitude, transfers, options = null) => {
+    return new Promise((resolve, reject) => {
+        iota.api.sendTransfer(seed, depth, minWeightMagnitude, transfers, options, (err, newTransfer) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(newTransfer);
+            }
+        });
+    });
+};
+
+const getTransactionsToApproveAsync = (depth = DEFAULT_DEPTH) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getTransactionsToApprove(depth, null, (err, transactionsToApprove) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(transactionsToApprove);
+            }
+        });
+    });
+};
+
+const prepareTransfersAsync = (seed, transfers, options = null) => {
+    return new Promise((resolve, reject) => {
+        iota.api.prepareTransfers(seed, transfers, options, (err, trytes) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(trytes);
+            }
+        });
+    });
+};
+
+const storeAndBroadcastAsync = (trytes) => {
+    return new Promise((resolve, reject) => {
+        iota.api.storeAndBroadcast(trytes, (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+};
+
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -155,4 +203,8 @@ export {
     getBundleAsync,
     wereAddressesSpentFromAsync,
     broadcastBundleAsync,
+    sendTransferAsync,
+    getTransactionsToApproveAsync,
+    prepareTransfersAsync,
+    storeAndBroadcastAsync,
 };

@@ -1,16 +1,23 @@
 import get from 'lodash/get';
 import some from 'lodash/some';
+import isFunction from 'lodash/isFunction';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo, accountInfoFetchSuccess } from '../actions/account';
-import { selectedAccountStateFactory } from '../selectors/account';
+import { selectedAccountStateFactory, getNetworkBoundPowFromState } from '../selectors/account';
 import { clearSendFields } from '../actions/ui';
 import { generateAlert } from '../actions/alerts';
-import { prepareTransferArray, filterInvalidPendingTransfers, filterZeroValueTransfers } from '../libs/iota/transfers';
+import {
+    prepareTransferArray,
+    filterInvalidPendingTransfers,
+    filterZeroValueTransfers,
+    makeTransferWithLocalPow,
+} from '../libs/iota/transfers';
 import { syncAccount } from '../libs/iota/accounts';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { MAX_SEED_LENGTH } from '../libs/util';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
+import { sendTransferAsync } from '../libs/iota/extendedApi';
 import i18next from '../i18next.js';
 
 /* eslint-disable no-console */
@@ -209,16 +216,23 @@ export const completeTransfer = (payload) => {
     };
 };
 
-const makeTransfer = (seed, address, value, accountName, transfer, options = null) => (dispatch) => {
-    let args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, transfer];
+const makeTransfer = (seed, address, value, accountName, transfer, options = null, powFn = null) => (dispatch) => {
+    // If powFn is provided, proof of work would be performed locally
+    const shouldOffloadPow = !isFunction(powFn);
+
+    let args = shouldOffloadPow
+        ? [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, transfer]
+        : [seed, transfer, powFn];
 
     if (options) {
         args = [...args, options];
     }
 
-    return iota.api.sendTransfer(...args, (error, success) => {
-        if (!error) {
-            dispatch(updateAccountInfo(accountName, success, value));
+    const sendTransferPromise = shouldOffloadPow ? sendTransferAsync : makeTransferWithLocalPow;
+
+    return sendTransferPromise(...args)
+        .then((newTransfer) => {
+            dispatch(updateAccountInfo(accountName, newTransfer, value));
 
             if (value === 0) {
                 dispatch(
@@ -239,8 +253,10 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
                     ),
                 );
             }
+
             dispatch(completeTransfer({ address, value }));
-        } else {
+        })
+        .catch((error) => {
             dispatch(sendTransferError());
             const alerts = {
                 attachToTangle: [
@@ -261,18 +277,23 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
                 error.message.indexOf('attachToTangle is not available') > -1 ? alerts.attachToTangle : alerts.default;
 
             dispatch(generateAlert('error', ...args));
-        }
-    });
+        });
 };
 
-export const prepareTransfer = (seed, address, value, message, accountName) => {
+export const prepareTransfer = (seed, address, value, message, accountName, powFn) => {
     return (dispatch, getState) => {
         dispatch(sendTransferRequest());
 
         const transfer = prepareTransferArray(address, value, message);
+        const shouldOffloadPow = getNetworkBoundPowFromState(getState());
+        const isZeroValue = value === 0;
 
-        if (value === 0) {
+        // If its a zero value transfer,
+        // Do not need to trigger pre-transfer checks
+        if (isZeroValue && shouldOffloadPow) {
             return dispatch(makeTransfer(seed, address, value, accountName, transfer));
+        } else if (isZeroValue && !shouldOffloadPow) {
+            return dispatch(makeTransfer(seed, address, value, accountName, transfer, null, powFn));
         }
 
         const makeTransferWithBalanceCheck = (inputs) => {
@@ -324,12 +345,22 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                     ),
                 );
             }
+
             const remainderAddress = getLatestAddress(newAccountData.addresses);
+
             return dispatch(
-                makeTransfer(seed, address, value, accountName, transfer, {
-                    inputs: get(inputs, 'inputs'),
-                    address: remainderAddress,
-                }),
+                makeTransfer(
+                    seed,
+                    address,
+                    value,
+                    accountName,
+                    transfer,
+                    {
+                        inputs: get(inputs, 'inputs'),
+                        address: remainderAddress,
+                    },
+                    powFn,
+                ),
             );
         };
 
@@ -387,7 +418,6 @@ export const prepareTransfer = (seed, address, value, message, accountName) => {
                 );
             })
             .catch((err) => {
-                console.log('Err', err);
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     20000,
