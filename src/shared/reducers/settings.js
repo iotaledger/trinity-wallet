@@ -73,10 +73,16 @@ const initialState = {
     themeName: 'Default',
     theme: themes.Default,
     hasRandomizedNode: false,
+    networkBoundPow: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ActionTypes.UPDATE_POW_SETTINGS:
+            return {
+                ...state,
+                networkBoundPow: !state.networkBoundPow,
+            };
         case ActionTypes.LOCALE:
             return {
                 ...state,
