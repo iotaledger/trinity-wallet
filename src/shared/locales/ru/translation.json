@@ -233,7 +233,7 @@
         "expert": "Expert",
         "standard": "Standard",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "modesExplanation": "Экспертный режим предназначен только для опытных пользователей Tangle. В ином случае он Вас может ввести в заблуждение."
     },
     "settings": {
         "transferSending": "Осуществляется перевод",
@@ -272,10 +272,10 @@
         "selectAll": "Выбрать всё",
         "securitySettings": "Настройки безопасности",
         "fingerprint": "Аутентификация на основе отпечатков пальцев",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Запрос курса успешно {{currency}} успешно выполнен."
+        "couldNotFetchRates": "Не удаётся получить курс обмена",
+        "couldNotFetchRatesExplanation": "Что-то пошло не так при запросе курса обмена для {{currency}}.",
+        "fetchedConversionRates": "Запрос курса обмена",
+        "fetchedConversionRatesExplanation": "Запрос курса обмена для {{currency}} успешно выполнен."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите Ваш пароль для сброса настроек кошелька.",
