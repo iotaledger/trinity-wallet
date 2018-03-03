@@ -5,6 +5,7 @@ import AdvancedSettings from './advancedSettings';
 import AccountManagement from './accountManagement';
 import ViewSeed from './viewSeed';
 import ViewAddressesComponent from '../containers/viewAddresses';
+import ProofOfWork from '../containers/pow';
 import EditAccountNameComponent from './editAccountName';
 import DeleteAccount from './deleteAccount';
 import AddNewAccount from './addNewAccount';
@@ -42,6 +43,7 @@ const SETTINGS_COMPONENTS = {
     snapshotTransition: SnapshotTransition,
     securitySettings: SecuritySettings,
     modeSelection: ModeSelection,
+    pow: ProofOfWork,
 };
 
 const SettingsContent = ({ component, ...props }) => {
