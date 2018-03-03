@@ -20,7 +20,7 @@ import union from 'lodash/union';
 import flatten from 'lodash/flatten';
 import orderBy from 'lodash/orderBy';
 import flow from 'lodash/flow';
-import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD } from '../../config';
+import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
 import {
@@ -722,7 +722,7 @@ export const getAllTailTransactionsForBundle = (bundleHash, transfers) => {
     return filter(flatten(bundles), { currentIndex: 0 });
 };
 
-export const getTrytesWithChildrenTransactions = (seed, transfers, options = null) => {
+export const getTrytesWithParentTransactions = (seed, transfers, options = null) => {
     const cached = {
         trunkTransaction: null,
         branchTransaction: null,
@@ -730,6 +730,8 @@ export const getTrytesWithChildrenTransactions = (seed, transfers, options = nul
 
     return getTransactionsToApproveAsync()
         .then((transactionsToApprove) => {
+            console.log('Transactions to approve', transactionsToApprove);
+
             cached.trunkTransaction = transactionsToApprove.trunkTransaction;
             cached.branchTransaction = transactionsToApprove.branchTransaction;
 
@@ -738,7 +740,7 @@ export const getTrytesWithChildrenTransactions = (seed, transfers, options = nul
         .then((trytes) => ({ ...cached, trytes }));
 };
 
-export const performPow = (powFn, transactionObjects, minWeightMagnitude = 14) => {
+export const performPow = (powFn, transactionObjects, minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE) => {
     const trytes = map(transactionObjects, (transaction) => iota.utils.transactionTrytes(transaction));
 
     return reduce(
@@ -746,8 +748,8 @@ export const performPow = (powFn, transactionObjects, minWeightMagnitude = 14) =
         (promise, tryte, index) => {
             return promise.then((result) => {
                 return powFn(tryte, minWeightMagnitude).then((nonce) => {
-                    const trytesWithNonce = tryte.substr(0, 2673 - 81).concat(nonce);
                     const transactionObjectWithNonce = assign({}, transactionObjects[index], { nonce });
+                    const trytesWithNonce = iota.utils.transactionTrytes(transactionObjectWithNonce);
 
                     result.trytes.push(trytesWithNonce);
                     result.transactionObjects.push(transactionObjectWithNonce);
@@ -760,11 +762,7 @@ export const performPow = (powFn, transactionObjects, minWeightMagnitude = 14) =
     );
 };
 
-export const mapChildrenTransactionsToTransactionObjects = (
-    transactionObjects,
-    trunkTransaction,
-    branchTransaction,
-) => {
+export const mapParentTransactionsToTransactionObjects = (transactionObjects, trunkTransaction, branchTransaction) => {
     const sortedTransactionObjects = orderBy(transactionObjects, 'currentIndex', ['desc']);
 
     return map(sortedTransactionObjects, (transaction, index) => {
@@ -777,7 +775,7 @@ export const mapChildrenTransactionsToTransactionObjects = (
         // Assign previous hash as trunk transaction
         // Provided trunk transaction as the new branch transaction
         return assign({}, transaction, {
-            trunkTransaction: transaction[index - 1].hash,
+            trunkTransaction: sortedTransactionObjects[index - 1].hash,
             branchTransaction: trunkTransaction,
         });
     }).reverse();
@@ -789,11 +787,11 @@ export const makeTransferWithLocalPow = (seed, transfers, powFn, options = null)
         transactionObjects: [],
     };
 
-    return getTrytesWithChildrenTransactions(seed, transfers, options)
+    return getTrytesWithParentTransactions(seed, transfers, options)
         .then(({ trytes, trunkTransaction, branchTransaction }) => {
             cached.trytes = trytes;
 
-            cached.transactionObjects = mapChildrenTransactionsToTransactionObjects(
+            cached.transactionObjects = mapParentTransactionsToTransactionObjects(
                 map(cached.trytes, (tryte) =>
                     assign({}, iota.utils.transactionObject(tryte), {
                         attachmentTimestamp: Date.now(),
