@@ -156,11 +156,7 @@ class EnterSeed extends React.Component {
                 seed: data,
             });
         } else {
-            this.props.generateAlert(
-                'error',
-                'Incorrect seed format',
-                'Valid seeds should be 81 characters and contain only A-Z or 9.',
-            );
+            this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         }
         this.hideModal();
     }
