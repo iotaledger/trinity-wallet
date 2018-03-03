@@ -288,7 +288,11 @@
         "paste": "Paste",
         "selectAll": "Select All",
         "securitySettings": "Security settings",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -340,7 +344,8 @@
     "advancedSettings": {
         "selectNode": "Select node",
         "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "manualSync": "Manual sync",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "Background",
@@ -367,7 +372,7 @@
         "one": "One"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "This action cannot be undone.",
         "enterPassword": "Enter your password to delete this account."
