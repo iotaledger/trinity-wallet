@@ -68,9 +68,9 @@
         "pending": "En cours",
         "bundleHash": "Hash du Paquet",
         "addresses": "Adresses",
-        "reattach": "REATTACH",
-        "promote": "PROMOTE",
-        "rebroadcast": "REBROADCAST",
+        "reattach": "RATTACHER",
+        "promote": "PROMOUVOIR",
+        "rebroadcast": "RETRANSMETTRE",
         "pressBackAgain": "Appuyez sur le bouton retour pour fermer l'application",
         "autoreattaching": "Rattachement automatique au Tangle",
         "autoreattachingExplanation": "Rattachement de la transaction de hash {{hash}}",
@@ -121,8 +121,8 @@
         "seedCopiedExplanation": "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez votre seed dans un gestionnaire de mot de passe.",
         "doNotStore": "Ne stockez pas votre seed en texte en clair.",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "copyToClipboard": "Copier le seed",
+        "shareSeed": "Enregistrer votre seed dans un gestionnaire de mot de passe sécurisé"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contient des caractères invalides",
@@ -232,8 +232,8 @@
     "modeSelection": {
         "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "Le mode expert donnera accès à des fonctionnalités supplémentaires comme la promotion manuelle et le rattachement.",
+        "modesExplanation": "Activer le mode Expert uniquement si vous êtes un utilisateur expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
     },
     "settings": {
         "transferSending": "Transfert en cours",
@@ -274,7 +274,7 @@
         "fingerprint": "Authentification biométrique",
         "couldNotFetchRates": "Could not fetch rates",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRates": "Taux de conversion récupéré",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
@@ -352,7 +352,7 @@
         "one": "Un"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Êtes-vous sûr de vouloir supprimer le compte nommé \"{{accountName}}\" ?",
         "yourSeedWillBeRemoved": "L’historique de vos seeds et de vos transactions sera supprimé.",
         "thisAction": "Cette action est irréversible.",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
