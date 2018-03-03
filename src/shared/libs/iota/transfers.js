@@ -19,7 +19,6 @@ import difference from 'lodash/difference';
 import union from 'lodash/union';
 import flatten from 'lodash/flatten';
 import orderBy from 'lodash/orderBy';
-import flow from 'lodash/flow';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
@@ -722,34 +721,29 @@ export const getAllTailTransactionsForBundle = (bundleHash, transfers) => {
     return filter(flatten(bundles), { currentIndex: 0 });
 };
 
-export const getTrytesWithParentTransactions = (seed, transfers, options = null) => {
-    const cached = {
-        trunkTransaction: null,
-        branchTransaction: null,
-    };
-
-    return getTransactionsToApproveAsync()
-        .then((transactionsToApprove) => {
-            console.log('Transactions to approve', transactionsToApprove);
-
-            cached.trunkTransaction = transactionsToApprove.trunkTransaction;
-            cached.branchTransaction = transactionsToApprove.branchTransaction;
-
-            return prepareTransfersAsync(seed, transfers, options);
-        })
-        .then((trytes) => ({ ...cached, trytes }));
-};
-
-export const performPow = (powFn, transactionObjects, minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE) => {
-    const trytes = map(transactionObjects, (transaction) => iota.utils.transactionTrytes(transaction));
+export const performPow = (
+    powFn,
+    transactionObjects,
+    trunkTransaction,
+    branchTransaction,
+    minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
+) => {
+    const sortedTransactionObjects = orderBy(transactionObjects, 'currentIndex', ['desc']);
 
     return reduce(
-        trytes,
-        (promise, tryte, index) => {
+        sortedTransactionObjects,
+        (promise, transaction, index) => {
             return promise.then((result) => {
-                return powFn(tryte, minWeightMagnitude).then((nonce) => {
-                    const transactionObjectWithNonce = assign({}, transactionObjects[index], { nonce });
-                    const trytesWithNonce = iota.utils.transactionTrytes(transactionObjectWithNonce);
+                const withParentTransactions = assign({}, transaction, {
+                    trunkTransaction: index ? result.transactionObjects[index - 1].hash : trunkTransaction,
+                    branchTransaction: index ? trunkTransaction : branchTransaction,
+                });
+
+                const transactionTryteString = iota.utils.transactionTrytes(withParentTransactions);
+
+                return powFn(transactionTryteString, minWeightMagnitude).then((nonce) => {
+                    const trytesWithNonce = transactionTryteString.substr(0, 2673 - 27).concat(nonce);
+                    const transactionObjectWithNonce = iota.utils.transactionObject(trytesWithNonce);
 
                     result.trytes.push(trytesWithNonce);
                     result.transactionObjects.push(transactionObjectWithNonce);
@@ -762,48 +756,28 @@ export const performPow = (powFn, transactionObjects, minWeightMagnitude = DEFAU
     );
 };
 
-export const mapParentTransactionsToTransactionObjects = (transactionObjects, trunkTransaction, branchTransaction) => {
-    const sortedTransactionObjects = orderBy(transactionObjects, 'currentIndex', ['desc']);
-
-    return map(sortedTransactionObjects, (transaction, index) => {
-        // If its the first transaction object --> currentIndex === lastIndex
-        // Assign the provided trunk and branch transactions
-        if (!index) {
-            return assign({}, transaction, { trunkTransaction, branchTransaction });
-        }
-
-        // Assign previous hash as trunk transaction
-        // Provided trunk transaction as the new branch transaction
-        return assign({}, transaction, {
-            trunkTransaction: sortedTransactionObjects[index - 1].hash,
-            branchTransaction: trunkTransaction,
-        });
-    }).reverse();
-};
-
 export const makeTransferWithLocalPow = (seed, transfers, powFn, options = null) => {
     const cached = {
         trytes: [],
         transactionObjects: [],
     };
 
-    return getTrytesWithParentTransactions(seed, transfers, options)
-        .then(({ trytes, trunkTransaction, branchTransaction }) => {
+    return prepareTransfersAsync(seed, transfers, options)
+        .then((trytes) => {
             cached.trytes = trytes;
 
-            cached.transactionObjects = mapParentTransactionsToTransactionObjects(
-                map(cached.trytes, (tryte) =>
-                    assign({}, iota.utils.transactionObject(tryte), {
-                        attachmentTimestamp: Date.now(),
-                        attachmentTimestampLowerBound: 0,
-                        attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
-                    }),
-                ),
-                trunkTransaction,
-                branchTransaction,
+            return getTransactionsToApproveAsync();
+        })
+        .then(({ trunkTransaction, branchTransaction }) => {
+            cached.transactionObjects = map(cached.trytes, (tryte) =>
+                assign({}, iota.utils.transactionObject(tryte), {
+                    attachmentTimestamp: Date.now(),
+                    attachmentTimestampLowerBound: 0,
+                    attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
+                }),
             );
 
-            return performPow(powFn, cached.transactionObjects);
+            return performPow(powFn, cached.transactionObjects, trunkTransaction, branchTransaction);
         })
         .then(({ trytes, transactionObjects }) => {
             cached.trytes = trytes;
