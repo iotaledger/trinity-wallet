@@ -275,7 +275,7 @@
         "couldNotFetchRates": "Could not fetch rates",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "fetchedConversionRatesExplanation": "Запрос курса успешно {{currency}} успешно выполнен."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите Ваш пароль для сброса настроек кошелька.",
@@ -325,7 +325,7 @@
         "selectNode": "Выбрать узел",
         "addCustomNode": "Добавить пользовательский узел",
         "manualSync": "Ручная синхронизация",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot переход"
     },
     "advancedThemeCustomisation": {
         "background": "Фон",
