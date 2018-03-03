@@ -68,7 +68,7 @@
         "pending": "В ожидании",
         "bundleHash": "Пакет данных",
         "addresses": "Адреса",
-        "reattach": "REATTACH",
+        "reattach": "ПОВТОРНОЕ ПРИСОЕДИНЕНИЕ ТРАНЗАКЦИИ",
         "promote": "PROMOTE",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Нажмите еще раз назад чтобы закрыть приложение",
