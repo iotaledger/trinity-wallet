@@ -257,6 +257,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
             dispatch(completeTransfer({ address, value }));
         })
         .catch((error) => {
+            console.log('Err', error);
             dispatch(sendTransferError());
             const alerts = {
                 attachToTangle: [
