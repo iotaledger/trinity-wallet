@@ -18,6 +18,8 @@ import transform from 'lodash/transform';
 import difference from 'lodash/difference';
 import union from 'lodash/union';
 import flatten from 'lodash/flatten';
+import orderBy from 'lodash/orderBy';
+import flow from 'lodash/flow';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
@@ -27,6 +29,9 @@ import {
     getBundleAsync,
     getLatestInclusionAsync,
     findTransactionObjectsAsync,
+    prepareTransfersAsync,
+    getTransactionsToApproveAsync,
+    storeAndBroadcastAsync,
 } from './extendedApi';
 
 /**
@@ -715,4 +720,98 @@ export const getAllTailTransactionsForBundle = (bundleHash, transfers) => {
     const bundles = findBundlesFromTransfers(bundleHash, transfers);
 
     return filter(flatten(bundles), { currentIndex: 0 });
+};
+
+export const getTrytesWithChildrenTransactions = (seed, transfers, options = null) => {
+    const cached = {
+        trunkTransaction: null,
+        branchTransaction: null,
+    };
+
+    return getTransactionsToApproveAsync()
+        .then((transactionsToApprove) => {
+            cached.trunkTransaction = transactionsToApprove.trunkTransaction;
+            cached.branchTransaction = transactionsToApprove.branchTransaction;
+
+            return prepareTransfersAsync(seed, transfers, options);
+        })
+        .then((trytes) => ({ ...cached, trytes }));
+};
+
+export const performPow = (powFn, transactionObjects, minWeightMagnitude = 14) => {
+    const trytes = map(transactionObjects, (transaction) => iota.utils.transactionTrytes(transaction));
+
+    return reduce(
+        trytes,
+        (promise, tryte, index) => {
+            return promise.then((result) => {
+                return powFn(tryte, minWeightMagnitude).then((nonce) => {
+                    const trytesWithNonce = tryte.substr(0, 2673 - 81).concat(nonce);
+                    const transactionObjectWithNonce = assign({}, transactionObjects[index], { nonce });
+
+                    result.trytes.push(trytesWithNonce);
+                    result.transactionObjects.push(transactionObjectWithNonce);
+
+                    return result;
+                });
+            });
+        },
+        Promise.resolve({ trytes: [], transactionObjects: [] }),
+    );
+};
+
+export const mapChildrenTransactionsToTransactionObjects = (
+    transactionObjects,
+    trunkTransaction,
+    branchTransaction,
+) => {
+    const sortedTransactionObjects = orderBy(transactionObjects, 'currentIndex', ['desc']);
+
+    return map(sortedTransactionObjects, (transaction, index) => {
+        // If its the first transaction object --> currentIndex === lastIndex
+        // Assign the provided trunk and branch transactions
+        if (!index) {
+            return assign({}, transaction, { trunkTransaction, branchTransaction });
+        }
+
+        // Assign previous hash as trunk transaction
+        // Provided trunk transaction as the new branch transaction
+        return assign({}, transaction, {
+            trunkTransaction: transaction[index - 1].hash,
+            branchTransaction: trunkTransaction,
+        });
+    }).reverse();
+};
+
+export const makeTransferWithLocalPow = (seed, transfers, powFn, options = null) => {
+    const cached = {
+        trytes: [],
+        transactionObjects: [],
+    };
+
+    return getTrytesWithChildrenTransactions(seed, transfers, options)
+        .then(({ trytes, trunkTransaction, branchTransaction }) => {
+            cached.trytes = trytes;
+
+            cached.transactionObjects = mapChildrenTransactionsToTransactionObjects(
+                map(cached.trytes, (tryte) =>
+                    assign({}, iota.utils.transactionObject(tryte), {
+                        attachmentTimestamp: Date.now(),
+                        attachmentTimestampLowerBound: 0,
+                        attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
+                    }),
+                ),
+                trunkTransaction,
+                branchTransaction,
+            );
+
+            return performPow(powFn, cached.transactionObjects);
+        })
+        .then(({ trytes, transactionObjects }) => {
+            cached.trytes = trytes;
+            cached.transactionObjects = transactionObjects;
+
+            return storeAndBroadcastAsync(cached.trytes);
+        })
+        .then(() => cached.transactionObjects);
 };

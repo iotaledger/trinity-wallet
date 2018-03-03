@@ -14,6 +14,7 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     Keyboard,
+    NativeModules,
 } from 'react-native';
 import { connect } from 'react-redux';
 import {
@@ -55,6 +56,7 @@ import UnitInfoModal from '../components/unitInfoModal';
 import CustomTextInput from '../components/customTextInput';
 import CtaButton from '../components/ctaButton';
 import { width, height } from '../util/dimensions';
+import { isAndroid, isIOS } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -598,7 +600,16 @@ export class Send extends Component {
 
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
-                    this.props.prepareTransfer(seed, address, value, message, selectedAccountName);
+
+                    let powFn = null;
+
+                    if (isAndroid) {
+                        powFn = NativeModules.PoWModule.doPoW;
+                    } else if (isIOS) {
+                        powFn = NativeModules.Iota.doPoW;
+                    }
+
+                    this.props.prepareTransfer(seed, address, value, message, selectedAccountName, powFn);
                 }
             })
             .catch(() => this.props.getFromKeychainError('send', 'makeTransaction'));
