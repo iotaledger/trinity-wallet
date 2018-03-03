@@ -352,7 +352,7 @@
         "one": "Ein"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Bist du sicher dass Du das Konto \"{{accountName}}\" entfernen möchtest?",
         "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
