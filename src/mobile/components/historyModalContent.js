@@ -284,7 +284,8 @@ export default class HistoryModalContent extends PureComponent {
                                     <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
                                     <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
                                     {!confirmationBool &&
-                                        mode === 'Expert' && (
+                                        mode === 'Expert' &&
+                                        value > 0 && (
                                             <View style={[styles.buttonsContainer, style.buttonsOpacity]}>
                                                 <TouchableOpacity
                                                     style={[styles.button, style.borderColor]}
