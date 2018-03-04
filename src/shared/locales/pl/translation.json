@@ -68,13 +68,13 @@
         "pending": "W trakcie",
         "bundleHash": "Hash pakietu",
         "addresses": "Adresy",
-        "reattach": "POWIĄŻ PONOWNIE",
+        "reattach": "REATTACH",
         "promote": "PROMUJ",
-        "rebroadcast": "WYŚLIJ PONOWNIE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
-        "autoreattaching": "Automatyczne ponawianie wiązania do sieci Tangle",
-        "autoreattachingExplanation": "Ponowne wiązanie transakcji z hashem {{hash}}",
-        "autopromoting": "Autopromocja transferu",
+        "autoreattaching": "Autoreattaching do sieci Tangle",
+        "autoreattachingExplanation": "Reattaching transakcji z hashem {{hash}}",
+        "autopromoting": "Autopromowanie transferu",
         "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
         "cannotSendToOwn": "Wysyłka na własny adres",
         "cannotSendToOwnExplanation": "Nie możesz wykonać transferu środków na swój własny adres.",
@@ -232,7 +232,7 @@
     "modeSelection": {
         "expert": "Ekspert",
         "standard": "Standardowy",
-        "expertModeExplanation": "Tryb eksperta zapewni dostęp do dodatkowych funkcji, takich jak manualne promowanie i ponawianie transakcji.",
+        "expertModeExplanation": "Tryb eksperta zapewni dostęp do dodatkowych funkcji, takich jak manualne promowanie i reattach transakcji.",
         "modesExplanation": "Włącz tryb eksperta jedynie, jeśli jesteś doświadczonym użytkownikiem sieci Tangle. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe."
     },
     "settings": {
