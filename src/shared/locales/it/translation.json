@@ -325,7 +325,7 @@
         "selectNode": "Seleziona un nodo",
         "addCustomNode": "Aggiungi un nodo personalizzato",
         "manualSync": "Sincronizzazione manuale",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Passaggio dopo uno snapshot"
     },
     "advancedThemeCustomisation": {
         "background": "Sfondo",
@@ -352,7 +352,7 @@
         "one": "Unità"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Sei sicuro di volere rimuovere il conto chiamato {{accountName}}?",
         "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
         "thisAction": "Questa azione non può essere annullata.",
         "enterPassword": "Immetti la tua password per cancellare il conto."
