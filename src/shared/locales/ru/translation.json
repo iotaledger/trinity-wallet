@@ -274,8 +274,8 @@
         "fingerprint": "Аутентификация на основе отпечатков пальцев",
         "couldNotFetchRates": "Не удаётся получить курс обмена",
         "couldNotFetchRatesExplanation": "Что-то пошло не так при запросе курса обмена для {{currency}}.",
-        "fetchedConversionRates": "Запрос курса обмена",
-        "fetchedConversionRatesExplanation": "Запрос курса обмена для {{currency}} успешно выполнен."
+        "fetchedConversionRates": "Запрос курса",
+        "fetchedConversionRatesExplanation": "Успешно получен актуальный курс обмена для {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите Ваш пароль для сброса настроек кошелька.",
