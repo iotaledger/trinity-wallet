@@ -65,7 +65,7 @@
         "sending": "Wysyłanie",
         "receiving": "Odbieranie",
         "confirmed": "Potwierdzono",
-        "pending": "Oczekuje",
+        "pending": "W trakcie",
         "bundleHash": "Hash pakietu",
         "addresses": "Adresy",
         "reattach": "POWIĄŻ PONOWNIE",
