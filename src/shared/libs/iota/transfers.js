@@ -780,8 +780,10 @@ export const makeTransferWithLocalPow = (seed, transfers, powFn, options = null)
             return performPow(powFn, cached.transactionObjects, trunkTransaction, branchTransaction);
         })
         .then(({ trytes, transactionObjects }) => {
-            cached.trytes = trytes;
-            cached.transactionObjects = transactionObjects;
+            // performPow orders transactions/trytes in descending order
+            // Sort trytes/transactions in ascending before storing and broadcasting
+            cached.trytes = trytes.reverse();
+            cached.transactionObjects = transactionObjects.reverse();
 
             return storeAndBroadcastAsync(cached.trytes);
         })
