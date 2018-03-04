@@ -11,6 +11,8 @@
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Key reuse",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Respuesta inválida",
@@ -57,7 +59,8 @@
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",

@@ -11,6 +11,8 @@
         "transferErrorMessage": "Qualcosa è andato storto nell'invio del trasferimento. Prova di nuovo.",
         "transferSent": "Trasferimento inviato",
         "transferSentMessage": "Il trasferimento è stato inviato al Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Riutilizzo di chiave",
         "keyReuseError": "Non è possibile inviare a un indirizzo che è già stato usato per una spesa.",
         "invalidResponse": "Risposta non valida",
@@ -56,9 +58,9 @@
         "cannotPerformAction": "Non è possibile eseguire l'azione",
         "cannotPerformActionExplanation": "Vai alle impostazioni avanzate per reimpostare il portafoglio.",
         "attachToTangleUnavailable": "Collegamento al Tangle non disponibile",
-        "attachToTangleUnavailableExplanation":
-            "La funzione di collegamento al Tangle non è disponibile nel nodo che hai selezionato.",
-        "wallet": "Portafoglio"
+        "attachToTangleUnavailableExplanation": "La funzione di collegamento al Tangle non è disponibile nel nodo che hai selezionato.",
+        "wallet": "Portafoglio",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",

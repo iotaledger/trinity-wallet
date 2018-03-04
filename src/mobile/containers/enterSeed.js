@@ -67,9 +67,18 @@ class EnterSeed extends React.Component {
     }
 
     onQRRead(data) {
-        this.setState({
-            seed: data,
-        });
+        const dataString = data.toString();
+        if (dataString.length == 81 && dataString.match(VALID_SEED_REGEX)) {
+            this.setState({
+                seed: data,
+            });
+        } else {
+            this.props.generateAlert(
+                'error',
+                'Incorrect seed format',
+                'Valid seeds should be 81 characters and contain only A-Z or 9.',
+            );
+        }
         this._hideModal();
     }
 

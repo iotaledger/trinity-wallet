@@ -51,6 +51,7 @@
     "react-native-detect-navbar-android": "^0.2.0",
     "react-native-device-info": "^0.13.0",
     "react-native-dropdownalert": "git+https://git@github.com/rajivshah3/react-native-dropdownalert",
+    "react-native-exit-app": "^1.0.0",
     "react-native-extra-dimensions-android": "^0.21.0",
     "react-native-fabric": "^0.5.1",
     "react-native-fs": "^2.8.1",

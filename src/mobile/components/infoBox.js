@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
     icon: {
         width: height / 24,
         height: height / 24,
+        position: 'absolute',
+        top: height / 24 - height / 48,
+        left: width / 17,
     },
     iconContainer: {
         width: height / 24,
@@ -80,9 +83,8 @@ class InfoBox extends Component {
         return (
             <View style={styles.fieldContainer}>
                 <View style={[styles.banner, bannerBackgroundColor]} />
-                <View style={[styles.iconContainer, iconContainerBackgroundColor]}>
-                    <Image source={infoImagePath} style={styles.icon} />
-                </View>
+                <View style={[styles.iconContainer, iconContainerBackgroundColor]} />
+                <Image source={infoImagePath} style={styles.icon} />
                 <View style={[styles.innerContainer, innerContainerBackgroundColor]}>{text}</View>
             </View>
         );

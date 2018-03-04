@@ -11,6 +11,8 @@
         "transferErrorMessage": "Что-то пошло не так при отправке вашего перевода. Пожалуйста, повторите попытку.",
         "transferSent": "Перевод отправлен",
         "transferSentMessage": "Ваш перевод отправлен в Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Повторное использование адреса для отправки",
         "keyReuseError": "Вы не можете сделать перевод на адрес, с которого уже был осуществлён вывод.",
         "invalidResponse": "Неправильный отклик",
@@ -55,7 +57,8 @@
         "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса настроек кошелька.",
         "attachToTangleUnavailable": "Привязка к Tangle недоступна",
         "attachToTangleUnavailableExplanation": "Привязка к Tangle недоступна на выбранном узле.",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",

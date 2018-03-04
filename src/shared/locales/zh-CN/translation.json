@@ -11,6 +11,8 @@
         "transferErrorMessage": "发送交易信息出错，请重试。",
         "transferSent": "交易已发出",
         "transferSentMessage": "您的交易信息已经发送给Tangle",
+        "messageSent": "消息已发送",
+        "messageSentMessage": "您的消息已经发送给Tangle。",
         "keyReuse": "密钥重用",
         "keyReuseError": "您不能发送到发起付款的地址。",
         "invalidResponse": "无效响应",
@@ -55,7 +57,8 @@
         "cannotPerformActionExplanation": "转到高级设置以重置钱包。",
         "attachToTangleUnavailable": "无法连接到Tangle",
         "attachToTangleUnavailableExplanation": "连接到Tangle的功能在选定的节点上无法使用",
-        "wallet": "钱包"
+        "wallet": "钱包",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -342,7 +345,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "我已经保存了我的种子",
         "reenter": "现在, 您将被要求重新输入您的种子。",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "如果您的设备故障而您没有保存你的种子, 你将失去你的IOTA。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",

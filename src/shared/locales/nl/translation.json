@@ -12,6 +12,8 @@
             "Er is iets misgegaan tijdens het verzenden van uw overschrijving. Probeer het opnieuw.",
         "transferSent": "Overschrijving verzonden",
         "transferSentMessage": "Uw overschrijving is verzonden naar de Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Sleutel hergebruik",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Ongeldig antwoord",
@@ -58,7 +60,8 @@
             "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen.",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De sleutel bevat ongeldige tekens",
