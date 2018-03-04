@@ -11,6 +11,8 @@
         "transferErrorMessage": "Något gick fel under överföringen. Vänligen försök igen.",
         "transferSent": "Överföring skickad",
         "transferSentMessage": "Din överföring har skickats till Tangle.",
+        "messageSent": "Meddelandet har skickats",
+        "messageSentMessage": "Ditt meddelande har skickats till Tangle.",
         "keyReuse": "Nyckelåteranvändning",
         "keyReuseError": "Du kan inte skicka till en adress som redan utnyttjats för en utgående transaktion.",
         "invalidResponse": "Ogiltigt svar",
@@ -55,7 +57,8 @@
         "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
         "attachToTangleUnavailable": "Fastsättning på Tangle otillgänglig",
         "attachToTangleUnavailableExplanation": "Fäst på Tangle är otillgänglig på din valda nod.",
-        "wallet": "Plånbok"
+        "wallet": "Plånbok",
+        "pressBackAgain": "Tryck tillbaka igen för att stänga appen"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -193,8 +196,7 @@
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
-        "passwordTooShortExplanation":
-            "Ditt lösenord måste vara minst ${MIN_PASSWORD_LENGTH} tecken. Det är för närvarande ${this.state.password.length} tecken lång. Vänligen försök igen.",
+        "passwordTooShortExplanation": "Ditt lösenord måste vara minst {{minLength}} tecken. Det är för närvarande {{currentLength}} tecken långt. Vänligen försök igen.",
         "passwordMismatch": "Lösenorden matchar inte",
         "passwordMismatchExplanation": "De lösenord du har angett stämmer inte överens. Vänligen försök igen.",
         "nowWeNeedTo": "Nu behöver vi sätta ett lösenord.",
@@ -352,7 +354,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Jag har sparat min seed",
         "reenter": "Du kommer nu bli ombedd att upprepa din seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "Om din enhet går sönder och du glömt att spara din seed, kommer du förlora dina IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNA ÅTGÄRD KAN INTE ÅNGRAS.",

@@ -32,7 +32,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     componentDidMount() {
-        this.timeout = setTimeout(this.onTimerComplete.bind(this), 5000);
+        this.timeout = setTimeout(this.onTimerComplete.bind(this), 3000);
     }
 
     onTimerComplete() {
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        paddingTop: height / 30,
+        lineHeight: height / 14,
         textAlign: 'center',
     },
     checkboxContainer: {

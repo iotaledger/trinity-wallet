@@ -11,6 +11,8 @@
         "transferErrorMessage": "Une erreur s'est produite lors du transfert. Veuillez réessayer.",
         "transferSent": "Transfert effectué",
         "transferSentMessage": "Votre transfert a été envoyé sur le Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Réutilisation de clé",
         "keyReuseError": "Vous ne pouvez pas effectuer de transfert vers une adresse qui a déjà été débitée.",
         "invalidResponse": "Réponse non valide",
@@ -55,9 +57,9 @@
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
         "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
-        "attachToTangleUnavailableExplanation":
-            "La fonction Attacher au Tangle n'est pas disponible pour le node sélectionné.",
-        "wallet": "Wallet"
+        "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible pour le node sélectionné.",
+        "wallet": "Wallet",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",

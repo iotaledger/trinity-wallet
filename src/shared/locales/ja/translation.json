@@ -11,6 +11,8 @@
         "transferErrorMessage": "送金中に問題が発生しました。もう一度やり直してください。",
         "transferSent": "送金完了",
         "transferSentMessage": "送金情報がTangleに送られました。",
+        "messageSent": "メッセージを送信",
+        "messageSentMessage": "メッセージはTangleに送信されました。",
         "keyReuse": "キーの再使用",
         "keyReuseError": "一度支払いに使われたアドレスに送金することはできません。",
         "invalidResponse": "無効な応答",
@@ -55,7 +57,8 @@
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
         "attachToTangleUnavailable": "Tangleにアタッチ出来ません。",
         "attachToTangleUnavailableExplanation": "選択したノードではTangleにアタッチ出来ません。",
-        "wallet": "ウォレット"
+        "wallet": "ウォレット",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",

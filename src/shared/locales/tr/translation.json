@@ -11,6 +11,8 @@
         "transferErrorMessage": "Transferinizi gönderirken bir şeyler yanlış gitti. lütfen tekrar deneyin.",
         "transferSent": "Transfer Gönder",
         "transferSentMessage": "Transferiniz Tangle a gönderildi.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Anahtar tekrar kullanımı",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Geçersiz yanıt",
@@ -56,7 +58,8 @@
         "cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin.",
         "attachToTangleUnavailable": "Tangle kullanılmayacak şekilde ekle",
         "attachToTangleUnavailableExplanation": "Seçilen düğümünüzde Tangle eklentisi mevcut değil.",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
