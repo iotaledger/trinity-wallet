@@ -11,6 +11,8 @@
         "transferErrorMessage": "Κάτι πήγε στραβά κατά την αποστολή της μεταφοράς σας. Παρακαλώ δοκιμάστε ξανά.",
         "transferSent": "Μεταφορά απεστάλει",
         "transferSentMessage": "Η μεταφορά σας έχει αποσταλεί στο Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Επαναχρησιμοποίηση κλειδιού",
         "keyReuseError": "Δεν μπορείτε να στείλετε σε μια διεύθυνση από όπου έχει ήδη γίνει δαπάνη.",
         "invalidResponse": "Μη έγκυρη απόκριση",
@@ -56,7 +58,8 @@
         "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
         "attachToTangleUnavailable": "Η επισύναψη στο Tangle δεν είναι διαθέσιμη",
         "attachToTangleUnavailableExplanation": "Επισύναψη στο Tangle δεν είναι διαθέσιμη για το επιλεγμένο κόμβο.",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",

@@ -26,7 +26,7 @@ class ViewAddresses extends Component {
     }
 
     addChecksums(data) {
-        addressesWithChecksums = data.map((item) => iota.utils.addChecksum(item[0], 9, true));
+        addressesWithChecksums = data.map(item => iota.utils.addChecksum(item[0], 9, true));
         for (var i = 0; i < data.length; i++) {
             data[i][0] = addressesWithChecksums[i];
         }

@@ -98,7 +98,7 @@ android {
     defaultConfig {
         applicationId "com.iota.wallet"
         versionCode 14
-        versionName "3.3.4"
+        versionName "3.3.5"
         minSdkVersion 16
         targetSdkVersion 26
         multiDexEnabled true
@@ -171,6 +171,7 @@ dependencies {
     }
     compile "com.android.support:multidex:1.0.1"
     compile project(':lottie-react-native')
+    compile project(':react-native-exit-app')
 }
 
 // Run this once to be able to run the application with BUCK

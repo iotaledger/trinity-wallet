@@ -11,6 +11,8 @@
         "transferErrorMessage": "Coś poszło nie tak podczas przetwarzania twojego transferu. Spróbuj ponownie.",
         "transferSent": "Transfer zrealizowany",
         "transferSentMessage": "Transfer został przekazany do Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Ponowne użycie klucza",
         "keyReuseError": "Nie można wysłać na adres, który został już obciążony.",
         "invalidResponse": "Błędna odpowiedź",
@@ -56,7 +58,8 @@
         "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
         "attachToTangleUnavailable": "Dołączenie do Tangle niedostępne",
         "attachToTangleUnavailableExplanation": "Dołączenie do sieci Tangle niedostępne na wybranym serwerze.",
-        "wallet": "Portfel"
+        "wallet": "Portfel",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",

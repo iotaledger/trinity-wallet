@@ -62,13 +62,16 @@ class TransferConfirmationModal extends Component {
         borderColor: PropTypes.object.isRequired,
         amount: PropTypes.string.isRequired,
         denomination: PropTypes.string.isRequired,
+        setSendingTransferFlag: PropTypes.func.isRequired,
     };
 
     onSendPress() {
-        this.props.hideModal(() => {
+        const { hideModal, setSendingTransferFlag, sendTransfer } = this.props;
+        hideModal(() => {
+            setSendingTransferFlag();
             this.timeout = setTimeout(() => {
-                this.props.sendTransfer();
-            }, 250);
+                sendTransfer();
+            }, 300);
         });
     }
 

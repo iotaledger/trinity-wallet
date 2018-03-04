@@ -3,7 +3,6 @@ import { defaultNode, nodes } from '../config';
 
 export const iota = new IOTA({ provider: defaultNode });
 
-console.log(iota.provider);
 export const changeIotaNode = provider => iota.changeNode({ provider });
 
 export const getRandomNode = () => {
