@@ -11,6 +11,8 @@
         "transferErrorMessage": "交易傳送時發生錯誤，請再試一次",
         "transferSent": "交易送出",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "重新使用加密鑰匙",
         "keyReuseError": "您不能發送到已用過的位址。",
         "invalidResponse": "無效的回應",
@@ -55,7 +57,8 @@
         "cannotPerformActionExplanation": "轉到進階設定中重置錢包。",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "pressBackAgain": "Press back again to close the app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",

@@ -194,14 +194,25 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
         if (!error) {
             dispatch(checkForNewAddress(accountName, addressData, success));
             dispatch(updateAccountInfo(accountName, success, value));
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('global:transferSent'),
-                    i18next.t('global:transferSentMessage'),
-                    100000,
-                ),
-            );
+            if (value === 0) {
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('global:messageSent'),
+                        i18next.t('global:messageSentMessage'),
+                        100000,
+                    ),
+                );
+            } else {
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('global:transferSent'),
+                        i18next.t('global:transferSentMessage'),
+                        100000,
+                    ),
+                );
+            }
             dispatch(sendTransferSuccess({ address, value }));
         } else {
             dispatch(sendTransferError());

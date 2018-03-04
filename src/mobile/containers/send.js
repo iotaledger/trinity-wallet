@@ -17,7 +17,13 @@ import {
     Keyboard,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { round, VALID_SEED_REGEX, ADDRESS_LENGTH, parse } from 'iota-wallet-shared-modules/libs/util';
+import {
+    round,
+    VALID_SEED_REGEX,
+    ADDRESS_LENGTH,
+    parse,
+    VALID_ADDRESS_WITH_CHECKSUM_REGEX,
+} from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import keychain, { getSeed } from '../util/keychain';
 import {
@@ -89,6 +95,7 @@ class Send extends Component {
             maxPressed: false,
             maxColor: props.secondaryBackgroundColor,
             maxText: 'SEND MAX',
+            sending: false,
         };
     }
 
@@ -101,8 +108,12 @@ class Send extends Component {
             KeepAwake.activate();
         } else if (this.props.isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
-            this.setState({ message: '', amount: '', address: '' });
+            this.setState({ message: '', amount: '', address: '', sending: false });
         }
+    }
+
+    setSendingTransferFlag() {
+        this.setState({ sending: true });
     }
 
     onDenominationPress() {
@@ -122,14 +133,16 @@ class Send extends Component {
     }
 
     onMaxPress() {
+        const { sending } = this.state;
         const max = (this.props.balance / this.getUnitMultiplier()).toString();
-
-        this.setState({
-            amount: max,
-            maxPressed: true,
-            maxColor: '#FF6C69',
-            maxText: 'MAXIMUM amount selected',
-        });
+        if (!sending) {
+            this.setState({
+                amount: max,
+                maxPressed: true,
+                maxColor: '#FF6C69',
+                maxText: 'MAXIMUM amount selected',
+            });
+        }
     }
 
     onAmountType(amount) {
@@ -175,16 +188,16 @@ class Send extends Component {
     }
 
     renderInvalidAddressErrors(address) {
-        const { t } = this.props;
+        const { t, generateAlert } = this.props;
         const props = ['error', t('invalidAddress')];
 
         if (size(address) !== 90) {
-            return this.props.generateAlert(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
+            return generateAlert(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
         } else if (address.match(VALID_SEED_REGEX) === null) {
-            return this.props.generateAlert(...props, t('invalidAddressExplanation2'));
+            return generateAlert(...props, t('invalidAddressExplanation2'));
         }
 
-        return this.props.generateAlert(...props, t('invalidAddressExplanation3'));
+        return generateAlert(...props, t('invalidAddressExplanation3'));
     }
 
     onSendPress() {
@@ -311,6 +324,7 @@ class Send extends Component {
                         backgroundColor={THEMES.getHSL(this.props.barColor)}
                         borderColor={{ borderColor: secondaryBackgroundColor }}
                         textColor={{ color: secondaryBackgroundColor }}
+                        setSendingTransferFlag={() => this.setSendingTransferFlag()}
                     />
                 );
                 this.setState({
@@ -339,7 +353,9 @@ class Send extends Component {
     }
 
     onQRRead(data) {
-        if (data.match(/{/)) {
+        const { generateAlert } = this.props;
+        const dataString = data.toString();
+        if (dataString.match(/{/)) {
             // For codes containing JSON (iotaledger and Trinity)
             data = JSON.parse(data);
             this.setState({
@@ -350,20 +366,24 @@ class Send extends Component {
                     message: data.message,
                 });
             }
-        }
-        if (data.match(/iota\:/)) {
+        } else if (dataString.match(/iota\:/)) {
             // For codes with iota: at the front (TheTangle.org)
             data = data.substring(5);
             this.setState({
                 address: data,
             });
-        } else {
+        } else if (dataString.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.setState({
                 address: data,
             });
+        } else {
+            generateAlert(
+                'error',
+                'Incorrect address format',
+                'Valid addresses should be 90 characters and contain only A-Z or 9.',
+            );
         }
-
         this._hideModal();
     }
 
@@ -401,7 +421,7 @@ class Send extends Component {
     }
 
     render() {
-        const { amount, address, message } = this.state;
+        const { amount, address, message, isModalVisible, denomination, maxColor, maxText, sending } = this.state;
         const {
             t,
             ctaColor,
@@ -410,9 +430,10 @@ class Send extends Component {
             secondaryBackgroundColor,
             secondaryCtaColor,
             ctaBorderColor,
+            isSendingTransfer,
+            isGettingSensitiveInfoToMakeTransaction,
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
-        const borderColor = { borderColor: secondaryBackgroundColor };
         const sendBorderColor = { borderColor: ctaBorderColor };
         const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
         const ctaTextColor = { color: secondaryCtaColor };
@@ -441,6 +462,8 @@ class Send extends Component {
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 value={address}
+                                editable={!sending}
+                                selectTextOnFocus={!sending}
                             />
                         </View>
                         <View style={styles.fieldContainer}>
@@ -459,13 +482,15 @@ class Send extends Component {
                                 widget="denomination"
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
-                                denominationText={this.state.denomination}
+                                denominationText={denomination}
                                 onDenominationPress={event => this.onDenominationPress()}
                                 value={amount}
+                                editable={!sending}
+                                selectTextOnFocus={!sending}
                             />
                             <Text style={[styles.conversionText, textColor]}>
                                 {' '}
-                                {this.state.denomination === currencySymbol
+                                {denomination === currencySymbol
                                     ? this.getConversionTextFiat()
                                     : this.getConversionTextIota()}{' '}
                             </Text>
@@ -482,12 +507,10 @@ class Send extends Component {
                                                 marginRight: width / 50,
                                                 opacity: 0.8,
                                             },
-                                            { backgroundColor: this.state.maxColor },
+                                            { backgroundColor: maxColor },
                                         ]}
                                     />
-                                    <Text style={[styles.maxButtonText, { color: this.state.maxColor }]}>
-                                        {this.state.maxText}
-                                    </Text>
+                                    <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -507,12 +530,14 @@ class Send extends Component {
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 value={message}
+                                editable={!sending}
+                                selectTextOnFocus={!sending}
                             />
                         </View>
                     </View>
                     <View style={styles.midContainer}>
-                        {!this.props.isSendingTransfer &&
-                            !this.props.isGettingSensitiveInfoToMakeTransaction && (
+                        {!isSendingTransfer &&
+                            !isGettingSensitiveInfoToMakeTransaction && (
                                 <View style={styles.sendButtonContainer}>
                                     <TouchableOpacity
                                         onPress={event => {
@@ -534,13 +559,12 @@ class Send extends Component {
                                     </TouchableOpacity>
                                 </View>
                             )}
-                        {(this.props.isGettingSensitiveInfoToMakeTransaction || this.props.isSendingTransfer) &&
-                            !this.state.isModalVisible && (
+                        {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
+                            !isModalVisible && (
                                 <ActivityIndicator
                                     animating={
-                                        (this.props.isGettingSensitiveInfoToMakeTransaction ||
-                                            this.props.isSendingTransfer) &&
-                                        !this.state.isModalVisible
+                                        (isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
+                                        !isModalVisible
                                     }
                                     style={styles.activityIndicator}
                                     size="large"
@@ -568,7 +592,7 @@ class Send extends Component {
                         backdropTransitionOutTiming={200}
                         backdropColor={THEMES.getHSL(backgroundColor)}
                         style={{ alignItems: 'center', margin: 0 }}
-                        isVisible={this.state.isModalVisible}
+                        isVisible={isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
                     >
                         {this._renderModalContent()}
@@ -657,7 +681,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'Lato-Regular',
         fontSize: width / 29.6,
         textAlign: 'center',
         backgroundColor: 'transparent',

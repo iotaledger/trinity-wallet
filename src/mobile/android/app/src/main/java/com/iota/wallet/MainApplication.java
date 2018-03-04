@@ -18,6 +18,7 @@ import com.reactnativenavigation.NavigationApplication;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.rnfs.RNFSPackage;
 import com.rnprint.RNPrint.RNPrintPackage;
+import com.github.wumke.RNExitApp.RNExitAppPackage;
 
 import org.iota.mobile.IOTAMobilePackage;
 
@@ -62,7 +63,8 @@ public class MainApplication extends NavigationApplication {
             new KCKeepAwakePackage(),
             new KeychainPackage(),
             new LottiePackage(),
-            new IOTAMobilePackage()
+            new IOTAMobilePackage(),
+            new RNExitAppPackage()
     );
   }
 

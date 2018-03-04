@@ -96,8 +96,10 @@ class SeedReentry extends Component {
                                 <InfoBox
                                     text={
                                         <View>
-                                            <Text style={[styles.infoText, textColor]}>{t('thisIsACheck')}</Text>
-                                            <Text style={[styles.infoText, textColor]}>{t('ifYouHaveNotSaved')}</Text>
+                                            <Text style={[styles.infoTextTop, textColor]}>{t('thisIsACheck')}</Text>
+                                            <Text style={[styles.infoTextBottom, textColor]}>
+                                                {t('ifYouHaveNotSaved')}
+                                            </Text>
                                         </View>
                                     }
                                     secondaryBackgroundColor={secondaryBackgroundColor}
@@ -158,10 +160,17 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    infoText: {
+    infoTextTop: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'center',
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    infoTextBottom: {
+        paddingTop: height / 60,
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {

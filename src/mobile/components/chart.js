@@ -255,7 +255,7 @@ class Chart extends Component {
                                 },
                             }}
                             domain={{
-                                x: [-1, this.getMaxX() + 1],
+                                x: [-(this.getMaxX() * 0.016), this.getMaxX() + this.getMaxX() * 0.016],
                                 y: [this.getMinY(), this.getMaxY()],
                             }}
                             scale={{ x: 'time', y: 'linear' }}

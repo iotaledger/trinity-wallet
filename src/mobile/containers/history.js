@@ -75,11 +75,11 @@ class History extends Component {
     }
 
     updateAccountData() {
-        const { selectedAccountName } = this.props;
+        const { selectedAccountName, seedIndex } = this.props;
         keychain
             .get()
             .then(credentials => {
-                const seed = getSeed(credentials.data, 0);
+                const seed = getSeed(credentials.data, seedIndex);
                 this.props.getAccountInfo(seed, selectedAccountName);
             })
             .catch(err => console.log(err));
@@ -198,6 +198,7 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.seedNames),
+    seedIndex: tempAccount.seedIndex,
     negativeColor: settings.theme.negativeColor,
     positiveColor: settings.theme.positiveColor,
     backgroundColor: settings.theme.backgroundColor,

@@ -11,6 +11,8 @@
         "transferErrorMessage": "Algo deu errado ao enviar a sua transferência. Por favor, tente novamente.",
         "transferSent": "Transferência enviada",
         "transferSentMessage": "Sua transferência for enviada para o Tangle.",
+        "messageSent": "Mensagem enviada",
+        "messageSentMessage": "Sua mensagem foi enviada para o Tangle.",
         "keyReuse": "Reutilização da chave",
         "keyReuseError": "Você não pode enviar para um endereço no qual já foi gasto.",
         "invalidResponse": "Resposta inválida",
@@ -56,7 +58,8 @@
         "cannotPerformActionExplanation": "Vá para configurações avançadas para redefinir a carteira.",
         "attachToTangleUnavailable": "Anexar ao Tangle indisponível",
         "attachToTangleUnavailableExplanation": "Anexar ao Tangle não está disponível no nó selecionado.",
-        "wallet": "Carteira"
+        "wallet": "Carteira",
+        "pressBackAgain": "Toque novamente para fechar o app"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -353,7 +356,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Eu tenho guardado minha seed",
         "reenter": "Agora você será solicitado a redigitar sua semente.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "Se seu dispositivo falhar e você não salvar sua Seed, você perderá seu IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ESTA AÇÃO NÃO PODE SER REVERTIDA.",
