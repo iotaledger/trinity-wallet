@@ -144,8 +144,15 @@ const broadcastBundleAsync = (tail) => {
 };
 
 const sendTransferAsync = (seed, depth, minWeightMagnitude, transfers, options = null) => {
+    // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
+    let args = [seed, depth, minWeightMagnitude, transfers];
+
+    if (options) {
+        args = [...args, options];
+    }
+
     return new Promise((resolve, reject) => {
-        iota.api.sendTransfer(seed, depth, minWeightMagnitude, transfers, options, (err, newTransfer) => {
+        iota.api.sendTransfer(...args, (err, newTransfer) => {
             if (err) {
                 reject(err);
             } else {
@@ -168,14 +175,14 @@ const getTransactionsToApproveAsync = (depth = DEFAULT_DEPTH) => {
 };
 
 const prepareTransfersAsync = (seed, transfers, options = null) => {
+    // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
+    let args = [seed, transfers];
+
+    if (options) {
+        args = [...args, options];
+    }
+
     return new Promise((resolve, reject) => {
-        // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
-        let args = [seed, transfers];
-
-        if (options) {
-            args = [...args, options];
-        }
-
         iota.api.prepareTransfers(...args, (err, trytes) => {
             if (err) {
                 reject(err);
