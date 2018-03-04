@@ -272,10 +272,10 @@
         "selectAll": "Seleziona tutto",
         "securitySettings": "Impostazioni di sicurezza",
         "fingerprint": "Autenticazione biometrica",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "couldNotFetchRates": "Impossibile reperire tassi",
+        "couldNotFetchRatesExplanation": "Qualcosa è andato storto durante il reperimento dei tassi di conversione per {{currency}}.",
+        "fetchedConversionRates": "Reperiti i tassi di conversione",
+        "fetchedConversionRatesExplanation": "Reperiti con successo i più recenti tassi di conversione per {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Immetti la tua password per reimpostare il portafoglio.",
