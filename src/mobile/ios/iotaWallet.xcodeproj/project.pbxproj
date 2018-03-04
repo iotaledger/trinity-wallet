@@ -995,10 +995,10 @@
 			isa = PBXGroup;
 			children = (
 				604EB89A204BA58700873EFA /* IotaKit.framework */,
-				616653CDDDAC1672662D6F7955074603 /* libPods-iotaWallet.a */,
+				616653CDDDAC1672662D6F7955074603 /* Pods_iotaWallet.framework */,
 				73DE2893421CB79475DA9ABBFC68EF31 /* libPods-iotaWallet-tvOS.a */,
 				75741D422FC234226BD97F79574086A2 /* libPods-iotaWallet-tvOSTests.a */,
-				54D85103EA17DE076AB5D993A1B15546 /* libPods-iotaWalletTests.a */,
+				54D85103EA17DE076AB5D993A1B15546 /* Pods_iotaWalletTests.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1644,7 +1644,7 @@
 			remoteRef = 5A109CA5CC18A16B6414EEC4BBD87090 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		54D85103EA17DE076AB5D993A1B15546 /* libPods-iotaWalletTests.a */ = {
+		54D85103EA17DE076AB5D993A1B15546 /* Pods_iotaWalletTests.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Pods_iotaWalletTests.framework;
@@ -1728,7 +1728,7 @@
 			remoteRef = 60AE5EE8204B382B00BBD5CF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		616653CDDDAC1672662D6F7955074603 /* libPods-iotaWallet.a */ = {
+		616653CDDDAC1672662D6F7955074603 /* Pods_iotaWallet.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Pods_iotaWallet.framework;
@@ -2498,7 +2498,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IotaKit/iotaWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2795,7 +2795,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IotaKit/iotaWallet-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
