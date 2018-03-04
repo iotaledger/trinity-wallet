@@ -241,6 +241,13 @@
 			remoteGlobalIDString = F157C5185B41B6A5D118E992853CF64C;
 			remoteInfo = "RNDeviceInfo-tvOS";
 		};
+		604EB899204BA58700873EFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F90973ADF99851374F06FC44DF2E3A77;
+			remoteInfo = IotaKit;
+		};
 		60AE5EA9204B382B00BBD5CF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B8B9BB680BF96F04B35C8CF2291F3DF7 /* Lottie.xcodeproj */;
@@ -987,10 +994,11 @@
 		9587AF1D58A6A266E24B67481F9ED9F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				616653CDDDAC1672662D6F7955074603 /* libPods-iotaWallet.a */,
+				604EB89A204BA58700873EFA /* IotaKit.framework */,
+				616653CDDDAC1672662D6F7955074603 /* Pods_iotaWallet.framework */,
 				73DE2893421CB79475DA9ABBFC68EF31 /* libPods-iotaWallet-tvOS.a */,
 				75741D422FC234226BD97F79574086A2 /* libPods-iotaWallet-tvOSTests.a */,
-				54D85103EA17DE076AB5D993A1B15546 /* libPods-iotaWalletTests.a */,
+				54D85103EA17DE076AB5D993A1B15546 /* Pods_iotaWalletTests.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1636,10 +1644,10 @@
 			remoteRef = 5A109CA5CC18A16B6414EEC4BBD87090 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		54D85103EA17DE076AB5D993A1B15546 /* libPods-iotaWalletTests.a */ = {
+		54D85103EA17DE076AB5D993A1B15546 /* Pods_iotaWalletTests.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libPods-iotaWalletTests.a";
+			fileType = wrapper.framework;
+			path = Pods_iotaWalletTests.framework;
 			remoteRef = 5883AA054AC88EAA5EFB34040EA713B2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1648,6 +1656,13 @@
 			fileType = archive.ar;
 			path = "libprivatedata-tvOS.a";
 			remoteRef = E6178B9571AF1198DDEE6D5F7550DA41 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		604EB89A204BA58700873EFA /* IotaKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = IotaKit.framework;
+			remoteRef = 604EB899204BA58700873EFA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		60AE5EAA204B382B00BBD5CF /* Lottie.framework */ = {
@@ -1713,10 +1728,10 @@
 			remoteRef = 60AE5EE8204B382B00BBD5CF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		616653CDDDAC1672662D6F7955074603 /* libPods-iotaWallet.a */ = {
+		616653CDDDAC1672662D6F7955074603 /* Pods_iotaWallet.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libPods-iotaWallet.a";
+			fileType = wrapper.framework;
+			path = Pods_iotaWallet.framework;
 			remoteRef = CD9F8E5E7CF2056A65FA532392457FA4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2215,7 +2230,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/HockeySDK/HockeySDKResources.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/HockeySDK/HockeySDKResources.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -2382,6 +2397,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2482,7 +2498,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IotaKit/iotaWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2663,6 +2679,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Debug;
 		};
@@ -2778,7 +2795,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IotaKit/iotaWallet-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
