@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+               BlueprintIdentifier = "4848851A00274CA2FFBE307BAEB5F278"
                BuildableName = "iotaWallet.app"
                BlueprintName = "iotaWallet"
                ReferencedContainer = "container:iotaWallet.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
+               BlueprintIdentifier = "30A16F44D53CE8CFD5085B3A66B82141"
                BuildableName = "iotaWalletTests.xctest"
                BlueprintName = "iotaWalletTests"
                ReferencedContainer = "container:iotaWallet.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "60D29886201A85F800143895"
+               BlueprintIdentifier = "B337D5A007B26D2B5F9D16F7E2662744"
                BuildableName = "iotaWalletUITests.xctest"
                BlueprintName = "iotaWalletUITests"
                ReferencedContainer = "container:iotaWallet.xcodeproj">
@@ -75,7 +75,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
+               BlueprintIdentifier = "30A16F44D53CE8CFD5085B3A66B82141"
                BuildableName = "iotaWalletTests.xctest"
                BlueprintName = "iotaWalletTests"
                ReferencedContainer = "container:iotaWallet.xcodeproj">
@@ -85,7 +85,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "60D29886201A85F800143895"
+               BlueprintIdentifier = "B337D5A007B26D2B5F9D16F7E2662744"
                BuildableName = "iotaWalletUITests.xctest"
                BlueprintName = "iotaWalletUITests"
                ReferencedContainer = "container:iotaWallet.xcodeproj">
@@ -95,7 +95,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BlueprintIdentifier = "4848851A00274CA2FFBE307BAEB5F278"
             BuildableName = "iotaWallet.app"
             BlueprintName = "iotaWallet"
             ReferencedContainer = "container:iotaWallet.xcodeproj">
@@ -119,7 +119,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BlueprintIdentifier = "4848851A00274CA2FFBE307BAEB5F278"
             BuildableName = "iotaWallet.app"
             BlueprintName = "iotaWallet"
             ReferencedContainer = "container:iotaWallet.xcodeproj">
@@ -145,7 +145,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BlueprintIdentifier = "4848851A00274CA2FFBE307BAEB5F278"
             BuildableName = "iotaWallet.app"
             BlueprintName = "iotaWallet"
             ReferencedContainer = "container:iotaWallet.xcodeproj">
