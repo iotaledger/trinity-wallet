@@ -19,7 +19,7 @@
         "invalidResponse": "Ошибка сервера",
         "invalidResponseExplanation": "На узле произошла ошибка.",
         "invalidResponsePollingExplanation": "На узле произошла ошибка во время запроса.",
-        "invalidResponseFetchingAccount": "От узла была получена ошибка во время получения информации о Вашем счёте. Попробуйте поменять узел.",
+        "invalidResponseFetchingAccount": "Узел сообщил об ошибке во время получения информации о Вашем счёте. Попробуйте поменять узел.",
         "invalidResponseSendingTransfer": "На узле произошла ошибка во время отсылки перевода.",
         "seed": "Ключ",
         "back": "НАЗАД",
