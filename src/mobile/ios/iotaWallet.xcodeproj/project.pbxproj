@@ -56,6 +56,7 @@
 		CB1C68581F9CC65500229848 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1C68561F9CC62A00229848 /* libRNFS.a */; };
 		CB262D1A1FE04020004E06D5 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB262D191FE04011004E06D5 /* libRNKeychain.a */; };
 		CB3E91DB1F55A2E5007EFF4C /* libRNRandomBytes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB3E91D81F55A2CE007EFF4C /* libRNRandomBytes.a */; };
+		CB767C2F2049B08A00525F49 /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB767BF42049A63E00525F49 /* Icons.ttf */; };
 		CB87E5C01F550673009DB5ED /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB87E5BF1F55064B009DB5ED /* libReactNativeNavigation.a */; };
 		CBD250C22032537F00D9A6B0 /* libRNSecureRandom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD250BF2032536D00D9A6B0 /* libRNSecureRandom.a */; };
 		CBDB98A11F8EAE1500035DC3 /* libRNPrint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDB989D1F8EAE0200035DC3 /* libRNPrint.a */; };
@@ -615,6 +616,7 @@
 		CB1C684E1F9CC62900229848 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		CB262D141FE04011004E06D5 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
 		CB3E91B51F55A2B8007EFF4C /* RNRandomBytes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNRandomBytes.xcodeproj; path = "../node_modules/react-native-randombytes/RNRandomBytes.xcodeproj"; sourceTree = "<group>"; };
+		CB767BF42049A63E00525F49 /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		CB87E5951F550649009DB5ED /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		CBD250832032536D00D9A6B0 /* RNSecureRandom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSecureRandom.xcodeproj; path = "../node_modules/react-native-securerandom/ios/RNSecureRandom.xcodeproj"; sourceTree = "<group>"; };
 		CBDB986A1F8EAD9800035DC3 /* RNHTMLtoPDF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNHTMLtoPDF.xcodeproj; path = "../node_modules/react-native-html-to-pdf/ios/RNHTMLtoPDF.xcodeproj"; sourceTree = "<group>"; };
@@ -963,6 +965,7 @@
 				CBFE03421FD648DE00094FBB /* Lato-Heavy.ttf */,
 				CBFE03411FD648DC00094FBB /* Lato-Light.ttf */,
 				CBFE03441FD648DF00094FBB /* Lato-Regular.ttf */,
+				CB767BF42049A63E00525F49 /* Icons.ttf */,
 				6083B2C81FB557A700DF3681 /* Config */,
 				13B07FAE1A68108700A75B9A /* iotaWallet */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -1862,6 +1865,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB767C2F2049B08A00525F49 /* Icons.ttf in Resources */,
 				CBFE03491FD648E000094FBB /* Lato-Heavy.ttf in Resources */,
 				CBFE03481FD648E000094FBB /* Lato-Light.ttf in Resources */,
 				CBFE03471FD648E000094FBB /* Lato-Black.ttf in Resources */,

@@ -11,16 +11,6 @@ import {
     setSetting,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import whiteBalanceImagePath from 'iota-wallet-shared-modules/images/balance-white.png';
-import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
-import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
-import whiteHistoryImagePath from 'iota-wallet-shared-modules/images/history-white.png';
-import whiteSettingsImagePath from 'iota-wallet-shared-modules/images/settings-white.png';
-import blackBalanceImagePath from 'iota-wallet-shared-modules/images/balance-black.png';
-import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
-import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
-import blackHistoryImagePath from 'iota-wallet-shared-modules/images/history-black.png';
-import blackSettingsImagePath from 'iota-wallet-shared-modules/images/settings-black.png';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import UserInactivity from '../components/userInactivity';
 import StatefulDropdownAlert from './statefulDropdownAlert';
@@ -121,23 +111,17 @@ class Home extends Component {
             navigator,
             inactive,
             minimised,
-            barColor,
-            backgroundColor,
-            negativeColor,
-            positiveColor,
-            secondaryBarColor,
-            secondaryBackgroundColor,
+            bar,
+            body,
+            negative,
+            positive,
             isFingerprintEnabled,
+            primary,
         } = this.props;
 
-        const balanceImagePath = secondaryBarColor === 'white' ? whiteBalanceImagePath : blackBalanceImagePath;
-        const sendImagePath = secondaryBarColor === 'white' ? whiteSendImagePath : blackSendImagePath;
-        const receiveImagePath = secondaryBarColor === 'white' ? whiteReceiveImagePath : blackReceiveImagePath;
-        const historyImagePath = secondaryBarColor === 'white' ? whiteHistoryImagePath : blackHistoryImagePath;
-        const settingsImagePath = secondaryBarColor === 'white' ? whiteSettingsImagePath : blackSettingsImagePath;
-
-        const barTextColor = { color: secondaryBarColor };
-        const textColor = { color: secondaryBackgroundColor };
+        const barTextColor = { color: bar.color };
+        const textColor = { color: body.color };
+        const backgroundColor = { backgroundColor: body.bg };
 
         return (
             <UserInactivity
@@ -149,7 +133,7 @@ class Home extends Component {
                 onInactivity={this.handleInactivity}
             >
                 <KeyboardAvoidingView style={{ flex: 1, backgroundColor }}>
-                    <DynamicStatusBar textColor={secondaryBarColor} backgroundColor={barColor} />
+                    <DynamicStatusBar backgroundColor={bar.bg} />
                     {!inactive &&
                         !minimised && (
                             <View style={{ flex: 1 }}>
@@ -158,34 +142,49 @@ class Home extends Component {
                                     <TabContent navigator={navigator} onTabSwitch={(name) => this.onTabSwitch(name)} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <Tabs onPress={(name) => this.onTabSwitch(name)} barColor={barColor}>
+                                    <Tabs onPress={(name) => this.onTabSwitch(name)} barColor={bar.bg}>
                                         <Tab
                                             name="balance"
-                                            icon={balanceImagePath}
+                                            icon="wallet"
+                                            iconColor={bar.color}
+                                            activeBorderColor={primary.color}
+                                            activeColor={bar.alt}
                                             textColor={barTextColor}
                                             text={t('home:balance').toUpperCase()}
                                         />
                                         <Tab
                                             name="send"
-                                            icon={sendImagePath}
+                                            icon="send"
+                                            iconColor={bar.color}
+                                            activeBorderColor={primary.color}
+                                            activeColor={bar.alt}
                                             textColor={barTextColor}
                                             text={t('home:send').toUpperCase()}
                                         />
                                         <Tab
                                             name="receive"
-                                            icon={receiveImagePath}
+                                            icon="receive"
+                                            iconColor={bar.color}
+                                            activeBorderColor={primary.color}
+                                            activeColor={bar.alt}
                                             textColor={barTextColor}
                                             text={t('home:receive').toUpperCase()}
                                         />
                                         <Tab
                                             name="history"
-                                            icon={historyImagePath}
+                                            icon="history"
+                                            iconColor={bar.color}
+                                            activeBorderColor={primary.color}
+                                            activeColor={bar.alt}
                                             textColor={barTextColor}
                                             text={t('home:history').toUpperCase()}
                                         />
                                         <Tab
                                             name="settings"
-                                            icon={settingsImagePath}
+                                            icon="settings"
+                                            iconColor={bar.color}
+                                            activeBorderColor={primary.color}
+                                            activeColor={bar.alt}
                                             textColor={barTextColor}
                                             text={t('home:settings').toUpperCase()}
                                         />
@@ -198,10 +197,10 @@ class Home extends Component {
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <EnterPassword
                                 onLoginPress={this.onLoginPress}
-                                backgroundColor={backgroundColor}
-                                negativeColor={negativeColor}
-                                positiveColor={positiveColor}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                backgroundColor={body.bg}
+                                negativeColor={negative.color}
+                                positiveColor={positive.color}
+                                secondaryBackgroundColor={body.color}
                                 textColor={textColor}
                                 isFingerprintEnabled={isFingerprintEnabled}
                             />
@@ -209,7 +208,7 @@ class Home extends Component {
                     )}
                     {minimised && <View />}
                     <PollComponent />
-                    <StatefulDropdownAlert textColor={secondaryBarColor} backgroundColor={barColor} />
+                    <StatefulDropdownAlert backgroundColor={bar.bg} />
                 </KeyboardAvoidingView>
             </UserInactivity>
         );
@@ -220,12 +219,11 @@ const mapStateToProps = (state) => ({
     storedPassword: state.tempAccount.password,
     inactive: state.tempAccount.inactive,
     minimised: state.tempAccount.minimised,
-    barColor: state.settings.theme.barColor,
-    backgroundColor: state.settings.theme.backgroundColor,
-    negativeColor: state.settings.theme.negativeColor,
-    positiveColor: state.settings.theme.positiveColor,
-    secondaryBarColor: state.settings.theme.secondaryBarColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    body: state.settings.theme.body,
+    negative: state.settings.theme.negative,
+    positive: state.settings.theme.positive,
+    primary: state.settings.theme.primary,
+    bar: state.settings.theme.bar,
     currentRoute: state.home.childRoute,
     isSyncing: state.tempAccount.isSyncing,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
@@ -250,13 +248,12 @@ Home.propTypes = {
     setUserActivity: PropTypes.func.isRequired,
     inactive: PropTypes.bool.isRequired,
     minimised: PropTypes.bool.isRequired,
-    backgroundColor: PropTypes.string.isRequired,
-    barColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.string.isRequired,
-    positiveColor: PropTypes.string.isRequired,
+    body: PropTypes.object.isRequired,
+    negative: PropTypes.object.isRequired,
+    positive: PropTypes.object.isRequired,
     storedPassword: PropTypes.string.isRequired,
-    secondaryBarColor: PropTypes.string.isRequired,
-    secondaryBackgroundColor: PropTypes.string.isRequired,
+    bar: PropTypes.object.isRequired,
+    primary: PropTypes.object.isRequired,
     isTransitioning: PropTypes.bool.isRequired,
     isSyncing: PropTypes.bool.isRequired,
     isSendingTransfer: PropTypes.bool.isRequired,

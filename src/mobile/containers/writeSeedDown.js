@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import Seedbox from '../components/seedBox';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/dynamicStatusBar';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -87,10 +86,6 @@ const styles = StyleSheet.create({
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
     seedBox: {
         borderColor: 'white',
         borderWidth: 1,
@@ -152,9 +147,8 @@ class WriteSeedDown extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
-        positiveColor: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        positive: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
         seed: PropTypes.string.isRequired,
     };
 
@@ -165,19 +159,16 @@ class WriteSeedDown extends Component {
     }
 
     render() {
-        const { t, positiveColor, backgroundColor, secondaryBackgroundColor, seed } = this.props;
+        const { t, positive, body, seed } = this.props;
         const checksum = getChecksum(seed);
-        const textColor = { color: secondaryBackgroundColor };
-        const borderColor = { borderColor: secondaryBackgroundColor };
-        const positiveColorText = { color: positiveColor };
-        const positiveColorBorder = { borderColor: positiveColor };
-        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
+        const textColor = { color: body.color };
+        const borderColor = { borderColor: body.color };
 
         return (
-            <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaImagePath} style={styles.iotaLogo} />
+                    <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midContainer}>
                     <Text style={[styles.infoText, textColor]}>
@@ -191,7 +182,7 @@ class WriteSeedDown extends Component {
                         </Trans>
                     </Text>
                     <Seedbox
-                        secondaryBackgroundColor={secondaryBackgroundColor}
+                        secondaryBackgroundColor={body.color}
                         borderColor={borderColor}
                         textColor={textColor}
                         seed={seed}
@@ -202,8 +193,8 @@ class WriteSeedDown extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, positiveColorBorder]}>
-                            <Text style={[styles.doneText, positiveColorText]}>{t('global:done')}</Text>
+                        <View style={[styles.doneButton, { borderColor: positive.color }]}>
+                            <Text style={[styles.doneText, { color: positive.color }]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -214,9 +205,8 @@ class WriteSeedDown extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
-    backgroundColor: state.settings.theme.backgroundColor,
-    positiveColor: state.settings.theme.positiveColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    body: state.settings.theme.body,
+    positive: state.settings.theme.positive,
 });
 
 export default translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown));

@@ -90,13 +90,12 @@ class Receive extends Component {
         getFromKeychainRequest: PropTypes.func.isRequired,
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
-        ctaColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        secondaryCtaColor: PropTypes.string.isRequired,
+        primary: PropTypes.object.isRequired,
+        negative: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
+        secondary: PropTypes.object.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
         t: PropTypes.func.isRequired,
-        ctaBorderColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -203,29 +202,23 @@ class Receive extends Component {
         const {
             receiveAddress,
             t,
-            negativeColor,
-            secondaryBackgroundColor,
-            ctaColor,
-            ctaBorderColor,
-            secondaryCtaColor,
+            negative,
+            secondary,
+            primary,
+            body,
             isGeneratingReceiveAddress,
             isGettingSensitiveInfoToGenerateAddress,
         } = this.props;
         const message = this.state.message;
-        const textColor = { color: secondaryBackgroundColor };
-        const borderColor = { borderColor: secondaryBackgroundColor };
+        const textColor = { color: body.color };
+        const borderColor = { borderColor: body.color };
         const opacity = { opacity: this.getOpacity() };
-        const isWhite = secondaryBackgroundColor === 'white';
-        const receiveAddressContainerBackgroundColor = isWhite
-            ? { backgroundColor: 'rgba(255, 255, 255, 0.05)' }
-            : { backgroundColor: 'rgba(0, 0, 0, 0.05)' };
-        const qrBorder = isWhite ? { borderColor: 'transparent' } : { borderColor: 'black' };
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.4 }} />
-                    <View style={[styles.qrContainer, qrBorder, opacity]}>
+                    <View style={[styles.qrContainer, opacity]}>
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
                             size={width / 2.8}
@@ -236,13 +229,7 @@ class Receive extends Component {
                     <View style={{ flex: 0.25 }} />
                     {receiveAddress.length > 1 ? (
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                            <View
-                                style={[
-                                    styles.receiveAddressContainer,
-                                    receiveAddressContainerBackgroundColor,
-                                    opacity,
-                                ]}
-                            >
+                            <View style={[styles.receiveAddressContainer, opacity]}>
                                 <Text style={[styles.receiveAddressText, textColor]}>
                                     {receiveAddress.substring(0, 30)}
                                 </Text>
@@ -257,7 +244,7 @@ class Receive extends Component {
                     ) : (
                         // Place holder
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                            <View style={[styles.receiveAddressContainer, receiveAddressContainerBackgroundColor]}>
+                            <View style={[styles.receiveAddressContainer]}>
                                 <Text style={[styles.receiveAddressText, textColor]}>{Array(19).join(' ')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -273,17 +260,17 @@ class Receive extends Component {
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
                         returnKeyType="done"
-                        secondaryBackgroundColor={secondaryBackgroundColor}
+                        secondaryBackgroundColor={body.color}
                         value={message}
-                        negativeColor={negativeColor}
+                        negativeColor={negative.color}
                     />
                     <View style={{ flex: 0.35 }} />
                     <View style={{ flex: 0.7 }}>
                         <GenerateAddressButton
-                            ctaColor={ctaColor}
-                            ctaBorderColor={ctaBorderColor}
-                            negativeColor={negativeColor}
-                            secondaryCtaColor={secondaryCtaColor}
+                            ctaColor={primary.color}
+                            ctaBorderColor={primary.hover}
+                            negativeColor={negative.color}
+                            secondaryCtaColor={secondary.color}
                             t={t}
                             receiveAddress={receiveAddress}
                             isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
@@ -326,11 +313,10 @@ const mapStateToProps = (state) => ({
     receiveAddress: state.tempAccount.receiveAddress,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
-    ctaColor: state.settings.theme.ctaColor,
-    negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
-    ctaBorderColor: state.settings.theme.ctaBorderColor,
+    primary: state.settings.theme.primary,
+    negative: state.settings.theme.negative,
+    body: state.settings.theme.body,
+    secondary: state.settings.theme.secondary,
     isTransitioning: state.tempAccount.isTransitioning,
 });
 

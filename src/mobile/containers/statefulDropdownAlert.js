@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
+import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from '../util/dimensions';
 
@@ -45,7 +46,6 @@ class StatefulDropdownAlert extends Component {
         disposeOffAlert: PropTypes.func.isRequired,
         closeInterval: PropTypes.number,
         backgroundColor: PropTypes.string.isRequired,
-        textColor: PropTypes.string.isRequired,
         onRef: PropTypes.func,
     };
 
@@ -81,9 +81,9 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { textColor, backgroundColor, onRef } = this.props;
+        const { backgroundColor, onRef } = this.props;
         const closeAfter = closeInterval;
-        const statusBarStyle = textColor === 'white' ? 'light-content' : 'dark-content';
+        const statusBarStyle = tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
 
         return (
             <DropdownAlert
