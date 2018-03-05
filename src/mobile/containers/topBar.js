@@ -19,22 +19,17 @@ import {
     View,
     Text,
     StyleSheet,
-    Image,
     TouchableOpacity,
     Dimensions,
     ScrollView,
     TouchableWithoutFeedback,
 } from 'react-native';
+import tinycolor from 'tinycolor2';
 import { setPollFor } from 'iota-wallet-shared-modules/actions/polling';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import Modal from 'react-native-modal';
-import blackChevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up-black.png';
-import blackChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-black.png';
-import whiteChevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up-white.png';
-import whiteChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-white.png';
-import whiteNotificationImagePath from 'iota-wallet-shared-modules/images/notification-white.png';
-import blackNotificationImagePath from 'iota-wallet-shared-modules/images/notification-black.png';
 import NotificationLog from '../components/notificationLog';
+import { Icon } from '../theme/icons.js';
 
 const { height, width } = Dimensions.get('window');
 
@@ -77,14 +72,6 @@ const styles = StyleSheet.create({
         paddingTop: height / 120,
         paddingRight: width / 18,
     },
-    chevron: {
-        height: width / 17,
-        width: width / 17,
-    },
-    notification: {
-        height: width / 17,
-        width: width / 17,
-    },
     notificationContainer: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -112,6 +99,10 @@ const styles = StyleSheet.create({
     scrollViewContainer: {
         maxHeight: height,
     },
+    emptyNotification: {
+        height: width / 17,
+        width: width / 17,
+    },
 });
 
 class TopBar extends Component {
@@ -130,25 +121,12 @@ class TopBar extends Component {
         setSeedIndex: PropTypes.func.isRequired,
         setReceiveAddress: PropTypes.func.isRequired,
         selectedAccount: PropTypes.object.isRequired,
-        barColor: PropTypes.string.isRequired,
+        bar: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
         setPollFor: PropTypes.func.isRequired,
-        secondaryBarColor: PropTypes.string.isRequired,
         notificationLog: PropTypes.array.isRequired,
         clearLog: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
     };
-
-    static getIconPath(isActive, chevronUpImagePath, chevronDownImagePath) {
-        if (isActive) {
-            return {
-                source: chevronDownImagePath,
-            };
-        }
-
-        return {
-            source: chevronUpImagePath,
-        };
-    }
 
     static filterSeedTitles(seedNames, currentSeedIndex) {
         return filter(seedNames, (t, i) => i !== currentSeedIndex);
@@ -227,11 +205,11 @@ class TopBar extends Component {
     }
 
     renderTitles() {
-        const { isTopBarActive, seedNames, balance, accountInfo, seedIndex, secondaryBarColor } = this.props;
-        const borderBottomColor = { borderBottomColor: secondaryBarColor };
+        const { isTopBarActive, seedNames, balance, accountInfo, seedIndex, bar, body } = this.props;
+        const borderBottomColor = { borderBottomColor: bar.color };
         const selectedTitle = get(seedNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
-        const subtitleColor = secondaryBarColor === 'white' ? '#d3d3d3' : '#262626';
+        const subtitleColor = tinycolor(bar.color).isDark() ? '#262626' : '#d3d3d3';
 
         const getBalance = (currentIdx) => {
             const seedStrings = Object.keys(accountInfo);
@@ -269,12 +247,8 @@ class TopBar extends Component {
                             numberOfLines={1}
                             style={
                                 disableWhen
-                                    ? StyleSheet.flatten([
-                                          styles.mainTitle,
-                                          styles.disabled,
-                                          { color: secondaryBarColor },
-                                      ])
-                                    : [styles.mainTitle, { color: secondaryBarColor }]
+                                    ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: body.color }])
+                                    : [styles.mainTitle, { color: body.color }]
                             }
                         >
                             {selectedTitle}
@@ -315,8 +289,8 @@ class TopBar extends Component {
                         numberOfLines={1}
                         style={
                             disableWhen
-                                ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: secondaryBarColor }])
-                                : [styles.mainTitle, { color: secondaryBarColor }]
+                                ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: body.color }])
+                                : [styles.mainTitle, { color: body.color }]
                         }
                     >
                         {t.title}
@@ -355,21 +329,8 @@ class TopBar extends Component {
     }
 
     render() {
-        const {
-            seedIndex,
-            seedNames,
-            isTopBarActive,
-            secondaryBarColor,
-            backgroundColor,
-            barColor,
-            notificationLog,
-        } = this.props;
-        const isWhite = secondaryBarColor === 'white';
-        const chevronUpImagePath = isWhite ? whiteChevronUpImagePath : blackChevronUpImagePath;
-        const chevronDownImagePath = isWhite ? whiteChevronDownImagePath : blackChevronDownImagePath;
-        const notificationImagePath = isWhite ? whiteNotificationImagePath : blackNotificationImagePath;
+        const { seedIndex, seedNames, isTopBarActive, bar, body, notificationLog } = this.props;
 
-        const iconProps = TopBar.getIconPath(isTopBarActive, chevronDownImagePath, chevronUpImagePath);
         const children = this.renderTitles();
         const hasMultipleSeeds = size(TopBar.filterSeedTitles(seedNames, seedIndex));
         const shouldDisable = this.shouldDisable();
@@ -388,7 +349,7 @@ class TopBar extends Component {
                     style={[
                         styles.container,
                         {
-                            backgroundColor: barColor,
+                            backgroundColor: bar.bg,
                         },
                     ]}
                 >
@@ -398,23 +359,25 @@ class TopBar extends Component {
                                 style={styles.notificationContainer}
                                 onPress={() => this.setState({ isModalVisible: true })}
                             >
-                                <Image style={styles.notification} source={notificationImagePath} />
+                                <Icon name="eye" size={width / 17} color={body.color} />
                             </TouchableOpacity>
                         ) : (
                             <View style={styles.notificationContainer}>
-                                <View style={styles.notification} />
+                                <View style={styles.emptyNotification} />
                             </View>
                         )}
                         <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                         <View style={styles.chevronWrapper}>
                             {hasMultipleSeeds ? (
-                                <Image
+                                <Icon
+                                    name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
+                                    size={width / 17}
+                                    color={body.color}
                                     style={
                                         shouldDisable
                                             ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
                                             : styles.chevron
                                     }
-                                    {...iconProps}
                                 />
                             ) : (
                                 <View style={styles.chevron} />
@@ -428,7 +391,7 @@ class TopBar extends Component {
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={backgroundColor}
+                        backdropColor={body.bg}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.hideModal()}
@@ -437,11 +400,11 @@ class TopBar extends Component {
                         hideModalContentWhileAnimating
                     >
                         <NotificationLog
-                            backgroundColor={barColor}
+                            backgroundColor={bar.bg}
                             hideModal={() => this.hideModal()}
-                            textColor={{ color: secondaryBarColor }}
-                            borderColor={{ borderColor: secondaryBarColor }}
-                            secondaryBarColor={secondaryBarColor}
+                            textColor={{ color: bar.color }}
+                            borderColor={{ borderColor: bar.color }}
+                            secondaryBarColor={bar.color}
                             notificationLog={notificationLog}
                             clearLog={this.props.clearLog}
                         />
@@ -464,9 +427,8 @@ const mapStateToProps = (state) => ({
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    barColor: state.settings.theme.barColor,
-    secondaryBarColor: state.settings.theme.secondaryBarColor,
-    backgroundColor: state.settings.theme.backgroundColor,
+    bar: state.settings.theme.bar,
+    body: state.settings.theme.body,
     notificationLog: state.alerts.notificationLog,
 });
 

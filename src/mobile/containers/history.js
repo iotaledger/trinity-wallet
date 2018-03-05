@@ -86,14 +86,12 @@ class History extends Component {
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
         closeTopBar: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        positiveColor: PropTypes.string.isRequired,
-        extraColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        positive: PropTypes.object.isRequired,
+        extra: PropTypes.object.isRequired,
+        negative: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
         secondaryBarColor: PropTypes.string.isRequired,
-        barColor: PropTypes.string.isRequired,
-        pendingColor: PropTypes.string.isRequired,
+        bar: PropTypes.object.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
@@ -210,20 +208,7 @@ class History extends Component {
      * @return {Array} Formatted transaction data
      */
     prepTransactions() {
-        const {
-            transfers,
-            addresses,
-            extraColor,
-            negativeColor,
-            positiveColor,
-            pendingColor,
-            secondaryBackgroundColor,
-            backgroundColor,
-            barColor,
-            secondaryBarColor,
-            mode,
-            t,
-        } = this.props;
+        const { transfers, addresses, extra, negative, positive, body, bar, mode, t } = this.props;
 
         const computeConfirmationStatus = (persistence, incoming) => {
             if (!persistence) {
@@ -232,13 +217,6 @@ class History extends Component {
 
             return incoming ? t('global:received') : t('global:sent');
         };
-
-        const isSecondaryBackgroundColorWhite = secondaryBackgroundColor === 'white';
-
-        const containerBorderColor = isSecondaryBackgroundColorWhite
-            ? 'rgba(255, 255, 255, 0.25)'
-            : 'rgba(0, 0, 0, 0.25)';
-        const containerBackgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
         const withValueAndUnit = (item) => ({
             address: item.address,
@@ -265,15 +243,15 @@ class History extends Component {
                 bundle: tx.bundle,
                 mode,
                 style: {
-                    titleColor: incoming ? extraColor : negativeColor,
-                    containerBorderColor: { borderColor: containerBorderColor },
-                    containerBackgroundColor: { backgroundColor: containerBackgroundColor },
-                    confirmationStatusColor: { color: !tx.persistence ? pendingColor : positiveColor },
-                    defaultTextColor: { color: secondaryBackgroundColor },
-                    backgroundColor,
-                    borderColor: { borderColor: secondaryBackgroundColor },
-                    barColor,
-                    secondaryBarColor,
+                    titleColor: incoming ? extra.color : negative.color,
+                    containerBorderColor: { borderColor: 'black' },
+                    containerBackgroundColor: { backgroundColor: 'black' },
+                    confirmationStatusColor: { color: !tx.persistence ? 'black' : positive.color },
+                    defaultTextColor: { color: body.color },
+                    backgroundColor: body.bg,
+                    borderColor: { borderColor: body.color },
+                    barColor: bar.bg,
+                    secondaryBarColor: bar.color,
                 },
             };
         });
@@ -282,10 +260,10 @@ class History extends Component {
     }
 
     renderTransactions() {
-        const { negativeColor, secondaryBackgroundColor, t } = this.props;
+        const { negative, body, t } = this.props;
         const { isRefreshing } = this.state;
-        const textColor = { color: secondaryBackgroundColor };
-        const borderColor = { borderColor: secondaryBackgroundColor };
+        const textColor = { color: body.color };
+        const borderColor = { borderColor: body.color };
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
 
@@ -301,7 +279,7 @@ class History extends Component {
                     <RefreshControl
                         refreshing={isRefreshing && !noTransactions}
                         onRefresh={this.onRefresh}
-                        tintColor={negativeColor}
+                        tintColor={negative.color}
                     />
                 }
                 ListEmptyComponent={
@@ -320,7 +298,7 @@ class History extends Component {
                                     animating={isRefreshing}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={negativeColor}
+                                    color={negative.color}
                                 />
                             </View>
                         )}
@@ -349,13 +327,12 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.seedNames),
     seedIndex: tempAccount.seedIndex,
     mode: settings.mode,
-    negativeColor: settings.theme.negativeColor,
-    positiveColor: settings.theme.positiveColor,
-    backgroundColor: settings.theme.backgroundColor,
-    extraColor: settings.theme.extraColor,
-    secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
+    negative: settings.theme.negative,
+    positive: settings.theme.positive,
+    extra: settings.theme.extra,
+    body: settings.theme.body,
     secondaryBarColor: settings.theme.secondaryBarColor,
-    barColor: settings.theme.barColor,
+    bar: settings.theme.bar,
     pendingColor: settings.theme.pendingColor,
     isFetchingLatestAccountInfoOnLogin: tempAccount.isFetchingLatestAccountInfoOnLogin,
     isFetchingAccountInfo: polling.isFetchingAccountInfo,

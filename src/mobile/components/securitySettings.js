@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import whiteNodeImagePath from 'iota-wallet-shared-modules/images/node-white.png';
-import blackNodeImagePath from 'iota-wallet-shared-modules/images/node-black.png';
-import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-icon-white.png';
-import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-icon-black.png';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -35,11 +32,6 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
-    },
     backIcon: {
         width: width / 28,
         height: width / 28,
@@ -49,6 +41,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     separator: {
         borderBottomColor: 'white',
@@ -75,17 +68,13 @@ class SecuritySettings extends Component {
         setSetting: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
         on2FASetupPress: PropTypes.func.isRequired,
         onFingerprintSetupPress: PropTypes.func.isRequired,
     };
 
     render() {
-        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath } = this.props;
-        const nodeImagePath = secondaryBackgroundColor === 'white' ? whiteNodeImagePath : blackNodeImagePath;
-        const fingerprintImagePath =
-            secondaryBackgroundColor === 'white' ? whiteFingerprintImagePath : blackFingerprintImagePath;
+        const { t, textColor, secondaryBackgroundColor } = this.props;
 
         return (
             <View style={styles.container}>
@@ -96,7 +85,7 @@ class SecuritySettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={nodeImagePath} style={styles.icon} />
+                                <Icon name="twoFA" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('twoFA')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -107,7 +96,7 @@ class SecuritySettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={fingerprintImagePath} style={styles.icon} />
+                                <Icon name="eye" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('fingerprint')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -121,7 +110,7 @@ class SecuritySettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={arrowLeftImagePath} style={styles.backIcon} />
+                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>

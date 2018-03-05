@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
+import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { width, height } from '../util/dimensions';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import CustomTextInput from '../components/customTextInput';
@@ -14,6 +12,7 @@ import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import InfoBox from '../components/infoBox';
 import OnboardingButtons from '../components/onboardingButtons';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -62,10 +61,6 @@ const styles = StyleSheet.create({
         paddingTop: height / 70,
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
     qrImage: {
         height: width / 28,
         width: width / 28,
@@ -105,9 +100,8 @@ class SeedReentry extends Component {
     static propTypes = {
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        negative: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
         navigator: PropTypes.object.isRequired,
         seed: PropTypes.string.isRequired,
     };
@@ -121,16 +115,16 @@ class SeedReentry extends Component {
     }
 
     onDonePress() {
-        const { t, seed } = this.props;
+        const { t, seed, body } = this.props;
         if (this.state.seed === seed) {
             this.props.navigator.push({
                 screen: 'setSeedName',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
+                    screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: this.props.backgroundColor,
+                    statusBarColor: body.bg,
                 },
                 animated: false,
             });
@@ -140,13 +134,14 @@ class SeedReentry extends Component {
     }
 
     onBackPress() {
+        const { body } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
+                screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
@@ -154,18 +149,17 @@ class SeedReentry extends Component {
 
     render() {
         const { seed } = this.state;
-        const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
+        const { t, body, negative } = this.props;
+        const textColor = { color: body.color };
 
         return (
-            <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
                             <View style={styles.logoContainer}>
-                                <Image source={iotaImagePath} style={styles.iotaLogo} />
+                                <Icon name="iota" size={width / 8} color={body.color} />
                             </View>
                         </View>
                         <View style={styles.midContainer}>
@@ -180,8 +174,8 @@ class SeedReentry extends Component {
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 onSubmitEditing={() => this.onDonePress()}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
+                                secondaryBackgroundColor={body.color}
+                                negativeColor={negative.color}
                                 value={seed}
                             />
                             <View style={{ flex: 0.3 }} />
@@ -192,7 +186,7 @@ class SeedReentry extends Component {
                                         <Text style={[styles.infoTextBottom, textColor]}>{t('ifYouHaveNotSaved')}</Text>
                                     </View>
                                 }
-                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                secondaryBackgroundColor={body.color}
                             />
                             <View style={{ flex: 0.5 }} />
                         </View>
@@ -206,7 +200,7 @@ class SeedReentry extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
+                <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
     }
@@ -214,9 +208,8 @@ class SeedReentry extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
-    backgroundColor: state.settings.theme.backgroundColor,
-    negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    negative: state.settings.theme.negative,
+    body: state.settings.theme.body,
 });
 
 const mapDispatchToProps = {

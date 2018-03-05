@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, TouchableWithoutFeedback, Image, View } from 'react-native';
+import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Icon } from '../theme/icons.js';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     button: {
+        flex: 1,
         width: width / 5,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         alignItems: 'center',
-    },
-    icon: {
-        paddingTop: height / 40,
-        height: width / 15,
-        width: width / 15,
+        borderTopWidth: height / 100,
+        borderTopColor: 'transparent',
     },
     iconTitle: {
         fontWeight: 'bold',
@@ -22,12 +21,6 @@ const styles = StyleSheet.create({
         fontSize: width / 40.5,
         backgroundColor: 'transparent',
     },
-    fullyOpaque: {
-        opacity: 1,
-    },
-    partiallyOpaque: {
-        opacity: 0.4,
-    },
 });
 
 /* eslint-disable react/prefer-stateless-function */
@@ -36,8 +29,11 @@ class Tab extends Component {
         icon: PropTypes.number.isRequired,
         textColor: PropTypes.object.isRequired,
         text: PropTypes.string.isRequired,
+        iconColor: PropTypes.string.isRequired,
+        activeColor: PropTypes.string.isRequired,
+        activeBorderColor: PropTypes.string.isRequired,
+        isActive: PropTypes.bool.isRequired,
         onPress: PropTypes.func,
-        isActive: PropTypes.bool,
     };
     static defaultProps = {
         onPress: () => {},
@@ -45,23 +41,19 @@ class Tab extends Component {
     };
 
     render() {
-        const { onPress, icon, text, isActive, textColor } = this.props;
+        const { onPress, icon, iconColor, text, textColor, activeColor, activeBorderColor, isActive } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={onPress}>
-                <View style={styles.button}>
-                    <Image
-                        style={isActive ? [styles.icon, styles.fullyOpaque] : [styles.icon, styles.partiallyOpaque]}
-                        source={icon}
-                    />
-                    <Text
-                        numberOfLines={1}
-                        style={
-                            isActive
-                                ? [styles.iconTitle, styles.fullyOpaque, textColor]
-                                : [styles.iconTitle, styles.partiallyOpaque, textColor]
-                        }
-                    >
+                <View
+                    style={
+                        isActive
+                            ? [styles.button, { backgroundColor: activeColor }, { borderTopColor: activeBorderColor }]
+                            : styles.button
+                    }
+                >
+                    <Icon name={icon} size={width / 18} color={iconColor} />
+                    <Text numberOfLines={1} style={[styles.iconTitle, textColor]}>
                         {text}
                     </Text>
                 </View>

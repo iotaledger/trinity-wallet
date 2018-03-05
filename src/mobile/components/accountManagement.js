@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
-import whiteAddressesImagePath from 'iota-wallet-shared-modules/images/addresses-white.png';
-import whiteEditImagePath from 'iota-wallet-shared-modules/images/edit-white.png';
-import whiteDeleteImagePath from 'iota-wallet-shared-modules/images/delete-white.png';
-import blackAddressesImagePath from 'iota-wallet-shared-modules/images/addresses-black.png';
-import blackEditImagePath from 'iota-wallet-shared-modules/images/edit-black.png';
-import blackDeleteImagePath from 'iota-wallet-shared-modules/images/delete-black.png';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -38,11 +33,6 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
-    },
     backIcon: {
         width: width / 28,
         height: width / 28,
@@ -52,6 +42,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     separator: {
         borderBottomWidth: 0.3,
@@ -74,9 +65,6 @@ const styles = StyleSheet.create({
 /* eslint-disable react/prefer-stateless-function */
 class AdvancedSettings extends Component {
     static propTypes = {
-        arrowLeftImagePath: PropTypes.number.isRequired,
-        addImagePath: PropTypes.number.isRequired,
-        keyImagePath: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         setSetting: PropTypes.func.isRequired,
         onDeleteAccountPress: PropTypes.func.isRequired,
@@ -85,11 +73,7 @@ class AdvancedSettings extends Component {
     };
 
     render() {
-        const { t, secondaryBackgroundColor, textColor, arrowLeftImagePath, addImagePath, keyImagePath } = this.props;
-        const addressesImagePath =
-            secondaryBackgroundColor === 'white' ? whiteAddressesImagePath : blackAddressesImagePath;
-        const editImagePath = secondaryBackgroundColor === 'white' ? whiteEditImagePath : blackEditImagePath;
-        const deleteImagePath = secondaryBackgroundColor === 'white' ? whiteDeleteImagePath : blackDeleteImagePath;
+        const { t, secondaryBackgroundColor, textColor } = this.props;
 
         return (
             <View style={styles.advancedSettingsContainer}>
@@ -100,7 +84,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={keyImagePath} style={styles.icon} />
+                                <Icon name="eye" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('viewSeed')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -111,7 +95,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={addressesImagePath} style={styles.icon} />
+                                <Icon name="iota" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('viewAddresses')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -122,7 +106,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={editImagePath} style={styles.icon} />
+                                <Icon name="iota" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('editAccountName')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -133,7 +117,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={deleteImagePath} style={styles.icon} />
+                                <Icon name="trash" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('deleteAccount')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -147,7 +131,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={addImagePath} style={styles.icon} />
+                                <Icon name="plus" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('addNewAccount')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -161,7 +145,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={arrowLeftImagePath} style={styles.backIcon} />
+                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>

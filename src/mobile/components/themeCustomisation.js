@@ -2,13 +2,12 @@ import cloneDeep from 'lodash/cloneDeep';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Image } from 'react-native';
-import blackChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-black.png';
-import whiteChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-white.png';
+import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import THEMES from 'iota-wallet-shared-modules/themes/themes';
 import Dropdown from './dropdown'; // eslint-disable-line import/no-named-as-default
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -66,19 +65,11 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
-    },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-    },
-    iconRight: {
-        width: width / 28,
-        height: width / 28,
+        marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
@@ -168,8 +159,6 @@ class ThemeCustomisation extends Component {
     static propTypes = {
         updateTheme: PropTypes.func.isRequired,
         onAdvancedPress: PropTypes.func.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
-        tickImagePath: PropTypes.number.isRequired,
         theme: PropTypes.object.isRequired,
         themeName: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
@@ -183,7 +172,7 @@ class ThemeCustomisation extends Component {
         this.state = {
             theme: props.theme,
             themeName: props.themeName,
-            themes: Object.keys(THEMES.themes),
+            themes: Object.keys(THEMES),
         };
     }
 
@@ -199,21 +188,8 @@ class ThemeCustomisation extends Component {
 
     render() {
         const { themes, theme, themeName } = this.state;
-        const {
-            backgroundColor,
-            ctaColor,
-            positiveColor,
-            negativeColor,
-            extraColor,
-            secondaryBackgroundColor,
-            secondaryCtaColor,
-            ctaBorderColor,
-            barColor,
-            secondaryBarColor,
-        } = this.state.theme;
-        const { arrowLeftImagePath, tickImagePath, t } = this.props;
-        const chevronDownImagePath =
-            secondaryBarColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
+        const { body, bar, positive, negative, primary, secondary, extra } = this.state.theme;
+        const { t } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -238,7 +214,7 @@ class ThemeCustomisation extends Component {
                                 options={themes}
                                 saveSelection={(selection) => {
                                     const newTHEMES = cloneDeep(THEMES);
-                                    let newTheme = newTHEMES.themes[selection];
+                                    let newTheme = newTHEMES[selection];
                                     if (selection === 'Custom' && this.props.themeName === 'Custom') {
                                         newTheme = this.props.theme;
                                     }
@@ -250,8 +226,8 @@ class ThemeCustomisation extends Component {
                             style={[
                                 styles.demoContainer,
                                 {
-                                    backgroundColor,
-                                    borderColor: secondaryBackgroundColor,
+                                    backgroundColor: body.bg,
+                                    borderColor: body.color,
                                 },
                             ]}
                         >
@@ -260,43 +236,43 @@ class ThemeCustomisation extends Component {
                                     style={{
                                         fontFamily: 'Lato-Regular',
                                         fontSize: width / 29.6,
-                                        color: secondaryBackgroundColor,
+                                        color: body.color,
                                     }}
                                 >
                                     MOCKUP
                                 </Text>
                             </View>
-                            <View style={[styles.frameBar, { backgroundColor: barColor }]}>
-                                <Text style={[styles.frameBarTitle, { color: secondaryBarColor }]}>
+                            <View style={[styles.frameBar, { backgroundColor: bar.bg }]}>
+                                <Text style={[styles.frameBarTitle, { color: bar.color }]}>
                                     {t('global:mainWallet').toUpperCase()}
                                 </Text>
-                                <Image style={styles.chevron} source={chevronDownImagePath} />
+                                <Icon name="chevronDown" size={width / 17} color={body.color} />
                             </View>
                             <View style={styles.buttonsContainer}>
-                                <View style={[styles.button, { borderColor: negativeColor }]}>
-                                    <Text style={[styles.buttonText, { color: negativeColor }]}>
+                                <View style={[styles.button, { borderColor: negative.color }]}>
+                                    <Text style={[styles.buttonText, { color: negative.color }]}>
                                         {t('global:back').toUpperCase()}
                                     </Text>
                                 </View>
-                                <View style={[styles.button, { borderColor: positiveColor }]}>
-                                    <Text style={[styles.buttonText, { color: positiveColor }]}>
+                                <View style={[styles.button, { borderColor: positive.color }]}>
+                                    <Text style={[styles.buttonText, { color: positive.color }]}>
                                         {t('global:next').toUpperCase()}
                                     </Text>
                                 </View>
                             </View>
                             <View style={styles.buttonsContainer}>
-                                <View style={[styles.button, { borderColor: extraColor }]}>
-                                    <Text style={[styles.buttonText, { color: extraColor }]}>
+                                <View style={[styles.button, { borderColor: extra.color }]}>
+                                    <Text style={[styles.buttonText, { color: extra.color }]}>
                                         {t('global:save').toUpperCase()}
                                     </Text>
                                 </View>
                                 <View
                                     style={[
                                         styles.ctaButton,
-                                        { backgroundColor: ctaColor, borderColor: ctaBorderColor },
+                                        { backgroundColor: primary.color, borderColor: primary.hover },
                                     ]}
                                 >
-                                    <Text style={[styles.ctaText, { color: secondaryCtaColor }]}>
+                                    <Text style={[styles.ctaText, { color: secondary.color }]}>
                                         {t('global:send').toUpperCase()}
                                     </Text>
                                 </View>
@@ -309,7 +285,7 @@ class ThemeCustomisation extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
                                 <Text style={[styles.titleTextLeft, { color: this.props.secondaryBackgroundColor }]}>
                                     {t('global:backLowercase')}
                                 </Text>
@@ -323,7 +299,7 @@ class ThemeCustomisation extends Component {
                                 <Text style={[styles.titleTextRight, { color: this.props.secondaryBackgroundColor }]}>
                                     {t('global:apply')}
                                 </Text>
-                                <Image source={tickImagePath} style={styles.iconRight} />
+                                <Icon name="eye" size={width / 28} color={body.color} />
                             </View>
                         </TouchableOpacity>
                     </View>

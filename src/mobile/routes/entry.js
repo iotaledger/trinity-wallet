@@ -24,7 +24,7 @@ const renderInitialScreen = (store) => {
         clearKeychain();
     }
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
-    const initialScreen = state.account.onboardingComplete ? 'login' : 'languageSetup';
+    const initialScreen = state.account.onboardingComplete ? 'home' : 'languageSetup';
     Navigation.startSingleScreenApp({
         screen: {
             screen: initialScreen,
@@ -32,8 +32,8 @@ const renderInitialScreen = (store) => {
                 navBarHidden: true,
                 navBarTransparent: true,
                 drawUnderStatusBar: true,
-                statusBarColor: state.settings.theme.backgroundColor,
-                screenBackgroundColor: state.settings.theme.backgroundColor,
+                statusBarColor: state.settings.theme.body.bg,
+                screenBackgroundColor: state.settings.theme.body.bg,
             },
             overrideBackPress: true,
         },

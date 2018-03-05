@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import tinycolor from 'tinycolor2';
 import Switch from 'react-native-switch-pro';
-import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
-import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import Fonts from '../theme/Fonts';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -46,25 +45,17 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         textAlign: 'justify',
     },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
-    },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: height / 50,
         justifyContent: 'flex-start',
     },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
-    },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     toggle: {
         marginHorizontal: width / 30,
@@ -88,7 +79,6 @@ class ModeSelection extends Component {
         generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
     };
@@ -107,23 +97,21 @@ class ModeSelection extends Component {
     }
 
     render() {
-        const { t, mode, textColor, borderColor, secondaryBackgroundColor, arrowLeftImagePath } = this.props;
-        const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
-        const switchColor =
-            secondaryBackgroundColor === 'white'
-                ? tinycolor(secondaryBackgroundColor)
-                      .darken(25)
-                      .toString()
-                : tinycolor(secondaryBackgroundColor)
-                      .lighten(50)
-                      .toString();
+        const { t, mode, textColor, borderColor, secondaryBackgroundColor } = this.props;
+        const switchColor = tinycolor(secondaryBackgroundColor).isLight()
+            ? tinycolor(secondaryBackgroundColor)
+                  .darken(25)
+                  .toString()
+            : tinycolor(secondaryBackgroundColor)
+                  .lighten(50)
+                  .toString();
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 2.3 }} />
                         <View style={[styles.infoTextWrapper, borderColor]}>
-                            <Image source={infoImagePath} style={styles.infoIcon} />
+                            <Icon name="info" size={width / 20} color={secondaryBackgroundColor} />
                             <Text style={[styles.infoText, textColor]}>{t('expertModeExplanation')}</Text>
                             <Text style={[styles.infoText, textColor]}>{t('modesExplanation')}</Text>
                         </View>
@@ -157,7 +145,7 @@ class ModeSelection extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
