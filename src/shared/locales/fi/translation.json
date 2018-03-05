@@ -68,9 +68,9 @@
         "pending": "Odottaa",
         "bundleHash": "Kokoelman Tiiviste-luku",
         "addresses": "Osoitteet",
-        "reattach": "REATTACH",
-        "promote": "PROMOTE",
-        "rebroadcast": "REBROADCAST",
+        "reattach": "KIINNITÄ UUDELLEEN",
+        "promote": "EDISTÄ",
+        "rebroadcast": "LÄHETÄ UUDELLEEN",
         "pressBackAgain": "Paina paluu-painiketta sulkeaksesi sovelluksen",
         "autoreattaching": "Liitetään Tangle-verkkoon automaattisesti",
         "autoreattachingExplanation": "Liitetään siirto uudelleen tiiviste-luvulla {{hash}}",
@@ -121,7 +121,7 @@
         "seedCopiedExplanation": "Seed-luku poistetaan, kun painat ”VALMIS” tai kun 60 sekuntia on kulunut.",
         "clickToCopy": "Klikkaa alla olevaa painiketta ja kopioi seed-lukusi salasanan hallintaohjelmaan.",
         "doNotStore": "Älä säilytä seed-lukuasi pelkkänä tekstinä.",
-        "copyToClipboard": "Copy seed",
+        "copyToClipboard": "Kopioi seed-luku",
         "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
