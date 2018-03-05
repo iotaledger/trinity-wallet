@@ -33,7 +33,7 @@
         "continue": "Jatka",
         "manualCopy": "Kirjoita seed-luku paperille",
         "paperWallet": "Tulosta paperikopio",
-        "copyToClipboard": "Lisää salasanojen hallintaohjelmaan",
+        "copyToClipboard": "Lisää salasanan hallintaohjelmaan",
         "notAvailable": "Tämä toiminto ei ole käytettävissä",
         "notAvailableExplanation": "Se tullaan lisäämään myöhemmässä kehitysvaiheessa.",
         "enterSeed": "Anna seed-lukusi.",
@@ -122,7 +122,7 @@
         "clickToCopy": "Klikkaa alla olevaa painiketta ja kopioi seed-lukusi salasanan hallintaohjelmaan.",
         "doNotStore": "Älä säilytä seed-lukuasi pelkkänä tekstinä.",
         "copyToClipboard": "Kopioi seed-luku",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "Jaa seed-lukusi salasanan hallintaohjelman kanssa"
     },
     "enterSeed": {
         "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
@@ -230,9 +230,9 @@
         "youCanAdd": "Voit lisätä useampia seed-lukuja Asetukset-valikossa."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "expert": "Edistynyt käyttäjä",
+        "standard": "Tavallinen käyttäjä",
+        "expertModeExplanation": "Edistyneen käyttäjän-tila tarjoaa pääsyn lisäominaisuuksiin kuten lähetyksen edistämiseen.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
@@ -272,10 +272,10 @@
         "selectAll": "Valitse kaikki",
         "securitySettings": "Turvallisuusasetukset",
         "fingerprint": "Sormenjälkitunnistus",
-        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRates": "Vaihtokursseja ei voitu hakea",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "fetchedConversionRates": "Vaihtokurssit haettu",
+        "fetchedConversionRatesExplanation": "Vaihtokurssit haettu onnistuneesti valuutalle {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
@@ -352,7 +352,7 @@
         "one": "Yksi"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Oletko varma että haluat poistaa tilin {{accountName}}?",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoria poistetaan.",
         "thisAction": "Tätä toimintoa ei voi jälkikäteen peruuttaa.",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
@@ -423,7 +423,7 @@
         "volume": "Vaihto (24h)"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "warning": "VAROITUS",
+        "rootDetected": "<0>Laitteesi näyttää olevan rootattu.</0><1>Tämä voi johtaa merkittäviin ongelmiin lompakon tietoturvassa.</1><2>Haluatko jatkaa tästä huolimatta?</2>"
     }
 }
