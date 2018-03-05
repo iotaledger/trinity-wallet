@@ -17,7 +17,7 @@ import Alerts from 'components/UI/Alerts';
 import { ADDRESS_LENGTH } from 'libs/util';
 
 import './App.css';
-import {ipcRenderer} from "electron";
+import {ipcRenderer} from 'electron';
 
 class App extends React.Component {
     static propTypes = {
