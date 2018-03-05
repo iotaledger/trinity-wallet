@@ -232,7 +232,7 @@
     "modeSelection": {
         "expert": "Edistynyt käyttäjä",
         "standard": "Tavallinen käyttäjä",
-        "expertModeExplanation": "Edistyneen käyttäjän tila mahdollistaa pääsyn lisäominaisuuksiin kuten lähetyksen edistämiseen.",
+        "expertModeExplanation": "Edistynyt käyttäjä -tila mahdollistaa pääsyn lisäominaisuuksiin kuten lähetyksen edistämiseen.",
         "modesExplanation": "Aktivoi edistyneen käyttäjän tila vain jos ymmärrät miten Tangle-verkko toimii. Muuten tila voi vaikuttaa hankalalta käyttää."
     },
     "settings": {
