@@ -34,25 +34,34 @@ import {
 } from './extendedApi';
 
 /**
- *   Returns a single transfer array
- *   Converts message and tag to trytes. Basically preparing an array of transfer objects before making a transfer.
+ *   Returns a transfer array
+ *   Converts message to trytes. Basically preparing an array of transfer objects before making a transfer.
+ *   Since zero value transfers have no inputs, after a sync with ledger, these transfers would not be detected.
+ *   To make sure zero value transfers are detected after a sync, add a second transfer to the array that has
+ *   seed's own address at index 0.
  *
  *   @method prepareTransferArray
  *   @param {string} address
  *   @param {number} value
  *   @param {string} message
+ *    @param {string} firstOwnAddress
  *   @param {string} [tag='TRINITY']
  *   @returns {array} Transfer object
  **/
-export const prepareTransferArray = (address, value, message, tag = DEFAULT_TAG) => {
-    return [
-        {
-            address,
-            value,
-            message: iota.utils.toTrytes(message),
-            tag,
-        },
-    ];
+export const prepareTransferArray = (address, value, message, firstOwnAddress, tag = DEFAULT_TAG) => {
+    const trytesConvertedMessage = iota.utils.toTrytes(message);
+    const transferToSend = {
+        address,
+        value,
+        message: trytesConvertedMessage,
+        tag,
+    };
+
+    if (value === 0) {
+        return [transferToSend, assign({}, transferToSend, { address: firstOwnAddress })];
+    }
+
+    return [transferToSend];
 };
 
 /**

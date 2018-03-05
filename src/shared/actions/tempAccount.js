@@ -3,7 +3,11 @@ import some from 'lodash/some';
 import isFunction from 'lodash/isFunction';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo, accountInfoFetchSuccess } from '../actions/account';
-import { selectedAccountStateFactory, getNetworkBoundPowFromState } from '../selectors/account';
+import {
+    selectedAccountStateFactory,
+    getNetworkBoundPowFromState,
+    selectFirstAddressFromAccountFactory,
+} from '../selectors/account';
 import { clearSendFields } from '../actions/ui';
 import { generateAlert } from '../actions/alerts';
 import {
@@ -285,8 +289,9 @@ export const prepareTransfer = (seed, address, value, message, accountName, powF
     return (dispatch, getState) => {
         dispatch(sendTransferRequest());
 
-        const transfer = prepareTransferArray(address, value, message);
         const shouldOffloadPow = getNetworkBoundPowFromState(getState());
+        const firstAddress = selectFirstAddressFromAccountFactory(accountName)(getState());
+        const transfer = prepareTransferArray(address, value, message, firstAddress);
         const isZeroValue = value === 0;
 
         // If its a zero value transfer,
@@ -401,6 +406,7 @@ export const prepareTransfer = (seed, address, value, message, accountName, powF
                     err,
                 );
             }
+
             return makeTransferWithBalanceCheck(inputs);
         };
 
