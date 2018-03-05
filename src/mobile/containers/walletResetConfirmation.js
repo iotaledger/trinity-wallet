@@ -1,9 +1,7 @@
 import { translate, Trans } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import { StyleSheet, View, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import WithBackPressGoToHome from '../components/withBackPressGoToHome';
@@ -11,6 +9,7 @@ import { width, height } from '../util/dimensions';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
 import DynamicStatusBar from '../components/dynamicStatusBar';
+import { Icon } from '../theme/icons.js';
 
 import InfoBox from '../components/infoBox';
 
@@ -63,29 +62,20 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
-    },
     confirmationText: {
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
 });
 
 class WalletResetConfirmation extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        negative: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -96,20 +86,22 @@ class WalletResetConfirmation extends Component {
     }
 
     navigateTo(url) {
+        const { body } = this.props;
         this.props.navigator.push({
             screen: url,
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
+                screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
     }
 
     goBack() {
+        const { body } = this.props;
         // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
             screen: {
@@ -117,9 +109,9 @@ class WalletResetConfirmation extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
+                    screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: this.props.backgroundColor,
+                    statusBarColor: body.bg,
                 },
             },
             appStyle: {
@@ -134,17 +126,16 @@ class WalletResetConfirmation extends Component {
     }
 
     render() {
-        const { t, secondaryBackgroundColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-        const backgroundColor = { backgroundColor: this.props.backgroundColor };
-        const negativeColor = { color: this.props.negativeColor };
-        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
+        const { t, body, negative } = this.props;
+        const textColor = { color: body.color };
+        const backgroundColor = { backgroundColor: body.bg };
+        const negativeColor = { color: negative.color };
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={this.props.backgroundColor} />
+                <DynamicStatusBar textColor={body.color} backgroundColor={body.bg} />
                 <View style={styles.topWrapper}>
-                    <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
+                    <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midWrapper}>
                     <View style={{ flex: 0.2 }} />
@@ -160,7 +151,7 @@ class WalletResetConfirmation extends Component {
                                 </Text>
                             </Trans>
                         }
-                        secondaryBackgroundColor={secondaryBackgroundColor}
+                        secondaryBackgroundColor={body.colorlor}
                     />
                     <View style={{ flex: 0.4 }} />
                     <Text style={[styles.subHeaderText, negativeColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
@@ -181,10 +172,9 @@ class WalletResetConfirmation extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    backgroundColor: state.settings.theme.backgroundColor,
-    positiveColor: state.settings.theme.positiveColor,
-    negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    positive: state.settings.theme.positive,
+    negative: state.settings.theme.negative,
+    body: state.settings.theme.body,
 });
 
 export default WithBackPressGoToHome()(

@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import whiteNodeImagePath from 'iota-wallet-shared-modules/images/node-white.png';
-import whiteSyncImagePath from 'iota-wallet-shared-modules/images/sync-white.png';
-import whiteCrossImagePath from 'iota-wallet-shared-modules/images/cross-white.png';
-import whiteSnapshotImagePath from 'iota-wallet-shared-modules/images/snapshot-white.png';
-import blackNodeImagePath from 'iota-wallet-shared-modules/images/node-black.png';
-import blackSyncImagePath from 'iota-wallet-shared-modules/images/sync-black.png';
-import blackCrossImagePath from 'iota-wallet-shared-modules/images/cross-black.png';
-import blackSnapshotImagePath from 'iota-wallet-shared-modules/images/snapshot-black.png';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Icon } from '../theme/icons.js';
 
 import { width, height } from '../util/dimensions';
 
@@ -48,12 +41,12 @@ const styles = StyleSheet.create({
     backIcon: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     separator: {
         borderBottomColor: 'white',

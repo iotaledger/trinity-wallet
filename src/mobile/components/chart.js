@@ -155,8 +155,8 @@ class Chart extends PureComponent {
             getPriceForCurrency,
         } = this.props;
 
-        const textColor = { color: theme.secondaryBackgroundColor };
-        const borderColor = { borderColor: theme.secondaryBackgroundColor };
+        const textColor = { color: theme.body.color };
+        const borderColor = { borderColor: theme.body.color };
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
@@ -221,16 +221,13 @@ class Chart extends PureComponent {
                                 style={{
                                     axis: { stroke: 'transparent' },
                                     tickLabels: {
-                                        fill: theme.secondaryBackgroundColor,
+                                        fill: theme.body.color,
                                         fontSize: width / 44,
                                         fontFamily: 'Lato-Regular',
                                     },
                                 }}
                                 gridComponent={
-                                    <Line
-                                        type="grid"
-                                        style={{ stroke: theme.secondaryBackgroundColor, strokeWidth: 0.1 }}
-                                    />
+                                    <Line type="grid" style={{ stroke: theme.body.color, strokeWidth: 0.1 }} />
                                 }
                                 tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
                                 tickValues={chartData.yAxis.ticks}

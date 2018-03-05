@@ -6,12 +6,12 @@ import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
-import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { connect } from 'react-redux';
+import tinycolor from 'tinycolor2';
 import OnboardingButtons from '../components/onboardingButtons';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import GENERAL from '../theme/general';
+import { Icon } from '../theme/icons.js';
 
 import { width, height } from '../util/dimensions';
 
@@ -63,10 +63,6 @@ const styles = StyleSheet.create({
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
     infoTextContainer: {
         paddingHorizontal: width / 15,
         alignItems: 'center',
@@ -101,8 +97,7 @@ const styles = StyleSheet.create({
 class SaveSeedConfirmation extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -110,10 +105,9 @@ class SaveSeedConfirmation extends Component {
         super(props);
 
         this.state = {
-            checkboxImage:
-                props.secondaryBackgroundColor === 'white'
-                    ? whiteCheckboxUncheckedImagePath
-                    : blackCheckboxUncheckedImagePath,
+            checkboxImage: tinycolor(props.body.bg).isDark()
+                ? whiteCheckboxUncheckedImagePath
+                : blackCheckboxUncheckedImagePath,
             hasSavedSeed: false,
             showCheckbox: false,
         };
@@ -128,19 +122,21 @@ class SaveSeedConfirmation extends Component {
     }
 
     onBackPress() {
+        const { body } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
-                screenBackgroundColor: this.props.backgroundColor,
+                statusBarColor: body.bg,
+                screenBackgroundColor: body.bg,
             },
             animated: false,
         });
     }
 
     onNextPress() {
+        const { body } = this.props;
         const { hasSavedSeed } = this.state;
         if (hasSavedSeed) {
             this.props.navigator.push({
@@ -148,9 +144,9 @@ class SaveSeedConfirmation extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
+                    screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: this.props.backgroundColor,
+                    statusBarColor: body.bg,
                 },
                 animated: false,
             });
@@ -158,11 +154,13 @@ class SaveSeedConfirmation extends Component {
     }
 
     onCheckboxPress() {
-        const { secondaryBackgroundColor } = this.props;
-        const checkboxUncheckedImagePath =
-            secondaryBackgroundColor === 'white' ? whiteCheckboxUncheckedImagePath : blackCheckboxUncheckedImagePath;
-        const checkboxCheckedImagePath =
-            secondaryBackgroundColor === 'white' ? whiteCheckboxCheckedImagePath : blackCheckboxCheckedImagePath;
+        const { body } = this.props;
+        const checkboxUncheckedImagePath = tinycolor(body.bg).isDark()
+            ? whiteCheckboxUncheckedImagePath
+            : blackCheckboxUncheckedImagePath;
+        const checkboxCheckedImagePath = tinycolor(body.bg).isDark()
+            ? whiteCheckboxCheckedImagePath
+            : blackCheckboxCheckedImagePath;
 
         if (this.state.checkboxImage === checkboxCheckedImagePath) {
             this.setState({
@@ -178,17 +176,16 @@ class SaveSeedConfirmation extends Component {
     }
 
     render() {
-        const { t, backgroundColor, secondaryBackgroundColor } = this.props;
+        const { t, body } = this.props;
         const { hasSavedSeed } = this.state;
-        const textColor = { color: secondaryBackgroundColor };
-        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
+        const textColor = { color: body.color };
         const opacity = hasSavedSeed ? 1 : 0.1;
 
         return (
-            <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaImagePath} style={styles.iotaLogo} />
+                    <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.topMidContainer}>
@@ -226,9 +223,8 @@ class SaveSeedConfirmation extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    backgroundColor: state.settings.theme.backgroundColor,
-    negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    negative: state.settings.theme.negative,
+    body: state.settings.theme.body,
 });
 
 export default translate(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation));

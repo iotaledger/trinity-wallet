@@ -3,11 +3,9 @@ import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
+import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setSeedName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/tempAccount';
-import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { connect } from 'react-redux';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import CustomTextInput from '../components/customTextInput';
@@ -16,6 +14,7 @@ import OnboardingButtons from '../components/onboardingButtons';
 import { width, height } from '../util/dimensions';
 import keychain, { hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
 import InfoBox from '../components/infoBox';
+import { Icon } from '../theme/icons.js';
 
 console.ignoredYellowBox = true;
 
@@ -55,14 +54,6 @@ const styles = StyleSheet.create({
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
 });
 
 export class SetSeedName extends Component {
@@ -72,12 +63,11 @@ export class SetSeedName extends Component {
         generateAlert: PropTypes.func.isRequired,
         setAdditionalAccountInfo: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
         seed: PropTypes.string.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
         seedCount: PropTypes.number.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
+        negative: PropTypes.object.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
@@ -154,13 +144,14 @@ export class SetSeedName extends Component {
     }
 
     onBackPress() {
+        const { body } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
+                screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
@@ -201,16 +192,16 @@ export class SetSeedName extends Component {
     }
 
     navigateTo(screen) {
-        const { backgroundColor } = this.props;
+        const { body } = this.props;
         if (screen === 'loading') {
             return this.props.navigator.push({
                 screen,
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: backgroundColor,
+                    screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: backgroundColor,
+                    statusBarColor: body.bg,
                 },
                 animated: false,
                 overrideBackPress: true,
@@ -221,9 +212,9 @@ export class SetSeedName extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: backgroundColor,
+                screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: backgroundColor,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
@@ -231,17 +222,17 @@ export class SetSeedName extends Component {
 
     render() {
         const { accountName } = this.state;
-        const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
+        const { t, body, negative } = this.props;
+        const textColor = { color: body.color };
 
         return (
-            <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <DynamicStatusBar backgroundColor={body.bg} />
+
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image source={iotaImagePath} style={styles.iotaLogo} />
+                            <Icon name="iota" size={width / 8} color={body.color} />{' '}
                         </View>
                         <View style={styles.midContainer}>
                             <View style={{ flex: 0.5 }} />
@@ -254,13 +245,13 @@ export class SetSeedName extends Component {
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 onSubmitEditing={() => this.onDonePress()}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
+                                secondaryBackgroundColor={body.color}
+                                negativeColor={negative.color}
                                 value={accountName}
                             />
                             <View style={{ flex: 0.3 }} />
                             <InfoBox
-                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                secondaryBackgroundColor={body.color}
                                 text={
                                     <View>
                                         <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
@@ -282,7 +273,7 @@ export class SetSeedName extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
+                <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
     }
@@ -292,9 +283,8 @@ const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     seedCount: state.account.seedCount,
     onboardingComplete: state.account.onboardingComplete,
-    backgroundColor: state.settings.theme.backgroundColor,
-    negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    negative: state.settings.theme.negativeColor,
+    body: state.settings.theme.body,
     isTransitioning: state.tempAccount.isTransitioning,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,

@@ -9,8 +9,6 @@ import QRCode from 'react-native-qrcode-svg';
 import RNFS from 'react-native-fs';
 import { iotaLogo, arrow } from 'iota-wallet-shared-modules/libs/html';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import iotaFullImagePath from 'iota-wallet-shared-modules/images/iota-full.png';
 import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-white.png';
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
@@ -18,11 +16,13 @@ import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
 import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
+import tinycolor from 'tinycolor2';
 import GENERAL from '../theme/general';
 import CtaButton from '../components/ctaButton';
 import { isAndroid, isIOS } from '../util/device';
 import { width, height } from '../util/dimensions';
 import DynamicStatusBar from '../components/dynamicStatusBar';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -98,10 +98,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
     },
     paperWalletContainer: {
         width: width / 1.1,
@@ -208,15 +204,13 @@ const styles = StyleSheet.create({
 const qrPath = `${RNFS.DocumentDirectoryPath}/qr.png`;
 class PaperWallet extends Component {
     static propTypes = {
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         seed: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        positiveColor: PropTypes.string.isRequired,
-        ctaColor: PropTypes.string.isRequired,
-        secondaryCtaColor: PropTypes.string.isRequired,
-        ctaBorderColor: PropTypes.string.isRequired,
+        positive: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
+        secondary: PropTypes.object.isRequired,
     };
 
     static callback(dataURL) {
@@ -227,10 +221,9 @@ class PaperWallet extends Component {
         super(props);
 
         this.state = {
-            checkboxImage:
-                props.secondaryBackgroundColor === 'white'
-                    ? whiteCheckboxCheckedImagePath
-                    : blackCheckboxCheckedImagePath,
+            checkboxImage: tinycolor(props.body.bg).isDark()
+                ? whiteCheckboxCheckedImagePath
+                : blackCheckboxCheckedImagePath,
             showIotaLogo: true,
             iotaLogoVisibility: 'visible',
             pressedPrint: false,
@@ -240,13 +233,14 @@ class PaperWallet extends Component {
     }
 
     onDonePress() {
+        const { body } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
+                screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
@@ -425,11 +419,13 @@ class PaperWallet extends Component {
     }
 
     onCheckboxPress() {
-        const { secondaryBackgroundColor } = this.props;
-        const checkboxUncheckedImagePath =
-            secondaryBackgroundColor === 'white' ? whiteCheckboxUncheckedImagePath : blackCheckboxUncheckedImagePath;
-        const checkboxCheckedImagePath =
-            secondaryBackgroundColor === 'white' ? whiteCheckboxCheckedImagePath : blackCheckboxCheckedImagePath;
+        const { body } = this.props;
+        const checkboxUncheckedImagePath = tinycolor(body.bg).isDark()
+            ? whiteCheckboxUncheckedImagePath
+            : blackCheckboxUncheckedImagePath;
+        const checkboxCheckedImagePath = tinycolor(body.bg).isDark()
+            ? whiteCheckboxCheckedImagePath
+            : blackCheckboxCheckedImagePath;
 
         if (this.state.checkboxImage === checkboxCheckedImagePath) {
             this.setState({
@@ -462,27 +458,17 @@ class PaperWallet extends Component {
     }
 
     render() {
-        const {
-            t,
-            seed,
-            backgroundColor,
-            positiveColor,
-            ctaColor,
-            secondaryBackgroundColor,
-            secondaryCtaColor,
-            ctaBorderColor,
-        } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
+        const { t, seed, body, positive, primary, secondary } = this.props;
+        const textColor = { color: body.color };
         const checksum = getChecksum(seed);
-        const positiveColorText = { color: positiveColor };
-        const positiveColorBorder = { borderColor: positiveColor };
-        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
+        const positiveColorText = { color: positive.color };
+        const positiveColorBorder = { borderColor: positive.color };
 
         return (
-            <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaImagePath} style={styles.iotaLogo} />
+                    <Icon name="iota" size={width / 8} color={body.color} />
                     <Text style={[styles.infoText, textColor]}>
                         <Text style={styles.infoTextNormal}>{t('clickToPrint')}</Text>
                         <Text style={styles.infoTextBold}> {t('storeSafely')}</Text>
@@ -557,9 +543,9 @@ class PaperWallet extends Component {
                     </TouchableOpacity>
                     <View style={{ paddingTop: height / 25 }}>
                         <CtaButton
-                            ctaColor={ctaColor}
-                            ctaBorderColor={ctaBorderColor}
-                            secondaryCtaColor={secondaryCtaColor}
+                            ctaColor={primary.color}
+                            ctaBorderColor={primary.hover}
+                            secondaryCtaColor={secondary.color}
                             text={t('printWallet')}
                             onPress={() => {
                                 this.onPrintPress();
@@ -583,11 +569,10 @@ class PaperWallet extends Component {
 const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     backgroundColor: state.settings.theme.backgroundColor,
-    positiveColor: state.settings.theme.positiveColor,
-    ctaColor: state.settings.theme.ctaColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    ctaBorderColor: state.settings.theme.ctaBorderColor,
-    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
+    positive: state.settings.theme.positive,
+    primary: state.settings.theme.primary,
+    body: state.settings.theme.body,
+    secondary: state.settings.theme.secondary,
 });
 
 export default translate(['paperWallet', 'global'])(connect(mapStateToProps)(PaperWallet));

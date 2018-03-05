@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
@@ -11,6 +9,7 @@ import { setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount'
 import CustomTextInput from '../components/customTextInput';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -106,13 +105,12 @@ class EnterPassword extends Component {
         const { t, positiveColor, secondaryBackgroundColor, negativeColor, isFingerprintEnabled } = this.props;
         const borderColor = { borderColor: positiveColor };
         const positiveTextColor = { color: positiveColor };
-        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
+                        <Icon name="iota" size={width / 8} color={secondaryBackgroundColor} />
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput

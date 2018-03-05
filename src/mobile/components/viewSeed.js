@@ -2,22 +2,14 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import {
-    Image,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Keyboard,
-    TouchableWithoutFeedback,
-    AppState,
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback, AppState } from 'react-native';
 import Fonts from '../theme/Fonts';
 import Seedbox from '../components/seedBox';
 import CustomTextInput from '../components/customTextInput';
 import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -66,20 +58,15 @@ const styles = StyleSheet.create({
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
         width,
         paddingHorizontal: width / 15,
-    },
-    icon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     viewButton: {
         borderWidth: 1.5,
@@ -105,6 +92,7 @@ class ViewSeed extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         borderColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         onWrongPassword: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
@@ -176,7 +164,15 @@ class ViewSeed extends Component {
     }
 
     render() {
-        const { t, textColor, secondaryBackgroundColor, borderColor, arrowLeftImagePath, negativeColor } = this.props;
+        const {
+            t,
+            textColor,
+            backgroundColor,
+            secondaryBackgroundColor,
+            borderColor,
+            arrowLeftImagePath,
+            negativeColor,
+        } = this.props;
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -226,7 +222,7 @@ class ViewSeed extends Component {
                                 <View style={styles.seedBoxContainer}>
                                     <Seedbox
                                         seed={this.state.seed}
-                                        secondaryBackgroundColor={secondaryBackgroundColor}
+                                        backgroundColor={backgroundColor}
                                         borderColor={borderColor}
                                         textColor={textColor}
                                     />
@@ -251,7 +247,7 @@ class ViewSeed extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
+                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>

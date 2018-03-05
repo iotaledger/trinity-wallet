@@ -176,6 +176,7 @@ dependencies {
     compile project(':react-native-securerandom')
     compile project(':randombytes')
     compile "com.android.support:exifinterface:26.1.0"
+    compile project(':react-native-vector-icons')
 }
 
 // Run this once to be able to run the application with BUCK

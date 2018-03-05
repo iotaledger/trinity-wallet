@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import DropdownComponent from './dropdown';
 import { selectLocale } from '../components/locale';
+import { Icon } from '../theme/icons.js';
 
 const { width } = Dimensions.get('window');
 const { height } = global;
@@ -40,19 +41,11 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
-    },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-    },
-    iconRight: {
-        width: width / 28,
-        height: width / 28,
+        marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
@@ -71,9 +64,8 @@ class LanguageSelection extends Component {
         t: PropTypes.func.isRequired,
         setLanguage: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
-        tickImagePath: PropTypes.number.isRequired,
         language: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -91,7 +83,7 @@ class LanguageSelection extends Component {
     }
 
     render() {
-        const { backPress, t, textColor, arrowLeftImagePath, tickImagePath, language } = this.props;
+        const { backPress, t, textColor, language, secondaryBackgroundColor } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -124,7 +116,7 @@ class LanguageSelection extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -134,7 +126,7 @@ class LanguageSelection extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                <Image source={tickImagePath} style={styles.iconRight} />
+                                <Icon name="eye" size={width / 28} color={secondaryBackgroundColor} />
                             </View>
                         </TouchableOpacity>
                     </View>

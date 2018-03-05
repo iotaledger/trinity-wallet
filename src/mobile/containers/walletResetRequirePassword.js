@@ -7,9 +7,7 @@ import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/a
 import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, Image, BackHandler } from 'react-native';
+import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/dynamicStatusBar';
@@ -17,6 +15,7 @@ import FONTS from '../theme/Fonts';
 import keychain from '../util/keychain';
 import CustomTextInput from '../components/customTextInput';
 import StatefulDropdownAlert from './statefulDropdownAlert';
+import { Icon } from '../theme/icons.js';
 
 import { width, height } from '../util/dimensions';
 
@@ -50,10 +49,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 10,
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
     buttonsContainer: {
         alignItems: 'flex-end',
         justifyContent: 'center',
@@ -70,9 +65,8 @@ class WalletResetRequirePassword extends Component {
         clearTempData: PropTypes.func.isRequired,
         setPassword: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        negative: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
     };
@@ -100,13 +94,14 @@ class WalletResetRequirePassword extends Component {
     }
 
     goBack() {
+        const { body } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
+                screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
@@ -117,14 +112,16 @@ class WalletResetRequirePassword extends Component {
     }
 
     redirectToInitialScreen() {
+        const { body } = this.props;
+
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'languageSetup',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
-                    statusBarColor: this.props.backgroundColor,
+                    screenBackgroundColor: body.bg,
+                    statusBarColor: body.bg,
                     drawUnderStatusBar: true,
                 },
                 overrideBackPress: true,
@@ -169,17 +166,16 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor } = this.props;
-        const backgroundColor = { backgroundColor: this.props.backgroundColor };
-        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
+        const { t, negative, body } = this.props;
+        const backgroundColor = { backgroundColor: body.bg };
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={this.props.backgroundColor} />
+                <DynamicStatusBar textColor={body.color} backgroundColor={body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
+                            <Icon name="iota" size={width / 8} color={body.color} />
                         </View>
                         <View style={styles.midWrapper}>
                             <CustomTextInput
@@ -192,8 +188,8 @@ class WalletResetRequirePassword extends Component {
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 onSubmitEditing={this.handleLogin}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
+                                secondaryBackgroundColor={body.color}
+                                negativeColor={negative.color}
                                 secureTextEntry
                             />
                             <View style={{ flex: 0.2 }} />
@@ -208,10 +204,7 @@ class WalletResetRequirePassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert
-                    textColor={secondaryBackgroundColor}
-                    backgroundColor={this.props.backgroundColor}
-                />
+                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
     }
@@ -219,9 +212,8 @@ class WalletResetRequirePassword extends Component {
 
 const mapStateToProps = (state) => ({
     password: state.tempAccount.password,
-    negativeColor: state.settings.theme.negativeColor,
-    backgroundColor: state.settings.theme.backgroundColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    negativeColor: state.settings.theme.negative,
+    body: state.settings.theme.body,
 });
 
 const mapDispatchToProps = {

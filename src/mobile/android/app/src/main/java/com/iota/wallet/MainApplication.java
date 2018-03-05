@@ -20,7 +20,7 @@ import com.rnprint.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
 import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
 import org.iota.mobile.IOTAMobilePackage;
-
+import com.oblador.vectoricons.VectorIconsPackage;
 import java.util.Arrays;
 import java.util.List;
 
@@ -64,7 +64,8 @@ public class MainApplication extends NavigationApplication {
             new IOTAMobilePackage(),
             new RNExitAppPackage(),
             new RNSecureRandomPackage(),
-            new RandomBytesPackage()
+            new RandomBytesPackage(),
+            new VectorIconsPackage()
     );
   }
 
