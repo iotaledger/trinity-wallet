@@ -44,7 +44,7 @@ import {
  *   @param {string} address
  *   @param {number} value
  *   @param {string} message
- *    @param {string} firstOwnAddress
+ *   @param {string} firstOwnAddress
  *   @param {string} [tag='TRINITY']
  *   @returns {array} Transfer object
  **/
@@ -730,6 +730,17 @@ export const getAllTailTransactionsForBundle = (bundleHash, transfers) => {
     return filter(flatten(bundles), { currentIndex: 0 });
 };
 
+/**
+ *   Performs proof of work and updates trytes and transaction objects with nonce
+ *
+ *   @method performPow
+ *   @param {function} powFn
+ *   @param {array} transactionObjects
+ *   @param {string} trunkTransaction
+ *   @param {string} branchTransaction
+ *   @param {integer} [minWeightMagnitude = 14]
+ *   @returns {promise<object>}
+ **/
 export const performPow = (
     powFn,
     transactionObjects,
@@ -737,12 +748,21 @@ export const performPow = (
     branchTransaction,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
 ) => {
+    // Order transaction objects in descending to make sure it starts from remainder object.
     const sortedTransactionObjects = orderBy(transactionObjects, 'currentIndex', ['desc']);
 
     return reduce(
         sortedTransactionObjects,
         (promise, transaction, index) => {
             return promise.then((result) => {
+                // Assign parent transactions (trunk and branch)
+                // Starting from the remainder transaction object (index = 0 in sortedTransactionObjects)
+                // - When index === 0 i.e. remainder transaction object
+                //    * Assign trunkTransaction with provided trunk transaction from (getTransactionsToApprove)
+                //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)
+                // - When index > 0 i.e. not remainder transaction objects
+                //    * Assign trunkTransaction with hash of previous transaction object
+                //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)
                 const withParentTransactions = assign({}, transaction, {
                     trunkTransaction: index ? result.transactionObjects[index - 1].hash : trunkTransaction,
                     branchTransaction: index ? trunkTransaction : branchTransaction,
@@ -765,21 +785,43 @@ export const performPow = (
     );
 };
 
+/**
+ *   Wrapper function that prepares transfers by signing
+ *   inputs if it's a value transfer and send trytes to tangle
+ *
+ *   @method makeTransferWithLocalPow
+ *   @param {string} seed
+ *   @param {array} transfers
+ *   @param {function} powFn
+ *   @param {object} [options = null]
+ *   @returns {promise}
+ **/
 export const makeTransferWithLocalPow = (seed, transfers, powFn, options = null) => {
+    return prepareTransfersAsync(seed, transfers, options).then((trytes) => sendTrytes(trytes, powFn));
+};
+
+/**
+ *   Get transaction to approve (trunk and branch)
+ *   Perform proof of work
+ *   Store and broadcast trytes
+ *
+ *   @method sendTrytes
+ *   @param {array} trytes
+ *   @param {function} powFn
+ *   @returns {promise<object>}
+ **/
+export const sendTrytes = (trytes, powFn) => {
     const cached = {
         trytes: [],
         transactionObjects: [],
     };
 
-    return prepareTransfersAsync(seed, transfers, options)
-        .then((trytes) => {
-            cached.trytes = trytes;
+    cached.trytes = trytes;
 
-            return getTransactionsToApproveAsync();
-        })
+    return getTransactionsToApproveAsync()
         .then(({ trunkTransaction, branchTransaction }) => {
-            cached.transactionObjects = map(cached.trytes, (tryte) =>
-                assign({}, iota.utils.transactionObject(tryte), {
+            cached.transactionObjects = map(cached.trytes, (transactionTrytes) =>
+                assign({}, iota.utils.transactionObject(transactionTrytes), {
                     attachmentTimestamp: Date.now(),
                     attachmentTimestampLowerBound: 0,
                     attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
