@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
+import findKey from 'lodash/findKey';
 import { createSelector } from 'reselect';
 import { deduplicateTransferBundles } from '../libs/iota/transfers';
 
@@ -149,5 +150,18 @@ export const selectedAccountStateFactory = (accountName) => {
             txHashesForUnspentAddresses: txHashesForUnspentAddresses[accountName] || [],
             pendingTxHashesForSpentAddresses: pendingTxHashesForSpentAddresses[accountName] || [],
         }),
+    );
+};
+
+/**
+ *   Selects address at index 0 from account info state partial.
+ *
+ *   @method selectFirstAddressFromAccountFactory
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const selectFirstAddressFromAccountFactory = (accountName) => {
+    return createSelector(getAccountInfoFromState, (state) =>
+        findKey(state[accountName].addresses, (addressMeta) => addressMeta.index === 0),
     );
 };
