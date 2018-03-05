@@ -4,6 +4,7 @@ import { View, Image, StyleSheet } from 'react-native';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import whiteArrowImagePath from 'iota-wallet-shared-modules/images/arrow-white.png';
 import blackArrowImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
+import tinycolor from 'tinycolor2';
 import TextWithLetterSpacing from './textWithLetterSpacing';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
@@ -51,13 +52,13 @@ class SeedBox extends Component {
     static propTypes = {
         seed: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
         borderColor: PropTypes.object.isRequired,
     };
 
     render() {
-        const { textColor, secondaryBackgroundColor, seed } = this.props;
-        const arrowImagePath = secondaryBackgroundColor === 'white' ? whiteArrowImagePath : blackArrowImagePath;
+        const { textColor, backgroundColor, seed } = this.props;
+        const arrowImagePath = tinycolor(backgroundColor).isDark() ? whiteArrowImagePath : blackArrowImagePath;
 
         return (
             <View style={[styles.seedBox, this.props.borderColor]}>

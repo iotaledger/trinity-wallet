@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, BackHandler } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
@@ -13,6 +11,7 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -71,10 +70,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
 });
 
 class SaveYourSeed extends Component {
@@ -82,10 +77,9 @@ class SaveYourSeed extends Component {
         navigator: PropTypes.object.isRequired,
         setCopiedToClipboard: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        extraColor: PropTypes.string.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        extra: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -115,84 +109,88 @@ class SaveYourSeed extends Component {
     }
 
     onDonePress() {
+        const { body } = this.props;
         this.props.navigator.push({
             screen: 'saveSeedConfirmation',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
+                screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
     }
 
     onBackPress() {
+        const { body } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
+                screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
     }
 
     onWriteClick() {
+        const { body } = this.props;
         this.props.navigator.push({
             screen: 'writeSeedDown',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
+                screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
     }
     onPrintClick() {
+        const { body } = this.props;
         this.props.navigator.push({
             screen: 'paperWallet',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
+                screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
     }
     onCopyClick() {
+        const { body } = this.props;
         this.props.navigator.push({
             screen: 'copySeedToClipboard',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
+                screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: this.props.backgroundColor,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
     }
 
     render() {
-        const { t, backgroundColor, extraColor, secondaryBackgroundColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-        const extraColorText = { color: extraColor };
-        const extraColorBorder = { borderColor: extraColor };
-        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
+        const { t, body, extra } = this.props;
+        const textColor = { color: body.color };
+        const extraColorText = { color: extra.color };
+        const extraColorBorder = { borderColor: extra.color };
 
         return (
-            <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaImagePath} style={styles.iotaLogo} />
+                    <Icon name="iota" size={width / 8} color={body.color} />
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
                         <Text style={[styles.infoText, textColor]}>
                             <Text style={styles.infoTextNormal}>You must save your seed with </Text>
@@ -238,7 +236,7 @@ class SaveYourSeed extends Component {
                         rightText={t('global:done')}
                     />
                 </View>
-                <StatefulDropdownAlert textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
+                <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
     }
@@ -246,10 +244,9 @@ class SaveYourSeed extends Component {
 
 const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
-    backgroundColor: state.settings.theme.backgroundColor,
-    extraColor: state.settings.theme.extraColor,
+    body: state.settings.theme.body,
+    extra: state.settings.theme.extra,
     onboardingComplete: state.account.onboardingComplete,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {

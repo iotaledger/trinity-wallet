@@ -41,8 +41,8 @@ class OnboardingButtons extends PureComponent {
     static propTypes = {
         buttonWidth: PropTypes.object,
         containerWidth: PropTypes.object,
-        positiveColor: PropTypes.number,
-        negativeColor: PropTypes.number,
+        positive: PropTypes.object,
+        negative: PropTypes.object,
         opacity: PropTypes.number,
         leftButtonTestID: PropTypes.string,
         rightButtonTestID: PropTypes.string,
@@ -58,11 +58,11 @@ class OnboardingButtons extends PureComponent {
     };
 
     render() {
-        const { positiveColor, negativeColor, opacity, buttonWidth, containerWidth } = this.props;
-        const rightTextColor = { color: positiveColor };
-        const rightBorderColor = { borderColor: positiveColor };
-        const leftTextColor = { color: negativeColor };
-        const leftBorderColor = { borderColor: negativeColor };
+        const { positive, negative, opacity, buttonWidth, containerWidth } = this.props;
+        const rightTextColor = { color: positive.color };
+        const rightBorderColor = { borderColor: positive.color };
+        const leftTextColor = { color: negative.color };
+        const leftBorderColor = { borderColor: negative.color };
         const rightButtonOpacity = { opacity };
 
         return (
@@ -84,8 +84,8 @@ class OnboardingButtons extends PureComponent {
 
 const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
-    positiveColor: state.settings.theme.positiveColor,
-    negativeColor: state.settings.theme.negativeColor,
+    positive: state.settings.theme.positive,
+    negative: state.settings.theme.negative,
 });
 
 export default connect(mapStateToProps)(OnboardingButtons);

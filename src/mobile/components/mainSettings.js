@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import i18next from 'i18next';
 import { width, height } from '../util/dimensions';
 import { selectLocale } from '../components/locale';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -44,15 +45,11 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
-    },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 25,
     },
     separator: {
         borderBottomWidth: height / 1500,
@@ -81,7 +78,7 @@ const MainSettings = (props) => (
             >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Image source={props.modeImagePath} style={styles.icon} />
+                        <Icon name="mode" size={width / 22} color={props.secondaryBackgroundColor} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('mode')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -97,7 +94,7 @@ const MainSettings = (props) => (
             >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Image source={props.themeImagePath} style={styles.icon} />
+                        <Icon name="theme" size={width / 22} color={props.secondaryBackgroundColor} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('theme')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -113,7 +110,7 @@ const MainSettings = (props) => (
             >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Image source={props.currencyImagePath} style={styles.icon} />
+                        <Icon name="currency" size={width / 22} color={props.secondaryBackgroundColor} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('currency')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -129,7 +126,7 @@ const MainSettings = (props) => (
             >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Image source={props.languageImagePath} style={styles.icon} />
+                        <Icon name="language" size={width / 22} color={props.secondaryBackgroundColor} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('language')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -149,7 +146,7 @@ const MainSettings = (props) => (
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
-                    <Image source={props.accountImagePath} style={styles.icon} />
+                    <Icon name="user" size={width / 22} color={props.secondaryBackgroundColor} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('accountManagement')}</Text>
                 </View>
             </TouchableOpacity>
@@ -160,7 +157,7 @@ const MainSettings = (props) => (
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
-                    <Image source={props.passwordImagePath} style={styles.icon} />
+                    <Icon name="password" size={width / 22} color={props.secondaryBackgroundColor} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('changePassword')}</Text>
                 </View>
             </TouchableOpacity>
@@ -171,7 +168,7 @@ const MainSettings = (props) => (
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
-                    <Image source={props.twoFactorAuthImagePath} style={styles.icon} />
+                    <Icon name="twoFA" size={width / 22} color={props.secondaryBackgroundColor} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('securitySettings')}</Text>
                 </View>
             </TouchableOpacity>
@@ -185,7 +182,7 @@ const MainSettings = (props) => (
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
-                    <Image source={props.advancedImagePath} style={styles.icon} />
+                    <Icon name="advanced" size={width / 22} color={props.secondaryBackgroundColor} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('advanced')}</Text>
                 </View>
             </TouchableOpacity>
@@ -196,7 +193,7 @@ const MainSettings = (props) => (
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
-                    <Image source={props.logoutImagePath} style={styles.icon} />
+                    <Icon name="logout" size={width / 22} color={props.secondaryBackgroundColor} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('logout')}</Text>
                 </View>
             </TouchableOpacity>
@@ -225,6 +222,7 @@ MainSettings.propTypes = {
     borderBottomColor: PropTypes.object.isRequired,
     textColor: PropTypes.object.isRequired,
     modeImagePath: PropTypes.number.isRequired,
+    secondaryBackgroundColor: PropTypes.string.isRequired,
 };
 
 export default MainSettings;
