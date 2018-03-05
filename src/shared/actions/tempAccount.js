@@ -232,9 +232,9 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
         args = [...args, options];
     }
 
-    const sendTransferPromise = shouldOffloadPow ? sendTransferAsync : makeTransferWithLocalPow;
+    const promise = shouldOffloadPow ? sendTransferAsync : makeTransferWithLocalPow;
 
-    return sendTransferPromise(...args)
+    return promise(...args)
         .then((newTransfer) => {
             dispatch(updateAccountInfo(accountName, newTransfer, value));
 
@@ -261,7 +261,6 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
             dispatch(completeTransfer({ address, value }));
         })
         .catch((error) => {
-            console.log('Err', error);
             dispatch(sendTransferError());
             const alerts = {
                 attachToTangle: [
