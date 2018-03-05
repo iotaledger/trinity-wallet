@@ -272,10 +272,10 @@
         "selectAll": "Alle auswählen",
         "securitySettings": "Sicherheitseinstellungen",
         "fingerprint": "Fingerabdruck-Authentifizierung",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "couldNotFetchRates": "Kurse konnten nicht abgerufen werden",
+        "couldNotFetchRatesExplanation": "Beim Abrufen der Umrechnungskurse für {{currency}} ist etwas schief gelaufen.",
+        "fetchedConversionRates": "Umrechnungskurse abgerufen",
+        "fetchedConversionRatesExplanation": "Umrechnungskurse für {{currency}} erfolgreich abgerufen."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -325,7 +325,7 @@
         "selectNode": "Server auswählen",
         "addCustomNode": "Benutzerdefinierten Server hinzufügen",
         "manualSync": "Manuell synchronisieren",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot-Übertragung"
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
