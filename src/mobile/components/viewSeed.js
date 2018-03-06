@@ -104,7 +104,7 @@ class ViewSeed extends Component {
         textColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         borderColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         onWrongPassword: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
@@ -118,7 +118,7 @@ class ViewSeed extends Component {
             password: '',
             showSeed: false,
             seed: '',
-            appState: AppState.currentState,
+            appState: AppState.currentState, // eslint-disable-line react/no-unused-state
         };
 
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
@@ -142,7 +142,7 @@ class ViewSeed extends Component {
         if (this.state.password === this.props.password) {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     const data = get(credentials, 'data');
 
                     if (!data) {
@@ -153,7 +153,7 @@ class ViewSeed extends Component {
                         this.setState({ showSeed: true });
                     }
                 })
-                .catch(err => console.error(err)); // eslint-disable-line no-console
+                .catch((err) => console.error(err)); // eslint-disable-line no-console
         } else {
             this.props.onWrongPassword();
         }
@@ -164,7 +164,7 @@ class ViewSeed extends Component {
             this.hideSeed();
         }
 
-        this.setState({ appState: nextAppState });
+        this.setState({ appState: nextAppState }); // eslint-disable-line react/no-unused-state
     }
 
     hideSeed() {
@@ -190,9 +190,9 @@ class ViewSeed extends Component {
                             <View style={styles.textFieldContainer}>
                                 <CustomTextInput
                                     label={t('global:password')}
-                                    onChangeText={password => this.setState({ password })}
-                                    containerStyle={{ width: width / 1.4 }}
-                                    autoCapitalize={'none'}
+                                    onChangeText={(password) => this.setState({ password })}
+                                    containerStyle={{ width: width / 1.2 }}
+                                    autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"

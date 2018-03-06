@@ -2,11 +2,13 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import size from 'lodash/size';
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
+import { AppState } from 'react-native';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import { removeBundleFromUnconfirmedBundleTails } from 'iota-wallet-shared-modules/actions/account';
 import {
     fetchMarketData,
     fetchChartData,
@@ -14,26 +16,13 @@ import {
     setPollFor,
     getAccountInfo,
     promoteTransfer,
-} from '../../shared/actions/polling';
-import { removeBundleFromUnconfirmedBundleTails } from '../../shared/actions/account';
+} from 'iota-wallet-shared-modules/actions/polling';
 import keychain, { getSeed } from '../util/keychain';
-import { isWithinADay } from '../../shared/libs/promoter';
-import { sortWithProp } from '../../shared/libs/accountUtils';
 
 export class Poll extends Component {
     static propTypes = {
         pollFor: PropTypes.string.isRequired,
         allPollingServices: PropTypes.array.isRequired, // oneOf
-        isFetchingPrice: PropTypes.bool.isRequired,
-        isFetchingChartData: PropTypes.bool.isRequired,
-        isFetchingMarketData: PropTypes.bool.isRequired,
-        isFetchingAccountInfo: PropTypes.bool.isRequired,
-        isPromoting: PropTypes.bool.isRequired,
-        isSyncing: PropTypes.bool.isRequired,
-        addingAdditionalAccount: PropTypes.bool.isRequired,
-        isSendingTransfer: PropTypes.bool.isRequired,
-        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
         seedIndex: PropTypes.number.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         unconfirmedBundleTails: PropTypes.object.isRequired,
@@ -43,13 +32,7 @@ export class Poll extends Component {
         fetchChartData: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         promoteTransfer: PropTypes.func.isRequired,
-        removeBundleFromUnconfirmedBundleTails: PropTypes.func.isRequired,
     };
-
-    static shouldPromote(latestTail) {
-        const attachmentTimestamp = get(latestTail, 'attachmentTimestamp');
-        return isWithinADay(attachmentTimestamp);
-    }
 
     constructor() {
         super();
@@ -60,10 +43,12 @@ export class Poll extends Component {
 
     componentDidMount() {
         this.startBackgroundProcesses();
+        AppState.addEventListener('change', this.handleAppStateChange);
     }
 
     componentWillUnmount() {
-        timer.clearInterval('polling');
+        timer.clearInterval(this, 'polling');
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
     shouldSkipCycle() {
@@ -74,7 +59,8 @@ export class Poll extends Component {
             props.isSendingTransfer ||
             props.isGeneratingReceiveAddress ||
             props.isFetchingLatestAccountInfoOnLogin || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
-            props.addingAdditionalAccount;
+            props.addingAdditionalAccount ||
+            props.isTransitioning;
 
         const isAlreadyPollingSomething =
             props.isFetchingPrice ||
@@ -92,11 +78,11 @@ export class Poll extends Component {
         }
 
         const dict = {
+            promotion: this.promote,
             marketData: this.props.fetchMarketData,
             price: this.props.fetchPrice,
             chartData: this.props.fetchChartData,
             accountInfo: this.fetchLatestAccountInfo,
-            promotion: this.promote,
         };
 
         // In case something messed up, reinitialize
@@ -108,17 +94,29 @@ export class Poll extends Component {
 
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.getAccountInfo(seed, selectedAccountName);
                 }
             })
-            .catch(err => console.error(err)); // eslint-disable-line no-console
+            .catch((err) => console.error(err)); // eslint-disable-line no-console
     }
 
     startBackgroundProcesses() {
-        timer.setInterval('polling', () => this.fetch(this.props.pollFor), 15000);
+        timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 15000);
+    }
+
+    handleAppStateChange = (nextAppState) => {
+        if (nextAppState.match(/inactive|background/)) {
+            this.stopBackgroundProcesses();
+        } else if (nextAppState === 'active') {
+            this.startBackgroundProcesses();
+        }
+    };
+
+    stopBackgroundProcesses() {
+        timer.clearInterval(this, 'polling');
     }
 
     promote() {
@@ -131,23 +129,11 @@ export class Poll extends Component {
             const bundles = keys(unconfirmedBundleTails);
             const top = bundles[0];
 
-            const tails = unconfirmedBundleTails[top];
-
-            const tailsSortedWithAttachmentTimestamp = sortWithProp(tails, 'attachmentTimestamp');
-            const tailWithMostRecentTimestamp = get(tailsSortedWithAttachmentTimestamp, '[0]');
-
-            // Check if lies within a day
-            if (Poll.shouldPromote(tailWithMostRecentTimestamp)) {
-                this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
-            } else {
-                // Otherwise get rid of it and move on
-                this.props.removeBundleFromUnconfirmedBundleTails(top);
-                this.props.setPollFor(allPollingServices[next]);
-            }
-        } else {
-            // In case there are no unconfirmed bundle tails, move to the next service item
-            this.props.setPollFor(allPollingServices[next]);
+            return this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
         }
+
+        // In case there are no unconfirmed bundle tails, move to the next service item
+        return this.props.setPollFor(allPollingServices[next]);
     }
 
     render() {
@@ -155,7 +141,7 @@ export class Poll extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,
@@ -171,6 +157,7 @@ const mapStateToProps = state => ({
     seedIndex: state.tempAccount.seedIndex,
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     unconfirmedBundleTails: state.account.unconfirmedBundleTails,
+    isTransitioning: state.tempAccount.isTransitioning,
 });
 
 const mapDispatchToProps = {

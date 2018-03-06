@@ -8,7 +8,7 @@ import MessageInput from 'ui/components/input/Message';
 import List from 'ui/components/List';
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
-
+import { connect } from 'react-redux';
 import withSendData from 'containers/wallet/Send';
 
 import css from './send.css';
@@ -49,6 +49,7 @@ class Send extends React.PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        deepLinks: PropTypes.object.isRequired,
     };
 
     state = {
@@ -57,6 +58,28 @@ class Send extends React.PureComponent {
         message: '',
         isModalVisible: false,
     };
+
+    componentWillReceiveProps(props) {
+        if (props.deepLinks.address !== '') {
+            const { amount, message, address } = props.deepLinks;
+            this.state.amount = amount;
+            this.state.address = address;
+            this.state.message = message;
+        } else {
+            this.state.amount = 0;
+            this.state.address = '';
+            this.state.message = '';
+        }
+    }
+
+    componentWillMount() {
+        // if (this.props.deepLinks.address !== '') {
+        //     const { amount, message, address } = this.props.deepLinks;
+        //     this.state.amount = amount;
+        //     this.state.address = address;
+        //     this.state.message = message;
+        // }
+    }
 
     validateInputs = (e) => {
         const { address, amount } = this.state;
@@ -142,4 +165,8 @@ class Send extends React.PureComponent {
     }
 }
 
-export default withSendData(Send);
+const mapStateToProps = (state) => ({
+    deepLinks: state.deepLinks,
+});
+
+export default withSendData(Send)(connect(mapStateToProps)(Send));

@@ -19,7 +19,7 @@ import { ActionTypes } from './actions/app';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const developmentMiddleware = [thunk];
+const developmentMiddleware = [thunk, logger];
 const productionMiddleware = [thunk];
 
 const reducers = combineReducers({
@@ -46,14 +46,14 @@ const rootReducer = (state, action) => {
     return reducers(state, action);
 };
 
-const middleware = isDevelopment ? productionMiddleware : productionMiddleware;
+const middleware = isDevelopment ? developmentMiddleware : productionMiddleware;
 
 const store = createStore(
     rootReducer,
     compose(
         applyMiddleware(...middleware),
         autoRehydrate(),
-        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
+        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : (f) => f,
     ),
 );
 

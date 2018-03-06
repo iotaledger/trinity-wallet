@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import Dropdown from '../components/dropdown';
-import { width, height } from '../util/dimensions';
 import { translate } from 'react-i18next';
+import DropdownComponent from '../components/dropdown';
+import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -57,9 +57,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
-    dropdownWidth: {
-        width: width / 1.5,
-    },
 });
 
 class NodeSelection extends Component {
@@ -69,7 +66,9 @@ class NodeSelection extends Component {
         backPress: PropTypes.func.isRequired,
         setNode: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        tickImagePath: PropTypes.number.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     saveNodeSelection() {
@@ -80,17 +79,7 @@ class NodeSelection extends Component {
     }
 
     render() {
-        const {
-            node,
-            nodes,
-            backPress,
-            t,
-            textColor,
-            secondaryBackgroundColor,
-            nodeSelection,
-            arrowLeftImagePath,
-            tickImagePath,
-        } = this.props;
+        const { node, nodes, backPress, t, textColor, arrowLeftImagePath, tickImagePath } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -102,13 +91,13 @@ class NodeSelection extends Component {
             >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.4 }} />
-                        <Dropdown
-                            onRef={c => {
+                        <View style={{ flex: 0.25 }} />
+                        <DropdownComponent
+                            onRef={(c) => {
                                 this.dropdown = c;
                             }}
                             title={t('global:node')}
-                            dropdownWidth={styles.dropdownWidth}
+                            dropdownWidth={{ width: width / 1.5 }}
                             defaultOption={node}
                             options={nodes}
                             background

@@ -1,162 +1,30 @@
+import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, ListView, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
-import SimpleTransactionRow from '../components/simpleTransactionRow';
-import Chart from '../components/chart';
+import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
+import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
+import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
+import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
+import {
+    getRelevantTransfer,
+    isReceivedTransfer,
+    getTransferValue,
+} from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getBalanceForSelectedAccountViaSeedIndex,
-} from '../../shared/selectors/account';
-import THEMES from '../theme/themes';
-
+} from 'iota-wallet-shared-modules/selectors/account';
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
+import SimpleTransactionRow from '../components/simpleTransactionRow';
+import Chart from '../components/chart';
 import { width, height } from '../util/dimensions';
-
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
-class Balance extends Component {
-    static propTypes = {
-        marketData: PropTypes.object.isRequired,
-        isSendingTransfer: PropTypes.bool.isRequired,
-        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        isSyncing: PropTypes.bool.isRequired,
-        seedIndex: PropTypes.number.isRequired,
-        balance: PropTypes.number.isRequired,
-        addresses: PropTypes.array.isRequired,
-        transfers: PropTypes.array.isRequired,
-        settings: PropTypes.object.isRequired,
-        setCurrency: PropTypes.func.isRequired,
-        setTimeframe: PropTypes.func.isRequired,
-        extraColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        chartLineColor: PropTypes.string.isRequired,
-    };
-
-    constructor() {
-        super();
-
-        this.state = {
-            balanceIsShort: true,
-        };
-    }
-
-    componentWillReceiveProps(newProps) {
-        if (newProps.seedIndex !== this.props.seedIndex) {
-            this.setState({ balanceIsShort: true });
-        }
-    }
-
-    onBalanceClick() {
-        if (this.state.balanceIsShort) {
-            this.setState({ balanceIsShort: false });
-        } else {
-            this.setState({ balanceIsShort: true });
-        }
-    }
-
-    getDecimalPlaces(n) {
-        const s = `${+n}`;
-        const match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
-
-        if (!match) {
-            return 0;
-        }
-
-        return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
-    }
-
-    render() {
-        const {
-            t,
-            balance,
-            settings,
-            marketData,
-            transfers,
-            addresses,
-            isSendingTransfer,
-            isGeneratingReceiveAddress,
-            isSyncing,
-            negativeColor,
-            extraColor,
-            secondaryBackgroundColor,
-            chartLineColor,
-            themeName,
-        } = this.props;
-
-        const shortenedBalance =
-            roundDown(formatValue(balance), 1) +
-            (balance < 1000 || this.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+');
-        const currencySymbol = getCurrencySymbol(settings.currency);
-        const fiatBalance = balance * marketData.usdPrice / 1000000 * settings.conversionRate;
-        const recentTransactions = transfers.slice(0, 4);
-        const hasTransactions = recentTransactions.length > 0;
-        const textColor = { color: secondaryBackgroundColor };
-        const lineBorder = { borderBottomColor: secondaryBackgroundColor };
-
-        return (
-            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
-                <View style={styles.container}>
-                    <View style={styles.balanceContainer}>
-                        <Text style={[styles.iotaBalance, textColor]} onPress={event => this.onBalanceClick()}>
-                            {this.state.balanceIsShort ? shortenedBalance : formatValue(balance)} {formatUnit(balance)}
-                        </Text>
-                        <Text style={[styles.fiatBalance, textColor]}>
-                            {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
-                        </Text>
-                    </View>
-                    <View style={styles.transactionsContainer}>
-                        <View style={[styles.line, lineBorder]} />
-                        {hasTransactions ? (
-                            <ListView
-                                dataSource={ds.cloneWithRows(recentTransactions)}
-                                renderRow={dataSource => (
-                                    <SimpleTransactionRow
-                                        negativeColor={THEMES.getHSL(negativeColor)}
-                                        extraColor={THEMES.getHSL(extraColor)}
-                                        addresses={addresses}
-                                        rowData={dataSource}
-                                        secondaryBackgroundColor={secondaryBackgroundColor}
-                                    />
-                                )}
-                                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                                enableEmptySections
-                                contentContainerStyle={styles.listView}
-                                scrollEnabled={false}
-                                centerContent
-                            />
-                        ) : (
-                            <View style={styles.listView}>
-                                <Text style={[styles.noTransactions, textColor]}>{t('global:noTransactions')}</Text>
-                            </View>
-                        )}
-                        <View style={[styles.line, lineBorder]} />
-                    </View>
-                    <View style={styles.chartContainer}>
-                        <Chart
-                            isSendingTransfer={isSendingTransfer}
-                            isGeneratingReceiveAddress={isGeneratingReceiveAddress}
-                            isSyncing={isSyncing}
-                            marketData={marketData}
-                            setCurrency={currency => this.props.setCurrency(currency)}
-                            setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
-                            secondaryBackgroundColor={secondaryBackgroundColor}
-                            textColor={{ color: secondaryBackgroundColor }}
-                            borderColor={{ borderColor: secondaryBackgroundColor }}
-                            chartLineColor={chartLineColor}
-                            themeName={themeName}
-                        />
-                    </View>
-                </View>
-            </TouchableWithoutFeedback>
-        );
-    }
-}
+import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -184,7 +52,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     fiatBalance: {
-        paddingTop: height / 150,
+        paddingTop: isAndroid ? null : height / 200,
+        paddingBottom: isAndroid ? height / 200 : null,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
@@ -200,7 +69,6 @@ const styles = StyleSheet.create({
     },
     separator: {
         height: height / 120,
-        flex: 1,
     },
     listView: {
         flex: 1,
@@ -209,11 +77,186 @@ const styles = StyleSheet.create({
     },
 });
 
+export class Balance extends Component {
+    static propTypes = {
+        marketData: PropTypes.object.isRequired,
+        seedIndex: PropTypes.number.isRequired,
+        balance: PropTypes.number.isRequired,
+        addresses: PropTypes.array.isRequired,
+        transfers: PropTypes.array.isRequired,
+        settings: PropTypes.object.isRequired,
+        extraColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
+        closeTopBar: PropTypes.func.isRequired,
+        onTabSwitch: PropTypes.func.isRequired,
+    };
+
+    /**
+     * Make balance human-readable
+     * @param  {int} n Balance
+     * @return {int}   Human-readable balance
+     */
+    static getDecimalPlaces(n) {
+        const s = `+${n}`;
+        const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(s);
+
+        if (!match) {
+            return 0;
+        }
+
+        return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
+    }
+
+    constructor() {
+        super();
+
+        this.state = {
+            balanceIsShort: true,
+        };
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps.seedIndex !== this.props.seedIndex) {
+            this.setState({ balanceIsShort: true });
+        }
+    }
+
+    shouldComponentUpdate(newProps) {
+        const { marketData } = this.props;
+
+        if (newProps.marketData !== marketData) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Show full balance or show abbreviated balance
+     */
+    onBalanceClick() {
+        if (this.state.balanceIsShort) {
+            this.setState({ balanceIsShort: false });
+        } else {
+            this.setState({ balanceIsShort: true });
+        }
+    }
+
+    /**
+     * Formats transaction data
+     * @return {Array} Formatted transaction data
+     */
+
+    prepTransactions() {
+        const { transfers, addresses, t, extraColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const recentTransactions = transfers.slice(0, 4);
+
+        const computeConfirmationStatus = (persistence, incoming) => {
+            if (incoming) {
+                return persistence ? t('received') : t('receiving');
+            }
+
+            return persistence ? t('sent') : t('sending');
+        };
+
+        const getSign = (value, incoming) => {
+            if (value === 0) {
+                return '';
+            }
+
+            return incoming ? '+' : '-';
+        };
+
+        const isSecondaryBackgroundColorWhite = secondaryBackgroundColor === 'white';
+
+        const outgoingIconPath = isSecondaryBackgroundColorWhite ? whiteSendImagePath : blackSendImagePath;
+        const incomingIconPath = isSecondaryBackgroundColorWhite ? whiteReceiveImagePath : blackReceiveImagePath;
+
+        const formattedTransfers = map(recentTransactions, (transfer) => {
+            const tx = getRelevantTransfer(transfer, addresses);
+            const value = getTransferValue(transfer, addresses);
+            const incoming = isReceivedTransfer(transfer, addresses);
+
+            return {
+                time: tx.timestamp,
+                confirmationStatus: computeConfirmationStatus(tx.persistence, incoming),
+                value: round(formatValue(value), 1),
+                unit: formatUnit(value),
+                sign: getSign(value, incoming),
+                iconPath: incoming ? incomingIconPath : outgoingIconPath,
+                style: {
+                    titleColor: incoming ? extraColor : negativeColor,
+                    defaultTextColor: { color: secondaryBackgroundColor },
+                },
+            };
+        });
+
+        return orderBy(formattedTransfers, 'time', ['desc']);
+    }
+
+    renderTransactions() {
+        const { secondaryBackgroundColor, t } = this.props;
+        const data = this.prepTransactions();
+
+        return (
+            <FlatList
+                scrollEnabled={false}
+                data={data}
+                keyExtractor={(item, index) => index}
+                renderItem={({ item }) => <SimpleTransactionRow {...item} />}
+                contentContainerStyle={styles.listView}
+                ItemSeparatorComponent={() => <View style={styles.separator} />}
+                ListEmptyComponent={() => (
+                    <Text style={[styles.noTransactions, { color: secondaryBackgroundColor }]}>
+                        {t('global:noTransactions')}
+                    </Text>
+                )}
+            />
+        );
+    }
+
+    render() {
+        const { balance, settings, marketData, secondaryBackgroundColor } = this.props;
+
+        const shortenedBalance =
+            roundDown(formatValue(balance), 1) +
+            (balance < 1000 || Balance.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+');
+        const currencySymbol = getCurrencySymbol(settings.currency);
+        const fiatBalance = balance * marketData.usdPrice / 1000000 * settings.conversionRate;
+        const textColor = { color: secondaryBackgroundColor };
+        const lineBorder = { borderBottomColor: secondaryBackgroundColor };
+        const recentTransactions = this.renderTransactions();
+        return (
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
+                <View style={styles.container}>
+                    <View style={styles.balanceContainer}>
+                        <Text style={[styles.iotaBalance, textColor]} onPress={() => this.onBalanceClick()}>
+                            {this.state.balanceIsShort ? shortenedBalance : formatValue(balance)} {formatUnit(balance)}
+                        </Text>
+                        <Text style={[styles.fiatBalance, textColor]}>
+                            {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
+                        </Text>
+                    </View>
+                    <View style={styles.transactionsContainer}>
+                        <View style={[styles.line, lineBorder]} />
+                        <TouchableOpacity onPress={() => this.props.onTabSwitch('history')}>
+                            {recentTransactions}
+                        </TouchableOpacity>
+                        <View style={[styles.line, lineBorder]} />
+                    </View>
+                    <View style={styles.chartContainer}>
+                        <Chart />
+                    </View>
+                </View>
+            </TouchableWithoutFeedback>
+        );
+    }
+}
+
 const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     marketData,
-    isSendingTransfer: tempAccount.isSendingTransfer,
-    isGeneratingReceiveAddress: tempAccount.isGeneratingReceiveAddress,
-    isSyncing: tempAccount.isSyncing,
     seedIndex: tempAccount.seedIndex,
     balance: getBalanceForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
@@ -222,16 +265,8 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     negativeColor: settings.theme.negativeColor,
     extraColor: settings.theme.extraColor,
     secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
-    chartLineColor: settings.theme.chartLineColor,
+    chartLineColorPrimary: settings.theme.chartLineColorPrimary,
+    chartLineColorSecondary: settings.theme.chartLineColorSecondary,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setCurrency: currency => {
-        dispatch(setCurrency(currency));
-    },
-    setTimeframe: timeframe => {
-        dispatch(setTimeframe(timeframe));
-    },
-});
-
-export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Balance));
+export default translate(['global'])(connect(mapStateToProps)(Balance));

@@ -4,6 +4,7 @@
         "cancel": "取消",
         "continue?": "您確定要繼續嗎？",
         "noTransactions": "無近來歷史",
+        "refresh": "REFRESH",
         "qr": "QR Code",
         "balanceError": "餘額不足",
         "balanceErrorMessage": "您的IOTA不足以完成本次交易。",
@@ -46,6 +47,7 @@
         "yes": "確認",
         "no": "否",
         "password": "密碼",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "未知的密碼",
         "unrecognisedPasswordExplanation": "此為未知密碼，請再試一遍。",
         "syncInProgress": "同步進行中",
@@ -58,7 +60,24 @@
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
         "wallet": "Wallet",
-        "pressBackAgain": "Press back again to close the app"
+        "sent": "Sent",
+        "received": "Received",
+        "sending": "Sending",
+        "receiving": "Receiving",
+        "confirmed": "已確認",
+        "pending": "檢測中",
+        "bundleHash": "Bundle Hash",
+        "addresses": "位址",
+        "pressBackAgain": "Press back again to close the app",
+        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autopromoting": "Autopromoting transfer",
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -106,8 +125,7 @@
         "invalidCharactersExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
         "seedTooShort": "種子碼過短",
         "seedTooShortExplanation": "您的密碼必須至少{{最大的長度}} 字元。目前{{目前長度}} 字元長。請再試一次",
-        "seedExplanation":
-            "種子應{{maxLength}} 字長, 並應包含大寫字母 a-z, 或數字9。您不能使用種子長於{{maxLength}} 字元。",
+        "seedExplanation": "種子應{{maxLength}} 字長, 並應包含大寫字母 a-z, 或數字9。您不能使用種子長於{{maxLength}} 字元。",
         "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {
@@ -126,7 +144,9 @@
         "enterPassword": "請輸入您的密碼。",
         "useSeed": "使用種子碼",
         "login": "登入",
-        "selectDifferentNode": "您要選擇不同的節點嗎？"
+        "selectDifferentNode": "您要選擇不同的節點嗎？",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "首次載入種子碼。",
@@ -154,14 +174,14 @@
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
         "generateNewAddress": "NEW ADDRESS",
         "message": "選擇性訊息",
-        "removeMessage": "移除訊息"
+        "removeMessage": "移除訊息",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "種子已清除",
         "seedClearedExplanation": "基於安全理由，種子已從剪貼簿清除",
-        "mustSaveYourSeed": "您必須將種子碼存放 ",
-        "atLeastOne": "於至少 ",
-        "ofTheOptions": "下列其中一個選項。"
+        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "錯誤種子",
@@ -182,11 +202,14 @@
         "amount": "金額",
         "max": "最大值",
         "message": "訊息",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "傳送",
         "invalidAmount": "錯誤數額填入",
-        "invalidAmountExplanation": "交易金額請填入數值",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "已選定最大的數額",
-        "iotaUnits": "IOTA單位"
+        "iotaUnits": "IOTA units explained",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
@@ -236,16 +259,9 @@
         "cut": "剪下",
         "copy": "複製",
         "paste": "貼上",
-        "selectAll": "選擇所有"
-    },
-    "resetWalletConfirmation": {
-        "thisAction": "此向操作無法復原",
-        "warning1": "所有錢包資訊，包含您的 ",
-        "warning2": " 種子，密碼,",
-        "warning3": " 和",
-        "warning4": "其他帳戶資訊",
-        "warning5": "將會遺失。",
-        "areYouSure": "您確定要繼續嗎？"
+        "selectAll": "選擇所有",
+        "securitySettings": "Security settings",
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "輸入密碼以重設您的錢包。",
@@ -256,11 +272,7 @@
         "okay": "好囉。來建置您的錢包！",
         "doYouAlreadyHaveASeed": "您是否已有希望使用的種子碼?",
         "seedExplanation": "IOTA種子碼是由您帳戶的名稱和密碼結合成為81個字元長的字串。",
-        "explanation1": "您可以使用它來存取您的資金從",
-        "explanation2": " 任何錢包",
-        "explanation3": "， 啟用",
-        "explanation4": " 任何裝置",
-        "explanation5": "但是, 如果你失去了你的種子, 你也失去了你的IOTA。",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "請妥善保存您的種子碼"
     },
     "welcome": {
@@ -269,16 +281,16 @@
         "reminder": "您或許希望跳過一些步驟，但我們建議您按完整程序設置。"
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "再三確認",
-        "thatTheyAreCorrect": "兩者皆正確"
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "已複製地址",
-        "addressCopiedExplanation": "您的地址已複製到剪貼簿。"
+        "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "查看種子",
@@ -303,6 +315,9 @@
     "advancedThemeCustomisation": {
         "background": "背景",
         "frame": "邊框"
+    },
+    "themeCustomisation": {
+        "theme": "佈景主題"
     },
     "currencySelection": {
         "currency": "貨幣"
@@ -349,14 +364,47 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此動作將無法撤銷。",
-        "infoTextOne": "所有錢包資訊，包含您的",
-        "infoTextTwo": "種子，密碼",
-        "infoTextThree": "和",
-        "infoTextFour": "其他帳戶資訊",
-        "infoTextFive": "將會遺失。"
+        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "您將發送{{contents}} 到地址",
         "aMessage": "訊息"
+    },
+    "twoFA": {
+        "wrongCode": "Wrong code",
+        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "emptyCode": "Empty code",
+        "emptyCodeExplanation": "Please enter a code and try again.",
+        "keyCopied": "Key copied to clipboard",
+        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "addKey": "Add this key to your 2FA app",
+        "key": "Key",
+        "twoFAEnabled": "2FA is now enabled",
+        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "enterCode": "Enter the code from your 2FA app",
+        "code": "Code"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }

@@ -2,17 +2,7 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    ActivityIndicator,
-    StyleSheet,
-    View,
-    Text,
-    ListView,
-    TouchableOpacity,
-    Clipboard,
-    TouchableWithoutFeedback,
-    Keyboard,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Clipboard, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
 import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -28,17 +18,65 @@ import {
 } from 'iota-wallet-shared-modules/actions/keychain';
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import CustomTextInput from '../components/customTextInput';
-
+import GenerateAddressButton from '../components/generateAddressButton';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center',
+    },
+    receiveAddressContainer: {
+        borderRadius: GENERAL.borderRadius,
+        height: width / 4.2,
+        justifyContent: 'center',
+        paddingHorizontal: width / 30,
+        width: width / 1.2,
+    },
+    receiveAddressText: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 21.8,
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+        lineHeight: width / 16,
+        justifyContent: 'center',
+    },
+    qrContainer: {
+        borderRadius: GENERAL.borderRadius,
+        padding: width / 30,
+        backgroundColor: 'white',
+        borderWidth: 2,
+        width: width / 2.2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: width / 2.2,
+    },
+    removeButtonContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    removeButton: {
+        borderWidth: 1.5,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 2.7,
+        height: height / 17,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'transparent',
+    },
+    removeText: {
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 34.5,
+        backgroundColor: 'transparent',
+    },
+});
 
 class Receive extends Component {
     static propTypes = {
-        selectedAccount: PropTypes.object.isRequired,
+        selectedAccountData: PropTypes.object.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         isSyncing: PropTypes.bool.isRequired,
         seedIndex: PropTypes.number.isRequired,
@@ -52,62 +90,81 @@ class Receive extends Component {
         getFromKeychainRequest: PropTypes.func.isRequired,
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
-        ctaColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
+        isTransitioning: PropTypes.bool.isRequired,
+        t: PropTypes.func.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
     };
 
     constructor() {
         super();
 
         this.state = {
-            dataSource: ds.cloneWithRows([]),
             message: '',
         };
-
         this.onGeneratePress = this.onGeneratePress.bind(this);
+    }
+
+    shouldComponentUpdate(newProps) {
+        const { isSyncing, isTransitioning } = this.props;
+
+        if (isSyncing !== newProps.isSyncing) {
+            return false;
+        }
+
+        if (isTransitioning !== newProps.isTransitioning) {
+            return false;
+        }
+
+        return true;
     }
 
     componentWillUnmount() {
         this.resetAddress();
     }
 
-    onAddressPress(address) {
-        const { t, generateAlert } = this.props;
-
-        if (address !== ' ') {
-            Clipboard.setString(address);
-            generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
-        }
-    }
-
     onGeneratePress() {
-        const { t, seedIndex, selectedAccount, selectedAccountName, isSyncing, generateAlert } = this.props;
+        const { t, seedIndex, selectedAccountData, selectedAccountName, isSyncing, isTransitioning } = this.props;
 
-        if (isSyncing) {
-            return generateAlert('error', 'Syncing in process', 'Please wait until syncing is complete.');
+        if (isSyncing || isTransitioning) {
+            return this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
         }
 
         const error = () => {
             this.props.getFromKeychainError('receive', 'addressGeneration');
-            generateAlert('error', t('global:somethingWentWrong'), t('global:somethingWentWrongExplanation'));
+            this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongExplanation'),
+            );
         };
 
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
         return keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 this.props.getFromKeychainSuccess('receive', 'addressGeneration');
 
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
-                    this.props.generateNewAddress(seed, selectedAccountName, selectedAccount.addresses);
+                    this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData);
                 } else {
                     error();
                 }
             })
             .catch(() => this.props.getFromKeychainError('receive', 'addressGeneration'));
+    }
+
+    onAddressPress(address) {
+        const { t } = this.props;
+
+        if (address !== ' ') {
+            Clipboard.setString(address);
+            this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
+        }
     }
 
     getOpacity() {
@@ -145,27 +202,25 @@ class Receive extends Component {
     render() {
         const {
             receiveAddress,
-            isGeneratingReceiveAddress,
-            isGettingSensitiveInfoToGenerateAddress,
             t,
-            ctaColor,
             negativeColor,
             secondaryBackgroundColor,
-            secondaryCtaColor,
+            ctaColor,
             ctaBorderColor,
+            secondaryCtaColor,
+            isGeneratingReceiveAddress,
+            isGettingSensitiveInfoToGenerateAddress,
         } = this.props;
         const message = this.state.message;
         const textColor = { color: secondaryBackgroundColor };
-        const ctaTextColor = { color: secondaryCtaColor };
-        const generateBorderColor = { borderColor: ctaBorderColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
         const opacity = { opacity: this.getOpacity() };
-        const qrOpacity = { opacity: this.getQrOpacity() };
         const isWhite = secondaryBackgroundColor === 'white';
         const receiveAddressContainerBackgroundColor = isWhite
             ? { backgroundColor: 'rgba(255, 255, 255, 0.05)' }
             : { backgroundColor: 'rgba(0, 0, 0, 0.05)' };
         const qrBorder = isWhite ? { borderColor: 'transparent' } : { borderColor: 'black' };
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
@@ -174,12 +229,12 @@ class Receive extends Component {
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
                             size={width / 2.8}
-                            color={'black'}
-                            backgroundColor={'transparent'}
+                            color="black"
+                            backgroundColor="transparent"
                         />
                     </View>
                     <View style={{ flex: 0.25 }} />
-                    {(receiveAddress.length > 1 && (
+                    {receiveAddress.length > 1 ? (
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                             <View
                                 style={[
@@ -199,7 +254,7 @@ class Receive extends Component {
                                 </Text>
                             </View>
                         </TouchableOpacity>
-                    )) || (
+                    ) : (
                         // Place holder
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                             <View style={[styles.receiveAddressContainer, receiveAddressContainerBackgroundColor]}>
@@ -207,14 +262,14 @@ class Receive extends Component {
                             </View>
                         </TouchableOpacity>
                     )}
-                    <View style={{ flex: 0.05 }} />
+                    <View style={{ flex: 0.2 }} />
                     <CustomTextInput
-                        onRef={c => {
+                        onRef={(c) => {
                             this.messageField = c;
                         }}
                         label={t('message')}
-                        onChangeText={message => this.setState({ message })}
-                        containerStyle={{ width: width / 1.28 }}
+                        onChangeText={(text) => this.setState({ message: text })}
+                        containerStyle={{ width: width / 1.2 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
                         returnKeyType="done"
@@ -223,41 +278,20 @@ class Receive extends Component {
                         negativeColor={negativeColor}
                     />
                     <View style={{ flex: 0.35 }} />
-                    {receiveAddress === ' ' &&
-                        (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
-                            <View style={{ flex: 0.7, justifyContent: 'center' }}>
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        // Check if there's already a network call in progress.
-                                        if (!isGeneratingReceiveAddress) {
-                                            this.onGeneratePress();
-                                        }
-                                    }}
-                                >
-                                    <View
-                                        style={[
-                                            styles.generateButton,
-                                            { backgroundColor: THEMES.getHSL(ctaColor) },
-                                            generateBorderColor,
-                                        ]}
-                                    >
-                                        <Text style={[styles.generateText, ctaTextColor]}>
-                                            {t('generateNewAddress')}
-                                        </Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        )}
-                    {(isGettingSensitiveInfoToGenerateAddress || isGeneratingReceiveAddress) && (
-                        <View style={{ flex: 0.7 }}>
-                            <ActivityIndicator
-                                animating={isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress}
-                                style={styles.activityIndicator}
-                                size="large"
-                                color={THEMES.getHSL(negativeColor)}
-                            />
-                        </View>
-                    )}
+                    <View style={{ flex: 0.7 }}>
+                        <GenerateAddressButton
+                            ctaColor={ctaColor}
+                            ctaBorderColor={ctaBorderColor}
+                            negativeColor={negativeColor}
+                            secondaryCtaColor={secondaryCtaColor}
+                            t={t}
+                            receiveAddress={receiveAddress}
+                            isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
+                            isGeneratingReceiveAddress={isGeneratingReceiveAddress}
+                            onGeneratePress={this.onGeneratePress}
+                            message={message}
+                        />
+                    </View>
                     {receiveAddress.length > 1 &&
                         message.length >= 1 && (
                             <View style={{ flex: 0.7 }}>
@@ -277,7 +311,6 @@ class Receive extends Component {
                                 <View style={{ flex: 0.2 }} />
                             </View>
                         )}
-                    {receiveAddress.length > 1 && message.length === 0 && <View style={{ flex: 0.7 }} />}
                     <View style={{ flex: 0.65 }} />
                 </View>
             </TouchableWithoutFeedback>
@@ -285,81 +318,8 @@ class Receive extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        flex: 1,
-        justifyContent: 'center',
-    },
-    receiveAddressContainer: {
-        borderRadius: GENERAL.borderRadius,
-        height: width / 4.2,
-        justifyContent: 'center',
-        paddingTop: width / 30,
-        paddingHorizontal: width / 30,
-        paddingBottom: isAndroid ? width / 22 : width / 30,
-        width: width / 1.28,
-    },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: height / 5,
-    },
-    receiveAddressText: {
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 21.8,
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        height: width / 20,
-        justifyContent: 'center',
-    },
-    generateButton: {
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.2,
-        height: height / 13,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1.5,
-    },
-    generateText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
-        backgroundColor: 'transparent',
-        color: 'white',
-    },
-    qrContainer: {
-        borderRadius: GENERAL.borderRadius,
-        padding: width / 30,
-        backgroundColor: 'white',
-        borderWidth: 2,
-        width: width / 2.2,
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: width / 2.2,
-    },
-    removeButtonContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    removeButton: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 17,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-    },
-    removeText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
-    },
-});
-
-const mapStateToProps = state => ({
-    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+const mapStateToProps = (state) => ({
+    selectedAccountData: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     isSyncing: state.tempAccount.isSyncing,
     seedIndex: state.tempAccount.seedIndex,
@@ -371,6 +331,7 @@ const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     secondaryCtaColor: state.settings.theme.secondaryCtaColor,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
+    isTransitioning: state.tempAccount.isTransitioning,
 });
 
 const mapDispatchToProps = {

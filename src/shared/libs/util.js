@@ -15,8 +15,8 @@ export const VALID_SEED_REGEX = /^[A-Z9]+$/;
 
 export const VALID_ADDRESS_WITH_CHECKSUM_REGEX = /^[A-Z9]{90}$/;
 
-export const formatValue = value => {
-    var negative = false;
+export const formatValue = (value) => {
+    let negative = false;
     if (value < 0) {
         negative = true;
         value = -value;
@@ -37,18 +37,18 @@ export const formatValue = value => {
             value /= 1000000000000;
             break;
     }
-    if (negative == true) {
+    if (negative === true) {
         return -value;
     } else {
         return value;
     }
 };
 
-export const formatUnit = value => {
+export const formatUnit = (value) => {
     if (value < 0) {
         value = -value;
     }
-    const unit = '';
+
     switch (true) {
         case value < 1000:
             return 'i';
@@ -74,19 +74,20 @@ export function round(value, precision) {
     const multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
 }
+
 export function roundDown(number, decimals) {
     decimals = decimals || 0;
     return Math.floor(number * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
 
-export const isValidServerAddress = server => {
+export const isValidServerAddress = (server) => {
     if (!server.startsWith('http://') && !server.startsWith('https://')) {
         return false;
     }
     return true;
 };
 
-export const isValidSeed = seed => seed.length === MAX_SEED_LENGTH && seed.match(VALID_SEED_REGEX);
+export const isValidSeed = (seed) => seed.length === MAX_SEED_LENGTH && seed.match(VALID_SEED_REGEX);
 
 export const guid = () => {
     const s4 = () =>
@@ -105,7 +106,7 @@ export const createRandomSeed = (randomBytesFn, length = MAX_SEED_LENGTH) => {
         length = MAX_SEED_LENGTH;
     }
 
-    Object.keys(bytes).forEach(key => {
+    Object.keys(bytes).forEach((key) => {
         if (bytes[key] < 243 && seed.length < length) {
             const randomNumber = bytes[key] % 27;
             const randomLetter = charset.charAt(randomNumber);
@@ -129,7 +130,7 @@ const _renameObjectKeys = (object, keyMap) =>
         {},
     );
 
-const _renameArrayKeys = (list, keyMap) => map(list, object => _renameObjectKeys(object, keyMap));
+const _renameArrayKeys = (list, keyMap) => map(list, (object) => _renameObjectKeys(object, keyMap));
 
 export const renameKeys = (payload, keyMap) => {
     if (isArray(payload)) {
@@ -147,7 +148,7 @@ export const serialize = (data, ...options) => {
     return data;
 };
 
-export const parse = data => {
+export const parse = (data) => {
     try {
         return JSON.parse(data);
     } catch (err) {
@@ -157,7 +158,7 @@ export const parse = data => {
 
 export const rearrangeObjectKeys = (obj, prop) => {
     const allKeys = keys(obj);
-    const withoutProp = filter(allKeys, k => k !== prop);
+    const withoutProp = filter(allKeys, (k) => k !== prop);
     const withPropAsLastEl = withoutProp.concat([prop]);
 
     const order = (newObj, key) => {
@@ -170,7 +171,7 @@ export const rearrangeObjectKeys = (obj, prop) => {
 };
 
 export const updatePersistedState = (incomingState, restoredState) => {
-    const { app: { versions }, settings: { availablePoWNodes } } = incomingState;
+    const { app: { versions }, settings: { availablePoWNodes, theme } } = incomingState;
     const restoredCopy = cloneDeep(restoredState);
 
     if ('app' in restoredCopy) {
@@ -179,7 +180,31 @@ export const updatePersistedState = (incomingState, restoredState) => {
 
     if ('settings' in restoredCopy) {
         restoredCopy.settings.availablePoWNodes = availablePoWNodes;
+        restoredCopy.settings.theme = theme;
     }
 
     return merge({}, incomingState, restoredCopy);
+};
+
+// Takes in the navigator object and pushes.
+// FIXME: Unneeded method. Remove when routing is sorted.
+export const pushScreen = (
+    navigator,
+    screen,
+    props = {
+        navigatorStyle: {
+            navBarHidden: true,
+            navBarTransparent: true,
+            screenBackgroundColor: '#1a373e',
+        },
+        animated: false,
+        overrideBackPress: true,
+    },
+) => {
+    if (navigator) {
+        navigator.push({
+            ...props,
+            screen,
+        });
+    }
 };

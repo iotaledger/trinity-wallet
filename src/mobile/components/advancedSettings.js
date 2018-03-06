@@ -5,9 +5,12 @@ import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import whiteNodeImagePath from 'iota-wallet-shared-modules/images/node-white.png';
 import whiteSyncImagePath from 'iota-wallet-shared-modules/images/sync-white.png';
 import whiteCrossImagePath from 'iota-wallet-shared-modules/images/cross-white.png';
+import whiteSnapshotImagePath from 'iota-wallet-shared-modules/images/snapshot-white.png';
 import blackNodeImagePath from 'iota-wallet-shared-modules/images/node-black.png';
 import blackSyncImagePath from 'iota-wallet-shared-modules/images/sync-black.png';
 import blackCrossImagePath from 'iota-wallet-shared-modules/images/cross-black.png';
+import blackSnapshotImagePath from 'iota-wallet-shared-modules/images/snapshot-black.png';
+
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -90,10 +93,12 @@ class AdvancedSettings extends Component {
         const nodeImagePath = secondaryBackgroundColor === 'white' ? whiteNodeImagePath : blackNodeImagePath;
         const syncImagePath = secondaryBackgroundColor === 'white' ? whiteSyncImagePath : blackSyncImagePath;
         const crossImagePath = secondaryBackgroundColor === 'white' ? whiteCrossImagePath : blackCrossImagePath;
+        const snapshotImagePath =
+            secondaryBackgroundColor === 'white' ? whiteSnapshotImagePath : blackSnapshotImagePath;
 
         return (
             <View style={styles.container}>
-                <View style={{ flex: 4.5 }}>
+                <View style={{ flex: 5.5 }}>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
                             onPress={() => this.props.setSetting('nodeSelection')}
@@ -130,6 +135,17 @@ class AdvancedSettings extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.setSetting('snapshotTransition')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Image source={snapshotImagePath} style={styles.icon} />
+                                <Text style={[styles.titleText, textColor]}>{t('snapshotTransition')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                     <View style={styles.separatorContainer}>
                         <View style={[styles.separator, borderColor]} />
                     </View>
@@ -145,8 +161,8 @@ class AdvancedSettings extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={{ flex: 5.5, justifyContent: 'flex-end' }}>
-                    <View style={{ flex: 4.5 }} />
+                <View style={{ flex: 4.5, justifyContent: 'flex-end' }}>
+                    <View style={{ flex: 3.5 }} />
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
                             onPress={() => this.props.setSetting('mainSettings')}
