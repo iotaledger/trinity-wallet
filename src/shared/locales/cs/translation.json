@@ -1,10 +1,10 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "CANCEL",
-        "continue?": "Are you sure you want to continue?",
-        "noTransactions": "NO RECENT HISTORY",
-        "refresh": "REFRESH",
+        "send": "ODESLAT",
+        "cancel": "ZRUŠIT",
+        "continue?": "Opravdu si přejete pokračovat?",
+        "noTransactions": "ŽÁDNÁ NEDÁVNÁ HISTORIE",
+        "refresh": "AKTUALIZOVAT",
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
