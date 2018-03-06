@@ -54,9 +54,9 @@ class StatefulDropdownAlert extends Component {
 
     componentWillReceiveProps(newProps) {
         const { alerts } = this.props;
-        const didNotHaveAlertPreviously = !alerts.category && !alerts.title && !alerts.message;
-        const hasANewAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
-        const shouldGenerateAlert = hasANewAlert && didNotHaveAlertPreviously;
+        const hasAnAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
+        const alertIsNew = alerts.message !== newProps.alerts.message;
+        const shouldGenerateAlert = hasAnAlert && alertIsNew;
 
         if (shouldGenerateAlert) {
             if (this.dropdown) {
@@ -77,7 +77,9 @@ class StatefulDropdownAlert extends Component {
 
         return (
             <DropdownAlert
-                ref={(ref) => (this.dropdown = ref)}
+                ref={(ref) => {
+                    this.dropdown = ref;
+                }}
                 elevation={120}
                 successColor="#009f3f"
                 errorColor="#A10702"

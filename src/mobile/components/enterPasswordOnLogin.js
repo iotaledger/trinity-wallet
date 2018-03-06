@@ -100,7 +100,7 @@ class EnterPasswordOnLogin extends Component {
                             label={t('global:password')}
                             onChangeText={this.handleChangeText}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'none'}
+                            autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"

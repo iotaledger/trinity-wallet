@@ -166,14 +166,14 @@ class Disable2FA extends Component {
                                 label="Token"
                                 onChangeText={(token) => this.setState({ token })}
                                 containerStyle={{ width: width / 1.36 }}
-                                autoCapitalize={'none'}
+                                autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 secondaryBackgroundColor={secondaryBackgroundColor}
                                 negativeColor={negativeColor}
                                 value={this.state.token}
-                                keyboardType={'numeric'}
+                                keyboardType="numeric"
                             />
                         </View>
                         <View style={styles.bottomContainer}>

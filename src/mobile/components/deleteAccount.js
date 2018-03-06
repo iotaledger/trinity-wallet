@@ -171,7 +171,7 @@ class DeleteAccount extends Component {
             >
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={[styles.modalInfoText, { paddingBottom: height / 16 }, textColor]}>
-                        Are you sure you want to delete your account called {currentAccountName}?
+                        {t('areYouSure', { accountName: currentAccountName })}
                     </Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onNoPress()}
@@ -217,7 +217,7 @@ class DeleteAccount extends Component {
                                     label={t('global:password')}
                                     onChangeText={(password) => this.setState({ password })}
                                     containerStyle={{ width: width / 1.36 }}
-                                    autoCapitalize={'none'}
+                                    autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
@@ -253,8 +253,8 @@ class DeleteAccount extends Component {
                     </View>
 
                     <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
+                        animationIn="bounceInUp"
+                        animationOut="bounceOut"
                         animationInTiming={1000}
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
@@ -264,6 +264,8 @@ class DeleteAccount extends Component {
                         style={{ alignItems: 'center' }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                        useNativeDriver
+                        hideModalContentWhileAnimating
                     >
                         {this.renderModalContent(borderColor, textColor)}
                     </Modal>

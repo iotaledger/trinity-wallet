@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
             };
 
         case ActionTypes.REMOVE_SEED: {
-            const items = [].concat(state.items).filter(item => item.seed !== action.payload);
+            const items = [].concat(state.items).filter((item) => item.seed !== action.payload);
             return {
                 ...state,
                 items,
