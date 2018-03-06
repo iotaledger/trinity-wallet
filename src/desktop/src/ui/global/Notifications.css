@@ -1,0 +1,67 @@
+.wrapper {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: var(--z-index-overlay);
+}
+
+.notification {
+    composes: slide-in-left from './Animations.css';
+
+    @media print {
+        display: none;
+    }
+
+    position: relative;
+    margin: 8px;
+    padding: 8px 16px 16px 24px;
+    width: 320px;
+    background-color: var(--body-bg);
+    border: none;
+    max-width: calc(100% - 32px);
+
+    h2 {
+        margin: 0;
+        margin-bottom: 4px;
+    }
+
+    span {
+        cursor: pointer;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        font-size: 16px;
+        line-height: 1;
+        padding: 12px;
+    }
+
+    &--info {
+        composes: notification;
+        background: var(--positive);
+        color: var(--positive-body);
+    }
+
+    &--error {
+        composes: notification;
+        background: var(--negative);
+        color: var(--negative-body);
+    }
+
+    &--success {
+        composes: notification;
+        background: var(--positive);
+        color: var(--positive-body);
+    }
+
+    &--extra {
+        composes: notification;
+        background: var(--extra);
+        color: var(--extra-body);
+    }
+
+    &--warning {
+        composes: notification;
+        background: var(--negative);
+        color: var(--negative-body);
+    }
+}
