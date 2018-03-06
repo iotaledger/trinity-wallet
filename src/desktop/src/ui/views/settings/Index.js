@@ -44,44 +44,44 @@ class Settings extends React.PureComponent {
 
         return (
             <main className={css.settings}>
-                <header>
-                    <a onClick={() => history.push(backRoute)}>
-                        <Icon icon="cross" size={40} />
-                    </a>
-                </header>
                 <div>
                     <section>
                         <nav>
                             <NavLink to="/settings/language">
-                                <Icon icon="language" size={20} /> {t('settings:language')}
+                                <Icon icon="language" size={20} /> <strong>{t('settings:language')}</strong>
                             </NavLink>
                             <NavLink to="/settings/node">
-                                <Icon icon="node" size={20} /> {t('global:node')}
+                                <Icon icon="node" size={20} /> <strong>{t('global:node')}</strong>
                             </NavLink>
                             <NavLink to="/settings/theme">
-                                <Icon icon="theme" size={20} /> {t('settings:theme')}
+                                <Icon icon="theme" size={20} /> <strong>{t('settings:theme')}</strong>
                             </NavLink>
                             <NavLink to="/settings/currency">
-                                <Icon icon="currency" size={20} /> {t('settings:currency')}
+                                <Icon icon="currency" size={20} /> <strong>{t('settings:currency')}</strong>
                             </NavLink>
                             {tempAccount && tempAccount.ready ? (
                                 <div>
                                     <hr />
                                     <NavLink to="/settings/password">
-                                        <Icon icon="password" size={20} /> {t('settings:changePassword')}
+                                        <Icon icon="password" size={20} /> <strong>{t('settings:changePassword')}</strong>
                                     </NavLink>
                                     <NavLink to="/settings/twoFa">
-                                        <Icon icon="twoFA" size={20} /> {t('settings:twoFA')}
+                                        <Icon icon="twoFA" size={20} /> <strong>{t('settings:twoFA')}</strong>
                                     </NavLink>
                                     <hr />
                                     <NavLink to="/settings/advanced">
-                                        <Icon icon="advanced" size={20} /> {t('settings:advanced')}
+                                        <Icon icon="advanced" size={20} /> <strong>{t('settings:advanced')}</strong>
                                     </NavLink>
                                 </div>
                             ) : null}
                         </nav>
                     </section>
                     <section className={css.content}>
+                        <header>
+                           <a onClick={() => history.push(backRoute)}>
+                                 <Icon icon="cross" size={40} />
+                           </a>
+                        </header>
                         <Switch location={location}>
                             <Route path="/settings/language" component={Language} />
                             <Route path="/settings/theme" component={Theme} />
