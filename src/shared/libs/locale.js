@@ -35,6 +35,9 @@ export function selectLocale(lang) {
     if (lang === 'ar') {
         return 'عربى - Arabic';
     }
+    if (lang === 'cs') {
+        return 'Čeština - Czech';
+    }
     if (lang === 'da') {
         return 'Dansk - Danish';
     }
@@ -97,6 +100,9 @@ export function selectLocale(lang) {
     }
     if (lang === 'ru') {
         return 'Pусский - Russian';
+    }
+    if (lang === 'sk') {
+        return 'Slovenský - Slovak';
     }
     if (lang === 'sl') {
         return 'Slovenščina - Slovenian';
