@@ -477,26 +477,64 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
     );
 };
 
-export const constructBundle = (tailTx, allBundleObjects) => {
-    if (tailTx.currentIndex === tailTx.lastIndex) {
-        return [tailTx];
+/**
+ *   Checks if there is a difference between local transaction hashes and ledger's transaction hashes.
+ *
+ *   @method constructBundle
+ *   @param {object} tailTransaction
+ *   @param {array} allTransactionObjects
+ *
+ *   @returns {boolean}
+ **/
+export const constructBundle = (tailTransaction, allTransactionObjects) => {
+    // Start from the tail transaction object
+    // This will also preserve the order since the next objects will be pushed
+    const bundle = [tailTransaction];
+
+    // In case tail transaction is only transfer in the bundle
+    // Just return the tail transaction as a bundle
+    if (tailTransaction.currentIndex === tailTransaction.lastIndex) {
+        return bundle;
     }
 
-    const bundle = [tailTx];
-    const bundleHash = tailTx.bundle;
+    let hasFoundLastTransfer = false;
 
-    let trunk = tailTx.trunkTransaction;
-    let stop = false;
-    const nextTx = () => find(allBundleObjects, { hash: trunk });
+    // Assign parent transactions (trunk and branch)
+    // Starting from the remainder transaction object (index = 0 in sortedTransactionObjects)
+    // - When index === 0 i.e. remainder transaction object
+    //    * Assign trunkTransaction with provided trunk transaction from (getTransactionsToApprove)
+    //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)
+    // - When index > 0 i.e. not remainder transaction objects
+    //    * Assign trunkTransaction with hash of previous transaction object
+    //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)    let nextTrunk = tailTransaction.trunkTransaction;
 
-    while (nextTx() && nextTx().bundle === bundleHash && !stop) {
-        bundle.push(nextTx());
+    // Start off from by searching for trunk transaction of tail transaction object,
+    // Which is hash of the next transfer i.e. transfer with current index 1
+    let nextTrunkTransaction = tailTransaction.trunkTransaction;
 
-        if (nextTx().currentIndex === nextTx().lastIndex) {
-            stop = true;
+    // Finds the next transfer which would basically be that transfer that has hash === nextTrunkTransaction
+    const nextTransfer = () => find(allTransactionObjects, { hash: nextTrunkTransaction });
+
+    while (
+        // Safety check to see if the next transfer exists
+        nextTransfer() &&
+        // Next check if bundle hash for tail transaction matches the next found transfer
+        nextTransfer().bundle === tailTransaction.bundle &&
+        // Make sure it hasn't already found the last transfer in the bundle
+        !hasFoundLastTransfer
+    ) {
+        const transfer = nextTransfer();
+        const isLastTransferInBundle = transfer.currentIndex === transfer.lastIndex;
+
+        // Assign trunk transaction of this transaction as the next trunk transaction to be searched for,
+        // Next trunk transaction should always be the hash of currentIndex + 1 except for the case of remainder objects (currentIndex === lastIndex)
+        nextTrunkTransaction = transfer.trunkTransaction;
+
+        bundle.push(transfer);
+
+        if (isLastTransferInBundle) {
+            hasFoundLastTransfer = true;
         }
-
-        trunk = nextTx().trunkTransaction;
     }
 
     return bundle;
