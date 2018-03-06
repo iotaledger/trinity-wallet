@@ -1,12 +1,11 @@
 import i18next from 'i18next';
 import { reactI18nextModule } from 'react-i18next';
-// import LanguageDetector from 'i18next-browser-languagedetector';
 
 export default i18next.use(reactI18nextModule).init(
     {
         fallbackLng: 'en',
         fallbackNS: 'global',
-        parseMissingKeyHandler: value => `Translation not available for ${value}`,
+        parseMissingKeyHandler: (value) => `Translation not available for ${value}`,
         resources: {
             ar: require('../shared/locales/ar/translation.json'),
             da: require('../shared/locales/da/translation.json'),
@@ -35,13 +34,17 @@ export default i18next.use(reactI18nextModule).init(
             sv_SE: require('../shared/locales/sv-SE/translation.json'),
             tr: require('../shared/locales/tr/translation.json'),
             ur: require('../shared/locales/ur/translation.json'),
+            vi: require('../shared/locales/vi/translation.json'),
             zh_CN: require('../shared/locales/zh-CN/translation.json'),
             zh_TW: require('../shared/locales/zh-TW/translation.json'),
         },
         interpolation: {
             escapeValue: false,
-            format: function(value, format, lng) {
-                if (format === 'uppercase') return value.toUpperCase();
+            format: (value, format) => {
+                if (format === 'uppercase') {
+                    return value.toUpperCase();
+                }
+
                 return value;
             },
         },
@@ -52,7 +55,7 @@ export default i18next.use(reactI18nextModule).init(
             nsMode: 'default',
         },
     },
-    function(err, t) {
+    (err) => {
         if (err) {
             console.error(err);
         }

@@ -5,7 +5,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
-     target: 'electron',
+     target: 'web',
     output: {
         path: path.join(__dirname, '..', 'dist'),
         pathinfo: true,
@@ -52,7 +52,7 @@ module.exports = {
                 ),
             },
             {
-                test: /\.(png|jpg|jpeg|svg|ttf|woff)$/,
+                test: /\.(png|jpg|jpeg|svg|ttf)$/,
                 use: [
                     {
                         loader: 'url-loader',
@@ -65,7 +65,7 @@ module.exports = {
             },
             {
                 test: /\.workers?\.js$/,
-                use: [{ loader: 'worker-loader' }, { loader: 'babel-loader' }],
+                use: { loader: 'worker-loader' },
             },
         ],
     },
@@ -79,7 +79,7 @@ module.exports = {
             allChunks: false,
         }),
         new HtmlWebpackPlugin({
-            title: 'Trinity',
+            title: 'IOTA Light Wallet',
             inject: false,
             template: __dirname + '/index.html',
         }),

@@ -2,9 +2,8 @@ package com.iota.wallet;
 
 import android.content.Context;
 import android.support.multidex.MultiDex;
-
-import com.airbnb.android.react.lottie.LottiePackage;
 import com.bitgo.randombytes.RandomBytesPackage;
+import com.airbnb.android.react.lottie.LottiePackage;
 import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
 import com.facebook.react.ReactPackage;
@@ -19,8 +18,9 @@ import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.rnfs.RNFSPackage;
 import com.rnprint.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
-
+import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
 import org.iota.mobile.IOTAMobilePackage;
+import my.fin.RNIsDeviceRootedPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +49,6 @@ public class MainApplication extends NavigationApplication {
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
-            new RandomBytesPackage(),
             new SvgPackage(),
             new MainReactPackage(),
             new RNDeviceInfo(),
@@ -64,7 +63,10 @@ public class MainApplication extends NavigationApplication {
             new KeychainPackage(),
             new LottiePackage(),
             new IOTAMobilePackage(),
-            new RNExitAppPackage()
+            new RNExitAppPackage(),
+            new RNSecureRandomPackage(),
+            new RNIsDeviceRootedPackage()
+            new RandomBytesPackage()
     );
   }
 

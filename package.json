@@ -5,16 +5,23 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "lint": "./node_modules/.bin/eslint .",
+        "lint:mobile": "./node_modules/.bin/eslint src/mobile/",
+        "lint:shared": "./node_modules/.bin/eslint src/shared/",
+        "lint:desktop": "./node_modules/.bin/eslint src/desktop/",
         "format": "prettier --write \"**/*.{js,json,css}\"",
         "precommit": "lint-staged && yarn test:all",
-        "test:all":
-            "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../",
+        "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../",
         "full-setup": "yarn && node full-setup.js",
         "start:desktop": "cd src/desktop && yarn start",
-        "start:mobile": "cd src/mobile && yarn start"
+        "start:mobile": "cd src/mobile && yarn start",
+        "start:styleguide": "cd src/desktop && yarn run styleguide"
     },
     "lint-staged": {
-        "*.{js,json,css}": ["prettier --write", "git add"]
+        "*.{js,json,css}": [
+            "prettier --write",
+            "git add"
+        ]
     },
     "repository": {
         "type": "git",
@@ -26,16 +33,20 @@
     },
     "homepage": "https://gitlab.com/iota-community/wallet#README",
     "devDependencies": {
-        "babel-eslint": "^8.0.3",
+        "babel-eslint": "^8.2.2",
+        "eslint": "^4.18.1",
+        "eslint-config-airbnb": "^16.1.0",
         "eslint-config-prettier": "^2.9.0",
-        "lint-staged": "^4.2.3",
-        "prettier": "1.9.2",
-        "eslint": "^4.12.1",
         "eslint-plugin-babel": "^4.1.2",
-        "eslint-plugin-import": "^2.8.0",
-        "eslint-plugin-react": "^7.5.1",
+        "eslint-plugin-import": "^2.9.0",
+        "eslint-plugin-jsx-a11y": "^6.0.3",
+        "eslint-plugin-react": "^7.7.0",
+        "eslint-plugin-react-native": "^3.2.1",
         "husky": "^0.14.3",
+        "lint-staged": "^4.2.3",
         "node-cmd": "^3.0.0",
-        "os": "^0.1.1"
-    }
+        "os": "^0.1.1",
+        "prettier": "^1.11.0"
+    },
+    "dependencies": {}
 }

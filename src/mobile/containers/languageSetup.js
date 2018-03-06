@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar, TouchableWithoutFeedback } from 'react-native';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import i18next from 'i18next';
-import { detectLocale, selectLocale } from '../components/locale';
 import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import Dropdown from '../components/dropdown';
+import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import WithBackPressCloseApp from '../components/withBackPressCloseApp';
+import { width, height } from '../util/dimensions';
+import DropdownComponent from '../components/dropdown';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
-
-import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import { width, height } from '../util/dimensions';
+import { detectLocale, selectLocale } from '../components/locale';
 
 const styles = StyleSheet.create({
     container: {
@@ -63,9 +62,6 @@ const styles = StyleSheet.create({
         width,
         height: width / 0.95,
     },
-    dropdownWidth: {
-        width: width / 1.5,
-    },
 });
 
 const locale = getDeviceLocale();
@@ -73,6 +69,15 @@ const defaultLocale = detectLocale(locale);
 const defaultLanguageLabel = selectLocale(defaultLocale);
 
 class LanguageSetup extends Component {
+    static propTypes = {
+        t: PropTypes.func.isRequired,
+        navigator: PropTypes.object.isRequired,
+    };
+
+    static clickDropdownItem(languageLabel) {
+        i18next.changeLanguage(getLocaleFromLabel(languageLabel));
+    }
+
     componentWillMount() {
         i18next.changeLanguage(defaultLocale);
     }
@@ -84,13 +89,11 @@ class LanguageSetup extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundColor: COLORS.backgroundGreen,
+                drawUnderStatusBar: true,
+                statusBarColor: COLORS.backgroundGreen,
             },
             animated: false,
         });
-    }
-
-    clickDropdownItem(languageLabel) {
-        i18next.changeLanguage(getLocaleFromLabel(languageLabel));
     }
 
     render() {
@@ -102,27 +105,30 @@ class LanguageSetup extends Component {
                         this.dropdown.closeDropdown();
                     }
                 }}
+                accessible={false}
             >
                 <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
                     <View style={styles.container}>
                         <Image style={styles.helloBackground} source={helloBackImagePath} />
-                        <StatusBar barStyle="light-content" />
+                        <StatusBar barStyle="light-content" backgroundColor={COLORS.backgroundGreen} />
                         <View style={styles.topContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midContainer}>
                             <View style={{ flex: 0.5 }} />
-                            <Dropdown
-                                onRef={c => (this.dropdown = c)}
+                            <DropdownComponent
+                                onRef={(c) => {
+                                    this.dropdown = c;
+                                }}
                                 title={t('language')}
-                                dropdownWidth={styles.dropdownWidth}
+                                dropdownWidth={{ width: width / 1.5 }}
                                 defaultOption={defaultLanguageLabel}
                                 options={I18N_LOCALE_LABELS}
-                                saveSelection={language => this.clickDropdownItem(language)}
+                                saveSelection={(language) => LanguageSetup.clickDropdownItem(language)}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <TouchableOpacity onPress={() => this.onNextPress()}>
+                            <TouchableOpacity onPress={() => this.onNextPress()} testID="languageSetup-next">
                                 <View style={styles.nextButton}>
                                     <Text style={styles.nextText}>{t('global:next')}</Text>
                                 </View>
@@ -135,6 +141,4 @@ class LanguageSetup extends Component {
     }
 }
 
-const mapStateToProps = state => ({});
-
-export default translate(['languageSetup', 'global'])(connect(mapStateToProps)(LanguageSetup));
+export default WithBackPressCloseApp()(translate(['languageSetup', 'global'])(LanguageSetup));

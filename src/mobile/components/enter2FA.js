@@ -1,42 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
-import CustomTextInput from '../components/customTextInput';
+import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import CustomTextInput from '../components/customTextInput';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import OnboardingButtons from './onboardingButtons';
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 1.2,
+        flex: 2.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 3.6,
         width,
         alignItems: 'center',
-        paddingTop: height / 4.2,
     },
     bottomContainer: {
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 8,
-    },
-    title: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
@@ -60,9 +48,8 @@ const styles = StyleSheet.create({
 class Enter2FA extends Component {
     static propTypes = {
         onComplete2FA: PropTypes.func.isRequired,
-        positiveColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         onBackPress: PropTypes.func.isRequired,
     };
 
@@ -70,7 +57,7 @@ class Enter2FA extends Component {
         token2FA: '',
     };
 
-    handleChange2FAToken = token2FA => this.setState({ token2FA });
+    handleChange2FAToken = (token2FA) => this.setState({ token2FA });
 
     handleDonePress = () => {
         const { token2FA } = this.state;
@@ -85,8 +72,7 @@ class Enter2FA extends Component {
 
     render() {
         const { codefor2FA } = this.state;
-        const { positiveColor, secondaryBackgroundColor, negativeColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
+        const { secondaryBackgroundColor, negativeColor } = this.props;
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
@@ -94,17 +80,14 @@ class Enter2FA extends Component {
                 <View>
                     <View style={styles.topContainer}>
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
-                        <View style={styles.titleContainer}>
-                            <Text style={[styles.title, textColor]}>Please enter your 2FA Token</Text>
-                        </View>
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
-                            label="Token"
+                            label="2FA Token"
                             onChangeText={this.handleChange2FAToken}
-                            containerStyle={{ width: width / 1.36 }}
-                            autoCapitalize={'none'}
-                            keyboardType={'numeric'}
+                            containerStyle={{ width: width / 1.2 }}
+                            autoCapitalize="none"
+                            keyboardType="numeric"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
@@ -118,8 +101,8 @@ class Enter2FA extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.handleBackPress}
                             onRightButtonPress={this.handleDonePress}
-                            leftText={'BACK'}
-                            rightText={'DONE'}
+                            leftText="BACK"
+                            rightText="DONE"
                         />
                     </View>
                 </View>
