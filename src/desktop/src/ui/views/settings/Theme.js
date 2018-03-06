@@ -123,7 +123,7 @@ class Theme extends React.PureComponent {
                     </Button>
                 </div>
                 <fieldset>
-                    <Button disabled={!themeName || themeName === this.props.themeName}>Save</Button>
+                    <Button type="submit" disabled={!themeName || themeName === this.props.themeName}>Save</Button>
                 </fieldset>
             </form>
         );

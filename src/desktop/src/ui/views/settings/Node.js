@@ -73,7 +73,7 @@ class SetNode extends PureComponent {
                     onChange={(value) => this.setState({ customNode: value })}
                 />
                 <fieldset>
-                    <Button loading={loading} disabled={!selectedNode || selectedNode === node}>
+                    <Button type="submit" loading={loading} disabled={!selectedNode || selectedNode === node}>
                         {t('global:save')}
                     </Button>
                 </fieldset>
