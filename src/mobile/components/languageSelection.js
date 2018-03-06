@@ -4,7 +4,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableW
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import Dropdown from './dropdown';
+import DropdownComponent from './dropdown';
 import { selectLocale } from '../components/locale';
 
 const { width } = Dimensions.get('window');
@@ -104,7 +104,7 @@ class LanguageSelection extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 0.4 }} />
-                        <Dropdown
+                        <DropdownComponent
                             onRef={(c) => {
                                 this.dropdown = c;
                             }}

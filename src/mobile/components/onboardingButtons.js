@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -37,10 +37,19 @@ const styles = StyleSheet.create({
     },
 });
 
-class OnboardingButtons extends Component {
+class OnboardingButtons extends PureComponent {
     static propTypes = {
         buttonWidth: PropTypes.object,
         containerWidth: PropTypes.object,
+        positiveColor: PropTypes.number,
+        negativeColor: PropTypes.number,
+        opacity: PropTypes.number,
+        leftButtonTestID: PropTypes.string,
+        rightButtonTestID: PropTypes.string,
+        leftText: PropTypes.string.isRequired,
+        rightText: PropTypes.string.isRequired,
+        onLeftButtonPress: PropTypes.func.isRequired,
+        onRightButtonPress: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
@@ -49,7 +58,7 @@ class OnboardingButtons extends Component {
     };
 
     render() {
-        const { style, positiveColor, negativeColor, opacity, buttonWidth, containerWidth } = this.props;
+        const { positiveColor, negativeColor, opacity, buttonWidth, containerWidth } = this.props;
         const rightTextColor = { color: positiveColor };
         const rightBorderColor = { borderColor: positiveColor };
         const leftTextColor = { color: negativeColor };

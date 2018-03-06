@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getSelectedAccountNameViaSeedIndex } from '../../selectors/account';
 import { translate } from 'react-i18next';
+import { getSelectedAccountNameViaSeedIndex } from '../../selectors/account';
 
 /**
  * List component container

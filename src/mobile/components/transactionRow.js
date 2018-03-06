@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         width: width / 1.2,
         height: height / 10,
         justifyContent: 'center',
+        marginBottom: height / 60,
     },
     topWrapper: {
         flex: 1,
@@ -174,6 +175,8 @@ export default class TransactionRow extends PureComponent {
                         isVisible={isModalActive}
                         onBackButtonPress={this.toggleModal}
                         onBackdropPress={this.toggleModal}
+                        useNativeDriver
+                        hideModalContentWhileAnimating
                     >
                         <HistoryModalContent {...this.getModalProps()} />
                     </Modal>

@@ -27,6 +27,7 @@ import {
     addCustomPoWNode,
     updateTheme,
     setLanguage,
+    setMode,
 } from 'iota-wallet-shared-modules/actions/settings';
 import whiteModeImagePath from 'iota-wallet-shared-modules/images/mode-white.png';
 import whiteThemeImagePath from 'iota-wallet-shared-modules/images/theme-white.png';
@@ -197,6 +198,7 @@ class Settings extends Component {
         completeSnapshotTransition: PropTypes.func.isRequired,
         isAttachingToTangle: PropTypes.bool.isRequired,
         isPromoting: PropTypes.bool.isRequired,
+        setMode: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -204,7 +206,7 @@ class Settings extends Component {
 
         this.state = {
             isModalVisible: false,
-            modalSetting: 'addNewSeed',
+            modalSetting: 'addNewSeed', // eslint-disable-line react/no-unused-state
             modalContent: <LogoutConfirmationModal />,
         };
     }
@@ -387,7 +389,7 @@ class Settings extends Component {
         }
 
         this.setState({
-            modalSetting,
+            modalSetting, // eslint-disable-line react/no-unused-state
             modalContent,
         });
 
@@ -417,6 +419,7 @@ class Settings extends Component {
             isAttachingToTangle,
             navigator,
             isPromoting,
+            mode,
         } = this.props;
         const isWhite = secondaryBackgroundColor === 'white';
         const arrowLeftImagePath = isWhite ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -439,8 +442,8 @@ class Settings extends Component {
                 setSetting: (setting) => this.props.setSetting(setting),
                 setModalContent: (content) => this.setModalContent(content),
                 onThemePress: () => this.props.setSetting('themeCustomisation'),
-                onModePress: () => this.featureUnavailable(),
-                mode: this.props.mode,
+                onModePress: () => this.props.setSetting('modeSelection'),
+                mode,
                 onLanguagePress: () => this.props.setSetting('languageSelection'),
                 themeName: this.props.themeName,
                 currency: this.props.currency,
@@ -465,6 +468,18 @@ class Settings extends Component {
                 arrowLeftImagePath,
                 addImagePath,
                 secondaryBackgroundColor,
+            },
+            modeSelection: {
+                setMode: (selectedMode) => this.props.setMode(selectedMode),
+                mode,
+                backPress: () => this.props.setSetting('mainSettings'),
+                generateAlert: this.props.generateAlert,
+                negativeColor,
+                textColor: { color: secondaryBackgroundColor },
+                borderColor: { borderColor: secondaryBackgroundColor },
+                secondaryBackgroundColor,
+                tickImagePath,
+                arrowLeftImagePath,
             },
             accountManagement: {
                 setSetting: (setting) => this.props.setSetting(setting),
@@ -897,8 +912,8 @@ class Settings extends Component {
                 </View>
                 <View style={{ flex: 1 }} />
                 <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
+                    animationIn="bounceInUp"
+                    animationOut="bounceOut"
                     animationInTiming={1000}
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
@@ -908,6 +923,8 @@ class Settings extends Component {
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                    useNativeDriver
+                    hideModalContentWhileAnimating
                 >
                     {this.renderModalContent()}
                 </Modal>
@@ -934,6 +951,7 @@ const mapDispatchToProps = {
     transitionForSnapshot,
     generateAddressesAndGetBalance,
     completeSnapshotTransition,
+    setMode,
 };
 
 const mapStateToProps = (state) => ({

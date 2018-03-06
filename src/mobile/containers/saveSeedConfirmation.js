@@ -115,7 +115,6 @@ class SaveSeedConfirmation extends Component {
                     ? whiteCheckboxUncheckedImagePath
                     : blackCheckboxUncheckedImagePath,
             hasSavedSeed: false,
-            iotaLogoVisibility: 'hidden',
             showCheckbox: false,
         };
     }
@@ -169,13 +168,11 @@ class SaveSeedConfirmation extends Component {
             this.setState({
                 checkboxImage: checkboxUncheckedImagePath,
                 hasSavedSeed: false,
-                iotaLogoVisibility: 'hidden',
             });
         } else {
             this.setState({
                 checkboxImage: checkboxCheckedImagePath,
                 hasSavedSeed: true,
-                iotaLogoVisibility: 'visible',
             });
         }
     }

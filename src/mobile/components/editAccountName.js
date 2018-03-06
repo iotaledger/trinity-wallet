@@ -112,7 +112,7 @@ export class EditAccountName extends Component {
                                 label={t('accountName')}
                                 onChangeText={(accountName) => this.setState({ accountName })}
                                 containerStyle={{ width: width / 1.2 }}
-                                autoCapitalize={'none'}
+                                autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"

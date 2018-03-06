@@ -249,7 +249,7 @@ export class SetSeedName extends Component {
                                 label={t('addAdditionalSeed:accountName')}
                                 onChangeText={(text) => this.setState({ accountName: text })}
                                 containerStyle={{ width: width / 1.2 }}
-                                autoCapitalize={'words'}
+                                autoCapitalize="words"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"

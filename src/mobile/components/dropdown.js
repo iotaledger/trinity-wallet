@@ -148,7 +148,11 @@ export class Dropdown extends Component {
         });
 
         const { saveSelection } = this.props;
-        if (!saveSelection) return;
+
+        if (!saveSelection) {
+            return;
+        }
+
         saveSelection(option);
     }
 

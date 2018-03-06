@@ -5,6 +5,11 @@ import { shallow } from 'enzyme';
 import PropTypes from 'prop-types';
 import { SetSeedName } from '../../containers/setSeedName';
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
