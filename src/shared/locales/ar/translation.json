@@ -19,7 +19,7 @@
         "invalidResponse": "استجابة غير صالحة",
         "invalidResponseExplanation": "الخادم اعاد ردا غير صالحا.",
         "invalidResponsePollingExplanation": "عادت العقدة ردا غير صالح أثناء\nالاقتراع.",
-        "invalidResponseFetchingAccount": "عادت العقدة ردا غير صالح أثناء جلب معلومات\nحسابك.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "عادت العقدة ردا غير صالح أثناء إرسال التحويل.",
         "seed": "سييد",
         "back": "رجوع",
@@ -68,6 +68,9 @@
         "pending": "معلقة",
         "bundleHash": "تجزئة الحزمة",
         "addresses": "عناوين",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "تجزئة الحزمة",
         "autoreattaching": "اضغط على العودة مرة أخرى لإغلاق التطبيق",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "سيتم مسح السييد بمجرد الضغط على \"انتهى\" أو مرور 60 ثانية.",
         "clickToCopy": "انقر على الزر أدناه وانسخ السييد الخاص بك إلى مكان آمن.",
         "doNotStore": "لا تخزن السييد الخاص بك في نص عادي.",
-        "copyToClipboard": "نسخ إلى الحافظة"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "السييد يحتوي على أحرف غير صالحة",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "يمكنك استخدام اكثر من سييد مع هذه المحفظة. كل سييد يتطلب اسم حساب.",
         "youCanAdd": "يمكنك إضافة سييد آخر في قائمة الإعدادات."
     },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+    },
     "settings": {
         "transferSending": "جاري التحويل",
         "transferSendingExplanation": "الرجاء الانتظار حتى يتم إرسال التحويل الخاص بك.",
@@ -261,7 +271,11 @@
         "paste": "لصق",
         "selectAll": "تحديد الكل",
         "securitySettings": "إعدادات الأمان",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "الرجاء ادخال كلمة المرور لإعادة المحفظة.",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "اختيار العقدة",
         "addCustomNode": "إضافة عقده معينة",
-        "manualSync": "مزامنة يدوية"
+        "manualSync": "مزامنة يدوية",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "خلفية",
@@ -337,7 +352,7 @@
         "one": "واحد"
     },
     "deleteAccount": {
-        "areYouSure": "هل أنت متأكد أنك تريد حذف هذا الحساب؟",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "سيتم إزالة السييد و تاريخ الحوالات الخاصة بك.",
         "thisAction": "لا يمكن التراجع عن هذا الإجراء.",
         "enterPassword": "الرجاء ادخال كلمة المرور لحذف هذا الحساب."
@@ -406,5 +421,9 @@
         "mcap": "MCAP",
         "change": "Change",
         "volume": "Volume (24h)"
+    },
+    "rootDetection": {
+        "warning": "WARNING",
+        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }
