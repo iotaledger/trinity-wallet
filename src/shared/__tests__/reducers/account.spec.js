@@ -396,22 +396,49 @@ describe('Reducer: account', () => {
     });
 
     describe('MANUAL_SYNC_SUCCESS', () => {
-        it('should merge unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
+        it('should remove all bundle hashes that have any element in array with "account" prop equals "accountName" in payload', () => {
             const initialState = {
-                unconfirmedBundleTails: { foo: {} },
+                unconfirmedBundleTails: {
+                    foo: [{ account: 'to-be-deleted' }],
+                    baz: [{ account: 'not-to-be-deleted' }],
+                },
             };
 
-            const action = actions.manualSyncSuccess({ unconfirmedBundleTails: { baz: {} } });
+            const action = actions.manualSyncSuccess({ unconfirmedBundleTails: {}, accountName: 'to-be-deleted' });
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                unconfirmedBundleTails: { baz: {}, foo: {} },
+                unconfirmedBundleTails: { baz: [{ account: 'not-to-be-deleted' }] },
             };
 
             expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
         });
 
-        it('should merge addresses in payload to accountName in accountInfo', () => {
+        it('should merge "unconfirmedBundleTails" prop in payload to "unconfirmedBundleTails" prop in state after deleting existing tail transactions associated with account', () => {
+            const initialState = {
+                unconfirmedBundleTails: {
+                    foo: [{ account: 'main', toBeDeletedMeta: {} }],
+                    baz: [{ account: 'secondary' }],
+                },
+            };
+
+            const action = actions.manualSyncSuccess({
+                unconfirmedBundleTails: { foo: [{ account: 'main' }, { account: 'main' }] },
+                accountName: 'main',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                unconfirmedBundleTails: {
+                    foo: [{ account: 'main' }, { account: 'main' }],
+                    baz: [{ account: 'secondary' }],
+                },
+            };
+
+            expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
+        });
+
+        it('should set addresses in payload to "addresses" prop under accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
@@ -423,29 +450,24 @@ describe('Reducer: account', () => {
             const action = actions.manualSyncSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
-                transfers: [{}],
-                balance: 100,
             });
 
             const newState = reducer(initialState, action);
             const expectedState = {
                 accountInfo: {
                     foo: {
-                        addresses: { foo: {}, baz: {} },
-                        transfers: [{}],
-                        balance: 100,
+                        addresses: { baz: {} },
                     },
                 },
             };
 
-            expect(newState.accountInfo).to.eql(expectedState.accountInfo);
+            expect(newState.accountInfo.addresses).to.eql(expectedState.accountInfo.addresses);
         });
 
-        it('should set transfers and balance in payload to accountName in accountInfo', () => {
+        it('should set "transfers" and "balance" props in payload to "transfers" and "balance" props under accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
-                        addresses: { foo: {} },
                         transfers: [[{}, {}], [{}, {}]],
                         balance: 0,
                     },
@@ -454,7 +476,6 @@ describe('Reducer: account', () => {
 
             const action = actions.manualSyncSuccess({
                 accountName: 'foo',
-                addresses: { baz: {} },
                 transfers: [[{}, {}], [{}, {}], [{}, {}]],
                 balance: 100,
             });
@@ -463,14 +484,14 @@ describe('Reducer: account', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
-                        addresses: { foo: {}, baz: {} },
                         transfers: [[{}, {}], [{}, {}], [{}, {}]],
                         balance: 100,
                     },
                 },
             };
 
-            expect(newState.accountInfo).to.eql(expectedState.accountInfo);
+            expect(newState.accountInfo.transfers).to.eql(expectedState.accountInfo.transfers);
+            expect(newState.accountInfo.balance).to.eql(expectedState.accountInfo.balance);
         });
 
         it('should set txHashesForUnspentAddresses in payload to txHashesForUnspentAddresses in state', () => {
