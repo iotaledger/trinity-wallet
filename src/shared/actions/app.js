@@ -1,5 +1,4 @@
-import noop from 'lodash/noop';
-import { getStoredState, purgeStoredState } from 'redux-persist';
+import { getStoredState } from 'redux-persist';
 import { updatePersistedState } from '../libs/util';
 
 export const ActionTypes = {
@@ -9,7 +8,7 @@ export const ActionTypes = {
     SET_VERSIONS: 'IOTA/APP/WALLET/SET_VERSIONS',
 };
 
-export const setAppVersions = payload => ({
+export const setAppVersions = (payload) => ({
     type: ActionTypes.SET_VERSIONS,
     payload,
 });
@@ -36,7 +35,7 @@ export function resetWallet() {
 export const migrate = (versions, config, persistor) => (dispatch, getState) => {
     let restoredState = {};
     getStoredState(config)
-        .then(persistedState => {
+        .then((persistedState) => {
             restoredState = persistedState;
 
             if (persistor) {
@@ -55,5 +54,5 @@ export const migrate = (versions, config, persistor) => (dispatch, getState) => 
                 persistor.rehydrate(updatedState);
             }
         })
-        .catch(err => console.error(err));
+        .catch((err) => console.error(err));
 };

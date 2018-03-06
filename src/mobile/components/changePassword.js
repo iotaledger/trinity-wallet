@@ -30,10 +30,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-    logo: {
-        height: width / 5,
-        width: width / 5,
-    },
     infoTextWrapper: {
         borderWidth: 1,
         borderRadius: GENERAL.borderRadius,
@@ -107,7 +103,7 @@ class ChangePassword extends Component {
         tickImagePath: PropTypes.number.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -144,7 +140,7 @@ class ChangePassword extends Component {
 
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     const payload = get(credentials, 'data');
 
                     if (payload) {
@@ -185,7 +181,7 @@ class ChangePassword extends Component {
             onRef: ref,
             label,
             onChangeText,
-            containerStyle: { width: width / 1.36 },
+            containerStyle: { width: width / 1.2 },
             autoCapitalize: 'none',
             autoCorrect: false,
             enablesReturnKeyAutomatically: true,
@@ -226,38 +222,38 @@ class ChangePassword extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.2 }} />
                         <View style={[styles.infoTextWrapper, borderColor]}>
                             <Image source={infoImagePath} style={styles.infoIcon} />
                             <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
                         </View>
+                        <View style={{ flex: 0.2 }} />
                         {this.renderTextField(
-                            c => {
+                            (c) => {
                                 this.currentPassword = c;
                             },
                             currentPassword,
                             t('currentPassword'),
-                            password => this.setState({ currentPassword: password }),
+                            (password) => this.setState({ currentPassword: password }),
                             'next',
                             () => this.newPassword.focus(),
                         )}
                         {this.renderTextField(
-                            c => {
+                            (c) => {
                                 this.newPassword = c;
                             },
                             newPassword,
                             t('newPassword'),
-                            password => this.setState({ newPassword: password }),
+                            (password) => this.setState({ newPassword: password }),
                             'next',
                             () => this.confirmedNewPassword.focus(),
                         )}
                         {this.renderTextField(
-                            c => {
+                            (c) => {
                                 this.confirmedNewPassword = c;
                             },
                             confirmedNewPassword,
                             t('confirmPassword'),
-                            password => this.setState({ confirmedNewPassword: password }),
+                            (password) => this.setState({ confirmedNewPassword: password }),
                             'done',
                             () => this.changePassword(),
                         )}

@@ -42,6 +42,11 @@ export default class UserInactivity extends Component {
         this.inactivityTimer = null;
     }
 
+    setActiveFromComponent() {
+        this.setIsActive();
+        return false;
+    }
+
     onStartShouldSetPanResponder = () => {
         this.setIsActive();
         return false;

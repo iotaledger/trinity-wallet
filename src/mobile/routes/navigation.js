@@ -18,12 +18,13 @@ import Login from '../containers/login';
 import WalletResetConfirmation from '../containers/walletResetConfirmation';
 import WalletResetRequirePassword from '../containers/walletResetRequirePassword';
 import OnboardingComplete from '../containers/onboardingComplete';
-import SetSeedName from '../containers/setSeedName';
+import SetSeedNameComponent from '../containers/setSeedName';
 import SeedReentry from '../containers/seedReentry';
-import TwoFactorSetupAddKey from '../containers/twoFactorSetupAddKey';
+import TwoFactorSetupAddKeyComponent from '../containers/twoFactorSetupAddKey';
 import TwoFactorSetupEnterToken from '../containers/twoFactorSetupEnterToken';
 import Disable2FA from '../containers/disable2FA';
 import { isIPhoneX } from '../util/device';
+import FingerprintSetup from '../containers/fingerprintSetup';
 
 function getGenerator(screen) {
     if (isIPhoneX) {
@@ -56,10 +57,15 @@ export default function registerScreens(store, Provider) {
         Provider,
     );
     Navigation.registerComponent('onboardingComplete', () => getGenerator(OnboardingComplete), store, Provider);
-    Navigation.registerComponent('setSeedName', () => getGenerator(SetSeedName), store, Provider);
+    Navigation.registerComponent('setSeedName', () => getGenerator(SetSeedNameComponent), store, Provider);
     Navigation.registerComponent('seedReentry', () => getGenerator(SeedReentry), store, Provider);
     Navigation.registerComponent('saveSeedConfirmation', () => getGenerator(SaveSeedConfirmation), store, Provider);
-    Navigation.registerComponent('twoFactorSetupAddKey', () => getGenerator(TwoFactorSetupAddKey), store, Provider);
+    Navigation.registerComponent(
+        'twoFactorSetupAddKey',
+        () => getGenerator(TwoFactorSetupAddKeyComponent),
+        store,
+        Provider,
+    );
     Navigation.registerComponent(
         'twoFactorSetupEnterToken',
         () => getGenerator(TwoFactorSetupEnterToken),
@@ -67,4 +73,5 @@ export default function registerScreens(store, Provider) {
         Provider,
     );
     Navigation.registerComponent('disable2FA', () => getGenerator(Disable2FA), store, Provider);
+    Navigation.registerComponent('fingerprintSetup', () => getGenerator(FingerprintSetup), store, Provider);
 }

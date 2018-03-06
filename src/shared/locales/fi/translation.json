@@ -1,373 +1,410 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "CANCEL",
-        "continue?": "Are you sure you want to continue?",
-        "noTransactions": "NO RECENT HISTORY",
+        "send": "LÄHETÄ",
+        "cancel": "PERUUTA",
+        "continue?": "Oletko varma, että haluat jatkaa?",
+        "noTransactions": "EI HISTORIATIETOJA",
+        "refresh": "REFRESH",
         "qr": "QR",
-        "balanceError": "Not enough balance",
-        "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
-        "transferError": "Transfer error",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
-        "transferSentMessage": "Your transfer has been sent to the Tangle.",
-        "messageSent": "Message sent",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
-        "keyReuse": "Key reuse",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
-        "invalidResponse": "Invalid response",
-        "invalidResponseExplanation": "The node returned an invalid response.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
-        "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
-        "seed": "Seed",
-        "back": "BACK",
-        "backLowercase": "Back",
-        "done": "DONE",
-        "doneLowercase": "Done",
-        "next": "NEXT",
-        "apply": "Apply",
-        "save": "Save",
-        "close": "CLOSE",
-        "continue": "Continue",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "copyToClipboard": "Add to password manager",
-        "notAvailable": "This function is not available",
-        "notAvailableExplanation": "It will be added at a later stage.",
-        "enterSeed": "Please enter your seed.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
-        "yes": "YES",
-        "no": "NO",
-        "password": "Password",
-        "unrecognisedPassword": "Unrecognised password",
-        "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "node": "Node",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
-        "wallet": "Wallet",
-        "pressBackAgain": "Press back again to close the app"
+        "balanceError": "Ei tarpeeksi katetta",
+        "balanceErrorMessage": "Sinulla ei ole tarpeeksi IOTAa siirron loppuun suorittamiseksi.",
+        "transferError": "Siirtovirhe",
+        "transferErrorMessage": "Siirrossa tapahtu virhe. Yritä uudelleen.",
+        "transferSent": "Siirto lähetty",
+        "transferSentMessage": "Siirtosi on lähetetty Tangleen.",
+        "messageSent": "Viesti lähetetty",
+        "messageSentMessage": "Viestisi on lähetetty Tangleen.",
+        "keyReuse": "Avaimen uudelleenkäyttö",
+        "keyReuseError": "Et voi lähettää osoitteeseen, jota on jo käytetty aikaisemmin.",
+        "invalidResponse": "Virheellinen vastaus",
+        "invalidResponseExplanation": "Palvelin palautti virheilmoituksen.",
+        "invalidResponsePollingExplanation": "Palvelin palautti virheilmoituksen yhdistysvaiheessa.",
+        "invalidResponseFetchingAccount": "Palvelin palautti virheilmoituksen hakiessaan tilitietojasi.",
+        "invalidResponseSendingTransfer": "Palvelin palautti virheilmoituksen siirron yhteydessä.",
+        "seed": "Seed-luku",
+        "back": "TAKAISIN",
+        "backLowercase": "Takaisin",
+        "done": "VALMIS",
+        "doneLowercase": "Valmis",
+        "next": "SEURAAVA",
+        "apply": "Hyväksy",
+        "save": "Tallenna",
+        "close": "SULJE",
+        "continue": "Jatka",
+        "manualCopy": "Kirjoita seed-luku talteen",
+        "paperWallet": "Tulosta paperikopio",
+        "copyToClipboard": "Lisää salasanan hallintaohjelmaan",
+        "notAvailable": "Tämä toiminto ei ole käytettävissä",
+        "notAvailableExplanation": "Se tullaan lisäämään myöhemmässä kehitysvaiheessa.",
+        "enterSeed": "Anna seed-lukusi.",
+        "mainWallet": "PÄÄTILI",
+        "secondWallet": "TOINEN TILI",
+        "thirdWallet": "KOLMAS TILI",
+        "fourthWallet": "NELJÄS TILI",
+        "fifthWallet": "VIIDES TILI",
+        "sixthWallet": "KUUDES TILI",
+        "otherWallet": "MUU TILI",
+        "yes": "KYLLÄ",
+        "no": "EI",
+        "password": "Salasana",
+        "passwordOrFingerprint": "Salasana tai sormenjälki",
+        "unrecognisedPassword": "Tunnistamaton salasana",
+        "unrecognisedPasswordExplanation": "Salasanaa ei tunnistettu. Yritä uudelleen.",
+        "syncInProgress": "Synkronointi käynnissä",
+        "syncInProgressExplanation": "Odota, kunnes synkronointi on valmis.",
+        "somethingWentWrong": "Jokin meni pieleen",
+        "somethingWentWrongExplanation": "Käynnistä sovellus uudestaan.",
+        "node": "Palvelin",
+        "cannotPerformAction": "Toimintoa ei voi suorittaa",
+        "cannotPerformActionExplanation": "Siirry lisäasetuksiin resetoidaksesi lompakkosi.",
+        "attachToTangleUnavailable": "Yhteys Tangleen ei käytettävissä",
+        "attachToTangleUnavailableExplanation": "Tangleen liittäminen ei ole mahdollista valitsemallasi palvelimella.",
+        "wallet": "Lompakko",
+        "sent": "Lähetetty",
+        "received": "Vastaanotettu",
+        "sending": "Lähettää",
+        "receiving": "Vastaanotetaan",
+        "confirmed": "Vahvistettu",
+        "pending": "Odottaa",
+        "bundleHash": "Kokoelman Tiiviste-luku",
+        "addresses": "Osoitteet",
+        "pressBackAgain": "Paina paluu-painiketta sulkeaksesi sovelluksen",
+        "autoreattaching": "Muodosta liitos Tangleen automaattisesti",
+        "autoreattachingExplanation": "Liitetään siirto uudelleen tiiviste-luvulla {{hash}}",
+        "autopromoting": "Edistetään siirtoa automaattisesti",
+        "autopromotingExplanation": "Edistetään siirtoa tiiviste-luvulla {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Seed contains invalid characters",
-        "seedInvalidCharsExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "nameInUse": "Account name already in use",
-        "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterAccountName": "Enter an account name.",
-        "accountName": "Account name",
-        "noNickname": "No account name entered",
-        "noNicknameExplanation": "Please enter an account name for your seed.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
+        "seedInvalidCharsExplanation": "Seed-luvut voivat muodostua ainoastaan isoista alkukirjaimista A-Z ja numerosta 9. Sinun seed-lukusi sisältää virheellisiä merkkejä. Yritä uudelleen.",
+        "seedTooShort": "Seed-luku on liian lyhyt",
+        "seedTooShortExplanation": "Seed-lukujen on oltava {{maxLength}} merkkiä pitkiä. Sinun seed-lukusi on tällä hetkellä {{currentLength}} merkkiä pitkä. Yritä uudelleen.",
+        "nameInUse": "Tilin nimi on jo käytössä",
+        "nameInUseExplanation": "Käytä yksilöllistä tilin nimeä seed-luvullesi.",
+        "enterAccountName": "Anna tilin nimi.",
+        "accountName": "Tilin nimi",
+        "noNickname": "Tilin nimeä ei annettu",
+        "noNicknameExplanation": "Anna tilin nimi seed-luvullesi.",
+        "seedInUse": "Seed-luku on jo käytössä",
+        "seedInUseExplanation": "Tämä seed-luku on jo linkitetty lompakkoosi. Käytä uutta seed-lukua."
     },
     "changePassword": {
-        "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
-        "passwordUpdated": "Password updated",
-        "passwordUpdatedExplanation": "Your password has been successfully updated.",
-        "incorrectPassword": "Incorrect password",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
-        "passwordsDoNotMatch": "Passwords do not match",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
-        "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least 12 characters. Please try again.",
-        "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation":
-            "You cannot use the old password as your new password. Please try again with a new password.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "oops": "Oops! Jokin meni pieleen",
+        "oopsExplanation": "Näyttää siltä, että jotain meni pieleen päivitettäessä salasanaasi. Yritä uudelleen.",
+        "passwordUpdated": "Salasana päivitetty",
+        "passwordUpdatedExplanation": "Salasanasi on päivitetty onnistuneesti.",
+        "incorrectPassword": "Virheellinen salasana",
+        "incorrectPasswordExplanation": "Nykyinen salasana on virheellinen. Yritä uudelleen.",
+        "passwordsDoNotMatch": "Salasanat eivät täsmää",
+        "passwordsDoNotMatchExplanation": "Salasanat eivät täsmää, yritä uudelleen.",
+        "passwordTooShort": "Salasana on liian lyhyt",
+        "passwordTooShortExplanation": "Salasanan tulee olla vähintään 12 merkkiä pitkä. Yritä uudelleen.",
+        "oldPassword": "Vanhaa salasanaa ei voi käyttää",
+        "oldPasswordExplanation": "Et voi käyttää vanhaa salasanaa toista kertaa. Yritä uudelleen.",
+        "ensureStrongPassword": "Varmista että käytät hyvää salasanaa joka on vähintään 12-merkkiä pitkä.",
+        "currentPassword": "Nykyinen Salasana",
+        "newPassword": "Uusi Salasana",
+        "confirmPassword": "Vahvista Uusi Salasana"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "seedCleared": "Seed-luku tyhjennetty",
+        "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
+        "seedCopied": "Kopioitu seed-luku leikepöydälle",
+        "seedCopiedExplanation": "Seed-luku poistetaan, kun painat ”VALMIS” tai kun 60 sekuntia on kulunut.",
+        "clickToCopy": "Klikkaa alla olevaa painiketta ja kopioi seed-lukusi salasanan hallintaohjelmaan.",
+        "doNotStore": "Älä säilytä seed-lukuasi pelkkänä tekstinä.",
+        "copyToClipboard": "Kopioi leikepöydälle"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation":
-            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
+        "invalidCharactersExplanation": "Seed-luvut voivat muodostua ainoastaan isoista alkukirjaimista A-Z ja numerosta 9. Sinun seed-lukusi sisältää virheellisiä merkkejä. Yritä uudelleen.",
+        "seedTooShort": "Seed-luku on liian lyhyt",
+        "seedTooShortExplanation": "Seed-luvun on oltava {{maxLength}} merkkiä pitkä. Sinun seed-lukusi on tällä hetkellä {{currentLength}} merkkiä pitkä. Yritä uudelleen.",
+        "seedExplanation": "Seed-lukusi tulee olla {{maxLength}} merkkiä pitkä ja sisältää isoja kirjaimia A-Z tai numeroa yhdeksän (9). Yli {{maxLength}} merkkiä pitkä Seed-lukuja ei voi käyttää.",
+        "neverShare": "ÄLÄ KOSKAAN JAA SEED-LUKUASI KENENKÄÄN KANSSA"
     },
     "home": {
-        "balance": "BALANCE",
-        "send": "SEND",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "balance": "SALDO",
+        "send": "LÄHETÄ",
+        "receive": "VASTAANOTA",
+        "history": "HISTORIA",
+        "settings": "ASETUKSET"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "Kieli"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
-        "login": "LOG IN",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "emptyPassword": "Tyhjennä salasana",
+        "emptyPasswordExplanation": "Kirjoita salasana kirjautumiseen. Yritä uudelleen.",
+        "enterPassword": "Anna salasanasi.",
+        "useSeed": "KÄYTÄ SEED-LUKUASI",
+        "login": "KIRJAUDU SISÄÄN",
+        "selectDifferentNode": "Haluatko valita toisen palvelimen?",
+        "setNode": "ASETA PALVELIN",
+        "cannotConnect": "Ei saada yhteyttä IOTA-palvelimeen."
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Ladataan seed-lukua ensimmäistä kertaa.",
+        "thisMayTake": "Tämä saattaa kestää hetken.",
+        "youMayNotice": "Laitteessa voi ilmetä hitautta."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "seedNotGenerated": "Seed-lukua ei ole luotu",
+        "seedNotGeneratedExplanation": "Paina Luo Uusi Seed-luku painiketta.",
+        "pressForNewSeed": "LUO UUSI SEED-LUKU",
+        "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi."
     },
     "onboardingComplete": {
-        "walletReady":
-            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Lompakko on nyt käyttövalmis. Jos sinun tarvitsee jatkossa tehdä muutoksia, katso Asetukset-valikosta."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "clickToPrint": "Kilkkaa alla olevaa nappia tulostaaksesi paperikopion seed-luvustasi.",
+        "storeSafely": "Säilytä sitä turvallisesti.",
+        "neverShare": "Älä koskaa jaa seed-lukua kenenkään ulkopuolisen kanssa.",
+        "iotaLogo": "IOTA-logo",
+        "printWallet": "TULOSTA PAPERILOMPAKKO"
     },
     "receive": {
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "NEW ADDRESS",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "addressCopied": "Osoite kopioitu",
+        "addressCopiedExplanation": "Osoitteesi on kopioitu leikepöydälle.",
+        "generateNewAddress": "UUSI OSOITE",
+        "message": "Valinnainen viesti",
+        "removeMessage": "POISTA VIESTI",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "mustSaveYourSeed": "You must save your seed with ",
-        "atLeastOne": "at least one ",
-        "ofTheOptions": "of the options listed below."
+        "seedCleared": "Seed-luku tyhjennetty",
+        "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
+        "mustSaveYourSeed": "<0><0>Sinun on tallennettava seed-lukusi käyttäen </0> <1>vähintään yhtä</1> <2>alla olevista vaihtoehdoista.</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "incorrectSeed": "Virheellinen seed-luku",
+        "incorrectSeedExplanation": "Antamasi seed-luku on virheellinen. Yritä uudelleen.",
+        "thisIsACheck": "Tämä on tarkistus siitä, että olet tallentanut seed-lukusi.",
+        "ifYouHaveNotSaved": "Jos et ole tallentanut seed-lukuasi, palaa takaisin ja tee se."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Insufficient funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
-        "keyReuse": "Key reuse",
-        "keyReuseExplanation":
-            "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
-        "amount": "Amount",
+        "invalidAddress": "Virheellinen osoite",
+        "invalidAddressExplanation1": "Osoitteen on oltava {{maxLength}} merkkiä pitkä ja sen pitäisi sisältää tarkistussumma.",
+        "invalidAddressExplanation2": "Osoite sisältää virheellisiä merkkejä.",
+        "invalidAddressExplanation3": "Osoite sisältää virheellisen tarkistussumman.",
+        "notEnoughFunds": "Varoja ei riittävästi",
+        "notEnoughFundsExplanation": "Sinulla ei ole tarpeeksi IOTAa suorittaaksesi siirtoa loppuun.",
+        "keyReuse": "Avaimen uudelleenkäyttö",
+        "keyReuseExplanation": "Osoite, johon yrität lähettää on jo käytetty. Kokeile toista osoitetta.",
+        "recipientAddress": "Vastaanottajan osoite",
+        "amount": "Summa",
         "max": "MAX",
-        "message": "Message",
-        "send": "SEND",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "message": "Viesti",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "send": "LÄHETÄ",
+        "invalidAmount": "Syötetty arvo on virheellinen",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "maximumSelected": "MAKSIMI-määrä valittu",
+        "iotaUnits": "IOTA-yksiköt selitettynä",
+        "sendMax": "LÄHETÄ MAX"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation":
-            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
-        "passwordMismatch": "Passwords do not match",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy":
-            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "passwordTooShort": "Salasana on liian lyhyt",
+        "passwordTooShortExplanation": "Salasanasi on oltava vähintään {{minLength}} merkkiä. Se on tällä hetkellä {{currentLength}} merkin pituinen. Yritä uudelleen.",
+        "passwordMismatch": "Salasanat eivät täsmää",
+        "passwordMismatchExplanation": "Annetut salasanat eivät täsmää. Yritä uudelleen.",
+        "nowWeNeedTo": "Nyt meidän on luotava salasana.",
+        "anEncryptedCopy": "Seed-lukusi salattu kopio tallennetaan laitteellesi. Tällä salasanalla pääset käyttämään lompakkoasi jatkossa.",
+        "ensure": "Varmista, että käytät hyvää salasanaa, joka on vähintään 12 merkkiä pitkä.",
+        "retypePassword": "Kirjoita Salasana Uudelleen"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "Voit käyttää useita seed-lukuja tässä lompakossa. Jokainen seed-luku tarvitsee oman tilin nimen.",
+        "youCanAdd": "Voit lisätä useampia seed-lukuja Asetukset-valikossa."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
-        "language": "Language",
-        "accountManagement": "Account management",
-        "addNewSeed": "Add new seed",
-        "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
-        "logout": "Log out",
-        "reset": "Reset wallet",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
-    },
-    "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your ",
-        "warning2": " seeds, password,",
-        "warning3": " and",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "transferSending": "Siirto käynnissä",
+        "transferSendingExplanation": "Odota, kunnes siirto on lähetetty.",
+        "generatingAddress": "Luodaan vastaanotto-osoitetta",
+        "generatingAddressExplanation": "Odota, kunnes osoitteesi on luotu.",
+        "mode": "Tila",
+        "theme": "Teema",
+        "currency": "Valuutta",
+        "language": "Kieli",
+        "accountManagement": "Tilinhallinta",
+        "addNewSeed": "Lisää uusi seed-luku",
+        "twoFA": "Kaksivaiheinen tunnistautuminen (2FA)",
+        "changePassword": "Vaihda salasana",
+        "advanced": "Lisäasetukset",
+        "logout": "Kirjaudu ulos",
+        "reset": "Resetoi lompakko",
+        "syncingComplete": "Synkronointi valmis",
+        "syncingCompleteExplanation": "Tilisi on synkronoitu onnistuneesti.",
+        "nicknameChanged": "Tilin nimi muutettu",
+        "nicknameChangedExplanation": "Tilisi nimi on muutettu.",
+        "accountDeleted": "Tili poistettu",
+        "accountDeletedExplanation": "Tilisi on poistettu lompakosta.",
+        "cannotPerformAction": "Toimintoa ei voi suorittaa",
+        "cannotPerformActionExplanation": "Siirry lisäasetuksiin resetoidaksesi lompakkosi.",
+        "poorConnection": "Huono yhteys",
+        "poorConnectionExplanation": "Valuutan vaihto epäonnistui huonon yhteyden takia.",
+        "hide": "Piilota",
+        "hideOthers": "Piilota muut",
+        "showAll": "Näytä kaikki",
+        "quit": "Lopeta",
+        "edit": "Muokkaa",
+        "cut": "Leikkaa",
+        "copy": "Kopioi",
+        "paste": "Liitä",
+        "selectAll": "Valitse kaikki",
+        "securitySettings": "Turvallisuusasetukset",
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
+        "cancel": "PERUUTA",
+        "reset": "RESETOI"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation":
-            "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet",
-        "explanation3": ", on",
-        "explanation4": " any device",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "okay": "Okei. Luodaan sinulle lompakko!",
+        "doYouAlreadyHaveASeed": "Onko sinulla jo seed-luku jota haluat käyttää?",
+        "seedExplanation": "IOTA seed-luku on käyttäjänimen ja salasanan yhdistelmä tilillesi. Seed-luku koostuu yhdestä 81-merkin pituisesta merkkijonosta.",
+        "explanation": "<0><0>Voit käyttää sitä päästäksesi käsiksi varoihisi mistä</0> <1>tahansa lompakosta</1> <2>, millä</2> <3>tahansa laitteella</3> <4>. Mutta jos hävität seed-lukusi, menetät myös sinun IOTAt.</4></0>",
+        "keepSafe": "Muista aina pitää seed-lukusi turvassa."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "Kiitos, että olet ladannut IOTA-lompakon.",
+        "weWillSpend": "Käytämme seuraavat pari minuuttia luodaksemme sinulle lompakkosi.",
+        "reminder": "Joidenkin vaiheiden ohittaminen voi houkutella, mutta painotamme sinulle, että seuraat koko prosessin läpi."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
-        "thatTheyAreCorrect": "that they are correct."
+        "yourSeedIs": "Sinun seed-lukusi on {{maxSeedLength}} merkkiä luettuna vasemmalta oikealle.",
+        "writeDownYourSeed": "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "bundleHashCopied": "Kokoelman tiiviste-luku kopioitu",
+        "bundleHashCopiedExplanation": "Kokoelman tiiviste-luku kopioitu leikepöydälle.",
+        "addressCopied": "Osoite kopioitu",
+        "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Katso seed-luku",
+        "viewAddresses": "Näytä osoitteet",
+        "editAccountName": "Muokkaa tilin nimeä",
+        "deleteAccount": "Poista tili",
+        "addNewAccount": "Lisää uusi tili"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Mukautettu palvelin",
+        "add": "Lisää"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Käytä olemassaolevaa seed-lukua",
+        "createNewSeed": "Luo uusi seed-luku"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Valitse palvelin",
+        "addCustomNode": "Lisää mukautettu palvelin",
+        "manualSync": "Manuaalinen synkronointi"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Tausta",
+        "frame": "Kehys"
+    },
+    "themeCustomisation": {
+        "theme": "Teema"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "Valuutta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Haluatko varmasti kirjautua ulos?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Skannaa QR-koodisi"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "YKSIKKÖJÄRJESTELMÄ",
+        "trillion": "Biljoonaa",
+        "billion": "Miljardia",
+        "million": "Miljoonaa",
+        "thousand": "Tuhatta",
+        "one": "Yksi"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "areYouSure": "Oletko varma, että haluat poistaa tämän tilin?",
+        "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoria poistetaan.",
+        "thisAction": "Tätä toimintoa ei voi jälkikäteen peruuttaa.",
+        "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "pressToSync": "Paina alla olevaa nappia synkronoidaksesi tilisi.",
+        "thisMayTake": "Tämä saattaa kestää hetken.",
+        "youMayNotice": "Laitteessa voi ilmetä hitautta.",
+        "syncAccount": "SYNKRONOI TILI",
+        "syncingYourAccount": "Synkronoidaan tiliäsi."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Anna seed-luku ja tilin nimi."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Syötä salasana nähdäksesi seed-lukusi.",
+        "viewSeed": "KATSO SEED-LUKU",
+        "hideSeed": "PIILOTA SEED-LUKU"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "alreadyHave": "Olen tallettanut seed-lukuni",
+        "reenter": "Sinua pyydetään nyt uudelleensyöttämään seed-lukusi.",
+        "reenterWarning": "Jos laitteesi hajoaa, etkä ole tallettanut seed-lukuasi, menetät sinun IOTAt."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "infoTextOne": "All your wallet data including your",
-        "infoTextTwo": "seeds, password",
-        "infoTextThree": "and",
-        "infoTextFour": "other account information",
-        "infoTextFive": "will be lost."
+        "cannotUndo": "TÄTÄ TOIMINTOA EI VOI KUMOTA.",
+        "warning": "<0><0>Kaikki sinun lompakkosi tiedot, mukaan lukien sinun </0> <1>seed-lukusi, salasanasi,</1> <2> ja </2> <3>muut tilitiedot</3> <4>menetetään.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Kosketa laitteesi sormenjälkilukijaa ottaaksesi käyttöön sormenjälkivarmennuksen.",
+        "instructionsDisable": "Kosketa laitteesi sormenjälkilukijaa poistaaksesi käytöstä sormenjälkivarmennuksen.",
+        "fingerprintAuthEnabled": "Sormenjälkitunnistus otettu käyttöön",
+        "fingerprintAuthEnabledExplanation": "Olet onnistuneesti ottanut käyttöön sormenjälkitunnistuksen.",
+        "fingerprintAuthDisabled": "Sormenjälkitunnistus poistettu käytöstä",
+        "fingerprintAuthDisabledExplanation": "Olet onnistuneesti poistanut käytöstä sormenjälkitunnistuksen.",
+        "fingerprintAuthFailed": "Sormenjälkitunnistus epäonnistui",
+        "fingerprintAuthFailedExplanation": "Sormenjälkitunnistus epäonnistui. Yritä uudelleen.",
+        "status": "Tila",
+        "enabled": "Käytössä",
+        "disabled": "Ei käytössä",
+        "fingerprintUnavailable": "Sormenjälkianturi ei saatavilla",
+        "fingerprintUnavailableExplanation": "Laite ei tue sormenjälkitunnistusta tai sitä ei ole määritetty laitteen asetuksiin.",
+        "buttonInstructionsDisable": "Paina alla olevaa painiketta poistaaksesi sormenjälkitunnistuksen.",
+        "buttonInstructionsEnable": "Paina alla olevaa painiketta ottaaksesi käyttöön sormenjälkitunnistuksen.",
+        "instructionsLogin": "Kosketa sormenjälkilukijaa kirjautuaksesi sisään."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "Olet lähettämässä {{contents}} osoitteeseen",
+        "aMessage": "viesti"
+    },
+    "twoFA": {
+        "wrongCode": "Väärä koodi",
+        "wrongCodeExplanation": "Kirjoittamasi tunnusluku on virheellinen.",
+        "emptyCode": "Tyhjennä tunnusluku",
+        "emptyCodeExplanation": "Syötä tunnusluku ja yritä uudelleen.",
+        "keyCopied": "Avain kopioitu leikepöydälle",
+        "keyCopiedExplanation": "Sinun 2FA-avaimesi on kopioitu leikepöydälle.",
+        "addKey": "Lisää tämä avain sinun 2FA-ohjelmaan",
+        "key": "Avain",
+        "twoFAEnabled": "2FA on nyt käytössä",
+        "twoFAEnabledExplanation": "Olet onnistuneesti ottanut käyttöön kaksivaihetunnistautumisen (2FA).",
+        "enterCode": "Syötä tunnusluku 2FA-ohjelmasta",
+        "code": "Tunnusluku"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }

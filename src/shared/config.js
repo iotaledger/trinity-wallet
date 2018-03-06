@@ -12,4 +12,6 @@ export const nodes = [
 
 export const DEFAULT_DEPTH = 4;
 export const DEFAULT_MIN_WEIGHT_MAGNITUDE = 14;
-export const DEFAULT_TAG = 'IOTA';
+export const DEFAULT_TAG = 'TRINITY';
+export const DEFAULT_SECURITY = 2;
+export const DEFAULT_BALANCES_THRESHOLD = 100;

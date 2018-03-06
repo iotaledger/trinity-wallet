@@ -1,26 +1,29 @@
 ## Information Architecture
 This section details the overall flow and gives an overview of Trinity’s complete feature set.
-##### [Setup](#setup)
-- [Seed Generation](#new-seed)
+##### [Setup](#setup-1)
+- [Seed Generation](#seed-generation)
 - [Seed Storage](#seed-storage)
 
-##### [Account Management](#account-mgmt)
-- [Multi-account management](#multi-account)
+##### [Main dashboard](#dashboard)
+- [Account Management](#account-management-1)
 - [Node Selection](#node-selection)
 - [Polling](#polling)
-- [Address Management](#address-mgmt)
-- [Two factor authentication](#2FA)
-- [Automatic Promotion/Reattachment](#auto-reattach)
+- [Address Management](#address-management)
+- [Two-factor Authentication](#two-factor-authentication)
+- [Biometric Authentication](#biometric-authentication)
+- [Snapshot Transition](#transition)
+- [Automatic Promotion/Reattachment](#automatic-promotionreattachment)
 
 ## Technical Architecture
-This section highlights all important APIs consumed in Trinity.
+This section highlights all important APIs used in Trinity.
 - [IRI](#iri)
-- [Cryptocompare](#cryptocompare)
-- [Fixer](#fixer)
+- [Cryptocompare & Fixer](#cryptocompare)
 - [i18next](#i18next)
-- [Randombytes](#randombytes)
 - [Bitrise](#bitrise)
 - [Fastlane](#fastlane)
+- [Fabric](#fabric)
+- [RNIsDeviceRooted](#rnisdevicerooted)
+
 
 ## Information Architecture
 ## Setup
@@ -44,18 +47,19 @@ randomByte = getRandomByte() // randomByte will be from 0 to 255
 charIndex = randomByte % 27
  ```
 
- For an IOTA seed, it is necessary to generate a set of 27 possible characters. A simple way of producing the necessary characters is to return the remainder from dividing a random byte of data's numeric value (0-255) by 27. And then using this to index the string of possible characters: `ABCDEFGHIJKLMNOPQRSTUVWXYZ9`. By using a number range evenly divisible by the divisor it is possible to avoid bias i.e. restricting the range from 0 to 243.
+ For an IOTA seed, it is necessary to generate a set of 27 possible characters. A simple way of producing the necessary characters is to return the remainder from dividing a random byte's numeric value (0-255) by 27. And then using this to index the string of possible characters: `ABCDEFGHIJKLMNOPQRSTUVWXYZ9`. By using a number range evenly divisible by the divisor it is possible to avoid bias i.e. by restricting the range from 0 to 243.
 
- Mobile OS kernels can accumulate randomness through various unpredictable input sources like the accelerometer, keypress timings and circuitry signal interference <sup>[1](#mobile-randomness)</sup>. This entropy pool can be drawn upon to generate randomness by calling /dev/random system calls. Trinity obtains random bytes through [`java.util.SecureRandom`](https://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html) and [`SecRandomCopyBytes()`](https://developer.apple.com/documentation/security/1399291-secrandomcopybytes) on Android and iOS respectively.
+ Mobile OS kernels can accumulate randomness through various unpredictable input sources like the accelerometer, keypress timings and circuitry signal interference <sup>[1](#mobile-randomness)</sup>. This entropy pool can be drawn upon to generate randomness by making /dev/random system calls. Trinity obtains random bytes through [`java.util.SecureRandom`](https://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html) and [`SecRandomCopyBytes()`](https://developer.apple.com/documentation/security/1399291-secrandomcopybytes) on Android and iOS respectively.
 
+ The library used to generate random bytes is  [react-native-securerandom](https://github.com/rh389/react-native-securerandom).
 
 #### Seed storage
 
 Trinity seed security follows two simple rules: minimise the time the seed spends unencrypted in memory, and encrypt the seed at rest storage.
 
-During setup the user will create a password. The password and seed are then used as a key-value pair with iOS Keychain and Android Keystore respectively. The seed is stored encrypted and the password is used to decrypt the seed at the point of use. Access to the key stores is provided by the [React Native Sensitive Info](#sensitive-info) library.
+During setup the user will create a password. The password and seed are then used as a key-value pair in iOS Keychain and Android Keystore respectively. The seed is stored encrypted and the password is used to decrypt the seed at the point of use. Access to the key stores is provided by the [React Native Sensitive Info](#sensitive-info) library.
 
-The seed is stored encrypted at every possible instance. The only time the seed lies unencrypted in memory is during seed setup. The seed is not encrypted prior to setting a password. This is not a problem for security. Android and iOS operate an application sandbox environment, where application memory is only accessible to the application itself. Encryption is used to mitigate the risk of an attacker gaining access to the application sandbox on a compromised device. If the user is in the process of setting up their seed, it can be safely assumed that their device has not been compromised.
+The seed is stored encrypted at every possible instance. The only time the seed lies unencrypted in memory is during seed setup i.e. the seed is not encrypted prior to setting a password. This does not pose a problem for security. Android and iOS operate an application sandbox environment, where application memory is only accessible to the application itself. Encryption is used to mitigate the risk of an attacker gaining access to the application sandbox on a compromised device. If the user is in the process of setting up their seed, it can be safely assumed that their device has not been compromised.
 
 **We advise not to use Trinity Mobile on Jailbroken or rooted devices.** If a device is jailbroken/rooted the application sandbox can be breached.
 
@@ -64,53 +68,89 @@ The seed is stored encrypted at every possible instance. The only time the seed 
 
 #### Multi-account management
 
-Trinity provides multi-account support. You can store more than one seed in your wallet.
+Trinity provides multi-account support. You can store more than one seed in your wallet. This enables users to split their funds between multiple seeds and access them from within the same application. If you add more than one seed to your Trinity wallet, you can swap between accounts by pressing the dropdown located at the top of the main application dashboard.
+
+A number of account management functions are provided. These included **View seed**, **View addresses**, **Delete account**, **Add new account** and **Change password**.
 
 #### Node Selection
 
-Trinity is a lightwallet. It relies on connection to nodes running the IRI.
+Trinity is a lightwallet. It relies on a connection to a full node running the IRI. This means that Trinity relies on a third party server for accessing address balances and relaying transactions to the Tangle. Light wallets are suitable for devices like smartphones, owing to their lightweight nature.
+
+##### Node balancing
+
+Trinity provides a built-in node-balancing service. A list of approved nodes is maintained externally by **iota.dance**. When you open your wallet, a healthy node with a low current load is selected.
+
+Should you wish to turn off node balancing, please head to the **Select node** page in **Advanced settings**. It is also possible to add your own **custom node**.
 
 #### Polling
 
-Polling comprises of two key components: market data and account polling.
+Trinity carries out a series of network calls to ensure that your wallet information is kept upto date. Polling comprises of two key components: market data and account polling. Latest market data, price data, currency data, transfers and balances are fetched in sequence.
 
-#### Address Management
-
-Trinity is a stateful wallet.
-
-#### Two factor authentication
-
-Two factor authentication provides an optional additional security layer for Trinity users.
+Please note: **Trinity does not update account or market information if the application is minimised. Polling only takes place if the app is currently open.**
 
 #### Automatic Promotion/Reattachment
 
-To ensure transactions are confirmed on the Tangle, it is often necessary to promote or reattach them.
+To ensure transactions are confirmed on the Tangle, it is often necessary to promote or reattach them. An explanation of promotion and reattachment can be found [here](https://iota.stackexchange.com/a/801). If it is possible to promote a pending transaction, Trinity will do so automatically. However it is sometimes necessary to first attach the transaction to the Tangle before then promoting that reattachment. This will also occur automatically.
+
+Should you wish to enable **manual promotion and reattachment** please turn on **Expert** mode in the settings.
+
+
+Please note: **Trinity does not promote/reattatch transfers if the application is minimised. Automatic promotion/reattachment only takes place if the app is currently open.**
+
+#### Address Management
+
+Trinity is a stateful wallet, meaning that your address balances and transaction history are stored locally on your device. This ensures that loading times are faster and facilitates a wider array of wallet features, including multi-account support.
+
+#### Two-Factor Authentication
+
+Two factor authentication provides an optional additional security layer for Trinity users. This can be activated by adding a TOTP key provided by Trinity to a 2FA app like Google Authenticator or Authy.
+
+Please note: **Enabling two-factor authentication does not provide any additional security if your 2FA application is on the same device as Trinity. It only provides additional security through use of a second device**
+
+
+#### Biometric Authentication
+
+For ease of use, users are given the option to use biometric authentication as an alternative to logging in to the wallet. We use [react-native-fingerprint-scanner](https://github.com/hieuvp/react-native-fingerprint-scanner) to implement this. For Android, we support MeiZu's [Fingerprint Authentication API](https://translate.google.com/translate?sl=auto&tl=en&js=y&prev=_t&hl=en&ie=UTF-8&u=http%3A%2F%2Fopen-wiki.flyme.cn%2Findex.php%3Ftitle%3D%25E6%258C%2587%25E7%25BA%25B9%25E8%25AF%2586%25E5%2588%25ABAPI&edit-text=&act=url) and Samsung's [Pass SDK](http://developer.samsung.com/galaxy/pass). For iOS, we support Apple's [Touch ID](https://developer.apple.com/documentation/localauthentication) and [Face ID](https://images.apple.com/business/docs/FaceID_Security_Guide.pdf).
+
+Please note: **Enabling biometric authentication may pose a potential security risk. Anyone who has their fingerprint or face registered in your device will be able to access your wallet.**
+
+#### Snapshot Transition
+
+Every so often, a snapshot is performed on the Tangle. Snapshots are performed to condense the size of the Tangle. All transaction data is deleted and only nonzero address balance are retained. As Trinity is stateful, it will store a copy of your transactional history after a snapshot.
+
+Following a snapshot it is necessary to manually attach addresses with the IOTA light wallet. Trinity provides a feature to do this quickly and automatically. The snapshot transition function can be found in **Advanced settings**. Whenever a snapshot occurs, you should perform a snapshot transition in Trinity.
 
 ## Technical Architecture
 
 #### IRI
 Trinity consumes endpoints from any selected full node for keeping local account up-to-date with the tangle.
 
-#### Cryptocompare
-Trinity consumes public APIs from cryptocompare for keeping wallet up-to-date with latest currency prices.
+#### Cryptocompare and Fixer
 
-#### Fixer
-Trinity consumes public APIs from fixer.io for currency conversions
+Trinity pulls latest market data from [Cryptocompare](https://www.cryptocompare.com/) across BTC, ETH, USD and EUR pairings. This data is used to populate the chart and provide up-to-date price and market information.
+
+Foreign exchange rates are obtained from [Fixer](http://fixer.io/) to provide up-to-date IOTA-fiat conversion.
 
 #### i18next
-For multilingual support.
-
-#### Randombytes
-Trinity uses react-native version of random-bytes for secure seed generation.
+Trinity supports over 25 different languages. To make localization easier, we use the [i18next](https://www.i18next.com/) and [react-i18next](https://react.i18next.com/) localization libraries. Additionally, we use [Crowdin](https://crowdin.com/) as a platform for translators to provide translations.
 
 #### Bitrise
-For continuous delivery and deployment for the mobile applications.
+For continuous integration and deployment (CI/CD), we use [Bitrise](https://bitrise.io). Pull requests are tested by a workflow to ensure that changes do not break existing functionality. Additionally, deployment workflows are used to automate the building and submission of mobile apps to the App Store/Play Store.
 
 #### Fastlane
-For automation of various deployment steps for App Store/Play Store.
+We use [Fastlane](https://fastlane.tools) to automate various steps of deployment to the App Store/Play Store.
 
-#### React Native Sensitive Info
+#### Fabric
+To ensure usability and stability across many platforms and devices, we use [Crashlytics](http://try.crashlytics.com/) so that devices will automatically send us anonymized crash data. Crashlytics is part of [Fabric](https://get.fabric.io), a group of development tools offered by Google.
 
-For access to Android and iOS key stores.
+#### RNIsDeviceRooted
+Jailbreaking or rooting your device may pose a threat to the security of your account information, including your seed. In order to alert users of this risk, we use [react-native-is-device-rooted](https://github.com/beast/react-native-isDeviceRooted) to detect characteristics of jailbreaking/rooting. This includes:
+- iOS
+  - The presence of certain apps and files such as Cydia
+  - The ability to open deeplinks into the Cydia app
+  - The ability to write outside of the app sandbox
+- Android
+  - The kernel was signed with a test key instead of a release key
+  - The presence of Superuser/`su` binaries and related files
 
 <a name="mobile-randomness">1.</a> J. Krhovjak, P. Svenda, and V. Matyas, “The sources of randomness in mobile devices,” In Proceeding of NORDSEC, 2007.

@@ -14,6 +14,8 @@ import { runTask } from 'worker';
 import PasswordInput from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
+import { sendAmount } from 'actions/deepLinks';
+import { ipcRenderer } from 'electron';
 
 /** Login component */
 class Login extends React.Component {
@@ -65,14 +67,19 @@ class Login extends React.Component {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        deepLinks: PropTypes.object.isRequired,
     };
 
     state = {
         loading: false,
         password: '',
+        address: '',
+        amount: '',
+        message: '',
     };
 
     componentDidMount() {
+        console.log(this.props.history);
         this.props.clearTempData();
         this.props.clearSeeds();
         Electron.updateMenu('authorised', false);
@@ -88,6 +95,11 @@ class Login extends React.Component {
             this.setState({
                 loading: false,
             });
+        }
+        if (this.props.deepLinks.address === '') {
+            this.props.history.push('/balance');
+        } else {
+            this.props.history.push('/send');
         }
     }
 
@@ -185,6 +197,7 @@ const mapStateToProps = (state) => ({
     firstUse: state.account.firstUse,
     tempAccount: state.tempAccount,
     currency: state.settings.currency,
+    deepLinks: state.deepLinks,
 });
 
 const mapDispatchToProps = {
@@ -197,6 +210,7 @@ const mapDispatchToProps = {
     getPrice,
     getMarketData,
     getCurrencyData,
+    sendAmount,
 };
 
 export default translate()(connect(mapStateToProps, mapDispatchToProps)(Login));

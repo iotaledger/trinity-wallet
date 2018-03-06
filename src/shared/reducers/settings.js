@@ -1,5 +1,6 @@
 import { ActionTypes } from '../actions/settings.js';
 import { defaultNode as fullNode, nodes as availablePoWNodes } from '../config';
+import themes from '../themes/themes';
 
 const initialState = {
     locale: 'en',
@@ -69,51 +70,8 @@ const initialState = {
         'ZAR',
     ],
     conversionRate: 1,
-    themeName: 'Standard',
-    theme: {
-        backgroundColor: {
-            h: 191.66666666666663,
-            s: 0.4090909090909091,
-            l: 0.17254901960784313,
-            a: 1,
-        },
-        barColor: {
-            h: 191.66666666666669,
-            s: 0.6206896551724137,
-            l: 0.11372549019607844,
-            a: 1,
-        },
-        ctaColor: {
-            h: 143.77358490566039,
-            s: 1,
-            l: 0.31176470588235294,
-            a: 1,
-        },
-        positiveColor: {
-            h: 131.0204081632653,
-            s: 1,
-            l: 0.807843137254902,
-            a: 1,
-        },
-        negativeColor: {
-            h: 50.44897959183674,
-            s: 0.9839357429718876,
-            l: 0.48823529411764705,
-            a: 1,
-        },
-        extraColor: {
-            h: 201.68067226890756,
-            s: 1,
-            l: 0.7666666666666666,
-            a: 1,
-        },
-        secondaryBarColor: 'white',
-        secondaryBackgroundColor: 'white',
-        secondaryCtaColor: 'white',
-        ctaBorderColor: 'transparent',
-        pendingColor: '#f75602',
-        chartLineColor: '#FFA25B',
-    },
+    themeName: 'Default',
+    theme: themes.Default,
     hasRandomizedNode: false,
 };
 

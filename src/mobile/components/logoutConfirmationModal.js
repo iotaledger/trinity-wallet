@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import OnboardingButtons from './onboardingButtons.js';
-import COLORS from '../theme/Colors';
-import GENERAL from '../theme/general';
 import { translate } from 'react-i18next';
+import OnboardingButtons from './onboardingButtons';
+import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        width: width / 1.15,
+        width: width / 1.2,
     },
     questionText: {
         backgroundColor: 'transparent',
@@ -24,12 +24,21 @@ const styles = StyleSheet.create({
     },
 });
 
-class LogoutConfirmationModal extends Component {
+class LogoutConfirmationModal extends PureComponent {
+    static propTypes = {
+        t: PropTypes.func.isRequired,
+        hideModal: PropTypes.func.isRequired,
+        logout: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
+        borderColor: PropTypes.object.isRequired,
+    };
+
     render() {
         const { t, backgroundColor, textColor, borderColor } = this.props;
 
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
+            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={[styles.questionText, textColor]}>{t('logoutConfirmation')}</Text>
                     <OnboardingButtons
@@ -37,6 +46,8 @@ class LogoutConfirmationModal extends Component {
                         onRightButtonPress={() => this.props.logout()}
                         leftText={t('global:no')}
                         rightText={t('global:yes')}
+                        buttonWidth={{ width: width / 3.2 }}
+                        containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
             </View>

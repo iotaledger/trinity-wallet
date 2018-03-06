@@ -2,118 +2,130 @@
     "global": {
         "send": "إرسال",
         "cancel": "إلغاء",
-        "continue?": "Are you sure you want to continue?",
-        "noTransactions": "NO RECENT HISTORY",
+        "continue?": "هل تريد بالتأكيد المتابعة؟",
+        "noTransactions": "لا يوجد تاريخ حديث",
+        "refresh": "تحديث",
         "qr": "رمز QR",
-        "balanceError": "Not enough balance",
-        "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
-        "transferError": "Transfer error",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
-        "transferSentMessage": "Your transfer has been sent to the Tangle.",
-        "messageSent": "Message sent",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
+        "balanceError": "لا يوجد رصيد كاف",
+        "balanceErrorMessage": "ليس لديك ما يكفي من يوتا لإتمام عملية النقل هذه.",
+        "transferError": "حدث خطأ في النقل",
+        "transferErrorMessage": "حدث خطأ ما أثناء إرسال التحويل. حاول مرة اخرى.",
+        "transferSent": "تم إرسال التحويل",
+        "transferSentMessage": "تم إرسال التحويل إلى تشابك.",
+        "messageSent": "تم الارسال",
+        "messageSentMessage": "تم إرسال رسالتك إلى تشابك.",
         "keyReuse": "إعادة الاستخدام المفتاح",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuseError": "لا يمكنك الإرسال إلى عنوان تم إنفاقه من قبل.",
         "invalidResponse": "استجابة غير صالحة",
         "invalidResponseExplanation": "الخادم اعاد ردا غير صالحا.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
-        "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+        "invalidResponsePollingExplanation": "عادت العقدة ردا غير صالح أثناء\nالاقتراع.",
+        "invalidResponseFetchingAccount": "عادت العقدة ردا غير صالح أثناء جلب معلومات\nحسابك.",
+        "invalidResponseSendingTransfer": "عادت العقدة ردا غير صالح أثناء إرسال التحويل.",
         "seed": "سييد",
         "back": "رجوع",
-        "backLowercase": "Back",
-        "done": "تم",
-        "doneLowercase": "Done",
+        "backLowercase": "الى الخلف",
+        "done": "انتهى",
+        "doneLowercase": "انتهى",
         "next": "التالي",
-        "apply": "Apply",
-        "save": "Save",
+        "apply": "تطبيق",
+        "save": "حفظ",
         "close": "إغلاق",
-        "continue": "Continue",
+        "continue": "مواصلة",
         "manualCopy": "اكتب القيمة الأولية",
         "paperWallet": "اطبع نسخة ورقية",
-        "copyToClipboard": "Add to password manager",
-        "notAvailable": "This function is not available",
-        "notAvailableExplanation": "It will be added at a later stage.",
-        "enterSeed": "Please enter your seed.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "copyToClipboard": "إضافة إلى إدارة كلمة المرور",
+        "notAvailable": "لا تتوفر هذه الدالة",
+        "notAvailableExplanation": "وسوف تضاف في مرحلة لاحقة.",
+        "enterSeed": "الرجاء إدخال البذور الخاصة بك.",
+        "mainWallet": "الحساب الرئيسي",
+        "secondWallet": "الحساب الثاني",
+        "thirdWallet": "الحساب الثالث",
+        "fourthWallet": "الاعتبار الرابع",
+        "fifthWallet": "حساب الخامس",
+        "sixthWallet": "حساب السادسة",
+        "otherWallet": "حساب آخر",
         "yes": "نعم",
         "no": "لا",
-        "password": "كلمة السر",
-        "unrecognisedPassword": "Unrecognised password",
+        "password": "كلمة المرور",
+        "passwordOrFingerprint": "كلمة المرور أو البصمة",
+        "unrecognisedPassword": "كلمة المرور غير المعترف بها",
         "unrecognisedPasswordExplanation": "كلمة المرور غير مطابقة. يرجى المحاولة مره اخرى.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
+        "syncInProgress": "المزامنة قيد التقدم",
+        "syncInProgressExplanation": "الرجاء الانتظار حتى اكتمال المزامنة.",
+        "somethingWentWrong": "حدث خطأ",
+        "somethingWentWrongExplanation": "الرجاء إعادة تشغيل التطبيق.",
         "node": "عقدة",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
-        "wallet": "Wallet",
-        "pressBackAgain": "Press back again to close the app"
+        "cannotPerformAction": "يتعذر تنفيذ الإجراء",
+        "cannotPerformActionExplanation": "اذهب إلى الإعدادات المتقدمة لإعادة المحفظة.",
+        "attachToTangleUnavailable": "إرفاق متشابكة غير متوفر",
+        "attachToTangleUnavailableExplanation": "إرفاق متشابكة لا يتوفر على العقدة المحددة الخاصة بك.",
+        "wallet": "المحفظة",
+        "sent": "أرسلت",
+        "received": "تلقي",
+        "sending": "إرسال",
+        "receiving": "تلقي",
+        "confirmed": "وأكد",
+        "pending": "معلقة",
+        "bundleHash": "تجزئة الحزمة",
+        "addresses": "عناوين",
+        "pressBackAgain": "تجزئة الحزمة",
+        "autoreattaching": "اضغط على العودة مرة أخرى لإغلاق التطبيق",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autopromoting": "نقل أوتوبروموتينج",
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "يرجى الانتظار",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Seed contains invalid characters",
-        "seedInvalidCharsExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidChars": "أوتورياتاتشينج إلى تشابك",
+        "seedInvalidCharsExplanation": "يمكن أن تتكون البذور فقط من الحروف من الألف إلى الياء والرقم 9. البذور الخاص بك يحتوي على أحرف غير صالحة. الرجاء المحاولة مرة أخرى.",
         "seedTooShort": "السييد قصير جداً",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "nameInUse": "Account name already in use",
+        "seedTooShortExplanation": "يجب أن تكون البذور {{maxLength}} حرفاً. البذور الخاص بك حاليا {{currentLength}} حرفاً. الرجاء المحاولة مرة أخرى.",
+        "nameInUse": "سبق التسجيل بهذا الإسم من قبل",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterAccountName": "Enter an account name.",
-        "accountName": "Account name",
-        "noNickname": "No account name entered",
-        "noNicknameExplanation": "Please enter an account name for your seed.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "enterAccountName": "أدخل اسم حساب.",
+        "accountName": "اسم الحساب",
+        "noNickname": "لم يتم ادخال اسم حساب",
+        "noNicknameExplanation": "يرجى إدخال اسم حساب للسييد الخاص بك.",
+        "seedInUse": "السييد قيد الاستخدام",
+        "seedInUseExplanation": "سبق ربط هذا السييد بمحفظتك. الرجاء استخدام سييد آخر."
     },
     "changePassword": {
-        "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
-        "passwordUpdated": "Password updated",
-        "passwordUpdatedExplanation": "Your password has been successfully updated.",
-        "incorrectPassword": "Incorrect password",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "oops": "المعذرة! حدث خطأ ما",
+        "oopsExplanation": "حدث خطأ ما أثناء تحديث كلمة المرور الخاصة بك. يرجى المجاولة مرة اخرى.",
+        "passwordUpdated": "تحديث كلمة المرور",
+        "passwordUpdatedExplanation": "لقد تم تحديث كلمة المرور الخاصة بك بنجاح.",
+        "incorrectPassword": "كلمة المرور غير صحيحة",
+        "incorrectPasswordExplanation": "كلمة المرور الحالية غير صحيحة. يرجى المحاولة مرة أخرى.",
         "passwordsDoNotMatch": "كلمتي المرور لا تتطابق",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordsDoNotMatchExplanation": "كلمة المرور ليست متطابقة. يرجى المحاولة مرة أخرى.",
         "passwordTooShort": "كلمة المرور قصيرة جدا",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
-        "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation":
-            "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPassword": "لا يمكن استخدام كلمة مرور قديمة",
+        "oldPasswordExplanation": "لا يمكنك استخدام كلمة مرور قديمة. يرجى المحاولة مرة أخرى باستخدام كلمة مرور جديدة.",
         "ensureStrongPassword": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "كلمة المرور الحالية",
+        "newPassword": "كلمة مرور جديدة",
+        "confirmPassword": "تأكيد كلمة المرور الجديدة"
     },
     "copyToClipboard": {
         "seedCleared": "تم مسح القيم",
         "seedClearedExplanation": "تم مسح القيم من الحافظة لأمنك.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "seedCopied": "تم نسخ السييد إلى الحافظة",
+        "seedCopiedExplanation": "سيتم مسح السييد بمجرد الضغط على \"انتهى\" أو مرور 60 ثانية.",
+        "clickToCopy": "انقر على الزر أدناه وانسخ السييد الخاص بك إلى مكان آمن.",
+        "doNotStore": "لا تخزن السييد الخاص بك في نص عادي.",
+        "copyToClipboard": "نسخ إلى الحافظة"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharacters": "السييد يحتوي على أحرف غير صالحة",
+        "invalidCharactersExplanation": "يجب ان يتكون السييد من احرف انجليزية كبيرة A-Z والرقم 9 فقط. السييد الخاص بك يحتوي على أحرف غير صالحة. يرجى المحاولة مرة أخرى.",
         "seedTooShort": "السييد قصير جداً",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation":
-            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص"
     },
     "home": {
@@ -132,7 +144,9 @@
         "enterPassword": "الرجاء إدخال كلمة المرور.",
         "useSeed": "استخدم سييد",
         "login": "تسجيل الدخول",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "هل تريد اختيار عقده مختلفة؟",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "تحميل البذور لأول مرة.",
@@ -146,8 +160,7 @@
         "individualLetters": "اضغط على الأحرف بشكل فردي لكي تكن عشوائية."
     },
     "onboardingComplete": {
-        "walletReady":
-            "تم إعداد المحفظة الآن وجاهزة للاستخدام. إذا كنت بحاجة إلى إجراء أية تغييرات في المستقبل، فابحث في قائمة الإعدادات."
+        "walletReady": "تم إعداد المحفظة الآن وجاهزة للاستخدام. إذا كنت بحاجة إلى إجراء أية تغييرات في المستقبل، فابحث في قائمة الإعدادات."
     },
     "paperWallet": {
         "clickToPrint": "اضغط الزر أدناه لطباعة نسخه ورقية من السييد الخاصة بك.",
@@ -159,119 +172,107 @@
     "receive": {
         "addressCopied": "تم نسخ العنوان",
         "addressCopiedExplanation": "تم نسخ عنوانك إلى الحافظة.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "عنوان جديد",
         "message": "رسالة اختيارية",
-        "removeMessage": "احذف الرسالة"
+        "removeMessage": "احذف الرسالة",
+        "noAddresses": "لا توجد عناوين",
+        "spent": "اُنفق"
     },
     "saveYourSeed": {
         "seedCleared": "تم مسح القيم",
         "seedClearedExplanation": "تم مسح القيم من الحافظة لأمنك.",
-        "mustSaveYourSeed": "يجب حفظ القيم الخاصة بك مع ",
-        "atLeastOne": "بطريقة واحده على الأقل ",
-        "ofTheOptions": "من الخيارات المدرجة أدناه."
+        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "قيمة خاطئة",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "incorrectSeedExplanation": "السييد المدخل غير صحيح. يرجى المحاولة مرة أخرى.",
+        "thisIsACheck": "هذا فحص للتأكد من أنك قمت بحفظ السييد الخاصة بك.",
+        "ifYouHaveNotSaved": "إذا لم تقم بحفظ السييد الخاص بك، الرجاء العودة والقيام بذلك."
     },
     "send": {
         "invalidAddress": "عنوان خاطئ",
         "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Insufficient funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "invalidAddressExplanation2": "السييد يحتوي على أحرف غير صالحة.",
+        "invalidAddressExplanation3": "العنوان يحتوي مجموع اختباري غير صحيح.",
+        "notEnoughFunds": "الرصيد غير كافي",
+        "notEnoughFundsExplanation": "ليس لديك IOTA كافية لإتمام عملية التحويل.",
         "keyReuse": "إعادة الاستخدام المفتاح",
-        "keyReuseExplanation":
-            "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
+        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
+        "recipientAddress": "عنوان المستقبل",
         "amount": "الكمية",
         "max": "أقصى",
         "message": "رسالة",
+        "invalidMessage": "رسالة غير صحيحة",
+        "invalidMessageExplanation": "رسالتك تحتوي على أحرف غير صالحة.",
         "send": "إرسال",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "invalidAmount": "المبلغ المدخل غير صحيح",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "maximumSelected": "تم اختيار الحد الأقصى",
+        "iotaUnits": "IOTA units explained",
+        "sendMax": "إرسال الكل"
     },
     "setPassword": {
         "passwordTooShort": "كلمة المرور قصيرة جدا",
-        "passwordTooShortExplanation":
-            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "كلمتي المرور لا تتطابق",
         "passwordMismatchExplanation": "كلمتي المرور المدخلة لا تتطابق، يرجى المحاولة مرة أخرى.",
         "nowWeNeedTo": "الآن نحن بحاجة إلى إعداد كلمة مرور.",
-        "anEncryptedCopy":
-            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "سيتم تخزين نسخة مشفرة من السييد الخاص بك على الجهاز الخاص بك. وسوف تستخدم كلمة المرور هذه للوصول إلى المحفظة الخاصة بك في المستقبل.",
         "ensure": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
-        "retypePassword": "Retype Password"
+        "retypePassword": "أعد كتابة كلمة المرور"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "يمكنك استخدام اكثر من سييد مع هذه المحفظة. كل سييد يتطلب اسم حساب.",
+        "youCanAdd": "يمكنك إضافة سييد آخر في قائمة الإعدادات."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
+        "transferSending": "جاري التحويل",
+        "transferSendingExplanation": "الرجاء الانتظار حتى يتم إرسال التحويل الخاص بك.",
+        "generatingAddress": "توليد عنوان استلام",
+        "generatingAddressExplanation": "الرجاء الانتظار حتى يتم توليد عنوان الاستلام الخاص بك.",
+        "mode": "نمط",
+        "theme": "التصميم",
+        "currency": "عملة",
         "language": "اللغة",
-        "accountManagement": "Account management",
+        "accountManagement": "إدارة الحساب",
         "addNewSeed": "إضافة سييد جديد",
         "twoFA": "Two-factor authentication",
         "changePassword": "تغيير كلمة المرور",
         "advanced": "إعدادات متقدمة",
-        "logout": "Log out",
-        "reset": "Reset wallet",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All"
-    },
-    "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your ",
-        "warning2": " seeds, password,",
-        "warning3": " و",
-        "warning4": " other account information",
-        "warning5": " سيضيع.",
-        "areYouSure": "Are you sure you want to continue?"
+        "logout": "تسجيل خروج",
+        "reset": "إعادة تعيين المحفظة",
+        "syncingComplete": "تم إكمال المزامنة",
+        "syncingCompleteExplanation": "تم مزامنة حسابك بنجاح.",
+        "nicknameChanged": "تم تغيير اسم الحساب",
+        "nicknameChangedExplanation": "تم تغيير اسم الحساب الخاص بك.",
+        "accountDeleted": "تم حذف الحساب",
+        "accountDeletedExplanation": "تم حذف الحساب الخاص بك من المحفظة.",
+        "cannotPerformAction": "يتعذر تنفيذ الإجراء",
+        "cannotPerformActionExplanation": "اذهب إلى الإعدادات المتقدمة لإعادة المحفظة.",
+        "poorConnection": "اتصال ضعيف",
+        "poorConnectionExplanation": "تعذر تغيير العملة بسبب ضعف الاتصال.",
+        "hide": "إخفاء",
+        "hideOthers": "إخفاء الآخرين",
+        "showAll": "إظهار الكل",
+        "quit": "خروج",
+        "edit": "تحرير",
+        "cut": "قص",
+        "copy": "نسخ",
+        "paste": "لصق",
+        "selectAll": "تحديد الكل",
+        "securitySettings": "إعدادات الأمان",
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "الرجاء ادخال كلمة المرور لإعادة المحفظة.",
         "cancel": "إلغاء",
-        "reset": "RESET"
+        "reset": "إعادة"
     },
     "walletSetup": {
         "okay": "حسنًا. لنقم بإعداد محفظتك!",
         "doYouAlreadyHaveASeed": "هل لديك seed ترغب في استخدامه؟",
-        "seedExplanation":
-            "السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet",
-        "explanation3": ", on",
-        "explanation4": " any device",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "seedExplanation": "السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "يرجى الحفاظ على السييد الخاص بك في مكان آمن."
     },
     "welcome": {
@@ -280,94 +281,130 @@
         "reminder": "قد تميل إلى تخطي بعض الخطوات، ولكننا نحثك على اتباع العملية الكاملة."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "وقم بمراجعتها ثلاث مرات",
-        "thatTheyAreCorrect": "that they are correct."
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "تم نسخ العنوان",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "تم نسخ العنوان إلى الحافظة.",
+        "send": "إرسال",
+        "receive": "إستلام"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "عرض السييد",
+        "viewAddresses": "عرض العنواين",
+        "editAccountName": "تحرير اسم الحساب",
+        "deleteAccount": "حذف الحساب",
+        "addNewAccount": "إضافة حساب جديد"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "عقده معينة",
+        "add": "إضافة"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "استخدام سييد موجود",
+        "createNewSeed": "إنشاء سييد جديد"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "اختيار العقدة",
+        "addCustomNode": "إضافة عقده معينة",
+        "manualSync": "مزامنة يدوية"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "خلفية",
+        "frame": "إطار"
+    },
+    "themeCustomisation": {
+        "theme": "التصميم"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "عملة"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "مسح رمز QR"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "trillion": "تريليون",
+        "billion": "مليار",
+        "million": "مليون",
+        "thousand": "ألف",
+        "one": "واحد"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "areYouSure": "هل أنت متأكد أنك تريد حذف هذا الحساب؟",
+        "yourSeedWillBeRemoved": "سيتم إزالة السييد و تاريخ الحوالات الخاصة بك.",
+        "thisAction": "لا يمكن التراجع عن هذا الإجراء.",
+        "enterPassword": "الرجاء ادخال كلمة المرور لحذف هذا الحساب."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "اضغط على الزر أدناه لمزامنة الحساب الخاص بك.",
         "thisMayTake": "قد يستغرق هذا بعض الوقت.",
         "youMayNotice": "ستلاحظ بطء الجهاز الخاص بك.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "syncAccount": "مزامنة الحساب",
+        "syncingYourAccount": "جاري مزامنة حسابك."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "أدخل سييد واسم حساب."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "أدخل كلمة المرور لعرض السييد الخاص بك.",
+        "viewSeed": "عرض السييد",
+        "hideSeed": "إخفاء السييد"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "alreadyHave": "لقد حفظت السييد الخاص بي",
+        "reenter": "سوف يطلب منك الآن إلى إعادة إدخال السييد الخاص بك.",
+        "reenterWarning": "إذا تعطل جهازك، ولم تقم بحفظ السييد الخاص بك، سوف تفقد رصيد IOTA الخاص بك."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "infoTextOne": "All your wallet data including your",
-        "infoTextTwo": "seeds, password",
-        "infoTextThree": "و",
-        "infoTextFour": "other account information",
-        "infoTextFive": "سيضيع."
+        "cannotUndo": "لا يمكن التراجع عن هذا الإجراء.",
+        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "الحالة",
+        "enabled": "مفعل",
+        "disabled": "معطّل",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "aMessage": "رسالة"
+    },
+    "twoFA": {
+        "wrongCode": "Wrong code",
+        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "emptyCode": "Empty code",
+        "emptyCodeExplanation": "Please enter a code and try again.",
+        "keyCopied": "Key copied to clipboard",
+        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "addKey": "Add this key to your 2FA app",
+        "key": "Key",
+        "twoFAEnabled": "2FA is now enabled",
+        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "enterCode": "Enter the code from your 2FA app",
+        "code": "Code"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
     }
 }
