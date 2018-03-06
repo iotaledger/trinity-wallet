@@ -133,8 +133,8 @@
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
     },
     "home": {
-        "balance": "BALANCE",
-        "send": "SEND",
+        "balance": "ZŮSTATEK",
+        "send": "ODEŠLI",
         "receive": "RECEIVE",
         "history": "HISTORY",
         "settings": "SETTINGS"
