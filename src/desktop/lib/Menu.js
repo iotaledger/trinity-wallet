@@ -78,12 +78,12 @@ const initMenu = (app, getWindow) => {
                             {
                                 label: language.twoFA,
                                 enabled: state.authorised,
-                                click: () => navigate('settings/twoFA'),
+                                click: () => navigate('settings/twoFa'),
                             },
                             {
                                 label: language.changePassword,
                                 enabled: state.authorised,
-                                click: () => navigate('settings/change-password'),
+                                click: () => navigate('settings/password'),
                             },
                             {
                                 label: language.advanced,
@@ -149,10 +149,6 @@ const initMenu = (app, getWindow) => {
                     {
                         label: language.receive,
                         click: () => navigate('wallet/receive'),
-                    },
-                    {
-                        label: language.history,
-                        click: () => navigate('wallet/history'),
                     },
                     {
                         type: 'separator',

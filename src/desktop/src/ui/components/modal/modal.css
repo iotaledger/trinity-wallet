@@ -43,15 +43,12 @@
             max-width: 40vw;
             word-wrap: break-word;
         }
-        button {
-            margin: 20px;
-        }
     }
 }
 
 .wrapper {
     width: 80vw;
-    max-width: 960px;
+    max-width: 680px;
     position: relative;
     z-index: 2;
 
@@ -60,5 +57,10 @@
         padding: 0px;
         border: none;
         max-width: 580px;
+    }
+
+    @media (max-width: 960px){
+       width: 100vw;
+       padding:0 20px;
     }
 }
