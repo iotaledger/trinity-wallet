@@ -15,6 +15,9 @@ import Notifications from 'ui/global/Notifications';
 import Loading from 'ui/components/Loading';
 import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
+import { sendAmount } from 'actions/deepLinks';
+import { ADDRESS_LENGTH } from 'libs/util';
+import {ipcRenderer} from 'electron';
 
 /** Main wallet wrapper component */
 class App extends React.Component {
@@ -46,6 +49,7 @@ class App extends React.Component {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        sendAmount: PropTypes.func.isRequired,
     };
 
     state = {
@@ -63,9 +67,44 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
+        ipcRenderer.on('url-params', (e, data) => {
+            let regexAddress = /\:\/\/(.*?)\/\?/;
+            let regexAmount = /amount=(.*?)\&/;
+            let regexMessage = /message=([^\n\r]*)/;
+            let address = data.match(regexAddress);
+            if (address !== null) {
+                let amount = data.match(regexAmount);
+                let message = data.match(regexMessage);
+                if (address[1].length !== ADDRESS_LENGTH) {
+                    const { showError } = this.props;
+                    showError({
+                        title: 'send:invalidAddress',
+                        text: 'send:invalidAddressExplanation1',
+                        translate: true,
+                    });
+                    this.props.sendAmount(0, '', '');
+                } else {
+                    this.setState({
+                        address: address[1],
+                        amount: amount[1],
+                        message: message[1],
+                    });
+                    this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
+                    if(this.props.tempAccount.ready === true) {
+                        this.props.history.push('/send');
+                    }
+                }
+            }
+        });
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
         Electron.changeLanguage(this.props.t);
+        this.setState({
+            address: '',
+            amount: 0,
+            message: '',
+        });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -122,11 +161,13 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
     account: state.account,
     tempAccount: state.tempAccount,
+    deepLinks: state.deepLinks,
 });
 
 const mapDispatchToProps = {
     clearTempData,
     clearSeeds,
+    sendAmount,
 };
 
 export default withRouter(translate()(connect(mapStateToProps, mapDispatchToProps)(App)));

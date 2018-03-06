@@ -7,11 +7,10 @@ import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import blackArrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right-black.png';
 import whiteArrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right-white.png';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import CustomTextInput from '../components/customTextInput';
 import QRScanner from '../components/qrScanner';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -124,13 +123,13 @@ class UseExistingSeed extends React.Component {
     static propTypes = {
         seedCount: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        ctaColor: PropTypes.object.isRequired,
-        backgroundColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         ctaBorderColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         addAccount: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
@@ -153,7 +152,7 @@ class UseExistingSeed extends React.Component {
 
     onQRRead(data) {
         const dataString = data.toString();
-        if (dataString.length == 81 && dataString.match(VALID_SEED_REGEX)) {
+        if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
             });
@@ -169,20 +168,21 @@ class UseExistingSeed extends React.Component {
     }
 
     getDefaultAccountName() {
+        const { t } = this.props;
         if (this.props.seedCount === 0) {
-            return 'MAIN ACCOUNT';
+            return t('global:mainWallet');
         } else if (this.props.seedCount === 1) {
-            return 'SECOND ACCOUNT';
+            return t('global:secondWallet');
         } else if (this.props.seedCount === 2) {
-            return 'THIRD ACCOUNT';
+            return t('global:thirdWallet');
         } else if (this.props.seedCount === 3) {
-            return 'FOURTH ACCOUNT';
+            return t('global:fourthWallet');
         } else if (this.props.seedCount === 4) {
-            return 'FIFTH ACCOUNT';
+            return t('global:fifthWallet');
         } else if (this.props.seedCount === 5) {
-            return 'SIXTH ACCOUNT';
+            return t('global:sixthWallet');
         } else if (this.props.seedCount === 6) {
-            return 'OTHER ACCOUNT';
+            return t('global:otherWallet');
         }
         return '';
     }
@@ -191,12 +191,13 @@ class UseExistingSeed extends React.Component {
         const { seed } = this.state;
         let checksumValue = '...';
 
-        if (seed.length !== 0 && seed.length < 81) {
+        if (seed.length !== 0 && !seed.match(VALID_SEED_REGEX)) {
+            checksumValue = '!';
+        } else if (seed.length !== 0 && seed.length < 81) {
             checksumValue = '< 81';
         } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
             checksumValue = getChecksum(seed);
         }
-
         return checksumValue;
     }
 
@@ -206,12 +207,13 @@ class UseExistingSeed extends React.Component {
 
     renderModalContent = () => (
         <QRScanner
-            ctaColor={THEMES.getHSL(this.props.ctaColor)}
-            backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
-            onQRRead={data => this.onQRRead(data)}
+            ctaColor={this.props.ctaColor}
+            backgroundColor={this.props.backgroundColor}
+            onQRRead={(data) => this.onQRRead(data)}
             hideModal={() => this.hideModal()}
             secondaryCtaColor={this.props.secondaryCtaColor}
             ctaBorderColor={this.props.ctaBorderColor}
+            secondaryBackgroundColor={this.props.secondaryBackgroundColor}
         />
     );
 
@@ -234,10 +236,10 @@ class UseExistingSeed extends React.Component {
                         </View>
                         <View style={{ flex: 0.4 }} />
                         <CustomTextInput
-                            label="Seed"
-                            onChangeText={value => this.setState({ seed: value.toUpperCase() })}
-                            containerStyle={{ width: width / 1.4 }}
-                            autoCapitalize={'none'}
+                            label={t('global:seed')}
+                            onChangeText={(value) => this.setState({ seed: value })}
+                            containerStyle={{ width: width / 1.2 }}
+                            autoCapitalize="characters"
                             maxLength={MAX_SEED_LENGTH}
                             value={seed}
                             autoCorrect={false}
@@ -255,13 +257,13 @@ class UseExistingSeed extends React.Component {
                         </View>
                         <View style={{ flex: 0.3 }} />
                         <CustomTextInput
-                            onRef={c => {
+                            onRef={(c) => {
                                 this.accountNameField = c;
                             }}
                             label={t('addAdditionalSeed:accountName')}
-                            onChangeText={value => this.setState({ accountName: value })}
-                            containerStyle={{ width: width / 1.4 }}
-                            autoCapitalize={'words'}
+                            onChangeText={(value) => this.setState({ accountName: value })}
+                            containerStyle={{ width: width / 1.2 }}
+                            autoCapitalize="words"
                             maxLength={MAX_SEED_LENGTH}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -295,17 +297,19 @@ class UseExistingSeed extends React.Component {
                         </TouchableOpacity>
                     </View>
                     <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
+                        animationIn="bounceInUp"
+                        animationOut="bounceOut"
                         animationInTiming={1000}
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={'#102832'}
+                        backdropColor="#102832"
                         backdropOpacity={1}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                        useNativeDriver
+                        hideModalContentWhileAnimating
                     >
                         {this.renderModalContent()}
                     </Modal>

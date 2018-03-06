@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
-import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
-import { RNPrint } from 'NativeModules';
+import { RNPrint } from 'NativeModules'; // eslint-disable-line import/no-unresolved
+import PropTypes from 'prop-types';
 import QRCode from 'react-native-qrcode-svg';
 import RNFS from 'react-native-fs';
 import { iotaLogo, arrow } from 'iota-wallet-shared-modules/libs/html';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import { isAndroid, isIOS } from '../util/device';
-import { width, height } from '../util/dimensions';
 import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import iotaFullImagePath from 'iota-wallet-shared-modules/images/iota-full.png';
@@ -19,15 +17,212 @@ import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/c
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
 import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
+import CtaButton from '../components/ctaButton';
+import { isAndroid, isIOS } from '../util/device';
+import { width, height } from '../util/dimensions';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 
-const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    topContainer: {
+        flex: 1.2,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 22,
+        paddingHorizontal: width / 20,
+    },
+    midContainer: {
+        flex: 3.8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: height / 14,
+    },
+    bottomContainer: {
+        justifyContent: 'flex-end',
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+    },
+    optionButtonText: {
+        color: '#8BD4FF',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 25.3,
+        textAlign: 'center',
+        paddingHorizontal: width / 20,
+        backgroundColor: 'transparent',
+    },
+    optionButton: {
+        borderColor: '#8BD4FF',
+        borderWidth: 1.5,
+        borderRadius: GENERAL.borderRadiusLarge,
+        width: width / 1.6,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+    infoText: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 29,
+        paddingTop: height / 8,
+        paddingHorizontal: width / 8,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    infoTextNormal: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 29,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    infoTextBold: {
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 29,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    doneButton: {
+        borderWidth: 1.2,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 3,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        marginBottom: height / 20,
+    },
+    doneText: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 24.4,
+        backgroundColor: 'transparent',
+    },
+    iotaLogo: {
+        height: width / 5,
+        width: width / 5,
+    },
+    paperWalletContainer: {
+        width: width / 1.1,
+        height: height / 4.3,
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        paddingHorizontal: width / 30,
+        paddingVertical: height / 50,
+    },
+    seedBox: {
+        borderColor: 'black',
+        borderWidth: 1,
+        borderRadius: GENERAL.borderRadiusLarge,
+        width: width / 3.4,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    seedBoxTextContainer: {
+        width: width / 1.65,
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        paddingTop: height / 100,
+    },
+    seedBoxTextLeft: {
+        color: 'black',
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 40,
+        textAlign: 'justify',
+        letterSpacing: 2,
+        backgroundColor: 'transparent',
+        paddingRight: width / 70,
+        paddingVertical: 1,
+    },
+    seedBoxTextRight: {
+        color: 'black',
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 40,
+        textAlign: 'justify',
+        letterSpacing: 2,
+        backgroundColor: 'transparent',
+        paddingVertical: 1,
+    },
+    arrow: {
+        width: width / 4,
+        height: height / 160,
+    },
+    paperWalletTextContainer: {
+        width: width / 5,
+        height: height / 6,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    paperWalletText: {
+        color: 'black',
+        fontSize: width / 40,
+        fontFamily: 'Lato-Regular',
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+        paddingBottom: height / 80,
+    },
+    paperWalletLogo: {
+        resizeMode: 'contain',
+        width: width / 7,
+        height: height / 18,
+        paddingBottom: height / 20,
+    },
+    checkboxContainer: {
+        height: height / 15,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: height / 50,
+    },
+    checkbox: {
+        width: width / 30,
+        height: width / 30,
+    },
+    checkboxText: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
+        color: 'white',
+        backgroundColor: 'transparent',
+        paddingLeft: width / 80,
+    },
+    checksum: {
+        width: width / 12,
+        height: height / 35,
+        borderRadius: GENERAL.borderRadiusSmall,
+        borderColor: 'black',
+        borderWidth: height / 1000,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    checksumText: {
+        fontSize: width / 37.6,
+        color: 'black',
+        fontFamily: 'Lato-Regular',
+    },
+});
 
-let results = '';
-
+const qrPath = `${RNFS.DocumentDirectoryPath}/qr.png`;
 class PaperWallet extends Component {
+    static propTypes = {
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        navigator: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired,
+        seed: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        positiveColor: PropTypes.string.isRequired,
+        ctaColor: PropTypes.string.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
+    };
+
+    static callback(dataURL) {
+        RNFS.writeFile(qrPath, dataURL, 'base64');
+    }
+
     constructor(props) {
         super(props);
 
@@ -45,14 +240,23 @@ class PaperWallet extends Component {
     }
 
     onDonePress() {
-        this.props.navigator.pop({ animated: false });
+        this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
+            },
+            animated: false,
+        });
         if (this.state.pressedPrint) {
             RNFS.unlink(qrPath);
 
             // Doesn't convert to PDF for android.
             if (isIOS) {
-                Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then(item =>
-                    item.forEach(item => RNFS.unlink(item.path)),
+                Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then((item) =>
+                    item.forEach((i) => RNFS.unlink(i.path)),
                 );
             }
         }
@@ -67,7 +271,7 @@ class PaperWallet extends Component {
     }
 
     async onPrintPress() {
-        const seed = this.props.tempAccount.seed;
+        const { seed } = this.props;
         this.getDataURL();
         this.setState({ pressedPrint: true });
         const qrPathOverride = isAndroid ? `file://${qrPath}` : qrPath;
@@ -212,23 +416,11 @@ class PaperWallet extends Component {
             if (isAndroid) {
                 await RNPrint.printhtml(options.html);
             } else {
-                results = await RNHTMLtoPDF.convert(options);
-                jobName = await RNPrint.print(results.filePath);
+                const results = await RNHTMLtoPDF.convert(options);
+                await RNPrint.print(results.filePath);
             }
         } catch (err) {
             console.error(err);
-        }
-    }
-
-    _renderIotaLogo() {
-        if (this.state.showIotaLogo) {
-            return (
-                <View style={{ flex: 0.5 }}>
-                    <Image style={styles.paperWalletLogo} source={iotaFullImagePath} />
-                </View>
-            );
-        } else {
-            return <View style={{ flex: 0.5 }} />;
         }
     }
 
@@ -255,16 +447,24 @@ class PaperWallet extends Component {
     }
 
     getDataURL() {
-        this.svg.toDataURL(this.callback);
+        this.svg.toDataURL(PaperWallet.callback);
     }
 
-    callback(dataURL) {
-        RNFS.writeFile(qrPath, dataURL, 'base64');
+    renderIotaLogo() {
+        if (this.state.showIotaLogo) {
+            return (
+                <View style={{ flex: 0.5 }}>
+                    <Image style={styles.paperWalletLogo} source={iotaFullImagePath} />
+                </View>
+            );
+        }
+        return <View style={{ flex: 0.5 }} />;
     }
 
     render() {
         const {
             t,
+            seed,
             backgroundColor,
             positiveColor,
             ctaColor,
@@ -273,15 +473,14 @@ class PaperWallet extends Component {
             ctaBorderColor,
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
-        const checksum = getChecksum(this.props.tempAccount.seed);
-        const positiveColorText = { color: THEMES.getHSL(positiveColor) };
-        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
-        const ctaTextColor = { color: secondaryCtaColor };
+        const checksum = getChecksum(seed);
+        const positiveColorText = { color: positiveColor };
+        const positiveColorBorder = { borderColor: positiveColor };
         const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
-            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+            <View style={[styles.container, { backgroundColor }]}>
+                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaImagePath} style={styles.iotaLogo} />
                     <Text style={[styles.infoText, textColor]}>
@@ -298,125 +497,79 @@ class PaperWallet extends Component {
                                 <Image source={arrowBlackImagePath} style={styles.arrow} />
                                 <View style={styles.seedBoxTextContainer}>
                                     <View>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(0, 3)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(12, 15)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(24, 27)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(36, 39)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(48, 51)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(60, 63)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(72, 75)}</Text>
+                                    </View>
+                                    <View>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(3, 6)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(15, 18)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(27, 30)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(39, 42)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(51, 54)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(63, 66)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(75, 78)}</Text>
+                                    </View>
+                                    <View>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(6, 9)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(18, 21)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(30, 33)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(42, 45)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(54, 57)}</Text>
+                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(66, 69)}</Text>
                                         <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(0, 3)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(12, 15)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(24, 27)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(36, 39)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(48, 51)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(60, 63)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(72, 75)}
+                                            {seed.substring(78, MAX_SEED_LENGTH)}
                                         </Text>
                                     </View>
                                     <View>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(3, 6)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(15, 18)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(27, 30)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(39, 42)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(51, 54)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(63, 66)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(75, 78)}
-                                        </Text>
-                                    </View>
-                                    <View>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(6, 9)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(18, 21)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(30, 33)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(42, 45)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(54, 57)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(66, 69)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(78, MAX_SEED_LENGTH)}
-                                        </Text>
-                                    </View>
-                                    <View>
-                                        <Text style={styles.seedBoxTextRight}>
-                                            {this.props.tempAccount.seed.substring(9, 12)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextRight}>
-                                            {this.props.tempAccount.seed.substring(21, 24)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextRight}>
-                                            {this.props.tempAccount.seed.substring(33, 36)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextRight}>
-                                            {this.props.tempAccount.seed.substring(45, 48)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextRight}>
-                                            {this.props.tempAccount.seed.substring(57, 60)}
-                                        </Text>
-                                        <Text style={styles.seedBoxTextRight}>
-                                            {this.props.tempAccount.seed.substring(69, 72)}
-                                        </Text>
+                                        <Text style={styles.seedBoxTextRight}>{seed.substring(9, 12)}</Text>
+                                        <Text style={styles.seedBoxTextRight}>{seed.substring(21, 24)}</Text>
+                                        <Text style={styles.seedBoxTextRight}>{seed.substring(33, 36)}</Text>
+                                        <Text style={styles.seedBoxTextRight}>{seed.substring(45, 48)}</Text>
+                                        <Text style={styles.seedBoxTextRight}>{seed.substring(57, 60)}</Text>
+                                        <Text style={styles.seedBoxTextRight}>{seed.substring(69, 72)}</Text>
                                     </View>
                                 </View>
                             </View>
                         </View>
                         <View style={styles.paperWalletTextContainer}>
-                            {this._renderIotaLogo()}
+                            {this.renderIotaLogo()}
                             <Text style={styles.paperWalletText}>{t('neverShare')}</Text>
                             <View style={styles.checksum}>
                                 <Text style={styles.checksumText}>{checksum}</Text>
                             </View>
                         </View>
-                        <QRCode value={this.props.tempAccount.seed} getRef={c => (this.svg = c)} size={width / 3.4} />
+                        <QRCode
+                            value={seed}
+                            getRef={(c) => {
+                                this.svg = c;
+                            }}
+                            size={width / 3.4}
+                        />
                     </View>
-                    <TouchableOpacity style={styles.checkboxContainer} onPress={event => this.onCheckboxPress()}>
+                    <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onCheckboxPress()}>
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />
                         <Text style={[styles.checkboxText, textColor]}>{t('iotaLogo')}</Text>
                     </TouchableOpacity>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={event => this.onPrintPress()}>
-                            <View
-                                style={[
-                                    styles.printButton,
-                                    { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
-                                ]}
-                            >
-                                <Text style={[styles.printText, ctaTextColor]}>{t('printWallet')}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <CtaButton
+                            ctaColor={ctaColor}
+                            ctaBorderColor={ctaBorderColor}
+                            secondaryCtaColor={secondaryCtaColor}
+                            text={t('printWallet')}
+                            onPress={() => {
+                                this.onPrintPress();
+                            }}
+                            ctaWidth={width / 1.1}
+                        />
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={event => this.onDonePress()}>
+                    <TouchableOpacity onPress={() => this.onDonePress()}>
                         <View style={[styles.doneButton, positiveColorBorder]}>
                             <Text style={[styles.doneText, positiveColorText]}>{t('global:done')}</Text>
                         </View>
@@ -427,202 +580,8 @@ class PaperWallet extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    topContainer: {
-        flex: 1.2,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 22,
-        paddingHorizontal: width / 20,
-    },
-    midContainer: {
-        flex: 3.8,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: height / 14,
-    },
-    bottomContainer: {
-        justifyContent: 'flex-end',
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-    },
-    optionButtonText: {
-        color: '#8BD4FF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
-        textAlign: 'center',
-        paddingHorizontal: width / 20,
-        backgroundColor: 'transparent',
-    },
-    optionButton: {
-        borderColor: '#8BD4FF',
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.6,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    infoText: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 29,
-        paddingTop: height / 8,
-        paddingHorizontal: width / 8,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    infoTextNormal: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 29,
-        textAlign: 'left',
-        backgroundColor: 'transparent',
-    },
-    infoTextBold: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    doneButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    doneText: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    printButton: {
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.5,
-        height: height / 16,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1.2,
-    },
-    printText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
-    },
-    paperWalletContainer: {
-        width: width / 1.1,
-        height: height / 4.3,
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        paddingHorizontal: width / 30,
-        paddingVertical: height / 50,
-    },
-    seedBox: {
-        borderColor: 'black',
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 3.4,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    seedBoxTextContainer: {
-        width: width / 1.65,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        paddingTop: height / 100,
-    },
-    seedBoxTextLeft: {
-        color: 'black',
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 40,
-        textAlign: 'justify',
-        letterSpacing: 2,
-        backgroundColor: 'transparent',
-        paddingRight: width / 70,
-        paddingVertical: 1,
-    },
-    seedBoxTextRight: {
-        color: 'black',
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 40,
-        textAlign: 'justify',
-        letterSpacing: 2,
-        backgroundColor: 'transparent',
-        paddingVertical: 1,
-    },
-    arrow: {
-        width: width / 4,
-        height: height / 160,
-    },
-    paperWalletTextContainer: {
-        width: width / 5,
-        height: height / 6,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    paperWalletText: {
-        color: 'black',
-        fontSize: width / 40,
-        fontFamily: 'Lato-Regular',
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        paddingBottom: height / 80,
-    },
-    paperWalletLogo: {
-        resizeMode: 'contain',
-        width: width / 7,
-        height: height / 18,
-        paddingBottom: height / 20,
-    },
-    checkboxContainer: {
-        height: height / 15,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 50,
-    },
-    checkbox: {
-        width: width / 30,
-        height: width / 30,
-    },
-    checkboxText: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 27.6,
-        color: 'white',
-        backgroundColor: 'transparent',
-        paddingLeft: width / 80,
-    },
-    checksum: {
-        width: width / 12,
-        height: height / 35,
-        borderRadius: GENERAL.borderRadiusSmall,
-        borderColor: 'black',
-        borderWidth: height / 1000,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    checksumText: {
-        fontSize: width / 37.6,
-        color: 'black',
-        fontFamily: 'Lato-Regular',
-    },
-});
-
-const mapStateToProps = state => ({
-    tempAccount: state.tempAccount,
+const mapStateToProps = (state) => ({
+    seed: state.tempAccount.seed,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     ctaColor: state.settings.theme.ctaColor,

@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
-import { set2FAKey, set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
+import { set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
-import DynamicStatusBar from '../components/dynamicStatusBar';
+import { translate } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import CustomTextInput from '../components/customTextInput';
-import QRCode from 'react-native-qrcode-svg';
 import Fonts from '../theme/Fonts';
+import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-// import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
 import { width, height } from '../util/dimensions';
-import THEMES from '../theme/themes';
 
 const styles = StyleSheet.create({
     container: {
@@ -57,92 +56,113 @@ const styles = StyleSheet.create({
 
 class TwoFactorSetupEnterToken extends Component {
     static propTypes = {
-        backgroundColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.string.isRequired,
         generateAlert: PropTypes.func.isRequired,
         set2FAStatus: PropTypes.func.isRequired,
-        set2FAKey: PropTypes.func.isRequired,
+        navigator: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.goBack = this.goBack.bind(this);
         this.check2FA = this.check2FA.bind(this);
+
         this.state = {
             code: '',
-            authkey: authenticator.generateKey(),
         };
     }
 
     componentDidMount() {
-        BackHandler.addEventListener('newSeedSetupBackPress', () => {
+        BackHandler.addEventListener('hardwareBackPress', () => {
             this.goBack();
             return true;
         });
     }
 
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress');
+    }
+
     goBack() {
         this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: this.props.backgroundColor,
+                drawUnderStatusBar: true,
+                statusBarColor: this.props.backgroundColor,
+            },
             animated: false,
         });
-        this.props.set2FAKey('');
     }
 
     navigateToHome() {
-        // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                    screenBackgroundColor: this.props.backgroundColor,
+                    drawUnderStatusBar: true,
+                    statusBarColor: this.props.backgroundColor,
                 },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: true,
             },
         });
     }
 
     check2FA() {
-        const value = authenticator.verifyToken(this.props.key2FA, this.state.code);
-        if (value) {
-            this.props.set2FAStatus(true);
-            this.navigateToHome();
-            this.timeout = setTimeout(() => {
-                this.props.generateAlert(
-                    'success',
-                    '2FA is now enabled',
-                    'You have succesfully enabled Two Factor Authentication.',
-                );
-            }, 300);
-        } else {
-            this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
-        }
+        const { t } = this.props;
+        getTwoFactorAuthKeyFromKeychain()
+            .then((key) => {
+                const verified = authenticator.verifyToken(key, this.state.code);
+
+                if (verified) {
+                    this.props.set2FAStatus(true);
+                    this.navigateToHome();
+
+                    this.timeout = setTimeout(() => {
+                        this.props.generateAlert('success', t('twoFAEnabled'), t('twoFAEnabledExplanation'));
+                    }, 300);
+                } else {
+                    this.props.generateAlert('error', t('wrongCode'), t('wrongCodeExplanation'));
+                }
+            })
+            .catch((err) => console.error(err)); // generate an alert.
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor } = this.props;
-        const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
+        const { negativeColor, secondaryBackgroundColor, t } = this.props;
+        const backgroundColor = { backgroundColor: this.props.backgroundColor };
         const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, backgroundColor]}>
-                    <DynamicStatusBar textColor={secondaryBackgroundColor} />
-                    <StatefulDropdownAlert />
+                    <DynamicStatusBar
+                        textColor={secondaryBackgroundColor}
+                        backgroundColor={this.props.backgroundColor}
+                    />
                     <View style={styles.topWrapper}>
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                     </View>
                     <View style={styles.midWrapper}>
                         <View style={{ flex: 0.25 }} />
-                        <Text style={[styles.subHeaderText, textColor]}>Enter the token from your 2FA app</Text>
+                        <Text style={[styles.subHeaderText, textColor]}>{t('enterCode')}</Text>
                         <CustomTextInput
-                            label="Token"
-                            onChangeText={code => this.setState({ code })}
-                            containerStyle={{ width: width / 1.36 }}
-                            autoCapitalize={'none'}
+                            label={t('code')}
+                            onChangeText={(code) => this.setState({ code })}
+                            containerStyle={{ width: width / 1.2 }}
+                            autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
@@ -155,10 +175,14 @@ class TwoFactorSetupEnterToken extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.goBack}
                             onRightButtonPress={this.check2FA}
-                            leftText={'BACK'}
-                            rightText={'DONE'}
+                            leftText={t('global:back')}
+                            rightText={t('global:done')}
                         />
                     </View>
+                    <StatefulDropdownAlert
+                        textColor={secondaryBackgroundColor}
+                        backgroundColor={this.props.backgroundColor}
+                    />
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -166,16 +190,14 @@ class TwoFactorSetupEnterToken extends Component {
 }
 const mapDispatchToProps = {
     set2FAStatus,
-    set2FAKey,
     generateAlert,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    key2FA: state.account.key2FA,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken);
+export default translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken));

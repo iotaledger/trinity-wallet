@@ -4,6 +4,7 @@
         "cancel": "取消",
         "continue?": "是否确定继续？",
         "noTransactions": "没有最近的历史记录",
+        "refresh": "REFRESH",
         "qr": "二维码",
         "balanceError": "余额不足",
         "balanceErrorMessage": "您的IOTA不足以完成本次交易。",
@@ -46,6 +47,7 @@
         "yes": "是的",
         "no": "没有",
         "password": "密码",
+        "passwordOrFingerprint": "密码或指纹",
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不相符。请再试一次。",
         "syncInProgress": "同步中",
@@ -58,7 +60,24 @@
         "attachToTangleUnavailable": "无法连接到Tangle",
         "attachToTangleUnavailableExplanation": "连接到Tangle的功能在选定的节点上无法使用",
         "wallet": "钱包",
-        "pressBackAgain": "Press back again to close the app"
+        "sent": "发送",
+        "received": "收到",
+        "sending": "发送",
+        "receiving": "接收",
+        "confirmed": "已确认",
+        "pending": "等待确认",
+        "bundleHash": "捆绑哈希",
+        "addresses": "地址",
+        "pressBackAgain": "再次按返回关闭应用程序",
+        "autoreattaching": "自动附加到纠缠",
+        "autoreattachingExplanation": "使用哈希{{hash}} 的重新事务",
+        "autopromoting": "自动提示转移",
+        "autopromotingExplanation": "使用哈希{{hash}} 促进事务",
+        "cannotSendToOwn": "发送到自己的地址",
+        "cannotSendToOwnExplanation": "您不能转账到您自己的地址。",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -106,8 +125,7 @@
         "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
-        "seedExplanation":
-            "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
+        "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
         "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
@@ -126,7 +144,9 @@
         "enterPassword": "请输入您的密码.",
         "useSeed": "使用种子",
         "login": "登录",
-        "selectDifferentNode": "是否要选择其他节点？"
+        "selectDifferentNode": "是否要选择其他节点？",
+        "setNode": "设置节点",
+        "cannotConnect": "无法连接到IOTA节点。"
     },
     "loading": {
         "loadingFirstTime": "首次读取种子",
@@ -154,14 +174,14 @@
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
         "generateNewAddress": "新地址",
         "message": "可选消息",
-        "removeMessage": "移除消息"
+        "removeMessage": "移除消息",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "种子已清除",
         "seedClearedExplanation": "为了安全，种子码已从剪贴板中清除。",
-        "mustSaveYourSeed": "您必须将您的种子保存 ",
-        "atLeastOne": "至少一个 ",
-        "ofTheOptions": "从下列选项中选择。"
+        "mustSaveYourSeed": "<0> <0> 您必须使用 </0> <1> 至少用下面列出的选项的 </1> <2> 保存种子. </2> </0>"
     },
     "seedReentry": {
         "incorrectSeed": "错误的种子",
@@ -182,16 +202,18 @@
         "amount": "金额",
         "max": "最大",
         "message": "信息",
+        "invalidMessage": "无效消息",
+        "invalidMessageExplanation": "您的消息中包含无效字符.",
         "send": "发送",
         "invalidAmount": "输入的金额不正确",
-        "invalidAmountExplanation": "请输入交易记录金额的数值。",
+        "invalidAmountExplanation": "请输入有效的交易金额。查看本页底部的IOTA单位说明可能会有所帮助。",
         "maximumSelected": "已选择最大金额",
-        "iotaUnits": "IOTA 单位"
+        "iotaUnits": "IOTA单位解释",
+        "sendMax": "全部发送"
     },
     "setPassword": {
         "passwordTooShort": "密码太短",
-        "passwordTooShortExplanation":
-            "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
+        "passwordTooShortExplanation": "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
         "passwordMismatch": "密码不相符",
         "passwordMismatchExplanation": "您输入的密码不匹配。请再试一次。",
         "nowWeNeedTo": "现在我们需要设置一个密码。",
@@ -237,16 +259,9 @@
         "cut": "剪切",
         "copy": "复制",
         "paste": "粘贴",
-        "selectAll": "全选"
-    },
-    "resetWalletConfirmation": {
-        "thisAction": "本操作无法撤销。",
-        "warning1": "所有您的钱包数据, 包括您的 ",
-        "warning2": " 种子，密码,",
-        "warning3": " 和",
-        "warning4": " 其他账户信息",
-        "warning5": " 将会丢失。",
-        "areYouSure": "是否确定继续？"
+        "selectAll": "全选",
+        "securitySettings": "安全设置",
+        "fingerprint": "Biometric authentication"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
@@ -257,11 +272,7 @@
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-        "explanation1": "您可以用它来访问您的资金，从",
-        "explanation2": " 任何钱包",
-        "explanation3": "，在",
-        "explanation4": " 任何设备上",
-        "explanation5": "。但是, 如果你丢失了你的种子, 你也会丢失您的IOTA。",
+        "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
         "keepSafe": "请您保管好你的种子."
     },
     "welcome": {
@@ -270,15 +281,16 @@
         "reminder": "您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "你的种子是从左向右读的{{maxSeedLength}} 个字符。请记下您的种子和校验和",
-        "tripleCheck": "第三次检查",
-        "thatTheyAreCorrect": "以确保它们是正确的。"
+        "yourSeedIs": "你的种子是从左向右读的{{maxSeedLength}} 字符。",
+        "writeDownYourSeed": "<0> 记下种子和校验和 </0><1> 三重检查 </1><2> 他们是正确的. </2>"
     },
     "history": {
         "bundleHashCopied": "绑定哈希值已复制",
         "bundleHashCopiedExplanation": "绑定哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
-        "addressCopiedExplanation": "地址已复制到剪贴板。"
+        "addressCopiedExplanation": "地址已复制到剪贴板。",
+        "send": "发送",
+        "receive": "接收"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
@@ -303,6 +315,9 @@
     "advancedThemeCustomisation": {
         "background": "背景",
         "frame": "框架"
+    },
+    "themeCustomisation": {
+        "theme": "主题"
     },
     "currencySelection": {
         "currency": "货币"
@@ -349,14 +364,47 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",
-        "infoTextOne": "所有您的钱包数据, 包括您的",
-        "infoTextTwo": "种子，密码",
-        "infoTextThree": "和",
-        "infoTextFour": "其他账户信息",
-        "infoTextFive": "将会丢失。"
+        "warning": "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会迷路。</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "触摸设备的指纹读取器以启用指纹验证。",
+        "instructionsDisable": "触摸设备的指纹读取器以禁用指纹验证。",
+        "fingerprintAuthEnabled": "已启用指纹身份验证",
+        "fingerprintAuthEnabledExplanation": "您已成功启用指纹身份验证。",
+        "fingerprintAuthDisabled": "已禁用指纹身份验证",
+        "fingerprintAuthDisabledExplanation": "您已成功禁用指纹身份验证。",
+        "fingerprintAuthFailed": "指纹验证失败",
+        "fingerprintAuthFailedExplanation": "指纹验证失败。请重试。",
+        "status": "状态",
+        "enabled": "已启用",
+        "disabled": "已禁用",
+        "fingerprintUnavailable": "指纹传感器不可用",
+        "fingerprintUnavailableExplanation": "您的设备不支持指纹识别, 或者在设备设置中未配置。",
+        "buttonInstructionsDisable": "点击下面的按钮禁用指纹身份验证。",
+        "buttonInstructionsEnable": "点击下面的按钮启用指纹身份验证。",
+        "instructionsLogin": "触摸指纹读取器登录。"
     },
     "transferConfirmation": {
         "youAreAbout": "您将发送{{contents}} 到地址",
         "aMessage": "一条信息"
+    },
+    "twoFA": {
+        "wrongCode": "验证码错误",
+        "wrongCodeExplanation": "您输入的验证码不正确。",
+        "emptyCode": "验证码为空",
+        "emptyCodeExplanation": "请输入验证码并重试。",
+        "keyCopied": "密钥已复制到剪贴板",
+        "keyCopiedExplanation": "您的2FA 密钥已复制到剪贴板。",
+        "addKey": "将此密钥添加到您的2FA 应用程序中",
+        "key": "密钥",
+        "twoFAEnabled": "2FA 现在已启用",
+        "twoFAEnabledExplanation": "您已成功启用了双因子验证（2FA）。",
+        "enterCode": "输入您的2FA 应用程序中的验证码",
+        "code": "验证码"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "变化率",
+        "volume": "交易量(24h)"
     }
 }

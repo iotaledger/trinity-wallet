@@ -4,6 +4,7 @@
         "cancel": "CANCEL",
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
+        "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
@@ -19,7 +20,7 @@
         "invalidResponseExplanation": "The node returned an invalid response.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information.",
+            "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "BACK",
@@ -48,6 +49,7 @@
         "yes": "YES",
         "no": "NO",
         "password": "Password",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Unrecognised password",
         "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
         "syncInProgress": "Syncing in progress",
@@ -60,7 +62,28 @@
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
         "wallet": "Wallet",
-        "pressBackAgain": "Press back again to close the app"
+        "sent": "Sent",
+        "received": "Received",
+        "sending": "Sending",
+        "receiving": "Receiving",
+        "confirmed": "Confirmed",
+        "pending": "Pending",
+        "bundleHash": "Bundle Hash",
+        "addresses": "Addresses",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
+        "pressBackAgain": "Press back again to close the app",
+        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autopromoting": "Autopromoting transfer",
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation":
+            "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -104,7 +127,8 @@
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
         "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
@@ -133,7 +157,9 @@
         "enterPassword": "Please enter your password.",
         "useSeed": "USE SEED",
         "login": "LOG IN",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Do you want to select a different node?",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Loading seed for the first time.",
@@ -162,14 +188,15 @@
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "NEW ADDRESS",
         "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "removeMessage": "REMOVE MESSAGE",
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Seed cleared",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "mustSaveYourSeed": "You must save your seed with ",
-        "atLeastOne": "at least one ",
-        "ofTheOptions": "of the options listed below."
+        "mustSaveYourSeed":
+            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Incorrect seed",
@@ -191,11 +218,15 @@
         "amount": "Amount",
         "max": "MAX",
         "message": "Message",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "SEND",
         "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "invalidAmountExplanation":
+            "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "iotaUnits": "IOTA units explained",
+        "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Password is too short",
@@ -212,6 +243,14 @@
     "setSeedName": {
         "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
         "youCanAdd": "You can add more seeds in the Settings menu."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation":
+            "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation":
+            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Transfer sending",
@@ -247,16 +286,13 @@
         "cut": "Cut",
         "copy": "Copy",
         "paste": "Paste",
-        "selectAll": "Select All"
-    },
-    "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your ",
-        "warning2": " seeds, password,",
-        "warning3": " and",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "selectAll": "Select All",
+        "securitySettings": "Security settings",
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -268,11 +304,8 @@
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
         "seedExplanation":
             "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet",
-        "explanation3": ", on",
-        "explanation4": " any device",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
@@ -281,16 +314,17 @@
         "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
-        "thatTheyAreCorrect": "that they are correct."
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Address copied",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "The address has been copied to the clipboard.",
+        "send": "SEND",
+        "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "View seed",
@@ -310,11 +344,15 @@
     "advancedSettings": {
         "selectNode": "Select node",
         "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "manualSync": "Manual sync",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "Background",
         "frame": "Frame"
+    },
+    "themeCustomisation": {
+        "theme": "Theme"
     },
     "currencySelection": {
         "currency": "Currency"
@@ -334,7 +372,7 @@
         "one": "One"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "This action cannot be undone.",
         "enterPassword": "Enter your password to delete this account."
@@ -361,14 +399,54 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "infoTextOne": "All your wallet data including your",
-        "infoTextTwo": "seeds, password",
-        "infoTextThree": "and",
-        "infoTextFour": "other account information",
-        "infoTextFive": "will be lost."
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+    },
+    "fingerprintSetup": {
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "status": "Status",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
         "aMessage": "a message"
+    },
+    "twoFA": {
+        "wrongCode": "Wrong code",
+        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "emptyCode": "Empty code",
+        "emptyCodeExplanation": "Please enter a code and try again.",
+        "keyCopied": "Key copied to clipboard",
+        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "addKey": "Add this key to your 2FA app",
+        "key": "Key",
+        "twoFAEnabled": "2FA is now enabled",
+        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "enterCode": "Enter the code from your 2FA app",
+        "code": "Code"
+    },
+    "chart": {
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume (24h)"
+    },
+    "rootDetection": {
+        "warning": "WARNING",
+        "rootDetected":
+            "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }

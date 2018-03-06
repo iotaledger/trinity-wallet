@@ -7,7 +7,12 @@ import { CurrencySelection } from '../../components/currencySelection';
 
 /* eslint-disable no-undef */
 
-const getProps = overrides =>
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
+const getProps = (overrides) =>
     assign(
         {},
         {
@@ -19,7 +24,7 @@ const getProps = overrides =>
             backPress: noop,
             t: noop,
             secondaryBackgroundColor: 'white',
-            negativeColor: {},
+            negativeColor: 'white',
             tickImagePath: 0,
             arrowLeftImagePath: 0,
         },
@@ -30,10 +35,6 @@ describe('Testing CurrencySelection component', () => {
     describe('propTypes', () => {
         it('should require an isFetchingCurrencyData boolean as a prop', () => {
             expect(CurrencySelection.propTypes.isFetchingCurrencyData).toBe(PropTypes.bool.isRequired);
-        });
-
-        it('should require an hasErrorFetchingCurrencyData boolean as a prop', () => {
-            expect(CurrencySelection.propTypes.hasErrorFetchingCurrencyData).toBe(PropTypes.bool.isRequired);
         });
 
         it('should require a getCurrencyData function as a prop', () => {
@@ -61,7 +62,7 @@ describe('Testing CurrencySelection component', () => {
         });
 
         it('should require a negativeColor object as a prop', () => {
-            expect(CurrencySelection.propTypes.negativeColor).toBe(PropTypes.object.isRequired);
+            expect(CurrencySelection.propTypes.negativeColor).toBe(PropTypes.string.isRequired);
         });
 
         it('should require a tickImagePath number as a prop', () => {

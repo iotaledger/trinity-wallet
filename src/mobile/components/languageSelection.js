@@ -4,9 +4,8 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableW
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import { detectLocale, selectLocale } from '../components/locale';
-import Dropdown from './dropdown';
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import DropdownComponent from './dropdown';
+import { selectLocale } from '../components/locale';
 
 const { width } = Dimensions.get('window');
 const { height } = global;
@@ -61,9 +60,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
-    dropdownWidth: {
-        width: width / 1.5,
-    },
 });
 
 const currentLocale = i18next.language;
@@ -74,6 +70,10 @@ class LanguageSelection extends Component {
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         setLanguage: PropTypes.func.isRequired,
+        textColor: PropTypes.object.isRequired,
+        arrowLeftImagePath: PropTypes.number.isRequired,
+        tickImagePath: PropTypes.number.isRequired,
+        language: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -91,15 +91,7 @@ class LanguageSelection extends Component {
     }
 
     render() {
-        const {
-            backPress,
-            t,
-            textColor,
-            secondaryBackgroundColor,
-            arrowLeftImagePath,
-            tickImagePath,
-            language,
-        } = this.props;
+        const { backPress, t, textColor, arrowLeftImagePath, tickImagePath, language } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -112,16 +104,16 @@ class LanguageSelection extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 0.4 }} />
-                        <Dropdown
-                            onRef={c => {
+                        <DropdownComponent
+                            onRef={(c) => {
                                 this.dropdown = c;
                             }}
-                            title={language}
-                            dropdownWidth={styles.dropdownWidth}
+                            title={t('language')}
+                            dropdownWidth={{ width: width / 1.5 }}
                             defaultOption={language}
                             options={I18N_LOCALE_LABELS}
-                            saveSelection={language => {
-                                this.languageSelected = language;
+                            saveSelection={(lang) => {
+                                this.languageSelected = lang;
                             }}
                             background
                         />
@@ -152,4 +144,4 @@ class LanguageSelection extends Component {
     }
 }
 
-export default translate(['languageSelection', 'global'])(LanguageSelection);
+export default translate(['languageSetup', 'global'])(LanguageSelection);

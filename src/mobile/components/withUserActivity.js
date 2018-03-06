@@ -12,8 +12,8 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default () => C => {
-    class withUserActivity extends Component {
+export default () => (C) => {
+    class WithUserActivity extends Component {
         componentDidMount() {
             AppState.addEventListener('change', this.handleAppStateChange);
         }
@@ -23,7 +23,7 @@ export default () => C => {
             timer.clearTimeout('background');
         }
 
-        handleAppStateChange = nextAppState => {
+        handleAppStateChange = (nextAppState) => {
             if (nextAppState.match(/inactive|background/)) {
                 this.props.setUserActivity({ minimised: true });
             } else if (nextAppState === 'active') {
@@ -36,10 +36,10 @@ export default () => C => {
         }
     }
 
-    withUserActivity.propTypes = {
+    WithUserActivity.propTypes = {
         setUserActivity: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
     };
 
-    return translate(['global'])(connect(null, mapDispatchToProps)(withUserActivity));
+    return translate(['global'])(connect(null, mapDispatchToProps)(WithUserActivity));
 };
