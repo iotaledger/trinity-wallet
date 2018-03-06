@@ -307,8 +307,8 @@ class SnapshotTransition extends Component {
                     )}
                 </View>
                 <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
+                    animationIn="bounceInUp"
+                    animationOut="bounceOut"
                     animationInTiming={1000}
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
@@ -318,6 +318,8 @@ class SnapshotTransition extends Component {
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
                     onBackButtonPress={() => this.hideModal()}
+                    useNativeDriver
+                    hideModalContentWhileAnimating
                 >
                     {this.renderModalContent()}
                 </Modal>

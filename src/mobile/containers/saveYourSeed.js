@@ -12,6 +12,7 @@ import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { isIOS } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -99,7 +100,7 @@ class SaveYourSeed extends Component {
 
     componentWillReceiveProps(newProps) {
         const { t } = this.props;
-        if (newProps.tempAccount.copiedToClipboard) {
+        if (newProps.tempAccount.copiedToClipboard && isIOS) {
             this.timeout = setTimeout(() => {
                 this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
             }, 250);
