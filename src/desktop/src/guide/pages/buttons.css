@@ -1,0 +1,11 @@
+.buttons {
+    width: 780px;
+    nav {
+        display: flex;
+        justify-content: space-between;
+    }
+    button {
+        margin: 0 0 16px 0;
+    }
+    div: nth-child();
+}
