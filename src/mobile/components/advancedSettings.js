@@ -142,7 +142,7 @@ class AdvancedSettings extends Component {
                         >
                             <View style={styles.item}>
                                 <Image source={snapshotImagePath} style={styles.icon} />
-                                <Text style={[styles.titleText, textColor]}>Snapshot Transition</Text>
+                                <Text style={[styles.titleText, textColor]}>{t('snapshotTransition')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

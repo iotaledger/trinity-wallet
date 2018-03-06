@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import CustomTextInput from '../components/customTextInput';
@@ -73,7 +73,6 @@ class Enter2FA extends Component {
     render() {
         const { codefor2FA } = this.state;
         const { secondaryBackgroundColor, negativeColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
@@ -87,8 +86,8 @@ class Enter2FA extends Component {
                             label="2FA Token"
                             onChangeText={this.handleChange2FAToken}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'none'}
-                            keyboardType={'numeric'}
+                            autoCapitalize="none"
+                            keyboardType="numeric"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
@@ -102,8 +101,8 @@ class Enter2FA extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.handleBackPress}
                             onRightButtonPress={this.handleDonePress}
-                            leftText={'BACK'}
-                            rightText={'DONE'}
+                            leftText="BACK"
+                            rightText="DONE"
                         />
                     </View>
                 </View>

@@ -3,7 +3,7 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
-import { RNPrint } from 'NativeModules';
+import { RNPrint } from 'NativeModules'; // eslint-disable-line import/no-unresolved
 import PropTypes from 'prop-types';
 import QRCode from 'react-native-qrcode-svg';
 import RNFS from 'react-native-fs';
@@ -543,7 +543,13 @@ class PaperWallet extends Component {
                                 <Text style={styles.checksumText}>{checksum}</Text>
                             </View>
                         </View>
-                        <QRCode value={seed} getRef={(c) => (this.svg = c)} size={width / 3.4} />
+                        <QRCode
+                            value={seed}
+                            getRef={(c) => {
+                                this.svg = c;
+                            }}
+                            size={width / 3.4}
+                        />
                     </View>
                     <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onCheckboxPress()}>
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />

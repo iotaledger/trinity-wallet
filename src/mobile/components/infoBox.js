@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
@@ -55,11 +55,10 @@ const styles = StyleSheet.create({
     },
 });
 
-class InfoBox extends Component {
+class InfoBox extends PureComponent {
     static propTypes = {
         secondaryBackgroundColor: PropTypes.string,
-        containerStyle: PropTypes.object,
-        backgroundColor: PropTypes.string,
+        text: PropTypes.string.isRequired,
     };
 
     static defaultProps = {
@@ -67,7 +66,7 @@ class InfoBox extends Component {
     };
 
     render() {
-        const { containerStyle, secondaryBackgroundColor, text } = this.props;
+        const { secondaryBackgroundColor, text } = this.props;
         const isBackgroundWhite = secondaryBackgroundColor === 'white';
         const infoImagePath = isBackgroundWhite ? whiteInfoImagePath : blackInfoImagePath;
         const innerContainerBackgroundColor = isBackgroundWhite
