@@ -4,7 +4,7 @@
         "cancel": "ANNULER",
         "continue?": "Êtes-vous sûr(e) de vouloir continuer ?",
         "noTransactions": "AUCUN HISTORIQUE",
-        "refresh": "REFRESH",
+        "refresh": "ACTUALISER",
         "qr": "QR",
         "balanceError": "Solde insuffisant",
         "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
@@ -19,7 +19,7 @@
         "invalidResponse": "Réponse non valide",
         "invalidResponseExplanation": "Le serveur a renvoyé une réponse invalide.",
         "invalidResponsePollingExplanation": "Le serveur a retourné une réponse invalide lors de son interrogation.",
-        "invalidResponseFetchingAccount": "Le serveur a renvoyé une réponse invalide lors de la récupération des informations de votre compte.",
+        "invalidResponseFetchingAccount": "Le serveur a renvoyé une réponse invalide lors de la récupération des informations de votre compte. Essayez de changer de serveur.",
         "invalidResponseSendingTransfer": "Le serveur a renvoyé une réponse invalide lors du transfert.",
         "seed": "Seed",
         "back": "RETOUR",
@@ -61,13 +61,16 @@
         "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible pour le serveur sélectionné.",
         "wallet": "Portefeuille",
         "sent": "Envoyé",
-        "received": "Reçu",
+        "received": "Reçue",
         "sending": "Envoi en cours",
         "receiving": "En cours de réception",
         "confirmed": "Confirmée",
         "pending": "En cours",
         "bundleHash": "Hash du Paquet",
         "addresses": "Adresses",
+        "reattach": "RATTACHER",
+        "promote": "PROMOUVOIR",
+        "rebroadcast": "RETRANSMETTRE",
         "pressBackAgain": "Appuyez sur le bouton retour pour fermer l'application",
         "autoreattaching": "Rattachement automatique au Tangle",
         "autoreattachingExplanation": "Rattachement de la transaction de hash {{hash}}",
@@ -76,8 +79,8 @@
         "cannotSendToOwn": "Envoi à votre propre adresse",
         "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers vos propres adresses.",
         "pleaseWait": "Veuillez patienter",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWaitExplanation": "Trinity est en train d'effectuer une autre tâche. Veuillez réessayer plus tard.",
+        "pleaseWaitTransferExplanation": "Votre solde disponible est actuellement utilisé dans d'autres transferts. Veuillez attendre qu'un des transferts soit confirmé avant de réessayer."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -106,7 +109,7 @@
         "passwordTooShortExplanation": "Votre mot de passe doit contenir au moins 12 caractères. Veuillez réessayer.",
         "oldPassword": "Impossible de réutiliser l'ancien mot de passe",
         "oldPasswordExplanation": "Vous ne pouvez pas réutiliser l’ancien mot de passe. Veuillez utiliser un nouveau mot de passe.",
-        "ensureStrongPassword": "Veillez à utiliser un mot de passe complexe composé d'au moins 12 caractères.",
+        "ensureStrongPassword": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "currentPassword": "Mot de passe actuel",
         "newPassword": "Nouveau mot de passe",
         "confirmPassword": "Confirmer le nouveau mot de passe"
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez votre seed dans un gestionnaire de mot de passe.",
         "doNotStore": "Ne stockez pas votre seed en texte en clair.",
-        "copyToClipboard": "Copier dans le presse-papier"
+        "copyToClipboard": "Copier le seed",
+        "shareSeed": "Enregistrer votre seed dans un gestionnaire de mot de passe sécurisé"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contient des caractères invalides",
@@ -176,7 +180,7 @@
         "message": "Message facultatif",
         "removeMessage": "SUPPRIMER LE MESSAGE",
         "noAddresses": "AUCUNE ADRESSE",
-        "spent": "Spent"
+        "spent": "Envoyé"
     },
     "saveYourSeed": {
         "seedCleared": "Seed effacée",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "Vous pouvez utiliser plusieurs seeds avec ce portefeuille. Chaque seed requiert un nom de compte.",
         "youCanAdd": "Vous pouvez ajouter plus de seeds dans le menu Réglages."
     },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Le mode expert donnera accès à des fonctionnalités supplémentaires comme la promotion manuelle et le rattachement.",
+        "modesExplanation": "Activer le mode Expert uniquement si vous êtes un utilisateur du Tangle expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
+    },
     "settings": {
         "transferSending": "Transfert en cours",
         "transferSendingExplanation": "Veuillez attendre que votre transfert ait été envoyé.",
@@ -261,7 +271,11 @@
         "paste": "Coller",
         "selectAll": "Tout Sélectionner",
         "securitySettings": "Paramètres de sécurité",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Authentification biométrique",
+        "couldNotFetchRates": "Échec de la récupération des taux",
+        "couldNotFetchRatesExplanation": "Une erreur s'est produite lors de la récupération des taux de change pour {{currency}}.",
+        "fetchedConversionRates": "Taux de conversion récupérés",
+        "fetchedConversionRatesExplanation": "Récupération des derniers taux de conversion pour {{currency}} réussie."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "Sélectionner un serveur",
         "addCustomNode": "Ajouter un serveur personnalisé",
-        "manualSync": "Synchro manuelle"
+        "manualSync": "Synchro manuelle",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -337,7 +352,7 @@
         "one": "Un"
     },
     "deleteAccount": {
-        "areYouSure": "Voulez-vous vraiment supprimer ce compte ?",
+        "areYouSure": "Êtes-vous sûr de vouloir supprimer le compte nommé \"{{accountName}}\" ?",
         "yourSeedWillBeRemoved": "L’historique de vos seeds et de vos transactions sera supprimé.",
         "thisAction": "Cette action est irréversible.",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
@@ -360,7 +375,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "J’ai enregistré ma seed",
         "reenter": "Vous allez devoir saisir à nouveau votre seed.",
-        "reenterWarning": "Si votre appareil tombe en panne et vous n’avez pas enregistré votre seed, vous perdrez vos IOTA."
+        "reenterWarning": "Si votre appareil tombe en panne et que vous n’avez pas enregistré votre seed, vous perdrez vos IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
@@ -397,7 +412,7 @@
         "keyCopiedExplanation": "Votre clé 2FA a été copiée dans le presse-papier.",
         "addKey": "Ajoutez cette clé à votre application 2FA",
         "key": "Clé",
-        "twoFAEnabled": "2FA est maintenant activé",
+        "twoFAEnabled": "L'authentification 2FA est maintenant activée",
         "twoFAEnabledExplanation": "Vous avez correctement activé l’authentification à deux facteurs.",
         "enterCode": "Entrez le code de votre application 2FA",
         "code": "Code"
@@ -406,5 +421,9 @@
         "mcap": "MCAP",
         "change": "Variation",
         "volume": "Volume (24h)"
+    },
+    "rootDetection": {
+        "warning": "ATTENTION",
+        "rootDetected": "<0>Votre appareil semble être rooté/jailbreaké</0><1>Ceci peut poser un risque important pour la sécurité de votre portefeuille.</1><2>Voulez-vous continuer malgré ce risque ?</2>"
     }
 }
