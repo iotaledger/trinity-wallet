@@ -164,12 +164,12 @@
         "individualLetters": "Stiskněte náhodně jednotlivá písmena."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Peněženka je nyní nastavena a připravena k použití. Jestliže v budoucnu budete cokoliv potřebovat změnit podívejte se do menu nastavení."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
+        "clickToPrint": "Klepněte níže na tlačítko vytisknout papírovou kopii vašeho seedu.",
+        "storeSafely": "Bezpečně uložte.",
+        "neverShare": "Nikdy s nikým nesdílejte Váš seed.",
         "iotaLogo": "IOTA logo",
         "printWallet": "PRINT PAPER WALLET"
     },
