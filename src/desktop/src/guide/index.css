@@ -1,0 +1,73 @@
+.styleguide {
+    display: flex;
+    width: 100vw;
+
+    aside {
+        width: 240px;
+        margin-right: 40px;
+        flex-shrink: 0;
+        background: var(--bar-bg);
+        color: var(--bar);
+        text-align: center;
+        padding-top: 40px;
+
+        h1 {
+            font-weight: 200;
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+        nav {
+            width: 100%;
+            text-align: left;
+
+            a {
+                display: block;
+                color: var(--bar);
+                width: 100%;
+                text-decoration: none;
+                padding: 8px 16px;
+                &:hover {
+                    color: var(--highlight);
+                }
+                &[aria-current='true'] {
+                    background: var(--bar-alt);
+                    border-right: 2px solid var(--highlight);
+                }
+            }
+        }
+
+        hr {
+            background: none;
+            border: none;
+            border-top: 1px solid var(--bar-alt);
+            margin-bottom: 20px;
+        }
+
+        select {
+            background: none;
+            color: var(--bar);
+        }
+        fieldset a:after {
+            border-top-color: var(--bar);
+        }
+    }
+    aside,
+    section {
+        min-height: 100vh;
+    }
+
+    section {
+        padding: 60px 20px 100px;
+        max-width: 1120px;
+        min-width: 480px;
+
+        hr {
+            border: none;
+            border-top: 1px dashed var(--body-alt);
+            margin: 30px 0;
+        }
+        form {
+            padding: 40px 0;
+        }
+    }
+}

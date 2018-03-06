@@ -1,0 +1,25 @@
+.icons {
+    display: flex;
+    flex-wrap: wrap;
+    > div {
+        margin: 0 48px 48px 0;
+        span {
+            display: block;
+            color: var(--body);
+        }
+        span:nth-child(1) {
+            margin-bottom: 8px;
+        }
+        span:nth-child(2) {
+            float: left;
+            margin-right: 12px;
+        }
+        span:nth-child(3) {
+            margin: 22px 0 0;
+        }
+        p {
+            clear: both;
+            margin-top: 6px;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-// FILE MUST BE NAMED *.worker.js OR OTHERWISE IT'S NOT RECOGNIZED BY WEBPACKS WORKER-LOADER!
+import 'babel-polyfill';
 import { generateNewAddress } from 'actions/tempAccount';
 import { getAccountInfo, getFullAccountInfo } from 'actions/account';
 
@@ -10,11 +10,15 @@ const actions = {
     getFullAccountInfo,
 };
 
-const dispatch = action => {
-    self.postMessage({
-        type: 'dispatch',
-        action,
-    });
+const dispatch = (action) => {
+    if (typeof action === 'function') {
+        action(dispatch, getState);
+    } else {
+        self.postMessage({
+            type: 'dispatch',
+            action,
+        });
+    }
 };
 
 const getState = () => {

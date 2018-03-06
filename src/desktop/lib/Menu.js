@@ -24,7 +24,7 @@ let language = {
     copy: 'Copy',
     paste: 'Paste',
     selectAll: 'Select All',
-    account: 'Account',
+    wallet: 'Wallet',
     balance: 'Balance',
     send: 'Send',
     receive: 'Receive',
@@ -36,7 +36,7 @@ let language = {
 };
 
 const initMenu = (app, getWindow) => {
-    const navigate = path => {
+    const navigate = (path) => {
         const mainWindow = getWindow('main');
         if (mainWindow) {
             mainWindow.webContents.send('menu', path);
@@ -78,7 +78,7 @@ const initMenu = (app, getWindow) => {
                             {
                                 label: language.changePassword,
                                 enabled: state.authorised,
-                                click: () => navigate('settings/changePassword'),
+                                click: () => navigate('settings/change-password'),
                             },
                             {
                                 label: language.advanced,
@@ -131,23 +131,23 @@ const initMenu = (app, getWindow) => {
 
         if (state.authorised) {
             template.push({
-                label: language.account,
+                label: language.wallet,
                 submenu: [
                     {
                         label: language.balance,
-                        click: () => navigate('balance'),
+                        click: () => navigate('wallet/balance'),
                     },
                     {
                         label: language.send,
-                        click: () => navigate('send'),
+                        click: () => navigate('wallet/send'),
                     },
                     {
                         label: language.receive,
-                        click: () => navigate('receive'),
+                        click: () => navigate('wallet/receive'),
                     },
                     {
                         label: language.history,
-                        click: () => navigate('history'),
+                        click: () => navigate('wallet/history'),
                     },
                     {
                         type: 'separator',
@@ -165,8 +165,8 @@ const initMenu = (app, getWindow) => {
                                         message: language.logoutConfirm,
                                         buttons: [language.yes, language.no],
                                     },
-                                    index => {
-                                        if (index === 0) {
+                                    (index) => {
+                                        if (index === 1) {
                                             mainWindow.webContents.send('menu', 'logout');
                                         }
                                     },
