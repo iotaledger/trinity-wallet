@@ -84,8 +84,8 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
-        "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
+        "seedInvalidCharsExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
+        "seedTooShort": "Seed je příliš krátký.",
         "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "Account name already in use",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
@@ -135,17 +135,17 @@
     "home": {
         "balance": "ZŮSTATEK",
         "send": "ODEŠLI",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "receive": "PŘÍJEM",
+        "history": "HISTORIE",
+        "settings": "NASTAVENÍ"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "Jazyk"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
+        "emptyPassword": "Prázdné heslo",
+        "emptyPasswordExplanation": "Musíte zadat heslo pro přihlášení. Opakujte akci.",
+        "enterPassword": "Prosím zadejte Vaše heslo.",
         "useSeed": "USE SEED",
         "login": "LOG IN",
         "selectDifferentNode": "Do you want to select a different node?",
@@ -159,8 +159,8 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGeneratedExplanation": "Klikněte prosím na tlačítko \"Generovat nový SEED\".",
+        "pressForNewSeed": "VYGENERUJ NOVÝ SEED",
         "individualLetters": "Press individual letters to randomise them."
     },
     "onboardingComplete": {
