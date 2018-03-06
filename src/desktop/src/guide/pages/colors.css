@@ -1,0 +1,94 @@
+.color {
+    display: inline-block;
+    margin: 0 48px 48px 0;
+    > strong {
+        display: block;
+        font-size: var(--font-size-s);
+        width: 130px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+        font-weight: 200;
+    }
+}
+
+.primary {
+    background: var(--primary);
+    color: var(--primary-body);
+    &.hover {
+        background: var(--primary-hover);
+    }
+}
+
+.secondary {
+    color: var(--secondary-body);
+    background: var(--secondary);
+    &.hover {
+        background: var(--secondary-hover);
+    }
+}
+
+.positive {
+    color: var(--positive-body);
+    background: var(--positive);
+    &.hover {
+        background: var(--positive-hover);
+    }
+}
+
+.negative {
+    color: var(--negative-body);
+    background: var(--negative);
+    &.hover {
+        background: var(--negative-hover);
+    }
+}
+
+.highlight {
+    color: var(--highlight-body);
+    background: var(--highlight);
+    &.hover {
+        background: var(--highlight-hover);
+    }
+}
+
+.extra {
+    background: var(--extra-body);
+    background: var(--extra);
+    &.hover {
+        background: var(--extra-hover);
+    }
+}
+
+.bar {
+    background: var(--bar-bg);
+    color: var(--bar);
+}
+
+.chart {
+    background: var(--chart);
+}
+
+.bgSecondary {
+    background: var(--body-alt);
+}
+
+.bgHover {
+    background: var(--body-hover);
+}
+
+.input {
+    background: var(--input-bg);
+    color: var(--input);
+}
+.label {
+    color: var(--label);
+}
+.inputSecondary {
+    color: var(--input-alt);
+    background: var(--input-bg);
+}
+.inputOptional {
+    color: var(--inputOptional-color);
+    background: var(--inputOptional-bg);
+}
