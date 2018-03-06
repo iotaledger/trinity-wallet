@@ -174,28 +174,28 @@
         "printWallet": "Tisk papírové peněženky"
     },
     "receive": {
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "addressCopied": "Adresa zkopírována",
+        "addressCopiedExplanation": "Vaše adresa byla zkopírována do schránky.",
         "generateNewAddress": "NOVÁ ADRESA",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "message": "Volitelná zpráva",
+        "removeMessage": "ODSTRANIT ZPRÁVU",
+        "noAddresses": "ŽÁDNÉ ADRESY",
+        "spent": "Utraceno"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "seedCleared": "Seed vymazán",
+        "seedClearedExplanation": "Seed byl vymazán ze schránky pro Vaši bezpečnost.",
+        "mustSaveYourSeed": "<0><0>Je třeba uložit Váš seed s</0><1>alespoň jeden</1><2>z níže uvedených možností.</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "incorrectSeed": "Neplatný seed",
+        "incorrectSeedExplanation": "Zadaný seed byl nesprávný. Zkuste to prosím znovu.",
+        "thisIsACheck": "Toto je kontrola abyste jste se ujistili, že jste uložili Váš seed.",
+        "ifYouHaveNotSaved": "Pokud jste Váš seed neuložili, vraťte se prosím zpět."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddress": "Neplatná adresa",
+        "invalidAddressExplanation1": "Adresa by měla být dlouhá {{maxLength}} znaků a měla by mít kontrolní součet.",
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "notEnoughFunds": "Insufficient funds",
