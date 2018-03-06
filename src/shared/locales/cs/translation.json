@@ -80,10 +80,10 @@
         "cannotSendToOwnExplanation": "Není možné udělat přenos na svoje vlastní adresy.",
         "pleaseWait": "Prosím čekejte",
         "pleaseWaitExplanation": "Trinity vykonává jinou funkci. Počkejte prosím a poté akci opakujte.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWaitTransferExplanation": "Váš disponibilní zůstatek se momentálně používá v jiných převodech. Počkejte prosím na jedno potvrzení než to zkusíte znovu."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Seed contains invalid characters",
+        "seedInvalidChars": "Seed obsahuje neplatné znaky",
         "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Seed is too short",
         "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
