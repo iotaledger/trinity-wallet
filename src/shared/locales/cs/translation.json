@@ -109,24 +109,24 @@
         "passwordTooShortExplanation": "Vaše heslo musí být nejméně 12 znaků. Opakujte akci.",
         "oldPassword": "Staré heslo nelze nastavit",
         "oldPasswordExplanation": "Staré heslo nelze použít jako nové heslo. Zopakujte akci s novým heslem.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "ensureStrongPassword": "Ujistěte se že používáte silné heslo alespoň 12 znaků.",
+        "currentPassword": "Stávající heslo",
+        "newPassword": "Nové heslo",
+        "confirmPassword": "Potvrzení nového hesla"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "seedCleared": "Seed vymazán",
+        "seedClearedExplanation": "Seed byl vymazán ze schránky pro Vaši bezpečnost.",
+        "seedCopied": "Zkopírováno do schránky",
+        "seedCopiedExplanation": "Seed bude vymazán jakmile stisknete \"Hotovo\" nebo po uplynutí 60 sekund.",
+        "clickToCopy": "Klepněte na tlačítko níže a kopírujte Váš seed do Správce hesel.",
+        "doNotStore": "Neukládejte Váš seed ve formátu prostého textu.",
+        "copyToClipboard": "Kopírovat seed",
+        "shareSeed": "Uchovejte Váš seed do zabezpečeného správce hesel"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharacters": "Seed obsahuje neplatné znaky",
+        "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
         "seedTooShort": "Seed is too short",
         "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
@@ -171,7 +171,7 @@
         "storeSafely": "Bezpečně uložte.",
         "neverShare": "Nikdy s nikým nesdílejte Váš seed.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "printWallet": "Tisk papírové peněženky"
     },
     "receive": {
         "addressCopied": "Address copied",
