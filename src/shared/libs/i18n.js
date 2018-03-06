@@ -2,6 +2,7 @@
 export const I18N_LOCALES = [
     'en',
     'ar',
+    'cs',
     'da',
     'de',
     'el',
@@ -23,6 +24,7 @@ export const I18N_LOCALES = [
     'pt_PT',
     'ro',
     'ru',
+    'sk',
     'sl',
     'sv_SE',
     'tr',
@@ -35,6 +37,7 @@ export const I18N_LOCALES = [
 export const I18N_LOCALE_LABELS = [
     'English (International)',
     'عربى - Arabic',
+    'Čeština - Czech',
     'Dansk - Danish',
     'Deutsch - German',
     'Ελληνικά - Greek',
@@ -56,6 +59,7 @@ export const I18N_LOCALE_LABELS = [
     'Português (Portugal) - Portuguese (Portugal)',
     'Română - Romanian',
     'Pусский - Russian',
+    'Slovenský - Slovak',
     'Slovenščina - Slovenian',
     'Svenska - Swedish',
     'Türkçe - Turkish',
