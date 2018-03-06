@@ -94,21 +94,21 @@
         "noNickname": "Nebylo zadáno žádné jméno účtu",
         "noNicknameExplanation": "Zadejte název účtu pro Váš seed.",
         "seedInUse": "Seed je již používán",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUseExplanation": "Tento seed je již propojen s vaší peněženkou. Použijte prosím jiný."
     },
     "changePassword": {
-        "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
-        "passwordUpdated": "Password updated",
-        "passwordUpdatedExplanation": "Your password has been successfully updated.",
-        "incorrectPassword": "Incorrect password",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
-        "passwordsDoNotMatch": "Passwords do not match",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
-        "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least 12 characters. Please try again.",
-        "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "oops": "Ale ne! Něco se pokazilo",
+        "oopsExplanation": "Vypadá to že došlo k chybě při aktualizaci hesla. Opakujte akci.",
+        "passwordUpdated": "Heslo bylo změněno",
+        "passwordUpdatedExplanation": "Vaše heslo bylo úspěšně změněno.",
+        "incorrectPassword": "Nesprávné heslo",
+        "incorrectPasswordExplanation": "Vaše současné heslo je nesprávné. Opakujte akci.",
+        "passwordsDoNotMatch": "Hesla se neshodují",
+        "passwordsDoNotMatchExplanation": "Hesla se neshodují. Zkuste to znovu.",
+        "passwordTooShort": "Heslo je příliš krátké",
+        "passwordTooShortExplanation": "Vaše heslo musí být nejméně 12 znaků. Opakujte akci.",
+        "oldPassword": "Staré heslo nelze nastavit",
+        "oldPasswordExplanation": "Staré heslo nelze použít jako nové heslo. Zopakujte akci s novým heslem.",
         "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
         "currentPassword": "Current Password",
         "newPassword": "New Password",
@@ -146,22 +146,22 @@
         "emptyPassword": "Prázdné heslo",
         "emptyPasswordExplanation": "Musíte zadat heslo pro přihlášení. Opakujte akci.",
         "enterPassword": "Prosím zadejte Vaše heslo.",
-        "useSeed": "USE SEED",
-        "login": "LOG IN",
-        "selectDifferentNode": "Do you want to select a different node?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "useSeed": "POUŽIJ SEED",
+        "login": "PŘIHLÁSIT SE",
+        "selectDifferentNode": "Chcete vybrat jiný uzel?",
+        "setNode": "NASTAVIT UZEL",
+        "cannotConnect": "Nelze se připojit k IOTA uzlu."
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Načítání seedu pro první nastavení.",
+        "thisMayTake": "To může chvíli trvat.",
+        "youMayNotice": "Můžete si všimnout zpomalení Vašeho zařízení."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGenerated": "Seed nebyl vygenerován",
         "seedNotGeneratedExplanation": "Klikněte prosím na tlačítko \"Generovat nový SEED\".",
         "pressForNewSeed": "VYGENERUJ NOVÝ SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "individualLetters": "Stiskněte náhodně jednotlivá písmena."
     },
     "onboardingComplete": {
         "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
