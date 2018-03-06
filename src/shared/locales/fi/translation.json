@@ -304,7 +304,7 @@
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
         "send": "LÄHETÄ",
-        "receive": "VASTAANOTA"
+        "receive": "VASTAANOTETAAN"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
