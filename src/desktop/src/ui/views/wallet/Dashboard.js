@@ -49,56 +49,7 @@ class Dashboard extends React.PureComponent {
                 <section className={css.market}>
                     <Chart />
                     <div className={css.news}>
-                        <article>
-                            <div
-                                className="thumb"
-                                style={{
-                                    backgroundImage:
-                                        'url(https://cdn-images-1.medium.com/max/2000/1*Kq1eLQgSawwRi_6KoQ2_Aw.jpeg)',
-                                }}
-                            />
-                            <p>
-                                <strong>The Tangle: an illustrated introduction.</strong> Part 4: Approvers, balances,
-                                and double-spends
-                            </p>
-                        </article>
-                        <article>
-                            <div
-                                className="thumb"
-                                style={{
-                                    backgroundImage:
-                                        'url(https://pbs.twimg.com/card_img/964051401642074112/VAP25UwQ?format=jpg&name=600x314)',
-                                }}
-                            />
-                            <p>
-                                <strong>Announcing the IOTA Ecosystem</strong> - The pace of innovation and development
-                                surrounding the IOTA Distributed Ledger Technology...
-                            </p>
-                        </article>
-                        <article>
-                            <div
-                                className="thumb"
-                                style={{
-                                    backgroundImage:
-                                        'url(https://cdn-images-1.medium.com/max/2000/1*Kq1eLQgSawwRi_6KoQ2_Aw.jpeg)',
-                                }}
-                            />
-                            <p>
-                                The Tangle: an illustrated introduction. Part 3: Approvers, balances, and double-spends
-                            </p>
-                        </article>
-                        <article>
-                            <div
-                                className="thumb"
-                                style={{
-                                    backgroundImage:
-                                        'url(https://cdn-images-1.medium.com/max/2000/1*Kq1eLQgSawwRi_6KoQ2_Aw.jpeg)',
-                                }}
-                            />
-                            <p>
-                                The Tangle: an illustrated introduction. Part 2: Approvers, balances, and double-spends
-                            </p>
-                        </article>
+                        
                     </div>
                 </section>
             </React.Fragment>

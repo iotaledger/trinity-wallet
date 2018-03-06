@@ -66,9 +66,6 @@ class SeedSave extends PureComponent {
                         <Button className="small" onClick={() => window.print()} variant="secondary">
                             {t('paperWallet:printWallet')}
                         </Button>
-                        <Button className="small" variant="secondary">
-                            Print template
-                        </Button>
                     </nav>
                 </section>
                 <footer>
