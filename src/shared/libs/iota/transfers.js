@@ -50,18 +50,19 @@ import {
  **/
 export const prepareTransferArray = (address, value, message, firstOwnAddress, tag = DEFAULT_TAG) => {
     const trytesConvertedMessage = iota.utils.toTrytes(message);
-    const transferToSend = {
+    const isZeroValue = value === 0;
+    const transfer = {
         address,
         value,
         message: trytesConvertedMessage,
         tag,
     };
 
-    if (value === 0) {
-        return [transferToSend, assign({}, transferToSend, { address: firstOwnAddress })];
+    if (isZeroValue) {
+        return [transfer, assign({}, transfer, { address: firstOwnAddress })];
     }
 
-    return [transferToSend];
+    return [transfer];
 };
 
 /**
