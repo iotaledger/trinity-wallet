@@ -19,7 +19,7 @@
         "invalidResponse": "无效响应",
         "invalidResponseExplanation": "节点返回无效的响应。",
         "invalidResponsePollingExplanation": "该节点在轮询时返回无效响应。",
-        "invalidResponseFetchingAccount": "在获取您的帐户信息时, 该节点返回了无效的响应。",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "该节点在发送交易时返回无效响应。",
         "seed": "种子",
         "back": "返回",
@@ -68,6 +68,9 @@
         "pending": "等待确认",
         "bundleHash": "捆绑哈希",
         "addresses": "地址",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "再次按返回关闭应用程序",
         "autoreattaching": "自动附加到纠缠",
         "autoreattachingExplanation": "使用哈希{{hash}} 的重新事务",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "只要按下\"完成\"或60秒后种子将被清除",
         "clickToCopy": "点击下面的按钮将种子复制到密码管理器",
         "doNotStore": "不要将您的种子保存在纯文本文件中。",
-        "copyToClipboard": "复制到剪贴板"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "种子包含无效字符",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "你可以用这个钱包使用多个种子。每个种子都需要一个帐户名。",
         "youCanAdd": "您可以在设置菜单中添加更多种子。"
     },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+    },
     "settings": {
         "transferSending": "正在发送交易",
         "transferSendingExplanation": "请等待您的交易发出。",
@@ -261,7 +271,11 @@
         "paste": "粘贴",
         "selectAll": "全选",
         "securitySettings": "安全设置",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "选择节点",
         "addCustomNode": "添加自定义节点",
-        "manualSync": "手动同步"
+        "manualSync": "手动同步",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -337,7 +352,7 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "您确定要删除此账户？",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
         "thisAction": "本操作无法撤销。",
         "enterPassword": "请输入您的密码以确认将帐号删除。"
@@ -406,5 +421,9 @@
         "mcap": "MCAP",
         "change": "变化率",
         "volume": "交易量(24h)"
+    },
+    "rootDetection": {
+        "warning": "WARNING",
+        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }
