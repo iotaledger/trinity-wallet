@@ -189,7 +189,7 @@ class CustomTextInput extends React.Component {
     renderCurrencyConversion(conversionText) {
         const { theme } = this.props;
 
-        return <Text style={[styles.conversionText, theme.body.color]}>{conversionText}</Text>;
+        return <Text style={[styles.conversionText, {color: theme.input.alt }]}>{conversionText}</Text>;
     }
 
     render() {

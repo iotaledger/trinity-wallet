@@ -80,7 +80,6 @@ export class Balance extends Component {
         balance: PropTypes.number.isRequired,
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
-        settings: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
         secondary: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
