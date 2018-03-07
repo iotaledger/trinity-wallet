@@ -43,6 +43,13 @@
             max-width: 40vw;
             word-wrap: break-word;
         }
+        fieldset button{
+           margin:0 20px;
+        }
+    }
+
+    &.inline{
+       position: static;
     }
 }
 

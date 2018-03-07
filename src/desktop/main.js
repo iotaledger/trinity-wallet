@@ -1,6 +1,8 @@
+const { ipcMain: ipc } = require('electron');
 const electron = require('electron');
 const initMenu = require('./lib/Menu.js');
 const path = require('path');
+const settings = require('electron-settings');
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -11,6 +13,7 @@ const windows = {
 };
 
 function createWindow() {
+
     windows.main = new BrowserWindow({
         width: 1024,
         height: 768,
@@ -19,7 +22,7 @@ function createWindow() {
         minWidth: 440,
         minHeight: 720,
         titleBarStyle: 'hidden',
-        backgroundColor: '#18373D',
+        backgroundColor: settings.get('backgroundColor') ? settings.get('backgroundColor') : '#1A373E',
         webPreferences: {
             nodeIntegration: false,
             preload: path.join(__dirname, 'lib/window.js'),
@@ -66,4 +69,8 @@ app.on('activate', () => {
     if (windows.main === null) {
         createWindow();
     }
+});
+
+ipc.on('settings.update', (e, data) => {
+    settings.set(data.attribute, data.value);
 });

@@ -6,7 +6,7 @@ import QRCode from 'qrcode.react';
 import authenticator from 'authenticator';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import { setKey, getKey, removeKey } from 'libs/crypto';
+import { setVault, getVault, removeKey } from 'libs/crypto';
 
 import { set2FAStatus } from 'actions/account';
 import { showError, showNotification } from 'actions/notifications';

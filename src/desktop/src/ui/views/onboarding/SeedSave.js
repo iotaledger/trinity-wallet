@@ -4,9 +4,7 @@ import QRCode from 'qrcode.react';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { clearSeeds } from 'actions/seeds';
 import { showNotification } from 'actions/notifications';
-import { getSelectedSeed } from 'selectors/seeds';
 
 import Button from 'ui/components/Button';
 
@@ -82,11 +80,10 @@ class SeedSave extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seed: getSelectedSeed(state).seed,
+    seed: state.seeds.newSeed,
 });
 
 const mapDispatchToProps = {
-    clearSeeds,
     showNotification,
 };
 
