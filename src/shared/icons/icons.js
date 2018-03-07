@@ -1,4 +1,4 @@
-export const icons = {
+module.exports = {
     iota: '💥',
     wallet: '💰',
     camera: '📷',
@@ -23,6 +23,8 @@ export const icons = {
     history: '🕐',
     user: '👽',
     plus: '🔹',
+    cross: '╳',
     bookmark: '📖',
     trash: '🗑',
+    chart: '📊',
 };

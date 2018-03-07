@@ -19,10 +19,9 @@ class SeedIntro extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <main>
+            <React.Fragment>
                 <section>
                     <h2>{t('walletSetup:okay')}</h2>
-                    <p>{t('walletSetup:doYouAlreadyHaveASeed')}</p>
                     <Infobox>
                         <p>{t('walletSetup:seedExplanation')}</p>
                         <Trans i18nKey="walletSetup:explanation">
@@ -40,14 +39,15 @@ class SeedIntro extends React.PureComponent {
                     </Infobox>
                 </section>
                 <footer>
-                    <Button to="/onboarding/seed-generate" className="outline" variant="highlight">
+                    <p>{t('walletSetup:doYouAlreadyHaveASeed')}</p>
+                    <Button to="/onboarding/seed-generate" className="outline" variant="primary">
                         {t('global:no')}
                     </Button>
-                    <Button to="/onboarding/seed-verify" className="outline" variant="primary">
+                    <Button to="/onboarding/seed-verify" className="outline" variant="positive">
                         {t('global:yes')}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }

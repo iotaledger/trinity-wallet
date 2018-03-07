@@ -1,5 +1,5 @@
 import { ActionTypes } from '../actions/settings.js';
-import { defaultNode as fullNode, nodes as availablePoWNodes } from '../config';
+import { DESKTOP_VERSION, defaultNode as fullNode, nodes as availablePoWNodes } from '../config';
 import themes from '../themes/themes';
 
 const initialState = {
@@ -73,6 +73,12 @@ const initialState = {
     themeName: 'Default',
     theme: themes.Default,
     hasRandomizedNode: false,
+    update: {
+        done: true,
+        error: false,
+        version: DESKTOP_VERSION,
+        notes: [],
+    },
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -141,6 +147,36 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 fullNode: action.payload,
                 hasRandomizedNode: true,
+            };
+        case ActionTypes.SET_UPDATE_ERROR:
+            return {
+                ...state,
+                update: {
+                    ...state.update,
+                    done: action.payload.force ? false : state.update.done,
+                    error: true,
+                },
+            };
+        case ActionTypes.SET_UPDATE_SUCCESS:
+            return {
+                ...state,
+                update: {
+                    done:
+                        action.payload.force || action.payload.version !== state.update.version
+                            ? false
+                            : state.update.done,
+                    erro: false,
+                    version: action.payload.version,
+                    notes: action.payload.notes,
+                },
+            };
+        case ActionTypes.SET_UPDATE_DONE:
+            return {
+                ...state,
+                update: {
+                    ...state.update,
+                    done: true,
+                },
             };
     }
 
