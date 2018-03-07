@@ -104,7 +104,7 @@
         "incorrectPassword": "Nesprávne heslo",
         "incorrectPasswordExplanation": "Zadané heslo je nesprávne. Skúste to znova.",
         "passwordsDoNotMatch": "Heslá sa nezhodujú",
-        "passwordsDoNotMatchExplanation": "Heslá sa nezhodujú. Skúste to znova.",
+        "passwordsDoNotMatchExplanation": "Heslá sa nezhodujú. Skúste prosím znova.",
         "passwordTooShort": "Heslo je príliš krátke",
         "passwordTooShortExplanation": "Vaše heslo musí obsahovať najmenej 12 znakov. Prosím skúste znova.",
         "oldPassword": "Nie je možné nastaviť staré heslo",
@@ -252,12 +252,12 @@
         "logout": "Odhlásiť",
         "reset": "Obnoviť peňaženku",
         "syncingComplete": "Synchronizácia dokončená",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
+        "syncingCompleteExplanation": "Váš účet sa úspešne synchronizoval.",
+        "nicknameChanged": "Názov účtu bol zmenený",
+        "nicknameChangedExplanation": "Názov Vášho účtu bol zmenený.",
+        "accountDeleted": "Účet zmazaný",
+        "accountDeletedExplanation": "Váš účet bol z peňaženky odstránený.",
+        "cannotPerformAction": "Nie je možné vykonať akciu",
         "cannotPerformActionExplanation": "Ak chcete obnoviť peňaženku, prejdite na pokročilé nastavenia.",
         "poorConnection": "Slabé pripojenie",
         "poorConnectionExplanation": "Nepodarilo sa nám zmeniť menu z dôvodu slabého pripojenia.",
@@ -328,54 +328,54 @@
         "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
+        "background": "Pozadie",
         "frame": "Frame"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Motív"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "Mena"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Určite sa chcete odhlásiť?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Naskenujte Váš QR kód"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "JEDNOTKOVÝ SYSTÉM",
+        "trillion": "Bilión",
+        "billion": "Miliarda",
+        "million": "Milión",
+        "thousand": "Tisíc",
+        "one": "Jedna"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "areYouSure": "Určite chcete odstrániť účet {{accountName}}?",
+        "yourSeedWillBeRemoved": "Váš Seed a história transakcií budú odstránené.",
+        "thisAction": "Tento účet nie je možné obnoviť.",
+        "enterPassword": "Pre zmazanie účtu vložte svoje heslo."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "pressToSync": "Synchronizáciu účtu spustíte tlačidlom nižšie.",
+        "thisMayTake": "Môže to chvíľu trvať.",
+        "youMayNotice": "Môže dôjsť k spomaleniu Vášho zariadenia.",
+        "syncAccount": "SYNCHRONIZOVAŤ ÚČET",
+        "syncingYourAccount": "Váš účet sa synchronizuje."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Zadajte svoj seed a názov účtu."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Pre zobrazenie svojho seedu vložte heslo.",
+        "viewSeed": "ZOBRAZIŤ SEED",
+        "hideSeed": "SKRYŤ SEED"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "alreadyHave": "Svoj seed mám uložený",
+        "reenter": "Teraz budete požiadaný o opätovné zadanie svojho seedu.",
+        "reenterWarning": "Ak prídete o svoje zariadenie a nebudete mať uložený svoj seed, stratíte všetky svoje IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
@@ -404,7 +404,7 @@
         "aMessage": "a message"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
+        "wrongCode": "Neplatný kód",
         "wrongCodeExplanation": "Zadaný kód nie je správny.",
         "emptyCode": "Prázdny kód",
         "emptyCodeExplanation": "Prosím zadajte kód a skúste znova.",
