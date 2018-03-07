@@ -17,6 +17,8 @@ class Send extends React.PureComponent {
     static propTypes = {
         /** Current send status */
         isSending: PropTypes.bool.isRequired,
+
+        deepLinkAmount: PropTypes.object.isRequired,
         /** Current seed state value */
         seeds: PropTypes.object.isRequired,
         /** Total current account wallet ballance in iotas */
@@ -45,8 +47,7 @@ class Send extends React.PureComponent {
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */
-        t: PropTypes.func.isRequired,
-        deepLinks: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     state = {
@@ -57,25 +58,26 @@ class Send extends React.PureComponent {
     };
 
     componentWillReceiveProps(props) {
-        if (props.deepLinks.address !== '') {
-            const { amount, message, address } = props.deepLinks;
-            this.state.amount = amount;
-            this.state.address = address;
-            this.state.message = message;
-        } else {
-            this.state.amount = 0;
-            this.state.address = '';
-            this.state.message = '';
-        }
-    }
-
-    componentWillMount() {
-        // if (this.props.deepLinks.address !== '') {
-        //     const { amount, message, address } = this.props.deepLinks;
+        // if (props.deepLinks.address !== '') {
+        //     const { amount, message, address } = props.deepLinks;
         //     this.state.amount = amount;
         //     this.state.address = address;
         //     this.state.message = message;
+        // } else {
+        //     this.state.amount = 0;
+        //     this.state.address = '';
+        //     this.state.message = '';
         // }
+    }
+
+    componentWillMount() {
+        if (this.props.deepLinkAmount.address !== '') {
+            const { amount, message, address } = this.props.deepLinkAmount;
+            this.state.amount = amount;
+            this.state.address = address;
+            this.state.message = message;
+            this.state.isModalVisible = true;
+        }
     }
 
     validateInputs = (e) => {
@@ -153,9 +155,5 @@ class Send extends React.PureComponent {
         );
     }
 }
-
-const mapStateToProps = (state) => ({
-    deepLinks: state.deepLinks,
-});
 
 export default withSendData(Send);
