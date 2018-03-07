@@ -129,13 +129,13 @@
         "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
         "seedTooShort": "Seed je příliš krátký",
         "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím opakujte akci.",
-        "seedExplanation": "Seed by měl být {{maxLength}} znaků a by měl obsahovat velká písmena A-Z, nebo na číslo 9. Nelze použít seed delší než {{maxLength}} znaků.",
-        "neverShare": "S NIKÝM NIKDY NESDÍLEJ SVŮJ SEED"
+        "seedExplanation": "Seed by měl být {{maxLength}} znaků a by měl obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít seed delší než {{maxLength}} znaků.",
+        "neverShare": "S NIKÝM NIKDY NESDÍLEJTE SVŮJ SEED"
     },
     "home": {
         "balance": "ZŮSTATEK",
         "send": "ODEŠLI",
-        "receive": "PŘÍJEM",
+        "receive": "PŘIJMOUT",
         "history": "HISTORIE",
         "settings": "NASTAVENÍ"
     },
@@ -153,7 +153,7 @@
         "cannotConnect": "Nelze se připojit k IOTA uzlu."
     },
     "loading": {
-        "loadingFirstTime": "Prvotní načítání seedu.",
+        "loadingFirstTime": "První načítání seedu.",
         "thisMayTake": "Toto může chvíli trvat.",
         "youMayNotice": "Může dojít ke zpomalení Vašeho zařízení."
     },
@@ -175,7 +175,7 @@
     },
     "receive": {
         "addressCopied": "Adresa zkopírována",
-        "addressCopiedExplanation": "Vaše adresa byla zkopírována do schránky.",
+        "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
         "generateNewAddress": "NOVÁ ADRESA",
         "message": "Volitelná zpráva",
         "removeMessage": "ODSTRANIT ZPRÁVU",
@@ -185,12 +185,12 @@
     "saveYourSeed": {
         "seedCleared": "Seed vymazán",
         "seedClearedExplanation": "Seed byl vymazán ze schránky pro Vaši bezpečnost.",
-        "mustSaveYourSeed": "<0><0>Je třeba uložit Váš seed s</0><1>alespoň jeden</1><2>z níže uvedených možností.</2></0>"
+        "mustSaveYourSeed": "<0><0>Musíte si uložit Seed</0><1>alespoň jeden</1><2>z níže uvedených.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Neplatný seed",
-        "incorrectSeedExplanation": "Zadaný seed byl nesprávný. Zkuste to prosím znovu.",
-        "thisIsACheck": "Toto je kontrola abyste jste se ujistili, že jste uložili Váš seed.",
+        "incorrectSeedExplanation": "Zadán neplatný seed. Zkuste to prosím znovu.",
+        "thisIsACheck": "Toto je kontrola abyste jste se ujistili, že jste uložili Váš Seed.",
         "ifYouHaveNotSaved": "Pokud jste Váš seed neuložili, vraťte se prosím zpět."
     },
     "send": {
@@ -203,7 +203,7 @@
         "keyReuse": "Opakované použití klíče",
         "keyReuseExplanation": "Adresa, na kterou se pokoušíte odeslat převod již byla použita. Zkuste jinou adresu.",
         "recipientAddress": "Adresa příjemce",
-        "amount": "Množství",
+        "amount": "Částka",
         "max": "MAX",
         "message": "Zpráva",
         "invalidMessage": "Neplatná zpráva",
@@ -232,14 +232,14 @@
     "modeSelection": {
         "expert": "Expert",
         "standard": "Výchozí",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "Expertní režim umožní přístup k dalším funkcím, jako je ruční propagace a reattachment.",
+        "modesExplanation": "Expertní režim povolte, pouze pokud jste zkušený Tangle uživatel. V opačném případě pro Vás může byt jeho použití matoucí."
     },
     "settings": {
         "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
+        "transferSendingExplanation": "Počkejte prosím, než se Váš převod pošle.",
+        "generatingAddress": "Generování adresy pro příjem",
+        "generatingAddressExplanation": "Prosím vyčkejte než bude Vaše adresa vygenerována.",
         "mode": "Režim",
         "theme": "Motiv",
         "currency": "Měna",
@@ -258,7 +258,7 @@
         "accountDeleted": "Účet smazán",
         "accountDeletedExplanation": "Účet byl odebrán z peněženky",
         "cannotPerformAction": "Akci nelze provést",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "cannotPerformActionExplanation": "Chcete-li obnovit peněženku, přejděte na rozšířená nastavení.",
         "poorConnection": "Špatné spojení",
         "poorConnectionExplanation": "Nezdařilo se změnit měnu - špatné spojení.",
         "hide": "Skrýt",
@@ -278,16 +278,16 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Zadejte Vaše heslo pro smazání peněženky.",
         "cancel": "ZRUŠIT",
         "reset": "OBNOVIT"
     },
     "walletSetup": {
         "okay": "OK - přejděme nyní k nastavení vaší peněženky!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seedExplanation": "IOTA seed je jako uživatelské jméno a heslo k Vašemu účtu, zkombinované do řady 81 znaků.",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
-        "keepSafe": "Please keep your seed safe."
+        "keepSafe": "Uchovávejte Váš seed v bezpečí."
     },
     "welcome": {
         "thankYou": "Děkujeme vám za stažení IOTA peněženky.",
@@ -352,15 +352,15 @@
         "one": "Jedna"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "Jste si jisti, že chcete odstranit účet \"{{accountName}}\"?",
+        "yourSeedWillBeRemoved": "Váš seed a transakční historie budou odebrány.",
         "thisAction": "Tuto akci nelze vrátit zpět.",
-        "enterPassword": "Enter your password to delete this account."
+        "enterPassword": "Zadejte Vaše heslo pro smazání tohoto účtu."
     },
     "manualSync": {
         "pressToSync": "Press the button below to sync your account.",
         "thisMayTake": "Může to chvíli trvat.",
-        "youMayNotice": "You may notice your device slowing down.",
+        "youMayNotice": "Může dojít ke zpomalení Vašeho zařízení.",
         "syncAccount": "SYNCHRONIZOVAT ÚČET",
         "syncingYourAccount": "Synchronizuji Váš účet."
     },
@@ -382,8 +382,8 @@
         "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "instructionsEnable": "Chcete-li povolit ověření otisků prstů, dotkněte se čtečky otisků prstů na zařízení.",
+        "instructionsDisable": "Klepnutím na čtečku otisků prstů zařízení zakážete ověřování pomocí otisků prstů.",
         "fingerprintAuthEnabled": "Autentifikace čtečkou otisku prstu zapnuta",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
         "fingerprintAuthDisabled": "Autentifikace čtečkou otisku prstu vypnuta",
