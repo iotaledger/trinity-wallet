@@ -176,7 +176,7 @@
     "receive": {
         "addressCopied": "Adresa skopírovaná",
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "NOVÁ ADRESA",
         "message": "Optional message",
         "removeMessage": "REMOVE MESSAGE",
         "noAddresses": "NO ADDRESSES",
