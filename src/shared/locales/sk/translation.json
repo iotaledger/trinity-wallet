@@ -93,7 +93,7 @@
         "accountName": "Názov účtu",
         "noNickname": "Nebol zadaný názov účtu",
         "noNicknameExplanation": "Zadajte názov účtu pre Váš seed.",
-        "seedInUse": "Seed already in use",
+        "seedInUse": "Seed je už používaný",
         "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
