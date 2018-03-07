@@ -153,22 +153,22 @@
         "cannotConnect": "K IOTA uzlu sa nedá pripojiť."
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Prvotné načítanie Seedu.",
+        "thisMayTake": "Môže to chvíľu trvat.",
+        "youMayNotice": "Môžete zaregistrovať spomalenie Vášho zariadenia."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "seedNotGenerated": "Seed nebol vygenerovaný",
+        "seedNotGeneratedExplanation": "Stlačte prosím tlačítko \"Generovat nový Seed\".",
+        "pressForNewSeed": "GENEROVAŤ NOVÝ SEED",
+        "individualLetters": "Vyberte náhodné písmena."
     },
     "onboardingComplete": {
         "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
     "paperWallet": {
         "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
+        "storeSafely": "Bezpečne uložte.",
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "IOTA logo",
         "printWallet": "PRINT PAPER WALLET"
