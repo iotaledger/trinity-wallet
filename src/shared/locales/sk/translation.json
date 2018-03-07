@@ -99,8 +99,8 @@
     "changePassword": {
         "oops": "Oops! Something went wrong",
         "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
-        "passwordUpdated": "Password updated",
-        "passwordUpdatedExplanation": "Your password has been successfully updated.",
+        "passwordUpdated": "Heslo bolo aktualizované",
+        "passwordUpdatedExplanation": "Vaše heslo bolo úspešne aktualizované.",
         "incorrectPassword": "Incorrect password",
         "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
         "passwordsDoNotMatch": "Passwords do not match",
