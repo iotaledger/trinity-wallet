@@ -232,7 +232,7 @@
     "modeSelection": {
         "expert": "Expert",
         "standard": "Výchozí",
-        "expertModeExplanation": "Expertní režim umožní přístup k dalším funkcím, jako je ruční propagace a reattachment.",
+        "expertModeExplanation": "Expertní režim umožní přístup k dalším funkcím, jako je ruční propagace a opětovné připojení.",
         "modesExplanation": "Expertní režim povolte, pouze pokud jste zkušený Tangle uživatel. V opačném případě pro Vás může byt jeho použití matoucí."
     },
     "settings": {
