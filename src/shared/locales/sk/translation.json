@@ -378,11 +378,11 @@
         "reenterWarning": "Ak prídete o svoje zariadenie a nebudete mať uložený svoj seed, stratíte všetky svoje IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "cannotUndo": "TÁTO AKCIA SA NEDÁ VRÁTIŤ.",
+        "warning": "<0><0>Všetky dáta Vašej peňaženky vrátane Vášho</0> <1>seedu, hesla</1> <2>a</2> <3>ďalších informácií o účte</3> <4>budú stratené.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsEnable": "Ak chcete povoliť overenie otlačkom prsta, dotknite sa čítačky otlačkov na Vašom zariadení.",
         "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
         "fingerprintAuthEnabled": "Fingerprint authentication enabled",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
