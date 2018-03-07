@@ -274,19 +274,19 @@
         "fingerprint": "Biometrické overovanie",
         "couldNotFetchRates": "Nie je možné načítať kurzy",
         "couldNotFetchRatesExplanation": "Došlo k chybe pri načítaní konverzných kurzov pre {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "fetchedConversionRates": "Načítané konverzné kurzy",
+        "fetchedConversionRatesExplanation": "Najnovšie konverzné kurzy pre {{currency}} úspešne načítané."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Pre zmazanie peňaženky zadajte Vaše heslo.",
+        "cancel": "ZRUŠIŤ",
+        "reset": "OBNOVIŤ"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "okay": "Ok. Prejdime k nastaveniu Vašej peňaženky!",
+        "doYouAlreadyHaveASeed": "Máte už vlastný seed, ktorý by ste chceli použiť?",
+        "seedExplanation": "IOTA seed je niečo ako Vaše užívateľské meno a zároveň heslo k Vášmu účtu, spojené do jedného reťazca 81 znakov.",
+        "explanation": "<0><0>Môžete ho použiť na prístup k svojim prostriedkom z</0> <1>akejkoľvek peňaženky</1> <2>, na</2> <3>na akomkoľvek zariadení</3> <4>. Ak však stratíte svoj seed, stratíte tiež všetky Vaše IOTA.</4></0>",
         "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
