@@ -15,7 +15,7 @@
         "messageSent": "Zpráva odeslána",
         "messageSentMessage": "Vaše zpráva byla odeslána do Tangle.",
         "keyReuse": "Opětovné použití klíče",
-        "keyReuseError": "Nelze odeslat na adresu na kterou již bylo odesláno.",
+        "keyReuseError": "Nelze odeslat na adresu ze které již bylo odesíláno.",
         "invalidResponse": "Neplatná odpověď",
         "invalidResponseExplanation": "Uzel vrátil neplatnou odpověď.",
         "invalidResponsePollingExplanation": "Uzel vrátil neplatnou odpověď při dotazování.",
@@ -79,7 +79,7 @@
         "cannotSendToOwn": "Odesílání na vlastní adresu",
         "cannotSendToOwnExplanation": "Nemůžete převést částku na vlastní adresy.",
         "pleaseWait": "Prosím čekejte",
-        "pleaseWaitExplanation": "Trinity vykonává jinou funkci. Počkejte prosím a poté akci opakujte.",
+        "pleaseWaitExplanation": "Trinity vykonává jinou funkci. Počkejte prosím a poté zkuste znovu.",
         "pleaseWaitTransferExplanation": "Váš disponibilní zůstatek se momentálně používá v jiných převodech. Počkejte prosím na jedno potvrzení než to zkusíte znovu."
     },
     "addAdditionalSeed": {
@@ -197,7 +197,7 @@
         "invalidAddress": "Neplatná adresa",
         "invalidAddressExplanation1": "Adresa by měla být dlouhá {{maxLength}} znaků a měla by mít kontrolní součet.",
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
+        "invalidAddressExplanation3": "Adresa je chybně dlouhá.",
         "notEnoughFunds": "Nedostatek prostředků",
         "notEnoughFundsExplanation": "Nemáte dostatek IOTA k dokončení této transakce.",
         "keyReuse": "Opakované použití klíče",
@@ -222,8 +222,8 @@
         "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím opakujte.",
         "nowWeNeedTo": "Nyní je třeba vytvořit heslo",
         "anEncryptedCopy": "V zařízení se uloží zašifrovaná kopie vašeho seedu. Tímto heslem se budete přihlašovat k Vaší peněžence.",
-        "ensure": "Ujistěte se, že budete používat bezpečené heslo s minimálně 12ti znaky.",
-        "retypePassword": "Zadejte heslo znovu"
+        "ensure": "Ujistěte se, že budete používat bezpečené heslo, dlouhé minimálně 12 znaků.",
+        "retypePassword": "Znovu zadejte heslo"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "V této peněžence můžete použít více Seedů. Každý Seed vyžaduje nový název účtu.",
@@ -233,7 +233,7 @@
         "expert": "Expert",
         "standard": "Výchozí",
         "expertModeExplanation": "Expertní režim umožní přístup k dalším funkcím, jako je ruční propagace a opětovné připojení.",
-        "modesExplanation": "Expertní režim povolte, pouze pokud jste zkušený Tangle uživatel. V opačném případě pro Vás může byt jeho použití matoucí."
+        "modesExplanation": "Expertní režim povolte, pouze pokud jste zkušený uživatel Tangle. Jinak to pro Vás může být matoucí."
     },
     "settings": {
         "transferSending": "Odesílání transakce",
@@ -258,7 +258,7 @@
         "accountDeleted": "Účet smazán",
         "accountDeletedExplanation": "Váš účet byl odebrán z peněženky",
         "cannotPerformAction": "Akci nelze provést",
-        "cannotPerformActionExplanation": "Chcete-li obnovit peněženku, přejděte na rozšířená nastavení.",
+        "cannotPerformActionExplanation": "Chcete-li obnovit peněženku, přejděte na Pokročilá nastavení.",
         "poorConnection": "Špatné spojení",
         "poorConnectionExplanation": "Nepodařilo se změnit měnu v důsledku špatného spojení.",
         "hide": "Skrýt",
@@ -278,7 +278,7 @@
         "fetchedConversionRatesExplanation": "Úspěšně načtení nejnovějších kurzů pro {{currency}}."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Zadejte Vaše heslo pro smazání peněženky.",
+        "enterPassword": "Pro smazání peněženky zadejte Vaše heslo.",
         "cancel": "ZRUŠIT",
         "reset": "OBNOVIT"
     },
@@ -304,7 +304,7 @@
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
         "send": "ODESLAT",
-        "receive": "PŘIJATO"
+        "receive": "PŘÍJEM"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
@@ -341,7 +341,7 @@
         "logoutConfirmation": "Opravdu se chcete odhlásit?"
     },
     "qrScanner": {
-        "scan": "Naskenovat QR kód"
+        "scan": "Naskenujte Váš QR kód"
     },
     "unitInfoModal": {
         "unitSystem": "JEDNOTKOVÝ SYSTÉM",
@@ -355,7 +355,7 @@
         "areYouSure": "Jste si jisti že chcete odstranit účet \"{{accountName}}\"?",
         "yourSeedWillBeRemoved": "Váš Seed a transakční historie budou odebrány.",
         "thisAction": "Tuto akci nelze vrátit zpět.",
-        "enterPassword": "Zadejte Vaše heslo pro smazání tohoto účtu."
+        "enterPassword": "Pro smazání účtu, zadejte Vaše heslo."
     },
     "manualSync": {
         "pressToSync": "Pro synchronizaci Vašeho účtu klinkněte na tlačítko níže.",
@@ -378,7 +378,7 @@
         "reenterWarning": "Když přijdete o své zařízení a nebudete mít uložený svůj Seed, ztratíte všechny své IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "TATO AKCE NEMŮŽE BÝT ODVOLÁNA.",
+        "cannotUndo": "TATO AKCE NEMŮŽE BÝT VRÁCENA.",
         "warning": "<0><0>Všechny data peněženky včetně Vašeho</0> <1>Seedu, hesla</1> <2>a</2> <3>dalších informací o účtu</3> <4>budou ztracena.</4></0>"
     },
     "fingerprintSetup": {
@@ -395,8 +395,8 @@
         "disabled": "Vypnuto",
         "fingerprintUnavailable": "Snímač otisků prstů není k dispozici",
         "fingerprintUnavailableExplanation": "Zařízení nepodporuje rozpoznávání otisků prstů nebo není tato funkce nakonfigurována v nastavení zařízení.",
-        "buttonInstructionsDisable": "Stisknutím tlačítka níže zakážete ověřování otisku prstů.",
-        "buttonInstructionsEnable": "Stisknutím tlačítka níže povolíte ověření otisků prstů.",
+        "buttonInstructionsDisable": "Stisknutím tlačítka níže vypnete ověřování otisku prstů.",
+        "buttonInstructionsEnable": "Stisknutím tlačítka níže aktivujete ověření otisků prstů.",
         "instructionsLogin": "Pro přihlášení se dotkněte čtečky otisku prstů."
     },
     "transferConfirmation": {
@@ -409,13 +409,13 @@
         "emptyCode": "Prázdný kód",
         "emptyCodeExplanation": "Prosím zadejte kód a zkuste to znovu.",
         "keyCopied": "Klíč zkopírován do schránky",
-        "keyCopiedExplanation": "Váš 2FA klíč byl zkopírována do schránky.",
+        "keyCopiedExplanation": "Váš 2FA klíč byl zkopírován do schránky.",
         "addKey": "Přidat tento klíč do Vaší 2FA aplikace",
         "key": "Klíč",
         "twoFAEnabled": "2FA aktivována",
-        "twoFAEnabledExplanation": "Úspěšně jste aktivovali dvou faktorovou autentifikaci.",
+        "twoFAEnabledExplanation": "Úspěšně jste aktivovali dvoufaktorovou autentifikaci F2A.",
         "enterCode": "Zadejte kód z Vaší 2FA aplikace",
-        "code": "Code"
+        "code": "Kód"
     },
     "chart": {
         "mcap": "MCAP",
