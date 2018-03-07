@@ -40,7 +40,7 @@ export const setVault = (oldPassword, newPassword, content) => {
     if (vault) {
         try {
             const decryptedVault = JSON.parse(sjcl.decrypt(oldPassword, vault));
-            content = Object.assign({}, decryptedVault, content)
+            content = Object.assign({}, decryptedVault, content);
         } catch (err) {
             throw new Error('Incorrect password');
         }

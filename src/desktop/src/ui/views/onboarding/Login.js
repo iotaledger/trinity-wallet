@@ -7,7 +7,7 @@ import authenticator from 'authenticator';
 
 import { getVault } from 'libs/crypto';
 
-import { showError } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
 import { clearTempData } from 'actions/tempAccount';
@@ -58,11 +58,13 @@ class Login extends React.Component {
         getMarketData: PropTypes.func.isRequired,
         /** Fetch currency data */
         getCurrencyData: PropTypes.func.isRequired,
-        /** Error modal helper
-         * @param {Object} content - Error screen content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -133,7 +135,7 @@ class Login extends React.Component {
         }
 
         const { password, code, verifyTwoFA } = this.state;
-        const { setSeeds, tempAccount, showError, t } = this.props;
+        const { setSeeds, tempAccount, generateAlert, t } = this.props;
 
         let vault = null;
 
@@ -142,10 +144,7 @@ class Login extends React.Component {
 
             if (vault.twoFAkey && !authenticator.verifyToken(vault.twoFAkey, code)) {
                 if (verifyTwoFA) {
-                    showError({
-                        title: t('twoFA:wrongCode'),
-                        text: t('twoFA:wrongCodeExplanation'),
-                    });
+                    generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
                 }
 
                 this.setState({
@@ -155,10 +154,7 @@ class Login extends React.Component {
                 return;
             }
         } catch (err) {
-            showError({
-                title: t('global:unrecognisedPassword'),
-                text: t('global:unrecognisedPasswordExplanation'),
-            });
+            generateAlert('error', t('global:unrecognisedPassword'), t('global:unrecognisedPasswordExplanation'));
         }
 
         if (vault) {
@@ -187,7 +183,6 @@ class Login extends React.Component {
                 />
             );
         }
-        
 
         return (
             <React.Fragment>
@@ -245,7 +240,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    showError,
+    generateAlert,
     setSeeds,
     clearTempData,
     clearSeeds,

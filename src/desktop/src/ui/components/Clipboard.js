@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { showNotification } from 'actions/notifications';
+
+import { generateAlert } from 'actions/alerts';
 
 import css from './clipboard.css';
 
@@ -19,27 +20,21 @@ class Clipboard extends React.PureComponent {
         title: PropTypes.string.isRequired,
         /** Success notification description */
         success: PropTypes.string.isRequired,
-        /** Notification helper function
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showNotification: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
     };
 
     render() {
-        const { label, text, showNotification, title, success } = this.props;
+        const { label, text, generateAlert, title, success } = this.props;
 
         return (
             <CopyToClipboard text={text}>
-                <span
-                    className={css.clipboard}
-                    onClick={() =>
-                        showNotification({
-                            type: 'success',
-                            title: title,
-                            text: success,
-                        })
-                    }
-                >
+                <span className={css.clipboard} onClick={() => generateAlert('success', title, success)}>
                     {label || text}
                 </span>
             </CopyToClipboard>
@@ -50,7 +45,7 @@ class Clipboard extends React.PureComponent {
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
-    showNotification,
+    generateAlert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clipboard);
