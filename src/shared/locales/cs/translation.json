@@ -35,7 +35,7 @@
         "paperWallet": "Tisk papírové kopie",
         "copyToClipboard": "Přidat do Správce hesel",
         "notAvailable": "Tato funkce není k dispozici",
-        "notAvailableExplanation": "Bude přidáno v pozdější fázi.",
+        "notAvailableExplanation": "Bude přidáno později.",
         "enterSeed": "Prosím zadejte Váš Seed.",
         "mainWallet": "HLAVNÍ ÚČET",
         "secondWallet": "DRUHÝ ÚČET",
@@ -120,9 +120,9 @@
         "seedCopied": "Seed zkopírován do schránky",
         "seedCopiedExplanation": "Seed bude vymazán jakmile stisknete \"Hotovo\" nebo po uplynutí 60 sekund.",
         "clickToCopy": "Klepněte na tlačítko níže a kopírujte Váš seed do Správce hesel.",
-        "doNotStore": "Neukládejte Váš Seed ve formátu prostého textu.",
+        "doNotStore": "Neuchovávejte Váš Seed ve formátu prostého textu.",
         "copyToClipboard": "Kopírovat seed",
-        "shareSeed": "Uchovejte Váš seed do zabezpečeného správce hesel"
+        "shareSeed": "Uchovejte Váš Seed do zabezpečeného správce hesel"
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
@@ -219,9 +219,9 @@
         "passwordTooShort": "Heslo je příliš krátké",
         "passwordTooShortExplanation": "Seed musí obsahovat minimálně {{minLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zadejte správně.",
         "passwordMismatch": "Neplatné heslo",
-        "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím opakujte.",
+        "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím zkuste znovu.",
         "nowWeNeedTo": "Nyní je třeba vytvořit heslo",
-        "anEncryptedCopy": "V zařízení se uloží zašifrovaná kopie vašeho seedu. Tímto heslem se budete přihlašovat k Vaší peněžence.",
+        "anEncryptedCopy": "V zařízení se uloží zašifrovaná kopie Vašeho Seedu. Tímto heslem se budete přihlašovat k Vaší peněžence.",
         "ensure": "Ujistěte se, že budete používat bezpečené heslo, dlouhé minimálně 12 znaků.",
         "retypePassword": "Znovu zadejte heslo"
     },
@@ -358,7 +358,7 @@
         "enterPassword": "Pro smazání účtu, zadejte Vaše heslo."
     },
     "manualSync": {
-        "pressToSync": "Pro synchronizaci Vašeho účtu klinkněte na tlačítko níže.",
+        "pressToSync": "Pro synchronizaci Vašeho účtu klikněte na tlačítko níže.",
         "thisMayTake": "Může to chvíli trvat.",
         "youMayNotice": "Může dojít ke zpomalení Vašeho zařízení.",
         "syncAccount": "SYNCHRONIZOVAT ÚČET",
@@ -413,7 +413,7 @@
         "addKey": "Přidat tento klíč do Vaší 2FA aplikace",
         "key": "Klíč",
         "twoFAEnabled": "2FA aktivována",
-        "twoFAEnabledExplanation": "Úspěšně jste aktivovali dvoufaktorovou autentifikaci F2A.",
+        "twoFAEnabledExplanation": "Úspěšně jste aktivovali dvoufaktorovou autentifikaci 2FA.",
         "enterCode": "Zadejte kód z Vaší 2FA aplikace",
         "code": "Kód"
     },
