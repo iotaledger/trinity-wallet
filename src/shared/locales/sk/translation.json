@@ -177,9 +177,9 @@
         "addressCopied": "Adresa skopírovaná",
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
         "generateNewAddress": "NOVÁ ADRESA",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE",
-        "noAddresses": "NO ADDRESSES",
+        "message": "Voliteľná správa",
+        "removeMessage": "ODSTRÁNIŤ SPRÁVU",
+        "noAddresses": "ŽIADNE ADRESY",
         "spent": "Spent"
     },
     "saveYourSeed": {
