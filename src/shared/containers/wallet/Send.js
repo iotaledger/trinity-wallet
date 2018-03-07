@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { showError } from '../../actions/notifications';
+import { generateAlert } from '../../actions/alerts';
+
 import { prepareTransfer } from '../../actions/tempAccount';
 import { getSelectedAccountNameViaSeedIndex, getBalanceForSelectedAccountViaSeedIndex } from '../../selectors/account';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/util';
@@ -21,48 +22,32 @@ export default function withSendData(SendComponent) {
             tempAccount: PropTypes.object.isRequired,
             seed: PropTypes.string.isRequired,
             settings: PropTypes.object.isRequired,
-            showError: PropTypes.func.isRequired,
+            generateAlert: PropTypes.func.isRequired,
             prepareTransfer: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
         };
 
         validateInputs = (address, amount) => {
-            const { showError, balance } = this.props;
+            const { generateAlert, balance, t } = this.props;
 
             if (address.length !== ADDRESS_LENGTH) {
-                showError({
-                    title: 'send:invalidAddress',
-                    text: 'send:invalidAddressExplanation1',
-                    translate: true,
-                });
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
                 return false;
             }
 
             if (!address.match(VALID_SEED_REGEX)) {
-                showError({
-                    title: 'send:invalidAddress',
-                    text: 'send:invalidAddressExplanation2',
-                    translate: true,
-                });
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation2'));
                 return false;
             }
 
             if (!iota.utils.isValidChecksum(address)) {
-                showError({
-                    title: 'send:invalidAddress',
-                    text: 'send:invalidAddressExplanation3',
-                    translate: true,
-                });
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation3'));
                 return false;
             }
 
             if (parseFloat(amount) > balance) {
-                showError({
-                    title: 'send:notEnoughFunds',
-                    text: 'send:notEnoughFundsExplanation',
-                    translate: true,
-                });
+                generateAlert('error', t('send:notEnoughFunds'), t('send:notEnoughFundsExplanation'));
                 return false;
             }
 
@@ -70,23 +55,19 @@ export default function withSendData(SendComponent) {
         };
 
         sendTransfer = (seed, address, value, message, taskRunner) => {
-            const { prepareTransfer, tempAccount, accountName, showError, t } = this.props;
+            const { prepareTransfer, tempAccount, accountName, generateAlert, t } = this.props;
 
             if (tempAccount.isSyncing) {
-                showError({
-                    title: t('global:syncInProgress'),
-                    text: t('global:syncInProgressExplanation'),
-                    translate: true,
-                });
+                generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
                 return;
             }
 
             if (tempAccount.isTransitioning) {
-                showError({
-                    title: 'Snapshot transition in progress',
-                    text: 'Please wait until the transition is complete.',
-                    translate: true,
-                });
+                generateAlert(
+                    'error',
+                    t('Snapshot transition in progress'),
+                    t('Please wait until the transition is complete.'),
+                );
                 return;
             }
 
@@ -128,7 +109,7 @@ export default function withSendData(SendComponent) {
     });
 
     const mapDispatchToProps = {
-        showError,
+        generateAlert,
         prepareTransfer,
     };
 

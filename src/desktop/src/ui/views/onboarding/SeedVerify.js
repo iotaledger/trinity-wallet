@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { isValidSeed } from 'libs/util';
-import { showError } from 'actions/notifications';
+
+import { generateAlert } from 'actions/alerts';
 import { setNewSeed } from 'actions/seeds';
+
 import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
 import SeedInput from 'ui/components/input/Seed';
@@ -12,107 +14,106 @@ import SeedInput from 'ui/components/input/Seed';
 /**
  * Onboarding, Seed correct backup validation or existing seed input component
  */
-class SeedEnter extends React.PureComponent {
-   static propTypes = {
-      /** Current generated seed */
-      newSeed: PropTypes.string.isRequired,
-      /** Accept current generated seed
-       * @param {String} seed - New seed 
-       */
-      setNewSeed: PropTypes.func.isRequired,
-      /** Browser History object */
-      history: PropTypes.shape({
-         push: PropTypes.func.isRequired,
-      }).isRequired,
-      /** Error modal helper
-       * @param {Object} content - error screen content
-       * @ignore
-       */
-      showError: PropTypes.func.isRequired,
-      /** Translation helper
-       * @param {string} translationString - locale string identifier to be translated
-       * @ignore
-       */
-      t: PropTypes.func.isRequired,
-   };
+class SeedVerify extends React.PureComponent {
+    static propTypes = {
+        /** Current generated seed */
+        newSeed: PropTypes.string,
+        /** Accept current generated seed
+         * @param {String} seed - New seed
+         */
+        setNewSeed: PropTypes.func.isRequired,
+        /** Browser History object */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         * @ignore
+         */
+        t: PropTypes.func.isRequired,
+    };
 
-   state = {
-      seed: '',
-   };
+    state = {
+        seed: '',
+    };
 
-   onChange = (value) => {
-      this.setState(() => ({
-         seed: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase(),
-      }));
-   };
+    onChange = (value) => {
+        this.setState(() => ({
+            seed: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase(),
+        }));
+    };
 
-   setSeed = (e) => {
+    setSeed = (e) => {
+        if (e) {
+            e.preventDefault();
+        }
 
-      if (e) e.preventDefault();
+        const { history, setNewSeed, generateAlert, newSeed, t } = this.props;
+        const { seed } = this.state;
 
-      const { history, showError, newSeed, t } = this.props;
-      const { seed } = this.state;
+        if (newSeed && seed !== newSeed) {
+            generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
+            return;
+        }
 
-      if (newSeed && seed !== newSeed) {
-         showError({ title: t('seedReentry:incorrectSeed'), text: t('seedReentry:incorrectSeedExplanation') });
-         return;
-      }
+        if (!isValidSeed(seed)) {
+            generateAlert('error', t('seedReentry:incorrectSeed'), t('enterSeed:seedTooShort'));
+            return;
+        }
 
-      if (!isValidSeed(seed)) {
-         showError({
-            title: t('seedReentry:incorrectSeed'),
-            text: t('enterSeed:seedTooShort'),
-         });
-         return;
-      }
+        setNewSeed(seed);
+        history.push('/onboarding/account-name');
+    };
 
-      setNewSeed(seed);
-      history.push('/onboarding/account-name');
-
-   };
-
-   render() {
-      const { newSeed, t } = this.props;
-      const { seed = '' } = this.state;
-      return (
-         <form onSubmit={(e) => this.setSeed(e)}>
-            <div />
-            <section>
-               <SeedInput
-                  seed={seed}
-                  onChange={this.onChange}
-                  label={t('global:seed')}
-                  closeLabel={t('global:back')}
-               />
-               <Infobox>
-                  <p>{t('seedReentry:thisIsACheck')}</p>
-                  <p>{t('seedReentry:ifYouHaveNotSaved')}</p>
-               </Infobox>
-            </section>
-            <footer>
-               <Button
-                  to={`/onboarding/seed-${newSeed ? 'save' : 'intro'}`}
-                  className="outline"
-                  variant="highlight"
-               >
-                  {t('global:back')}
-               </Button>
-               <Button type="submit" className="outline" variant="primary">
-                  {t('global:next')}
-               </Button>
-            </footer>
-         </form>
-      );
-   }
+    render() {
+        const { newSeed, t } = this.props;
+        const { seed = '' } = this.state;
+        return (
+            <form onSubmit={(e) => this.setSeed(e)}>
+                <div />
+                <section>
+                    <SeedInput
+                        seed={seed}
+                        onChange={this.onChange}
+                        label={t('global:seed')}
+                        closeLabel={t('global:back')}
+                    />
+                    <Infobox>
+                        <p>{t('seedReentry:thisIsACheck')}</p>
+                        <p>{t('seedReentry:ifYouHaveNotSaved')}</p>
+                    </Infobox>
+                </section>
+                <footer>
+                    <Button
+                        to={`/onboarding/seed-${newSeed ? 'save' : 'intro'}`}
+                        className="outline"
+                        variant="secondary"
+                    >
+                        {t('global:back')}
+                    </Button>
+                    <Button type="submit" className="outline" variant="primary">
+                        {t('global:next')}
+                    </Button>
+                </footer>
+            </form>
+        );
+    }
 }
 
 const mapStateToProps = (state) => ({
-   newSeed: state.seeds.newSeed,
+    newSeed: state.seeds.newSeed,
 });
 
 const mapDispatchToProps = {
-   showError,
-   setNewSeed
+    generateAlert,
+    setNewSeed,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(SeedEnter));
+export default translate()(connect(mapStateToProps, mapDispatchToProps)(SeedVerify));

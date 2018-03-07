@@ -48,9 +48,7 @@ class Dashboard extends React.PureComponent {
                 </section>
                 <section className={css.market}>
                     <Chart />
-                    <div className={css.news}>
-                        
-                    </div>
+                    <div className={css.news} />
                 </section>
             </React.Fragment>
         );

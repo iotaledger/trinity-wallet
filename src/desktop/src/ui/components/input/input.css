@@ -66,7 +66,7 @@
         input:focus + small,
         textarea:focus + small,
         select:focus + small {
-            color: var(--label-active);
+            color: var(--label-hover);
         }
         a {
             display: flex;

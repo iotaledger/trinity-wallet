@@ -1,16 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate, Trans } from 'react-i18next';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSelectedAccountViaSeedIndex, getSelectedAccountNameViaSeedIndex } from 'selectors/account';
-
-import { changeAccountName } from 'actions/account';
-import { showError } from 'actions/notifications';
-import { loadSeeds } from 'actions/seeds';
+import { getSelectedAccountNameViaSeedIndex } from 'selectors/account';
 import { setVault } from 'libs/crypto';
 
-import Text from 'ui/components/input/Text';
+import { changeAccountName } from 'actions/account';
+import { generateAlert } from 'actions/alerts';
+import { loadSeeds } from 'actions/seeds';
 
+import Text from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 
 /**
@@ -35,11 +34,13 @@ class AccountName extends PureComponent {
          * @param {Object} seeds - Seed state data
          */
         loadSeeds: PropTypes.func.isRequired,
-        /** Error helper function
-         * @param {Object} content - Error notification content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {String} translationString - Locale string identifier to be translated
          * @ignore
@@ -53,16 +54,22 @@ class AccountName extends PureComponent {
 
     /** Change account name in state and in vault */
     setAccountName() {
-        const { password, vault, accountName, changeAccountName, accountInfo, showError, loadSeeds, t } = this.props;
+        const {
+            password,
+            vault,
+            accountName,
+            changeAccountName,
+            accountInfo,
+            generateAlert,
+            loadSeeds,
+            t,
+        } = this.props;
         const { newAccountName } = this.state;
 
         const accountNames = Object.keys(accountInfo);
 
         if (accountNames.indexOf(newAccountName) > -1) {
-            showError({
-                title: t('addAdditionalSeed:nameInUse'),
-                text: t('addAdditionalSeed:nameInUseExplanation'),
-            });
+            generateAlert('error', t('addAdditionalSeed:nameInUse'), t('addAdditionalSeed:nameInUseExplanation'));
             return;
         }
 
@@ -74,13 +81,9 @@ class AccountName extends PureComponent {
         setVault(password, password, vault);
         loadSeeds(vault);
 
-        let newAccountInfo = Object.assign({}, accountInfo, { [newAccountName]: accountInfo[accountName] });
+        const newAccountInfo = Object.assign({}, accountInfo, { [newAccountName]: accountInfo[accountName] });
         delete newAccountInfo[accountName];
         changeAccountName(newAccountInfo, Object.keys(newAccountInfo));
-
-        this.setState({
-            passwordConfirm: false,
-        });
     }
 
     render() {
@@ -117,7 +120,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     changeAccountName,
     loadSeeds,
-    showError,
+    generateAlert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));
