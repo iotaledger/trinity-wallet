@@ -264,18 +264,18 @@
         "hide": "Skrýt",
         "hideOthers": "Skrýt ostatní",
         "showAll": "Zobrazit vše",
-        "quit": "Odejít",
+        "quit": "Ukončit",
         "edit": "Upravit",
         "cut": "Vyjmout",
         "copy": "Kopírovat",
         "paste": "Vložit",
         "selectAll": "Vybrat vše",
         "securitySettings": "Nastavení zabezpečení",
-        "fingerprint": "Biometrické ověřování",
+        "fingerprint": "Biometrické ověření",
         "couldNotFetchRates": "Nelze načíst ceny",
         "couldNotFetchRatesExplanation": "Došlo k chybě při načítání kurzu pro {{currency}}.",
         "fetchedConversionRates": "Načítám kurzy",
-        "fetchedConversionRatesExplanation": "Úspěšně načtené nejnovější kurzy pro {{currency}}."
+        "fetchedConversionRatesExplanation": "Úspěšně načtení nejnovějších kurzů pro {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Zadejte Vaše heslo pro smazání peněženky.",
