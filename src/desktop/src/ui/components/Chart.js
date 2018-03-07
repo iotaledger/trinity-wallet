@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { LineChart, ResponsiveContainer, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { LineChart, ResponsiveContainer, Line, YAxis } from 'recharts';
 
 import withChartData from 'containers/components/Chart';
 

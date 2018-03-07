@@ -28,9 +28,6 @@ class Receive extends React.PureComponent {
 
     onGeneratePress = () => {
         const { seed, accountName, account } = this.props;
-
-        console.log([seed, accountName, account]);
-
         runTask('generateNewAddress', [seed, accountName, account]);
     };
 

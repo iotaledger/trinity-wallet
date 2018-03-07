@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { showError } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -30,11 +30,13 @@ class ModalPassword extends PureComponent {
          * @param {Object} Vault - Vault content
          */
         onSuccess: PropTypes.func.isRequired,
-        /** Error helper function
-         * @param {Object} content - Error notification content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {String} translationString - Locale string identifier to be translated
          * @ignore
@@ -56,7 +58,7 @@ class ModalPassword extends PureComponent {
 
     onSubmit(e) {
         const { password } = this.state;
-        const { onSuccess, showError, t } = this.props;
+        const { onSuccess, generateAlert, t } = this.props;
 
         e.preventDefault();
 
@@ -65,10 +67,11 @@ class ModalPassword extends PureComponent {
         try {
             vault = getVault(password);
         } catch (err) {
-            showError({
-                title: t('changePassword:incorrectPassword'),
-                text: t('changePassword:incorrectPasswordExplanation'),
-            });
+            generateAlert(
+                'error',
+                t('changePassword:incorrectPassword'),
+                t('changePassword:incorrectPasswordExplanation'),
+            );
             return;
         }
 
@@ -108,7 +111,7 @@ class ModalPassword extends PureComponent {
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
-    showError,
+    generateAlert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(ModalPassword));
