@@ -128,29 +128,29 @@
         "invalidCharacters": "Seed obsahuje neplatné znaky",
         "invalidCharactersExplanation": "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím skúste znova.",
         "seedTooShort": "Seed je príliš krátky",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedTooShortExplanation": "Seed musí mať {{maxLength}} znakov. Váš seed má {{currentLength}} znakov. Prosím skúste znova.",
+        "seedExplanation": "Seed by mal mať dĺžku {{maxLength}} znakov a mal by obsahovat velké písmena A-Z a číslo 9. Nie je možné použít Seed dlhší ako {{maxLength}} znakov.",
+        "neverShare": "NIKDY S NIKÝM NEZDIEĽAJTE VÁŠ SEED"
     },
     "home": {
-        "balance": "BALANCE",
-        "send": "SEND",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "balance": "ZOSTATOK",
+        "send": "POSLAŤ",
+        "receive": "PRIJAŤ",
+        "history": "HISTÓRIA",
+        "settings": "NASTAVENIA"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "Jazyk"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
-        "login": "LOG IN",
-        "selectDifferentNode": "Do you want to select a different node?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "emptyPassword": "Prázdne heslo",
+        "emptyPasswordExplanation": "Pre prihlásenie musíte zadať heslo. Prosím skúste znova.",
+        "enterPassword": "Prosím zadajte Vaše heslo.",
+        "useSeed": "POUŽI SEED",
+        "login": "PRIHLÁSIŤ SA",
+        "selectDifferentNode": "Chcete vybrať iný uzol?",
+        "setNode": "NASTAVIŤ UZOL",
+        "cannotConnect": "K IOTA uzlu sa nedá pripojiť."
     },
     "loading": {
         "loadingFirstTime": "Loading seed for the first time.",
