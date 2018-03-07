@@ -260,7 +260,7 @@
         "cannotPerformAction": "Akci nelze provést",
         "cannotPerformActionExplanation": "Chcete-li obnovit peněženku, přejděte na Pokročilá nastavení.",
         "poorConnection": "Špatné spojení",
-        "poorConnectionExplanation": "Nepodařilo se změnit měnu v důsledku špatného spojení.",
+        "poorConnectionExplanation": "Nezdařilo se změnit měnu - špatné spojení.",
         "hide": "Skrýt",
         "hideOthers": "Skrýt ostatní",
         "showAll": "Zobrazit vše",
