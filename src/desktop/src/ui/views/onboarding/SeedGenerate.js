@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { translate, Trans } from 'react-i18next';
-import { setNewSeed, clearNewSeed } from 'actions/seeds';
-import { showError } from 'actions/notifications';
 import { isValidSeed, MAX_SEED_LENGTH } from 'libs/util';
 import { createRandomSeed } from 'libs/crypto';
+
+import { setNewSeed, clearNewSeed } from 'actions/seeds';
+import { generateAlert } from 'actions/alerts';
+
 import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
 
@@ -25,11 +27,13 @@ class GenerateSeed extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Error modal helper
-         * @param {Object} content - error screen content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Clears new seed data from state */
         clearNewSeed: PropTypes.func.isRequired,
         /** Translation helper
@@ -50,15 +54,11 @@ class GenerateSeed extends React.PureComponent {
     };
 
     onRequestNext = () => {
-        const { setNewSeed, history, showError } = this.props;
+        const { setNewSeed, history, generateAlert, t } = this.props;
         const { seed } = this.state;
 
         if (!seed || !isValidSeed(seed)) {
-            return showError({
-                title: 'seedReentry:incorrectSeed',
-                text: 'seedReentry:incorrectSeedExplanation',
-                translate: true,
-            });
+            return generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
         }
         setNewSeed(seed);
         history.push('/onboarding/seed-save');
@@ -134,7 +134,7 @@ class GenerateSeed extends React.PureComponent {
                     </div>
                 </section>
                 <footer>
-                    <Button onClick={this.onRequestPrevious} className="outline" variant="highlight">
+                    <Button onClick={this.onRequestPrevious} className="outline" variant="secondary">
                         {t('global:back')}
                     </Button>
                     <Button onClick={this.onRequestNext} className="outline" disabled={!seed} variant="primary">
@@ -151,7 +151,7 @@ const mapStateToProps = () => ({});
 const mapDispatchToProps = {
     setNewSeed,
     clearNewSeed,
-    showError,
+    generateAlert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(GenerateSeed));

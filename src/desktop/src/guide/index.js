@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider as Redux } from 'react-redux';
-import { persistStore } from 'redux-persist';
 import store from 'store';
 import { BrowserRouter as Router, withRouter, NavLink, Switch, Route } from 'react-router-dom';
 
@@ -12,7 +11,6 @@ import 'ui/index.css';
 import Logo from 'ui/components/Logo';
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
-import Notifications from 'ui/global/Notifications';
 import ThemePicker from './ThemePicker';
 
 import i18next from '../libs/i18next';
@@ -40,50 +38,43 @@ const Intro = () => {
     );
 };
 
-class Guide extends React.Component {
-    componentWillMount() {
-        persistStore(store);
-    }
-
-    render() {
-        return (
-            <div className={css.styleguide}>
-                <Theme />
-                <Alerts />
-                <Notifications />
-                <aside>
-                    <Logo size={48} />
-                    <h1>Trinity</h1>
-                    <nav>
-                        <NavLink to="/colors">Colors</NavLink>
-                        <NavLink to="/icons">Icons</NavLink>
-                        <NavLink to="/typography">Typography</NavLink>
-                        <NavLink to="/buttons">Buttons</NavLink>
-                        <NavLink to="/inputs">Inputs</NavLink>
-                        <NavLink to="/modals">Modals & Alerts</NavLink>
-                        <NavLink to="/lists">Lists</NavLink>
-                        <NavLink to="/modify">Modify theme</NavLink>
-                    </nav>
-                    <hr />
-                    <ThemePicker />
-                </aside>
-                <section>
-                    <Switch>
-                        <Route path="/colors" component={Colors} />
-                        <Route path="/icons" component={Icons} />
-                        <Route path="/buttons" component={Buttons} />
-                        <Route path="/inputs" component={Inputs} />
-                        <Route path="/modals" component={Modals} />
-                        <Route path="/typography" component={Typography} />
-                        <Route path="/lists" component={Lists} />
-                        <Route path="/modify" component={Modify} />
-                        <Route path="/" component={Intro} />
-                    </Switch>
-                </section>
-            </div>
-        );
-    }
-}
+const Guide = () => {
+    return (
+        <div className={css.styleguide}>
+            <Theme />
+            <Alerts />
+            <aside>
+                <Logo size={48} />
+                <h1>Trinity</h1>
+                <nav>
+                    <NavLink to="/colors">Colors</NavLink>
+                    <NavLink to="/icons">Icons</NavLink>
+                    <NavLink to="/typography">Typography</NavLink>
+                    <NavLink to="/buttons">Buttons</NavLink>
+                    <NavLink to="/inputs">Inputs</NavLink>
+                    <NavLink to="/modals">Modals & Alerts</NavLink>
+                    <NavLink to="/lists">Lists</NavLink>
+                    <NavLink to="/modify">Modify theme</NavLink>
+                </nav>
+                <hr />
+                <ThemePicker />
+            </aside>
+            <section>
+                <Switch>
+                    <Route path="/colors" component={Colors} />
+                    <Route path="/icons" component={Icons} />
+                    <Route path="/buttons" component={Buttons} />
+                    <Route path="/inputs" component={Inputs} />
+                    <Route path="/modals" component={Modals} />
+                    <Route path="/typography" component={Typography} />
+                    <Route path="/lists" component={Lists} />
+                    <Route path="/modify" component={Modify} />
+                    <Route path="/" component={Intro} />
+                </Switch>
+            </section>
+        </div>
+    );
+};
 
 const App = withRouter(translate('App')(Guide));
 

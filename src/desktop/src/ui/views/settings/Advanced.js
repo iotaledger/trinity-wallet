@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { showError } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
 import { getVault } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
@@ -15,11 +15,13 @@ import Modal from 'ui/components/modal/Modal';
  */
 class Advanced extends PureComponent {
     static propTypes = {
-        /** Error helper function
-         * @param {Object} content - Error notification content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {String} translationString - Locale string identifier to be translated
          * @ignore
@@ -34,7 +36,7 @@ class Advanced extends PureComponent {
 
     resetWallet = (e) => {
         const { password } = this.state;
-        const { t, showError } = this.props;
+        const { t, generateAlert } = this.props;
 
         e.preventDefault();
 
@@ -43,10 +45,11 @@ class Advanced extends PureComponent {
             localStorage.clear();
             location.reload();
         } catch (err) {
-            showError({
-                title: t('changePassword:incorrectPassword'),
-                text: t('changePassword:incorrectPasswordExplanation'),
-            });
+            generateAlert(
+                'error',
+                t('changePassword:incorrectPassword'),
+                t('changePassword:incorrectPasswordExplanation'),
+            );
             return;
         }
     };
@@ -100,7 +103,7 @@ class Advanced extends PureComponent {
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
-    showError,
+    generateAlert,
 };
 
 export default translate()(connect(mapStateToProps, mapDispatchToProps)(Advanced));

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
 import { setSeeds } from 'actions/seeds';
-import { showError } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
 import { addAccountName } from 'actions/account';
 import { setAdditionalAccountInfo, setSeedIndex } from 'actions/tempAccount';
 
@@ -45,11 +45,13 @@ class AccountPassword extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Error modal helper
-         * @param {Object} content - error screen content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -71,7 +73,7 @@ class AccountPassword extends React.PureComponent {
             setSeedIndex,
             history,
             seeds,
-            showError,
+            generateAlert,
             t,
         } = this.props;
         const { password, passwordConfirm } = this.state;
@@ -81,17 +83,19 @@ class AccountPassword extends React.PureComponent {
         }
 
         if (firstAccount && password !== passwordConfirm) {
-            return showError({
-                title: t('changePassword:passwordsDoNotMatch'),
-                text: t('changePassword:passwordsDoNotMatchExplanation'),
-            });
+            return generateAlert(
+                'error',
+                t('changePassword:passwordsDoNotMatch'),
+                t('changePassword:passwordsDoNotMatchExplanation'),
+            );
         }
 
         if (firstAccount && !isValidPassword(password)) {
-            return showError({
-                title: t('changePassword:passwordTooShort'),
-                text: t('changePassword:passwordTooShortExplanation'),
-            });
+            return generateAlert(
+                'error',
+                t('changePassword:passwordTooShort'),
+                t('changePassword:passwordTooShortExplanation'),
+            );
         }
 
         const newSeeds = [].concat(seeds.seeds, seeds.newSeed);
@@ -155,7 +159,7 @@ class AccountPassword extends React.PureComponent {
                     </Infobox>
                 </section>
                 <footer>
-                    <Button to="/seed/name" className="outline" variant="highlight">
+                    <Button to="/onboarding/account-name" className="outline" variant="secondary">
                         {t('global:back')}
                     </Button>
                     <Button type="submit" className="outline" variant="primary">
@@ -176,7 +180,7 @@ const mapDispatchToProps = {
     setSeeds,
     addAccountName,
     setAdditionalAccountInfo,
-    showError,
+    generateAlert,
     setSeedIndex,
 };
 

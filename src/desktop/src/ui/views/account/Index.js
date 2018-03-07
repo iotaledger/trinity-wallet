@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { showNotification } from 'actions/notifications';
 
 import Icon from 'ui/components/Icon';
 import ModalPassword from 'ui/components/modal/Password';
@@ -118,8 +117,4 @@ const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
 });
 
-const mapDispatchToProps = {
-    showNotification,
-};
-
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Account));
+export default translate()(connect(mapStateToProps)(Account));

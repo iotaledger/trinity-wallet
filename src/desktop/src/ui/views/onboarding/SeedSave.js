@@ -4,7 +4,7 @@ import QRCode from 'qrcode.react';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { showNotification } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
 
@@ -17,11 +17,13 @@ class SeedSave extends PureComponent {
     static propTypes = {
         /** Current user defined seed */
         seed: PropTypes.string,
-        /** Notification helper
-         * @param {object} content - notification content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showNotification: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -30,7 +32,7 @@ class SeedSave extends PureComponent {
     };
 
     render() {
-        const { t, seed, showNotification } = this.props;
+        const { t, seed, generateAlert } = this.props;
 
         return (
             <React.Fragment>
@@ -50,12 +52,11 @@ class SeedSave extends PureComponent {
                                 className="small"
                                 variant="secondary"
                                 onClick={() =>
-                                    showNotification({
-                                        type: 'success',
-                                        title: 'Seed copied to clipboard!',
-                                        text:
-                                            'Copy your seed to a password manager and do not store the seed in plain text. The seed will stay in your clipboard for 60 seconds',
-                                    })
+                                    generateAlert(
+                                        'success',
+                                        t('copyToClipboard:seedCopied'),
+                                        t('copyToClipboard:seedCopiedExplanation'),
+                                    )
                                 }
                             >
                                 {t('copyToClipboard:copyToClipboard')}
@@ -67,7 +68,7 @@ class SeedSave extends PureComponent {
                     </nav>
                 </section>
                 <footer>
-                    <Button to="/onboarding/seed-generate" className="outline" variant="highlight">
+                    <Button to="/onboarding/seed-generate" className="outline" variant="secondary">
                         {t('global:back')}
                     </Button>
                     <Button to="/onboarding/seed-verify" className="outline" variant="primary">
@@ -84,7 +85,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    showNotification,
+    generateAlert,
 };
 
 export default translate()(connect(mapStateToProps, mapDispatchToProps)(SeedSave));
