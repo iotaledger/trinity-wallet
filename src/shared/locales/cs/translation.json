@@ -91,7 +91,7 @@
         "nameInUseExplanation": "Prosím použijte jedinečný název účtu pro Váš seed.",
         "enterAccountName": "Zadejte název účtu.",
         "accountName": "Název účtu",
-        "noNickname": "Nebylo zadán žádný název účtu",
+        "noNickname": "Nebyl zadán žádný název účtu",
         "noNicknameExplanation": "Zadejte název účtu pro Váš seed.",
         "seedInUse": "Seed je již používán",
         "seedInUseExplanation": "Tento seed je již propojen s vaší peněženkou. Použijte prosím jiný."
@@ -218,7 +218,7 @@
     "setPassword": {
         "passwordTooShort": "Heslo je příliš krátké",
         "passwordTooShortExplanation": "Seed musí obsahovat minimálně {{minLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zadejte správně.",
-        "passwordMismatch": "Neplatné heslo",
+        "passwordMismatch": "Hesla se neshodují",
         "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím opakujte.",
         "nowWeNeedTo": "Nyní je třeba vytvořit heslo",
         "anEncryptedCopy": "V zařízení se uloží zašifrovaná kopie vašeho seedu. Tímto heslem se budete přihlašovat k vaší peněžence.",
@@ -273,9 +273,9 @@
         "securitySettings": "Nastavení zabezpečení",
         "fingerprint": "Biometrické ověřování",
         "couldNotFetchRates": "Nelze načíst ceny",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "couldNotFetchRatesExplanation": "Došlo k chybě při načítání kurzu pro {{currency}}.",
+        "fetchedConversionRates": "Načítám kurzy",
+        "fetchedConversionRatesExplanation": "Úspěšně načtené nejnovější kurzy pro {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Zadejte Vaše heslo pro smazání peněženky.",
@@ -373,7 +373,7 @@
         "hideSeed": "SKRÝT SEED"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
+        "alreadyHave": "Svůj Seed mám uložený",
         "reenter": "Nyní budete požádáni o znovu zadání vašeho Seed.",
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
@@ -395,7 +395,7 @@
         "disabled": "Vypnuto",
         "fingerprintUnavailable": "Snímač otisků prstů není k dispozici",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsDisable": "Stisknutím tlačítka níže zakážete ověřování otisku prstů.",
         "buttonInstructionsEnable": "Stisknutím tlačítka níže povolíte ověření otisků prstů.",
         "instructionsLogin": "Pro přihlášení se dotkněte čtečky otisku prstů."
     },
