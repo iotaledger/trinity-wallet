@@ -236,7 +236,7 @@
         "modesExplanation": "Expertní režim povolte, pouze pokud jste zkušený Tangle uživatel. V opačném případě pro Vás může byt jeho použití matoucí."
     },
     "settings": {
-        "transferSending": "Odesílání transakce",
+        "transferSending": "Transakce odeslána",
         "transferSendingExplanation": "Počkejte prosím, než se Váš převod pošle.",
         "generatingAddress": "Generování adresy pro příjem",
         "generatingAddressExplanation": "Prosím vyčkejte než bude Vaše adresa vygenerována.",
@@ -352,7 +352,7 @@
         "one": "Jedna"
     },
     "deleteAccount": {
-        "areYouSure": "Jste si jisti, že chcete odstranit účet \"{{accountName}}\"?",
+        "areYouSure": "Jste si jisti že chcete odstranit účet \"{{accountName}}\"?",
         "yourSeedWillBeRemoved": "Váš Seed a transakční historie budou odebrány.",
         "thisAction": "Tuto akci nelze vrátit zpět.",
         "enterPassword": "Zadejte Vaše heslo pro smazání tohoto účtu."
@@ -368,18 +368,18 @@
         "title": "Zadejte Seed a název účtu."
     },
     "viewSeed": {
-        "enterPassword": "Zadejte heslo pro zobrazení Vašeho Seed.",
+        "enterPassword": "Zadejte heslo pro zobrazení Vašeho Seedu.",
         "viewSeed": "ZOBRAZIT SEED",
         "hideSeed": "SKRÝT SEED"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Svůj Seed mám uložený",
-        "reenter": "Nyní budete požádáni o znovu zadání vašeho Seed.",
+        "reenter": "Nyní budete požádáni o znovu zadání vašeho Seedu.",
         "reenterWarning": "Když přijdete o své zařízení a nebudete mít uložený svůj Seed, ztratíte všechny své IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TATO AKCE NEMŮŽE BÝT ODVOLÁNA.",
-        "warning": "<0><0>Všechny vaše údaje o peněžence včetně Vašeho</0><1>seedu, hesla,</1><2> a </2><3>ostatní informace o účtu</3><4> budou smazány. </4></0>"
+        "warning": "<0><0>Všechny data peněženky včetně Vašeho</0> <1>Seedu, hesla</1> <2>a</2> <3>dalších informací o účtu</3> <4>budou ztracena.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Chcete-li povolit ověření otisků prstů, dotkněte se čtečky otisků prstů na zařízení.",
