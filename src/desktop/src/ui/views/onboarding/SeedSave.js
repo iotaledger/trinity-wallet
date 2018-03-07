@@ -35,10 +35,10 @@ class SeedSave extends PureComponent {
         const { t, seed, showNotification } = this.props;
 
         return (
-            <main>
+            <React.Fragment>
                 <section>
                     <div className={css.seed}>
-                        <QRCode size={128} value={seed} />
+                        <QRCode size={148} value={seed} />
                         <p>{seed.match(/.{1,3}/g).map((chunk, i) => <span key={i}>{chunk}</span>)}</p>
                     </div>
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
@@ -49,6 +49,7 @@ class SeedSave extends PureComponent {
                     <nav className={css.nav}>
                         <CopyToClipboard text={seed}>
                             <Button
+                                className="small"
                                 variant="secondary"
                                 onClick={() =>
                                     showNotification({
@@ -62,7 +63,7 @@ class SeedSave extends PureComponent {
                                 {t('copyToClipboard:copyToClipboard')}
                             </Button>
                         </CopyToClipboard>
-                        <Button onClick={() => window.print()} variant="secondary">
+                        <Button className="small" onClick={() => window.print()} variant="secondary">
                             {t('paperWallet:printWallet')}
                         </Button>
                     </nav>
@@ -75,7 +76,7 @@ class SeedSave extends PureComponent {
                         {t('global:done')}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }

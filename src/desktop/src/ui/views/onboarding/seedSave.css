@@ -1,10 +1,13 @@
 .seed {
     display: flex;
-    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+    max-width: 560px;
     margin-bottom: 60px;
     width: 100%;
     > canvas {
         margin-right: 20px;
+        border: 12px solid #fff;
     }
     p {
         display: flex;
@@ -12,13 +15,15 @@
         max-width: 500px;
         letter-spacing: 2px;
         font-family: monospace;
-        font-size: var(--font-size-m);
+        font-size: 18px;
+        line-height: 18px;
+        margin: 0px;
 
         @media print {
             color: black;
         }
         span {
-            margin-right: 16px;
+            margin: 8px;
         }
     }
 }

@@ -1,10 +1,15 @@
-const { ipcRenderer: ipc } = require('electron');
+const { ipcRenderer: ipc, shell } = require('electron');
+const settings = require('../package.json');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
 const Electron = {
+    gotoLatestRelease: () => {
+        shell.openExternal(settings.url);
+    },
+
     updateMenu: (attribute, value) => {
         ipc.send('menu.update', {
             attribute: attribute,
@@ -15,6 +20,7 @@ const Electron = {
     changeLanguage: (t) => {
         ipc.send('menu.language', {
             about: 'About',
+            checkUpdate: t('Check for Updates'),
             settings: capitalize(t('home:settings')),
             language: t('languageSetup:language'),
             currency: t('settings:currency'),
