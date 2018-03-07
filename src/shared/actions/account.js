@@ -220,15 +220,11 @@ export const fetchFullAccountInfoForFirstUse = (
     dispatch(fullAccountInfoForFirstUseFetchRequest());
     getAccountData(seed, accountName)
         .then((data) => {
-            dispatch(clearTempData()); // Clean up partial state for reducer.
-            return mapTransactionHashesForUnspentAddressesToState(data);
-        })
-        .then((dataWithTxHashesForUnspentAddresses) =>
-            mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
-        )
-        .then((dataWithPendingTxHashesForSpentAddresses) => {
+            // Clean up partial state for reducer.
+            dispatch(clearTempData());
+
             storeInKeychainPromise(password, seed, accountName)
-                .then(() => dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithPendingTxHashesForSpentAddresses)))
+                .then(() => dispatch(fullAccountInfoForFirstUseFetchSuccess(data)))
                 .catch((err) => onError(err));
         })
         .catch((err) => onError(err));
@@ -239,13 +235,7 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
         dispatch(fullAccountInfoFetchRequest());
 
         getAccountData(seed, accountName)
-            .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
-            .then((dataWithTxHashesForUnspentAddresses) =>
-                mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
-            )
-            .then((dataWithPendingTxHashesForSpentAddresses) =>
-                dispatch(fullAccountInfoFetchSuccess(dataWithPendingTxHashesForSpentAddresses)),
-            )
+            .then((data) => dispatch(fullAccountInfoFetchSuccess(data)))
             .catch((err) => {
                 pushScreen(navigator, 'login');
                 dispatch(generateAccountInfoErrorAlert(err));
@@ -259,13 +249,9 @@ export const manuallySyncAccount = (seed, accountName) => {
         dispatch(manualSyncRequest());
 
         getAccountData(seed, accountName)
-            .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
-            .then((dataWithTxHashesForUnspentAddresses) =>
-                mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
-            )
-            .then((dataWithPendingTxHashesForSpentAddresses) => {
+            .then((data) => {
                 dispatch(generateSyncingCompleteAlert());
-                dispatch(manualSyncSuccess(dataWithPendingTxHashesForSpentAddresses));
+                dispatch(manualSyncSuccess(data));
             })
             .catch((err) => {
                 dispatch(generateSyncingErrorAlert(err));
