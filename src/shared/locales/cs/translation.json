@@ -378,7 +378,7 @@
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "TATO AKCE NEMŮŽE BÝT ODVOLÁNA.",
         "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
@@ -405,7 +405,7 @@
     },
     "twoFA": {
         "wrongCode": "Nesprávný kód",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "wrongCodeExplanation": "Zadaný kód je nesprávný.",
         "emptyCode": "Prázdný kód",
         "emptyCodeExplanation": "Prosím zadejte kód a zkuste to znovu.",
         "keyCopied": "Klíč zkopírován do schránky",
@@ -413,7 +413,7 @@
         "addKey": "Add this key to your 2FA app",
         "key": "Klíč",
         "twoFAEnabled": "2FA aktivována",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "twoFAEnabledExplanation": "Úspěšně jste aktivovali dvou faktorovou autentifikaci.",
         "enterCode": "Zadejte kód z vaší aplikace 2FA",
         "code": "Code"
     },
