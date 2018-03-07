@@ -12,7 +12,7 @@ import { width, height } from '../util/dimensions';
 import DropdownComponent from '../components/dropdown';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
-import { detectLocale, selectLocale } from '../components/locale';
+import { detectLocale, selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 
 const styles = StyleSheet.create({
     container: {
