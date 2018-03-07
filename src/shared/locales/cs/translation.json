@@ -314,17 +314,17 @@
         "addNewAccount": "Přidat nový účet"
     },
     "addCustomNode": {
-        "customNode": "Vlastní node",
+        "customNode": "Vlastní uzel",
         "add": "Přidat"
     },
     "addNewAccount": {
-        "useExistingSeed": "Použít stávající seed",
+        "useExistingSeed": "Použít stávající Seed",
         "createNewSeed": "Vytvořit nový Seed"
     },
     "advancedSettings": {
-        "selectNode": "Vybrat node",
-        "addCustomNode": "Přidat vlastní node",
-        "manualSync": "Ruční synchronizace",
+        "selectNode": "Vybrat uzel",
+        "addCustomNode": "Přidat vlastní uzel",
+        "manualSync": "Manuální synchronizace",
         "snapshotTransition": "Snapshot přechod"
     },
     "advancedThemeCustomisation": {
