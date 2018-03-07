@@ -167,15 +167,15 @@
         "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
+        "clickToPrint": "Kliknutím na tlačidlo nižšie vytlačíte papierovú kópiu vášho seedu.",
         "storeSafely": "Bezpečne uložte.",
-        "neverShare": "Never share your seed with anyone.",
+        "neverShare": "Svoj seed nikdy s nikým nezdieľajte.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "printWallet": "Tlač papierovej peňaženky"
     },
     "receive": {
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "addressCopied": "Adresa skopírovaná",
+        "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
         "generateNewAddress": "NEW ADDRESS",
         "message": "Optional message",
         "removeMessage": "REMOVE MESSAGE",
