@@ -236,7 +236,7 @@
         "modesExplanation": "Expertní režim povolte, pouze pokud jste zkušený Tangle uživatel. V opačném případě pro Vás může byt jeho použití matoucí."
     },
     "settings": {
-        "transferSending": "Transakce odeslána",
+        "transferSending": "Odesílání transakce",
         "transferSendingExplanation": "Počkejte prosím, než se Váš převod pošle.",
         "generatingAddress": "Generování adresy pro příjem",
         "generatingAddressExplanation": "Prosím vyčkejte než bude Vaše adresa vygenerována.",
@@ -325,11 +325,11 @@
         "selectNode": "Vybrat uzel",
         "addCustomNode": "Přidat vlastní uzel",
         "manualSync": "Manuální synchronizace",
-        "snapshotTransition": "Snapshot přechod"
+        "snapshotTransition": "Snapshot"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadí",
-        "frame": "Okraje"
+        "frame": "Rám"
     },
     "themeCustomisation": {
         "theme": "Motiv"
