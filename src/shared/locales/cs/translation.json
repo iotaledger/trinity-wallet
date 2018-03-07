@@ -31,7 +31,7 @@
         "save": "Uložit",
         "close": "ZAVŘÍT",
         "continue": "Pokračovat",
-        "manualCopy": "Napište seed",
+        "manualCopy": "Napište Seed",
         "paperWallet": "Tisk papírové kopie",
         "copyToClipboard": "Přidat do Správce hesel",
         "notAvailable": "Tato funkce není k dispozici",
@@ -66,7 +66,7 @@
         "receiving": "Příjem",
         "confirmed": "Potvrzeno",
         "pending": "Čeká na vyřízení",
-        "bundleHash": "Balíček Hash",
+        "bundleHash": "Bundle Hash",
         "addresses": "Adresy",
         "reattach": "ZNOVU PŘIPOJTE",
         "promote": "PODPOROVAT",
@@ -199,7 +199,7 @@
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
         "invalidAddressExplanation3": "Adresa obsahuje neplatné znaky.",
         "notEnoughFunds": "Nedostatek prostředků",
-        "notEnoughFundsExplanation": "Nemáte dostatek IOTA tokenů k dokončení této transakce.",
+        "notEnoughFundsExplanation": "Nemáte dostatek IOTA k dokončení této transakce.",
         "keyReuse": "Opakované použití klíče",
         "keyReuseExplanation": "Adresa, na kterou se pokoušíte odeslat transakci již byla použita. Zkuste jinou adresu.",
         "recipientAddress": "Adresa příjemce",
@@ -291,7 +291,7 @@
     },
     "welcome": {
         "thankYou": "Děkujeme vám za stažení IOTA peněženky.",
-        "weWillSpend": "Budeme trávit příštích několik minut, nastavováním Vaší peněženky.",
+        "weWillSpend": "Nyní si vyhraďte pár minut pro správné nastavení Vaší peněženky.",
         "reminder": "Možná budete v chtít vynechat některé kroky, ale doporučujeme Vám aby jste je dokončili všechny."
     },
     "writeSeedDown": {
@@ -419,7 +419,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Změna",
+        "change": "Změnit",
         "volume": "Objem (24h)"
     },
     "rootDetection": {
