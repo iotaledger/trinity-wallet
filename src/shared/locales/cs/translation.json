@@ -236,7 +236,7 @@
         "modesExplanation": "Expertní režim povolte, pouze pokud jste zkušený Tangle uživatel. V opačném případě pro Vás může byt jeho použití matoucí."
     },
     "settings": {
-        "transferSending": "Transfer sending",
+        "transferSending": "Transakce odeslána",
         "transferSendingExplanation": "Počkejte prosím, než se Váš převod pošle.",
         "generatingAddress": "Generování adresy pro příjem",
         "generatingAddressExplanation": "Prosím vyčkejte než bude Vaše adresa vygenerována.",
@@ -285,7 +285,7 @@
     "walletSetup": {
         "okay": "OK - přejděme nyní k nastavení vaší peněženky!",
         "doYouAlreadyHaveASeed": "Máte už vlastní Seed který by jste rádi použili?",
-        "seedExplanation": "IOTA seed je jako uživatelské jméno a heslo k Vašemu účtu, zkombinované do řady 81 znaků.",
+        "seedExplanation": "IOTA Seed je jako uživatelské jméno a heslo k Vašemu účtu, zkombinované do řady 81 znaků.",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Uchovávejte Váš seed v bezpečí."
     },
@@ -307,7 +307,7 @@
         "receive": "PŘIJATO"
     },
     "accountManagement": {
-        "viewSeed": "Zobrazit seed",
+        "viewSeed": "Zobrazit Seed",
         "viewAddresses": "Zobrazit adresu",
         "editAccountName": "Upravit název účtu",
         "deleteAccount": "Smazat účet",
@@ -319,7 +319,7 @@
     },
     "addNewAccount": {
         "useExistingSeed": "Použít stávající seed",
-        "createNewSeed": "Vytvořit nový seed"
+        "createNewSeed": "Vytvořit nový Seed"
     },
     "advancedSettings": {
         "selectNode": "Vybrat node",
@@ -397,10 +397,10 @@
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Stisknutím tlačítka níže povolíte ověření otisků prstů.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "instructionsLogin": "Pro přihlášení se dotkněte čtečky otisku prstů."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "Chystáte se odeslat {{contents}} na adresu",
         "aMessage": "zpráva"
     },
     "twoFA": {
@@ -424,6 +424,6 @@
     },
     "rootDetection": {
         "warning": "VAROVÁNÍ",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Zdá se že Vaše zařízení je rooted/jailbroken.</ 0><1>To může znamenat značné riziko pro zabezpečení peněženky.</ 1><2>Chcete pokračovat navzdory tomuto riziku?</ 2>"
     }
 }
