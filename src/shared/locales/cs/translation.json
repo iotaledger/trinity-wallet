@@ -72,7 +72,7 @@
         "promote": "PODPOROVAT",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Opětovným stisknutím tlačítka zpět zavřete aplikaci",
-        "autoreattaching": "Automatické opětovné připojení do Tangle",
+        "autoreattaching": "Automatické připojení do Tangle",
         "autoreattachingExplanation": "Opětovné připojení transakce s hash {{hash}}",
         "autopromoting": "Automatická podpora přenosu",
         "autopromotingExplanation": "Podpora transakcí s hash {{hash}}",
@@ -85,7 +85,7 @@
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
         "seedInvalidCharsExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
-        "seedTooShort": "Seed je příliš krátký.",
+        "seedTooShort": "Seed je příliš krátký",
         "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím opakujte akci.",
         "nameInUse": "Název účtu je již používán",
         "nameInUseExplanation": "Prosím použijte jedinečný název účtu pro Váš seed.",
