@@ -116,20 +116,20 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed vymazán",
-        "seedClearedExplanation": "Seed byl vymazán ze schránky pro Vaši bezpečnost.",
+        "seedClearedExplanation": "Z bezpečnostních důvodů byl Seed vymazán ze schránky.",
         "seedCopied": "Seed zkopírován do schránky",
         "seedCopiedExplanation": "Seed bude vymazán jakmile stisknete \"Hotovo\" nebo po uplynutí 60 sekund.",
         "clickToCopy": "Klepněte na tlačítko níže a kopírujte Váš seed do Správce hesel.",
-        "doNotStore": "Neukládejte Váš seed ve formátu prostého textu.",
+        "doNotStore": "Neukládejte Váš Seed ve formátu prostého textu.",
         "copyToClipboard": "Kopírovat seed",
         "shareSeed": "Uchovejte Váš seed do zabezpečeného správce hesel"
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
-        "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím zkuste znovu.",
+        "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím zkuste znovu.",
         "seedTooShort": "Seed je příliš krátký",
-        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zkuste znovu.",
-        "seedExplanation": "Seed by měl být {{maxLength}} znaků a měl by obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít seed delší než {{maxLength}} znaků.",
+        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
+        "seedExplanation": "Seed by měl mít {{maxLength}} znaků a měl by obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít Seed delší než {{maxLength}} znaků.",
         "neverShare": "S NIKÝM NIKDY NESDÍLEJTE VÁŠ SEED"
     },
     "home": {
