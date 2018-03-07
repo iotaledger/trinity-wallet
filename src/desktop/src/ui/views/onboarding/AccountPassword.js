@@ -6,7 +6,7 @@ import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { seedsSelector } from 'selectors/seeds';
 import { isValidPassword } from 'libs/util';
-import { securelyPersistSeeds } from 'libs/crypto';
+import { setVault } from 'libs/crypto';
 import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
 import PasswordInput from 'ui/components/input/Password';
@@ -60,7 +60,7 @@ class AccountPassword extends React.PureComponent {
             });
         }
 
-        securelyPersistSeeds(password, seeds);
+        setVault(null, password, seeds);
         clearSeeds();
         history.push('/onboarding/done');
     };
@@ -69,31 +69,30 @@ class AccountPassword extends React.PureComponent {
         const { t } = this.props;
         return (
             <form onSubmit={this.setPassword}>
-                <main>
-                    <section>
-                        <PasswordInput
-                            value={this.state.password}
-                            label={t('global:password')}
-                            onChange={(value) => this.setState({ password: value })}
-                        />
-                        <PasswordInput
-                            value={this.state.passwordConfirm}
-                            label={t('setPassword:retypePassword')}
-                            onChange={(value) => this.setState({ passwordConfirm: value })}
-                        />
-                        <Infobox>
-                            <p>{t('setPassword:anEncryptedCopy')}</p>
-                        </Infobox>
-                    </section>
-                    <footer>
-                        <Button to="/seed/name" className="outline" variant="highlight">
-                            {t('global:back')}
-                        </Button>
-                        <Button className="outline" variant="primary">
-                            {t('global:done')}
-                        </Button>
-                    </footer>
-                </main>
+                <div />
+                <section>
+                    <PasswordInput
+                        value={this.state.password}
+                        label={t('global:password')}
+                        onChange={(value) => this.setState({ password: value })}
+                    />
+                    <PasswordInput
+                        value={this.state.passwordConfirm}
+                        label={t('setPassword:retypePassword')}
+                        onChange={(value) => this.setState({ passwordConfirm: value })}
+                    />
+                    <Infobox>
+                        <p>{t('setPassword:anEncryptedCopy')}</p>
+                    </Infobox>
+                </section>
+                <footer>
+                    <Button to="/seed/name" className="outline" variant="highlight">
+                        {t('global:back')}
+                    </Button>
+                    <Button type="submit" className="outline" variant="primary">
+                        {t('global:done')}
+                    </Button>
+                </footer>
             </form>
         );
     }

@@ -20,16 +20,16 @@ class Welcome extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <main>
+            <React.Fragment>
                 <section>
                     <Language />
                 </section>
                 <footer>
-                    <Button to="/onboarding/instructions" className="outline" variant="primary">
+                    <Button to="/onboarding/instructions" className="outline" variant="positive">
                         {t('global:next')}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }
