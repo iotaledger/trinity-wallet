@@ -89,10 +89,10 @@
         "seedTooShortExplanation": "Seed musí mať {{maxLength}} znakov. Váš seed má {{currentLength}} znaků. Prosím skúste znova.",
         "nameInUse": "Názov účtu je už používaný",
         "nameInUseExplanation": "Prosím použite jedinečný názov účtu pre Váš seed.",
-        "enterAccountName": "Enter an account name.",
+        "enterAccountName": "Zadajte názov účtu.",
         "accountName": "Názov účtu",
         "noNickname": "Nebol zadaný názov účtu",
-        "noNicknameExplanation": "Please enter an account name for your seed.",
+        "noNicknameExplanation": "Zadajte názov účtu pre Váš seed.",
         "seedInUse": "Seed already in use",
         "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
