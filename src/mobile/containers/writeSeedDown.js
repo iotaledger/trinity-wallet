@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 4.5,
@@ -182,7 +182,7 @@ class WriteSeedDown extends Component {
                         </Trans>
                     </Text>
                     <Seedbox
-                        secondaryBackgroundColor={body.color}
+                        backgroundColor={body.bg}
                         borderColor={borderColor}
                         textColor={textColor}
                         seed={seed}

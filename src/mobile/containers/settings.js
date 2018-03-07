@@ -43,31 +43,13 @@ import keychain, {
     deleteFromKeychain,
 } from '../util/keychain';
 import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
-import { width, height } from '../util/dimensions';
+import { height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-    },
-    titleText: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-    },
-    item: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width,
-        paddingHorizontal: width / 15,
-    },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
     },
     settingsContainer: {
         flex: 40,
@@ -76,39 +58,8 @@ const styles = StyleSheet.create({
         zIndex: 1,
         paddingVertical: height / 40,
     },
-    advancedSettingsContainer: {
-        flex: 1,
-        alignItems: 'flex-start',
-        justifyContent: 'space-between',
-    },
     modalContent: {
         justifyContent: 'center',
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
     },
 });
 
@@ -149,10 +100,10 @@ class Settings extends Component {
         primary: PropTypes.object.isRequired,
         positive: PropTypes.object.isRequired,
         extra: PropTypes.object.isRequired,
+        input: PropTypes.object.isRequired,
         negative: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         bar: PropTypes.object.isRequired,
-        secondary: PropTypes.object.isRequired,
         isFingerprintEnabled: PropTypes.bool.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         setLanguage: PropTypes.func.isRequired,
@@ -370,14 +321,15 @@ class Settings extends Component {
 
     getChildrenProps(child) {
         const {
+            theme,
             negative,
             positive,
             primary,
             bar,
             body,
             extra,
-            secondary,
             language,
+            input,
             selectedAccountName,
             seedIndex,
             transitionBalance,
@@ -390,7 +342,8 @@ class Settings extends Component {
             isPromoting,
             mode,
         } = this.props;
-
+        const textColor = { color: body.color };
+        const borderColor = { borderColor: body.color };
         const props = {
             mainSettings: {
                 t: this.props.t,
@@ -435,11 +388,10 @@ class Settings extends Component {
                 password: this.props.password,
                 backPress: () => this.props.setSetting('accountManagement'),
                 onWrongPassword: () => this.onWrongPassword(),
-                negativeColor: negative.color,
-                borderColor: { borderColor: body.color },
-                textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
-                backgroundColor: body.bg,
+                borderColor,
+                textColor,
+                theme,
+                body,
             },
             viewAddresses: {
                 addressData: this.props.selectedAccount.addresses,
@@ -452,6 +404,7 @@ class Settings extends Component {
                 negativeColor: negative.color,
                 textColor: { color: body.color },
                 secondaryBackgroundColor: body.color,
+                theme,
             },
             deleteAccount: {
                 backPress: () => this.props.setSetting('accountManagement'),
@@ -466,6 +419,7 @@ class Settings extends Component {
                 isPromoting,
                 shouldPreventAction: () => this.shouldPreventAction(),
                 generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
+                theme
             },
             addNewAccount: {
                 addExistingSeed: () => this.props.setSetting('addExistingSeed'),
@@ -478,14 +432,12 @@ class Settings extends Component {
                 seedCount: this.props.seedCount,
                 addAccount: (seed, accountName) => this.addExistingSeed(seed, accountName),
                 backPress: () => this.props.setSetting('addNewAccount'),
-                negativeColor: negative.color,
-                backgroundColor: body.bg,
-                ctaColor: primary.color,
-                textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
-                borderColor: { borderColor: body.color },
-                ctaBorderColor: 'black',
-                secondaryCtaColor: secondary.color,
+                body,
+                primary,
+                theme,
+                textColor,
+                input,
+                borderColor,
                 generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
             },
             nodeSelection: {
@@ -498,6 +450,7 @@ class Settings extends Component {
                 backPress: () => this.props.setSetting('advancedSettings'),
                 textColor: { color: body.color },
                 secondaryBackgroundColor: body.color,
+                body,
             },
             addCustomNode: {
                 setNode: (selectedNode) => {
@@ -541,6 +494,7 @@ class Settings extends Component {
                 textColor: { color: body.color },
                 borderColor: { borderColor: body.color },
                 secondaryBackgroundColor: body.color,
+                theme,
             },
             manualSync: {
                 t: this.props.t,
@@ -560,6 +514,7 @@ class Settings extends Component {
                 borderColor: { borderColor: body.color },
                 secondaryBackgroundColor: body.color,
                 negativeColor: negative.color,
+                backgroundColor: body.bg,
                 transitionBalance,
                 transitionAddresses,
                 balanceCheckToggle,
@@ -889,7 +844,8 @@ const mapStateToProps = (state) => ({
     body: state.settings.theme.body,
     bar: state.settings.theme.bar,
     primary: state.settings.theme.primary,
-    secondary: state.settings.theme.secondary,
+    input: state.settings.theme.input,
+    label: state.settings.theme.label,
     positive: state.settings.theme.positive,
     negative: state.settings.theme.negative,
     extra: state.settings.theme.extra,

@@ -125,13 +125,12 @@ export class Send extends Component {
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
-        ctaColor: PropTypes.string.isRequired,
-        body: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         bar: PropTypes.object.isRequired,
         negative: PropTypes.object.isRequired,
-        isSendingTransfer: PropTypes.bool.isRequired,
+        body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
-        secondary: PropTypes.object.isRequired,
+        isSendingTransfer: PropTypes.bool.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
         address: PropTypes.string.isRequired,
         amount: PropTypes.string.isRequired,
@@ -196,12 +195,12 @@ export class Send extends Component {
     }
 
     componentWillMount() {
-        const { t, balance, amount, ctaColor } = this.props;
+        const { t, balance, amount, primary } = this.props;
         const amountAsNumber = parseFloat(amount);
         if (amountAsNumber === balance / this.getUnitMultiplier() && amountAsNumber !== 0) {
             this.setState({
                 maxPressed: true,
-                maxColor: ctaColor,
+                maxColor: primary.color,
                 maxText: t('send:maximumSelected'),
             });
         }
@@ -263,7 +262,7 @@ export class Send extends Component {
 
     onMaxPress() {
         const { sending, maxPressed } = this.state;
-        const { t, ctaColor, body, balance } = this.props;
+        const { t, body, primary, balance } = this.props;
         const max = (balance / this.getUnitMultiplier()).toString();
 
         if (sending) {
@@ -285,7 +284,7 @@ export class Send extends Component {
             this.props.setSendAmountField(max);
             this.setState({
                 maxPressed: true,
-                maxColor: ctaColor,
+                maxColor: primary.color,
                 maxText: t('send:maximumSelected'),
             });
         }
@@ -377,18 +376,15 @@ export class Send extends Component {
 
     setModalContent(selectedSetting) {
         let modalContent;
-        const { body, bar, primary, secondary, address, amount } = this.props;
+        const { bar, body, primary, address, amount } = this.props;
         switch (selectedSetting) {
             case 'qrScanner':
                 modalContent = (
                     <QRScanner
                         onQRRead={(data) => this.onQRRead(data)}
                         hideModal={() => this.hideModal()}
-                        backgroundColor={body.bg}
-                        ctaColor={primary.color}
-                        secondaryCtaColor={secondary.color}
-                        ctaBorderColor={primary.hover}
-                        secondaryBackgroundColor={body.color}
+                        primary={primary}
+                        body={body}
                     />
                 );
                 break;
@@ -401,7 +397,7 @@ export class Send extends Component {
                         address={address}
                         sendTransfer={() => this.sendTransfer()}
                         hideModal={(callback) => this.hideModal(callback)}
-                        backgroundColor={body.bg}
+                        body={body}
                         borderColor={{ borderColor: body.color }}
                         textColor={{ color: body.color }}
                         setSendingTransferFlag={() => this.setSendingTransferFlag()}
@@ -411,11 +407,10 @@ export class Send extends Component {
             case 'unitInfo':
                 modalContent = (
                     <UnitInfoModal
-                        backgroundColor={bar.bg}
                         hideModal={() => this.hideModal()}
                         textColor={{ color: bar.color }}
                         borderColor={{ borderColor: bar.color }}
-                        secondaryBarColor={bar.color}
+                        bar={bar}
                     />
                 );
                 break;
@@ -588,16 +583,16 @@ export class Send extends Component {
         const { isModalVisible, maxColor, maxText, sending, currencySymbol } = this.state;
         const {
             t,
-            negative,
-            secondary,
-            body,
-            primary,
             isSendingTransfer,
             isGettingSensitiveInfoToMakeTransaction,
             address,
             amount,
             message,
             denomination,
+            theme,
+            body,
+            primary,
+            negative
         } = this.props;
         const textColor = { color: body.color };
         const conversionText =
@@ -623,8 +618,7 @@ export class Send extends Component {
                             onSubmitEditing={() => this.amountField.focus()}
                             widget="qr"
                             onQRPress={() => this.openModal('qrScanner')}
-                            secondaryBackgroundColor={body.color}
-                            negativeColor={negative.color}
+                            theme={theme}
                             value={address}
                             editable={!sending}
                             selectTextOnFocus={!sending}
@@ -646,8 +640,7 @@ export class Send extends Component {
                                 widget="denomination"
                                 conversionText={conversionText}
                                 currencyConversion
-                                secondaryBackgroundColor={body.color}
-                                negativeColor={negative.color}
+                                theme={theme}
                                 denominationText={denomination}
                                 onDenominationPress={() => this.onDenominationPress()}
                                 value={amount}
@@ -690,8 +683,7 @@ export class Send extends Component {
                             returnKeyType="send"
                             blurOnSubmit
                             onSubmitEditing={() => this.onSendPress()}
-                            secondaryBackgroundColor={body.color}
-                            negativeColor={negative.color}
+                            theme={theme}
                             value={message}
                             editable={!sending}
                             selectTextOnFocus={!sending}
@@ -704,7 +696,7 @@ export class Send extends Component {
                                 <CtaButton
                                     ctaColor={primary.color}
                                     ctaBorderColor={primary.hover}
-                                    secondaryCtaColor={secondary.color}
+                                    secondaryCtaColor={primary.body}
                                     text={t('send')}
                                     onPress={() => {
                                         this.onSendPress();
@@ -779,11 +771,11 @@ const mapStateToProps = (state) => ({
     conversionRate: state.settings.conversionRate,
     usdPrice: state.marketData.usdPrice,
     isGettingSensitiveInfoToMakeTransaction: state.keychain.isGettingSensitiveInfo.send.makeTransaction,
-    primary: state.settings.theme.primary,
-    secondary: state.settings.theme.secondary,
-    body: state.settings.theme.body,
-    bar: state.settings.theme.bar,
+    theme: state.settings.theme,
     negative: state.settings.theme.negative,
+    body: state.settings.theme.body,
+    primary: state.settings.theme.primary,
+    bar: state.settings.theme.bar,
     isTransitioning: state.tempAccount.isTransitioning,
     address: state.ui.sendAddressFieldText,
     amount: state.ui.sendAmountFieldText,

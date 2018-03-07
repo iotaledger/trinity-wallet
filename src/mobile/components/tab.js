@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
         width: width / 5,
         justifyContent: 'center',
         alignItems: 'center',
-        borderTopWidth: height / 100,
         borderTopColor: 'transparent',
+        borderTopWidth: parseInt(height / 90)
     },
     iconTitle: {
         fontWeight: 'bold',
@@ -48,7 +48,7 @@ class Tab extends Component {
                 <View
                     style={
                         isActive
-                            ? [styles.button, { backgroundColor: activeColor }, { borderTopColor: activeBorderColor }]
+                            ? [styles.button, { backgroundColor: activeColor, borderTopColor: activeBorderColor}]
                             : styles.button
                     }
                 >

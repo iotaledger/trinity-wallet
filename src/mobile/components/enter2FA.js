@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         flex: 2.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 3.6,
