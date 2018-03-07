@@ -180,11 +180,11 @@
         "message": "Voliteľná správa",
         "removeMessage": "ODSTRÁNIŤ SPRÁVU",
         "noAddresses": "ŽIADNE ADRESY",
-        "spent": "Spent"
+        "spent": "Utratené"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Seed vymazaný",
+        "seedClearedExplanation": "Seed bol vymazaný zo schránky z dôvodu Vašej bezpečnosti.",
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
