@@ -66,7 +66,7 @@
         "receiving": "Příjem",
         "confirmed": "Potvrzeno",
         "pending": "Čeká na vyřízení",
-        "bundleHash": "Bundle Hash",
+        "bundleHash": "Balíček Hash",
         "addresses": "Adresy",
         "reattach": "ZNOVU PŘIPOJTE",
         "promote": "PODPOROVAT",
@@ -171,7 +171,7 @@
         "storeSafely": "Bezpečně uložte!",
         "neverShare": "Nikdy s nikým nesdílejte Váš Seed!",
         "iotaLogo": "IOTA logo",
-        "printWallet": "Tisk papírové peněženky"
+        "printWallet": "TISK PAPÍROVÉ PENĚŽENKY"
     },
     "receive": {
         "addressCopied": "Adresa zkopírována",
