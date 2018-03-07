@@ -286,21 +286,21 @@
         "okay": "OK - přejděme nyní k nastavení vaší peněženky!",
         "doYouAlreadyHaveASeed": "Máte už vlastní Seed který by jste rádi použili?",
         "seedExplanation": "IOTA Seed je jako uživatelské jméno a heslo k Vašemu účtu, zkombinované do řady 81 znaků.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>Můžete ho použít pro přístup ke svým prostředkům z</0> <1>jakékoliv peněženky</1> <2>, na</2> <3>jakémkoliv zařízení</3> <4>. Ale pokud ztratíte svůj Seed, ztratíte také všechny Vaše IOTA.</4></0>",
         "keepSafe": "Uchovávejte Váš seed v bezpečí."
     },
     "welcome": {
         "thankYou": "Děkujeme vám za stažení IOTA peněženky.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
+        "weWillSpend": "Budeme trávit příštích několik minut, nastavováním Vaší peněženky.",
         "reminder": "Možná budete v chtít vynechat některé kroky, ale doporučujeme Vám aby jste je dokončili všechny."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "yourSeedIs": "Váš Seed je {{maxSeedLength}} znaků čtených zleva doprava.",
+        "writeDownYourSeed": "<0> Zapište si svůj seed a kontrolní součet </0><1>důkladně zkontrolujte</1><2> že jsou správně.</2>"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Balíček hash zkopírován",
+        "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
         "send": "ODESLAT",
@@ -379,7 +379,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TATO AKCE NEMŮŽE BÝT ODVOLÁNA.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>Všechny vaše údaje o peněžence včetně Vašeho</0><1>seedu, hesla,</1><2> a </2><3>ostatní informace o účtu</3><4> budou smazány. </4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Chcete-li povolit ověření otisků prstů, dotkněte se čtečky otisků prstů na zařízení.",
