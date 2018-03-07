@@ -231,7 +231,7 @@
     },
     "modeSelection": {
         "expert": "Expert",
-        "standard": "Standard",
+        "standard": "Východzie",
         "expertModeExplanation": "Režim experta umožní prístup k ďalším funkciám ako ručná propagácia a opätovné pripojenie.",
         "modesExplanation": "Aktivujte režim experta iba v prípade, že ste skúsený užívateľ Tangle. Inak pre Vás môže byť mätúci."
     },
@@ -325,11 +325,11 @@
         "selectNode": "Vybrať uzol",
         "addCustomNode": "Pridať vlastný uzol",
         "manualSync": "Manuálna synchronizácia",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadie",
-        "frame": "Frame"
+        "frame": "Rámec"
     },
     "themeCustomisation": {
         "theme": "Motív"
@@ -382,26 +382,26 @@
         "warning": "<0><0>Všetky dáta Vašej peňaženky vrátane Vášho</0> <1>seedu, hesla</1> <2>a</2> <3>ďalších informácií o účte</3> <4>budú stratené.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Ak chcete povoliť overenie otlačkom prsta, dotknite sa čítačky otlačkov na Vašom zariadení.",
-        "instructionsDisable": "Ak chcete deaktivovať overenie otlačkom prsta, dotknite sa čítačky otlačkov na Vašom zariadení.",
-        "fingerprintAuthEnabled": "Overenie otlačkom prsta aktivované",
-        "fingerprintAuthEnabledExplanation": "Úspešne ste aktivovali overenie otlačkom prsta.",
-        "fingerprintAuthDisabled": "Overenie otlačkom prsta deaktivované",
-        "fingerprintAuthDisabledExplanation": "Úspešne ste deaktivovali overenie otlačkom prsta.",
-        "fingerprintAuthFailed": "Overenie otlačkom prsta zlyhalo",
-        "fingerprintAuthFailedExplanation": "Overenie otlačkom prsta zlyhalo. Skúste prosím znova.",
+        "instructionsEnable": "Ak chcete aktivovať overenie odtlačkom prsta, dotknite sa čítačky otlačkov na Vašom zariadení.",
+        "instructionsDisable": "Ak chcete deaktivovať overenie odtlačkom prsta, dotknite sa čítačky otlačkov na Vašom zariadení.",
+        "fingerprintAuthEnabled": "Overenie odtlačkom prsta aktivované",
+        "fingerprintAuthEnabledExplanation": "Úspešne ste aktivovali overenie odtlačkom prsta.",
+        "fingerprintAuthDisabled": "Overenie odtlačkom prsta deaktivované",
+        "fingerprintAuthDisabledExplanation": "Úspešne ste deaktivovali overenie odtlačkom prsta.",
+        "fingerprintAuthFailed": "Overenie odtlačkom prsta zlyhalo",
+        "fingerprintAuthFailedExplanation": "Overenie odtlačkom prsta zlyhalo. Skúste prosím znova.",
         "status": "Stav",
         "enabled": "Aktivované",
         "disabled": "Deaktivované",
-        "fingerprintUnavailable": "Čítačka otlačkov prsta nie je k dispozícií",
-        "fingerprintUnavailableExplanation": "Vaše zariadenie nemá funkciu overenie pomocou otlačku prsta, alebo nie je správne nakonfigurovaná v nastaveniach zariadenia.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "fingerprintUnavailable": "Čítačka odtlačkov prsta nie je k dispozícií",
+        "fingerprintUnavailableExplanation": "Vaše zariadenie nemá funkciu overenia pomocou odtlačku prsta, alebo nie je správne nakonfigurovaná v nastaveniach zariadenia.",
+        "buttonInstructionsDisable": "Tlačidlom nižšie deaktivujete overovanie odtlačkom prsta.",
+        "buttonInstructionsEnable": "Tlačidlom nižšie aktivujete overovanie odtlačkom prsta.",
+        "instructionsLogin": "Prihláste sa priložením prsta na čítačku oddtlačkov."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "Chystáte se odoslať {{contents}} na adresu",
+        "aMessage": "správa"
     },
     "twoFA": {
         "wrongCode": "Neplatný kód",
