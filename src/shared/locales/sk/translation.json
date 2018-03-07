@@ -210,29 +210,29 @@
         "invalidMessageExplanation": "Vaša správa obsahuje neplatné znaky.",
         "send": "ODOSLAŤ",
         "invalidAmount": "Zadaná neplatná čiastka",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "invalidAmountExplanation": "Zadajte prosím platnú transakčnú čiastku. Informácie IOTA jednotkách nižšie na tejto stránke môžu byť nápomocné.",
+        "maximumSelected": "Vybraná MAXIMÁLNA čiastka",
+        "iotaUnits": "Informácie o IOTA jednotkách",
+        "sendMax": "POSLAŤ VŠETKO"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
-        "passwordMismatch": "Passwords do not match",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "passwordTooShort": "Heslo je príliš krátke",
+        "passwordTooShortExplanation": "Heslo musí obsahovať minimálne {{minLength}} znakov. Vaše heslo má momentálne {{currentLength}} znakov. Skúste prosím znova.",
+        "passwordMismatch": "Neplatné heslo",
+        "passwordMismatchExplanation": "Zadané heslo nie je platné. Skúste prosím znova.",
+        "nowWeNeedTo": "Teraz je potrebné vytvoriť heslo.",
+        "anEncryptedCopy": "Vo vašom zariadení sa uloží zašifrovaná kópia Vášho seedu. Týmto heslom sa budete prihlasovať do svojej peňaženky.",
+        "ensure": "Uistite sa, že budete používať silné heslo s minimálne 12 znakmi.",
+        "retypePassword": "Zadajte heslo znova"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "V tejto peňaženke môžete používať viac seedov. Každý seed vyžaduje nový názov účtu.",
+        "youCanAdd": "V menu nastavení môžete pridať ďalšie seedy."
     },
     "modeSelection": {
         "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "expertModeExplanation": "Režim experta umožní prístup k ďalším funkciám ako ručná propagácia a opätovné pripojenie.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
