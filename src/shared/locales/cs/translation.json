@@ -86,7 +86,7 @@
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
         "seedInvalidCharsExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
         "seedTooShort": "Seed je příliš krátký",
-        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zkuste znovu.",
+        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
         "nameInUse": "Název účtu je již používán",
         "nameInUseExplanation": "Prosím použijte jedinečný název účtu pro Váš seed.",
         "enterAccountName": "Zadejte název účtu.",
@@ -94,11 +94,11 @@
         "noNickname": "Nebyl zadán žádný název účtu",
         "noNicknameExplanation": "Zadejte název účtu pro Váš seed.",
         "seedInUse": "Seed je již používán",
-        "seedInUseExplanation": "Tento seed je již propojen s Vaší peněženkou. Použijte prosím jiný."
+        "seedInUseExplanation": "Tento Seed je již propojen s Vaší peněženkou. Použijte prosím jiný."
     },
     "changePassword": {
         "oops": "Ajaj! Něco se pokazilo",
-        "oopsExplanation": "Vypadá to že došlo k chybě při aktualizaci hesla. Opakujte akci.",
+        "oopsExplanation": "Vypadá to, že došlo k chybě při aktualizaci hesla. Opakujte akci.",
         "passwordUpdated": "Heslo aktualizováno",
         "passwordUpdatedExplanation": "Vaše heslo bylo úspěšně aktualizováno.",
         "incorrectPassword": "Neplatné heslo",
@@ -108,8 +108,8 @@
         "passwordTooShort": "Heslo je příliš krátké",
         "passwordTooShortExplanation": "Vaše heslo musí mít nejméně 12 znaků. Prosím zkuste to znovu.",
         "oldPassword": "Staré heslo nelze nastavit",
-        "oldPasswordExplanation": "Staré heslo nelze použít jako nové heslo. Zkuste znovu s novým heslem.",
-        "ensureStrongPassword": "Ujistěte se že používáte silné heslo alespoň 12 znaků.",
+        "oldPasswordExplanation": "Staré heslo nelze použít jako nové heslo. Zopakujte akci s novým heslem.",
+        "ensureStrongPassword": "Ujistěte se, že používáte silné heslo alespoň 12 znaků.",
         "currentPassword": "Stávající heslo",
         "newPassword": "Nové heslo",
         "confirmPassword": "Potvrzení nového hesla"
@@ -119,18 +119,18 @@
         "seedClearedExplanation": "Z bezpečnostních důvodů byl Seed vymazán ze schránky.",
         "seedCopied": "Seed zkopírován do schránky",
         "seedCopiedExplanation": "Seed bude vymazán jakmile stisknete \"Hotovo\" nebo po uplynutí 60 sekund.",
-        "clickToCopy": "Klepněte na tlačítko níže a kopírujte Váš seed do Správce hesel.",
+        "clickToCopy": "Klepněte na tlačítko níže a skopírujte Váš seed do Správce hesel.",
         "doNotStore": "Neuchovávejte Váš Seed ve formátu prostého textu.",
-        "copyToClipboard": "Kopírovat seed",
+        "copyToClipboard": "Kopírovat Seed",
         "shareSeed": "Uchovejte Váš Seed do zabezpečeného správce hesel"
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
-        "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím zkuste znovu.",
+        "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím zkuste to znovu.",
         "seedTooShort": "Seed je příliš krátký",
         "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
         "seedExplanation": "Seed by měl mít {{maxLength}} znaků a měl by obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít Seed delší než {{maxLength}} znaků.",
-        "neverShare": "S NIKÝM NIKDY NESDÍLEJTE VÁŠ SEED"
+        "neverShare": "NIKOMU NIKDY NESDĚLUJTE VÁŠ SEED"
     },
     "home": {
         "balance": "ZŮSTATEK",
@@ -149,7 +149,7 @@
         "useSeed": "POUŽIJ SEED",
         "login": "PŘIHLÁSIT SE",
         "selectDifferentNode": "Chcete vybrat jiný uzel?",
-        "setNode": "NASTAVIT NODE",
+        "setNode": "NASTAVIT UZEL",
         "cannotConnect": "Nelze se připojit k IOTA uzlu."
     },
     "loading": {
@@ -197,11 +197,11 @@
         "invalidAddress": "Neplatná adresa",
         "invalidAddressExplanation1": "Adresa by měla být dlouhá {{maxLength}} znaků a měla by mít kontrolní součet.",
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
-        "invalidAddressExplanation3": "Adresa je chybně dlouhá.",
+        "invalidAddressExplanation3": "Adresa má chybnou délku.",
         "notEnoughFunds": "Nedostatek prostředků",
         "notEnoughFundsExplanation": "Nemáte dostatek IOTA k dokončení této transakce.",
         "keyReuse": "Opakované použití klíče",
-        "keyReuseExplanation": "Adresa, na kterou se pokoušíte odeslat transakci již byla použita. Zkuste jinou adresu.",
+        "keyReuseExplanation": "Adresa, na kterou se pokoušíte odeslat transakci, již byla použita. Zkuste jinou adresu.",
         "recipientAddress": "Adresa příjemce",
         "amount": "Částka",
         "max": "MAX",
@@ -209,7 +209,7 @@
         "invalidMessage": "Neplatná zpráva",
         "invalidMessageExplanation": "Vaše zpráva obsahuje neplatné znaky.",
         "send": "ODESLAT",
-        "invalidAmount": "Zadaná neplatná částka",
+        "invalidAmount": "Zadána neplatná částka",
         "invalidAmountExplanation": "Prosím zadejte platnou transakční částku. Případně níže na stránce jsou informace o IOTA jednotkách.\n",
         "maximumSelected": "Vybrána MAXIMÁLNÍ částka",
         "iotaUnits": "Informace o IOTA jednotkách.",
@@ -217,8 +217,8 @@
     },
     "setPassword": {
         "passwordTooShort": "Heslo je příliš krátké",
-        "passwordTooShortExplanation": "Seed musí obsahovat minimálně {{minLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zadejte správně.",
-        "passwordMismatch": "Neplatné heslo",
+        "passwordTooShortExplanation": "Seed musí obsahovat minimálně {{minLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
+        "passwordMismatch": "Hesla se neshodují",
         "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím zkuste znovu.",
         "nowWeNeedTo": "Nyní je třeba vytvořit heslo",
         "anEncryptedCopy": "V zařízení se uloží zašifrovaná kopie Vašeho Seedu. Tímto heslem se budete přihlašovat k Vaší peněžence.",
@@ -237,7 +237,7 @@
     },
     "settings": {
         "transferSending": "Odesílání transakce",
-        "transferSendingExplanation": "Počkejte prosím, než se Váš převod pošle.",
+        "transferSendingExplanation": "Počkejte prosím, než se Vaše transakce pošle.",
         "generatingAddress": "Generování adresy pro příjem",
         "generatingAddressExplanation": "Prosím vyčkejte než bude Vaše adresa vygenerována.",
         "mode": "Režim",
@@ -264,7 +264,7 @@
         "hide": "Skrýt",
         "hideOthers": "Skrýt ostatní",
         "showAll": "Zobrazit vše",
-        "quit": "Odejít",
+        "quit": "Ukončit",
         "edit": "Upravit",
         "cut": "Vyjmout",
         "copy": "Kopírovat",
@@ -352,7 +352,7 @@
         "one": "Jedna"
     },
     "deleteAccount": {
-        "areYouSure": "Jste si jisti že chcete odstranit účet \"{{accountName}}\"?",
+        "areYouSure": "Jste si jisti, že chcete odstranit účet \"{{accountName}}\"?",
         "yourSeedWillBeRemoved": "Váš Seed a transakční historie budou odebrány.",
         "thisAction": "Tuto akci nelze vrátit zpět.",
         "enterPassword": "Pro smazání účtu, zadejte Vaše heslo."
