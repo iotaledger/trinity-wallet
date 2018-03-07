@@ -19,7 +19,7 @@
         "invalidResponse": "Neplatná odpověď",
         "invalidResponseExplanation": "Uzel vrátil neplatnou odpověď.",
         "invalidResponsePollingExplanation": "Uzel vrátil neplatnou odpověď při dotazování.",
-        "invalidResponseFetchingAccount": "Uzel vrátil neplatnou odpověď při načítání informací o vašem účtu. Zkuste změnit uzel.",
+        "invalidResponseFetchingAccount": "Uzel vrátil neplatnou odpověď při načítání informací o Vašem účtu. Zkuste změnit uzel.",
         "invalidResponseSendingTransfer": "Uzel vrátil neplatnou odpověď při odesílání transakce.",
         "seed": "Seed",
         "back": "ZPĚT",
@@ -31,7 +31,7 @@
         "save": "Uložit",
         "close": "ZAVŘÍT",
         "continue": "Pokračovat",
-        "manualCopy": "Napište seed dolů",
+        "manualCopy": "Napište seed",
         "paperWallet": "Tisk papírové kopie",
         "copyToClipboard": "Přidat do Správce hesel",
         "notAvailable": "Tato funkce není k dispozici",
@@ -86,7 +86,7 @@
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
         "seedInvalidCharsExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
         "seedTooShort": "Seed je příliš krátký",
-        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím opakujte akci.",
+        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zkuste znovu.",
         "nameInUse": "Název účtu je již používán",
         "nameInUseExplanation": "Prosím použijte jedinečný název účtu pro Váš seed.",
         "enterAccountName": "Zadejte název účtu.",
@@ -94,21 +94,21 @@
         "noNickname": "Nebyl zadán žádný název účtu",
         "noNicknameExplanation": "Zadejte název účtu pro Váš seed.",
         "seedInUse": "Seed je již používán",
-        "seedInUseExplanation": "Tento seed je již propojen s vaší peněženkou. Použijte prosím jiný."
+        "seedInUseExplanation": "Tento seed je již propojen s Vaší peněženkou. Použijte prosím jiný."
     },
     "changePassword": {
         "oops": "Ajaj! Něco se pokazilo",
         "oopsExplanation": "Vypadá to že došlo k chybě při aktualizaci hesla. Opakujte akci.",
         "passwordUpdated": "Heslo aktualizováno",
-        "passwordUpdatedExplanation": "Vaše heslo bylo úspěšně změněno.",
+        "passwordUpdatedExplanation": "Vaše heslo bylo úspěšně aktualizováno.",
         "incorrectPassword": "Neplatné heslo",
         "incorrectPasswordExplanation": "Vaše současné heslo je neplatné. Opakujte akci.",
         "passwordsDoNotMatch": "Hesla se neshodují",
-        "passwordsDoNotMatchExplanation": "Hesla se neshodují. Zkuste to znovu.",
+        "passwordsDoNotMatchExplanation": "Hesla se neshodují. Prosím zkuste to znovu.",
         "passwordTooShort": "Heslo je příliš krátké",
-        "passwordTooShortExplanation": "Vaše heslo musí být nejméně 12 znaků. Opakujte akci.",
+        "passwordTooShortExplanation": "Vaše heslo musí mít nejméně 12 znaků. Prosím zkuste znovu.",
         "oldPassword": "Staré heslo nelze nastavit",
-        "oldPasswordExplanation": "Staré heslo nelze použít jako nové heslo. Zopakujte akci s novým heslem.",
+        "oldPasswordExplanation": "Staré heslo nelze použít jako nové heslo. Zkuste znovu s novým heslem.",
         "ensureStrongPassword": "Ujistěte se že používáte silné heslo alespoň 12 znaků.",
         "currentPassword": "Stávající heslo",
         "newPassword": "Nové heslo",
@@ -117,7 +117,7 @@
     "copyToClipboard": {
         "seedCleared": "Seed vymazán",
         "seedClearedExplanation": "Seed byl vymazán ze schránky pro Vaši bezpečnost.",
-        "seedCopied": "Zkopírováno do schránky",
+        "seedCopied": "Seed zkopírován do schránky",
         "seedCopiedExplanation": "Seed bude vymazán jakmile stisknete \"Hotovo\" nebo po uplynutí 60 sekund.",
         "clickToCopy": "Klepněte na tlačítko níže a kopírujte Váš seed do Správce hesel.",
         "doNotStore": "Neukládejte Váš seed ve formátu prostého textu.",
@@ -126,11 +126,11 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
-        "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
+        "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím zkuste znovu.",
         "seedTooShort": "Seed je příliš krátký",
-        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím opakujte akci.",
+        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zkuste znovu.",
         "seedExplanation": "Seed by měl být {{maxLength}} znaků a měl by obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít seed delší než {{maxLength}} znaků.",
-        "neverShare": "S NIKÝM NIKDY NESDÍLEJTE SVŮJ SEED"
+        "neverShare": "S NIKÝM NIKDY NESDÍLEJTE VÁŠ SEED"
     },
     "home": {
         "balance": "ZŮSTATEK",
@@ -148,7 +148,7 @@
         "enterPassword": "Prosím zadejte Vaše heslo.",
         "useSeed": "POUŽIJ SEED",
         "login": "PŘIHLÁSIT SE",
-        "selectDifferentNode": "Chcete vybrat jiný NODE?",
+        "selectDifferentNode": "Chcete vybrat jiný uzel?",
         "setNode": "NASTAVIT NODE",
         "cannotConnect": "Nelze se připojit k IOTA uzlu."
     },
@@ -199,7 +199,7 @@
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
         "invalidAddressExplanation3": "Adresa obsahuje neplatné znaky.",
         "notEnoughFunds": "Nedostatek prostředků",
-        "notEnoughFundsExplanation": "Nemáte dostatek IOTA k dokončení této transakce.",
+        "notEnoughFundsExplanation": "Nemáte dostatek IOTA tokenů k dokončení této transakce.",
         "keyReuse": "Opakované použití klíče",
         "keyReuseExplanation": "Adresa, na kterou se pokoušíte odeslat transakci již byla použita. Zkuste jinou adresu.",
         "recipientAddress": "Adresa příjemce",
@@ -264,7 +264,7 @@
         "hide": "Skrýt",
         "hideOthers": "Skrýt ostatní",
         "showAll": "Zobrazit vše",
-        "quit": "Ukončit",
+        "quit": "Odejít",
         "edit": "Upravit",
         "cut": "Vyjmout",
         "copy": "Kopírovat",
@@ -283,7 +283,7 @@
         "reset": "OBNOVIT"
     },
     "walletSetup": {
-        "okay": "OK - přejděme nyní k nastavení vaší peněženky!",
+        "okay": "OK - přejděme nyní k nastavení Vaší peněženky!",
         "doYouAlreadyHaveASeed": "Máte už vlastní Seed který by jste rádi použili?",
         "seedExplanation": "IOTA Seed je jako uživatelské jméno a heslo k Vašemu účtu, zkombinované do řady 81 znaků.",
         "explanation": "<0><0>Můžete ho použít pro přístup ke svým prostředkům z</0> <1>jakékoliv peněženky</1> <2>, na</2> <3>jakémkoliv zařízení</3> <4>. Ale pokud ztratíte svůj Seed, ztratíte také všechny Vaše IOTA.</4></0>",
@@ -358,7 +358,7 @@
         "enterPassword": "Zadejte Vaše heslo pro smazání tohoto účtu."
     },
     "manualSync": {
-        "pressToSync": "Klikněte na tlačítko níže pro synchronizaci Vašeho účtu.",
+        "pressToSync": "Pro synchronizaci Vašeho účtu klinkněte na tlačítko níže.",
         "thisMayTake": "Může to chvíli trvat.",
         "youMayNotice": "Může dojít ke zpomalení Vašeho zařízení.",
         "syncAccount": "SYNCHRONIZOVAT ÚČET",
@@ -383,8 +383,8 @@
     },
     "fingerprintSetup": {
         "instructionsEnable": "Chcete-li povolit ověření otisků prstů, dotkněte se čtečky otisků prstů na zařízení.",
-        "instructionsDisable": "Klepnutím na čtečku otisků prstů zařízení zakážete ověřování pomocí otisků prstů.",
-        "fingerprintAuthEnabled": "Autentifikace čtečkou otisku prstu zapnuta",
+        "instructionsDisable": "Pro vypnutí identifikace pomocí čtečky prstů, přiložte prst na čtečku.",
+        "fingerprintAuthEnabled": "Identifikace čtečkou otisku prstu aktivována",
         "fingerprintAuthEnabledExplanation": "Úspěšně jste aktivovali přihlášení pomocí čtečky otisků prstů.",
         "fingerprintAuthDisabled": "Autentifikace čtečkou otisku prstu vypnuta",
         "fingerprintAuthDisabledExplanation": "Úspěšně jste deaktivovali přihlášení pomocí čtečky otisků prstů.",
@@ -414,7 +414,7 @@
         "key": "Klíč",
         "twoFAEnabled": "2FA aktivována",
         "twoFAEnabledExplanation": "Úspěšně jste aktivovali dvou faktorovou autentifikaci.",
-        "enterCode": "Zadejte kód z vaší aplikace 2FA",
+        "enterCode": "Zadejte kód z Vaší 2FA aplikace",
         "code": "Code"
     },
     "chart": {
