@@ -129,7 +129,7 @@
         "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
         "seedTooShort": "Seed je příliš krátký",
         "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím opakujte akci.",
-        "seedExplanation": "Seed by měl být {{maxLength}} znaků a by měl obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít seed delší než {{maxLength}} znaků.",
+        "seedExplanation": "Seed by měl být {{maxLength}} znaků a měl by obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít seed delší než {{maxLength}} znaků.",
         "neverShare": "S NIKÝM NIKDY NESDÍLEJTE SVŮJ SEED"
     },
     "home": {
@@ -256,7 +256,7 @@
         "nicknameChanged": "Název účtu změněn.",
         "nicknameChangedExplanation": "Název vašeho účtu byl změněn.",
         "accountDeleted": "Účet smazán",
-        "accountDeletedExplanation": "Účet byl odebrán z peněženky",
+        "accountDeletedExplanation": "Váš účet byl odebrán z peněženky",
         "cannotPerformAction": "Akci nelze provést",
         "cannotPerformActionExplanation": "Chcete-li obnovit peněženku, přejděte na rozšířená nastavení.",
         "poorConnection": "Špatné spojení",
