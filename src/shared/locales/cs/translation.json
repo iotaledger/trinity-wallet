@@ -219,7 +219,7 @@
         "passwordTooShort": "Heslo je příliš krátké",
         "passwordTooShortExplanation": "Seed musí obsahovat minimálně {{minLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zadejte správně.",
         "passwordMismatch": "Neplatné heslo",
-        "passwordMismatchExplanation": "Zadané heslo je neplatné. Zkuste to prosím znovu.",
+        "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím opakujte.",
         "nowWeNeedTo": "Nyní je třeba vytvořit heslo",
         "anEncryptedCopy": "V zařízení se uloží zašifrovaná kopie vašeho seedu. Tímto heslem se budete přihlašovat k vaší peněžence.",
         "ensure": "Ujistěte se, že budete používat bezpečené heslo s minimálně 12ti znaky.",
@@ -246,7 +246,7 @@
         "language": "Jazyk",
         "accountManagement": "Správa účtů",
         "addNewSeed": "Přidat nový seed",
-        "twoFA": "Dvoufaktorové ověření",
+        "twoFA": "Dvoufaktorové ověření F2A",
         "changePassword": "Změnit heslo",
         "advanced": "Pokročilá nastavení",
         "logout": "Odhlásit",
@@ -290,7 +290,7 @@
         "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
+        "thankYou": "Děkujeme vám za stažení IOTA peněženky.",
         "weWillSpend": "We will spend the next few minutes setting up your wallet.",
         "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
     },
@@ -322,7 +322,7 @@
         "createNewSeed": "Vytvořit nový seed"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
+        "selectNode": "Vybrat node",
         "addCustomNode": "Add custom node",
         "manualSync": "Ruční synchronizace",
         "snapshotTransition": "Snapshot transition"
@@ -414,7 +414,7 @@
         "key": "Klíč",
         "twoFAEnabled": "2FA aktivována",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
+        "enterCode": "Zadejte kód z vaší aplikace 2FA",
         "code": "Code"
     },
     "chart": {
