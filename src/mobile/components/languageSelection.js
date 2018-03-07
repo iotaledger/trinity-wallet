@@ -5,7 +5,7 @@ import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import DropdownComponent from './dropdown';
-import { selectLocale } from '../components/locale';
+import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 
 const { width } = Dimensions.get('window');
 const { height } = global;
