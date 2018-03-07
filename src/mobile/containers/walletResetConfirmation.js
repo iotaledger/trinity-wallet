@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midWrapper: {
         flex: 2.1,
@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
 class WalletResetConfirmation extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
+        body: PropTypes.object.isRequired,
         negative: PropTypes.object.isRequired,
     };
 
@@ -140,6 +140,7 @@ class WalletResetConfirmation extends Component {
                 <View style={styles.midWrapper}>
                     <View style={{ flex: 0.2 }} />
                     <InfoBox
+                        body
                         text={
                             <Trans i18nKey="walletResetConfirmation:warning">
                                 <Text style={[styles.infoText, textColor]}>
@@ -151,7 +152,7 @@ class WalletResetConfirmation extends Component {
                                 </Text>
                             </Trans>
                         }
-                        secondaryBackgroundColor={body.colorlor}
+                        secondaryBackgroundColor={body.color}
                     />
                     <View style={{ flex: 0.4 }} />
                     <Text style={[styles.subHeaderText, negativeColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
@@ -172,9 +173,8 @@ class WalletResetConfirmation extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    positive: state.settings.theme.positive,
-    negative: state.settings.theme.negative,
     body: state.settings.theme.body,
+    negative: state.settings.theme.negative,
 });
 
 export default WithBackPressGoToHome()(

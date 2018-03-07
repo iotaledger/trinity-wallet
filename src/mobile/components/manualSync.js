@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -29,18 +30,13 @@ const styles = StyleSheet.create({
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-end',
-    },
-    icon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     syncButtonContainer: {
         flex: 1,
@@ -121,7 +117,11 @@ const ManualSync = (props) => (
                     hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                 >
                     <View style={styles.item}>
-                        <Image source={props.arrowLeftImagePath} style={styles.icon} />
+                        <Icon
+                            name='chevronLeft'
+                            size={width / 28}
+                            color={props.secondaryBackgroundColor}
+                        />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('global:backLowercase')}</Text>
                     </View>
                 </TouchableOpacity>
@@ -136,7 +136,7 @@ ManualSync.propTypes = {
     onManualSyncPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     textColor: PropTypes.object.isRequired,
-    arrowLeftImagePath: PropTypes.number.isRequired,
+    secondaryBackgroundColor: PropTypes.string.isRequired,
     negativeColor: PropTypes.string.isRequired,
     borderColor: PropTypes.object.isRequired,
 };

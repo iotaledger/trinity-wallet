@@ -90,10 +90,11 @@ class Receive extends Component {
         getFromKeychainRequest: PropTypes.func.isRequired,
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
-        primary: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         negative: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
-        secondary: PropTypes.object.isRequired,
+        input: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
         t: PropTypes.func.isRequired,
     };
@@ -167,19 +168,15 @@ class Receive extends Component {
     }
 
     getOpacity() {
-        const { receiveAddress } = this.props;
-        if (receiveAddress === ' ' && !isAndroid) {
-            return 0.1;
-        } else if (receiveAddress === ' ' && isAndroid) {
-            return 0.05;
+        if (!isAndroid) {
+            return 0.2;
         }
-
-        return 1;
+        return 0.1;
     }
 
     getQrOpacity() {
         const { receiveAddress } = this.props;
-        if (receiveAddress === ' ' && isAndroid) {
+        if (receiveAddress === ' ') {
             return 0.1;
         }
 
@@ -202,23 +199,24 @@ class Receive extends Component {
         const {
             receiveAddress,
             t,
-            negative,
-            secondary,
-            primary,
             body,
+            theme,
+            primary,
+            input,
+            negative,
             isGeneratingReceiveAddress,
             isGettingSensitiveInfoToGenerateAddress,
         } = this.props;
         const message = this.state.message;
-        const textColor = { color: body.color };
         const borderColor = { borderColor: body.color };
         const opacity = { opacity: this.getOpacity() };
+        const qrOpacity = { opacity: this.getQrOpacity() };
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.4 }} />
-                    <View style={[styles.qrContainer, opacity]}>
+                    <View style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent'}]}>
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
                             size={width / 2.8}
@@ -229,14 +227,14 @@ class Receive extends Component {
                     <View style={{ flex: 0.25 }} />
                     {receiveAddress.length > 1 ? (
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                            <View style={[styles.receiveAddressContainer, opacity]}>
-                                <Text style={[styles.receiveAddressText, textColor]}>
+                            <View style={[styles.receiveAddressContainer, { backgroundColor: input.bg }]}>
+                                <Text style={[styles.receiveAddressText, { color: input.color }]}>
                                     {receiveAddress.substring(0, 30)}
                                 </Text>
-                                <Text style={[styles.receiveAddressText, textColor]}>
+                                <Text style={[styles.receiveAddressText, { color: input.color }]}>
                                     {receiveAddress.substring(30, 60)}
                                 </Text>
-                                <Text style={[styles.receiveAddressText, textColor]}>
+                                <Text style={[styles.receiveAddressText, { color: input.color }]}>
                                     {receiveAddress.substring(60, 90)}
                                 </Text>
                             </View>
@@ -244,8 +242,8 @@ class Receive extends Component {
                     ) : (
                         // Place holder
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                            <View style={[styles.receiveAddressContainer]}>
-                                <Text style={[styles.receiveAddressText, textColor]}>{Array(19).join(' ')}</Text>
+                            <View style={[styles.receiveAddressContainer, { backgroundColor: input.bg }, opacity]}>
+                                <Text style={[styles.receiveAddressText, { color: input.color }]}>{Array(19).join(' ')}</Text>
                             </View>
                         </TouchableOpacity>
                     )}
@@ -260,44 +258,45 @@ class Receive extends Component {
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
                         returnKeyType="done"
-                        secondaryBackgroundColor={body.color}
                         value={message}
-                        negativeColor={negative.color}
+                        theme={theme}
                     />
                     <View style={{ flex: 0.35 }} />
                     <View style={{ flex: 0.7 }}>
-                        <GenerateAddressButton
-                            ctaColor={primary.color}
-                            ctaBorderColor={primary.hover}
-                            negativeColor={negative.color}
-                            secondaryCtaColor={secondary.color}
-                            t={t}
-                            receiveAddress={receiveAddress}
-                            isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
-                            isGeneratingReceiveAddress={isGeneratingReceiveAddress}
-                            onGeneratePress={this.onGeneratePress}
-                            message={message}
-                        />
+                        {receiveAddress.length > 1 &&
+                            message.length >= 1 &&
+                                <View style={{ flex: 0.7 }}>
+                                    <View style={{ flex: 0.1 }} />
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            // Check if there's already a network call in progress.
+                                            this.setState({ message: '' });
+                                            this.messageField.blur();
+                                        }}
+                                        style={styles.removeButtonContainer}
+                                    >
+                                        <View style={[styles.removeButton, borderColor]}>
+                                            <Text style={[styles.removeText, { color: body.color }]}>{t('removeMessage')}</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                    <View style={{ flex: 0.2 }} />
+                                </View>
+                                ||
+                                <GenerateAddressButton
+                                    ctaColor={primary.color}
+                                    ctaBorderColor={primary.hover}
+                                    negativeColor={negative.color}
+                                    secondaryCtaColor={primary.body}
+                                    t={t}
+                                    receiveAddress={receiveAddress}
+                                    isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
+                                    isGeneratingReceiveAddress={isGeneratingReceiveAddress}
+                                    onGeneratePress={this.onGeneratePress}
+                                    message={message}
+                                />
+                            }
+
                     </View>
-                    {receiveAddress.length > 1 &&
-                        message.length >= 1 && (
-                            <View style={{ flex: 0.7 }}>
-                                <View style={{ flex: 0.1 }} />
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        // Check if there's already a network call in progress.
-                                        this.setState({ message: '' });
-                                        this.messageField.blur();
-                                    }}
-                                    style={styles.removeButtonContainer}
-                                >
-                                    <View style={[styles.removeButton, borderColor]}>
-                                        <Text style={[styles.removeText, textColor]}>{t('removeMessage')}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                                <View style={{ flex: 0.2 }} />
-                            </View>
-                        )}
                     <View style={{ flex: 0.65 }} />
                 </View>
             </TouchableWithoutFeedback>
@@ -313,10 +312,11 @@ const mapStateToProps = (state) => ({
     receiveAddress: state.tempAccount.receiveAddress,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
+    theme: state.settings.theme,
     primary: state.settings.theme.primary,
+    input: state.settings.theme.input,
     negative: state.settings.theme.negative,
     body: state.settings.theme.body,
-    secondary: state.settings.theme.secondary,
     isTransitioning: state.tempAccount.isTransitioning,
 });
 

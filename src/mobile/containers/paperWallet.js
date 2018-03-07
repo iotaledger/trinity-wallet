@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
         paddingHorizontal: width / 20,
     },
     midContainer: {
@@ -210,7 +210,6 @@ class PaperWallet extends Component {
         seed: PropTypes.string.isRequired,
         positive: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
-        secondary: PropTypes.object.isRequired,
     };
 
     static callback(dataURL) {
@@ -458,7 +457,7 @@ class PaperWallet extends Component {
     }
 
     render() {
-        const { t, seed, body, positive, primary, secondary } = this.props;
+        const { t, seed, body, positive, primary } = this.props;
         const textColor = { color: body.color };
         const checksum = getChecksum(seed);
         const positiveColorText = { color: positive.color };
@@ -545,7 +544,7 @@ class PaperWallet extends Component {
                         <CtaButton
                             ctaColor={primary.color}
                             ctaBorderColor={primary.hover}
-                            secondaryCtaColor={secondary.color}
+                            secondaryCtaColor={primary.body}
                             text={t('printWallet')}
                             onPress={() => {
                                 this.onPrintPress();
@@ -568,7 +567,6 @@ class PaperWallet extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
-    backgroundColor: state.settings.theme.backgroundColor,
     positive: state.settings.theme.positive,
     primary: state.settings.theme.primary,
     body: state.settings.theme.body,

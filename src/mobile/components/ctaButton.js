@@ -56,7 +56,7 @@ class CtaButton extends React.Component {
                         style={[
                             styles.ctaButton,
                             { backgroundColor: ctaColor },
-                            { borderColor: ctaBorderColor },
+                            { borderColor: 'transparent' },
                             { width: ctaWidth },
                         ]}
                     >

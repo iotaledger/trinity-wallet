@@ -56,13 +56,11 @@ const styles = StyleSheet.create({
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
     iconLeft: {
@@ -92,8 +90,8 @@ class ChangePassword extends Component {
         generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -166,7 +164,7 @@ class ChangePassword extends Component {
         // We are using almost the same field styles and props
         // across all app
 
-        const { negativeColor, secondaryBackgroundColor } = this.props;
+        const { theme } = this.props;
         const props = {
             onRef: ref,
             label,
@@ -179,8 +177,7 @@ class ChangePassword extends Component {
             returnKeyType,
             onSubmitEditing,
             value,
-            secondaryBackgroundColor,
-            negativeColor,
+            theme
         };
 
         return <CustomTextInput {...props} />;

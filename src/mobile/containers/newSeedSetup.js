@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         flex: 2.1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 5.55,
@@ -119,9 +119,8 @@ class NewSeedSetup extends Component {
         generateAlert: PropTypes.func.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
         body: PropTypes.object.isRequired,
-        secondary: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
+        input: PropTypes.object.isRequired,
         clearSeed: PropTypes.func.isRequired,
         seed: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
@@ -239,20 +238,20 @@ class NewSeedSetup extends Component {
         });
     }
 
-    renderSeedBox(character, index) {
-        const { body, negative } = this.props;
+    renderChequerboard(character, index) {
+        const { input, primary } = this.props;
 
         const { randomised } = this.state;
 
         return (
             <TouchableHighlight
                 onPress={() => this.onItemPress(index)}
-                style={[styles.tileContainer, { backgroundColor: body.color }]}
-                underlayColor={negative.color}
+                style={[styles.tileContainer, { backgroundColor: input.bg }]}
+                underlayColor={primary.color}
                 hitSlop={{ top: height / 80, bottom: height / 80, left: height / 80, right: height / 80 }}
             >
                 <View style={styles.tile}>
-                    <Text style={[styles.tileText, { color: body.bg, opacity: randomised ? 1 : 0.1 }]}>
+                    <Text style={[styles.tileText, { color: input.color, opacity: randomised ? 1 : 0.1 }]}>
                         {character}
                     </Text>
                 </View>
@@ -261,8 +260,9 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { seed, t, primary, secondary, body } = this.props;
-        const viewOpacity = this.state.randomised ? 1 : 0.1;
+        const { seed, t, primary, body } = this.props;
+        const viewOpacity = this.state.randomised ? 1 : 0.2;
+        const opacity = this.state.randomised ? 1 : 0.1;
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -273,7 +273,7 @@ class NewSeedSetup extends Component {
                     <CtaButton
                         ctaColor={primary.color}
                         ctaBorderColor={primary.hover}
-                        secondaryCtaColor={secondary.color}
+                        secondaryCtaColor={primary.body}
                         text={t('pressForNewSeed')}
                         onPress={() => {
                             this.onGeneratePress();
@@ -288,7 +288,7 @@ class NewSeedSetup extends Component {
                         contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
                         data={split(seed, '')}
                         keyExtractor={(item, index) => index}
-                        renderItem={({ item, index }) => this.renderSeedBox(item, index)}
+                        renderItem={({ item, index }) => this.renderChequerboard(item, index)}
                         initialNumToRender={MAX_SEED_LENGTH}
                         scrollEnabled={false}
                     />
@@ -314,6 +314,7 @@ class NewSeedSetup extends Component {
                         rightText={t('global:next')}
                         leftButtonTestID="newSeedSetup-back"
                         rightButtonTestID="newSeedSetup-next"
+                        opacity={opacity}
                     />
                 </View>
                 <StatefulDropdownAlert backgroundColor={body.bg} />
@@ -326,8 +327,7 @@ const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     body: state.settings.theme.body,
     primary: state.settings.theme.primary,
-    secondary: state.settings.theme.secondary,
-    negative: state.settings.theme.negative,
+    input: state.settings.theme.input,
     onboardingComplete: state.account.onboardingComplete,
 });
 

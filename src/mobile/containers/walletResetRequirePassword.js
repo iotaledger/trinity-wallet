@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midWrapper: {
         flex: 3.7,
@@ -65,7 +65,7 @@ class WalletResetRequirePassword extends Component {
         clearTempData: PropTypes.func.isRequired,
         setPassword: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        negative: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
@@ -166,7 +166,7 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
-        const { t, negative, body } = this.props;
+        const { t, body, theme } = this.props;
         const backgroundColor = { backgroundColor: body.bg };
 
         return (
@@ -187,9 +187,7 @@ class WalletResetRequirePassword extends Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
-                                onSubmitEditing={this.handleLogin}
-                                secondaryBackgroundColor={body.color}
-                                negativeColor={negative.color}
+                                theme={theme}
                                 secureTextEntry
                             />
                             <View style={{ flex: 0.2 }} />
@@ -211,9 +209,9 @@ class WalletResetRequirePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    password: state.tempAccount.password,
-    negativeColor: state.settings.theme.negative,
+    theme: state.settings.theme,
     body: state.settings.theme.body,
+    password: state.settings.password
 });
 
 const mapDispatchToProps = {

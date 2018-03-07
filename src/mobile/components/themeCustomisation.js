@@ -56,13 +56,11 @@ const styles = StyleSheet.create({
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
     titleTextLeft: {
@@ -110,8 +108,8 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     chevronWrapper: {
-        justifyContent: 'center',
-        alignItems: 'center',
+        position: 'absolute',
+        right: width / 30
     },
     chevron: {
         height: width / 20,
@@ -188,7 +186,7 @@ class ThemeCustomisation extends Component {
 
     render() {
         const { themes, theme, themeName } = this.state;
-        const { body, bar, positive, negative, primary, secondary, extra } = this.state.theme;
+        const { body, bar, positive, negative, primary, extra } = this.state.theme;
         const { t } = this.props;
 
         return (
@@ -246,7 +244,9 @@ class ThemeCustomisation extends Component {
                                 <Text style={[styles.frameBarTitle, { color: bar.color }]}>
                                     {t('global:mainWallet').toUpperCase()}
                                 </Text>
-                                <Icon name="chevronDown" size={width / 17} color={body.color} />
+                                <View style={styles.chevronWrapper}>
+                                    <Icon name="chevronDown" size={width / 20} color={bar.color} />
+                                </View>
                             </View>
                             <View style={styles.buttonsContainer}>
                                 <View style={[styles.button, { borderColor: negative.color }]}>
@@ -272,7 +272,7 @@ class ThemeCustomisation extends Component {
                                         { backgroundColor: primary.color, borderColor: primary.hover },
                                     ]}
                                 >
-                                    <Text style={[styles.ctaText, { color: secondary.color }]}>
+                                    <Text style={[styles.ctaText, { color: primary.body }]}>
                                         {t('global:send').toUpperCase()}
                                     </Text>
                                 </View>
@@ -285,7 +285,7 @@ class ThemeCustomisation extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
+                                <Icon name="chevronLeft" size={width / 28} color={this.props.secondaryBackgroundColor} />
                                 <Text style={[styles.titleTextLeft, { color: this.props.secondaryBackgroundColor }]}>
                                     {t('global:backLowercase')}
                                 </Text>
@@ -299,7 +299,7 @@ class ThemeCustomisation extends Component {
                                 <Text style={[styles.titleTextRight, { color: this.props.secondaryBackgroundColor }]}>
                                     {t('global:apply')}
                                 </Text>
-                                <Icon name="eye" size={width / 28} color={body.color} />
+                                <Icon name="eye" size={width / 28} color={this.props.secondaryBackgroundColor} />
                             </View>
                         </TouchableOpacity>
                     </View>

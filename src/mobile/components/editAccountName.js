@@ -72,7 +72,7 @@ export class EditAccountName extends Component {
         backPress: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -90,7 +90,7 @@ export class EditAccountName extends Component {
     }
 
     render() {
-        const { t, textColor, secondaryBackgroundColor, negativeColor } = this.props;
+        const { t, textColor, secondaryBackgroundColor, theme } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -106,9 +106,8 @@ export class EditAccountName extends Component {
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 onSubmitEditing={() => this.props.saveAccountName(trim(this.state.accountName))}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
                                 value={this.state.accountName}
+                                theme={theme}
                             />
                         </View>
                         <View style={styles.saveButtonContainer} />

@@ -2,12 +2,13 @@ import get from 'lodash/get';
 import Modal from 'react-native-modal';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from './onboardingButtons';
 import GENERAL from '../theme/general';
 import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     modalContent: {
@@ -44,18 +45,13 @@ const styles = StyleSheet.create({
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-end',
-    },
-    icon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     transitionButtonContainer: {
         flex: 1,
@@ -123,8 +119,8 @@ class SnapshotTransition extends Component {
         generateAlert: PropTypes.func.isRequired,
         addresses: PropTypes.array.isRequired,
         shouldPreventAction: PropTypes.func.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
         isAttachingToTangle: PropTypes.bool.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -236,13 +232,13 @@ class SnapshotTransition extends Component {
         const {
             isTransitioning,
             backPress,
-            arrowLeftImagePath,
             backgroundColor,
             borderColor,
             textColor,
             negativeColor,
             t,
             isAttachingToTangle,
+            secondaryBackgroundColor
         } = this.props;
         return (
             <View style={styles.container}>
@@ -300,7 +296,11 @@ class SnapshotTransition extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
+                                <Icon
+                                    name='chevronLeft'
+                                    size={width / 28}
+                                    color={secondaryBackgroundColor}
+                                />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>

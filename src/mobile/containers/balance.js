@@ -81,12 +81,14 @@ export class Balance extends Component {
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
         settings: PropTypes.object.isRequired,
-        extra: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
+        secondary: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
         onTabSwitch: PropTypes.func.isRequired,
+        currency: PropTypes.string.isRequired,
+        conversionRate: PropTypes.number.isRequired,
     };
 
     /**
@@ -146,7 +148,7 @@ export class Balance extends Component {
      */
 
     prepTransactions() {
-        const { transfers, addresses, t, extra, negative, body } = this.props;
+        const { transfers, addresses, t, primary, secondary, body } = this.props;
         const recentTransactions = transfers.slice(0, 4);
 
         const computeConfirmationStatus = (persistence, incoming) => {
@@ -178,7 +180,7 @@ export class Balance extends Component {
                 sign: getSign(value, incoming),
                 incoming,
                 style: {
-                    titleColor: incoming ? extra.color : negative.color,
+                    titleColor: incoming ? primary.color : secondary.color,
                     defaultTextColor: { color: body.color },
                     iconColor: body.color,
                 },
@@ -208,13 +210,13 @@ export class Balance extends Component {
     }
 
     render() {
-        const { balance, settings, marketData, body } = this.props;
+        const { balance, conversionRate, currency, marketData, body } = this.props;
 
         const shortenedBalance =
             roundDown(formatValue(balance), 1) +
             (balance < 1000 || Balance.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+');
-        const currencySymbol = getCurrencySymbol(settings.currency);
-        const fiatBalance = balance * marketData.usdPrice / 1000000 * settings.conversionRate;
+        const currencySymbol = getCurrencySymbol(currency);
+        const fiatBalance = balance * marketData.usdPrice / 1000000 * conversionRate;
         const textColor = { color: body.color };
         const lineBorder = { borderBottomColor: body.color };
         const recentTransactions = this.renderTransactions();
@@ -251,12 +253,11 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     balance: getBalanceForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
-    settings,
-    extra: settings.theme.extra,
-    negative: settings.theme.negative,
+    currency: settings.currency,
+    conversionRate: settings.conversionRate,
+    primary: settings.theme.primary,
+    secondary: settings.theme.secondary,
     body: settings.theme.body,
-    chartLineColorPrimary: settings.theme.chartLineColorPrimary,
-    chartLineColorSecondary: settings.theme.chartLineColorSecondary,
 });
 
 export default translate(['global'])(connect(mapStateToProps)(Balance));

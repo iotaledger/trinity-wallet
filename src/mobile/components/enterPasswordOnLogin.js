@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         flex: 2.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 3.6,
@@ -60,8 +60,7 @@ const styles = StyleSheet.create({
 
 class EnterPasswordOnLogin extends Component {
     static propTypes = {
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
         password: PropTypes.string.isRequired,
     };
 
@@ -85,13 +84,13 @@ class EnterPasswordOnLogin extends Component {
     };
 
     render() {
-        const { t, secondaryBackgroundColor, negativeColor, password, isFingerprintEnabled } = this.props;
+        const { t, theme, password, isFingerprintEnabled } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Icon name="iota" size={width / 8} color={secondaryBackgroundColor} />
+                        <Icon name="iota" size={width / 8} color={theme.body.color} />
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
@@ -104,8 +103,7 @@ class EnterPasswordOnLogin extends Component {
                             returnKeyType="done"
                             secureTextEntry
                             onSubmitEditing={this.handleLogin}
-                            secondaryBackgroundColor={secondaryBackgroundColor}
-                            negativeColor={negativeColor}
+                            theme={theme}
                             value={password}
                             fingerprintAuthentication={isFingerprintEnabled}
                             onFingerprintPress={() => this.props.activateFingerPrintScanner()}
@@ -128,8 +126,7 @@ class EnterPasswordOnLogin extends Component {
 EnterPasswordOnLogin.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    secondaryBackgroundColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.string.isRequired,
+    theme: PropTypes.object.isRequired,
     navigateToNodeSelection: PropTypes.func.isRequired,
     setLoginPasswordField: PropTypes.func.isRequired,
     isFingerprintEnabled: PropTypes.bool.isRequired,
