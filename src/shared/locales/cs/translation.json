@@ -191,7 +191,7 @@
         "incorrectSeed": "Neplatný seed",
         "incorrectSeedExplanation": "Zadán neplatný seed. Zkuste to prosím znovu.",
         "thisIsACheck": "Toto je kontrola abyste jste se ujistili, že jste uložili Váš Seed.",
-        "ifYouHaveNotSaved": "Pokud jste Váš seed neuložili, vraťte se prosím zpět."
+        "ifYouHaveNotSaved": "Pokud jste Váš seed neuložili, vraťte se prosím zpět a uložte si jej."
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
@@ -284,7 +284,7 @@
     },
     "walletSetup": {
         "okay": "OK - přejděme nyní k nastavení vaší peněženky!",
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
+        "doYouAlreadyHaveASeed": "Máte už vlastní Seed který by jste rádi použili?",
         "seedExplanation": "IOTA seed je jako uživatelské jméno a heslo k Vašemu účtu, zkombinované do řady 81 znaků.",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Uchovávejte Váš seed v bezpečí."
@@ -292,7 +292,7 @@
     "welcome": {
         "thankYou": "Děkujeme vám za stažení IOTA peněženky.",
         "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "reminder": "Možná budete v chtít vynechat některé kroky, ale doporučujeme Vám aby jste je dokončili všechny."
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
@@ -385,9 +385,9 @@
         "instructionsEnable": "Chcete-li povolit ověření otisků prstů, dotkněte se čtečky otisků prstů na zařízení.",
         "instructionsDisable": "Klepnutím na čtečku otisků prstů zařízení zakážete ověřování pomocí otisků prstů.",
         "fingerprintAuthEnabled": "Autentifikace čtečkou otisku prstu zapnuta",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthEnabledExplanation": "Úspěšně jste aktivovali přihlášení pomocí čtečky otisků prstů.",
         "fingerprintAuthDisabled": "Autentifikace čtečkou otisku prstu vypnuta",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthDisabledExplanation": "Úspěšně jste deaktivovali přihlášení pomocí čtečky otisků prstů.",
         "fingerprintAuthFailed": "Ověření pomocí otisku prstu selhalo",
         "fingerprintAuthFailedExplanation": "Ověření pomocí otisku prstu selhalo. Prosím zkuste znovu.",
         "status": "Stav",
