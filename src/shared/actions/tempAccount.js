@@ -333,10 +333,9 @@ export const prepareTransfer = (seed, address, value, message, accountName, powF
             }
 
             // Verify if a user is sending to on of his own addresses.
-            // This would fail if a pre-requisite check for checksums fail.
             const isSendingToOwnAddress = some(
                 get(inputs, 'inputs'),
-                (input) => iota.utils.addChecksum(input.address, 9, true) === address,
+                (input) => input.address === iota.utils.noChecksum(address),
             );
 
             if (isSendingToOwnAddress) {
@@ -424,6 +423,7 @@ export const prepareTransfer = (seed, address, value, message, accountName, powF
                 );
             })
             .catch((err) => {
+                console.log('Err', err);
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                     20000,

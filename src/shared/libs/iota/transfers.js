@@ -10,7 +10,6 @@ import isArray from 'lodash/isArray';
 import isNull from 'lodash/isNull';
 import isEmpty from 'lodash/isEmpty';
 import filter from 'lodash/filter';
-import omitBy from 'lodash/omitBy';
 import size from 'lodash/size';
 import some from 'lodash/some';
 import reduce from 'lodash/reduce';
@@ -21,7 +20,12 @@ import flatten from 'lodash/flatten';
 import orderBy from 'lodash/orderBy';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 import { iota } from './index';
-import { getBalancesSync, accumulateBalance } from './addresses';
+import {
+    getBalancesSync,
+    accumulateBalance,
+    getUnspentAddressesSync,
+    getSpentAddressesWithPendingTransfersSync,
+} from './addresses';
 import {
     getBalancesAsync,
     getTransactionsObjectsAsync,
@@ -31,6 +35,7 @@ import {
     prepareTransfersAsync,
     getTransactionsToApproveAsync,
     storeAndBroadcastAsync,
+    findTransactionsAsync,
 } from './extendedApi';
 
 /**
@@ -118,20 +123,6 @@ export const categorizeTransactionsByPersistence = (tailTransactions, states) =>
             unconfirmed: {},
         },
     );
-};
-
-/**
- *   Accepts unconfirmed and confirmed transactions.
- *   Removes all those unconfirmed transfers that are already confirmed.
- *
- *   @method removeIrrelevantUnconfirmedTransfers
- *   @param {object} categorizedTransfers - transfers categorized by confirmed/unconfirmed as dictionary with key as bundle hash
- *   @returns {object} Unconfirmed transfers as dictionary after removing transfer objects that are already confirmed.
- **/
-
-export const removeIrrelevantUnconfirmedTransfers = (categorizedTransfers) => {
-    const { unconfirmed, confirmed } = categorizedTransfers;
-    return omitBy(unconfirmed, (tx, bundle) => bundle in confirmed);
 };
 
 export const isReceivedTransfer = (bundle, addresses) => {
@@ -356,19 +347,6 @@ export const getFirstConsistentTail = (tails, idx) => {
         .catch(() => false);
 };
 
-export const formatTransfers = (transfers) => {
-    // Order transfers from oldest to newest
-    return transfers.slice().sort((a, b) => {
-        if (a[0].timestamp > b[0].timestamp) {
-            return -1;
-        }
-        if (a[0].timestamp < b[0].timestamp) {
-            return 1;
-        }
-        return 0;
-    });
-};
-
 /**
  *   Takes in transfer bundles and only keep a single copy
  *
@@ -478,7 +456,8 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
 };
 
 /**
- *   Checks if there is a difference between local transaction hashes and ledger's transaction hashes.
+ *   Accepts tail transaction object and all transaction objects from bundle hashes
+ *   Then construct a bundle by following trunk transaction from tail transaction object.
  *
  *   @method constructBundle
  *   @param {object} tailTransaction
@@ -499,15 +478,6 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
 
     let hasFoundLastTransfer = false;
 
-    // Assign parent transactions (trunk and branch)
-    // Starting from the remainder transaction object (index = 0 in sortedTransactionObjects)
-    // - When index === 0 i.e. remainder transaction object
-    //    * Assign trunkTransaction with provided trunk transaction from (getTransactionsToApprove)
-    //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)
-    // - When index > 0 i.e. not remainder transaction objects
-    //    * Assign trunkTransaction with hash of previous transaction object
-    //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)    let nextTrunk = tailTransaction.trunkTransaction;
-
     // Start off from by searching for trunk transaction of tail transaction object,
     // Which is hash of the next transfer i.e. transfer with current index 1
     let nextTrunkTransaction = tailTransaction.trunkTransaction;
@@ -527,7 +497,7 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
         const isLastTransferInBundle = transfer.currentIndex === transfer.lastIndex;
 
         // Assign trunk transaction of this transaction as the next trunk transaction to be searched for,
-        // Next trunk transaction should always be the hash of currentIndex + 1 except for the case of remainder objects (currentIndex === lastIndex)
+        // Next trunk transaction should always be the hash of currentIndex + 1 except for the case in remainder objects (currentIndex === lastIndex)
         nextTrunkTransaction = transfer.trunkTransaction;
 
         bundle.push(transfer);
@@ -569,7 +539,7 @@ export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
 
 /**
  *   Get transaction objects associated with hashes, assign persistence by calling inclusion states
- *   Resolves formatted transfers.
+ *   Resolves transfers.
  *
  *   @method syncTransfers
  *   @param {array} diff
@@ -608,7 +578,7 @@ export const syncTransfers = (diff, accountState) => {
             const updatedTransfers = [...accountState.transfers, ...newTransfers];
 
             return {
-                transfers: formatTransfers(updatedTransfers),
+                transfers: updatedTransfers,
                 newTransfers,
             };
         });
@@ -878,4 +848,58 @@ export const sendTrytes = (trytes, powFn) => {
             return storeAndBroadcastAsync(cached.trytes);
         })
         .then(() => cached.transactionObjects);
+};
+
+/**
+ *   Finds latest transaction hashes for unspent addresses.
+ *
+ *   IMPORTANT: This function should always be used after the account is synced.
+ *
+ *   @method getTransactionHashesForUnspentAddresses
+ *   @param {object} addressData
+ *
+ *   @returns {Promise<array>}.
+ **/
+export const getTransactionHashesForUnspentAddresses = (addressData) => {
+    const unspentAddresses = getUnspentAddressesSync(addressData);
+
+    if (isEmpty(unspentAddresses)) {
+        return Promise.resolve([]);
+    }
+
+    return findTransactionsAsync({ addresses: unspentAddresses });
+};
+
+/**
+ *   Finds latest pending transaction hashes for spent addresses.
+ *
+ *   IMPORTANT: This function should always be used after the account is sycnced.
+ *
+ *   @method getPendingTransactionHashesForSpentAddresses
+ *   @param {array} transfers
+ *   @param {object} addressData
+ *
+ *   @returns {Promise<array>}
+ **/
+export const getPendingTransactionHashesForSpentAddresses = (transfers, addressData) => {
+    const pendingTransfers = filterConfirmedTransfers(transfers);
+
+    const spentAddressesWithPendingTransfers = getSpentAddressesWithPendingTransfersSync(pendingTransfers, addressData);
+
+    if (isEmpty(spentAddressesWithPendingTransfers)) {
+        return Promise.resolve([]);
+    }
+
+    return findTransactionsAsync({ addresses: spentAddressesWithPendingTransfers });
+};
+
+export const getLatestTransactionHashes = (transfers, addresses) => {
+    return Promise.all([
+        getTransactionHashesForUnspentAddresses(addresses),
+        getPendingTransactionHashesForSpentAddresses(transfers, addresses),
+    ]).then((hashes) => {
+        const [txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses] = hashes;
+
+        return { txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses };
+    });
 };
