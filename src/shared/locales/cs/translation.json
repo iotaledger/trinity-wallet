@@ -8,11 +8,11 @@
         "qr": "QR",
         "balanceError": "Nedostatečný zůstatek",
         "balanceErrorMessage": "Nemáte dostatek IOTA k dokončení této transakce.",
-        "transferError": "Chyba přenosu",
+        "transferError": "Chyba transakce",
         "transferErrorMessage": "Došlo k chybě při odesílání transakce. Prosím zkuste to znovu.",
         "transferSent": "Transakce odeslána",
         "transferSentMessage": "Transakce byla odeslána do Tangle.",
-        "messageSent": "Zpráva byla odeslána",
+        "messageSent": "Zpráva odeslána",
         "messageSentMessage": "Vaše zpráva byla odeslána do Tangle.",
         "keyReuse": "Opětovné použití klíče",
         "keyReuseError": "Nelze odeslat na adresu na kterou již bylo odesláno.",
@@ -20,7 +20,7 @@
         "invalidResponseExplanation": "Uzel vrátil neplatnou odpověď.",
         "invalidResponsePollingExplanation": "Uzel vrátil neplatnou odpověď při dotazování.",
         "invalidResponseFetchingAccount": "Uzel vrátil neplatnou odpověď při načítání informací o vašem účtu. Zkuste změnit uzel.",
-        "invalidResponseSendingTransfer": "Uzel vrátil neplatnou odpověď při odesílání přenosu.",
+        "invalidResponseSendingTransfer": "Uzel vrátil neplatnou odpověď při odesílání transakce.",
         "seed": "Seed",
         "back": "ZPĚT",
         "backLowercase": "Zpět",
@@ -212,7 +212,7 @@
         "invalidAmount": "Zadaná nesprávná částka",
         "invalidAmountExplanation": "Prosím zadejte platnou transakční částku. Případně níže na stránce jsou informace o IOTA jednotkách.\n",
         "maximumSelected": "Vybrána MAXIMÁLNÍ částka",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "Informace o IOTA jednotkách.",
         "sendMax": "POSLAT MAX"
     },
     "setPassword": {
@@ -220,18 +220,18 @@
         "passwordTooShortExplanation": "Seed musí obsahovat minimálně {{minLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím opakujte správně.",
         "passwordMismatch": "Neplatné heslo",
         "passwordMismatchExplanation": "Zadané heslo je nesprávné. Zkuste to prosím znovu.",
-        "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "nowWeNeedTo": "Nyní vytvořte heslo",
+        "anEncryptedCopy": "V zařízení se uloží zakryptovaná kopie vašeho seedu. Tímto heslem se budete přihlašovat k vaší peněžence.",
+        "ensure": "Ujistěte se, že budete používat silné heslo s minimálně 12ti znaky.",
+        "retypePassword": "Zadejte heslo znovu"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "V této peněžence můžete použít více seedů. Každý seed vyžaduje nové jméno účtu.",
+        "youCanAdd": "Můžete zadat véce seedů v menu Nastavení."
     },
     "modeSelection": {
         "expert": "Expert",
-        "standard": "Standard",
+        "standard": "Výchozí",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
@@ -249,10 +249,10 @@
         "twoFA": "Dvoufaktorové ověření",
         "changePassword": "Změnit heslo",
         "advanced": "Advanced settings",
-        "logout": "Log out",
-        "reset": "Reset wallet",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "logout": "Odhlásit",
+        "reset": "Vymazat peněženku",
+        "syncingComplete": "Synchronizace dokončena",
+        "syncingCompleteExplanation": "Váš účet je úspěšně synchronizován.",
         "nicknameChanged": "Account name changed",
         "nicknameChangedExplanation": "Your account name has been changed.",
         "accountDeleted": "Account deleted",
