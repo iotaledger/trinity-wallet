@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed nebyl vygenerován",
-        "seedNotGeneratedExplanation": "Klikněte prosím na tlačítko \"Generovat nový SEED\".",
+        "seedNotGeneratedExplanation": "Klikněte prosím na tlačítko \"Generovat nový Seed\".",
         "pressForNewSeed": "VYGENERUJ NOVÝ SEED",
         "individualLetters": "Vyberte náhodná písmena."
     },
@@ -185,7 +185,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed vymazán",
         "seedClearedExplanation": "Seed byl vymazán ze schránky pro Vaši bezpečnost.",
-        "mustSaveYourSeed": "<0><0>Musíte si uložit Seed</0><1>alespoň jeden</1><2>z níže uvedených.</2></0>"
+        "mustSaveYourSeed": "<0><0>Je třeba uložit Váš seed s</0><1>alespoň jeden</1><2>z níže uvedených možností.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Neplatný Seed",
@@ -236,7 +236,7 @@
         "modesExplanation": "Expertní režim povolte, pouze pokud jste zkušený Tangle uživatel. V opačném případě pro Vás může byt jeho použití matoucí."
     },
     "settings": {
-        "transferSending": "Transakce odeslána",
+        "transferSending": "Odesílání transakce",
         "transferSendingExplanation": "Počkejte prosím, než se Váš převod pošle.",
         "generatingAddress": "Generování adresy pro příjem",
         "generatingAddressExplanation": "Prosím vyčkejte než bude Vaše adresa vygenerována.",
@@ -368,13 +368,13 @@
         "title": "Zadejte Seed a název účtu."
     },
     "viewSeed": {
-        "enterPassword": "Zadejte heslo pro zobrazení Vašeho Seedu.",
+        "enterPassword": "Pro zobrazení Vašeho Seedu zadejte heslo.",
         "viewSeed": "ZOBRAZIT SEED",
         "hideSeed": "SKRÝT SEED"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Svůj Seed mám uložený",
-        "reenter": "Nyní budete požádáni o znovu zadání vašeho Seedu.",
+        "reenter": "Nyní budete požádáni o opětovné zadání Vašeho Seedu.",
         "reenterWarning": "Když přijdete o své zařízení a nebudete mít uložený svůj Seed, ztratíte všechny své IOTA."
     },
     "walletResetConfirmation": {
