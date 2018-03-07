@@ -28,6 +28,7 @@ import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
+import tinycolor from 'tinycolor2';
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
@@ -86,9 +87,11 @@ class History extends Component {
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
         closeTopBar: PropTypes.func.isRequired,
-        positive: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
+        secondary: PropTypes.object.isRequired,
         extra: PropTypes.object.isRequired,
         negative: PropTypes.object.isRequired,
+        positive: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         secondaryBarColor: PropTypes.string.isRequired,
         bar: PropTypes.object.isRequired,
@@ -208,7 +211,11 @@ class History extends Component {
      * @return {Array} Formatted transaction data
      */
     prepTransactions() {
-        const { transfers, addresses, extra, negative, positive, body, bar, mode, t } = this.props;
+        const { transfers, addresses, negative, primary, secondary, positive, body, bar, mode, t } = this.props;
+        const containerBorderColor = tinycolor(body.bg).isDark()
+            ? 'rgba(255, 255, 255, 0.25)'
+            : 'rgba(0, 0, 0, 0.25)';
+        const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
         const computeConfirmationStatus = (persistence, incoming) => {
             if (!persistence) {
@@ -243,10 +250,10 @@ class History extends Component {
                 bundle: tx.bundle,
                 mode,
                 style: {
-                    titleColor: incoming ? extra.color : negative.color,
-                    containerBorderColor: { borderColor: 'black' },
-                    containerBackgroundColor: { backgroundColor: 'black' },
-                    confirmationStatusColor: { color: !tx.persistence ? 'black' : positive.color },
+                    titleColor: incoming ? primary.color : secondary.color,
+                    containerBorderColor: { borderColor: containerBorderColor },
+                    containerBackgroundColor: { backgroundColor: containerBackgroundColor },
+                    confirmationStatusColor: { color: !tx.persistence ? negative.color : positive.color },
                     defaultTextColor: { color: body.color },
                     backgroundColor: body.bg,
                     borderColor: { borderColor: body.color },
@@ -328,6 +335,8 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     seedIndex: tempAccount.seedIndex,
     mode: settings.mode,
     negative: settings.theme.negative,
+    primary: settings.theme.primary,
+    secondary: settings.theme.secondary,
     positive: settings.theme.positive,
     extra: settings.theme.extra,
     body: settings.theme.body,

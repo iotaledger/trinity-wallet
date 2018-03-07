@@ -121,7 +121,6 @@ class Home extends Component {
 
         const barTextColor = { color: bar.color };
         const textColor = { color: body.color };
-        const backgroundColor = { backgroundColor: body.bg };
 
         return (
             <UserInactivity
@@ -132,7 +131,7 @@ class Home extends Component {
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
-                <KeyboardAvoidingView style={{ flex: 1, backgroundColor }}>
+                <KeyboardAvoidingView style={{ flex: 1, backgroundColor: body.bg }}>
                     <DynamicStatusBar backgroundColor={bar.bg} />
                     {!inactive &&
                         !minimised && (

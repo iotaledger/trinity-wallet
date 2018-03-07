@@ -16,6 +16,12 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 25,
+    },
+    backText: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     item: {
@@ -91,7 +97,7 @@ class AddNewAccount extends Component {
                     >
                         <View style={styles.item}>
                             <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
+                            <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

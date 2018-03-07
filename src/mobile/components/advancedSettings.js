@@ -33,16 +33,17 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
-    },
     backIcon: {
         width: width / 28,
         height: width / 28,
     },
     titleText: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginLeft: width / 25,
+    },
+    backText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -76,18 +77,11 @@ class AdvancedSettings extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
-        addImagePath: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
     };
 
     render() {
-        const { t, textColor, borderColor, secondaryBackgroundColor, arrowLeftImagePath, addImagePath } = this.props;
-        const nodeImagePath = secondaryBackgroundColor === 'white' ? whiteNodeImagePath : blackNodeImagePath;
-        const syncImagePath = secondaryBackgroundColor === 'white' ? whiteSyncImagePath : blackSyncImagePath;
-        const crossImagePath = secondaryBackgroundColor === 'white' ? whiteCrossImagePath : blackCrossImagePath;
-        const snapshotImagePath =
-            secondaryBackgroundColor === 'white' ? whiteSnapshotImagePath : blackSnapshotImagePath;
+        const { t, textColor, borderColor, secondaryBackgroundColor } = this.props;
 
         return (
             <View style={styles.container}>
@@ -98,7 +92,11 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={nodeImagePath} style={styles.icon} />
+                                <Icon
+                                    name='node'
+                                    size={width / 22}
+                                    color={secondaryBackgroundColor}
+                                />
                                 <Text style={[styles.titleText, textColor]}>{t('selectNode')}</Text>
                                 <Text numberOfLines={1} style={[styles.settingText, textColor]}>
                                     {this.props.node}
@@ -112,7 +110,11 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={addImagePath} style={styles.icon} />
+                                <Icon
+                                    name='plus'
+                                    size={width / 22}
+                                    color={secondaryBackgroundColor}
+                                />
                                 <Text style={[styles.titleText, textColor]}>{t('addCustomNode')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -123,7 +125,11 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={syncImagePath} style={styles.icon} />
+                                <Icon
+                                    name='eye'
+                                    size={width / 22}
+                                    color={secondaryBackgroundColor}
+                                />
                                 <Text style={[styles.titleText, textColor]}>{t('manualSync')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -134,7 +140,11 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={snapshotImagePath} style={styles.icon} />
+                                <Icon
+                                    name='eye'
+                                    size={width / 22}
+                                    color={secondaryBackgroundColor}
+                                />
                                 <Text style={[styles.titleText, textColor]}>Snapshot Transition</Text>
                             </View>
                         </TouchableOpacity>
@@ -148,7 +158,11 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={crossImagePath} style={styles.icon} />
+                                <Icon
+                                    name='trash'
+                                    size={width / 22}
+                                    color={secondaryBackgroundColor}
+                                />
                                 <Text style={[styles.titleText, textColor]}>{t('settings:reset')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -162,8 +176,12 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={arrowLeftImagePath} style={styles.backIcon} />
-                                <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
+                                <Icon
+                                    name='chevronLeft'
+                                    size={width / 28}
+                                    color={secondaryBackgroundColor}
+                                />
+                                <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

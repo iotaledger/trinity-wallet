@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
         width,
     },
     midWrapper: {
@@ -79,6 +79,7 @@ class FingerprintEnable extends Component {
         generateAlert: PropTypes.func.isRequired,
         setFingerprintStatus: PropTypes.func.isRequired,
         body: PropTypes.object.isRequired,
+        secondary: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         isFingerprintEnabled: PropTypes.bool.isRequired,
     };
@@ -177,7 +178,7 @@ class FingerprintEnable extends Component {
     }
 
     render() {
-        const { t, body, isFingerprintEnabled } = this.props;
+        const { t, body, isFingerprintEnabled, secondary } = this.props;
         const backgroundColor = { backgroundColor: body.bg };
         const textColor = { color: body.color };
         const authenticationStatus = isFingerprintEnabled ? t('enabled') : t('disabled');
@@ -207,8 +208,8 @@ class FingerprintEnable extends Component {
                     </View>
                     <View style={styles.bottomWrapper}>
                         <TouchableOpacity onPress={() => this.navigateToHome()}>
-                            <View style={styles.backButton}>
-                                <Text style={styles.backText}>{t('global:back')}</Text>
+                            <View style={[styles.backButton, { borderColor: secondary.color }]}>
+                                <Text style={[styles.backText, { color: secondary.color }]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -226,7 +227,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => ({
     body: state.settings.theme.body,
     positive: state.settings.theme.positive,
-    negative: state.settings.theme.negative,
+    secondary: state.settings.theme.secondary,
     isFingerprintEnabled: state.account.isFingerprintEnabled,
 });
 

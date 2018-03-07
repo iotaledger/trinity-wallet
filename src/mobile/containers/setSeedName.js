@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 4.8,
@@ -66,8 +66,8 @@ export class SetSeedName extends Component {
         seed: PropTypes.string.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
         seedCount: PropTypes.number.isRequired,
+        theme: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
@@ -222,17 +222,16 @@ export class SetSeedName extends Component {
 
     render() {
         const { accountName } = this.state;
-        const { t, body, negative } = this.props;
+        const { t, theme, body } = this.props;
         const textColor = { color: body.color };
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
-
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Icon name="iota" size={width / 8} color={body.color} />{' '}
+                            <Icon name="iota" size={width / 8} color={body.color} />
                         </View>
                         <View style={styles.midContainer}>
                             <View style={{ flex: 0.5 }} />
@@ -245,13 +244,12 @@ export class SetSeedName extends Component {
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 onSubmitEditing={() => this.onDonePress()}
-                                secondaryBackgroundColor={body.color}
-                                negativeColor={negative.color}
+                                theme={theme}
                                 value={accountName}
                             />
                             <View style={{ flex: 0.3 }} />
                             <InfoBox
-                                secondaryBackgroundColor={body.color}
+                                body
                                 text={
                                     <View>
                                         <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
@@ -283,7 +281,7 @@ const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     seedCount: state.account.seedCount,
     onboardingComplete: state.account.onboardingComplete,
-    negative: state.settings.theme.negativeColor,
+    theme: state.settings.theme,
     body: state.settings.theme.body,
     isTransitioning: state.tempAccount.isTransitioning,
     isSendingTransfer: state.tempAccount.isSendingTransfer,

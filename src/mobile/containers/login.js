@@ -54,8 +54,7 @@ class Login extends Component {
         setPassword: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         body: PropTypes.object.isRequired,
-        positive: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
         isFingerprintEnabled: PropTypes.bool.isRequired,
@@ -207,7 +206,7 @@ class Login extends Component {
     }
 
     render() {
-        const { body, positive, negative, password, isFingerprintEnabled } = this.props;
+        const { body, theme, password, isFingerprintEnabled } = this.props;
         const textColor = { color: body.bg };
 
         return (
@@ -216,12 +215,9 @@ class Login extends Component {
                 {!this.state.changingNode &&
                     !this.state.completing2FA && (
                         <EnterPasswordOnLogin
-                            backgroundColor={body.bg}
-                            negativeColor={negative.color}
-                            positiveColor={positive.color}
+                            theme={theme}
                             onLoginPress={this.onLoginPress}
                             navigateToNodeSelection={this.navigateToNodeSelection}
-                            secondaryBackgroundColor={body.color}
                             textColor={textColor}
                             setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
                             password={password}
@@ -232,12 +228,10 @@ class Login extends Component {
                 {!this.state.changingNode &&
                     this.state.completing2FA && (
                         <Enter2FA
-                            negativeColor={negative.color}
-                            positiveColor={positive.color}
+                            theme={theme}
                             onComplete2FA={this.onComplete2FA}
                             onBackPress={this.onBackPress}
                             navigateToNodeSelection={this.navigateToNodeSelection}
-                            secondaryBackgroundColor={body.color}
                             textColor={textColor}
                         />
                     )}
@@ -253,8 +247,7 @@ class Login extends Component {
                                 node={this.props.fullNode}
                                 nodes={this.props.availablePoWNodes}
                                 backPress={() => this.setState({ changingNode: false })}
-                                textColor={textColor}
-                                secondaryBackgroundColor={body.color}
+                                body
                             />
                         </View>
                         <View style={{ flex: 0.2 }} />
@@ -271,9 +264,8 @@ const mapStateToProps = (state) => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
+    theme: state.settings.theme,
     body: state.settings.theme.body,
-    positive: state.settings.theme.positive,
-    negative: state.settings.theme.negative,
     is2FAEnabled: state.account.is2FAEnabled,
     isFingerprintEnabled: state.account.isFingerprintEnabled,
     versions: state.app.versions,

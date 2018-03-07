@@ -24,7 +24,7 @@ const renderInitialScreen = (store) => {
         clearKeychain();
     }
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
-    const initialScreen = state.account.onboardingComplete ? 'home' : 'languageSetup';
+    const initialScreen = state.account.onboardingComplete ? 'login' : 'languageSetup';
     Navigation.startSingleScreenApp({
         screen: {
             screen: initialScreen,

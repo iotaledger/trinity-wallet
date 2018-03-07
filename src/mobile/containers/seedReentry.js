@@ -5,6 +5,7 @@ import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'reac
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import Checksum from '../components/checksum';
 import { width, height } from '../util/dimensions';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import CustomTextInput from '../components/customTextInput';
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         flex: 0.5,
-        paddingTop: height / 22,
+        paddingTop: height / 16,
         justifyContent: 'flex-start',
     },
     midContainer: {
@@ -100,10 +101,11 @@ class SeedReentry extends Component {
     static propTypes = {
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        negative: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         navigator: PropTypes.object.isRequired,
         seed: PropTypes.string.isRequired,
+        input: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -149,7 +151,7 @@ class SeedReentry extends Component {
 
     render() {
         const { seed } = this.state;
-        const { t, body, negative } = this.props;
+        const { t, body, theme, input } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -174,19 +176,20 @@ class SeedReentry extends Component {
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 onSubmitEditing={() => this.onDonePress()}
-                                secondaryBackgroundColor={body.color}
-                                negativeColor={negative.color}
+                                theme={theme}
                                 value={seed}
                             />
-                            <View style={{ flex: 0.3 }} />
+                            <View style={{ flex: 0.15 }} />
+                            <Checksum seed={seed} input={input}/>
+                            <View style={{ flex: 0.15 }} />
                             <InfoBox
+                                body
                                 text={
                                     <View>
                                         <Text style={[styles.infoTextTop, textColor]}>{t('thisIsACheck')}</Text>
                                         <Text style={[styles.infoTextBottom, textColor]}>{t('ifYouHaveNotSaved')}</Text>
                                     </View>
                                 }
-                                secondaryBackgroundColor={body.color}
                             />
                             <View style={{ flex: 0.5 }} />
                         </View>
@@ -208,8 +211,9 @@ class SeedReentry extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
-    negative: state.settings.theme.negative,
+    theme: state.settings.theme,
     body: state.settings.theme.body,
+    input: state.settings.theme.input,
 });
 
 const mapDispatchToProps = {

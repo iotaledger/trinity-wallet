@@ -9,7 +9,7 @@ class DynamicStatusBar extends PureComponent {
     };
     render() {
         const { backgroundColor } = this.props;
-        const statusBarStyle = tinycolor(backgroundColor).isDark() ? 'light-content' : 'light-content';
+        const statusBarStyle = tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
 
         return <StatusBar barStyle={statusBarStyle} backgroundColor={backgroundColor} translucent />;
     }

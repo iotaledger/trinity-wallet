@@ -89,11 +89,9 @@ class ViewSeed extends Component {
         seedIndex: PropTypes.number.isRequired,
         password: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
         onWrongPassword: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
@@ -167,11 +165,9 @@ class ViewSeed extends Component {
         const {
             t,
             textColor,
-            backgroundColor,
-            secondaryBackgroundColor,
+            body,
             borderColor,
-            arrowLeftImagePath,
-            negativeColor,
+            theme,
         } = this.props;
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -194,9 +190,8 @@ class ViewSeed extends Component {
                                     returnKeyType="done"
                                     secureTextEntry
                                     onSubmitEditing={this.handleLogin}
-                                    secondaryBackgroundColor={secondaryBackgroundColor}
-                                    negativeColor={negativeColor}
                                     value={this.state.password}
+                                    theme={theme}
                                 />
                             </View>
                         )}
@@ -222,7 +217,7 @@ class ViewSeed extends Component {
                                 <View style={styles.seedBoxContainer}>
                                     <Seedbox
                                         seed={this.state.seed}
-                                        backgroundColor={backgroundColor}
+                                        backgroundColor={body.bg}
                                         borderColor={borderColor}
                                         textColor={textColor}
                                     />
@@ -247,7 +242,7 @@ class ViewSeed extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>

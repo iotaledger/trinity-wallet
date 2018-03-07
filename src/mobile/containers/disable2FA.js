@@ -11,7 +11,6 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-import COLORS from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import CustomTextInput from '../components/customTextInput';
 import OnboardingButtons from '../components/onboardingButtons';
@@ -62,8 +61,8 @@ const styles = StyleSheet.create({
 class Disable2FA extends Component {
     static propTypes = {
         generateAlert: PropTypes.func.isRequired,
+        theme: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         set2FAStatus: PropTypes.func.isRequired,
     };
@@ -126,25 +125,9 @@ class Disable2FA extends Component {
     }
 
     render() {
-        const { t, body, negative } = this.props;
+        const { t, body, theme } = this.props;
         const backgroundColor = { backgroundColor: body.bg };
         const textColor = { color: body.color };
-
-        const onboardingButtonsOverride = {
-            rightButton: {
-                borderColor: COLORS.red,
-            },
-            rightText: {
-                color: COLORS.red,
-                fontFamily: Fonts.secondary,
-            },
-            leftButton: {
-                borderColor: negative.color,
-            },
-            leftText: {
-                color: negative.color,
-            },
-        };
 
         return (
             <View style={[styles.container, backgroundColor]}>
@@ -164,15 +147,13 @@ class Disable2FA extends Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
-                                secondaryBackgroundColor={body.color}
-                                negativeColor={negative.color}
                                 value={this.state.token}
                                 keyboardType="numeric"
+                                theme={theme}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
-                                style={onboardingButtonsOverride}
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.disable2FA}
                                 leftText={t('cancel')}
@@ -188,8 +169,7 @@ class Disable2FA extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    negative: state.settings.theme.negative,
-    body: state.settings.theme.body,
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {

@@ -1,22 +1,20 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, StatusBar, Keyboard } from 'react-native';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
+import Checksum from '../components/checksum';
 import CustomTextInput from '../components/customTextInput';
 import InfoBox from '../components/infoBox';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import QRScanner from '../components/qrScanner';
 import OnboardingButtons from '../components/onboardingButtons';
-import COLORS from '../theme/Colors';
-import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 console.ignoredYellowBox = ['Native TextInput'];
 
@@ -25,11 +23,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1,
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 5,
@@ -53,39 +50,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     infoText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     warningText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
         textAlign: 'justify',
         backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
-    },
-    checksum: {
-        width: width / 8,
-        height: height / 20,
-        borderRadius: GENERAL.borderRadiusSmall,
-        backgroundColor: 'rgba(255, 255, 255, 0.04)',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    checksumText: {
-        fontSize: width / 29.6,
-        color: 'white',
-        fontFamily: 'Lato-Regular',
     },
 });
 
@@ -95,6 +69,10 @@ class EnterSeed extends React.Component {
         t: PropTypes.func.isRequired,
         setSeed: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
+        input: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -110,7 +88,7 @@ class EnterSeed extends React.Component {
      * Validate seed
      */
     onDonePress() {
-        const { t } = this.props;
+        const { t, body } = this.props;
         const { seed } = this.state;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
@@ -128,8 +106,8 @@ class EnterSeed extends React.Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     drawUnderStatusBar: true,
-                    statusBarColor: COLORS.backgroundGreen,
-                    screenBackgroundColor: COLORS.backgroundGreen,
+                    statusBarColor: body.bg,
+                    screenBackgroundColor: body.bg,
                 },
                 animated: false,
             });
@@ -165,24 +143,6 @@ class EnterSeed extends React.Component {
         this.hideModal();
     }
 
-    /**
-     * Gets the 3 character checksum
-     * @return {String} Checksum
-     */
-    getChecksumValue() {
-        const { seed } = this.state;
-        let checksumValue = '...';
-
-        if (seed.length !== 0 && !seed.match(VALID_SEED_REGEX)) {
-            checksumValue = '!';
-        } else if (seed.length !== 0 && seed.length < 81) {
-            checksumValue = '< 81';
-        } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
-            checksumValue = getChecksum(seed);
-        }
-        return checksumValue;
-    }
-
     showModal = () => this.setState({ isModalVisible: true });
 
     hideModal = () => this.setState({ isModalVisible: false });
@@ -193,27 +153,32 @@ class EnterSeed extends React.Component {
         }
     };
 
-    renderModalContent = () => (
-        <QRScanner
-            backgroundColor={COLORS.backgroundGreen}
-            ctaColor={COLORS.greenLight}
-            onQRRead={(data) => this.onQRRead(data)}
-            hideModal={() => this.hideModal()}
-            secondaryCtaColor="white"
-            secondaryBackgroundColor="white"
-        />
-    );
+    renderModalContent = () => {
+        const { body, primary } = this.props;
+        return (
+            <QRScanner
+                primary={primary}
+                body={body}
+                onQRRead={(data) => this.onQRRead(data)}
+                hideModal={() => this.hideModal()}
+            />
+        );
+    };
 
     render() {
         const { seed } = this.state;
-        const { t } = this.props;
+        const { t, body, theme, input } = this.props;
         return (
             <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
                 <View style={styles.container}>
-                    <StatusBar barStyle="light-content" backgroundColor={COLORS.backgroundGreen} />
+                    <StatusBar barStyle="light-content" backgroundColor={body.bg} />
                     <View style={styles.topContainer}>
                         <View style={styles.logoContainer}>
-                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                            <Icon
+                                name='iota'
+                                size={width / 8}
+                                color={body.color}
+                            />
                         </View>
                     </View>
                     <View style={styles.midContainer}>
@@ -222,33 +187,29 @@ class EnterSeed extends React.Component {
                             label={t('global:seed')}
                             onChangeText={(text) => this.setState({ seed: text.toUpperCase() })}
                             containerStyle={{ width: width / 1.2 }}
+                            theme={theme}
                             autoCapitalize="characters"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
                             onSubmitEditing={() => this.onDonePress()}
                             maxLength={MAX_SEED_LENGTH}
-                            secondaryBackgroundColor="white"
-                            secondaryCtaColor="transparent"
                             value={seed}
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
                             testID="enterSeed-seedbox"
                         />
                         <View style={{ flex: 0.4 }} />
-                        <View style={styles.checksum}>
-                            <Text style={styles.checksumText} testID="enterSeed-checksum">
-                                {this.getChecksumValue()}
-                            </Text>
-                        </View>
+                        <Checksum seed={seed} input={input}/>
                         <View style={{ flex: 0.4 }} />
                         <InfoBox
+                            body
                             text={
                                 <View>
-                                    <Text style={styles.infoText}>
+                                    <Text style={[ styles.infoText, { color: body.color } ]}>
                                         {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
                                     </Text>
-                                    <Text style={styles.warningText}>
+                                    <Text style={[ styles.warningText, { color: body.color } ]}>
                                         {'\n'}
                                         {t('neverShare')}
                                     </Text>
@@ -267,7 +228,7 @@ class EnterSeed extends React.Component {
                             rightButtonTestID="enterSeed-next"
                         />
                     </View>
-                    <StatefulDropdownAlert textColor="white" backgroundColor={COLORS.backgroundGreen} />
+                    <StatefulDropdownAlert textColor="white" backgroundColor={body.bg} />
                     <Modal
                         animationIn="bounceInUp"
                         animationOut="bounceOut"
@@ -292,9 +253,10 @@ class EnterSeed extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    marketData: state.marketData,
-    tempAccount: state.tempAccount,
-    account: state.account,
+    theme: state.settings.theme,
+    body: state.settings.theme.body,
+    primary: state.settings.theme.primary,
+    input: state.settings.theme.input,
 });
 
 const mapDispatchToProps = {
