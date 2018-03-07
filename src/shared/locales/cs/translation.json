@@ -153,23 +153,23 @@
         "cannotConnect": "Nelze se připojit k IOTA uzlu."
     },
     "loading": {
-        "loadingFirstTime": "Načítání seedu pro první nastavení.",
-        "thisMayTake": "To může chvíli trvat.",
-        "youMayNotice": "Můžete si všimnout zpomalení Vašeho zařízení."
+        "loadingFirstTime": "Prvotní načítání seedu.",
+        "thisMayTake": "Toto může chvíli trvat.",
+        "youMayNotice": "Může dojít ke zpomalení Vašeho zařízení."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed nebyl vygenerován",
         "seedNotGeneratedExplanation": "Klikněte prosím na tlačítko \"Generovat nový SEED\".",
         "pressForNewSeed": "VYGENERUJ NOVÝ SEED",
-        "individualLetters": "Stiskněte náhodně jednotlivá písmena."
+        "individualLetters": "Vyberte náhodná písmena."
     },
     "onboardingComplete": {
-        "walletReady": "Peněženka je nyní nastavena a připravena k použití. Jestliže v budoucnu budete cokoliv potřebovat změnit podívejte se do menu nastavení."
+        "walletReady": "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco měnit najdete to v Menu Nastavení."
     },
     "paperWallet": {
-        "clickToPrint": "Klepněte níže na tlačítko vytisknout papírovou kopii vašeho seedu.",
-        "storeSafely": "Bezpečně uložte.",
-        "neverShare": "Nikdy s nikým nesdílejte Váš seed.",
+        "clickToPrint": "Pro vytisknutí kopie Vašeho seedu, klikněte na tlačítko níže.",
+        "storeSafely": "Bezpečně uložte!",
+        "neverShare": "Nikdy s nikým nesdílejte Váš seed!",
         "iotaLogo": "IOTA logo",
         "printWallet": "Tisk papírové peněženky"
     },
@@ -272,7 +272,7 @@
         "selectAll": "Vybrat vše",
         "securitySettings": "Nastavení zabezpečení",
         "fingerprint": "Biometrické ověřování",
-        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRates": "Nelze načíst ceny",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
@@ -280,7 +280,7 @@
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ZRUŠIT",
-        "reset": "RESET"
+        "reset": "OBNOVIT"
     },
     "walletSetup": {
         "okay": "OK - přejděme nyní k nastavení vaší peněženky!",
@@ -302,7 +302,7 @@
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Adresa zkopírována",
-        "addressCopiedExplanation": "The address has been copied to the clipboard.",
+        "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
         "send": "ODESLAT",
         "receive": "PŘIJATO"
     },
@@ -314,7 +314,7 @@
         "addNewAccount": "Přidat nový účet"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
+        "customNode": "Vlastní node",
         "add": "Přidat"
     },
     "addNewAccount": {
@@ -323,7 +323,7 @@
     },
     "advancedSettings": {
         "selectNode": "Vybrat node",
-        "addCustomNode": "Add custom node",
+        "addCustomNode": "Přidat vlastní node",
         "manualSync": "Ruční synchronizace",
         "snapshotTransition": "Snapshot transition"
     },
@@ -361,14 +361,14 @@
         "pressToSync": "Press the button below to sync your account.",
         "thisMayTake": "Může to chvíli trvat.",
         "youMayNotice": "You may notice your device slowing down.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "syncAccount": "SYNCHRONIZOVAT ÚČET",
+        "syncingYourAccount": "Synchronizuji Váš účet."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Zadejte seed a název účtu."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
+        "enterPassword": "Zadejte heslo pro zobrazení Vašeho seed.",
         "viewSeed": "ZOBRAZIT SEED",
         "hideSeed": "SKRÝT SEED"
     },
@@ -384,12 +384,12 @@
     "fingerprintSetup": {
         "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
         "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabled": "Autentifikace čtečkou otisku prstu zapnuta",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabled": "Autentifikace čtečkou otisku prstu vypnuta",
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "fingerprintAuthFailed": "Ověření pomocí otisku prstu selhalo",
+        "fingerprintAuthFailedExplanation": "Ověření pomocí otisku prstu selhalo. Prosím zkuste znovu.",
         "status": "Stav",
         "enabled": "Aktivováno",
         "disabled": "Vypnuto",
@@ -406,10 +406,10 @@
     "twoFA": {
         "wrongCode": "Nesprávný kód",
         "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "emptyCode": "Prázdný kód",
+        "emptyCodeExplanation": "Prosím zadejte kód a zkuste to znovu.",
+        "keyCopied": "Klíč zkopírován do schránky",
+        "keyCopiedExplanation": "Váš 2FA klíč byl zkopírována do schránky.",
         "addKey": "Add this key to your 2FA app",
         "key": "Klíč",
         "twoFAEnabled": "2FA aktivována",
