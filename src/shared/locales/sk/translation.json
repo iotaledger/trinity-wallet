@@ -292,39 +292,39 @@
     "welcome": {
         "thankYou": "Ďakujeme Vám za stiahnutie IOTA peňaženky.",
         "weWillSpend": "Nasledujúcich pár minút strávime nastavením Vašej peňaženky.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "reminder": "Možno budete v pokušení niektoré kroky vynechať, dôrazne však odporúčame, aby ste dokončili všetky."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "yourSeedIs": "Váš seed je {{maxSeedLength}} znakov čítaných zľava doprava.",
+        "writeDownYourSeed": "<0> Zapíšte si svoj seed a kontrolný súčet </0><1>dôkladne skontrolujte</1><2> ich správnosť.</2>"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "The address has been copied to the clipboard.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "bundleHashCopied": "Balíček hash skopírovaný",
+        "bundleHashCopiedExplanation": "Balíček hash bol skopírovaný do schránky.",
+        "addressCopied": "Adresa skopírovaná",
+        "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
+        "send": "ODOSLAŤ",
+        "receive": "PRÍJEM"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Zobraziť seed",
+        "viewAddresses": "Zobraziť adresu",
+        "editAccountName": "Upraviť názov účtu",
+        "deleteAccount": "Vymazať účet",
+        "addNewAccount": "Pridať nový účet"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Vlastný uzol",
+        "add": "Pridať"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Použiť súčasný seed",
+        "createNewSeed": "Vytvoriť nový seed"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync",
+        "selectNode": "Vybrať uzol",
+        "addCustomNode": "Pridať vlastný uzol",
+        "manualSync": "Manuálna synchronizácia",
         "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
@@ -405,13 +405,13 @@
     },
     "twoFA": {
         "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
+        "wrongCodeExplanation": "Zadaný kód nie je správny.",
+        "emptyCode": "Prázdny kód",
+        "emptyCodeExplanation": "Prosím zadajte kód a skúste znova.",
+        "keyCopied": "Kľúč skopírovaný do schránky",
+        "keyCopiedExplanation": "Váš 2FA kľúč bol skopírovaný do schránky.",
+        "addKey": "Pridať tento kľúč do Vašej 2FA aplikácie",
+        "key": "Kľúč",
         "twoFAEnabled": "2FA is now enabled",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
