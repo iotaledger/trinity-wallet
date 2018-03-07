@@ -287,11 +287,11 @@
         "doYouAlreadyHaveASeed": "Máte už vlastný seed, ktorý by ste chceli použiť?",
         "seedExplanation": "IOTA seed je niečo ako Vaše užívateľské meno a zároveň heslo k Vášmu účtu, spojené do jedného reťazca 81 znakov.",
         "explanation": "<0><0>Môžete ho použiť na prístup k svojim prostriedkom z</0> <1>akejkoľvek peňaženky</1> <2>, na</2> <3>na akomkoľvek zariadení</3> <4>. Ak však stratíte svoj seed, stratíte tiež všetky Vaše IOTA.</4></0>",
-        "keepSafe": "Please keep your seed safe."
+        "keepSafe": "Svoj seed prosím uchovávajte v bezpečí."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
+        "thankYou": "Ďakujeme Vám za stiahnutie IOTA peňaženky.",
+        "weWillSpend": "Nasledujúcich pár minút strávime nastavením Vašej peňaženky.",
         "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
     },
     "writeSeedDown": {
