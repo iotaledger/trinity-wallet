@@ -148,12 +148,12 @@
         "enterPassword": "Prosím zadejte Vaše heslo.",
         "useSeed": "POUŽIJ SEED",
         "login": "PŘIHLÁSIT SE",
-        "selectDifferentNode": "Chcete vybrat jiný uzel?",
-        "setNode": "NASTAVIT UZEL",
+        "selectDifferentNode": "Chcete vybrat jiný NODE?",
+        "setNode": "NASTAVIT NODE",
         "cannotConnect": "Nelze se připojit k IOTA uzlu."
     },
     "loading": {
-        "loadingFirstTime": "První načítání seedu.",
+        "loadingFirstTime": "První načítání Seedu.",
         "thisMayTake": "Toto může chvíli trvat.",
         "youMayNotice": "Může dojít ke zpomalení Vašeho zařízení."
     },
@@ -167,9 +167,9 @@
         "walletReady": "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco měnit najdete to v Menu Nastavení."
     },
     "paperWallet": {
-        "clickToPrint": "Pro vytisknutí kopie Vašeho seedu, klikněte na tlačítko níže.",
+        "clickToPrint": "Pro vytisknutí kopie Vašeho Seedu, klikněte na tlačítko níže.",
         "storeSafely": "Bezpečně uložte!",
-        "neverShare": "Nikdy s nikým nesdílejte Váš seed!",
+        "neverShare": "Nikdy s nikým nesdílejte Váš Seed!",
         "iotaLogo": "IOTA logo",
         "printWallet": "Tisk papírové peněženky"
     },
@@ -188,10 +188,10 @@
         "mustSaveYourSeed": "<0><0>Musíte si uložit Seed</0><1>alespoň jeden</1><2>z níže uvedených.</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Neplatný seed",
-        "incorrectSeedExplanation": "Zadán neplatný seed. Zkuste to prosím znovu.",
+        "incorrectSeed": "Neplatný Seed",
+        "incorrectSeedExplanation": "Zadán neplatný Seed. Zkuste to prosím znovu.",
         "thisIsACheck": "Toto je kontrola abyste jste se ujistili, že jste uložili Váš Seed.",
-        "ifYouHaveNotSaved": "Pokud jste Váš seed neuložili, vraťte se prosím zpět a uložte si jej."
+        "ifYouHaveNotSaved": "Pokud jste Váš Seed neuložili, vraťte se prosím zpět a uložte si jej."
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
@@ -226,8 +226,8 @@
         "retypePassword": "Zadejte heslo znovu"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "V této peněžence můžete použít více seedů. Každý seed vyžaduje nový název účtu.",
-        "youCanAdd": "Můžete zadat více seedů v menu Nastavení."
+        "canUseMultipleSeeds": "V této peněžence můžete použít více Seedů. Každý Seed vyžaduje nový název účtu.",
+        "youCanAdd": "Můžete zadat více Seedů v menu Nastavení."
     },
     "modeSelection": {
         "expert": "Expert",
@@ -245,7 +245,7 @@
         "currency": "Měna",
         "language": "Jazyk",
         "accountManagement": "Správa účtů",
-        "addNewSeed": "Přidat nový seed",
+        "addNewSeed": "Přidat nový Seed",
         "twoFA": "Dvoufaktorové ověření F2A",
         "changePassword": "Změnit heslo",
         "advanced": "Pokročilá nastavení",
