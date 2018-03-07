@@ -77,7 +77,7 @@
         "autopromoting": "Automatická podpora přenosu",
         "autopromotingExplanation": "Podpora transakcí s hash {{hash}}",
         "cannotSendToOwn": "Odesílání na vlastní adresu",
-        "cannotSendToOwnExplanation": "Není možné udělat přenos na svoje vlastní adresy.",
+        "cannotSendToOwnExplanation": "Nemůžete převést částku na vlastní adresy.",
         "pleaseWait": "Prosím čekejte",
         "pleaseWaitExplanation": "Trinity vykonává jinou funkci. Počkejte prosím a poté akci opakujte.",
         "pleaseWaitTransferExplanation": "Váš disponibilní zůstatek se momentálně používá v jiných převodech. Počkejte prosím na jedno potvrzení než to zkusíte znovu."
@@ -97,12 +97,12 @@
         "seedInUseExplanation": "Tento seed je již propojen s vaší peněženkou. Použijte prosím jiný."
     },
     "changePassword": {
-        "oops": "Ale ne! Něco se pokazilo",
+        "oops": "Ajaj! Něco se pokazilo",
         "oopsExplanation": "Vypadá to že došlo k chybě při aktualizaci hesla. Opakujte akci.",
-        "passwordUpdated": "Heslo bylo změněno",
+        "passwordUpdated": "Heslo aktualizováno",
         "passwordUpdatedExplanation": "Vaše heslo bylo úspěšně změněno.",
-        "incorrectPassword": "Nesprávné heslo",
-        "incorrectPasswordExplanation": "Vaše současné heslo je nesprávné. Opakujte akci.",
+        "incorrectPassword": "Neplatné heslo",
+        "incorrectPasswordExplanation": "Vaše současné heslo je neplatné. Opakujte akci.",
         "passwordsDoNotMatch": "Hesla se neshodují",
         "passwordsDoNotMatchExplanation": "Hesla se neshodují. Zkuste to znovu.",
         "passwordTooShort": "Heslo je příliš krátké",
@@ -329,7 +329,7 @@
     },
     "advancedThemeCustomisation": {
         "background": "Pozadí",
-        "frame": "Frame"
+        "frame": "Okraje"
     },
     "themeCustomisation": {
         "theme": "Motiv"
@@ -353,28 +353,28 @@
     },
     "deleteAccount": {
         "areYouSure": "Jste si jisti, že chcete odstranit účet \"{{accountName}}\"?",
-        "yourSeedWillBeRemoved": "Váš seed a transakční historie budou odebrány.",
+        "yourSeedWillBeRemoved": "Váš Seed a transakční historie budou odebrány.",
         "thisAction": "Tuto akci nelze vrátit zpět.",
         "enterPassword": "Zadejte Vaše heslo pro smazání tohoto účtu."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "Klikněte na tlačítko níže pro synchronizaci Vašeho účtu.",
         "thisMayTake": "Může to chvíli trvat.",
         "youMayNotice": "Může dojít ke zpomalení Vašeho zařízení.",
         "syncAccount": "SYNCHRONIZOVAT ÚČET",
         "syncingYourAccount": "Synchronizuji Váš účet."
     },
     "useExistingSeed": {
-        "title": "Zadejte seed a název účtu."
+        "title": "Zadejte Seed a název účtu."
     },
     "viewSeed": {
-        "enterPassword": "Zadejte heslo pro zobrazení Vašeho seed.",
+        "enterPassword": "Zadejte heslo pro zobrazení Vašeho Seed.",
         "viewSeed": "ZOBRAZIT SEED",
         "hideSeed": "SKRÝT SEED"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "I have saved my seed",
-        "reenter": "Nyní budete požádáni o znovu zadání vašeho seedu.",
+        "reenter": "Nyní budete požádáni o znovu zadání vašeho Seed.",
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
@@ -396,7 +396,7 @@
         "fingerprintUnavailable": "Snímač otisků prstů není k dispozici",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "buttonInstructionsEnable": "Stisknutím tlačítka níže povolíte ověření otisků prstů.",
         "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
@@ -410,7 +410,7 @@
         "emptyCodeExplanation": "Prosím zadejte kód a zkuste to znovu.",
         "keyCopied": "Klíč zkopírován do schránky",
         "keyCopiedExplanation": "Váš 2FA klíč byl zkopírována do schránky.",
-        "addKey": "Add this key to your 2FA app",
+        "addKey": "Přidat tento klíč do Vaší 2FA aplikace",
         "key": "Klíč",
         "twoFAEnabled": "2FA aktivována",
         "twoFAEnabledExplanation": "Úspěšně jste aktivovali dvou faktorovou autentifikaci.",
