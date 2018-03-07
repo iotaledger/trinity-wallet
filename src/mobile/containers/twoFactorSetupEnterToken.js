@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
         width,
     },
     midWrapper: {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 
 class TwoFactorSetupEnterToken extends Component {
     static propTypes = {
-        negative: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         generateAlert: PropTypes.func.isRequired,
         set2FAStatus: PropTypes.func.isRequired,
@@ -136,7 +136,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     render() {
-        const { negative, body, t } = this.props;
+        const { theme, body, t } = this.props;
         const backgroundColor = { backgroundColor: body.bg };
         const textColor = { color: body.color };
 
@@ -159,8 +159,7 @@ class TwoFactorSetupEnterToken extends Component {
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
                             onSubmitEditing={this.check2FA}
-                            secondaryBackgroundColor={body.color}
-                            negativeColor={negative.color}
+                            theme={theme}
                         />
                     </View>
                     <View style={styles.bottomWrapper}>
@@ -183,8 +182,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    positive: state.settings.theme.positive,
-    negative: state.settings.theme.negative,
+    theme: state.settings.theme,
     body: state.settings.theme.body,
 });
 

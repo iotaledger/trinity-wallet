@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         flex: 0.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
         paddingHorizontal: width / 20,
     },
     midContainer: {
@@ -93,7 +93,6 @@ class CopySeedToClipboard extends Component {
         setCopiedToClipboard: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        secondary: PropTypes.object.isRequired,
         positive: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
@@ -172,7 +171,7 @@ class CopySeedToClipboard extends Component {
     }
 
     render() {
-        const { t, positive, body, secondary, primary, seed } = this.props;
+        const { t, positive, body, primary, seed } = this.props;
         const textColor = { color: body.color };
         const borderColor = { borderColor: body.color };
 
@@ -190,7 +189,7 @@ class CopySeedToClipboard extends Component {
                     <CtaButton
                         ctaColor={primary.color}
                         ctaBorderColor={primary.hover}
-                        secondaryCtaColor={secondary.color}
+                        secondaryCtaColor={primary.body}
                         text={t('copyToClipboard').toUpperCase()}
                         onPress={() => {
                             this.onCopyPress();

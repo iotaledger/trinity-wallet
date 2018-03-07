@@ -96,6 +96,7 @@ class DeleteAccount extends Component {
         currentAccountName: PropTypes.string.isRequired,
         negativeColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         borderColor: PropTypes.object.isRequired,
         isPromoting: PropTypes.bool.isRequired,
@@ -176,7 +177,7 @@ class DeleteAccount extends Component {
     };
 
     render() {
-        const { t, negativeColor, textColor, secondaryBackgroundColor, backgroundColor, borderColor } = this.props;
+        const { t, negativeColor, textColor, secondaryBackgroundColor, backgroundColor, borderColor, theme } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -202,8 +203,7 @@ class DeleteAccount extends Component {
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
                                     onSubmitEditing={this.handleLogin}
-                                    secondaryBackgroundColor={secondaryBackgroundColor}
-                                    negativeColor={negativeColor}
+                                    theme={theme}
                                     secureTextEntry
                                     value={this.state.password}
                                 />

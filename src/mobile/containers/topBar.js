@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     scrollViewContainer: {
         maxHeight: height,
     },
-    emptyNotification: {
+    empty: {
         height: width / 17,
         width: width / 17,
     },
@@ -121,8 +121,8 @@ class TopBar extends Component {
         setSeedIndex: PropTypes.func.isRequired,
         setReceiveAddress: PropTypes.func.isRequired,
         selectedAccount: PropTypes.object.isRequired,
-        bar: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
+        bar: PropTypes.object.isRequired,
         setPollFor: PropTypes.func.isRequired,
         notificationLog: PropTypes.array.isRequired,
         clearLog: PropTypes.func.isRequired,
@@ -205,7 +205,7 @@ class TopBar extends Component {
     }
 
     renderTitles() {
-        const { isTopBarActive, seedNames, balance, accountInfo, seedIndex, bar, body } = this.props;
+        const { isTopBarActive, seedNames, balance, accountInfo, seedIndex, bar } = this.props;
         const borderBottomColor = { borderBottomColor: bar.color };
         const selectedTitle = get(seedNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
@@ -247,8 +247,8 @@ class TopBar extends Component {
                             numberOfLines={1}
                             style={
                                 disableWhen
-                                    ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: body.color }])
-                                    : [styles.mainTitle, { color: body.color }]
+                                    ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: bar.color }])
+                                    : [styles.mainTitle, { color: bar.color }]
                             }
                         >
                             {selectedTitle}
@@ -289,8 +289,8 @@ class TopBar extends Component {
                         numberOfLines={1}
                         style={
                             disableWhen
-                                ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: body.color }])
-                                : [styles.mainTitle, { color: body.color }]
+                                ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: bar.color }])
+                                : [styles.mainTitle, { color: bar.color }]
                         }
                     >
                         {t.title}
@@ -329,7 +329,7 @@ class TopBar extends Component {
     }
 
     render() {
-        const { seedIndex, seedNames, isTopBarActive, bar, body, notificationLog } = this.props;
+        const { seedIndex, seedNames, isTopBarActive, body, bar, notificationLog } = this.props;
 
         const children = this.renderTitles();
         const hasMultipleSeeds = size(TopBar.filterSeedTitles(seedNames, seedIndex));
@@ -359,11 +359,11 @@ class TopBar extends Component {
                                 style={styles.notificationContainer}
                                 onPress={() => this.setState({ isModalVisible: true })}
                             >
-                                <Icon name="eye" size={width / 17} color={body.color} />
+                                <Icon name="eye" size={width / 17} color={bar.color} />
                             </TouchableOpacity>
                         ) : (
                             <View style={styles.notificationContainer}>
-                                <View style={styles.emptyNotification} />
+                                <View style={styles.empty} />
                             </View>
                         )}
                         <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
@@ -372,7 +372,7 @@ class TopBar extends Component {
                                 <Icon
                                     name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
                                     size={width / 17}
-                                    color={body.color}
+                                    color={bar.color}
                                     style={
                                         shouldDisable
                                             ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
@@ -380,7 +380,7 @@ class TopBar extends Component {
                                     }
                                 />
                             ) : (
-                                <View style={styles.chevron} />
+                                <View style={styles.empty} />
                             )}
                         </View>
                     </View>
@@ -427,8 +427,8 @@ const mapStateToProps = (state) => ({
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    bar: state.settings.theme.bar,
     body: state.settings.theme.body,
+    bar: state.settings.theme.bar,
     notificationLog: state.alerts.notificationLog,
 });
 

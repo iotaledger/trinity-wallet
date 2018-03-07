@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
         flexDirection: 'row',
-        borderWidth: height / 1000,
+        borderWidth: 1,
         borderRadius: GENERAL.borderRadiusSmall,
         paddingHorizontal: width / 50,
         paddingVertical: height / 110,
@@ -198,8 +198,8 @@ class Chart extends PureComponent {
                         <VictoryChart domainPadding={isAndroid ? 0 : 15} height={chartHeight} width={chartWidth}>
                             <Defs>
                                 <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
-                                    <Stop stopColor={theme.chartLineColorPrimary} stopOpacity="1" offset="100%" />
-                                    <Stop stopColor={theme.chartLineColorSecondary} stopOpacity="1" offset="25%" />
+                                    <Stop stopColor={theme.chart.color} stopOpacity="1" offset="100%" />
+                                    <Stop stopColor={theme.chart.color} stopOpacity="1" offset="25%" />
                                 </LinearGradient>
                             </Defs>
                             <VictoryLine

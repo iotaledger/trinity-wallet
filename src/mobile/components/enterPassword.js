@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 4.8,
@@ -61,8 +61,7 @@ const styles = StyleSheet.create({
 
 class EnterPassword extends Component {
     static propTypes = {
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
         setUserActivity: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
     };
@@ -102,15 +101,15 @@ class EnterPassword extends Component {
     };
 
     render() {
-        const { t, positiveColor, secondaryBackgroundColor, negativeColor, isFingerprintEnabled } = this.props;
-        const borderColor = { borderColor: positiveColor };
-        const positiveTextColor = { color: positiveColor };
+        const { t, theme, isFingerprintEnabled } = this.props;
+        const borderColor = { borderColor: theme.primary.color };
+        const primaryTextColor = { color: theme.primary.color };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Icon name="iota" size={width / 8} color={secondaryBackgroundColor} />
+                        <Icon name="iota" size={width / 8} color={theme.body.color} />
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
@@ -123,8 +122,7 @@ class EnterPassword extends Component {
                             returnKeyType="done"
                             secureTextEntry
                             onSubmitEditing={this.handleLogin}
-                            secondaryBackgroundColor={secondaryBackgroundColor}
-                            negativeColor={negativeColor}
+                            theme={theme}
                             onFingerprintPress={() => this.activateFingerPrintScanner()}
                             fingerprintAuthentication={isFingerprintEnabled}
                         />
@@ -132,7 +130,7 @@ class EnterPassword extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={this.handleLogin}>
                             <View style={[styles.loginButton, borderColor]}>
-                                <Text style={[styles.loginText, positiveTextColor]}>{t('login')}</Text>
+                                <Text style={[styles.loginText, primaryTextColor]}>{t('login')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -145,14 +143,13 @@ class EnterPassword extends Component {
 EnterPassword.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    positiveColor: PropTypes.string.isRequired,
-    secondaryBackgroundColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.string.isRequired,
+    theme: PropTypes.object.isRequired,
     isFingerprintEnabled: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
     isFingerprintEnabled: state.account.isFingerprintEnabled,
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {

@@ -211,17 +211,8 @@ MainSettings.propTypes = {
     setModalContent: PropTypes.func.isRequired,
     onThemePress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    themeImagePath: PropTypes.number.isRequired,
-    advancedImagePath: PropTypes.number.isRequired,
-    logoutImagePath: PropTypes.number.isRequired,
-    passwordImagePath: PropTypes.number.isRequired,
-    twoFactorAuthImagePath: PropTypes.number.isRequired,
-    accountImagePath: PropTypes.number.isRequired,
-    languageImagePath: PropTypes.number.isRequired,
-    currencyImagePath: PropTypes.number.isRequired,
     borderBottomColor: PropTypes.object.isRequired,
     textColor: PropTypes.object.isRequired,
-    modeImagePath: PropTypes.number.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
 };
 

@@ -10,7 +10,6 @@ import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
-import COLORS from '../theme/Colors';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     spentText: {
-        color: COLORS.redLight,
+        color: '#B21C17',
         textDecorationLine: 'line-through',
         marginRight: width / 100,
         fontFamily: 'Inconsolata-Bold',
@@ -131,7 +130,7 @@ export class ViewAddresses extends Component {
                             style={[
                                 styles.addressText,
                                 { textDecorationLine: address.spent ? 'line-through' : 'none' },
-                                { color: address.spent ? COLORS.redLight : body.color },
+                                { color: address.spent ? '#B21C17' : body.color },
                             ]}
                         >
                             {address.address}
