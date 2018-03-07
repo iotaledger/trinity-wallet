@@ -197,7 +197,7 @@
         "invalidAddress": "Neplatná adresa",
         "invalidAddressExplanation1": "Adresa by měla být dlouhá {{maxLength}} znaků a měla by mít kontrolní součet.",
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
-        "invalidAddressExplanation3": "Adresa obsahuje neplatné znaky.",
+        "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "notEnoughFunds": "Nedostatek prostředků",
         "notEnoughFundsExplanation": "Nemáte dostatek IOTA k dokončení této transakce.",
         "keyReuse": "Opakované použití klíče",
