@@ -169,4 +169,4 @@ const mapStateToProps = (state) => ({
     deepLinks: state.deepLinks,
 });
 
-export default withSendData(Send)(connect(mapStateToProps)(Send));
+export default withSendData(Send);

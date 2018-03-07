@@ -17,7 +17,6 @@ import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import { sendAmount } from 'actions/deepLinks';
 import { ADDRESS_LENGTH } from 'libs/util';
-import {ipcRenderer} from 'electron';
 
 /** Main wallet wrapper component */
 class App extends React.Component {
@@ -68,7 +67,7 @@ class App extends React.Component {
 
     componentDidMount() {
         this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
-        ipcRenderer.on('url-params', (e, data) => {
+        Electron.onEvent('url-params', (data) => {
             let regexAddress = /\:\/\/(.*?)\/\?/;
             let regexAmount = /amount=(.*?)\&/;
             let regexMessage = /message=([^\n\r]*)/;
@@ -97,6 +96,7 @@ class App extends React.Component {
                 }
             }
         });
+
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
         Electron.changeLanguage(this.props.t);
