@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { renameCurrentSeed } from 'actions/seeds';
-import { getSelectedSeed } from 'selectors/seeds';
+import { setNewSeedName } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import Infobox from 'ui/components/Info';
 import Button from 'ui/components/Button';
@@ -14,8 +13,8 @@ import Input from 'ui/components/input/Text';
  */
 class AccountName extends React.PureComponent {
     static propTypes = {
-        /** Rename current account */
-        renameCurrentSeed: PropTypes.func.isRequired,
+        /** Set new seed name */
+        setNewSeedName: PropTypes.func.isRequired,
         /** Browser history object */
         history: PropTypes.object.isRequired,
         /** Error modal helper
@@ -36,7 +35,7 @@ class AccountName extends React.PureComponent {
 
     setName = (e) => {
         e.preventDefault();
-        const { renameCurrentSeed, history, showError, t } = this.props;
+        const { setNewSeedName, history, showError, t } = this.props;
         const { name } = this.state;
         if (!name.length) {
             showError({
@@ -46,7 +45,7 @@ class AccountName extends React.PureComponent {
             return;
         }
 
-        renameCurrentSeed(this.state.name);
+        setNewSeedName(this.state.name);
         history.push('/onboarding/account-password');
     };
 
@@ -79,13 +78,11 @@ class AccountName extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
-    seed: getSelectedSeed(state),
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
     showError,
-    renameCurrentSeed,
+    setNewSeedName,
 };
 
 export default translate()(connect(mapStateToProps, mapDispatchToProps)(AccountName));

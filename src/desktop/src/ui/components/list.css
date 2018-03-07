@@ -45,13 +45,13 @@
 
     .received {
         strong {
-            color: var(--extra);
+            color: var(--positive);
         }
     }
 
     .sent {
         strong {
-            color: var(--highlight);
+            color: var(--positive);
         }
     }
 

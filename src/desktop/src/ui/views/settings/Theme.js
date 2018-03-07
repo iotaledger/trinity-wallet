@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -47,6 +48,7 @@ class Theme extends React.PureComponent {
                 onSubmit={(e) => {
                     e.preventDefault();
                     if (themeName) {
+                        Electron.updateSettings('backgroundColor', themes[themeName].body.bg);
                         updateTheme(themes[themeName], themeName);
                     }
                 }}
@@ -123,7 +125,9 @@ class Theme extends React.PureComponent {
                     </Button>
                 </div>
                 <fieldset>
-                    <Button type="submit" disabled={!themeName || themeName === this.props.themeName}>Save</Button>
+                    <Button type="submit" disabled={!themeName || themeName === this.props.themeName}>
+                        Save
+                    </Button>
                 </fieldset>
             </form>
         );

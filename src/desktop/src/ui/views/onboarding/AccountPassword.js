@@ -2,14 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
+
+import { setSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
-import { seedsSelector } from 'selectors/seeds';
+import { addAccountName } from 'actions/account';
+import { setAdditionalAccountInfo, setSeedIndex } from 'actions/tempAccount';
+
 import { isValidPassword } from 'libs/util';
 import { setVault } from 'libs/crypto';
+
 import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
 import PasswordInput from 'ui/components/input/Password';
+import ModalPassword from 'ui/components/modal/Password';
 
 /**
  * Onboarding, set account password
@@ -17,9 +22,25 @@ import PasswordInput from 'ui/components/input/Password';
 class AccountPassword extends React.PureComponent {
     static propTypes = {
         /** Current state seed data */
-        seeds: PropTypes.object,
-        /** Clear state seed data */
-        clearSeeds: PropTypes.func.isRequired,
+        seeds: PropTypes.object.isRequired,
+        /** If first account is beeing created */
+        firstAccount: PropTypes.bool.isRequired,
+        /** Add new account name
+         * @param {String} name - Account name
+         */
+        addAccountName: PropTypes.func.isRequired,
+        /** Set additional account info
+         * @param {Object} data - Additional account data
+         */
+        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        /** Set seed state
+         * @param {Array} seeds - Seeds list
+         */
+        setSeeds: PropTypes.func.isRequired,
+        /** Set seed index state
+         *  @param {Number} Index - Seed index
+         */
+        setSeedIndex: PropTypes.func.isRequired,
         /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -41,34 +62,82 @@ class AccountPassword extends React.PureComponent {
         passwordConfirm: '',
     };
 
-    setPassword = (e) => {
-        e.preventDefault();
-        const { clearSeeds, history, seeds, showError, t } = this.props;
+    createAccount = (e) => {
+        const {
+            firstAccount,
+            setSeeds,
+            addAccountName,
+            setAdditionalAccountInfo,
+            setSeedIndex,
+            history,
+            seeds,
+            showError,
+            t,
+        } = this.props;
         const { password, passwordConfirm } = this.state;
 
-        if (password !== passwordConfirm) {
+        if (e) {
+            e.preventDefault();
+        }
+
+        if (firstAccount && password !== passwordConfirm) {
             return showError({
                 title: t('changePassword:passwordsDoNotMatch'),
                 text: t('changePassword:passwordsDoNotMatchExplanation'),
             });
         }
 
-        if (!isValidPassword(password)) {
+        if (firstAccount && !isValidPassword(password)) {
             return showError({
                 title: t('changePassword:passwordTooShort'),
                 text: t('changePassword:passwordTooShortExplanation'),
             });
         }
 
-        setVault(null, password, seeds);
-        clearSeeds();
-        history.push('/onboarding/done');
+        const newSeeds = [].concat(seeds.seeds, seeds.newSeed);
+
+        setSeeds(newSeeds);
+        addAccountName(seeds.newName);
+
+        setSeedIndex(seeds.seeds.length);
+
+        setVault(firstAccount ? null : password, password, { seeds: newSeeds });
+
+        if (!firstAccount) {
+            setAdditionalAccountInfo({
+                addingAdditionalAccount: true,
+                additionalAccountName: seeds.newName,
+            });
+            history.push('/onboarding/login');
+        } else {
+            history.push('/onboarding/done');
+        }
     };
 
     render() {
-        const { t } = this.props;
+        const { firstAccount, history, t } = this.props;
+
+        if (!firstAccount) {
+            return (
+                <ModalPassword
+                    isOpen
+                    inline
+                    onSuccess={(password) => {
+                        this.setState(
+                            {
+                                password: password,
+                            },
+                            () => this.createAccount(),
+                        );
+                    }}
+                    onClose={() => history.push('/wallet/')}
+                    title={t('Enter password to add the new account')}
+                />
+            );
+        }
+
         return (
-            <form onSubmit={this.setPassword}>
+            <form onSubmit={(e) => this.createAccount(e)}>
                 <div />
                 <section>
                     <PasswordInput
@@ -99,13 +168,16 @@ class AccountPassword extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seeds: seedsSelector(state),
+    seeds: state.seeds,
+    firstAccount: !state.tempAccount.ready,
 });
 
 const mapDispatchToProps = {
-    addAndSelectSeed,
-    clearSeeds,
+    setSeeds,
+    addAccountName,
+    setAdditionalAccountInfo,
     showError,
+    setSeedIndex,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(AccountPassword));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountPassword));

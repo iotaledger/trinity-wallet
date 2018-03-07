@@ -1,5 +1,5 @@
 const { ipcRenderer: ipc, shell } = require('electron');
-const settings = require('../package.json');
+const packageFile = require('../package.json');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -7,11 +7,18 @@ const capitalize = (string) => {
 
 const Electron = {
     gotoLatestRelease: () => {
-        shell.openExternal(settings.url);
+        shell.openExternal(packageFile.url);
     },
 
     updateMenu: (attribute, value) => {
         ipc.send('menu.update', {
+            attribute: attribute,
+            value: value,
+        });
+    },
+
+    updateSettings: (attribute, value) => {
+        ipc.send('settings.update', {
             attribute: attribute,
             value: value,
         });
@@ -22,6 +29,8 @@ const Electron = {
             about: 'About',
             checkUpdate: t('Check for Updates'),
             settings: capitalize(t('home:settings')),
+            accountSettings: t('settings:accountManagement'),
+            newAccount: t('accountManagement:addNewAccount'),
             language: t('languageSetup:language'),
             currency: t('settings:currency'),
             theme: t('settings:theme'),
@@ -39,7 +48,7 @@ const Electron = {
             copy: t('settings:copy'),
             paste: t('settings:paste'),
             selectAll: t('settings:selectAll'),
-            wallet: t('global:wallet'),
+            account: t('global:account'),
             balance: capitalize(t('home:balance')),
             send: capitalize(t('home:send')),
             receive: capitalize(t('home:receive')),

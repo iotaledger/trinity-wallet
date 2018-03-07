@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import QRCode from 'qrcode.react';
+import { currentAccountSelectorBySeedIndex } from 'selectors/account';
 import { runTask } from 'worker';
 
 import Button from 'ui/components/Button';
@@ -16,8 +17,9 @@ class Receive extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         account: PropTypes.object.isRequired,
+        accountName: PropTypes.string.isRequired,
         tempAccount: PropTypes.object.isRequired,
-        seeds: PropTypes.object,
+        seed: PropTypes.string,
     };
 
     state = {
@@ -25,13 +27,11 @@ class Receive extends React.PureComponent {
     };
 
     onGeneratePress = () => {
-        const { seeds, account } = this.props;
+        const { seed, accountName, account } = this.props;
 
-        const seedInfo = seeds.items[seeds.selectedSeedIndex];
-        const seedName = seedInfo.name;
-        const accountInfo = account.accountInfo[seedName];
+        console.log([seed, accountName, account]);
 
-        runTask('generateNewAddress', [seedInfo.seed, seedName, accountInfo]);
+        runTask('generateNewAddress', [seed, accountName, account]);
     };
 
     render() {
@@ -62,8 +62,9 @@ class Receive extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
-    account: state.account,
-    seeds: state.seeds,
+    account: currentAccountSelectorBySeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    accountName: state.account.seedNames[state.tempAccount.seedIndex],
+    seed: state.seeds.seeds[state.tempAccount.seedIndex],
 });
 
 export default translate()(connect(mapStateToProps)(Receive));

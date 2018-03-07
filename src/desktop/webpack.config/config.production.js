@@ -3,11 +3,10 @@ const config = require('./config.base');
 
 const buildTarget = process.env.BUILD_TARGET || 'main';
 
+config.target = 'web';
+
 if (buildTarget === 'styleguide') {
     config.entry = ['babel-polyfill', './src/guide/index.js'];
-    config.target = 'web';
-} else {
-    config.target = 'electron-renderer';
 }
 
 config.plugins = [
