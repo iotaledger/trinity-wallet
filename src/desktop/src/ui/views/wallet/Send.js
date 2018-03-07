@@ -76,7 +76,6 @@ class Send extends React.PureComponent {
             this.state.amount = amount;
             this.state.address = address;
             this.state.message = message;
-            this.state.isModalVisible = true;
         }
     }
 
@@ -147,7 +146,7 @@ class Send extends React.PureComponent {
                     onChange={(value) => this.setState({ message: value })}
                 />
                 <fieldset>
-                    <Button loading={isSending} className="outline" variant="primary">
+                    <Button onClick={() => this.setState({ isModalVisible: true })} loading={isSending} className="outline" variant="primary">
                         {t('send:send')}
                     </Button>
                 </fieldset>
