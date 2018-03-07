@@ -21,7 +21,6 @@ import Text from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
 import Modal from 'ui/components/modal/Modal';
-import { sendAmount } from 'actions/deepLinks';
 
 /** Login component */
 class Login extends React.Component {
@@ -73,7 +72,6 @@ class Login extends React.Component {
          * @ignore
          */
         t: PropTypes.func.isRequired,
-        deepLinks: PropTypes.object.isRequired,
     };
 
     state = {
@@ -103,11 +101,6 @@ class Login extends React.Component {
             this.setState({
                 loading: false,
             });
-        }
-        if (this.props.deepLinks.address === '') {
-            this.props.history.push('/balance');
-        } else {
-            this.props.history.push('/send');
         }
     }
 
@@ -245,7 +238,6 @@ const mapStateToProps = (state) => ({
     firstUse: state.account.firstUse,
     tempAccount: state.tempAccount,
     currency: state.settings.currency,
-    deepLinks: state.deepLinks,
 });
 
 const mapDispatchToProps = {
@@ -258,7 +250,6 @@ const mapDispatchToProps = {
     getPrice,
     getMarketData,
     getCurrencyData,
-    sendAmount,
 };
 
 export default translate()(connect(mapStateToProps, mapDispatchToProps)(Login));

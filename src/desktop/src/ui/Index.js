@@ -88,7 +88,7 @@ class App extends React.Component {
                     });
                     this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
                     if(this.props.tempAccount.ready === true) {
-                        this.props.history.push('/send');
+                        this.props.history.push('/wallet/send');
                     }
                 }
             }

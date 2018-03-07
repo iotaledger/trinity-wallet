@@ -7,6 +7,7 @@ import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
 import Button from 'ui/components/Button';
 import Balance from 'ui/components/Balance';
+import { sendAmount } from 'actions/deepLinks';
 
 import css from './dashboard.css';
 
@@ -24,7 +25,21 @@ class Dashboard extends React.PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        deepLinks: PropTypes.object.isRequired,
     };
+
+    state = {
+        address: '',
+        amount: '',
+        message: '',
+    };
+
+    componentWillMount() {
+        if (this.props.deepLinks.address === '') {
+        } else {
+            this.props.history.push('/wallet/send');
+        }
+    }
 
     render() {
         const { t, history } = this.props;
@@ -49,7 +64,7 @@ class Dashboard extends React.PureComponent {
                 <section className={css.market}>
                     <Chart />
                     <div className={css.news}>
-                        
+
                     </div>
                 </section>
             </React.Fragment>
@@ -57,6 +72,12 @@ class Dashboard extends React.PureComponent {
     }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({
+    deepLinks: state.deepLinks,
+});
 
-export default translate()(connect(mapStateToProps)(Dashboard));
+const mapDispatchToProps = {
+    sendAmount,
+};
+
+export default translate()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
