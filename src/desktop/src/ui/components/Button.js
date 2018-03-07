@@ -18,6 +18,8 @@ export default class Button extends React.PureComponent {
         children: PropTypes.node,
         /** Custom button style definitions */
         style: PropTypes.object,
+        /** Button disabled state */
+        disabled: PropTypes.bool,
         /** Button type */
         type: PropTypes.string,
         /** Buttons style type */
@@ -33,7 +35,7 @@ export default class Button extends React.PureComponent {
     };
 
     render() {
-        const { onClick, children, className, to, variant, loading, style, type } = this.props;
+        const { onClick, children, className, to, variant, loading, style, type, disabled } = this.props;
 
         const loadingClass = loading ? css.loading : null;
 
@@ -50,6 +52,7 @@ export default class Button extends React.PureComponent {
                 style={style}
                 type={type ? type : 'button'}
                 onClick={onClick}
+                disabled={(disabled)}
                 className={classNames(css[className], css[variant], loadingClass)}
             >
                 {children}

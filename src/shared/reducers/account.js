@@ -175,7 +175,7 @@ const account = (
                 ...state,
                 ...updateAccountInfo(state, action.payload),
                 seedCount: state.seedCount + 1,
-                seedNames: [...state.seedNames, action.payload.accountName],
+                seedNames: (state.seedNames.indexOf(action.payload.accountName) < 0) ? [...state.seedNames, action.payload.accountName] : state.seedNames,
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 txHashesForUnspentAddresses: {
                     ...state.txHashesForUnspentAddresses,
