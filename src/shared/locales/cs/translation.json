@@ -222,12 +222,12 @@
         "passwordMismatchExplanation": "Zadané heslo je nesprávné. Zkuste to prosím znovu.",
         "nowWeNeedTo": "Nyní vytvořte heslo",
         "anEncryptedCopy": "V zařízení se uloží zakryptovaná kopie vašeho seedu. Tímto heslem se budete přihlašovat k vaší peněžence.",
-        "ensure": "Ujistěte se, že budete používat silné heslo s minimálně 12ti znaky.",
+        "ensure": "Ujistěte se, že budete používat bezpečené heslo s minimálně 12ti znaky.",
         "retypePassword": "Zadejte heslo znovu"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "V této peněžence můžete použít více seedů. Každý seed vyžaduje nové jméno účtu.",
-        "youCanAdd": "Můžete zadat véce seedů v menu Nastavení."
+        "youCanAdd": "Můžete zadat více seedů v menu Nastavení."
     },
     "modeSelection": {
         "expert": "Expert",
@@ -248,30 +248,30 @@
         "addNewSeed": "Přidat nový seed",
         "twoFA": "Dvoufaktorové ověření",
         "changePassword": "Změnit heslo",
-        "advanced": "Advanced settings",
+        "advanced": "Pokročilá nastavení",
         "logout": "Odhlásit",
-        "reset": "Vymazat peněženku",
+        "reset": "Reset wallet",
         "syncingComplete": "Synchronizace dokončena",
         "syncingCompleteExplanation": "Váš účet je úspěšně synchronizován.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
+        "nicknameChanged": "Název účtu změněn.",
+        "nicknameChangedExplanation": "Název vašeho účtu byl změněn.",
+        "accountDeleted": "Účet smazán",
+        "accountDeletedExplanation": "Účet byl odebrán z peněženky",
+        "cannotPerformAction": "Akci nelze provést",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All",
-        "securitySettings": "Security settings",
-        "fingerprint": "Biometric authentication",
+        "poorConnection": "Špatné spojení",
+        "poorConnectionExplanation": "Nezdařilo se změnit měnu - špatné připojení.",
+        "hide": "Skrýt",
+        "hideOthers": "Skrýt ostatní",
+        "showAll": "Zobrazit vše",
+        "quit": "Odejít",
+        "edit": "Upravit",
+        "cut": "Vyjmout",
+        "copy": "Kopírovat",
+        "paste": "Vložit",
+        "selectAll": "Vybrat vše",
+        "securitySettings": "Nastavení zabezpečení",
+        "fingerprint": "Biometrické ověřování",
         "couldNotFetchRates": "Could not fetch rates",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
@@ -279,7 +279,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
+        "cancel": "ZRUŠIT",
         "reset": "RESET"
     },
     "walletSetup": {
@@ -303,19 +303,19 @@
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
-        "send": "SEND",
+        "send": "ODESLAT",
         "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewAddresses": "Zobrazit adresu",
+        "editAccountName": "Upravit název účtu",
+        "deleteAccount": "Smazat účet",
+        "addNewAccount": "Přidat nový účet"
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Add"
+        "add": "Přidat"
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
@@ -332,29 +332,29 @@
         "frame": "Frame"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Motiv"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "Měna"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Opravdu se chcete odhlásit?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Naskenovat QR kód"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "trillion": "Bilion",
+        "billion": "Miliard",
+        "million": "Milion",
+        "thousand": "Tisíc",
+        "one": "Jedna"
     },
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
+        "thisAction": "Tuto akci nelze vrátit zpět.",
         "enterPassword": "Enter your password to delete this account."
     },
     "manualSync": {
@@ -390,10 +390,10 @@
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "status": "Stav",
+        "enabled": "Povoleno",
+        "disabled": "Vypnuto",
+        "fingerprintUnavailable": "Snímač otisků prstů není k dispozici",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
@@ -401,18 +401,18 @@
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "aMessage": "zpráva"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
+        "wrongCode": "Nesprávný kód",
         "wrongCodeExplanation": "The code you entered is incorrect.",
         "emptyCode": "Empty code",
         "emptyCodeExplanation": "Please enter a code and try again.",
         "keyCopied": "Key copied to clipboard",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
         "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
+        "key": "Klíč",
+        "twoFAEnabled": "2FA není povolena",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
         "code": "Code"
