@@ -39,6 +39,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
 import QRScanner from '../components/qrScanner';
+import Toggle from '../components/toggle';
 import {
     getBalanceForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
@@ -207,13 +208,18 @@ export class Send extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (!this.props.isSendingTransfer && newProps.isSendingTransfer) {
+        const { seedIndex, isSendingTransfer } = this.props;
+
+        if (!isSendingTransfer && newProps.isSendingTransfer) {
             KeepAwake.activate();
-        } else if (this.props.isSendingTransfer && !newProps.isSendingTransfer) {
+        } else if (isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
             this.props.setSendDenomination('i');
             this.setState({ sending: false });
             // Reset toggle switch in case maximum was on
+            this.resetToggleSwitch();
+        }
+        if (seedIndex !== newProps.seedIndex){
             this.resetToggleSwitch();
         }
     }
@@ -522,6 +528,14 @@ export class Send extends Component {
         this.showModal();
     }
 
+    getOpacity(){
+        const { balance } = this.props;
+        if (balance === 0){
+          return 0.2;
+        }
+        return 1;
+    }
+
     showModal = () => this.setState({ isModalVisible: true });
 
     hideModal = (callback) =>
@@ -580,7 +594,7 @@ export class Send extends Component {
     renderModalContent = () => <View>{this.state.modalContent}</View>;
 
     render() {
-        const { isModalVisible, maxColor, maxText, sending, currencySymbol } = this.state;
+        const { isModalVisible, maxPressed, maxColor, maxText, sending, currencySymbol } = this.state;
         const {
             t,
             isSendingTransfer,
@@ -597,7 +611,7 @@ export class Send extends Component {
         const textColor = { color: body.color };
         const conversionText =
             denomination === currencySymbol ? this.getConversionTextFiat() : this.getConversionTextIota();
-
+        const opacity = this.getOpacity();
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
@@ -648,7 +662,7 @@ export class Send extends Component {
                                 selectTextOnFocus={!sending}
                             />
                             <View style={{ flex: 0.2 }} />
-                            <View style={styles.maxContainer}>
+                            <View style={[ styles.maxContainer, { opacity: opacity }]}>
                                 <TouchableOpacity onPress={() => this.onMaxPress()}>
                                     <View
                                         style={{
@@ -658,14 +672,7 @@ export class Send extends Component {
                                         }}
                                     >
                                         <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
-                                        <Image
-                                            style={[
-                                                {
-                                                    width: width / 12,
-                                                    height: width / 12,
-                                                },
-                                            ]}
-                                        />
+                                        <Toggle active={maxPressed} body={body} primary={primary}/>
                                     </View>
                                 </TouchableOpacity>
                             </View>
