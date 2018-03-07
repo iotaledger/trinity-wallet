@@ -117,17 +117,17 @@
     "copyToClipboard": {
         "seedCleared": "Seed odstránený",
         "seedClearedExplanation": "Seed bol z bezpečnostných dôvodov vymazaný zo schránky.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "seedCopied": "Seed bol skopírovaný do schránky",
+        "seedCopiedExplanation": "Seed bude vymazaný potom čo stlačíte \"Hotovo\" alebo po uplynutí 60 sekúnd.",
+        "clickToCopy": "Kliknite na tlačítko nižšie a skopírujte svoj seed do správcu hesiel.",
+        "doNotStore": "Neprechovávajte svoj seed vo forme prostého textu.",
+        "copyToClipboard": "Kopírovať seed",
+        "shareSeed": "Uložte svoj seed do zabezpečeného správcu hesiel"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
+        "invalidCharacters": "Seed obsahuje neplatné znaky",
+        "invalidCharactersExplanation": "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím skúste znova.",
+        "seedTooShort": "Seed je príliš krátky",
         "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
@@ -423,7 +423,7 @@
         "volume": "Volume (24h)"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "warning": "VAROVANIE",
+        "rootDetected": "<0>Zdá sa, že na vašom zariadení bol vykonaný root/jailbroken.</ 0><1>To môže znamenať značné riziko pre zabezpečenie peňaženky.</ 1><2>Chcete pokračovať napriek tomuto riziku?</ 2>"
     }
 }
