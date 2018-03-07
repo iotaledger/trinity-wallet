@@ -185,20 +185,20 @@
     "saveYourSeed": {
         "seedCleared": "Seed vymazaný",
         "seedClearedExplanation": "Seed bol vymazaný zo schránky z dôvodu Vašej bezpečnosti.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>Je potrebné uložiť Váš seed </0><1>aspoň jedným</1><2>z nižšie uvedených spôsobov.</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "incorrectSeed": "Neplatný seed",
+        "incorrectSeedExplanation": "Seed, ktorý ste zadali, je neplatný. Prosím skúste znova.",
+        "thisIsACheck": "Týmto sa uistíte, že ste si uložili svoj seed.",
+        "ifYouHaveNotSaved": "Ak ste si neuložili svoj seed, vráťte sa prosím späť a urobte tak."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Insufficient funds",
+        "invalidAddress": "Neplatná adresa",
+        "invalidAddressExplanation1": "Adresa by mala byť dlhá{{maxLength}} znakov a mala by mať kontrolný súčet.",
+        "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
+        "invalidAddressExplanation3": "Adresa má nesprávny kontrolný súčet.",
+        "notEnoughFunds": "Nedostatok prostriedkov",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
