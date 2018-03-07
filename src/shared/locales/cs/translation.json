@@ -134,7 +134,7 @@
     },
     "home": {
         "balance": "ZŮSTATEK",
-        "send": "ODEŠLI",
+        "send": "POSLAT",
         "receive": "PŘIJMOUT",
         "history": "HISTORIE",
         "settings": "NASTAVENÍ"
