@@ -15,7 +15,7 @@
         "messageSent": "Zpráva odeslána",
         "messageSentMessage": "Vaše zpráva byla odeslána do Tangle.",
         "keyReuse": "Opětovné použití klíče",
-        "keyReuseError": "Nelze odeslat na adresu ze které již bylo odesíláno.",
+        "keyReuseError": "Nelze odeslat na adresu na kterou již bylo odesláno.",
         "invalidResponse": "Neplatná odpověď",
         "invalidResponseExplanation": "Uzel vrátil neplatnou odpověď.",
         "invalidResponsePollingExplanation": "Uzel vrátil neplatnou odpověď při dotazování.",
