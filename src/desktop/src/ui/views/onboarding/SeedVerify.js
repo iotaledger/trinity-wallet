@@ -77,32 +77,31 @@ class SeedEnter extends React.PureComponent {
         const { seed = '' } = this.state;
         return (
             <form onSubmit={this.setSeed}>
-                <main>
-                    <section>
-                        <SeedInput
-                            seed={seed}
-                            onChange={this.onChange}
-                            label={t('global:seed')}
-                            closeLabel={t('global:back')}
-                        />
-                        <Infobox>
-                            <p>{t('seedReentry:thisIsACheck')}</p>
-                            <p>{t('seedReentry:ifYouHaveNotSaved')}</p>
-                        </Infobox>
-                    </section>
-                    <footer>
-                        <Button
-                            to={`/onboarding/seed-${selectedSeed.seed ? 'save' : 'intro'}`}
-                            className="outline"
-                            variant="highlight"
-                        >
-                            {t('global:back')}
-                        </Button>
-                        <Button type="submit" className="outline" variant="primary">
-                            {t('global:next')}
-                        </Button>
-                    </footer>
-                </main>
+                <div />
+                <section>
+                    <SeedInput
+                        seed={seed}
+                        onChange={this.onChange}
+                        label={t('global:seed')}
+                        closeLabel={t('global:back')}
+                    />
+                    <Infobox>
+                        <p>{t('seedReentry:thisIsACheck')}</p>
+                        <p>{t('seedReentry:ifYouHaveNotSaved')}</p>
+                    </Infobox>
+                </section>
+                <footer>
+                    <Button
+                        to={`/onboarding/seed-${selectedSeed.seed ? 'save' : 'intro'}`}
+                        className="outline"
+                        variant="highlight"
+                    >
+                        {t('global:back')}
+                    </Button>
+                    <Button type="submit" className="outline" variant="primary">
+                        {t('global:next')}
+                    </Button>
+                </footer>
             </form>
         );
     }

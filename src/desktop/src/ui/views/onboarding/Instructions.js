@@ -18,7 +18,7 @@ class Instructions extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <main>
+            <React.Fragment>
                 <section>
                     <h2>{t('welcome:thankYou')}</h2>
                     <p>{t('welcome:weWillSpend')}</p>
@@ -27,14 +27,14 @@ class Instructions extends React.PureComponent {
                     </p>
                 </section>
                 <footer>
-                    <Button to="/" className="outline" variant="highlight">
+                    <Button to="/onboarding/" className="outline" variant="primary">
                         {t('global:back')}
                     </Button>
-                    <Button to="/onboarding/seed-intro" className="outline" variant="primary">
+                    <Button to="/onboarding/seed-intro" className="outline" variant="positive">
                         {t('global:next')}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }

@@ -6,6 +6,7 @@ const state = {
 
 let language = {
     about: 'About',
+    checkUpdate: 'Check for Updates',
     settings: 'Settings',
     language: 'Language',
     currency: 'Currency',
@@ -53,6 +54,10 @@ const initMenu = (app, getWindow) => {
                         role: 'about',
                     },
                     {
+                        label: `${language.checkUpdate}...`,
+                        click: () => navigate('update'),
+                    },
+                    {
                         label: language.settings,
                         submenu: [
                             {
@@ -73,12 +78,12 @@ const initMenu = (app, getWindow) => {
                             {
                                 label: language.twoFA,
                                 enabled: state.authorised,
-                                click: () => navigate('settings/twoFA'),
+                                click: () => navigate('settings/twoFa'),
                             },
                             {
                                 label: language.changePassword,
                                 enabled: state.authorised,
-                                click: () => navigate('settings/change-password'),
+                                click: () => navigate('settings/password'),
                             },
                             {
                                 label: language.advanced,
@@ -144,10 +149,6 @@ const initMenu = (app, getWindow) => {
                     {
                         label: language.receive,
                         click: () => navigate('wallet/receive'),
-                    },
-                    {
-                        label: language.history,
-                        click: () => navigate('wallet/history'),
                     },
                     {
                         type: 'separator',

@@ -4,7 +4,7 @@ import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { showError } from 'actions/notifications';
-import { getSecurelyPersistedSeeds } from 'libs/crypto';
+import { getVault } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -39,7 +39,7 @@ class Advanced extends PureComponent {
         e.preventDefault();
 
         try {
-            getSecurelyPersistedSeeds(password);
+            getVault(password);
             localStorage.clear();
             location.reload();
         } catch (err) {
