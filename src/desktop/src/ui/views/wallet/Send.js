@@ -17,8 +17,8 @@ class Send extends React.PureComponent {
     static propTypes = {
         /** Current send status */
         isSending: PropTypes.bool.isRequired,
-        /** Current seed state value */
-        seeds: PropTypes.object.isRequired,
+        /** Current seed value */
+        seed: PropTypes.string.isRequired,
         /** Total current account wallet ballance in iotas */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
@@ -68,15 +68,13 @@ class Send extends React.PureComponent {
 
     confirmTransfer = () => {
         const { address, amount, message } = this.state;
-        const { seeds, sendTransfer } = this.props;
+        const { seed, sendTransfer } = this.props;
 
         this.setState({
             isModalVisible: false,
         });
 
-        const seedInfo = seeds.items[seeds.selectedSeedIndex];
-
-        sendTransfer(seedInfo.seed, address, amount, message);
+        sendTransfer(seed, address, amount, message);
     };
 
     render() {
@@ -84,7 +82,7 @@ class Send extends React.PureComponent {
         const { address, amount, message, isModalVisible } = this.state;
 
         return (
-            <form onSubmit={this.validateInputs}>
+            <form onSubmit={(e) => this.validateInputs(e)}>
                 <Modal
                     variant="confirm"
                     isOpen={isModalVisible}
@@ -122,7 +120,7 @@ class Send extends React.PureComponent {
                     onChange={(value) => this.setState({ message: value })}
                 />
                 <fieldset>
-                    <Button loading={isSending} className="outline" variant="primary">
+                    <Button type="submit" loading={isSending} className="outline" variant="primary">
                         {t('send:send')}
                     </Button>
                 </fieldset>

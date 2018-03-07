@@ -18,12 +18,12 @@
     > div {
         display: flex;
         justify-content: center;
-        max-width: 680px;
+        max-width: 720px;
         width: 100%;
     }
 
     section:first-of-type {
-        flex: 0 0 180px;
+        flex: 0 0 220px;
         padding: var(--header-height) 0 20px;
     }
 
@@ -34,7 +34,7 @@
 
     nav {
         margin-bottom: 30px;
-        max-width: 200px;
+        max-width: 220px;
         a {
             display: flex;
             color: var(--body);

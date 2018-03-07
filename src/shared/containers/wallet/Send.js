@@ -19,7 +19,7 @@ export default function withSendData(SendComponent) {
             account: PropTypes.object.isRequired,
             accountName: PropTypes.string.isRequired,
             tempAccount: PropTypes.object.isRequired,
-            seeds: PropTypes.object.isRequired,
+            seed: PropTypes.string.isRequired,
             settings: PropTypes.object.isRequired,
             showError: PropTypes.func.isRequired,
             prepareTransfer: PropTypes.func.isRequired,
@@ -98,7 +98,7 @@ export default function withSendData(SendComponent) {
         };
 
         render() {
-            const { balance, seeds, settings, tempAccount, theme, t } = this.props;
+            const { balance, seed, settings, tempAccount, theme, t } = this.props;
 
             const sendProps = {
                 isSending: tempAccount.isSendingTransfer,
@@ -106,7 +106,7 @@ export default function withSendData(SendComponent) {
                 sendTransfer: this.sendTransfer,
                 settings,
                 balance,
-                seeds,
+                seed,
                 theme,
                 t,
             };
@@ -123,7 +123,7 @@ export default function withSendData(SendComponent) {
         accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
         settings: state.settings,
         account: state.account,
-        seeds: state.seeds,
+        seed: state.seeds.seeds[state.tempAccount.seedIndex],
         theme: state.settings.theme,
     });
 
