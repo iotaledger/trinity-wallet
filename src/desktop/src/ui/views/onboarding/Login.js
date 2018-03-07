@@ -15,7 +15,6 @@ import PasswordInput from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
 import { sendAmount } from 'actions/deepLinks';
-import { ipcRenderer } from 'electron';
 
 /** Login component */
 class Login extends React.Component {
