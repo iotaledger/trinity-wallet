@@ -325,7 +325,7 @@
         "selectNode": "Vybrat node",
         "addCustomNode": "Přidat vlastní node",
         "manualSync": "Ruční synchronizace",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot přechod"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadí",
@@ -344,7 +344,7 @@
         "scan": "Naskenovat QR kód"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "JEDNOTKOVÝ SYSTÉM",
         "trillion": "Bilion",
         "billion": "Miliard",
         "million": "Milion",
@@ -375,7 +375,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Svůj Seed mám uložený",
         "reenter": "Nyní budete požádáni o znovu zadání vašeho Seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "Když přijdete o své zařízení a nebudete mít uložený svůj Seed, ztratíte všechny své IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TATO AKCE NEMŮŽE BÝT ODVOLÁNA.",
@@ -394,7 +394,7 @@
         "enabled": "Aktivováno",
         "disabled": "Vypnuto",
         "fingerprintUnavailable": "Snímač otisků prstů není k dispozici",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation": "Zařízení nepodporuje rozpoznávání otisků prstů nebo není tato funkce nakonfigurována v nastavení zařízení.",
         "buttonInstructionsDisable": "Stisknutím tlačítka níže zakážete ověřování otisku prstů.",
         "buttonInstructionsEnable": "Stisknutím tlačítka níže povolíte ověření otisků prstů.",
         "instructionsLogin": "Pro přihlášení se dotkněte čtečky otisku prstů."
