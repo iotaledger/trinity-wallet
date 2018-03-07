@@ -190,7 +190,7 @@
     "seedReentry": {
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Zadán neplatný Seed. Zkuste to prosím znovu.",
-        "thisIsACheck": "Toto je kontrola abyste jste se ujistili, že jste uložili Váš Seed.",
+        "thisIsACheck": "Kontrola zda jste si správně uložili Váš Seed.",
         "ifYouHaveNotSaved": "Pokud jste Váš Seed neuložili, vraťte se prosím zpět a uložte si jej."
     },
     "send": {
