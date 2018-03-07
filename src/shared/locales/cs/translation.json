@@ -91,7 +91,7 @@
         "nameInUseExplanation": "Prosím použijte jedinečný název účtu pro Váš seed.",
         "enterAccountName": "Zadejte název účtu.",
         "accountName": "Název účtu",
-        "noNickname": "Nebylo zadáno žádné jméno účtu",
+        "noNickname": "Nebylo zadán žádný název účtu",
         "noNicknameExplanation": "Zadejte název účtu pro Váš seed.",
         "seedInUse": "Seed je již používán",
         "seedInUseExplanation": "Tento seed je již propojen s vaší peněženkou. Použijte prosím jiný."
@@ -213,20 +213,20 @@
         "invalidAmountExplanation": "Prosím zadejte platnou transakční částku. Případně níže na stránce jsou informace o IOTA jednotkách.\n",
         "maximumSelected": "Vybrána MAXIMÁLNÍ částka",
         "iotaUnits": "Informace o IOTA jednotkách.",
-        "sendMax": "POSLAT MAX"
+        "sendMax": "POSLAT MAXIMUM"
     },
     "setPassword": {
         "passwordTooShort": "Heslo je příliš krátké",
-        "passwordTooShortExplanation": "Seed musí obsahovat minimálně {{minLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím opakujte správně.",
+        "passwordTooShortExplanation": "Seed musí obsahovat minimálně {{minLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zadejte správně.",
         "passwordMismatch": "Neplatné heslo",
-        "passwordMismatchExplanation": "Zadané heslo je nesprávné. Zkuste to prosím znovu.",
-        "nowWeNeedTo": "Nyní vytvořte heslo",
-        "anEncryptedCopy": "V zařízení se uloží zakryptovaná kopie vašeho seedu. Tímto heslem se budete přihlašovat k vaší peněžence.",
+        "passwordMismatchExplanation": "Zadané heslo je neplatné. Zkuste to prosím znovu.",
+        "nowWeNeedTo": "Nyní je třeba vytvořit heslo",
+        "anEncryptedCopy": "V zařízení se uloží zašifrovaná kopie vašeho seedu. Tímto heslem se budete přihlašovat k vaší peněžence.",
         "ensure": "Ujistěte se, že budete používat bezpečené heslo s minimálně 12ti znaky.",
         "retypePassword": "Zadejte heslo znovu"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "V této peněžence můžete použít více seedů. Každý seed vyžaduje nové jméno účtu.",
+        "canUseMultipleSeeds": "V této peněžence můžete použít více seedů. Každý seed vyžaduje nový název účtu.",
         "youCanAdd": "Můžete zadat více seedů v menu Nastavení."
     },
     "modeSelection": {
@@ -250,7 +250,7 @@
         "changePassword": "Změnit heslo",
         "advanced": "Pokročilá nastavení",
         "logout": "Odhlásit",
-        "reset": "Reset wallet",
+        "reset": "Obnovit peněženku",
         "syncingComplete": "Synchronizace dokončena",
         "syncingCompleteExplanation": "Váš účet je úspěšně synchronizován.",
         "nicknameChanged": "Název účtu změněn.",
@@ -260,7 +260,7 @@
         "cannotPerformAction": "Akci nelze provést",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
         "poorConnection": "Špatné spojení",
-        "poorConnectionExplanation": "Nezdařilo se změnit měnu - špatné připojení.",
+        "poorConnectionExplanation": "Nezdařilo se změnit měnu - špatné spojení.",
         "hide": "Skrýt",
         "hideOthers": "Skrýt ostatní",
         "showAll": "Zobrazit vše",
@@ -283,7 +283,7 @@
         "reset": "RESET"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
+        "okay": "OK - přejděme nyní k nastavení vaší peněženky!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
         "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
@@ -301,13 +301,13 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "send": "ODESLAT",
-        "receive": "RECEIVE"
+        "receive": "PŘIJATO"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
+        "viewSeed": "Zobrazit seed",
         "viewAddresses": "Zobrazit adresu",
         "editAccountName": "Upravit název účtu",
         "deleteAccount": "Smazat účet",
@@ -318,17 +318,17 @@
         "add": "Přidat"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Použít stávající seed",
+        "createNewSeed": "Vytvořit nový seed"
     },
     "advancedSettings": {
         "selectNode": "Select node",
         "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync",
+        "manualSync": "Ruční synchronizace",
         "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
+        "background": "Pozadí",
         "frame": "Frame"
     },
     "themeCustomisation": {
@@ -359,7 +359,7 @@
     },
     "manualSync": {
         "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while.",
+        "thisMayTake": "Může to chvíli trvat.",
         "youMayNotice": "You may notice your device slowing down.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
@@ -369,12 +369,12 @@
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "viewSeed": "ZOBRAZIT SEED",
+        "hideSeed": "SKRÝT SEED"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
+        "reenter": "Nyní budete požádáni o znovu zadání vašeho seedu.",
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
@@ -391,7 +391,7 @@
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Stav",
-        "enabled": "Povoleno",
+        "enabled": "Aktivováno",
         "disabled": "Vypnuto",
         "fingerprintUnavailable": "Snímač otisků prstů není k dispozici",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
@@ -412,18 +412,18 @@
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
         "addKey": "Add this key to your 2FA app",
         "key": "Klíč",
-        "twoFAEnabled": "2FA není povolena",
+        "twoFAEnabled": "2FA aktivována",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
         "code": "Code"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "change": "Změna",
+        "volume": "Objem (24h)"
     },
     "rootDetection": {
-        "warning": "WARNING",
+        "warning": "VAROVÁNÍ",
         "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }
