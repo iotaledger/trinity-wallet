@@ -89,7 +89,7 @@ class Pow extends Component {
         generateAlert: PropTypes.func.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        networkBoundPow: PropTypes.bool.isRequired,
+        remotePoW: PropTypes.bool.isRequired,
         t: PropTypes.func.isRequired,
         updatePowSettings: PropTypes.func.isRequired,
     };
@@ -125,7 +125,7 @@ class Pow extends Component {
     }
 
     render() {
-        const { t, secondaryBackgroundColor, arrowLeftImagePath, networkBoundPow } = this.props;
+        const { t, secondaryBackgroundColor, arrowLeftImagePath, remotePoW } = this.props;
 
         const isBackgroundWhite = this.isBackgroundWhite();
         const infoImagePath = isBackgroundWhite ? whiteInfoImagePath : blackInfoImagePath;
@@ -155,12 +155,12 @@ class Pow extends Component {
                                 circleColorInactive={secondaryBackgroundColor}
                                 backgroundActive={switchColor}
                                 backgroundInactive={switchColor}
-                                value={networkBoundPow}
+                                value={remotePoW}
                                 onSyncPress={this.onChange}
                             />
                             <TouchableWithoutFeedback onPress={this.onChange}>
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor]}>Network bound</Text>
+                                    <Text style={[styles.toggleText, textColor]}>By the node</Text>
                                 </View>
                             </TouchableWithoutFeedback>
                         </View>
@@ -184,7 +184,7 @@ class Pow extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    networkBoundPow: state.settings.networkBoundPow,
+    remotePoW: state.settings.remotePoW,
     backgroundColor: state.settings.theme.backgroundColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
