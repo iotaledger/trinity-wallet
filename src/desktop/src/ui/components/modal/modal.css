@@ -32,10 +32,10 @@
             max-width: none;
         }
         :global {
-            h1.error {
+            h1.negative {
                 color: var(--negative);
             }
-            h1.success {
+            h1.positive {
                 color: var(--positive);
             }
         }
@@ -43,13 +43,17 @@
             max-width: 40vw;
             word-wrap: break-word;
         }
-        fieldset button{
-           margin:0 20px;
+        fieldset button {
+            margin: 0 20px;
         }
     }
 
-    &.inline{
-       position: static;
+    &.inline {
+        position: static;
+    }
+
+    footer {
+        margin-top: 40px;
     }
 }
 
@@ -66,8 +70,8 @@
         max-width: 580px;
     }
 
-    @media (max-width: 960px){
-       width: 100vw;
-       padding:0 20px;
+    @media (max-width: 960px) {
+        width: 100vw;
+        padding: 0 20px;
     }
 }
