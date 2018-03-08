@@ -19,7 +19,7 @@
         "invalidResponse": "Μη έγκυρη απόκριση",
         "invalidResponseExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση.",
         "invalidResponsePollingExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη σταθμοσκόπηση.",
-        "invalidResponseFetchingAccount": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη λήψη των πληροφοριών λογαριασμού σας.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά την αποστολή της μεταφοράς.",
         "seed": "Seed",
         "back": "ΠΙΣΩ",
@@ -68,6 +68,9 @@
         "pending": "Εκκρεμεί",
         "bundleHash": "Bundle Hash",
         "addresses": "Διευθύνσεις",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Πατήστε ξανά πίσω για να κλείσετε την εφαρμογή",
         "autoreattaching": "Αυτόματη επισύναψη στο Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "O σπόρος θα εκκαθαριστεί μόλις πατήσετε \"ΤΕΛΟΣ\" ή περάσουν 60 δευτερόλεπτα.",
         "clickToCopy": "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
         "doNotStore": "Μην αποθηκεύετε το σπόρο σας σε μορφή απλού κειμένου.",
-        "copyToClipboard": "Αντιγραφή στο πρόχειρο"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "Μπορείτε να χρησιμοποιήσετε πολλούς σπόρους με αυτό το πορτοφόλι. Κάθε Σπόρος απαιτεί ένα όνομα λογαριασμού.",
         "youCanAdd": "Μπορείτε να προσθέσετε περισσότερους σπόρους από το μενού ρυθμίσεων."
     },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+    },
     "settings": {
         "transferSending": "Αποστολή μεταφοράς",
         "transferSendingExplanation": "Παρακαλώ περιμένετε έως ότου η μεταφορά σας έχει σταλεί.",
@@ -261,7 +271,11 @@
         "paste": "Επικόλληση",
         "selectAll": "Επιλογή όλων",
         "securitySettings": "Ρυθμίσεις ασφαλείας",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "Επιλέξτε κόμβο",
         "addCustomNode": "Προσθήκη προσαρμοσμένου κόμβου",
-        "manualSync": "Χειροκίνητος συγχρονισμός"
+        "manualSync": "Χειροκίνητος συγχρονισμός",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "Φόντο",
@@ -337,7 +352,7 @@
         "one": "Ένα"
     },
     "deleteAccount": {
-        "areYouSure": "Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το λογαριασμό;",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Ο σπόρος σας και το ιστορικό συναλλαγών θα διαγραφούν.",
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να διαγράψετε αυτό το λογαριασμό."
@@ -406,5 +421,9 @@
         "mcap": "MCAP",
         "change": "Change",
         "volume": "Volume (24h)"
+    },
+    "rootDetection": {
+        "warning": "WARNING",
+        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }
