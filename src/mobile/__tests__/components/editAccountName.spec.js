@@ -6,6 +6,10 @@ import { shallow } from 'enzyme';
 import { EditAccountName } from '../../components/editAccountName';
 
 jest.mock('react-native-device-info');
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
 
 const getProps = (overrides) =>
     assign(
@@ -18,9 +22,6 @@ const getProps = (overrides) =>
             backPress: noop,
             textColor: { color: 'white' },
             secondaryBackgroundColor: 'white',
-            arrowLeftImagePath: 20,
-            tickImagePath: 21,
-            negativeColor: 'white',
         },
         overrides,
     );
@@ -49,18 +50,6 @@ describe('Testing EditAccountName component', () => {
 
         it('should require a secondaryBackgroundColor string as a prop', () => {
             expect(EditAccountName.propTypes.secondaryBackgroundColor).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require a arrowLeftImagePath number as a prop', () => {
-            expect(EditAccountName.propTypes.arrowLeftImagePath).toEqual(PropTypes.number.isRequired);
-        });
-
-        it('should require a tickImagePath number as a prop', () => {
-            expect(EditAccountName.propTypes.tickImagePath).toEqual(PropTypes.number.isRequired);
-        });
-
-        it('should require a negativeColor function as a prop', () => {
-            expect(EditAccountName.propTypes.negativeColor).toEqual(PropTypes.string.isRequired);
         });
     });
 

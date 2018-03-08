@@ -7,6 +7,11 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { Balance } from '../../containers/balance';
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
@@ -16,10 +21,9 @@ const getProps = (overrides) =>
             balance: 0,
             addresses: [],
             transfers: [],
-            settings: {},
-            extraColor: 'white',
-            negativeColor: 'white',
-            secondaryBackgroundColor: 'white',
+            primary: { color: 'red' },
+            secondary: { color: 'green' },
+            body: { color: 'blue' },
             t: (arg) => {
                 const translations = {
                     received: 'Received',
@@ -58,20 +62,16 @@ describe('Testing Balance component', () => {
             expect(Balance.propTypes.transfers).toEqual(PropTypes.array.isRequired);
         });
 
-        it('should require a settings object as a prop', () => {
-            expect(Balance.propTypes.settings).toEqual(PropTypes.object.isRequired);
+        it('should require a primary object as a prop', () => {
+            expect(Balance.propTypes.primary).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a extraColor string as a prop', () => {
-            expect(Balance.propTypes.extraColor).toEqual(PropTypes.string.isRequired);
+        it('should require a body object as a prop', () => {
+            expect(Balance.propTypes.body).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a negativeColor string as a prop', () => {
-            expect(Balance.propTypes.negativeColor).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require a secondaryBackgroundColor string as a prop', () => {
-            expect(Balance.propTypes.secondaryBackgroundColor).toEqual(PropTypes.string.isRequired);
+        it('should require a secondary object as a prop', () => {
+            expect(Balance.propTypes.secondary).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a t function as a prop', () => {

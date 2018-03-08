@@ -7,6 +7,11 @@ import { CurrencySelection } from '../../components/currencySelection';
 
 /* eslint-disable no-undef */
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
@@ -58,14 +63,6 @@ describe('Testing CurrencySelection component', () => {
 
         it('should require a negativeColor object as a prop', () => {
             expect(CurrencySelection.propTypes.negativeColor).toBe(PropTypes.string.isRequired);
-        });
-
-        it('should require a tickImagePath number as a prop', () => {
-            expect(CurrencySelection.propTypes.tickImagePath).toBe(PropTypes.number.isRequired);
-        });
-
-        it('should require a arrowLeftImagePath number as a prop', () => {
-            expect(CurrencySelection.propTypes.arrowLeftImagePath).toBe(PropTypes.number.isRequired);
         });
     });
 
