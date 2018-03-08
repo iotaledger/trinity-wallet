@@ -34,6 +34,12 @@ const getProps = (overrides) =>
             onboardingComplete: false,
             seedCount: 0,
             body: { color: 'red', bg: 'white' },
+            theme: {},
+            isTransitioning: false,
+            isSendingTransfer: false,
+            isGeneratingReceiveAddress: false,
+            isFetchingAccountInfo: false,
+            isSyncing: false,
         },
         overrides,
     );

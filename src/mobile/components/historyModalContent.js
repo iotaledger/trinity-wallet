@@ -136,7 +136,7 @@ export default class HistoryModalContent extends PureComponent {
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
         confirmationBool: PropTypes.bool.isRequired,
-        mode: PropTypes.string.isRequired,
+        mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
         value: PropTypes.number.isRequired,
         unit: PropTypes.string.isRequired,
         time: PropTypes.number.isRequired,
@@ -174,7 +174,7 @@ export default class HistoryModalContent extends PureComponent {
 
         Clipboard.setString(item);
 
-        if (types[type]) {
+        if (types[type] && this.dropdown) {
             this.dropdown.alertWithType('success', ...types[type]);
         }
     }

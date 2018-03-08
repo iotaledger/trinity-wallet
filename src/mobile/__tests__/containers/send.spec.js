@@ -33,7 +33,11 @@ const getProps = (overrides) =>
             negative: { color: 'black' },
             bar: { color: 'red', bg: 'white' },
             body: { color: 'blue', bg: 'green' },
-            primary: { color: 'white' },
+            primary: {
+                color: 'white',
+                body: 'white',
+                hover: 'green',
+            },
             isTransitioning: false,
             address: '9'.repeat(81),
             amount: '10',
@@ -43,6 +47,7 @@ const getProps = (overrides) =>
             setSendMessageField: noop,
             setSendDenomination: noop,
             denomination: 'i',
+            theme: {},
         },
         overrides,
     );
