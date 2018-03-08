@@ -68,16 +68,16 @@
         "pending": "처리 중",
         "bundleHash": "번들 해시",
         "addresses": "주소",
-        "reattach": "REATTACH",
-        "promote": "PROMOTE",
+        "reattach": "다시 어태치",
+        "promote": "프로모트",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "앱을 닫으려면 뒤로가기를 다시 누르세요.",
         "autoreattaching": "어태치 자동 재시도중",
         "autoreattachingExplanation": "아래의 트랜잭션 해시를 다시 어태치합니다: {{hash}}",
         "autopromoting": "거래 자동 프로모트 중",
         "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "cannotSendToOwn": "내 주소로 보내는 중",
+        "cannotSendToOwnExplanation": "내 주소로는 가치 전송을 할 수 없습니다.",
         "pleaseWait": "잠시 기다려 주세요",
         "pleaseWaitExplanation": "트리니티가 다른 작업을 수행하는 중입니다. 잠시 후 다시 시도해 주십시오.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
@@ -121,7 +121,7 @@
         "seedCopiedExplanation": "'완료'를 누르거나 60초가 지나면 시드가 삭제됩니다.",
         "clickToCopy": "아래 버튼을 눌러 시드를 복사하고, 비밀번호 관리자에 저장하십시오.",
         "doNotStore": "시드를 암호화하지 않은 채로 저장하지 마십시오.",
-        "copyToClipboard": "Copy seed",
+        "copyToClipboard": "시드 복사",
         "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
@@ -230,10 +230,10 @@
         "youCanAdd": "설정 메뉴에서 시드를 추가할 수 있습니다."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expert": "전문가",
+        "standard": "기본",
+        "expertModeExplanation": "전문가 모드에서는 직접 프로모트나 다시 어태치를 할 수 있습니다.",
+        "modesExplanation": "혼동을 피하기 위해 탱글을 사용하는 데에 익숙한 경우에만 전문가 모드를 사용해 주십시오."
     },
     "settings": {
         "transferSending": "거래 전송중",
@@ -325,7 +325,7 @@
         "selectNode": "노드 선택",
         "addCustomNode": "커스텀 노드 추가",
         "manualSync": "수동 동기화",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "스냅샷 이전"
     },
     "advancedThemeCustomisation": {
         "background": "배경",
@@ -352,7 +352,7 @@
         "one": "일"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "정말로 {{accountName}} 계정을 삭제하시겠습니까?",
         "yourSeedWillBeRemoved": "등록된 시드 및 거래 내역이 전부 제거됩니다.",
         "thisAction": "이 작업은 되돌릴 수 없습니다.",
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
@@ -423,7 +423,7 @@
         "volume": "거래량 (24시간)"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "warning": "경고",
+        "rootDetected": "<0>기기가 탈옥되었거나 루팅된 것으로 감지되었습니다. </0><1>이 경우 지갑의 보안에 위험을 끼칠 수 있습니다.</1><2> 보안 위험을 감수하고 진행하시겠습니까?</2>"
     }
 }
