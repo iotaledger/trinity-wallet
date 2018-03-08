@@ -19,7 +19,7 @@
         "invalidResponse": "Neplatná odpověď",
         "invalidResponseExplanation": "Node vrátil neplatnou odpověď.",
         "invalidResponsePollingExplanation": "Node vrátil neplatnou odpověď při dotazování.",
-        "invalidResponseFetchingAccount": "Node vrátil neplatnou odpověď při načítání informací o Vašem účtu. Zkuste změnit uzel.",
+        "invalidResponseFetchingAccount": "Při načítání informací o Vašem účtu vrátil uzel neplatnou odpověď. Zkuste změnit uzel.",
         "invalidResponseSendingTransfer": "Node vrátil neplatnou odpověď při odesílání transakce.",
         "seed": "Seed",
         "back": "ZPĚT",
