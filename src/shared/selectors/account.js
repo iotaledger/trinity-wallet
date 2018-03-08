@@ -61,14 +61,14 @@ export const getDeduplicatedTransfersForSelectedAccountViaSeedIndex = createSele
 export const getSettingsFromState = (state) => state.settings || {};
 
 /**
- *   Selects getNetworkBoundPowFromState prop from settings reducer state object.
+ *   Selects remotePoW prop from settings reducer state object.
  *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
  *
- *   @method getNetworkBoundPowFromState
+ *   @method getRemotePoWFromState
  *   @param {object} state
  *   @returns {object}
  **/
-export const getNetworkBoundPowFromState = createSelector(getSettingsFromState, (state) => state.networkBoundPow);
+export const getRemotePoWFromState = createSelector(getSettingsFromState, (state) => state.remotePoW);
 
 /**
  *   Selects account prop from state.

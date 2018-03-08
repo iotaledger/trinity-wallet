@@ -73,7 +73,7 @@ const initialState = {
     themeName: 'Default',
     theme: themes.Default,
     hasRandomizedNode: false,
-    networkBoundPow: false,
+    remotePoW: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -81,7 +81,7 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.UPDATE_POW_SETTINGS:
             return {
                 ...state,
-                networkBoundPow: !state.networkBoundPow,
+                remotePoW: !state.remotePoW,
             };
         case ActionTypes.LOCALE:
             return {
