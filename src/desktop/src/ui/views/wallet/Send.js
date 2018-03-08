@@ -57,26 +57,23 @@ class Send extends React.PureComponent {
         isModalVisible: false,
     };
 
-    componentWillReceiveProps(props) {
-        // if (props.deepLinks.address !== '') {
-        //     const { amount, message, address } = props.deepLinks;
-        //     this.state.amount = amount;
-        //     this.state.address = address;
-        //     this.state.message = message;
-        // } else {
-        //     this.state.amount = 0;
-        //     this.state.address = '';
-        //     this.state.message = '';
-        // }
-    }
-
-    componentWillMount() {
+    refreshDeepLinkValues = () => {
         if (this.props.deepLinkAmount.address !== '') {
             const { amount, message, address } = this.props.deepLinkAmount;
             this.state.amount = amount;
             this.state.address = address;
             this.state.message = message;
         }
+    };
+
+    componentWillReceiveProps(props) {
+        this.props = props;
+        this.refreshDeepLinkValues();
+
+    }
+
+    componentWillMount() {
+        this.refreshDeepLinkValues();
     }
 
     validateInputs = (e) => {
