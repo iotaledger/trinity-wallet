@@ -1,5 +1,6 @@
 import IOTA from './lib.promisified';
 import { nodes, defaultNode } from '../../config';
+import { checkNode as _checkNode } from './multinode';
 
 export const iota = new IOTA({ provider: defaultNode });
 
@@ -12,12 +13,6 @@ export const getRandomNode = () => {
 };
 
 export const checkNode = (cb) => {
-    iota.api.getNodeInfo((error, success) => {
-        if (error) {
-            cb(error);
-            console.log(error);
-        } else {
-            cb(null, success);
-        }
-    });
+    // use checkNode from multinode
+    _checkNode(iota, cb);
 };

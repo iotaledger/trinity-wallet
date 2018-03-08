@@ -67,7 +67,7 @@ function checkNode(url, callback) {
 
         // unshim _makeRequest before returning
         iota.api._makeRequest.open = iota.api._makeRequest._open;
-        callback(undefined, iota, nodeinfo);
+        callback(null, iota, nodeinfo);
     });
 }
 
