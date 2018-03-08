@@ -34,7 +34,7 @@ After having all the addresses (with transfers) generated, the application const
 ### Manual Syncing
 
 Manual syncing forces clean up of the existing account state, bringing in all the account information from tangle.
-It follows the exact same steps as (Initial Sync)(#initial-syncing). The currently-selected local account state is removed and replaced with the new state from the tangle.
+It follows the exact same steps as [Initial Sync](#initial-syncing). The currently-selected local account state is removed and replaced with the new state from the tangle.
 
 **[⬆ back to top](#table-of-contents)**
 
