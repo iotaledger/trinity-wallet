@@ -549,13 +549,15 @@ export const getNewAddress = (seed, options, genFn, callback) => {
                 var newAddress = '';
                 console.log(generator);
                 console.log(Promise.resolve(generator));
-                if (Promise.resolve(generator) == generator) {
+                console.log(Object.prototype.toString(generator));
+                if (Object.prototype.toString(generator) === '[object Object]') {
                   generator(seed, index, security, checksum).then((address) => {
                     newAddress = address;
                     console.log(address);
                   });
                 } else {
                   newAddress = generator(seed, index, security, checksum);
+                  console.log('iota.lib.js');
                 }
                 console.log(newAddress);
 
