@@ -5,6 +5,10 @@ import { shallow } from 'enzyme';
 import { Send } from '../../containers/send';
 
 jest.mock('react-native-camera', () => {});
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
 
 const getProps = (overrides) =>
     assign(
@@ -25,15 +29,11 @@ const getProps = (overrides) =>
             getFromKeychainSuccess: noop,
             getFromKeychainError: noop,
             closeTopBar: noop,
-            ctaColor: 'white',
-            backgroundColor: 'white',
-            barColor: 'red',
-            negativeColor: 'blue',
             isSendingTransfer: false,
-            secondaryCtaColor: 'black',
-            secondaryBarColor: 'brown',
-            secondaryBackgroundColor: 'blue',
-            ctaBorderColor: 'yellow',
+            negative: { color: 'black' },
+            bar: { color: 'red', bg: 'white' },
+            body: { color: 'blue', bg: 'green' },
+            primary: { color: 'white' },
             isTransitioning: false,
             address: '9'.repeat(81),
             amount: '10',

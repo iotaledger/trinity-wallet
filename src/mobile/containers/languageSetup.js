@@ -6,12 +6,12 @@ import i18next from 'i18next';
 import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
+import { detectLocale, selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { connect } from 'react-redux';
 import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import { width, height } from '../util/dimensions';
 import DropdownComponent from '../components/dropdown';
 import GENERAL from '../theme/general';
-import { detectLocale, selectLocale } from '../components/locale';
 import { Icon } from '../theme/icons.js';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 
@@ -109,11 +109,7 @@ class LanguageSetup extends Component {
                         <Image style={styles.helloBackground} source={helloBackImagePath} />
                         <DynamicStatusBar backgroundColor={body.bg} />
                         <View style={styles.topContainer}>
-                            <Icon
-                                name='iota'
-                                size={width / 8}
-                                color={body.color}
-                            />
+                            <Icon name="iota" size={width / 8} color={body.color} />
                         </View>
                         <View style={styles.midContainer}>
                             <View style={{ flex: 0.5 }} />
@@ -130,8 +126,8 @@ class LanguageSetup extends Component {
                         </View>
                         <View style={styles.bottomContainer}>
                             <TouchableOpacity onPress={() => this.onNextPress()} testID="languageSetup-next">
-                                <View style={[ styles.nextButton, { borderColor: primary.color }]}>
-                                    <Text style={[ styles.nextText, { color: primary.color }]}>{t('global:next')}</Text>
+                                <View style={[styles.nextButton, { borderColor: primary.color }]}>
+                                    <Text style={[styles.nextText, { color: primary.color }]}>{t('global:next')}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -147,4 +143,6 @@ const mapStateToProps = (state) => ({
     primary: state.settings.theme.primary,
 });
 
-export default WithBackPressCloseApp()(translate(['languageSetup', 'global'])(connect(mapStateToProps, null)(LanguageSetup)));
+export default WithBackPressCloseApp()(
+    translate(['languageSetup', 'global'])(connect(mapStateToProps, null)(LanguageSetup)),
+);

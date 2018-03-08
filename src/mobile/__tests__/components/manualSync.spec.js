@@ -5,6 +5,11 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import ManualSync from '../../components/manualSync';
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
@@ -24,7 +29,6 @@ const getProps = (overrides) =>
                 return translations[arg] ? translations[arg] : 'foo';
             },
             textColor: { color: 'white' },
-            arrowLeftImagePath: 0,
             negativeColor: 'white',
             borderColor: { borderColor: 'white' },
         },
@@ -51,10 +55,6 @@ describe('Testing ManualSync component', () => {
 
         it('should require a textColor object as a prop', () => {
             expect(ManualSync.propTypes.textColor).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a arrowLeftImagePath number as a prop', () => {
-            expect(ManualSync.propTypes.arrowLeftImagePath).toEqual(PropTypes.number.isRequired);
         });
 
         it('should require a negativeColor string as a prop', () => {
