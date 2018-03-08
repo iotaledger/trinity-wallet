@@ -4,7 +4,7 @@
         "cancel": "CANCELAR",
         "continue?": "Tem a certeza que deseja continuar?",
         "noTransactions": "NENHUM HISTÓRICO RECENTE",
-        "refresh": "REFRESH",
+        "refresh": "ATUALIZAR",
         "qr": "QR",
         "balanceError": "Saldo insuficiente",
         "balanceErrorMessage": "Você não tem IOTA suficiente para realizar esta transferência.",
@@ -19,7 +19,7 @@
         "invalidResponse": "Resposta inválida",
         "invalidResponseExplanation": "O servidor retornou uma resposta inválida.",
         "invalidResponsePollingExplanation": "O servidor retornou uma resposta inválida ao obter os dados.",
-        "invalidResponseFetchingAccount": "O servidor retornou uma resposta inválida ao transmitir informações da sua conta.",
+        "invalidResponseFetchingAccount": "O servidor retornou uma resposta inválida ao transmitir informações da sua conta. Tente trocar de servidor.",
         "invalidResponseSendingTransfer": "O servidor retornou uma resposta inválida ao enviar a transferência.",
         "seed": "Seed",
         "back": "VOLTAR",
@@ -68,6 +68,9 @@
         "pending": "Pendente",
         "bundleHash": "Pacote Hash",
         "addresses": "Endereços",
+        "reattach": "REANEXAR",
+        "promote": "PROMOVER",
+        "rebroadcast": "RETRANSMITIR",
         "pressBackAgain": "Toque novamente para fechar o app",
         "autoreattaching": "Anexando automaticamente ao Tangle",
         "autoreattachingExplanation": "Anexando transação automaticamente com hash {{hash}}",
@@ -75,9 +78,9 @@
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
         "cannotSendToOwn": "Enviando para próprio endereço",
         "cannotSendToOwnExplanation": "Você não pode fazer uma transferência de valor para um dos seus próprios endereços.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWait": "Por favor aguarde",
+        "pleaseWaitExplanation": "A Trinity está efetuando outra função. Por favor, aguarde e tente novamente.",
+        "pleaseWaitTransferExplanation": "Seu saldo atual disponível está sendo usado em outras transferências. Por favor aguarde uma confirmação antes de tentar novamente."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "A Seed será removida quando pressionar \"CONCLUÍDO\" ou ao passar de 60 segundos.",
         "clickToCopy": "Clique no botão abaixo e copie a sua Seed para o gerenciador de senha.",
         "doNotStore": "Não grave a seed em arquivo de texto descriptografado.",
-        "copyToClipboard": "Copiar para o clipboard"
+        "copyToClipboard": "Copiar seed",
+        "shareSeed": "Compartilhe sua seed para um gerenciador de senhas seguro"
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém carateres inválidos",
@@ -175,8 +179,8 @@
         "generateNewAddress": "NOVO ENDEREÇO",
         "message": "Mensagem opcional",
         "removeMessage": "REMOVER MENSAGEM",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "SEM ENDEREÇOS",
+        "spent": "Gasto"
     },
     "saveYourSeed": {
         "seedCleared": "Seed removida",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "Pode utilizar várias Seeds com esta carteira. Cada Seed requer um nome de conta.",
         "youCanAdd": "Pode adicionar mais Seeds no menu de opções."
     },
+    "modeSelection": {
+        "expert": "Avançado",
+        "standard": "Normal",
+        "expertModeExplanation": "Modo avançado fornecerá acesso aos recursos adicionais como promoção manual e reanexo.",
+        "modesExplanation": "Somente habilite o modo Avançado se você for um usuário experiente do Tangle. Você pode se confundir caso contrário."
+    },
     "settings": {
         "transferSending": "Enviando transferência",
         "transferSendingExplanation": "Por favor aguarde até que sua transferência seja realizada.",
@@ -261,7 +271,11 @@
         "paste": "Colar",
         "selectAll": "Selecionar Tudo",
         "securitySettings": "Opções de segurança",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Autenticação biométrica",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "Selecionar servidor",
         "addCustomNode": "Adicionar servidor personalizado",
-        "manualSync": "Sincronização manual"
+        "manualSync": "Sincronização manual",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
@@ -337,7 +352,7 @@
         "one": "Um"
     },
     "deleteAccount": {
-        "areYouSure": "Tem certeza que deseja apagar esta conta?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Sua seed e histórico de transação serão removidos.",
         "thisAction": "Esta ação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
@@ -406,5 +421,9 @@
         "mcap": "MCAP",
         "change": "Mudança",
         "volume": "Volume (24h)"
+    },
+    "rootDetection": {
+        "warning": "AVISO",
+        "rootDetected": "<0>Seu dispositivo parece ter root/jailbrake.</0> <1>Isso pode representar um risco significativo para a segurança de sua carteira.</1> <2>Você deseja continuar apesar deste risco?</2>"
     }
 }
