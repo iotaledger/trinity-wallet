@@ -20,6 +20,7 @@
         "i18next-browser-languagedetector": "^2.1.0",
         "iota.lib.js": "^0.4.7",
         "lodash": "^4.17.4",
+        "lodash.isfunction": "^3.0.9",
         "moment": "^2.19.1",
         "react": "^16.2.0",
         "react-i18next": "^7.3.4",
