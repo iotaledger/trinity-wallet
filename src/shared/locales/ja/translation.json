@@ -19,7 +19,7 @@
         "invalidResponse": "無効な応答",
         "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
         "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
-        "invalidResponseFetchingAccount": "アカウント情報呼び出し中にノードが無効な返答をしました。",
+        "invalidResponseFetchingAccount": "アカウント情報を取得中にノードが無効な返答をしました。ノードを変更してみてください。",
         "invalidResponseSendingTransfer": "送金中にノードが無効な応答をしました。",
         "seed": "Seed",
         "back": "戻る",
@@ -68,6 +68,9 @@
         "pending": "ペンディング中",
         "bundleHash": "バンドル ハッシュ",
         "addresses": "アドレス",
+        "reattach": "再添付",
+        "promote": "促進",
+        "rebroadcast": "再放送",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "autoreattaching": "Tangleに自動再登録",
         "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションを再登録",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "\"完了\"を押す、または60秒後にはSeedは消去されます。",
         "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。",
         "doNotStore": "Seedは平文では絶対に保存しないでください。",
-        "copyToClipboard": "クリップボードにコピー"
+        "copyToClipboard": "Seedをコピー",
+        "shareSeed": "シードを安全なパスワードマネージャーで管理してください。"
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだSeedです。",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "このウォレットでは複数のSeedを使用できます。 各Seedにはアカウント名が必要です。",
         "youCanAdd": "設定メニューでSeedを追加できます。"
     },
+    "modeSelection": {
+        "expert": "上級",
+        "standard": "標準",
+        "expertModeExplanation": "上級モードでは手動促進や再添付などの追加機能をご利用になれます。",
+        "modesExplanation": "経験豊富なTangleユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
+    },
     "settings": {
         "transferSending": "送金中",
         "transferSendingExplanation": "送金が完了するまでもうしばらくお待ち下さい。",
@@ -261,7 +271,11 @@
         "paste": "貼り付け",
         "selectAll": "すべてを選択",
         "securitySettings": "セキュリティ設定",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "指紋認証",
+        "couldNotFetchRates": "換算率を取得できませんでした。",
+        "couldNotFetchRatesExplanation": "{{currency}}の換算率の取得中に何らかの問題が発生しました。",
+        "fetchedConversionRates": "換算率を取得しました。",
+        "fetchedConversionRatesExplanation": "{{currency}}の最新の換算率の取得に成功しました。"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "ノード選択",
         "addCustomNode": "カスタムノードの追加",
-        "manualSync": "手動同期"
+        "manualSync": "手動同期",
+        "snapshotTransition": "スナップショットの遷移"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -337,7 +352,7 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "このアカウントを削除しますか？",
+        "areYouSure": "{{accountName}}のアカウントデータを削除してもよろしいですか？",
         "yourSeedWillBeRemoved": "Seedとトランザクションの履歴を削除します。",
         "thisAction": "この操作は元に戻せません。",
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
@@ -406,5 +421,9 @@
         "mcap": "時価総額",
         "change": "変化率",
         "volume": "取引量(24h)"
+    },
+    "rootDetection": {
+        "warning": "警告",
+        "rootDetected": "<0>あなたのデバイスはルート化もしくは脱獄されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
     }
 }
