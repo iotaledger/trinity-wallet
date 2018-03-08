@@ -31,6 +31,7 @@ const getProps = (overrides) =>
             textColor: { color: 'white' },
             negativeColor: 'white',
             borderColor: { borderColor: 'white' },
+            secondaryBackgroundColor: 'white',
         },
         overrides,
     );
