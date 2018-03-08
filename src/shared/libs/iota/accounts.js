@@ -150,7 +150,7 @@ export const mapPendingTransactionHashesForSpentAddressesToState = (account) => 
  *   @param {string} accountName - Account name selected by the user.
  *   @returns {Promise} - Account object
  **/
-export const getAccountData = (seed, accountName) => {
+export const getAccountData = (seed, accountName, genFn) => {
     const tailTransactions = [];
     const allBundleHashes = [];
 
@@ -170,7 +170,7 @@ export const getAccountData = (seed, accountName) => {
     };
 
     return getNodeInfoAsync()
-        .then(() => getAllAddresses(seed))
+        .then(() => getAllAddresses(seed, genFn))
         .then((addresses) => {
             data.addresses = addresses;
 
