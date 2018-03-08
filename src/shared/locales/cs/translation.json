@@ -86,13 +86,13 @@
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
         "seedInvalidCharsExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
         "seedTooShort": "Seed je příliš krátký",
-        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
+        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš seed obsahuje {{currentLength}} znaků. Prosím zkuste znovu.",
         "nameInUse": "Název účtu je již používán",
-        "nameInUseExplanation": "Prosím použijte jedinečný název účtu pro Váš seed.",
+        "nameInUseExplanation": "Prosím použijte jedinečný název účtu pro Váš Seed.",
         "enterAccountName": "Zadejte název účtu.",
         "accountName": "Název účtu",
         "noNickname": "Nebyl zadán žádný název účtu",
-        "noNicknameExplanation": "Zadejte název účtu pro Váš seed.",
+        "noNicknameExplanation": "Zadejte název účtu pro Váš Seed.",
         "seedInUse": "Seed je již používán",
         "seedInUseExplanation": "Tento Seed je již propojen s Vaší peněženkou. Použijte prosím jiný."
     },
@@ -126,7 +126,7 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
-        "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím zkuste to znovu.",
+        "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
         "seedTooShort": "Seed je příliš krátký",
         "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
         "seedExplanation": "Seed by měl mít {{maxLength}} znaků a měl by obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít Seed delší než {{maxLength}} znaků.",
@@ -284,7 +284,7 @@
     },
     "walletSetup": {
         "okay": "OK - přejděme nyní k nastavení Vaší peněženky!",
-        "doYouAlreadyHaveASeed": "Máte už vlastní Seed který by jste rádi použili?",
+        "doYouAlreadyHaveASeed": "Máte už vlastní Seed, který byste rádi použili?",
         "seedExplanation": "IOTA Seed je jako uživatelské jméno a heslo k Vašemu účtu, zkombinované do řady 81 znaků.",
         "explanation": "<0><0>Můžete ho použít pro přístup ke svým prostředkům z</0> <1>jakékoliv peněženky</1> <2>, na</2> <3>jakémkoliv zařízení</3> <4>. Ale pokud ztratíte svůj Seed, ztratíte také všechny Vaše IOTA.</4></0>",
         "keepSafe": "Uchovávejte Váš seed v bezpečí."
@@ -292,7 +292,7 @@
     "welcome": {
         "thankYou": "Děkujeme vám za stažení IOTA peněženky.",
         "weWillSpend": "Nyní si vyhraďte pár minut pro správné nastavení Vaší peněženky.",
-        "reminder": "Možná budete v chtít vynechat některé kroky, ale doporučujeme Vám aby jste je dokončili všechny."
+        "reminder": "Možná budete v chtít vynechat některé kroky, ale doporučujeme Vám, abyste je dokončili všechny."
     },
     "writeSeedDown": {
         "yourSeedIs": "Váš Seed je {{maxSeedLength}} znaků čtených zleva doprava.",
