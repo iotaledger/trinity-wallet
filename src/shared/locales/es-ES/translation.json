@@ -19,7 +19,7 @@
         "invalidResponse": "Respuesta inválida",
         "invalidResponseExplanation": "El servidor devuelve una respuesta inválida.",
         "invalidResponsePollingExplanation": "El servidor devolvió una respuesta inválida durante la obtención de datos de cartera.",
-        "invalidResponseFetchingAccount": "El servidor devolvió una respuesta inválida durante la obtención de datos de cartera.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "El servidor devolvió una respuesta inválida mientras enviaba la transferencia.",
         "seed": "Seed",
         "back": "ATRÁS",
@@ -68,6 +68,9 @@
         "pending": "Pendiente",
         "bundleHash": "Hash de Paquete",
         "addresses": "Direcciones",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Pulsa atrás otra vez para cerrar la app",
         "autoreattaching": "Auto-revinculando al Tangle",
         "autoreattachingExplanation": "Revinculando la transacción con hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "La seed será borrada al presionar “Listo” o pasados 60 segundos.",
         "clickToCopy": "Pulsa en el botón de abajo y copia tu seed en un administrador de contraseñas.",
         "doNotStore": "No almacenes tu seed en texto plano.",
-        "copyToClipboard": "Copiar al portapapeles"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contiene caracteres inválidos",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "Puedes utilizar múltiples Seeds con esta cartera. Cada Seed requiere un nombre de cuenta.",
         "youCanAdd": "Puedes añadir más Seeds en el menú de Ajustes."
     },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+    },
     "settings": {
         "transferSending": "Transferencia en envío",
         "transferSendingExplanation": "Por favor, espera hasta que la transferencia haya sido enviada.",
@@ -261,7 +271,11 @@
         "paste": "Pegar",
         "selectAll": "Seleccionar todo",
         "securitySettings": "Configuraciones de seguridad",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ingresa tu contraseña para reiniciar la cartera.",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "Seleccionar nodo",
         "addCustomNode": "Añadir nodo personalizado",
-        "manualSync": "Sincronización manual"
+        "manualSync": "Sincronización manual",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "Fondo",
@@ -337,7 +352,7 @@
         "one": "Un"
     },
     "deleteAccount": {
-        "areYouSure": "¿Seguro que quieres eliminar esta cuenta?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Tu Seed y tu historial de transacciones serán eliminados.",
         "thisAction": "Esta acción no se puede deshacer.",
         "enterPassword": "Escribe tu contraseña para eliminar la cuenta."
@@ -406,5 +421,9 @@
         "mcap": "MCAP",
         "change": "Variación",
         "volume": "Volumen (24h)"
+    },
+    "rootDetection": {
+        "warning": "WARNING",
+        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }

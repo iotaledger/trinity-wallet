@@ -19,7 +19,7 @@
         "invalidResponse": "Ogiltigt svar",
         "invalidResponseExplanation": "Noden returnerade ett ogiltigt svar.",
         "invalidResponsePollingExplanation": "Noden returnerade ett ogiltigt svar.",
-        "invalidResponseFetchingAccount": "Noden returnerade ett ogiltigt svar vid hämtning av din kontoinformation.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "Noden returnerade ett ogiltigt svar vid försök av din överföring.",
         "seed": "Seed",
         "back": "TILLBAKA",
@@ -68,6 +68,9 @@
         "pending": "Väntar",
         "bundleHash": "Hashbunt",
         "addresses": "Adresser",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
         "autoreattaching": "Auto-fastsättning till Tangle",
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Din seed kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
         "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till en lösenordshanterare.",
         "doNotStore": "Förvara inte din seed i oformaterad text.",
-        "copyToClipboard": "Kopiera till urklipp"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "Du kan använda flera seeds med denna plånbok. Varje seed kräver ett kontonamn.",
         "youCanAdd": "Du kan lägga till fler seeds i inställningsmenyn."
     },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+    },
     "settings": {
         "transferSending": "Överföring pågår",
         "transferSendingExplanation": "Vänta tills din överföring har skickats.",
@@ -261,7 +271,11 @@
         "paste": "Klistra in",
         "selectAll": "Välj alla",
         "securitySettings": "Säkerhetsinställningar",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ange ditt lösenord för att återställa plånboken.",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "Välj nod",
         "addCustomNode": "Lägg till anpassad nod",
-        "manualSync": "Synka manuellt"
+        "manualSync": "Synka manuellt",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrund",
@@ -337,7 +352,7 @@
         "one": "Ett"
     },
     "deleteAccount": {
-        "areYouSure": "Är du säker på att du vill ta bort detta kontot?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Din seed och transaktionshistorik kommer tas bort.",
         "thisAction": "Denna åtgärd kan inte ångras.",
         "enterPassword": "Ange ditt lösenord för att radera detta kontot."
@@ -406,5 +421,9 @@
         "mcap": "MCAP",
         "change": "Ändring",
         "volume": "Volym (24h)"
+    },
+    "rootDetection": {
+        "warning": "WARNING",
+        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }

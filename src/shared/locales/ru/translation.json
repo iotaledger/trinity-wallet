@@ -4,7 +4,7 @@
         "cancel": "ОТМЕНИТЬ",
         "continue?": "Вы уверены, что хотите продолжить?",
         "noTransactions": "НЕДАВНЯЯ ИСТОРИЯ ОТСУТСТВУЕТ",
-        "refresh": "REFRESH",
+        "refresh": "ОБНОВИТЬ",
         "qr": "QR",
         "balanceError": "Недостаточно средств",
         "balanceErrorMessage": "У вас недостаточно IOTA для завершения данного перевода.",
@@ -19,7 +19,7 @@
         "invalidResponse": "Ошибка сервера",
         "invalidResponseExplanation": "На узле произошла ошибка.",
         "invalidResponsePollingExplanation": "На узле произошла ошибка во время запроса.",
-        "invalidResponseFetchingAccount": "На узле произошла ошибка во время запроса информации по Вашему счёту.",
+        "invalidResponseFetchingAccount": "Узел сообщил об ошибке во время получения информации о Вашем счёте. Попробуйте поменять узел.",
         "invalidResponseSendingTransfer": "На узле произошла ошибка во время отсылки перевода.",
         "seed": "Ключ",
         "back": "НАЗАД",
@@ -68,6 +68,9 @@
         "pending": "В ожидании",
         "bundleHash": "Пакет данных",
         "addresses": "Адреса",
+        "reattach": "ПРИВЯЗАТЬ ПОВТОРНО",
+        "promote": "СОДЕЙСТВИЕ",
+        "rebroadcast": "РЕТРАНСЛИРОВАТЬ",
         "pressBackAgain": "Нажмите еще раз назад чтобы закрыть приложение",
         "autoreattaching": "Автоматическое прикрепление к Tangle",
         "autoreattachingExplanation": "Повторное присоединение транзакций с хэш {{hash}}",
@@ -75,9 +78,9 @@
         "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}",
         "cannotSendToOwn": "Отправка на собственный адрес",
         "cannotSendToOwnExplanation": "Вы не можете переводить средства на один из Ваших собственных адресов.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWait": "Пожалуйста подождите",
+        "pleaseWaitExplanation": "Trinity в данный момент выполняет другую задачу. Пожалуйста, подождите и повторите попытку.",
+        "pleaseWaitTransferExplanation": "Ваш баланс используется в данный момент в одной из транзакций. Пожалуйста, подождите до тех пор пока транзакции побудут завершены и затем повторите попытку."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Ключ будет удалён из буфера обмена после нажатия кнопки «ГОТОВО» или по истечению 60 секунд.",
         "clickToCopy": "Нажмите на кнопку ниже и скопируйте свой ключ в менеджер паролей.",
         "doNotStore": "Не храните Ваш ключ в незашифрованном виде.",
-        "copyToClipboard": "Скопировать в буфер обмена"
+        "copyToClipboard": "Скопировать ключ",
+        "shareSeed": "Переслать Ваш ключ в безопасный менеджер паролей"
     },
     "enterSeed": {
         "invalidCharacters": "Ключ содержит недопустимые символы",
@@ -157,10 +161,10 @@
         "seedNotGenerated": "Ключ не был сгенерирован",
         "seedNotGeneratedExplanation": "Пожалуйста, нажмите на кнопку \"Создать новый ключ\".",
         "pressForNewSeed": "СОЗДАТЬ НОВЫЙ КЛЮЧ",
-        "individualLetters": "Нажмите какие-нибудь клавиши на клавиатуре в случайном порядке."
+        "individualLetters": "Нажмите на любые несколько символов в случайном порядке."
     },
     "onboardingComplete": {
-        "walletReady": "Кошелёк настроен и готов к использованию. Если вам понадобится в будущем внести какие-либо изменения, используйте меню настройки."
+        "walletReady": "Кошелёк настроен и готов к использованию. Если Вам понадобится в будущем внести какие-либо изменения, используйте меню настройки."
     },
     "paperWallet": {
         "clickToPrint": "Нажмите на кнопку ниже, чтобы распечатать копию Вашего ключа на бумаге.",
@@ -175,8 +179,8 @@
         "generateNewAddress": "НОВЫЙ АДРЕС",
         "message": "Сообщение (опционально)",
         "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "НЕТ АДРЕСОВ",
+        "spent": "Использованный адрес"
     },
     "saveYourSeed": {
         "seedCleared": "Буфер обмена очищен",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "Вы можете использовать несколько ключей в данном кошельке. Каждому ключу нужно дать своё название.",
         "youCanAdd": "Вы можете добавить больше ключей в меню настроек."
     },
+    "modeSelection": {
+        "expert": "Эксперт",
+        "standard": "Стандартный",
+        "expertModeExplanation": "Экспертный режим даст Вам доступ к дополнительным функциям, таким как ручное содействие и повторное присоединение транзакций.",
+        "modesExplanation": "Экспертный режим предназначен только для опытных пользователей Tangle. В ином случае он Вас может ввести в заблуждение."
+    },
     "settings": {
         "transferSending": "Осуществляется перевод",
         "transferSendingExplanation": "Пожалуйста, подождите завершения Вашего перевода.",
@@ -261,7 +271,11 @@
         "paste": "Вставить",
         "selectAll": "Выбрать всё",
         "securitySettings": "Настройки безопасности",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Аутентификация на основе отпечатков пальцев",
+        "couldNotFetchRates": "Не удаётся получить курс обмена",
+        "couldNotFetchRatesExplanation": "Что-то пошло не так при запросе курса обмена для {{currency}}.",
+        "fetchedConversionRates": "Запрос курса",
+        "fetchedConversionRatesExplanation": "Успешно получен актуальный курс обмена для {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите Ваш пароль для сброса настроек кошелька.",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "Выбрать узел",
         "addCustomNode": "Добавить пользовательский узел",
-        "manualSync": "Ручная синхронизация"
+        "manualSync": "Ручная синхронизация",
+        "snapshotTransition": "Snapshot переход"
     },
     "advancedThemeCustomisation": {
         "background": "Фон",
@@ -337,7 +352,7 @@
         "one": "Одна"
     },
     "deleteAccount": {
-        "areYouSure": "Вы уверены, что хотите удалить данный счёт?",
+        "areYouSure": "Вы уверены, что хотите удалить счёт под названием {{accountName}}?",
         "yourSeedWillBeRemoved": "Ваш ключ и история транзакций будут удалены.",
         "thisAction": "Это действие нельзя будет отменить.",
         "enterPassword": "Введите Ваш пароль для удаления данного счёта."
@@ -364,10 +379,10 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "ЭТО ДЕЙСТВИЕ НЕ МОЖЕТ БЫТЬ ОТМЕНЕНО.",
-        "warning": "<0><0>Все данные Вашего кошелька, включая Ваш </0><1>ключ, пароль,</1><2> и </2><3>\nдругая информация счёта</3><4> будут потеряны.</4></0>"
+        "warning": "<0><0>Все данные Вашего кошелька, включая Ваш </0><1>ключ, пароль,</1><2> и </2><3>другая информация счёта</3><4> будут потеряны.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Коснитесь сенсора чтения отпечатков пальцев на вашем устройстве для включения аутентификации на основе отпечатков пальцев.",
+        "instructionsEnable": "Коснитесь сенсора чтения отпечатков пальцев на Вашем устройстве для включения аутентификации на основе отпечатков пальцев.",
         "instructionsDisable": "Коснитесь сенсора чтения отпечатков пальцев на Вашем устройстве для отключения аутентификации на основе отпечатков пальцев.",
         "fingerprintAuthEnabled": "Аутентификация по отпечаткам пальцев включена",
         "fingerprintAuthEnabledExplanation": "Вы успешно включили аутентификацию по отпечаткам пальцев.",
@@ -406,5 +421,9 @@
         "mcap": "MCAP",
         "change": "Изменение",
         "volume": "Объем (24ч)"
+    },
+    "rootDetection": {
+        "warning": "ВНИМАНИЕ",
+        "rootDetected": "<0>Похоже, что Ваше устройство было скомпрометировано (rooted/jailbroken).</0> <1>Это может представлять серьёзную угрозу безопасности Вашего кошелька.</1> <2>Хотите ли Вы продолжить, несмотря на этот риск?</2>"
     }
 }
