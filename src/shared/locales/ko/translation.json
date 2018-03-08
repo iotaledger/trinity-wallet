@@ -19,7 +19,7 @@
         "invalidResponse": "잘못된 응답",
         "invalidResponseExplanation": "노드가 잘못된 응답을 보냈습니다.",
         "invalidResponsePollingExplanation": "폴링 중에 노드가 잘못된 응답을 보냈습니다.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "계정 정보를 불러오는 중에 노드가 잘못된 응답을 보냈습니다. 다른 노드로 시도해 보십시오.",
         "invalidResponseSendingTransfer": "전송 중에 노드가 잘못된 응답을 보냈습니다.",
         "seed": "시드",
         "back": "뒤로",
