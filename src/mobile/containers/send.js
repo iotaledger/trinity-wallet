@@ -10,7 +10,6 @@ import {
     StyleSheet,
     View,
     Text,
-    Image,
     TouchableOpacity,
     TouchableWithoutFeedback,
     Keyboard,
@@ -219,7 +218,7 @@ export class Send extends Component {
             // Reset toggle switch in case maximum was on
             this.resetToggleSwitch();
         }
-        if (seedIndex !== newProps.seedIndex){
+        if (seedIndex !== newProps.seedIndex) {
             this.resetToggleSwitch();
         }
     }
@@ -528,10 +527,10 @@ export class Send extends Component {
         this.showModal();
     }
 
-    getOpacity(){
+    getOpacity() {
         const { balance } = this.props;
-        if (balance === 0){
-          return 0.2;
+        if (balance === 0) {
+            return 0.2;
         }
         return 1;
     }
@@ -606,7 +605,7 @@ export class Send extends Component {
             theme,
             body,
             primary,
-            negative
+            negative,
         } = this.props;
         const textColor = { color: body.color };
         const conversionText =
@@ -662,7 +661,7 @@ export class Send extends Component {
                                 selectTextOnFocus={!sending}
                             />
                             <View style={{ flex: 0.2 }} />
-                            <View style={[ styles.maxContainer, { opacity: opacity }]}>
+                            <View style={[styles.maxContainer, { opacity: opacity }]}>
                                 <TouchableOpacity onPress={() => this.onMaxPress()}>
                                     <View
                                         style={{
@@ -672,7 +671,7 @@ export class Send extends Component {
                                         }}
                                     >
                                         <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
-                                        <Toggle active={maxPressed} body={body} primary={primary}/>
+                                        <Toggle active={maxPressed} body={body} primary={primary} />
                                     </View>
                                 </TouchableOpacity>
                             </View>

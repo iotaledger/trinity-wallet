@@ -5,6 +5,11 @@ import { shallow } from 'enzyme';
 import PropTypes from 'prop-types';
 import { SetSeedName } from '../../containers/setSeedName';
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
@@ -25,26 +30,16 @@ const getProps = (overrides) =>
             },
             generateAlert: noop,
             setAdditionalAccountInfo: noop,
-            secondaryBackgroundColor: 'white',
-            negativeColor: 'white',
             seed: 'SEED',
             onboardingComplete: false,
             seedCount: 0,
-            backgroundColor: 'white',
+            body: { color: 'red', bg: 'white' },
         },
         overrides,
     );
 
 describe('Testing SetSeedName component', () => {
     describe('propTypes', () => {
-        it('should require a secondaryBackgroundColor string as a prop', () => {
-            expect(SetSeedName.propTypes.secondaryBackgroundColor).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require a negativeColor string as a prop', () => {
-            expect(SetSeedName.propTypes.negativeColor).toEqual(PropTypes.string.isRequired);
-        });
-
         it('should require a seed string as a prop', () => {
             expect(SetSeedName.propTypes.seed).toEqual(PropTypes.string.isRequired);
         });
@@ -57,8 +52,8 @@ describe('Testing SetSeedName component', () => {
             expect(SetSeedName.propTypes.seedCount).toEqual(PropTypes.number.isRequired);
         });
 
-        it('should require a backgroundColor string as a prop', () => {
-            expect(SetSeedName.propTypes.backgroundColor).toEqual(PropTypes.string.isRequired);
+        it('should require a body object as a prop', () => {
+            expect(SetSeedName.propTypes.body).toEqual(PropTypes.object.isRequired);
         });
     });
 
