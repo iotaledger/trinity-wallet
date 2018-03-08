@@ -11,7 +11,7 @@ function checkNode(url, callback) {
 
     iota.api._makeRequest._open = iota.api._makeRequest.open;
 
-    const conntimeout = 2000;
+    const conntimeout = 1000;
 
     iota.api._makeRequest.open = () => {
         let request = iota.api._makeRequest._open();
@@ -82,7 +82,7 @@ export function getValidNodes(urls, callback) {
         );
     }
 
-    Promise.all(promises).then(result => {
+    Promise.all(promises).then((result) => {
         // filter out all falsey values
         result = result.filter(Boolean);
 
