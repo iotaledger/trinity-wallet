@@ -140,7 +140,7 @@ class WalletResetConfirmation extends Component {
                 <View style={styles.midWrapper}>
                     <View style={{ flex: 0.2 }} />
                     <InfoBox
-                        body
+                        body={body}
                         text={
                             <Trans i18nKey="walletResetConfirmation:warning">
                                 <Text style={[styles.infoText, textColor]}>
@@ -152,7 +152,6 @@ class WalletResetConfirmation extends Component {
                                 </Text>
                             </Trans>
                         }
-                        secondaryBackgroundColor={body.color}
                     />
                     <View style={{ flex: 0.4 }} />
                     <Text style={[styles.subHeaderText, negativeColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>

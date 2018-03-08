@@ -128,25 +128,21 @@ class WalletSetup extends Component {
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
-                    <Icon
-                        name='iota'
-                        size={width / 8}
-                        color={body.color}
-                    />
+                    <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 0.7 }} />
                     <View style={styles.greetingTextContainer}>
-                        <Text style={[ styles.greetingText, textColor ]}>{t('okay')}</Text>
+                        <Text style={[styles.greetingText, textColor]}>{t('okay')}</Text>
                     </View>
                     <View style={{ flex: 0.5 }} />
                     <InfoBox
-                        body
+                        body={body}
                         text={
                             <View>
-                                <Text style={[ styles.infoText, textColor ]}>{t('seedExplanation')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('seedExplanation')}</Text>
                                 <Trans i18nKey="walletSetup:explanation">
-                                    <Text style={[ styles.infoText, textColor ]}>
+                                    <Text style={[styles.infoText, textColor]}>
                                         <Text style={styles.infoTextLight}>
                                             You can use it to access your funds from
                                         </Text>
@@ -158,13 +154,13 @@ class WalletSetup extends Component {
                                         </Text>
                                     </Text>
                                 </Trans>
-                                <Text style={[ styles.infoText, textColor ]}>{t('keepSafe')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('keepSafe')}</Text>
                             </View>
                         }
                     />
                     <View style={{ flex: 0.5 }} />
                     <View style={styles.greetingTextContainer}>
-                        <Text style={[ styles.questionText, textColor ]}>{t('doYouAlreadyHaveASeed')}</Text>
+                        <Text style={[styles.questionText, textColor]}>{t('doYouAlreadyHaveASeed')}</Text>
                     </View>
                     <View style={{ flex: 0.5 }} />
                 </View>
