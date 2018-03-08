@@ -150,7 +150,7 @@
         "login": "PŘIHLÁSIT SE",
         "selectDifferentNode": "Chcete vybrat jiný NODE?",
         "setNode": "NASTAVIT NODE",
-        "cannotConnect": "Nelze se připojit k IOTA uzlu."
+        "cannotConnect": "Nelze se připojit k IOTA Nodu."
     },
     "loading": {
         "loadingFirstTime": "První načítání Seedu.",
