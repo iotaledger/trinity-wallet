@@ -47,7 +47,7 @@ function checkNode(url, callback) {
         // TODO: Somehow figure out if node is latest version
 
         // unshim _makeRequest before returning
-        clearApiTimeout(api);
+        clearApiTimeout(iota);
         callback(null, iota, nodeinfo);
     });
 }
