@@ -19,6 +19,7 @@ import { ADDRESS_LENGTH } from 'libs/util';
 import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
+import { showError } from 'actions/notifications';
 
 import css from './index.css';
 
@@ -60,6 +61,7 @@ class App extends React.Component {
          */
         t: PropTypes.func.isRequired,
         sendAmount: PropTypes.func.isRequired,
+        showError: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -185,6 +187,7 @@ const mapDispatchToProps = {
     clearSeeds,
     sendAmount,
     getUpdateData,
+    showError,
 };
 
 export default withRouter(translate()(connect(mapStateToProps, mapDispatchToProps)(App)));
