@@ -247,7 +247,7 @@ class Login extends Component {
                                 node={this.props.fullNode}
                                 nodes={this.props.availablePoWNodes}
                                 backPress={() => this.setState({ changingNode: false })}
-                                body
+                                body={body}
                             />
                         </View>
                         <View style={{ flex: 0.2 }} />
