@@ -19,7 +19,7 @@
         "invalidResponse": "無效的回應",
         "invalidResponseExplanation": "節點回傳無效回應。",
         "invalidResponsePollingExplanation": "節點於輪詢程序時回傳無效回應。",
-        "invalidResponseFetchingAccount": "在取得您的帳戶資料時結點傳回無效的回覆",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "在交易傳送時節點傳回無效的回覆",
         "seed": "種子碼",
         "back": "返回",
@@ -68,6 +68,9 @@
         "pending": "檢測中",
         "bundleHash": "Bundle Hash",
         "addresses": "位址",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Press back again to close the app",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "只要按下“完成” 或是60秒後種子將被清除",
         "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。",
         "doNotStore": "不要儲存種子於ㄧ般文字",
-        "copyToClipboard": "複製到剪貼簿"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "本錢包能使用多個種子碼。每個種子碼都需要一個帳戶名稱。",
         "youCanAdd": "您可至設定選單中加入更多種子碼。"
     },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+    },
     "settings": {
         "transferSending": "傳送交易",
         "transferSendingExplanation": "請等到交易送出。",
@@ -261,7 +271,11 @@
         "paste": "貼上",
         "selectAll": "選擇所有",
         "securitySettings": "Security settings",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "輸入密碼以重設您的錢包。",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "選擇節點",
         "addCustomNode": "增加自訂節點",
-        "manualSync": "手動同步"
+        "manualSync": "手動同步",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -337,7 +352,7 @@
         "one": "一個"
     },
     "deleteAccount": {
-        "areYouSure": "您確定要刪除這個帳號嗎？",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "您的種子和交易記錄將被移除。",
         "thisAction": "此向操作無法復原",
         "enterPassword": "請輸入密碼以刪除這個帳號。"
@@ -406,5 +421,9 @@
         "mcap": "MCAP",
         "change": "Change",
         "volume": "Volume (24h)"
+    },
+    "rootDetection": {
+        "warning": "WARNING",
+        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }

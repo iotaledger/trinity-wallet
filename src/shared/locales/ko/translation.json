@@ -19,7 +19,7 @@
         "invalidResponse": "잘못된 응답",
         "invalidResponseExplanation": "노드가 잘못된 응답을 보냈습니다.",
         "invalidResponsePollingExplanation": "폴링 중에 노드가 잘못된 응답을 보냈습니다.",
-        "invalidResponseFetchingAccount": "계정 정보를 불러오는 중에 노드가 잘못된 응답을 보냈습니다.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "전송 중에 노드가 잘못된 응답을 보냈습니다.",
         "seed": "시드",
         "back": "뒤로",
@@ -68,6 +68,9 @@
         "pending": "처리 중",
         "bundleHash": "번들 해시",
         "addresses": "주소",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "앱을 닫으려면 뒤로가기를 다시 누르세요.",
         "autoreattaching": "어태치 자동 재시도중",
         "autoreattachingExplanation": "아래의 트랜잭션 해시를 다시 어태치합니다: {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "'완료'를 누르거나 60초가 지나면 시드가 삭제됩니다.",
         "clickToCopy": "아래 버튼을 눌러 시드를 복사하고, 비밀번호 관리자에 저장하십시오.",
         "doNotStore": "시드를 암호화하지 않은 채로 저장하지 마십시오.",
-        "copyToClipboard": "클립보드에 복사"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "시드에 잘못된 문자 포함",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "하나의 지갑에 여러 개의 시드를 등록하여 사용할 수 있습니다. 각각의 시드는 계정 이름이 필요합니다.",
         "youCanAdd": "설정 메뉴에서 시드를 추가할 수 있습니다."
     },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+    },
     "settings": {
         "transferSending": "거래 전송중",
         "transferSendingExplanation": "거래가 전송 완료될 때까지 기다려 주십시오.",
@@ -261,7 +271,11 @@
         "paste": "붙여넣기",
         "selectAll": "전체 선택",
         "securitySettings": "보안 설정",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "생체 인증",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "지갑을 초기화하려면 비밀번호를 입력하세요.",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "노드 선택",
         "addCustomNode": "커스텀 노드 추가",
-        "manualSync": "수동 동기화"
+        "manualSync": "수동 동기화",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "배경",
@@ -337,7 +352,7 @@
         "one": "일"
     },
     "deleteAccount": {
-        "areYouSure": "정말로 이 계정을 삭제하시겠습니까?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "등록된 시드 및 거래 내역이 전부 제거됩니다.",
         "thisAction": "이 작업은 되돌릴 수 없습니다.",
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
@@ -406,5 +421,9 @@
         "mcap": "시가총액",
         "change": "전일대비",
         "volume": "거래량 (24시간)"
+    },
+    "rootDetection": {
+        "warning": "WARNING",
+        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }

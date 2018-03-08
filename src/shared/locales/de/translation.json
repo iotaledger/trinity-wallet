@@ -19,7 +19,7 @@
         "invalidResponse": "Ungültige Antwort",
         "invalidResponseExplanation": "Der Server hat eine ungültige Antwort zurückgegeben.",
         "invalidResponsePollingExplanation": "Der Server hat beim Aktualisieren eine ungültige Antwort zurückgegeben.",
-        "invalidResponseFetchingAccount": "Beim Abfragen deiner Konto-Informationen gab es einen Fehler auf dem Server.",
+        "invalidResponseFetchingAccount": "Der Server hat eine ungültige Antwort beim Abrufen der Kontoinformationen zurückgegeben. Versuche einen anderen Server.",
         "invalidResponseSendingTransfer": "Beim Senden deiner Transaktion gab es einen Fehler auf dem Server.",
         "seed": "Seed",
         "back": "ZURÜCK",
@@ -68,6 +68,9 @@
         "pending": "Ausstehend",
         "bundleHash": "Bundle-Hash",
         "addresses": "Adressen",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
         "autoreattaching": "Automatisches anhängen an den Tangle",
         "autoreattachingExplanation": "Erneutes anhängen der Transaktion mit dem Hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst oder 60 Sekunden vergangen sind.",
         "clickToCopy": "Klicke die Schaltfläche unten, um den Seed in einen Passwort-Manager zu kopieren.",
         "doNotStore": "Speichere deinen Seed nicht als Klartext.",
-        "copyToClipboard": "In die Zwischenablage kopieren"
+        "copyToClipboard": "Seed kopieren",
+        "shareSeed": "Teile deinen Seed mit einem sicheren Passwort-Manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seed enthält ungültige Zeichen",
@@ -146,7 +150,7 @@
         "login": "ANMELDEN",
         "selectDifferentNode": "Möchtest du einen anderen Server auswählen?",
         "setNode": "SERVER AUSWÄHLEN",
-        "cannotConnect": "Keine Verbindung zum IOTA Server."
+        "cannotConnect": "Verbindung zum IOTA-Server nicht möglich."
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "Du kannst mehrere Seeds in diesem Wallet verwenden. Jeder Seed benötigt einen Kontonamen.",
         "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
+    "modeSelection": {
+        "expert": "Experte",
+        "standard": "Standard",
+        "expertModeExplanation": "Der Experten-Modus bietet Zugriff auf zusätzliche Funktionen wie manuelles Promoten und Reattachen.",
+        "modesExplanation": "Aktiviere den Experten-Modus nur, wenn du ein erfahrener Tangle-Benutzer bist. Es könnte dich sonst verwirren."
+    },
     "settings": {
         "transferSending": "Sende Überweisung",
         "transferSendingExplanation": "Bitte warte bis deine Überweisung gesendet wurde.",
@@ -261,7 +271,11 @@
         "paste": "Einfügen",
         "selectAll": "Alle auswählen",
         "securitySettings": "Sicherheitseinstellungen",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Fingerabdruck-Authentifizierung",
+        "couldNotFetchRates": "Kurse konnten nicht abgerufen werden",
+        "couldNotFetchRatesExplanation": "Beim Abrufen der Umrechnungskurse für {{currency}} ist etwas schief gelaufen.",
+        "fetchedConversionRates": "Umrechnungskurse abgerufen",
+        "fetchedConversionRatesExplanation": "Umrechnungskurse für {{currency}} erfolgreich abgerufen."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -269,14 +283,14 @@
         "reset": "ZURÜCKSETZEN"
     },
     "walletSetup": {
-        "okay": "Okay. Lass uns dein Wallet einrichten!",
+        "okay": "Okay. Lass uns deine Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
         "explanation": "<0><0>Du kannst ihn verwenden, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Guthaben zuzugreifen. Aber wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
-        "thankYou": "Vielen Dank für das Herunterladen des IOTA Wallets.",
+        "thankYou": "Vielen Dank für das Herunterladen der IOTA Wallet.",
         "weWillSpend": "Dein Wallet wird in den nächsten Minuten eingerichtet.",
         "reminder": "Du könntest in Versuchung geraten, einige Schritte zu überspringen. Wir raten dir aber dringend dazu, den Prozess vollständig zu durchlaufen."
     },
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "Server auswählen",
         "addCustomNode": "Benutzerdefinierten Server hinzufügen",
-        "manualSync": "Manuell synchronisieren"
+        "manualSync": "Manuell synchronisieren",
+        "snapshotTransition": "Snapshot-Übertragung"
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
@@ -337,7 +352,7 @@
         "one": "Ein"
     },
     "deleteAccount": {
-        "areYouSure": "Willst du dieses Konto wirklich löschen?",
+        "areYouSure": "Bist du sicher dass Du das Konto \"{{accountName}}\" entfernen möchtest?",
         "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
@@ -391,7 +406,7 @@
     "twoFA": {
         "wrongCode": "Falscher Code",
         "wrongCodeExplanation": "Der von dir eingegebene Code ist falsch.",
-        "emptyCode": "Leerer Code",
+        "emptyCode": "Fehlender 2FA-Code",
         "emptyCodeExplanation": "Bitte gib einen Code ein und versuche es erneut.",
         "keyCopied": "Schlüssel in die Zwischenablage kopiert",
         "keyCopiedExplanation": "Dein 2FA Schlüssel wurde in die Zwischenablage kopiert.",
@@ -406,5 +421,9 @@
         "mcap": "MCAP",
         "change": "Änderung",
         "volume": "Volumen (24Std)"
+    },
+    "rootDetection": {
+        "warning": "WARNUNG",
+        "rootDetected": "<0>Dein Gerät scheint gerooted/jailbroken zu sein.</0> <1>Dies kann ein erhebliches Risiko für die Sicherheit Ihrer Wallet nach sich ziehen.</1> <2>Möchtest du trotz dieses Risikos fortfahren?</2>"
     }
 }
