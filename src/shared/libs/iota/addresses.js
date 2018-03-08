@@ -65,8 +65,8 @@ const removeUnusedAddresses = (resolve, reject, index, finalAddresses) => {
  *   @returns {array} All addresses
  **/
 
-const getRelevantAddresses = (resolve, reject, seed, opts, allAddresses) => {
-    iota.api.getNewAddress(seed, opts, (err, addresses) => {
+const getRelevantAddresses = (resolve, reject, seed, opts, genFn, allAddresses) => {
+    getNewAddress(seed, opts, genFn, (err, addresses) => {
         if (err) {
             reject(err);
         } else {
@@ -74,7 +74,7 @@ const getRelevantAddresses = (resolve, reject, seed, opts, allAddresses) => {
                 if (size(hashes)) {
                     allAddresses = [...allAddresses, ...addresses];
                     const newOpts = assign({}, opts, { index: opts.total + opts.index });
-                    getRelevantAddresses(resolve, reject, seed, newOpts, allAddresses);
+                    getRelevantAddresses(resolve, reject, seed, newOpts, genFn, allAddresses);
                 } else {
                     // Traverse backwards to remove all unused addresses
                     new Promise((res, rej) => {
@@ -341,10 +341,10 @@ export const getBalancesSync = (addresses, addressData) => {
  *   @returns {array} - Array of latest used addresses
  **/
 
-export const getLatestAddresses = (seed, index) => {
+export const getLatestAddresses = (seed, index, genFn) => {
     return new Promise((resolve, reject) => {
         const options = { checksum: false, index, returnAll: true };
-        iota.api.getNewAddress(seed, options, (err, addresses) => {
+        getNewAddress(seed, options, genFn, (err, addresses) => {
             if (err) {
                 reject(err);
             } else {
@@ -376,10 +376,10 @@ export const getLatestAddress = (addressData) => {
  *   @returns {object} - Updated account data data including latest used addresses
  **/
 
-export const syncAddresses = (seed, accountData, addNewAddress = false) => {
+export const syncAddresses = (seed, accountData, addNewAddress = false, genFn) => {
     const thisAccountDataCopy = cloneDeep(accountData);
     let index = getStartingSearchIndexToFetchLatestAddresses(thisAccountDataCopy.addresses);
-    return getLatestAddresses(seed, index).then((newAddresses) => {
+    return getLatestAddresses(seed, index, genFn).then((newAddresses) => {
         // Remove unused address
         if (!addNewAddress) {
             newAddresses.pop();
