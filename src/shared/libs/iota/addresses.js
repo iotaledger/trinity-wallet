@@ -16,6 +16,9 @@ import omitBy from 'lodash/omitBy';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 
+const errors = require('iota.lib.js/lib/errors/inputErrors');
+const async = require('async');
+
 /**
  *   Starts traversing from specified index backwards
  *   Keeps on calling findTransactions to see if there's any associated tx with address
@@ -452,3 +455,144 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
         (input) => input,
     );
 };
+
+/**
+ * The same as iota.api.getNewAddress, but rewritten to support native address generation
+ * See https://github.com/iotaledger/iota.lib.js/blob/a1b2e9e05d7cab3ef394900e5ca75fb46464e608/lib/api/api.js#L772
+ *   @param {string} seed
+ *   @param {object} options
+ *       @property   {int} index         Key index to start search from
+ *       @property   {bool} checksum     add 9-tryte checksum
+ *       @property   {int} total         Total number of addresses to return
+ *       @property   {int} security      Security level to be used for the private key / address. Can be 1, 2 or 3
+ *       @property   {bool} returnAll    return all searched addresses
+ *   @param {function} genFn Native address function
+ *   @param {function} callback
+ *   @returns {string | array} address List of addresses
+ **/
+/*eslint-disable no-var*/
+/*eslint-disable prefer-const*/
+/*eslint-disable brace-style*/
+/*eslint-disable no-else-return*/
+export const getNewAddress = (seed, options, genFn, callback) => {
+    // Store the generation function as a variable
+    var generator = null;
+    if (genFn) {
+        generator = genFn;
+    } else {
+        generator = iota.api._newAddress;
+    }
+
+    // If no options provided, switch arguments
+    if (arguments.length === 2 && Object.prototype.toString.call(options) === '[object Function]') {
+        callback = options;
+        options = {};
+    }
+
+    // validate the seed
+    if (!iota.valid.isTrytes(seed)) {
+        return callback(errors.invalidSeed());
+    }
+
+    // default index value
+    var index = 0;
+
+    if ('index' in options) {
+        index = options.index;
+
+        // validate the index option
+        if (!iota.valid.isValue(index) || index < 0) {
+            return callback(errors.invalidIndex());
+        }
+    }
+
+    var checksum = options.checksum || false;
+    var total = options.total || null;
+
+    // If no user defined security, use the standard value of 2
+    var security = 2;
+
+    if ('security' in options) {
+        security = options.security;
+
+        // validate the security option
+        if (!iota.valid.isValue(security) || security < 1 || security > 3) {
+            return callback(errors.invalidSecurity());
+        }
+    }
+
+    let allAddresses = [];
+
+    // Case 1: total
+    //
+    // If total number of addresses to generate is supplied, simply generate
+    // and return the list of all addresses
+    if (total) {
+        // Increase index with each iteration
+        for (var i = 0; i < total; i++, index++) {
+            var address = generator(seed, index, security, checksum);
+            allAddresses.push(address);
+        }
+
+        return callback(null, allAddresses);
+    } else {
+        //  Case 2: no total provided
+        //
+        //  Continue calling wasAddressSpenFrom & findTransactions to see if address was already created
+        //  if null, return list of addresses
+        //
+        async.doWhilst(
+            (callback) => {
+                // Iteratee function
+                var newAddress = generator(seed, index, security, checksum);
+
+                if (options.returnAll) {
+                    allAddresses.push(newAddress);
+                }
+
+                // Increase the index
+                index += 1;
+
+                iota.api.wereAddressesSpentFrom(newAddress, (err, res) => {
+                    if (err) {
+                        return callback(err);
+                    }
+
+                    // Validity check
+                    if (res[0]) {
+                        callback(null, newAddress, true);
+                    } else {
+                        // Check for txs if address isn't spent
+                        iota.api.findTransactions({ addresses: [newAddress] }, (err, transactions) => {
+                            if (err) {
+                                return callback(err);
+                            }
+
+                            callback(err, newAddress, transactions.length > 0);
+                        });
+                    }
+                });
+            },
+            (address, isUsed) => {
+                return isUsed;
+            },
+            (err, address) => {
+                // Final callback
+
+                if (err) {
+                    return callback(err);
+                } else {
+                    // If returnAll, return list of allAddresses
+                    // else return the last address that was generated
+                    var addressToReturn = options.returnAll ? allAddresses : address;
+
+                    return callback(null, addressToReturn);
+                }
+            },
+        );
+    }
+};
+/*eslint-enable no-var*/
+/*eslint-enable prefer-const*/
+/*eslint-enable brace-style*/
+/*eslint-enable no-else-return*/
