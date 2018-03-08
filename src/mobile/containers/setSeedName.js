@@ -249,7 +249,7 @@ export class SetSeedName extends Component {
                             />
                             <View style={{ flex: 0.3 }} />
                             <InfoBox
-                                body
+                                body={body}
                                 text={
                                     <View>
                                         <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>

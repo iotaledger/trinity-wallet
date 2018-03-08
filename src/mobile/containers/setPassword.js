@@ -180,22 +180,20 @@ class SetPassword extends Component {
         return (
             <View>
                 <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
-                    <View style={[ styles.container, { backgroundColor: body.bg } ]}>
+                    <View style={[styles.container, { backgroundColor: body.bg }]}>
                         <View style={styles.topContainer}>
-                            <Icon
-                                name='iota'
-                                size={width / 8}
-                                color={body.color}
-                            />
+                            <Icon name="iota" size={width / 8} color={body.color} />
                         </View>
                         <View style={styles.midContainer}>
                             <View style={{ flex: 0.8 }} />
                             <InfoBox
-                                body
+                                body={body}
                                 text={
                                     <View>
-                                        <Text style={[ styles.infoText, { color: body.color }]}>{t('anEncryptedCopy')}</Text>
-                                        <Text style={[ styles.warningText, { color: body.color } ]}>{t('ensure')}</Text>
+                                        <Text style={[styles.infoText, { color: body.color }]}>
+                                            {t('anEncryptedCopy')}
+                                        </Text>
+                                        <Text style={[styles.warningText, { color: body.color }]}>{t('ensure')}</Text>
                                     </View>
                                 }
                             />

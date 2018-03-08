@@ -174,11 +174,7 @@ class EnterSeed extends React.Component {
                     <StatusBar barStyle="light-content" backgroundColor={body.bg} />
                     <View style={styles.topContainer}>
                         <View style={styles.logoContainer}>
-                            <Icon
-                                name='iota'
-                                size={width / 8}
-                                color={body.color}
-                            />
+                            <Icon name="iota" size={width / 8} color={body.color} />
                         </View>
                     </View>
                     <View style={styles.midContainer}>
@@ -200,16 +196,16 @@ class EnterSeed extends React.Component {
                             testID="enterSeed-seedbox"
                         />
                         <View style={{ flex: 0.4 }} />
-                        <Checksum seed={seed} input={input}/>
+                        <Checksum seed={seed} input={input} />
                         <View style={{ flex: 0.4 }} />
                         <InfoBox
-                            body
+                            body={body}
                             text={
                                 <View>
-                                    <Text style={[ styles.infoText, { color: body.color } ]}>
+                                    <Text style={[styles.infoText, { color: body.color }]}>
                                         {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
                                     </Text>
-                                    <Text style={[ styles.warningText, { color: body.color } ]}>
+                                    <Text style={[styles.warningText, { color: body.color }]}>
                                         {'\n'}
                                         {t('neverShare')}
                                     </Text>

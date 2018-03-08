@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         color: '#a9a9a9',
     },
     disabledImage: {
-        tintColor: '#a9a9a9',
+        color: '#a9a9a9',
     },
     separator: {
         width: width / 2,

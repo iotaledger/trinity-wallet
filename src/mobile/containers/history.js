@@ -93,7 +93,6 @@ class History extends Component {
         negative: PropTypes.object.isRequired,
         positive: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
-        secondaryBarColor: PropTypes.string.isRequired,
         bar: PropTypes.object.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
@@ -212,9 +211,7 @@ class History extends Component {
      */
     prepTransactions() {
         const { transfers, addresses, negative, primary, secondary, positive, body, bar, mode, t } = this.props;
-        const containerBorderColor = tinycolor(body.bg).isDark()
-            ? 'rgba(255, 255, 255, 0.25)'
-            : 'rgba(0, 0, 0, 0.25)';
+        const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
         const computeConfirmationStatus = (persistence, incoming) => {
@@ -340,9 +337,7 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     positive: settings.theme.positive,
     extra: settings.theme.extra,
     body: settings.theme.body,
-    secondaryBarColor: settings.theme.secondaryBarColor,
     bar: settings.theme.bar,
-    pendingColor: settings.theme.pendingColor,
     isFetchingLatestAccountInfoOnLogin: tempAccount.isFetchingLatestAccountInfoOnLogin,
     isFetchingAccountInfo: polling.isFetchingAccountInfo,
     isGeneratingReceiveAddress: tempAccount.isGeneratingReceiveAddress,

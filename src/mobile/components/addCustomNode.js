@@ -64,6 +64,7 @@ class AddCustomNode extends Component {
         backPress: PropTypes.func.isRequired,
         onAddNodeError: PropTypes.func.isRequired,
         onAddNodeSuccess: PropTypes.func.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -109,12 +110,7 @@ class AddCustomNode extends Component {
     }
 
     render() {
-        const {
-            backPress,
-            t,
-            textColor,
-            theme,
-        } = this.props;
+        const { backPress, t, textColor, secondaryBackgroundColor, theme } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -140,11 +136,7 @@ class AddCustomNode extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon
-                                    name='chevronLeft'
-                                    size={width / 28}
-                                    color={theme.body.color}
-                                />
+                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -154,11 +146,7 @@ class AddCustomNode extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('add')}</Text>
-                                <Icon
-                                    name='eye'
-                                    size={width / 28}
-                                    color={theme.body.color}
-                                />
+                                <Icon name="eye" size={width / 28} color={secondaryBackgroundColor} />
                             </View>
                         </TouchableOpacity>
                     </View>

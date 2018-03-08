@@ -180,10 +180,10 @@ class SeedReentry extends Component {
                                 value={seed}
                             />
                             <View style={{ flex: 0.15 }} />
-                            <Checksum seed={seed} input={input}/>
+                            <Checksum seed={seed} input={input} />
                             <View style={{ flex: 0.15 }} />
                             <InfoBox
-                                body
+                                body={body}
                                 text={
                                     <View>
                                         <Text style={[styles.infoTextTop, textColor]}>{t('thisIsACheck')}</Text>
