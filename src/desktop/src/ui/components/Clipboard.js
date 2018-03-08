@@ -1,7 +1,8 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { generateAlert } from 'actions/alerts';
 
@@ -14,6 +15,10 @@ class Clipboard extends React.PureComponent {
     static propTypes = {
         /** Target content copied to clipboard */
         text: PropTypes.string.isRequired,
+        /** Element chidlren content */
+        children: PropTypes.object,
+        /** Timeout to clear the clipboard */
+        timeout: PropTypes.number,
         /** Optional element content, defaults to `text` prop */
         label: PropTypes.string,
         /** Success notification title */
@@ -27,17 +32,33 @@ class Clipboard extends React.PureComponent {
          * @ignore
          */
         generateAlert: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         * @ignore
+         */
+        t: PropTypes.func.isRequired,
     };
 
+    copy() {
+        const { text, generateAlert, title, success, timeout, t } = this.props;
+
+        Electron.clipboard(text);
+        generateAlert('success', title, success);
+
+        if (timeout > 0) {
+            setTimeout(() => {
+                Electron.clipboard('');
+            }, timeout * 1000);
+        }
+    }
+
     render() {
-        const { label, text, generateAlert, title, success } = this.props;
+        const { children, label, text } = this.props;
 
         return (
-            <CopyToClipboard text={text}>
-                <span className={css.clipboard} onClick={() => generateAlert('success', title, success)}>
-                    {label || text}
-                </span>
-            </CopyToClipboard>
+            <span className={css.clipboard} onClick={() => this.copy()}>
+                {children || label || text}
+            </span>
         );
     }
 }
@@ -48,4 +69,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Clipboard);
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Clipboard));

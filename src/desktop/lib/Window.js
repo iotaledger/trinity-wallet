@@ -1,4 +1,4 @@
-const { ipcRenderer: ipc, shell } = require('electron');
+const { ipcRenderer: ipc, shell, clipboard } = require('electron');
 const packageFile = require('../package.json');
 
 const capitalize = (string) => {
@@ -6,6 +6,14 @@ const capitalize = (string) => {
 };
 
 const Electron = {
+    clipboard: (content) => {
+        if (content.length > 0) {
+            clipboard.writeText(content);
+        } else {
+            clipboard.clear();
+        }
+    },
+
     gotoLatestRelease: () => {
         shell.openExternal(packageFile.url);
     },

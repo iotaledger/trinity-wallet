@@ -26,7 +26,7 @@ class Balance extends React.PureComponent {
 
         return (
             <div>
-                <strong>{`${formatValue(account.balance)}${formatUnit(account.balance)}`}</strong>
+                <strong>{`${formatValue(account.balance).toFixed(3)}${formatUnit(account.balance)}`}</strong>
                 <small>{`${currencySymbol} ${fiatBalance}`}</small>
             </div>
         );

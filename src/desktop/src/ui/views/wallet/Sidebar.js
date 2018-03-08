@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { clearTempData } from 'actions/tempAccount';
 import { NavLink } from 'react-router-dom';
+
+import { clearTempData, setSeedIndex } from 'actions/tempAccount';
 
 import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
@@ -23,8 +24,12 @@ class Sidebar extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-
+        /** Accounts state data */
         accounts: PropTypes.array,
+        /** Set seed index state
+         *  @param {Number} Index - Seed index
+         */
+        setSeedIndex: PropTypes.func.isRequired,
         /** Current seed index
          * @ignore
          */
@@ -59,7 +64,7 @@ class Sidebar extends React.PureComponent {
     };
 
     render() {
-        const { accounts, seedIndex, t, location } = this.props;
+        const { accounts, seedIndex, setSeedIndex, t, location, history } = this.props;
         const { modalLogout } = this.state;
 
         return (
@@ -76,7 +81,14 @@ class Sidebar extends React.PureComponent {
                         <ul>
                             {accounts.map((account, index) => {
                                 return (
-                                    <a aria-current={index === seedIndex} key={account} onClick={() => {}}>
+                                    <a
+                                        aria-current={index === seedIndex}
+                                        key={account}
+                                        onClick={() => {
+                                            setSeedIndex(index);
+                                            history.push('/wallet/');
+                                        }}
+                                    >
                                         <strong>{account}</strong>
                                     </a>
                                 );
@@ -119,6 +131,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     clearTempData,
+    setSeedIndex,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Sidebar));

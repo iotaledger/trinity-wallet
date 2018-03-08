@@ -75,6 +75,7 @@ h1 {
 }
 h2 {
     font-size: var(--font-size-l);
+    margin-bottom: 30px;
 }
 
 p {
@@ -86,18 +87,25 @@ strong {
 }
 
 form {
+    margin-bottom: 30px;
+
     > fieldset {
         display: block;
         width: 100%;
-        margin: 0 auto 50px;
+        margin: 50px auto;
         padding: 0px;
         border: none;
         text-align: center;
         a,
         button {
-            margin: 10px;
+            margin: 10px 20px;
         }
     }
+
+    div + fieldset{
+       margin-top: 0px;
+    }
+
 }
 
 label {
@@ -127,6 +135,10 @@ main {
     width: 100vw;
     height: 100vh;
     background: var(--body-bg);
+
+    >form{
+       margin: 0px;
+    }
 }
 
 .trinity {

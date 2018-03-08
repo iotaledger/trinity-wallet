@@ -55,10 +55,12 @@
             position: absolute;
             bottom: calc(50% - 100px);
             z-index: 2;
+            @media (max-width: 810px) {
+               width: calc(100% -  40px);
+           }
         }
         > div:last-of-type {
-            pointer-events: none;
-            opacity: 0.6;
+            display: none;
         }
         > button {
             top: calc(50% + 120px);

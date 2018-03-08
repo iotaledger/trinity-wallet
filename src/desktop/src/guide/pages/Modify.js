@@ -258,12 +258,7 @@ class ModifyTheme extends React.Component {
                 <Button variant="primary" onClick={this.setTheme}>
                     Update
                 </Button>
-                <Clipboard
-                    text={JSON.stringify(theme)}
-                    label="Copy to clipboard"
-                    title="Copied to clipboard"
-                    success="Theme data is copied to clipboard"
-                />
+                <Clipboard text={JSON.stringify(theme)} />
             </div>
         );
     }

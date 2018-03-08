@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getSelectedAccountViaSeedIndex } from 'selectors/account';
 
+import css from './addresses.css';
+
 /**
  * Account addresses component
  */
@@ -16,9 +18,14 @@ class Addresses extends PureComponent {
         const { account } = this.props;
 
         return (
-            <ul>
+            <ul className={css.addresses}>
                 {Object.keys(account.addresses).map((address) => {
-                    return <p key={address}>{address}</p>;
+                    const text = address.match(/.{1,3}/g).join(' ');
+                    return (
+                        <p className={account.addresses[address].spent ? css.spent : null} key={address}>
+                            {text}
+                        </p>
+                    );
                 })}
             </ul>
         );

@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -44,6 +45,10 @@ class SeedVerify extends React.PureComponent {
         seed: '',
     };
 
+    componentDidMount() {
+        Electron.clipboard('');
+    }
+
     onChange = (value) => {
         this.setState(() => ({
             seed: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase(),
@@ -86,8 +91,17 @@ class SeedVerify extends React.PureComponent {
                         closeLabel={t('global:back')}
                     />
                     <Infobox>
-                        <p>{t('seedReentry:thisIsACheck')}</p>
-                        <p>{t('seedReentry:ifYouHaveNotSaved')}</p>
+                        {newSeed ? (
+                            <React.Fragment>
+                                <p>{t('seedReentry:thisIsACheck')}</p>
+                                <p>{t('seedReentry:ifYouHaveNotSaved')}</p>
+                            </React.Fragment>
+                        ) : (
+                            <React.Fragment>
+                                <p>{t('enterSeed:seedExplanation')}</p>
+                                <p>{t('enterSeed:neverShare')}</p>
+                            </React.Fragment>
+                        )}
                     </Infobox>
                 </section>
                 <footer>

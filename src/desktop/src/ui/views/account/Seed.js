@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'libs/util';
 
 import Button from 'ui/components/Button';
+import Clipboard from 'ui/components/Clipboard';
 
 import css from './seed.css';
 
@@ -34,11 +35,19 @@ class Seed extends PureComponent {
         const { vault, seedIndex, t } = this.props;
         const { hidden } = this.state;
 
-        const seed = hidden ? Array(MAX_SEED_LENGTH).fill('·') : vault.items[seedIndex].seed;
-
+        const seed = vault.seeds[seedIndex];
+        const content = hidden ? new Array(MAX_SEED_LENGTH/3).join('··· ') : seed.match(/.{1,3}/g).join(' ');
+        
         return (
             <form>
-                <p className={css.seed}>{seed}</p>
+                <p className={css.seed}>
+                    <Clipboard
+                        text={seed}
+                        label={content}
+                        title={t('copyToClipboard:seedCopied')}
+                        success={t('copyToClipboard:seedCopiedExplanation')}
+                    />
+                </p>
                 <fieldset>
                     <Button onClick={() => this.setState({ hidden: !hidden })}>{hidden ? t('show') : t('hide')}</Button>
                 </fieldset>
