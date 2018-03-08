@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Logo from 'ui/components/Logo';
 import css from './Loading.css';
@@ -10,6 +11,8 @@ export default class Loading extends React.PureComponent {
     static propTypes = {
         /** Loading animation loop option */
         loop: PropTypes.bool,
+        /** Loading inline class state */
+        inline: PropTypes.bool,
         /** Loading screen title content */
         title: PropTypes.string,
         /** Loading screen subtitle content */
@@ -19,10 +22,10 @@ export default class Loading extends React.PureComponent {
     };
 
     render() {
-        const { loop, title, subtitle, onEnd } = this.props;
+        const { loop, inline, title, subtitle, onEnd } = this.props;
 
         return (
-            <div className={css.loading}>
+            <div className={classNames(css.loading,(inline) ? css.inline : null)}>
                 <div>
                     <Logo size={200} animate loop={loop} onEnd={onEnd} />
                     {title && <h1>{title}</h1>}

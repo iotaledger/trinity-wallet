@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import QRCode from 'qrcode.react';
 import authenticator from 'authenticator';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { setVault, getVault, removeKey } from 'libs/crypto';
 
@@ -15,6 +14,7 @@ import Button from 'ui/components/Button';
 import Text from 'ui/components/input/Text';
 import Password from 'ui/components/input/Password';
 import Modal from 'ui/components/modal/Modal';
+import Clipboard from 'ui/components/Clipboard';
 
 import css from './twoFa.css';
 
@@ -179,9 +179,9 @@ class TwoFA extends React.Component {
                 <QRCode size={180} value={authenticator.generateTotpUri(key, 'Trinity desktop wallet')} />
                 <p>
                     Key:{' '}
-                    <CopyToClipboard text={key}>
+                    <Clipboard text={key}>
                         <strong>{key}</strong>
-                    </CopyToClipboard>
+                    </Clipboard>
                 </p>
                 <h2>{t('twoFA:enterCode')}:</h2>
                 <Text value={code} onChange={(value) => this.setState({ code: value })} />

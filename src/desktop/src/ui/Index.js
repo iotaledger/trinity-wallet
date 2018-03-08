@@ -105,7 +105,7 @@ class App extends React.Component {
     }
 
     Init = (props) => {
-        return <Loading {...props} loop={false} onEnd={() => this.props.history.push('/onboarding/')} />;
+        return <Loading inline {...props} loop={false} onEnd={() => this.props.history.push('/onboarding/')} />;
     };
 
     render() {
