@@ -51,23 +51,23 @@ const styles = StyleSheet.create({
 
 class InfoBox extends PureComponent {
     static propTypes = {
-        body: PropTypes.object,
+        body: PropTypes.object.isRequired,
         text: PropTypes.string.isRequired,
     };
 
     render() {
         const { body, text } = this.props;
-        const isBackgroundLight = tinycolor(body.bg).isLight();
-        const infoImagePath = isBackgroundLight ? whiteInfoImagePath : blackInfoImagePath;
-        const innerContainerBackgroundColor = isBackgroundLight
-            ? { backgroundColor: 'rgba(255, 255, 255, 0.05)' }
-            : { backgroundColor: 'rgba(0, 0, 0, 0.05)' };
-        const bannerBackgroundColor = isBackgroundLight
-            ? { backgroundColor: 'rgba(255, 255, 255, 0.15)' }
-            : { backgroundColor: 'rgba(0, 0, 0, 0.15)' };
-        const iconContainerBackgroundColor = isBackgroundLight
-            ? { backgroundColor: 'rgba(255, 255, 255, 0.11)' }
-            : { backgroundColor: 'rgba(0, 0, 0, 0.11)' };
+        const isDark = tinycolor(body.color).isDark();
+        const infoImagePath = isDark ? blackInfoImagePath : whiteInfoImagePath;
+        const innerContainerBackgroundColor = isDark
+            ? { backgroundColor: 'rgba(0, 0, 0, 0.05)' }
+            : { backgroundColor: 'rgba(255, 255, 255, 0.05)' };
+        const bannerBackgroundColor = isDark
+            ? { backgroundColor: 'rgba(0, 0, 0, 0.15)' }
+            : { backgroundColor: 'rgba(255, 255, 255, 0.15)' };
+        const iconContainerBackgroundColor = isDark
+            ? { backgroundColor: 'rgba(0, 0, 0, 0.11)' }
+            : { backgroundColor: 'rgba(255, 255, 255, 0.11)' };
 
         return (
             <View style={styles.fieldContainer}>
