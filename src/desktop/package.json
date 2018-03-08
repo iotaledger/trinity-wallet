@@ -54,7 +54,6 @@
         "postcss-normalize": "^4.0.0",
         "qrcode.react": "^0.7.2",
         "react": "^16.2.0",
-        "react-copy-to-clipboard": "^5.0.1",
         "react-dev-utils": "^5.0.0",
         "react-dom": "^16.2.0",
         "react-error-overlay": "^4.0.0",

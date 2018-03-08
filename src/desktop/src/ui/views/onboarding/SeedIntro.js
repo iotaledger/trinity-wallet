@@ -23,7 +23,7 @@ class SeedIntro extends React.PureComponent {
                     <form className="center">
                         <fieldset>
                             <p>{t('walletSetup:doYouAlreadyHaveASeed')}</p>
-                            <Button to="/onboarding/seed-generate" className="outline" variant="secondary">
+                            <Button to="/onboarding/seed-generate" className="outline" variant="positive">
                                 {t('global:no')}
                             </Button>
                             <Button to="/onboarding/seed-verify" className="outline" variant="primary">

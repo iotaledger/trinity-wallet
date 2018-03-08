@@ -41,17 +41,25 @@
         &:hover > div {
             background: var(--body-hover);
         }
-    }
-
-    .received {
-        strong {
-            color: var(--positive);
+        &.received {
+            > strong {
+                color: var(--primary);
+            }
         }
-    }
-
-    .sent {
-        strong {
-            color: var(--positive);
+        &.sent {
+            strong {
+                color: var(--secondary);
+            }
+        }
+        &.confirmed {
+            span:nth-child(4) {
+                color: var(--positive);
+            }
+        }
+        &.pending {
+            span:nth-child(4) {
+                color: var(--negative);
+            }
         }
     }
 
@@ -104,6 +112,12 @@
     padding: 35px;
     border-radius: 8px;
     font-size: var(--font-size-small);
+
+    @media (max-width: 810px){
+       width: 100%;
+       padding: 35px 0px;
+    }
+
     header {
         display: flex;
         justify-content: space-between;
