@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, NativeModules } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import whiteLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-white.json';
 import blackLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-black.json';
@@ -22,6 +22,7 @@ import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import keychain, { getSeed, storeSeedInKeychain } from '../util/keychain';
 import DynamicStatusBar from '../components/dynamicStatusBar';
+import { isAndroid, isIOS } from '../util/device';
 
 import { width, height } from '../util/dimensions';
 
@@ -113,6 +114,13 @@ class Loading extends Component {
             .get()
             .then((credentials) => {
                 const firstSeed = getSeed(credentials.data, 0);
+                let genFn = null;
+
+                if (isAndroid) {
+                    //  genFn = address function
+                } else if (isIOS) {
+                    genFn = NativeModules.Iota.address;
+                }
 
                 if (firstUse && !addingAdditionalAccount) {
                     this.props.getFullAccountInfo(firstSeed, selectedAccountName, navigator);
@@ -123,6 +131,7 @@ class Loading extends Component {
                         password,
                         storeSeedInKeychain,
                         navigator,
+                        genFn,
                     );
                 } else {
                     this.props.getAccountInfo(firstSeed, selectedAccountName, navigator);

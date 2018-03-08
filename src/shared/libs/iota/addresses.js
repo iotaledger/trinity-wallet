@@ -107,7 +107,8 @@ export const getAllAddresses = (
         returnAll: true,
         security: 2,
     },
-) => new Promise((res, rej) => getRelevantAddresses(res, rej, seed, addressesOpts, []));
+    genFn,
+) => new Promise((res, rej) => getRelevantAddresses(res, rej, seed, addressesOpts, genFn, []));
 
 /**
  *   Accepts addresses as an array.
@@ -544,7 +545,19 @@ export const getNewAddress = (seed, options, genFn, callback) => {
         async.doWhilst(
             (callback) => {
                 // Iteratee function
-                var newAddress = generator(seed, index, security, checksum);
+
+                var newAddress = '';
+                console.log(generator);
+                console.log(Promise.resolve(generator));
+                if (Promise.resolve(generator) == generator) {
+                  generator(seed, index, security, checksum).then((address) => {
+                    newAddress = address;
+                    console.log(address);
+                  });
+                } else {
+                  newAddress = generator(seed, index, security, checksum);
+                }
+                console.log(newAddress);
 
                 if (options.returnAll) {
                     allAddresses.push(newAddress);
