@@ -11,6 +11,7 @@
       1. [Zero Value Transfers](#zero-value-transfers)
       1. [Value Transfers](#value-transfers)
   1. [Input Management](#input-management)
+  1. [Polling](#polling)
 
 ## Account Syncing
 
@@ -103,5 +104,25 @@ However, the application makes sure it syncs the account before selecting addres
 
 Input management starts with the **first** address with balance.
 It is also made sure that the addresses chosen for inputs were not previously spent from by communicating with the tangle.
+
+**[⬆ back to top](#table-of-contents)**
+
+## Polling
+
+The application polls for a set of services when the app is in foreground.
+
+The polling services are: 
+
+- Promotion
+- Market information
+- Price information
+- Latest currency conversion rates
+- Account information
+
+Polling is designed in a way that only a single service becomes active at a time. If any service fails, it would retry thrice before passing control to the next service. 
+
+> **Note:** Promotion should always become active after the account information is fully synced. 
+On login, the application makes sure the account is synced, so on successful login promotion would be the first service that becomes active.
+
 
 **[⬆ back to top](#table-of-contents)**
