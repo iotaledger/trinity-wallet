@@ -19,7 +19,7 @@
         "invalidResponse": "Respon tidak sah",
         "invalidResponseExplanation": "Node mengembalikan response yang tidak valid.",
         "invalidResponsePollingExplanation": "Node mengembalikan response yang tidak valid ketika memungut suara.",
-        "invalidResponseFetchingAccount": "Node memberikan tanggapan yang tidak benar ketika menarik informasi dari akun anda.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "Node memberikan tanggapan yang tidak benar ketika melakukan pengiriman.",
         "seed": "Benih",
         "back": "KEMBALI",
@@ -68,6 +68,9 @@
         "pending": "Pending",
         "bundleHash": "Bundle Hash",
         "addresses": "Addresses",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Press back again to close the app",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Seed akan dihapus setelah menekan \"SELESAI\" atau 60 detik telah berlalu.",
         "clickToCopy": "Klik tombol dibawah ini dan salin Seed Anda ke dalam manajer kata sandi.",
         "doNotStore": "Jangan simpan Seed Anda di dalam teks biasa.",
-        "copyToClipboard": "Salin ke papan klip"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "Anda dapat menggunakan beberapa Seed dengan dompet ini. Setiap Seed membutuhkan nama akun.",
         "youCanAdd": "Anda dapat menambahkan Seed di menu Perkakas."
     },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+    },
     "settings": {
         "transferSending": "Sedang mentransfer",
         "transferSendingExplanation": "Silahkan tunggu sampai transfer anda sudah dikirim.",
@@ -261,7 +271,11 @@
         "paste": "Tempelkan",
         "selectAll": "Pilih Semua",
         "securitySettings": "Security settings",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda.",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "Pilih node",
         "addCustomNode": "Menambahkan node kustom",
-        "manualSync": "Manual sync"
+        "manualSync": "Manual sync",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
         "background": "Latar belakang",
@@ -337,7 +352,7 @@
         "one": "Salah satu"
     },
     "deleteAccount": {
-        "areYouSure": "Yakin ingin menghapus akun kamu?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Riwayat transaksi dan benih akan dihapus.",
         "thisAction": "Tindakan ini tidak dapat diulang.",
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda."
@@ -406,5 +421,9 @@
         "mcap": "MCAP",
         "change": "Change",
         "volume": "Volume (24h)"
+    },
+    "rootDetection": {
+        "warning": "WARNING",
+        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }
