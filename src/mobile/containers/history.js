@@ -122,17 +122,7 @@ class History extends Component {
     }
 
     shouldComponentUpdate(newProps) {
-        const {
-            isFetchingAccountInfo,
-            isSyncing,
-            isSendingTransfer,
-            isGeneratingReceiveAddress,
-            isTransitioning,
-        } = this.props;
-
-        if (isFetchingAccountInfo !== newProps.isFetchingAccountInfo) {
-            return false;
-        }
+        const { isSyncing, isSendingTransfer, isGeneratingReceiveAddress, isTransitioning } = this.props;
 
         if (isSyncing !== newProps.isSyncing) {
             return false;
