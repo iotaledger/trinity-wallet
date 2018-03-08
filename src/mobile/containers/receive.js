@@ -2,7 +2,16 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, Clipboard, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
+    Clipboard,
+    TouchableWithoutFeedback,
+    Keyboard,
+    NativeModules,
+} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
 import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -21,7 +30,7 @@ import GENERAL from '../theme/general';
 import CustomTextInput from '../components/customTextInput';
 import GenerateAddressButton from '../components/generateAddressButton';
 import { width, height } from '../util/dimensions';
-import { isAndroid } from '../util/device';
+import { isAndroid, isIOS } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -146,11 +155,19 @@ class Receive extends Component {
         return keychain
             .get()
             .then((credentials) => {
+                let genFn = null;
+
+                if (isAndroid) {
+                    //  genFn = address function
+                } else if (isIOS) {
+                    genFn = NativeModules.Iota.address;
+                }
+
                 this.props.getFromKeychainSuccess('receive', 'addressGeneration');
 
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
-                    this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData);
+                    this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData, genFn);
                 } else {
                     error();
                 }
