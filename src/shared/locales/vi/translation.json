@@ -1,10 +1,10 @@
 {
     "global": {
-        "send": "Gửi",
+        "send": "GỬI",
         "cancel": "Huỷ Bỏ",
         "continue?": "Bạn có muốn tiếp tục không?",
         "noTransactions": "KHÔNG CÓ LỊCH SỬ",
-        "refresh": "REFRESH",
+        "refresh": "LÀM MỚI",
         "qr": "QR",
         "balanceError": "Tài khoản không đủ",
         "balanceErrorMessage": "Bạn không có đủ IOTA để hoàn thành giao dịch này.",
@@ -19,7 +19,7 @@
         "invalidResponse": "Đáp ứng không hợp lệ",
         "invalidResponseExplanation": "Nút mạng phản hồi không hợp lệ.",
         "invalidResponsePollingExplanation": "Nút mạng phản hồi lỗi khi lấy thông tin tài khoản từ nút mạng.",
-        "invalidResponseFetchingAccount": "Nút mạng phản hồi không hợp lệ khi lấy thông tin tài khoản của bạn.",
+        "invalidResponseFetchingAccount": "Nút mạng phản hồi không hợp lệ khi lấy thông tin tài khoản của bạn. Xin vui lòng thay đổi nút mạng.",
         "invalidResponseSendingTransfer": "Nút mạng phản hồi không hợp lệ khi chuyển khoản.",
         "seed": "Từ Khoá",
         "back": "TRỞ LẠI",
@@ -68,6 +68,9 @@
         "pending": "Chờ Duyệt",
         "bundleHash": "Nhóm Hash",
         "addresses": "Địa Chỉ",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Nhấn nút lui lại lần nữa để đóng chương trình",
         "autoreattaching": "Đang tự động kết nối vào Tangle",
         "autoreattachingExplanation": "Đang kết nối giao dịch với dữ liệu {{hash}}",
@@ -75,9 +78,9 @@
         "autopromotingExplanation": "Tự động thúc đẩy chuyển khoản với dữ liệu {{hash}}",
         "cannotSendToOwn": "Gửi đến địa chỉ của mình",
         "cannotSendToOwnExplanation": "Bạn không thể chuyển khoản vào một trong những địa chỉ của riêng bạn.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWait": "Vui lòng đợi",
+        "pleaseWaitExplanation": "Trinity đang thực hiện một chức năng khác. Vui lòng đợi và thử lại.",
+        "pleaseWaitTransferExplanation": "Số tiền của bạn đang được sử dụng trong một giao dịch khác. Vui lòng đợi xác nhận xong trước khi thử gửi lại."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Từ khoá sẽ bị xoá sau khi bạn nhấn nút \"XONG\" hoặc sau khi 60 giây trôi qua.",
         "clickToCopy": "Nhấn vào nút bên dưới và sao chép từ khoá vào chương trình quản lý mật khẩu.",
         "doNotStore": "Không nên lưu trữ từ khoá ở dạng phiên bản chữ.",
-        "copyToClipboard": "Sao chép vào bộ nhớ tạm"
+        "copyToClipboard": "Chép từ khóa",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Từ khoá chứa ký tự không hợp lệ",
@@ -150,7 +154,7 @@
     },
     "loading": {
         "loadingFirstTime": "Đang tải từ khoá lần đầu tiên.",
-        "thisMayTake": "Có thể kéo dài hơi lâu.",
+        "thisMayTake": "Thao tác này sẽ hơi lâu.",
         "youMayNotice": "Bạn có thể thấy máy của bạn chậm lại."
     },
     "newSeedSetup": {
@@ -175,8 +179,8 @@
         "generateNewAddress": "ĐỊA CHỈ MỚI",
         "message": "Tin nhắn tuỳ chọn",
         "removeMessage": "HUỶ BỎ TIN NHẮN",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "KHÔNG CÓ ĐỊA CHỈ",
+        "spent": "Đã Gửi"
     },
     "saveYourSeed": {
         "seedCleared": "Đã xoá từ khoá",
@@ -204,7 +208,7 @@
         "message": "Tin nhắn",
         "invalidMessage": "Tin nhắn không hợp lệ",
         "invalidMessageExplanation": "Tin nhắn có chứa ký tự không hợp lệ.",
-        "send": "Gửi",
+        "send": "GỬI",
         "invalidAmount": "Số lượng nhập không đúng",
         "invalidAmountExplanation": "Xin vui lòng nhập số tiền muốn giao dịch. Các bạn nên đọc chú thích ở cuối trang này để hiểu thêm về đơn vị của IOTA.",
         "maximumSelected": "Số lượng TỐI ĐA được chọn",
@@ -224,6 +228,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "Bạn có thể sử dụng nhiều từ khoá cho ví điện tử này. Mỗi từ khoá cần một tên tài khoản khác.",
         "youCanAdd": "Bạn có thể cho thêm nhiều từ khoá nữa trong mục Thiết Lập."
+    },
+    "modeSelection": {
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Đang chuyển khoản",
@@ -261,7 +271,11 @@
         "paste": "Dán",
         "selectAll": "Chọn Tất Cả",
         "securitySettings": "Thiết lập bảo mật",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Xác thực bằng sinh trắc học",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Nhập mật khẩu để cài lại ví điện tử.",
@@ -282,54 +296,55 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Từ khoá của bạn có {{maxSeedLength}} ký tự đọc từ trái sang phải.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed": "<0> Ghi từ khoá và mã kiểm tra xuống và </0><1>kiểm tra 3 lần</1><2>để chắc chắn nó đúng.</2>"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "The address has been copied to the clipboard.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "bundleHashCopied": "Đã sao chép nhóm hash",
+        "bundleHashCopiedExplanation": "Nhóm hash đã được sao chép vào bộ nhớ tạm thời.",
+        "addressCopied": "Đã sao chép địa chỉ",
+        "addressCopiedExplanation": "Địa chỉ đã được sao chép vào bộ nhớ tạm thời.",
+        "send": "GỬI",
+        "receive": "NHẬN"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Xem từ khoá",
+        "viewAddresses": "Xem địa chỉ",
+        "editAccountName": "Sửa tên tài khoản",
+        "deleteAccount": "Xoá tài khoản",
+        "addNewAccount": "Thêm tài khoản mới"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Nút mạng tuỳ chỉnh",
+        "add": "Thêm"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Sử dụng từ khoá có sẵn",
+        "createNewSeed": "Tạo từ khoá mới"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Chọn nút mạng",
+        "addCustomNode": "Thêm nút mạng tuỳ chỉnh",
+        "manualSync": "Đồng bộ bằng tay",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Hình nền",
+        "frame": "Khung"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Giao Diện"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "Tiền Tệ"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Bạn có muốn đăng xuất không?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Quét mã QR"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "HỆ THỐNG ĐƠN VỊ",
         "trillion": "Nghìn Tỷ",
         "billion": "Tỷ",
         "million": "Triệu",
@@ -337,74 +352,78 @@
         "one": "Một"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "yourSeedWillBeRemoved": "Từ khóa và lịch sử của các giao dịch sẽ bị xóa.",
+        "thisAction": "Thao tác này không thể đảo ngược.",
+        "enterPassword": "Nhập mật khẩu để xóa tài khoản này."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "pressToSync": "Nhấn vào nút dưới đây để đồng bộ hóa tài khoản.",
+        "thisMayTake": "Thao tác này sẽ hơi lâu.",
+        "youMayNotice": "Bạn có thể thấy máy của bạn chậm lại.",
+        "syncAccount": "ĐỒNG BỘ TÀI KHOẢN",
+        "syncingYourAccount": "Đang đồng bộ tài khoản."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Nhập từ khóa và tên tài khoản."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Nhập mật khẩu để xem từ khóa.",
+        "viewSeed": "XEM TỪ KHÓA",
+        "hideSeed": "ẨN TỪ KHÓA"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "alreadyHave": "Tôi đã lưu từ khóa",
+        "reenter": "Bây giờ bạn sẽ được yêu cầu nhập lại từ khóa.",
+        "reenterWarning": "Nếu máy của bạn bị hư và bạn chưa lưu từ khóa của mình, bạn sẽ mất hết IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "cannotUndo": "THAO TÁC NÀY KHÔNG THỂ ĐẢO NGƯỢC.",
+        "warning": "<0><0>Tất cả những dữ liệu trong ví điện tử của bạn như </0><1>từ khóa, mật khẩu,</1><2> và</2><3>những thông tin khác</3><4> sẽ bị mất.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "instructionsEnable": "Chạm vào thiết bị đọc vân tay để kích hoạt chức năng xác thực vân tay.",
+        "instructionsDisable": "Chạm vào thiết bị đọc vân tay để khóa chức năng xác thực vân tay.",
+        "fingerprintAuthEnabled": "Xác thực vân tay đã được kích hoạt",
+        "fingerprintAuthEnabledExplanation": "Bạn đã kích hoạt thành công xác thực vân tay.",
+        "fingerprintAuthDisabled": "Xác thực vân tay đã bị khóa",
+        "fingerprintAuthDisabledExplanation": "Bạn đã khóa thành công xác thực vân tay.",
+        "fingerprintAuthFailed": "Xác thực bằng vân tay đã thất bại",
+        "fingerprintAuthFailedExplanation": "Xác thực vân tay không thành công. Xin vui lòng thử lại.",
+        "status": "Tình Trạng",
+        "enabled": "Kích Hoạt",
+        "disabled": "Vô Hiệu",
+        "fingerprintUnavailable": "Cảm biến vân tay không tồn tại",
+        "fingerprintUnavailableExplanation": "Thiết bị của bạn không hỗ trợ nhận dạng vân tay hoặc không được cấu hình trong trình cài đặt.",
+        "buttonInstructionsDisable": "Nhấn vào nút dưới đây để vô hiệu hóa xác thực vân tay.",
+        "buttonInstructionsEnable": "Nhấn vào nút dưới đây để kích hoạt xác thực vân tay.",
+        "instructionsLogin": "Chạm đầu đọc vân tay để đăng nhập."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "Bạn chuẩn bị gửi {{contents}} đến địa chỉ",
         "aMessage": "tin nhắn"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "wrongCode": "Sai mã 2FA",
+        "wrongCodeExplanation": "Mã 2FA bạn vừa nhập không chính xác.",
+        "emptyCode": "Mã 2FA trống",
+        "emptyCodeExplanation": "Xin vui lòng nhập mã 2FA và thử lại.",
+        "keyCopied": "Mã được chép vào bộ nhớ tạm thời",
+        "keyCopiedExplanation": "Mã 2FA đã được chép vào bộ nhớ tạm thời.",
+        "addKey": "Thêm mã này vào trình 2FA",
+        "key": "Mã",
+        "twoFAEnabled": "2FA được kích hoạt",
+        "twoFAEnabledExplanation": "Bạn đã kích hoạt thành công 2FA.",
+        "enterCode": "Nhập mã từ chương trình 2FA của bạn",
+        "code": "Mã Số"
     },
     "chart": {
         "mcap": "MCAP",
         "change": "Change",
         "volume": "Volume (24h)"
+    },
+    "rootDetection": {
+        "warning": "CẢNH BÁO",
+        "rootDetected": "<0>Máy của bạn đã root/jailbreak.</0><1>Điều này sẽ mang đến một nguy cơ đáng kể cho sự an toàn của ví điện tử của bạn.</1><2>Bạn có muốn tiếp tục bất chấp nguy cơ này?</2>"
     }
 }

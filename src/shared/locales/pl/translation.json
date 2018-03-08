@@ -19,7 +19,7 @@
         "invalidResponse": "Błędna odpowiedź",
         "invalidResponseExplanation": "Serwer zwrócił błędną odpowiedź.",
         "invalidResponsePollingExplanation": "Serwer zwrócił błędną odpowiedź podczas połączenia.",
-        "invalidResponseFetchingAccount": "Serwer zwrócił błędną odpowiedź podczas pobierania informacji o Twoim koncie.",
+        "invalidResponseFetchingAccount": "Serwer zwrócił błędną odpowiedź podczas pobierania informacji o Twoim koncie. Spróbuj zmienić serwer.",
         "invalidResponseSendingTransfer": "Serwer zwrócił błędną odpowiedź podczas wykonywania transferu.",
         "seed": "Seed",
         "back": "WSTECZ",
@@ -65,13 +65,16 @@
         "sending": "Wysyłanie",
         "receiving": "Odbieranie",
         "confirmed": "Potwierdzono",
-        "pending": "Oczekuje",
+        "pending": "W trakcie",
         "bundleHash": "Hash pakietu",
         "addresses": "Adresy",
+        "reattach": "REATTACH",
+        "promote": "PROMUJ",
+        "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
-        "autoreattaching": "Automatyczne ponawianie wiązania do sieci Tangle",
-        "autoreattachingExplanation": "Ponowne wiązanie transakcji z hashem {{hash}}",
-        "autopromoting": "Autopromocja transferu",
+        "autoreattaching": "Autoreattaching do sieci Tangle",
+        "autoreattachingExplanation": "Reattaching transakcji z hashem {{hash}}",
+        "autopromoting": "Autopromowanie transferu",
         "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
         "cannotSendToOwn": "Wysyłka na własny adres",
         "cannotSendToOwnExplanation": "Nie możesz wykonać transferu środków na swój własny adres.",
@@ -104,7 +107,7 @@
         "passwordsDoNotMatchExplanation": "Hasła nie są zgodne. Spróbuj ponownie.",
         "passwordTooShort": "Hasło jest zbyt krótkie",
         "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej 12 znaków. Spróbuj ponownie.",
-        "oldPassword": "Nie możesz ponownie użyć starego hasła",
+        "oldPassword": "Nie możesz użyć starego hasła",
         "oldPasswordExplanation": "Nie możesz ponownie użyć starego hasła. Spróbuj ponownie z nowym hasłem.",
         "ensureStrongPassword": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "currentPassword": "Bieżące hasło",
@@ -118,7 +121,8 @@
         "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"Gotowe\", lub po upływie 60 sekund.",
         "clickToCopy": "Kliknij poniższy przycisk i skopiuj swój klucz seed do menedżera haseł.",
         "doNotStore": "Nie przechowuj tego klucza w formie zwykłego tekstu.",
-        "copyToClipboard": "Kopiuj do schowka"
+        "copyToClipboard": "Kopiuj seed",
+        "shareSeed": "Udostępnij swój klucz seed do bezpiecznego menedżera haseł"
     },
     "enterSeed": {
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
@@ -225,6 +229,12 @@
         "canUseMultipleSeeds": "Możesz używać wielu kluczy seed w tym portfelu. Każdy jeden wymaga jednak osobnej nazwy konta.",
         "youCanAdd": "Możesz dodać więcej kluczy seed w menu ustawień."
     },
+    "modeSelection": {
+        "expert": "Ekspert",
+        "standard": "Standardowy",
+        "expertModeExplanation": "Tryb eksperta zapewni dostęp do dodatkowych funkcji, takich jak manualne promowanie i reattaching transakcji.",
+        "modesExplanation": "Włącz tryb eksperta jedynie, jeśli jesteś doświadczonym użytkownikiem sieci Tangle. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe."
+    },
     "settings": {
         "transferSending": "Wykonywanie transferu",
         "transferSendingExplanation": "Proszę czekać na wykonanie Twojego transferu.",
@@ -261,7 +271,11 @@
         "paste": "Wklej",
         "selectAll": "Zaznacz wszystko",
         "securitySettings": "Ustawienia zabezpieczeń",
-        "fingerprint": "Autoryzacja biometryczna"
+        "fingerprint": "Autoryzacja biometryczna",
+        "couldNotFetchRates": "Nie można kursów przeliczeniowych",
+        "couldNotFetchRatesExplanation": "Coś poszło nie tak podczas pobierania kursów przeliczeniowych dla waluty {{currency}}.",
+        "fetchedConversionRates": "Pobrano kursy przeliczniowe",
+        "fetchedConversionRatesExplanation": "Pomyślnie pobrano najnowszy kurs przeliczeniowy dla waluty {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź swoje hasło, aby zresetować portfel.",
@@ -282,15 +296,15 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Twój seed ma {{maxSeedLength}} znaków, czytany od lewej do prawej.",
-        "writeDownYourSeed": "<0> Zanotuj swój seed i sumę kontrolną oraz</0><1>trzykrotnie upewnij się</1><2>, że są one poprawne.</2>"
+        "writeDownYourSeed": "<0> Zanotuj swój seed i sumę kontrolną oraz </0><1>trzykrotnie upewnij się</1><2>, że są one poprawne.</2>"
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Adres został skopiowany do schowka.",
-        "send": "WYSYŁKA",
-        "receive": "ODBIÓR"
+        "send": "WYPŁATA",
+        "receive": "WPŁATA"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -310,7 +324,8 @@
     "advancedSettings": {
         "selectNode": "Wybierz serwer",
         "addCustomNode": "Dodaj niestandardowy serwer",
-        "manualSync": "Ręczna synchronizacja"
+        "manualSync": "Ręczna synchronizacja",
+        "snapshotTransition": "Snapshot asystent"
     },
     "advancedThemeCustomisation": {
         "background": "Tło",
@@ -337,7 +352,7 @@
         "one": "Jeden"
     },
     "deleteAccount": {
-        "areYouSure": "Czy na pewno chcesz usunąć to konto?",
+        "areYouSure": "Czy na pewno chcesz usunąć konto o nazwie {{accountName}}?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
         "thisAction": "Tej czynności nie można cofnąć.",
         "enterPassword": "Wprowadź swoje hasło, aby usunąć to konto."
@@ -360,7 +375,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Zapisałem swój seed",
         "reenter": "Teraz będziesz poproszony/a o ponowne wprowadzenie swojego klucza seed.",
-        "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego klucza seed, stracisz swoje środki IOTA."
+        "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego klucza, stracisz swoje środki IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TEJ CZYNNOŚCI NIE MOŻNA COFNĄĆ.",
@@ -406,5 +421,9 @@
         "mcap": "Market",
         "change": "Zmiana",
         "volume": "Wolumen (24h)"
+    },
+    "rootDetection": {
+        "warning": "OSTRZEŻENIE",
+        "rootDetected": "<0>Twoje urządzenie wydaje się być odblokowane (dostęp root).</0><1>To może stanowić istotne zagrożenie dla bezpieczeństwa Twojego portfela.</1><2>Czy chcesz kontynuować pomimo tego ryzyka?</2>"
     }
 }
