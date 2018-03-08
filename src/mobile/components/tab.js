@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderTopColor: 'transparent',
-        borderTopWidth: parseInt(height / 90)
+        borderTopWidth: parseInt(height / 90),
     },
     iconTitle: {
         fontWeight: 'bold',
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 /* eslint-disable react/prefer-stateless-function */
 class Tab extends Component {
     static propTypes = {
-        icon: PropTypes.number.isRequired,
+        icon: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         text: PropTypes.string.isRequired,
         iconColor: PropTypes.string.isRequired,
@@ -48,7 +48,7 @@ class Tab extends Component {
                 <View
                     style={
                         isActive
-                            ? [styles.button, { backgroundColor: activeColor, borderTopColor: activeBorderColor}]
+                            ? [styles.button, { backgroundColor: activeColor, borderTopColor: activeBorderColor }]
                             : styles.button
                     }
                 >

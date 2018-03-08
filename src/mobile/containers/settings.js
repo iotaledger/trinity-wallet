@@ -413,13 +413,14 @@ class Settings extends Component {
                 deleteAccount: () => this.deleteAccount(),
                 currentAccountName: this.props.selectedAccountName,
                 negativeColor: negative.color,
+                backgroundColor: body.bg,
                 textColor: { color: body.color },
                 secondaryBackgroundColor: body.color,
                 borderColor: { borderColor: body.color },
                 isPromoting,
                 shouldPreventAction: () => this.shouldPreventAction(),
                 generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
-                theme
+                theme,
             },
             addNewAccount: {
                 addExistingSeed: () => this.props.setSetting('addExistingSeed'),
@@ -467,6 +468,7 @@ class Settings extends Component {
                 negativeColor: negative.color,
                 textColor: { color: body.color },
                 secondaryBackgroundColor: body.color,
+                theme,
             },
             currencySelection: {
                 getCurrencyData: (currency, withAlerts) => this.props.getCurrencyData(currency, withAlerts),
