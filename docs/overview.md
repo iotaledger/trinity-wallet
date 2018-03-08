@@ -24,7 +24,6 @@ This section highlights all important APIs used in Trinity.
 - [Fabric](#fabric)
 - [RNIsDeviceRooted](#rnisdevicerooted)
 
-
 ## Information Architecture
 ## Setup
 
@@ -37,7 +36,6 @@ IOTA is reliant on the use of trinary-based seeds comprised of 81 trytes. Seeds 
 Seed generation is performed during new seed set up. The user can generate a complete seed, and randomise individual characters through a UI chequerboard. The same algorithm is used for both full seed and individual letter randomisations.
 
 **It is recommended that a user makes at least 5 individual letter randomisations.**
-
 
 Trinity seed generation follows a simple algorithm:
 ```
@@ -57,12 +55,11 @@ charIndex = randomByte % 27
 
 Trinity seed security follows two simple rules: minimise the time the seed spends unencrypted in memory, and encrypt the seed at rest storage.
 
-During setup the user will create a password. The password and seed are then used as a key-value pair in iOS Keychain and Android Keystore respectively. The seed is stored encrypted and the password is used to decrypt the seed at the point of use. Access to the key stores is provided by the [React Native Sensitive Info](#sensitive-info) library.
+During setup the user will create a password. The password and seed are then used as a key-value pair in iOS Keychain and Android Keystore respectively. The seed is stored encrypted and the password is used to decrypt the seed at the point of use. Access to the key stores is provided by the [React Native Keychain](https://github.com/oblador/react-native-keychain) library.
 
 The seed is stored encrypted at every possible instance. The only time the seed lies unencrypted in memory is during seed setup i.e. the seed is not encrypted prior to setting a password. This does not pose a problem for security. Android and iOS operate an application sandbox environment, where application memory is only accessible to the application itself. Encryption is used to mitigate the risk of an attacker gaining access to the application sandbox on a compromised device. If the user is in the process of setting up their seed, it can be safely assumed that their device has not been compromised.
 
-**We advise not to use Trinity Mobile on Jailbroken or rooted devices.** If a device is jailbroken/rooted the application sandbox can be breached.
-
+**Trinity Mobile should not be used on Jailbroken or rooted devices.** If a device is jailbroken/rooted the application sandbox can be breached.
 
 ### Account Management
 
@@ -94,8 +91,7 @@ To ensure transactions are confirmed on the Tangle, it is often necessary to pro
 
 Should you wish to enable **manual promotion and reattachment** please turn on **Expert** mode in the settings.
 
-
-Please note: **Trinity does not promote/reattatch transfers if the application is minimised. Automatic promotion/reattachment only takes place if the app is currently open.**
+Please note: **Trinity does not promote/reattach transfers if the application is minimised. Automatic promotion/reattachment only takes place if the app is currently open.**
 
 #### Address Management
 
@@ -107,23 +103,20 @@ Two factor authentication provides an optional additional security layer for Tri
 
 Please note: **Enabling two-factor authentication does not provide any additional security if your 2FA application is on the same device as Trinity. It only provides additional security through use of a second device**
 
-
 #### Biometric Authentication
 
-For ease of use, users are given the option to use biometric authentication as an alternative to logging in to the wallet. We use [react-native-fingerprint-scanner](https://github.com/hieuvp/react-native-fingerprint-scanner) to implement this. For Android, we support MeiZu's [Fingerprint Authentication API](https://translate.google.com/translate?sl=auto&tl=en&js=y&prev=_t&hl=en&ie=UTF-8&u=http%3A%2F%2Fopen-wiki.flyme.cn%2Findex.php%3Ftitle%3D%25E6%258C%2587%25E7%25BA%25B9%25E8%25AF%2586%25E5%2588%25ABAPI&edit-text=&act=url) and Samsung's [Pass SDK](http://developer.samsung.com/galaxy/pass). For iOS, we support Apple's [Touch ID](https://developer.apple.com/documentation/localauthentication) and [Face ID](https://images.apple.com/business/docs/FaceID_Security_Guide.pdf).
-
-Please note: **Enabling biometric authentication may pose a potential security risk. Anyone who has their fingerprint or face registered in your device will be able to access your wallet.**
+For additional security, users are given the option to use biometric authentication to validate their transactions. The library [react-native-fingerprint-scanner](https://github.com/hieuvp/react-native-fingerprint-scanner) is used to implement this. For Android, MeiZu's [Fingerprint Authentication API](https://translate.google.com/translate?sl=auto&tl=en&js=y&prev=_t&hl=en&ie=UTF-8&u=http%3A%2F%2Fopen-wiki.flyme.cn%2Findex.php%3Ftitle%3D%25E6%258C%2587%25E7%25BA%25B9%25E8%25AF%2586%25E5%2588%25ABAPI&edit-text=&act=url) and Samsung's [Pass SDK](http://developer.samsung.com/galaxy/pass) are supported. For iOS, Apple's [Touch ID](https://developer.apple.com/documentation/localauthentication) and [Face ID](https://images.apple.com/business/docs/FaceID_Security_Guide.pdf) are supported.
 
 #### Snapshot Transition
 
-Every so often, a snapshot is performed on the Tangle. Snapshots are performed to condense the size of the Tangle. All transaction data is deleted and only nonzero address balance are retained. As Trinity is stateful, it will store a copy of your transactional history after a snapshot.
+Every so often, a snapshot is performed on the Tangle. Snapshots are performed to condense the size of the Tangle. All transaction data is deleted and only non-zero address balance are retained. As Trinity is stateful, it will store a copy of your transactional history after a snapshot.
 
 Following a snapshot it is necessary to manually attach addresses with the IOTA light wallet. Trinity provides a feature to do this quickly and automatically. The snapshot transition function can be found in **Advanced settings**. Whenever a snapshot occurs, you should perform a snapshot transition in Trinity.
 
 ## Technical Architecture
 
 #### IRI
-Trinity consumes endpoints from any selected full node for keeping local account up-to-date with the tangle.
+Trinity consumes endpoints from any selected full node for keeping local account up-to-date with the tangle. All communication with the Tangle is made through the [IOTA Javascript Library](https://github.com/iotaledger/iota.lib.js/).
 
 #### Cryptocompare and Fixer
 
@@ -132,25 +125,25 @@ Trinity pulls latest market data from [Cryptocompare](https://www.cryptocompare.
 Foreign exchange rates are obtained from [Fixer](http://fixer.io/) to provide up-to-date IOTA-fiat conversion.
 
 #### i18next
-Trinity supports over 25 different languages. To make localization easier, we use the [i18next](https://www.i18next.com/) and [react-i18next](https://react.i18next.com/) localization libraries. Additionally, we use [Crowdin](https://crowdin.com/) as a platform for translators to provide translations.
+Trinity supports over 25 different languages. The [i18next](https://www.i18next.com/) and [react-i18next](https://react.i18next.com/) localisation libraries are used. [Crowdin](https://crowdin.com/) provides a platform for translators to suggest translations.
 
 #### Bitrise
-For continuous integration and deployment (CI/CD), we use [Bitrise](https://bitrise.io). Pull requests are tested by a workflow to ensure that changes do not break existing functionality. Additionally, deployment workflows are used to automate the building and submission of mobile apps to the App Store/Play Store.
+[Bitrise](https://bitrise.io) is used for continuous integration and deployment (CI/CD). Pull requests must pass a series of tests to ensure that changes do not break existing functionality. Additionally, deployment workflows are used to automate the building and submission of builds to the App Store and Play Store.
 
 #### Fastlane
-We use [Fastlane](https://fastlane.tools) to automate various steps of deployment to the App Store/Play Store.
+[Fastlane](https://fastlane.tools) automates various steps of the deployment process to the App Store and Play Store.
 
 #### Fabric
-To ensure usability and stability across many platforms and devices, we use [Crashlytics](http://try.crashlytics.com/) so that devices will automatically send us anonymized crash data. Crashlytics is part of [Fabric](https://get.fabric.io), a group of development tools offered by Google.
+To help ensure stability across many platforms and devices, [Crashlytics](http://try.crashlytics.com/) will automatically send the developers anonymised crash data. Crashlytics is part of [Fabric](https://get.fabric.io), a group of development tools offered by Google.
 
 #### RNIsDeviceRooted
-Jailbreaking or rooting your device may pose a threat to the security of your account information, including your seed. In order to alert users of this risk, we use [react-native-is-device-rooted](https://github.com/beast/react-native-isDeviceRooted) to detect characteristics of jailbreaking/rooting. This includes:
+Jailbreaking or rooting your device may pose a threat to the security of your account information, including your seed. In order to alert users of this risk, [react-native-is-device-rooted](https://github.com/beast/react-native-isDeviceRooted) detects characteristics of jailbreaking/rooting. This includes:
 - iOS
   - The presence of certain apps and files such as Cydia
-  - The ability to open deeplinks into the Cydia app
+  - The ability to open deep links into the Cydia app
   - The ability to write outside of the app sandbox
 - Android
   - The kernel was signed with a test key instead of a release key
-  - The presence of Superuser/`su` binaries and related files
+  - The presence of superuser/`su` binaries and related files
 
 <a name="mobile-randomness">1.</a> J. Krhovjak, P. Svenda, and V. Matyas, “The sources of randomness in mobile devices,” In Proceeding of NORDSEC, 2007.
