@@ -207,6 +207,7 @@ export const fetchFullAccountInfoForFirstUse = (
     password,
     storeInKeychainPromise,
     navigator = null,
+    genFn,
 ) => (dispatch) => {
     const onError = (err) => {
         if (navigator) {
@@ -218,7 +219,7 @@ export const fetchFullAccountInfoForFirstUse = (
     };
 
     dispatch(fullAccountInfoForFirstUseFetchRequest());
-    getAccountData(seed, accountName)
+    getAccountData(seed, accountName, genFn)
         .then((data) => {
             dispatch(clearTempData()); // Clean up partial state for reducer.
             return mapTransactionHashesForUnspentAddressesToState(data);
