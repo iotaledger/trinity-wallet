@@ -7,6 +7,8 @@ import { prepareTransfer } from '../../actions/tempAccount';
 import { getSelectedAccountNameViaSeedIndex, getBalanceForSelectedAccountViaSeedIndex } from '../../selectors/account';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/util';
 import { iota } from '../../libs/iota';
+import deepLinks from "../../reducers/deepLinks";
+import { sendAmount } from 'actions/deepLinks';
 
 /**
  * Send transaction component container
@@ -25,7 +27,17 @@ export default function withSendData(SendComponent) {
             prepareTransfer: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
+            deepLinks: PropTypes.object.isRequired,
+            sendAmount: PropTypes.func.isRequired,
         };
+
+        componentWillUnmount() {
+            this.props.sendAmount(0, '', '');
+        }
+
+        componentWillReceiveProps(props) {
+            this.props = props;
+        }
 
         validateInputs = (address, amount) => {
             const { showError, balance } = this.props;
@@ -98,7 +110,7 @@ export default function withSendData(SendComponent) {
         };
 
         render() {
-            const { balance, seeds, settings, tempAccount, theme, t } = this.props;
+            const { balance, seeds, settings, tempAccount, theme, t, deepLinks } = this.props;
 
             const sendProps = {
                 isSending: tempAccount.isSendingTransfer,
@@ -109,6 +121,7 @@ export default function withSendData(SendComponent) {
                 seeds,
                 theme,
                 t,
+                deepLinkAmount: deepLinks,
             };
 
             return <SendComponent {...sendProps} />;
@@ -125,11 +138,13 @@ export default function withSendData(SendComponent) {
         account: state.account,
         seeds: state.seeds,
         theme: state.settings.theme,
+        deepLinks: state.deepLinks,
     });
 
     const mapDispatchToProps = {
         showError,
         prepareTransfer,
+        sendAmount,
     };
 
     return translate()(connect(mapStateToProps, mapDispatchToProps)(SendData));
