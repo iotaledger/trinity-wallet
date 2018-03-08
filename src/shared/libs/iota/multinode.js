@@ -1,9 +1,15 @@
 import IOTA from 'iota.lib.js';
+import isString from 'lodash/isString';
 
 function checkNode(url, callback) {
-    let iota = new IOTA({
-        provider: url,
-    });
+    if (isString(url)) {
+        var iota = new IOTA({
+            provider: url,
+        });
+    } else {
+        // if we're given something that's not a string, just assume it's an iota instance
+        var iota = url;
+    }
 
     // shim the open function to add a timeout
     // TODO: implement timeout in iota.lib.js instead of here
