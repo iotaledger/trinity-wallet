@@ -79,9 +79,6 @@ class Login extends React.Component {
         verifyTwoFA: false,
         code: '',
         password: '',
-        address: '',
-        amount: '',
-        message: '',
     };
 
     componentDidMount() {
