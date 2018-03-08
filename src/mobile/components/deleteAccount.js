@@ -161,7 +161,7 @@ class DeleteAccount extends Component {
             >
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={[styles.modalInfoText, { paddingBottom: height / 16 }, textColor]}>
-                        Are you sure you want to delete your account called {currentAccountName}?
+                        {t('areYouSure', { accountName: currentAccountName })}
                     </Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onNoPress()}
@@ -177,7 +177,15 @@ class DeleteAccount extends Component {
     };
 
     render() {
-        const { t, negativeColor, textColor, secondaryBackgroundColor, backgroundColor, borderColor, theme } = this.props;
+        const {
+            t,
+            negativeColor,
+            textColor,
+            secondaryBackgroundColor,
+            backgroundColor,
+            borderColor,
+            theme,
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

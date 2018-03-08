@@ -21,6 +21,8 @@ import com.github.wumke.RNExitApp.RNExitAppPackage;
 import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
 import org.iota.mobile.IOTAMobilePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import my.fin.RNIsDeviceRootedPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -66,6 +68,7 @@ public class MainApplication extends NavigationApplication {
             new RNSecureRandomPackage(),
             new RandomBytesPackage(),
             new VectorIconsPackage()
+            new RNIsDeviceRootedPackage()
     );
   }
 

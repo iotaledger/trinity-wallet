@@ -4,8 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutF
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
+import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import DropdownComponent from './dropdown';
-import { selectLocale } from '../components/locale';
 import { Icon } from '../theme/icons.js';
 
 const { width } = Dimensions.get('window');
