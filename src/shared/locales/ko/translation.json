@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "시드가 생성되지 않았습니다",
-        "seedNotGeneratedExplanation": "새 새드 생성 버튼을 누르십시오.",
+        "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "여기를 눌러 새 시드 생성",
         "individualLetters": "개별 문자를 눌러 해당 문자를 무작위로 바꿀 수 있습니다."
     },
@@ -358,9 +358,10 @@
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
     },
     "manualSync": {
-        "pressToSync": "아래 버튼을 눌러 계정을 동기화할 수 있습니다.",
-        "thisMayTake": "시간이 조금 걸릴 수 있습니다.",
-        "youMayNotice": "기기가 느려질 수도 있습니다.",
+        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "pressToSync": "Press the button below to clean up your account.",
+        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "계정 동기화",
         "syncingYourAccount": "계정을 동기화 중입니다."
     },
@@ -425,5 +426,11 @@
     "rootDetection": {
         "warning": "경고",
         "rootDetected": "<0>기기가 탈옥되었거나 루팅된 것으로 감지되었습니다. </0><1>이 경우 지갑의 보안에 위험을 끼칠 수 있습니다.</1><2> 보안 위험을 감수하고 진행하시겠습니까?</2>"
+    },
+    "pow": {
+        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "local": "Local",
+        "remote": "Remote"
     }
 }
