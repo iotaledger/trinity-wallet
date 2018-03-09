@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Từ khoá chưa được tạo ra",
-        "seedNotGeneratedExplanation": "Xin vui lòng nhấn nút Tạo Từ Khoá Mới.",
+        "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "ẤN VÀO CHO TỪ KHOÁ MỚI",
         "individualLetters": "Nhấn từng chữ cái để xáo trộn chúng."
     },
@@ -358,9 +358,10 @@
         "enterPassword": "Nhập mật khẩu để xóa tài khoản này."
     },
     "manualSync": {
-        "pressToSync": "Nhấn vào nút dưới đây để đồng bộ hóa tài khoản.",
-        "thisMayTake": "Thao tác này sẽ hơi lâu.",
-        "youMayNotice": "Bạn có thể thấy máy của bạn chậm lại.",
+        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "pressToSync": "Press the button below to clean up your account.",
+        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "ĐỒNG BỘ TÀI KHOẢN",
         "syncingYourAccount": "Đang đồng bộ tài khoản."
     },
@@ -425,5 +426,11 @@
     "rootDetection": {
         "warning": "CẢNH BÁO",
         "rootDetected": "<0>Máy của bạn đã root/jailbreak.</0><1>Điều này sẽ mang đến một nguy cơ đáng kể cho sự an toàn của ví điện tử của bạn.</1><2>Bạn có muốn tiếp tục bất chấp nguy cơ này?</2>"
+    },
+    "pow": {
+        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "local": "Local",
+        "remote": "Remote"
     }
 }
