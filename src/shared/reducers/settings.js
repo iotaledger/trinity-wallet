@@ -70,8 +70,8 @@ const initialState = {
         'ZAR',
     ],
     conversionRate: 1,
-    themeName: 'Default',
-    theme: themes.Default,
+    themeName: 'Ionic',
+    theme: themes.Ionic,
     hasRandomizedNode: false,
 };
 

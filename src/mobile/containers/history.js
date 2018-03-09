@@ -34,6 +34,7 @@ import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
 import { isAndroid } from '../util/device';
+import CtaButton from '../components/ctaButton';
 
 const styles = StyleSheet.create({
     container: {
@@ -60,20 +61,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: isAndroid ? null : height / 50,
-    },
-    refreshButton: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 17,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-    },
-    refreshText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
-        backgroundColor: 'transparent',
     },
     activityIndicator: {
         justifyContent: 'center',
@@ -254,10 +241,8 @@ class History extends Component {
     }
 
     renderTransactions() {
-        const { negative, body, t } = this.props;
+        const { negative, primary, t } = this.props;
         const { isRefreshing } = this.state;
-        const textColor = { color: body.color };
-        const borderColor = { borderColor: body.color };
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
 
@@ -280,11 +265,14 @@ class History extends Component {
                     <View style={styles.noTransactionsContainer}>
                         {!isRefreshing ? (
                             <View style={styles.refreshButtonContainer}>
-                                <TouchableOpacity onPress={this.onRefresh}>
-                                    <View style={[styles.refreshButton, borderColor]}>
-                                        <Text style={[styles.refreshText, textColor]}>{t('global:refresh')}</Text>
-                                    </View>
-                                </TouchableOpacity>
+                                <CtaButton
+                                    ctaColor={primary.color}
+                                    secondaryCtaColor={primary.body}
+                                    text={t('global:refresh')}
+                                    onPress={this.onRefresh}
+                                    ctaWidth={width / 2}
+                                    ctaHeight={height / 16}
+                                />
                             </View>
                         ) : (
                             <View style={styles.refreshButtonContainer}>
