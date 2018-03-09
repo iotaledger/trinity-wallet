@@ -428,7 +428,7 @@
         "rootDetected": "<0>あなたのデバイスはルート化もしくは脱獄されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "feeless": "IOTAの取引手数料無しの送金を行うには小規模のPoWを行う必要があります。",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
         "remote": "Remote"
