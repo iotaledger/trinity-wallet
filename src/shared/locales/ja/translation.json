@@ -358,10 +358,10 @@
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "outOfSync": "取引履歴が同期していないでしょうか？",
         "pressToSync": "下のボタンを押してアカウントを整理してください。",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "thisMayTake": "これには時間がかかることがあり、デバイスが遅くなることがあります。",
+        "doNotClose": "アプリを最小化すると同期がキャンセルされますのでご注意ください。",
         "syncAccount": "同期アカウント",
         "syncingYourAccount": "アカウントを同期中"
     },
