@@ -481,6 +481,10 @@ class Settings extends Component {
                 tickImagePath,
                 arrowLeftImagePath,
             },
+            pow: {
+                backPress: () => this.props.setSetting('mainSettings'),
+                arrowLeftImagePath,
+            },
             accountManagement: {
                 setSetting: (setting) => this.props.setSetting(setting),
                 onDeleteAccountPress: () => this.onDeleteAccountPress(),

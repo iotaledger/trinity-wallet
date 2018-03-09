@@ -160,6 +160,17 @@ class AdvancedSettings extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.setSetting('pow')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Image source={crossImagePath} style={styles.icon} />
+                                <Text style={[styles.titleText, textColor]}>Proof of Work</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <View style={{ flex: 4.5, justifyContent: 'flex-end' }}>
                     <View style={{ flex: 3.5 }} />
