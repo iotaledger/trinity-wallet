@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import size from 'lodash/size';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -35,8 +37,10 @@ import {
     setSendMessageField,
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
+import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
+import ProgressBar from '../components/progressBar';
 import KeepAwake from 'react-native-keep-awake';
 import QRScanner from '../components/qrScanner';
 import Toggle from '../components/toggle';
@@ -108,6 +112,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    progressSummaryText: {
+        fontSize: width / 30.9,
+    },
 });
 
 export class Send extends Component {
@@ -141,7 +148,13 @@ export class Send extends Component {
         setSendAmountField: PropTypes.func.isRequired,
         setSendMessageField: PropTypes.func.isRequired,
         setSendDenomination: PropTypes.func.isRequired,
+        resetProgress: PropTypes.func.isRequired,
+        startTrackingProgress: PropTypes.func.isRequired,
         denomination: PropTypes.string.isRequired,
+        activeProgressStepIndex: PropTypes.number.isRequired,
+        localPoWProgressSteps: PropTypes.array.isRequired,
+        timeTakenByEachProgressStep: PropTypes.array.isRequired,
+        remotePoW: PropTypes.bool.isRequired,
     };
 
     static isValidAddress(address) {
@@ -206,6 +219,10 @@ export class Send extends Component {
                 maxText: t('send:maximumSelected'),
             });
         }
+    }
+
+    componentDidMount() {
+        this.props.resetProgress();
     }
 
     componentWillReceiveProps(newProps) {
@@ -578,6 +595,9 @@ export class Send extends Component {
         const formattedAmount = amount === '' ? 0 : amount;
         const value = parseInt(parseFloat(formattedAmount) * this.getUnitMultiplier(), 10);
 
+        // Keep track of the time it takes for the transaction to be completed
+        this.props.startTrackingProgress();
+
         this.props.getFromKeychainRequest('send', 'makeTransaction');
         keychain
             .get()
@@ -603,6 +623,29 @@ export class Send extends Component {
 
     renderModalContent = () => <View>{this.state.modalContent}</View>;
 
+    getProgressSummary() {
+        const props = this.props;
+
+        return (
+            <Text>
+                <Text>DONE </Text>
+                <Text style={styles.progressSummaryText}>
+                    ({map(props.timeTakenByEachProgressStep, (time, index) => {
+                        if (index === size(props.timeTakenByEachProgressStep) - 1) {
+                            return `${time}=${reduce(
+                                props.timeTakenByEachProgressStep,
+                                (acc, thisTime) => acc + Number(thisTime),
+                                0,
+                            )} s`;
+                        }
+
+                        return `${time}+`;
+                    })})
+                </Text>
+            </Text>
+        );
+    }
+
     render() {
         const { isModalVisible, maxPressed, maxColor, maxText, sending, currencySymbol } = this.state;
         const {
@@ -617,11 +660,16 @@ export class Send extends Component {
             body,
             primary,
             negative,
+            remotePoW,
         } = this.props;
         const textColor = { color: body.color };
         const conversionText =
             denomination === currencySymbol ? this.getConversionTextFiat() : this.getConversionTextIota();
         const opacity = this.getOpacity();
+
+        // TODO: Add steps for remotePoW
+        const progressSteps = remotePoW ? this.props.localPoWProgressSteps : this.props.localPoWProgressSteps;
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
@@ -737,6 +785,14 @@ export class Send extends Component {
                                         size="large"
                                         color={negative.color}
                                     />
+                                    <ProgressBar
+                                        indeterminate={this.props.activeProgressStepIndex === 0}
+                                        progress={this.props.activeProgressStepIndex / size(progressSteps)}
+                                    >
+                                        {progressSteps[this.props.activeProgressStepIndex]
+                                            ? progressSteps[this.props.activeProgressStepIndex]
+                                            : this.getProgressSummary()}
+                                    </ProgressBar>
                                 </View>
                             )}
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -798,6 +854,10 @@ const mapStateToProps = (state) => ({
     amount: state.ui.sendAmountFieldText,
     message: state.ui.sendMessageFieldText,
     denomination: state.ui.sendDenomination,
+    activeProgressStepIndex: state.progress.active,
+    localPoWProgressSteps: state.progress.steps.localPow,
+    timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
+    remotePoW: state.settings.remotePoW,
 });
 
 const mapDispatchToProps = {
@@ -810,6 +870,8 @@ const mapDispatchToProps = {
     setSendAmountField,
     setSendMessageField,
     setSendDenomination,
+    resetProgress,
+    startTrackingProgress,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
