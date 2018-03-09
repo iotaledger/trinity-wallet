@@ -5,7 +5,7 @@ import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo, accountInfoFetchSuccess } from '../actions/account';
 import {
     selectedAccountStateFactory,
-    getNetworkBoundPowFromState,
+    getRemotePoWFromState,
     selectFirstAddressFromAccountFactory,
 } from '../selectors/account';
 import { clearSendFields } from '../actions/ui';
@@ -288,7 +288,7 @@ export const prepareTransfer = (seed, address, value, message, accountName, powF
     return (dispatch, getState) => {
         dispatch(sendTransferRequest());
 
-        const shouldOffloadPow = getNetworkBoundPowFromState(getState());
+        const shouldOffloadPow = getRemotePoWFromState(getState());
         const firstAddress = selectFirstAddressFromAccountFactory(accountName)(getState());
         const transfer = prepareTransferArray(address, value, message, firstAddress);
         const isZeroValue = value === 0;
