@@ -6,8 +6,7 @@ import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
 import MessageInput from 'ui/components/input/Message';
 import Button from 'ui/components/Button';
-import Modal from 'ui/components/modal/Modal';
-import { connect } from 'react-redux';
+import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
 
 /**
@@ -17,10 +16,9 @@ class Send extends React.PureComponent {
     static propTypes = {
         /** Current send status */
         isSending: PropTypes.bool.isRequired,
-
+        /** Current seed value */
         deepLinkAmount: PropTypes.object.isRequired,
-        /** Current seed state value */
-        seeds: PropTypes.object.isRequired,
+        seed: PropTypes.string.isRequired,
         /** Total current account wallet ballance in iotas */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
@@ -47,7 +45,7 @@ class Send extends React.PureComponent {
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     state = {
@@ -89,15 +87,13 @@ class Send extends React.PureComponent {
 
     confirmTransfer = () => {
         const { address, amount, message } = this.state;
-        const { seeds, sendTransfer } = this.props;
+        const { seed, sendTransfer } = this.props;
 
         this.setState({
             isModalVisible: false,
         });
 
-        const seedInfo = seeds.items[seeds.selectedSeedIndex];
-
-        sendTransfer(seedInfo.seed, address, amount, message);
+        sendTransfer(seed, address, amount, message);
     };
 
     render() {
@@ -105,24 +101,19 @@ class Send extends React.PureComponent {
         const { address, amount, message, isModalVisible } = this.state;
 
         return (
-            <form onSubmit={this.validateInputs}>
-                <Modal
-                    variant="confirm"
+            <form onSubmit={(e) => this.validateInputs(e)}>
+                <Confirm
+                    category="primary"
                     isOpen={isModalVisible}
-                    onClose={() => this.setState({ isModalVisible: false })}
-                >
-                    <h1>
-                        You are about to send <strong>{`${formatValue(amount)} ${formatUnit(amount)}`}</strong> to the
-                        address: <br />
-                        <strong>{address}</strong>
-                    </h1>
-                    <Button onClick={() => this.setState({ isModalVisible: false })} variant="secondary">
-                        {t('global:no')}
-                    </Button>
-                    <Button onClick={this.confirmTransfer} variant="primary">
-                        {t('global:yes')}
-                    </Button>
-                </Modal>
+                    onCancel={() => this.setState({ isModalVisible: false })}
+                    onConfirm={() => this.confirmTransfer()}
+                    content={{
+                        title: `You are about to send ${formatValue(amount)} ${formatUnit(amount)} to the address`,
+                        message: address,
+                        confirm: 'confirm',
+                        cancel: 'Cancel',
+                    }}
+                />
                 <AddressInput
                     address={address}
                     onChange={(value) => this.setState({ address: value })}
@@ -143,7 +134,7 @@ class Send extends React.PureComponent {
                     onChange={(value) => this.setState({ message: value })}
                 />
                 <fieldset>
-                    <Button onClick={() => this.setState({ isModalVisible: true })} loading={isSending} className="outline" variant="primary">
+                    <Button type="submit" loading={isSending} className="outline" variant="primary">
                         {t('send:send')}
                     </Button>
                 </fieldset>

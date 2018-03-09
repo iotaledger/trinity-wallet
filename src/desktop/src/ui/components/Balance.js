@@ -1,34 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getSelectedSeed } from 'selectors/seeds';
 import { formatValue, formatUnit, round } from 'libs/util';
+import { currentAccountSelectorBySeedIndex } from 'selectors/account';
 import { getCurrencySymbol } from 'libs/currency';
 
 class Balance extends React.PureComponent {
     static propTypes = {
-        seed: PropTypes.object.isRequired,
         account: PropTypes.object.isRequired,
         settings: PropTypes.object.isRequired,
         marketData: PropTypes.object.isRequired,
     };
 
     render() {
-        const { account, settings, marketData, seed } = this.props;
-        const accountInfo = account.accountInfo[seed.name];
+        const { account, settings, marketData } = this.props;
 
-        if (!accountInfo) {
+        if (!account) {
             return null;
         }
 
         const currencySymbol = getCurrencySymbol(settings.currency);
         const fiatBalance = round(
-            accountInfo.balance * marketData.usdPrice / 1000000 * settings.conversionRate,
+         account.balance * marketData.usdPrice / 1000000 * settings.conversionRate,
         ).toFixed(2);
 
         return (
             <div>
-                <strong>{`${formatValue(accountInfo.balance)}${formatUnit(accountInfo.balance)}`}</strong>
+                <strong>{`${formatValue(account.balance).toFixed(3)}${formatUnit(account.balance)}`}</strong>
                 <small>{`${currencySymbol} ${fiatBalance}`}</small>
             </div>
         );
@@ -36,8 +34,7 @@ class Balance extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    account: state.account,
-    seed: getSelectedSeed(state),
+    account: currentAccountSelectorBySeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     marketData: state.marketData,
     settings: state.settings,
 });

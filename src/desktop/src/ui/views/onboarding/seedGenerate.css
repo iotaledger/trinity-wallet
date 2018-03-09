@@ -14,7 +14,10 @@
             background: var(--body-bg);
         }
     }
-    > div {
+    > div:first-of-type {
+        display: none;
+    }
+    > div:last-of-type {
         display: block;
         margin: 30px auto 12px;
         height: calc(100vh - 350px);
@@ -47,12 +50,20 @@
         }
     }
     &.disabled {
-        > div {
-            pointer-events: none;
-            opacity: 0.6;
+        > div:first-of-type {
+            display: block;
+            position: absolute;
+            bottom: calc(50% - 100px);
+            z-index: 2;
+            @media (max-width: 810px) {
+               width: calc(100% -  40px);
+           }
+        }
+        > div:last-of-type {
+            display: none;
         }
         > button {
-            top: 50%;
+            top: calc(50% + 120px);
             z-index: 2;
             line-height: 42px;
             height: 42px;

@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { renameCurrentSeed } from 'actions/seeds';
-import { getSelectedSeed } from 'selectors/seeds';
-import { showError } from 'actions/notifications';
+
+import { setNewSeedName } from 'actions/seeds';
+import { generateAlert } from 'actions/alerts';
+
 import Infobox from 'ui/components/Info';
 import Button from 'ui/components/Button';
 import Input from 'ui/components/input/Text';
@@ -14,15 +15,19 @@ import Input from 'ui/components/input/Text';
  */
 class AccountName extends React.PureComponent {
     static propTypes = {
-        /** Rename current account */
-        renameCurrentSeed: PropTypes.func.isRequired,
+        /** Current seed count */
+        seedCount: PropTypes.number.isRequired,
+        /** Set new seed name */
+        setNewSeedName: PropTypes.func.isRequired,
         /** Browser history object */
         history: PropTypes.object.isRequired,
-        /** Error modal helper
-         * @param {Object} content - error screen content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -31,22 +36,39 @@ class AccountName extends React.PureComponent {
     };
 
     state = {
-        name: '',
+        name: this.getDefaultAccountName(),
     };
+
+    getDefaultAccountName() {
+        const { t, seedCount } = this.props;
+        if (seedCount === 0) {
+            return t('global:mainWallet');
+        } else if (seedCount === 1) {
+            return t('global:secondWallet');
+        } else if (seedCount === 2) {
+            return t('global:thirdWallet');
+        } else if (seedCount === 3) {
+            return t('global:fourthWallet');
+        } else if (seedCount === 4) {
+            return t('global:fifthWallet');
+        } else if (seedCount === 5) {
+            return t('global:sixthWallet');
+        } else if (seedCount === 6) {
+            return t('global:otherWallet');
+        }
+        return '';
+    }
 
     setName = (e) => {
         e.preventDefault();
-        const { renameCurrentSeed, history, showError, t } = this.props;
+        const { setNewSeedName, history, generateAlert, t } = this.props;
         const { name } = this.state;
         if (!name.length) {
-            showError({
-                title: t('addAdditionalSeed:noNickname'),
-                text: t('addAdditionalSeed:noNicknameExplanation'),
-            });
+            generateAlert('error', t('addAdditionalSeed:noNickname'), t('addAdditionalSeed:noNicknameExplanation'));
             return;
         }
 
-        renameCurrentSeed(this.state.name);
+        setNewSeedName(this.state.name);
         history.push('/onboarding/account-password');
     };
 
@@ -67,7 +89,7 @@ class AccountName extends React.PureComponent {
                     </Infobox>
                 </section>
                 <footer>
-                    <Button to="/seed/enter" className="outline" variant="highlight">
+                    <Button to="/seed/enter" className="outline" variant="secondary">
                         {t('global:back')}
                     </Button>
                     <Button type="submit" className="outline" variant="primary">
@@ -80,12 +102,12 @@ class AccountName extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seed: getSelectedSeed(state),
+    seedCount: state.account.seedNames.length,
 });
 
 const mapDispatchToProps = {
-    showError,
-    renameCurrentSeed,
+    generateAlert,
+    setNewSeedName,
 };
 
 export default translate()(connect(mapStateToProps, mapDispatchToProps)(AccountName));

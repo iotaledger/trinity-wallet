@@ -2,16 +2,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 import { clearTempData } from 'actions/tempAccount';
 import { getUpdateData } from 'actions/settings';
 import { clearSeeds } from 'actions/seeds';
+import { generateAlert } from 'actions/alerts';
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
-import Notifications from 'ui/global/Notifications';
 import Updates from 'ui/global/Updates';
 import Loading from 'ui/components/Loading';
 import { sendAmount } from 'actions/deepLinks';
@@ -19,7 +19,7 @@ import { ADDRESS_LENGTH } from 'libs/util';
 import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
-import { showError } from 'actions/notifications';
+import Account from 'ui/views/account/Index';
 
 import css from './index.css';
 
@@ -61,10 +61,9 @@ class App extends React.Component {
          */
         t: PropTypes.func.isRequired,
         sendAmount: PropTypes.func.isRequired,
-        showError: PropTypes.func.isRequired,
     };
 
-    componentDidMount() {
+    componentWillMount() {
         //this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
         Electron.onEvent('url-params', (data) => {
             let regexAddress = /\:\/\/(.*?)\/\?/;
@@ -75,12 +74,8 @@ class App extends React.Component {
                 let amount = data.match(regexAmount);
                 let message = data.match(regexMessage);
                 if (address[1].length !== ADDRESS_LENGTH) {
-                    const { showError } = this.props;
-                    showError({
-                        title: 'send:invalidAddress',
-                        text: 'send:invalidAddressExplanation1',
-                        translate: true,
-                    });
+                    const { generateAlert, t } = this.props;
+                    generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
                     this.props.sendAmount(0, '', '');
                 } else {
                     this.setState({
@@ -99,11 +94,11 @@ class App extends React.Component {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
         Electron.changeLanguage(this.props.t);
-        this.setState({
-            address: '',
-            amount: 0,
-            message: '',
-        });
+        // this.setState({
+        //     address: '',
+        //     amount: 0,
+        //     message: '',
+        // });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -125,13 +120,16 @@ class App extends React.Component {
 
     menuToggle(item) {
         switch (item) {
+            case 'addAccount':
+                this.props.history.push('/onboarding/seed-intro');
+                break;
             case 'update':
                 this.props.getUpdateData(true);
                 break;
             case 'logout':
                 this.props.clearTempData();
                 this.props.clearSeeds();
-                this.props.history.push('/login');
+                this.props.history.push('/onboarding/login');
                 break;
             default:
                 this.props.history.push(`/${item}`);
@@ -140,7 +138,7 @@ class App extends React.Component {
     }
 
     Init = (props) => {
-        return <Loading {...props} loop={false} onEnd={() => this.props.history.push('/onboarding/')} />;
+        return <Loading inline {...props} loop={false} onEnd={() => this.props.history.push('/onboarding/')} />;
     };
 
     render() {
@@ -151,7 +149,6 @@ class App extends React.Component {
         return (
             <div className={css.trintiy}>
                 <Theme />
-                <Notifications />
                 <Alerts />
                 <Updates />
                 <TransitionGroup>
@@ -159,6 +156,7 @@ class App extends React.Component {
                         <div>
                             <Switch location={location}>
                                 <Route exact path="/settings/:setting?" component={Settings} />
+                                <Route exact path="/account/:setting?" component={Account} />
                                 <Route path="/wallet" component={Wallet} />
                                 <Route
                                     path="/onboarding"
@@ -187,7 +185,8 @@ const mapDispatchToProps = {
     clearSeeds,
     sendAmount,
     getUpdateData,
-    showError,
+    generateAlert,
+
 };
 
 export default withRouter(translate()(connect(mapStateToProps, mapDispatchToProps)(App)));

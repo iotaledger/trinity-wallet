@@ -1,15 +1,21 @@
+const { ipcMain: ipc, app, protocol } = require('electron');
 const electron = require('electron');
 const initMenu = require('./lib/Menu.js');
 const path = require('path');
-const app = electron.app;
+const settings = require('electron-settings');
+
 const BrowserWindow = electron.BrowserWindow;
 const url = require('url');
 const devMode = process.env.NODE_ENV === 'development';
 
-let deeplinkingUrl;
+let deeplinkingUrl = '';
 const windows = {
     main: null,
 };
+
+if (!devMode) {
+    protocol.registerStandardSchemes(['iota']);
+}
 
 const shouldQuit = app.makeSingleInstance((argv, workingDirectory) => {
     if (process.platform == 'win32') {
@@ -24,6 +30,15 @@ if (shouldQuit) {
 }
 
 function createWindow() {
+    protocol.registerFileProtocol('iota', (request, callback) => {
+        callback(
+            request.url
+                .replace('iota:/', app.getAppPath())
+                .split('?')[0]
+                .split('#')[0],
+        );
+    });
+
     windows.main = new BrowserWindow({
         width: 1024,
         height: 768,
@@ -32,14 +47,14 @@ function createWindow() {
         minWidth: 440,
         minHeight: 720,
         titleBarStyle: 'hidden',
-        backgroundColor: '#18373D',
+        backgroundColor: settings.get('backgroundColor') ? settings.get('backgroundColor') : '#1a373e',
         webPreferences: {
             nodeIntegration: false,
-            preload: path.join(__dirname, 'lib/window.js'),
+            preload: path.resolve(__dirname, 'lib/Window.js'),
         },
     });
 
-    const url = devMode ? 'http://localhost:1074/' : 'file://' + __dirname + '/dist/index.html';
+    const url = devMode ? 'http://localhost:1074/' : 'iota://dist/index.html';
 
     windows.main.loadURL(url);
 
@@ -86,8 +101,10 @@ app.on('open-url', function(event, url) {
         event.preventDefault();
         let deeplinkingUrl = url;
         console.log('test main' + url);
+    setTimeout(() => {
         windows.main.webContents.send('url-params', url);
         logEverywhere('open-url# ' + deeplinkingUrl);
+    });
 });
 
 function logEverywhere(s) {
@@ -96,3 +113,7 @@ function logEverywhere(s) {
         windows.main.webContents.executeJavaScript(`console.log("${s}")`);
     }
 }
+
+ipc.on('settings.update', (e, data) => {
+    settings.set(data.attribute, data.value);
+});

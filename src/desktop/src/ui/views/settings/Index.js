@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { showNotification } from 'actions/notifications';
 
 import Icon from 'ui/components/Icon';
 
@@ -63,7 +62,8 @@ class Settings extends React.PureComponent {
                                 <div>
                                     <hr />
                                     <NavLink to="/settings/password">
-                                        <Icon icon="password" size={20} /> <strong>{t('settings:changePassword')}</strong>
+                                        <Icon icon="password" size={20} />{' '}
+                                        <strong>{t('settings:changePassword')}</strong>
                                     </NavLink>
                                     <NavLink to="/settings/twoFa">
                                         <Icon icon="twoFA" size={20} /> <strong>{t('settings:twoFA')}</strong>
@@ -78,9 +78,9 @@ class Settings extends React.PureComponent {
                     </section>
                     <section className={css.content}>
                         <header>
-                           <a onClick={() => history.push(backRoute)}>
-                                 <Icon icon="cross" size={40} />
-                           </a>
+                            <a onClick={() => history.push(backRoute)}>
+                                <Icon icon="cross" size={40} />
+                            </a>
                         </header>
                         <Switch location={location}>
                             <Route path="/settings/language" component={Language} />
@@ -103,8 +103,4 @@ const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
 });
 
-const mapDispatchToProps = {
-    showNotification,
-};
-
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Settings));
+export default translate()(connect(mapStateToProps)(Settings));
