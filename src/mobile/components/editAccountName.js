@@ -1,10 +1,11 @@
 import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
 import CustomTextInput from './customTextInput';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -22,11 +23,6 @@ const styles = StyleSheet.create({
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
-    saveButtonContainer: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     bottomContainer: {
         flex: 1,
         width,
@@ -42,28 +38,18 @@ const styles = StyleSheet.create({
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-end',
-    },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-    },
-    iconRight: {
-        width: width / 28,
-        height: width / 28,
+        marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
@@ -81,9 +67,7 @@ export class EditAccountName extends Component {
         backPress: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
-        tickImagePath: PropTypes.number.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -101,12 +85,13 @@ export class EditAccountName extends Component {
     }
 
     render() {
-        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, tickImagePath, negativeColor } = this.props;
+        const { t, textColor, secondaryBackgroundColor, theme } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
+                        <View style={{ flex: 0.2 }} />
                         <View style={styles.textFieldContainer}>
                             <CustomTextInput
                                 label={t('accountName')}
@@ -117,12 +102,11 @@ export class EditAccountName extends Component {
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 onSubmitEditing={() => this.props.saveAccountName(trim(this.state.accountName))}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
                                 value={this.state.accountName}
+                                theme={theme}
                             />
                         </View>
-                        <View style={styles.saveButtonContainer} />
+                        <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
@@ -130,7 +114,7 @@ export class EditAccountName extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -140,7 +124,7 @@ export class EditAccountName extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                <Image source={tickImagePath} style={styles.iconRight} />
+                                <Icon name="eye" size={width / 28} color={secondaryBackgroundColor} />
                             </View>
                         </TouchableOpacity>
                     </View>
