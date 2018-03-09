@@ -1,7 +1,7 @@
 .input {
     display: block;
     width: 100%;
-    margin: 25px auto 30px;
+    padding: 25px 0 30px;
     text-align: right;
     fieldset {
         padding: 0px;
@@ -107,10 +107,6 @@
             padding-right: 40px;
         }
     }
-}
-
-.input + .input {
-    margin-top: 50px;
 }
 
 .info {

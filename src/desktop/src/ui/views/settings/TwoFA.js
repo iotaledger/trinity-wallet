@@ -4,17 +4,17 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import QRCode from 'qrcode.react';
 import authenticator from 'authenticator';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import { setKey, getKey, removeKey } from 'libs/crypto';
+import { setVault, getVault, removeKey } from 'libs/crypto';
 
 import { set2FAStatus } from 'actions/account';
-import { showError, showNotification } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
 import Text from 'ui/components/input/Text';
 import Password from 'ui/components/input/Password';
 import Modal from 'ui/components/modal/Modal';
+import Clipboard from 'ui/components/Clipboard';
 
 import css from './twoFa.css';
 
@@ -29,16 +29,13 @@ class TwoFA extends React.Component {
          * @param {Bool} state - Two-factor enabled state
          */
         set2FAStatus: PropTypes.func.isRequired,
-        /** Error helper function
-         * @param {Object} content - Error notification content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
-        /** Notification helper function
-         * @param {Object} content - Success notification content
-         * @ignore
-         */
-        showNotification: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
@@ -59,7 +56,7 @@ class TwoFA extends React.Component {
 
     verifyCode(e) {
         const { key, code } = this.state;
-        const { showError, t } = this.props;
+        const { generateAlert, t } = this.props;
 
         if (e) {
             e.preventDefault();
@@ -72,23 +69,20 @@ class TwoFA extends React.Component {
                 passwordConfirm: true,
             });
         } else {
-            showError({
-                title: t('Incorrect code'),
-                text: t('Incorrect code'),
-            });
+            generateAlert('error', t('Incorrect code'), t('Incorrect code'));
         }
     }
 
     enableTwoFA(e) {
         const { key, password } = this.state;
-        const { showError, showNotification, set2FAStatus, t } = this.props;
+        const { generateAlert, set2FAStatus, t } = this.props;
 
         if (e) {
             e.preventDefault();
         }
 
         try {
-            setKey(password, key);
+            setVault(password, key);
             set2FAStatus(true);
 
             this.setState({
@@ -98,36 +92,31 @@ class TwoFA extends React.Component {
                 passwordConfirm: false,
             });
 
-            showNotification({
-                title: t('Two fa enabled'),
-                text: t('Two fa enabled'),
-            });
+            generateAlert('success', t('Two fa enabled'), t('Two fa enabled'));
         } catch (err) {
-            showError({
-                title: t('changePassword:incorrectPassword'),
-                text: t('changePassword:incorrectPasswordExplanation'),
-            });
+            generateAlert(
+                'error',
+                t('changePassword:incorrectPassword'),
+                t('changePassword:incorrectPasswordExplanation'),
+            );
             return;
         }
     }
 
     disableTwoFA(e) {
         const { code, password } = this.state;
-        const { showError, showNotification, set2FAStatus, t } = this.props;
+        const { generateAlert, set2FAStatus, t } = this.props;
 
         if (e) {
             e.preventDefault();
         }
 
         try {
-            const key = getKey(password);
+            const key = getVault(password);
             const validCode = authenticator.verifyToken(key, code);
 
             if (!validCode) {
-                showError({
-                    title: t('Incorrect two-fa'),
-                    text: t('Incorrect two-fa'),
-                });
+                generateAlert('error', t('Incorrect two-fa'), t('Incorrect two-fa'));
                 this.setState({
                     password: '',
                     passwordConfirm: false,
@@ -145,15 +134,13 @@ class TwoFA extends React.Component {
                 password: '',
             });
 
-            showNotification({
-                title: t('Two fa disabled'),
-                text: t('Two fa disabled'),
-            });
+            generateAlert('success', t('Two fa disabled'), t('Two fa disabled'));
         } catch (err) {
-            showError({
-                title: t('changePassword:incorrectPassword'),
-                text: t('changePassword:incorrectPasswordExplanation'),
-            });
+            generateAlert(
+                'error',
+                t('changePassword:incorrectPassword'),
+                t('changePassword:incorrectPasswordExplanation'),
+            );
             return;
         }
     }
@@ -192,9 +179,9 @@ class TwoFA extends React.Component {
                 <QRCode size={180} value={authenticator.generateTotpUri(key, 'Trinity desktop wallet')} />
                 <p>
                     Key:{' '}
-                    <CopyToClipboard text={key}>
+                    <Clipboard text={key}>
                         <strong>{key}</strong>
-                    </CopyToClipboard>
+                    </Clipboard>
                 </p>
                 <h2>{t('twoFA:enterCode')}:</h2>
                 <Text value={code} onChange={(value) => this.setState({ code: value })} />
@@ -261,8 +248,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     set2FAStatus,
-    showError,
-    showNotification,
+    generateAlert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(TwoFA));

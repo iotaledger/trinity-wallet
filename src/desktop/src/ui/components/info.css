@@ -1,7 +1,7 @@
 .wrapper {
     display: inline-block;
     border-radius: 4px;
-    background: var(--body-hover);
+    background: var(--body-alt);
     border-top: 20px solid var(--input-bg);
     font-size: var(--font-size-small);
     margin: 0 0 20px;

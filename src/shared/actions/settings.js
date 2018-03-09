@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import { generateAlert } from './alerts';
-import { showError } from './notifications';
 import i18next from '../i18next';
 import { UPDATE_URL } from '../config';
 
@@ -21,6 +20,7 @@ export const ActionTypes = {
     SET_UPDATE_ERROR: 'IOTA/SETTINGS/SET_UPDATE_ERROR',
     SET_UPDATE_SUCCESS: 'IOTA/SETTINGS/UPDATE_SUCCESS',
     SET_UPDATE_DONE: 'IOTA/SETTINGS/UPDATE_DONE',
+    UPDATE_POW_SETTINGS: 'IOTA/SETTINGS/UPDATE_POW_SETTINGS',
 };
 
 const currencyDataFetchRequest = () => ({
@@ -44,6 +44,10 @@ export const setRandomlySelectedNode = (payload) => ({
 export const setMode = (payload) => ({
     type: ActionTypes.SET_MODE,
     payload,
+});
+
+export const updatePowSettings = () => ({
+    type: ActionTypes.UPDATE_POW_SETTINGS,
 });
 
 export function setLocale(locale) {
@@ -104,14 +108,6 @@ export function setLanguage(language) {
     };
 }
 
-export const invalidServerError = () => {
-    return showError({
-        title: 'invalidServer_title',
-        text: 'invalidServer_text',
-        translate: true,
-    });
-};
-
 export function setFullNode(fullNode) {
     return (dispatch) => {
         dispatch({
@@ -153,39 +149,39 @@ export function updateTheme(theme, themeName) {
  * @param {Boolean} force - should confirmation dialog be forced
  */
 export function getUpdateData(force) {
-   return (dispatch) => {
-       return fetch(UPDATE_URL)
-           .then(
-               (response) => response.json(),
-               (error) => {
-                   dispatch({
-                       type: ActionTypes.SET_UPDATE_ERROR,
-                       payload: {
-                           force,
-                       },
-                   });
-               },
-           )
-           .then((json) => {
-               if (json && json.version) {
-                   dispatch({
-                       type: ActionTypes.SET_UPDATE_SUCCESS,
-                       payload: {
-                           version: json.version,
-                           notes: json.notes,
-                           force,
-                       },
-                   });
-               }
-           });
-   };
+    return (dispatch) => {
+        return fetch(UPDATE_URL)
+            .then(
+                (response) => response.json(),
+                () => {
+                    dispatch({
+                        type: ActionTypes.SET_UPDATE_ERROR,
+                        payload: {
+                            force,
+                        },
+                    });
+                },
+            )
+            .then((json) => {
+                if (json && json.version) {
+                    dispatch({
+                        type: ActionTypes.SET_UPDATE_SUCCESS,
+                        payload: {
+                            version: json.version,
+                            notes: json.notes,
+                            force,
+                        },
+                    });
+                }
+            });
+    };
 }
 
 /** Set update version state as done */
 export function setUpdateDone() {
-   return (dispatch) => {
-       dispatch({
-           type: ActionTypes.SET_UPDATE_DONE,
-       });
-   };
+    return (dispatch) => {
+        dispatch({
+            type: ActionTypes.SET_UPDATE_DONE,
+        });
+    };
 }

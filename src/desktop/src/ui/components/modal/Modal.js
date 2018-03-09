@@ -15,6 +15,8 @@ export default class Modal extends React.Component {
         variant: PropTypes.oneOf(['confirm']),
         /** Modal visibility state */
         isOpen: PropTypes.bool,
+        /** Modal inline style state */
+        inline: PropTypes.bool,
         /** Modal visibility state */
         onClose: PropTypes.func.isRequired,
     };
@@ -34,14 +36,24 @@ export default class Modal extends React.Component {
     };
 
     render() {
-        const { variant, isOpen } = this.props;
+        const { variant, isOpen, inline } = this.props;
 
         if (!isOpen) {
             return null;
         }
 
+        if (inline) {
+            return (
+                <div className={classNames(css.backdrop, css[variant], css.inline)}>
+                    <div className={css.wrapper}>
+                        <div className={css.content}>{this.props.children}</div>
+                    </div>
+                </div>
+            );
+        }
+
         return ReactDOM.createPortal(
-            <div className={classNames(css.backdrop, css[variant])}>
+            <div className={classNames(css.backdrop, css[variant], inline ? css.inline : null)}>
                 <div className={css.wrapper}>
                     <div className={css.content}>{this.props.children}</div>
                 </div>
