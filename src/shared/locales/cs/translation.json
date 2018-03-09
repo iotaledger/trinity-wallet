@@ -358,9 +358,9 @@
         "enterPassword": "Pro smazání účtu, zadejte Vaše heslo."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to clean up your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "outOfSync": "Vypadá to, že Vaše historie transakcí nemusí být synchronizovaná?",
+        "pressToSync": "Stisknutím tlačítka níže smažete Váš účet.",
+        "thisMayTake": "To může chvíli trvat. Můžete si všimnout zpomalení Vašeho zařízení.",
         "doNotClose": "Upozorňujeme, že minimalizace aplikace zruší synchronizaci.",
         "syncAccount": "SYNCHRONIZOVAT ÚČET",
         "syncingYourAccount": "Synchronizuji Váš účet."
@@ -428,7 +428,7 @@
         "rootDetected": "<0>Zdá se že Vaše zařízení je rooted/jailbroken.</ 0><1>To může znamenat značné riziko pro zabezpečení peněženky.</ 1><2>Chcete pokračovat navzdory tomuto riziku?</ 2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "feeless": "Pro odeslání bezplatné transakce v IOTA je potřeba dokončit trochu proof of work.",
         "localOrRemote": "Proof of work může být dokončen lokálně ve Vašem zařízení, nebo být vyložen do Nodu.",
         "local": "Lokální",
         "remote": "Vzdálený"
