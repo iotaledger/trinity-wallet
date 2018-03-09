@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed nebol vygenerovaný",
-        "seedNotGeneratedExplanation": "Stlačte prosím tlačítko \"Generovat nový Seed\".",
+        "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "GENEROVAŤ NOVÝ SEED",
         "individualLetters": "Vyberte náhodné písmena."
     },
@@ -358,9 +358,10 @@
         "enterPassword": "Pre zmazanie účtu vložte svoje heslo."
     },
     "manualSync": {
-        "pressToSync": "Synchronizáciu účtu spustíte tlačidlom nižšie.",
-        "thisMayTake": "Môže to chvíľu trvať.",
-        "youMayNotice": "Môže dôjsť k spomaleniu Vášho zariadenia.",
+        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "pressToSync": "Press the button below to clean up your account.",
+        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "SYNCHRONIZOVAŤ ÚČET",
         "syncingYourAccount": "Váš účet sa synchronizuje."
     },
@@ -425,5 +426,11 @@
     "rootDetection": {
         "warning": "VAROVANIE",
         "rootDetected": "<0>Zdá sa, že na vašom zariadení bol vykonaný root/jailbroken.</ 0><1>To môže znamenať značné riziko pre zabezpečenie peňaženky.</ 1><2>Chcete pokračovať napriek tomuto riziku?</ 2>"
+    },
+    "pow": {
+        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "local": "Local",
+        "remote": "Remote"
     }
 }
