@@ -378,6 +378,9 @@ class Settings extends Component {
                 borderColor: { borderColor: body.color },
                 secondaryBackgroundColor: body.color,
             },
+            pow: {
+                backPress: () => this.props.setSetting('mainSettings'),
+            },
             accountManagement: {
                 setSetting: (setting) => this.props.setSetting(setting),
                 onDeleteAccountPress: () => this.onDeleteAccountPress(),

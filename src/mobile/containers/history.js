@@ -2,18 +2,11 @@ import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    RefreshControl,
-    TouchableOpacity,
-    ActivityIndicator,
-} from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { broadcastBundle, promoteTransaction } from 'iota-wallet-shared-modules/actions/transfers';
 import {
     getRelevantTransfer,
     isReceivedTransfer,
@@ -32,7 +25,6 @@ import tinycolor from 'tinycolor2';
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
 import keychain, { getSeed } from '../util/keychain';
-import GENERAL from '../theme/general';
 import { isAndroid } from '../util/device';
 import CtaButton from '../components/ctaButton';
 
@@ -88,10 +80,14 @@ class History extends Component {
         generateAlert: PropTypes.func.isRequired,
         seedIndex: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
+        broadcastBundle: PropTypes.func.isRequired,
+        promoteTransaction: PropTypes.func.isRequired,
         isSyncing: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
+        isBroadcastingBundle: PropTypes.bool.isRequired,
+        isPromotingTransaction: PropTypes.bool.isRequired,
         mode: PropTypes.string.isRequired,
     };
 
@@ -118,6 +114,7 @@ class History extends Component {
         if (isSendingTransfer !== newProps.isSendingTransfer) {
             return false;
         }
+
         if (isGeneratingReceiveAddress !== newProps.isGeneratingReceiveAddress) {
             return false;
         }
@@ -187,7 +184,21 @@ class History extends Component {
      * @return {Array} Formatted transaction data
      */
     prepTransactions() {
-        const { transfers, addresses, negative, primary, secondary, positive, body, bar, mode, t } = this.props;
+        const {
+            transfers,
+            addresses,
+            negative,
+            primary,
+            secondary,
+            positive,
+            body,
+            bar,
+            mode,
+            t,
+            selectedAccountName,
+            isBroadcastingBundle,
+            isPromotingTransaction,
+        } = this.props;
         const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
@@ -209,9 +220,13 @@ class History extends Component {
             const tx = getRelevantTransfer(transfer, addresses);
             const value = getTransferValue(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
+            const disableWhen = isBroadcastingBundle || isPromotingTransaction;
 
             return {
                 t,
+                disableWhen,
+                rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
+                promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName),
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
                 addresses: map(transfer, withValueAndUnit),
                 status: incoming ? t('history:receive') : t('history:send'),
@@ -233,6 +248,7 @@ class History extends Component {
                     borderColor: { borderColor: body.color },
                     barColor: bar.bg,
                     secondaryBarColor: bar.color,
+                    buttonsOpacity: { opacity: disableWhen ? 0.5 : 1 },
                 },
             };
         });
@@ -303,7 +319,7 @@ class History extends Component {
     }
 }
 
-const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
+const mapStateToProps = ({ tempAccount, account, settings, polling, ui }) => ({
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.seedNames),
@@ -322,11 +338,15 @@ const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
     isSendingTransfer: tempAccount.isSendingTransfer,
     isSyncing: tempAccount.isSyncing,
     isTransitioning: tempAccount.isTransitioning,
+    isBroadcastingBundle: ui.isBroadcastingBundle,
+    isPromotingTransaction: ui.isPromotingTransaction,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     getAccountInfo,
+    broadcastBundle,
+    promoteTransaction,
 };
 
 export default translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History));
