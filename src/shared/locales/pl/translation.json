@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed nie został wygenerowany",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Wygeneruj nowy klucz seed.",
         "pressForNewSeed": "WYGENERUJ NOWY SEED",
         "individualLetters": "Naciśnij na dane pole, aby wylosować je ponownie."
     },
@@ -358,10 +358,10 @@
         "enterPassword": "Wprowadź swoje hasło, aby usunąć to konto."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to clean up your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "outOfSync": "Czy Twoja historia transakcji wygląda na niezsynchronizowaną?",
+        "pressToSync": "Naciśnij poniższy przycisk, aby oczyścić swoje konto.",
+        "thisMayTake": "To może chwilę potrwać. Możesz zaobserwować spowolnienie Twojego urządzenia.",
+        "doNotClose": "Pamiętaj, że zminimalizowanie aplikacji spowoduje przerwanie synchronizacji.",
         "syncAccount": "SYNCHRONIZUJ KONTO",
         "syncingYourAccount": "Synchronizuje Twoje konto."
     },
@@ -428,9 +428,9 @@
         "rootDetected": "<0>Twoje urządzenie wydaje się być odblokowane (dostęp root).</0><1>To może stanowić istotne zagrożenie dla bezpieczeństwa Twojego portfela.</1><2>Czy chcesz kontynuować pomimo tego ryzyka?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
+        "feeless": "Niezbędnym jest wykonanie niewielkiego proof of work, aby przesyłać transakcje IOTA bez prowizji.",
+        "localOrRemote": "Proof of work może być wykonany lokalnie na Twoim urządzeniu lub przy użyciu serwera.",
+        "local": "Lokalnie",
+        "remote": "Zdalnie"
     }
 }
