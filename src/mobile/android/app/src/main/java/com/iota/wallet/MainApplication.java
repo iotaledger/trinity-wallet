@@ -65,7 +65,7 @@ public class MainApplication extends NavigationApplication {
             new IOTAMobilePackage(),
             new RNExitAppPackage(),
             new RNSecureRandomPackage(),
-            new RNIsDeviceRootedPackage()
+            new RNIsDeviceRootedPackage(),
             new RandomBytesPackage()
     );
   }
