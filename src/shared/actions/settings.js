@@ -20,6 +20,7 @@ export const ActionTypes = {
     SET_UPDATE_ERROR: 'IOTA/SETTINGS/SET_UPDATE_ERROR',
     SET_UPDATE_SUCCESS: 'IOTA/SETTINGS/UPDATE_SUCCESS',
     SET_UPDATE_DONE: 'IOTA/SETTINGS/UPDATE_DONE',
+    UPDATE_POW_SETTINGS: 'IOTA/SETTINGS/UPDATE_POW_SETTINGS',
 };
 
 const currencyDataFetchRequest = () => ({
@@ -43,6 +44,10 @@ export const setRandomlySelectedNode = (payload) => ({
 export const setMode = (payload) => ({
     type: ActionTypes.SET_MODE,
     payload,
+});
+
+export const updatePowSettings = () => ({
+    type: ActionTypes.UPDATE_POW_SETTINGS,
 });
 
 export function setLocale(locale) {
