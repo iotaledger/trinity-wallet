@@ -41,8 +41,8 @@ class OnboardingButtons extends PureComponent {
     static propTypes = {
         buttonWidth: PropTypes.object,
         containerWidth: PropTypes.object,
-        positiveColor: PropTypes.number,
-        negativeColor: PropTypes.number,
+        positiveColor: PropTypes.string,
+        negativeColor: PropTypes.string,
         opacity: PropTypes.number,
         leftButtonTestID: PropTypes.string,
         rightButtonTestID: PropTypes.string,
