@@ -14,9 +14,8 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            barColor: 'foo',
-            backgroundColor: 'white',
-            negativeColor: 'black',
+            body: { color: 'white' },
+            negative: { color: 'green' },
             onRef: noop,
             options: [],
             disableWhen: false,

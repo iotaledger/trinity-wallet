@@ -14,7 +14,6 @@ export const currentAccountSelectorBySeedIndex = (seedIndex, accountInfo) => {
     const allAccountNames = Object.keys(accountInfo);
     // Might be good to validate first
     const currentlySelectedAccountName = allAccountNames[seedIndex];
-
     return accountInfo[currentlySelectedAccountName];
 };
 
@@ -28,9 +27,8 @@ export const getSelectedAccountViaSeedIndex = createSelector(currentAccountSelec
 
 export const getSelectedAccountNameViaSeedIndex = createSelector(currentAccountNameSelectorBySeedIndex, (name) => name);
 
-export const getBalanceForSelectedAccountViaSeedIndex = createSelector(
-    currentAccountSelectorBySeedIndex,
-    (account) => get(account, 'balance') || 0,
+export const getBalanceForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) =>
+    get(account, 'balance'),
 );
 
 export const getAddressesForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) =>
