@@ -18,8 +18,7 @@ const getProps = (overrides) =>
             addressData: {},
             generateAlert: noop,
             backPress: noop,
-            secondaryBackgroundColor: 'white',
-            arrowLeftImagePath: 0,
+            body: { color: 'white' },
             t: noop,
         },
         overrides,
@@ -31,12 +30,8 @@ describe('Testing ViewAddresses component', () => {
             expect(ViewAddresses.propTypes.addressData).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a secondaryBackgroundColor string as a prop', () => {
-            expect(ViewAddresses.propTypes.secondaryBackgroundColor).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require an arrowLeftImagePath number as a prop', () => {
-            expect(ViewAddresses.propTypes.arrowLeftImagePath).toEqual(PropTypes.number.isRequired);
+        it('should require a body object as a prop', () => {
+            expect(ViewAddresses.propTypes.body).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a t function as a prop', () => {
