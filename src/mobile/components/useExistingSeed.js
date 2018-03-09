@@ -2,16 +2,14 @@ import trim from 'lodash/trim';
 import React from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
-import blackArrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right-black.png';
-import whiteArrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right-white.png';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import CustomTextInput from '../components/customTextInput';
+import Checksum from '../components/checksum';
 import QRScanner from '../components/qrScanner';
-import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -54,10 +52,6 @@ const styles = StyleSheet.create({
         height: width / 5,
         width: width / 5,
     },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
-    },
     textFieldContainer: {
         flex: 1,
         paddingRight: width / 30,
@@ -77,28 +71,18 @@ const styles = StyleSheet.create({
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-end',
-    },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-    },
-    iconRight: {
-        width: width / 28,
-        height: width / 28,
+        marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
@@ -106,34 +90,20 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
-    checksum: {
-        width: width / 8,
-        height: height / 20,
-        borderRadius: GENERAL.borderRadiusSmall,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    checksumText: {
-        fontSize: width / 29.6,
-        fontFamily: 'Lato-Regular',
-    },
 });
 
 class UseExistingSeed extends React.Component {
     static propTypes = {
         seedCount: PropTypes.number.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        ctaColor: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
-        secondaryCtaColor: PropTypes.string.isRequired,
-        textColor: PropTypes.object.isRequired,
-        ctaBorderColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
         addAccount: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        textColor: PropTypes.object.isRequired,
+        input: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -187,44 +157,25 @@ class UseExistingSeed extends React.Component {
         return '';
     }
 
-    getChecksumValue() {
-        const { seed } = this.state;
-        let checksumValue = '...';
-
-        if (seed.length !== 0 && !seed.match(VALID_SEED_REGEX)) {
-            checksumValue = '!';
-        } else if (seed.length !== 0 && seed.length < 81) {
-            checksumValue = '< 81';
-        } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
-            checksumValue = getChecksum(seed);
-        }
-        return checksumValue;
-    }
-
     showModal = () => this.setState({ isModalVisible: true });
 
     hideModal = () => this.setState({ isModalVisible: false });
 
-    renderModalContent = () => (
-        <QRScanner
-            ctaColor={this.props.ctaColor}
-            backgroundColor={this.props.backgroundColor}
-            onQRRead={(data) => this.onQRRead(data)}
-            hideModal={() => this.hideModal()}
-            secondaryCtaColor={this.props.secondaryCtaColor}
-            ctaBorderColor={this.props.ctaBorderColor}
-            secondaryBackgroundColor={this.props.secondaryBackgroundColor}
-        />
-    );
+    renderModalContent = () => {
+        const { body, primary } = this.props;
+        return (
+            <QRScanner
+                primary={primary}
+                body={body}
+                onQRRead={(data) => this.onQRRead(data)}
+                hideModal={() => this.hideModal()}
+            />
+        );
+    }
 
     render() {
-        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, negativeColor } = this.props;
+        const { t, body, theme, textColor, input } = this.props;
         const { seed, accountName } = this.state;
-        const isWhite = secondaryBackgroundColor === 'white';
-        const arrowRightImagePath = isWhite ? whiteArrowRightImagePath : blackArrowRightImagePath;
-        const checksumBackgroundColor = isWhite
-            ? { backgroundColor: 'rgba(255, 255, 255, 0.05)' }
-            : { backgroundColor: 'rgba(0, 0, 0, 0.05)' };
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
@@ -246,15 +197,12 @@ class UseExistingSeed extends React.Component {
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
                             onSubmitEditing={() => this.accountNameField.focus()}
-                            secondaryBackgroundColor={secondaryBackgroundColor}
-                            negativeColor={negativeColor}
+                            theme={theme}
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
                         />
                         <View style={{ flex: 0.6 }} />
-                        <View style={[styles.checksum, checksumBackgroundColor]}>
-                            <Text style={[styles.checksumText, textColor]}>{this.getChecksumValue()}</Text>
-                        </View>
+                        <Checksum seed={seed} input={input}/>
                         <View style={{ flex: 0.3 }} />
                         <CustomTextInput
                             onRef={(c) => {
@@ -268,8 +216,7 @@ class UseExistingSeed extends React.Component {
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
-                            secondaryBackgroundColor={secondaryBackgroundColor}
-                            negativeColor={negativeColor}
+                            theme={theme}
                             value={accountName}
                         />
                         <View style={{ flex: 1.2 }} />
@@ -281,7 +228,7 @@ class UseExistingSeed extends React.Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -292,7 +239,7 @@ class UseExistingSeed extends React.Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:doneLowercase')}</Text>
-                                <Image source={arrowRightImagePath} style={styles.iconRight} />
+                                <Icon name="chevronRight" size={width / 28} color={body.color} />
                             </View>
                         </TouchableOpacity>
                     </View>

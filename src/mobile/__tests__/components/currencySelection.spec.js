@@ -64,14 +64,6 @@ describe('Testing CurrencySelection component', () => {
         it('should require a negativeColor object as a prop', () => {
             expect(CurrencySelection.propTypes.negativeColor).toBe(PropTypes.string.isRequired);
         });
-
-        it('should require a tickImagePath number as a prop', () => {
-            expect(CurrencySelection.propTypes.tickImagePath).toBe(PropTypes.number.isRequired);
-        });
-
-        it('should require a arrowLeftImagePath number as a prop', () => {
-            expect(CurrencySelection.propTypes.arrowLeftImagePath).toBe(PropTypes.number.isRequired);
-        });
     });
 
     describe('#componentWillReceiveProps', () => {
