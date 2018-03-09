@@ -1,6 +1,5 @@
 import { Navigation } from 'react-native-navigation';
 import withSafeAreaView from '../components/withSafeAreaView';
-import InitialLoading from '../containers/initialLoading';
 import Home from '../containers/home';
 import Loading from '../containers/loading';
 import NewSeedSetup from '../containers/newSeedSetup';
@@ -35,7 +34,6 @@ function getGenerator(screen) {
 }
 
 export default function registerScreens(store, Provider) {
-    Navigation.registerComponent('initialLoading', () => getGenerator(InitialLoading), store, Provider);
     Navigation.registerComponent('home', () => getGenerator(Home), store, Provider);
     Navigation.registerComponent('loading', () => getGenerator(Loading), store, Provider);
     Navigation.registerComponent('newSeedSetup', () => getGenerator(NewSeedSetup), store, Provider);

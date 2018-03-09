@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import tinycolor from 'tinycolor2';
 import Switch from 'react-native-switch-pro';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { updatePowSettings } from 'iota-wallet-shared-modules/actions/settings';
-import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
-import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import Fonts from '../theme/Fonts';
 import { width, height } from '../util/dimensions';
-import GENERAL from '../theme/general';
+import { Icon } from '../theme/icons.js';
+import InfoBox from '../components/infoBox';
 
 const styles = StyleSheet.create({
     container: {
@@ -32,26 +31,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-    infoTextWrapper: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 1.3,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: width / 30,
-        borderStyle: 'dotted',
-        paddingVertical: height / 35,
-    },
     infoText: {
-        fontFamily: Fonts.secondary,
+        fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        paddingTop: height / 60,
-        backgroundColor: 'transparent',
         textAlign: 'justify',
-    },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
+        backgroundColor: 'transparent',
     },
     itemLeft: {
         flexDirection: 'row',
@@ -59,15 +43,11 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-start',
     },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
-    },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     toggle: {
         marginHorizontal: width / 30,
@@ -87,11 +67,10 @@ class Pow extends Component {
     static propTypes = {
         backPress: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
         remotePoW: PropTypes.bool.isRequired,
         t: PropTypes.func.isRequired,
         updatePowSettings: PropTypes.func.isRequired,
+        body: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -110,57 +89,65 @@ class Pow extends Component {
     }
 
     getSwitchColor() {
-        const isBackgroundWhite = this.isBackgroundWhite();
         const props = this.props;
 
-        const baseColor = tinycolor(props.secondaryBackgroundColor);
+        const baseColor = tinycolor(props.body.bg);
 
-        return isBackgroundWhite ? baseColor.darken(25).toString() : baseColor.lighten(50).toString();
-    }
-
-    isBackgroundWhite() {
-        const props = this.props;
-
-        return props.secondaryBackgroundColor === 'white';
+        return baseColor.isLight() ? baseColor.darken(25).toString() : baseColor.lighten(50).toString();
     }
 
     render() {
-        const { t, secondaryBackgroundColor, arrowLeftImagePath, remotePoW } = this.props;
+        const { t, remotePoW, body } = this.props;
 
-        const isBackgroundWhite = this.isBackgroundWhite();
-        const infoImagePath = isBackgroundWhite ? whiteInfoImagePath : blackInfoImagePath;
         const switchColor = this.getSwitchColor();
-        const textColor = { color: secondaryBackgroundColor };
+        const textColor = { color: body.color };
+        const infoTextPadding = { paddingTop: height / 50 };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 2.3 }} />
-                        <View style={[styles.infoTextWrapper, { borderColor: secondaryBackgroundColor }]}>
-                            <Image source={infoImagePath} style={styles.infoIcon} />
-                            <Text style={[styles.infoText, textColor]}>{t('expertModeExplanation')}</Text>
-                            <Text style={[styles.infoText, textColor]}>{t('modesExplanation')}</Text>
-                        </View>
-                        <View style={{ flex: 0.8 }} />
+                        <View style={{ flex: 2 }} />
+                        <InfoBox
+                            body={body}
+                            text={
+                                <View>
+                                    <Text style={[styles.infoText, textColor]}>{t('feeless')}</Text>
+                                    <Text style={[styles.infoText, textColor, infoTextPadding]}>
+                                        {t('localOrRemote')}
+                                    </Text>
+                                </View>
+                            }
+                        />
+                        <View style={{ flex: 1.1 }} />
                         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            <TouchableWithoutFeedback onPress={this.onChange}>
+                            <TouchableWithoutFeedback
+                                onPress={this.onChange}
+                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 70, right: width / 35 }}
+                            >
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor]}>On device</Text>
+                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 70 }]}>
+                                        {t('local')}
+                                    </Text>
                                 </View>
                             </TouchableWithoutFeedback>
                             <Switch
                                 style={styles.toggle}
-                                circleColorActive={secondaryBackgroundColor}
-                                circleColorInactive={secondaryBackgroundColor}
+                                circleColorActive={body.bg}
+                                circleColorInactive={body.bg}
                                 backgroundActive={switchColor}
                                 backgroundInactive={switchColor}
                                 value={remotePoW}
                                 onSyncPress={this.onChange}
                             />
-                            <TouchableWithoutFeedback onPress={this.onChange}>
+                            <TouchableWithoutFeedback
+                                onPress={this.onChange}
+                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 35, right: width / 70 }}
+                            >
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor]}>By the node</Text>
+                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 70 }]}>
+                                        {t('remote')}
+                                    </Text>
                                 </View>
                             </TouchableWithoutFeedback>
                         </View>
@@ -172,7 +159,7 @@ class Pow extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -185,8 +172,7 @@ class Pow extends Component {
 
 const mapStateToProps = (state) => ({
     remotePoW: state.settings.remotePoW,
-    backgroundColor: state.settings.theme.backgroundColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    body: state.settings.theme.body,
 });
 
 const mapDispatchToProps = {
@@ -194,4 +180,4 @@ const mapDispatchToProps = {
     updatePowSettings,
 };
 
-export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Pow));
+export default translate(['pow', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Pow));
