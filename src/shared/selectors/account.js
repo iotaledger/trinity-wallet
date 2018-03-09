@@ -14,7 +14,6 @@ export const currentAccountSelectorBySeedIndex = (seedIndex, accountInfo) => {
     const allAccountNames = Object.keys(accountInfo);
     // Might be good to validate first
     const currentlySelectedAccountName = allAccountNames[seedIndex];
-
     return accountInfo[currentlySelectedAccountName];
 };
 
@@ -28,9 +27,8 @@ export const getSelectedAccountViaSeedIndex = createSelector(currentAccountSelec
 
 export const getSelectedAccountNameViaSeedIndex = createSelector(currentAccountNameSelectorBySeedIndex, (name) => name);
 
-export const getBalanceForSelectedAccountViaSeedIndex = createSelector(
-    currentAccountSelectorBySeedIndex,
-    (account) => get(account, 'balance') || 0,
+export const getBalanceForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) =>
+    get(account, 'balance'),
 );
 
 export const getAddressesForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) =>
@@ -61,14 +59,14 @@ export const getDeduplicatedTransfersForSelectedAccountViaSeedIndex = createSele
 export const getSettingsFromState = (state) => state.settings || {};
 
 /**
- *   Selects getNetworkBoundPowFromState prop from settings reducer state object.
+ *   Selects remotePoW prop from settings reducer state object.
  *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
  *
- *   @method getNetworkBoundPowFromState
+ *   @method getRemotePoWFromState
  *   @param {object} state
  *   @returns {object}
  **/
-export const getNetworkBoundPowFromState = createSelector(getSettingsFromState, (state) => state.networkBoundPow);
+export const getRemotePoWFromState = createSelector(getSettingsFromState, (state) => state.remotePoW);
 
 /**
  *   Selects account prop from state.
