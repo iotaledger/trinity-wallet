@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seedが生成されていません。",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "新しいSeedを生成しましょう。",
         "pressForNewSeed": "新しいSeedの元を作成",
         "individualLetters": "文字をタップして更にランダムにしてください。"
     },
@@ -359,7 +359,7 @@
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to clean up your account.",
+        "pressToSync": "下のボタンを押してアカウントを整理してください。",
         "thisMayTake": "This may take a while. You may notice your device slowing down.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "同期アカウント",
