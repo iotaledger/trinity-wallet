@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "尚未產生種子碼",
-        "seedNotGeneratedExplanation": "請按「產生新種子碼」鈕",
+        "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "按此處得到新種子碼",
         "individualLetters": "請按各字母以成隨機順序"
     },
@@ -358,9 +358,10 @@
         "enterPassword": "請輸入密碼以刪除這個帳號。"
     },
     "manualSync": {
-        "pressToSync": "按下以下按鈕以同步您的帳戶。",
-        "thisMayTake": "這可能需要一點時間。",
-        "youMayNotice": "您的裝置可能會變慢",
+        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "pressToSync": "Press the button below to clean up your account.",
+        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "同步帳戶",
         "syncingYourAccount": "同步您的帳戶。"
     },
@@ -425,5 +426,11 @@
     "rootDetection": {
         "warning": "WARNING",
         "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+    },
+    "pow": {
+        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "local": "Local",
+        "remote": "Remote"
     }
 }
