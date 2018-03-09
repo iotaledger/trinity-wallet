@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Hovednøkkel har ikke blitt generert",
-        "seedNotGeneratedExplanation": "Trykk knappen for å generere ny hovednøkkel.",
+        "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "TRYKK FOR NY HOVEDNØKKEL",
         "individualLetters": "Trykk enkelte tegn for å gi de tilfeldig plassering."
     },
@@ -358,9 +358,10 @@
         "enterPassword": "Skriv inn passordet for å slette kontoen."
     },
     "manualSync": {
-        "pressToSync": "Trykk på knappen nedenfor for å synkronisere din konto.",
-        "thisMayTake": "Dette kan ta en stund.",
-        "youMayNotice": "Du kan merke en treghet på enheten din.",
+        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "pressToSync": "Press the button below to clean up your account.",
+        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "SYNKRONISER KONTO",
         "syncingYourAccount": "Synkroniserer din konto."
     },
@@ -425,5 +426,11 @@
     "rootDetection": {
         "warning": "WARNING",
         "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+    },
+    "pow": {
+        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "local": "Local",
+        "remote": "Remote"
     }
 }
