@@ -176,7 +176,7 @@ export class Dropdown extends Component {
         const { options, title, dropdownWidth, background, disableWhen, negative, body, shadow } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
-        const heightValue = options.length < 7 ? height / 22.4 * options.length + height / 70 : height / 3.2;
+        const heightValue = options.length < 8 ? height / 22.4 * options.length + height / 70 : height / 22.4 * 8 + height / 70;
         const dropdownHeight = isDropdownOpen ? heightValue : 0;
         const backgroundColor = background ? { backgroundColor: body.bg } : { backgroundColor: 'transparent' };
         const shadowColor = shadow ? { shadowColor: '#222' } : { shadowColor: 'transparent' };

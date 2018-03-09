@@ -8,8 +8,8 @@ import Seedbox from '../components/seedBox';
 import CustomTextInput from '../components/customTextInput';
 import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
-import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
+import CtaButton from '../components/ctaButton';
 
 const styles = StyleSheet.create({
     container: {
@@ -68,20 +68,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
-    viewButton: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 17,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-    },
-    viewText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
-    },
 });
 
 class ViewSeed extends Component {
@@ -90,6 +76,7 @@ class ViewSeed extends Component {
         password: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
         onWrongPassword: PropTypes.func.isRequired,
@@ -108,6 +95,8 @@ class ViewSeed extends Component {
         };
 
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
+        this.hideSeed = this.hideSeed.bind(this);
+        this.viewSeed = this.viewSeed.bind(this);
     }
 
     componentDidMount() {
@@ -166,6 +155,7 @@ class ViewSeed extends Component {
             t,
             textColor,
             body,
+            primary,
             borderColor,
             theme,
         } = this.props;
@@ -173,11 +163,13 @@ class ViewSeed extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
+                        <View style={{ flex: 1 }}/>
                         {!this.state.showSeed && (
                             <View style={styles.passwordTextContainer}>
                                 <Text style={[styles.generalText, textColor]}>{t('viewSeed:enterPassword')}</Text>
                             </View>
                         )}
+                        <View style={{ flex: 0.8 }}/>
                         {!this.state.showSeed && (
                             <View style={styles.textFieldContainer}>
                                 <CustomTextInput
@@ -195,23 +187,21 @@ class ViewSeed extends Component {
                                 />
                             </View>
                         )}
+                        <View style={{ flex: 1.2 }}/>
                         {this.state.password.length > 0 &&
                             !this.state.showSeed && (
                                 <View style={styles.viewButtonContainer}>
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            this.viewSeed();
-                                        }}
-                                    >
-                                        <View style={[styles.viewButton, borderColor]}>
-                                            <Text style={[styles.viewText, textColor]}>{t('viewSeed:viewSeed')}</Text>
-                                        </View>
-                                    </TouchableOpacity>
+                                    <CtaButton
+                                        ctaColor={primary.color}
+                                        secondaryCtaColor={primary.body}
+                                        text={t('viewSeed:viewSeed')}
+                                        onPress={this.viewSeed}
+                                        ctaWidth={width / 2}
+                                        ctaHeight={height / 16}
+                                    />
                                 </View>
                             )}
-
                         {this.state.password.length === 0 && <View style={styles.viewButtonContainer} />}
-
                         {this.state.showSeed && (
                             <View style={{ flex: 1 }}>
                                 <View style={styles.seedBoxContainer}>
@@ -223,18 +213,18 @@ class ViewSeed extends Component {
                                     />
                                 </View>
                                 <View style={styles.hideButtonContainer}>
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            this.hideSeed();
-                                        }}
-                                    >
-                                        <View style={[styles.viewButton, borderColor]}>
-                                            <Text style={[styles.viewText, textColor]}>{t('viewSeed:hideSeed')}</Text>
-                                        </View>
-                                    </TouchableOpacity>
+                                    <CtaButton
+                                        ctaColor={primary.color}
+                                        secondaryCtaColor={primary.body}
+                                        text={t('viewSeed:hideSeed')}
+                                        onPress={this.hideSeed}
+                                        ctaWidth={width / 2}
+                                        ctaHeight={height / 16}
+                                    />
                                 </View>
                             </View>
                         )}
+                        <View style={{ flex: 1 }}/>
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity

@@ -9,6 +9,7 @@ import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 import CustomTextInput from './customTextInput';
 import { Icon } from '../theme/icons.js';
+import InfoBox from '../components/infoBox';
 
 const styles = StyleSheet.create({
     container: {
@@ -40,10 +41,9 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
     },
     infoText: {
-        fontFamily: Fonts.secondary,
+        fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'center',
-        paddingTop: height / 60,
+        textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     textField: {
@@ -90,8 +90,8 @@ class ChangePassword extends Component {
         generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -202,16 +202,20 @@ class ChangePassword extends Component {
 
     render() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { t, textColor, borderColor, secondaryBackgroundColor } = this.props;
+        const { t, textColor, body } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={[styles.infoTextWrapper, borderColor]}>
-                            <Icon name="info" size={width / 20} color={secondaryBackgroundColor} />
-                            <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
-                        </View>
+                        <InfoBox
+                            body={body}
+                            text={
+                                <View>
+                                    <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
+                                </View>
+                            }
+                        />
                         <View style={{ flex: 0.2 }} />
                         {this.renderTextField(
                             (c) => {
@@ -251,7 +255,7 @@ class ChangePassword extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -269,7 +273,7 @@ class ChangePassword extends Component {
                                 >
                                     <View style={styles.itemRight}>
                                         <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                        <Icon name="eye" size={width / 28} color={secondaryBackgroundColor} />
+                                        <Icon name="eye" size={width / 28} color={body.color} />
                                     </View>
                                 </TouchableOpacity>
                             )}
