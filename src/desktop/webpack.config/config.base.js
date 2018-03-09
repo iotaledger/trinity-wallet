@@ -64,7 +64,7 @@ module.exports = {
             },
             {
                 test: /\.workers?\.js$/,
-                use: [{ loader: 'worker-loader' }, { loader: 'babel-loader' }],
+                use: [{ loader: 'worker-loader', options: { publicPath: '/' } }, { loader: 'babel-loader' }],
             },
         ],
     },
