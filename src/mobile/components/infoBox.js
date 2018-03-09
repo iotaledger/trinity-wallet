@@ -52,7 +52,11 @@ const styles = StyleSheet.create({
 class InfoBox extends PureComponent {
     static propTypes = {
         body: PropTypes.object.isRequired,
-        text: PropTypes.object.isRequired,
+        text: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+    };
+
+    static defaultProps = {
+        secondaryBackgroundColor: 'white',
     };
 
     render() {

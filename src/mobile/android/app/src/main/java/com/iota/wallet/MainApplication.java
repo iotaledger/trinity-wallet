@@ -67,7 +67,7 @@ public class MainApplication extends NavigationApplication {
             new RNExitAppPackage(),
             new RNSecureRandomPackage(),
             new RandomBytesPackage(),
-            new VectorIconsPackage()
+            new VectorIconsPackage(),
             new RNIsDeviceRootedPackage()
     );
   }
