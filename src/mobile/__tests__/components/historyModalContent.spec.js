@@ -29,6 +29,9 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
+            rebroadcast: noop,
+            promote: noop,
+            disableWhen: false,
             status: 'Receive',
             confirmation: 'Received',
             value: 200,
@@ -45,10 +48,11 @@ const getProps = (overrides) =>
                 containerBackgroundColor: { backgroundColor: 'white' },
                 confirmationStatusColor: { color: 'red' },
                 defaultTextColor: { color: 'green' },
-                backgroundColor: 'yellow',
+                backgroundColor: 'white',
                 borderColor: { borderColor: 'orange' },
                 barColor: 'black',
                 secondaryBarColor: 'white',
+                buttonsOpacity: { opacity: 1 },
             },
         },
         overrides,
@@ -90,6 +94,14 @@ describe('Testing HistoryModalContent component', () => {
 
         it('should require a bundle string as a prop', () => {
             expect(HistoryModalContent.propTypes.bundle).toEqual(PropTypes.string.isRequired);
+        });
+
+        it('should require a rebroadcast function as a prop', () => {
+            expect(HistoryModalContent.propTypes.rebroadcast).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a disableWhen boolean as a prop', () => {
+            expect(HistoryModalContent.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
         });
     });
 
