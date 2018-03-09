@@ -12,6 +12,7 @@ import find from 'lodash/find';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
+import omitBy from 'lodash/omitBy';
 import unionBy from 'lodash/unionBy';
 import { iota } from './index';
 import {
@@ -154,7 +155,7 @@ export const getAccountData = (seed, accountName) => {
     const tailTransactions = [];
     const allBundleHashes = [];
 
-    let allBundleObjects = [];
+    let allTransactionObjects = [];
 
     const data = {
         addresses: [],
@@ -176,33 +177,35 @@ export const getAccountData = (seed, accountName) => {
 
             return findTransactionObjectsAsync({ addresses: data.addresses });
         })
-        .then((txObjects) => {
-            each(txObjects, (tx) => pushIfNew(allBundleHashes, tx.bundle)); // Grab all bundle hashes
+        .then((transactionsFromAddresses) => {
+            each(transactionsFromAddresses, (tx) => pushIfNew(allBundleHashes, tx.bundle)); // Grab all bundle hashes
 
             return findTransactionObjectsAsync({ bundles: allBundleHashes });
         })
-        .then((bundleObjects) => {
-            allBundleObjects = bundleObjects;
+        .then((transactionsFromBundleHashes) => {
+            allTransactionObjects = transactionsFromBundleHashes;
 
-            each(allBundleObjects, (tx) => {
+            each(allTransactionObjects, (tx) => {
                 if (tx.currentIndex === 0) {
-                    pushIfNew(tailTransactions, tx); // Keep a copy of all tail transactions to check confirmations
+                    pushIfNew(tailTransactions, tx); // Keep track of all tail transactions to check confirmations
                 }
             });
 
-            return getLatestInclusionAsync(map(tailTransactions, (t) => t.hash));
+            return getLatestInclusionAsync(map(tailTransactions, (tx) => tx.hash));
         })
         .then((states) => {
-            const allTxsAsObjects = categorizeTransactionsByPersistence(tailTransactions, states);
-            const relevantUnconfirmedTransfers = removeIrrelevantUnconfirmedTransfers(allTxsAsObjects);
+            const { unconfirmed, confirmed } = categorizeTransactionsByPersistence(tailTransactions, states);
 
-            const finalTailTxs = [
-                ...map(allTxsAsObjects.confirmed, (t) => ({ ...t, persistence: true })),
-                ...map(relevantUnconfirmedTransfers, (t) => ({ ...t, persistence: false })),
+            // Make sure we keep a single bundle for confirmed transfers i.e. get rid of reattachments.
+            const updatedUnconfirmedTailTransactions = omitBy(unconfirmed, (tx, bundle) => bundle in confirmed);
+
+            const finalTailTransactions = [
+                ...map(confirmed, (tx) => ({ ...tx, persistence: true })),
+                ...map(updatedUnconfirmedTailTransactions, (tx) => ({ ...tx, persistence: false })),
             ];
 
-            each(finalTailTxs, (tx) => {
-                const bundle = constructBundle(tx, allBundleObjects);
+            each(finalTailTransactions, (tx) => {
+                const bundle = constructBundle(tx, allTransactionObjects);
 
                 if (iota.utils.isBundle(bundle)) {
                     // Map persistence from tail transaction object to all transfer objects in the bundle
