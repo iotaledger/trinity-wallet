@@ -168,7 +168,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
         "individualLetters": "Press individual letters to randomise them."
     },
@@ -378,9 +378,10 @@
         "enterPassword": "Enter your password to delete this account."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down.",
+        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "pressToSync": "Press the button below to clean up your account.",
+        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
     },
@@ -448,5 +449,11 @@
         "warning": "WARNING",
         "rootDetected":
             "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+    },
+    "pow": {
+        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "local": "Local",
+        "remote": "Remote"
     }
 }

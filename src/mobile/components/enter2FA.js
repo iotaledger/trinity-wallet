@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import CustomTextInput from '../components/customTextInput';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import OnboardingButtons from './onboardingButtons';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     topContainer: {
         flex: 2.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 3.6,
@@ -73,13 +72,12 @@ class Enter2FA extends Component {
     render() {
         const { codefor2FA } = this.state;
         const { secondaryBackgroundColor, negativeColor } = this.props;
-        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
+                        <Icon name="iota" size={width / 8} color={secondaryBackgroundColor} />
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
