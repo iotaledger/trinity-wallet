@@ -6,7 +6,7 @@ import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
 import MessageInput from 'ui/components/input/Message';
 import Button from 'ui/components/Button';
-import Modal from 'ui/components/modal/Modal';
+import Confirm from 'ui/components/modal/Confirm';
 
 import withSendData from 'containers/wallet/Send';
 
@@ -83,23 +83,18 @@ class Send extends React.PureComponent {
 
         return (
             <form onSubmit={(e) => this.validateInputs(e)}>
-                <Modal
-                    variant="confirm"
+                <Confirm
+                    category="primary"
                     isOpen={isModalVisible}
-                    onClose={() => this.setState({ isModalVisible: false })}
-                >
-                    <h1>
-                        You are about to send <strong>{`${formatValue(amount)} ${formatUnit(amount)}`}</strong> to the
-                        address: <br />
-                        <strong>{address}</strong>
-                    </h1>
-                    <Button onClick={() => this.setState({ isModalVisible: false })} variant="secondary">
-                        {t('global:no')}
-                    </Button>
-                    <Button onClick={this.confirmTransfer} variant="primary">
-                        {t('global:yes')}
-                    </Button>
-                </Modal>
+                    onCancel={() => this.setState({ isModalVisible: false })}
+                    onConfirm={() => this.confirmTransfer()}
+                    content={{
+                        title: `You are about to send ${formatValue(amount)} ${formatUnit(amount)} to the address`,
+                        message: address,
+                        confirm: 'confirm',
+                        cancel: 'Cancel',
+                    }}
+                />
                 <AddressInput
                     address={address}
                     onChange={(value) => this.setState({ address: value })}
