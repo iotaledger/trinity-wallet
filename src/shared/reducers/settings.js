@@ -70,8 +70,8 @@ const initialState = {
         'ZAR',
     ],
     conversionRate: 1,
-    themeName: 'Default',
-    theme: themes.Default,
+    themeName: 'Ionic',
+    theme: themes.Ionic,
     hasRandomizedNode: false,
     update: {
         done: true,
@@ -79,10 +79,16 @@ const initialState = {
         version: DESKTOP_VERSION,
         notes: [],
     },
+    remotePoW: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ActionTypes.UPDATE_POW_SETTINGS:
+            return {
+                ...state,
+                remotePoW: !state.remotePoW,
+            };
         case ActionTypes.LOCALE:
             return {
                 ...state,
@@ -165,7 +171,7 @@ const settingsReducer = (state = initialState, action) => {
                         action.payload.force || action.payload.version !== state.update.version
                             ? false
                             : state.update.done,
-                    erro: false,
+                    error: false,
                     version: action.payload.version,
                     notes: action.payload.notes,
                 },

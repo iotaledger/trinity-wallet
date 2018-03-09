@@ -1,11 +1,13 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { isValidSeed } from 'libs/util';
-import { showError } from 'actions/notifications';
-import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
-import { getSelectedSeed } from 'selectors/seeds';
+
+import { generateAlert } from 'actions/alerts';
+import { setNewSeed } from 'actions/seeds';
+
 import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
 import SeedInput from 'ui/components/input/Seed';
@@ -13,25 +15,25 @@ import SeedInput from 'ui/components/input/Seed';
 /**
  * Onboarding, Seed correct backup validation or existing seed input component
  */
-class SeedEnter extends React.PureComponent {
+class SeedVerify extends React.PureComponent {
     static propTypes = {
-        /** Add and select seed to state */
-        addAndSelectSeed: PropTypes.func.isRequired,
-        /** Clear state seed data */
-        clearSeeds: PropTypes.func.isRequired,
+        /** Current generated seed */
+        newSeed: PropTypes.string,
+        /** Accept current generated seed
+         * @param {String} seed - New seed
+         */
+        setNewSeed: PropTypes.func.isRequired,
         /** Browser History object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Current generated seed */
-        selectedSeed: PropTypes.shape({
-            seed: PropTypes.string,
-        }).isRequired,
-        /** Error modal helper
-         * @param {Object} content - error screen content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -43,6 +45,10 @@ class SeedEnter extends React.PureComponent {
         seed: '',
     };
 
+    componentDidMount() {
+        Electron.clipboard('');
+    }
+
     onChange = (value) => {
         this.setState(() => ({
             seed: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase(),
@@ -50,33 +56,32 @@ class SeedEnter extends React.PureComponent {
     };
 
     setSeed = (e) => {
-        e.preventDefault();
-        const { addAndSelectSeed, clearSeeds, history, showError, selectedSeed, t } = this.props;
+        if (e) {
+            e.preventDefault();
+        }
+
+        const { history, setNewSeed, generateAlert, newSeed, t } = this.props;
         const { seed } = this.state;
 
-        if (selectedSeed.seed && seed !== selectedSeed.seed) {
-            showError({ title: t('seedReentry:incorrectSeed'), text: t('seedReentry:incorrectSeedExplanation') });
+        if (newSeed && seed !== newSeed) {
+            generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
             return;
         }
 
         if (!isValidSeed(seed)) {
-            showError({
-                title: t('seedReentry:incorrectSeed'),
-                text: t('enterSeed:seedTooShort'),
-            });
+            generateAlert('error', t('seedReentry:incorrectSeed'), t('enterSeed:seedTooShort'));
             return;
         }
 
-        clearSeeds();
-        addAndSelectSeed(seed);
+        setNewSeed(seed);
         history.push('/onboarding/account-name');
     };
 
     render() {
-        const { selectedSeed, t } = this.props;
+        const { newSeed, t } = this.props;
         const { seed = '' } = this.state;
         return (
-            <form onSubmit={this.setSeed}>
+            <form onSubmit={(e) => this.setSeed(e)}>
                 <div />
                 <section>
                     <SeedInput
@@ -86,15 +91,24 @@ class SeedEnter extends React.PureComponent {
                         closeLabel={t('global:back')}
                     />
                     <Infobox>
-                        <p>{t('seedReentry:thisIsACheck')}</p>
-                        <p>{t('seedReentry:ifYouHaveNotSaved')}</p>
+                        {newSeed ? (
+                            <React.Fragment>
+                                <p>{t('seedReentry:thisIsACheck')}</p>
+                                <p>{t('seedReentry:ifYouHaveNotSaved')}</p>
+                            </React.Fragment>
+                        ) : (
+                            <React.Fragment>
+                                <p>{t('enterSeed:seedExplanation')}</p>
+                                <p>{t('enterSeed:neverShare')}</p>
+                            </React.Fragment>
+                        )}
                     </Infobox>
                 </section>
                 <footer>
                     <Button
-                        to={`/onboarding/seed-${selectedSeed.seed ? 'save' : 'intro'}`}
+                        to={`/onboarding/seed-${newSeed ? 'save' : 'intro'}`}
                         className="outline"
-                        variant="highlight"
+                        variant="secondary"
                     >
                         {t('global:back')}
                     </Button>
@@ -108,13 +122,12 @@ class SeedEnter extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    selectedSeed: getSelectedSeed(state),
+    newSeed: state.seeds.newSeed,
 });
 
 const mapDispatchToProps = {
-    showError,
-    addAndSelectSeed,
-    clearSeeds,
+    generateAlert,
+    setNewSeed,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(SeedEnter));
+export default translate()(connect(mapStateToProps, mapDispatchToProps)(SeedVerify));

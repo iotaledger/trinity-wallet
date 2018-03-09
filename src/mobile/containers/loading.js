@@ -15,6 +15,7 @@ import {
     getFullAccountInfo,
     fetchFullAccountInfoForFirstUse,
 } from 'iota-wallet-shared-modules/actions/account';
+import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -71,7 +72,7 @@ class Loading extends Component {
         getFullAccountInfo: PropTypes.func.isRequired,
         fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
         getMarketData: PropTypes.func.isRequired,
         getPrice: PropTypes.func.isRequired,
         getChartData: PropTypes.func.isRequired,
@@ -82,7 +83,6 @@ class Loading extends Component {
         currency: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
         ready: PropTypes.bool.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
         setSetting: PropTypes.func.isRequired,
         changeHomeScreenRoute: PropTypes.func.isRequired,
     };
@@ -132,7 +132,7 @@ class Loading extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { ready } = this.props;
+        const { ready, body } = this.props;
         const isReady = !ready && newProps.ready;
 
         if (isReady) {
@@ -144,8 +144,8 @@ class Loading extends Component {
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundColor: this.props.backgroundColor,
-                        statusBarColor: this.props.backgroundColor,
+                        screenBackgroundColor: body.bg,
+                        statusBarColor: body.bg,
                         drawUnderStatusBar: true,
                     },
                 },
@@ -178,17 +178,15 @@ class Loading extends Component {
     };
 
     render() {
-        const { firstUse, t, addingAdditionalAccount, backgroundColor, secondaryBackgroundColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-        const loadingAnimationPath =
-            secondaryBackgroundColor === 'white' ? whiteLoadingAnimation : blackLoadingAnimation;
-        const welcomeAnimationPath =
-            secondaryBackgroundColor === 'white' ? whiteWelcomeAnimation : blackWelcomeAnimation;
+        const { firstUse, t, addingAdditionalAccount, body } = this.props;
+        const textColor = { color: body.color };
+        const loadingAnimationPath = tinycolor(body.bg).isDark() ? whiteLoadingAnimation : blackLoadingAnimation;
+        const welcomeAnimationPath = tinycolor(body.bg).isDark() ? whiteWelcomeAnimation : blackWelcomeAnimation;
 
         if (firstUse || addingAdditionalAccount) {
             return (
-                <View style={[styles.container, { backgroundColor }]}>
-                    <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
+                <View style={[styles.container, { backgroundColor: body.bg }]}>
+                    <DynamicStatusBar backgroundColor={body.bg} />
                     <View style={{ flex: 1 }} />
                     <View style={styles.animationContainer}>
                         <View>
@@ -218,8 +216,8 @@ class Loading extends Component {
         }
 
         return (
-            <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} backgroundColor={backgroundColor} />
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.animationContainer}>
                     <View>
                         <LottieView
@@ -245,9 +243,7 @@ const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     ready: state.tempAccount.ready,
     password: state.tempAccount.password,
-    backgroundColor: state.settings.theme.backgroundColor,
-    negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    body: state.settings.theme.body,
     currency: state.settings.currency,
 });
 

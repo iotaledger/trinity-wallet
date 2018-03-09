@@ -3,12 +3,9 @@ import PropTypes from 'prop-types';
 import QRCode from 'qrcode.react';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { clearSeeds } from 'actions/seeds';
-import { showNotification } from 'actions/notifications';
-import { getSelectedSeed } from 'selectors/seeds';
 
 import Button from 'ui/components/Button';
+import Clipboard from 'ui/components/Clipboard';
 
 import css from './seedSave.css';
 
@@ -19,11 +16,6 @@ class SeedSave extends PureComponent {
     static propTypes = {
         /** Current user defined seed */
         seed: PropTypes.string,
-        /** Notification helper
-         * @param {object} content - notification content
-         * @ignore
-         */
-        showNotification: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -32,7 +24,7 @@ class SeedSave extends PureComponent {
     };
 
     render() {
-        const { t, seed, showNotification } = this.props;
+        const { t, seed } = this.props;
 
         return (
             <React.Fragment>
@@ -47,29 +39,23 @@ class SeedSave extends PureComponent {
                         </p>
                     </Trans>
                     <nav className={css.nav}>
-                        <CopyToClipboard text={seed}>
-                            <Button
-                                className="small"
-                                variant="secondary"
-                                onClick={() =>
-                                    showNotification({
-                                        type: 'success',
-                                        title: 'Seed copied to clipboard!',
-                                        text:
-                                            'Copy your seed to a password manager and do not store the seed in plain text. The seed will stay in your clipboard for 60 seconds',
-                                    })
-                                }
-                            >
+                        <Clipboard
+                            text={seed}
+                            timeout={60}
+                            title={t('copyToClipboard:seedCopied')}
+                            success={t('copyToClipboard:seedCopiedExplanation')}
+                        >
+                            <Button className="small" variant="secondary">
                                 {t('copyToClipboard:copyToClipboard')}
                             </Button>
-                        </CopyToClipboard>
+                        </Clipboard>
                         <Button className="small" onClick={() => window.print()} variant="secondary">
                             {t('paperWallet:printWallet')}
                         </Button>
                     </nav>
                 </section>
                 <footer>
-                    <Button to="/onboarding/seed-generate" className="outline" variant="highlight">
+                    <Button to="/onboarding/seed-generate" className="outline" variant="secondary">
                         {t('global:back')}
                     </Button>
                     <Button to="/onboarding/seed-verify" className="outline" variant="primary">
@@ -82,12 +68,7 @@ class SeedSave extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seed: getSelectedSeed(state).seed,
+    seed: state.seeds.newSeed,
 });
 
-const mapDispatchToProps = {
-    clearSeeds,
-    showNotification,
-};
-
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(SeedSave));
+export default translate()(connect(mapStateToProps)(SeedSave));
