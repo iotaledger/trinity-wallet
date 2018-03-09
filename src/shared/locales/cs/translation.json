@@ -19,7 +19,7 @@
         "invalidResponse": "Neplatná odpověď",
         "invalidResponseExplanation": "Node vrátil neplatnou odpověď.",
         "invalidResponsePollingExplanation": "Node vrátil při dotazování neplatnou odpověď.",
-        "invalidResponseFetchingAccount": "Při načítání informací o Vašem účtu vrátil uzel neplatnou odpověď. Zkuste změnit uzel.",
+        "invalidResponseFetchingAccount": "Node vrátil neplatnou odpověď při načítání informací o Vašem účtu. Zkuste změnit uzel-Node.",
         "invalidResponseSendingTransfer": "Při odesílání transakce vrátil uzel neplatnou odpověď.",
         "seed": "Seed",
         "back": "ZPĚT",
@@ -428,7 +428,7 @@
         "rootDetected": "<0>Zdá se že Vaše zařízení je rooted/jailbroken.</ 0><1>To může znamenat značné riziko pro zabezpečení peněženky.</ 1><2>Chcete pokračovat navzdory tomuto riziku?</ 2>"
     },
     "pow": {
-        "feeless": "Pro odeslání bezplatné transakce v IOTA je potřeba dokončit trochu proof of work.",
+        "feeless": "Pro odeslání bezplatné transakce v IOTA je potřeba malý důkaz práce-proof of work.",
         "localOrRemote": "Proof of work může být dokončen lokálně ve Vašem zařízení, nebo být vyložen do Nodu.",
         "local": "Lokální",
         "remote": "Vzdálený"
