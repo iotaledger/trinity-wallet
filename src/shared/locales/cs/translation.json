@@ -17,8 +17,8 @@
         "keyReuse": "Opětovné použití klíče",
         "keyReuseError": "Nelze odeslat na adresu na kterou již bylo odesláno.",
         "invalidResponse": "Neplatná odpověď",
-        "invalidResponseExplanation": "Uzel vrátil neplatnou odpověď.",
-        "invalidResponsePollingExplanation": "Uzel vrátil při dotazování neplatnou odpověď.",
+        "invalidResponseExplanation": "Node vrátil neplatnou odpověď.",
+        "invalidResponsePollingExplanation": "Node vrátil při dotazování neplatnou odpověď.",
         "invalidResponseFetchingAccount": "Při načítání informací o Vašem účtu vrátil uzel neplatnou odpověď. Zkuste změnit uzel.",
         "invalidResponseSendingTransfer": "Při odesílání transakce vrátil uzel neplatnou odpověď.",
         "seed": "Seed",
@@ -70,7 +70,7 @@
         "addresses": "Adresy",
         "reattach": "ZNOVU PŘIPOJIT",
         "promote": "PODPOROVAT",
-        "rebroadcast": "ZNOVU ODVYSÍLAT",
+        "rebroadcast": "OPAKOVÁNÍ PŘENOSU",
         "pressBackAgain": "Opětovným stisknutím tlačítka Zpět zavřete aplikaci",
         "autoreattaching": "Automatické připojení do Tangle",
         "autoreattachingExplanation": "Opětovné připojení transakce s hash {{hash}}",
@@ -150,7 +150,7 @@
         "login": "PŘIHLÁSIT SE",
         "selectDifferentNode": "Chcete vybrat jiný NODE?",
         "setNode": "NASTAVIT NODE",
-        "cannotConnect": "Nelze se připojit k IOTA Nodu."
+        "cannotConnect": "K Nodu IOTA se nelze připojit."
     },
     "loading": {
         "loadingFirstTime": "První načítání Seedu.",
@@ -275,7 +275,7 @@
         "couldNotFetchRates": "Nelze načíst ceny",
         "couldNotFetchRatesExplanation": "Došlo k chybě při načítání kurzu pro {{currency}}.",
         "fetchedConversionRates": "Načítám kurzy",
-        "fetchedConversionRatesExplanation": "Úspěšně načtení nejnovějších kurzů pro {{currency}}."
+        "fetchedConversionRatesExplanation": "Úspěšně načtené nejnovější kurzy pro {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pro smazání peněženky zadejte Vaše heslo.",
