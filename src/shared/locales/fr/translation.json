@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "La seed n'a pas été générée",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Veuillez générer un nouveau seed.",
         "pressForNewSeed": "NOUVELLE SEED",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées."
     },
@@ -358,10 +358,10 @@
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "outOfSync": "Est-ce que votre historique de transaction semble ne pas être synchronisé?",
         "pressToSync": "Press the button below to clean up your account.",
         "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "doNotClose": "Veuillez noter que réduire l'application annulera la synchronisation.",
         "syncAccount": "SYNCHRONISER LE COMPTE",
         "syncingYourAccount": "Synchronisation de votre compte."
     },
@@ -428,9 +428,9 @@
         "rootDetected": "<0>Votre appareil semble être rooté/jailbreaké</0><1>Ceci peut poser un risque important pour la sécurité de votre portefeuille.</1><2>Voulez-vous continuer malgré ce risque ?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "feeless": "Il est nécessaire de remplir une petite preuve du travail pour envoyer des transactions sans frais en IOTA.",
+        "localOrRemote": "La preuve du travail peut être effectuée localement sur votre appareil ou sur un serveur à distance .",
         "local": "Local",
-        "remote": "Remote"
+        "remote": "A distance"
     }
 }
