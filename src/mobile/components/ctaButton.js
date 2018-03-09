@@ -6,7 +6,6 @@ import { width, height } from '../util/dimensions';
 const styles = StyleSheet.create({
     ctaButton: {
         borderRadius: height / 15,
-        height: height / 14,
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1.2,
@@ -26,14 +25,15 @@ class CtaButton extends React.Component {
         onPress: PropTypes.func.isRequired,
         ctaColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
-        ctaBorderColor: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,
         ctaWidth: PropTypes.number,
+        ctaHeight: PropTypes.number,
         testID: PropTypes.string,
     };
 
     static defaultProps = {
         ctaWidth: width / 1.2,
+        ctaHeight: height / 14,
         testID: '',
     };
 
@@ -42,7 +42,7 @@ class CtaButton extends React.Component {
     }
 
     render() {
-        const { ctaColor, ctaBorderColor, secondaryCtaColor, text, ctaWidth, testID } = this.props;
+        const { ctaColor, secondaryCtaColor, text, ctaWidth, ctaHeight, testID } = this.props;
 
         return (
             <View style={styles.ctaButtonContainer}>
@@ -56,8 +56,9 @@ class CtaButton extends React.Component {
                         style={[
                             styles.ctaButton,
                             { backgroundColor: ctaColor },
-                            { borderColor: ctaBorderColor },
+                            { borderColor: 'transparent' },
                             { width: ctaWidth },
+                            { height: ctaHeight },
                         ]}
                     >
                         <Text style={[styles.ctaText, { color: secondaryCtaColor }]}>{text}</Text>

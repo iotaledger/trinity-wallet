@@ -27,8 +27,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            backgroundColor: 'white',
-            secondaryBackgroundColor: 'white',
+            body: { bg: 'white', color: 'red' },
             navigator: {},
             generateAlert: noop,
             t: () => '',
@@ -38,12 +37,8 @@ const getProps = (overrides) =>
 
 describe('Testing TwoFactorSetupAddKey component', () => {
     describe('propTypes', () => {
-        it('should require a backgroundColor string as a prop', () => {
-            expect(TwoFactorSetupAddKey.propTypes.backgroundColor).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require a secondaryBackgroundColor string as a prop', () => {
-            expect(TwoFactorSetupAddKey.propTypes.secondaryBackgroundColor).toEqual(PropTypes.string.isRequired);
+        it('should require a body object as a prop', () => {
+            expect(TwoFactorSetupAddKey.propTypes.body).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a navigator object as a prop', () => {
@@ -75,13 +70,6 @@ describe('Testing TwoFactorSetupAddKey component', () => {
 
             const wrapper = shallow(<TwoFactorSetupAddKey {...props} />);
             expect(wrapper.find('View').length).toEqual(6);
-        });
-
-        it('should return an Image component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TwoFactorSetupAddKey {...props} />);
-            expect(wrapper.find('Image').length).toEqual(1);
         });
 
         it('should return a QRCode component', () => {

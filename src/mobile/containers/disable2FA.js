@@ -8,17 +8,15 @@ import { setFirstUse, setOnboardingComplete, set2FAStatus } from 'iota-wallet-sh
 import { Navigation } from 'react-native-navigation';
 import { clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-import COLORS from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import CustomTextInput from '../components/customTextInput';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -58,18 +56,13 @@ const styles = StyleSheet.create({
         paddingTop: height / 25,
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
 });
 
 class Disable2FA extends Component {
     static propTypes = {
         generateAlert: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         set2FAStatus: PropTypes.func.isRequired,
     };
@@ -112,15 +105,16 @@ class Disable2FA extends Component {
     }
 
     goBack() {
+        const { body } = this.props;
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
+                    screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: this.props.backgroundColor,
+                    statusBarColor: body.bg,
                 },
             },
             appStyle: {
@@ -131,34 +125,17 @@ class Disable2FA extends Component {
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor } = this.props;
-        const backgroundColor = { backgroundColor: this.props.backgroundColor };
-        const textColor = { color: secondaryBackgroundColor };
-        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
-
-        const onboardingButtonsOverride = {
-            rightButton: {
-                borderColor: COLORS.red,
-            },
-            rightText: {
-                color: COLORS.red,
-                fontFamily: Fonts.secondary,
-            },
-            leftButton: {
-                borderColor: negativeColor,
-            },
-            leftText: {
-                color: negativeColor,
-            },
-        };
+        const { t, body, theme } = this.props;
+        const backgroundColor = { backgroundColor: body.bg };
+        const textColor = { color: body.color };
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar textColor={body.color} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
+                            <Icon name="iota" size={width / 8} color={body.color} />{' '}
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={[styles.generalText, textColor]}>Enter your token to disable 2FA</Text>
@@ -170,15 +147,13 @@ class Disable2FA extends Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
                                 value={this.state.token}
                                 keyboardType="numeric"
+                                theme={theme}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
-                                style={onboardingButtonsOverride}
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.disable2FA}
                                 leftText={t('cancel')}
@@ -187,19 +162,14 @@ class Disable2FA extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert
-                    textColor={secondaryBackgroundColor}
-                    backgroundColor={this.props.backgroundColor}
-                />
+                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    negativeColor: state.settings.theme.negativeColor,
-    backgroundColor: state.settings.theme.backgroundColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {
