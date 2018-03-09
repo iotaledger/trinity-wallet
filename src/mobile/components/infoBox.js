@@ -3,6 +3,7 @@ import { View, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
+import tinycolor from 'tinycolor2';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 
@@ -39,13 +40,6 @@ const styles = StyleSheet.create({
         top: height / 24,
         left: width / 17,
     },
-    infoText: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 27.6,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
     banner: {
         borderTopLeftRadius: 6,
         borderTopRightRadius: 6,
@@ -57,7 +51,7 @@ const styles = StyleSheet.create({
 
 class InfoBox extends PureComponent {
     static propTypes = {
-        secondaryBackgroundColor: PropTypes.string,
+        body: PropTypes.object.isRequired,
         text: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
     };
 
@@ -66,18 +60,18 @@ class InfoBox extends PureComponent {
     };
 
     render() {
-        const { secondaryBackgroundColor, text } = this.props;
-        const isBackgroundWhite = secondaryBackgroundColor === 'white';
-        const infoImagePath = isBackgroundWhite ? whiteInfoImagePath : blackInfoImagePath;
-        const innerContainerBackgroundColor = isBackgroundWhite
-            ? { backgroundColor: 'rgba(255, 255, 255, 0.05)' }
-            : { backgroundColor: 'rgba(0, 0, 0, 0.05)' };
-        const bannerBackgroundColor = isBackgroundWhite
-            ? { backgroundColor: 'rgba(255, 255, 255, 0.15)' }
-            : { backgroundColor: 'rgba(0, 0, 0, 0.15)' };
-        const iconContainerBackgroundColor = isBackgroundWhite
-            ? { backgroundColor: 'rgba(255, 255, 255, 0.11)' }
-            : { backgroundColor: 'rgba(0, 0, 0, 0.11)' };
+        const { body, text } = this.props;
+        const isDark = tinycolor(body.color).isDark();
+        const infoImagePath = isDark ? blackInfoImagePath : whiteInfoImagePath;
+        const innerContainerBackgroundColor = isDark
+            ? { backgroundColor: 'rgba(0, 0, 0, 0.05)' }
+            : { backgroundColor: 'rgba(255, 255, 255, 0.05)' };
+        const bannerBackgroundColor = isDark
+            ? { backgroundColor: 'rgba(0, 0, 0, 0.15)' }
+            : { backgroundColor: 'rgba(255, 255, 255, 0.15)' };
+        const iconContainerBackgroundColor = isDark
+            ? { backgroundColor: 'rgba(0, 0, 0, 0.11)' }
+            : { backgroundColor: 'rgba(255, 255, 255, 0.11)' };
 
         return (
             <View style={styles.fieldContainer}>

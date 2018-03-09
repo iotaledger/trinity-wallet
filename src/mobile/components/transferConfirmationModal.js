@@ -58,7 +58,7 @@ class TransferConfirmationModal extends Component {
         sendTransfer: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         address: PropTypes.string.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
         value: PropTypes.number.isRequired,
@@ -95,7 +95,7 @@ class TransferConfirmationModal extends Component {
     }
 
     render() {
-        const { t, backgroundColor, textColor, borderColor, value, conversionText, amount } = this.props;
+        const { t, body, textColor, borderColor, value, conversionText, amount } = this.props;
         // TODO: fix this using trans component
 
         /*
@@ -128,7 +128,7 @@ class TransferConfirmationModal extends Component {
             );
         }
         return (
-            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor }}>
+            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: body.bg }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <View style={styles.textContainer}>
                         <Text style={[styles.text, textColor]}>
