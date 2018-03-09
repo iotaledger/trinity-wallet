@@ -227,9 +227,13 @@ export const fetchFullAccountInfoForFirstUse = (
             mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
         )
         .then((dataWithPendingTxHashesForSpentAddresses) => {
+           if (storeInKeychainPromise){
             storeInKeychainPromise(password, seed, accountName)
                 .then(() => dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithPendingTxHashesForSpentAddresses)))
                 .catch((err) => onError(err));
+           } else {
+              dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithPendingTxHashesForSpentAddresses));
+           }
         })
         .catch((err) => onError(err));
 };

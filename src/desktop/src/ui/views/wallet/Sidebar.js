@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { clearTempData } from 'actions/tempAccount';
-import { getSeedItems, getSelectedIndex } from 'selectors/seeds';
 import { NavLink } from 'react-router-dom';
-import { selectSeed } from 'actions/seeds';
+
+import { clearTempData, setSeedIndex } from 'actions/tempAccount';
 
 import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
@@ -18,23 +17,23 @@ class Sidebar extends React.PureComponent {
     static propTypes = {
         /* Browser location objects */
         location: PropTypes.object,
+        /** Available account names
+         * @ignore
+         */
         /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Seed data state object
-         * @ignore
+        /** Accounts state data */
+        accounts: PropTypes.array,
+        /** Set seed index state
+         *  @param {Number} Index - Seed index
          */
-        seeds: PropTypes.array,
+        setSeedIndex: PropTypes.func.isRequired,
         /** Current seed index
          * @ignore
          */
-        selectedSeedIndex: PropTypes.number,
-        /** Change active account
-         * @param {Number} Index - Target seed index
-         * @ignore
-         */
-        selectSeed: PropTypes.func.isRequired,
+        seedIndex: PropTypes.number,
         /** Clear temporary seed state data
          * @ignore
          */
@@ -65,7 +64,7 @@ class Sidebar extends React.PureComponent {
     };
 
     render() {
-        const { seeds, selectedSeedIndex, selectSeed, t, history, location } = this.props;
+        const { accounts, seedIndex, setSeedIndex, t, location, history } = this.props;
         const { modalLogout } = this.state;
 
         return (
@@ -80,17 +79,17 @@ class Sidebar extends React.PureComponent {
                             <Icon icon="wallet" size={20} />
                         </a>
                         <ul>
-                            {seeds.map((seed, index) => {
+                            {accounts.map((account, index) => {
                                 return (
                                     <a
-                                        aria-current={selectedSeedIndex === index}
-                                        key={seed.seed}
+                                        aria-current={index === seedIndex}
+                                        key={account}
                                         onClick={() => {
-                                            selectSeed(index);
+                                            setSeedIndex(index);
                                             history.push('/wallet/');
                                         }}
                                     >
-                                        <strong>My acc</strong>
+                                        <strong>{account}</strong>
                                     </a>
                                 );
                             })}
@@ -126,13 +125,13 @@ class Sidebar extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seeds: getSeedItems(state),
-    selectedSeedIndex: getSelectedIndex(state),
+    accounts: state.account.seedNames,
+    seedIndex: state.tempAccount.seedIndex,
 });
 
 const mapDispatchToProps = {
-    selectSeed,
     clearTempData,
+    setSeedIndex,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Sidebar));

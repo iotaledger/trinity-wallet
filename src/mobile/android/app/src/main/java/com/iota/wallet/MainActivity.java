@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.view.Gravity;
 import android.util.TypedValue;
 
-
 public class MainActivity extends SplashActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

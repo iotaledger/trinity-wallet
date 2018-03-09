@@ -35,7 +35,7 @@
     }
     &:disabled,
     &.disabled {
-        opacity: 0.5;
+        opacity: 0.3;
         pointer-events: none;
     }
     &:before {
@@ -64,6 +64,7 @@ footer{
     composes: button;
     color: var(--primary-body);
     background: var(--primary);
+    display: inline;
     &:hover {
         background: var(--primary-hover);
     }

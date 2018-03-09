@@ -8,6 +8,11 @@
     align-items: center;
     justify-content: center;
     background: var(--body-bg);
+
+    &.inline {
+        position: relative;
+    }
+
     > div {
         text-align: center;
     }

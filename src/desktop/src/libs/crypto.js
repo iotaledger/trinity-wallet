@@ -40,9 +40,7 @@ export const setVault = (oldPassword, newPassword, content) => {
     if (vault) {
         try {
             const decryptedVault = JSON.parse(sjcl.decrypt(oldPassword, vault));
-            if (!content) {
-                content = decryptedVault;
-            }
+            content = Object.assign({}, decryptedVault, content);
         } catch (err) {
             throw new Error('Incorrect password');
         }
@@ -55,7 +53,6 @@ export const setVault = (oldPassword, newPassword, content) => {
 /**
  * Get and decrypt seed data from local storage
  * @param {String} password - Storage encryption password
- * @param {Bool} leaveKey - Should two-factor be left on response
  * @returns {Object} Decrypted seed data
  */
 export const getVault = (password) => {

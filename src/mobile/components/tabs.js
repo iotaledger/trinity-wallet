@@ -2,22 +2,20 @@ import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
-import { height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     tabBar: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        alignItems: 'flex-end',
+        alignItems: 'stretch',
         opacity: 0.98,
-        paddingBottom: height / 65,
     },
 });
 
 class Tabs extends Component {
     render() {
-        const { children, onPress, currentRoute } = this.props;
+        const { children, onPress, currentRoute, barColor } = this.props;
 
         const childComponents = Children.map(children, (child) =>
             cloneElement(child, {
@@ -26,9 +24,7 @@ class Tabs extends Component {
             }),
         );
 
-        const tabContainer = (
-            <View style={[styles.tabBar, { backgroundColor: this.props.barColor }]}>{childComponents}</View>
-        );
+        const tabContainer = <View style={[styles.tabBar, { backgroundColor: barColor }]}>{childComponents}</View>;
 
         return tabContainer;
     }
