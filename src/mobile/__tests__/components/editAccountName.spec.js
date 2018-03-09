@@ -22,6 +22,7 @@ const getProps = (overrides) =>
             backPress: noop,
             textColor: { color: 'white' },
             secondaryBackgroundColor: 'white',
+            theme: {},
         },
         overrides,
     );

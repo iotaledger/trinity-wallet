@@ -36,6 +36,8 @@ const getProps = (overrides) =>
             },
             closeTopBar: noop,
             onTabSwitch: noop,
+            currency: 'USD',
+            conversionRate: 1,
         },
         overrides,
     );
@@ -187,13 +189,13 @@ describe('Testing Balance component', () => {
                     expect(Array.isArray(returnValue)).toEqual(true);
                 });
 
-                it('should have "time", "confirmationStatus", "value", "unit", "sign", "iconPath" and "style" props in each item in array', () => {
+                it('should have "time", "confirmationStatus", "value", "unit", "sign", and "style" props in each item in array', () => {
                     const props = getProps({ transfers });
 
                     const instance = shallow(<Balance {...props} />).instance();
                     const returnValueHead = instance.prepTransactions()[0];
 
-                    ['time', 'confirmationStatus', 'value', 'unit', 'sign', 'iconPath', 'style'].forEach((prop) =>
+                    ['time', 'confirmationStatus', 'value', 'unit', 'sign', 'style'].forEach((prop) =>
                         expect(Object.keys(returnValueHead).includes(prop)).toEqual(true),
                     );
 
