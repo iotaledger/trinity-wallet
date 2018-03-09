@@ -71,7 +71,7 @@
         "reattach": "ZNOVU PŘIPOJIT",
         "promote": "PODPOROVAT",
         "rebroadcast": "ZNOVU ODVYSÍLAT",
-        "pressBackAgain": "Opětovným stisknutím tlačítka zpět zavřete aplikaci",
+        "pressBackAgain": "Opětovným stisknutím tlačítka Zpět zavřete aplikaci",
         "autoreattaching": "Automatické připojení do Tangle",
         "autoreattachingExplanation": "Opětovné připojení transakce s hash {{hash}}",
         "autopromoting": "Automatická podpora přenosu",
@@ -108,7 +108,7 @@
         "passwordTooShort": "Heslo je příliš krátké",
         "passwordTooShortExplanation": "Vaše heslo musí mít nejméně 12 znaků. Prosím zkuste to znovu.",
         "oldPassword": "Staré heslo nelze nastavit",
-        "oldPasswordExplanation": "Staré heslo nelze použít jako nové heslo. Zopakujte akci s novým heslem.",
+        "oldPasswordExplanation": "Staré heslo nelze použít jako nové heslo. Zkuste znovu s novým heslem.",
         "ensureStrongPassword": "Ujistěte se, že používáte silné heslo alespoň 12 znaků.",
         "currentPassword": "Stávající heslo",
         "newPassword": "Nové heslo",
@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed nebyl vygenerován",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Prosím vygenerujte nový Seed.",
         "pressForNewSeed": "VYGENERUJ NOVÝ SEED",
         "individualLetters": "Vyberte náhodná písmena."
     },
@@ -361,7 +361,7 @@
         "outOfSync": "Does your transaction history look like it may be out of sync?",
         "pressToSync": "Press the button below to clean up your account.",
         "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "doNotClose": "Upozorňujeme, že minimalizace aplikace zruší synchronizaci.",
         "syncAccount": "SYNCHRONIZOVAT ÚČET",
         "syncingYourAccount": "Synchronizuji Váš účet."
     },
