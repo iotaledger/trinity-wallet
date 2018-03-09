@@ -30,6 +30,8 @@ const getProps = (overrides) =>
             message: 'Honey and the moon',
             bundle: 'BUNDLE',
             addresses: [{ address: 'U'.repeat(81), value: 1, unit: 'i' }],
+            confirmationBool: false,
+            mode: 'Standard',
             style: {
                 titleColor: 'white',
                 containerBorderColor: { borderColor: 'white' },
@@ -38,6 +40,8 @@ const getProps = (overrides) =>
                 defaultTextColor: { color: 'green' },
                 backgroundColor: 'yellow',
                 borderColor: { borderColor: 'orange' },
+                secondaryBarColor: 'white',
+                barColor: 'white',
             },
         },
         overrides,
