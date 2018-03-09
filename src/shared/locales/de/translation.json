@@ -428,9 +428,9 @@
         "rootDetected": "<0>Dein Gerät scheint gerooted/jailbroken zu sein.</0> <1>Dies kann ein erhebliches Risiko für die Sicherheit Ihrer Wallet nach sich ziehen.</1> <2>Möchtest du trotz dieses Risikos fortfahren?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
+        "feeless": "Um gebührenfreie Transaktionen mit IOTA zu tätigen ist ein kleiner \"proof of work\" nötig.",
+        "localOrRemote": "Der \"proof of work\" kann entweder lokal auf dem Gerät errechnet oder von einem Server übernommen werden.",
+        "local": "Lokal",
         "remote": "Remote"
     }
 }
