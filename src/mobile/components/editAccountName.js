@@ -23,11 +23,6 @@ const styles = StyleSheet.create({
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
-    saveButtonContainer: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     bottomContainer: {
         flex: 1,
         width,
@@ -96,6 +91,7 @@ export class EditAccountName extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
+                        <View style={{ flex: 0.2 }} />
                         <View style={styles.textFieldContainer}>
                             <CustomTextInput
                                 label={t('accountName')}
@@ -110,7 +106,7 @@ export class EditAccountName extends Component {
                                 theme={theme}
                             />
                         </View>
-                        <View style={styles.saveButtonContainer} />
+                        <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity

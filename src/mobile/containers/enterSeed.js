@@ -129,6 +129,7 @@ class EnterSeed extends React.Component {
      */
     onQRRead(data) {
         const dataString = data.toString();
+        const { t } = this.props; 
         if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
