@@ -13,25 +13,55 @@ import {
 
 describe('libs: iota/transfers', () => {
     describe('#prepareTransferArray', () => {
-        let args;
-
-        beforeEach(() => {
-            args = ['foo', 0, 'message'];
-        });
-
         it('should return an array', () => {
+            const args = ['foo', 1, 'message', 'U'.repeat(81)];
             expect(Array.isArray(prepareTransferArray(...args))).to.equal(true);
         });
 
-        it('should only have address, value, message and tag props in the first element of the array', () => {
+        it('should only have address, value, message and tag props in any element of the array', () => {
+            const args = ['foo', 0, 'message', 'U'.repeat(81)];
             const result = prepareTransferArray(...args);
-            ['address', 'value', 'message', 'tag'].forEach((item) => expect(item in result[0]).to.equal(true));
+
+            // Zero value transfers return two transfer objects
+            ['address', 'value', 'message', 'tag'].forEach((item) => {
+                expect(item in result[0]).to.equal(true);
+                expect(item in result[1]).to.equal(true);
+            });
+
             expect(Object.keys(result[0]).length).to.equal(4);
+            expect(Object.keys(result[1]).length).to.equal(4);
         });
 
-        it('should not have any other props other than address, value, message and tag props in the first element of the array', () => {
+        it('should not have any other props other than address, value, message and tag props in any element of the array', () => {
+            const args = ['foo', 0, 'message', 'U'.repeat(81)];
             const result = prepareTransferArray(...args);
-            ['foo', 'baz'].forEach((item) => expect(item in result[0]).to.equal(false));
+
+            ['foo', 'baz'].forEach((item) => {
+                expect(item in result[0]).to.equal(false);
+                expect(item in result[1]).to.equal(false); // Zero value transfers return two transfer objects
+            });
+        });
+
+        it('should return two transfer objects if value passed as second argument is 0', () => {
+            const args = ['foo', 0, 'message', 'U'.repeat(81)];
+            const result = prepareTransferArray(...args);
+
+            expect(result.length).to.equal(2);
+        });
+
+        it('should return a single transfer object if value passed as second argument is not 0', () => {
+            const args = ['foo', 1, 'message', 'U'.repeat(81)];
+            const result = prepareTransferArray(...args);
+
+            expect(result.length).to.equal(1);
+        });
+
+        it('should assign "firstOwnAddress" passed as fourth argument to second transfer object if value passed as second argument is 0', () => {
+            const firstOwnAddress = 'U'.repeat(81);
+            const args = ['foo', 0, 'message', firstOwnAddress];
+            const result = prepareTransferArray(...args);
+
+            expect(result[1].address).to.equal(firstOwnAddress);
         });
     });
 

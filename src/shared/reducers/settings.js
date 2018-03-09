@@ -73,10 +73,16 @@ const initialState = {
     themeName: 'Ionic',
     theme: themes.Ionic,
     hasRandomizedNode: false,
+    remotePoW: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ActionTypes.UPDATE_POW_SETTINGS:
+            return {
+                ...state,
+                remotePoW: !state.remotePoW,
+            };
         case ActionTypes.LOCALE:
             return {
                 ...state,

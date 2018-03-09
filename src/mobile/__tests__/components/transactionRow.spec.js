@@ -22,8 +22,11 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
+            rebroadcast: noop,
+            promote: noop,
             status: 'Receive',
             confirmation: 'Received',
+            disableWhen: false,
             value: 200,
             unit: 'i',
             time: Date.now(),
@@ -39,9 +42,10 @@ const getProps = (overrides) =>
                 confirmationStatusColor: { color: 'red' },
                 defaultTextColor: { color: 'green' },
                 backgroundColor: 'yellow',
-                borderColor: { borderColor: 'orange' },
+                borderColor: { borderColor: 'white' },
                 secondaryBarColor: 'white',
                 barColor: 'white',
+                buttonsOpacity: { opacity: 1 },
             },
         },
         overrides,
@@ -83,6 +87,14 @@ describe('Testing TransactionRow component', () => {
 
         it('should require a bundle string as a prop', () => {
             expect(TransactionRow.propTypes.bundle).toEqual(PropTypes.string.isRequired);
+        });
+
+        it('should require a rebroadcast function as a prop', () => {
+            expect(TransactionRow.propTypes.rebroadcast).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a disableWHen boolean as a prop', () => {
+            expect(TransactionRow.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
         });
     });
 

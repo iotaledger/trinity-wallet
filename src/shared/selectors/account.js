@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
+import findKey from 'lodash/findKey';
 import { createSelector } from 'reselect';
 import { deduplicateTransferBundles } from '../libs/iota/transfers';
 
@@ -26,9 +27,8 @@ export const getSelectedAccountViaSeedIndex = createSelector(currentAccountSelec
 
 export const getSelectedAccountNameViaSeedIndex = createSelector(currentAccountNameSelectorBySeedIndex, (name) => name);
 
-export const getBalanceForSelectedAccountViaSeedIndex = createSelector(
-    currentAccountSelectorBySeedIndex,
-    (account) => get(account, 'balance'),
+export const getBalanceForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) =>
+    get(account, 'balance'),
 );
 
 export const getAddressesForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) =>
@@ -48,6 +48,25 @@ export const getDeduplicatedTransfersForSelectedAccountViaSeedIndex = createSele
     currentAccountSelectorBySeedIndex,
     (account) => deduplicateTransferBundles(get(account, 'transfers')),
 );
+
+/**
+ *   Selects settings prop from state.
+ *
+ *   @method getSettingsFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getSettingsFromState = (state) => state.settings || {};
+
+/**
+ *   Selects remotePoW prop from settings reducer state object.
+ *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
+ *
+ *   @method getRemotePoWFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getRemotePoWFromState = createSelector(getSettingsFromState, (state) => state.remotePoW);
 
 /**
  *   Selects account prop from state.
@@ -129,5 +148,18 @@ export const selectedAccountStateFactory = (accountName) => {
             txHashesForUnspentAddresses: txHashesForUnspentAddresses[accountName] || [],
             pendingTxHashesForSpentAddresses: pendingTxHashesForSpentAddresses[accountName] || [],
         }),
+    );
+};
+
+/**
+ *   Selects address at index 0 from account info state partial.
+ *
+ *   @method selectFirstAddressFromAccountFactory
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const selectFirstAddressFromAccountFactory = (accountName) => {
+    return createSelector(getAccountInfoFromState, (state) =>
+        findKey(state[accountName].addresses, (addressMeta) => addressMeta.index === 0),
     );
 };

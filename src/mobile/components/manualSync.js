@@ -68,11 +68,15 @@ const ManualSync = (props) => (
                         body={props.body}
                         text={
                             <View>
-                                <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:pressToSync')}</Text>
+                                <Text style={[styles.infoText, props.textColor]}>
+                                    {props.t('manualSync:outOfSync')}
+                                </Text>
+                                <Text style={[styles.infoText, props.textColor, { paddingTop: height / 50 }]}>
+                                    {props.t('manualSync:pressToSync')}
+                                </Text>
                             </View>
                         }
                     />
-                    <View style={{ flex: 0.2 }} />
                     <View style={styles.syncButtonContainer}>
                         <CtaButton
                             ctaColor={props.primary.color}
@@ -91,9 +95,15 @@ const ManualSync = (props) => (
                         body={props.body}
                         text={
                             <View>
-                                <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:syncingYourAccount')}</Text>
-                                <Text style={[styles.infoText, props.textColor, { paddingTop: height / 50 }]}>{props.t('manualSync:thisMayTake')}</Text>
-                                <Text style={[styles.infoText, props.textColor, { paddingTop: height / 50 }]}>{props.t('manualSync:doNotClose')}</Text>
+                                <Text style={[styles.infoText, props.textColor]}>
+                                    {props.t('manualSync:syncingYourAccount')}
+                                </Text>
+                                <Text style={[styles.infoText, props.textColor, { paddingTop: height / 50 }]}>
+                                    {props.t('manualSync:thisMayTake')}
+                                </Text>
+                                <Text style={[styles.infoText, props.textColor, { paddingTop: height / 50 }]}>
+                                    {props.t('manualSync:doNotClose')}
+                                </Text>
                             </View>
                         }
                     />
@@ -113,11 +123,7 @@ const ManualSync = (props) => (
                     hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                 >
                     <View style={styles.item}>
-                        <Icon
-                            name='chevronLeft'
-                            size={width / 28}
-                            color={props.body.color}
-                        />
+                        <Icon name="chevronLeft" size={width / 28} color={props.body.color} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('global:backLowercase')}</Text>
                     </View>
                 </TouchableOpacity>
