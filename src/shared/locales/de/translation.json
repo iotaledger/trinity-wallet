@@ -359,7 +359,7 @@
     },
     "manualSync": {
         "outOfSync": "Sieht der Verlauf deiner Transaktionen so aus, als ob er nicht synchronisiert wäre?",
-        "pressToSync": "Press the button below to clean up your account.",
+        "pressToSync": "Drücke den Knopf unten, um deinen Konto aufzuräumen.",
         "thisMayTake": "Dies könnte eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
         "doNotClose": "Beim minimieren der App wird die Synchronisierung abgebrochen.",
         "syncAccount": "SYNCHRONISIEREN",
@@ -431,6 +431,6 @@
         "feeless": "Um gebührenfreie Transaktionen mit IOTA zu tätigen ist ein kleiner \"proof of work\" nötig.",
         "localOrRemote": "Der \"proof of work\" kann entweder lokal auf dem Gerät errechnet oder von einem Server übernommen werden.",
         "local": "Lokal",
-        "remote": "Remote"
+        "remote": "Fernberechnung"
     }
 }
