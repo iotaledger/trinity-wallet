@@ -171,7 +171,7 @@ const settingsReducer = (state = initialState, action) => {
                         action.payload.force || action.payload.version !== state.update.version
                             ? false
                             : state.update.done,
-                    erro: false,
+                    error: false,
                     version: action.payload.version,
                     notes: action.payload.notes,
                 },
