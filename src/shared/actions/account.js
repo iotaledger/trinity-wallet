@@ -235,11 +235,12 @@ export const fetchFullAccountInfoForFirstUse = (
         .catch((err) => onError(err));
 };
 
-export const getFullAccountInfo = (seed, accountName, navigator = null) => {
+export const getFullAccountInfo = (seed, accountName, navigator = null, genFn) => {
     return (dispatch) => {
+      console.log(genFn);
         dispatch(fullAccountInfoFetchRequest());
 
-        getAccountData(seed, accountName)
+        getAccountData(seed, accountName, genFn)
             .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
             .then((dataWithTxHashesForUnspentAddresses) =>
                 mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
@@ -291,13 +292,13 @@ export const manuallySyncAccount = (seed, accountName) => {
  *   @param {object} [navigator=null]
  *   @returns {function} dispatch
  **/
-export const getAccountInfo = (seed, accountName, navigator = null) => {
+export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAddresses(seed, existingAccountState)
+        return syncAddresses(seed, existingAccountState, genFn)
             .then((accountData) => {
                 return syncAccount(seed, accountData);
             })

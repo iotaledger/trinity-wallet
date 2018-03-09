@@ -168,6 +168,7 @@ export const getAccountData = (seed, accountName, genFn) => {
             pushTo.push(value);
         }
     };
+    console.log(genFn);
 
     return getNodeInfoAsync()
         .then(() => getAllAddresses(seed, genFn))

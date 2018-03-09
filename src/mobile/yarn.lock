@@ -248,7 +248,7 @@ async@^1.4.0:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
-async@^2.1.4, async@^2.4.0, async@^2.5.0:
+async@^2.1.4, async@^2.4.0, async@^2.5.0, async@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
   dependencies:
@@ -2972,11 +2972,13 @@ invert-kv@^1.0.0:
 iota-wallet-shared-modules@../shared/:
   version "0.0.0"
   dependencies:
+    async "^2.6.0"
     bluebird "^3.5.1"
     i18next "^10.2.2"
     i18next-browser-languagedetector "^2.1.0"
     iota.lib.js "^0.4.7"
     lodash "^4.17.4"
+    lodash.isfunction "^3.0.9"
     moment "^2.19.1"
     react "^16.2.0"
     react-i18next "^7.3.4"
@@ -3753,6 +3755,10 @@ lodash.isarguments@^3.0.0:
 lodash.isarray@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
+
+lodash.isfunction@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
 
 lodash.isnil@^4.0.0:
   version "4.0.0"
