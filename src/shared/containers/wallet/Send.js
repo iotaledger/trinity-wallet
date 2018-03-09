@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { showError } from '../../actions/notifications';
 import { generateAlert } from '../../actions/alerts';
 
 import { prepareTransfer } from '../../actions/tempAccount';
@@ -25,7 +24,6 @@ export default function withSendData(SendComponent) {
             tempAccount: PropTypes.object.isRequired,
             seed: PropTypes.string.isRequired,
             settings: PropTypes.object.isRequired,
-            showError: PropTypes.func.isRequired,
             generateAlert: PropTypes.func.isRequired,
             prepareTransfer: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
