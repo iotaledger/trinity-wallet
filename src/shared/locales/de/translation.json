@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Bitte erstelle einen neuen Seed.",
         "pressForNewSeed": "NEUEN SEED ERSTELLEN",
         "individualLetters": "Drücke beliebige Buchstaben, um sie zufällig neu zu setzen."
     },
@@ -358,10 +358,10 @@
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "outOfSync": "Sieht der Verlauf deiner Transaktionen so aus, als ob er nicht synchronisiert wäre?",
         "pressToSync": "Press the button below to clean up your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "thisMayTake": "Dies könnte eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
+        "doNotClose": "Beim minimieren der App wird die Synchronisierung abgebrochen.",
         "syncAccount": "SYNCHRONISIEREN",
         "syncingYourAccount": "Konto wird synchronisiert."
     },
