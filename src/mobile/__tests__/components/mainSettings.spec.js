@@ -26,6 +26,7 @@ const getProps = (overrides) =>
             t: (arg) => arg,
             borderBottomColor: { borderColor: 'white' },
             textColor: { color: 'white' },
+            secondaryBackgroundColor: 'white',
         },
         overrides,
     );
