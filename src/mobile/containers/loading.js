@@ -123,8 +123,10 @@ class Loading extends Component {
                 }
 
                 if (firstUse && !addingAdditionalAccount) {
-                    this.props.getFullAccountInfo(firstSeed, selectedAccountName, navigator);
+                    console.log(1);
+                    this.props.getFullAccountInfo(firstSeed, selectedAccountName, navigator, genFn);
                 } else if (!firstUse && addingAdditionalAccount) {
+                  console.log(2);
                     this.props.fetchFullAccountInfoForFirstUse(
                         seed,
                         additionalAccountName,
@@ -134,7 +136,8 @@ class Loading extends Component {
                         genFn,
                     );
                 } else {
-                    this.props.getAccountInfo(firstSeed, selectedAccountName, navigator);
+                  console.log(3);
+                    this.props.getAccountInfo(firstSeed, selectedAccountName, navigator, genFn);
                 }
             })
             .catch((err) => console.log(err)); // Dropdown
