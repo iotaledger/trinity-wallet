@@ -82,7 +82,7 @@ export function getValidNodes(urls, callback) {
         );
     }
 
-    Promise.all(promises).then(result => {
+    Promise.all(promises).then((result) => {
         // filter out all falsey values
         result = result.filter(Boolean);
 

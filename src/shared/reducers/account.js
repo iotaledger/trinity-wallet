@@ -144,12 +144,30 @@ const account = (
         case ActionTypes.MANUAL_SYNC_SUCCESS:
             return {
                 ...state,
-                ...updateAccountInfo(state, action.payload),
-                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+                // Set new account info by assigning latest balance, addresses and transfers
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.payload.accountName]: {
+                        balance: action.payload.balance,
+                        addresses: action.payload.addresses,
+                        transfers: action.payload.transfers,
+                    },
+                },
+                unconfirmedBundleTails: merge(
+                    {},
+                    // Remove all tail transactions that were assosicated with this account.
+                    omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
+                        some(tailTransactions, (tx) => tx.account === action.payload.accountName),
+                    ),
+                    // Merge latest tail transactions for valid pending value transfers
+                    action.payload.unconfirmedBundleTails,
+                ),
+                // Set latest transaction hashes for unspent addresses
                 txHashesForUnspentAddresses: {
                     ...state.txHashesForUnspentAddresses,
                     [action.payload.accountName]: action.payload.txHashesForUnspentAddresses,
                 },
+                // Set latest transaction hashes for spent addresses with pending transactions
                 pendingTxHashesForSpentAddresses: {
                     ...state.pendingTxHashesForSpentAddresses,
                     [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,

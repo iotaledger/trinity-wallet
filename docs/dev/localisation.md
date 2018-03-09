@@ -1,8 +1,8 @@
-# Localization
+# Localisation
 
-The IOTA community is very large and diverse. In order to achieve widespread adoption, it is important that users can use IOTA in their native language. To make localization easier, we use the i18next and react-i18next localization libraries. 
+The IOTA community is very large and diverse. In order to achieve widespread adoption, it is important that users can use IOTA in their native language. The i18next and react-i18next libraries are used to make localisation easier.
 
-If you are making a contribution that includes text, please follow the instructions for localization. 
+If you are making a contribution that includes adding or changing text, please follow the instructions for localisation.
 
 ## Instructions
 
@@ -37,4 +37,4 @@ export translate(‘myContainer’)(MyContainer);
 }
 ```
 
-You're all done! Your strings will be shown on Crowdin once your merge request has been merged into the develop branch. 
+You're all done! Your strings will be shown on Crowdin once your merge request has been merged into the develop branch.

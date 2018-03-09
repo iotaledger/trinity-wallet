@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
 import DropdownComponent from '../components/dropdown';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -26,29 +27,19 @@ const styles = StyleSheet.create({
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-end',
-    },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleTextLeft: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-    },
-    iconRight: {
-        width: width / 28,
-        height: width / 28,
+        marginLeft: width / 20
     },
     titleTextRight: {
         color: 'white',
@@ -65,10 +56,8 @@ class NodeSelection extends Component {
         nodes: PropTypes.array.isRequired,
         backPress: PropTypes.func.isRequired,
         setNode: PropTypes.func.isRequired,
-        textColor: PropTypes.object.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
-        tickImagePath: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
+        body: PropTypes.object.isRequired,
     };
 
     saveNodeSelection() {
@@ -79,7 +68,8 @@ class NodeSelection extends Component {
     }
 
     render() {
-        const { node, nodes, backPress, t, textColor, arrowLeftImagePath, tickImagePath } = this.props;
+        const { node, nodes, backPress, t, body } = this.props;
+        const textColor = { color: body.color };
 
         return (
             <TouchableWithoutFeedback
@@ -109,7 +99,11 @@ class NodeSelection extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Icon
+                                    name='chevronLeft'
+                                    size={width / 28}
+                                    color={body.color}
+                                />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -119,7 +113,11 @@ class NodeSelection extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                <Image source={tickImagePath} style={styles.iconRight} />
+                                <Icon
+                                    name='eye'
+                                    size={width / 28}
+                                    color={body.color}
+                                />
                             </View>
                         </TouchableOpacity>
                     </View>

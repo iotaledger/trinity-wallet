@@ -11,6 +11,7 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
+import StatefulDropdownAlert from '../containers/statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
@@ -105,6 +106,9 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textAlign: 'right',
     },
+    buttonWhenDisabled: {
+        opacity: 0.4,
+    },
     button: {
         borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
@@ -113,6 +117,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'transparent',
+        opacity: 1,
     },
     buttonText: {
         fontFamily: 'Lato-Bold',
@@ -131,17 +136,19 @@ const styles = StyleSheet.create({
 export default class HistoryModalContent extends PureComponent {
     static propTypes = {
         onPress: PropTypes.func.isRequired,
-        generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        rebroadcast: PropTypes.func.isRequired,
+        promote: PropTypes.func.isRequired,
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
         confirmationBool: PropTypes.bool.isRequired,
-        mode: PropTypes.string.isRequired,
+        mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
         value: PropTypes.number.isRequired,
         unit: PropTypes.string.isRequired,
         time: PropTypes.number.isRequired,
         message: PropTypes.string,
         bundle: PropTypes.string.isRequired,
+        disableWhen: PropTypes.bool.isRequired,
         addresses: PropTypes.arrayOf(
             PropTypes.shape({
                 address: PropTypes.string.isRequired,
@@ -157,6 +164,7 @@ export default class HistoryModalContent extends PureComponent {
             defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
+            buttonsOpacity: PropTypes.shape({ opacity: PropTypes.number.isRequired }).isRequired,
         }).isRequired,
     };
 
@@ -174,8 +182,8 @@ export default class HistoryModalContent extends PureComponent {
 
         Clipboard.setString(item);
 
-        if (types[type]) {
-            this.props.generateAlert('success', ...types[type]);
+        if (types[type] && this.dropdown) {
+            this.dropdown.alertWithType('success', ...types[type]);
         }
     }
 
@@ -228,6 +236,9 @@ export default class HistoryModalContent extends PureComponent {
             t,
             style,
             mode,
+            rebroadcast,
+            promote,
+            disableWhen,
         } = this.props;
 
         return (
@@ -273,19 +284,29 @@ export default class HistoryModalContent extends PureComponent {
                                     <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
                                     <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
                                     {!confirmationBool &&
-                                        mode === 'Expert' && (
-                                            <View style={styles.buttonsContainer}>
-                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
-                                                    <Text style={[styles.buttonText, style.defaultTextColor]}>
-                                                        {t('reattach')}
-                                                    </Text>
-                                                </TouchableOpacity>
-                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
+                                        mode === 'Expert' &&
+                                        value > 0 && (
+                                            <View style={[styles.buttonsContainer, style.buttonsOpacity]}>
+                                                <TouchableOpacity
+                                                    style={[styles.button, style.borderColor]}
+                                                    onPress={() => {
+                                                        if (!disableWhen) {
+                                                            promote(bundle);
+                                                        }
+                                                    }}
+                                                >
                                                     <Text style={[styles.buttonText, style.defaultTextColor]}>
                                                         {t('promote')}
                                                     </Text>
                                                 </TouchableOpacity>
-                                                <TouchableOpacity style={[styles.button, style.borderColor]}>
+                                                <TouchableOpacity
+                                                    style={[styles.button, style.borderColor]}
+                                                    onPress={() => {
+                                                        if (!disableWhen) {
+                                                            rebroadcast(bundle);
+                                                        }
+                                                    }}
+                                                >
                                                     <Text style={[styles.buttonText, style.defaultTextColor]}>
                                                         {t('rebroadcast')}
                                                     </Text>
@@ -297,6 +318,12 @@ export default class HistoryModalContent extends PureComponent {
                         </ScrollView>
                     </View>
                 </View>
+                <StatefulDropdownAlert
+                    backgroundColor={style.barColor}
+                    onRef={(c) => {
+                        this.dropdown = c;
+                    }}
+                />
             </TouchableOpacity>
         );
     }
