@@ -3,9 +3,9 @@
     "productName": "Trinity",
     "version": "0.1.0",
     "url": "https://gitlab.com/iota-community/wallet",
-    "description": "iota light wallet for desktop",
+    "description": "IOTA desktop wallet",
     "main": "main.js",
-    "author": "UCL",
+    "author": "IOTA Foundation",
     "moduleRoots": [
         ".",
         "src",
@@ -40,19 +40,19 @@
         "cross-env": "^5.1.3",
         "css-hot-loader": "^1.3.7",
         "css-loader": "^0.28.9",
-        "electron": "^1.8.2",
+        "electron": "^1.8.3",
         "electron-builder": "^20.0.4",
         "electron-devtools-installer": "^2.2.3",
         "express": "^4.16.2",
         "extract-text-webpack-plugin": "^3.0.2",
         "file-loader": "^1.1.6",
-        "html-webpack-plugin": "^2.30.1",
+        "html-webpack-plugin": "^3.0.6",
         "i18next": "^10.3.0",
         "postcss-custom-media": "^6.0.0",
         "postcss-loader": "^2.1.0",
         "postcss-nested": "^3.0.0",
         "postcss-normalize": "^4.0.0",
-        "qrcode.react": "^0.7.2",
+        "qrcode.react": "^0.8.0",
         "react": "^16.2.0",
         "react-dev-utils": "^5.0.0",
         "react-dom": "^16.2.0",
@@ -65,9 +65,9 @@
         "sjcl": "^1.0.7",
         "style-loader": "^0.20.1",
         "uglifyjs-webpack-plugin": "^1.1.8",
-        "url-loader": "^0.6.2",
-        "webpack": "^3.11.0",
-        "webpack-dev-middleware": "^2.0.5",
+        "url-loader": "^1.0.1",
+        "webpack": "^4.1.1",
+        "webpack-dev-middleware": "^3.0.1",
         "webpack-hot-middleware": "^2.21.0",
         "worker-loader": "^1.1.0"
     },
@@ -78,7 +78,7 @@
             "output": "./out"
         },
         "appId": "com.iotatoken.trinity",
-        "asar": false,
+        "asar": true,
         "protocols": [
             {
                 "name": "IOTA URL Scheme",
@@ -121,9 +121,10 @@
     },
     "dependencies": {
         "authenticator": "^1.1.3",
+        "electron-settings": "^3.1.4",
         "react-lottie": "^1.0.0",
         "react-markdown": "^3.2.0",
-        "react-textarea-autosize": "^5.2.1",
+        "react-textarea-autosize": "^6.0.0",
         "react-transition-group": "^2.2.1",
         "recharts": "^1.0.0-beta.10"
     }
