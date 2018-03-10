@@ -359,7 +359,7 @@
     },
     "manualSync": {
         "outOfSync": "Czy Twoja historia transakcji wygląda na niezsynchronizowaną?",
-        "pressToSync": "Naciśnij poniższy przycisk, aby uporządkować swoje konto.",
+        "pressToSync": "Press the button below to sync your account.",
         "thisMayTake": "To może chwilę potrwać. Możesz zaobserwować spowolnienie Twojego urządzenia.",
         "doNotClose": "Pamiętaj, że zminimalizowanie aplikacji spowoduje przerwanie synchronizacji.",
         "syncAccount": "SYNCHRONIZUJ KONTO",
