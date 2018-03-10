@@ -41,10 +41,6 @@ import {
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import whiteSendToggleOffImagePath from 'iota-wallet-shared-modules/images/send-toggle-off-white.png';
-import whiteSendToggleOnImagePath from 'iota-wallet-shared-modules/images/send-toggle-on-white.png';
-import blackSendToggleOnImagePath from 'iota-wallet-shared-modules/images/send-toggle-on-black.png';
-import blackSendToggleOffImagePath from 'iota-wallet-shared-modules/images/send-toggle-off-black.png';
 import QRScanner from '../components/qrScanner';
 import {
     getBalanceForSelectedAccountViaSeedIndex,
@@ -602,14 +598,16 @@ export class Send extends Component {
                     const seed = getSeed(credentials.data, seedIndex);
 
                     let powFn = null;
+                    let genFn = null;
 
                     if (isAndroid) {
                         powFn = NativeModules.PoWModule.doPoW;
+                        //  genFn = address function
                     } else if (isIOS) {
                         powFn = NativeModules.Iota.doPoW;
+                        genFn = NativeModules.Iota.address;
                     }
-
-                    this.props.prepareTransfer(seed, address, value, message, selectedAccountName, powFn);
+                    this.props.prepareTransfer(seed, address, value, message, selectedAccountName, powFn, genFn);
                 }
             })
             .catch(() => this.props.getFromKeychainError('send', 'makeTransaction'));
@@ -636,11 +634,6 @@ export class Send extends Component {
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
-        const sendToggleOnImagePath =
-            secondaryBackgroundColor === 'white' ? whiteSendToggleOnImagePath : blackSendToggleOnImagePath;
-        const sendToggleOffImagePath =
-            secondaryBackgroundColor === 'white' ? whiteSendToggleOffImagePath : blackSendToggleOffImagePath;
-        const sendToggleImagePath = maxPressed ? sendToggleOnImagePath : sendToggleOffImagePath;
         const conversionText =
             denomination === currencySymbol ? this.getConversionTextFiat() : this.getConversionTextIota();
 
@@ -713,7 +706,7 @@ export class Send extends Component {
                                                     height: width / 12,
                                                 },
                                             ]}
-                                            source={sendToggleImagePath}
+                                            source={'sendToggleImagePath'}
                                         />
                                     </View>
                                 </TouchableOpacity>

@@ -198,6 +198,10 @@ const storeAndBroadcastAsync = (trytes) => {
     });
 };
 
+const newAddressAsync = (seed, index, security, checksum) => {
+    return Promise.resolve(iota.api._newAddress(seed, index, security, checksum));
+};
+
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -214,4 +218,5 @@ export {
     getTransactionsToApproveAsync,
     prepareTransfersAsync,
     storeAndBroadcastAsync,
+    newAddressAsync,
 };

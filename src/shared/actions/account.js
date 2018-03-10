@@ -8,7 +8,7 @@ import {
     mapPendingTransactionHashesForSpentAddressesToState,
     syncAccountAfterSpending,
 } from '../libs/iota/accounts';
-import { formatAddresses, syncAddresses } from '../libs/iota/addresses';
+import { formatAddresses, syncAddresses, getNewAddress } from '../libs/iota/addresses';
 import {
     clearTempData,
     updateTransitionBalance,
@@ -237,7 +237,6 @@ export const fetchFullAccountInfoForFirstUse = (
 
 export const getFullAccountInfo = (seed, accountName, navigator = null, genFn) => {
     return (dispatch) => {
-      console.log(genFn);
         dispatch(fullAccountInfoFetchRequest());
 
         getAccountData(seed, accountName, genFn)
@@ -256,11 +255,11 @@ export const getFullAccountInfo = (seed, accountName, navigator = null, genFn) =
     };
 };
 
-export const manuallySyncAccount = (seed, accountName) => {
+export const manuallySyncAccount = (seed, accountName, genFn) => {
     return (dispatch) => {
         dispatch(manualSyncRequest());
 
-        getAccountData(seed, accountName)
+        getAccountData(seed, accountName, genFn)
             .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
             .then((dataWithTxHashesForUnspentAddresses) =>
                 mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
@@ -428,9 +427,8 @@ export const generateAddressesAndGetBalance = (seed, index) => {
             returnAll: true,
             security: 2,
         };
-        iota.api.getNewAddress(seed, options, (error, addresses) => {
+        getNewAddress(seed, options, (error, addresses) => {
             if (error) {
-                console.log(error);
                 dispatch(snapshotTransitionError());
                 dispatch(generateTransitionErrorAlert());
             } else {

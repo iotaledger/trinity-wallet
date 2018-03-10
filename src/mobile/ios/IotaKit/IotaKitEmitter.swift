@@ -11,7 +11,7 @@ class Iota: RCTEventEmitter {
     callback([result])
   }
   @objc func address(_ seed: String, index: Int, security: Int, checksum: Bool, resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
-    let address = IotaAPIUtils.newAddress(seed: seed, index: index, checksum: checksum, security: security, multithreaded: true)
+    let address = IotaAPIUtils.newAddress(seed: seed, index: index, checksum: checksum, security: security, multithreaded: false)
     resolve(address)
   }
   @objc func doPoW(_ trytes: String, minWeightMagnitude: Int, resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
