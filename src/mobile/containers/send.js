@@ -799,25 +799,14 @@ export class Send extends Component {
                             )}
                         {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
                             !isModalVisible && (
-                                <View style={{ height: height / 14 }}>
-                                    <ActivityIndicator
-                                        animating={
-                                            (isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
-                                            !isModalVisible
-                                        }
-                                        style={styles.activityIndicator}
-                                        size="large"
-                                        color={negative.color}
-                                    />
-                                    <ProgressBar
-                                        indeterminate={this.props.activeStepIndex === 0}
-                                        progress={this.props.activeStepIndex / size(this.props.activeSteps)}
-                                    >
-                                        {this.props.activeSteps[this.props.activeStepIndex]
-                                            ? this.props.activeSteps[this.props.activeStepIndex]
-                                            : this.getProgressSummary()}
-                                    </ProgressBar>
-                                </View>
+                                <ProgressBar
+                                    indeterminate={this.props.activeStepIndex === 0}
+                                    progress={this.props.activeStepIndex / size(this.props.activeSteps)}
+                                >
+                                    {this.props.activeSteps[this.props.activeStepIndex]
+                                        ? this.props.activeSteps[this.props.activeStepIndex]
+                                        : this.getProgressSummary()}
+                                </ProgressBar>
                             )}
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
