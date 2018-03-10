@@ -1,15 +1,39 @@
 import head from 'lodash/head';
 import find from 'lodash/find';
-import { broadcastBundleAsync, replayBundleAsync, promoteTransactionAsync } from '../libs/iota/extendedApi';
-import { selectedAccountStateFactory } from '../selectors/account';
+import get from 'lodash/get';
+import some from 'lodash/some';
+import { iota } from '../libs/iota';
+import {
+    broadcastBundleAsync,
+    replayBundleAsync,
+    promoteTransactionAsync,
+    prepareTransfersAsync,
+    getTransactionsToApproveAsync,
+    attachToTangleAsync,
+    storeAndBroadcastAsync,
+} from '../libs/iota/extendedApi';
+import {
+    selectedAccountStateFactory,
+    getRemotePoWFromState,
+    selectFirstAddressFromAccountFactory,
+} from '../selectors/account';
+import { completeTransfer, sendTransferError, sendTransferRequest } from './tempAccount';
+import { setNextStepAsActive } from './progress';
 import {
     getTailTransactionForBundle,
     getAllTailTransactionsForBundle,
     isValidForPromotion,
     getFirstConsistentTail,
+    prepareTransferArray,
+    filterInvalidPendingTransfers,
+    filterZeroValueTransfers,
+    performPow,
+    syncAccount,
 } from '../libs/iota/transfers';
 import { syncAccountAfterReattachment } from '../libs/iota/accounts';
-import { updateAccountAfterReattachment } from './account';
+import { updateAccountAfterReattachment, updateAccountInfo, accountInfoFetchSuccess } from './account';
+import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
+import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { generateAlert } from './alerts';
 import i18next from '../i18next.js';
 
@@ -155,4 +179,206 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails) =>
     }
 
     return promoteTransactionAsync(consistentTail.hash);
+};
+
+export const makeTransaction = (seed, address, value, message, accountName, powFn) => (dispatch, getState) => {
+    dispatch(sendTransferRequest());
+
+    // Use a local variable to keep track if the promise chain was interrupted internally.
+    let chainBrokenInternally = false;
+
+    // Initialize latest account state, remainderAddress and startingSearchIndexToPrepareInputs as null
+    // Reassign all when account is synced
+    let latestAccountState = null;
+
+    // Security checks are not necessary for zero value transfers
+    // Have them wrapped in a separate private function so in case it is a value transfer,
+    // it can be chained together with the rest of the promise chain.
+    const withPreTransactionSecurityChecks = () => {
+        // Validating receive address
+        dispatch(setNextStepAsActive());
+
+        // Make sure that the address a user is about to send to is not already used.
+        // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
+        // Omit input preparation in case the address is already spent from.
+        return shouldAllowSendingToAddress([address])
+            .then((shouldAllowSending) => {
+                if (shouldAllowSending) {
+                    const currentAccountState = selectedAccountStateFactory(accountName)(getState());
+                    return syncAddresses(seed, currentAccountState, true);
+                }
+
+                chainBrokenInternally = true;
+                throw new Error('Key reuse on receiving address.');
+            })
+            .then((newState) => {
+                // Syncing account
+                dispatch(setNextStepAsActive());
+
+                // TODO: seed is not needed anymore in syncAccount
+                return syncAccount(seed, newState);
+            })
+            .then((newState) => {
+                latestAccountState = newState;
+
+                // Update local store with the latest account information
+                dispatch(accountInfoFetchSuccess(latestAccountState));
+
+                const valueTransfers = filterZeroValueTransfers(latestAccountState.transfers);
+                return filterInvalidPendingTransfers(valueTransfers, latestAccountState.addresses);
+            })
+            .then((filteredTransfers) => {
+                const { addresses } = latestAccountState;
+                const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
+
+                // Preparing inputs
+                dispatch(setNextStepAsActive());
+
+                return getUnspentInputs(addresses, filteredTransfers, startIndex, value, null);
+            })
+            .then((inputs) => {
+                // allBalance -> total balance associated with addresses.
+                // Contains balance from addresses regardless of the fact they are spent from.
+                // Less than the value user is about to send to -> Not enough balance.
+                if (get(inputs, 'allBalance') < value) {
+                    chainBrokenInternally = true;
+                    throw new Error('Not enough balance');
+
+                    // totalBalance -> balance after filtering out addresses that are spent.
+                    // Contains balance from those addresses only that are not spent from.
+                    // Less than value user is about to send to -> Has already spent from addresses and the txs aren't confirmed.
+                    // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
+                } else if (get(inputs, 'totalBalance') < value) {
+                    chainBrokenInternally = true;
+                    throw new Error('Input addresses already used in a transfer.');
+                }
+
+                // Verify if a user is sending to on of his own addresses.
+                const isSendingToOwnAddress = some(
+                    get(inputs, 'inputs'),
+                    (input) => input.address === iota.utils.noChecksum(address),
+                );
+
+                if (isSendingToOwnAddress) {
+                    chainBrokenInternally = true;
+                    throw new Error('Cannot send to an own address.');
+                }
+
+                const remainderAddress = getLatestAddress(latestAccountState.addresses);
+
+                return {
+                    inputs: get(inputs, 'inputs'),
+                    address: remainderAddress,
+                };
+            });
+    };
+
+    const isZeroValue = value === 0;
+
+    const cached = {
+        trytes: [],
+        transactionObjects: [],
+    };
+
+    const promise = isZeroValue ? () => Promise.resolve(null) : withPreTransactionSecurityChecks;
+
+    return (
+        promise()
+            // If we are making a zero value transaction, options would be null
+            // Otherwise, it would be a dictionary with inputs and remainder address
+            // Forward options to prepareTransfersAsync as is, because it contains a null check
+            .then((options) => {
+                const firstAddress = selectFirstAddressFromAccountFactory(accountName)(getState());
+                const transfer = prepareTransferArray(address, value, message, firstAddress);
+
+                // Preparing transfers
+                dispatch(setNextStepAsActive());
+
+                return prepareTransfersAsync(seed, transfer, options);
+            })
+            .then((trytes) => {
+                cached.trytes = trytes;
+
+                // Getting transactions to approve
+                dispatch(setNextStepAsActive());
+
+                return getTransactionsToApproveAsync();
+            })
+            .then(({ trunkTransaction, branchTransaction }) => {
+                const shouldOffloadPow = getRemotePoWFromState(getState());
+
+                // Proof of work
+                dispatch(setNextStepAsActive());
+
+                return shouldOffloadPow
+                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes)
+                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction);
+            })
+            .then(({ trytes, transactionObjects }) => {
+                cached.trytes = trytes;
+                cached.transactionObjects = transactionObjects;
+
+                // Broadcasting
+                dispatch(setNextStepAsActive());
+
+                return storeAndBroadcastAsync(cached.trytes);
+            })
+            .then(() => {
+                // Progress summary
+                dispatch(setNextStepAsActive());
+
+                // TODO: Validate bundle
+                dispatch(updateAccountInfo(accountName, cached.transactionObjects, value));
+
+                // Delay dispatching alerts to display the progress summary
+                return setTimeout(() => {
+                    if (isZeroValue) {
+                        dispatch(
+                            generateAlert(
+                                'success',
+                                i18next.t('global:messageSent'),
+                                i18next.t('global:messageSentMessage'),
+                                20000,
+                            ),
+                        );
+                    } else {
+                        dispatch(
+                            generateAlert(
+                                'success',
+                                i18next.t('global:transferSent'),
+                                i18next.t('global:transferSentMessage'),
+                                20000,
+                            ),
+                        );
+                    }
+
+                    return dispatch(completeTransfer({ address, value }));
+                }, 5000);
+            })
+            .catch((error) => {
+                console.log('Error', error);
+                dispatch(sendTransferError());
+                const alerts = {
+                    attachToTangle: [
+                        i18next.t('global:attachToTangleUnavailable'),
+                        i18next.t('global:attachToTangleUnavailableExplanation'),
+                        20000,
+                        error,
+                    ],
+                    default: [
+                        i18next.t('global:invalidResponse'),
+                        i18next.t('global:invalidResponseSendingTransfer'),
+                        20000,
+                        error,
+                    ],
+                };
+
+                const args =
+                    error.message.indexOf('attachToTangle is not available') > -1
+                        ? alerts.attachToTangle
+                        : alerts.default;
+
+                return dispatch(generateAlert('error', ...args));
+            })
+    );
 };
