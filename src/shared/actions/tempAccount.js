@@ -16,6 +16,7 @@ import {
     filterZeroValueTransfers,
     makeTransferWithLocalPow,
 } from '../libs/iota/transfers';
+import { setNextStepAsActive } from './progress';
 import { syncAccount } from '../libs/iota/accounts';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
@@ -292,6 +293,8 @@ export const prepareTransfer = (seed, address, value, message, accountName, powF
         const firstAddress = selectFirstAddressFromAccountFactory(accountName)(getState());
         const transfer = prepareTransferArray(address, value, message, firstAddress);
         const isZeroValue = value === 0;
+
+        dispatch(setNextStepAsActive());
 
         // If its a zero value transfer,
         // Do not need to trigger pre-transfer checks
