@@ -4,7 +4,7 @@ import { ActionTypes } from '../actions/progress';
 const initialState = {
     lastStepInitializationTime: Date.now(),
     timeTakenByEachStep: [],
-    activeStepIndex: 0,
+    activeStepIndex: -1,
     activeSteps: [],
 };
 
@@ -28,6 +28,8 @@ export default (state = initialState, action) => {
         case ActionTypes.START_TRACKING_PROGRESS:
             return {
                 ...state,
+                activeStepIndex: -1,
+                timeTakenByEachStep: [],
                 lastStepInitializationTime: Date.now(),
                 activeSteps: action.payload,
             };
