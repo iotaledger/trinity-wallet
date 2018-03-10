@@ -274,7 +274,7 @@
         "fingerprint": "Autoryzacja biometryczna",
         "couldNotFetchRates": "Nie można kursów przeliczeniowych",
         "couldNotFetchRatesExplanation": "Coś poszło nie tak podczas pobierania kursów przeliczeniowych dla waluty {{currency}}.",
-        "fetchedConversionRates": "Pobrano kursy przeliczniowe",
+        "fetchedConversionRates": "Pobrano kursy przeliczeniowe",
         "fetchedConversionRatesExplanation": "Pomyślnie pobrano najnowszy kurs przeliczeniowy dla waluty {{currency}}."
     },
     "resetWalletRequirePassword": {
