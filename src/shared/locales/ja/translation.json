@@ -359,7 +359,7 @@
     },
     "manualSync": {
         "outOfSync": "取引履歴が同期していないでしょうか？",
-        "pressToSync": "下のボタンを押してアカウントを整理してください。",
+        "pressToSync": "Press the button below to sync your account.",
         "thisMayTake": "これには時間がかかることがあり、デバイスが遅くなることがあります。",
         "doNotClose": "アプリを最小化すると同期がキャンセルされますのでご注意ください。",
         "syncAccount": "同期アカウント",
