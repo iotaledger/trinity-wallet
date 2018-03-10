@@ -1,5 +1,7 @@
+import map from 'lodash/map';
 import { iota } from './index';
 import { DEFAULT_BALANCES_THRESHOLD, DEFAULT_DEPTH } from '../../config';
+import { DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../../mobile/node_modules/iota-wallet-shared-modules/config';
 
 const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => {
     return new Promise((resolve, reject) => {
@@ -205,6 +207,26 @@ const storeAndBroadcastAsync = (trytes) => {
     });
 };
 
+const attachToTangleAsync = (
+    trunkTransaction,
+    branchTransaction,
+    trytes,
+    minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
+) => {
+    return new Promise((resolve, reject) => {
+        iota.api.attachToTangle(trunkTransaction, branchTransaction, minWeightMagnitude, trytes, (err, trytes) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve({
+                    trytes,
+                    transactionObjects: map(trytes, (tryteString) => iota.utils.transactionObject(tryteString)),
+                });
+            }
+        });
+    });
+};
+
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -221,4 +243,5 @@ export {
     getTransactionsToApproveAsync,
     prepareTransfersAsync,
     storeAndBroadcastAsync,
+    attachToTangleAsync,
 };

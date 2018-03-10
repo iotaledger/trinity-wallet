@@ -744,7 +744,7 @@ export const getAllTailTransactionsForBundle = (bundleHash, transfers) => {
  *
  *   @method performPow
  *   @param {function} powFn
- *   @param {array} transactionObjects
+ *   @param {array} trytes
  *   @param {string} trunkTransaction
  *   @param {string} branchTransaction
  *   @param {integer} [minWeightMagnitude = 14]
@@ -752,11 +752,19 @@ export const getAllTailTransactionsForBundle = (bundleHash, transfers) => {
  **/
 export const performPow = (
     powFn,
-    transactionObjects,
+    trytes,
     trunkTransaction,
     branchTransaction,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
 ) => {
+    const transactionObjects = map(trytes, (transactionTrytes) =>
+        assign({}, iota.utils.transactionObject(transactionTrytes), {
+            attachmentTimestamp: Date.now(),
+            attachmentTimestampLowerBound: 0,
+            attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
+        }),
+    );
+
     // Order transaction objects in descending to make sure it starts from remainder object.
     const sortedTransactionObjects = orderBy(transactionObjects, 'currentIndex', ['desc']);
 
@@ -792,62 +800,6 @@ export const performPow = (
         },
         Promise.resolve({ trytes: [], transactionObjects: [] }),
     );
-};
-
-/**
- *   Wrapper function that prepares transfers by signing
- *   inputs if it's a value transfer and send trytes to tangle
- *
- *   @method makeTransferWithLocalPow
- *   @param {string} seed
- *   @param {array} transfers
- *   @param {function} powFn
- *   @param {object} [options = null]
- *   @returns {promise}
- **/
-export const makeTransferWithLocalPow = (seed, transfers, powFn, options = null) => {
-    return prepareTransfersAsync(seed, transfers, options).then((trytes) => sendTrytes(trytes, powFn));
-};
-
-/**
- *   Get transaction to approve (trunk and branch)
- *   Perform proof of work
- *   Store and broadcast trytes
- *
- *   @method sendTrytes
- *   @param {array} trytes
- *   @param {function} powFn
- *   @returns {promise<object>}
- **/
-export const sendTrytes = (trytes, powFn) => {
-    const cached = {
-        trytes: [],
-        transactionObjects: [],
-    };
-
-    cached.trytes = trytes;
-
-    return getTransactionsToApproveAsync()
-        .then(({ trunkTransaction, branchTransaction }) => {
-            cached.transactionObjects = map(cached.trytes, (transactionTrytes) =>
-                assign({}, iota.utils.transactionObject(transactionTrytes), {
-                    attachmentTimestamp: Date.now(),
-                    attachmentTimestampLowerBound: 0,
-                    attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
-                }),
-            );
-
-            return performPow(powFn, cached.transactionObjects, trunkTransaction, branchTransaction);
-        })
-        .then(({ trytes, transactionObjects }) => {
-            // performPow orders transactions/trytes in descending order
-            // Sort trytes/transactions in ascending before storing and broadcasting
-            cached.trytes = trytes.reverse();
-            cached.transactionObjects = transactionObjects.reverse();
-
-            return storeAndBroadcastAsync(cached.trytes);
-        })
-        .then(() => cached.transactionObjects);
 };
 
 /**
