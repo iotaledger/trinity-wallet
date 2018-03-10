@@ -575,24 +575,13 @@ export class Send extends Component {
     }
 
     startTrackingTransactionProgress(isZeroValueTransaction) {
-        const steps = isZeroValueTransaction ?
-            ProgressSteps.zeroValueTransaction :
-            ProgressSteps.valueTransaction;;
+        const steps = isZeroValueTransaction ? ProgressSteps.zeroValueTransaction : ProgressSteps.valueTransaction;
 
         this.props.startTrackingProgress(steps);
     }
 
     sendTransfer() {
-        const {
-            t,
-            seedIndex,
-            selectedAccountName,
-            isSyncing,
-            isTransitioning,
-            message,
-            amount,
-            address
-        } = this.props;
+        const { t, seedIndex, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
 
         if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
@@ -643,11 +632,7 @@ export class Send extends Component {
 
     getProgressSummary() {
         const { timeTakenByEachProgressStep } = this.props;
-        const getTotalTime = () => reduce(
-            timeTakenByEachProgressStep,
-            (acc, thisTime) => acc + Number(thisTime),
-            0,
-        );
+        const getTotalTime = () => reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
 
         return (
             <Text>
@@ -671,10 +656,7 @@ export class Send extends Component {
             return null;
         }
 
-
-        return activeSteps[activeStepIndex]
-            ? activeSteps[activeStepIndex]
-            : this.getProgressSummary();
+        return activeSteps[activeStepIndex] ? activeSteps[activeStepIndex] : this.getProgressSummary();
     }
 
     render() {
@@ -689,7 +671,7 @@ export class Send extends Component {
             denomination,
             theme,
             body,
-            primary
+            primary,
         } = this.props;
         const textColor = { color: body.color };
         const conversionText =
