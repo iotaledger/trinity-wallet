@@ -359,7 +359,7 @@
     },
     "manualSync": {
         "outOfSync": "Vypadá to, že Vaše historie transakcí nemusí být synchronizovaná?",
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "Pro synchronizaci Vašeho účtu klikněte na tlačítko níže.",
         "thisMayTake": "To může chvíli trvat. Můžete si všimnout zpomalení Vašeho zařízení.",
         "doNotClose": "Upozorňujeme, že minimalizace aplikace zruší synchronizaci.",
         "syncAccount": "SYNCHRONIZOVAT ÚČET",
