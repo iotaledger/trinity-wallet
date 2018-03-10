@@ -36,6 +36,7 @@ import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '..
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { generateAlert } from './alerts';
 import i18next from '../i18next.js';
+import Errors from '../libs/errors';
 
 export const ActionTypes = {
     BROADCAST_BUNDLE_REQUEST: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
@@ -209,7 +210,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                 }
 
                 chainBrokenInternally = true;
-                throw new Error('Key reuse on receiving address.');
+                throw new Error(Errors.KEY_REUSE);
             })
             .then((newState) => {
                 // Syncing account
@@ -242,7 +243,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                 // Less than the value user is about to send to -> Not enough balance.
                 if (get(inputs, 'allBalance') < value) {
                     chainBrokenInternally = true;
-                    throw new Error('Not enough balance');
+                    throw new Error(Errors.NOT_ENOUGH_BALANCE);
 
                     // totalBalance -> balance after filtering out addresses that are spent.
                     // Contains balance from those addresses only that are not spent from.
@@ -250,7 +251,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                     // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
                 } else if (get(inputs, 'totalBalance') < value) {
                     chainBrokenInternally = true;
-                    throw new Error('Input addresses already used in a transfer.');
+                    throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
                 }
 
                 // Verify if a user is sending to on of his own addresses.
@@ -261,7 +262,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
 
                 if (isSendingToOwnAddress) {
                     chainBrokenInternally = true;
-                    throw new Error('Cannot send to an own address.');
+                    throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
                 const remainderAddress = getLatestAddress(latestAccountState.addresses);
@@ -356,29 +357,57 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                 }, 5000);
             })
             .catch((error) => {
-                console.log('Error', error);
                 dispatch(sendTransferError());
-                const alerts = {
-                    attachToTangle: [
-                        i18next.t('global:attachToTangleUnavailable'),
-                        i18next.t('global:attachToTangleUnavailableExplanation'),
-                        20000,
-                        error,
-                    ],
-                    default: [
-                        i18next.t('global:invalidResponse'),
-                        i18next.t('global:invalidResponseSendingTransfer'),
-                        20000,
-                        error,
-                    ],
-                };
 
-                const args =
-                    error.message.indexOf('attachToTangle is not available') > -1
-                        ? alerts.attachToTangle
-                        : alerts.default;
+                const message = error.message;
 
-                return dispatch(generateAlert('error', ...args));
+                if (message === Errors.KEY_REUSE && chainBrokenInternally) {
+                    return dispatch(
+                        generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
+                    );
+                } else if (message === Errors.NOT_ENOUGH_BALANCE && chainBrokenInternally) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:balanceError'),
+                            i18next.t('global:balanceErrorMessage'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.ADDRESS_HAS_PENDING_TRANSFERS && chainBrokenInternally) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:pleaseWait'),
+                            i18next.t('global:pleaseWaitTransferExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.CANNOT_SEND_TO_OWN_ADDRESS && chainBrokenInternally) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:cannotSendToOwn'),
+                            i18next.t('global:cannotSendToOwnExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message.includes('attachToTangle is not available')) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:attachToTangleUnavailable'),
+                            i18next.t('global:attachToTangleUnavailableExplanation'),
+                            20000,
+                        ),
+                    );
+                }
+
+                return dispatch(
+                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
+                    20000,
+                    error,
+                );
             })
     );
 };
