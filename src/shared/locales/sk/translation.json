@@ -359,9 +359,9 @@
     },
     "manualSync": {
         "outOfSync": "Vyzerá to, že Vaša transakčná história nemusí byť synchronizovaná?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "pressToSync": "Stlačením tlačidla nižšie synchronizujte svoj účet.",
+        "thisMayTake": "To môže chvíľu trvať. Môžete pozorovať spomalenie svojho zariadenia.",
+        "doNotClose": "Upozorňujeme, že minimalizácia aplikácie zruší synchronizáciu.",
         "syncAccount": "SYNCHRONIZOVAŤ ÚČET",
         "syncingYourAccount": "Váš účet sa synchronizuje."
     },
@@ -428,8 +428,8 @@
         "rootDetected": "<0>Zdá sa, že na vašom zariadení bol vykonaný root/jailbroken.</ 0><1>To môže znamenať značné riziko pre zabezpečenie peňaženky.</ 1><2>Chcete pokračovať napriek tomuto riziku?</ 2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "feeless": "Pre odoslanie bezplatnej transakcie v IOTA je potrebné vykonať malý dôkaz práce (proof of work).",
+        "localOrRemote": "Proof of work môžete dokončiť lokálne vo vašom zariadení, alebo ho vložiť do uzla.",
         "local": "Lokálny",
         "remote": "Vzdialený"
     }
