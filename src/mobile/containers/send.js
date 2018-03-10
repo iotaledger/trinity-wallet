@@ -49,6 +49,7 @@ import {
     getSelectedAccountNameViaSeedIndex,
 } from '../../shared/selectors/account';
 import keychain, { getSeed } from '../util/keychain';
+import ProgressSteps from '../util/progressSteps';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
 import CustomTextInput from '../components/customTextInput';
@@ -151,8 +152,8 @@ export class Send extends Component {
         resetProgress: PropTypes.func.isRequired,
         startTrackingProgress: PropTypes.func.isRequired,
         denomination: PropTypes.string.isRequired,
-        activeProgressStepIndex: PropTypes.number.isRequired,
-        localPoWProgressSteps: PropTypes.array.isRequired,
+        activeStepIndex: PropTypes.number.isRequired,
+        activeSteps: PropTypes.array.isRequired,
         timeTakenByEachProgressStep: PropTypes.array.isRequired,
         remotePoW: PropTypes.bool.isRequired,
     };
@@ -574,8 +575,35 @@ export class Send extends Component {
         return true;
     }
 
+    startTrackingTransactionProgress(isZeroValueTransaction) {
+        const { remotePoW } = this.props;
+        let steps = [];
+
+        if (isZeroValueTransaction && remotePoW) {
+            steps = ProgressSteps.zeroValueTransactionWithRemotePow;
+        } else if (isZeroValueTransaction && !remotePoW) {
+            steps = ProgressSteps.zeroValueTransactionWithLocalPow;
+        } else if (!isZeroValueTransaction && remotePoW) {
+            steps = ProgressSteps.valueTransactionWithRemotePow;
+        } else if (!isZeroValueTransaction && !remotePoW) {
+            steps = ProgressSteps.valueTransactionWithLocalPow;
+        }
+
+        this.props.startTrackingProgress(steps);
+    }
+
     sendTransfer() {
-        const { t, seedIndex, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
+        const {
+            t,
+            seedIndex,
+            selectedAccountName,
+            isSyncing,
+            isTransitioning,
+            message,
+            amount,
+            address,
+            remotePoW,
+        } = this.props;
 
         if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
@@ -595,8 +623,8 @@ export class Send extends Component {
         const formattedAmount = amount === '' ? 0 : amount;
         const value = parseInt(parseFloat(formattedAmount) * this.getUnitMultiplier(), 10);
 
-        // Keep track of the time it takes for the transaction to be completed
-        this.props.startTrackingProgress();
+        // Start tracking progress for each transaction step
+        this.startTrackingTransactionProgress(value === 0);
 
         this.props.getFromKeychainRequest('send', 'makeTransaction');
         keychain
@@ -660,15 +688,11 @@ export class Send extends Component {
             body,
             primary,
             negative,
-            remotePoW,
         } = this.props;
         const textColor = { color: body.color };
         const conversionText =
             denomination === currencySymbol ? this.getConversionTextFiat() : this.getConversionTextIota();
         const opacity = this.getOpacity();
-
-        // TODO: Add steps for remotePoW
-        const progressSteps = remotePoW ? this.props.localPoWProgressSteps : this.props.localPoWProgressSteps;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -786,11 +810,11 @@ export class Send extends Component {
                                         color={negative.color}
                                     />
                                     <ProgressBar
-                                        indeterminate={this.props.activeProgressStepIndex === 0}
-                                        progress={this.props.activeProgressStepIndex / size(progressSteps)}
+                                        indeterminate={this.props.activeStepIndex === 0}
+                                        progress={this.props.activeStepIndex / size(this.props.activeSteps)}
                                     >
-                                        {progressSteps[this.props.activeProgressStepIndex]
-                                            ? progressSteps[this.props.activeProgressStepIndex]
+                                        {this.props.activeSteps[this.props.activeStepIndex]
+                                            ? this.props.activeSteps[this.props.activeStepIndex]
                                             : this.getProgressSummary()}
                                     </ProgressBar>
                                 </View>
@@ -854,8 +878,8 @@ const mapStateToProps = (state) => ({
     amount: state.ui.sendAmountFieldText,
     message: state.ui.sendMessageFieldText,
     denomination: state.ui.sendDenomination,
-    activeProgressStepIndex: state.progress.active,
-    localPoWProgressSteps: state.progress.steps.localPow,
+    activeStepIndex: state.progress.activeStepIndex,
+    activeSteps: state.progress.activeSteps,
     timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
     remotePoW: state.settings.remotePoW,
 });
