@@ -632,7 +632,7 @@ export class Send extends Component {
 
     getProgressSummary() {
         const { timeTakenByEachProgressStep } = this.props;
-        const getTotalTime = () => reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
+        const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
 
         return (
             <Text>
@@ -640,7 +640,7 @@ export class Send extends Component {
                 <Text style={styles.progressSummaryText}>
                     ({map(timeTakenByEachProgressStep, (time, index) => {
                         if (index === size(timeTakenByEachProgressStep) - 1) {
-                            return `${time}=${getTotalTime().toFixed(1)} s`;
+                            return `${time}=${totalTimeTaken.toFixed(1)} s`;
                         }
 
                         return `${time}+`;
