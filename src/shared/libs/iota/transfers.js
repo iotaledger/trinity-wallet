@@ -19,7 +19,6 @@ import difference from 'lodash/difference';
 import union from 'lodash/union';
 import flatten from 'lodash/flatten';
 import orderBy from 'lodash/orderBy';
-import flow from 'lodash/flow';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
