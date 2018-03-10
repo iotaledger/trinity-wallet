@@ -296,7 +296,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Dein Seed besteht aus {{maxSeedLength}} Zeichen, gelesen von links nach rechts.",
-        "writeDownYourSeed": "<0> Schreibe deinen Seed und deine Prüfsumme auf und </0><1>überprüfe gründlich</1><2>, ob diese korrekt sind.</2>"
+        "writeDownYourSeed": "<0> Schreibe deinen Seed und deine Prüfsumme auf und </0><1>versichere dich</1><2>, dass diese korrekt sind.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
@@ -352,7 +352,7 @@
         "one": "Ein"
     },
     "deleteAccount": {
-        "areYouSure": "Bist du sicher dass Du das Konto \"{{accountName}}\" entfernen möchtest?",
+        "areYouSure": "Bist du sicher, dass du das Konto \"{{accountName}}\" entfernen möchtest?",
         "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
