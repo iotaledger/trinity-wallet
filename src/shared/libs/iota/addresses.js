@@ -15,7 +15,7 @@ import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
 import concat from 'lodash/concat';
 import { iota } from './index';
-import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
+import { getBalancesAsync, wereAddressesSpentFromAsync, newAddressAsync } from './extendedApi';
 
 const errors = require('iota.lib.js/lib/errors/inputErrors');
 const async = require('async');
@@ -65,12 +65,9 @@ const removeUnusedAddresses = (resolve, reject, index, finalAddresses) => {
  *   @param {array} allAddresses
  *   @returns {array} All addresses
  **/
-
 const getRelevantAddresses = (resolve, reject, seed, opts, genFn, allAddresses) => {
     getNewAddress(seed, opts, genFn, (err, addresses) => {
-      console.log(addresses);
         if (err) {
-            console.log(err);
             reject(err);
         } else {
             iota.api.findTransactions({ addresses }, (err, hashes) => {
@@ -85,7 +82,7 @@ const getRelevantAddresses = (resolve, reject, seed, opts, genFn, allAddresses) 
                         removeUnusedAddresses(res, rej, lastAddressIndex, allAddresses.slice());
                     })
                         .then((finalAddresses) => {
-                            resolve(finalAddresses);
+                            return resolve(finalAddresses);
                         })
                         .catch((err) => reject(err));
                 }
@@ -102,16 +99,12 @@ const getRelevantAddresses = (resolve, reject, seed, opts, genFn, allAddresses) 
  *   @param {object} [addressesOpts={index: 0, total: 10, returnAll: true, security: 2}] - Default options for address generation
  *   @returns {promise}
  **/
-export const getAllAddresses = (
-    seed,
-    genFn,
-    addressesOpts = {
-        index: 0,
-        total: 10,
-        returnAll: true,
-        security: 2,
-    },
-) => new Promise((res, rej) => getRelevantAddresses(res, rej, seed, addressesOpts, genFn, []));
+export const getAllAddresses = (seed, genFn) => {
+    return new Promise((res, rej) => {
+        const opts = { index: 0, total: 10, returnAll: true, security: 2 };
+        getRelevantAddresses(res, rej, seed, opts, genFn, []);
+    });
+};
 
 /**
  *   Accepts addresses as an array.
@@ -348,7 +341,7 @@ export const getBalancesSync = (addresses, addressData) => {
 export const getLatestAddresses = (seed, index, genFn) => {
     return new Promise((resolve, reject) => {
         const options = { checksum: false, index, returnAll: true };
-        getNewAddress(seed, options, genFn, (err, addresses) => {
+        return getNewAddress(seed, options, genFn, (err, addresses) => {
             if (err) {
                 reject(err);
             } else {
@@ -479,14 +472,14 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
 /*eslint-disable brace-style*/
 /*eslint-disable no-else-return*/
 /*eslint-disable no-loop-func*/
-export const getNewAddress = (seed, options, genFn, callback) => {
+
+export const getNewAddress = (seed, options, genFn = null, callback) => {
     // Store the generation function as a variable
     var generator = null;
-    console.log(genFn);
-    if (genFn) {
+    if (genFn !== null) {
         generator = genFn;
     } else {
-        generator = iota.api._newAddress;
+        generator = newAddressAsync;
     }
 
     // If no options provided, switch arguments
@@ -514,7 +507,6 @@ export const getNewAddress = (seed, options, genFn, callback) => {
 
     var checksum = options.checksum || false;
     var total = options.total || null;
-
     // If no user defined security, use the standard value of 2
     var security = 2;
 
@@ -535,11 +527,10 @@ export const getNewAddress = (seed, options, genFn, callback) => {
     // and return the list of all addresses
     if (total) {
         // Increase index with each iteration
-        getNewAddressAsync(seed, index, total, security, checksum, generator).then((addresses) => {
-          allAddresses = addresses;
+        return getAddress(seed, index, total, security, checksum, generator).then((addresses) => {
+            allAddresses = addresses;
+            return callback(null, allAddresses);
         });
-        console.log('Done');
-        return callback(null, allAddresses);
     } else {
         //  Case 2: no total provided
         //
@@ -549,49 +540,36 @@ export const getNewAddress = (seed, options, genFn, callback) => {
         async.doWhilst(
             (callback) => {
                 // Iteratee function
-                console.log('async');
                 var newAddress = '';
-                console.log(generator);
-                console.log(Promise.resolve(generator));
-                console.log(Object.prototype.toString(generator));
-              //  if (Object.prototype.toString(generator) === '[object Object]') {
-                  generator(seed, index, security, checksum).then((address) => {
+                //  if (Object.prototype.toString(generator) === '[object Object]') {
+                return generator(seed, index, security, checksum).then((address) => {
                     newAddress = address;
-                    console.log(address);
-                  });
-            //    } else {
-            //      newAddress = generator(seed, index, security, checksum);
-            //      console.log('iota.lib.js');
-            //    }
-                console.log(newAddress);
-
-                if (options.returnAll) {
-                    allAddresses.push(newAddress);
-                }
-
-                // Increase the index
-                index += 1;
-
-                iota.api.wereAddressesSpentFrom(newAddress, (err, res) => {
-                    if (err) {
-                        return callback(err);
+                    if (options.returnAll) {
+                        allAddresses.push(newAddress);
                     }
+                    // Increase the index
+                    index += 1;
+                    iota.api.wereAddressesSpentFrom(newAddress, (err, res) => {
+                        if (err) {
+                            return callback(err);
+                        }
 
-                    // Validity check
-                    if (res[0]) {
-                        callback(null, newAddress, true);
-                    } else {
-                        // Check for txs if address isn't spent
-                        iota.api.findTransactions({ addresses: [newAddress] }, (err, transactions) => {
-                            if (err) {
-                                return callback(err);
-                            }
+                        // Validity check
+                        if (res[0]) {
+                            callback(null, newAddress, true);
+                        } else {
+                            // Check for txs if address isn't spent
+                            iota.api.findTransactions({ addresses: [newAddress] }, (err, transactions) => {
+                                if (err) {
+                                    return callback(err);
+                                }
 
-                            callback(err, newAddress, transactions.length > 0);
-                        });
-                    }
+                                callback(err, newAddress, transactions.length > 0);
+                            });
+                        }
+                    });
                 });
-          },
+            },
             (address, isUsed) => {
                 return isUsed;
             },
@@ -612,14 +590,13 @@ export const getNewAddress = (seed, options, genFn, callback) => {
     }
 };
 
-const getNewAddressAsync = (seed, index, total, security, checksum, genFn, addresses) => {
- if (index === total) {
-   Promise.resolve(addresses);
- }
- console.log(addresses);
-
-  return genFn(seed, index, security, checksum)
-  .then((address) => getNewAddressAsync(seed, index + 1, total, security, checksum, genFn, concat([], addresses, [address])));
+export const getAddress = (seed, index, total, security, checksum, genFn, addresses = []) => {
+    if (total === 0) {
+        return Promise.resolve(addresses);
+    }
+    return genFn(seed, index, security, checksum).then((address) => {
+        return getAddress(seed, index + 1, total - 1, security, checksum, genFn, concat([], addresses, [address]));
+    });
 };
 
 /*eslint-enable no-var*/
