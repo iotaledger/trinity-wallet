@@ -1,30 +1,17 @@
 export default {
-    valueTransactionWithLocalPow: [
+    valueTransaction: [
+        'Validating receive address',
+        'Syncing account',
         'Preparing inputs',
         'Preparing transfers',
         'Getting transactions to approve',
         'Proof of work',
-        'Broadcasting',
+        'Broadcasting'
     ],
-    valueTransactionWithRemotePow: [
-        'Preparing inputs',
+    zeroValueTransaction: [
         'Preparing transfers',
         'Getting transactions to approve',
         'Proof of work',
-        'Broadcasting',
-    ],
-    zeroValueTransactionWithLocalPow: [
-        'Preparing inputs',
-        'Preparing transfers',
-        'Getting transactions to approve',
-        'Proof of work',
-        'Broadcasting',
-    ],
-    zeroValueTransactionWithRemotePow: [
-        'Preparing inputs',
-        'Preparing transfers',
-        'Getting transactions to approve',
-        'Proof of work',
-        'Broadcasting',
-    ],
+        'Broadcasting'
+    ]
 };
