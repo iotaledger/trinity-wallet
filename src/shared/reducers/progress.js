@@ -4,16 +4,8 @@ import { ActionTypes } from '../actions/progress';
 const initialState = {
     lastStepInitializationTime: Date.now(),
     timeTakenByEachStep: [],
-    active: 0,
-    steps: {
-        localPow: [
-            'Preparing inputs',
-            'Preparing transfers',
-            'Getting transactions to approve',
-            'Proof of work',
-            'Broadcasting',
-        ],
-    },
+    activeStepIndex: 0,
+    activeSteps: [],
 };
 
 export default (state = initialState, action) => {
@@ -21,12 +13,12 @@ export default (state = initialState, action) => {
         case ActionTypes.SET_ACTIVE_STEP_INDEX:
             return {
                 ...state,
-                active: action.payload,
+                activeStepIndex: action.payload,
             };
         case ActionTypes.SET_NEXT_STEP_AS_ACTIVE:
             return {
                 ...state,
-                active: state.active + 1,
+                activeStepIndex: state.activeStepIndex + 1,
                 lastStepInitializationTime: Date.now(),
                 timeTakenByEachStep: [
                     ...state.timeTakenByEachStep,
@@ -37,6 +29,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 lastStepInitializationTime: Date.now(),
+                activeSteps: action.payload,
             };
         case ActionTypes.RESET:
             return initialState;
