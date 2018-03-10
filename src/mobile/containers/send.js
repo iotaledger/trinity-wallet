@@ -652,16 +652,16 @@ export class Send extends Component {
     renderModalContent = () => <View>{this.state.modalContent}</View>;
 
     getProgressSummary() {
-        const props = this.props;
+        const { timeTakenByEachProgressStep } = this.props;
 
         return (
             <Text>
                 <Text>DONE </Text>
                 <Text style={styles.progressSummaryText}>
-                    ({map(props.timeTakenByEachProgressStep, (time, index) => {
-                        if (index === size(props.timeTakenByEachProgressStep) - 1) {
+                    ({map(timeTakenByEachProgressStep, (time, index) => {
+                        if (index === size(timeTakenByEachProgressStep) - 1) {
                             return `${time}=${reduce(
-                                props.timeTakenByEachProgressStep,
+                                timeTakenByEachProgressStep,
                                 (acc, thisTime) => acc + Number(thisTime),
                                 0,
                             )} s`;
