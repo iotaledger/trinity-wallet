@@ -6,12 +6,7 @@ export default {
         'Preparing transfers',
         'Getting transactions to approve',
         'Proof of work',
-        'Broadcasting'
+        'Broadcasting',
     ],
-    zeroValueTransaction: [
-        'Preparing transfers',
-        'Getting transactions to approve',
-        'Proof of work',
-        'Broadcasting'
-    ]
+    zeroValueTransaction: ['Preparing transfers', 'Getting transactions to approve', 'Proof of work', 'Broadcasting'],
 };
