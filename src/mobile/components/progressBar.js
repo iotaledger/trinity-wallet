@@ -23,8 +23,8 @@ const ProgressBar = (props) => {
                 indeterminate={props.indeterminate}
                 useNativeDriver={true} // eslint-disable-line react/jsx-boolean-value
                 progress={props.progress}
-                animationType="timing"
-                width={200}
+                animationType={props.animationType}
+                width={props.width}
                 color={props.color}
             />
             <Text style={styles.text}>{props.children}</Text>
@@ -34,12 +34,16 @@ const ProgressBar = (props) => {
 
 ProgressBar.propTypes = {
     progress: PropTypes.number.isRequired,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     color: PropTypes.string,
     indeterminate: PropTypes.bool,
+    animationType: PropTypes.string,
+    width: PropTypes.number,
 };
 
 ProgressBar.defaultProps = {
+    animationType: 'timing',
+    width: 200,
     indeterminate: false,
     color: 'rgba(247, 208, 2, 0.75)',
 };
