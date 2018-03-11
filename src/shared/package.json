@@ -9,7 +9,7 @@
         "Umair Safraz"
     ],
     "scripts": {
-        "test": "./node_modules/.bin/mocha ./__tests__/**/*.spec.js --require babel-core/register",
+        "test": "./node_modules/.bin/mocha --require babel-core/register \"__tests__/**/*.spec.js\"",
         "test:watch": "yarn test --watch"
     },
     "license": "MIT",
@@ -37,6 +37,7 @@
         "babel-preset-stage-2": "^6.24.1",
         "chai": "^4.1.2",
         "mocha": "^4.0.1",
-        "redux-logger": "^3.0.6"
+        "redux-logger": "^3.0.6",
+        "timekeeper": "^2.0.0"
     }
 }
