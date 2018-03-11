@@ -108,8 +108,8 @@
         "passwordTooShort": "Heslo je příliš krátké",
         "passwordTooShortExplanation": "Vaše heslo musí mít nejméně 12 znaků. Prosím zkuste to znovu.",
         "oldPassword": "Staré heslo nelze nastavit",
-        "oldPasswordExplanation": "Staré heslo nelze použít jako nové heslo. Zkuste znovu s novým heslem.",
-        "ensureStrongPassword": "Ujistěte se, že používáte silné heslo alespoň 12 znaků.",
+        "oldPasswordExplanation": "Staré heslo nelze použít jako nové heslo. Zkuste to prosím znovu s novým heslem.",
+        "ensureStrongPassword": "Ujistěte se, že používáte silné heslo dlouhé alespoň 12 znaků.",
         "currentPassword": "Stávající heslo",
         "newPassword": "Nové heslo",
         "confirmPassword": "Potvrzení nového hesla"
@@ -220,7 +220,7 @@
         "passwordTooShortExplanation": "Seed musí obsahovat minimálně {{minLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
         "passwordMismatch": "Hesla se neshodují",
         "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím zkuste znovu.",
-        "nowWeNeedTo": "Nyní je třeba vytvořit heslo",
+        "nowWeNeedTo": "Nyní je třeba vytvořit heslo.",
         "anEncryptedCopy": "V zařízení se uloží zašifrovaná kopie Vašeho Seedu. Tímto heslem se budete přihlašovat k Vaší peněžence.",
         "ensure": "Ujistěte se, že budete používat bezpečené heslo, dlouhé minimálně 12 znaků.",
         "retypePassword": "Znovu zadejte heslo"
