@@ -116,10 +116,18 @@ class Loading extends Component {
                 const firstSeed = getSeed(credentials.data, 0);
                 let genFn = null;
 
-                if (isAndroid) {
-                    //  genFn = address function
-                } else if (isIOS) {
-                    genFn = NativeModules.Iota.address;
+                if (firstUse || addingAdditionalAccount) {
+                    if (isAndroid) {
+                        //  genFn = Android address function
+                    } else if (isIOS) {
+                        genFn = NativeModules.Iota.multiAddress;
+                    }
+                } else {
+                    if (isAndroid) {
+                        //  genFn = Android multiAddress function
+                    } else if (isIOS) {
+                        genFn = NativeModules.Iota.address;
+                    }
                 }
 
                 if (firstUse && !addingAdditionalAccount) {
