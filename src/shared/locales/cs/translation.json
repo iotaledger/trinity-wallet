@@ -19,8 +19,8 @@
         "invalidResponse": "Neplatná odpověď",
         "invalidResponseExplanation": "Node vrátil neplatnou odpověď.",
         "invalidResponsePollingExplanation": "Node vrátil při dotazování neplatnou odpověď.",
-        "invalidResponseFetchingAccount": "Node vrátil neplatnou odpověď při načítání informací o Vašem účtu. Zkuste změnit uzel-Node.",
-        "invalidResponseSendingTransfer": "Při odesílání transakce vrátil uzel neplatnou odpověď.",
+        "invalidResponseFetchingAccount": "Node vrátil neplatnou odpověď při načítání informací o Vašem účtu. Zkuste změnit Node.",
+        "invalidResponseSendingTransfer": "Node vrátil neplatnou odpověď při odesílání transakce.",
         "seed": "Seed",
         "back": "ZPĚT",
         "backLowercase": "Zpět",
@@ -217,7 +217,7 @@
     },
     "setPassword": {
         "passwordTooShort": "Heslo je příliš krátké",
-        "passwordTooShortExplanation": "Seed musí obsahovat minimálně {{minLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
+        "passwordTooShortExplanation": "Heslo musí obsahovat minimálně {{minLength}} znaků. Nyní je {{currentLength}} znaků dlouhé. Prosím zkuste to znovu.",
         "passwordMismatch": "Hesla se neshodují",
         "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím zkuste znovu.",
         "nowWeNeedTo": "Nyní je třeba vytvořit heslo.",
@@ -360,7 +360,7 @@
     "manualSync": {
         "outOfSync": "Vypadá to, že Vaše historie transakcí nemusí být synchronizovaná?",
         "pressToSync": "Pro synchronizaci Vašeho účtu klikněte na tlačítko níže.",
-        "thisMayTake": "To může chvíli trvat. Můžete si všimnout zpomalení Vašeho zařízení.",
+        "thisMayTake": "Toto může chvíli trvat. Vašeho zařízení se může zpomalit.",
         "doNotClose": "Upozorňujeme, že minimalizace aplikace zruší synchronizaci.",
         "syncAccount": "SYNCHRONIZOVAT ÚČET",
         "syncingYourAccount": "Synchronizuji Váš účet."
@@ -429,7 +429,7 @@
     },
     "pow": {
         "feeless": "Pro odeslání bezplatné transakce v IOTA je potřeba malý důkaz práce-proof of work.",
-        "localOrRemote": "Proof of work může být dokončen lokálně ve Vašem zařízení, nebo být vyložen do Nodu.",
+        "localOrRemote": "Proof of work může být dokončen lokálně ve Vašem zařízení a nebo převeden do Nodu.",
         "local": "Lokální",
         "remote": "Vzdálený"
     }
