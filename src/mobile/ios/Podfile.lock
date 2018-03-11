@@ -2,18 +2,18 @@ PODS:
   - Crashlytics (3.10.0):
     - Fabric (~> 1.7.3)
   - Fabric (1.7.3)
-  - IotaKit (0.5.7)
+  - IotaKit (0.6.1)
 
 DEPENDENCIES:
   - Crashlytics
   - Fabric
-  - IotaKit
+  - IotaKit (~> 0.6.1)
 
 SPEC CHECKSUMS:
   Crashlytics: a989ef242b66605577a425733797f810bd2725eb
   Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
-  IotaKit: 4e8acbbae953299357f4a6675aa4d9cfff2960a6
+  IotaKit: cfcb401949c0bed178528b5aeb66a29168bfe45f
 
-PODFILE CHECKSUM: f0205996c5650ef0347a5f965a3b839196c96acf
+PODFILE CHECKSUM: cfb9cfcda77854ef9147e9d717ab9c4c74e18210
 
 COCOAPODS: 1.4.0
