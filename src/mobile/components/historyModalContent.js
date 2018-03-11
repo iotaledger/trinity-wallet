@@ -11,6 +11,7 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
+import StatefulDropdownAlert from '../containers/statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
@@ -135,14 +136,13 @@ const styles = StyleSheet.create({
 export default class HistoryModalContent extends PureComponent {
     static propTypes = {
         onPress: PropTypes.func.isRequired,
-        generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         rebroadcast: PropTypes.func.isRequired,
         promote: PropTypes.func.isRequired,
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
         confirmationBool: PropTypes.bool.isRequired,
-        mode: PropTypes.string.isRequired,
+        mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
         value: PropTypes.number.isRequired,
         unit: PropTypes.string.isRequired,
         time: PropTypes.number.isRequired,
@@ -182,8 +182,8 @@ export default class HistoryModalContent extends PureComponent {
 
         Clipboard.setString(item);
 
-        if (types[type]) {
-            this.props.generateAlert('success', ...types[type]);
+        if (types[type] && this.dropdown) {
+            this.dropdown.alertWithType('success', ...types[type]);
         }
     }
 
@@ -284,7 +284,8 @@ export default class HistoryModalContent extends PureComponent {
                                     <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
                                     <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
                                     {!confirmationBool &&
-                                        mode === 'Expert' && (
+                                        mode === 'Expert' &&
+                                        value > 0 && (
                                             <View style={[styles.buttonsContainer, style.buttonsOpacity]}>
                                                 <TouchableOpacity
                                                     style={[styles.button, style.borderColor]}
@@ -317,6 +318,12 @@ export default class HistoryModalContent extends PureComponent {
                         </ScrollView>
                     </View>
                 </View>
+                <StatefulDropdownAlert
+                    backgroundColor={style.barColor}
+                    onRef={(c) => {
+                        this.dropdown = c;
+                    }}
+                />
             </TouchableOpacity>
         );
     }

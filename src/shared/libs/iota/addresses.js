@@ -2,6 +2,7 @@ import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
+import head from 'lodash/head';
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 import transform from 'lodash/transform';
@@ -30,11 +31,12 @@ const async = require('async');
  *   @param {function} resolve
  *   @param {function} reject
  *   @param {number} index
+ *   @param {string} latestAddress
  *   @param {array} finalAddresses
  **/
-const removeUnusedAddresses = (resolve, reject, index, finalAddresses) => {
+const removeUnusedAddresses = (resolve, reject, index, latestAddress, finalAddresses) => {
     if (!finalAddresses[index]) {
-        resolve(finalAddresses);
+        resolve([...finalAddresses, latestAddress]);
         return;
     }
 
@@ -42,11 +44,21 @@ const removeUnusedAddresses = (resolve, reject, index, finalAddresses) => {
         if (err) {
             reject(err);
         } else {
-            // If address has affiliated txs
+            // If an address has affiliated txs
             if (size(hashes)) {
-                resolve(finalAddresses);
+                // Always have one unused (latest address) as part of the final addresses
+                resolve([...finalAddresses, latestAddress]);
             } else {
-                removeUnusedAddresses(resolve, reject, index - 1, finalAddresses.slice(0, index));
+                removeUnusedAddresses(
+                    resolve,
+                    reject,
+                    index - 1,
+                    // The address with no associated
+                    // transaction hashes would be the
+                    // new latest address.
+                    finalAddresses[index],
+                    finalAddresses.slice(0, index),
+                );
             }
         }
     });
@@ -57,7 +69,7 @@ const removeUnusedAddresses = (resolve, reject, index, finalAddresses) => {
  *   Generates addresses in batches and upon each execution increase the index to fetch the next batch
  *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
  *
- *   @method getRelevantAddresses
+ *   @method getAddressesWithTransactions
  *   @param {function} resolve
  *   @param {function} reject
  *   @param {string} seed
@@ -65,7 +77,7 @@ const removeUnusedAddresses = (resolve, reject, index, finalAddresses) => {
  *   @param {array} allAddresses
  *   @returns {array} All addresses
  **/
-const getRelevantAddresses = (resolve, reject, seed, opts, genFn, allAddresses) => {
+const getAddressesWithTransactions = (resolve, reject, seed, opts, genFn, allAddresses) => {
     getNewAddress(seed, opts, genFn, (err, addresses) => {
         if (err) {
             reject(err);
@@ -74,12 +86,17 @@ const getRelevantAddresses = (resolve, reject, seed, opts, genFn, allAddresses) 
                 if (size(hashes)) {
                     allAddresses = [...allAddresses, ...addresses];
                     const newOpts = assign({}, opts, { index: opts.total + opts.index });
-                    getRelevantAddresses(resolve, reject, seed, newOpts, genFn, allAddresses);
+                    getAddressesWithTransactions(resolve, reject, seed, newOpts, genFn, allAddresses);
                 } else {
                     // Traverse backwards to remove all unused addresses
                     new Promise((res, rej) => {
                         const lastAddressIndex = size(allAddresses) - 1;
-                        removeUnusedAddresses(res, rej, lastAddressIndex, allAddresses.slice());
+
+                        // Before traversing backwards to remove the unused addresses,
+                        // Set the first address from the newly fetched addresses as the latest address.
+                        const latestAddress = head(addresses);
+
+                        removeUnusedAddresses(res, rej, lastAddressIndex, latestAddress, allAddresses.slice());
                     })
                         .then((finalAddresses) => {
                             return resolve(finalAddresses);
@@ -102,7 +119,7 @@ const getRelevantAddresses = (resolve, reject, seed, opts, genFn, allAddresses) 
 export const getAllAddresses = (seed, genFn) => {
     return new Promise((res, rej) => {
         const opts = { index: 0, total: 10, returnAll: true, security: 2 };
-        getRelevantAddresses(res, rej, seed, opts, genFn, []);
+        getAddressesWithTransactions(res, rej, seed, opts, genFn, []);
     });
 };
 
