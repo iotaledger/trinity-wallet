@@ -72,7 +72,7 @@
         "promote": "PODPOROVAT",
         "rebroadcast": "OPAKOVÁNÍ PŘENOSU",
         "pressBackAgain": "Opětovným stisknutím tlačítka Zpět zavřete aplikaci",
-        "autoreattaching": "Automatické připojení do Tangle",
+        "autoreattaching": "Automatické opětovné připojení do Tangle",
         "autoreattachingExplanation": "Opětovné připojení transakce s hash {{hash}}",
         "autopromoting": "Automatická podpora přenosu",
         "autopromotingExplanation": "Podpora transakcí s hash {{hash}}",
