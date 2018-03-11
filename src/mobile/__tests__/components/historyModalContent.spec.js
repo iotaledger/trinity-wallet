@@ -16,7 +16,6 @@ const getProps = (overrides) =>
         {},
         {
             onPress: noop,
-            generateAlert: noop,
             t: (arg) => {
                 const translations = {
                     'send:message': 'Message',
@@ -41,14 +40,18 @@ const getProps = (overrides) =>
             message: 'Pink floyd',
             bundle: 'BUNDLE',
             addresses: [{ address: 'U'.repeat(81), value: 1, unit: 'i' }],
+            confirmationBool: false,
+            mode: 'Standard',
             style: {
                 titleColor: 'white',
                 containerBorderColor: { borderColor: 'white' },
                 containerBackgroundColor: { backgroundColor: 'white' },
                 confirmationStatusColor: { color: 'red' },
                 defaultTextColor: { color: 'green' },
-                backgroundColor: 'yellow',
+                backgroundColor: 'white',
                 borderColor: { borderColor: 'orange' },
+                barColor: 'black',
+                secondaryBarColor: 'white',
                 buttonsOpacity: { opacity: 1 },
             },
         },
@@ -59,10 +62,6 @@ describe('Testing HistoryModalContent component', () => {
     describe('propTypes', () => {
         it('should require an onPress function as a prop', () => {
             expect(HistoryModalContent.propTypes.onPress).toEqual(PropTypes.func.isRequired);
-        });
-
-        it('should require a generateAlert function as a prop', () => {
-            expect(HistoryModalContent.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a t function as a prop', () => {
@@ -318,47 +317,6 @@ describe('Testing HistoryModalContent component', () => {
                     instance.copy('arg', 'type');
 
                     expect(Clipboard.setString).toHaveBeenCalledWith('arg');
-                });
-
-                it('should not call prop method generateAlert if second argument is not "bundle" or "address"', () => {
-                    const props = getProps({
-                        generateAlert: jest.fn(),
-                    });
-
-                    const instance = shallow(<HistoryModalContent {...props} />).instance();
-                    instance.copy('arg', 'not-bundle-or-address');
-
-                    expect(props.generateAlert).toHaveBeenCalledTimes(0);
-                });
-
-                it('should call prop method generateAlert if second argument is "bundle"', () => {
-                    const props = getProps({
-                        generateAlert: jest.fn(),
-                    });
-
-                    const instance = shallow(<HistoryModalContent {...props} />).instance();
-                    instance.copy('arg', 'bundle');
-
-                    expect(props.generateAlert).toHaveBeenCalledWith(
-                        'success',
-                        'Bundle hash copied',
-                        'Your bundle has been copied to clipboard',
-                    );
-                });
-
-                it('should call prop method generateAlert if second argument is "address"', () => {
-                    const props = getProps({
-                        generateAlert: jest.fn(),
-                    });
-
-                    const instance = shallow(<HistoryModalContent {...props} />).instance();
-                    instance.copy('arg', 'address');
-
-                    expect(props.generateAlert).toHaveBeenCalledWith(
-                        'success',
-                        'Address copied',
-                        'Your address has been copied to clipboard',
-                    );
                 });
             });
         });

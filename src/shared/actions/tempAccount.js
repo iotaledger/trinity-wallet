@@ -3,7 +3,11 @@ import some from 'lodash/some';
 import isFunction from 'lodash/isFunction';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountInfo, accountInfoFetchSuccess } from '../actions/account';
-import { selectedAccountStateFactory, getNetworkBoundPowFromState } from '../selectors/account';
+import {
+    selectedAccountStateFactory,
+    getRemotePoWFromState,
+    selectFirstAddressFromAccountFactory,
+} from '../selectors/account';
 import { clearSendFields } from '../actions/ui';
 import { generateAlert } from '../actions/alerts';
 import {
@@ -227,9 +231,9 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
         args = [...args, options];
     }
 
-    const sendTransferPromise = shouldOffloadPow ? sendTransferAsync : makeTransferWithLocalPow;
+    const promise = shouldOffloadPow ? sendTransferAsync : makeTransferWithLocalPow;
 
-    return sendTransferPromise(...args)
+    return promise(...args)
         .then((newTransfer) => {
             dispatch(updateAccountInfo(accountName, newTransfer, value));
 
@@ -256,7 +260,6 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
             dispatch(completeTransfer({ address, value }));
         })
         .catch((error) => {
-            console.log('Err', error);
             dispatch(sendTransferError());
             const alerts = {
                 attachToTangle: [
@@ -284,8 +287,9 @@ export const prepareTransfer = (seed, address, value, message, accountName, powF
     return (dispatch, getState) => {
         dispatch(sendTransferRequest());
 
-        const transfer = prepareTransferArray(address, value, message);
-        const shouldOffloadPow = getNetworkBoundPowFromState(getState());
+        const shouldOffloadPow = getRemotePoWFromState(getState());
+        const firstAddress = selectFirstAddressFromAccountFactory(accountName)(getState());
+        const transfer = prepareTransferArray(address, value, message, firstAddress);
         const isZeroValue = value === 0;
 
         // If its a zero value transfer,
@@ -400,6 +404,7 @@ export const prepareTransfer = (seed, address, value, message, accountName, powF
                     err,
                 );
             }
+
             return makeTransferWithBalanceCheck(inputs);
         };
 
