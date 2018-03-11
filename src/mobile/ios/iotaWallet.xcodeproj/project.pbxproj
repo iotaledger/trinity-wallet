@@ -33,6 +33,7 @@
 		5613EA5FACE7DF227C991290F2E89D02 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06912F32A64660367B379A5FA9B59C /* libRCTAnimation.a */; };
 		6078188C2055836800A47BDA /* Iota.m in Sources */ = {isa = PBXBuildFile; fileRef = 607818862055836800A47BDA /* Iota.m */; };
 		6078188D2055836800A47BDA /* IotaKitEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607818872055836800A47BDA /* IotaKitEmitter.swift */; };
+		60ABBE502055B39C0092A428 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFB071F75F38C22F03B943A6DCBEDF9 /* libReactNativeNavigation.a */; };
 		6271062A9C4773BE282CDC0CF95480D8 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B655981D53B5AE618EDBD102EA41BF51 /* libReact.a */; };
 		6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F418B6A7C158123D272588757B8B5E /* libKCKeepAwake.a */; };
 		6F563B73857A573593D57546EEF24E49 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7354E30FAB50A709173411D8600A744E /* Lato-Light.ttf */; };
@@ -333,6 +334,13 @@
 			remoteGlobalIDString = 8C5379761FB471D100C1BC65;
 			remoteInfo = Lottie_tvOS;
 		};
+		6094F52E2055B0DF00E36E87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F90973ADF99851374F06FC44DF2E3A77;
+			remoteInfo = IotaKit;
+		};
 		67F735F37D9C96FFCC1469292012988C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 79A46F4458348360C0DFE21018DAAF14 /* RCTGeolocation.xcodeproj */;
@@ -543,13 +551,6 @@
 			remoteGlobalIDString = C547FEE055FA19142BD07CE4A5F81798;
 			remoteInfo = "Pods-iotaWallet-tvOSTests";
 		};
-		FB5707D9C94D51AD17C47EA6DC775882 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FBFA18C3F27CCC6113D145567D34E54C;
-			remoteInfo = IotaKit;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -681,6 +682,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60ABBE502055B39C0092A428 /* libReactNativeNavigation.a in Frameworks */,
 				1601D2D3FEE3505B87365030187ECFDB /* Lottie.framework in Frameworks */,
 				2AC2F1F0512232323EB95A607D2CAD17 /* Pods_iotaWallet.framework in Frameworks */,
 				EA2AFB6E4462A57FCC1E22B307422A84 /* Pods_iotaWallet.framework in Frameworks */,
@@ -1013,7 +1015,7 @@
 		9587AF1D58A6A266E24B67481F9ED9F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3D728509F371AB6A3627DB3F3EFBE88F /* IotaKit.framework */,
+				6094F52F2055B0DF00E36E87 /* IotaKit.framework */,
 				A7757FB00CE594F07671643433203090 /* Pods_iotaWallet.framework */,
 				73DE2893421CB79475DA9ABBFC68EF31 /* libPods-iotaWallet-tvOS.a */,
 				75741D422FC234226BD97F79574086A2 /* libPods-iotaWallet-tvOSTests.a */,
@@ -1637,13 +1639,6 @@
 			remoteRef = BAEFC339D0724DE7BFFD78DDD3AC5310 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3D728509F371AB6A3627DB3F3EFBE88F /* IotaKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = IotaKit.framework;
-			remoteRef = FB5707D9C94D51AD17C47EA6DC775882 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		41ABB0EEDDF4C638791186862B6FCA44 /* libRCTWebSocket-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1740,6 +1735,13 @@
 			fileType = wrapper.framework;
 			path = Lottie.framework;
 			remoteRef = 6078188A2055836800A47BDA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6094F52F2055B0DF00E36E87 /* IotaKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = IotaKit.framework;
+			remoteRef = 6094F52E2055B0DF00E36E87 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		667F57494F99C69927244B789F08BA39 /* Lottie.framework */ = {
