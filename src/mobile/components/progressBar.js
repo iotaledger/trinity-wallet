@@ -27,7 +27,7 @@ const ProgressBar = (props) => {
                 width={props.width}
                 color={props.color}
             />
-            <Text style={styles.text}>{props.children}</Text>
+            <Text style={[styles.text, { color: props.color }]}>{props.children}</Text>
         </View>
     );
 };

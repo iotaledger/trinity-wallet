@@ -601,10 +601,10 @@ export class Send extends Component {
         const formattedAmount = amount === '' ? 0 : amount;
         const value = parseInt(parseFloat(formattedAmount) * this.getUnitMultiplier(), 10);
 
-        this.props.getFromKeychainRequest('send', 'makeTransaction');
-
         // Start tracking progress for each transaction step
         this.startTrackingTransactionProgress(value === 0);
+
+        this.props.getFromKeychainRequest('send', 'makeTransaction');
 
         keychain
             .get()
@@ -786,6 +786,7 @@ export class Send extends Component {
                                 <ProgressBar
                                     indeterminate={this.props.activeStepIndex === -1}
                                     progress={this.props.activeStepIndex / size(this.props.activeSteps)}
+                                    color={body.color}
                                 >
                                     {this.renderProgressBarChildren()}
                                 </ProgressBar>

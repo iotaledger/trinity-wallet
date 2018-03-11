@@ -32,9 +32,6 @@ import {
     getBundleAsync,
     getLatestInclusionAsync,
     findTransactionObjectsAsync,
-    prepareTransfersAsync,
-    getTransactionsToApproveAsync,
-    storeAndBroadcastAsync,
     findTransactionsAsync,
 } from './extendedApi';
 
