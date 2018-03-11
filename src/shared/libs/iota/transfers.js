@@ -34,25 +34,35 @@ import {
 } from './extendedApi';
 
 /**
- *   Returns a single transfer array
- *   Converts message and tag to trytes. Basically preparing an array of transfer objects before making a transfer.
+ *   Returns a transfer array
+ *   Converts message to trytes. Basically preparing an array of transfer objects before making a transfer.
+ *   Since zero value transfers have no inputs, after a sync with ledger, these transfers would not be detected.
+ *   To make sure zero value transfers are detected after a sync, add a second transfer to the array that has
+ *   seed's own address at index 0.
  *
  *   @method prepareTransferArray
  *   @param {string} address
  *   @param {number} value
  *   @param {string} message
+ *   @param {string} firstOwnAddress
  *   @param {string} [tag='TRINITY']
  *   @returns {array} Transfer object
  **/
-export const prepareTransferArray = (address, value, message, tag = DEFAULT_TAG) => {
-    return [
-        {
-            address,
-            value,
-            message: iota.utils.toTrytes(message),
-            tag,
-        },
-    ];
+export const prepareTransferArray = (address, value, message, firstOwnAddress, tag = DEFAULT_TAG) => {
+    const trytesConvertedMessage = iota.utils.toTrytes(message);
+    const isZeroValue = value === 0;
+    const transfer = {
+        address,
+        value,
+        message: trytesConvertedMessage,
+        tag,
+    };
+
+    if (isZeroValue) {
+        return [transfer, assign({}, transfer, { address: firstOwnAddress })];
+    }
+
+    return [transfer];
 };
 
 /**
@@ -467,26 +477,64 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
     );
 };
 
-export const constructBundle = (tailTx, allBundleObjects) => {
-    if (tailTx.currentIndex === tailTx.lastIndex) {
-        return [tailTx];
+/**
+ *   Checks if there is a difference between local transaction hashes and ledger's transaction hashes.
+ *
+ *   @method constructBundle
+ *   @param {object} tailTransaction
+ *   @param {array} allTransactionObjects
+ *
+ *   @returns {boolean}
+ **/
+export const constructBundle = (tailTransaction, allTransactionObjects) => {
+    // Start from the tail transaction object
+    // This will also preserve the order since the next objects will be pushed
+    const bundle = [tailTransaction];
+
+    // In case tail transaction is only transfer in the bundle
+    // Just return the tail transaction as a bundle
+    if (tailTransaction.currentIndex === tailTransaction.lastIndex) {
+        return bundle;
     }
 
-    const bundle = [tailTx];
-    const bundleHash = tailTx.bundle;
+    let hasFoundLastTransfer = false;
 
-    let trunk = tailTx.trunkTransaction;
-    let stop = false;
-    const nextTx = () => find(allBundleObjects, { hash: trunk });
+    // Assign parent transactions (trunk and branch)
+    // Starting from the remainder transaction object (index = 0 in sortedTransactionObjects)
+    // - When index === 0 i.e. remainder transaction object
+    //    * Assign trunkTransaction with provided trunk transaction from (getTransactionsToApprove)
+    //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)
+    // - When index > 0 i.e. not remainder transaction objects
+    //    * Assign trunkTransaction with hash of previous transaction object
+    //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)    let nextTrunk = tailTransaction.trunkTransaction;
 
-    while (nextTx() && nextTx().bundle === bundleHash && !stop) {
-        bundle.push(nextTx());
+    // Start off from by searching for trunk transaction of tail transaction object,
+    // Which is hash of the next transfer i.e. transfer with current index 1
+    let nextTrunkTransaction = tailTransaction.trunkTransaction;
 
-        if (nextTx().currentIndex === nextTx().lastIndex) {
-            stop = true;
+    // Finds the next transfer which would basically be that transfer that has hash === nextTrunkTransaction
+    const nextTransfer = () => find(allTransactionObjects, { hash: nextTrunkTransaction });
+
+    while (
+        // Safety check to see if the next transfer exists
+        nextTransfer() &&
+        // Next check if bundle hash for tail transaction matches the next found transfer
+        nextTransfer().bundle === tailTransaction.bundle &&
+        // Make sure it hasn't already found the last transfer in the bundle
+        !hasFoundLastTransfer
+    ) {
+        const transfer = nextTransfer();
+        const isLastTransferInBundle = transfer.currentIndex === transfer.lastIndex;
+
+        // Assign trunk transaction of this transaction as the next trunk transaction to be searched for,
+        // Next trunk transaction should always be the hash of currentIndex + 1 except for the case of remainder objects (currentIndex === lastIndex)
+        nextTrunkTransaction = transfer.trunkTransaction;
+
+        bundle.push(transfer);
+
+        if (isLastTransferInBundle) {
+            hasFoundLastTransfer = true;
         }
-
-        trunk = nextTx().trunkTransaction;
     }
 
     return bundle;
@@ -721,34 +769,49 @@ export const getAllTailTransactionsForBundle = (bundleHash, transfers) => {
     return filter(flatten(bundles), { currentIndex: 0 });
 };
 
-export const getTrytesWithParentTransactions = (seed, transfers, options = null) => {
-    const cached = {
-        trunkTransaction: null,
-        branchTransaction: null,
-    };
-
-    return getTransactionsToApproveAsync()
-        .then((transactionsToApprove) => {
-            console.log('Transactions to approve', transactionsToApprove);
-
-            cached.trunkTransaction = transactionsToApprove.trunkTransaction;
-            cached.branchTransaction = transactionsToApprove.branchTransaction;
-
-            return prepareTransfersAsync(seed, transfers, options);
-        })
-        .then((trytes) => ({ ...cached, trytes }));
-};
-
-export const performPow = (powFn, transactionObjects, minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE) => {
-    const trytes = map(transactionObjects, (transaction) => iota.utils.transactionTrytes(transaction));
+/**
+ *   Performs proof of work and updates trytes and transaction objects with nonce
+ *
+ *   @method performPow
+ *   @param {function} powFn
+ *   @param {array} transactionObjects
+ *   @param {string} trunkTransaction
+ *   @param {string} branchTransaction
+ *   @param {integer} [minWeightMagnitude = 14]
+ *   @returns {promise<object>}
+ **/
+export const performPow = (
+    powFn,
+    transactionObjects,
+    trunkTransaction,
+    branchTransaction,
+    minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
+) => {
+    // Order transaction objects in descending to make sure it starts from remainder object.
+    const sortedTransactionObjects = orderBy(transactionObjects, 'currentIndex', ['desc']);
 
     return reduce(
-        trytes,
-        (promise, tryte, index) => {
+        sortedTransactionObjects,
+        (promise, transaction, index) => {
             return promise.then((result) => {
-                return powFn(tryte, minWeightMagnitude).then((nonce) => {
-                    const transactionObjectWithNonce = assign({}, transactionObjects[index], { nonce });
-                    const trytesWithNonce = iota.utils.transactionTrytes(transactionObjectWithNonce);
+                // Assign parent transactions (trunk and branch)
+                // Starting from the remainder transaction object (index = 0 in sortedTransactionObjects)
+                // - When index === 0 i.e. remainder transaction object
+                //    * Assign trunkTransaction with provided trunk transaction from (getTransactionsToApprove)
+                //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)
+                // - When index > 0 i.e. not remainder transaction objects
+                //    * Assign trunkTransaction with hash of previous transaction object
+                //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)
+                const withParentTransactions = assign({}, transaction, {
+                    trunkTransaction: index ? result.transactionObjects[index - 1].hash : trunkTransaction,
+                    branchTransaction: index ? trunkTransaction : branchTransaction,
+                });
+
+                const transactionTryteString = iota.utils.transactionTrytes(withParentTransactions);
+
+                return powFn(transactionTryteString, minWeightMagnitude).then((nonce) => {
+                    const trytesWithNonce = transactionTryteString.substr(0, 2673 - 27).concat(nonce);
+                    const transactionObjectWithNonce = iota.utils.transactionObject(trytesWithNonce);
 
                     result.trytes.push(trytesWithNonce);
                     result.transactionObjects.push(transactionObjectWithNonce);
@@ -761,52 +824,56 @@ export const performPow = (powFn, transactionObjects, minWeightMagnitude = DEFAU
     );
 };
 
-export const mapParentTransactionsToTransactionObjects = (transactionObjects, trunkTransaction, branchTransaction) => {
-    const sortedTransactionObjects = orderBy(transactionObjects, 'currentIndex', ['desc']);
-
-    return map(sortedTransactionObjects, (transaction, index) => {
-        // If its the first transaction object --> currentIndex === lastIndex
-        // Assign the provided trunk and branch transactions
-        if (!index) {
-            return assign({}, transaction, { trunkTransaction, branchTransaction });
-        }
-
-        // Assign previous hash as trunk transaction
-        // Provided trunk transaction as the new branch transaction
-        return assign({}, transaction, {
-            trunkTransaction: sortedTransactionObjects[index - 1].hash,
-            branchTransaction: trunkTransaction,
-        });
-    }).reverse();
+/**
+ *   Wrapper function that prepares transfers by signing
+ *   inputs if it's a value transfer and send trytes to tangle
+ *
+ *   @method makeTransferWithLocalPow
+ *   @param {string} seed
+ *   @param {array} transfers
+ *   @param {function} powFn
+ *   @param {object} [options = null]
+ *   @returns {promise}
+ **/
+export const makeTransferWithLocalPow = (seed, transfers, powFn, options = null) => {
+    return prepareTransfersAsync(seed, transfers, options).then((trytes) => sendTrytes(trytes, powFn));
 };
 
-export const makeTransferWithLocalPow = (seed, transfers, powFn, options = null) => {
+/**
+ *   Get transaction to approve (trunk and branch)
+ *   Perform proof of work
+ *   Store and broadcast trytes
+ *
+ *   @method sendTrytes
+ *   @param {array} trytes
+ *   @param {function} powFn
+ *   @returns {promise<object>}
+ **/
+export const sendTrytes = (trytes, powFn) => {
     const cached = {
         trytes: [],
         transactionObjects: [],
     };
 
-    return getTrytesWithParentTransactions(seed, transfers, options)
-        .then(({ trytes, trunkTransaction, branchTransaction }) => {
-            cached.trytes = trytes;
+    cached.trytes = trytes;
 
-            cached.transactionObjects = mapParentTransactionsToTransactionObjects(
-                map(cached.trytes, (tryte) =>
-                    assign({}, iota.utils.transactionObject(tryte), {
-                        attachmentTimestamp: Date.now(),
-                        attachmentTimestampLowerBound: 0,
-                        attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
-                    }),
-                ),
-                trunkTransaction,
-                branchTransaction,
+    return getTransactionsToApproveAsync()
+        .then(({ trunkTransaction, branchTransaction }) => {
+            cached.transactionObjects = map(cached.trytes, (transactionTrytes) =>
+                assign({}, iota.utils.transactionObject(transactionTrytes), {
+                    attachmentTimestamp: Date.now(),
+                    attachmentTimestampLowerBound: 0,
+                    attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
+                }),
             );
 
-            return performPow(powFn, cached.transactionObjects);
+            return performPow(powFn, cached.transactionObjects, trunkTransaction, branchTransaction);
         })
         .then(({ trytes, transactionObjects }) => {
-            cached.trytes = trytes;
-            cached.transactionObjects = transactionObjects;
+            // performPow orders transactions/trytes in descending order
+            // Sort trytes/transactions in ascending before storing and broadcasting
+            cached.trytes = trytes.reverse();
+            cached.transactionObjects = transactionObjects.reverse();
 
             return storeAndBroadcastAsync(cached.trytes);
         })

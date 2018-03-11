@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons';
 import GENERAL from '../theme/general';
-import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 22,
         textAlign: 'center',
-        color: COLORS.redLight,
+        color: 'red',
         paddingBottom: height / 40,
     },
     questionText: {
@@ -35,9 +34,16 @@ const styles = StyleSheet.create({
 });
 
 class RootDetectionModal extends Component {
+    static propTypes = {
+        closeApp: PropTypes.func.isRooted,
+        hideModal: PropTypes.func.isRooted,
+        t: PropTypes.func.isRooted,
+        backgroundColor: PropTypes.string.isRooted,
+        textColor: PropTypes.object.isRooted,
+        borderColor: PropTypes.object.isRooted,
+    };
     render() {
         const { t, backgroundColor, textColor, borderColor } = this.props;
-
         return (
             <View style={{ width: width / 1.1, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
