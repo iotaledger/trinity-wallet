@@ -215,7 +215,7 @@ class Settings extends Component {
                         const seed = getSeed(credentials.data, seedIndex);
                         let genFn = null;
                         if (isAndroid) {
-                            //  genFn = address function
+                            //  genFn = Android multiAddress function
                         } else if (isIOS) {
                             genFn = NativeModules.Iota.address;
                         }
