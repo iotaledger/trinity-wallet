@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Ключ не был сгенерирован",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Пожалуйста, сгенерируйте новый ключ (seed).",
         "pressForNewSeed": "СОЗДАТЬ НОВЫЙ КЛЮЧ",
         "individualLetters": "Нажмите на любые несколько символов в случайном порядке."
     },
@@ -360,8 +360,8 @@
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
         "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "thisMayTake": "Это может занять некоторое время. Устройство может работать медленнее, чем обычно.",
+        "doNotClose": "Обратите внимание, что минимизация приложения прервёт синхронизацию.",
         "syncAccount": "СИНХРОНИЗИРОВАТЬ СЧЁТ",
         "syncingYourAccount": "Синхронизация Вашего счёта."
     },
@@ -428,9 +428,9 @@
         "rootDetected": "<0>Похоже, что Ваше устройство было скомпрометировано (rooted/jailbroken).</0> <1>Это может представлять серьёзную угрозу безопасности Вашего кошелька.</1> <2>Хотите ли Вы продолжить, несмотря на этот риск?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "feeless": "Для отправки транзакций без комиссий в IOTA необходимо выполнить процедуру доказательства выполнения работы (proof-of-work).",
+        "localOrRemote": "Процедура доказательства выполнения работы может быть выполнена локально на Вашем устройстве или удалённо на узле, к которому вы подключены.",
         "local": "На Вашем устройстве",
-        "remote": "Удалённо"
+        "remote": "На узле"
     }
 }
