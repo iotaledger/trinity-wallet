@@ -430,7 +430,7 @@
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
+        "local": "На Вашем устройстве",
+        "remote": "Удалённо"
     }
 }
