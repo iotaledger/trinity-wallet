@@ -14,9 +14,8 @@ import findKey from 'lodash/findKey';
 import size from 'lodash/size';
 import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
-import concat from 'lodash/concat';
 import { iota } from './index';
-import { getBalancesAsync, wereAddressesSpentFromAsync, newAddressAsync } from './extendedApi';
+import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 
 const errors = require('iota.lib.js/lib/errors/inputErrors');
 const async = require('async');
@@ -491,12 +490,9 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
 /*eslint-disable no-loop-func*/
 
 export const getNewAddress = (seed, options, genFn = null, callback) => {
-    // Store the generation function as a variable
-    var generator = null;
-    if (genFn !== null) {
-        generator = genFn;
-    } else {
-        generator = newAddressAsync;
+    // If desktop, use iota lib js API call
+    if (genFn === null) {
+        return iota.api.getNewAddress(seed, options, callback);
     }
 
     // If no options provided, switch arguments
@@ -544,7 +540,7 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
     // and return the list of all addresses
     if (total) {
         // Increase index with each iteration
-        return getAddress(seed, index, total, security, checksum, generator).then((addresses) => {
+        return genFn(seed, index, total, security, checksum).then((addresses) => {
             allAddresses = addresses;
             return callback(null, allAddresses);
         });
@@ -558,8 +554,7 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
             (callback) => {
                 // Iteratee function
                 var newAddress = '';
-                //  if (Object.prototype.toString(generator) === '[object Object]') {
-                return generator(seed, index, security, checksum).then((address) => {
+                return genFn(seed, index, security, checksum).then((address) => {
                     newAddress = address;
                     if (options.returnAll) {
                         allAddresses.push(newAddress);
@@ -605,15 +600,6 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
             },
         );
     }
-};
-
-export const getAddress = (seed, index, total, security, checksum, genFn, addresses = []) => {
-    if (total === 0) {
-        return Promise.resolve(addresses);
-    }
-    return genFn(seed, index, security, checksum).then((address) => {
-        return getAddress(seed, index + 1, total - 1, security, checksum, genFn, concat([], addresses, [address]));
-    });
 };
 
 /*eslint-enable no-var*/
