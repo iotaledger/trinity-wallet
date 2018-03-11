@@ -359,7 +359,7 @@
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "Нажмите на кнопку, чтобы синхронизировать Ваш счёт.",
         "thisMayTake": "Это может занять некоторое время. Устройство может работать медленнее, чем обычно.",
         "doNotClose": "Обратите внимание, что минимизация приложения прервёт синхронизацию.",
         "syncAccount": "СИНХРОНИЗИРОВАТЬ СЧЁТ",
