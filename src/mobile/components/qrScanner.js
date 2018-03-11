@@ -47,11 +47,8 @@ class QRScanner extends Component {
         t: PropTypes.func.isRequired,
         onQRRead: PropTypes.func.isRequired,
         hideModal: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        ctaColor: PropTypes.string.isRequired,
-        secondaryCtaColor: PropTypes.string.isRequired,
-        ctaBorderColor: PropTypes.string,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -65,29 +62,24 @@ class QRScanner extends Component {
     }
 
     render() {
-        const {
-            t,
-            backgroundColor,
-            ctaColor,
-            secondaryCtaColor,
-            ctaBorderColor,
-            secondaryBackgroundColor,
-        } = this.props;
+        const { t, body, primary } = this.props;
 
         return (
             <View style={styles.modalContent}>
-                <View style={{ alignItems: 'center', backgroundColor }}>
+                <View style={{ alignItems: 'center', backgroundColor: body.bg }}>
                     <View style={{ height: height / 12 }} />
-                    <Text style={[styles.qrInfoText, { color: secondaryBackgroundColor }]}>{t('scan')}</Text>
+                    <Text style={[styles.qrInfoText, { color: body.color }]}>{t('scan')}</Text>
                     <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
                     <View style={{ paddingBottom: height / 15 }}>
                         <TouchableOpacity
-                            style={[styles.closeButton, { backgroundColor: ctaColor }, { borderColor: ctaBorderColor }]}
+                            style={[
+                                styles.closeButton,
+                                { backgroundColor: primary.color },
+                                { borderColor: 'transparent' },
+                            ]}
                             onPress={() => this.props.hideModal()}
                         >
-                            <Text style={[styles.closeButtonText, { color: secondaryCtaColor }]}>
-                                {t('global:close')}
-                            </Text>
+                            <Text style={[styles.closeButtonText, { color: primary.body }]}>{t('global:close')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

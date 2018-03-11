@@ -2,14 +2,14 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
-import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
-import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import Fonts from '../theme/Fonts';
 import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 import CustomTextInput from './customTextInput';
+import { Icon } from '../theme/icons.js';
+import InfoBox from '../components/infoBox';
 
 const styles = StyleSheet.create({
     container: {
@@ -41,15 +41,10 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
     },
     infoText: {
-        fontFamily: Fonts.secondary,
+        fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'center',
-        paddingTop: height / 60,
+        textAlign: 'justify',
         backgroundColor: 'transparent',
-    },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
     },
     textField: {
         fontFamily: Fonts.tertiary,
@@ -61,13 +56,11 @@ const styles = StyleSheet.create({
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
     iconLeft: {
@@ -79,10 +72,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-    },
-    iconRight: {
-        width: width / 28,
-        height: width / 28,
+        marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
@@ -100,10 +90,8 @@ class ChangePassword extends Component {
         generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
-        tickImagePath: PropTypes.number.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -176,7 +164,7 @@ class ChangePassword extends Component {
         // We are using almost the same field styles and props
         // across all app
 
-        const { negativeColor, secondaryBackgroundColor } = this.props;
+        const { theme } = this.props;
         const props = {
             onRef: ref,
             label,
@@ -189,8 +177,7 @@ class ChangePassword extends Component {
             returnKeyType,
             onSubmitEditing,
             value,
-            secondaryBackgroundColor,
-            negativeColor,
+            theme,
         };
 
         return <CustomTextInput {...props} />;
@@ -215,17 +202,20 @@ class ChangePassword extends Component {
 
     render() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { t, textColor, borderColor, secondaryBackgroundColor, tickImagePath, arrowLeftImagePath } = this.props;
-        const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
+        const { t, textColor, body } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={[styles.infoTextWrapper, borderColor]}>
-                            <Image source={infoImagePath} style={styles.infoIcon} />
-                            <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
-                        </View>
+                        <InfoBox
+                            body={body}
+                            text={
+                                <View>
+                                    <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
+                                </View>
+                            }
+                        />
                         <View style={{ flex: 0.2 }} />
                         {this.renderTextField(
                             (c) => {
@@ -265,7 +255,7 @@ class ChangePassword extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -283,7 +273,7 @@ class ChangePassword extends Component {
                                 >
                                     <View style={styles.itemRight}>
                                         <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                        <Image source={tickImagePath} style={styles.iconRight} />
+                                        <Icon name="eye" size={width / 28} color={body.color} />
                                     </View>
                                 </TouchableOpacity>
                             )}
