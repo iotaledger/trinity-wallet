@@ -1,12 +1,19 @@
+import i18next from 'i18next';
+
 export default {
     valueTransaction: [
-        'Validating receive address',
-        'Syncing account',
-        'Preparing inputs',
-        'Preparing transfers',
-        'Getting transactions to approve',
-        'Proof of work',
-        'Broadcasting',
+        i18next.t('progressSteps:validatingReceiveAddress'),
+        i18next.t('progressSteps:syncingAccount'),
+        i18next.t('progressSteps:preparingInputs'),
+        i18next.t('progressSteps:preparingTransfers'),
+        i18next.t('progressSteps:gettingTransactionsToApprove'),
+        i18next.t('progressSteps:proofOfWork'),
+        i18next.t('progressSteps:broadcasting'),
     ],
-    zeroValueTransaction: ['Preparing transfers', 'Getting transactions to approve', 'Proof of work', 'Broadcasting'],
+    zeroValueTransaction: [
+        i18next.t('progressSteps:preparingTransfers'),
+        i18next.t('progressSteps:gettingTransactionsToApprove'),
+        i18next.t('progressSteps:proofOfWork'),
+        i18next.t('progressSteps:broadcasting'),
+    ],
 };
