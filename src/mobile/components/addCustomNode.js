@@ -146,7 +146,7 @@ class AddCustomNode extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('add')}</Text>
-                                <Icon name="eye" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="tick" size={width / 28} color={secondaryBackgroundColor} />
                             </View>
                         </TouchableOpacity>
                     </View>
