@@ -303,7 +303,7 @@ class ThemeCustomisation extends Component {
                                 <Text style={[styles.titleTextRight, { color: this.props.secondaryBackgroundColor }]}>
                                     {t('global:apply')}
                                 </Text>
-                                <Icon name="eye" size={width / 28} color={this.props.secondaryBackgroundColor} />
+                                <Icon name="tick" size={width / 28} color={this.props.secondaryBackgroundColor} />
                             </View>
                         </TouchableOpacity>
                     </View>
