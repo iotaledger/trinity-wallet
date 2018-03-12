@@ -109,7 +109,7 @@ class NodeSelection extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                <Icon name="eye" size={width / 28} color={body.color} />
+                                <Icon name="tick" size={width / 28} color={body.color} />
                             </View>
                         </TouchableOpacity>
                     </View>
