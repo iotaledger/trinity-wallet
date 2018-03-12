@@ -122,7 +122,7 @@
         "clickToCopy": "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
         "doNotStore": "Μην αποθηκεύετε το σπόρο σας σε μορφή απλού κειμένου.",
         "copyToClipboard": "Αντίγραφο κωδικού προσβάσεις ",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "Μοιραστείτε τον κωδικό  σας σε ένα ασφαλή κωδικό πρόσβασης διαχειριστή"
     },
     "enterSeed": {
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Δεν έχει παραχθεί σπόρος",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Παρακαλούμε να δημιουργήσετε ένα νέο κωδικό ",
         "pressForNewSeed": "ΠΑΤΗΣΤΕ ΓΙΑ ΝΕΟ ΣΠΟΡΟ",
         "individualLetters": "Πατήστε μεμονομένα γράμματα για να τα τυχαιοποιήσετε."
     },
@@ -179,8 +179,8 @@
         "generateNewAddress": "ΝΕΑ ΔΙΕΥΘΥΝΣΗ",
         "message": "Προαιρετικό μήνυμα",
         "removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "Καμία διαθέσιμη διεύθυνση ",
+        "spent": "Δαπανήθηκαν"
     },
     "saveYourSeed": {
         "seedCleared": "Σπόρος εκκαθαρίστηκε",
@@ -206,8 +206,8 @@
         "amount": "Ποσό",
         "max": "ΜΕΓΙΣΤΟ",
         "message": "Μήνυμα",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "Μη έγκυρο μήνυμα",
+        "invalidMessageExplanation": "Το μήνυμά σας περιέχει μη έγκυρους χαρακτήρες.",
         "send": "ΑΠΟΣΤΟΛΗ",
         "invalidAmount": "Εισήχθη λάθος ποσό",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
