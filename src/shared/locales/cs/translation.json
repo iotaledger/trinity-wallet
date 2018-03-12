@@ -54,11 +54,11 @@
         "syncInProgressExplanation": "Počkejte na dokončení synchronizace.",
         "somethingWentWrong": "Něco se pokazilo",
         "somethingWentWrongExplanation": "Prosím restartujte aplikaci.",
-        "node": "Uzel",
+        "node": "Node",
         "cannotPerformAction": "Akci nelze provést",
         "cannotPerformActionExplanation": "Chcete-li obnovit peněženku, přejděte na Rozšířená nastavení.",
         "attachToTangleUnavailable": "Připojení do Tangle je nedostupné",
-        "attachToTangleUnavailableExplanation": "Připojení do Tangle není k dispozici ve vybraném nodu.",
+        "attachToTangleUnavailableExplanation": "Připojení do Tangle není k dispozici ve vybraném Nodu.",
         "wallet": "Peněženka",
         "sent": "Odesláno",
         "received": "Přijato",
@@ -323,7 +323,7 @@
     },
     "advancedSettings": {
         "selectNode": "Vybrat Node",
-        "addCustomNode": "Přidat vlastní node",
+        "addCustomNode": "Přidat vlastní Node",
         "manualSync": "Manuální synchronizace",
         "snapshotTransition": "Snapshot"
     },
@@ -420,7 +420,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Změnit",
+        "change": "Změna",
         "volume": "Objem (24h)"
     },
     "rootDetection": {
