@@ -54,7 +54,7 @@
         "syncInProgressExplanation": "Počkejte na dokončení synchronizace.",
         "somethingWentWrong": "Něco se pokazilo",
         "somethingWentWrongExplanation": "Prosím restartujte aplikaci.",
-        "node": "Node",
+        "node": "Uzel",
         "cannotPerformAction": "Akci nelze provést",
         "cannotPerformActionExplanation": "Chcete-li obnovit peněženku, přejděte na Rozšířená nastavení.",
         "attachToTangleUnavailable": "Připojení do Tangle je nedostupné",
@@ -314,7 +314,7 @@
         "addNewAccount": "Přidat nový účet"
     },
     "addCustomNode": {
-        "customNode": "Vlastní node",
+        "customNode": "Vlastní Node",
         "add": "Přidat"
     },
     "addNewAccount": {
@@ -322,7 +322,7 @@
         "createNewSeed": "Vytvořit nový Seed"
     },
     "advancedSettings": {
-        "selectNode": "Vybrat node",
+        "selectNode": "Vybrat Node",
         "addCustomNode": "Přidat vlastní node",
         "manualSync": "Manuální synchronizace",
         "snapshotTransition": "Snapshot"
