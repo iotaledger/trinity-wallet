@@ -380,7 +380,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TATO AKCE NEMŮŽE BÝT VRÁCENA.",
-        "warning": "<0><0>Všechna data z peněženky včetně Vašeho</0> <1>Seedu, hesla</1> <2>a</2> <3>dalších informací o účtu</3> <4>budou ztracena.</4></0>"
+        "warning": "<0><0>Všechna data z peněženky včetně Vašeho</0> <1>Seedu, hesla</1> <2>a</2> <3>další informace o vašem účtu</3> <4>budou ztracena.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Chcete-li povolit ověření otisků prstů, dotkněte se čtečky otisků prstů na zařízení.",
