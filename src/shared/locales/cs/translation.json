@@ -49,7 +49,7 @@
         "password": "Heslo",
         "passwordOrFingerprint": "Heslo nebo otisk prstu",
         "unrecognisedPassword": "Neznámé heslo",
-        "unrecognisedPasswordExplanation": "Heslo neodpovídá. Prosím zkuste to znovu.",
+        "unrecognisedPasswordExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
         "syncInProgress": "Probíhá synchronizace",
         "syncInProgressExplanation": "Počkejte na dokončení synchronizace.",
         "somethingWentWrong": "Něco se pokazilo",
@@ -144,7 +144,7 @@
     },
     "login": {
         "emptyPassword": "Prázdné heslo",
-        "emptyPasswordExplanation": "Musíte zadat heslo pro přihlášení. Opakujte akci.",
+        "emptyPasswordExplanation": "Musíte zadat heslo pro přihlášení. Prosím zkuste znovu.",
         "enterPassword": "Prosím zadejte Vaše heslo.",
         "useSeed": "POUŽIJ SEED",
         "login": "PŘIHLÁSIT SE",
