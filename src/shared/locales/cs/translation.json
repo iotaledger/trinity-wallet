@@ -98,7 +98,7 @@
     },
     "changePassword": {
         "oops": "Ajaj! Něco se pokazilo",
-        "oopsExplanation": "Vypadá to, že došlo k chybě při aktualizaci hesla. Opakujte akci.",
+        "oopsExplanation": "Vypadá to, že došlo k chybě při aktualizaci hesla. Prosím zkuste to znovu.",
         "passwordUpdated": "Heslo aktualizováno",
         "passwordUpdatedExplanation": "Vaše heslo bylo úspěšně aktualizováno.",
         "incorrectPassword": "Neplatné heslo",
