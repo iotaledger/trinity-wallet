@@ -272,10 +272,10 @@
         "selectAll": "Selecionar Tudo",
         "securitySettings": "Opções de segurança",
         "fingerprint": "Autenticação biométrica",
-        "couldNotFetchRates": "Não foi possível obter taxas",
-        "couldNotFetchRatesExplanation": "Algo deu errado ao obter taxas de conversão para {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "couldNotFetchRates": "Não foi possível obter taxas de câmbio",
+        "couldNotFetchRatesExplanation": "Algo deu errado ao obter as taxas de câmbio para {{currency}}.",
+        "fetchedConversionRates": "Conversão de câmbio obtida",
+        "fetchedConversionRatesExplanation": "As taxas de câmbio foram obtidas com sucesso para {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
@@ -325,7 +325,7 @@
         "selectNode": "Selecionar servidor",
         "addCustomNode": "Adicionar servidor personalizado",
         "manualSync": "Sincronização manual",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Transição de snapshot"
     },
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
@@ -352,16 +352,16 @@
         "one": "Um"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Tem certeza de que deseja excluir a conta {{accountName}}?",
         "yourSeedWillBeRemoved": "Sua seed e histórico de transação serão removidos.",
         "thisAction": "Esta ação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "outOfSync": "O seu histórico de transações parece estar fora de sincronia?",
+        "pressToSync": "Pressione o botão abaixo para sincronizar sua conta.",
+        "thisMayTake": "Isto pode demorar um pouco. Você pode notar o seu dispositivo ficar mais lento.",
+        "doNotClose": "Atenção, minimizar o app irá cancelar a sincronização.",
         "syncAccount": "SINCRONIZAR CONTA",
         "syncingYourAccount": "Sincronizando sua conta."
     },
@@ -428,9 +428,9 @@
         "rootDetected": "<0>Seu dispositivo parece ter root/jailbrake.</0> <1>Isso pode representar um risco significativo para a segurança de sua carteira.</1> <2>Você deseja continuar apesar deste risco?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "feeless": "É necessário completar uma prova de trabalho para enviar transações em IOTA gratuitamente.",
+        "localOrRemote": "Prova de trabalho pode ser concluída localmente, ou descarregada para um servidor.",
         "local": "Local",
-        "remote": "Remote"
+        "remote": "Remoto"
     }
 }
