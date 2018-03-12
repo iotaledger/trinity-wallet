@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "A Seed não foi gerada",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Por favor, gere uma seed nova.",
         "pressForNewSeed": "PRESSIONE PARA OBTER NOVA SEED",
         "individualLetters": "Digite letras individuais para tornar o processo mais aleatório."
     },
@@ -272,8 +272,8 @@
         "selectAll": "Selecionar Tudo",
         "securitySettings": "Opções de segurança",
         "fingerprint": "Autenticação biométrica",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "couldNotFetchRates": "Não foi possível obter taxas",
+        "couldNotFetchRatesExplanation": "Algo deu errado ao obter taxas de conversão para {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
