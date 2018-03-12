@@ -58,7 +58,7 @@
         "cannotPerformAction": "Akci nelze provést",
         "cannotPerformActionExplanation": "Chcete-li obnovit peněženku, přejděte na Rozšířená nastavení.",
         "attachToTangleUnavailable": "Připojení do Tangle je nedostupné",
-        "attachToTangleUnavailableExplanation": "Připojení do Tangle není k dispozici ve vybraném Nodu.",
+        "attachToTangleUnavailableExplanation": "Připojení do Tangle není ve vybraném Nodu k dispozici.",
         "wallet": "Peněženka",
         "sent": "Odesláno",
         "received": "Přijato",
@@ -118,11 +118,11 @@
         "seedCleared": "Seed vymazán",
         "seedClearedExplanation": "Z bezpečnostních důvodů byl Seed vymazán ze schránky.",
         "seedCopied": "Seed zkopírován do schránky",
-        "seedCopiedExplanation": "Seed bude vymazán jakmile stisknete \"Hotovo\" nebo po uplynutí 60 sekund.",
+        "seedCopiedExplanation": "Seed bude vymazán jakmile stisknete \"HOTOVO\" nebo po uplynutí 60 sekund.",
         "clickToCopy": "Klepněte na tlačítko níže a skopírujte Váš seed do Správce hesel.",
         "doNotStore": "Neuchovávejte Váš Seed ve formátu prostého textu.",
         "copyToClipboard": "Kopírovat Seed",
-        "shareSeed": "Uchovejte Váš Seed do zabezpečeného správce hesel"
+        "shareSeed": "Svůj Seed si uložte do zabezpečeného správce hesel"
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
@@ -292,7 +292,7 @@
     "welcome": {
         "thankYou": "Děkujeme vám za stažení IOTA peněženky.",
         "weWillSpend": "Nyní si vyhraďte pár minut pro správné nastavení Vaší peněženky.",
-        "reminder": "Možná budete chtít vynechat některé kroky, ale doporučujeme Vám, abyste je dokončili všechny."
+        "reminder": "Možná budete chtít vynechat některé kroky, ale doporučujeme Vám, abyste je dokončily všechny."
     },
     "writeSeedDown": {
         "yourSeedIs": "Váš Seed je {{maxSeedLength}} znaků čtených zleva doprava.",
@@ -360,7 +360,7 @@
     "manualSync": {
         "outOfSync": "Vypadá to, že Vaše historie transakcí nemusí být synchronizovaná?",
         "pressToSync": "Pro synchronizaci Vašeho účtu klikněte na tlačítko níže.",
-        "thisMayTake": "Toto může chvíli trvat. Vašeho zařízení se může zpomalit.",
+        "thisMayTake": "Toto může chvíli trvat. Vaše zařízení se může zpomalit.",
         "doNotClose": "Upozorňujeme, že minimalizace aplikace zruší synchronizaci.",
         "syncAccount": "SYNCHRONIZOVAT ÚČET",
         "syncingYourAccount": "Synchronizuji Váš účet."
@@ -380,7 +380,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TATO AKCE NEMŮŽE BÝT VRÁCENA.",
-        "warning": "<0><0>Všechna data z peněženky včetně Vašeho</0> <1>Seedu, hesla</1> <2>a</2> <3>další informace o vašem účtu</3> <4>budou ztracena.</4></0>"
+        "warning": "<0><0>Veškerá data z peněženky, včetně Vašeho</0> <1>Seedu, hesla</1> <2>a</2> <3>dalších informací o Vašem účtu</3> <4>budou ztracena.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Chcete-li povolit ověření otisků prstů, dotkněte se čtečky otisků prstů na zařízení.",
