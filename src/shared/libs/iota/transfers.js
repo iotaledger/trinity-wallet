@@ -788,8 +788,8 @@ export const performPow = (
                     const trytesWithNonce = transactionTryteString.substr(0, 2673 - 27).concat(nonce);
                     const transactionObjectWithNonce = iota.utils.transactionObject(trytesWithNonce);
 
-                    result.trytes.push(trytesWithNonce);
-                    result.transactionObjects.push(transactionObjectWithNonce);
+                    result.trytes.unshift(trytesWithNonce);
+                    result.transactionObjects.unshift(transactionObjectWithNonce);
 
                     return result;
                 });

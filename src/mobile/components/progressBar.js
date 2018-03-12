@@ -27,7 +27,7 @@ const ProgressBar = (props) => {
                 width={props.width}
                 color={props.color}
             />
-            <Text style={[styles.text, { color: props.color }]}>{props.children}</Text>
+            <Text style={[styles.text, { color: props.textColor }]}>{props.children}</Text>
         </View>
     );
 };
@@ -39,6 +39,7 @@ ProgressBar.propTypes = {
     indeterminate: PropTypes.bool,
     animationType: PropTypes.string,
     width: PropTypes.number,
+    textColor: PropTypes.string,
 };
 
 ProgressBar.defaultProps = {
@@ -46,6 +47,7 @@ ProgressBar.defaultProps = {
     width: 200,
     indeterminate: false,
     color: 'rgba(247, 208, 2, 0.75)',
+    textColor: 'rgba(247, 208, 2, 0.75)',
 };
 
 export default ProgressBar;
