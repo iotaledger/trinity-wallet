@@ -112,7 +112,7 @@
         "ensureStrongPassword": "Ujistěte se, že používáte silné heslo dlouhé alespoň 12 znaků.",
         "currentPassword": "Stávající heslo",
         "newPassword": "Nové heslo",
-        "confirmPassword": "Potvrzení nového hesla"
+        "confirmPassword": "Potvrďte nové heslo"
     },
     "copyToClipboard": {
         "seedCleared": "Seed vymazán",
@@ -272,7 +272,7 @@
         "selectAll": "Vybrat vše",
         "securitySettings": "Nastavení zabezpečení",
         "fingerprint": "Biometrické ověřování",
-        "couldNotFetchRates": "Nelze načíst ceny",
+        "couldNotFetchRates": "Nelze načíst kurzy",
         "couldNotFetchRatesExplanation": "Došlo k chybě při načítání kurzu pro {{currency}}.",
         "fetchedConversionRates": "Načítám kurzy",
         "fetchedConversionRatesExplanation": "Úspěšně načtené nejnovější kurzy pro {{currency}}."
@@ -292,7 +292,7 @@
     "welcome": {
         "thankYou": "Děkujeme vám za stažení IOTA peněženky.",
         "weWillSpend": "Nyní si vyhraďte pár minut pro správné nastavení Vaší peněženky.",
-        "reminder": "Možná budete v chtít vynechat některé kroky, ale doporučujeme Vám, abyste je dokončili všechny."
+        "reminder": "Možná budete chtít vynechat některé kroky, ale doporučujeme Vám, abyste je dokončili všechny."
     },
     "writeSeedDown": {
         "yourSeedIs": "Váš Seed je {{maxSeedLength}} znaků čtených zleva doprava.",
@@ -380,7 +380,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TATO AKCE NEMŮŽE BÝT VRÁCENA.",
-        "warning": "<0><0>Všechny data peněženky včetně Vašeho</0> <1>Seedu, hesla</1> <2>a</2> <3>dalších informací o účtu</3> <4>budou ztracena.</4></0>"
+        "warning": "<0><0>Všechna data z peněženky včetně Vašeho</0> <1>Seedu, hesla</1> <2>a</2> <3>dalších informací o účtu</3> <4>budou ztracena.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Chcete-li povolit ověření otisků prstů, dotkněte se čtečky otisků prstů na zařízení.",
