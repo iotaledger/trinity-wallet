@@ -359,7 +359,7 @@ class TopBar extends Component {
                                 style={styles.notificationContainer}
                                 onPress={() => this.setState({ isModalVisible: true })}
                             >
-                                <Icon name="eye" size={width / 17} color={bar.color} />
+                                <Icon name="notification" size={width / 17} color={bar.color} />
                             </TouchableOpacity>
                         ) : (
                             <View style={styles.notificationContainer}>

@@ -102,7 +102,7 @@ class SecuritySettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="eye" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="biometric" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('fingerprint')}</Text>
                             </View>
                         </TouchableOpacity>
