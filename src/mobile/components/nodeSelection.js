@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        marginLeft: width / 20
+        marginLeft: width / 20,
     },
     titleTextRight: {
         color: 'white',
@@ -99,11 +99,7 @@ class NodeSelection extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon
-                                    name='chevronLeft'
-                                    size={width / 28}
-                                    color={body.color}
-                                />
+                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -113,11 +109,7 @@ class NodeSelection extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                <Icon
-                                    name='eye'
-                                    size={width / 28}
-                                    color={body.color}
-                                />
+                                <Icon name="tick" size={width / 28} color={body.color} />
                             </View>
                         </TouchableOpacity>
                     </View>
