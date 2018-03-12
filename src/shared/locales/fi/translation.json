@@ -358,12 +358,12 @@
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "outOfSync": "Onko mahdollista että tilisi historia ei ole synkronoitu?",
+        "pressToSync": "Alla olevalla painikkeella voit synkronoida tilisi.",
+        "thisMayTake": "Tämä saattaa kestää hetken ja tänä aikana laitteen käyttö voi olla hidasta.",
+        "doNotClose": "Huomioi että ohjelman sulkeminen taustalle lopettaa synkronoinnin.",
         "syncAccount": "SYNKRONOI TILI",
-        "syncingYourAccount": "Synkronoidaan tiliäsi."
+        "syncingYourAccount": "Synkronoidaan tiliä."
     },
     "useExistingSeed": {
         "title": "Anna seed-luku ja tilin nimi."
@@ -428,9 +428,9 @@
         "rootDetected": "<0>Laitteesi näyttää olevan rootattu.</0><1>Tämä voi johtaa merkittäviin ongelmiin lompakon tietoturvassa.</1><2>Haluatko jatkaa tästä huolimatta?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
+        "feeless": "Kuluttoman siirron tekeminen vaatii vähäistä määrää laskentatyötä (proof of work).",
+        "localOrRemote": "Työ voidaan tehdä joko paikallisesti omalla laitteella tai ulkoiselle palvelimella.",
+        "local": "Paikallinen",
+        "remote": "Ulkoinen"
     }
 }
