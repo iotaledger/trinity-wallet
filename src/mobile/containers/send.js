@@ -749,7 +749,7 @@ export class Send extends Component {
                                 <View style={styles.info}>
                                     <Icon
                                         name="info"
-                                        size={width / 16}
+                                        size={width / 12}
                                         color={body.color}
                                         style={{ marginRight: width / 60 }}
                                     />

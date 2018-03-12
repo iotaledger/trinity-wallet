@@ -30,6 +30,8 @@
         "redux-persist": "^4.10.1",
         "redux-thunk": "^2.2.0",
         "reselect": "^3.0.1",
+        "svg2ttf": "^4.1.0",
+        "svgicons2svgfont": "^9.0.1",
         "tinycolor2": "^1.4.1"
     },
     "devDependencies": {
