@@ -168,7 +168,7 @@ const MainSettings = (props) => (
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
-                    <Icon name="twoFA" size={width / 22} color={props.secondaryBackgroundColor} />
+                    <Icon name="security" size={width / 22} color={props.secondaryBackgroundColor} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('securitySettings')}</Text>
                 </View>
             </TouchableOpacity>
