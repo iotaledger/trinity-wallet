@@ -78,7 +78,7 @@
         "autopromotingExplanation": "Spodbujanje transakcije s hešom {{hash}}",
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
-        "pleaseWait": "Please wait",
+        "pleaseWait": "Prosim, počakajte",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
@@ -346,7 +346,7 @@
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
         "trillion": "Trillion",
-        "billion": "Billion",
+        "billion": "Miljarda",
         "million": "Million",
         "thousand": "Thousand",
         "one": "One"
