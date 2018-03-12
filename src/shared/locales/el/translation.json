@@ -230,8 +230,8 @@
         "youCanAdd": "Μπορείτε να προσθέσετε περισσότερους σπόρους από το μενού ρυθμίσεων."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
+        "expert": "Ειδικός",
+        "standard": "Κανονικός",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
