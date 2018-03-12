@@ -121,8 +121,8 @@
         "seedCopiedExplanation": "Din seed kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
         "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till en lösenordshanterare.",
         "doNotStore": "Förvara inte din seed i oformaterad text.",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "copyToClipboard": "Kopiera seed",
+        "shareSeed": "Dela din seed till en säker lösenordshanterare"
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
@@ -159,7 +159,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "En seed har inte blivit genererad",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Var vänlig och generera en ny seed.",
         "pressForNewSeed": "TRYCK FÖR NY SEED",
         "individualLetters": "Tryck på enskilda bokstäver för att ändra de slumpmässigt."
     },
@@ -230,7 +230,7 @@
         "youCanAdd": "Du kan lägga till fler seeds i inställningsmenyn."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "expert": "Avancerad",
         "standard": "Standard",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
