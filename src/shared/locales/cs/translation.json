@@ -148,7 +148,7 @@
         "enterPassword": "Prosím zadejte Vaše heslo.",
         "useSeed": "POUŽIJ SEED",
         "login": "PŘIHLÁSIT SE",
-        "selectDifferentNode": "Chcete vybrat jiný NODE?",
+        "selectDifferentNode": "Chcete vybrat jiný Node?",
         "setNode": "NASTAVIT NODE",
         "cannotConnect": "K Nodu IOTA se nelze připojit."
     },
