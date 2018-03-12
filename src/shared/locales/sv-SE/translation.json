@@ -273,9 +273,9 @@
         "securitySettings": "Säkerhetsinställningar",
         "fingerprint": "Biometrisk autentisering",
         "couldNotFetchRates": "Kunde inte hämta priser",
-        "couldNotFetchRatesExplanation": "Något gick fel vid hämtning av omräkningskurs för {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "couldNotFetchRatesExplanation": "Något gick fel vid hämtning av valutakurs för {{currency}}.",
+        "fetchedConversionRates": "Hämtade valutakurs",
+        "fetchedConversionRatesExplanation": "Lyckad hämtning av senaste valutakurs för {{currency}}."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ange ditt lösenord för att återställa plånboken.",
@@ -429,8 +429,8 @@
     },
     "pow": {
         "feeless": "Det är nödvändigt att genomföra ett bevis på arbete för att skicka avgiftsfria transaktioner i IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
+        "localOrRemote": "Bevis på arbete kan antingen slutföras lokalt på din enhet eller avlastas till en nod.",
+        "local": "Lokal",
+        "remote": "Fjärr"
     }
 }
