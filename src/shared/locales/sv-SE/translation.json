@@ -19,7 +19,7 @@
         "invalidResponse": "Ogiltigt svar",
         "invalidResponseExplanation": "Noden returnerade ett ogiltigt svar.",
         "invalidResponsePollingExplanation": "Noden returnerade ett ogiltigt svar.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "Noden returnerade ett ogiltigt svar vid hämtning av din kontoinformation. Försök att byta nod.",
         "invalidResponseSendingTransfer": "Noden returnerade ett ogiltigt svar vid försök av din överföring.",
         "seed": "Seed",
         "back": "TILLBAKA",
@@ -68,9 +68,9 @@
         "pending": "Väntar",
         "bundleHash": "Hashbunt",
         "addresses": "Adresser",
-        "reattach": "REATTACH",
-        "promote": "PROMOTE",
-        "rebroadcast": "REBROADCAST",
+        "reattach": "ÅTERFÄST",
+        "promote": "BEFORDRA",
+        "rebroadcast": "SÄND IGEN",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
         "autoreattaching": "Auto-fastsättning till Tangle",
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
@@ -232,8 +232,8 @@
     "modeSelection": {
         "expert": "Avancerad",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "Avancerat läge ger åtkomst till ytterligare inställningar som manuell befordran och återfästning.",
+        "modesExplanation": "Aktivera endast avancerat läge om du är en erfaren Tangle-användare. Det kan verka förvirrande annars."
     },
     "settings": {
         "transferSending": "Överföring pågår",
@@ -271,9 +271,9 @@
         "paste": "Klistra in",
         "selectAll": "Välj alla",
         "securitySettings": "Säkerhetsinställningar",
-        "fingerprint": "Biometric authentication",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fingerprint": "Biometrisk autentisering",
+        "couldNotFetchRates": "Kunde inte hämta priser",
+        "couldNotFetchRatesExplanation": "Något gick fel vid hämtning av omräkningskurs för {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
@@ -352,14 +352,14 @@
         "one": "Ett"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Vill du verkligen radera kontot {{accountName}}?",
         "yourSeedWillBeRemoved": "Din seed och transaktionshistorik kommer tas bort.",
         "thisAction": "Denna åtgärd kan inte ångras.",
         "enterPassword": "Ange ditt lösenord för att radera detta kontot."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
+        "outOfSync": "Ser din transaktionshistorik ut som att den inte är synkroniserad?",
+        "pressToSync": "Tryck på knappen nedan för att synka ditt konto.",
         "thisMayTake": "This may take a while. You may notice your device slowing down.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "SYNKA KONTO",
