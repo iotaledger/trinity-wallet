@@ -102,7 +102,7 @@
         "passwordUpdated": "Heslo aktualizováno",
         "passwordUpdatedExplanation": "Vaše heslo bylo úspěšně aktualizováno.",
         "incorrectPassword": "Neplatné heslo",
-        "incorrectPasswordExplanation": "Vaše současné heslo je neplatné. Opakujte akci.",
+        "incorrectPasswordExplanation": "Vaše současné heslo je neplatné. Prosím zkuste znovu.",
         "passwordsDoNotMatch": "Hesla se neshodují",
         "passwordsDoNotMatchExplanation": "Hesla se neshodují. Prosím zkuste to znovu.",
         "passwordTooShort": "Heslo je příliš krátké",
