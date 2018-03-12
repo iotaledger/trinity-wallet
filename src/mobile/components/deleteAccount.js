@@ -235,7 +235,7 @@ class DeleteAccount extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:continue')}</Text>
-                                <Icon name="eye" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="trash" size={width / 28} color={secondaryBackgroundColor} />
                             </View>
                         </TouchableOpacity>
                     </View>
