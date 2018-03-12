@@ -28,9 +28,8 @@ import {
     filterInvalidPendingTransfers,
     filterZeroValueTransfers,
     performPow,
-    syncAccount,
 } from '../libs/iota/transfers';
-import { syncAccountAfterReattachment } from '../libs/iota/accounts';
+import { syncAccountAfterReattachment, syncAccount } from '../libs/iota/accounts';
 import { updateAccountAfterReattachment, updateAccountInfo, accountInfoFetchSuccess } from './account';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
@@ -254,7 +253,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                     throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
                 }
 
-                // Verify if a user is sending to on of his own addresses.
+                // Do not allow receiving address to be one of the user's own input addresses.
                 const isSendingToOwnAddress = some(
                     get(inputs, 'inputs'),
                     (input) => input.address === iota.utils.noChecksum(address),

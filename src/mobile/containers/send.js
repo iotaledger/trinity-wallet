@@ -652,11 +652,13 @@ export class Send extends Component {
 
     renderProgressBarChildren() {
         const { activeStepIndex, activeSteps } = this.props;
-        if (activeStepIndex === -1) {
-            return null;
+        const totalSteps = size(activeSteps);
+
+        if (activeStepIndex === totalSteps) {
+            return this.getProgressSummary();
         }
 
-        return activeSteps[activeStepIndex] ? activeSteps[activeStepIndex] : this.getProgressSummary();
+        return activeSteps[activeStepIndex] ? activeSteps[activeStepIndex] : null;
     }
 
     render() {
@@ -787,6 +789,7 @@ export class Send extends Component {
                                     indeterminate={this.props.activeStepIndex === -1}
                                     progress={this.props.activeStepIndex / size(this.props.activeSteps)}
                                     color={body.color}
+                                    textColor={body.color}
                                 >
                                     {this.renderProgressBarChildren()}
                                 </ProgressBar>
