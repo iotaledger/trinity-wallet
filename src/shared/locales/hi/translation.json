@@ -73,9 +73,9 @@
         "rebroadcast": "पुनः ब्रॉडकास्ट",
         "pressBackAgain": "एप बंद करने के लिए वापस फिर से दबाएं",
         "autoreattaching": "टैंगल में स्वतः पुनः अटैच हो रहा है",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autoreattachingExplanation": "हैश {{hash}} ट्रांजेक्शन को री अटैच कर रहे है",
         "autopromoting": "ऑटोप्रोमोटिंग ट्रांसफर",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
+        "autopromotingExplanation": "हैश {{hash}} ट्रांजेक्शन को प्रमोट कर रहे है",
         "cannotSendToOwn": "स्वयं के पते पर भेजा जा रहा है",
         "cannotSendToOwnExplanation": "आप स्वयं के किसी पते पर मूल्य हस्तांतरण नहीं कर सकते",
         "pleaseWait": "कृपया प्रतीक्षा करें",
@@ -120,11 +120,11 @@
         "seedCleared": "सीड हटाया गया",
         "seedClearedExplanation": "आपकी सुरक्षा के लिए सीड को क्लिपबोर्ड से मिटा कर दिया गया है ।",
         "seedCopied": "क्लिपबोर्ड पर प्रतिलिपि बनाई गई",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text.",
+        "seedCopiedExplanation": "\"सम्पन्न\" को दबाने के 60 सेकंड बाद सीड स्वतः मिट जायेगा ।",
+        "clickToCopy": "नीचे बटन पर क्लिक करें और एक पासवर्ड मैनेजर को अपने सीड की कॉपी करे।",
+        "doNotStore": "अपने सीड को सीधे शब्दों में संग्रहीत न करें",
         "copyToClipboard": "सीड कॉपी करे",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "अपने सीड को एक सुरक्षित पासवर्ड मैनेजर में साझा करें"
     },
     "enterSeed": {
         "invalidCharacters": "सीड में अवैध वर्ण हैं।",
