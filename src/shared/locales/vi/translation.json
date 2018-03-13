@@ -80,7 +80,9 @@
         "cannotSendToOwnExplanation": "Bạn không thể chuyển khoản vào một trong những địa chỉ của riêng bạn.",
         "pleaseWait": "Vui lòng đợi",
         "pleaseWaitExplanation": "Trinity đang thực hiện một chức năng khác. Vui lòng đợi và thử lại.",
-        "pleaseWaitTransferExplanation": "Số tiền của bạn đang được sử dụng trong một giao dịch khác. Vui lòng đợi xác nhận xong trước khi thử gửi lại."
+        "pleaseWaitTransferExplanation": "Số tiền của bạn đang được sử dụng trong một giao dịch khác. Vui lòng đợi xác nhận xong trước khi thử gửi lại.",
+        "snapshotTransitionInProgress": "Snapshot transition in progress",
+        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
@@ -198,6 +200,7 @@
         "invalidAddressExplanation1": "Địa chỉ phải có {{maxLength}} ký tự và phải có sự kiểm tra tổng.",
         "invalidAddressExplanation2": "Địa chỉ có chứa ký tự không hợp lệ.",
         "invalidAddressExplanation3": "Địa chỉ chứa kiểm tra tổng không hợp lệ.",
+        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Không đủ tiền",
         "notEnoughFundsExplanation": "Bạn không có đủ IOTA để hoàn thành giao dịch này.",
         "keyReuse": "Tái sử dụng mã key",
@@ -432,5 +435,11 @@
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
         "remote": "Remote"
+    },
+    "snapshotTransition": {
+        "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "transitionComplete": "Snapshot transition complete",
+        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
     }
 }
