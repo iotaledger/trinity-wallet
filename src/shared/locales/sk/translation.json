@@ -17,7 +17,7 @@
         "keyReuse": "Viacnásobné použitie kľúča",
         "keyReuseError": "Nie je možné uskutočniť transakciu na adresu, ktorá už vykonala určitý prevod.",
         "invalidResponse": "Nesprávna odozva",
-        "invalidResponseExplanation": "Node - nesprávna odozva.",
+        "invalidResponseExplanation": "Uzol vrátil nesprávnu odozvu.",
         "invalidResponsePollingExplanation": "Node vrátil neplatnú odpoveď počas vzorkovania (poolingu).",
         "invalidResponseFetchingAccount": "Node - nesprávna odozva pri získavani informácií o účte. Skús zmeniť node.",
         "invalidResponseSendingTransfer": "Node - nespráva odozva pri zasielaní transakcie.",
