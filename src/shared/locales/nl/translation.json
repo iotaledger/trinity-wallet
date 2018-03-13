@@ -317,17 +317,17 @@
         "addNewAccount": "Add new account"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Aangepaste node",
+        "add": "Toevoegen"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Bestaande seed gebruiken",
+        "createNewSeed": "Nieuw seed aanmaken"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync",
+        "selectNode": "Selecteer node",
+        "addCustomNode": "Aangepaste node toevoegen",
+        "manualSync": "Handmatig synchroniseren",
         "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
@@ -341,15 +341,15 @@
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Weet u zeker dat u wilt uitloggen?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "QR-code scannen"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
+        "trillion": "Biljoen",
+        "billion": "Miljard",
         "million": "Miljoen",
         "thousand": "Duizend",
         "one": "Een"
@@ -365,11 +365,11 @@
         "pressToSync": "Druk op de knop hieronder om uw account te synchroniseren.",
         "thisMayTake": "Dit kan even duren. Uw apparaat kan trager reageren.",
         "doNotClose": "Let op. Minimalisering van de app zal de synchronisatie annuleren.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "syncAccount": "Account synchroniseren",
+        "syncingYourAccount": "Account wordt gesynchroniseerd."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Voer een seed en accountnaam in."
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
