@@ -1,9 +1,9 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "CANCEL",
-        "continue?": "Are you sure you want to continue?",
-        "noTransactions": "NO RECENT HISTORY",
+        "send": "ส่ง",
+        "cancel": "ยกเลิก",
+        "continue?": "คุณแน่ใจหรือว่าคุณต้องการทำต่อ",
+        "noTransactions": "ไม่พบประวัติล่าสุด",
         "refresh": "REFRESH",
         "qr": "QR",
         "balanceError": "Not enough balance",
