@@ -397,7 +397,7 @@
         "status": "สถานะ",
         "enabled": "เปิดใช้งานแล้ว",
         "disabled": "ปิดการใช้งานแล้ว",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailable": "เซ็นเซอร์ลายนิ้วมือไม่สามารถใช้ได้",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
