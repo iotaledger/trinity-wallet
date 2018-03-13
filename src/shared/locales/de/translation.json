@@ -80,7 +80,9 @@
         "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden.",
         "pleaseWait": "Bitte warten",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
-        "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Überweisungen verwendet. Bitte warte, bis diese Überweisungen bestätigt sind, und versuche es erneut."
+        "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Überweisungen verwendet. Bitte warte, bis diese Überweisungen bestätigt sind, und versuche es erneut.",
+        "snapshotTransitionInProgress": "Snapshot transition in progress",
+        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -198,6 +200,7 @@
         "invalidAddressExplanation1": "Die Adresse sollte {{maxLength}} Zeichen lang sein und eine Prüfsumme haben.",
         "invalidAddressExplanation2": "Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Adresse enthält eine ungültige Prüfsumme.",
+        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
         "keyReuse": "Key-Wiederverwendung",
@@ -432,5 +435,11 @@
         "localOrRemote": "Der \"proof of work\" kann entweder lokal auf dem Gerät errechnet oder von einem Server übernommen werden.",
         "local": "Lokal",
         "remote": "Fernberechnung"
+    },
+    "snapshotTransition": {
+        "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "transitionComplete": "Snapshot transition complete",
+        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
     }
 }
