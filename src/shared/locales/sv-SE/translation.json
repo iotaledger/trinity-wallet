@@ -69,8 +69,8 @@
         "bundleHash": "Hashbunt",
         "addresses": "Adresser",
         "reattach": "ÅTERFÄST",
-        "promote": "BEFORDRA",
-        "rebroadcast": "SÄND IGEN",
+        "promote": "PROMOTA",
+        "rebroadcast": "ÅTERSÄND",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
         "autoreattaching": "Auto-fastsättning till Tangle",
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
@@ -211,8 +211,8 @@
         "send": "SKICKA",
         "invalidAmount": "Felaktigt belopp angivet",
         "invalidAmountExplanation": "Vänligen ange ett giltigt transaktionsbelopp. Det kan vara hjälpsamt att titta på IOTA enhetsförklaringen längst ner på sidan.",
-        "maximumSelected": "MAXIMALA belopp valt",
-        "iotaUnits": "Förklaring av IOTA enheter",
+        "maximumSelected": "MAXIMALT belopp valt",
+        "iotaUnits": "Förklaring av IOTA-enheter",
         "sendMax": "SKICKA MAX"
     },
     "setPassword": {
@@ -230,7 +230,7 @@
         "youCanAdd": "Du kan lägga till fler seeds i inställningsmenyn."
     },
     "modeSelection": {
-        "expert": "Avancerad",
+        "expert": "Avancerat",
         "standard": "Standard",
         "expertModeExplanation": "Avancerat läge ger åtkomst till ytterligare inställningar som manuell befordran och återfästning.",
         "modesExplanation": "Aktivera endast avancerat läge om du är en erfaren Tangle-användare. Det kan verka förvirrande annars."
@@ -283,7 +283,7 @@
         "reset": "ÅTERSTÄLL"
     },
     "walletSetup": {
-        "okay": "Okej. Låt oss sammanställa din plånbok!",
+        "okay": "Okej. Låt oss konfigurera din plånbok!",
         "doYouAlreadyHaveASeed": "Har du redan en seed som du vill använda?",
         "seedExplanation": "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
         "explanation": "<0><0>Du kan använda det för att komma åt dina tillgångar från</0><1> valfri plånbok</1><2>, samt</2><3> valfri apparat</3><4>. Förlorar du din seed, kommer du samtidigt förlora dina IOTA.</4></0>",
@@ -385,19 +385,19 @@
     "fingerprintSetup": {
         "instructionsEnable": "Rör din enhets fingeravtrycksläsare för att aktivera fingeravtryck autentisering.",
         "instructionsDisable": "Rör din enhets fingeravtrycksläsare för att avaktivera fingeravtryck autentisering.",
-        "fingerprintAuthEnabled": "Fingeravtryck autentisering aktiverad",
-        "fingerprintAuthEnabledExplanation": "Du har framgångsrikt aktiverat fingeravtryck autentisering.",
-        "fingerprintAuthDisabled": "Fingeravtryck autentisering avaktiverad",
-        "fingerprintAuthDisabledExplanation": "Du har framgångsrikt avaktiverat fingeravtryck autentisering.",
-        "fingerprintAuthFailed": "Fingeravtryck autentisering misslyckades",
-        "fingerprintAuthFailedExplanation": "Fingeravtryck autentisering misslyckades. Var god försök igen.",
+        "fingerprintAuthEnabled": "Fingeravtrycksautentisering aktiverad",
+        "fingerprintAuthEnabledExplanation": "Du har framgångsrikt aktiverat fingeravtrycksautentisering.",
+        "fingerprintAuthDisabled": "Fingeravtrycksautentisering avaktiverad",
+        "fingerprintAuthDisabledExplanation": "Du har framgångsrikt avaktiverat fingeravtrycksautentisering.",
+        "fingerprintAuthFailed": "Fingeravtrycksautentisering misslyckades",
+        "fingerprintAuthFailedExplanation": "Fingeravtrycksautentisering misslyckades. Var god försök igen.",
         "status": "Status",
         "enabled": "Aktiverad",
         "disabled": "Inaktiverad",
         "fingerprintUnavailable": "Fingeravtrycksläsare ej tillgänglig",
-        "fingerprintUnavailableExplanation": "Din enhet stödjer ej fingeravtryck autentisering eller så har det ej konfigurerats i enhetens inställningar.",
-        "buttonInstructionsDisable": "Tryck på knappen nedan för att avaktivera fingeravtryck autentisering.",
-        "buttonInstructionsEnable": "Tryck på knappen nedan för att aktivera fingeravtryck autentisering.",
+        "fingerprintUnavailableExplanation": "Din enhet stödjer ej fingeravtrycksautentisering eller så har det ej konfigurerats i enhetens inställningar.",
+        "buttonInstructionsDisable": "Tryck på knappen nedan för att avaktivera fingeravtrycksautentisering.",
+        "buttonInstructionsEnable": "Tryck på knappen nedan för att aktivera fingeravtrycksautentisering.",
         "instructionsLogin": "Lägg fingret på fingeravtrycksläsaren för att logga in."
     },
     "transferConfirmation": {
@@ -414,7 +414,7 @@
         "addKey": "Lägg till denna nyckeln till din 2FA app",
         "key": "Nyckel",
         "twoFAEnabled": "2FA är nu aktiverat",
-        "twoFAEnabledExplanation": "Du har aktiverat Två Faktor Autentisering framgångsrikt.",
+        "twoFAEnabledExplanation": "Du har aktiverat tvåfaktorautentisering framgångsrikt.",
         "enterCode": "Ange koden från din 2FA app",
         "code": "Kod"
     },
