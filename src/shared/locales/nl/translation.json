@@ -355,15 +355,15 @@
         "one": "Een"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "Weet u zeker dat u de account '{{accountName}}' wilt verwijderen?",
+        "yourSeedWillBeRemoved": "Uw seed en transactiegeschiedenis zullen worden verwijderd.",
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
-        "enterPassword": "Enter your password to delete this account."
+        "enterPassword": "Typ uw wachtwoord als u deze account wilt verwijderen."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "outOfSync": "Lijkt het alsof uw transactiegeschiedenis niet gesynchroniseerd is?",
+        "pressToSync": "Druk op de knop hieronder om uw account te synchroniseren.",
+        "thisMayTake": "Dit kan even duren. Uw apparaat kan trager reageren.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
