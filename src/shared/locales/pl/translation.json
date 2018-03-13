@@ -81,8 +81,8 @@
         "pleaseWait": "Proszę czekać",
         "pleaseWaitExplanation": "Trinity wykonuje inną funkcję. Zaczekaj i spróbuj ponownie.",
         "pleaseWaitTransferExplanation": "Dostępne saldo jest aktualnie używane w innych transferach. Poczekaj na ich potwierdzenie, zanim spróbujesz ponownie.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgress": "Aktualizacja środków w toku",
+        "snapshotTransitionInProgressExplanation": "Proszę czekać na zakończenie aktualizacji środków."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -242,7 +242,7 @@
         "transferSending": "Wykonywanie transferu",
         "transferSendingExplanation": "Proszę czekać na wykonanie Twojego transferu.",
         "generatingAddress": "Generowanie adresu odbiorczego",
-        "generatingAddressExplanation": "Proszę zaczekać na wygenerowanie Twojego adresu.",
+        "generatingAddressExplanation": "Proszę czekać na wygenerowanie Twojego adresu.",
         "mode": "Tryb",
         "theme": "Motyw",
         "currency": "Waluta",
@@ -437,9 +437,9 @@
         "remote": "Zdalnie"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransition": "Nie można zakończyć aktualizacji środków",
+        "cannotCompleteTransitionExplanation": "Twoje saldo musi być większe niż 0, aby zakończyć aktualizację środków.",
+        "transitionComplete": "Zakończono aktualizację",
+        "transitionCompleteExplanation": "Aktualizacja środków zakończyła się sukcesem."
     }
 }
