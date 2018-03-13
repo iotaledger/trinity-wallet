@@ -51,7 +51,7 @@
         "unrecognisedPassword": "Nesprávne heslo",
         "unrecognisedPasswordExplanation": "Nesprávne heslo. Prosím, skúste znova.",
         "syncInProgress": "Prebieha synchronizácia",
-        "syncInProgressExplanation": "Počkajte prosím, kým sa dokončí synchronizácia.",
+        "syncInProgressExplanation": "Počkajte prosím, kým prebehne synchronizácia.",
         "somethingWentWrong": "Vyskytla sa chyba",
         "somethingWentWrongExplanation": "Reštartujte aplikáciu, prosím.",
         "node": "Uzol",
@@ -80,21 +80,21 @@
         "cannotSendToOwnExplanation": "Nemôžete previesť čiastku na vlastné adresy.",
         "pleaseWait": "Prosím čakajte...",
         "pleaseWaitExplanation": "Trinity práve vykonáva inú funkciu. Počkajte chvíľu a skúste to znova.",
-        "pleaseWaitTransferExplanation": "Váš disponibilný zostatok sa momentálne používa v iných prevodoch. Počkajte prosím na jedno potvrdenie než to skúsite znova.",
-        "snapshotTransitionInProgress": "Prebieha prevod údajov po snapshote",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "pleaseWaitTransferExplanation": "Váš disponibilný zostatok sa momentálne používa v iných prevodoch. Počkajte prosím na jedno potvrdenie, kým to skúsite znova.",
+        "snapshotTransitionInProgress": "Prebieha aktualizácia údajov po snapshote",
+        "snapshotTransitionInProgressExplanation": "Počkajte, kým prebehne aktualizácia údajov po snapshote."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
-        "seedInvalidCharsExplanation": "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akciu.",
+        "seedInvalidCharsExplanation": "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím skúste znova.",
         "seedTooShort": "Seed je príliš krátky",
-        "seedTooShortExplanation": "Seed musí mať {{maxLength}} znakov. Váš seed má {{currentLength}} znaků. Prosím skúste znova.",
+        "seedTooShortExplanation": "Seed musí mať {{maxLength}} znakov. Váš seed má {{currentLength}} znakov. Prosím skúste znova.",
         "nameInUse": "Názov účtu je už používaný",
         "nameInUseExplanation": "Prosím použite jedinečný názov účtu pre Váš seed.",
         "enterAccountName": "Zadajte názov účtu.",
         "accountName": "Názov účtu",
         "noNickname": "Nebol zadaný názov účtu",
-        "noNicknameExplanation": "Zadajte názov účtu pre Váš seed.",
+        "noNicknameExplanation": "Zadajte prosím názov účtu pre Váš seed.",
         "seedInUse": "Seed je už používaný",
         "seedInUseExplanation": "Tento seed je už prepojený s Vašou peňaženkou. Použite prosím iný."
     },
@@ -437,9 +437,9 @@
         "remote": "Vzdialený"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransition": "Nie je možné dokončiť aktualizáciu údajov po snapshote",
+        "cannotCompleteTransitionExplanation": "Pre dokončenie aktualizácie údajov po snapshote musí byť zostatok na Vašom konte väčší ako 0.",
+        "transitionComplete": "Aktualizácia údajov po snapshote je kompletná",
+        "transitionCompleteExplanation": "Aktualizácia údajov po snapshote prebehla úspešne."
     }
 }
