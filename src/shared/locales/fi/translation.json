@@ -80,7 +80,9 @@
         "cannotSendToOwnExplanation": "Et voi siirtää varallisuutta yhteen omista osoitteistasi.",
         "pleaseWait": "Odota hetki",
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
-        "pleaseWaitTransferExplanation": "Varallisuuttasi käytetään jo olemassa olevissa siirroissa. Odota että ne on vahvistettu ennen kuin yrität uudelleen."
+        "pleaseWaitTransferExplanation": "Varallisuuttasi käytetään jo olemassa olevissa siirroissa. Odota että ne on vahvistettu ennen kuin yrität uudelleen.",
+        "snapshotTransitionInProgress": "Snapshot transition in progress",
+        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -198,6 +200,7 @@
         "invalidAddressExplanation1": "Osoitteen on oltava {{maxLength}} merkkiä pitkä ja sen pitäisi sisältää tarkistussumma.",
         "invalidAddressExplanation2": "Osoite sisältää virheellisiä merkkejä.",
         "invalidAddressExplanation3": "Osoite sisältää virheellisen tarkistussumman.",
+        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Varoja ei riittävästi",
         "notEnoughFundsExplanation": "Sinulla ei ole tarpeeksi IOTAa suorittaaksesi siirtoa loppuun.",
         "keyReuse": "Avaimen uudelleenkäyttö",
@@ -432,5 +435,11 @@
         "localOrRemote": "Työ voidaan tehdä joko paikallisesti omalla laitteella tai ulkoiselle palvelimella.",
         "local": "Paikallinen",
         "remote": "Ulkoinen"
+    },
+    "snapshotTransition": {
+        "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "transitionComplete": "Snapshot transition complete",
+        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
     }
 }
