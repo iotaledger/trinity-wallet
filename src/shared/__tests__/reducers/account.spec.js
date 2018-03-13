@@ -7,7 +7,7 @@ describe('Reducer: account', () => {
         it('should have an initial state', () => {
             const initialState = {
                 seedCount: 0,
-                seedNames: [],
+                accountNames: [],
                 firstUse: true,
                 onboardingComplete: false,
                 accountInfo: {},
@@ -77,9 +77,9 @@ describe('Reducer: account', () => {
     });
 
     describe('CHANGE_ACCOUNT_NAME', () => {
-        it('should set seedNames to accountNames and accountInfo to accountInfo props in action', () => {
+        it('should set accountNames to accountNames and accountInfo to accountInfo props in action', () => {
             const initialState = {
-                seedNames: [{}],
+                accountNames: [{}],
                 accountInfo: {},
             };
 
@@ -87,7 +87,7 @@ describe('Reducer: account', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                seedNames: [{}, {}],
+                accountNames: [{}, {}],
                 accountInfo: null,
             };
 
@@ -111,19 +111,19 @@ describe('Reducer: account', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should remove payload from seedNames array', () => {
+        it('should remove payload from accountNames array', () => {
             const initialState = {
-                seedNames: ['foo', 'baz'],
+                accountNames: ['foo', 'baz'],
             };
 
             const action = actions.removeAccount('foo');
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                seedNames: ['baz'],
+                accountNames: ['baz'],
             };
 
-            expect(newState.seedNames).to.eql(expectedState.seedNames);
+            expect(newState.accountNames).to.eql(expectedState.accountNames);
         });
 
         it('should subtract one from seedCount', () => {
@@ -245,16 +245,16 @@ describe('Reducer: account', () => {
     });
 
     describe('ADD_SEED_NAME', () => {
-        it('should concat seedName to list of seedNames in state', () => {
+        it('should concat accountName to list of accountNames in state', () => {
             const initialState = {
-                seedNames: ['foo'],
+                accountNames: ['foo'],
             };
 
             const action = actions.addAccountName('baz');
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                seedNames: ['foo', 'baz'],
+                accountNames: ['foo', 'baz'],
             };
 
             expect(newState).to.not.eql(['baz', 'foo']);
@@ -697,7 +697,7 @@ describe('Reducer: account', () => {
                         balance: 0,
                     },
                 },
-                seedNames: [],
+                accountNames: [],
                 seedCount: 0,
             };
 
@@ -717,7 +717,7 @@ describe('Reducer: account', () => {
                         balance: 100,
                     },
                 },
-                seedNames: [],
+                accountNames: [],
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
@@ -732,7 +732,7 @@ describe('Reducer: account', () => {
                         balance: 0,
                     },
                 },
-                seedNames: [],
+                accountNames: [],
                 seedCount: 0,
             };
 
@@ -752,7 +752,7 @@ describe('Reducer: account', () => {
                         balance: 100,
                     },
                 },
-                seedNames: [],
+                accountNames: [],
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
@@ -764,7 +764,7 @@ describe('Reducer: account', () => {
                     firstAccount: ['baz', 'bar'],
                     secondAccount: ['hash'],
                 },
-                seedNames: [],
+                accountNames: [],
                 seedCount: 0,
             };
 
@@ -790,7 +790,7 @@ describe('Reducer: account', () => {
                     firstAccount: ['baz', 'bar'],
                     secondAccount: ['hash'],
                 },
-                seedNames: [],
+                accountNames: [],
                 seedCount: 0,
             };
 
@@ -813,7 +813,7 @@ describe('Reducer: account', () => {
         it('should increment seedCount by one', () => {
             const initialState = {
                 seedCount: 1,
-                seedNames: [],
+                accountNames: [],
             };
 
             const action = actions.fullAccountInfoForFirstUseFetchSuccess({
@@ -826,16 +826,16 @@ describe('Reducer: account', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 seedCount: 2,
-                seedNames: [],
+                accountNames: [],
             };
 
             expect(newState.seedCount).to.eql(expectedState.seedCount);
         });
 
-        it('should concat accountName to seedNames', () => {
+        it('should concat accountName to accountNames', () => {
             const initialState = {
                 seedCount: 1,
-                seedNames: ['foo'],
+                accountNames: ['foo'],
             };
 
             const action = actions.fullAccountInfoForFirstUseFetchSuccess({
@@ -848,11 +848,11 @@ describe('Reducer: account', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 seedCount: 1,
-                seedNames: ['foo', 'baz'],
+                accountNames: ['foo', 'baz'],
             };
 
-            expect(newState.seedNames).to.not.eql(['baz', 'foo']);
-            expect(newState.seedNames).to.not.eql(expectedState.seedNames);
+            expect(newState.accountNames).to.not.eql(['baz', 'foo']);
+            expect(newState.accountNames).to.not.eql(expectedState.accountNames);
         });
     });
 

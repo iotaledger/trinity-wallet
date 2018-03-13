@@ -155,7 +155,7 @@ const mapStateToProps = (state) => ({
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     isFetchingLatestAccountInfoOnLogin: state.tempAccount.isFetchingLatestAccountInfoOnLogin,
     seedIndex: state.tempAccount.seedIndex,
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     unconfirmedBundleTails: state.account.unconfirmedBundleTails,
     isTransitioning: state.tempAccount.isTransitioning,
 });

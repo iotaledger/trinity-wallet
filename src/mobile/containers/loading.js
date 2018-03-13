@@ -237,7 +237,7 @@ class Loading extends Component {
 
 const mapStateToProps = (state) => ({
     firstUse: state.account.firstUse,
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,
     additionalAccountName: state.tempAccount.additionalAccountName,
     seed: state.tempAccount.seed,

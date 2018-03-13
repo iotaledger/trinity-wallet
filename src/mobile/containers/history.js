@@ -322,7 +322,7 @@ class History extends Component {
 const mapStateToProps = ({ tempAccount, account, settings, polling, ui }) => ({
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.accountNames),
     seedIndex: tempAccount.seedIndex,
     mode: settings.mode,
     negative: settings.theme.negative,
