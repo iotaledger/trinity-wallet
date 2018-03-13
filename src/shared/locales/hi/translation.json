@@ -137,7 +137,7 @@
     "home": {
         "balance": "बैलेंस",
         "send": "भेजे",
-        "receive": "RECEIVE",
+        "receive": "रिसीव",
         "history": "विवरण",
         "settings": "सेटिंग्स"
     },
@@ -160,8 +160,8 @@
         "youMayNotice": "आप अपने डिवाइस धीमा देख सकते हैं ।"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGenerated": "सीड जेनेरेट नहीं हुआ है",
+        "seedNotGeneratedExplanation": "कृपया एक नया सीड जेनेरेट करें ।",
         "pressForNewSeed": "PRESS FOR NEW SEED",
         "individualLetters": "Press individual letters to randomise them."
     },
