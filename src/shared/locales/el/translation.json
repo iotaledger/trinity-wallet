@@ -352,14 +352,14 @@
         "one": "Ένα"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Είστε βέβαιοι ότι θέλετε να διαγράψετε το  όνομα λογαριασμού ;",
         "yourSeedWillBeRemoved": "Ο σπόρος σας και το ιστορικό συναλλαγών θα διαγραφούν.",
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να διαγράψετε αυτό το λογαριασμό."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
+        "outOfSync": "Το ιστορικό συναλλαγών σας μοιάζει μπορεί να είναι εκτός συγχρονισμού;",
+        "pressToSync": "Πατήστε το κουμπί παρακάτω για να συγχρονίσετε το λογαριασμό σας.",
         "thisMayTake": "This may take a while. You may notice your device slowing down.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "ΣΥΓΧΡΟΝΙΣΜΟΣ ΛΟΓΑΡΙΑΣΜΟΥ",
