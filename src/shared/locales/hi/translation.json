@@ -388,9 +388,9 @@
     "fingerprintSetup": {
         "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
         "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabled": "फ़िंगरप्रिंट प्रमाणीकरण चालू किया गया",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabled": "फ़िंगरप्रिंट प्रमाणीकरण बंद किया गया",
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "फ़िंगरप्रिंट प्रमाणन विफल हुआ । कृपया पुन: प्रयास करें ।",
