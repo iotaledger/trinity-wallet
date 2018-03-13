@@ -313,7 +313,7 @@
         "viewSeed": "View seed",
         "viewAddresses": "View addresses",
         "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
+        "deleteAccount": "Account verwijderen",
         "addNewAccount": "Add new account"
     },
     "addCustomNode": {
@@ -350,9 +350,9 @@
         "unitSystem": "UNIT SYSTEM",
         "trillion": "Trillion",
         "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "million": "Miljoen",
+        "thousand": "Duizend",
+        "one": "Een"
     },
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
