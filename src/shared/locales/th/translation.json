@@ -210,31 +210,31 @@
         "max": "สูงสุด",
         "message": "ข้อ​ความ",
         "invalidMessage": "ข้อความไม่ถูกต้อง",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
-        "send": "SEND",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
-        "maximumSelected": "MAXIMUM amount selected",
+        "invalidMessageExplanation": "ข้อความของคุณมีอักขระที่ไม่ถูกต้อง",
+        "send": "ส่ง",
+        "invalidAmount": "กรุณาใส่จำนวนให้ถูกต้อง",
+        "invalidAmountExplanation": "กรุณาใส่จำนวนของรายการให้ถูกต้อง ข้อมูลอาจเป็นประโยชน์ในการเรียกดูหน่วยของ IOTA ด้านล่างของหน้านี้",
+        "maximumSelected": "เลือกจำนวนสูงสุดแล้ว",
         "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "sendMax": "ส่งสูงสุด"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
+        "passwordTooShort": "รหัสผ่านสั้นเกินไป",
         "passwordTooShortExplanation": "รหัสผ่านของคุณจะต้องมีอย่างต่ำ {{minLength}} หลัก ขณะนี้รหัสผ่านปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
-        "passwordMismatch": "Passwords do not match",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
+        "passwordMismatch": "รหัสผ่านไม่ตรงกัน",
+        "passwordMismatchExplanation": "รหัสผ่าน​ที่​ใส่​ไม่​ตรง​กัน กรุณา​ลอง​อีก​ครั้ง.",
+        "nowWeNeedTo": "คุณจำเป็นต้องสร้างรหัสผ่าน",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "ensure": "คุณแน่ใจว่ารหัสผ่านของคุณ มีอย่างน้อย 12 หลัก และยากต่อการคาดเดา",
+        "retypePassword": "ใส่รหัสผ่านอีกครั้ง"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
+        "expert": "ขั้นสูง",
+        "standard": "มาตรฐาน",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
