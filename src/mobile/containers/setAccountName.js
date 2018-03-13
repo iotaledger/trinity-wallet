@@ -296,6 +296,6 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo,
 };
 
-export default translate(['setAccountName', 'global', 'addAdditionalSeed'])(
+export default translate(['setSeedName', 'global', 'addAdditionalSeed'])(
     connect(mapStateToProps, mapDispatchToProps)(SetAccountName),
 );
