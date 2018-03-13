@@ -23,7 +23,7 @@ class Iota: RCTEventEmitter {
     let start = trytes.index(trytes.startIndex, offsetBy: 2646)
     let end = trytes.index(start, offsetBy: 27)
     let nonce = String(trytes[start ..< end])
-    return nonce!
+    return nonce
   }
   override func supportedEvents() -> [String]! {
     return ["Hello"]
