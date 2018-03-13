@@ -414,7 +414,7 @@
         "addKey": "Lägg till denna nyckeln till din 2FA app",
         "key": "Nyckel",
         "twoFAEnabled": "2FA är nu aktiverat",
-        "twoFAEnabledExplanation": "Du har aktiverat tvåfaktorautentisering framgångsrikt.",
+        "twoFAEnabledExplanation": "Du har aktiverat tvåfaktorsautentisering framgångsrikt.",
         "enterCode": "Ange koden från din 2FA app",
         "code": "Kod"
     },
