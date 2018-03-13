@@ -433,12 +433,12 @@
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
+        "local": "อุปกรณ์ของคุณ",
+        "remote": "อุปกรณ์อื่น"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "cannotCompleteTransition": "ไม่สามารถทำรายการ Snapshot",
+        "cannotCompleteTransitionExplanation": "ยอดคงเหลือของคุณจะต้องมากกว่า 0 เพื่อการเปลี่ยนแปลงที่สมบูรณ์",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully."
     }
