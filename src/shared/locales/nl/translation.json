@@ -372,14 +372,14 @@
         "title": "Voer een seed en accountnaam in."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Voer uw wachtwoord in om uw seed te bekijken.",
+        "viewSeed": "Seed bekijken",
+        "hideSeed": "Seed verbergen"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "alreadyHave": "Ik heb mijn seed opgeslagen",
+        "reenter": "U wordt nu gevraagd om uw seed opnieuw in te voeren.",
+        "reenterWarning": "Als uw apparaat kapot gaat en u heeft uw seed niet opgeslagen, verliest u uw IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
