@@ -364,7 +364,7 @@
         "outOfSync": "Lijkt het alsof uw transactiegeschiedenis niet gesynchroniseerd is?",
         "pressToSync": "Druk op de knop hieronder om uw account te synchroniseren.",
         "thisMayTake": "Dit kan even duren. Uw apparaat kan trager reageren.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "doNotClose": "Let op. Minimalisering van de app zal de synchronisatie annuleren.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
     },
