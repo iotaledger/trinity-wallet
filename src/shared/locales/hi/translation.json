@@ -123,7 +123,7 @@
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
         "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy seed",
+        "copyToClipboard": "सीड कॉपी करे",
         "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
@@ -304,7 +304,7 @@
     "history": {
         "bundleHashCopied": "बंडल हैश की प्रतिलिपि बनाई गई",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "पता प्रतिलिपि बनाई गई",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "send": "भेजे",
         "receive": "प्राप्त करे"
@@ -341,14 +341,14 @@
         "currency": "Currency"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "क्या वाकई आप लॉग आउट करने के लिए चाहते हैं?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "QR कोड स्कैन करें"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
+        "unitSystem": "यूनिट सिस्टम",
+        "trillion": "ट्रिलीयन",
         "billion": "Billion",
         "million": "मिलियन",
         "thousand": "हज़ार",
