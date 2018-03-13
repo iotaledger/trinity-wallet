@@ -127,7 +127,7 @@
         "shareSeed": "Teile deinen Seed mit einem sicheren Passwort-Manager"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed enthält ungültige Zeichen",
+        "invalidCharacters": "Der Seed enthält ungültige Zeichen",
         "invalidCharactersExplanation": "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed enthält ungültige Zeichen. Bitte versuche es erneut.",
         "seedTooShort": "Der Seed ist zu kurz",
         "seedTooShortExplanation": "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
@@ -423,7 +423,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Änderung",
+        "change": "Veränderung",
         "volume": "Volumen (24Std)"
     },
     "rootDetection": {
