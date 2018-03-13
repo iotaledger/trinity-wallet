@@ -81,8 +81,8 @@
         "pleaseWait": "Bitte warten",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
         "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Überweisungen verwendet. Bitte warte, bis diese Überweisungen bestätigt sind, und versuche es erneut.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgress": "Snapshot-Umstellung wird ausgeführt",
+        "snapshotTransitionInProgressExplanation": "Bitte warte, bis die Umstellung abgeschlossen ist."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -200,7 +200,7 @@
         "invalidAddressExplanation1": "Die Adresse sollte {{maxLength}} Zeichen lang sein und eine Prüfsumme haben.",
         "invalidAddressExplanation2": "Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Adresse enthält eine ungültige Prüfsumme.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanationGeneric": "Zulässige Adressen sollten aus 90 Zeichen bestehen und nur die Zeichen A-Z oder 9 enthalten.",
         "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
         "keyReuse": "Key-Wiederverwendung",
@@ -437,9 +437,9 @@
         "remote": "Fernberechnung"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransition": "Snapshot-Umstellung kann nicht abgeschlossenn werden",
+        "cannotCompleteTransitionExplanation": "Ihr Guthaben muss größer als 0 sein, um die Umstellung abzuschliessen.",
+        "transitionComplete": "Snapshot-Umstellung abgeschlossen",
+        "transitionCompleteExplanation": "Snapshot-Umstellung wurde erfolgreich ausgeführt."
     }
 }
