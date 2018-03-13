@@ -360,7 +360,7 @@
     "manualSync": {
         "outOfSync": "Ser din transaktionshistorik ut som att den inte är synkroniserad?",
         "pressToSync": "Tryck på knappen nedan för att synka ditt konto.",
-        "thisMayTake": "Det här kan ta ett tag. Din enhet kan bli långsammare.",
+        "thisMayTake": "Det här kan ta ett tag. Din enhet kan tillfälligt bli långsammare.",
         "doNotClose": "Observera att minimering av appen kommer att avbryta synkroniseringen.",
         "syncAccount": "SYNKA KONTO",
         "syncingYourAccount": "Synkar konto."
