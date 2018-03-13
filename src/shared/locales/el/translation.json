@@ -210,7 +210,7 @@
         "invalidMessageExplanation": "Το μήνυμά σας περιέχει μη έγκυρους χαρακτήρες.",
         "send": "ΑΠΟΣΤΟΛΗ",
         "invalidAmount": "Εισήχθη λάθος ποσό",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Παρακαλώ εισάγετε ένα έγκυρο ποσό συναλλαγής. Μπορεί να είναι χρήσιμος να δείτε την  μονάδα IOTA  στο κάτω μέρος αυτής της σελίδας.",
         "maximumSelected": "ΜΕΓΙΣΤΟ ποσό επιλέχθηκε",
         "iotaUnits": "Επεξήγηση των υποδιαιρέσεων του IOTA",
         "sendMax": "ΑΠΟΣΤΟΛΗ ΜΕΓΙΣΤΟΥ ΠΟΣΟΥ"
@@ -273,7 +273,7 @@
         "securitySettings": "Ρυθμίσεις ασφαλείας",
         "fingerprint": "Ταυτοποίηση με χρήση δακτυλικών αποτυπωμάτων",
         "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "couldNotFetchRatesExplanation": "Κάτι πήγε στραβά κατά τη λήψη των ισοτιμιών μετατροπής του νομίσματος.",
         "fetchedConversionRates": "Fetched conversion rates",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
