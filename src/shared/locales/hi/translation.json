@@ -247,7 +247,7 @@
         "theme": "थीम",
         "currency": "मुद्रा",
         "language": "भाषा ",
-        "accountManagement": "Account management",
+        "accountManagement": "अकाउंट प्रबंध",
         "addNewSeed": "नए सीड जोड़ें",
         "twoFA": "Two-factor authentication",
         "changePassword": "पासवर्ड परिवर्तित करें",
@@ -289,30 +289,30 @@
         "okay": "चलो अपने वॉलेट को सेट करे!",
         "doYouAlreadyHaveASeed": "क्या आपके पास पहले से एक सीड है जिसे आप उपयोग करना चाहते हैं?",
         "seedExplanation": "IOTA सीड आपके खाते में यूज़रनेम और पासवर्ड की तरह है, जो 81 अक्षरों में से एक शब्द में मिला है।",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
-        "keepSafe": "Please keep your seed safe."
+        "explanation": "<0> <0> आप <3>किसी भी उपकरण </3> पर <1> किसी भी वॉलेट </1> से अपने फण्ड का उपयोग करने के लिए इसका उपयोग कर सकते हैं</0>। <4>लेकिन अगर आप अपना सीड खो देते हैं, तो आप अपना IOTA खो देते हैं।</4></0>",
+        "keepSafe": "कृपया अपने सीड को सुरक्षित रखें"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "IOTA वॉलेट डाउनलोड करने के लिए धन्यवाद।",
+        "weWillSpend": "हम आपके वॉलेट की सेटिंग अगले कुछ मिनटों में करेंगे",
+        "reminder": "आप कुछ स्टेप को छोड़कर आगे बढ़ने का प्रयास कर सकते है, लेकिन हम आपको पूरी प्रक्रिया का पालन करने का आग्रह करते हैं।"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "yourSeedIs": "आपका सीड {{maxSeedLength}} अक्षरों की लंबाई है, इसे बाएं से दाएं को पढ़ें",
+        "writeDownYourSeed": "<0> अपना सीड और चेकसम लिखें और </ 0> <1> ट्रिपल चेक कर ले </ 1> <2> यह सही है। </ 2>"
     },
     "history": {
         "bundleHashCopied": "बंडल हैश की प्रतिलिपि बनाई गई",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopiedExplanation": "बंडल हैश को क्लिपबोर्ड पर कॉपी किया गया है ।",
         "addressCopied": "पता प्रतिलिपि बनाई गई",
-        "addressCopiedExplanation": "The address has been copied to the clipboard.",
+        "addressCopiedExplanation": "पते की क्लिपबोर्ड पर कॉपी बनाई गई है ।",
         "send": "भेजे",
         "receive": "प्राप्त करे"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
+        "viewSeed": "सीड देखें",
+        "viewAddresses": "पते देखें",
+        "editAccountName": "खाता नाम सुधार करें",
         "deleteAccount": "खाता नष्ट करें",
         "addNewAccount": "नया खाता जोड़ें"
     },
@@ -321,7 +321,7 @@
         "add": "जोड़ें"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
+        "useExistingSeed": "मौजूदा सीड का उपयोग करें",
         "createNewSeed": "नया सीड बनाएं"
     },
     "advancedSettings": {
@@ -413,9 +413,9 @@
         "emptyCode": "रिक्त कोड",
         "emptyCodeExplanation": "कृपया कोई कोड दर्ज करें और पुनः प्रयास करे ।",
         "keyCopied": "कुंजी क्लिपबोर्ड में प्रतिलिपि बनाई गई",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
+        "keyCopiedExplanation": "आपकी 2FA कुंजी की क्लिपबोर्ड पर प्रतिलिपि बनाई गई है ।",
+        "addKey": "अपने 2FA ऐप में इस कुंजी को जोड़ें",
+        "key": "कुँजी",
         "twoFAEnabled": "2FA अब चालू है",
         "twoFAEnabledExplanation": "आपने सफलतापूर्वक 2FA प्रमाणीकरण चालू कर दिया है",
         "enterCode": "अपने 2FA एप्लिकेशन से कोड दर्ज करें",
@@ -424,20 +424,20 @@
     "chart": {
         "mcap": "MCAP",
         "change": "बदलें",
-        "volume": "Volume (24h)"
+        "volume": "वॉल्यूम (24 घ)"
     },
     "rootDetection": {
         "warning": "चेतावनी!",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0> अपने डिवाइसरूटेड/जेलब्रोकेन निहित प्रतीत होता है/</0> <1> यह अपने बटुए की सुरक्षा के लिए एक महत्वपूर्ण जोखिम पैदा कर सकते हैं । </1> <2> क्या आप इस जोखिम के बावजूद जारी रखना चाहते हैं? </2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "feeless": "IOTA में निशुल्क ट्रांजेक्शन भेजने के लिए काम का थोड़ा सा सबूत पूरा करना जरूरी होता है ।",
+        "localOrRemote": "काम का सबूत या तो अपने डिवाइस पर स्थानीय रूप से पूरा किया जा सकता है, या एक नोड के लिए बिकवाली की ।",
         "local": "स्थानीय",
         "remote": "दूरस्थ"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransition": "स्नैपशॉट पूरा नहीं कर सकता",
         "cannotCompleteTransitionExplanation": "इस प्रक्रिया को पूरा करने के लिए आपका बैलेंस 0 से अधिक होना चाहिए ।",
         "transitionComplete": "स्नैपशॉट पूर्ण",
         "transitionCompleteExplanation": "स्नैपशॉट सफलतापूर्वक पूर्ण हुआ ।"
