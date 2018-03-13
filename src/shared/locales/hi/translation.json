@@ -148,7 +148,7 @@
         "emptyPassword": "खाली पासवर्ड",
         "emptyPasswordExplanation": "लॉग इन करने के लिए आपको एक पासवर्ड दर्ज करना होगा। कृपया फिर से प्रयास करें |",
         "enterPassword": "कृपया अपना पासवर्ड डालें",
-        "useSeed": "USE SEED",
+        "useSeed": "बीज का प्रयोग करे",
         "login": "लॉग इन करें",
         "selectDifferentNode": "क्या आप एक अलग नोड का चयन करना चाहते हैं?",
         "setNode": "नोड सेट करें",
@@ -163,7 +163,7 @@
         "seedNotGenerated": "सीड जेनेरेट नहीं हुआ है",
         "seedNotGeneratedExplanation": "कृपया एक नया सीड जेनेरेट करें ।",
         "pressForNewSeed": "नए सीड के लिए प्रेस करे",
-        "individualLetters": "Press individual letters to randomise them."
+        "individualLetters": "अलग अलग लेटर को दबाये, ताकि आपका सीड अद्वितीय बन सके"
     },
     "onboardingComplete": {
         "walletReady": "वॉलेट अब सेट है और उपयोग करने के लिए तैयार है । यदि आप भविष्य में कोई परिवर्तन करने की जरूरत है, सेटिंग्स मेनू में देखो ।"
