@@ -99,7 +99,7 @@
         "seedInUseExplanation": "Tento seed je už prepojený s Vašou peňaženkou. Použite prosím iný."
     },
     "changePassword": {
-        "oops": "Ups! Niečo sa pokazilo",
+        "oops": "Ups! Vyskytla sa chyba",
         "oopsExplanation": "Zdá sa, že došlo k chybe pri aktualizácii hesla. Prosím skúste znova.",
         "passwordUpdated": "Heslo bolo aktualizované",
         "passwordUpdatedExplanation": "Vaše heslo bolo úspešne aktualizované.",
@@ -111,7 +111,7 @@
         "passwordTooShortExplanation": "Vaše heslo musí obsahovať najmenej 12 znakov. Prosím skúste znova.",
         "oldPassword": "Nie je možné nastaviť staré heslo",
         "oldPasswordExplanation": "Nie je možné použiť staré heslo ako nové heslo. Prosím skúste znovu s novým heslom.",
-        "ensureStrongPassword": "Uistite sa, že používate silné heslo, minimálne 12 znakov.",
+        "ensureStrongPassword": "Uistite sa, že používate silné heslo, ktoré má minimálne 12 znakov.",
         "currentPassword": "Súčasné heslo",
         "newPassword": "Nové heslo",
         "confirmPassword": "Potvrdenie nového hesla"
