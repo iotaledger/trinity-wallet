@@ -413,12 +413,12 @@
         "emptyCode": "Κενός κωδικός",
         "emptyCodeExplanation": "Παρακαλώ εισάγετε έναν κωδικό και προσπαθήστε ξανά.",
         "keyCopied": "Το κλειδί αντιγράφτηκε στο πρόχειρο",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
+        "keyCopiedExplanation": "Το κλειδί  2FA έχει αντιγραφεί στο Πρόχειρο.",
+        "addKey": "Προσθέστε αυτό το κλειδί στον  (2FA) ελεγχο ταυτότητας δύο στοιχείων εφαρμογή. ",
         "key": "Κλειδί",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
+        "twoFAEnabled": "Ο Έλεγχος ταυτότητας δύο στοιχείων (2FA) είναι διαθέσιμος.",
+        "twoFAEnabledExplanation": "Έχετε ενεργοποιήσει με επιτυχία έλεγχος ταυτότητας δύο παραγόντων. (2FA) ",
+        "enterCode": "Εισαγάγετε τον κωδικό από την εφαρμογή ελεγχοs ταυτότητας δύο στοιχείων  (2FA) ",
         "code": "Κωδικός"
     },
     "chart": {
