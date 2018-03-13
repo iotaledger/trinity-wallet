@@ -81,7 +81,7 @@
         "pleaseWait": "Prosím čakajte...",
         "pleaseWaitExplanation": "Trinity práve vykonáva inú funkciu. Počkajte chvíľu a skúste to znova.",
         "pleaseWaitTransferExplanation": "Váš disponibilný zostatok sa momentálne používa v iných prevodoch. Počkajte prosím na jedno potvrdenie než to skúsite znova.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
+        "snapshotTransitionInProgress": "Prebieha prevod údajov po snapshote",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
     },
     "addAdditionalSeed": {
