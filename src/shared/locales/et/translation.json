@@ -91,7 +91,7 @@
         "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "Account name already in use",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterAccountName": "Enter an account name.",
+        "enterAccountName": "Sisesta konto nimi.",
         "accountName": "Konto nimi",
         "noNickname": "No account name entered",
         "noNicknameExplanation": "Please enter an account name for your seed.",
@@ -101,20 +101,20 @@
     "changePassword": {
         "oops": "Oih! Midagi läks valesti",
         "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
-        "passwordUpdated": "Password updated",
+        "passwordUpdated": "Parool uuendatud",
         "passwordUpdatedExplanation": "Your password has been successfully updated.",
         "incorrectPassword": "Vale parool",
         "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
-        "passwordsDoNotMatch": "Passwords do not match",
+        "passwordsDoNotMatch": "Paroolid ei kattu",
         "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
-        "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least 12 characters. Please try again.",
+        "passwordTooShort": "Parool on liiga lühike",
+        "passwordTooShortExplanation": "Sinu parool peab olema vähemalt 12 tähemärki pikk. Palun proovi uuesti.",
         "oldPassword": "Cannot set old password",
         "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "Praegune parool",
+        "newPassword": "Uus parool",
+        "confirmPassword": "Kinnita uus parool"
     },
     "copyToClipboard": {
         "seedCleared": "Seed cleared",
@@ -135,28 +135,28 @@
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
     },
     "home": {
-        "balance": "BALANCE",
-        "send": "SEND",
+        "balance": "KONTOJÄÄK",
+        "send": "SAADA",
         "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "history": "AJALUGU",
+        "settings": "SÄTTED"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "Keel"
     },
     "login": {
-        "emptyPassword": "Empty password",
+        "emptyPassword": "Tühi parool",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
         "enterPassword": "Please enter your password.",
         "useSeed": "USE SEED",
-        "login": "LOG IN",
+        "login": "LOGI SISSE",
         "selectDifferentNode": "Do you want to select a different node?",
         "setNode": "SET NODE",
         "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
+        "thisMayTake": "See võib aega võtta.",
         "youMayNotice": "You may notice your device slowing down."
     },
     "newSeedSetup": {
@@ -176,13 +176,13 @@
         "printWallet": "PRINT PAPER WALLET"
     },
     "receive": {
-        "addressCopied": "Address copied",
+        "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "UUS AADRESS",
         "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "removeMessage": "EEMALDA SÕNUM",
+        "noAddresses": "AADRESSE POLE",
+        "spent": "Kulutatud"
     },
     "saveYourSeed": {
         "seedCleared": "Seed cleared",
@@ -201,27 +201,27 @@
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Ebapiisavad vahendid",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
-        "amount": "Amount",
+        "recipientAddress": "Saaja aadress",
+        "amount": "Summa",
         "max": "MAX",
-        "message": "Message",
+        "message": "Sõnum",
         "invalidMessage": "Invalid message",
         "invalidMessageExplanation": "Your message contains invalid characters.",
-        "send": "SEND",
+        "send": "SAADA",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "IOTA ühikute selgitus",
         "sendMax": "SEND MAX"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
+        "passwordTooShort": "Parool on liiga lühike",
         "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
-        "passwordMismatch": "Passwords do not match",
+        "passwordMismatch": "Paroolid ei kattu",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "nowWeNeedTo": "Now we need to set up a password.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
@@ -233,8 +233,8 @@
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
+        "expert": "Ekspert",
+        "standard": "Tavaline",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
@@ -245,14 +245,14 @@
         "generatingAddressExplanation": "Please wait until your address has been generated.",
         "mode": "Mode",
         "theme": "Theme",
-        "currency": "Currency",
-        "language": "Language",
+        "currency": "Valuuta",
+        "language": "Keel",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
-        "logout": "Log out",
+        "logout": "Logi välja",
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
         "syncingCompleteExplanation": "Your account has synced successfully.",
@@ -262,19 +262,19 @@
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "Cannot perform action",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
+        "poorConnection": "Kehv ühendus",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All",
-        "securitySettings": "Security settings",
-        "fingerprint": "Biometric authentication",
+        "hide": "Peida",
+        "hideOthers": "Peida teised",
+        "showAll": "Kuva kõik",
+        "quit": "Välju",
+        "edit": "Muuda",
+        "cut": "Lõika",
+        "copy": "Kopeeri",
+        "paste": "Kleebi",
+        "selectAll": "Vali kõik",
+        "securitySettings": "Turvasätted",
+        "fingerprint": "Biomeetriline autentimine",
         "couldNotFetchRates": "Could not fetch rates",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
@@ -282,7 +282,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
+        "cancel": "KATKESTA",
         "reset": "RESET"
     },
     "walletSetup": {
@@ -304,21 +304,21 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
-        "send": "SEND",
+        "send": "SAADA",
         "receive": "RECEIVE"
     },
     "accountManagement": {
         "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
+        "viewAddresses": "Vaata aadresse",
         "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "deleteAccount": "Kustuta konto",
+        "addNewAccount": "Lisa uus konto"
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Add"
+        "add": "Lisa"
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
@@ -335,10 +335,10 @@
         "frame": "Frame"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Teema"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "Valuuta"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Are you sure you want to log out?"
@@ -347,12 +347,12 @@
         "scan": "Scan your QR code"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "ÜHIKUSÜSTEEM",
+        "trillion": "Triljon",
+        "billion": "Miljard",
+        "million": "Miljon",
+        "thousand": "Tuhat",
+        "one": "Üks"
     },
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
@@ -405,35 +405,35 @@
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "aMessage": "sõnum"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
+        "wrongCode": "Vale kood",
+        "wrongCodeExplanation": "Sisestatud kood on vale.",
+        "emptyCode": "Tühi kood",
         "emptyCodeExplanation": "Please enter a code and try again.",
         "keyCopied": "Key copied to clipboard",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
         "addKey": "Add this key to your 2FA app",
-        "key": "Key",
+        "key": "Võti",
         "twoFAEnabled": "2FA is now enabled",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "code": "Kood"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
+        "change": "Muutus",
         "volume": "Volume (24h)"
     },
     "rootDetection": {
-        "warning": "WARNING",
+        "warning": "HOIATUS",
         "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
+        "local": "Kohalik",
         "remote": "Remote"
     },
     "snapshotTransition": {
