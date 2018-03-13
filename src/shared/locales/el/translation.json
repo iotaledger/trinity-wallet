@@ -13,7 +13,7 @@
         "transferSent": "Μεταφορά απεστάλει",
         "transferSentMessage": "Η μεταφορά σας έχει αποσταλεί στο Tangle.",
         "messageSent": "Το μήνυμα εστάλη",
-        "messageSentMessage": "Η μεταφορά σας έχει αποσταλεί στο Tangle.",
+        "messageSentMessage": "Η μεταφορά του  μηνυματος  σας έχει αποσταλεί στο Tangle.",
         "keyReuse": "Επαναχρησιμοποίηση κλειδιού",
         "keyReuseError": "Δεν μπορείτε να στείλετε σε μια διεύθυνση από όπου έχει ήδη γίνει δαπάνη.",
         "invalidResponse": "Μη έγκυρη απόκριση",
@@ -93,7 +93,7 @@
         "accountName": "Όνομα λογαριασμού",
         "noNickname": "Δεν έγινε εισαγωγή ονόματος λογαριασμού.",
         "noNicknameExplanation": "Παρακαλούμε εισάγετε ένα όνομα λογαριασμού για το Seed σας.",
-        "seedInUse": "Seed  ήδη σε χρήση",
+        "seedInUse": "Seed  είναι ήδη σε χρήση",
         "seedInUseExplanation": "Αυτό το seed είναι ήδη συνδεδεμένος στο πορτοφόλι σας. Παρακαλούμε να χρησιμοποιήσετε έναν άλλο."
     },
     "changePassword": {
