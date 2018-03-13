@@ -81,8 +81,8 @@
         "pleaseWait": "Var god vänta",
         "pleaseWaitExplanation": "Trinity utför en annan funktion. Vänta och försök igen.",
         "pleaseWaitTransferExplanation": "Ditt tillgängliga saldo används för närvarande i andra transaktioner. Var god vänta tills en av de är godkända och försök igen.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgress": "Snapshot-övergång pågår",
+        "snapshotTransitionInProgressExplanation": "Vänligen vänta tills övergången är klar."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -200,7 +200,7 @@
         "invalidAddressExplanation1": "Din seed bör vara {{maxLength}} tecken långt och ska ha en kontrollsumma.",
         "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanationGeneric": "Giltiga adresser bör vara 90 tecken och innehålla endast A-Z eller 9.",
         "notEnoughFunds": "Otillräckliga tillgångar",
         "notEnoughFundsExplanation": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
         "keyReuse": "Nyckelåteranvändning",
@@ -437,9 +437,9 @@
         "remote": "Fjärr"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransition": "Kan inte slutföra snapshot-övergången",
+        "cannotCompleteTransitionExplanation": "Ditt saldo måste vara större än 0 för att slutföra övergången.",
+        "transitionComplete": "Snapshot-övergången klar",
+        "transitionCompleteExplanation": "Snapshot-övergången genomfördes framgångsrikt."
     }
 }
