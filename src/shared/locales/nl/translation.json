@@ -328,11 +328,11 @@
         "selectNode": "Selecteer node",
         "addCustomNode": "Aangepaste node toevoegen",
         "manualSync": "Handmatig synchroniseren",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot transitie"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Achtergrond",
+        "frame": "Kader"
     },
     "themeCustomisation": {
         "theme": "Thema"
@@ -347,7 +347,7 @@
         "scan": "QR-code scannen"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "Eenhedenstelsel",
         "trillion": "Biljoen",
         "billion": "Miljard",
         "million": "Miljoen",
