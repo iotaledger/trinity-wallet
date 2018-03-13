@@ -382,13 +382,13 @@
         "reenterWarning": "Als uw apparaat kapot gaat en u heeft uw seed niet opgeslagen, verliest u uw IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "cannotUndo": "DEZE ACTIE KAN NIET ONGEDAAN GEMAAKT WORDEN.",
+        "warning": "<0><0>Al uw wallet-gegevens, waaronder uw</0> <1>seeds, wachtwoord</1> <2>en</2> <3>andere accountgegevens</3> <4>zullen verloren gaan.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "instructionsEnable": "Raak de vingerafdruklezer aan om vingerafdruk-authentificatie te activeren.",
+        "instructionsDisable": "Raak de vingerafdruklezer aan om vingerafdruk-authentificatie te deactiveren.",
+        "fingerprintAuthEnabled": "Vingerafdruk-authentificatie geactiveerd",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
         "fingerprintAuthDisabled": "Fingerprint authentication disabled",
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
