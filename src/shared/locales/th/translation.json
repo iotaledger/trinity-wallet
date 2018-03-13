@@ -17,10 +17,10 @@
         "keyReuse": "รหัสได้ถูกใช้ไปแล้ว",
         "keyReuseError": "คุณไม่สามารถส่งสกุลเงิน ไปยังที่รหัสที่ได้ใช้ไปแล้ว",
         "invalidResponse": "การตอบสนองไม่สมบูรณ์",
-        "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponseExplanation": "Node ส่งคืนการตอบสนองที่ไม่ถูกต้อง",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+        "invalidResponseSendingTransfer": "Node ส่งคืนการตอบสนองที่ไม่ถูกต้องขณะการส่งการโอน",
         "seed": "Seed (เลขที่บัญชี)",
         "back": "ย้อนกลับ",
         "backLowercase": "ย้อนกลับ",
@@ -33,7 +33,7 @@
         "continue": "ดำเนินการต่อ",
         "manualCopy": "กรุณาใส่ Seed (เลขที่บัญชี)",
         "paperWallet": "พิมพ์สำเนา",
-        "copyToClipboard": "Add to password manager",
+        "copyToClipboard": "เพิ่มไปยังการจัดการรหัสผ่าน",
         "notAvailable": "ไม่พบฟังก์ชั่นนี้",
         "notAvailableExplanation": "มันจะถูกเพิ่มเข้าไปภายหลัง",
         "enterSeed": "กรุณาใส่ Seed (เลขที่บัญชี)",
@@ -150,9 +150,9 @@
         "enterPassword": "กรุณาใส่รหัสผ่านของคุณ",
         "useSeed": "ใช้งาน Seed (เลขที่บัญชี)",
         "login": "เข้าสู่ระบบ",
-        "selectDifferentNode": "Do you want to select a different node?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "selectDifferentNode": "คุณต้องการที่จะเลือก Node อื่นหรือไม่?",
+        "setNode": "ตั้งค่า Node",
+        "cannotConnect": "ไม่สามารถเชื่อมต่อไปยัง IOTA Node"
     },
     "loading": {
         "loadingFirstTime": "โหลด Seed (เลขที่บัญชี) ครั้งแรก",
@@ -190,7 +190,7 @@
         "mustSaveYourSeed": "<0><0>คุณต้องบันทึก Seed (เลขที่บัญชี) ด้วย</0><1>อย่างน้อยหนึ่ง</1> <2>จากตัวเลือกด้านล่างนี้</2> </0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Seed (เลขที่บัญชี) ไม่ถูกต้อง",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "thisIsACheck": "This is a check to make sure you saved your seed.",
         "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
@@ -240,32 +240,32 @@
     },
     "settings": {
         "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
-        "language": "Language",
-        "accountManagement": "Account management",
-        "addNewSeed": "Add new seed",
-        "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
-        "logout": "Log out",
+        "transferSendingExplanation": "กรุณารอจนกว่าการโอนของคุณจะถูกส่งเรียบร้อย",
+        "generatingAddress": "กำลังสร้างที่อยู่ปลายทาง",
+        "generatingAddressExplanation": "กรุณารอจนกว่าที่อยู่ของคุณจะถูกสร้างจนเสร็จเรียบร้อย",
+        "mode": "หมวดหมู่",
+        "theme": "ชุดรูปแบบ",
+        "currency": "สกุลเงิน",
+        "language": "ภาษา",
+        "accountManagement": "การจัดการบัญชี",
+        "addNewSeed": "เพิ่ม Seed (เลขที่บัญชี)",
+        "twoFA": "การยืนยันตัวตนแบบ 2 ชั้น",
+        "changePassword": "เปลี่ยนรหัสผ่าน",
+        "advanced": "ตั้งค่าขั้นสูง",
+        "logout": "ออกจากระบบ",
         "reset": "Reset wallet",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
+        "syncingComplete": "ทำการซิงค์เสร็จสมบูรณ์",
+        "syncingCompleteExplanation": "บัญชีของคุณได้ทำการซิงค์เรียบร้อยแล้ว",
+        "nicknameChanged": "ชื่อบัญชีได้ถูกเปลี่ยน",
+        "nicknameChangedExplanation": "ชื่อบัญชีของคุณได้ถูกเปลี่ยนแล้ว",
+        "accountDeleted": "บัญชีได้ถูกลบแล้ว",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformAction": "ไม่สามารถดำเนินการได้",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
+        "poorConnection": "สัญญาณอ่อน",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
+        "hide": "ซ่อน",
+        "hideOthers": "ซ่อนคนอื่น",
         "showAll": "แสดงทั้งหมด",
         "quit": "ออก",
         "edit": "แก้ไข",
@@ -325,48 +325,48 @@
         "createNewSeed": "Create new seed"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
+        "selectNode": "เลือก Node",
         "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync",
-        "snapshotTransition": "Snapshot transition"
+        "manualSync": "ซิงค์ด้วยตนเอง",
+        "snapshotTransition": "รายการ Snapshot"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "พื้นหลัง",
+        "frame": "กรอบ"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "ชุดรูปแบบ"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "สกุลเงิน"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "คุณแน่ใจหรือว่าต้องการออกจากระบบ"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "สแกนรหัส QR"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "ระบบหน่วย",
+        "trillion": "ล้านล้าน",
+        "billion": "พันล้าน",
+        "million": "ล้าน",
+        "thousand": "พัน",
+        "one": "หนึ่ง"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "areYouSure": "คุณแน่ใจหรือว่าต้องการลบข้อมูลบัญชีผู้ใช้ {{accountName}}?",
+        "yourSeedWillBeRemoved": "Seed (เลขที่บัญชี) และรายการของคุณจะถูกลบออก",
+        "thisAction": "การกระทำนี้ไม่สามารถยกเลิกได้",
+        "enterPassword": "ป้อนรหัสผ่านของคุณเพื่อที่จะลบบัญชีนี้"
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "กดปุ่มด้านล่างเพื่อซิงค์บัญชีของคุณ",
         "thisMayTake": "This may take a while. You may notice your device slowing down.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "syncAccount": "ซิงค์บัญชี",
+        "syncingYourAccount": "กำลังซิงค์บัญชีของคุณ"
     },
     "useExistingSeed": {
         "title": "Enter a seed and account name."
@@ -382,21 +382,21 @@
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "การกระทำนี้ไม่สามารถยกเลิกได้",
         "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
         "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
+        "fingerprintAuthEnabled": "การตรวจสอบลายนิ้วมือเปิดใช้งานแล้ว",
+        "fingerprintAuthEnabledExplanation": "การตรวจสอบลายนิ้วมือเปิดใช้งานแล้ว",
+        "fingerprintAuthDisabled": "การตรวจสอบลายนิ้วมือปิดใช้งานแล้ว",
+        "fingerprintAuthDisabledExplanation": "การตรวจสอบลายนิ้วมือปิดใช้งานแล้ว",
+        "fingerprintAuthFailed": "การตรวจสอบลายนิ้วมือล้มเหลว",
+        "fingerprintAuthFailedExplanation": "การตรวจสอบลายนิ้วมือล้มเหลว กรุณาลองใหม่อีกครั้ง",
+        "status": "สถานะ",
+        "enabled": "เปิดใช้งานแล้ว",
+        "disabled": "ปิดการใช้งานแล้ว",
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
@@ -440,6 +440,6 @@
         "cannotCompleteTransition": "ไม่สามารถทำรายการ Snapshot",
         "cannotCompleteTransitionExplanation": "ยอดคงเหลือของคุณจะต้องมากกว่า 0 เพื่อการเปลี่ยนแปลงที่สมบูรณ์",
         "transitionComplete": "การเปลี่ยนแปลงของ Snapshot เสร็จสมบูรณ์",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "transitionCompleteExplanation": "การเปลี่ยนแปลงของ Snapshot เสร็จสมบูรณ์"
     }
 }
