@@ -31,6 +31,8 @@
 		5403F0AF99C33584CC25CA8D4422B333 /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */; };
 		54D44899635E65A34FCEAC3EA412BE26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */; };
 		5613EA5FACE7DF227C991290F2E89D02 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06912F32A64660367B379A5FA9B59C /* libRCTAnimation.a */; };
+		603B259220582FE400D72A0E /* Iota.m in Sources */ = {isa = PBXBuildFile; fileRef = 603B258F20582FE300D72A0E /* Iota.m */; };
+		603B259320582FE400D72A0E /* IotaKitEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B259020582FE300D72A0E /* IotaKitEmitter.swift */; };
 		6079381A2057689300EC43BE /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 607938172057687B00EC43BE /* libART.a */; };
 		6271062A9C4773BE282CDC0CF95480D8 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B655981D53B5AE618EDBD102EA41BF51 /* libReact.a */; };
 		6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F418B6A7C158123D272588757B8B5E /* libKCKeepAwake.a */; };
@@ -617,6 +619,9 @@
 		5867643C338CB5267CE390C6ACD2CAC2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		5B3B10F124C9694A85409FE3EFADD5A9 /* Pods-iotaWallet-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		5C64D2219E425907A910B0F3A28CD9F1 /* iotaWalletTests-debug-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWalletTests-debug-config.xcconfig"; sourceTree = "<group>"; };
+		603B258F20582FE300D72A0E /* Iota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Iota.m; sourceTree = "<group>"; };
+		603B259020582FE300D72A0E /* IotaKitEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IotaKitEmitter.swift; sourceTree = "<group>"; };
+		603B259120582FE300D72A0E /* iotaWallet-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iotaWallet-Bridging-Header.h"; sourceTree = "<group>"; };
 		607938112057687A00EC43BE /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "../../shared/custom-fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
 		65A85C473D819AC477AA9D6A95E7EDAB /* Pods-iotaWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet.release.xcconfig"; sourceTree = "<group>"; };
@@ -867,6 +872,7 @@
 		3FA554CD0D5061D20FBDC112457CF26E = {
 			isa = PBXGroup;
 			children = (
+				603B258E20582FE300D72A0E /* IotaKit */,
 				5DA47AA1F43DF8347817216AFD81E3B8 /* Config */,
 				0FE432859717DE312B0951A32FFC9F0C /* Frameworks */,
 				6C07637C2BD02779C4E072737C53A2E3 /* Libraries */,
@@ -939,6 +945,16 @@
 				40E70A189B0FFF62EE8AE0E04401F815 /* iotaWalletTests-release-config.xcconfig */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		603B258E20582FE300D72A0E /* IotaKit */ = {
+			isa = PBXGroup;
+			children = (
+				603B258F20582FE300D72A0E /* Iota.m */,
+				603B259020582FE300D72A0E /* IotaKitEmitter.swift */,
+				603B259120582FE300D72A0E /* iotaWallet-Bridging-Header.h */,
+			);
+			path = IotaKit;
 			sourceTree = "<group>";
 		};
 		607938122057687A00EC43BE /* Products */ = {
@@ -2341,6 +2357,8 @@
 			files = (
 				962469C90FA6C9D7DB8B0F1D49DD98E7 /* AppDelegate.m in Sources */,
 				3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */,
+				603B259320582FE400D72A0E /* IotaKitEmitter.swift in Sources */,
+				603B259220582FE400D72A0E /* Iota.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2471,6 +2489,7 @@
 		54708D3C2D8F9B58C86D79D3E967D808 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2571,6 +2590,7 @@
 		6E75FBCECD50020CBFEFED84B41BD355 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
