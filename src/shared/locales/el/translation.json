@@ -303,8 +303,8 @@
         "bundleHashCopiedExplanation": "Το πακέτο κατακερματισμού έχει αντιγραφεί στο Πρόχειρο.",
         "addressCopied": "Η διεύθυνση αντιγράφηκε",
         "addressCopiedExplanation": "Η διεύθυνση έχει αντιγραφεί στο Πρόχειρο.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "ΑΠΟΣΤΟΛΗ",
+        "receive": "ΛΗΨΗ"
     },
     "accountManagement": {
         "viewSeed": "Προβολή σπόρου",
@@ -325,7 +325,7 @@
         "selectNode": "Επιλέξτε κόμβο",
         "addCustomNode": "Προσθήκη προσαρμοσμένου κόμβου",
         "manualSync": "Χειροκίνητος συγχρονισμός",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Στιγμιότυπο μετάβασης"
     },
     "advancedThemeCustomisation": {
         "background": "Φόντο",
