@@ -235,7 +235,7 @@
     "modeSelection": {
         "expert": "ขั้นสูง",
         "standard": "มาตรฐาน",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "expertModeExplanation": "หมวดหมู่ระดับสูง จะทำให้คุณเข้าถึงคุณลักษณะพิเศษเพิ่มเติม ตัวอย่างเช่น การเลื่อนขั้นด้วย และการส่งข้อมูลสู่ระบบอีกครั้งด้วยตนเอง",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
