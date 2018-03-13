@@ -81,8 +81,8 @@
         "pleaseWait": "Veuillez patienter",
         "pleaseWaitExplanation": "Trinity est en train d'effectuer une autre tâche. Veuillez réessayer plus tard.",
         "pleaseWaitTransferExplanation": "Votre solde disponible est actuellement utilisé dans d'autres transferts. Veuillez attendre qu'un des transferts soit confirmé avant de réessayer.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgress": "Transition du Snapshot en cours",
+        "snapshotTransitionInProgressExplanation": "Veuillez patienter jusqu'à ce que la synchronisation de la transition soit terminée."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -328,7 +328,7 @@
         "selectNode": "Sélectionner un serveur",
         "addCustomNode": "Ajouter un serveur personnalisé",
         "manualSync": "Synchro manuelle",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Transition du Snapshot"
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -437,9 +437,9 @@
         "remote": "A distance"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransition": "Impossible de terminer la transition du snapshot",
         "cannotCompleteTransitionExplanation": "Votre solde doit être supérieur à 0 pour terminer la transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "transitionComplete": "Transition du snapshot terminée",
+        "transitionCompleteExplanation": "La transition du snapshot s'est terminée avec succès."
     }
 }
