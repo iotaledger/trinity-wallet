@@ -16,9 +16,9 @@
         "messageSentMessage": "ट्रांसफर के लिए Tangle को भेजा गया",
         "keyReuse": "कुंजी पुनः प्रयोग",
         "keyReuseError": "आप उस पते पर नहीं भेज सकते हैं जो पहले से ही खर्च किया गया है",
-        "invalidResponse": "Invalid response",
-        "invalidResponseExplanation": "The node returned an invalid response.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "invalidResponse": "अमान्य प्रतिक्रिया",
+        "invalidResponseExplanation": "नोड ने कोई अमान्य प्रतिक्रिया दिया ।",
+        "invalidResponsePollingExplanation": "नोड ने कोई अमान्य प्रतिक्रिया दिया ।",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "सीड",
@@ -85,8 +85,8 @@
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Seed contains invalid characters",
-        "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
+        "seedInvalidCharsExplanation": "सीड केवल कैपिटल अक्षर A-Z और संख्या 9 से मिलकर बना सकते हैं । आपके बीज में अमांय वर्ण हैं । कृपया पुन: प्रयास करें ।",
         "seedTooShort": "सीड बहुत छोटा है",
         "seedTooShortExplanation": "आपका सीड कम से कम {{maxLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
         "nameInUse": "खाता पहले से ही उपयोग में है",
@@ -127,8 +127,8 @@
         "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharacters": "सीड में अवैध वर्ण हैं।",
+        "invalidCharactersExplanation": "सीड केवल कैपिटल अक्षर A-Z और संख्या 9 से मिलकर बना सकते हैं । आपके बीज में अमांय वर्ण हैं । कृपया पुन: प्रयास करें ।",
         "seedTooShort": "Seed बहुत छोटा है",
         "seedTooShortExplanation": "आपका पासवर्ड कम से कम {{maxLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
         "seedExplanation": "seed {{maxLength}} वर्ण लंबा होना चाहिए, और इसमें कैपिटल अक्षर A-Z या 9 नंबर होना चाहिए। आप {{maxLength}} वर्णों से अधिक लम्बे seed का उपयोग नहीं कर सकते।",
@@ -314,31 +314,31 @@
         "viewAddresses": "View addresses",
         "editAccountName": "Edit account name",
         "deleteAccount": "खाता नष्ट करें",
-        "addNewAccount": "Add new account"
+        "addNewAccount": "नया खाता जोड़ें"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
+        "customNode": "कस्टम नोड",
         "add": "जोड़ें"
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "createNewSeed": "नया सीड बनाएं"
     },
     "advancedSettings": {
         "selectNode": "नोड चुने",
-        "addCustomNode": "Add custom node",
+        "addCustomNode": "कस्टम नोड जोड़ें",
         "manualSync": "मैन्युअल सिंक",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "स्नैपशॉट"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "बैकग्राउंड",
+        "frame": "फ्रेम"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "थीम"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "करेंसी"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "क्या वाकई आप लॉग आउट करने के लिए चाहते हैं?"
@@ -349,7 +349,7 @@
     "unitInfoModal": {
         "unitSystem": "यूनिट सिस्टम",
         "trillion": "ट्रिलीयन",
-        "billion": "Billion",
+        "billion": "बिलियन",
         "million": "मिलियन",
         "thousand": "हज़ार",
         "one": "एक"
@@ -438,8 +438,8 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransitionExplanation": "इस प्रक्रिया को पूरा करने के लिए आपका बैलेंस 0 से अधिक होना चाहिए ।",
+        "transitionComplete": "स्नैपशॉट पूर्ण",
+        "transitionCompleteExplanation": "स्नैपशॉट सफलतापूर्वक पूर्ण हुआ ।"
     }
 }
