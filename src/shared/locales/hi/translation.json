@@ -9,7 +9,7 @@
         "balanceError": "अपर्याप्त बैलेंस",
         "balanceErrorMessage": "आपके पास प्रर्याप्त IOTA नहीं है इस ट्रान्सेक्शन के लिए.",
         "transferError": "स्थानांतरण त्रुटि",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
+        "transferErrorMessage": "ट्रांसफर करते समय कुछ गड़बड़ हो गई । कृपया पुन: प्रयास करें ।",
         "transferSent": "ट्रांसफर पूर्ण हुवा",
         "transferSentMessage": "ट्रांसफर के लिए Tangle को भेजा गया",
         "messageSent": "संदेश भेज दिया गया है",
@@ -21,11 +21,11 @@
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
-        "seed": "Seed",
-        "back": "BACK",
-        "backLowercase": "Back",
-        "done": "DONE",
-        "doneLowercase": "Done",
+        "seed": "सीड",
+        "back": "वापस",
+        "backLowercase": "वापस जाएँ।",
+        "done": "संपन्न",
+        "doneLowercase": "हो गया",
         "next": "आगे बढ़े",
         "apply": "लागू करें",
         "save": "सेव करें",
@@ -49,7 +49,7 @@
         "password": "पासवर्ड",
         "passwordOrFingerprint": "पासवर्ड या अंगूठे का चिन्ह",
         "unrecognisedPassword": "Unrecognised password",
-        "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
+        "unrecognisedPasswordExplanation": "पासवर्ड की पहचान नहीं की गई । कृपया पुन: प्रयास करें ।",
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
         "somethingWentWrong": "Something went wrong",
@@ -233,7 +233,7 @@
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "expert": "एक्स्पर्ट",
         "standard": "Standard",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
@@ -282,8 +282,8 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "cancel": "रद्द",
+        "reset": "रीसेट"
     },
     "walletSetup": {
         "okay": "Okay. Let's set up your wallet!",
@@ -302,7 +302,7 @@
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopied": "बंडल हैश की प्रतिलिपि बनाई गई",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
@@ -382,7 +382,7 @@
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "यह क्रिया पूर्ववत् नहीं की जा सकती ।",
         "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
@@ -434,7 +434,7 @@
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
-        "remote": "Remote"
+        "remote": "दूरस्थ"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
