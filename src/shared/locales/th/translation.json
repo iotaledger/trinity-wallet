@@ -80,7 +80,7 @@
         "cannotSendToOwnExplanation": "คุณไม่สามารถถ่ายโอนสกุลเงินไปยังที่อยู่อื่นของคุณเองได้",
         "pleaseWait": "กรุณารอสักครู่",
         "pleaseWaitExplanation": "Trinity กำลังปฏิบัติการอย่างอื่นอยู่ กรุณารอสักครู่ และลองใหม่อีกครั้ง",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
+        "pleaseWaitTransferExplanation": "ยอดคงเหลือที่สามารถใช้ได้ของคุณในขณะนี้ กำลังถูกใช้งานในการโอนอื่นอยู่ กรุณารอจนกว่าผู้รับโอนทำการยืนยันก่อนที่จะทำการโอนอีกครั้ง",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
     },
