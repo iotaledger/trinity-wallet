@@ -69,13 +69,13 @@
         "bundleHash": "Hashbunt",
         "addresses": "Adresser",
         "reattach": "ÅTERFÄST",
-        "promote": "PROMOTA",
+        "promote": "BEFORDRA",
         "rebroadcast": "ÅTERSÄND",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
         "autoreattaching": "Auto-fastsättning till Tangle",
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
-        "autopromoting": "Auto-promotar överföring",
-        "autopromotingExplanation": "Promotar transaktion med hashen {{hash}}",
+        "autopromoting": "Auto-befordrar överföring",
+        "autopromotingExplanation": "Befordrar transaktion med hashen {{hash}}",
         "cannotSendToOwn": "Skickar till egen adress",
         "cannotSendToOwnExplanation": "Du kan inte göra en värdetransaktion till en av dina egna adresser.",
         "pleaseWait": "Var god vänta",
@@ -317,7 +317,7 @@
         "addNewAccount": "Lägg till konto"
     },
     "addCustomNode": {
-        "customNode": "Anpassade noder",
+        "customNode": "Anpassad nod",
         "add": "Lägg till"
     },
     "addNewAccount": {
