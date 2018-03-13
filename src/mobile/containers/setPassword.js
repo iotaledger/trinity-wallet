@@ -76,7 +76,7 @@ class SetPassword extends Component {
         generateAlert: PropTypes.func.isRequired,
         setPassword: PropTypes.func.isRequired,
         seed: PropTypes.string.isRequired,
-        seedName: PropTypes.string.isRequired,
+        accountName: PropTypes.string.isRequired,
         theme: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
     };
@@ -120,7 +120,7 @@ class SetPassword extends Component {
                 .catch((err) => console.error(err));
         };
 
-        const { t, seed, seedName } = this.props;
+        const { t, seed, accountName } = this.props;
         const { password, reentry } = this.state;
 
         if (password.length >= MIN_PASSWORD_LENGTH && password === reentry) {
@@ -128,10 +128,10 @@ class SetPassword extends Component {
                 .get()
                 .then((credentials) => {
                     if (isEmpty(credentials)) {
-                        return ifNoKeychainDuplicates(password, seed, seedName);
+                        return ifNoKeychainDuplicates(password, seed, accountName);
                     }
 
-                    if (hasDuplicateAccountName(credentials.data, seedName)) {
+                    if (hasDuplicateAccountName(credentials.data, accountName)) {
                         return this.props.generateAlert(
                             'error',
                             t('addAdditionalSeed:nameInUse'),
@@ -145,7 +145,7 @@ class SetPassword extends Component {
                         );
                     }
 
-                    return ifNoKeychainDuplicates(password, seed, seedName);
+                    return ifNoKeychainDuplicates(password, seed, accountName);
                 })
                 .catch(() => {
                     this.props.generateAlert(
@@ -268,7 +268,7 @@ class SetPassword extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
-    seedName: state.tempAccount.seedName,
+    accountName: state.tempAccount.accountName,
     theme: state.settings.theme,
     body: state.settings.theme.body,
 });

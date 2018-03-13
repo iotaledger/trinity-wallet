@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { setSeedName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setAccountName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { connect } from 'react-redux';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import CustomTextInput from '../components/customTextInput';
@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
     },
 });
 
-export class SetSeedName extends Component {
+export class SetAccountName extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
-        setSeedName: PropTypes.func.isRequired,
+        setAccountName: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         setAdditionalAccountInfo: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
@@ -98,7 +98,7 @@ export class SetSeedName extends Component {
 
         if (!isEmpty(this.state.accountName)) {
             if (!onboardingComplete) {
-                this.props.setSeedName(trimmedAccountName);
+                this.props.setAccountName(trimmedAccountName);
 
                 this.navigateTo('setPassword');
             } else {
@@ -291,11 +291,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setSeedName,
+    setAccountName,
     generateAlert,
     setAdditionalAccountInfo,
 };
 
-export default translate(['setSeedName', 'global', 'addAdditionalSeed'])(
-    connect(mapStateToProps, mapDispatchToProps)(SetSeedName),
+export default translate(['setAccountName', 'global', 'addAdditionalSeed'])(
+    connect(mapStateToProps, mapDispatchToProps)(SetAccountName),
 );

@@ -108,15 +108,15 @@ export const setFirstUse = (payload) => ({
     payload,
 });
 
-export const updateTransfers = (seedName, transfers) => ({
+export const updateTransfers = (accountName, transfers) => ({
     type: ActionTypes.UPDATE_TRANSFERS,
-    seedName,
+    accountName,
     transfers,
 });
 
-export const updateAddresses = (seedName, addresses) => ({
+export const updateAddresses = (accountName, addresses) => ({
     type: ActionTypes.UPDATE_ADDRESSES,
-    seedName,
+    accountName,
     addresses,
 });
 
@@ -140,9 +140,9 @@ export const increaseSeedCount = () => ({
     type: ActionTypes.INCREASE_SEED_COUNT,
 });
 
-export const addAccountName = (seedName) => ({
+export const addAccountName = (accountName) => ({
     type: ActionTypes.ADD_SEED_NAME,
-    seedName,
+    accountName,
 });
 
 export const addAddresses = (accountName, addresses) => ({

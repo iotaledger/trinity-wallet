@@ -101,7 +101,7 @@ class EnterSeed extends React.Component {
         } else if (seed.length === MAX_SEED_LENGTH) {
             this.props.setSeed(seed);
             this.props.navigator.push({
-                screen: 'setSeedName',
+                screen: 'setAccountName',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -129,7 +129,7 @@ class EnterSeed extends React.Component {
      */
     onQRRead(data) {
         const dataString = data.toString();
-        const { t } = this.props; 
+        const { t } = this.props;
         if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
