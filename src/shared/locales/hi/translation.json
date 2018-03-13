@@ -162,80 +162,80 @@
     "newSeedSetup": {
         "seedNotGenerated": "सीड जेनेरेट नहीं हुआ है",
         "seedNotGeneratedExplanation": "कृपया एक नया सीड जेनेरेट करें ।",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "pressForNewSeed": "नए सीड के लिए प्रेस करे",
         "individualLetters": "Press individual letters to randomise them."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "वॉलेट अब सेट है और उपयोग करने के लिए तैयार है । यदि आप भविष्य में कोई परिवर्तन करने की जरूरत है, सेटिंग्स मेनू में देखो ।"
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
+        "clickToPrint": "अपने सीड की एक काग़ज़ की प्रतिलिपि मुद्रित करने के लिए नीचे बटन क्लिक करें ।",
         "storeSafely": "इसे सुरक्षित रूप से संग्रहीत करे।",
-        "neverShare": "Never share your seed with anyone.",
+        "neverShare": "कभी किसी के साथ अपने सीड का साझा न करे ।",
         "iotaLogo": "IOTA लोगो",
         "printWallet": "पेपर वॉलेट प्रिंट करे|"
     },
     "receive": {
         "addressCopied": "पता प्रतिलिपि बनाई गई",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "NEW ADDRESS",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE",
-        "noAddresses": "NO ADDRESSES",
+        "addressCopiedExplanation": "आपका पता क्लिपबोर्ड पर कॉपी किया गया है।",
+        "generateNewAddress": "नया पता",
+        "message": "वैकल्पिक संदेश",
+        "removeMessage": "संदेश हटाए",
+        "noAddresses": "कोई पता नहीं",
         "spent": "खर्च"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "seedCleared": "सीड हटाया गया",
+        "seedClearedExplanation": "आपकी सुरक्षा के लिए सीड को क्लिपबोर्ड से मिटा कर दिया गया है ।",
+        "mustSaveYourSeed": "<0> <0> आपको </0> <1> के साथ अपने सीड को नीचे सूचीबद्ध विकल्पों में से कम एक </1> <2> से बचाना होगा । </2> </0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "incorrectSeed": "गलत सीड",
+        "incorrectSeedExplanation": "आपके द्वारा दर्ज किया गया सीड गलत है । कृपया पुन: प्रयास करें ।",
+        "thisIsACheck": "यह सुनिश्चित करने के लिए यह एक जांच है कि आपने अपना बीज सहेजा है",
+        "ifYouHaveNotSaved": "यदि आप अपने सीड कहीं नहीं सहेजा है, कृपया वापस जाओ और सीड को सहेज लो।"
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddress": "अवैध पता",
+        "invalidAddressExplanation1": "पता {{maxLength}} वर्ण लंबा होना चाहिए और एक checksum होना चाहिए ।",
+        "invalidAddressExplanation2": "एड्रेस में अवैध वर्ण हैं।",
+        "invalidAddressExplanation3": "एड्रेस में अवैध checksum हैं।",
+        "invalidAddressExplanationGeneric": "सही पते 90 वर्णों का होना चाहिए और इनमें केवल A-Z या 9 होना चाहिए ।",
         "notEnoughFunds": "अपर्याप्त राशि",
         "notEnoughFundsExplanation": "आपके पास प्रर्याप्त IOTA नहीं है इस ट्रान्सेक्शन के लिए.",
-        "keyReuse": "Key reuse",
+        "keyReuse": "कुंजी पुनः प्रयोग",
         "keyReuseExplanation": "जिस पते पर आप भेजने का प्रयास कर रहे हैं, उसका उपयोग पहले ही किया जा चुका है। कृपया दूसरे पते का प्रयास करें |",
-        "recipientAddress": "Recipient address",
-        "amount": "Amount",
-        "max": "MAX",
-        "message": "Message",
+        "recipientAddress": "प्राप्तकर्ता का पता",
+        "amount": "राशि",
+        "max": "अधिकतम",
+        "message": "संदेश",
         "invalidMessage": "अमान्य संदेश",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessageExplanation": "एड्रेस में अवैध वर्ण हैं।",
         "send": "भेजे",
         "invalidAmount": "गलत राशि दर्ज की गई",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "invalidAmountExplanation": "कृपया कोई मान्य हस्तांतरण राशि दर्ज करें । यह इस पृष्ठ के तल पर IOTA इकाई विवरण देखने के लिए सहायक हो सकता है ।",
+        "maximumSelected": "अधिकतम चयनित राशि",
+        "iotaUnits": "IOTA इकाइयों को समझाया गया है",
+        "sendMax": "अधिकतम भेजें"
     },
     "setPassword": {
         "passwordTooShort": "पासवर्ड बहुत छोटा है",
         "passwordTooShortExplanation": "आपका पासवर्ड कम से कम {{minLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
-        "passwordMismatch": "Passwords do not match",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
+        "passwordMismatch": "पासवर्ड्स समान नहीं हैं",
+        "passwordMismatchExplanation": "पासवर्ड्स जो आप दर्ज किया, मिलान नहीं हो रहा हैं। कृपया दोबारा लिखें।",
+        "nowWeNeedTo": "अब हमें पासवर्ड सेट करने की आवश्यकता है ।",
+        "anEncryptedCopy": "अपने सीड की एक एंक्रिप्टेड प्रतिलिपि आपके डिवाइस पर संग्रहीत किया जाएगा । आप भविष्य में अपने वॉलेट तक पहुंचने के लिए इस पासवर्ड का उपयोग करेंगे ।",
+        "ensure": "सुनिश्चित करें कि आप एक मजबूत पासवर्ड का उपयोग करे, जिसमे कम से कम 12 वर्ण हो ।",
         "retypePassword": "पासवर्ड पुन: लिखें"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "आप इस वॉलेट के साथ कई सीड का उपयोग कर सकते हैं । प्रत्येक सीड को खाता नाम की आवश्यकता है ।",
+        "youCanAdd": "आप सेटिंग मेनू में और सीड अधिक जोड़ सकते हैं ।"
     },
     "modeSelection": {
         "expert": "एक्स्पर्ट",
         "standard": "मानक",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "expertModeExplanation": "विशेषज्ञ मोड मैन्युअल संवर्धन और पुनर्आसक्ति जैसी अतिरिक्त सुविधाओं तक पहुँच प्रदान करेगा.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
