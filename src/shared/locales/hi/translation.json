@@ -226,7 +226,7 @@
         "nowWeNeedTo": "Now we need to set up a password.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "retypePassword": "पासवर्ड पुन: लिखें"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
@@ -234,7 +234,7 @@
     },
     "modeSelection": {
         "expert": "एक्स्पर्ट",
-        "standard": "Standard",
+        "standard": "मानक",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
@@ -245,8 +245,8 @@
         "generatingAddressExplanation": "Please wait until your address has been generated.",
         "mode": "Mode",
         "theme": "Theme",
-        "currency": "Currency",
-        "language": "Language",
+        "currency": "मुद्रा",
+        "language": "भाषा ",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
         "twoFA": "Two-factor authentication",
