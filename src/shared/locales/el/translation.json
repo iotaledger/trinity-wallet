@@ -423,23 +423,23 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "change": "Αλλαγή",
+        "volume": "Όγκος (24h)"
     },
     "rootDetection": {
-        "warning": "WARNING",
+        "warning": "ΠΡΟΕΙΔΟΠΟΙΗΣΗ",
         "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
+        "feeless": "Είναι απαραίτητο να ολοκληρώσετε μια μικρή απόδειξη εργασίας να στείλετε χωρίς επιβάρυνση  συναλλαγές στο  IOTA ",
+        "localOrRemote": "Απόδειξη εργασίας μπορεί να ολοκληρωθεί τοπικά στη συσκευή σας, είτε  μετατόπιση φόρτου σε έναν κόμβο.",
+        "local": "Τοπικά",
+        "remote": "Απομακρυσμένo"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransition": "Δεν μπορεί να ολοκληρώσει τη μετάβαση στιγμιότυπο",
+        "cannotCompleteTransitionExplanation": "Το υπόλοιπό σας πρέπει να είναι μεγαλύτερη από το 0 για να ολοκληρωθεί η μετάβαση.",
+        "transitionComplete": "Snapshot ολοκληρώθηκε. ",
+        "transitionCompleteExplanation": "Το snapshot έχει ολοκληρωθεί με επιτυχία."
     }
 }
