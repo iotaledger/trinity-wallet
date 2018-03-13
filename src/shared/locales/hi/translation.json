@@ -236,14 +236,14 @@
         "expert": "एक्स्पर्ट",
         "standard": "मानक",
         "expertModeExplanation": "विशेषज्ञ मोड मैन्युअल संवर्धन और पुनर्आसक्ति जैसी अतिरिक्त सुविधाओं तक पहुँच प्रदान करेगा.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "modesExplanation": "यदि आप अनुभवी टैंगल उपयोगकर्ता हैं तो केवल विशेषज्ञ मोड सक्षम करें आप इसे अन्यथा भ्रमित कर सकते हैं"
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
+        "transferSending": "ट्रांसफर हो रहा है",
+        "transferSendingExplanation": "आपका स्थानांतरण भेजे जाने तक कृपया प्रतीक्षा करें ।",
+        "generatingAddress": "प्राप्त पता जनरेट कर रहा है",
+        "generatingAddressExplanation": "आपका पता जेनरेट होने तक कृपया प्रतीक्षा करें ।",
+        "mode": "मोड",
         "theme": "थीम",
         "currency": "मुद्रा",
         "language": "भाषा ",
@@ -373,12 +373,12 @@
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "viewSeed": "सीड देखें",
+        "hideSeed": "सीड छुपाएं"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
+        "alreadyHave": "मैंने अपना सीड सहेज लिया है",
+        "reenter": "अब फिर से अपना सीड डालने के लिए कहा जाएगा ।",
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
@@ -393,12 +393,12 @@
         "fingerprintAuthDisabled": "Fingerprint authentication disabled",
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
         "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "fingerprintAuthFailedExplanation": "फ़िंगरप्रिंट प्रमाणन विफल हुआ । कृपया पुन: प्रयास करें ।",
+        "status": "स्टेटस",
+        "enabled": "चालू करे",
+        "disabled": "बंद करे",
+        "fingerprintUnavailable": "फ़िंगरप्रिंट सेंसर अनुपलब्ध",
+        "fingerprintUnavailableExplanation": "आपका डिवाइस फ़िंगरप्रिंट पहचान का समर्थन नहीं करता है या यह डिवाइस सेटिंग्स में कॉंफ़िगर नहीं किया गया है ।",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "instructionsLogin": "Touch fingerprint reader to log in."
