@@ -80,7 +80,9 @@
         "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers vos propres adresses.",
         "pleaseWait": "Veuillez patienter",
         "pleaseWaitExplanation": "Trinity est en train d'effectuer une autre tâche. Veuillez réessayer plus tard.",
-        "pleaseWaitTransferExplanation": "Votre solde disponible est actuellement utilisé dans d'autres transferts. Veuillez attendre qu'un des transferts soit confirmé avant de réessayer."
+        "pleaseWaitTransferExplanation": "Votre solde disponible est actuellement utilisé dans d'autres transferts. Veuillez attendre qu'un des transferts soit confirmé avant de réessayer.",
+        "snapshotTransitionInProgress": "Snapshot transition in progress",
+        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -198,6 +200,7 @@
         "invalidAddressExplanation1": "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
         "invalidAddressExplanation2": "L'adresse contient des caractères invalides.",
         "invalidAddressExplanation3": "L'adresse contient un code de vérification invalide.",
+        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Fonds insuffisants",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
         "keyReuse": "Réutilisation de clé",
@@ -432,5 +435,11 @@
         "localOrRemote": "La preuve du travail peut être effectuée localement sur votre appareil ou sur un serveur à distance .",
         "local": "Local",
         "remote": "A distance"
+    },
+    "snapshotTransition": {
+        "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "transitionComplete": "Snapshot transition complete",
+        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
     }
 }
