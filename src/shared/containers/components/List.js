@@ -41,7 +41,7 @@ export default function withListData(ListComponent) {
 
     const mapStateToProps = (state) => ({
         account: state.account,
-        accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+        accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
         theme: state.settings.theme,
     });
 

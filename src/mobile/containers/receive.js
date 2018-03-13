@@ -216,7 +216,7 @@ class Receive extends Component {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.4 }} />
-                    <View style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent'}]}>
+                    <View style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent' }]}>
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
                             size={width / 2.8}
@@ -243,7 +243,9 @@ class Receive extends Component {
                         // Place holder
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                             <View style={[styles.receiveAddressContainer, { backgroundColor: input.bg }, opacity]}>
-                                <Text style={[styles.receiveAddressText, { color: input.color }]}>{Array(19).join(' ')}</Text>
+                                <Text style={[styles.receiveAddressText, { color: input.color }]}>
+                                    {Array(19).join(' ')}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     )}
@@ -263,8 +265,8 @@ class Receive extends Component {
                     />
                     <View style={{ flex: 0.35 }} />
                     <View style={{ flex: 0.7 }}>
-                        {receiveAddress.length > 1 &&
-                            message.length >= 1 &&
+                        {(receiveAddress.length > 1 &&
+                            message.length >= 1 && (
                                 <View style={{ flex: 0.7 }}>
                                     <View style={{ flex: 0.1 }} />
                                     <TouchableOpacity
@@ -276,26 +278,27 @@ class Receive extends Component {
                                         style={styles.removeButtonContainer}
                                     >
                                         <View style={[styles.removeButton, borderColor]}>
-                                            <Text style={[styles.removeText, { color: body.color }]}>{t('removeMessage')}</Text>
+                                            <Text style={[styles.removeText, { color: body.color }]}>
+                                                {t('removeMessage')}
+                                            </Text>
                                         </View>
                                     </TouchableOpacity>
                                     <View style={{ flex: 0.2 }} />
                                 </View>
-                                ||
-                                <GenerateAddressButton
-                                    ctaColor={primary.color}
-                                    ctaBorderColor={primary.hover}
-                                    negativeColor={negative.color}
-                                    secondaryCtaColor={primary.body}
-                                    t={t}
-                                    receiveAddress={receiveAddress}
-                                    isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
-                                    isGeneratingReceiveAddress={isGeneratingReceiveAddress}
-                                    onGeneratePress={this.onGeneratePress}
-                                    message={message}
-                                />
-                            }
-
+                            )) || (
+                            <GenerateAddressButton
+                                ctaColor={primary.color}
+                                ctaBorderColor={primary.hover}
+                                negativeColor={negative.color}
+                                secondaryCtaColor={primary.body}
+                                t={t}
+                                receiveAddress={receiveAddress}
+                                isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
+                                isGeneratingReceiveAddress={isGeneratingReceiveAddress}
+                                onGeneratePress={this.onGeneratePress}
+                                message={message}
+                            />
+                        )}
                     </View>
                     <View style={{ flex: 0.65 }} />
                 </View>
@@ -306,7 +309,7 @@ class Receive extends Component {
 
 const mapStateToProps = (state) => ({
     selectedAccountData: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     isSyncing: state.tempAccount.isSyncing,
     seedIndex: state.tempAccount.seedIndex,
     receiveAddress: state.tempAccount.receiveAddress,

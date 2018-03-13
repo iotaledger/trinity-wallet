@@ -74,7 +74,7 @@ class Settings extends Component {
         currentSetting: PropTypes.string.isRequired,
         seedIndex: PropTypes.number.isRequired,
         password: PropTypes.string.isRequired,
-        seedNames: PropTypes.array.isRequired,
+        accountNames: PropTypes.array.isRequired,
         seedCount: PropTypes.number.isRequired,
         currency: PropTypes.string.isRequired,
         mode: PropTypes.string.isRequired,
@@ -664,7 +664,7 @@ class Settings extends Component {
 
     // UseExistingSeed method
     addExistingSeed(seed, accountName) {
-        const { t, seedNames } = this.props;
+        const { t, accountNames } = this.props;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',
@@ -686,7 +686,7 @@ class Settings extends Component {
                 t('addAdditionalSeed:noNickname'),
                 t('addAdditionalSeed:noNicknameExplanation'),
             );
-        } else if (seedNames.includes(accountName)) {
+        } else if (accountNames.includes(accountName)) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
@@ -723,9 +723,9 @@ class Settings extends Component {
 
     // EditAccountName method
     saveAccountName(accountName) {
-        const { seedIndex, seedNames, password, selectedAccountName, t, accountInfo } = this.props;
+        const { seedIndex, accountNames, password, selectedAccountName, t, accountInfo } = this.props;
 
-        if (seedNames.includes(accountName)) {
+        if (accountNames.includes(accountName)) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
@@ -746,8 +746,8 @@ class Settings extends Component {
                         return name;
                     };
 
-                    const updatedSeedNames = map(seedNames, updateName);
-                    this.props.changeAccountName(newAccountInfo, updatedSeedNames);
+                    const updatedaccountNames = map(accountNames, updateName);
+                    this.props.changeAccountName(newAccountInfo, updatedaccountNames);
                     this.props.setSetting('accountManagement');
 
                     this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
@@ -831,11 +831,11 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,
     password: state.tempAccount.password,
-    seedNames: state.account.seedNames,
+    accountNames: state.account.accountNames,
     accountInfo: state.account.accountInfo,
     seedCount: state.account.seedCount,
     currency: state.settings.currency,
