@@ -87,16 +87,16 @@
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
         "seedInvalidCharsExplanation": "Seed (เลขที่บัญชี) สามารถประกอบด้วยอักษรตัวใหญ่ A-Z และเลข 9 เท่านั้น, Seed (เลขที่บัญชี) ของคุณมีอักขระที่ไม่ถูกต้อง โปรดลองอีกครั้ง",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "nameInUse": "Account name already in use",
-        "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterAccountName": "Enter an account name.",
-        "accountName": "Account name",
-        "noNickname": "No account name entered",
-        "noNicknameExplanation": "Please enter an account name for your seed.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedTooShort": "Seed (เลขที่บัญชี) สั้นเกินไป",
+        "seedTooShortExplanation": "Seed (เลขที่บัญชี) ของคุณจะต้องมีอักขระอย่างต่ำ {{maxLength}} หลัก ขณะนี้ Seed (เลขที่บัญชี) ปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
+        "nameInUse": "ชื่อบัญชีถูกใช้ไปแล้ว",
+        "nameInUseExplanation": "กรุณาใช้ชื่อบัญชีไม่ซ้ำกันกับ Seed (เลขที่บัญชี) ของคุณ",
+        "enterAccountName": "กรุณาใส่ชื่อบัญชี",
+        "accountName": "ชื่อบัญชี",
+        "noNickname": "ยังไม่ได้ใส่ชื่อบัญชี",
+        "noNicknameExplanation": "กรุณาใส่ชื่อบัญชีสำหรับ Seed (เลขที่บัญชี) ของคุณ",
+        "seedInUse": "Seed (เลขที่บัญชี) ถูกใช้ไปแล้ว",
+        "seedInUseExplanation": "Seed (เลขที่บัญชี) นี้ได้เชื่อมต่อกับกระเป๋าสตางค์ของคุณแล้ว กรุณาใช้ Seed (เลขที่บัญชี) อื่น"
     },
     "changePassword": {
         "oops": "ขออภัย! มีข้อผิดพลาดเกิดขึ้น",
@@ -117,22 +117,22 @@
         "confirmPassword": "ยืนยันรหัสผ่านใหม่"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager.",
+        "seedCleared": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดแล้ว",
+        "seedClearedExplanation": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดเพื่อความปลอดภัยแล้ว",
+        "seedCopied": "คัดลอก Seed (เลขที่บัญชี) ไปยังคลิปบอร์ดแล้ว",
+        "seedCopiedExplanation": "Seed (เลขที่บัญชี) จะถูกเคลียร์ออกไปเมื่อคุณกด \"เสร็จสิ้น\" หรือเมื่อผ่านไป 60 วินาที",
+        "clickToCopy": "คลิกปุ่มด้านล่าง และคัดลอก Seed (เลขที่บัญชี) ไปยังการจัดการรหัสผ่าน",
         "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "copyToClipboard": "คัดลอก Seed (เลขที่บัญชี)",
+        "shareSeed": "แชร์ Seed (เลขที่บัญชี) ของคุณไปยังการจัดการรหัสผ่าน"
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
         "invalidCharactersExplanation": "Seed (เลขที่บัญชี) สามารถประกอบด้วยอักษรตัวใหญ่ A-Z และเลข 9 เท่านั้น, Seed (เลขที่บัญชี) ของคุณมีอักขระที่ไม่ถูกต้อง โปรดลองอีกครั้ง",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShort": "Seed (เลขที่บัญชี) สั้นเกินไป",
+        "seedTooShortExplanation": "Seed (เลขที่บัญชี) ของคุณจะต้องมีอักขระอย่างต่ำ {{maxLength}} หลัก ขณะนี้ Seed (เลขที่บัญชี) ปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
         "seedExplanation": "Seed (เลขที่บัญชี) ควรมีความยาวอักขระเท่ากับ {{maxLength}} และควรประกอบด้วยตัวอักษรตัวใหญ่ A-Z หรือเลข 9, คุณไม่สามารถใช้ Seed (เลขที่บัญชี) ยาวกว่าอักขระของ {{maxLength}}",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "neverShare": "ไม่เปิดเผย Seed (เลขที่บัญชี) ให้แก่บุคคลอื่น"
     },
     "home": {
         "balance": "ยอดคงเหลือ",
@@ -148,30 +148,30 @@
         "emptyPassword": "กรุณาใส่รหัสผ่าน",
         "emptyPasswordExplanation": "กรุณาใส่รหัสผ่านเพื่อทำการเข้าสู่ระบบ กรุณาลองอีกครั้ง",
         "enterPassword": "กรุณาใส่รหัสผ่านของคุณ",
-        "useSeed": "USE SEED",
+        "useSeed": "ใช้งาน Seed (เลขที่บัญชี)",
         "login": "เข้าสู่ระบบ",
         "selectDifferentNode": "Do you want to select a different node?",
         "setNode": "SET NODE",
         "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
+        "loadingFirstTime": "โหลด Seed (เลขที่บัญชี) ครั้งแรก",
         "thisMayTake": "การกระทำนี้อาจใช้เวลาสักครู่หนึ่ง",
         "youMayNotice": "อุปกรณ์ของคุณอาจปฏิบัติการช้าลง"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "seedNotGenerated": "ไม่มีการสร้าง Seed (เลขที่บัญชี)",
+        "seedNotGeneratedExplanation": "กรุณาสร้าง Seed (เลขที่บัญชี) ใหม่",
+        "pressForNewSeed": "กดสำหรับ Seed ใหม่",
+        "individualLetters": "กดตัวอักษรแต่ละตัวเพื่อที่จะสุ่มตัวอักษรอีกครั้"
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "กระเป๋าสตางค์ถูกตั้งค่า และพร้อมใช้ ถ้าคุณต้องการเปลี่ยนแปลงในอนาคต สามารถค้นหาได้ในเมนูการตั้งค่า"
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
+        "clickToPrint": "คลิกปุ่มด้านล่างเพื่อพิมพ์สำเนาของ Seed (เลขที่บัญชี)",
+        "storeSafely": "เก็บไว้อย่างปลอดภัย",
+        "neverShare": "ไม่เปิดเผย Seed (เลขที่บัญชี) ของคุณให้แก่บุคคลอื่น",
         "iotaLogo": "IOTA logo",
         "printWallet": "PRINT PAPER WALLET"
     },
@@ -179,15 +179,15 @@
         "addressCopied": "คัดลอกที่อยู่แล้ว",
         "addressCopiedExplanation": "ที่อยู่ของคุณได้ถูกคัดลอกไปยังคลิปบอร์ด",
         "generateNewAddress": "ที่อยู่ใหม่",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE",
+        "message": "ข้อความทางเลือก",
+        "removeMessage": "ลบข้อความ",
         "noAddresses": "ไม่มีที่อยู่",
         "spent": "Spent"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "seedCleared": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดแล้ว",
+        "seedClearedExplanation": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดเพื่อความปลอดภัยแล้ว",
+        "mustSaveYourSeed": "<0><0>คุณต้องบันทึก Seed (เลขที่บัญชี) ด้วย</0><1>อย่างน้อยหนึ่ง</1> <2>จากตัวเลือกด้านล่างนี้</2> </0>"
     },
     "seedReentry": {
         "incorrectSeed": "Incorrect seed",
@@ -266,15 +266,15 @@
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "Hide",
         "hideOthers": "Hide Others",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All",
-        "securitySettings": "Security settings",
-        "fingerprint": "Biometric authentication",
+        "showAll": "แสดงทั้งหมด",
+        "quit": "ออก",
+        "edit": "แก้ไข",
+        "cut": "ตัด",
+        "copy": "คัดลอก",
+        "paste": "วาง",
+        "selectAll": "เลือกทั้งหมด",
+        "securitySettings": "ตั้งค่าความปลอดภัย",
+        "fingerprint": "การยืนยันตัวตนโดยใช้ระบบไบโอแมททริกซ์",
         "couldNotFetchRates": "Could not fetch rates",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
