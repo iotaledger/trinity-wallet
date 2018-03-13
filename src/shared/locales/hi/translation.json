@@ -129,35 +129,35 @@
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedTooShort": "Seed बहुत छोटा है",
+        "seedTooShortExplanation": "आपका पासवर्ड कम से कम {{maxLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
+        "seedExplanation": "seed {{maxLength}} वर्ण लंबा होना चाहिए, और इसमें कैपिटल अक्षर A-Z या 9 नंबर होना चाहिए। आप {{maxLength}} वर्णों से अधिक लम्बे seed का उपयोग नहीं कर सकते।",
+        "neverShare": "कभी किसी के साथ अपने seed साझा नहीं करें"
     },
     "home": {
-        "balance": "BALANCE",
-        "send": "SEND",
+        "balance": "बैलेंस",
+        "send": "भेजे",
         "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "history": "विवरण",
+        "settings": "सेटिंग्स"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "भाषा "
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
+        "emptyPassword": "खाली पासवर्ड",
+        "emptyPasswordExplanation": "लॉग इन करने के लिए आपको एक पासवर्ड दर्ज करना होगा। कृपया फिर से प्रयास करें |",
+        "enterPassword": "कृपया अपना पासवर्ड डालें",
         "useSeed": "USE SEED",
-        "login": "LOG IN",
-        "selectDifferentNode": "Do you want to select a different node?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "login": "लॉग इन करें",
+        "selectDifferentNode": "क्या आप एक अलग नोड का चयन करना चाहते हैं?",
+        "setNode": "नोड सेट करें",
+        "cannotConnect": "IOTA नोड से कनेक्ट नहीं कर सकता ।"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "पहली बार के लिए seed लोड हो रहा है ।",
+        "thisMayTake": "इसमें कुछ समय लग सकता है ।",
+        "youMayNotice": "आप अपने डिवाइस धीमा देख सकते हैं ।"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
@@ -182,7 +182,7 @@
         "message": "Optional message",
         "removeMessage": "REMOVE MESSAGE",
         "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "spent": "खर्च"
     },
     "saveYourSeed": {
         "seedCleared": "Seed cleared",
@@ -201,10 +201,10 @@
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
-        "notEnoughFunds": "Insufficient funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "notEnoughFunds": "अपर्याप्त राशि",
+        "notEnoughFundsExplanation": "आपके पास प्रर्याप्त IOTA नहीं है इस ट्रान्सेक्शन के लिए.",
         "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
+        "keyReuseExplanation": "जिस पते पर आप भेजने का प्रयास कर रहे हैं, उसका उपयोग पहले ही किया जा चुका है। कृपया दूसरे पते का प्रयास करें |",
         "recipientAddress": "Recipient address",
         "amount": "Amount",
         "max": "MAX",
@@ -244,14 +244,14 @@
         "generatingAddress": "Generating receive address",
         "generatingAddressExplanation": "Please wait until your address has been generated.",
         "mode": "Mode",
-        "theme": "Theme",
+        "theme": "थीम",
         "currency": "मुद्रा",
         "language": "भाषा ",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
         "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
+        "changePassword": "पासवर्ड परिवर्तित करें",
+        "advanced": "उच्च सेटिंग्स",
         "logout": "लॉग आउट",
         "reset": "वॉलेट रिसेट",
         "syncingComplete": "Syncing complete",
@@ -266,7 +266,7 @@
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "छिपाएँ",
         "hideOthers": "Hide Others",
-        "showAll": "Show All",
+        "showAll": "सभी दिखाएँ",
         "quit": "बंद करें",
         "edit": "संशोधन करें",
         "cut": "काटें",
@@ -313,21 +313,21 @@
         "viewSeed": "View seed",
         "viewAddresses": "View addresses",
         "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
+        "deleteAccount": "खाता नष्ट करें",
         "addNewAccount": "Add new account"
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Add"
+        "add": "जोड़ें"
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
         "createNewSeed": "Create new seed"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
+        "selectNode": "नोड चुने",
         "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync",
+        "manualSync": "मैन्युअल सिंक",
         "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
@@ -352,11 +352,11 @@
         "billion": "Billion",
         "million": "Million",
         "thousand": "Thousand",
-        "one": "One"
+        "one": "एक"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "क्या आप निश्चित है कि आपको {{accountName}} खाता मिटाना है?",
+        "yourSeedWillBeRemoved": "आपके सीड और लेन-देन विवरण को हटा दिया जाएगा ।",
         "thisAction": "This action cannot be undone.",
         "enterPassword": "Enter your password to delete this account."
     },
@@ -419,7 +419,7 @@
         "twoFAEnabled": "2FA is now enabled",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "code": "कोड"
     },
     "chart": {
         "mcap": "MCAP",
