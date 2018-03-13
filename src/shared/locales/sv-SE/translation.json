@@ -325,7 +325,7 @@
         "selectNode": "Välj nod",
         "addCustomNode": "Lägg till anpassad nod",
         "manualSync": "Synka manuellt",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot-övergång"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrund",
@@ -360,8 +360,8 @@
     "manualSync": {
         "outOfSync": "Ser din transaktionshistorik ut som att den inte är synkroniserad?",
         "pressToSync": "Tryck på knappen nedan för att synka ditt konto.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "thisMayTake": "Det här kan ta ett tag. Din enhet kan bli långsammare.",
+        "doNotClose": "Observera att minimering av appen kommer att avbryta synkroniseringen.",
         "syncAccount": "SYNKA KONTO",
         "syncingYourAccount": "Synkar konto."
     },
