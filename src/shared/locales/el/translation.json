@@ -81,7 +81,7 @@
         "pleaseWait": "Παρακαλώ περίμενε",
         "pleaseWaitExplanation": "Το trinity εκτελεί μια άλλη λειτουργία. Παρακαλώ περιμένετε και προσπαθήστε ξανά.",
         "pleaseWaitTransferExplanation": "Το διαθέσιμο υπόλοιπό σας χρησιμοποιείται αυτήν τη στιγμή σε άλλες μεταφορές. Σας παρακαλώ να περιμένετε  για επιβεβαίωση πριν να προσπαθήσετε πάλι.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
+        "snapshotTransitionInProgress": "Στιγμιότυπο μετάβασης σε εξέλιξη",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
     },
     "addAdditionalSeed": {
