@@ -145,19 +145,19 @@
         "language": "ภาษา"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
+        "emptyPassword": "กรุณาใส่รหัสผ่าน",
+        "emptyPasswordExplanation": "กรุณาใส่รหัสผ่านเพื่อทำการเข้าสู่ระบบ กรุณาลองอีกครั้ง",
+        "enterPassword": "กรุณาใส่รหัสผ่านของคุณ",
         "useSeed": "USE SEED",
-        "login": "LOG IN",
+        "login": "เข้าสู่ระบบ",
         "selectDifferentNode": "Do you want to select a different node?",
         "setNode": "SET NODE",
         "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "thisMayTake": "การกระทำนี้อาจใช้เวลาสักครู่หนึ่ง",
+        "youMayNotice": "อุปกรณ์ของคุณอาจปฏิบัติการช้าลง"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
@@ -200,16 +200,16 @@
         "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanationGeneric": "ที่อยู่ที่ถูกต้องจะต้องมี 90 หลัก ประกอบไปด้วย A-Z หรือ 0-9 เท่านั้น",
         "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
-        "amount": "Amount",
-        "max": "MAX",
-        "message": "Message",
-        "invalidMessage": "Invalid message",
+        "amount": "จำนวน",
+        "max": "สูงสุด",
+        "message": "ข้อ​ความ",
+        "invalidMessage": "ข้อความไม่ถูกต้อง",
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "SEND",
         "invalidAmount": "Incorrect amount entered",
@@ -220,7 +220,7 @@
     },
     "setPassword": {
         "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "รหัสผ่านของคุณจะต้องมีอย่างต่ำ {{minLength}} หลัก ขณะนี้รหัสผ่านปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
         "passwordMismatch": "Passwords do not match",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "nowWeNeedTo": "Now we need to set up a password.",
