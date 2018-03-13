@@ -120,23 +120,23 @@
         "seedCleared": "Seed gewist",
         "seedClearedExplanation": "De seed is van het klembord gewist voor uw veiligheid.",
         "seedCopied": "Seed gekopiëerd naar klembord",
-        "seedCopiedExplanation": "De seed zal worden gewist zodra u op \"DONE\" drukt of 60 seconde wacht.",
-        "clickToCopy": "Klik op de knop hieronder en kopieer uw sleutel naar de wachtwoord manager.",
-        "doNotStore": "Bewaar je sleutel niet als tekst.",
+        "seedCopiedExplanation": "De seed zal worden gewist zodra u op \"Gereed\" drukt of 60 seconden wacht.",
+        "clickToCopy": "Klik op de knop hieronder en kopieer uw sleutel naar een wachtwoordmanager.",
+        "doNotStore": "Bewaar de seed niet als platte tekst.",
         "copyToClipboard": "Copy seed",
         "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
-        "invalidCharacters": "Sleutel bevat ongeldige tekens",
-        "invalidCharactersExplanation": "Sleutels kunnen alleen bestaan uit de hoofdletters A-Z en het getal 9. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
-        "seedTooShort": "Sleutel is te kort",
-        "seedTooShortExplanation": "Sleutels moeten minstens {{maxLength}} tekens lang zijn. Uw sleutel is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
-        "seedExplanation": "Sleutels moeten {{maxLength}} tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen sleutel gebruiken met meer dan {{maxLength}} tekens.",
-        "neverShare": "DEEL NOOIT JE SLEUTEL MET IEMAND"
+        "invalidCharacters": "Seed bevat ongeldige tekens",
+        "invalidCharactersExplanation": "Seeds kunnen alleen de hoofdletters A-Z en het getal 9 bevatten. Uw seed bevat ongeldige tekens. Probeer het opnieuw.",
+        "seedTooShort": "Seed is te kort",
+        "seedTooShortExplanation": "Uw seed moet minstens {{maxLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
+        "seedExplanation": "Seeds moeten {{maxLength}} tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met meer dan {{maxLength}} tekens.",
+        "neverShare": "DEEL UW SEED NOOIT MET IEMAND ANDERS"
     },
     "home": {
         "balance": "SALDO",
-        "send": "Verstuur",
+        "send": "STUUR",
         "receive": "ONTVANG",
         "history": "GESCHIEDENIS",
         "settings": "INSTELLINGEN"
@@ -145,39 +145,39 @@
         "language": "Taal"
     },
     "login": {
-        "emptyPassword": "Leeg wachtwoord",
+        "emptyPassword": "Geen wachtwoord",
         "emptyPasswordExplanation": "Voer een wachtwoord in om u aan te melden. Probeer het opnieuw.",
         "enterPassword": "Voor uw wachtwoord in.",
-        "useSeed": "GEBRUIK SLEUTEL",
+        "useSeed": "GEBRUIK SEED",
         "login": "Aanmelden",
         "selectDifferentNode": "Wilt u een andere node selecteren?",
         "setNode": "SELECTEER NODE",
         "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
-        "loadingFirstTime": "Sleutel voor de eerste keer laden.",
-        "thisMayTake": "Dit kan een ogenblik duren.",
+        "loadingFirstTime": "Seed voor de eerste keer laden.",
+        "thisMayTake": "Dit kan een even duren.",
         "youMayNotice": "U kunt mogelijk een vertraging ervaren op uw apparaat."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Sleutel is niet gegenereerd",
+        "seedNotGenerated": "Seed is niet gegenereerd",
         "seedNotGeneratedExplanation": "Please generate a new seed.",
-        "pressForNewSeed": "DRUK VOOR EEN NIEUWE SLEUTEL",
-        "individualLetters": "Druk op individuele letters om deze te veranderen in een willekeurige letter."
+        "pressForNewSeed": "DRUK VOOR NIEUWE SEED",
+        "individualLetters": "Druk op enkele letters om deze willekeurig te veranderen."
     },
     "onboardingComplete": {
-        "walletReady": "De wallet is nu ingesteld en klaar voor gebruik. Voor toekomstige wijzigingen kunt u het instellingen menu gebruiken."
+        "walletReady": "De wallet is nu ingesteld en klaar voor gebruik. Voor toekomstige wijzigingen kunt u het instellingen-menu gebruiken."
     },
     "paperWallet": {
-        "clickToPrint": "Klik op de knop hieronder om een papieren kopie af te drukken van uw sleutel.",
+        "clickToPrint": "Klik op de knop hieronder om uw seed uit te printen.",
         "storeSafely": "Sla deze veilig op.",
-        "neverShare": "Deel uw sleutel met niemand.",
+        "neverShare": "Deel uw seed met niemand.",
         "iotaLogo": "IOTA logo",
         "printWallet": "PRINT PAPIEREN WALLET"
     },
     "receive": {
         "addressCopied": "Adres gekopieerd",
-        "addressCopiedExplanation": "Uw adres is naar het Klembord gekopieerd.",
+        "addressCopiedExplanation": "Uw adres is naar het klembord gekopieerd.",
         "generateNewAddress": "NEW ADDRESS",
         "message": "Bericht",
         "removeMessage": "VERWIJDER BERICHT",
@@ -212,9 +212,9 @@
         "invalidMessage": "Invalid message",
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "VERSTUUR",
-        "invalidAmount": "Onjuiste hoeveelheid ingevoerd",
+        "invalidAmount": "Onjuist aantal ingevoerd",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
-        "maximumSelected": "MAXIMUM bedrag geselecteerd",
+        "maximumSelected": "MAXIMUM aantal geselecteerd",
         "iotaUnits": "IOTA units explained",
         "sendMax": "MAX VERZENDEN"
     },
@@ -222,15 +222,15 @@
         "passwordTooShort": "Wachtwoord is te kort",
         "passwordTooShortExplanation": "Uw wachtwoord moet minstens {{minLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
         "passwordMismatch": "Wachtwoorden komen niet overeen",
-        "passwordMismatchExplanation": "Het ingevoerde wachtwoord is onjuist. Probeer het nog eens.",
-        "nowWeNeedTo": "Oke, nu moeten we een wachtwoord instellen.",
+        "passwordMismatchExplanation": "Het ingevoerde wachtwoord is onjuist. Probeer het nogmaals.",
+        "nowWeNeedTo": "Nu gaan we een wachtwoord instellen.",
         "anEncryptedCopy": "Een gecodeerde kopie van uw sleutel zal worden opgeslagen op uw apparaat. U gebruikt dit wachtwoord voor toegang tot uw portefeuille in de toekomst.",
         "ensure": "Zorg ervoor u een sterk wachtwoord gebruikt van ten minste 12 karakters.",
-        "retypePassword": "Herhaal wachtwoord"
+        "retypePassword": "Wachtwoord herhalen"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "U kunt meerdere sleutels gebruiken met deze portefeuille. Elke sleutel vereist een accountnaam.",
-        "youCanAdd": "U kunt meer sleutels toevoegen in het menu instellingen."
+        "canUseMultipleSeeds": "U kunt in deze wallet meerdere seeds gebruiken. Elke seed vereist een accountnaam.",
+        "youCanAdd": "U kunt meer seeds toevoegen in het menu Instellingen."
     },
     "modeSelection": {
         "expert": "Expert",
