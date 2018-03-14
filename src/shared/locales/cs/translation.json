@@ -81,8 +81,8 @@
         "pleaseWait": "Prosím čekejte",
         "pleaseWaitExplanation": "Trinity vykonává jinou funkci. Počkejte prosím a poté zkuste znovu.",
         "pleaseWaitTransferExplanation": "Váš disponibilní zůstatek se momentálně používá v jiných převodech. Počkejte prosím na jedno potvrzení než to zkusíte znovu.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgress": "Probíhá aktualizace údajů po Snapshotu",
+        "snapshotTransitionInProgressExplanation": "Počkejte prosím na dokončení aktualizace údajů po Snapshotu."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -200,7 +200,7 @@
         "invalidAddressExplanation1": "Adresa by měla být dlouhá {{maxLength}} znaků a měla by mít kontrolní součet.",
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
         "invalidAddressExplanation3": "Adresa má chybnou délku.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanationGeneric": "Platné adresy by měly být 90 znaků a obsahovat pouze A-Z nebo 9.",
         "notEnoughFunds": "Nedostatek prostředků",
         "notEnoughFundsExplanation": "Nemáte dostatek IOTA k dokončení této transakce.",
         "keyReuse": "Opakované použití klíče",
@@ -328,7 +328,7 @@
         "selectNode": "Vybrat Node",
         "addCustomNode": "Přidat vlastní Node",
         "manualSync": "Manuální synchronizace",
-        "snapshotTransition": "Snapshot"
+        "snapshotTransition": "Aktualizace údajů po Snapshotu"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadí",
@@ -437,9 +437,9 @@
         "remote": "Vzdálený"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransition": "Není možné dokončit aktualizaci údajů po Snapshotu",
+        "cannotCompleteTransitionExplanation": "Pro dokončení aktualizace údajů po Snapshotu musí být zůstatek na Vašem účtu větší jako 0.",
+        "transitionComplete": "Aktualizace údajů po Snapshotu je dokončena",
+        "transitionCompleteExplanation": "Aktualizace údajů po Snapshotu byla dokončena."
     }
 }
