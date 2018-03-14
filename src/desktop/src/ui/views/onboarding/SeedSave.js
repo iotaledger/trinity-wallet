@@ -56,10 +56,10 @@ class SeedSave extends PureComponent {
                 </section>
                 <footer>
                     <Button to="/onboarding/seed-generate" className="outline" variant="secondary">
-                        {t('global:back')}
+                        {t('back')}
                     </Button>
                     <Button to="/onboarding/seed-verify" className="outline" variant="primary">
-                        {t('global:done')}
+                        {t('done')}
                     </Button>
                 </footer>
             </React.Fragment>
@@ -71,4 +71,4 @@ const mapStateToProps = (state) => ({
     seed: state.seeds.newSeed,
 });
 
-export default translate()(connect(mapStateToProps)(SeedSave));
+export default connect(mapStateToProps)(translate()(SeedSave));

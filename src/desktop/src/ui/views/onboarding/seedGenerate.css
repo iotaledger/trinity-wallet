@@ -41,7 +41,7 @@
             &:hover {
                 position: relative;
                 cursor: pointer;
-                background: var(--body-alt);
+                background: var(--body-hover);
             }
 
             &:focus {

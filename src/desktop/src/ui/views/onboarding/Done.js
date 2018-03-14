@@ -36,7 +36,7 @@ class Done extends React.PureComponent {
                 </section>
                 <footer>
                     <Button onClick={this.setComplete} className="outline" variant="primary">
-                        {t('global:done')}
+                        {t('done')}
                     </Button>
                 </footer>
             </React.Fragment>
@@ -44,10 +44,8 @@ class Done extends React.PureComponent {
     }
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = {
     setOnboardingComplete,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Done));
+export default connect(null, mapDispatchToProps)(translate()(Done));

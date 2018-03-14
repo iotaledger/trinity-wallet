@@ -17,8 +17,10 @@ import { getVault } from 'libs/crypto';
 
 class ModalPassword extends PureComponent {
     static propTypes = {
-        /** Dialog title */
-        title: PropTypes.string.isRequired,
+        /** Password window content */
+        content: PropTypes.object.isRequired,
+        /** Password window type */
+        category: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'highlight', 'extra']),
         /** Dialog visibility state */
         isOpen: PropTypes.bool,
         /** Modal inline style state */
@@ -81,25 +83,25 @@ class ModalPassword extends PureComponent {
     }
 
     render() {
-        const { title, isOpen, inline, onClose, t } = this.props;
+        const { content, category, isOpen, inline, onClose, t } = this.props;
         const { password } = this.state;
 
         return (
             <Modal variant="confirm" inline={inline} isOpen={isOpen} onClose={() => onClose()}>
-                <p>{title}</p>
-
+                {content.title ? <h1 className={category ? category : null}>{content.title}</h1> : null}
+                {content.message ? <p>{content.message}</p> : null}
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <Password
                         value={password}
-                        label={t('global:password')}
+                        label={t('password')}
                         onChange={(value) => this.setState({ password: value })}
                     />
                     <fieldset>
                         <Button onClick={() => onClose()} variant="secondary">
-                            {t('global:cancel')}
+                            {t('cancel')}
                         </Button>
-                        <Button type="submit" variant="primary">
-                            {t('global:ok')}
+                        <Button type="submit" variant={category ? category : 'positive'}>
+                            {content.confirm ? content.confirm : t('ok')}
                         </Button>
                     </fieldset>
                 </form>
@@ -108,10 +110,8 @@ class ModalPassword extends PureComponent {
     }
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(ModalPassword));
+export default connect(null, mapDispatchToProps)(translate()(ModalPassword));

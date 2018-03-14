@@ -30,6 +30,9 @@ import {
 } from '../actions/alerts';
 import { pushScreen } from '../libs/util';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
+import i18next from '../i18next';
+
+const { t } = i18next.t;
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -372,8 +375,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                     return dispatch(
                         generateAlert(
                             'error',
-                            'Cannot complete snapshot transition',
-                            'Your balance must be greater than 0 to complete the transition.',
+                            t('cannotCompleteTransition'),
+                            t('cannotCompleteTransitionExplanation'),
                             10000,
                         ),
                     );
@@ -397,8 +400,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                                 dispatch(
                                     generateAlert(
                                         'success',
-                                        'Snapshot transition complete',
-                                        'The snapshot transition has completed successfully.',
+                                        t('transitionComplete'),
+                                        t('transitionCompleteExplanation'),
                                         20000,
                                     ),
                                 );

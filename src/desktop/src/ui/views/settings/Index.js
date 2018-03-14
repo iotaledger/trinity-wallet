@@ -50,7 +50,7 @@ class Settings extends React.PureComponent {
                                 <Icon icon="language" size={20} /> <strong>{t('settings:language')}</strong>
                             </NavLink>
                             <NavLink to="/settings/node">
-                                <Icon icon="node" size={20} /> <strong>{t('global:node')}</strong>
+                                <Icon icon="node" size={20} /> <strong>{t('node')}</strong>
                             </NavLink>
                             <NavLink to="/settings/theme">
                                 <Icon icon="theme" size={20} /> <strong>{t('settings:theme')}</strong>
@@ -103,4 +103,4 @@ const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
 });
 
-export default translate()(connect(mapStateToProps)(Settings));
+export default connect(mapStateToProps)(translate()(Settings));

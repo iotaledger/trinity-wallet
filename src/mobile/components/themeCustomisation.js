@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     },
     chevronWrapper: {
         position: 'absolute',
-        right: width / 30
+        right: width / 30,
     },
     chevron: {
         height: width / 20,
@@ -285,7 +285,11 @@ class ThemeCustomisation extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={this.props.secondaryBackgroundColor} />
+                                <Icon
+                                    name="chevronLeft"
+                                    size={width / 28}
+                                    color={this.props.secondaryBackgroundColor}
+                                />
                                 <Text style={[styles.titleTextLeft, { color: this.props.secondaryBackgroundColor }]}>
                                     {t('global:backLowercase')}
                                 </Text>
@@ -299,7 +303,7 @@ class ThemeCustomisation extends Component {
                                 <Text style={[styles.titleTextRight, { color: this.props.secondaryBackgroundColor }]}>
                                     {t('global:apply')}
                                 </Text>
-                                <Icon name="eye" size={width / 28} color={this.props.secondaryBackgroundColor} />
+                                <Icon name="tick" size={width / 28} color={this.props.secondaryBackgroundColor} />
                             </View>
                         </TouchableOpacity>
                     </View>

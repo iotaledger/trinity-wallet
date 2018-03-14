@@ -1,7 +1,6 @@
 /*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { generateAlert } from 'actions/alerts';
@@ -15,12 +14,10 @@ class Clipboard extends React.PureComponent {
     static propTypes = {
         /** Target content copied to clipboard */
         text: PropTypes.string.isRequired,
-        /** Element chidlren content */
-        children: PropTypes.object,
+        /** EOptional element chidlren content */
+        children: PropTypes.any,
         /** Timeout to clear the clipboard */
         timeout: PropTypes.number,
-        /** Optional element content, defaults to `text` prop */
-        label: PropTypes.string,
         /** Success notification title */
         title: PropTypes.string.isRequired,
         /** Success notification description */
@@ -31,16 +28,11 @@ class Clipboard extends React.PureComponent {
          * @param {String} text - notification explanation
          * @ignore
          */
-        generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
-        t: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired
     };
 
     copy() {
-        const { text, generateAlert, title, success, timeout, t } = this.props;
+        const { text, generateAlert, title, success, timeout} = this.props;
 
         Electron.clipboard(text);
         generateAlert('success', title, success);
@@ -48,25 +40,23 @@ class Clipboard extends React.PureComponent {
         if (timeout > 0) {
             setTimeout(() => {
                 Electron.clipboard('');
-            }, timeout * 1000);
+            }, timeout * 6000);
         }
     }
 
     render() {
-        const { children, label, text } = this.props;
+        const { children, text } = this.props;
 
         return (
             <span className={css.clipboard} onClick={() => this.copy()}>
-                {children || label || text}
+                {children || text}
             </span>
         );
     }
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Clipboard));
+export default connect(null, mapDispatchToProps)(Clipboard);

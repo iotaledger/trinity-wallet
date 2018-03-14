@@ -54,8 +54,8 @@ class Remove extends PureComponent {
 
             generateAlert(
                'success',
-               t('changePassword:incorrectPassword'),
-               t('changePassword:incorrectPasswordExplanation'),
+               t('settings:accountDeleted'),
+               t('settings:accountDeletedExplanation'),
            );
            
         } catch (err) {
@@ -81,7 +81,7 @@ class Remove extends PureComponent {
                     content={{
                         title: t('deleteAccount:areYouSure'),
                         message: t('deleteAccount:yourSeedWillBeRemoved'),
-                        cancel: t('global:cancel'),
+                        cancel: t('cancel'),
                         confirm: t('accountManagement:deleteAccount'),
                     }}
                     onCancel={() => this.setState({ removeConfirm: false })}
@@ -102,4 +102,4 @@ const mapDispatchToProps = {
     deleteAccount,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Remove));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Remove));

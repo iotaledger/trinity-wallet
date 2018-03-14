@@ -10,7 +10,7 @@
             transform: translate(-20px, 0);
         }
 
-        @media (max-width: 910px) {
+        @media (max-width: 900px) {
             > aside,
             > section {
                 transform: none;
@@ -28,7 +28,7 @@
             margin: 30px 0 0;
         }
 
-        @media (max-width: 810px) {
+        @media (max-width: 900px) {
             > section {
                 position: absolute;
                 width: 100%;
@@ -42,7 +42,7 @@
         }
 
         &.slided {
-            @media (max-width: 810px) {
+            @media (max-width: 900px) {
                 > section {
                     &:first-of-type {
                         left: 100%;
@@ -120,7 +120,7 @@
             }
         }
 
-        @media (max-width: 910px) {
+        @media (max-width: 900px) {
             flex: 0 0 var(--sidebar-width-narrow);
             transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -152,7 +152,6 @@
                 }
 
                 > div {
-                    position: relative;
                     &:hover {
                         > a {
                             background: var(--bar-alt);

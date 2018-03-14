@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import css from './modal.css';
@@ -10,7 +9,7 @@ import css from './modal.css';
 export default class Modal extends React.Component {
     static propTypes = {
         /** Modal content */
-        children: PropTypes.node,
+        children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
         /** Modal window type */
         variant: PropTypes.oneOf(['confirm']),
         /** Modal visibility state */
@@ -30,7 +29,7 @@ export default class Modal extends React.Component {
     }
 
     onKeyDown = (e) => {
-        if (e.which === 27 && this.props.isOpen) {
+        if (e.key === 'Escape' && this.props.isOpen) {
             this.props.onClose();
         }
     };
@@ -38,27 +37,19 @@ export default class Modal extends React.Component {
     render() {
         const { variant, isOpen, inline } = this.props;
 
-        if (!isOpen) {
-            return null;
-        }
-
-        if (inline) {
-            return (
-                <div className={classNames(css.backdrop, css[variant], css.inline)}>
-                    <div className={css.wrapper}>
-                        <div className={css.content}>{this.props.children}</div>
-                    </div>
-                </div>
-            );
-        }
-
-        return ReactDOM.createPortal(
-            <div className={classNames(css.backdrop, css[variant], inline ? css.inline : null)}>
+        return (
+            <div
+                className={classNames(
+                    css.backdrop,
+                    css[variant],
+                    !isOpen ? css.hidden : null,
+                    inline ? css.inline : null,
+                )}
+            >
                 <div className={css.wrapper}>
                     <div className={css.content}>{this.props.children}</div>
                 </div>
-            </div>,
-            document.getElementById('modal'),
+            </div>
         );
     }
 }

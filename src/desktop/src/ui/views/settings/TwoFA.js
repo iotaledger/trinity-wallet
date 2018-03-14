@@ -92,7 +92,7 @@ class TwoFA extends React.Component {
                 passwordConfirm: false,
             });
 
-            generateAlert('success', t('Two fa enabled'), t('Two fa enabled'));
+            generateAlert('success', t('twoFA:twoFAEnabled'), t('twoFA:twoFAEnabledExplanation§'));
         } catch (err) {
             generateAlert(
                 'error',
@@ -116,7 +116,7 @@ class TwoFA extends React.Component {
             const validCode = authenticator.verifyToken(key, code);
 
             if (!validCode) {
-                generateAlert('error', t('Incorrect two-fa'), t('Incorrect two-fa'));
+                generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
                 this.setState({
                     password: '',
                     passwordConfirm: false,
@@ -179,7 +179,7 @@ class TwoFA extends React.Component {
                 <QRCode size={180} value={authenticator.generateTotpUri(key, 'Trinity desktop wallet')} />
                 <p>
                     Key:{' '}
-                    <Clipboard text={key}>
+                    <Clipboard text={key} title={t('twoFA:keyCopied')} success={t('twoFA:keyCopiedExplanation')}>
                         <strong>{key}</strong>
                     </Clipboard>
                 </p>
@@ -221,7 +221,7 @@ class TwoFA extends React.Component {
                     >
                         <Password
                             value={password}
-                            label={t('global:password')}
+                            label={t('password')}
                             onChange={(value) => this.setState({ password: value })}
                         />
                         <Button
@@ -230,7 +230,7 @@ class TwoFA extends React.Component {
                             }}
                             variant="secondary"
                         >
-                            {t('global:cancel')}
+                            {t('cancel')}
                         </Button>
                         <Button type="submit" variant="primary">
                             {is2FAEnabled ? t('Disable') : t('Enable')}
