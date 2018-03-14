@@ -61,8 +61,8 @@
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
         "wallet": "Rahakott",
         "sent": "Saadetud",
-        "received": "Received",
-        "sending": "Sending",
+        "received": "Laekunud",
+        "sending": "Saatmine",
         "receiving": "Receiving",
         "confirmed": "Kinnitatud",
         "pending": "Ootel",
@@ -288,9 +288,9 @@
     "walletSetup": {
         "okay": "Okei. Seadistame sinu rahakoti ära!",
         "doYouAlreadyHaveASeed": "Kas teil on juba seeme, mida te sooviksite kasutada?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seedExplanation": "IOTA seeme on nagu teie konto kasutajanimi ja parool, aga ühes tükis ja 81 tähemärki pikk.",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
-        "keepSafe": "Please keep your seed safe."
+        "keepSafe": "Palun hoidke oma seemne turvalisust."
     },
     "welcome": {
         "thankYou": "Thank you for downloading the IOTA wallet.",
