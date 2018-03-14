@@ -543,13 +543,13 @@ describe('Reducer: account', () => {
         });
     });
 
-    describe('FULL_ACCOUNT_INFO_FETCH_SUCCESS', () => {
+    describe('FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS', () => {
         it('should merge unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
             const initialState = {
                 unconfirmedBundleTails: { foo: {} },
             };
 
-            const action = actions.fullAccountInfoFetchSuccess({ unconfirmedBundleTails: { baz: {} } });
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({ unconfirmedBundleTails: { baz: {} } });
 
             const newState = reducer(initialState, action);
             const expectedState = {
@@ -570,7 +570,7 @@ describe('Reducer: account', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoFetchSuccess({
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [{}],
@@ -602,7 +602,7 @@ describe('Reducer: account', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoFetchSuccess({
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [[{}, {}], [{}, {}]],
@@ -631,7 +631,7 @@ describe('Reducer: account', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoFetchSuccess({
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
                 accountName: 'firstAccount',
                 txHashesForUnspentAddresses: ['baz'],
             });
@@ -655,7 +655,7 @@ describe('Reducer: account', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoFetchSuccess({
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
                 accountName: 'firstAccount',
                 pendingTxHashesForSpentAddresses: ['baz'],
             });
@@ -676,7 +676,7 @@ describe('Reducer: account', () => {
                 firstUse: true,
             };
 
-            const action = actions.fullAccountInfoFetchSuccess({ accountName: 'foo' }); // Would break if accountName is missing
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({ accountName: 'foo' }); // Would break if accountName is missing
 
             const newState = reducer(initialState, action);
             const expectedState = {
@@ -687,7 +687,7 @@ describe('Reducer: account', () => {
         });
     });
 
-    describe('FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS', () => {
+    describe('FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS', () => {
         it('should merge addresses in payload to accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
@@ -701,7 +701,7 @@ describe('Reducer: account', () => {
                 seedCount: 0,
             };
 
-            const action = actions.fullAccountInfoForFirstUseFetchSuccess({
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [{}],
@@ -736,7 +736,7 @@ describe('Reducer: account', () => {
                 seedCount: 0,
             };
 
-            const action = actions.fullAccountInfoForFirstUseFetchSuccess({
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [[{}, {}], [{}, {}]],
@@ -768,7 +768,7 @@ describe('Reducer: account', () => {
                 seedCount: 0,
             };
 
-            const action = actions.fullAccountInfoForFirstUseFetchSuccess({
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'firstAccount',
                 txHashesForUnspentAddresses: ['baz'],
             });
@@ -794,7 +794,7 @@ describe('Reducer: account', () => {
                 seedCount: 0,
             };
 
-            const action = actions.fullAccountInfoForFirstUseFetchSuccess({
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'firstAccount',
                 pendingTxHashesForSpentAddresses: ['baz'],
             });
@@ -816,7 +816,7 @@ describe('Reducer: account', () => {
                 accountNames: [],
             };
 
-            const action = actions.fullAccountInfoForFirstUseFetchSuccess({
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [{}],
@@ -838,7 +838,7 @@ describe('Reducer: account', () => {
                 accountNames: ['foo'],
             };
 
-            const action = actions.fullAccountInfoForFirstUseFetchSuccess({
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [{}],

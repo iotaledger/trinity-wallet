@@ -12,7 +12,7 @@ import CustomTextInput from '../components/customTextInput';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import OnboardingButtons from '../components/onboardingButtons';
 import { width, height } from '../util/dimensions';
-import keychain, { hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
+import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../util/keychain';
 import InfoBox from '../components/infoBox';
 import { Icon } from '../theme/icons.js';
 
@@ -73,6 +73,7 @@ export class SetAccountName extends Component {
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isFetchingAccountInfo: PropTypes.bool.isRequired,
         isSyncing: PropTypes.bool.isRequired,
+        password: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -84,7 +85,7 @@ export class SetAccountName extends Component {
     }
 
     onDonePress() {
-        const { t, onboardingComplete, seed } = this.props;
+        const { t, onboardingComplete, seed, password } = this.props;
         const trimmedAccountName = trim(this.state.accountName);
 
         const fetch = (accountName) => {
@@ -105,19 +106,18 @@ export class SetAccountName extends Component {
                 if (this.shouldPreventAction()) {
                     return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
                 }
-                keychain
-                    .get()
-                    .then((credentials) => {
-                        if (isEmpty(credentials)) {
+                getAllSeedsFromKeychain(password)
+                    .then((seedInfo) => {
+                        if (isEmpty(seedInfo)) {
                             return fetch(trimmedAccountName);
                         }
-                        if (hasDuplicateAccountName(credentials.data, trimmedAccountName)) {
+                        if (hasDuplicateAccountName(seedInfo, trimmedAccountName)) {
                             return this.props.generateAlert(
                                 'error',
                                 t('addAdditionalSeed:nameInUse'),
                                 t('addAdditionalSeed:nameInUseExplanation'),
                             );
-                        } else if (hasDuplicateSeed(credentials.data, seed)) {
+                        } else if (hasDuplicateSeed(seedInfo, seed)) {
                             return this.props.generateAlert(
                                 'error',
                                 t('addAdditionalSeed:seedInUse'),
@@ -288,6 +288,7 @@ const mapStateToProps = (state) => ({
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
     isSyncing: state.tempAccount.isSyncing,
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {

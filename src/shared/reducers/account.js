@@ -173,7 +173,7 @@ const account = (
                     [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
             };
-        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+        case ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
@@ -188,7 +188,7 @@ const account = (
                     [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
             };
-        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
+        case ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
