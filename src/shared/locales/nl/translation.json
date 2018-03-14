@@ -123,8 +123,8 @@
         "seedCopiedExplanation": "De sleutel zal worden gewist zodra u op \"Gereed\" drukt of 60 seconden wacht.",
         "clickToCopy": "Klik op de knop hieronder en kopieer uw sleutel naar een wachtwoordmanager.",
         "doNotStore": "Bewaar de sleutel niet als platte tekst.",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "copyToClipboard": "Kopieer sleutel",
+        "shareSeed": "Stuur uw sleutel naar een veilige wachtwoordmanager"
     },
     "enterSeed": {
         "invalidCharacters": "Sleutel bevat ongeldige tekens",
@@ -152,7 +152,7 @@
         "login": "Aanmelden",
         "selectDifferentNode": "Wilt u een andere node selecteren?",
         "setNode": "SELECTEER NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "cannotConnect": "Kan niet verbinden IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Sleutel voor de eerste keer laden.",
@@ -161,7 +161,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed is niet gegenereerd",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Genereer een nieuwe sleutel.",
         "pressForNewSeed": "DRUK VOOR NIEUWE SLEUTEL",
         "individualLetters": "Druk op de letters om deze te veranderen in een willekeurige letter."
     },
@@ -178,16 +178,16 @@
     "receive": {
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Uw adres is naar het klembord gekopieerd.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "NIEUW ADRES",
         "message": "Bericht",
         "removeMessage": "VERWIJDER BERICHT",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "GEEN ADRESSEN",
+        "spent": "Uitgegeven"
     },
     "saveYourSeed": {
         "seedCleared": "Sleutel gewist",
         "seedClearedExplanation": "De sleutel is voor uw veiligheid van het klembord gewist.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>U moet uw sleutel opslaan met </0><1>tenminste één</1><2>van de onderstaande opties.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Onjuiste sleutel",
@@ -200,8 +200,8 @@
         "invalidAddressExplanation1": "Adres moet {{maxLength}} tekens lang zijn en moet een controle bevatten.",
         "invalidAddressExplanation2": "Adres bevat ongeldige tekens.",
         "invalidAddressExplanation3": "Adres bevat een ongeldige controlesom.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
-        "notEnoughFunds": "Insufficient funds",
+        "invalidAddressExplanationGeneric": "Geldige adressen zijn 90 tekens lang en bevatten alleen A-Z of 9.",
+        "notEnoughFunds": "Onvoldoende saldo",
         "notEnoughFundsExplanation": "U hoeft niet genoeg IOTA om deze overdracht te voltooien.",
         "keyReuse": "Sleutel hergebruik",
         "keyReuseExplanation": "Het adres waar u naar probeert te versturen is al een keer gebruikt. Probeer een ander adres.",
@@ -209,8 +209,8 @@
         "amount": "Aantal",
         "max": "MAX",
         "message": "Bericht",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "Ongeldig bericht",
+        "invalidMessageExplanation": "Uw bericht bevat ongeldige tekens.",
         "send": "VERSTUUR",
         "invalidAmount": "Onjuist aantal ingevoerd",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
