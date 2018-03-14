@@ -137,7 +137,7 @@
     "home": {
         "balance": "KONTOJÄÄK",
         "send": "SAADA",
-        "receive": "RECEIVE",
+        "receive": "VÕTA VASTU",
         "history": "AJALUGU",
         "settings": "SÄTTED"
     },
