@@ -76,7 +76,7 @@ const Guide = () => {
     );
 };
 
-const App = withRouter(translate('App')(Guide));
+const App = withRouter(translate()(Guide));
 
 render(
     <Redux store={store}>

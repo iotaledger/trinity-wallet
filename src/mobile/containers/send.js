@@ -344,6 +344,7 @@ export class Send extends Component {
 
     onQRRead(data) {
         const dataString = data.toString();
+        const { t } = this.props;
         if (dataString.match(/{/)) {
             // For codes containing JSON (iotaledger and Trinity)
             const parsedData = JSON.parse(data);
@@ -359,11 +360,7 @@ export class Send extends Component {
             // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.props.setSendAddressField(data);
         } else {
-            this.props.generateAlert(
-                'error',
-                'Incorrect address format',
-                'Valid addresses should be 90 characters and contain only A-Z or 9.',
-            );
+            this.props.generateAlert('error', t('invalidAddress'), t('invalidAmountExplanationGeneric'));
         }
         this.hideModal();
     }
@@ -568,8 +565,8 @@ export class Send extends Component {
         if (isTransitioning) {
             this.props.generateAlert(
                 'error',
-                t('Snapshot transition in progress'),
-                t('Please wait until the transition is complete.'),
+                t('snapshotTransitionInProgress'),
+                t('snapshotTransitionInProgressExplanation'),
             );
             return;
         }
@@ -747,7 +744,7 @@ export class Send extends Component {
                                 <View style={styles.info}>
                                     <Icon
                                         name="info"
-                                        size={width / 16}
+                                        size={width / 12}
                                         color={body.color}
                                         style={{ marginRight: width / 60 }}
                                     />

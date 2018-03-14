@@ -44,13 +44,14 @@ class Receive extends React.PureComponent {
                 <p className={css.address}>
                     <Clipboard
                         text={receiveAddress}
-                        label={content}
                         title={t('receive:addressCopied')}
                         success={t('receive:addressCopiedExplanation')}
-                    />
+                    >
+                        {content}
+                    </Clipboard>
                 </p>
                 <Text value={message} label="Custom message" onChange={(value) => this.setState({ message: value })} />
-                <Button onClick={this.onGeneratePress} className="outline" loading={isGeneratingReceiveAddress}>
+                <Button onClick={this.onGeneratePress} loading={isGeneratingReceiveAddress}>
                     {t('receive:generateNewAddress')}
                 </Button>
             </div>
@@ -65,4 +66,4 @@ const mapStateToProps = (state) => ({
     seed: state.seeds.seeds[state.tempAccount.seedIndex],
 });
 
-export default translate()(connect(mapStateToProps)(Receive));
+export default connect(mapStateToProps)(translate()(Receive));

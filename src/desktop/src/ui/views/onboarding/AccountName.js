@@ -42,19 +42,19 @@ class AccountName extends React.PureComponent {
     getDefaultAccountName() {
         const { t, seedCount } = this.props;
         if (seedCount === 0) {
-            return t('global:mainWallet');
+            return t('mainWallet');
         } else if (seedCount === 1) {
-            return t('global:secondWallet');
+            return t('secondWallet');
         } else if (seedCount === 2) {
-            return t('global:thirdWallet');
+            return t('thirdWallet');
         } else if (seedCount === 3) {
-            return t('global:fourthWallet');
+            return t('fourthWallet');
         } else if (seedCount === 4) {
-            return t('global:fifthWallet');
+            return t('fifthWallet');
         } else if (seedCount === 5) {
-            return t('global:sixthWallet');
+            return t('sixthWallet');
         } else if (seedCount === 6) {
-            return t('global:otherWallet');
+            return t('otherWallet');
         }
         return '';
     }
@@ -89,11 +89,11 @@ class AccountName extends React.PureComponent {
                     </Infobox>
                 </section>
                 <footer>
-                    <Button to="/seed/enter" className="outline" variant="secondary">
-                        {t('global:back')}
+                    <Button to="/onboarding/seed-intro" className="outline" variant="secondary">
+                        {t('back')}
                     </Button>
                     <Button type="submit" className="outline" variant="primary">
-                        {t('global:next')}
+                        {t('next')}
                     </Button>
                 </footer>
             </form>
@@ -110,4 +110,4 @@ const mapDispatchToProps = {
     setNewSeedName,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(AccountName));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));

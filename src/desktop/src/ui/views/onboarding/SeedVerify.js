@@ -87,8 +87,8 @@ class SeedVerify extends React.PureComponent {
                     <SeedInput
                         seed={seed}
                         onChange={this.onChange}
-                        label={t('global:seed')}
-                        closeLabel={t('global:back')}
+                        label={t('seed')}
+                        closeLabel={t('back')}
                     />
                     <Infobox>
                         {newSeed ? (
@@ -110,10 +110,10 @@ class SeedVerify extends React.PureComponent {
                         className="outline"
                         variant="secondary"
                     >
-                        {t('global:back')}
+                        {t('back')}
                     </Button>
                     <Button type="submit" className="outline" variant="primary">
-                        {t('global:next')}
+                        {t('next')}
                     </Button>
                 </footer>
             </form>
@@ -130,4 +130,4 @@ const mapDispatchToProps = {
     setNewSeed,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(SeedVerify));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(SeedVerify));

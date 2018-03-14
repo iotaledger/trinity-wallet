@@ -16,7 +16,7 @@ class Chart extends PureComponent {
         priceData: PropTypes.shape({
             currency: PropTypes.string.isRequired,
             symbol: PropTypes.string.isRequired,
-            price: PropTypes.number.isRequired,
+            price: PropTypes.string.isRequired,
             volume: PropTypes.string.isRequired,
             change24h: PropTypes.string.isRequired,
             mcap: PropTypes.string.isRequired,

@@ -22,8 +22,10 @@
         > header {
             height: var(--header-height);
             background: var(--bar-bg);
+            color: var(--bar);
             margin-bottom: 40px;
             padding: 0 20px;
+            -webkit-app-region: drag;
             > div {
                 display: flex;
                 align-items: center;

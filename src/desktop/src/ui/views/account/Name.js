@@ -78,7 +78,7 @@ class AccountName extends PureComponent {
                 />
                 <fieldset>
                     <Button disabled={newAccountName === accountName} type="submit">
-                        {t('global:save')}
+                        {t('save')}
                     </Button>
                 </fieldset>
             </form>

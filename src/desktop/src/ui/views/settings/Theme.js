@@ -94,7 +94,7 @@ class Theme extends React.PureComponent {
                             background: theme.positive.bg || theme.positive.color,
                         }}
                     >
-                        {t('global:save')}
+                        {t('save')}
                     </Button>
                     <Button
                         style={{
@@ -103,7 +103,7 @@ class Theme extends React.PureComponent {
                             background: 'none',
                         }}
                     >
-                        {t('global:back')}
+                        {t('back')}
                     </Button>
                     <Button
                         style={{
@@ -112,7 +112,7 @@ class Theme extends React.PureComponent {
                             background: 'none',
                         }}
                     >
-                        {t('global:close')}
+                        {t('close')}
                     </Button>
                     <Button
                         style={{
@@ -121,7 +121,7 @@ class Theme extends React.PureComponent {
                             background: 'none',
                         }}
                     >
-                        {t('global:next')}
+                        {t('next')}
                     </Button>
                 </div>
                 <fieldset>

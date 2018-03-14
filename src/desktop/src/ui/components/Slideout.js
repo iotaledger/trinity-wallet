@@ -25,7 +25,7 @@ export default class Modal extends React.Component {
     }
 
     onKeyDown = (e) => {
-        if (e.which === 27 && this.props.active) {
+        if (e.key === 'Escape' && this.props.active) {
             this.props.onClose();
         }
     };
@@ -35,7 +35,7 @@ export default class Modal extends React.Component {
         return (
             <div className={classNames(css.slideout, active ? css.active : null)}>
                 <div>{this.props.children}</div>
-                <div onClick={() => onClose()} />
+                <div onClick={onClose} />
             </div>
         );
     }
