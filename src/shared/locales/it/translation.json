@@ -431,10 +431,10 @@
         "rootDetected": "<0>Il dispositivo sembra essere rooted/jailbroken.</0> <1>Ciò può rappresentare un rischio significativo per la sicurezza del tuo portafoglio.</1> <2>Vuoi continuare nonostante questo rischio?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
+        "feeless": "È necessario completare un piccolo calcolo (PoW) per inviare transazioni senza costi in IOTA.",
+        "localOrRemote": "Il calcolo (PoW) può essere completato in locale nel tuo dispositivo, oppure demandato ad un nodo.",
+        "local": "Locale",
+        "remote": "Remoto"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Non è possibile completare il passaggio allo snapshot",
