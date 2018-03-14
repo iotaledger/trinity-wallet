@@ -9,12 +9,14 @@ const url = require('url');
 const devMode = process.env.NODE_ENV === 'development';
 
 let deeplinkingUrl = '';
+let delayForWindowToBeLoaded = 0;
 const windows = {
     main: null,
 };
 
 if (!devMode) {
     protocol.registerStandardSchemes(['iota']);
+    delayForWindowToBeLoaded = 500;
 }
 
 const shouldQuit = app.makeSingleInstance((argv, workingDirectory) => {
@@ -99,12 +101,12 @@ app.on('activate', () => {
 app.setAsDefaultProtocolClient('iota');
 app.on('open-url', function(event, url) {
         event.preventDefault();
-        let deeplinkingUrl = url;
+        deeplinkingUrl = url;
         console.log('test main' + url);
     setTimeout(() => {
         windows.main.webContents.send('url-params', url);
         logEverywhere('open-url# ' + deeplinkingUrl);
-    });
+    }, delayForWindowToBeLoaded);
 });
 
 function logEverywhere(s) {
@@ -113,6 +115,11 @@ function logEverywhere(s) {
         windows.main.webContents.executeJavaScript(`console.log("${s}")`);
     }
 }
+
+ipc.on('refresh.deepLink', () => {
+    delayForWindowToBeLoaded = 0;
+
+});
 
 ipc.on('settings.update', (e, data) => {
     settings.set(data.attribute, data.value);
