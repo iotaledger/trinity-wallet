@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { EditAccountName } from '../../components/editAccountName';
+import { EditAccountName } from '../../components/EditAccountName';
 
 jest.mock('react-native-device-info');
 jest.mock('react-native-is-device-rooted', () => ({

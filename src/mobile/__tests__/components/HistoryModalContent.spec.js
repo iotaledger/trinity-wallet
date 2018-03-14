@@ -4,7 +4,7 @@ import React from 'react';
 import { Clipboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import HistoryModalContent from '../../components/historyModalContent';
+import HistoryModalContent from '../../components/HistoryModalContent';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
