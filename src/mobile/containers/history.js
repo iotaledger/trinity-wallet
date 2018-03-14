@@ -100,7 +100,11 @@ class History extends Component {
     }
 
     componentWillReceiveProps(newProps) {
+        const { seedIndex } = this.props;
         if (this.props.isFetchingLatestAccountInfoOnLogin && !newProps.isFetchingLatestAccountInfoOnLogin) {
+            this.setState({ isRefreshing: false });
+        }
+        if (seedIndex !== newProps.seedIndex){
             this.setState({ isRefreshing: false });
         }
     }
