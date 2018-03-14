@@ -33,7 +33,7 @@ import { syncAccountAfterReattachment, syncAccount } from '../libs/iota/accounts
 import { updateAccountAfterReattachment, updateAccountInfo, accountInfoFetchSuccess } from './account';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
-import { generateAlert } from './alerts';
+import { generateAlert, generateTransferErrorAlert } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
 
@@ -402,11 +402,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                     );
                 }
 
-                return dispatch(
-                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
-                    20000,
-                    error,
-                );
+                return dispatch(generateTransferErrorAlert(error));
             })
     );
 };
