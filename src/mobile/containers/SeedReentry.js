@@ -5,14 +5,14 @@ import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'reac
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import Checksum from '../components/checksum';
-import { width, height } from '../util/dimensions';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import CustomTextInput from '../components/customTextInput';
-import StatefulDropdownAlert from './statefulDropdownAlert';
+import Checksum from '../components/Checksum';
+import { width, height } from '../utils/dimensions';
+import DynamicStatusBar from '../components/DynamicStatusBar';
+import CustomTextInput from '../components/CustomTextInput';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
 import GENERAL from '../theme/general';
-import InfoBox from '../components/infoBox';
-import OnboardingButtons from '../components/onboardingButtons';
+import InfoBox from '../components/InfoBox';
+import OnboardingButtons from '../components/OnboardingButtons';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

@@ -8,9 +8,9 @@ import RNExitApp from 'react-native-exit-app';
 import { connect } from 'react-redux';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
-import RootDetectionModal from '../components/rootDetectionModal';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import { width, height } from '../util/dimensions';
+import RootDetectionModal from '../components/RootDetectionModal';
+import DynamicStatusBar from '../components/DynamicStatusBar';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     container: {

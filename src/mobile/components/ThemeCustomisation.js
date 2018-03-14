@@ -4,8 +4,8 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import THEMES from 'iota-wallet-shared-modules/themes/themes';
-import Dropdown from './dropdown'; // eslint-disable-line import/no-named-as-default
-import { width, height } from '../util/dimensions';
+import Dropdown from './Dropdown'; // eslint-disable-line import/no-named-as-default
+import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 

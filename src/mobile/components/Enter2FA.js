@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import CustomTextInput from '../components/customTextInput';
+import CustomTextInput from '../components/CustomTextInput';
 import GENERAL from '../theme/general';
-import { width, height } from '../util/dimensions';
-import OnboardingButtons from './onboardingButtons';
+import { width, height } from '../utils/dimensions';
+import OnboardingButtons from './OnboardingButtons';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

@@ -22,11 +22,11 @@ import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import tinycolor from 'tinycolor2';
-import TransactionRow from '../components/transactionRow';
-import { width, height } from '../util/dimensions';
-import keychain, { getSeed } from '../util/keychain';
-import { isAndroid } from '../util/device';
-import CtaButton from '../components/ctaButton';
+import TransactionRow from '../components/TransactionRow';
+import { width, height } from '../utils/dimensions';
+import keychain, { getSeed } from '../utils/keychain';
+import { isAndroid } from '../utils/device';
+import CtaButton from '../components/CtaButton';
 
 const styles = StyleSheet.create({
     container: {

@@ -19,7 +19,7 @@ jest.mock('react-native-keychain', () => ({
 
 jest.mock('react-native-camera', () => {});
 
-jest.mock('../../util/keychain', () => ({
+jest.mock('../../utils/keychain', () => ({
     storeTwoFactorAuthKeyInKeychain: jest.fn(() => Promise.resolve({})),
 }));
 

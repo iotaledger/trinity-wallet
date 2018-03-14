@@ -21,10 +21,10 @@ import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
-import keychain, { getSeed, storeSeedInKeychain } from '../util/keychain';
-import DynamicStatusBar from '../components/dynamicStatusBar';
+import keychain, { getSeed, storeSeedInKeychain } from '../utils/keychain';
+import DynamicStatusBar from '../components/DynamicStatusBar';
 
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     container: {

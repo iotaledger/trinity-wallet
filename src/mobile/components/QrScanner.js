@@ -4,8 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 're
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { translate } from 'react-i18next';
 import GENERAL from '../theme/general';
-import { isAndroid } from '../util/device';
-import { width, height } from '../util/dimensions';
+import { isAndroid } from '../utils/device';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     qrInfoText: {

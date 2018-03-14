@@ -40,22 +40,22 @@ import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-share
 import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import QRScanner from '../components/qrScanner';
-import Toggle from '../components/toggle';
-import ProgressBar from '../components/progressBar';
+import QRScanner from '../components/QrScanner';
+import Toggle from '../components/Toggle';
+import ProgressBar from '../components/ProgressBar';
 import {
     getBalanceForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from '../../shared/selectors/account';
-import keychain, { getSeed } from '../util/keychain';
-import ProgressSteps from '../util/progressSteps';
-import TransferConfirmationModal from '../components/transferConfirmationModal';
-import UnitInfoModal from '../components/unitInfoModal';
-import CustomTextInput from '../components/customTextInput';
-import CtaButton from '../components/ctaButton';
+import keychain, { getSeed } from '../utils/keychain';
+import ProgressSteps from '../utils/progressSteps';
+import TransferConfirmationModal from '../components/TransferConfirmationModal';
+import UnitInfoModal from '../components/UnitInfoModal';
+import CustomTextInput from '../components/CustomTextInput';
+import CtaButton from '../components/CtaButton';
 import { Icon } from '../theme/icons.js';
-import { width, height } from '../util/dimensions';
-import { isAndroid, isIOS } from '../util/device';
+import { width, height } from '../utils/dimensions';
+import { isAndroid, isIOS } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {

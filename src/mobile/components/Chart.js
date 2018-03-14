@@ -5,8 +5,8 @@ import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 import { translate } from 'react-i18next';
 import withChartData from 'iota-wallet-shared-modules/containers/components/Chart';
-import { width, height } from '../util/dimensions';
-import { isAndroid } from '../util/device';
+import { width, height } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
 
 const chartWidth = width * 0.98;

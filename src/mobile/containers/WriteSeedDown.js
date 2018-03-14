@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
-import Seedbox from '../components/seedBox';
-import { width, height } from '../util/dimensions';
+import Seedbox from '../components/SeedBox';
+import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
-import DynamicStatusBar from '../components/dynamicStatusBar';
+import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
