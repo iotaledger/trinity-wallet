@@ -1,57 +1,65 @@
 import { ActionTypes } from '../actions/seeds.js';
 
 const initialState = {
-    selectedSeedIndex: null,
-    items: [],
+   seeds: [],
+   newSeed: null,
+   newName: ''
 };
 
 export default (state = initialState, action) => {
-    switch (action.type) {
-        case ActionTypes.ADD_SEED: {
-            const items = [].concat(state.items, {
-                name: action.payload.name,
-                seed: action.payload.seed,
-            });
-            return {
-                ...state,
-                items,
-            };
-        }
 
-        case ActionTypes.SELECT_SEED:
-            return {
-                ...state,
-                selectedSeedIndex: action.payload,
-            };
+   switch (action.type) {
 
-        case ActionTypes.REMOVE_SEED: {
-            const items = [].concat(state.items).filter((item) => item.seed !== action.payload);
-            return {
-                ...state,
-                items,
-            };
-        }
+      case ActionTypes.SEEDS_SET: {
+         return {
+            ...state,
+            seeds: action.payload,
+         };
+      }
 
-        case ActionTypes.PATCH_SEED: {
-            const items = [].concat(state.items);
-            items[action.payload.index] = {
-                ...items[action.payload.index],
-                ...action.payload.values,
-            };
-            return {
-                ...state,
-                items,
-            };
-        }
+      case ActionTypes.SEEDS_ADD: {
+         const seeds = [].concat(state.seeds, action.payload);
+         return {
+            ...state,
+            seeds: seeds,
+         };
+      }
 
-        case ActionTypes.CLEAR: {
-            return initialState;
-        }
+      case ActionTypes.SEEDS_REMOVE: {
+         const seeds = [].concat(state.seeds).filter((seed) => seed !== action.payload);
+         return {
+            ...state,
+            seeds: seeds,
+         };
+      }
 
-        case ActionTypes.LOAD_SEEDS: {
-            return action.payload || state;
-        }
-    }
+      case ActionTypes.SEEDS_CLEAR: {
+         return initialState;
+      }
 
-    return state;
+      case ActionTypes.SEEDS_NEW_SEED: {
+         return {
+            ...state,
+            newSeed: action.payload
+         };
+      }
+
+      case ActionTypes.SEEDS_NEW_NAME: {
+         return {
+            ...state,
+            newName: action.payload
+         };
+      }
+
+      case ActionTypes.SEEDS_NEW_CLEAR: {
+         return {
+            ...state,
+            newSeed: null,
+            newName: null
+         };
+      }
+
+   }
+
+   return state;
 };
