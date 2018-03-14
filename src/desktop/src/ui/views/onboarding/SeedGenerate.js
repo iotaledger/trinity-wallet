@@ -135,10 +135,10 @@ class GenerateSeed extends React.PureComponent {
                 </section>
                 <footer>
                     <Button onClick={this.onRequestPrevious} className="outline" variant="secondary">
-                        {t('global:back')}
+                        {t('back')}
                     </Button>
                     <Button onClick={this.onRequestNext} className="outline" disabled={!seed} variant="primary">
-                        {t('global:next')}
+                        {t('next')}
                     </Button>
                 </footer>
             </React.Fragment>
@@ -146,12 +146,10 @@ class GenerateSeed extends React.PureComponent {
     }
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = {
     setNewSeed,
     clearNewSeed,
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(GenerateSeed));
+export default connect(null, mapDispatchToProps)(translate()(GenerateSeed));

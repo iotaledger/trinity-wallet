@@ -16,7 +16,7 @@ const windows = {
 
 if (!devMode) {
     protocol.registerStandardSchemes(['iota']);
-    delayForWindowToBeLoaded = 500;
+    delayForWindowToBeLoaded = 2000;
 }
 
 const shouldQuit = app.makeSingleInstance((argv, workingDirectory) => {
@@ -49,7 +49,7 @@ function createWindow() {
         minWidth: 440,
         minHeight: 720,
         titleBarStyle: 'hidden',
-        backgroundColor: settings.get('backgroundColor') ? settings.get('backgroundColor') : '#1a373e',
+        backgroundColor: settings.get('backgroundColor') ? settings.get('backgroundColor') : '#E8EBF1',
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(__dirname, 'lib/Window.js'),

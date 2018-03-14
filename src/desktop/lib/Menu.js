@@ -1,226 +1,231 @@
 const { Menu, ipcMain, dialog, shell } = require('electron');
 
 const state = {
-   authorised: false,
+    authorised: false,
 };
 
 let language = {
-   about: 'About',
-   checkUpdate: 'Check for Updates',
-   settings: 'Settings',
-   accountSettings: 'Account management',
-   newAccount: 'Add new account',
-   language: 'Language',
-   currency: 'Currency',
-   theme: 'Theme',
-   twoFA: 'Two-factor authentication',
-   changePassword: 'Change password',
-   advanced: 'Advanced settings',
-   hide: 'Hide',
-   hideOthers: 'Hide Others',
-   showAll: 'Show All',
-   quit: 'Quit',
-   edit: 'Edit',
-   undo: 'Undo',
-   redo: 'Redo',
-   cut: 'Cut',
-   copy: 'Copy',
-   paste: 'Paste',
-   selectAll: 'Select All',
-   account: 'Account',
-   balance: 'Balance',
-   send: 'Send',
-   receive: 'Receive',
-   history: 'History',
-   logout: 'Logout',
-   logoutConfirm: 'Are you sure you want to log out?',
-   yes: 'Yes',
-   no: 'No',
+    about: 'About',
+    checkUpdate: 'Check for Updates',
+    settings: 'Settings',
+    accountSettings: 'Account management',
+    newAccount: 'Add new account',
+    language: 'Language',
+    node: 'Node',
+    currency: 'Currency',
+    theme: 'Theme',
+    twoFA: 'Two-factor authentication',
+    changePassword: 'Change password',
+    advanced: 'Advanced settings',
+    hide: 'Hide',
+    hideOthers: 'Hide Others',
+    showAll: 'Show All',
+    quit: 'Quit',
+    edit: 'Edit',
+    undo: 'Undo',
+    redo: 'Redo',
+    cut: 'Cut',
+    copy: 'Copy',
+    paste: 'Paste',
+    selectAll: 'Select All',
+    account: 'Account',
+    balance: 'Balance',
+    send: 'Send',
+    receive: 'Receive',
+    history: 'History',
+    logout: 'Logout',
+    logoutConfirm: 'Are you sure you want to log out?',
+    yes: 'Yes',
+    no: 'No',
 };
 
 const initMenu = (app, getWindow) => {
-   const navigate = (path) => {
-      const mainWindow = getWindow('main');
-      if (mainWindow) {
-         mainWindow.webContents.send('menu', path);
-      }
-   };
+    const navigate = (path) => {
+        const mainWindow = getWindow('main');
+        if (mainWindow) {
+            mainWindow.webContents.send('menu', path);
+        }
+    };
 
-   const createMenu = () => {
-      const template = [
-         {
-            label: app.getName(),
-            submenu: [
-               {
-                  label: `${language.about} ${app.getName()}`,
-                  role: 'about',
-               },
-               {
-                  label: `${language.checkUpdate}...`,
-                  click: () => navigate('update'),
-               },
-               {
-                  label: language.settings,
-                  submenu: [
-                     {
-                        label: language.language,
-                        click: () => navigate('settings/language'),
-                     },
-                     {
-                        label: language.currency,
-                        click: () => navigate('settings/currency'),
-                     },
-                     {
-                        label: language.theme,
-                        click: () => navigate('settings/theme'),
-                     },
-                     {
-                        type: 'separator',
-                     },
-                     {
-                        label: language.twoFA,
-                        enabled: state.authorised,
-                        click: () => navigate('settings/twoFa'),
-                     },
-                     {
-                        label: language.changePassword,
-                        enabled: state.authorised,
-                        click: () => navigate('settings/password'),
-                     },
-                     {
-                        label: language.advanced,
-                        enabled: state.authorised,
-                        click: () => navigate('settings/advanced'),
-                     },
-                  ],
-               },
-               {
-                  type: 'separator',
-               },
-               {
-                  label: `${language.hide} ${app.getName()}`,
-                  role: 'hide',
-               },
-               {
-                  label: language.hideOthers,
-                  role: 'hideothers',
-               },
-               {
-                  label: language.showAll,
-                  role: 'unhide',
-               },
-               {
-                  type: 'separator',
-               },
-               {
-                  label: language.quit,
-                  accelerator: 'Command+Q',
-                  click: function () {
-                     app.quit();
-                  },
-               },
-            ],
-         },
-      ];
-
-      template.push({
-         label: language.edit,
-         submenu: [
-            { label: language.undo, accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
-            { label: language.redo, accelerator: 'Shift+CmdOrCtrl+Z', selector: 'redo:' },
-            { type: 'separator' },
-            { label: language.cut, accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
-            { label: language.copy, accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
-            { label: language.paste, accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
-            { label: language.selectAll, accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
-         ],
-      });
-
-      if (state.authorised) {
-         template.push({
-            label: language.account,
-            submenu: [
-               {
-                  label: language.send,
-                  click: () => navigate('wallet/send'),
-               },
-               {
-                  label: language.receive,
-                  click: () => navigate('wallet/receive'),
-               },
-               {
-                  type: 'separator',
-               },
-               {
-                  label: language.accountSettings,
-                  click: () => navigate('account/name'),
-               },
-               {
-                  type: 'separator',
-               },
-               {
-                  label: language.newAccount,
-                  click: () => navigate('addAccount'),
-               },
-               {
-                  type: 'separator',
-               },
-               {
-                  label: language.logout,
-                  click: function () {
-                     const mainWindow = getWindow('main');
-                     if (mainWindow) {
-                        dialog.showMessageBox(
-                           mainWindow,
-                           {
-                              type: 'question',
-                              title: language.logout,
-                              message: language.logoutConfirm,
-                              buttons: [language.yes, language.no],
-                           },
-                           (index) => {
-                              if (index === 1) {
-                                 mainWindow.webContents.send('menu', 'logout');
-                              }
-                           },
-                        );
-                     }
-                  },
-               },
-            ],
-         });
-      }
-
-      template.push({
-         label: 'Help',
-         submenu: [
+    const createMenu = () => {
+        const template = [
             {
-               label: `${app.getName()} Help`,
-               click: function () {
-                  //TODO: Change to wallet documentation link
-                  shell.openExternal('https://iota.readme.io/docs/what-is-iota');
-               },
+                label: app.getName(),
+                submenu: [
+                    {
+                        label: `${language.about} ${app.getName()}`,
+                        role: 'about',
+                    },
+                    {
+                        label: `${language.checkUpdate}...`,
+                        click: () => navigate('update'),
+                    },
+                    {
+                        label: language.settings,
+                        submenu: [
+                            {
+                                label: language.language,
+                                click: () => navigate('settings/language'),
+                            },
+                            {
+                                label: language.node,
+                                click: () => navigate('settings/node'),
+                            },
+                            {
+                                label: language.currency,
+                                click: () => navigate('settings/currency'),
+                            },
+                            {
+                                label: language.theme,
+                                click: () => navigate('settings/theme'),
+                            },
+                            {
+                                type: 'separator',
+                            },
+                            {
+                                label: language.twoFA,
+                                enabled: state.authorised,
+                                click: () => navigate('settings/twoFa'),
+                            },
+                            {
+                                label: language.changePassword,
+                                enabled: state.authorised,
+                                click: () => navigate('settings/password'),
+                            },
+                            {
+                                label: language.advanced,
+                                enabled: state.authorised,
+                                click: () => navigate('settings/advanced'),
+                            },
+                        ],
+                    },
+                    {
+                        type: 'separator',
+                    },
+                    {
+                        label: `${language.hide} ${app.getName()}`,
+                        role: 'hide',
+                    },
+                    {
+                        label: language.hideOthers,
+                        role: 'hideothers',
+                    },
+                    {
+                        label: language.showAll,
+                        role: 'unhide',
+                    },
+                    {
+                        type: 'separator',
+                    },
+                    {
+                        label: language.quit,
+                        accelerator: 'Command+Q',
+                        click: function() {
+                            app.quit();
+                        },
+                    },
+                ],
             },
-         ],
-      });
+        ];
 
-      const applicationMenu = Menu.buildFromTemplate(template);
-      Menu.setApplicationMenu(applicationMenu);
-   };
+        template.push({
+            label: language.edit,
+            submenu: [
+                { label: language.undo, accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
+                { label: language.redo, accelerator: 'Shift+CmdOrCtrl+Z', selector: 'redo:' },
+                { type: 'separator' },
+                { label: language.cut, accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
+                { label: language.copy, accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+                { label: language.paste, accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
+                { label: language.selectAll, accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+            ],
+        });
 
-   app.once('ready', () => {
-      ipcMain.on('menu.update', (e, settings) => {
-         state[settings.attribute] = settings.value;
-         createMenu();
-      });
+        if (state.authorised) {
+            template.push({
+                label: language.account,
+                submenu: [
+                    {
+                        label: language.send,
+                        click: () => navigate('wallet/send'),
+                    },
+                    {
+                        label: language.receive,
+                        click: () => navigate('wallet/receive'),
+                    },
+                    {
+                        type: 'separator',
+                    },
+                    {
+                        label: language.accountSettings,
+                        click: () => navigate('account/name'),
+                    },
+                    {
+                        type: 'separator',
+                    },
+                    {
+                        label: language.newAccount,
+                        click: () => navigate('addAccount'),
+                    },
+                    {
+                        type: 'separator',
+                    },
+                    {
+                        label: language.logout,
+                        click: function() {
+                            const mainWindow = getWindow('main');
+                            if (mainWindow) {
+                                dialog.showMessageBox(
+                                    mainWindow,
+                                    {
+                                        type: 'question',
+                                        title: language.logout,
+                                        message: language.logoutConfirm,
+                                        buttons: [language.yes, language.no],
+                                    },
+                                    (index) => {
+                                        if (index === 1) {
+                                            mainWindow.webContents.send('menu', 'logout');
+                                        }
+                                    },
+                                );
+                            }
+                        },
+                    },
+                ],
+            });
+        }
 
-      ipcMain.on('menu.language', (e, data) => {
-         language = data;
-         createMenu();
-      });
+        template.push({
+            label: 'Help',
+            submenu: [
+                {
+                    label: `${app.getName()} Help`,
+                    click: function() {
+                        //TODO: Change to wallet documentation link
+                        shell.openExternal('https://iota.readme.io/docs/what-is-iota');
+                    },
+                },
+            ],
+        });
 
-      createMenu();
-   });
+        const applicationMenu = Menu.buildFromTemplate(template);
+        Menu.setApplicationMenu(applicationMenu);
+    };
+
+    app.once('ready', () => {
+        ipcMain.on('menu.update', (e, settings) => {
+            state[settings.attribute] = settings.value;
+            createMenu();
+        });
+
+        ipcMain.on('menu.language', (e, data) => {
+            language = data;
+            createMenu();
+        });
+
+        createMenu();
+    });
 };
 
 module.exports = initMenu;

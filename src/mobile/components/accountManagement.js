@@ -101,7 +101,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="iota" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="addresses" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('viewAddresses')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -112,7 +112,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="iota" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="edit" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('editAccountName')}</Text>
                             </View>
                         </TouchableOpacity>

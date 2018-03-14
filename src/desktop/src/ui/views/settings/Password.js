@@ -110,10 +110,8 @@ class SetPassword extends PureComponent {
     }
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(SetPassword));
+export default connect(null, mapDispatchToProps)(translate()(SetPassword));

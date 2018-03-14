@@ -8,6 +8,7 @@
     height: 100vh;
     position: fixed;
     z-index: 1001;
+    transition: opacity 0.15s ease-in;
     &:before {
         content: '';
         position: absolute;
@@ -55,23 +56,34 @@
     footer {
         margin-top: 40px;
     }
+
+    .wrapper {
+        width: 80vw;
+        max-width: 680px;
+        position: relative;
+        z-index: 2;
+        transform: scale(1);
+        transition: transform 0.2s ease-out;
+
+        form {
+            margin: 30px auto 0;
+            padding: 0px;
+            border: none;
+            max-width: 580px;
+        }
+
+        @media (max-width: 960px) {
+            width: 100vw;
+            padding: 0 20px;
+        }
+    }
 }
 
-.wrapper {
-    width: 80vw;
-    max-width: 680px;
-    position: relative;
-    z-index: 2;
+.hidden {
+    pointer-events: none;
+    opacity: 0;
 
-    form {
-        margin: 60px auto 0;
-        padding: 0px;
-        border: none;
-        max-width: 580px;
-    }
-
-    @media (max-width: 960px) {
-        width: 100vw;
-        padding: 0 20px;
+    .wrapper {
+        transform: scale(0.95);
     }
 }

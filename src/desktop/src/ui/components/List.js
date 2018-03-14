@@ -51,7 +51,7 @@ class List extends React.PureComponent {
                 <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
                 <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
                 <strong>
-                    {!isConfirmed ? t('global:pending') : isReceived ? t('global:received') : t('global:sent')}
+                    {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
                 </strong>
                 <span>{`${round(formatValue(transfer.value))} ${formatUnit(transfer.value)}`}</span>
             </div>
@@ -63,11 +63,11 @@ class List extends React.PureComponent {
             <div className={css.full}>
                 <p>
                     <span>
-                        {isReceived ? t('global:received') : t('global:sent')}{' '}
+                        {isReceived ? t('received') : t('sent')}{' '}
                         {`${round(formatValue(transfer.value))} ${formatUnit(transfer.value)}`}
                     </span>
                     <strong>
-                        {!isConfirmed ? t('global:pending') : isReceived ? t('global:received') : t('global:sent')}
+                        {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
                     </strong>
                 </p>
                 <p>
@@ -134,10 +134,10 @@ class List extends React.PureComponent {
                                 <p>
                                     <strong>
                                         {!activeTransfer.persistence
-                                            ? t('global:pending')
+                                            ? t('pending')
                                             : addresses.includes(activeTransfer.address)
-                                              ? t('global:received')
-                                              : t('global:sent')}
+                                              ? t('received')
+                                              : t('sent')}
                                     </strong>{' '}
                                     <span>{`${round(formatValue(activeTransfer.value))} ${formatUnit(
                                         activeTransfer.value,
@@ -178,7 +178,7 @@ class List extends React.PureComponent {
                             <p>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</p>
                             <footer>
                                 <Button onClick={() => this.setState({ activeItem: null })} variant="primary">
-                                    {t('global:back')}
+                                    {t('back')}
                                 </Button>
                             </footer>
                         </div>

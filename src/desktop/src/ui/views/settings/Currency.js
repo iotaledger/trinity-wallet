@@ -56,7 +56,7 @@ class SetCurrency extends PureComponent {
                 </Select>
                 <fieldset>
                     <Button disabled={!selection || selection === currency} type="submit" loading={loading}>
-                        {t('global:save')}
+                        {t('save')}
                     </Button>
                 </fieldset>
             </form>

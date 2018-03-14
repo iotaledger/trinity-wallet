@@ -15,7 +15,9 @@ import css from './seed.css';
 class Seed extends PureComponent {
     static propTypes = {
         /** Account vault */
-        vault: PropTypes.object.isRequired,
+        vault: PropTypes.shape({
+            seeds: PropTypes.arrayOf(PropTypes.string),
+        }).isRequired,
         /** Current seed index
          *  @ignore
          */
@@ -36,17 +38,18 @@ class Seed extends PureComponent {
         const { hidden } = this.state;
 
         const seed = vault.seeds[seedIndex];
-        const content = hidden ? new Array(MAX_SEED_LENGTH/3).join('··· ') : seed.match(/.{1,3}/g).join(' ');
-        
+        const content = hidden ? new Array(MAX_SEED_LENGTH / 3).join('··· ') : seed.match(/.{1,3}/g).join(' ');
+
         return (
             <form>
                 <p className={css.seed}>
                     <Clipboard
                         text={seed}
-                        label={content}
                         title={t('copyToClipboard:seedCopied')}
                         success={t('copyToClipboard:seedCopiedExplanation')}
-                    />
+                    >
+                        {content}
+                    </Clipboard>
                 </p>
                 <fieldset>
                     <Button onClick={() => this.setState({ hidden: !hidden })}>{hidden ? t('show') : t('hide')}</Button>

@@ -135,7 +135,9 @@ class AccountPassword extends React.PureComponent {
                         );
                     }}
                     onClose={() => history.push('/wallet/')}
-                    title={t('Enter password to add the new account')}
+                    content={{
+                        title: t('Enter password to add the new account'),
+                    }}
                 />
             );
         }
@@ -146,7 +148,7 @@ class AccountPassword extends React.PureComponent {
                 <section>
                     <PasswordInput
                         value={this.state.password}
-                        label={t('global:password')}
+                        label={t('password')}
                         onChange={(value) => this.setState({ password: value })}
                     />
                     <PasswordInput
@@ -160,10 +162,10 @@ class AccountPassword extends React.PureComponent {
                 </section>
                 <footer>
                     <Button to="/onboarding/account-name" className="outline" variant="secondary">
-                        {t('global:back')}
+                        {t('back')}
                     </Button>
                     <Button type="submit" className="outline" variant="primary">
-                        {t('global:done')}
+                        {t('done')}
                     </Button>
                 </footer>
             </form>

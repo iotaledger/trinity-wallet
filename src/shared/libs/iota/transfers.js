@@ -810,7 +810,7 @@ export const performPow = (
                 const transactionTryteString = iota.utils.transactionTrytes(withParentTransactions);
 
                 return powFn(transactionTryteString, minWeightMagnitude).then((nonce) => {
-                    const trytesWithNonce = transactionTryteString.substr(0, 2673 - 27).concat(nonce);
+                    const trytesWithNonce = transactionTryteString.substr(0, 2673 - nonce.length).concat(nonce);
                     const transactionObjectWithNonce = iota.utils.transactionObject(trytesWithNonce);
 
                     result.trytes.push(trytesWithNonce);

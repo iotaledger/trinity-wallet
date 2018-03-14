@@ -54,7 +54,7 @@ class Updates extends React.PureComponent {
                     <p>{t('There was an error retreiving upodate data.')}</p>
                     <footer>
                         <Button onClick={() => setUpdateDone()} variant="secondary">
-                            {t('global:close')}
+                            {t('close')}
                         </Button>
                     </footer>
                 </Modal>
@@ -68,7 +68,7 @@ class Updates extends React.PureComponent {
                     <p>{t('You`ve got the latest version of IOTA Trinity desktop wallet!')}</p>
                     <footer>
                         <Button onClick={() => setUpdateDone()} variant="secondary">
-                            {t('global:close')}
+                            {t('close')}
                         </Button>
                     </footer>
                 </Modal>
@@ -115,4 +115,4 @@ const mapDispatchToProps = {
     setUpdateDone,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Updates));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Updates));

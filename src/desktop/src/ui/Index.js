@@ -91,12 +91,15 @@ class App extends React.Component {
                 }
             }
         });
+    }
 
+    componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
         Electron.changeLanguage(this.props.t);
         Electron.refreshDeepLink();
     }
+
 
     componentWillReceiveProps(nextProps) {
         /* On language change */
@@ -185,4 +188,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withRouter(translate()(connect(mapStateToProps, mapDispatchToProps)(App)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(App)));

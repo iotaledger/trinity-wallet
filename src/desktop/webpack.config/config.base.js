@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
-    entry: ['babel-polyfill', './src/index.js'],
+    entry: ['./src/index.js'],
     output: {
         path: path.join(__dirname, '..', 'dist'),
-        pathinfo: true,
+        pathinfo: false,
         filename: 'bundle.js',
         publicPath: '/',
     },
@@ -52,6 +52,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|jpeg|svg|ttf|woff)$/,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: 'url-loader',
@@ -64,6 +65,7 @@ module.exports = {
             },
             {
                 test: /\.workers?\.js$/,
+                exclude: /node_modules/,
                 use: [{ loader: 'worker-loader', options: { publicPath: '/' } }, { loader: 'babel-loader' }],
             },
         ],
