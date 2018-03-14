@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import OnboardingButtons from '../components/onboardingButtons';
+import OnboardingButtons from '../components/OnboardingButtons';
 import GENERAL from '../theme/general';
-import InfoBox from '../components/infoBox';
+import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-
-import { width, height } from '../util/dimensions';
+import DynamicStatusBar from '../components/DynamicStatusBar';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     container: {

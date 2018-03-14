@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { translate } from 'react-i18next';
-import OnboardingButtons from './onboardingButtons';
+import OnboardingButtons from './OnboardingButtons';
 import GENERAL from '../theme/general';
 
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     modalContent: {

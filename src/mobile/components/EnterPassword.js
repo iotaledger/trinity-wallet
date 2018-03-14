@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
-import CustomTextInput from '../components/customTextInput';
+import CustomTextInput from '../components/CustomTextInput';
 import GENERAL from '../theme/general';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

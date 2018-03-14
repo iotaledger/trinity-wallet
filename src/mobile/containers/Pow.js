@@ -7,10 +7,10 @@ import tinycolor from 'tinycolor2';
 import Switch from 'react-native-switch-pro';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { updatePowSettings } from 'iota-wallet-shared-modules/actions/settings';
-import Fonts from '../theme/Fonts';
-import { width, height } from '../util/dimensions';
+import Fonts from '../theme/fonts';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
-import InfoBox from '../components/infoBox';
+import InfoBox from '../components/InfoBox';
 
 const styles = StyleSheet.create({
     container: {

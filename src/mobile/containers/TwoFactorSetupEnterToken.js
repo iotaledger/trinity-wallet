@@ -7,13 +7,13 @@ import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import { translate } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import CustomTextInput from '../components/customTextInput';
-import Fonts from '../theme/Fonts';
-import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
-import OnboardingButtons from '../components/onboardingButtons';
-import StatefulDropdownAlert from './statefulDropdownAlert';
-import { width, height } from '../util/dimensions';
+import DynamicStatusBar from '../components/DynamicStatusBar';
+import CustomTextInput from '../components/CustomTextInput';
+import Fonts from '../theme/fonts';
+import { getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
+import OnboardingButtons from '../components/OnboardingButtons';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

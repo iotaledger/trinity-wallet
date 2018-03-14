@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
-import BalanceComponent from '../containers/balance';
-import SendComponent from '../containers/send';
-import Receive from '../containers/receive';
-import History from '../containers/history';
-import Settings from '../containers/settings';
+import BalanceComponent from '../containers/Balance';
+import SendComponent from '../containers/Send';
+import Receive from '../containers/Receive';
+import History from '../containers/History';
+import Settings from '../containers/Settings';
 
 const routeToComponent = {
     balance: BalanceComponent,

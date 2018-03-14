@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import * as Progress from 'react-native-progress';
-import { height } from '../util/dimensions';
+import { height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     container: {

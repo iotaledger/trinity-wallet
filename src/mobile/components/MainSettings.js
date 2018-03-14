@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import i18next from 'i18next';
 import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

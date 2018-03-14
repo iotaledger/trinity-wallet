@@ -9,7 +9,7 @@ import keychainWrapper, {
     getSeed,
     updateAccountNameInKeychain,
     deleteFromKeychain,
-} from '../../util/keychain';
+} from '../../utils/keychain';
 
 jest.mock('react-native-keychain', () => ({
     setGenericPassword: jest.fn(() => Promise.resolve({})),

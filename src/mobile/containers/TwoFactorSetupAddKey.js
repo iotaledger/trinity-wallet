@@ -8,14 +8,14 @@ import QRCode from 'react-native-qrcode-svg';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
-import WithBackPressGoToHome from '../components/withBackPressGoToHome';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import { storeTwoFactorAuthKeyInKeychain } from '../util/keychain';
-import Fonts from '../theme/Fonts';
-import OnboardingButtons from '../components/onboardingButtons';
-import StatefulDropdownAlert from './statefulDropdownAlert';
+import WithBackPressGoToHome from '../components/BackPressGoToHome';
+import DynamicStatusBar from '../components/DynamicStatusBar';
+import { storeTwoFactorAuthKeyInKeychain } from '../utils/keychain';
+import Fonts from '../theme/fonts';
+import OnboardingButtons from '../components/OnboardingButtons';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
 import GENERAL from '../theme/general';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

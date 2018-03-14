@@ -28,7 +28,7 @@ import tinycolor from 'tinycolor2';
 import { setPollFor } from 'iota-wallet-shared-modules/actions/polling';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import Modal from 'react-native-modal';
-import NotificationLog from '../components/notificationLog';
+import NotificationLog from '../components/NotificationLog';
 import { Icon } from '../theme/icons.js';
 
 const { height, width } = Dimensions.get('window');

@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-import OnboardingButtons from './onboardingButtons';
+import OnboardingButtons from './OnboardingButtons';
 import GENERAL from '../theme/general';
-import keychain, { getSeed } from '../util/keychain';
-import { width, height } from '../util/dimensions';
+import keychain, { getSeed } from '../utils/keychain';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
-import CtaButton from '../components/ctaButton';
-import InfoBox from '../components/infoBox';
+import CtaButton from '../components/CtaButton';
+import InfoBox from '../components/InfoBox';
 
 const styles = StyleSheet.create({
     modalContent: {

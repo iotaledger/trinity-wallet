@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
-import Fonts from '../theme/Fonts';
-import keychain from '../util/keychain';
-import { width, height } from '../util/dimensions';
+import Fonts from '../theme/fonts';
+import keychain from '../utils/keychain';
+import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
-import CustomTextInput from './customTextInput';
+import CustomTextInput from './CustomTextInput';
 import { Icon } from '../theme/icons.js';
-import InfoBox from '../components/infoBox';
+import InfoBox from '../components/InfoBox';
 
 const styles = StyleSheet.create({
     container: {

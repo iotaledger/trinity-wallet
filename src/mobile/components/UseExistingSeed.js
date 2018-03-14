@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
-import CustomTextInput from '../components/customTextInput';
-import Checksum from '../components/checksum';
-import QRScanner from '../components/qrScanner';
-import { width, height } from '../util/dimensions';
+import CustomTextInput from '../components/CustomTextInput';
+import Checksum from '../components/Checksum';
+import QRScanner from '../components/QrScanner';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

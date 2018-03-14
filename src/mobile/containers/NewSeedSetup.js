@@ -9,13 +9,13 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Navigation } from 'react-native-navigation';
-import CtaButton from '../components/ctaButton';
-import { width, height } from '../util/dimensions';
-import { isIPhoneX } from '../util/device';
-import OnboardingButtons from '../components/onboardingButtons';
-import StatefulDropdownAlert from './statefulDropdownAlert';
+import CtaButton from '../components/CtaButton';
+import { width, height } from '../utils/dimensions';
+import { isIPhoneX } from '../utils/device';
+import OnboardingButtons from '../components/OnboardingButtons';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
 import GENERAL from '../theme/general';
-import DynamicStatusBar from '../components/dynamicStatusBar';
+import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

@@ -6,8 +6,8 @@ import { setRandomlySelectedNode } from 'iota-wallet-shared-modules/actions/sett
 import { changeIotaNode, getRandomNode } from 'iota-wallet-shared-modules/libs/iota';
 import i18next from 'i18next';
 import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import { isIOS } from '../util/device';
-import keychain from '../util/keychain';
+import { isIOS } from '../utils/device';
+import keychain from '../utils/keychain';
 import registerScreens from './navigation';
 import i18 from '../i18next';
 

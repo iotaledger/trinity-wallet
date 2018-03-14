@@ -7,13 +7,13 @@ import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'reac
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setSeedName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { connect } from 'react-redux';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import CustomTextInput from '../components/customTextInput';
-import StatefulDropdownAlert from './statefulDropdownAlert';
-import OnboardingButtons from '../components/onboardingButtons';
-import { width, height } from '../util/dimensions';
-import keychain, { hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
-import InfoBox from '../components/infoBox';
+import DynamicStatusBar from '../components/DynamicStatusBar';
+import CustomTextInput from '../components/CustomTextInput';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
+import OnboardingButtons from '../components/OnboardingButtons';
+import { width, height } from '../utils/dimensions';
+import keychain, { hasDuplicateAccountName, hasDuplicateSeed } from '../utils/keychain';
+import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 
 console.ignoredYellowBox = true;

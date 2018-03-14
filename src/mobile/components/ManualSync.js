@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
-import CtaButton from '../components/ctaButton';
-import InfoBox from '../components/infoBox';
+import CtaButton from '../components/CtaButton';
+import InfoBox from '../components/InfoBox';
 
 const styles = StyleSheet.create({
     container: {

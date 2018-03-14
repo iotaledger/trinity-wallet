@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { HueSlider, SaturationSlider, LightnessSlider } from 'react-native-color';
 import tinycolor from 'tinycolor2';
 import { translate } from 'react-i18next';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     container: {
