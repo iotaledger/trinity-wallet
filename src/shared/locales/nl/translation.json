@@ -6,21 +6,21 @@
         "noTransactions": "Geen recente geschiedenis",
         "refresh": "Herlaad",
         "qr": "QR",
-        "balanceError": "Niet genoeg saldo",
-        "balanceErrorMessage": "U hoeft niet genoeg IOTA om deze overdracht te voltooien.",
-        "transferError": "Overschrijvingsfout",
-        "transferErrorMessage": "Er is iets misgegaan tijdens het verzenden van uw overschrijving. Probeer het opnieuw.",
-        "transferSent": "Overschrijving verzonden",
-        "transferSentMessage": "Uw overschrijving is verzonden naar de Tangle.",
+        "balanceError": "Onvoldoende saldo",
+        "balanceErrorMessage": "U hoeft niet genoeg IOTA om deze transactie te voltooien.",
+        "transferError": "Transactiefout",
+        "transferErrorMessage": "Er is iets misgegaan tijdens het verzenden van uw transactie. Probeer het opnieuw.",
+        "transferSent": "Transactie verzonden",
+        "transferSentMessage": "Uw transactie is verzonden naar de Tangle.",
         "messageSent": "Bericht verzonden",
-        "messageSentMessage": "Je bericht is verzonden naar de Tangle.",
-        "keyReuse": "Sleutel hergebruik",
-        "keyReuseError": "Je kunt niets sturen naar een adres waar reeds op uitgegeven is.",
-        "invalidResponse": "Ongeldig antwoord",
-        "invalidResponseExplanation": "De node heeft een ongeldig antwoord teruggestuurd.",
-        "invalidResponsePollingExplanation": "De node heeft een ongeldig antwoord teruggestuurd tijdens het pollen.",
+        "messageSentMessage": "Uw bericht is verzonden naar de Tangle.",
+        "keyReuse": "Sleutelhergebruik",
+        "keyReuseError": "U kunt niet sturen naar een adres waar al op uitgegeven is.",
+        "invalidResponse": "Ongeldige reactie",
+        "invalidResponseExplanation": "De node heeft een ongeldige reactie teruggestuurd.",
+        "invalidResponsePollingExplanation": "De node heeft een ongeldige reactie teruggestuurd tijdens het pollen.",
         "invalidResponseFetchingAccount": "De node gaf een ongeldige reactie bij het opvragen van uw accountinformatie. Probeer het opnieuw.",
-        "invalidResponseSendingTransfer": "De node heeft een ongeldig antwoord teruggestuurd tijdens het verzenden van de transactie.",
+        "invalidResponseSendingTransfer": "De node heeft een ongeldige reactie teruggestuurd tijdens het verzenden van de transactie.",
         "seed": "Sleutel",
         "back": "Terug",
         "backLowercase": "Terug",
@@ -56,7 +56,7 @@
         "somethingWentWrongExplanation": "Start de app opnieuw.",
         "node": "Node",
         "cannotPerformAction": "Kan actie niet uitvoeren",
-        "cannotPerformActionExplanation": "Ga naar geavanceerde instellingen om uw wallet opnieuw in te stellen.",
+        "cannotPerformActionExplanation": "Ga naar Geavanceerde instellingen om uw wallet opnieuw in te stellen.",
         "attachToTangleUnavailable": "Koppelen aan Tangle niet beschikbaar",
         "attachToTangleUnavailableExplanation": "Koppelen aan Tangle niet beschikbaar op uw gekozen node.",
         "wallet": "Wallet",
@@ -71,7 +71,7 @@
         "reattach": "Opnieuw toevoegen",
         "promote": "PROMOTEN",
         "rebroadcast": "Opnieuw verzenden",
-        "pressBackAgain": "Druk nogmaals op terug om de app te sluiten",
+        "pressBackAgain": "Druk nogmaals op Terug om de app te sluiten",
         "autoreattaching": "Opnieuw koppelen aan Tangle",
         "autoreattachingExplanation": "Transactie koppelen met hash {{hash}}",
         "autopromoting": "Auto-promoten transactie",
@@ -156,7 +156,7 @@
     },
     "loading": {
         "loadingFirstTime": "Sleutel voor de eerste keer laden.",
-        "thisMayTake": "Dit kan een even duren.",
+        "thisMayTake": "Dit kan even duren.",
         "youMayNotice": "U kunt mogelijk een vertraging ervaren op uw apparaat."
     },
     "newSeedSetup": {
@@ -179,7 +179,7 @@
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Uw adres is naar het klembord gekopieerd.",
         "generateNewAddress": "NIEUW ADRES",
-        "message": "Bericht",
+        "message": "Optioneel bericht",
         "removeMessage": "VERWIJDER BERICHT",
         "noAddresses": "GEEN ADRESSEN",
         "spent": "Uitgegeven"
@@ -197,13 +197,13 @@
     },
     "send": {
         "invalidAddress": "Ongeldig adres",
-        "invalidAddressExplanation1": "Adres moet {{maxLength}} tekens lang zijn en moet een controle bevatten.",
+        "invalidAddressExplanation1": "Adres moet {{maxLength}} tekens lang zijn en moet een controlesom bevatten.",
         "invalidAddressExplanation2": "Adres bevat ongeldige tekens.",
         "invalidAddressExplanation3": "Adres bevat een ongeldige controlesom.",
         "invalidAddressExplanationGeneric": "Geldige adressen zijn 90 tekens lang en bevatten alleen A-Z of 9.",
         "notEnoughFunds": "Onvoldoende saldo",
-        "notEnoughFundsExplanation": "U hoeft niet genoeg IOTA om deze overdracht te voltooien.",
-        "keyReuse": "Sleutel hergebruik",
+        "notEnoughFundsExplanation": "U heeft onvoldoende IOTA om deze transactie te voltooien.",
+        "keyReuse": "Sleutelhergebruik",
         "keyReuseExplanation": "Het adres waar u naar probeert te versturen is al een keer gebruikt. Probeer een ander adres.",
         "recipientAddress": "Adres van de ontvanger",
         "amount": "Aantal",
@@ -239,8 +239,8 @@
         "modesExplanation": "Schakel Expert modus alleen in als u een ervaren Tangle-gebruiker bent. Anders kan het verwarrend zijn."
     },
     "settings": {
-        "transferSending": "Overdracht in behandeling",
-        "transferSendingExplanation": "Een moment geduld, uw overdracht is nog in behandeling.",
+        "transferSending": "Transactie in behandeling",
+        "transferSendingExplanation": "Een moment geduld, uw transactie is nog in behandeling.",
         "generatingAddress": "Ontvangstadres wordt gegenereerd",
         "generatingAddressExplanation": "Een moment geduld. Uw adres wordt gegenereerd.",
         "mode": "Modus",
@@ -294,7 +294,7 @@
     },
     "welcome": {
         "thankYou": "Bedankt voor het downloaden van de IOTA wallet.",
-        "weWillSpend": "We zullen een moment nodig hebben om uw wallet op te zetten.",
+        "weWillSpend": "De komende minuten zijn we bezig met het installeren van uw wallet.",
         "reminder": "Het is belangrijk om dit proces helemaal te voltooien. Sla geen stappen over."
     },
     "writeSeedDown": {
@@ -303,9 +303,9 @@
     },
     "history": {
         "bundleHashCopied": "Bundel hash gekopieerd",
-        "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het Klembord.",
+        "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het klembord.",
         "addressCopied": "Adres gekopieerd",
-        "addressCopiedExplanation": "Het adres is naar het Klembord gekopieerd.",
+        "addressCopiedExplanation": "Het adres is naar het klembord gekopieerd.",
         "send": "VERSTUUR",
         "receive": "ONTVANG"
     },
@@ -432,9 +432,9 @@
     },
     "pow": {
         "feeless": "Een bewijs van inspanning (Proof of Work) is nodig om kostenloze transacties in IOTA te verzenden.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
+        "localOrRemote": "Bewijs van inspanning kan lokaal gedaan worden op uw apparaat, of overgedragen worden aan een node.",
+        "local": "Lokaal",
+        "remote": "Extern"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot transitie kan niet worden voltooid",
