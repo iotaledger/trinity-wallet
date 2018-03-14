@@ -310,11 +310,11 @@
         "receive": "ONTVANG"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
+        "viewSeed": "Sleutel bekijken",
+        "viewAddresses": "Bekijk adressen",
+        "editAccountName": "Accountnaam bewerken",
         "deleteAccount": "Account verwijderen",
-        "addNewAccount": "Add new account"
+        "addNewAccount": "Nieuw account toevoegen"
     },
     "addCustomNode": {
         "customNode": "Aangepaste node",
@@ -400,24 +400,24 @@
         "fingerprintUnavailable": "Vingerafdruksensor niet beschikbaar",
         "fingerprintUnavailableExplanation": "Uw apparaat ondersteunt geen vingerafdrukherkenning of dit niet is geconfigureerd in de apparaatinstellingen.",
         "buttonInstructionsDisable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "buttonInstructionsEnable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen.",
+        "instructionsLogin": "Druk op de vingerafdruklezer om in te loggen."
     },
     "transferConfirmation": {
         "youAreAbout": "U staat op het punt om {{contents}} te versturen naar het adres",
-        "aMessage": "a message"
+        "aMessage": "een bericht"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "wrongCode": "Verkeerde code",
+        "wrongCodeExplanation": "De ingevoerde code is onjuist.",
+        "emptyCode": "Lege code",
+        "emptyCodeExplanation": "Voer een code in en probeer het opnieuw.",
+        "keyCopied": "Sleutel naar het klembord gekopieerd",
+        "keyCopiedExplanation": "Uw 2FA-sleutel is naar het klembord gekopieerd.",
+        "addKey": "Voeg deze sleutel toe aan uw 2FA app",
+        "key": "Sleutel",
+        "twoFAEnabled": "2FA is nu ingeschakeld",
+        "twoFAEnabledExplanation": "U hebt de Twee-staps verificatie nu ingeschakeld.",
         "enterCode": "Enter the code from your 2FA app",
         "code": "Code"
     },
