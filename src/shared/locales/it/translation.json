@@ -361,9 +361,9 @@
         "enterPassword": "Immetti la tua password per cancellare il conto."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "outOfSync": "La cronologia delle tue transazioni ti sembra non sincronizzata?",
+        "pressToSync": "Premi il pulsante sotto per sincronizzare il conto.",
+        "thisMayTake": "Questo potrebbe richiedere del tempo. È possibile notare rallentamenti del dispositivo.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "SINCRONIZZA CONTO",
         "syncingYourAccount": "Sto sincronizzando il tuo conto."
