@@ -5,7 +5,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { Balance } from '../../containers/balance';
+import { Balance } from '../../containers/Balance';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,

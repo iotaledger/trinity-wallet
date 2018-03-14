@@ -2,7 +2,7 @@ import assign from 'lodash/assign';
 import noop from 'lodash/noop';
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Send } from '../../containers/send';
+import { Send } from '../../containers/Send';
 
 jest.mock('react-native-camera', () => {});
 jest.mock('react-native-is-device-rooted', () => ({
