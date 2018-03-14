@@ -161,7 +161,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seedet er ikke blevet genereret",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Vær venlig at generere et nyt seed.",
         "pressForNewSeed": "TRYK FOR AT FÅ ET NYT SEED",
         "individualLetters": "Tryk på individuelle bogstaver for at vælge nye tilfældigt."
     },
@@ -178,30 +178,30 @@
     "receive": {
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "NY ADRESSE",
         "message": "Valgfri besked",
         "removeMessage": "FJERN BESKED",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "INGEN ADRESSER",
+        "spent": "Forbrugt"
     },
     "saveYourSeed": {
         "seedCleared": "Seed ryddet",
         "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>Du skal gemme dit seed med </0><1>mindst én</1><2> af valgmulighederne herunder.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Forkert seed",
         "incorrectSeedExplanation": "Seedet, du indtastede, er forkert. Prøv venligst igen.",
         "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "Gå venligst tilbage og gem dit seed, hvis du ikke allerede har gjort dette."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
         "invalidAddressExplanation1": "Adressen bør indeholde {{maxLength}} tegn og skal have en kontrolsum.",
         "invalidAddressExplanation2": "Adressen indeholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressen indeholder en ugyldig kontrolsum.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
-        "notEnoughFunds": "Insufficient funds",
+        "invalidAddressExplanationGeneric": "Gyldige adresser skal være på 90 tegn og må kun indeholde A-Z eller 9.",
+        "notEnoughFunds": "Utilstrækkelig saldo",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til at gennemføre denne overførsel.",
         "keyReuse": "Nøglegenbrug",
         "keyReuseExplanation": "Adressen, du forsøger at sende til, er allerede blevet brugt. Prøv venligst en anden adresse.",
@@ -209,8 +209,8 @@
         "amount": "Beløb",
         "max": "MAKS.",
         "message": "Besked",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "Ugyldig besked",
+        "invalidMessageExplanation": "Dit besked indeholder ugyldige tegn.",
         "send": "SEND",
         "invalidAmount": "Forkert beløb indtastet",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
