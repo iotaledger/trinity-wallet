@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
-import CtaButton from '../components/ctaButton';
-import { height } from '../util/dimensions';
+import CtaButton from '../components/CtaButton';
+import { height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     activityIndicator: {

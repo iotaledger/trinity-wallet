@@ -18,10 +18,10 @@ import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.p
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import tinycolor from 'tinycolor2';
 import GENERAL from '../theme/general';
-import CtaButton from '../components/ctaButton';
-import { isAndroid, isIOS } from '../util/device';
-import { width, height } from '../util/dimensions';
-import DynamicStatusBar from '../components/dynamicStatusBar';
+import CtaButton from '../components/CtaButton';
+import { isAndroid, isIOS } from '../utils/device';
+import { width, height } from '../utils/dimensions';
+import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

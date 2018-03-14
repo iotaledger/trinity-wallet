@@ -8,12 +8,12 @@ import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
-import OnboardingButtons from '../components/onboardingButtons';
-import DynamicStatusBar from '../components/dynamicStatusBar';
+import OnboardingButtons from '../components/OnboardingButtons';
+import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     container: {

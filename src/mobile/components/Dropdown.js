@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, ListView, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
 import Triangle from 'react-native-triangle';
 import { connect } from 'react-redux';
-import { isAndroid } from '../util/device';
-import { width, height } from '../util/dimensions';
+import { isAndroid } from '../utils/device';
+import { width, height } from '../utils/dimensions';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 

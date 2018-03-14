@@ -3,7 +3,7 @@ import { BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { isAndroid } from '../util/device';
+import { isAndroid } from '../utils/device';
 
 const mapStateToProps = (state) => ({
     body: state.settings.theme.body,

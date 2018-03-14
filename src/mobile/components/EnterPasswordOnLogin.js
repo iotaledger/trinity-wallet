@@ -5,9 +5,9 @@ import RNExitApp from 'react-native-exit-app';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import GENERAL from '../theme/general';
-import { width, height } from '../util/dimensions';
-import OnboardingButtons from './onboardingButtons';
-import CustomTextInput from './customTextInput';
+import { width, height } from '../utils/dimensions';
+import OnboardingButtons from './OnboardingButtons';
+import CustomTextInput from './CustomTextInput';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

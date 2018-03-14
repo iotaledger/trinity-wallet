@@ -4,8 +4,8 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import tinycolor from 'tinycolor2';
 import Switch from 'react-native-switch-pro';
-import Fonts from '../theme/Fonts';
-import { width, height } from '../util/dimensions';
+import Fonts from '../theme/fonts';
+import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 

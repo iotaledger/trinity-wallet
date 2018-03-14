@@ -1,7 +1,7 @@
 import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { isIPhoneX } from '../util/device';
+import { isIPhoneX } from '../utils/device';
 
 export default function withSafeAreaView(WrappedComponent) {
     function EnhancedComponent(props) {

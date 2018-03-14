@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
 import tinycolor from 'tinycolor2';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({

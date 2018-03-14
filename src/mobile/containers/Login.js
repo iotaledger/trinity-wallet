@@ -15,16 +15,16 @@ import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import WithBackPressCloseApp from '../components/withBackPressCloseApp';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import NodeSelection from '../components/nodeSelection';
-import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
-import Enter2FA from '../components/enter2FA';
-import StatefulDropdownAlert from './statefulDropdownAlert';
-import keychain, { getPasswordFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
+import WithBackPressCloseApp from '../components/BackPressCloseApp';
+import DynamicStatusBar from '../components/DynamicStatusBar';
+import NodeSelection from '../components/NodeSelection';
+import EnterPasswordOnLogin from '../components/EnterPasswordOnLogin';
+import Enter2FA from '../components/Enter2FA';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
+import keychain, { getPasswordFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     container: {

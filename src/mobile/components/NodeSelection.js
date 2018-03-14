@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
-import DropdownComponent from '../components/dropdown';
-import { width, height } from '../util/dimensions';
+import DropdownComponent from '../components/Dropdown';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

@@ -17,10 +17,10 @@ import {
     getBalanceForSelectedAccountViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
-import SimpleTransactionRow from '../components/simpleTransactionRow';
-import Chart from '../components/chart';
-import { width, height } from '../util/dimensions';
-import { isAndroid } from '../util/device';
+import SimpleTransactionRow from '../components/SimpleTransactionRow';
+import Chart from '../components/Chart';
+import { width, height } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {

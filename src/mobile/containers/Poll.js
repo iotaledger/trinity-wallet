@@ -17,7 +17,7 @@ import {
     getAccountInfo,
     promoteTransfer,
 } from 'iota-wallet-shared-modules/actions/polling';
-import keychain, { getSeed } from '../util/keychain';
+import keychain, { getSeed } from '../utils/keychain';
 
 export class Poll extends Component {
     static propTypes = {

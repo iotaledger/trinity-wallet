@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Key
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Modal from 'react-native-modal';
-import Fonts from '../theme/Fonts';
-import OnboardingButtons from '../components/onboardingButtons';
-import { width, height } from '../util/dimensions';
-import CustomTextInput from '../components/customTextInput';
+import Fonts from '../theme/fonts';
+import OnboardingButtons from '../components/OnboardingButtons';
+import { width, height } from '../utils/dimensions';
+import CustomTextInput from '../components/CustomTextInput';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 

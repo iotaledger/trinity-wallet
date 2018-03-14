@@ -9,7 +9,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-nativ
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

@@ -9,13 +9,13 @@ import { Navigation } from 'react-native-navigation';
 import { clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import Fonts from '../theme/Fonts';
-import CustomTextInput from '../components/customTextInput';
-import OnboardingButtons from '../components/onboardingButtons';
-import StatefulDropdownAlert from './statefulDropdownAlert';
-import { width, height } from '../util/dimensions';
+import { getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
+import DynamicStatusBar from '../components/DynamicStatusBar';
+import Fonts from '../theme/fonts';
+import CustomTextInput from '../components/CustomTextInput';
+import OnboardingButtons from '../components/OnboardingButtons';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
