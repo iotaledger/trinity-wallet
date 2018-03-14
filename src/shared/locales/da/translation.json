@@ -213,7 +213,7 @@
         "invalidMessageExplanation": "Dit besked indeholder ugyldige tegn.",
         "send": "SEND",
         "invalidAmount": "Forkert beløb indtastet",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Angiv et gyldigt posteringsbeløb. Det kan være nyttigt at se IOTAs enhedsforklaring i bunden af denne side.",
         "maximumSelected": "MAKSIMALT beløb valgt",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"
@@ -233,10 +233,10 @@
         "youCanAdd": "Du kan tilføje flere seeds i menuen \"Indstillinger\"."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "expert": "Ekspert",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "Ekspert-tilstand vil give adgang til yderligere funktioner såsom 'manuel promotion' og 'reattachment'.",
+        "modesExplanation": "Aktiver kun ekspert-tilstand, hvis du er en erfaren Tangle bruger. Ellers vil det muligvis virke uigennemskueligt."
     },
     "settings": {
         "transferSending": "Overførsel sendes",
@@ -247,7 +247,7 @@
         "theme": "Tema",
         "currency": "Valuta",
         "language": "Sprog",
-        "accountManagement": "Account management",
+        "accountManagement": "Konto administration",
         "addNewSeed": "Tilføj nyt seed",
         "twoFA": "Totrinsbekræftelse",
         "changePassword": "Skift adgangskode",
@@ -262,7 +262,7 @@
         "accountDeletedExplanation": "Din konto er blevet fjernet fra tegnebogen.",
         "cannotPerformAction": "Kan ikke udføre handling",
         "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen.",
-        "poorConnection": "Poor connection",
+        "poorConnection": "Dårlig forbindelse",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "Hide",
         "hideOthers": "Hide Others",
