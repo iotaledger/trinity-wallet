@@ -286,8 +286,8 @@
         "reset": "RESET"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
+        "okay": "Okei. Seadistame sinu rahakoti ära!",
+        "doYouAlreadyHaveASeed": "Kas teil on juba seeme, mida te sooviksite kasutada?",
         "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Please keep your seed safe."
@@ -394,11 +394,11 @@
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
         "fingerprintAuthFailed": "Fingerprint authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "status": "Olek",
+        "enabled": "Sees",
+        "disabled": "Väljas",
+        "fingerprintUnavailable": "Sõrmejäljelugeja pole saadaval",
+        "fingerprintUnavailableExplanation": "Teie seade ei toeta sõrmejäljetuvastust või on teie seadme sätetes seadistamata.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "instructionsLogin": "Touch fingerprint reader to log in."
@@ -424,7 +424,7 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Muutus",
-        "volume": "Volume (24h)"
+        "volume": "Maht (24h)"
     },
     "rootDetection": {
         "warning": "HOIATUS",
