@@ -200,7 +200,7 @@
         "invalidAddressExplanation1": "L'indirizzo deve essere {{maxLength}} caratteri e deve avere un valore di checksum.",
         "invalidAddressExplanation2": "L'indirizzo contiene caratteri non validi.",
         "invalidAddressExplanation3": "L'indirizzo contiene un checksum non valido.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanationGeneric": "Un indirizzo valido consta di 90 caratteri e contiene solo A-Z o 9.",
         "notEnoughFunds": "Fondi insufficienti",
         "notEnoughFundsExplanation": "Non hai abbastanza IOTA per completare questo trasferimento.",
         "keyReuse": "Riutilizzo di chiave",
@@ -364,7 +364,7 @@
         "outOfSync": "La cronologia delle tue transazioni ti sembra non sincronizzata?",
         "pressToSync": "Premi il pulsante sotto per sincronizzare il conto.",
         "thisMayTake": "Questo potrebbe richiedere del tempo. È possibile notare rallentamenti del dispositivo.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "doNotClose": "Attenzione, se si minimizza l'app la sincronizzazione si annulla.",
         "syncAccount": "SINCRONIZZA CONTO",
         "syncingYourAccount": "Sto sincronizzando il tuo conto."
     },
