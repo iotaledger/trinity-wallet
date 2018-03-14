@@ -287,8 +287,8 @@
     },
     "walletSetup": {
         "okay": "Oke. We gaan uw wallet instellen!",
-        "doYouAlreadyHaveASeed": "Heeft u al een sleutel die u zou willen gebruiken?",
-        "seedExplanation": "De toegangscode van uw IOTA wallet is als een gebruikersnaam en wachtwoord samengevoegd in een sleutel van 81 karakters.",
+        "doYouAlreadyHaveASeed": "Heeft u al een seed die u zou willen gebruiken?",
+        "seedExplanation": "De IOTA-seed is als een gebruikersnaam en wachtwoord voor uw account, samengevoegd in een tekenreeks van 81 karakters.",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Houd uw sleutel veilig."
     },
