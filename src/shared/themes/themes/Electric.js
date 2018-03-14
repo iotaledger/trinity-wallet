@@ -7,7 +7,7 @@ export default {
     negative: { color: '#CF6666', hover: '#B94006', body: '#1E1E1E' },
     highlight: { color: '#DFD386', hover: '#D4C363', body: '#1E1E1E' },
     extra: { color: '#88D4FF', hover: '#669FBF', body: '#1E1E1E' },
-    label: { color: '#F0F2F6', hover: '#66CF72', active: '#19D5FC' },
+    label: { color: '#F0F2F6', hover: '#19D5FC' },
     input: { color: '#1E1E1E', bg: '#FFFFFF', alt: '#727272' },
     inputOptional: { color: '#1E1E1E', bg: '#FFFFFF', alt: '#727272' },
     chart: { color: '#FA76FF' },
