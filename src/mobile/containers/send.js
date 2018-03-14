@@ -579,29 +579,27 @@ export class Send extends Component {
         const value = parseInt(parseFloat(formattedAmount) * this.getUnitMultiplier(), 10);
 
         this.props.getFromKeychainRequest('send', 'makeTransaction');
-        getSeedFromKeychain(password, selectedAccountName)
-            .then((seed) => {
-                this.props.getFromKeychainSuccess('send', 'makeTransaction');
+        getSeedFromKeychain(password, selectedAccountName).then((seed) => {
+            this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
-                if (seed !== null) {
+            if (seed !== null) {
+                let powFn = null;
 
-                    let powFn = null;
-
-                    if (isAndroid) {
-                        powFn = NativeModules.PoWModule.doPoW;
-                    } else if (isIOS) {
-                      //  powFn = NativeModules.Iota.doPoW;
-                    }
-
-                    return this.props.prepareTransfer(seed, address, value, message, selectedAccountName, powFn);
+                if (isAndroid) {
+                    powFn = NativeModules.PoWModule.doPoW;
+                } else if (isIOS) {
+                    powFn = NativeModules.Iota.doPoW;
                 }
-                this.props.getFromKeychainError('send', 'makeTransaction');
-                return this.props.generateAlert(
-                    'error',
-                    t('global:somethingWentWrong'),
-                    t('global:somethingWentWrongTryAgain'),
-                );
-            });
+
+                return this.props.prepareTransfer(seed, address, value, message, selectedAccountName, powFn);
+            }
+            this.props.getFromKeychainError('send', 'makeTransaction');
+            return this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongTryAgain'),
+            );
+        });
     }
 
     renderModalContent = () => <View>{this.state.modalContent}</View>;
