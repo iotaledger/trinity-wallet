@@ -80,9 +80,9 @@
         "cannotSendToOwnExplanation": "U kunt geen transactie sturen naar een van uw eigen adressen.",
         "pleaseWait": "Een ogenblik geduld",
         "pleaseWaitExplanation": "Trinity voert een andere functie uit. Wacht even en probeer het opnieuw.",
-        "pleaseWaitTransferExplanation": "Uw balans wordt momenteel gebruikt in andere transacties. Wacht op een bevestiging hiervan, voordat u het opnieuw probeert.",
+        "pleaseWaitTransferExplanation": "Uw saldo wordt momenteel gebruikt in andere transacties. Wacht op een bevestiging hiervan, voordat u het opnieuw probeert.",
         "snapshotTransitionInProgress": "Snapshot transitie in uitvoering",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgressExplanation": "Wacht tot de transitie is voltooid."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -437,9 +437,9 @@
         "remote": "Remote"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransition": "Snapshot transitie kan niet worden voltooid",
+        "cannotCompleteTransitionExplanation": "Uw saldo moet groter zijn dan 0 om de transitie te voltooien.",
+        "transitionComplete": "Snapshot transitie voltooid",
+        "transitionCompleteExplanation": "De snapshot transitie is voltooid."
     }
 }
