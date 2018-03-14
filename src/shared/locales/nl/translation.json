@@ -213,9 +213,9 @@
         "invalidMessageExplanation": "Uw bericht bevat ongeldige tekens.",
         "send": "VERSTUUR",
         "invalidAmount": "Onjuist aantal ingevoerd",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Voer een geldig transactiebedrag in. Het kan handig zijn om de uitleg van IOTA-eenheden onderaan de pagina te bekijken.",
         "maximumSelected": "MAXIMUM aantal geselecteerd",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "Uitleg IOTA eenheden",
         "sendMax": "MAX VERZENDEN"
     },
     "setPassword": {
@@ -234,9 +234,9 @@
     },
     "modeSelection": {
         "expert": "Expert",
-        "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "standard": "Standaard",
+        "expertModeExplanation": "De Expert modus geeft toegang tot extra functies, zoals handmatige promotie en opnieuw koppelen.",
+        "modesExplanation": "Schakel Expert modus alleen in als u een ervaren Tangle-gebruiker bent. Anders kan het verwarrend zijn."
     },
     "settings": {
         "transferSending": "Overdracht in behandeling",
@@ -247,7 +247,7 @@
         "theme": "Thema",
         "currency": "Valuta",
         "language": "Taal",
-        "accountManagement": "Account management",
+        "accountManagement": "Accountbeheer",
         "addNewSeed": "Nieuwe sleutel toevoegen",
         "twoFA": "Twee-staps verificatie (2FA)",
         "changePassword": "Wachtwoord wijzigen",
@@ -273,9 +273,9 @@
         "copy": "Kopieer",
         "paste": "Plak",
         "selectAll": "Selecteer alles",
-        "securitySettings": "Security settings",
-        "fingerprint": "Biometric authentication",
-        "couldNotFetchRates": "Could not fetch rates",
+        "securitySettings": "Beveiligingsinstellingen",
+        "fingerprint": "Biometrische verificatie",
+        "couldNotFetchRates": "Koersen kunnen niet opgehaald worden",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
