@@ -267,12 +267,12 @@
         "hide": "Verberg",
         "hideOthers": "Verberg anderen",
         "showAll": "Toon alles",
-        "quit": "Afsluiten",
-        "edit": "Bewerken",
-        "cut": "Knippen",
-        "copy": "Kopiëren",
-        "paste": "Plakken",
-        "selectAll": "Selecteer Alles",
+        "quit": "Stop",
+        "edit": "Bewerk",
+        "cut": "Knip",
+        "copy": "Kopieer",
+        "paste": "Plak",
+        "selectAll": "Selecteer alles",
         "securitySettings": "Security settings",
         "fingerprint": "Biometric authentication",
         "couldNotFetchRates": "Could not fetch rates",
@@ -282,7 +282,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "ANNULEREN",
+        "cancel": "ANNULEER",
         "reset": "RESET"
     },
     "walletSetup": {
