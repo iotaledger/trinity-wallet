@@ -276,12 +276,12 @@
         "securitySettings": "Beveiligingsinstellingen",
         "fingerprint": "Biometrische verificatie",
         "couldNotFetchRates": "Koersen kunnen niet opgehaald worden",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "couldNotFetchRatesExplanation": "Er ging iets mis bij het ophalen van de wisselkoers voor {{currency}}.",
+        "fetchedConversionRates": "Wisselkoersen opgehaald",
+        "fetchedConversionRatesExplanation": "Recentste wisselkoersen opgehaald voor {{currency}}."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Voer uw wachtwoord in om de wallet opnieuw in te stellen.",
         "cancel": "ANNULEER",
         "reset": "RESET"
     },
@@ -289,7 +289,7 @@
         "okay": "Oke. We gaan uw wallet instellen!",
         "doYouAlreadyHaveASeed": "Heeft u al een sleutel die u zou willen gebruiken?",
         "seedExplanation": "De IOTA-sleutel is als een gebruikersnaam en wachtwoord voor uw account, samengevoegd in een tekenreeks van 81 karakters.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>U krijgt hiermee toegang tot uw saldo vanuit</0><1>elke wallet</1><2>, op</2><3>elk apparaat</3><4>. Maar als u uw sleutel verliest, verliest u daarmee ook uw IOTA.</4></0>",
         "keepSafe": "Houd uw sleutel veilig."
     },
     "welcome": {
@@ -298,7 +298,7 @@
         "reminder": "Het is belangrijk om dit proces helemaal te voltooien. Sla geen stappen over."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "yourSeedIs": "Uw sleutel is {{maxSeedLength}} tekens van links naar rechts gelezen.",
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
