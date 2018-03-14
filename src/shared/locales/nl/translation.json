@@ -299,7 +299,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Uw sleutel is {{maxSeedLength}} tekens van links naar rechts gelezen.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed": "<0>Schrijf uw sleutel en controlesom nauwkeurig op en</0> <1>controleer nogmaals</1> <2>of ze overeenkomen.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundel hash gekopieerd",
@@ -307,7 +307,7 @@
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Het adres is naar het Klembord gekopieerd.",
         "send": "VERSTUUR",
-        "receive": "RECEIVE"
+        "receive": "ONTVANG"
     },
     "accountManagement": {
         "viewSeed": "View seed",
