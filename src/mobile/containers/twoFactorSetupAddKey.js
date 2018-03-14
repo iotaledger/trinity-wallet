@@ -120,7 +120,7 @@ export class TwoFactorSetupAddKey extends Component {
         Clipboard.setString(' ');
         const { t, body, password } = this.props;
 
-        storeTwoFactorAuthKeyInKeychain(password, this.state.authKey)
+        return storeTwoFactorAuthKeyInKeychain(password, this.state.authKey)
             .then(() => {
                 this.props.navigator.push({
                     screen: 'twoFactorSetupEnterToken',
@@ -143,7 +143,7 @@ export class TwoFactorSetupAddKey extends Component {
                     'error',
                     t('global:somethingWentWrong'),
                     t('global:somethingWentWrongTryAgain'),
-                )
+                ),
             );
     }
 
