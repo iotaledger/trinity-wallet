@@ -1,4 +1,3 @@
-import isEmpty from 'lodash/isEmpty';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -9,7 +8,8 @@ import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-w
 import { clearTempData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import CustomTextInput from '../components/customTextInput';
-import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
+import { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain, getAllSeedsFromKeychain } from '../util/keychain';
+import { getPasswordHash } from '../util/crypto';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { isAndroid } from '../util/device';
@@ -83,7 +83,6 @@ class SetPassword extends Component {
 
     constructor() {
         super();
-
         this.state = {
             password: '',
             reentry: '',
@@ -92,10 +91,10 @@ class SetPassword extends Component {
 
     onDonePress() {
         const { body } = this.props;
-        const ifNoKeychainDuplicates = (password, seed, accountName) => {
-            storeSeedInKeychain(password, seed, accountName)
+        const ifNoKeychainDuplicates = (pwdHash, seed, accountName) => {
+            storeSeedInKeychain(pwdHash, seed, accountName)
                 .then(() => {
-                    this.props.setPassword(password);
+                    this.props.setPassword(pwdHash);
                     this.props.addAccountName(accountName);
                     this.props.increaseSeedCount();
                     this.props.clearTempData();
@@ -117,43 +116,39 @@ class SetPassword extends Component {
                         animated: false,
                     });
                 })
-                .catch((err) => console.error(err));
+                .catch(() => {
+                    this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongRestart'),
+                    );
+                });
         };
 
         const { t, seed, accountName } = this.props;
         const { password, reentry } = this.state;
 
         if (password.length >= MIN_PASSWORD_LENGTH && password === reentry) {
-            keychain
-                .get()
-                .then((credentials) => {
-                    if (isEmpty(credentials)) {
-                        return ifNoKeychainDuplicates(password, seed, accountName);
-                    }
+            const pwdHash = getPasswordHash(password);
 
-                    if (hasDuplicateAccountName(credentials.data, accountName)) {
+            getAllSeedsFromKeychain(pwdHash)
+                .then((seedInfo) => {
+                    if (hasDuplicateAccountName(seedInfo, accountName)) {
                         return this.props.generateAlert(
                             'error',
                             t('addAdditionalSeed:nameInUse'),
                             t('addAdditionalSeed:nameInUseExplanation'),
                         );
-                    } else if (hasDuplicateSeed(credentials.data, seed)) {
+                    } else if (hasDuplicateSeed(seedInfo, seed)) {
                         return this.props.generateAlert(
                             'error',
                             t('addAdditionalSeed:seedInUse'),
                             t('addAdditionalSeed:seedInUseExplanation'),
                         );
                     }
-
-                    return ifNoKeychainDuplicates(password, seed, accountName);
-                })
-                .catch(() => {
-                    this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongExplanation'),
-                    );
+                    return ifNoKeychainDuplicates(pwdHash, seed, accountName);
                 });
+
         } else if (!(password === reentry)) {
             this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
         } else if (password.length < MIN_PASSWORD_LENGTH || reentry.length < MIN_PASSWORD_LENGTH) {

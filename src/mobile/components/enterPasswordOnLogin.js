@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import RNExitApp from 'react-native-exit-app';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
-import { connect } from 'react-redux';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import OnboardingButtons from './onboardingButtons';
@@ -84,7 +83,7 @@ class EnterPasswordOnLogin extends Component {
     };
 
     render() {
-        const { t, theme, password, isFingerprintEnabled } = this.props;
+        const { t, theme, password } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -105,8 +104,6 @@ class EnterPasswordOnLogin extends Component {
                             onSubmitEditing={this.handleLogin}
                             theme={theme}
                             value={password}
-                            fingerprintAuthentication={isFingerprintEnabled}
-                            onFingerprintPress={() => this.props.activateFingerPrintScanner()}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -129,12 +126,6 @@ EnterPasswordOnLogin.propTypes = {
     theme: PropTypes.object.isRequired,
     navigateToNodeSelection: PropTypes.func.isRequired,
     setLoginPasswordField: PropTypes.func.isRequired,
-    isFingerprintEnabled: PropTypes.bool.isRequired,
-    activateFingerPrintScanner: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-    isFingerprintEnabled: state.account.isFingerprintEnabled,
-});
-
-export default translate(['login', 'global'])(connect(mapStateToProps)(EnterPasswordOnLogin));
+export default translate(['login', 'global'])(EnterPasswordOnLogin);

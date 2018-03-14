@@ -47,12 +47,12 @@ export const ActionTypes = {
     SET_NEW_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/SET_NEW_UNCONFIRMED_BUNDLE_TAILS',
     UPDATE_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/UPDATE_UNCONFIRMED_BUNDLE_TAILS',
     REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS',
-    FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST',
-    FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS',
-    FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR',
-    FULL_ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FETCH_REQUEST',
-    FULL_ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FETCH_SUCCESS',
-    FULL_ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FETCH_ERROR',
+    FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST',
+    FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS',
+    FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR',
+    FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST',
+    FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS',
+    FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR',
     MANUAL_SYNC_REQUEST: 'IOTA/ACCOUNT/MANUAL_SYNC_REQUEST',
     MANUAL_SYNC_SUCCESS: 'IOTA/ACCOUNT/MANUAL_SYNC_SUCCESS',
     MANUAL_SYNC_ERROR: 'IOTA/ACCOUNT/MANUAL_SYNC_ERROR',
@@ -77,30 +77,30 @@ export const manualSyncError = () => ({
     type: ActionTypes.MANUAL_SYNC_ERROR,
 });
 
-export const fullAccountInfoForFirstUseFetchRequest = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST,
+export const fullAccountInfoAdditionalSeedFetchRequest = () => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST,
 });
 
-export const fullAccountInfoForFirstUseFetchSuccess = (payload) => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS,
+export const fullAccountInfoAdditionalSeedFetchSuccess = (payload) => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS,
     payload,
 });
 
-export const fullAccountInfoForFirstUseFetchError = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR,
+export const fullAccountInfoAdditionalSeedFetchError = () => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR,
 });
 
-export const fullAccountInfoFetchRequest = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST,
+export const fullAccountInfoFirstSeedFetchRequest = () => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST,
 });
 
-export const fullAccountInfoFetchSuccess = (payload) => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS,
+export const fullAccountInfoFirstSeedFetchSuccess = (payload) => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS,
     payload,
 });
 
-export const fullAccountInfoFetchError = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR,
+export const fullAccountInfoFirstSeedFetchError = () => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR,
 });
 
 export const setFirstUse = (payload) => ({
@@ -201,7 +201,7 @@ export const updateAccountAfterReattachment = (payload) => ({
     payload,
 });
 
-export const fetchFullAccountInfoForFirstUse = (
+export const getFullAccountInfoAdditionalSeed = (
     seed,
     accountName,
     password,
@@ -214,10 +214,10 @@ export const fetchFullAccountInfoForFirstUse = (
         }
 
         dispatch(generateAccountInfoErrorAlert(err));
-        dispatch(fullAccountInfoForFirstUseFetchError());
+        dispatch(fullAccountInfoAdditionalSeedFetchError());
     };
 
-    dispatch(fullAccountInfoForFirstUseFetchRequest());
+    dispatch(fullAccountInfoAdditionalSeedFetchRequest());
     getAccountData(seed, accountName)
         .then((data) => {
             dispatch(clearTempData()); // Clean up partial state for reducer.
@@ -228,15 +228,15 @@ export const fetchFullAccountInfoForFirstUse = (
         )
         .then((dataWithPendingTxHashesForSpentAddresses) => {
             storeInKeychainPromise(password, seed, accountName)
-                .then(() => dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithPendingTxHashesForSpentAddresses)))
+                .then(() => dispatch(fullAccountInfoAdditionalSeedFetchSuccess(dataWithPendingTxHashesForSpentAddresses)))
                 .catch((err) => onError(err));
         })
         .catch((err) => onError(err));
 };
 
-export const getFullAccountInfo = (seed, accountName, navigator = null) => {
+export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null) => {
     return (dispatch) => {
-        dispatch(fullAccountInfoFetchRequest());
+        dispatch(fullAccountInfoFirstSeedFetchRequest());
 
         getAccountData(seed, accountName)
             .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
@@ -244,12 +244,12 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
                 mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
             )
             .then((dataWithPendingTxHashesForSpentAddresses) =>
-                dispatch(fullAccountInfoFetchSuccess(dataWithPendingTxHashesForSpentAddresses)),
+                dispatch(fullAccountInfoFirstSeedFetchSuccess(dataWithPendingTxHashesForSpentAddresses)),
             )
             .catch((err) => {
                 pushScreen(navigator, 'login');
                 dispatch(generateAccountInfoErrorAlert(err));
-                dispatch(fullAccountInfoFetchError());
+                dispatch(fullAccountInfoFirstSeedFetchError());
             });
     };
 };
