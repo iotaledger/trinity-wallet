@@ -8,16 +8,15 @@ import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
-import OnboardingButtons from '../components/onboardingButtons';
+import OnboardingButtons from '../components/OnboardingButtons';
 import { persistor } from '../store';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import FONTS from '../theme/Fonts';
-import keychain from '../util/keychain';
-import CustomTextInput from '../components/customTextInput';
-import StatefulDropdownAlert from './statefulDropdownAlert';
+import DynamicStatusBar from '../components/DynamicStatusBar';
+import Fonts from '../theme/fonts';
+import keychain from '../utils/keychain';
+import CustomTextInput from '../components/CustomTextInput';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { Icon } from '../theme/icons.js';
-
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     generalText: {
-        fontFamily: FONTS.secondary,
+        fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         paddingBottom: height / 10,

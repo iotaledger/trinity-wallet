@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
-import { Letter } from './letter';
+import { Letter } from './Letter';
 
 const spacingForLetterIndex = (letters, index, spacing) => (letters.length - 1 === index ? 0 : spacing);
 

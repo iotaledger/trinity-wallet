@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity, Text, ListView } from 'react-native';
 import { formatTimeAs } from 'iota-wallet-shared-modules/libs/dateUtils';
-
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });

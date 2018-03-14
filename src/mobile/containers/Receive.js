@@ -16,12 +16,12 @@ import {
     getFromKeychainSuccess,
     getFromKeychainError,
 } from 'iota-wallet-shared-modules/actions/keychain';
-import keychain, { getSeed } from '../util/keychain';
+import keychain, { getSeed } from '../utils/keychain';
 import GENERAL from '../theme/general';
-import CustomTextInput from '../components/customTextInput';
-import GenerateAddressButton from '../components/generateAddressButton';
-import { width, height } from '../util/dimensions';
-import { isAndroid } from '../util/device';
+import CustomTextInput from '../components/CustomTextInput';
+import GenerateAddressButton from '../components/GenerateAddressButton';
+import { width, height } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {

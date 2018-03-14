@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback, AppState } from 'react-native';
-import Fonts from '../theme/Fonts';
-import Seedbox from '../components/seedBox';
-import CustomTextInput from '../components/customTextInput';
-import keychain, { getSeed } from '../util/keychain';
-import { width, height } from '../util/dimensions';
+import Fonts from '../theme/fonts';
+import Seedbox from '../components/SeedBox';
+import CustomTextInput from '../components/CustomTextInput';
+import keychain, { getSeed } from '../utils/keychain';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
-import CtaButton from '../components/ctaButton';
+import CtaButton from '../components/CtaButton';
 
 const styles = StyleSheet.create({
     container: {

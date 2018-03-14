@@ -33,18 +33,18 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
 import KeepAwake from 'react-native-keep-awake';
-import LogoutConfirmationModal from '../components/logoutConfirmationModal';
-import SettingsContent from '../components/settingsContent';
+import LogoutConfirmationModal from '../components/LogoutConfirmationModal';
+import SettingsContent from '../components/SettingsContent';
 import keychain, {
     hasDuplicateAccountName,
     hasDuplicateSeed,
     getSeed,
     updateAccountNameInKeychain,
     deleteFromKeychain,
-} from '../util/keychain';
+} from '../utils/keychain';
 import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
-import { height } from '../util/dimensions';
-import { isAndroid } from '../util/device';
+import { height } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {

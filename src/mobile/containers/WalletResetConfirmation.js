@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import WithBackPressGoToHome from '../components/withBackPressGoToHome';
-import { width, height } from '../util/dimensions';
-import Fonts from '../theme/Fonts';
-import OnboardingButtons from '../components/onboardingButtons';
-import DynamicStatusBar from '../components/dynamicStatusBar';
+import WithBackPressGoToHome from '../components/BackPressGoToHome';
+import { width, height } from '../utils/dimensions';
+import Fonts from '../theme/fonts';
+import OnboardingButtons from '../components/OnboardingButtons';
+import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
-
-import InfoBox from '../components/infoBox';
+import InfoBox from '../components/InfoBox';
 
 const styles = StyleSheet.create({
     container: {

@@ -6,7 +6,7 @@ import { disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     dropdownTitle: {

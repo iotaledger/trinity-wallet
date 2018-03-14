@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import OnboardingButtons from '../components/onboardingButtons';
+import OnboardingButtons from '../components/OnboardingButtons';
 import GENERAL from '../theme/general';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     modalContent: {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class RootDetectionModal extends Component {
+class RootDetectionModal extends PureComponent {
     static propTypes = {
         closeApp: PropTypes.func.isRequired,
         hideModal: PropTypes.func.isRequired,

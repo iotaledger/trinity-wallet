@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { Icon } from '../theme/icons.js';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     button: {

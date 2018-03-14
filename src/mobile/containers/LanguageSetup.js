@@ -8,12 +8,12 @@ import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modul
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import { detectLocale, selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { connect } from 'react-redux';
-import WithBackPressCloseApp from '../components/withBackPressCloseApp';
-import { width, height } from '../util/dimensions';
-import DropdownComponent from '../components/dropdown';
+import WithBackPressCloseApp from '../components/BackPressCloseApp';
+import { width, height } from '../utils/dimensions';
+import DropdownComponent from '../components/Dropdown';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
-import DynamicStatusBar from '../components/dynamicStatusBar';
+import DynamicStatusBar from '../components/DynamicStatusBar';
 
 const styles = StyleSheet.create({
     container: {

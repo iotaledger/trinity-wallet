@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
-import { isAndroid } from '../util/device';
+import { isAndroid } from '../utils/device';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

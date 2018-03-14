@@ -5,9 +5,9 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import whiteArrowImagePath from 'iota-wallet-shared-modules/images/arrow-white.png';
 import blackArrowImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
 import tinycolor from 'tinycolor2';
-import TextWithLetterSpacing from './textWithLetterSpacing';
+import TextWithLetterSpacing from './TextWithLetterSpacing';
 import GENERAL from '../theme/general';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     seedBox: {

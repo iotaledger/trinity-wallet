@@ -11,18 +11,18 @@ import {
     setSetting,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import DynamicStatusBar from '../components/dynamicStatusBar';
-import UserInactivity from '../components/userInactivity';
-import StatefulDropdownAlert from './statefulDropdownAlert';
-import TopBar from './topBar';
-import WithUserActivity from '../components/withUserActivity';
-import WithBackPress from '../components/withBackPress';
-import PollComponent from './poll';
-import Tabs from '../components/tabs';
-import Tab from '../components/tab';
-import TabContent from '../components/tabContent';
-import EnterPassword from '../components/enterPassword';
-import { height } from '../util/dimensions';
+import DynamicStatusBar from '../components/DynamicStatusBar';
+import UserInactivity from '../components/UserInactivity';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
+import TopBar from './TopBar';
+import WithUserActivity from '../components/UserActivity';
+import WithBackPress from '../components/BackPress';
+import PollComponent from './Poll';
+import Tabs from '../components/Tabs';
+import Tab from '../components/Tab';
+import TabContent from '../components/TabContent';
+import EnterPassword from '../components/EnterPassword';
+import { height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     topContainer: {

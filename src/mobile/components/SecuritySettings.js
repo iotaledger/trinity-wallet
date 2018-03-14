@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { width, height } from '../util/dimensions';
+import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

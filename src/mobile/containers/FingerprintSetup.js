@@ -10,11 +10,11 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, TouchableOp
 import tinycolor from 'tinycolor2';
 import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-white.png';
 import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-black.png';
-import WithBackPressGoToHome from '../components/withBackPressGoToHome';
-import DynamicStatusBar from '../components/dynamicStatusBar';
+import WithBackPressGoToHome from '../components/BackPressGoToHome';
+import DynamicStatusBar from '../components/DynamicStatusBar';
 import Fonts from '../theme/Fonts';
-import StatefulDropdownAlert from './statefulDropdownAlert';
-import { width, height } from '../util/dimensions';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
+import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 
