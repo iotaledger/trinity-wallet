@@ -5,13 +5,18 @@ import Confirm from 'ui/components/modal/Confirm';
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
 
-import { showError, showNotification } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
 import css from './modals.css';
 
 class Modals extends React.PureComponent {
     static propTypes = {
-        showError: PropTypes.func.isRequired,
-        showNotification: PropTypes.func.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
     };
 
     state = {
@@ -66,13 +71,10 @@ class Modals extends React.PureComponent {
                     </Button>
                 </Modal>
                 <hr />
-                <h1>Notifications</h1>
+                <h1>Alerts</h1>
                 <Button
                     onClick={() =>
-                        this.props.showNotification({
-                            title: 'All fine!',
-                            text: 'The thing you did, finished upo just fine!',
-                        })
+                        this.props.generateAlert('success', 'All fine!', 'The thing you did, finished up just fine!')
                     }
                     variant="primary"
                 >
@@ -80,10 +82,11 @@ class Modals extends React.PureComponent {
                 </Button>
                 <Button
                     onClick={() =>
-                        this.props.showError({
-                            title: 'Something went wrong!',
-                            text: 'Something you did was not wroking as expected!',
-                        })
+                        this.props.generateAlert(
+                            'error',
+                            'Something went wrong!',
+                            'Something you did was not working as expected!',
+                        )
                     }
                     variant="negative"
                 >
@@ -94,11 +97,8 @@ class Modals extends React.PureComponent {
     }
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = {
-    showError,
-    showNotification,
+    generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modals);
+export default connect(null, mapDispatchToProps)(Modals);

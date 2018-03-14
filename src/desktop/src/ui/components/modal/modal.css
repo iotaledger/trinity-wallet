@@ -7,7 +7,8 @@
     width: 100vw;
     height: 100vh;
     position: fixed;
-    z-index: var(--z-index-modal);
+    z-index: 1001;
+    transition: opacity 0.15s ease-in;
     &:before {
         content: '';
         position: absolute;
@@ -32,10 +33,10 @@
             max-width: none;
         }
         :global {
-            h1.error {
+            h1.negative {
                 color: var(--negative);
             }
-            h1.success {
+            h1.positive {
                 color: var(--positive);
             }
         }
@@ -43,21 +44,46 @@
             max-width: 40vw;
             word-wrap: break-word;
         }
-        button {
-            margin: 20px;
+        fieldset button {
+            margin: 0 20px;
+        }
+    }
+
+    &.inline {
+        position: static;
+    }
+
+    footer {
+        margin-top: 40px;
+    }
+
+    .wrapper {
+        width: 80vw;
+        max-width: 680px;
+        position: relative;
+        z-index: 2;
+        transform: scale(1);
+        transition: transform 0.2s ease-out;
+
+        form {
+            margin: 30px auto 0;
+            padding: 0px;
+            border: none;
+            max-width: 580px;
+        }
+
+        @media (max-width: 960px) {
+            width: 100vw;
+            padding: 0 20px;
         }
     }
 }
 
-.wrapper {
-    width: 80vw;
-    max-width: 960px;
-    position: relative;
-    z-index: 2;
+.hidden {
+    pointer-events: none;
+    opacity: 0;
 
-    form {
-        margin-top: 60px;
-        padding: 0px;
-        border: none;
+    .wrapper {
+        transform: scale(0.95);
     }
 }
