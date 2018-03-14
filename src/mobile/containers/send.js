@@ -37,7 +37,7 @@ import {
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
 import QRScanner from '../components/qrScanner';
@@ -154,7 +154,7 @@ export class Send extends Component {
         activeStepIndex: PropTypes.number.isRequired,
         activeSteps: PropTypes.array.isRequired,
         timeTakenByEachProgressStep: PropTypes.array.isRequired,
-        remotePoW: PropTypes.bool.isRequired,
+        generateTransferErrorAlert: PropTypes.func.isRequired,
     };
 
     static isValidAddress(address) {
@@ -619,10 +619,15 @@ export class Send extends Component {
                         powFn = NativeModules.Iota.doPoW;
                     }
 
-                    this.props.makeTransaction(seed, address, value, message, selectedAccountName, powFn);
+                    return this.props.makeTransaction(seed, address, value, message, selectedAccountName, powFn);
                 }
             })
-            .catch(() => this.props.getFromKeychainError('send', 'makeTransaction'));
+            .catch((error) => {
+                this.props.getFromKeychainError('send', 'makeTransaction');
+
+                // FIXME: Catch transfer exceptions in makeTransaction function instead of generating alerts from here
+                return this.props.generateTransferErrorAlert(error);
+            });
     }
 
     renderModalContent = () => <View>{this.state.modalContent}</View>;
@@ -868,6 +873,7 @@ const mapDispatchToProps = {
     setSendDenomination,
     resetProgress,
     startTrackingProgress,
+    generateTransferErrorAlert,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));

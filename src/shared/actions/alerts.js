@@ -63,6 +63,13 @@ export const generateSyncingErrorAlert = (err) => (dispatch) => {
     dispatch(prepareLogUpdate(err));
 };
 
+export const generateTransferErrorAlert = (error) => (dispatch) =>
+    dispatch(
+        generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
+        20000,
+        error,
+    );
+
 export const disposeOffAlert = () => (dispatch) => dispatch(dispose());
 
 export const prepareLogUpdate = (err) => (dispatch) => {
