@@ -1,0 +1,38 @@
+.checkbox {
+    display: block;
+    text-align: left;
+    padding-left: 40px;
+    margin-bottom: 20px;
+    position: relative;
+    line-height: 24px;
+    cursor: pointer;
+    &:before {
+        display: block;
+        content: '';
+        width: 24px;
+        height: 24px;
+        border-radius: 3px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        border: 1px solid var(--body);
+    }
+    span {
+        pointer-events: none;
+    }
+
+    &.on {
+        &:after {
+            position: absolute;
+            top: 2px;
+            left: 8px;
+            content: '';
+            display: block;
+            width: 8px;
+            height: 14px;
+            border: solid var(--body);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+    }
+}

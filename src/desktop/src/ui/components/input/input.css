@@ -1,8 +1,7 @@
 .input {
     display: block;
     width: 100%;
-    max-width: 512px;
-    margin: 0 auto 50px;
+    padding: 25px 0 30px;
     text-align: right;
     fieldset {
         padding: 0px;
