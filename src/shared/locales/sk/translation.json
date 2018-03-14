@@ -328,7 +328,7 @@
         "selectNode": "Vybrať uzol",
         "addCustomNode": "Pridať vlastný uzol",
         "manualSync": "Manuálna synchronizácia",
-        "snapshotTransition": "Snapshot"
+        "snapshotTransition": "Aktualizácia údajov po Snapshote"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadie",
