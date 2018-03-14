@@ -54,7 +54,9 @@ class Account extends React.PureComponent {
                     inline
                     onSuccess={(password, vault) => this.setState({ password, vault })}
                     onClose={() => history.push('/wallet/')}
-                    title={t('Enter password to access account settings')}
+                    content={{
+                        title: t('Enter password to access account settings'),
+                    }}
                 />
             );
         }
@@ -117,4 +119,4 @@ const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
 });
 
-export default translate()(connect(mapStateToProps)(Account));
+export default connect(mapStateToProps)(translate()(Account));

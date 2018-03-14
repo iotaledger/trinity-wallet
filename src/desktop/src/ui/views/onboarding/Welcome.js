@@ -33,7 +33,7 @@ class Welcome extends React.PureComponent {
                 </section>
                 <footer>
                     <Button to="/onboarding/seed-intro" className="outline" variant="primary">
-                        {t('global:next')}
+                        {t('next')}
                     </Button>
                 </footer>
             </React.Fragment>

@@ -117,8 +117,22 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="eye" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="pow" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>Proof of Work</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.separatorContainer}>
+                        <View style={[styles.separator, borderColor]} />
+                    </View>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.setSetting('snapshotTransition')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Icon name="snapshot" size={width / 22} color={secondaryBackgroundColor} />
+                                <Text style={[styles.titleText, textColor]}>{t('snapshotTransition')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -128,19 +142,8 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="eye" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="sync" size={width / 22} color={secondaryBackgroundColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('manualSync')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('snapshotTransition')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="eye" size={width / 22} color={secondaryBackgroundColor} />
-                                <Text style={[styles.titleText, textColor]}>{t('snapshotTransition')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

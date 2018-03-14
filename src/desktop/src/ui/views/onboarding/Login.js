@@ -80,7 +80,6 @@ class Login extends React.Component {
     };
 
     componentDidMount() {
-        console.log(this.props.history);
         Electron.updateMenu('authorised', false);
 
         const { seeds, tempAccount } = this.props;
@@ -155,7 +154,7 @@ class Login extends React.Component {
                 return;
             }
         } catch (err) {
-            generateAlert('error', t('global:unrecognisedPassword'), t('global:unrecognisedPasswordExplanation'));
+            generateAlert('error', t('unrecognisedPassword'), t('unrecognisedPasswordExplanation'));
         }
 
         if (vault) {
@@ -192,7 +191,7 @@ class Login extends React.Component {
                     <section>
                         <PasswordInput
                             value={this.state.password}
-                            label={t('global:password')}
+                            label={t('password')}
                             name="password"
                             onChange={this.setPassword}
                         />
@@ -220,7 +219,7 @@ class Login extends React.Component {
                             }}
                             variant="secondary"
                         >
-                            {t('global:back')}
+                            {t('back')}
                         </Button>
                         <Button type="submit" variant="primary">
                             {t('glboal:done')}
@@ -251,4 +250,4 @@ const mapDispatchToProps = {
     getCurrencyData,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));

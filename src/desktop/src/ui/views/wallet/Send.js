@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatValue, formatUnit } from 'libs/util';
+import Curl from 'curl.lib.js';
 
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
@@ -22,6 +23,7 @@ class Send extends React.PureComponent {
         /** Total current account wallet ballance in iotas */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
+         * @property {bool} remotePow - Local PoW enable state
          * @property {string} conversionRate - Active currency conversion rate to MIota
          * @property (string) currency - Active currency name
          */
@@ -39,6 +41,8 @@ class Send extends React.PureComponent {
          *  @param {string} address - receiver address
          *  @param {number} value - transaction value in iotas
          *  @param {string} message - transaction message
+         *  @param {function} taskRunner - task manager
+         *  @param {function} powFn - locla PoW function
          */
         sendTransfer: PropTypes.func.isRequired,
         /** Translation helper
@@ -87,13 +91,22 @@ class Send extends React.PureComponent {
 
     confirmTransfer = () => {
         const { address, amount, message } = this.state;
-        const { seed, sendTransfer } = this.props;
+        const { seed, sendTransfer, settings } = this.props;
 
         this.setState({
             isModalVisible: false,
         });
 
-        sendTransfer(seed, address, amount, message);
+        let powFn = null;
+
+        if (!settings.remotePow) {
+            Curl.init();
+            powFn = (trytes, minWeight) => {
+                return Curl.pow({ trytes, minWeight });
+            };
+        }
+
+        sendTransfer(seed, address, amount, message, null, powFn);
     };
 
     render() {
@@ -118,7 +131,7 @@ class Send extends React.PureComponent {
                     address={address}
                     onChange={(value) => this.setState({ address: value })}
                     label={t('send:recipientAddress')}
-                    closeLabel={t('global:back')}
+                    closeLabel={t('back')}
                 />
                 <AmountInput
                     amount={amount.toString()}
@@ -134,7 +147,7 @@ class Send extends React.PureComponent {
                     onChange={(value) => this.setState({ message: value })}
                 />
                 <fieldset>
-                    <Button type="submit" loading={isSending} className="outline" variant="primary">
+                    <Button type="submit" loading={isSending} variant="primary">
                         {t('send:send')}
                     </Button>
                 </fieldset>

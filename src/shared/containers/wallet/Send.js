@@ -66,7 +66,7 @@ export default function withSendData(SendComponent) {
             return true;
         };
 
-        sendTransfer = (seed, address, value, message, taskRunner) => {
+        sendTransfer = (seed, address, value, message, taskRunner, powFn) => {
             const { prepareTransfer, tempAccount, accountName, generateAlert, t } = this.props;
 
             if (tempAccount.isSyncing) {
@@ -84,9 +84,9 @@ export default function withSendData(SendComponent) {
             }
 
             if (typeof taskRunner === 'function') {
-                taskRunner('prepareTransfer', [seed, address, value, message, accountName]);
+                taskRunner('prepareTransfer', [seed, address, value, message, accountName, powFn]);
             } else {
-                prepareTransfer(seed, address, value, message, accountName);
+                prepareTransfer(seed, address, value, message, accountName, powFn);
             }
         };
 

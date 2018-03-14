@@ -112,8 +112,8 @@ class Sidebar extends React.PureComponent {
                         isOpen={modalLogout}
                         content={{
                             title: t('logoutConfirmationModal:logoutConfirmation'),
-                            confirm: t('global:yes'),
-                            cancel: t('global:no'),
+                            confirm: t('yes'),
+                            cancel: t('no'),
                         }}
                         onCancel={this.toggleLogout}
                         onConfirm={this.doLogout}

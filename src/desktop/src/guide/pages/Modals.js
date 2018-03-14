@@ -74,7 +74,7 @@ class Modals extends React.PureComponent {
                 <h1>Alerts</h1>
                 <Button
                     onClick={() =>
-                        this.props.generateAlert('success', 'All fine!', 'The thing you did, finished upo just fine!')
+                        this.props.generateAlert('success', 'All fine!', 'The thing you did, finished up just fine!')
                     }
                     variant="primary"
                 >
@@ -85,7 +85,7 @@ class Modals extends React.PureComponent {
                         this.props.generateAlert(
                             'error',
                             'Something went wrong!',
-                            'Something you did was not wroking as expected!',
+                            'Something you did was not working as expected!',
                         )
                     }
                     variant="negative"
@@ -97,10 +97,8 @@ class Modals extends React.PureComponent {
     }
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modals);
+export default connect(null, mapDispatchToProps)(Modals);
