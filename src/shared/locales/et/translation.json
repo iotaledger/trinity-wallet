@@ -250,15 +250,15 @@
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
         "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
+        "changePassword": "Vaheta parool",
+        "advanced": "Täpsemad sätted",
         "logout": "Logi välja",
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
         "syncingCompleteExplanation": "Your account has synced successfully.",
         "nicknameChanged": "Account name changed",
         "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
+        "accountDeleted": "Konto kustutatud",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "Cannot perform action",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
@@ -310,7 +310,7 @@
         "receive": "RECEIVE"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
+        "viewSeed": "Vaata seemet",
         "viewAddresses": "Vaata aadresse",
         "editAccountName": "Edit account name",
         "deleteAccount": "Kustuta konto",
@@ -321,8 +321,8 @@
         "add": "Lisa"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Kasuta olemasolevat seemet",
+        "createNewSeed": "Loo uus seeme"
     },
     "advancedSettings": {
         "selectNode": "Select node",
