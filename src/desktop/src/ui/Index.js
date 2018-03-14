@@ -64,7 +64,7 @@ class App extends React.Component {
     };
 
     componentWillMount() {
-        //this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
+        const { generateAlert, t } = this.props;
         Electron.onEvent('url-params', (data) => {
             let regexAddress = /\:\/\/(.*?)\/\?/;
             let regexAmount = /amount=(.*?)\&/;
@@ -74,7 +74,6 @@ class App extends React.Component {
                 let amount = data.match(regexAmount);
                 let message = data.match(regexMessage);
                 if (address[1].length !== ADDRESS_LENGTH) {
-                    const { generateAlert, t } = this.props;
                     generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
                     this.props.sendAmount(0, '', '');
                 } else {
@@ -85,6 +84,8 @@ class App extends React.Component {
                     });
                     this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
                     if(this.props.tempAccount.ready === true) {
+                        const { generateAlert} = this.props;
+                        generateAlert('success', 'Link', 'Send amount was updated.');
                         this.props.history.push('/wallet/send');
                     }
                 }
@@ -94,11 +95,7 @@ class App extends React.Component {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
         Electron.changeLanguage(this.props.t);
-        // this.setState({
-        //     address: '',
-        //     amount: 0,
-        //     message: '',
-        // });
+        Electron.refreshDeepLink();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -186,7 +183,6 @@ const mapDispatchToProps = {
     sendAmount,
     getUpdateData,
     generateAlert,
-
 };
 
 export default withRouter(translate()(connect(mapStateToProps, mapDispatchToProps)(App)));
