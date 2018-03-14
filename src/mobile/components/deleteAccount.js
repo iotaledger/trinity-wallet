@@ -6,6 +6,7 @@ import Modal from 'react-native-modal';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
 import { width, height } from '../util/dimensions';
+import { getPasswordHash } from '../util/crypto';
 import CustomTextInput from '../components/customTextInput';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
@@ -123,10 +124,12 @@ class DeleteAccount extends Component {
     }
 
     onContinuePress() {
+        const { password } = this.props;
         if (!this.state.pressedContinue) {
             return this.setState({ pressedContinue: true });
         }
-        if (this.state.password === this.props.password) {
+        const pwdHash = getPasswordHash(this.state.password);
+        if (password === pwdHash) {
             return this.showModal();
         }
         return this.props.onWrongPassword();

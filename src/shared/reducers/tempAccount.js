@@ -134,12 +134,12 @@ export default (state = initialState, action) => {
                 ...state,
                 copiedToClipboard: action.payload,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST:
+        case AccountActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST:
             return {
                 ...state,
                 ready: false,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
+        case AccountActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS:
             return {
                 ...state,
                 ready: true,
@@ -147,18 +147,18 @@ export default (state = initialState, action) => {
                 addingAdditionalAccount: false,
                 additionalAccountName: '',
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST:
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
                 ...state,
                 hasErrorFetchingAccountInfoOnLogin: false,
                 ready: false,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
             return {
                 ...state,
                 ready: true,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR:
             return {
                 ...state,
                 hasErrorFetchingAccountInfoOnLogin: true,

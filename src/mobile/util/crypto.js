@@ -20,7 +20,7 @@ export const getPasswordHash = (password) => {
 export const createSecretBox = async (message, nonce, key) => {
     const messageUint8Array = await naclUtil.decodeUTF8(serialize(message));
     const keyUint8Array = hexStringToByte(key);
-    return await nacl.secretbox(messageUint8Array, nonce, keyUint8Array);
+    return await Promise.resolve(nacl.secretbox(messageUint8Array, nonce, keyUint8Array));
 };
 
 export const openSecretBox = async (box, nonce, key) => {
