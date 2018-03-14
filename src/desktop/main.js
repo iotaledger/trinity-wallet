@@ -1,8 +1,9 @@
+const { ipcMain: ipc, app, protocol } = require('electron');
 const electron = require('electron');
 const initMenu = require('./lib/Menu.js');
 const path = require('path');
+const settings = require('electron-settings');
 
-const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const devMode = process.env.NODE_ENV === 'development';
 
@@ -10,19 +11,36 @@ const windows = {
     main: null,
 };
 
+if (!devMode) {
+    protocol.registerStandardSchemes(['iota']);
+}
+
 function createWindow() {
+    protocol.registerFileProtocol('iota', (request, callback) => {
+        callback(
+            request.url
+                .replace('iota:/', app.getAppPath())
+                .split('?')[0]
+                .split('#')[0],
+        );
+    });
+
     windows.main = new BrowserWindow({
         width: 1024,
         height: 768,
-        minWidth: 920,
-        minHeight: 680,
+        maxWidth: 1280,
+        maxHeight: 820,
+        minWidth: 440,
+        minHeight: 720,
+        titleBarStyle: 'hidden',
+        backgroundColor: settings.get('backgroundColor') ? settings.get('backgroundColor') : '#E8EBF1',
         webPreferences: {
             nodeIntegration: false,
-            preload: path.join(__dirname, 'lib/window.js'),
+            preload: path.resolve(__dirname, 'lib/Window.js'),
         },
     });
 
-    const url = devMode ? 'http://localhost:1074/' : 'file://' + __dirname + '/dist/index.html';
+    const url = devMode ? 'http://localhost:1074/' : 'iota://dist/index.html';
 
     windows.main.loadURL(url);
 
@@ -62,4 +80,8 @@ app.on('activate', () => {
     if (windows.main === null) {
         createWindow();
     }
+});
+
+ipc.on('settings.update', (e, data) => {
+    settings.set(data.attribute, data.value);
 });
