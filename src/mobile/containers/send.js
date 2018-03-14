@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import size from 'lodash/size';
 import React, { Component } from 'react';
@@ -44,7 +43,7 @@ import {
     getBalanceForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from '../../shared/selectors/account';
-import keychain, { getSeed } from '../util/keychain';
+import { getSeedFromKeychain } from '../util/keychain';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
 import CustomTextInput from '../components/customTextInput';
@@ -142,6 +141,7 @@ export class Send extends Component {
         setSendMessageField: PropTypes.func.isRequired,
         setSendDenomination: PropTypes.func.isRequired,
         denomination: PropTypes.string.isRequired,
+        password: PropTypes.string.isRequired,
     };
 
     static isValidAddress(address) {
@@ -497,13 +497,12 @@ export class Send extends Component {
         return conversionText;
     }
 
-    shouldConversionTextShowInvalid() {
-        const { amount, denomination } = this.props;
-        const { currencySymbol } = this.state;
-        const multiplier = this.getUnitMultiplier();
-        const isFiat = denomination === currencySymbol;
-        const amountIsValid = Send.isValidAmount(amount, multiplier, isFiat);
-        return !amountIsValid && amount !== '';
+    getOpacity() {
+        const { balance } = this.props;
+        if (balance === 0) {
+            return 0.2;
+        }
+        return 1;
     }
 
     resetToggleSwitch() {
@@ -529,12 +528,13 @@ export class Send extends Component {
         this.showModal();
     }
 
-    getOpacity() {
-        const { balance } = this.props;
-        if (balance === 0) {
-            return 0.2;
-        }
-        return 1;
+    shouldConversionTextShowInvalid() {
+        const { amount, denomination } = this.props;
+        const { currencySymbol } = this.state;
+        const multiplier = this.getUnitMultiplier();
+        const isFiat = denomination === currencySymbol;
+        const amountIsValid = Send.isValidAmount(amount, multiplier, isFiat);
+        return !amountIsValid && amount !== '';
     }
 
     showModal = () => this.setState({ isModalVisible: true });
@@ -558,7 +558,7 @@ export class Send extends Component {
     }
 
     sendTransfer() {
-        const { t, seedIndex, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
+        const { t, password, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
 
         if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
@@ -579,26 +579,29 @@ export class Send extends Component {
         const value = parseInt(parseFloat(formattedAmount) * this.getUnitMultiplier(), 10);
 
         this.props.getFromKeychainRequest('send', 'makeTransaction');
-        keychain
-            .get()
-            .then((credentials) => {
+        getSeedFromKeychain(password, selectedAccountName)
+            .then((seed) => {
                 this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
-                if (get(credentials, 'data')) {
-                    const seed = getSeed(credentials.data, seedIndex);
+                if (seed !== null) {
 
                     let powFn = null;
 
                     if (isAndroid) {
                         powFn = NativeModules.PoWModule.doPoW;
                     } else if (isIOS) {
-                        powFn = NativeModules.Iota.doPoW;
+                      //  powFn = NativeModules.Iota.doPoW;
                     }
 
-                    this.props.prepareTransfer(seed, address, value, message, selectedAccountName, powFn);
+                    return this.props.prepareTransfer(seed, address, value, message, selectedAccountName, powFn);
                 }
-            })
-            .catch(() => this.props.getFromKeychainError('send', 'makeTransaction'));
+                this.props.getFromKeychainError('send', 'makeTransaction');
+                return this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongTryAgain'),
+                );
+            });
     }
 
     renderModalContent = () => <View>{this.state.modalContent}</View>;
@@ -798,6 +801,7 @@ const mapStateToProps = (state) => ({
     amount: state.ui.sendAmountFieldText,
     message: state.ui.sendMessageFieldText,
     denomination: state.ui.sendDenomination,
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {

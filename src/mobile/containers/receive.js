@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -16,7 +15,7 @@ import {
     getFromKeychainSuccess,
     getFromKeychainError,
 } from 'iota-wallet-shared-modules/actions/keychain';
-import keychain, { getSeed } from '../util/keychain';
+import { getSeedFromKeychain } from '../util/keychain';
 import GENERAL from '../theme/general';
 import CustomTextInput from '../components/customTextInput';
 import GenerateAddressButton from '../components/generateAddressButton';
@@ -79,7 +78,7 @@ class Receive extends Component {
         selectedAccountData: PropTypes.object.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         isSyncing: PropTypes.bool.isRequired,
-        seedIndex: PropTypes.number.isRequired,
+        password: PropTypes.string.isRequired,
         receiveAddress: PropTypes.string.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isGettingSensitiveInfoToGenerateAddress: PropTypes.bool.isRequired,
@@ -126,36 +125,29 @@ class Receive extends Component {
         this.resetAddress();
     }
 
-    onGeneratePress() {
-        const { t, seedIndex, selectedAccountData, selectedAccountName, isSyncing, isTransitioning } = this.props;
+    async onGeneratePress() {
+        const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, password } = this.props;
 
         if (isSyncing || isTransitioning) {
-            return this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
         const error = () => {
             this.props.getFromKeychainError('receive', 'addressGeneration');
-            this.props.generateAlert(
+            return this.props.generateAlert(
                 'error',
                 t('global:somethingWentWrong'),
-                t('global:somethingWentWrongExplanation'),
+                t('global:somethingWentWrongTryAgain'),
             );
         };
 
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
-        return keychain
-            .get()
-            .then((credentials) => {
-                this.props.getFromKeychainSuccess('receive', 'addressGeneration');
-
-                if (get(credentials, 'data')) {
-                    const seed = getSeed(credentials.data, seedIndex);
-                    this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData);
-                } else {
-                    error();
-                }
-            })
-            .catch(() => this.props.getFromKeychainError('receive', 'addressGeneration'));
+        const seed = await getSeedFromKeychain(password, selectedAccountName);
+        if (seed === null) {
+            return error();
+        }
+        this.props.getFromKeychainSuccess('receive', 'addressGeneration');
+        this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData);
     }
 
     onAddressPress(address) {
@@ -321,6 +313,7 @@ const mapStateToProps = (state) => ({
     negative: state.settings.theme.negative,
     body: state.settings.theme.body,
     isTransitioning: state.tempAccount.isTransitioning,
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {

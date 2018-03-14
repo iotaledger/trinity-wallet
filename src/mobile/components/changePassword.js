@@ -1,10 +1,10 @@
-import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import Fonts from '../theme/Fonts';
-import keychain from '../util/keychain';
+import { changePassword } from '../util/keychain';
+import { getPasswordHash } from '../util/crypto';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 import CustomTextInput from './customTextInput';
@@ -105,12 +105,12 @@ class ChangePassword extends Component {
         };
     }
 
-    isValid() {
+    isValid(currentPwdHash) {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
         const { password } = this.props;
 
         return (
-            currentPassword === password &&
+            currentPwdHash === password &&
             newPassword.length >= 12 &&
             confirmedNewPassword.length >= 12 &&
             newPassword === confirmedNewPassword &&
@@ -119,26 +119,17 @@ class ChangePassword extends Component {
     }
 
     changePassword() {
-        const isValid = this.isValid();
-        const { setPassword, generateAlert, t } = this.props;
-        const { newPassword } = this.state;
+        const { setPassword, generateAlert, password, t } = this.props;
+        const { newPassword, currentPassword } = this.state;
+        const newPwdHash = getPasswordHash(newPassword);
+        const currentPwdHash = getPasswordHash(currentPassword);
+        const isValid = this.isValid(currentPwdHash);
 
         if (isValid) {
-            const throwErr = () => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongExplanation'));
-
-            keychain
-                .get()
-                .then((credentials) => {
-                    const payload = get(credentials, 'data');
-
-                    if (payload) {
-                        return keychain.set(newPassword, payload);
-                    }
-
-                    throw new Error('Error');
-                })
+            const throwErr = () => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'));
+            changePassword(password, newPwdHash)
                 .then(() => {
-                    setPassword(newPassword);
+                    setPassword(newPwdHash);
                     this.fallbackToInitialState();
 
                     generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
@@ -148,7 +139,7 @@ class ChangePassword extends Component {
                 .catch(() => throwErr());
         }
 
-        return this.renderInvalidSubmissionAlerts();
+        return this.renderInvalidSubmissionAlerts(currentPwdHash);
     }
 
     fallbackToInitialState() {
@@ -183,11 +174,10 @@ class ChangePassword extends Component {
         return <CustomTextInput {...props} />;
     }
 
-    renderInvalidSubmissionAlerts() {
+    renderInvalidSubmissionAlerts(currentPwdHash) {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
         const { password, generateAlert, t } = this.props;
-
-        if (currentPassword !== password) {
+        if (currentPwdHash !== password) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
         } else if (newPassword !== confirmedNewPassword) {
             return generateAlert('error', t('passwordsDoNotMatch'), t('passwordsDoNotMatchExplanation'));

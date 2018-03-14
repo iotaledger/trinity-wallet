@@ -74,6 +74,7 @@ export class TwoFactorSetupAddKey extends Component {
         generateAlert: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
+        password: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -117,9 +118,9 @@ export class TwoFactorSetupAddKey extends Component {
 
     navigateToEnterToken() {
         Clipboard.setString(' ');
-        const { body } = this.props;
+        const { t, body, password } = this.props;
 
-        return storeTwoFactorAuthKeyInKeychain(this.state.authKey)
+        storeTwoFactorAuthKeyInKeychain(password, this.state.authKey)
             .then(() => {
                 this.props.navigator.push({
                     screen: 'twoFactorSetupEnterToken',
@@ -137,7 +138,13 @@ export class TwoFactorSetupAddKey extends Component {
                     },
                 });
             })
-            .catch((err) => console.error(err)); // Generate an alert.
+            .catch(() =>
+                this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongTryAgain'),
+                )
+            );
     }
 
     render() {
@@ -192,6 +199,7 @@ const mapStateToProps = (state) => ({
     positive: state.settings.theme.positiveColor,
     negative: state.settings.theme.negativeColor,
     body: state.settings.theme.body,
+    password: state.tempAccount.password,
 });
 
 export default WithBackPressGoToHome()(
