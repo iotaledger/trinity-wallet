@@ -405,14 +405,14 @@
     },
     "transferConfirmation": {
         "youAreAbout": "Du er ved at sende {{contents}} til adressen",
-        "aMessage": "a message"
+        "aMessage": "en besked"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
+        "wrongCode": "Forkert kode",
+        "wrongCodeExplanation": "Den indtastede adgangskode er forkert.",
+        "emptyCode": "Tom kode",
+        "emptyCodeExplanation": "Indtast venligst en kode og prøv igen.",
+        "keyCopied": "Nøgle kopieret til udklipsholder",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
         "addKey": "Add this key to your 2FA app",
         "key": "Key",
