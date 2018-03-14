@@ -103,7 +103,7 @@ class Loading extends Component {
             seed,
             password,
             navigator,
-            t
+            t,
         } = this.props;
         this.getWalletData();
         this.animation.play();
@@ -122,20 +122,20 @@ class Loading extends Component {
             );
         }
 
-        const firstSeed = await getSeedFromKeychain(password, selectedAccountName);
+        const currentSeed = await getSeedFromKeychain(password, selectedAccountName);
 
-        if (firstSeed === null){
+        if (currentSeed === null) {
             return this.props.generateAlert(
                 'error',
                 t('global:somethingWentWrong'),
                 t('global:somethingWentWrongRestart'),
             );
-        };
+        }
 
         if (firstUse) {
-            this.props.getFullAccountInfoFirstSeed(firstSeed, selectedAccountName, navigator);
+            this.props.getFullAccountInfoFirstSeed(currentSeed, selectedAccountName, navigator);
         } else {
-            this.props.getAccountInfo(firstSeed, selectedAccountName, navigator);
+            this.props.getAccountInfo(currentSeed, selectedAccountName, navigator);
         }
     }
 
@@ -265,7 +265,7 @@ const mapDispatchToProps = {
     getPrice,
     getChartData,
     getCurrencyData,
-    generateAlert
+    generateAlert,
 };
 
 export default translate('loading')(connect(mapStateToProps, mapDispatchToProps)(Loading));
