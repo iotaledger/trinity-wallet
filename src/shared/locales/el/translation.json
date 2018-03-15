@@ -235,7 +235,7 @@
     "modeSelection": {
         "expert": "Ειδικός",
         "standard": "Κανονικός",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "expertModeExplanation": "Κατάσταση λειτουργίας  θα παρέχουν πρόσβαση σε πρόσθετες δυνατότητες όπως Χειροκίνητη προώθηση και την εκ νέου προσάρτηση.",
         "modesExplanation": "Ενεργοποιήσετε την κατάσταση λειτουργίας  μόνο αν είστε ένας έμπειρος χρήστης Tangle. Μπορείτε να σας μπερδέψει   διαφορετικά"
     },
     "settings": {
@@ -275,7 +275,7 @@
         "selectAll": "Επιλογή όλων",
         "securitySettings": "Ρυθμίσεις ασφαλείας",
         "fingerprint": "Ταυτοποίηση με χρήση δακτυλικών αποτυπωμάτων",
-        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRates": "Δεν ταιριάζει με τους κανόνες της κανονικής έκφρασης",
         "couldNotFetchRatesExplanation": "Κάτι πήγε στραβά κατά τη λήψη των ισοτιμιών μετατροπής του νομίσματος.",
         "fetchedConversionRates": "Fetched conversion rates",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
