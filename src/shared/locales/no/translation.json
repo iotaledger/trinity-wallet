@@ -397,9 +397,9 @@
         "status": "Status",
         "enabled": "Aktivert",
         "disabled": "Deaktivert",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "fingerprintUnavailable": "Biometrisk sensor ikke tilgjengelig",
+        "fingerprintUnavailableExplanation": "Din enhet støtter ikke biometrisk autentisering, eller er ikke konfigurert for å benytte dette.",
+        "buttonInstructionsDisable": "Trykk på knappen under for å deaktivere biometrisk godkjenning.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "instructionsLogin": "Touch fingerprint reader to log in."
     },
