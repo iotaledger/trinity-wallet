@@ -483,7 +483,7 @@ class Settings extends Component {
                 currencies: this.props.availableCurrencies,
                 backPress: () => this.props.setSetting('mainSettings'),
                 bodyColor: body.color,
-                negativeColor: negative.color,
+                primaryColor: primary.color,
                 isFetchingCurrencyData: this.props.isFetchingCurrencyData,
                 hasErrorFetchingCurrencyData: this.props.hasErrorFetchingCurrencyData,
             },
@@ -512,7 +512,6 @@ class Settings extends Component {
                 textColor: { color: body.color },
                 primary,
                 body,
-                negative,
             },
             snapshotTransition: {
                 t: this.props.t,
