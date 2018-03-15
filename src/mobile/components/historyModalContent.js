@@ -319,7 +319,7 @@ export default class HistoryModalContent extends PureComponent {
                     </View>
                 </View>
                 <StatefulDropdownAlert
-                    backgroundColor={style.barColor}
+                    backgroundColor={style.barBg}
                     onRef={(c) => {
                         this.dropdown = c;
                     }}

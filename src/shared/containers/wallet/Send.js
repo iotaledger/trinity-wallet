@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { showError } from '../../actions/notifications';
+import { generateAlert } from '../../actions/alerts';
+
 import { prepareTransfer } from '../../actions/tempAccount';
 import { getSelectedAccountNameViaSeedIndex, getBalanceForSelectedAccountViaSeedIndex } from '../../selectors/account';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/util';
@@ -19,86 +20,66 @@ export default function withSendData(SendComponent) {
             account: PropTypes.object.isRequired,
             accountName: PropTypes.string.isRequired,
             tempAccount: PropTypes.object.isRequired,
-            seeds: PropTypes.object.isRequired,
+            seed: PropTypes.string.isRequired,
             settings: PropTypes.object.isRequired,
-            showError: PropTypes.func.isRequired,
+            generateAlert: PropTypes.func.isRequired,
             prepareTransfer: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
         };
 
         validateInputs = (address, amount) => {
-            const { showError, balance } = this.props;
+            const { generateAlert, balance, t } = this.props;
 
             if (address.length !== ADDRESS_LENGTH) {
-                showError({
-                    title: 'send:invalidAddress',
-                    text: 'send:invalidAddressExplanation1',
-                    translate: true,
-                });
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
                 return false;
             }
 
             if (!address.match(VALID_SEED_REGEX)) {
-                showError({
-                    title: 'send:invalidAddress',
-                    text: 'send:invalidAddressExplanation2',
-                    translate: true,
-                });
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation2'));
                 return false;
             }
 
             if (!iota.utils.isValidChecksum(address)) {
-                showError({
-                    title: 'send:invalidAddress',
-                    text: 'send:invalidAddressExplanation3',
-                    translate: true,
-                });
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation3'));
                 return false;
             }
 
             if (parseFloat(amount) > balance) {
-                showError({
-                    title: 'send:notEnoughFunds',
-                    text: 'send:notEnoughFundsExplanation',
-                    translate: true,
-                });
+                generateAlert('error', t('send:notEnoughFunds'), t('send:notEnoughFundsExplanation'));
                 return false;
             }
 
             return true;
         };
 
-        sendTransfer = (seed, address, value, message, taskRunner) => {
-            const { prepareTransfer, tempAccount, accountName, showError, t } = this.props;
+        sendTransfer = (seed, address, value, message, taskRunner, powFn) => {
+            const { prepareTransfer, tempAccount, accountName, generateAlert, t } = this.props;
 
             if (tempAccount.isSyncing) {
-                showError({
-                    title: t('global:syncInProgress'),
-                    text: t('global:syncInProgressExplanation'),
-                    translate: true,
-                });
+                generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
                 return;
             }
 
             if (tempAccount.isTransitioning) {
-                showError({
-                    title: 'Snapshot transition in progress',
-                    text: 'Please wait until the transition is complete.',
-                    translate: true,
-                });
+                generateAlert(
+                    'error',
+                    t('Snapshot transition in progress'),
+                    t('Please wait until the transition is complete.'),
+                );
                 return;
             }
 
             if (typeof taskRunner === 'function') {
-                taskRunner('prepareTransfer', [seed, address, value, message, accountName]);
+                taskRunner('prepareTransfer', [seed, address, value, message, accountName, powFn]);
             } else {
-                prepareTransfer(seed, address, value, message, accountName);
+                prepareTransfer(seed, address, value, message, accountName, powFn);
             }
         };
 
         render() {
-            const { balance, seeds, settings, tempAccount, theme, t } = this.props;
+            const { balance, seed, settings, tempAccount, theme, t } = this.props;
 
             const sendProps = {
                 isSending: tempAccount.isSendingTransfer,
@@ -106,7 +87,7 @@ export default function withSendData(SendComponent) {
                 sendTransfer: this.sendTransfer,
                 settings,
                 balance,
-                seeds,
+                seed,
                 theme,
                 t,
             };
@@ -120,15 +101,15 @@ export default function withSendData(SendComponent) {
     const mapStateToProps = (state) => ({
         tempAccount: state.tempAccount,
         balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-        accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+        accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
         settings: state.settings,
         account: state.account,
-        seeds: state.seeds,
+        seed: state.seeds.seeds[state.tempAccount.seedIndex],
         theme: state.settings.theme,
     });
 
     const mapDispatchToProps = {
-        showError,
+        generateAlert,
         prepareTransfer,
     };
 

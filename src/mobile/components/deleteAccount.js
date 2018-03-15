@@ -6,6 +6,7 @@ import Modal from 'react-native-modal';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons';
 import { width, height } from '../util/dimensions';
+import { getPasswordHash } from '../util/crypto';
 import CustomTextInput from '../components/customTextInput';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
@@ -94,14 +95,15 @@ class DeleteAccount extends Component {
         t: PropTypes.func.isRequired,
         backgroundColor: PropTypes.string.isRequired,
         currentAccountName: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        primaryColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         borderColor: PropTypes.object.isRequired,
         isPromoting: PropTypes.bool.isRequired,
         shouldPreventAction: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        selectedAccountName: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -123,10 +125,12 @@ class DeleteAccount extends Component {
     }
 
     onContinuePress() {
+        const { password } = this.props;
         if (!this.state.pressedContinue) {
             return this.setState({ pressedContinue: true });
         }
-        if (this.state.password === this.props.password) {
+        const pwdHash = getPasswordHash(this.state.password);
+        if (password === pwdHash) {
             return this.showModal();
         }
         return this.props.onWrongPassword();
@@ -179,24 +183,27 @@ class DeleteAccount extends Component {
     render() {
         const {
             t,
-            negativeColor,
+            primaryColor,
             textColor,
-            secondaryBackgroundColor,
+            bodyColor,
             backgroundColor,
             borderColor,
             theme,
+            selectedAccountName,
         } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.3 }} />
+                        <View style={{ flex: 0.5 }} />
                         {!this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                <Text style={[styles.infoText, textColor]}>{t('areYouSure')}</Text>
+                                <Text style={[styles.infoText, textColor]}>
+                                    {t('areYouSure', { accountName: selectedAccountName })}
+                                </Text>
                                 <Text style={[styles.infoText, textColor]}>{t('yourSeedWillBeRemoved')}</Text>
-                                <Text style={[styles.warningText, { color: negativeColor }]}>{t('thisAction')}</Text>
+                                <Text style={[styles.warningText, { color: primaryColor }]}>{t('thisAction')}</Text>
                             </View>
                         )}
                         {this.state.pressedContinue && (
@@ -217,7 +224,7 @@ class DeleteAccount extends Component {
                                 />
                             </View>
                         )}
-                        <View style={{ flex: 1.3 }} />
+                        <View style={{ flex: 1.1 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
@@ -225,7 +232,7 @@ class DeleteAccount extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -235,7 +242,7 @@ class DeleteAccount extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:continue')}</Text>
-                                <Icon name="trash" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="tick" size={width / 28} color={bodyColor} />
                             </View>
                         </TouchableOpacity>
                     </View>
