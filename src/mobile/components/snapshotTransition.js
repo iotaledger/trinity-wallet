@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.8)',
         width: width / 1.05,
         paddingHorizontal: width / 20,
-        paddingBottom: height / 25
+        paddingBottom: height / 25,
     },
     container: {
         flex: 1,
@@ -96,7 +96,7 @@ class SnapshotTransition extends Component {
         isTransitioning: PropTypes.bool.isRequired,
         backPress: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        primaryColor: PropTypes.string.isRequired,
         primary: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         borderColor: PropTypes.object.isRequired,
@@ -227,7 +227,7 @@ class SnapshotTransition extends Component {
             backPress,
             body,
             textColor,
-            negativeColor,
+            primaryColor,
             primary,
             t,
             isAttachingToTangle,
@@ -242,8 +242,12 @@ class SnapshotTransition extends Component {
                                 body={body}
                                 text={
                                     <View>
-                                        <Text style={[styles.infoText, textColor]}>Every so often, a snapshot is performed to prune the size of the Tangle.</Text>
-                                        <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>Has a snapshot taken place? Press the button below to transition.</Text>
+                                        <Text style={[styles.infoText, textColor]}>
+                                            Every so often, a snapshot is performed to prune the size of the Tangle.
+                                        </Text>
+                                        <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                            Has a snapshot taken place? Press the button below to transition.
+                                        </Text>
                                     </View>
                                 }
                             />
@@ -251,7 +255,7 @@ class SnapshotTransition extends Component {
                                 <CtaButton
                                     ctaColor={primary.color}
                                     secondaryCtaColor={primary.body}
-                                    text='TRANSITION'
+                                    text="TRANSITION"
                                     onPress={this.onSnapshotTransititionPress}
                                     ctaWidth={width / 2}
                                     ctaHeight={height / 16}
@@ -266,9 +270,15 @@ class SnapshotTransition extends Component {
                                     body={body}
                                     text={
                                         <View>
-                                            <Text style={[styles.infoText, textColor]}>Transitioning for the snapshot.</Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>Generating addresses and detecting balance.</Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>Please wait...</Text>
+                                            <Text style={[styles.infoText, textColor]}>
+                                                Transitioning for the snapshot.
+                                            </Text>
+                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                                Generating addresses and detecting balance.
+                                            </Text>
+                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                                Please wait...
+                                            </Text>
                                         </View>
                                     }
                                 />
@@ -276,7 +286,7 @@ class SnapshotTransition extends Component {
                                     animating={isTransitioning}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={negativeColor}
+                                    color={primaryColor}
                                 />
                             </View>
                         )}
@@ -287,9 +297,15 @@ class SnapshotTransition extends Component {
                                     body={body}
                                     text={
                                         <View>
-                                            <Text style={[styles.infoText, textColor]}>Attaching addresses to Tangle</Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>This may take a while</Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>Please wait...</Text>
+                                            <Text style={[styles.infoText, textColor]}>
+                                                Attaching addresses to Tangle
+                                            </Text>
+                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                                This may take a while
+                                            </Text>
+                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                                Please wait...
+                                            </Text>
                                         </View>
                                     }
                                 />
@@ -297,7 +313,7 @@ class SnapshotTransition extends Component {
                                     animating={isTransitioning}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={negativeColor}
+                                    color={primaryColor}
                                 />
                             </View>
                         )}
@@ -309,11 +325,7 @@ class SnapshotTransition extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon
-                                    name='chevronLeft'
-                                    size={width / 28}
-                                    color={body.color}
-                                />
+                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>

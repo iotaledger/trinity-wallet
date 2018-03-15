@@ -41,12 +41,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingBottom: height / 30,
     },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 40,
-    },
     animationLoading: {
         justifyContent: 'center',
         width: width * 1.5,

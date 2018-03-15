@@ -73,7 +73,7 @@ export class CurrencySelection extends Component {
         currencies: PropTypes.array.isRequired,
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        primaryColor: PropTypes.string.isRequired,
         getCurrencyData: PropTypes.func.isRequired,
         bodyColor: PropTypes.string.isRequired,
     };
@@ -107,9 +107,7 @@ export class CurrencySelection extends Component {
             >
                 <View style={styles.itemLeft}>
                     <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                    <Text style={[styles.titleTextLeft, { color: bodyColor }]}>
-                        {t('global:backLowercase')}
-                    </Text>
+                    <Text style={[styles.titleTextLeft, { color: bodyColor }]}>{t('global:backLowercase')}</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -132,7 +130,7 @@ export class CurrencySelection extends Component {
     }
 
     render() {
-        const { currency, currencies, t, negativeColor, isFetchingCurrencyData } = this.props;
+        const { currency, currencies, t, primaryColor, isFetchingCurrencyData } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -163,7 +161,7 @@ export class CurrencySelection extends Component {
                                 animating
                                 style={styles.activityIndicator}
                                 size="large"
-                                color={negativeColor}
+                                color={primaryColor}
                             />
                         </View>
                     )) || <View style={styles.innerContainer} />}
