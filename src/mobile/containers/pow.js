@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     toggleText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 24.4,
+        fontSize: width / 23,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
@@ -121,9 +121,14 @@ class Pow extends Component {
                                     </Text>
                                 </View>
                             </TouchableWithoutFeedback>
-                            <TouchableOpacity onPress={this.changeMode}>
-                                <Toggle active={remotePoW} bodyColor={body.color} primaryColor={primary.color} />
-                            </TouchableOpacity>
+                            <TouchableWithoutFeedback onPress={this.onChange}>
+                                <Toggle
+                                    active={remotePoW}
+                                    bodyColor={body.color}
+                                    primaryColor={primary.color}
+                                    scale={1.3}
+                                />
+                            </TouchableWithoutFeedback>
                             <TouchableWithoutFeedback
                                 onPress={this.onChange}
                                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 35, right: width / 70 }}
