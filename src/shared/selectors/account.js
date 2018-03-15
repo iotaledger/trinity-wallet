@@ -4,7 +4,7 @@ import findKey from 'lodash/findKey';
 import { createSelector } from 'reselect';
 import { deduplicateTransferBundles } from '../libs/iota/transfers';
 
-export const currentAccountSelector = (seedName, accountInfo) => get(accountInfo, seedName);
+export const currentAccountSelector = (accountName, accountInfo) => get(accountInfo, accountName);
 
 export const currentAccountSelectorBySeedIndex = (seedIndex, accountInfo) => {
     if (isEmpty(accountInfo) || seedIndex < 0) {
@@ -17,8 +17,8 @@ export const currentAccountSelectorBySeedIndex = (seedIndex, accountInfo) => {
     return accountInfo[currentlySelectedAccountName];
 };
 
-const currentAccountNameSelectorBySeedIndex = (seedIndex, seedNames) => {
-    return seedNames[seedIndex];
+const currentAccountNameSelectorBySeedIndex = (seedIndex, accountNames) => {
+    return accountNames[seedIndex];
 };
 
 export const getSelectedAccount = createSelector(currentAccountSelector, (account) => account);

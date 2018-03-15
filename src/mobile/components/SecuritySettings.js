@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 class SecuritySettings extends Component {
     static propTypes = {
         setSetting: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         on2FASetupPress: PropTypes.func.isRequired,
@@ -80,7 +80,7 @@ class SecuritySettings extends Component {
     };
 
     render() {
-        const { t, textColor, secondaryBackgroundColor } = this.props;
+        const { t, textColor, bodyColor } = this.props;
 
         return (
             <View style={styles.container}>
@@ -91,7 +91,7 @@ class SecuritySettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="twoFA" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="twoFA" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('twoFA')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -102,7 +102,7 @@ class SecuritySettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="biometric" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="biometric" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('fingerprint')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -116,7 +116,7 @@ class SecuritySettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
                                 <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>

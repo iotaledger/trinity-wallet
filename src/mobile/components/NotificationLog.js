@@ -68,7 +68,7 @@ class NotificationLog extends Component {
         backgroundColor: PropTypes.string.isRequired,
         borderColor: PropTypes.object.isRequired,
         textColor: PropTypes.object.isRequired,
-        secondaryBarColor: PropTypes.string.isRequired,
+        barColor: PropTypes.string.isRequired,
         hideModal: PropTypes.func.isRequired,
         notificationLog: PropTypes.array.isRequired,
         clearLog: PropTypes.func.isRequired,
@@ -80,8 +80,8 @@ class NotificationLog extends Component {
     }
 
     render() {
-        const { backgroundColor, textColor, borderColor, secondaryBarColor, notificationLog, hideModal } = this.props;
-        const lineBorder = { borderBottomColor: secondaryBarColor };
+        const { backgroundColor, textColor, borderColor, barColor, notificationLog, hideModal } = this.props;
+        const lineBorder = { borderBottomColor: barColor };
         const trimmedLog = notificationLog.reverse().slice(0, 10);
 
         return (

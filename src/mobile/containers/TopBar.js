@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
 class TopBar extends Component {
     static propTypes = {
         balance: PropTypes.number.isRequired,
-        seedNames: PropTypes.array.isRequired,
+        accountNames: PropTypes.array.isRequired,
         accountInfo: PropTypes.object.isRequired,
         seedIndex: PropTypes.number.isRequired,
         currentSetting: PropTypes.string.isRequired,
@@ -128,8 +128,8 @@ class TopBar extends Component {
         clearLog: PropTypes.func.isRequired,
     };
 
-    static filterSeedTitles(seedNames, currentSeedIndex) {
-        return filter(seedNames, (t, i) => i !== currentSeedIndex);
+    static filterSeedTitles(accountNames, currentSeedIndex) {
+        return filter(accountNames, (t, i) => i !== currentSeedIndex);
     }
 
     static humanizeBalance(balance) {
@@ -205,9 +205,9 @@ class TopBar extends Component {
     }
 
     renderTitles() {
-        const { isTopBarActive, seedNames, balance, accountInfo, seedIndex, bar } = this.props;
+        const { isTopBarActive, accountNames, balance, accountInfo, seedIndex, bar } = this.props;
         const borderBottomColor = { borderBottomColor: bar.color };
-        const selectedTitle = get(seedNames, `[${seedIndex}]`) || ''; // fallback
+        const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
         const subtitleColor = tinycolor(bar.color).isDark() ? '#262626' : '#d3d3d3';
 
@@ -230,7 +230,7 @@ class TopBar extends Component {
         };
 
         const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
-        const titles = map(seedNames, withSubtitles);
+        const titles = map(accountNames, withSubtitles);
         const disableWhen = this.shouldDisable();
 
         const baseContent = (
@@ -329,10 +329,10 @@ class TopBar extends Component {
     }
 
     render() {
-        const { seedIndex, seedNames, isTopBarActive, body, bar, notificationLog } = this.props;
+        const { seedIndex, accountNames, isTopBarActive, body, bar, notificationLog } = this.props;
 
         const children = this.renderTitles();
-        const hasMultipleSeeds = size(TopBar.filterSeedTitles(seedNames, seedIndex));
+        const hasMultipleSeeds = size(TopBar.filterSeedTitles(accountNames, seedIndex));
         const shouldDisable = this.shouldDisable();
         const hasNotifications = notificationLog.length > 0;
 
@@ -404,7 +404,7 @@ class TopBar extends Component {
                             hideModal={() => this.hideModal()}
                             textColor={{ color: bar.color }}
                             borderColor={{ borderColor: bar.color }}
-                            secondaryBarColor={bar.color}
+                            barColor={bar.color}
                             notificationLog={notificationLog}
                             clearLog={this.props.clearLog}
                         />
@@ -417,7 +417,7 @@ class TopBar extends Component {
 
 const mapStateToProps = (state) => ({
     balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    seedNames: state.account.seedNames,
+    accountNames: state.account.accountNames,
     accountInfo: state.account.accountInfo,
     currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,

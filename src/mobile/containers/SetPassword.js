@@ -1,4 +1,3 @@
-import isEmpty from 'lodash/isEmpty';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -9,7 +8,13 @@ import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-w
 import { clearTempData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import CustomTextInput from '../components/CustomTextInput';
-import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../utils/keychain';
+import {
+    hasDuplicateSeed,
+    hasDuplicateAccountName,
+    storeSeedInKeychain,
+    getAllSeedsFromKeychain,
+} from '../utils/keychain';
+import { getPasswordHash } from '../utils/crypto';
 import OnboardingButtons from '../components/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { isAndroid } from '../utils/device';
@@ -76,14 +81,13 @@ class SetPassword extends Component {
         generateAlert: PropTypes.func.isRequired,
         setPassword: PropTypes.func.isRequired,
         seed: PropTypes.string.isRequired,
-        seedName: PropTypes.string.isRequired,
+        accountName: PropTypes.string.isRequired,
         theme: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
     };
 
     constructor() {
         super();
-
         this.state = {
             password: '',
             reentry: '',
@@ -92,10 +96,10 @@ class SetPassword extends Component {
 
     onDonePress() {
         const { body } = this.props;
-        const ifNoKeychainDuplicates = (password, seed, accountName) => {
-            storeSeedInKeychain(password, seed, accountName)
+        const ifNoKeychainDuplicates = (pwdHash, seed, accountName) => {
+            storeSeedInKeychain(pwdHash, seed, accountName)
                 .then(() => {
-                    this.props.setPassword(password);
+                    this.props.setPassword(pwdHash);
                     this.props.addAccountName(accountName);
                     this.props.increaseSeedCount();
                     this.props.clearTempData();
@@ -117,43 +121,37 @@ class SetPassword extends Component {
                         animated: false,
                     });
                 })
-                .catch((err) => console.error(err));
-        };
-
-        const { t, seed, seedName } = this.props;
-        const { password, reentry } = this.state;
-
-        if (password.length >= MIN_PASSWORD_LENGTH && password === reentry) {
-            keychain
-                .get()
-                .then((credentials) => {
-                    if (isEmpty(credentials)) {
-                        return ifNoKeychainDuplicates(password, seed, seedName);
-                    }
-
-                    if (hasDuplicateAccountName(credentials.data, seedName)) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('addAdditionalSeed:nameInUse'),
-                            t('addAdditionalSeed:nameInUseExplanation'),
-                        );
-                    } else if (hasDuplicateSeed(credentials.data, seed)) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('addAdditionalSeed:seedInUse'),
-                            t('addAdditionalSeed:seedInUseExplanation'),
-                        );
-                    }
-
-                    return ifNoKeychainDuplicates(password, seed, seedName);
-                })
                 .catch(() => {
                     this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongExplanation'),
+                        t('global:somethingWentWrongRestart'),
                     );
                 });
+        };
+
+        const { t, seed, accountName } = this.props;
+        const { password, reentry } = this.state;
+
+        if (password.length >= MIN_PASSWORD_LENGTH && password === reentry) {
+            const pwdHash = getPasswordHash(password);
+
+            getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
+                if (hasDuplicateAccountName(seedInfo, accountName)) {
+                    return this.props.generateAlert(
+                        'error',
+                        t('addAdditionalSeed:nameInUse'),
+                        t('addAdditionalSeed:nameInUseExplanation'),
+                    );
+                } else if (hasDuplicateSeed(seedInfo, seed)) {
+                    return this.props.generateAlert(
+                        'error',
+                        t('addAdditionalSeed:seedInUse'),
+                        t('addAdditionalSeed:seedInUseExplanation'),
+                    );
+                }
+                return ifNoKeychainDuplicates(pwdHash, seed, accountName);
+            });
         } else if (!(password === reentry)) {
             this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
         } else if (password.length < MIN_PASSWORD_LENGTH || reentry.length < MIN_PASSWORD_LENGTH) {
@@ -268,7 +266,7 @@ class SetPassword extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
-    seedName: state.tempAccount.seedName,
+    accountName: state.tempAccount.accountName,
     theme: state.settings.theme,
     body: state.settings.theme.body,
 });
