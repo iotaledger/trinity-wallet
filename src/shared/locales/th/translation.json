@@ -355,7 +355,7 @@
         "one": "หนึ่ง"
     },
     "deleteAccount": {
-        "areYouSure": "คุณแน่ใจหรือว่าต้องการลบข้อมูลบัญชีผู้ใช้ {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Seed (เลขที่บัญชี) และรายการของคุณจะถูกลบออก",
         "thisAction": "การกระทำนี้ไม่สามารถยกเลิกได้",
         "enterPassword": "ป้อนรหัสผ่านของคุณเพื่อที่จะลบบัญชีนี้"
