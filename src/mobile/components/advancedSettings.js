@@ -85,7 +85,7 @@ class AdvancedSettings extends Component {
 
         return (
             <View style={styles.container}>
-                <View style={{ flex: 6.5 }}>
+                <View style={{ flex: 7 }}>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
                             onPress={() => this.props.setSetting('nodeSelection')}
@@ -162,7 +162,7 @@ class AdvancedSettings extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={{ flex: 3.5, justifyContent: 'flex-end' }}>
+                <View style={{ flex: 3, justifyContent: 'flex-end' }}>
                     <View style={{ flex: 2.5 }} />
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
