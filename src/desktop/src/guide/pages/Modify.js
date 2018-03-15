@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateTheme } from 'actions/settings';
-import { showNotification } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
 
 import Input from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
@@ -17,7 +17,13 @@ class ModifyTheme extends React.Component {
         theme: PropTypes.object.isRequired,
         themeName: PropTypes.string.isRequired,
         updateTheme: PropTypes.func.isRequired,
-        showNotification: PropTypes.func.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -44,11 +50,7 @@ class ModifyTheme extends React.Component {
                 .slice(-5),
         );
 
-        this.props.showNotification({
-            type: 'success',
-            title: 'Theme applied',
-            text: 'Theme applied to the styleguide',
-        });
+        this.props.generateAlert('success', 'Theme applied', 'Theme applied to the styleguide');
     };
 
     updateColor = (color, type, value) => {
@@ -256,12 +258,7 @@ class ModifyTheme extends React.Component {
                 <Button variant="primary" onClick={this.setTheme}>
                     Update
                 </Button>
-                <Clipboard
-                    text={JSON.stringify(theme)}
-                    label="Copy to clipboard"
-                    title="Copied to clipboard"
-                    success="Theme data is copied to clipboard"
-                />
+                <Clipboard text={JSON.stringify(theme)} />
             </div>
         );
     }
@@ -274,7 +271,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     updateTheme,
-    showNotification,
+    generateAlert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModifyTheme);
