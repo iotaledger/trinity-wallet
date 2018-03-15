@@ -96,7 +96,7 @@
         "noNickname": "Kein Kontoname eingegeben",
         "noNicknameExplanation": "Bitte gib einen Kontonamen für deinen Seed ein.",
         "seedInUse": "Dieser Seed wird bereits verwendet",
-        "seedInUseExplanation": "Dieser Seed ist bereits mit deinem Wallet verknüpft. Bitte benutze einen anderen."
+        "seedInUseExplanation": "Dieser Seed ist bereits mit deinem Wallet verknüpft. Bitte verwende einen anderen."
     },
     "changePassword": {
         "oops": "Ups! Etwas ist schiefgegangen",
@@ -148,7 +148,7 @@
         "emptyPassword": "Leeres Passwort",
         "emptyPasswordExplanation": "Du musst ein Passwort eingeben um dich anzumelden. Bitte versuche es erneut.",
         "enterPassword": "Bitte gib dein Passwort ein.",
-        "useSeed": "SEED BENUTZEN",
+        "useSeed": "SEED VERWENDEN",
         "login": "ANMELDEN",
         "selectDifferentNode": "Möchtest du einen anderen Server auswählen?",
         "setNode": "SERVER AUSWÄHLEN",
@@ -198,8 +198,8 @@
     "send": {
         "invalidAddress": "Ungültige Adresse",
         "invalidAddressExplanation1": "Die Adresse sollte {{maxLength}} Zeichen lang sein und eine Prüfsumme haben.",
-        "invalidAddressExplanation2": "Adresse enthält ungültige Zeichen.",
-        "invalidAddressExplanation3": "Adresse enthält eine ungültige Prüfsumme.",
+        "invalidAddressExplanation2": "Die Adresse enthält ungültige Zeichen.",
+        "invalidAddressExplanation3": "Die Adresse enthält eine ungültige Prüfsumme.",
         "invalidAddressExplanationGeneric": "Zulässige Adressen sollten aus 90 Zeichen bestehen und nur die Zeichen A-Z oder 9 enthalten.",
         "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
