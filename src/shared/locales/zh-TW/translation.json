@@ -355,7 +355,7 @@
         "one": "一個"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "您的種子和交易記錄將被移除。",
         "thisAction": "此向操作無法復原",
         "enterPassword": "請輸入密碼以刪除這個帳號。"
