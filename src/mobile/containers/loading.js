@@ -14,16 +14,17 @@ import KeepAwake from 'react-native-keep-awake';
 import LottieView from 'lottie-react-native';
 import {
     getAccountInfo,
-    getFullAccountInfo,
-    fetchFullAccountInfoForFirstUse,
+    getFullAccountInfoFirstSeed,
+    getFullAccountInfoAdditionalSeed,
 } from 'iota-wallet-shared-modules/actions/account';
 import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
-import keychain, { getSeed, storeSeedInKeychain } from '../util/keychain';
+import { getSeedFromKeychain, storeSeedInKeychain } from '../util/keychain';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 
 import { width, height } from '../util/dimensions';
@@ -65,8 +66,8 @@ class Loading extends Component {
         addingAdditionalAccount: PropTypes.bool.isRequired,
         navigator: PropTypes.object.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
-        getFullAccountInfo: PropTypes.func.isRequired,
-        fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
+        getFullAccountInfoFirstSeed: PropTypes.func.isRequired,
+        getFullAccountInfoAdditionalSeed: PropTypes.func.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         body: PropTypes.object.isRequired,
         getMarketData: PropTypes.func.isRequired,
@@ -81,6 +82,7 @@ class Loading extends Component {
         ready: PropTypes.bool.isRequired,
         setSetting: PropTypes.func.isRequired,
         changeHomeScreenRoute: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -100,6 +102,7 @@ class Loading extends Component {
             seed,
             password,
             navigator,
+            t,
         } = this.props;
         this.animation.play();
         if (!firstUse && !addingAdditionalAccount) {
@@ -111,26 +114,30 @@ class Loading extends Component {
         this.props.changeHomeScreenRoute('balance');
         this.props.setSetting('mainSettings');
 
-        keychain
-            .get()
-            .then((credentials) => {
-                const firstSeed = getSeed(credentials.data, 0);
+        if (!firstUse && addingAdditionalAccount) {
+            return this.props.getFullAccountInfoAdditionalSeed(
+                seed,
+                additionalAccountName,
+                password,
+                storeSeedInKeychain,
+                navigator,
+            );
+        }
 
-                if (firstUse && !addingAdditionalAccount) {
-                    this.props.getFullAccountInfo(firstSeed, selectedAccountName, navigator);
-                } else if (!firstUse && addingAdditionalAccount) {
-                    this.props.fetchFullAccountInfoForFirstUse(
-                        seed,
-                        additionalAccountName,
-                        password,
-                        storeSeedInKeychain,
-                        navigator,
-                    );
-                } else {
-                    this.props.getAccountInfo(firstSeed, selectedAccountName, navigator);
-                }
-            })
-            .catch((err) => console.log(err)); // Dropdown
+        getSeedFromKeychain(password, selectedAccountName).then((currentSeed) => {
+            if (currentSeed === null) {
+                return this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongRestart'),
+                );
+            }
+            if (firstUse) {
+                this.props.getFullAccountInfoFirstSeed(currentSeed, selectedAccountName, navigator);
+            } else {
+                this.props.getAccountInfo(currentSeed, selectedAccountName, navigator);
+            }
+        });
     }
 
     componentWillReceiveProps(newProps) {
@@ -264,7 +271,7 @@ class Loading extends Component {
 
 const mapStateToProps = (state) => ({
     firstUse: state.account.firstUse,
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,
     additionalAccountName: state.tempAccount.additionalAccountName,
     seed: state.tempAccount.seed,
@@ -278,12 +285,13 @@ const mapDispatchToProps = {
     changeHomeScreenRoute,
     setSetting,
     getAccountInfo,
-    getFullAccountInfo,
-    fetchFullAccountInfoForFirstUse,
+    getFullAccountInfoFirstSeed,
+    getFullAccountInfoAdditionalSeed,
     getMarketData,
     getPrice,
     getChartData,
     getCurrencyData,
+    generateAlert,
 };
 
 export default translate('loading')(connect(mapStateToProps, mapDispatchToProps)(Loading));

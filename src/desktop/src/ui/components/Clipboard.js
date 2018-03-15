@@ -28,11 +28,11 @@ class Clipboard extends React.PureComponent {
          * @param {String} text - notification explanation
          * @ignore
          */
-        generateAlert: PropTypes.func.isRequired
+        generateAlert: PropTypes.func.isRequired,
     };
 
     copy() {
-        const { text, generateAlert, title, success, timeout} = this.props;
+        const { text, generateAlert, title, success, timeout } = this.props;
 
         Electron.clipboard(text);
         generateAlert('success', title, success);

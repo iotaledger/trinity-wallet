@@ -52,12 +52,7 @@ class Remove extends PureComponent {
             deleteAccount(accountName);
             history.push('/wallet/');
 
-            generateAlert(
-               'success',
-               t('settings:accountDeleted'),
-               t('settings:accountDeletedExplanation'),
-           );
-           
+            generateAlert('success', t('settings:accountDeleted'), t('settings:accountDeletedExplanation'));
         } catch (err) {
             generateAlert(
                 'error',
