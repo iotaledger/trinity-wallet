@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -6,7 +5,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFee
 import Fonts from '../theme/fonts';
 import Seedbox from '../components/SeedBox';
 import CustomTextInput from '../components/CustomTextInput';
-import keychain, { getSeed } from '../utils/keychain';
+import { getSeedFromKeychain } from '../utils/keychain';
+import { getPasswordHash } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import CtaButton from '../components/CtaButton';
@@ -82,6 +82,7 @@ class ViewSeed extends Component {
         onWrongPassword: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
+        selectedAccountName: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -114,16 +115,14 @@ class ViewSeed extends Component {
     }
 
     viewSeed() {
-        if (this.state.password === this.props.password) {
-            keychain
-                .get()
-                .then((credentials) => {
-                    const data = get(credentials, 'data');
-
-                    if (!data) {
+        const { password, selectedAccountName } = this.props;
+        const pwdHash = getPasswordHash(this.state.password);
+        if (password === pwdHash) {
+            getSeedFromKeychain(pwdHash, selectedAccountName)
+                .then((seed) => {
+                    if (seed === null) {
                         throw new Error('Error');
                     } else {
-                        const seed = getSeed(data, this.props.seedIndex);
                         this.setState({ seed });
                         this.setState({ showSeed: true });
                     }

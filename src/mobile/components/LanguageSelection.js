@@ -63,7 +63,7 @@ class LanguageSelection extends Component {
         setLanguage: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         language: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -81,7 +81,7 @@ class LanguageSelection extends Component {
     }
 
     render() {
-        const { backPress, t, textColor, language, secondaryBackgroundColor } = this.props;
+        const { backPress, t, textColor, language, bodyColor } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -114,7 +114,7 @@ class LanguageSelection extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -124,7 +124,7 @@ class LanguageSelection extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                <Icon name="tick" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="tick" size={width / 28} color={bodyColor} />
                             </View>
                         </TouchableOpacity>
                     </View>

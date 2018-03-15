@@ -73,9 +73,9 @@ export class CurrencySelection extends Component {
         currencies: PropTypes.array.isRequired,
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        primaryColor: PropTypes.string.isRequired,
         getCurrencyData: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
     };
 
     componentWillReceiveProps(newProps) {
@@ -98,7 +98,7 @@ export class CurrencySelection extends Component {
     }
 
     renderBackOption() {
-        const { secondaryBackgroundColor, t } = this.props;
+        const { bodyColor, t } = this.props;
 
         return (
             <TouchableOpacity
@@ -106,17 +106,15 @@ export class CurrencySelection extends Component {
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemLeft}>
-                    <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
-                    <Text style={[styles.titleTextLeft, { color: secondaryBackgroundColor }]}>
-                        {t('global:backLowercase')}
-                    </Text>
+                    <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
+                    <Text style={[styles.titleTextLeft, { color: bodyColor }]}>{t('global:backLowercase')}</Text>
                 </View>
             </TouchableOpacity>
         );
     }
 
     renderSaveOption() {
-        const { t, secondaryBackgroundColor } = this.props;
+        const { t, bodyColor } = this.props;
 
         return (
             <TouchableOpacity
@@ -124,15 +122,15 @@ export class CurrencySelection extends Component {
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemRight}>
-                    <Text style={[styles.titleTextRight, { color: secondaryBackgroundColor }]}>{t('global:save')}</Text>
-                    <Icon name="tick" size={width / 28} color={secondaryBackgroundColor} />
+                    <Text style={[styles.titleTextRight, { color: bodyColor }]}>{t('global:save')}</Text>
+                    <Icon name="tick" size={width / 28} color={bodyColor} />
                 </View>
             </TouchableOpacity>
         );
     }
 
     render() {
-        const { currency, currencies, t, negativeColor, isFetchingCurrencyData } = this.props;
+        const { currency, currencies, t, primaryColor, isFetchingCurrencyData } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -163,7 +161,7 @@ export class CurrencySelection extends Component {
                                 animating
                                 style={styles.activityIndicator}
                                 size="large"
-                                color={negativeColor}
+                                color={primaryColor}
                             />
                         </View>
                     )) || <View style={styles.innerContainer} />}

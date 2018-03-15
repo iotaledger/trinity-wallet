@@ -15,11 +15,9 @@ const styles = StyleSheet.create({
 
 class GenerateAddressButton extends PureComponent {
     static propTypes = {
-        ctaColor: PropTypes.string.isRequired,
-        secondaryCtaColor: PropTypes.string.isRequired,
-        ctaBorderColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        primaryColor: PropTypes.string.isRequired,
+        primaryBody: PropTypes.string.isRequired,
         receiveAddress: PropTypes.string.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isGettingSensitiveInfoToGenerateAddress: PropTypes.bool.isRequired,
@@ -30,10 +28,8 @@ class GenerateAddressButton extends PureComponent {
     render() {
         const {
             t,
-            ctaColor,
-            ctaBorderColor,
-            negativeColor,
-            secondaryCtaColor,
+            primaryColor,
+            primaryBody,
             receiveAddress,
             message,
             isGeneratingReceiveAddress,
@@ -46,9 +42,9 @@ class GenerateAddressButton extends PureComponent {
                     (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
                         <View style={{ flex: 1, justifyContent: 'center' }}>
                             <CtaButton
-                                ctaColor={ctaColor}
-                                ctaBorderColor={ctaBorderColor}
-                                secondaryCtaColor={secondaryCtaColor}
+                                ctaColor={primaryColor}
+                                ctaBorderColor={primaryColor}
+                                secondaryCtaColor={primaryBody}
                                 text={t('generateNewAddress')}
                                 onPress={() => {
                                     if (!isGeneratingReceiveAddress) {
@@ -64,7 +60,7 @@ class GenerateAddressButton extends PureComponent {
                             animating={isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress}
                             style={styles.activityIndicator}
                             size="large"
-                            color={negativeColor}
+                            color={primaryColor}
                         />
                     </View>
                 )}

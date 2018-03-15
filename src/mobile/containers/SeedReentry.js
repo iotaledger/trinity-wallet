@@ -120,7 +120,7 @@ class SeedReentry extends Component {
         const { t, seed, body } = this.props;
         if (this.state.seed === seed) {
             this.props.navigator.push({
-                screen: 'setSeedName',
+                screen: 'setAccountName',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,

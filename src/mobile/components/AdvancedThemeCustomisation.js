@@ -94,7 +94,7 @@ class AdvancedThemeCustomisation extends React.Component {
         t: PropTypes.func.isRequired,
         tickImagePath: PropTypes.number.isRequired,
         arrowLeftImagePath: PropTypes.number.isRequired,
-        barColor: PropTypes.string.isRequired,
+        barBg: PropTypes.string.isRequired,
         textColor: PropTypes.string.isRequired,
     };
 
@@ -103,17 +103,17 @@ class AdvancedThemeCustomisation extends React.Component {
 
         this.state = {
             backgroundColor: props.backgroundColor,
-            barColor: props.barColor,
+            barBg: props.barBg,
         };
     }
 
     onApplyPress() {
-        const { backgroundColor, barColor } = this.state;
+        const { backgroundColor, barBg } = this.state;
         const theme = cloneDeep(this.props.theme);
         theme.backgroundColor = backgroundColor;
-        theme.barColor = barColor;
-        theme.secondaryBackgroundColor = tinycolor(backgroundColor).isDark() ? 'white' : '#222';
-        theme.secondaryBarColor = tinycolor(barColor).isDark() ? 'white' : '#222';
+        theme.barBg = barBg;
+        theme.bodyColor = tinycolor(backgroundColor).isDark() ? 'white' : '#222';
+        theme.barColor = tinycolor(barBg).isDark() ? 'white' : '#222';
         this.props.updateTheme(theme, 'Custom');
         this.props.backPress();
     }
@@ -121,7 +121,7 @@ class AdvancedThemeCustomisation extends React.Component {
     render() {
         const { t, tickImagePath, arrowLeftImagePath, textColor } = this.props;
         const backgroundTextColor = tinycolor(this.state.backgroundColor).isDark() ? '#FAFAFA' : '#222';
-        const barTextColor = tinycolor(this.state.barColor).isDark() ? '#FAFAFA' : '#222';
+        const barTextColor = tinycolor(this.state.barBg).isDark() ? '#FAFAFA' : '#222';
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
@@ -165,7 +165,7 @@ class AdvancedThemeCustomisation extends React.Component {
                         <View
                             style={[
                                 styles.colorPreview,
-                                { backgroundColor: tinycolor(this.state.barColor).toHslString() },
+                                { backgroundColor: tinycolor(this.state.barBg).toHslString() },
                             ]}
                         >
                             <Text style={[styles.colorString, { color: barTextColor }]}>{t('frame')}</Text>
@@ -173,22 +173,22 @@ class AdvancedThemeCustomisation extends React.Component {
                         <HueSlider
                             style={styles.sliderRow}
                             gradientSteps={40}
-                            value={this.state.barColor.h}
-                            onValueChange={(h) => this.setState({ barColor: { ...this.state.barColor, h } })}
+                            value={this.state.barBg.h}
+                            onValueChange={(h) => this.setState({ barBg: { ...this.state.barBg, h } })}
                         />
                         <SaturationSlider
                             style={styles.sliderRow}
                             gradientSteps={20}
-                            value={this.state.barColor.s}
-                            color={this.state.barColor}
-                            onValueChange={(s) => this.setState({ barColor: { ...this.state.barColor, s } })}
+                            value={this.state.barBg.s}
+                            color={this.state.barBg}
+                            onValueChange={(s) => this.setState({ barBg: { ...this.state.barBg, s } })}
                         />
                         <LightnessSlider
                             style={styles.sliderRow}
                             gradientSteps={20}
-                            value={this.state.barColor.l}
-                            color={this.state.barColor}
-                            onValueChange={(l) => this.setState({ barColor: { ...this.state.barColor, l } })}
+                            value={this.state.barBg.l}
+                            color={this.state.barBg}
+                            onValueChange={(l) => this.setState({ barBg: { ...this.state.barBg, l } })}
                         />
                     </View>
                 </View>

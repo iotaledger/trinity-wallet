@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderTopColor: 'transparent',
-        borderTopWidth: parseInt(height / 90),
+        borderTopWidth: parseInt(height / 100),
     },
     iconTitle: {
         fontWeight: 'bold',

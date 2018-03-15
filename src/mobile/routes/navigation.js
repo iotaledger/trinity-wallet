@@ -17,7 +17,7 @@ import Login from '../containers/Login';
 import WalletResetConfirmation from '../containers/WalletResetConfirmation';
 import WalletResetRequirePassword from '../containers/WalletResetRequirePassword';
 import OnboardingComplete from '../containers/OnboardingComplete';
-import SetSeedNameComponent from '../containers/SetSeedName';
+import SetAccountNameComponent from '../containers/setAccountName';
 import SeedReentry from '../containers/SeedReentry';
 import TwoFactorSetupAddKeyComponent from '../containers/TwoFactorSetupAddKey';
 import TwoFactorSetupEnterToken from '../containers/TwoFactorSetupEnterToken';
@@ -55,7 +55,7 @@ export default function registerScreens(store, Provider) {
         Provider,
     );
     Navigation.registerComponent('onboardingComplete', () => getGenerator(OnboardingComplete), store, Provider);
-    Navigation.registerComponent('setSeedName', () => getGenerator(SetSeedNameComponent), store, Provider);
+    Navigation.registerComponent('setAccountName', () => getGenerator(SetAccountNameComponent), store, Provider);
     Navigation.registerComponent('seedReentry', () => getGenerator(SeedReentry), store, Provider);
     Navigation.registerComponent('saveSeedConfirmation', () => getGenerator(SaveSeedConfirmation), store, Provider);
     Navigation.registerComponent(

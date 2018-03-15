@@ -9,6 +9,7 @@ import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isNull from 'lodash/isNull';
 import isEmpty from 'lodash/isEmpty';
+import isFunction from 'lodash/isFunction';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
 import some from 'lodash/some';
@@ -34,6 +35,7 @@ import {
     findTransactionObjectsAsync,
     findTransactionsAsync,
 } from './extendedApi';
+import Errors from './../errors';
 
 /**
  *   Returns a transfer array
@@ -754,6 +756,10 @@ export const performPow = (
     branchTransaction,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
 ) => {
+    if (!isFunction(powFn)) {
+        throw new Error(Errors.POW_FUNCTION_UNDEFINED);
+    }
+
     const transactionObjects = map(trytes, (transactionTrytes) =>
         assign({}, iota.utils.transactionObject(transactionTrytes), {
             attachmentTimestamp: Date.now(),
@@ -785,7 +791,7 @@ export const performPow = (
                 const transactionTryteString = iota.utils.transactionTrytes(withParentTransactions);
 
                 return powFn(transactionTryteString, minWeightMagnitude).then((nonce) => {
-                    const trytesWithNonce = transactionTryteString.substr(0, 2673 - 27).concat(nonce);
+                    const trytesWithNonce = transactionTryteString.substr(0, 2673 - nonce.length).concat(nonce);
                     const transactionObjectWithNonce = iota.utils.transactionObject(trytesWithNonce);
 
                     result.trytes.unshift(trytesWithNonce);
