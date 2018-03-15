@@ -84,12 +84,7 @@ class SeedVerify extends React.PureComponent {
             <form onSubmit={(e) => this.setSeed(e)}>
                 <div />
                 <section>
-                    <SeedInput
-                        seed={seed}
-                        onChange={this.onChange}
-                        label={t('seed')}
-                        closeLabel={t('back')}
-                    />
+                    <SeedInput seed={seed} onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
                     <Infobox>
                         {newSeed ? (
                             <React.Fragment>
