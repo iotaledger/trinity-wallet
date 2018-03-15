@@ -23,7 +23,7 @@ const getProps = (overrides) =>
             currencies: ['foo', 'baz'],
             backPress: noop,
             t: noop,
-            secondaryBackgroundColor: 'white',
+            bodyColor: 'white',
             negativeColor: 'white',
             tickImagePath: 0,
             arrowLeftImagePath: 0,
@@ -57,8 +57,8 @@ describe('Testing CurrencySelection component', () => {
             expect(CurrencySelection.propTypes.t).toBe(PropTypes.func.isRequired);
         });
 
-        it('should require a secondaryBackgroundColor string as a prop', () => {
-            expect(CurrencySelection.propTypes.secondaryBackgroundColor).toBe(PropTypes.string.isRequired);
+        it('should require a bodyColor string as a prop', () => {
+            expect(CurrencySelection.propTypes.bodyColor).toBe(PropTypes.string.isRequired);
         });
 
         it('should require a negativeColor object as a prop', () => {

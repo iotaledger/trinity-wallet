@@ -21,7 +21,7 @@ const getProps = (overrides) =>
             saveAccountName: noop,
             backPress: noop,
             textColor: { color: 'white' },
-            secondaryBackgroundColor: 'white',
+            bodyColor: 'white',
             theme: {},
         },
         overrides,
@@ -49,8 +49,8 @@ describe('Testing EditAccountName component', () => {
             expect(EditAccountName.propTypes.textColor).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a secondaryBackgroundColor string as a prop', () => {
-            expect(EditAccountName.propTypes.secondaryBackgroundColor).toEqual(PropTypes.string.isRequired);
+        it('should require a bodyColor string as a prop', () => {
+            expect(EditAccountName.propTypes.bodyColor).toEqual(PropTypes.string.isRequired);
         });
     });
 

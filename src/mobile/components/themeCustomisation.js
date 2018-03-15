@@ -159,7 +159,7 @@ class ThemeCustomisation extends Component {
         onAdvancedPress: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
         themeName: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
     };
@@ -288,9 +288,9 @@ class ThemeCustomisation extends Component {
                                 <Icon
                                     name="chevronLeft"
                                     size={width / 28}
-                                    color={this.props.secondaryBackgroundColor}
+                                    color={this.props.bodyColor}
                                 />
-                                <Text style={[styles.titleTextLeft, { color: this.props.secondaryBackgroundColor }]}>
+                                <Text style={[styles.titleTextLeft, { color: this.props.bodyColor }]}>
                                     {t('global:backLowercase')}
                                 </Text>
                             </View>
@@ -300,10 +300,10 @@ class ThemeCustomisation extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, { color: this.props.secondaryBackgroundColor }]}>
+                                <Text style={[styles.titleTextRight, { color: this.props.bodyColor }]}>
                                     {t('global:apply')}
                                 </Text>
-                                <Icon name="tick" size={width / 28} color={this.props.secondaryBackgroundColor} />
+                                <Icon name="tick" size={width / 28} color={this.props.bodyColor} />
                             </View>
                         </TouchableOpacity>
                     </View>

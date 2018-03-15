@@ -86,7 +86,7 @@ class CustomTextInput extends React.Component {
         onDenominationPress: () => {},
         onQRPress: () => {},
         denominationText: 'i',
-        secondaryBackgroundColor: 'white',
+        bodyColor: 'white',
         negativeColor: '#F7D002',
         innerPadding: null,
         currencyConversion: false,
