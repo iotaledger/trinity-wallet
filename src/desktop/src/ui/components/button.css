@@ -35,7 +35,7 @@
     }
     &:disabled,
     &.disabled {
-        opacity: 0.5;
+        opacity: 0.3;
         pointer-events: none;
     }
     &:before {
@@ -54,8 +54,10 @@
     }
 }
 
-footer .button + .button {
-    margin-left: 20px;
+footer {
+    .button + .button {
+        margin-left: 40px;
+    }
 }
 
 .primary {
@@ -114,11 +116,11 @@ footer .button + .button {
 }
 
 .outline {
-    background: none;
+    background: var(--body-bg);
     border: 1px solid;
 
     &:hover {
-        background: none;
+        background: var(--body-bg);
     }
 
     &.primary {

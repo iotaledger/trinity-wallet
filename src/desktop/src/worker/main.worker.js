@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import { generateNewAddress } from 'actions/tempAccount';
-import { getAccountInfo, getFullAccountInfo } from 'actions/account';
+import { getAccountInfo, getFullAccountInfo, fetchFullAccountInfoForFirstUse } from 'actions/account';
 
 let state = {};
 
@@ -8,6 +8,7 @@ const actions = {
     generateNewAddress,
     getAccountInfo,
     getFullAccountInfo,
+    fetchFullAccountInfoForFirstUse,
 };
 
 const dispatch = (action) => {

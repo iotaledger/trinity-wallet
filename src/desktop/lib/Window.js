@@ -1,12 +1,32 @@
-const { ipcRenderer: ipc } = require('electron');
+const { ipcRenderer: ipc, shell, clipboard } = require('electron');
+const packageFile = require('../package.json');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
 const Electron = {
+    clipboard: (content) => {
+        if (content.length > 0) {
+            clipboard.writeText(content);
+        } else {
+            clipboard.clear();
+        }
+    },
+
+    gotoLatestRelease: () => {
+        shell.openExternal(packageFile.url);
+    },
+
     updateMenu: (attribute, value) => {
         ipc.send('menu.update', {
+            attribute: attribute,
+            value: value,
+        });
+    },
+
+    updateSettings: (attribute, value) => {
+        ipc.send('settings.update', {
             attribute: attribute,
             value: value,
         });
@@ -15,8 +35,12 @@ const Electron = {
     changeLanguage: (t) => {
         ipc.send('menu.language', {
             about: 'About',
+            checkUpdate: t('Check for Updates'),
             settings: capitalize(t('home:settings')),
+            accountSettings: t('settings:accountManagement'),
+            newAccount: t('accountManagement:addNewAccount'),
             language: t('languageSetup:language'),
+            node: t('node'),
             currency: t('settings:currency'),
             theme: t('settings:theme'),
             twoFA: t('settings:twoFA'),
@@ -33,15 +57,15 @@ const Electron = {
             copy: t('settings:copy'),
             paste: t('settings:paste'),
             selectAll: t('settings:selectAll'),
-            wallet: t('global:wallet'),
+            account: t('account'),
             balance: capitalize(t('home:balance')),
             send: capitalize(t('home:send')),
             receive: capitalize(t('home:receive')),
             history: capitalize(t('home:history')),
             logout: t('settings:logout'),
             logoutConfirm: t('logoutConfirmationModal:logoutConfirmation'),
-            yes: t('global:no'),
-            no: t('global:yes'),
+            yes: t('no'),
+            no: t('yes'),
         });
     },
 

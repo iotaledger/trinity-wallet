@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import css from './modal.css';
@@ -10,11 +9,13 @@ import css from './modal.css';
 export default class Modal extends React.Component {
     static propTypes = {
         /** Modal content */
-        children: PropTypes.node,
+        children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
         /** Modal window type */
         variant: PropTypes.oneOf(['confirm']),
         /** Modal visibility state */
         isOpen: PropTypes.bool,
+        /** Modal inline style state */
+        inline: PropTypes.bool,
         /** Modal visibility state */
         onClose: PropTypes.func.isRequired,
     };
@@ -28,25 +29,27 @@ export default class Modal extends React.Component {
     }
 
     onKeyDown = (e) => {
-        if (e.which === 27 && this.props.isOpen) {
+        if (e.key === 'Escape' && this.props.isOpen) {
             this.props.onClose();
         }
     };
 
     render() {
-        const { variant, isOpen } = this.props;
+        const { variant, isOpen, inline } = this.props;
 
-        if (!isOpen) {
-            return null;
-        }
-
-        return ReactDOM.createPortal(
-            <div className={classNames(css.backdrop, css[variant])}>
+        return (
+            <div
+                className={classNames(
+                    css.backdrop,
+                    css[variant],
+                    !isOpen ? css.hidden : null,
+                    inline ? css.inline : null,
+                )}
+            >
                 <div className={css.wrapper}>
                     <div className={css.content}>{this.props.children}</div>
                 </div>
-            </div>,
-            document.getElementById('modal'),
+            </div>
         );
     }
 }
