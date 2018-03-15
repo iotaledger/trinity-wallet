@@ -50,9 +50,7 @@ class List extends React.PureComponent {
             <div>
                 <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
                 <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
-                <strong>
-                    {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
-                </strong>
+                <strong>{!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}</strong>
                 <span>{`${round(formatValue(transfer.value))} ${formatUnit(transfer.value)}`}</span>
             </div>
         );
@@ -66,9 +64,7 @@ class List extends React.PureComponent {
                         {isReceived ? t('received') : t('sent')}{' '}
                         {`${round(formatValue(transfer.value))} ${formatUnit(transfer.value)}`}
                     </span>
-                    <strong>
-                        {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
-                    </strong>
+                    <strong>{!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}</strong>
                 </p>
                 <p>
                     <span>Message: {convertFromTrytes(transfer.signatureMessageFragment)}</span>
@@ -135,9 +131,7 @@ class List extends React.PureComponent {
                                     <strong>
                                         {!activeTransfer.persistence
                                             ? t('pending')
-                                            : addresses.includes(activeTransfer.address)
-                                              ? t('received')
-                                              : t('sent')}
+                                            : addresses.includes(activeTransfer.address) ? t('received') : t('sent')}
                                     </strong>{' '}
                                     <span>{`${round(formatValue(activeTransfer.value))} ${formatUnit(
                                         activeTransfer.value,

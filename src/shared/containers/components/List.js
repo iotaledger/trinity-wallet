@@ -23,7 +23,7 @@ export default function withListData(ListComponent) {
             const { accountInfo, limit, compact, filter, theme, t } = this.props;
 
             const ListProps = {
-                transfers: (accountInfo.transfers && accountInfo.transfers.length) ? accountInfo.transfers : [],
+                transfers: accountInfo.transfers && accountInfo.transfers.length ? accountInfo.transfers : [],
                 addresses: Object.keys(accountInfo.addresses),
                 compact,
                 theme,

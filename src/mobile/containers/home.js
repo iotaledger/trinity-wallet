@@ -11,6 +11,7 @@ import {
     setSetting,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { getPasswordHash } from '../util/crypto';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import UserInactivity from '../components/userInactivity';
 import StatefulDropdownAlert from './statefulDropdownAlert';
@@ -69,9 +70,10 @@ class Home extends Component {
     onLoginPress = (password) => {
         const { t, storedPassword } = this.props;
 
+        const pwdHash = getPasswordHash(password);
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
-        } else if (password !== storedPassword) {
+        } else if (storedPassword !== pwdHash) {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),

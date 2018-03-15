@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import map from 'lodash/map';
 import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
@@ -35,12 +34,13 @@ import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota'
 import KeepAwake from 'react-native-keep-awake';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal';
 import SettingsContent from '../components/settingsContent';
-import keychain, {
+import {
+    getSeedFromKeychain,
     hasDuplicateAccountName,
     hasDuplicateSeed,
-    getSeed,
     updateAccountNameInKeychain,
-    deleteFromKeychain,
+    deleteSeedFromKeychain,
+    getAllSeedsFromKeychain,
 } from '../util/keychain';
 import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
 import { height } from '../util/dimensions';
@@ -74,7 +74,7 @@ class Settings extends Component {
         currentSetting: PropTypes.string.isRequired,
         seedIndex: PropTypes.number.isRequired,
         password: PropTypes.string.isRequired,
-        seedNames: PropTypes.array.isRequired,
+        accountNames: PropTypes.array.isRequired,
         seedCount: PropTypes.number.isRequired,
         currency: PropTypes.string.isRequired,
         mode: PropTypes.string.isRequired,
@@ -205,22 +205,19 @@ class Settings extends Component {
     }
 
     onManualSyncPress() {
-        const { seedIndex, selectedAccountName, t } = this.props;
+        const { password, selectedAccountName, t } = this.props;
 
         if (!this.shouldPreventAction()) {
-            keychain
-                .get()
-                .then((credentials) => {
-                    if (get(credentials, 'data')) {
-                        const seed = getSeed(credentials.data, seedIndex);
-                        this.props.manuallySyncAccount(seed, selectedAccountName);
-                    } else {
-                        this.props.generateAlert(
+            getSeedFromKeychain(password, selectedAccountName)
+                .then((seed) => {
+                    if (seed === null) {
+                        return this.props.generateAlert(
                             'error',
                             t('global:somethingWentWrong'),
-                            t('global:somethingWentWrongExplanation'),
+                            t('global:somethingWentWrongTryAgain'),
                         );
                     }
+                    this.props.manuallySyncAccount(seed, selectedAccountName);
                 })
                 .catch((err) => console.error(err)); // eslint-disable-line no-console
         } else {
@@ -389,10 +386,11 @@ class Settings extends Component {
                 bodyColor: body.color,
             },
             viewSeed: {
-                seedIndex: seedIndex,
-                password: password,
+                seedIndex,
+                password,
                 backPress: () => this.props.setSetting('accountManagement'),
                 onWrongPassword: () => this.onWrongPassword(),
+                selectedAccountName,
                 borderColor,
                 textColor,
                 theme,
@@ -512,11 +510,15 @@ class Settings extends Component {
                 textColor: { color: body.color },
                 primary,
                 body,
+                negative,
+                password,
+                selectedAccountName,
             },
             snapshotTransition: {
                 t: this.props.t,
                 backPress: () => this.props.setSetting('advancedSettings'),
                 isTransitioning,
+                password,
                 textColor: { color: body.color },
                 primary,
                 body,
@@ -648,9 +650,9 @@ class Settings extends Component {
     }
 
     deleteAccount() {
-        const { seedIndex, password, selectedAccountName } = this.props;
+        const { password, selectedAccountName } = this.props;
 
-        deleteFromKeychain(seedIndex, password)
+        deleteSeedFromKeychain(password, selectedAccountName)
             .then(() => this.props.deleteAccount(selectedAccountName))
             .catch((err) => console.error(err));
     }
@@ -665,7 +667,7 @@ class Settings extends Component {
 
     // UseExistingSeed method
     addExistingSeed(seed, accountName) {
-        const { t, seedNames } = this.props;
+        const { t, accountNames, password } = this.props;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',
@@ -687,7 +689,7 @@ class Settings extends Component {
                 t('addAdditionalSeed:noNickname'),
                 t('addAdditionalSeed:noNicknameExplanation'),
             );
-        } else if (seedNames.includes(accountName)) {
+        } else if (accountNames.includes(accountName)) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
@@ -697,19 +699,18 @@ class Settings extends Component {
             if (this.shouldPreventAction()) {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
-            keychain
-                .get()
-                .then((credentials) => {
-                    if (isNull(credentials)) {
+            getAllSeedsFromKeychain(password)
+                .then((seedInfo) => {
+                    if (isNull(seedInfo)) {
                         return this.fetchAccountInfo(seed, accountName);
                     }
-                    if (hasDuplicateAccountName(credentials.data, accountName)) {
+                    if (hasDuplicateAccountName(seedInfo, accountName)) {
                         return this.props.generateAlert(
                             'error',
                             t('addAdditionalSeed:nameInUse'),
                             t('addAdditionalSeed:nameInUseExplanation'),
                         );
-                    } else if (hasDuplicateSeed(credentials.data, seed)) {
+                    } else if (hasDuplicateSeed(seedInfo, seed)) {
                         return this.props.generateAlert(
                             'error',
                             t('addAdditionalSeed:seedInUse'),
@@ -724,9 +725,9 @@ class Settings extends Component {
 
     // EditAccountName method
     saveAccountName(accountName) {
-        const { seedIndex, seedNames, password, selectedAccountName, t, accountInfo } = this.props;
+        const { seedIndex, accountNames, password, selectedAccountName, t, accountInfo } = this.props;
 
-        if (seedNames.includes(accountName)) {
+        if (accountNames.includes(accountName)) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
@@ -734,7 +735,7 @@ class Settings extends Component {
             );
         } else {
             // Update keychain
-            updateAccountNameInKeychain(seedIndex, accountName, password)
+            updateAccountNameInKeychain(password, selectedAccountName, accountName)
                 .then(() => {
                     const keyMap = { [selectedAccountName]: accountName };
                     const newAccountInfo = renameKeys(accountInfo, keyMap);
@@ -747,8 +748,8 @@ class Settings extends Component {
                         return name;
                     };
 
-                    const updatedSeedNames = map(seedNames, updateName);
-                    this.props.changeAccountName(newAccountInfo, updatedSeedNames);
+                    const updatedaccountNames = map(accountNames, updateName);
+                    this.props.changeAccountName(newAccountInfo, updatedaccountNames);
                     this.props.setSetting('accountManagement');
 
                     this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
@@ -832,11 +833,11 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,
     password: state.tempAccount.password,
-    seedNames: state.account.seedNames,
+    accountNames: state.account.accountNames,
     accountInfo: state.account.accountInfo,
     seedCount: state.account.seedCount,
     currency: state.settings.currency,

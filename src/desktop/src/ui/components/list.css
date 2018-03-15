@@ -113,9 +113,9 @@
     border-radius: 8px;
     font-size: var(--font-size-small);
 
-    @media (max-width: 810px){
-       width: 100%;
-       padding: 35px 0px;
+    @media (max-width: 810px) {
+        width: 100%;
+        padding: 35px 0px;
     }
 
     header {
