@@ -355,7 +355,7 @@
         "one": "일"
     },
     "deleteAccount": {
-        "areYouSure": "정말로 {{accountName}} 계정을 삭제하시겠습니까?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "등록된 시드 및 거래 내역이 전부 제거됩니다.",
         "thisAction": "이 작업은 되돌릴 수 없습니다.",
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
