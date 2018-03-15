@@ -48,7 +48,7 @@ class AddNewAccount extends Component {
         addNewSeed: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -61,7 +61,7 @@ class AddNewAccount extends Component {
     }
 
     render() {
-        const { t, textColor, secondaryBackgroundColor } = this.props;
+        const { t, textColor, bodyColor } = this.props;
 
         return (
             <View style={styles.container}>
@@ -72,7 +72,7 @@ class AddNewAccount extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="key" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="key" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('useExistingSeed')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -83,7 +83,7 @@ class AddNewAccount extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="plus" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="plus" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('createNewSeed')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -96,7 +96,7 @@ class AddNewAccount extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
-                            <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                            <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
                             <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>

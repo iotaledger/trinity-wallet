@@ -78,7 +78,7 @@ const MainSettings = (props) => (
             >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Icon name="mode" size={width / 22} color={props.secondaryBackgroundColor} />
+                        <Icon name="mode" size={width / 22} color={props.bodyColor} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('mode')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -94,7 +94,7 @@ const MainSettings = (props) => (
             >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Icon name="theme" size={width / 22} color={props.secondaryBackgroundColor} />
+                        <Icon name="theme" size={width / 22} color={props.bodyColor} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('theme')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -110,7 +110,7 @@ const MainSettings = (props) => (
             >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Icon name="currency" size={width / 22} color={props.secondaryBackgroundColor} />
+                        <Icon name="currency" size={width / 22} color={props.bodyColor} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('currency')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -126,7 +126,7 @@ const MainSettings = (props) => (
             >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Icon name="language" size={width / 22} color={props.secondaryBackgroundColor} />
+                        <Icon name="language" size={width / 22} color={props.bodyColor} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('language')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -146,7 +146,7 @@ const MainSettings = (props) => (
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
-                    <Icon name="user" size={width / 22} color={props.secondaryBackgroundColor} />
+                    <Icon name="user" size={width / 22} color={props.bodyColor} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('accountManagement')}</Text>
                 </View>
             </TouchableOpacity>
@@ -157,7 +157,7 @@ const MainSettings = (props) => (
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
-                    <Icon name="password" size={width / 22} color={props.secondaryBackgroundColor} />
+                    <Icon name="password" size={width / 22} color={props.bodyColor} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('changePassword')}</Text>
                 </View>
             </TouchableOpacity>
@@ -168,7 +168,7 @@ const MainSettings = (props) => (
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
-                    <Icon name="security" size={width / 22} color={props.secondaryBackgroundColor} />
+                    <Icon name="security" size={width / 22} color={props.bodyColor} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('securitySettings')}</Text>
                 </View>
             </TouchableOpacity>
@@ -182,7 +182,7 @@ const MainSettings = (props) => (
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
-                    <Icon name="advanced" size={width / 22} color={props.secondaryBackgroundColor} />
+                    <Icon name="advanced" size={width / 22} color={props.bodyColor} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('advanced')}</Text>
                 </View>
             </TouchableOpacity>
@@ -193,7 +193,7 @@ const MainSettings = (props) => (
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.item}>
-                    <Icon name="logout" size={width / 22} color={props.secondaryBackgroundColor} />
+                    <Icon name="logout" size={width / 22} color={props.bodyColor} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('logout')}</Text>
                 </View>
             </TouchableOpacity>
@@ -213,7 +213,7 @@ MainSettings.propTypes = {
     t: PropTypes.func.isRequired,
     borderBottomColor: PropTypes.object.isRequired,
     textColor: PropTypes.object.isRequired,
-    secondaryBackgroundColor: PropTypes.string.isRequired,
+    bodyColor: PropTypes.string.isRequired,
 };
 
 export default MainSettings;
