@@ -355,7 +355,7 @@
         "one": "واحد"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "سيتم إزالة السييد و تاريخ الحوالات الخاصة بك.",
         "thisAction": "لا يمكن التراجع عن هذا الإجراء.",
         "enterPassword": "الرجاء ادخال كلمة المرور لحذف هذا الحساب."
