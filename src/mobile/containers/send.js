@@ -128,7 +128,6 @@ export class Send extends Component {
         closeTopBar: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
         bar: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
@@ -344,6 +343,7 @@ export class Send extends Component {
 
     onQRRead(data) {
         const dataString = data.toString();
+        const { t } = this.props;
         if (dataString.match(/{/)) {
             // For codes containing JSON (iotaledger and Trinity)
             const parsedData = JSON.parse(data);
@@ -359,11 +359,7 @@ export class Send extends Component {
             // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.props.setSendAddressField(data);
         } else {
-            this.props.generateAlert(
-                'error',
-                'Incorrect address format',
-                'Valid addresses should be 90 characters and contain only A-Z or 9.',
-            );
+            this.props.generateAlert('error', t('invalidAddress'), t('invalidAmountExplanationGeneric'));
         }
         this.hideModal();
     }
@@ -568,8 +564,8 @@ export class Send extends Component {
         if (isTransitioning) {
             this.props.generateAlert(
                 'error',
-                t('Snapshot transition in progress'),
-                t('Please wait until the transition is complete.'),
+                t('snapshotTransitionInProgress'),
+                t('snapshotTransitionInProgressExplanation'),
             );
             return;
         }
@@ -617,7 +613,6 @@ export class Send extends Component {
             theme,
             body,
             primary,
-            negative,
         } = this.props;
         const textColor = { color: body.color };
         const conversionText =
@@ -683,7 +678,11 @@ export class Send extends Component {
                                         }}
                                     >
                                         <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
-                                        <Toggle active={maxPressed} body={body} primary={primary} />
+                                        <Toggle
+                                            active={maxPressed}
+                                            bodyColor={body.color}
+                                            primaryColor={primary.color}
+                                        />
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -736,7 +735,7 @@ export class Send extends Component {
                                         }
                                         style={styles.activityIndicator}
                                         size="large"
-                                        color={negative.color}
+                                        color={primary.color}
                                     />
                                 </View>
                             )}
@@ -790,7 +789,6 @@ const mapStateToProps = (state) => ({
     usdPrice: state.marketData.usdPrice,
     isGettingSensitiveInfoToMakeTransaction: state.keychain.isGettingSensitiveInfo.send.makeTransaction,
     theme: state.settings.theme,
-    negative: state.settings.theme.negative,
     body: state.settings.theme.body,
     primary: state.settings.theme.primary,
     bar: state.settings.theme.bar,

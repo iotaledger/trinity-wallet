@@ -40,7 +40,7 @@ import {
     hasDuplicateSeed,
     updateAccountNameInKeychain,
     deleteSeedFromKeychain,
-    getAllSeedsFromKeychain
+    getAllSeedsFromKeychain,
 } from '../util/keychain';
 import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
 import { height } from '../util/dimensions';
@@ -355,7 +355,7 @@ class Settings extends Component {
                 currency: this.props.currency,
                 borderBottomColor: { borderBottomColor: body.color },
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
             advancedSettings: {
                 setSetting: (setting) => this.props.setSetting(setting),
@@ -363,7 +363,7 @@ class Settings extends Component {
                 node: this.props.fullNode,
                 textColor: { color: body.color },
                 borderColor: { borderBottomColor: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
             modeSelection: {
                 setMode: (selectedMode) => this.props.setMode(selectedMode),
@@ -373,7 +373,8 @@ class Settings extends Component {
                 negativeColor: negative.color,
                 textColor: { color: body.color },
                 borderColor: { borderColor: body.color },
-                secondaryBackgroundColor: body.color,
+                body,
+                primary,
             },
             pow: {
                 backPress: () => this.props.setSetting('mainSettings'),
@@ -382,7 +383,7 @@ class Settings extends Component {
                 setSetting: (setting) => this.props.setSetting(setting),
                 onDeleteAccountPress: () => this.onDeleteAccountPress(),
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
             viewSeed: {
                 seedIndex,
@@ -406,7 +407,7 @@ class Settings extends Component {
                 backPress: () => this.props.setSetting('accountManagement'),
                 negativeColor: negative.color,
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
                 theme,
             },
             deleteAccount: {
@@ -415,12 +416,13 @@ class Settings extends Component {
                 onWrongPassword: () => this.onWrongPassword(),
                 deleteAccount: () => this.deleteAccount(),
                 currentAccountName: this.props.selectedAccountName,
-                negativeColor: negative.color,
+                primaryColor: primary.color,
                 backgroundColor: body.bg,
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
                 borderColor: { borderColor: body.color },
                 isPromoting,
+                selectedAccountName,
                 shouldPreventAction: () => this.shouldPreventAction(),
                 generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
                 theme,
@@ -430,7 +432,7 @@ class Settings extends Component {
                 addNewSeed: () => this.navigateNewSeed(),
                 backPress: () => this.props.setSetting('accountManagement'),
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
             addExistingSeed: {
                 seedCount: this.props.seedCount,
@@ -453,7 +455,7 @@ class Settings extends Component {
                 nodes: this.props.availablePoWNodes,
                 backPress: () => this.props.setSetting('advancedSettings'),
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
                 body,
             },
             addCustomNode: {
@@ -470,7 +472,7 @@ class Settings extends Component {
                 backPress: () => this.props.setSetting('advancedSettings'),
                 negativeColor: negative.color,
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
                 theme,
             },
             currencySelection: {
@@ -478,8 +480,8 @@ class Settings extends Component {
                 currency: this.props.currency,
                 currencies: this.props.availableCurrencies,
                 backPress: () => this.props.setSetting('mainSettings'),
-                secondaryBackgroundColor: body.color,
-                negativeColor: negative.color,
+                bodyColor: body.color,
+                primaryColor: primary.color,
                 isFetchingCurrencyData: this.props.isFetchingCurrencyData,
                 hasErrorFetchingCurrencyData: this.props.hasErrorFetchingCurrencyData,
             },
@@ -488,7 +490,7 @@ class Settings extends Component {
                 textColor: { color: body.color },
                 language,
                 setLanguage: (lang) => this.props.setLanguage(lang),
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
             changePassword: {
                 password: this.props.password,
@@ -510,7 +512,7 @@ class Settings extends Component {
                 body,
                 negative,
                 password,
-                selectedAccountName
+                selectedAccountName,
             },
             snapshotTransition: {
                 t: this.props.t,
@@ -539,19 +541,19 @@ class Settings extends Component {
                 backPress: () => this.props.setSetting('mainSettings'),
                 onAdvancedPress: () => this.props.setSetting('advancedThemeCustomisation'),
                 backgroundColor: body.bg,
-                barColor: bar.bg,
+                barBg: bar.bg,
                 theme: this.props.theme,
                 themeName: this.props.themeName,
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
-                secondaryBackgroundColor: body.color,
-                secondaryBarColor: bar.color,
+                bodyColor: body.color,
+                barColor: bar.color,
                 navigator,
             },
             advancedThemeCustomisation: {
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
                 theme: this.props.theme,
                 backgroundColor: body.bg,
-                barColor: bar.bg,
+                barBg: bar.bg,
                 ctaColor: primary.color,
                 positiveColor: positive.color,
                 negativeColor: negative.color,
@@ -567,7 +569,7 @@ class Settings extends Component {
                 node: this.props.fullNode,
                 textColor: { color: body.color },
                 borderColor: { borderBottomColor: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
         };
 

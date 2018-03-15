@@ -90,7 +90,6 @@ class Receive extends Component {
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         input: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
@@ -195,7 +194,6 @@ class Receive extends Component {
             theme,
             primary,
             input,
-            negative,
             isGeneratingReceiveAddress,
             isGettingSensitiveInfoToGenerateAddress,
         } = this.props;
@@ -279,10 +277,9 @@ class Receive extends Component {
                                 </View>
                             )) || (
                             <GenerateAddressButton
-                                ctaColor={primary.color}
                                 ctaBorderColor={primary.hover}
-                                negativeColor={negative.color}
-                                secondaryCtaColor={primary.body}
+                                primaryColor={primary.color}
+                                primaryBody={primary.body}
                                 t={t}
                                 receiveAddress={receiveAddress}
                                 isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
@@ -310,7 +307,6 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     primary: state.settings.theme.primary,
     input: state.settings.theme.input,
-    negative: state.settings.theme.negative,
     body: state.settings.theme.body,
     isTransitioning: state.tempAccount.isTransitioning,
     password: state.tempAccount.password,

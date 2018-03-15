@@ -3,21 +3,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSecurelyPersistedSeeds } from 'libs/crypto';
-import { addAccountName } from 'actions/account';
-import { showError } from 'actions/notifications';
+import authenticator from 'authenticator';
+
+import { getVault } from 'libs/crypto';
+
+import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
 import { clearTempData } from 'actions/tempAccount';
-import { loadSeeds, clearSeeds } from 'actions/seeds';
+import { setSeeds, clearSeeds } from 'actions/seeds';
+
 import { runTask } from 'worker';
+
 import PasswordInput from 'ui/components/input/Password';
+import Text from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
+import Modal from 'ui/components/modal/Modal';
 
 /** Login component */
 class Login extends React.Component {
     static propTypes = {
+        /** Seed state state data */
+        seeds: PropTypes.array.isRequired,
         /** Accounts state state data
          * @ignore
          */
@@ -29,10 +37,10 @@ class Login extends React.Component {
         /** Current currency symbol */
         currency: PropTypes.string.isRequired,
         /** Set seed state data
-         * @param {Object} seeds - Seed state data
+         * @param {Array} seeds - Seed state data
          * @ignore
          */
-        loadSeeds: PropTypes.func.isRequired,
+        setSeeds: PropTypes.func.isRequired,
         /** Clear temporary account state data
          * @ignore
          */
@@ -50,16 +58,13 @@ class Login extends React.Component {
         getMarketData: PropTypes.func.isRequired,
         /** Fetch currency data */
         getCurrencyData: PropTypes.func.isRequired,
-        /** Add account name to account list
-         * @param {Object} title - Account title
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        addAccountName: PropTypes.func.isRequired,
-        /** Error modal helper
-         * @param {Object} content - Error screen content
-         * @ignore
-         */
-        showError: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -69,13 +74,23 @@ class Login extends React.Component {
 
     state = {
         loading: false,
+        verifyTwoFA: false,
+        code: '',
         password: '',
     };
 
     componentDidMount() {
-        this.props.clearTempData();
-        this.props.clearSeeds();
         Electron.updateMenu('authorised', false);
+
+        const { seeds, tempAccount } = this.props;
+
+        if (tempAccount.ready && tempAccount.addingAdditionalAccount) {
+            const seed = seeds[tempAccount.seedIndex];
+            this.setupAccount(seed);
+        } else {
+            this.props.clearTempData();
+            this.props.clearSeeds();
+        }
     }
 
     componentWillReceiveProps(newProps) {
@@ -98,54 +113,68 @@ class Login extends React.Component {
     };
 
     setupAccount(seed) {
-        const { account, addAccountName, currency } = this.props;
+        const { account, tempAccount, currency } = this.props;
 
         this.props.getPrice();
         this.props.getChartData();
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
 
-        if (account.firstUse) {
-            addAccountName(seed.name);
-            runTask('getFullAccountInfo', [seed.seed, seed.name]);
+        if (account.firstUse && !tempAccount.addingAdditionalAccount) {
+            runTask('getFullAccountInfo', [seed, account.seedNames[tempAccount.seedIndex]]);
+        } else if (!account.firstUse && tempAccount.addingAdditionalAccount) {
+            runTask('fetchFullAccountInfoForFirstUse', [seed, tempAccount.additionalAccountName]);
         } else {
-            runTask('getAccountInfo', [seed.seed, seed.name]);
+            runTask('getAccountInfo', [seed, account.seedNames[tempAccount.seedIndex]]);
         }
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        const { password } = this.state;
-        const { t, loadSeeds, showError } = this.props;
-
-        let seeds = null;
-
-        try {
-            seeds = getSecurelyPersistedSeeds(password);
-        } catch (err) {
-            showError({
-                title: t('global:unrecognisedPassword'),
-                text: t('global:unrecognisedPasswordExplanation'),
-            });
+        if (e) {
+            e.preventDefault();
         }
 
-        if (seeds) {
-            loadSeeds(seeds);
-            const seed = seeds.items[seeds.selectedSeedIndex];
+        const { password, code, verifyTwoFA } = this.state;
+        const { setSeeds, tempAccount, generateAlert, t } = this.props;
+
+        let vault = null;
+
+        try {
+            vault = getVault(password);
+
+            if (vault.twoFAkey && !authenticator.verifyToken(vault.twoFAkey, code)) {
+                if (verifyTwoFA) {
+                    generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
+                }
+
+                this.setState({
+                    verifyTwoFA: true,
+                });
+
+                return;
+            }
+        } catch (err) {
+            generateAlert('error', t('unrecognisedPassword'), t('unrecognisedPasswordExplanation'));
+        }
+
+        if (vault) {
+            setSeeds(vault.seeds);
+
+            const seed = vault.seeds[tempAccount.seedIndex];
 
             this.setState({
                 loading: true,
             });
 
-            this.setupAccount(seed, seeds.selectedSeedIndex);
+            this.setupAccount(seed);
         }
     };
 
     render() {
-        const { t, account } = this.props;
-        const { loading } = this.state;
+        const { t, account, tempAccount } = this.props;
+        const { loading, verifyTwoFA, code } = this.state;
 
-        if (loading) {
+        if (loading || tempAccount.addingAdditionalAccount) {
             return (
                 <Loading
                     loop
@@ -156,47 +185,69 @@ class Login extends React.Component {
         }
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <main>
+            <React.Fragment>
+                <form onSubmit={(e) => this.handleSubmit(e)}>
+                    <div />
                     <section>
                         <PasswordInput
                             value={this.state.password}
-                            label={t('global:password')}
+                            label={t('password')}
                             name="password"
                             onChange={this.setPassword}
                         />
                     </section>
                     <footer>
-                        <Button to="/seedlogin" className="outline" variant="highlight">
-                            {t('login:useSeed')}
+                        <Button to="/settings/node" className="outline" variant="secondary">
+                            {t('home:settings')}
                         </Button>
-                        <Button className="outline" variant="primary">
+                        <Button type="submit" className="outline" variant="primary">
                             {t('login:login')}
                         </Button>
                     </footer>
-                </main>
-            </form>
+                </form>
+                <Modal variant="confirm" isOpen={verifyTwoFA} onClose={() => this.setState({ verifyTwoFA: false })}>
+                    <p>{t('twoFA:enterCode')}</p>
+                    <form onSubmit={(e) => this.handleSubmit(e)}>
+                        <Text
+                            value={code}
+                            label={t('twoFA:code')}
+                            onChange={(value) => this.setState({ code: value })}
+                        />
+                        <Button
+                            onClick={() => {
+                                this.setState({ verifyTwoFA: false });
+                            }}
+                            variant="secondary"
+                        >
+                            {t('back')}
+                        </Button>
+                        <Button type="submit" variant="primary">
+                            {t('glboal:done')}
+                        </Button>
+                    </form>
+                </Modal>
+            </React.Fragment>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
     account: state.account,
-    firstUse: state.account.firstUse,
     tempAccount: state.tempAccount,
+    firstUse: state.account.firstUse,
     currency: state.settings.currency,
+    seeds: state.seeds.seeds,
 });
 
 const mapDispatchToProps = {
-    showError,
-    loadSeeds,
+    generateAlert,
+    setSeeds,
     clearTempData,
     clearSeeds,
-    addAccountName,
     getChartData,
     getPrice,
     getMarketData,
     getCurrencyData,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));
