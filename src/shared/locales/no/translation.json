@@ -151,8 +151,8 @@
         "useSeed": "BRUK HOVEDNØKKEL",
         "login": "LOGG INN",
         "selectDifferentNode": "Vil du forsøke en annen node?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "ANGI NODE",
+        "cannotConnect": "Kan ikke koble til IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
@@ -161,7 +161,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Hovednøkkel har ikke blitt generert",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Vennligst generer ny hovednøkkel.",
         "pressForNewSeed": "TRYKK FOR NY HOVEDNØKKEL",
         "individualLetters": "Trykk enkelte tegn for å gi de tilfeldig plassering."
     },
@@ -200,7 +200,7 @@
         "invalidAddressExplanation1": "Adressen bør være {{maxLength}} tegn og ha kontrolltegn.",
         "invalidAddressExplanation2": "Adressen inneholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressens kontrolltegn stemmer ikke.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanationGeneric": "Gyldige adresser må være 90 tegn og kun inneholde bokstavene A til Z og tallet 9.",
         "notEnoughFunds": "Ikke nok penger",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til å gjøre denne overføringen.",
         "keyReuse": "Privatnøkkelen er brukt før",
@@ -209,14 +209,14 @@
         "amount": "Beløp",
         "max": "MAKS",
         "message": "Melding",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "Ugyldig melding",
+        "invalidMessageExplanation": "Meldingen din inneholder ugyldige tegn.",
         "send": "SENDE",
         "invalidAmount": "Ugyldig beløp lagt inn",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Angi et gyldig transaksjonsbeløp. Det kan være nyttig å lese IOTA enhetsforklaring nederst på denne siden.",
         "maximumSelected": "MAKSIMUM beløp valgt",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "iotaUnits": "IOTA enheter forklart",
+        "sendMax": "SENDE MAX"
     },
     "setPassword": {
         "passwordTooShort": "Passordet er for kort",
@@ -233,10 +233,10 @@
         "youCanAdd": "Du kan legge til flere hovednøkler i menyen for Innstillinger."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "expert": "Ekspert",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "Ekspertmodus gir tilgang til flere funksjoner som manuell promotering og kobling av transaksjoner.",
+        "modesExplanation": "Aktiver kun ekspertmodus om du er en erfaren Tangle bruker. Hvis ikke kan dette være forvirrende."
     },
     "settings": {
         "transferSending": "Sender overføring",
@@ -273,8 +273,8 @@
         "copy": "Kopier",
         "paste": "Lim inn",
         "selectAll": "Velg alt",
-        "securitySettings": "Security settings",
-        "fingerprint": "Biometric authentication",
+        "securitySettings": "Sikkerhetsinnstillinger",
+        "fingerprint": "Biometrisk godkjenning",
         "couldNotFetchRates": "Could not fetch rates",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
@@ -306,8 +306,8 @@
         "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "SENT",
+        "receive": "MOTTATT"
     },
     "accountManagement": {
         "viewSeed": "Vis nøkkel",
@@ -355,16 +355,16 @@
         "one": "En"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Er du sikker på at du vil slette kontoen {{accountName}}?",
         "yourSeedWillBeRemoved": "Din nøkkel og transaksjonsloggen vil bli fjernet.",
         "thisAction": "Denne handlingen kan ikke angres.",
         "enterPassword": "Skriv inn passordet for å slette kontoen."
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "pressToSync": "Trykk på knappen nedenfor for å synkronisere din konto.",
+        "thisMayTake": "Dette kan ta en stund. Det kan hende din enhet blir tregere.",
+        "doNotClose": "Minimaliserer du applikasjonen vil du avbryte synkroniseringen.",
         "syncAccount": "SYNKRONISER KONTO",
         "syncingYourAccount": "Synkroniserer din konto."
     },
@@ -386,9 +386,9 @@
         "warning": "<0><0>Alle dine lommebokdata inkludert dine</0> <1>nøkler, passord</1> <2>og</2> <3>andre kontoopplysninger</3> <4> vil gå tapt.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "instructionsEnable": "Legg fingeren mot fingeravtrykk-leseren for å aktivere biometrisk autentisering.",
+        "instructionsDisable": "Legg fingeren mot fingeravtrykk-leseren for å deaktivere biometrisk autentisering.",
+        "fingerprintAuthEnabled": "Biometrisk autentisering aktivert",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
         "fingerprintAuthDisabled": "Fingerprint authentication disabled",
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
