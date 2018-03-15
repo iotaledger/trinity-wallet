@@ -355,7 +355,7 @@
         "one": "En"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Er du sikker på at du vil slette {{accountName}}?",
         "yourSeedWillBeRemoved": "Din nøkkel og transaksjonsloggen vil bli fjernet.",
         "thisAction": "Denne handlingen kan ikke angres.",
         "enterPassword": "Skriv inn passordet for å slette kontoen."
@@ -392,11 +392,11 @@
         "fingerprintAuthEnabledExplanation": "Du har nå aktivert biometrisk autentisering.",
         "fingerprintAuthDisabled": "Biometrisk autentisering er deaktivert",
         "fingerprintAuthDisabledExplanation": "Du har nå deaktivert biometrisk autentisering.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "fingerprintAuthFailed": "Biometrisk autentisering feilet",
+        "fingerprintAuthFailedExplanation": "Biometrisk autentisering feilet. Vennligst prøv igjen.",
         "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
+        "enabled": "Aktivert",
+        "disabled": "Deaktivert",
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
