@@ -6,7 +6,7 @@
         "noTransactions": "INGEN NYLIG HISTORIKK",
         "refresh": "LAST INN PÅ NYTT",
         "qr": "QR",
-        "balanceError": "Ikke nok penger",
+        "balanceError": "Saldo for lav",
         "balanceErrorMessage": "Du har ikke nok IOTA til å fullføre denne overføringen.",
         "transferError": "Overføringsfeil",
         "transferErrorMessage": "Noe gikk galt under overføringen. Vennligst prøv igjen.",
@@ -118,9 +118,9 @@
     },
     "copyToClipboard": {
         "seedCleared": "Hovednøkkel er fjernet",
-        "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstaven for din sikkerhet.",
+        "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstavlen for din sikkerhet.",
         "seedCopied": "Kopierte hovednøkkelen til utklippstavle",
-        "seedCopiedExplanation": "Hovednøkkelen vil fjernes med en gang du trykker \"FERDIG\" eller 60 sekunder har gått.",
+        "seedCopiedExplanation": "Hovednøkkelen vil fjernes med en gang du trykker \"FERDIG\" eller 60 sekunder har passert.",
         "clickToCopy": "Klikk knappen nedenfor og kopier din hovednøkkel til en sikker passord-applikasjon.",
         "doNotStore": "Lagre ikke hovednøkkeleb din i klartekst.",
         "copyToClipboard": "Kopier hovednøkkel",
@@ -147,7 +147,7 @@
     "login": {
         "emptyPassword": "Tomt passord",
         "emptyPasswordExplanation": "Du må angi et passord for å logge inn. Prøv på nytt.",
-        "enterPassword": "Skriv inn passord.",
+        "enterPassword": "Skriv inn ditt passord.",
         "useSeed": "BRUK HOVEDNØKKEL",
         "login": "LOGG INN",
         "selectDifferentNode": "Vil du forsøke en annen node?",
@@ -192,7 +192,7 @@
     "seedReentry": {
         "incorrectSeed": "Feil hovednøkkel",
         "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
-        "thisIsACheck": "Dette er en kontroll for å sikre at du har lagret nøkkelen din.",
+        "thisIsACheck": "Dette er en kontroll for å sikre at du har lagret hovednøkkelen din.",
         "ifYouHaveNotSaved": "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake for å lagre."
     },
     "send": {
@@ -205,7 +205,7 @@
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til å gjøre denne overføringen.",
         "keyReuse": "Privatnøkkelen er brukt før",
         "keyReuseExplanation": "Adressen du prøver å sende til er allerede brukt. Prøv en annen adresse.",
-        "recipientAddress": "Mottakeradresse",
+        "recipientAddress": "Mottakerens adresse",
         "amount": "Beløp",
         "max": "MAKS",
         "message": "Melding",
@@ -222,7 +222,7 @@
         "passwordTooShort": "Passordet er for kort",
         "passwordTooShortExplanation": "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
         "passwordMismatch": "Passordene samsvarer ikke",
-        "passwordMismatchExplanation": "Passordene du angav samsvarer ikke. Prøv på nytt.",
+        "passwordMismatchExplanation": "Passordene du anga samsvarer ikke. Prøv på nytt.",
         "nowWeNeedTo": "Nå må vi sette opp et passord.",
         "anEncryptedCopy": "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du vil bruke dette passordet for å åpne lommeboken neste gang.",
         "ensure": "Forsikre deg om at du bruker et sterkt passord med minst 12 tegn.",
@@ -240,7 +240,7 @@
     },
     "settings": {
         "transferSending": "Sender overføring",
-        "transferSendingExplanation": "Vennligst vent til overføringen er ferdig.",
+        "transferSendingExplanation": "Vennligst vent til transaksjonen er sent.",
         "generatingAddress": "Lager mottaksadresse",
         "generatingAddressExplanation": "Vennligst vent til adressen er laget.",
         "mode": "Modus",
