@@ -679,7 +679,11 @@ export class Send extends Component {
                                         }}
                                     >
                                         <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
-                                        <Toggle active={maxPressed} bodyColor={body.color} primaryColor={primary.color} />
+                                        <Toggle
+                                            active={maxPressed}
+                                            bodyColor={body.color}
+                                            primaryColor={primary.color}
+                                        />
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -732,7 +736,7 @@ export class Send extends Component {
                                         }
                                         style={styles.activityIndicator}
                                         size="large"
-                                        color={negative.color}
+                                        color={primary.color}
                                     />
                                 </View>
                             )}

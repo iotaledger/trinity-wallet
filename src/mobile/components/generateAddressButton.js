@@ -15,11 +15,10 @@ const styles = StyleSheet.create({
 
 class GenerateAddressButton extends PureComponent {
     static propTypes = {
-        ctaColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
-        ctaBorderColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        primaryColor: PropTypes.string.isRequired,
+        primaryBody: PropTypes.string.isRequired,
         receiveAddress: PropTypes.string.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isGettingSensitiveInfoToGenerateAddress: PropTypes.bool.isRequired,
@@ -30,9 +29,8 @@ class GenerateAddressButton extends PureComponent {
     render() {
         const {
             t,
-            ctaColor,
-            ctaBorderColor,
-            negativeColor,
+            primaryColor,
+            primaryBody,
             secondaryCtaColor,
             receiveAddress,
             message,
@@ -46,8 +44,8 @@ class GenerateAddressButton extends PureComponent {
                     (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
                         <View style={{ flex: 1, justifyContent: 'center' }}>
                             <CtaButton
-                                ctaColor={ctaColor}
-                                ctaBorderColor={ctaBorderColor}
+                                ctaColor={primaryColor}
+                                ctaBorderColor={primaryBody}
                                 secondaryCtaColor={secondaryCtaColor}
                                 text={t('generateNewAddress')}
                                 onPress={() => {
@@ -64,7 +62,7 @@ class GenerateAddressButton extends PureComponent {
                             animating={isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress}
                             style={styles.activityIndicator}
                             size="large"
-                            color={negativeColor}
+                            color={primaryColor}
                         />
                     </View>
                 )}

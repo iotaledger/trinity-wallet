@@ -257,7 +257,7 @@ class History extends Component {
     }
 
     renderTransactions() {
-        const { negative, primary, secondary, t } = this.props;
+        const { negative, primary, t } = this.props;
         const { isRefreshing } = this.state;
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
@@ -296,7 +296,7 @@ class History extends Component {
                                     animating={isRefreshing}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={secondary.color}
+                                    color={primary.color}
                                 />
                             </View>
                         )}
