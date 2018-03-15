@@ -182,7 +182,7 @@
         "message": "Valgfri melding",
         "removeMessage": "FJERN MELDINGEN",
         "noAddresses": "INGEN ADRESSER",
-        "spent": "Spent"
+        "spent": "Brukt"
     },
     "saveYourSeed": {
         "seedCleared": "Hovednøkkel er fjernet",
@@ -275,10 +275,10 @@
         "selectAll": "Velg alt",
         "securitySettings": "Sikkerhetsinnstillinger",
         "fingerprint": "Biometrisk godkjenning",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "couldNotFetchRates": "Kunne ikke hente valutakurser",
+        "couldNotFetchRatesExplanation": "Valutakurser kunne ikke hentes for {{currency}}.",
+        "fetchedConversionRates": "Mottatte valutakurser",
+        "fetchedConversionRatesExplanation": "Henting av valutakurs for {{currency}} var vellykket."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
