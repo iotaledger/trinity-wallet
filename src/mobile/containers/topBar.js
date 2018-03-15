@@ -404,7 +404,7 @@ class TopBar extends Component {
                             hideModal={() => this.hideModal()}
                             textColor={{ color: bar.color }}
                             borderColor={{ borderColor: bar.color }}
-                            secondaryBarColor={bar.color}
+                            barColor={bar.color}
                             notificationLog={notificationLog}
                             clearLog={this.props.clearLog}
                         />
