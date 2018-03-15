@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         marginHorizontal: width / 28,
         paddingTop: 0,
         paddingBottom: 0,
+        height: height / 14,
     },
     innerContainer: {
         flexDirection: 'row',
@@ -86,7 +87,7 @@ class CustomTextInput extends React.Component {
         onDenominationPress: () => {},
         onQRPress: () => {},
         denominationText: 'i',
-        secondaryBackgroundColor: 'white',
+        bodyColor: 'white',
         negativeColor: '#F7D002',
         innerPadding: null,
         currencyConversion: false,
@@ -124,7 +125,7 @@ class CustomTextInput extends React.Component {
 
     getLabelStyle() {
         const { theme } = this.props;
-        const focusedFieldLabel = { color: theme.negative.color, fontFamily: 'Lato-Regular' };
+        const focusedFieldLabel = { color: theme.primary.color, fontFamily: 'Lato-Regular' };
         const unfocusedFieldLabel = { color: theme.body.color, fontFamily: 'Lato-Regular' };
 
         return this.state.isFocused ? focusedFieldLabel : unfocusedFieldLabel;
@@ -139,11 +140,7 @@ class CustomTextInput extends React.Component {
                     style={styles.widgetButton}
                     hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
                 >
-                    <Icon
-                        name='camera'
-                        size={containerStyle.width / 15}
-                        color={theme.input.alt}
-                    />
+                    <Icon name="camera" size={containerStyle.width / 15} color={theme.input.alt} />
                 </TouchableOpacity>
             </View>
         );
@@ -158,9 +155,7 @@ class CustomTextInput extends React.Component {
                     style={styles.widgetButton}
                     hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
                 >
-                    <Text style={[styles.denominationText, { color: theme.input.alt }]}>
-                        {denominationText}
-                    </Text>
+                    <Text style={[styles.denominationText, { color: theme.input.alt }]}>{denominationText}</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -176,11 +171,7 @@ class CustomTextInput extends React.Component {
                     style={styles.widgetButton}
                     hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
                 >
-                    <Icon
-                        name='eye'
-                        size={containerStyle.width / 15}
-                        color={theme.input.alt}
-                    />
+                    <Icon name="eye" size={containerStyle.width / 15} color={theme.input.alt} />
                 </TouchableOpacity>
             </View>
         );
@@ -189,7 +180,7 @@ class CustomTextInput extends React.Component {
     renderCurrencyConversion(conversionText) {
         const { theme } = this.props;
 
-        return <Text style={[styles.conversionText, {color: theme.input.alt }]}>{conversionText}</Text>;
+        return <Text style={[styles.conversionText, { color: theme.input.alt }]}>{conversionText}</Text>;
     }
 
     render() {
@@ -226,7 +217,8 @@ class CustomTextInput extends React.Component {
                     {(widget === 'qr' && this.renderQR({ borderLeftColor: theme.input.alt })) ||
                         (widget === 'denomination' && this.renderDenomination({ borderLeftColor: theme.input.alt }))}
                     {currencyConversion && this.renderCurrencyConversion(conversionText)}
-                    {fingerprintAuthentication && this.renderFingerprintAuthentication({ borderLeftColor: theme.input.alt })}
+                    {fingerprintAuthentication &&
+                        this.renderFingerprintAuthentication({ borderLeftColor: theme.input.alt })}
                 </View>
             </View>
         );

@@ -104,7 +104,7 @@ export class Dropdown extends Component {
         title: PropTypes.string,
         dropdownWidth: PropTypes.object,
         background: PropTypes.bool,
-        negative: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
     };
 
@@ -173,10 +173,11 @@ export class Dropdown extends Component {
     }
 
     render() {
-        const { options, title, dropdownWidth, background, disableWhen, negative, body, shadow } = this.props;
+        const { options, title, dropdownWidth, background, disableWhen, primary, body, shadow } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
-        const heightValue = options.length < 8 ? height / 22.4 * options.length + height / 70 : height / 22.4 * 8 + height / 70;
+        const heightValue =
+            options.length < 8 ? height / 22.4 * options.length + height / 70 : height / 22.4 * 8 + height / 70;
         const dropdownHeight = isDropdownOpen ? heightValue : 0;
         const backgroundColor = background ? { backgroundColor: body.bg } : { backgroundColor: 'transparent' };
         const shadowColor = shadow ? { shadowColor: '#222' } : { shadowColor: 'transparent' };
@@ -184,7 +185,7 @@ export class Dropdown extends Component {
 
         return (
             <View style={[styles.container, dropdownWidth]}>
-                <Text style={[styles.dropdownTitle, { color: negative.color }, isAndroid ? null : dropdownWidth]}>
+                <Text style={[styles.dropdownTitle, { color: primary.color }, isAndroid ? null : dropdownWidth]}>
                     {title}
                 </Text>
                 <View style={styles.dropdownButtonContainer}>
@@ -285,7 +286,7 @@ export class Dropdown extends Component {
 const mapStateToProps = (state) => ({
     bar: state.settings.theme.bar,
     body: state.settings.theme.body,
-    negative: state.settings.theme.negative,
+    primary: state.settings.theme.primary,
 });
 
 export default connect(mapStateToProps)(Dropdown);
