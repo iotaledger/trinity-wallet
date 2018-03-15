@@ -355,7 +355,7 @@
         "one": "Одна"
     },
     "deleteAccount": {
-        "areYouSure": "Вы уверены, что хотите удалить счёт под названием {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Ваш ключ и история транзакций будут удалены.",
         "thisAction": "Это действие нельзя будет отменить.",
         "enterPassword": "Введите Ваш пароль для удаления данного счёта."
