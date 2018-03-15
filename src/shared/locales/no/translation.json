@@ -355,7 +355,7 @@
         "one": "En"
     },
     "deleteAccount": {
-        "areYouSure": "Er du sikker på at du vil slette kontoen {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Din nøkkel og transaksjonsloggen vil bli fjernet.",
         "thisAction": "Denne handlingen kan ikke angres.",
         "enterPassword": "Skriv inn passordet for å slette kontoen."
