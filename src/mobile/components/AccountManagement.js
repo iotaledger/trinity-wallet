@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
@@ -68,8 +68,10 @@ const styles = StyleSheet.create({
     },
 });
 
-/* eslint-disable react/prefer-stateless-function */
-class AdvancedSettings extends Component {
+/**
+ * AdvancedSettings component
+ */
+class AdvancedSettings extends PureComponent {
     static propTypes = {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         setSetting: PropTypes.func.isRequired,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
     },
 });
 
-/* eslint-disable react/prefer-stateless-function */
-class AdvancedSettings extends Component {
+class AdvancedSettings extends PureComponent {
     static propTypes = {
         setSetting: PropTypes.func.isRequired,
         onResetWalletPress: PropTypes.func.isRequired,
