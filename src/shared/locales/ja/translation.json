@@ -355,7 +355,7 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "{{accountName}}を削除してもよろしいですか？",
         "yourSeedWillBeRemoved": "Seedとトランザクションの履歴を削除します。",
         "thisAction": "この操作は元に戻せません。",
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
