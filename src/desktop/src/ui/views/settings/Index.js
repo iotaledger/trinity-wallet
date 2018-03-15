@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { showNotification } from 'actions/notifications';
-import { clearTempData } from 'actions/tempAccount';
-import Confirm from 'ui/components/modal/Confirm';
-import Button from 'ui/components/Button';
+
 import Icon from 'ui/components/Icon';
 
 import Language from 'ui/views/settings/Language';
@@ -15,8 +12,9 @@ import SetNode from 'ui/views/settings/Node';
 import Currency from 'ui/views/settings/Currency';
 import Password from 'ui/views/settings/Password';
 import Advanced from 'ui/views/settings/Advanced';
+import TwoFA from 'ui/views/settings/TwoFA';
 
-import css from 'ui/index.css';
+import css from './index.css';
 
 /** Settings main wrapper component */
 class Settings extends React.PureComponent {
@@ -31,10 +29,6 @@ class Settings extends React.PureComponent {
          * @ignore
          */
         tempAccount: PropTypes.object,
-        /** Clear temporary seed state data
-         * @ignore
-         */
-        clearTempData: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
@@ -42,82 +36,64 @@ class Settings extends React.PureComponent {
         t: PropTypes.func.isRequired,
     };
 
-    state = {
-        modalLogout: false,
-    };
-
-    toggleLogout = () => {
-        this.setState({
-            modalLogout: !this.state.modalLogout,
-        });
-    };
-
-    doLogout = () => {
-        this.props.clearTempData();
-        this.props.history.push('/login');
-    };
-
     render() {
         const { t, location, tempAccount, history } = this.props;
-        const { modalLogout } = this.state;
+
+        const backRoute = tempAccount.ready ? '/wallet/' : '/onboarding/';
 
         return (
-            <main className={!tempAccount || !tempAccount.ready ? css.public : css.settings}>
-                <section>
-                    <nav className={css.nav}>
-                        <NavLink to="/settings/language">
-                            <Icon icon="language" size={16} /> {t('settings:language')}
-                        </NavLink>
-                        <NavLink to="/settings/node">
-                            <Icon icon="node" size={16} /> {t('global:node')}
-                        </NavLink>
-                        <NavLink to="/settings/theme">
-                            <Icon icon="theme" size={16} /> {t('settings:theme')}
-                        </NavLink>
-                        <NavLink to="/settings/currency">
-                            <Icon icon="currency" size={16} /> {t('settings:currency')}
-                        </NavLink>
-                        {tempAccount && tempAccount.ready ? (
-                            <div>
-                                <hr />
-                                <NavLink to="/settings/password">
-                                    <Icon icon="password" size={16} /> {t('settings:changePassword')}
-                                </NavLink>
-                                <hr />
-                                <NavLink to="/settings/advanced">
-                                    <Icon icon="advanced" size={16} /> {t('settings:advanced')}
-                                </NavLink>
-                                <a onClick={this.toggleLogout}>
-                                    <Icon icon="logout" size={16} /> {t('settings:logout')}
-                                </a>
-                            </div>
-                        ) : null}
-                    </nav>
-                    {!this.props.tempAccount || !this.props.tempAccount.ready ? (
-                        <Button onClick={() => history.push('/')}>{t('global:back')}</Button>
-                    ) : null}
-                </section>
-                <section className={css.content}>
-                    <Confirm
-                        isOpen={modalLogout}
-                        content={{
-                            title: t('logoutConfirmationModal:logoutConfirmation'),
-                            confirm: t('global:yes'),
-                            cancel: t('global:no'),
-                        }}
-                        onCancel={this.toggleLogout}
-                        onConfirm={this.doLogout}
-                    />
-                    <Switch location={location}>
-                        <Route path="/settings/language" component={Language} />
-                        <Route path="/settings/theme" component={Theme} />
-                        <Route path="/settings/node" component={SetNode} />
-                        <Route path="/settings/currency" component={Currency} />
-                        <Route path="/settings/password" component={Password} />
-                        <Route path="/settings/advanced" component={Advanced} />
-                        <Redirect from="/settings" to="/settings/language" />
-                    </Switch>
-                </section>
+            <main className={css.settings}>
+                <div>
+                    <section>
+                        <nav>
+                            <NavLink to="/settings/language">
+                                <Icon icon="language" size={20} /> <strong>{t('settings:language')}</strong>
+                            </NavLink>
+                            <NavLink to="/settings/node">
+                                <Icon icon="node" size={20} /> <strong>{t('node')}</strong>
+                            </NavLink>
+                            <NavLink to="/settings/theme">
+                                <Icon icon="theme" size={20} /> <strong>{t('settings:theme')}</strong>
+                            </NavLink>
+                            <NavLink to="/settings/currency">
+                                <Icon icon="currency" size={20} /> <strong>{t('settings:currency')}</strong>
+                            </NavLink>
+                            {tempAccount && tempAccount.ready ? (
+                                <div>
+                                    <hr />
+                                    <NavLink to="/settings/password">
+                                        <Icon icon="password" size={20} />{' '}
+                                        <strong>{t('settings:changePassword')}</strong>
+                                    </NavLink>
+                                    <NavLink to="/settings/twoFa">
+                                        <Icon icon="twoFA" size={20} /> <strong>{t('settings:twoFA')}</strong>
+                                    </NavLink>
+                                    <hr />
+                                    <NavLink to="/settings/advanced">
+                                        <Icon icon="advanced" size={20} /> <strong>{t('settings:advanced')}</strong>
+                                    </NavLink>
+                                </div>
+                            ) : null}
+                        </nav>
+                    </section>
+                    <section className={css.content}>
+                        <header>
+                            <a onClick={() => history.push(backRoute)}>
+                                <Icon icon="cross" size={40} />
+                            </a>
+                        </header>
+                        <Switch location={location}>
+                            <Route path="/settings/language" component={Language} />
+                            <Route path="/settings/theme" component={Theme} />
+                            <Route path="/settings/node" component={SetNode} />
+                            <Route path="/settings/currency" component={Currency} />
+                            <Route path="/settings/password" component={Password} />
+                            <Route path="/settings/twoFa" component={TwoFA} />
+                            <Route path="/settings/advanced" component={Advanced} />
+                            <Redirect from="/settings/" to="/settings/language" />
+                        </Switch>
+                    </section>
+                </div>
             </main>
         );
     }
@@ -127,9 +103,4 @@ const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
 });
 
-const mapDispatchToProps = {
-    showNotification,
-    clearTempData,
-};
-
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Settings));
+export default connect(mapStateToProps)(translate()(Settings));

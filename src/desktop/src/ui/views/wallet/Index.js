@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
-import { Switch, Route, withRouter, NavLink } from 'react-router-dom';
+import classNames from 'classnames';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
-import Header from 'ui/views/wallet/Header';
-
-import Balance from 'ui/views/wallet/Balance';
+import Sidebar from 'ui/views/wallet/Sidebar';
+import Dashboard from 'ui/views/wallet/Dashboard';
 import Receive from 'ui/views/wallet/Receive';
 import Send from 'ui/views/wallet/Send';
-import HistoryView from 'ui/views/wallet/History';
-import Settings from 'ui/views/settings/Index';
 
+import Slideout from 'ui/components/Slideout';
+import Balance from 'ui/components/Balance';
 import Icon from 'ui/components/Icon';
 
-import css from 'ui/index.css';
+import css from './index.css';
 
 /**
  * Wallet functionallity router wrapper component
@@ -22,56 +21,45 @@ class Wallet extends React.PureComponent {
     static propTypes = {
         /* Browser location objects */
         location: PropTypes.object,
-        /* Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
-        t: PropTypes.func.isRequired,
+        /** Browser history object */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
     };
 
     render() {
-        const { location, t } = this.props;
+        const { location, history } = this.props;
+
+        const hasSlideout = location.pathname === '/wallet/send' || location.pathname === '/wallet/receive';
+
         return (
-            <div className={css.main}>
-                <Header />
-                <div className={css.columns}>
-                    <aside>
-                        <nav>
-                            <NavLink to="/wallet/balance">
-                                <Icon icon="wallet" size={20} />
-                                {t('home:balance')}
-                            </NavLink>
-                            <NavLink to="/wallet/send">
-                                <Icon icon="send" size={20} />
-                                {t('home:send')}
-                            </NavLink>
-                            <NavLink to="/wallet/receive">
-                                <Icon icon="receive" size={20} />
-                                {t('home:receive')}
-                            </NavLink>
-                            <NavLink to="/wallet/history">
-                                <Icon icon="history" size={20} />
-                                {t('home:history')}
-                            </NavLink>
-                            <NavLink to="/settings">
-                                <Icon icon="settings" size={20} />
-                                {t('home:settings')}
-                            </NavLink>
-                        </nav>
-                    </aside>
-                    <section>
-                        <Switch location={location}>
-                            <Route path="/wallet/balance" component={Balance} />
-                            <Route path="/wallet/send" component={Send} />
-                            <Route path="/wallet/receive" component={Receive} />
-                            <Route path="/wallet/history" component={HistoryView} />
-                            <Route exact path="/settings/:setting?" component={Settings} />
-                        </Switch>
-                    </section>
-                </div>
-            </div>
+            <main className={classNames(css.wallet, hasSlideout ? css.slided : null)}>
+                <Sidebar history={history} location={location} />
+                <section className={location.pathname === '/wallet/charts' ? css.slided : null}>
+                    <Dashboard history={history} />
+                </section>
+                <Slideout
+                    active={hasSlideout}
+                    onClose={() => {
+                        history.push('/wallet/');
+                    }}
+                >
+                    <header>
+                        <div>
+                            <Balance />
+                            <a onClick={() => history.push('/wallet/')}>
+                                <Icon icon="cross" size={40} />
+                            </a>
+                        </div>
+                    </header>
+                    <Switch location={location}>
+                        <Route path="/wallet/send" component={Send} />
+                        <Route path="/wallet/receive" component={Receive} />
+                    </Switch>
+                </Slideout>
+            </main>
         );
     }
 }
 
-export default withRouter(translate()(Wallet));
+export default withRouter(Wallet);

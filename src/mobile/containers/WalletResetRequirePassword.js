@@ -12,7 +12,8 @@ import OnboardingButtons from '../components/OnboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import Fonts from '../theme/fonts';
-import keychain from '../utils/keychain';
+import { clearKeychain } from '../utils/keychain';
+import { getPasswordHash } from '../utils/crypto';
 import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { Icon } from '../theme/icons.js';
@@ -107,7 +108,9 @@ class WalletResetRequirePassword extends Component {
     }
 
     isAuthenticated() {
-        return this.props.password === this.state.password;
+        const { password } = this.props;
+        const pwdHash = getPasswordHash(this.state.password);
+        return password === pwdHash;
     }
 
     redirectToInitialScreen() {
@@ -139,7 +142,7 @@ class WalletResetRequirePassword extends Component {
         if (isAuthenticated) {
             persistor
                 .purge()
-                .then(() => keychain.clear())
+                .then(() => clearKeychain())
                 .then(() => {
                     this.redirectToInitialScreen();
                     this.props.setOnboardingComplete(false);
