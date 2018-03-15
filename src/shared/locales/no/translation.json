@@ -82,7 +82,7 @@
         "pleaseWaitExplanation": "Trinity jobber med en annen oppgave. Vennligst vent og forsøk igjen.",
         "pleaseWaitTransferExplanation": "Din tilgjengelige saldo blir benyttet i andre transaksjoner. Vent til en blir bekreftet før du forsøker på nytt.",
         "snapshotTransitionInProgress": "Snapshot under behandling",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgressExplanation": "Vent til synkroniseringen er fullført."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -124,7 +124,7 @@
         "clickToCopy": "Klikk knappen nedenfor og kopier din hovednøkkel til et passord-lagrings program.",
         "doNotStore": "Lagre ikke hovednøkkeleb din i klartekst.",
         "copyToClipboard": "Kopier hovednøkkel",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "Kopier din hovednøkkel til en sikker passord applikasjon"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
@@ -181,7 +181,7 @@
         "generateNewAddress": "NY ADRESSE",
         "message": "Valgfri melding",
         "removeMessage": "FJERN MELDINGEN",
-        "noAddresses": "NO ADDRESSES",
+        "noAddresses": "INGEN ADRESSER",
         "spent": "Spent"
     },
     "saveYourSeed": {
@@ -288,7 +288,7 @@
     "walletSetup": {
         "okay": "OK. La oss sette opp lommeboken din!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøkkel du ønsker å bruke?",
-        "seedExplanation": "IOTA hovednøkkel er som et brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
+        "seedExplanation": "IOTA hovednøkkel er som et brukernavn og passord til kontoen, kombinert i en streng på 81 tegn.",
         "explanation": "<0><0>Du kan bruke den til å få tilgang til midler fra</0> <1>enhver lommebok</1> <2>, på</2> <3>enhver enhet</3> <4>. Men hvis du mister din nøkkel, du også miste din IOTA.</4></0>",
         "keepSafe": "Vennligst sikre din hovednøkkel godt."
     },
@@ -409,36 +409,36 @@
     },
     "twoFA": {
         "wrongCode": "Feil kode",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "wrongCodeExplanation": "Koden du anga er feil.",
+        "emptyCode": "Mangler kode",
+        "emptyCodeExplanation": "Angi en kode, og prøv på nytt.",
+        "keyCopied": "Kode kopiert til utklippstavlen",
+        "keyCopiedExplanation": "2FA koden har blitt kopiert til utklippstavlen.",
+        "addKey": "Legge denne koden til i din 2FA app",
+        "key": "Kode",
+        "twoFAEnabled": "2FA er nå aktivert",
+        "twoFAEnabledExplanation": "Du har aktivert to faktor autentisering.",
+        "enterCode": "Angi koden fra din 2FA app",
+        "code": "Kode"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "change": "Endring",
+        "volume": "Volum (24 timer)"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "warning": "ADVARSEL",
+        "rootDetected": "<0>Enheten synes å være \"rooted/jailbroken\".</0> <1>Dette kan utgjøre en betydelig risiko for sikkerheten til lommeboken.</1> <2>Vil du fortsette tross denne risikoen?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
+        "feeless": "Det er nødvendig for å utføre litt PoW (Proof of Work) for å sende gebyrfrie transaksjoner i IOTA.",
+        "localOrRemote": "PoW (Proof of Work) kan enten utføres på din enhet, eller settes bort til noden du er tilkoblet.",
+        "local": "Lokal",
+        "remote": "Ekstern"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "cannotCompleteTransitionExplanation": "Tilgjengelig saldo må være større enn 0 for å fullføre transaksjonen.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully."
     }
