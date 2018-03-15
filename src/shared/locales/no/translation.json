@@ -71,7 +71,7 @@
         "reattach": "RE-TILKNYTTE",
         "promote": "PROMOTER",
         "rebroadcast": "KRINGKAST PÅ NYTT",
-        "pressBackAgain": "Trykk tilbake igjen for å stenge applikasjonen",
+        "pressBackAgain": "Trykk tilbake igjen for å lukke applikasjonen",
         "autoreattaching": "Re-tilknytter Tangle automatisk",
         "autoreattachingExplanation": "Re-tilknytter transaksjon med hash-{{hash}}",
         "autopromoting": "Promoterer transaksjon automatisk",
@@ -298,8 +298,8 @@
         "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Din nøkkel er {{maxSeedLength}} tegn lest fra venstre mot høyre.",
-        "writeDownYourSeed": "<0>Skriv ned nøkkel og kontrolltegn og</0> <1>trippel Sjekk</1> <2>at de er riktige.</2>"
+        "yourSeedIs": "Din hovednøkkel er {{maxSeedLength}} tegn lest fra venstre mot høyre.",
+        "writeDownYourSeed": "<0>Skriv ned din hovednøkkel og kontrolltegn, og</0> <1>trippelsjekk</1> <2>at de er riktige.</2>"
     },
     "history": {
         "bundleHashCopied": "Pakke hash kopiert",
@@ -307,26 +307,26 @@
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen.",
         "send": "SENT",
-        "receive": "MOTTATT"
+        "receive": "MOTTA"
     },
     "accountManagement": {
-        "viewSeed": "Vis nøkkel",
-        "viewAddresses": "Vis adresse",
-        "editAccountName": "Redigere kontonavn",
+        "viewSeed": "Vis hovednøkkel",
+        "viewAddresses": "Vis adresser",
+        "editAccountName": "Rediger kontonavn",
         "deleteAccount": "Slett konto",
-        "addNewAccount": "Legge til en ny konto"
+        "addNewAccount": "Legge til ny konto"
     },
     "addCustomNode": {
-        "customNode": "Egendefinerte node",
+        "customNode": "Egendefinert node",
         "add": "Legg til"
     },
     "addNewAccount": {
-        "useExistingSeed": "Bruk eksisterende nøkkel",
-        "createNewSeed": "Lag ny nøkkel"
+        "useExistingSeed": "Bruk eksisterende hovednøkkel",
+        "createNewSeed": "Lag ny hovednøkkel"
     },
     "advancedSettings": {
         "selectNode": "Velg node",
-        "addCustomNode": "Legge til egendefinerte node",
+        "addCustomNode": "Legg til egendefinert node",
         "manualSync": "Manuell synkronisering",
         "snapshotTransition": "Snapshot synkronisering"
     },
@@ -374,16 +374,16 @@
     "viewSeed": {
         "enterPassword": "Angi passord for å vise din nøkkel.",
         "viewSeed": "VIS NØKKEL",
-        "hideSeed": "SKJUL NØKKEL"
+        "hideSeed": "SKJUL HOVEDNØKKEL"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "Jeg har lagret min nøkkel",
-        "reenter": "Du vil nå bli spurt å gjenta din nøkkel.",
-        "reenterWarning": "Hvis enheten slutter å virke og du ikke har lagret dine nøkler, vil du miste dine IOTA."
+        "alreadyHave": "Jeg har lagret min hovednøkkel",
+        "reenter": "Du vil nå bli spurt å gjenta din hovednøkkel.",
+        "reenterWarning": "Hvis enheten slutter å virke og du ikke har lagret dine hovednøkler, vil du miste dine IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLINGEN KAN IKKE ANGRES.",
-        "warning": "<0><0>Alle dine lommebokdata inkludert dine</0> <1>nøkler, passord</1> <2>og</2> <3>andre kontoopplysninger</3> <4> vil gå tapt.</4></0>"
+        "warning": "<0><0>Alle dine data, inkludert dine</0> <1>nøkler, passord</1> <2>og</2> <3>andre konto-opplysninger</3> <4> vil gå tapt.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Legg fingeren mot fingeravtrykk-leseren for å aktivere biometrisk autentisering.",
@@ -404,7 +404,7 @@
         "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn."
     },
     "transferConfirmation": {
-        "youAreAbout": "Du skal til å sende {{contents}} til adressen",
+        "youAreAbout": "Du er nå klar til å sende {{contents}} til adressen",
         "aMessage": "en melding"
     },
     "twoFA": {
