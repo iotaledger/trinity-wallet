@@ -120,7 +120,7 @@
         "seedCleared": "Seed wyczyszczony",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "seedCopied": "Seed skopiowany do schowka",
-        "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"Gotowe\", lub po upływie 60 sekund.",
+        "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu przycisku \"GOTOWE\", lub po upływie 60 sekund.",
         "clickToCopy": "Kliknij poniższy przycisk i skopiuj swój klucz seed do menedżera haseł.",
         "doNotStore": "Nie przechowuj tego klucza w formie zwykłego tekstu.",
         "copyToClipboard": "Kopiuj seed",
@@ -355,7 +355,7 @@
         "one": "Jeden"
     },
     "deleteAccount": {
-        "areYouSure": "Czy na pewno chcesz usunąć konto o nazwie {{accountName}}?",
+        "areYouSure": "Czy na pewno chcesz usunąć Twoje konto o nazwie {{accountName}}?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
         "thisAction": "Tej czynności nie można cofnąć.",
         "enterPassword": "Wprowadź swoje hasło, aby usunąć to konto."
