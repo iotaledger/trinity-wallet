@@ -111,7 +111,7 @@ const ManualSync = (props) => (
                         animating={props.isSyncing}
                         style={styles.activityIndicator}
                         size="large"
-                        color={props.negative.color}
+                        color={props.primary.color}
                     />
                 </View>
             )}
@@ -138,7 +138,6 @@ ManualSync.propTypes = {
     onManualSyncPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     textColor: PropTypes.object.isRequired,
-    negative: PropTypes.object.isRequired,
     primary: PropTypes.object.isRequired,
     body: PropTypes.object.isRequired,
 };
