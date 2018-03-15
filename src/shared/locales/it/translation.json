@@ -355,7 +355,7 @@
         "one": "Unità"
     },
     "deleteAccount": {
-        "areYouSure": "Sei sicuro di volere rimuovere il conto chiamato {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
         "thisAction": "Questa azione non può essere annullata.",
         "enterPassword": "Immetti la tua password per cancellare il conto."
