@@ -355,7 +355,7 @@
         "one": "Một"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Từ khóa và lịch sử của các giao dịch sẽ bị xóa.",
         "thisAction": "Thao tác này không thể đảo ngược.",
         "enterPassword": "Nhập mật khẩu để xóa tài khoản này."
