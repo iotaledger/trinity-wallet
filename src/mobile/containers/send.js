@@ -136,7 +136,6 @@ export class Send extends Component {
         closeTopBar: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
         bar: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
@@ -258,10 +257,6 @@ export class Send extends Component {
         }
 
         if (conversionRate !== newProps.conversionRate) {
-            return false;
-        }
-
-        if (balance !== newProps.balance) {
             return false;
         }
 
@@ -511,6 +506,34 @@ export class Send extends Component {
         return conversionText;
     }
 
+    getOpacity() {
+        const { balance } = this.props;
+        if (balance === 0) {
+            return 0.2;
+        }
+        return 1;
+    }
+
+    getProgressSummary() {
+        const { timeTakenByEachProgressStep } = this.props;
+        const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
+
+        return (
+            <Text>
+                <Text>DONE </Text>
+                <Text style={styles.progressSummaryText}>
+                    ({map(timeTakenByEachProgressStep, (time, index) => {
+                        if (index === size(timeTakenByEachProgressStep) - 1) {
+                            return `${time}=${totalTimeTaken.toFixed(1)} s`;
+                        }
+
+                        return `${time}+`;
+                    })})
+                </Text>
+            </Text>
+        );
+    }
+
     shouldConversionTextShowInvalid() {
         const { amount, denomination } = this.props;
         const { currencySymbol } = this.state;
@@ -541,14 +564,6 @@ export class Send extends Component {
         this.setModalContent(selectedSetting);
         this.setState({ selectedSetting }); // eslint-disable-line react/no-unused-state
         this.showModal();
-    }
-
-    getOpacity() {
-        const { balance } = this.props;
-        if (balance === 0) {
-            return 0.2;
-        }
-        return 1;
     }
 
     showModal = () => this.setState({ isModalVisible: true });
@@ -631,26 +646,6 @@ export class Send extends Component {
     }
 
     renderModalContent = () => <View>{this.state.modalContent}</View>;
-
-    getProgressSummary() {
-        const { timeTakenByEachProgressStep } = this.props;
-        const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
-
-        return (
-            <Text>
-                <Text>DONE </Text>
-                <Text style={styles.progressSummaryText}>
-                    ({map(timeTakenByEachProgressStep, (time, index) => {
-                        if (index === size(timeTakenByEachProgressStep) - 1) {
-                            return `${time}=${totalTimeTaken.toFixed(1)} s`;
-                        }
-
-                        return `${time}+`;
-                    })})
-                </Text>
-            </Text>
-        );
-    }
 
     renderProgressBarChildren() {
         const { activeStepIndex, activeSteps } = this.props;
@@ -846,7 +841,6 @@ const mapStateToProps = (state) => ({
     usdPrice: state.marketData.usdPrice,
     isGettingSensitiveInfoToMakeTransaction: state.keychain.isGettingSensitiveInfo.send.makeTransaction,
     theme: state.settings.theme,
-    negative: state.settings.theme.negative,
     body: state.settings.theme.body,
     primary: state.settings.theme.primary,
     bar: state.settings.theme.bar,
