@@ -123,7 +123,7 @@
         "seedCopiedExplanation": "Hovednøkkelen vil fjernes med en gang du trykker \"FERDIG\" eller 60 sekunder har gått.",
         "clickToCopy": "Klikk knappen nedenfor og kopier din hovednøkkel til et passord-lagrings program.",
         "doNotStore": "Lagre ikke hovednøkkeleb din i klartekst.",
-        "copyToClipboard": "Copy seed",
+        "copyToClipboard": "Kopier hovednøkkel",
         "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
