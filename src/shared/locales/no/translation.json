@@ -400,7 +400,7 @@
         "fingerprintUnavailable": "Biometrisk sensor ikke tilgjengelig",
         "fingerprintUnavailableExplanation": "Din enhet støtter ikke biometrisk autentisering, eller er ikke konfigurert for å benytte dette.",
         "buttonInstructionsDisable": "Trykk på knappen under for å deaktivere biometrisk godkjenning.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "buttonInstructionsEnable": "Trykk på knappen under for å aktivere biometrisk godkjenning.",
         "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
@@ -408,7 +408,7 @@
         "aMessage": "en melding"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
+        "wrongCode": "Feil kode",
         "wrongCodeExplanation": "The code you entered is incorrect.",
         "emptyCode": "Empty code",
         "emptyCodeExplanation": "Please enter a code and try again.",
