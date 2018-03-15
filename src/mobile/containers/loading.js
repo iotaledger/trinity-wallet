@@ -4,8 +4,10 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import whiteLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-white.json';
 import blackLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-black.json';
-import whiteWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-white.json';
-import blackWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-black.json';
+import whiteWelcomeAnimationPartOne from 'iota-wallet-shared-modules/animations/welcome-part-one-white.json';
+import whiteWelcomeAnimationPartTwo from 'iota-wallet-shared-modules/animations/welcome-part-two-white.json';
+import blackWelcomeAnimationPartOne from 'iota-wallet-shared-modules/animations/welcome-part-one-black.json';
+import blackWelcomeAnimationPartTwo from 'iota-wallet-shared-modules/animations/welcome-part-two-black.json';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
@@ -86,12 +88,15 @@ class Loading extends Component {
         setSetting: PropTypes.func.isRequired,
         changeHomeScreenRoute: PropTypes.func.isRequired,
     };
+
     constructor() {
         super();
         this.state = {
             elipsis: '',
+            animationPartOneDone: false,
         };
     }
+
     componentDidMount() {
         const {
             firstUse,
@@ -102,8 +107,9 @@ class Loading extends Component {
             password,
             navigator,
         } = this.props;
-        this.getWalletData();
         this.animation.play();
+        this.setAnimationTimout();
+        this.getWalletData();
         this.animateElipses(['.', '..', ''], 0);
         KeepAwake.activate();
         this.props.changeHomeScreenRoute('balance');
@@ -159,6 +165,7 @@ class Loading extends Component {
 
     componentWillUnmount() {
         clearTimeout(this.timeout);
+        clearTimeout(this.animationTimeout);
     }
 
     getWalletData() {
@@ -167,6 +174,15 @@ class Loading extends Component {
         this.props.getChartData();
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
+    }
+
+    setAnimationTimout() {
+        this.animationTimeout = setTimeout(() => this.playAnimationTwo(), 2000);
+    }
+
+    playAnimationTwo() {
+        this.setState({ animationPartOneDone: true });
+        this.animation.play();
     }
 
     animateElipses = (chars, index, timer = 750) => {
@@ -181,7 +197,12 @@ class Loading extends Component {
         const { firstUse, t, addingAdditionalAccount, body } = this.props;
         const textColor = { color: body.color };
         const loadingAnimationPath = tinycolor(body.bg).isDark() ? whiteLoadingAnimation : blackLoadingAnimation;
-        const welcomeAnimationPath = tinycolor(body.bg).isDark() ? whiteWelcomeAnimation : blackWelcomeAnimation;
+        const welcomeAnimationPartOnePath = tinycolor(body.bg).isDark()
+            ? whiteWelcomeAnimationPartOne
+            : blackWelcomeAnimationPartOne;
+        const welcomeAnimationPartTwoPath = tinycolor(body.bg).isDark()
+            ? whiteWelcomeAnimationPartTwo
+            : blackWelcomeAnimationPartTwo;
 
         if (firstUse || addingAdditionalAccount) {
             return (
@@ -220,14 +241,24 @@ class Loading extends Component {
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.animationContainer}>
                     <View>
-                        <LottieView
-                            ref={(animation) => {
-                                this.animation = animation;
-                            }}
-                            source={welcomeAnimationPath}
-                            style={styles.animationLoading}
-                            loop
-                        />
+                        {(!this.state.animationPartOneDone && (
+                            <LottieView
+                                ref={(animation) => {
+                                    this.animation = animation;
+                                }}
+                                source={welcomeAnimationPartOnePath}
+                                style={styles.animationLoading}
+                            />
+                        )) || (
+                            <LottieView
+                                ref={(animation) => {
+                                    this.animation = animation;
+                                }}
+                                source={welcomeAnimationPartTwoPath}
+                                style={styles.animationLoading}
+                                loop
+                            />
+                        )}
                     </View>
                 </View>
             </View>
