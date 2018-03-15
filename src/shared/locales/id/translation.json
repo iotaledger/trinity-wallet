@@ -355,7 +355,7 @@
         "one": "Salah satu"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Riwayat transaksi dan benih akan dihapus.",
         "thisAction": "Tindakan ini tidak dapat diulang.",
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda."
