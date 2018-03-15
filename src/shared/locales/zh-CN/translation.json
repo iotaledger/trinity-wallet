@@ -355,7 +355,7 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
         "thisAction": "本操作无法撤销。",
         "enterPassword": "请输入您的密码以确认将帐号删除。"
