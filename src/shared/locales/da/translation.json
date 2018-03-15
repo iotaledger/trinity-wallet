@@ -235,7 +235,7 @@
     "modeSelection": {
         "expert": "Ekspert",
         "standard": "Standard",
-        "expertModeExplanation": "Ekspert-tilstand vil give adgang til yderligere funktioner såsom 'manuel promotion' og 'reattachment'.",
+        "expertModeExplanation": "Ekspert-tilstand vil give adgang til yderligere funktioner såsom manuel validering af overførsel og gensendelse af overførsel.",
         "modesExplanation": "Aktiver kun ekspert-tilstand, hvis du er en erfaren Tangle bruger. Ellers vil det muligvis virke uigennemskueligt."
     },
     "settings": {
@@ -413,18 +413,18 @@
         "emptyCode": "Tom kode",
         "emptyCodeExplanation": "Indtast venligst en kode og prøv igen.",
         "keyCopied": "Nøgle kopieret til udklipsholder",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "keyCopiedExplanation": "Din 2FA nøgle er blevet kopieret til udklipsholderen.",
+        "addKey": "Tilføje denne nøgle til din 2FA app",
+        "key": "Nøgle",
+        "twoFAEnabled": "2FA er nu aktiveret",
+        "twoFAEnabledExplanation": "Du har succesfuldt aktiveret to faktor godkendelse.",
+        "enterCode": "Indtast koden fra din 2FA app",
+        "code": "Kode"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "change": "Ændring",
+        "volume": "Volumen (24t)"
     },
     "rootDetection": {
         "warning": "ADVARSEL",
