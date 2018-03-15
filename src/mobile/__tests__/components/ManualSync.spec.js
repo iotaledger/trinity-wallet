@@ -30,7 +30,6 @@ const getProps = (overrides) =>
             },
             textColor: { color: 'white' },
             body: { color: 'white' },
-            negative: { color: 'white' },
             primary: { color: 'black' },
         },
         overrides,
@@ -56,10 +55,6 @@ describe('Testing ManualSync component', () => {
 
         it('should require a textColor object as a prop', () => {
             expect(ManualSync.propTypes.textColor).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a negative object as a prop', () => {
-            expect(ManualSync.propTypes.negative).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a primary object as a prop', () => {

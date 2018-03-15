@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
-import tinycolor from 'tinycolor2';
-import Switch from 'react-native-switch-pro';
 import Fonts from '../theme/fonts';
 import { width, height } from '../utils/dimensions';
-import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
+import InfoBox from '../components/InfoBox';
+import Toggle from '../components/Toggle';
 
 const styles = StyleSheet.create({
     container: {
@@ -27,16 +26,6 @@ const styles = StyleSheet.create({
         flex: 9,
         justifyContent: 'space-around',
         alignItems: 'center',
-    },
-    infoTextWrapper: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 1.3,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: width / 30,
-        borderStyle: 'dotted',
-        paddingVertical: height / 35,
     },
     infoText: {
         fontFamily: Fonts.secondary,
@@ -61,12 +50,13 @@ const styles = StyleSheet.create({
     },
     toggleText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 24.4,
+        fontSize: width / 23,
         backgroundColor: 'transparent',
-        textAlign: 'justify',
+        textAlign: 'center',
     },
     toggleTextContainer: {
         justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 
@@ -77,8 +67,8 @@ class ModeSelection extends Component {
         backPress: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
-        borderColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -96,43 +86,45 @@ class ModeSelection extends Component {
     }
 
     render() {
-        const { t, mode, textColor, borderColor, secondaryBackgroundColor } = this.props;
-        const switchColor = tinycolor(secondaryBackgroundColor).isLight()
-            ? tinycolor(secondaryBackgroundColor)
-                  .darken(25)
-                  .toString()
-            : tinycolor(secondaryBackgroundColor)
-                  .lighten(50)
-                  .toString();
+        const { t, mode, textColor, body, primary } = this.props;
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 2.3 }} />
-                        <View style={[styles.infoTextWrapper, borderColor]}>
-                            <Icon name="info" size={width / 20} color={secondaryBackgroundColor} />
-                            <Text style={[styles.infoText, textColor]}>{t('expertModeExplanation')}</Text>
-                            <Text style={[styles.infoText, textColor]}>{t('modesExplanation')}</Text>
-                        </View>
+                        <InfoBox
+                            body={body}
+                            text={
+                                <View>
+                                    <Text style={[styles.infoText, textColor]}>{t('expertModeExplanation')}</Text>
+                                    <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                        {t('modesExplanation')}
+                                    </Text>
+                                </View>
+                            }
+                        />
                         <View style={{ flex: 0.8 }} />
                         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableWithoutFeedback onPress={this.changeMode}>
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor]}>{t('standard')}</Text>
+                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
+                                        {t('standard')}
+                                    </Text>
                                 </View>
                             </TouchableWithoutFeedback>
-                            <Switch
-                                style={styles.toggle}
-                                circleColorActive={secondaryBackgroundColor}
-                                circleColorInactive={secondaryBackgroundColor}
-                                backgroundActive={switchColor}
-                                backgroundInactive={switchColor}
-                                value={mode === 'Expert'}
-                                onSyncPress={this.changeMode}
-                            />
+                            <TouchableWithoutFeedback onPress={this.changeMode} style={{ alignSelf: 'center' }}>
+                                <Toggle
+                                    active={mode === 'Expert'}
+                                    bodyColor={body.color}
+                                    primaryColor={primary.color}
+                                    scale={1.3}
+                                />
+                            </TouchableWithoutFeedback>
                             <TouchableWithoutFeedback onPress={this.changeMode}>
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor]}>{t('expert')}</Text>
+                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
+                                        {t('expert')}
+                                    </Text>
                                 </View>
                             </TouchableWithoutFeedback>
                         </View>
@@ -144,7 +136,7 @@ class ModeSelection extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>

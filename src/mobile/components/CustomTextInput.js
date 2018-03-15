@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         marginHorizontal: width / 28,
         paddingTop: 0,
         paddingBottom: 0,
+        height: height / 14,
     },
     innerContainer: {
         flexDirection: 'row',
@@ -86,7 +87,7 @@ class CustomTextInput extends React.Component {
         onDenominationPress: () => {},
         onQRPress: () => {},
         denominationText: 'i',
-        secondaryBackgroundColor: 'white',
+        bodyColor: 'white',
         negativeColor: '#F7D002',
         innerPadding: null,
         currencyConversion: false,
@@ -124,7 +125,7 @@ class CustomTextInput extends React.Component {
 
     getLabelStyle() {
         const { theme } = this.props;
-        const focusedFieldLabel = { color: theme.negative.color, fontFamily: 'Lato-Regular' };
+        const focusedFieldLabel = { color: theme.primary.color, fontFamily: 'Lato-Regular' };
         const unfocusedFieldLabel = { color: theme.body.color, fontFamily: 'Lato-Regular' };
 
         return this.state.isFocused ? focusedFieldLabel : unfocusedFieldLabel;

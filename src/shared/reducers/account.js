@@ -4,6 +4,7 @@ import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
 import filter from 'lodash/filter';
+import union from 'lodash/union';
 import { ActionTypes } from '../actions/account';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 
@@ -25,7 +26,7 @@ const updateAccountInfo = (state, payload) => ({
 const account = (
     state = {
         seedCount: 0,
-        seedNames: [],
+        accountNames: [],
         firstUse: true,
         onboardingComplete: false,
         accountInfo: {},
@@ -56,7 +57,7 @@ const account = (
         case ActionTypes.CHANGE_ACCOUNT_NAME:
             return {
                 ...state,
-                seedNames: action.accountNames,
+                accountNames: action.accountNames,
                 accountInfo: action.accountInfo,
             };
         case ActionTypes.REMOVE_ACCOUNT:
@@ -68,7 +69,7 @@ const account = (
                 unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
                     some(tailTransactions, (tx) => tx.account === action.payload),
                 ),
-                seedNames: filter(state.seedNames, (name) => name !== action.payload),
+                accountNames: filter(state.accountNames, (name) => name !== action.payload),
                 seedCount: state.seedCount - 1,
             };
         case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
@@ -93,8 +94,8 @@ const account = (
                 ...state,
                 accountInfo: {
                     ...state.accountInfo,
-                    [action.seedName]: {
-                        ...state.accountInfo[action.seedName],
+                    [action.accountName]: {
+                        ...state.accountInfo[action.accountName],
                         addresses: action.addresses,
                     },
                 },
@@ -104,8 +105,8 @@ const account = (
                 ...state,
                 accountInfo: {
                     ...state.accountInfo,
-                    [action.seedName]: {
-                        ...state.accountInfo[action.seedName],
+                    [action.accountName]: {
+                        ...state.accountInfo[action.accountName],
                         transfers: action.transfers,
                     },
                 },
@@ -139,7 +140,7 @@ const account = (
         case ActionTypes.ADD_SEED_NAME:
             return {
                 ...state,
-                seedNames: [...state.seedNames, action.seedName],
+                accountNames: [...state.accountNames, action.accountName],
             };
         case ActionTypes.MANUAL_SYNC_SUCCESS:
             return {
@@ -173,7 +174,7 @@ const account = (
                     [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
             };
-        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+        case ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
@@ -188,12 +189,12 @@ const account = (
                     [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
             };
-        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
+        case ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
                 seedCount: state.seedCount + 1,
-                seedNames: [...state.seedNames, action.payload.accountName],
+                accountNames: union(state.accountNames, [action.payload.accountName]),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 txHashesForUnspentAddresses: {
                     ...state.txHashesForUnspentAddresses,
