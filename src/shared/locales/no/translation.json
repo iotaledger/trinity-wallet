@@ -328,7 +328,7 @@
         "selectNode": "Velg node",
         "addCustomNode": "Legge til egendefinerte node",
         "manualSync": "Manuell synkronisering",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot synkronisering"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrunn",
@@ -361,7 +361,7 @@
         "enterPassword": "Skriv inn passordet for å slette kontoen."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "outOfSync": "Ser din transaksjonshistorikk ut til å ikke være synkronisert?",
         "pressToSync": "Trykk på knappen nedenfor for å synkronisere din konto.",
         "thisMayTake": "Dette kan ta en stund. Det kan hende din enhet blir tregere.",
         "doNotClose": "Minimaliserer du applikasjonen vil du avbryte synkroniseringen.",
@@ -401,7 +401,7 @@
         "fingerprintUnavailableExplanation": "Din enhet støtter ikke biometrisk autentisering, eller er ikke konfigurert for å benytte dette.",
         "buttonInstructionsDisable": "Trykk på knappen under for å deaktivere biometrisk godkjenning.",
         "buttonInstructionsEnable": "Trykk på knappen under for å aktivere biometrisk godkjenning.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn."
     },
     "transferConfirmation": {
         "youAreAbout": "Du skal til å sende {{contents}} til adressen",
@@ -437,9 +437,9 @@
         "remote": "Ekstern"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransition": "Kan ikke fullføre snapshot synkronisering",
         "cannotCompleteTransitionExplanation": "Tilgjengelig saldo må være større enn 0 for å fullføre transaksjonen.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "transitionComplete": "Snapshot synkronisering gjennomført",
+        "transitionCompleteExplanation": "Snapshot synkronisering var vellykket."
     }
 }
