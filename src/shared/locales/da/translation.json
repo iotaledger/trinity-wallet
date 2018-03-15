@@ -66,7 +66,7 @@
         "receiving": "Modtager",
         "confirmed": "Bekræftet",
         "pending": "Afventende",
-        "bundleHash": "Bundle Hash",
+        "bundleHash": "Grupper Hash",
         "addresses": "Adresser",
         "reattach": "GENSEND",
         "promote": "PROMOVER",
@@ -355,7 +355,7 @@
         "one": "En"
     },
     "deleteAccount": {
-        "areYouSure": "Er du sikker på du vil slette kontoen kaldet {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Dit seed og transaktionshistorik vil blive fjernet.",
         "thisAction": "Denne handling kan ikke fortrydes.",
         "enterPassword": "Indtast din adgangskode for at slette denne konto."
