@@ -293,8 +293,8 @@
         "keepSafe": "Vennligst sikre din hovednøkkel godt."
     },
     "welcome": {
-        "thankYou": "Takk for at du lastet ned IOTA lommeboken.",
-        "weWillSpend": "Vi vil bruke neste minuttene til å sette opp lommeboken din.",
+        "thankYou": "Takk for at du lastet ned IOTA-lommeboken.",
+        "weWillSpend": "Vi vil bruke neste minuttene til å konfigurere lommeboken din.",
         "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
     },
     "writeSeedDown": {
