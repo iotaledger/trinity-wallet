@@ -163,7 +163,7 @@ class AdvancedSettings extends Component {
                     </View>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'flex-end' }}>
-                    <View style={{ flex: 2.5 }} />
+                    <View style={{ flex: 2 }} />
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
                             onPress={() => this.props.setSetting('mainSettings')}
