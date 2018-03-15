@@ -20,14 +20,14 @@
         "invalidResponseExplanation": "Noden returnerte et ugyldig svar.",
         "invalidResponsePollingExplanation": "Noden returnerte et ugyldig svar.",
         "invalidResponseFetchingAccount": "Noden returnerte et ugyldig svar når vi forsøkte å hente dine kontodetaljer. Forsøk å endre node.",
-        "invalidResponseSendingTransfer": "Noden returnerte et ugyldig svar når vi forsøkte å sende en overføring.",
+        "invalidResponseSendingTransfer": "Noden returnerte et ugyldig svar når transaksjonen ble sendt.",
         "seed": "Hovednøkkel",
         "back": "TILBAKE",
         "backLowercase": "Tilbake",
         "done": "FERDIG",
         "doneLowercase": "Ferdig",
         "next": "NESTE",
-        "apply": "Ta i bruk",
+        "apply": "Bruk",
         "save": "Lagre",
         "close": "LUKK",
         "continue": "Fortsett",
@@ -57,25 +57,25 @@
         "node": "Node",
         "cannotPerformAction": "Kan ikke utføre handling",
         "cannotPerformActionExplanation": "Gå til avanserte innstillinger for å tilbakestille lommeboken.",
-        "attachToTangleUnavailable": "\"Attach to Tangle \" er ikke tilgjengelig",
-        "attachToTangleUnavailableExplanation": "\"Attach to Tangle \" er ikke tilgjengelig på den valgte node.",
+        "attachToTangleUnavailable": "Tilknytt Tangle er ikke tilgjengelig",
+        "attachToTangleUnavailableExplanation": "Tilknytt Tangle er ikke tilgjengelig på valgte node.",
         "wallet": "Lommebok",
         "sent": "Sendt",
         "received": "Mottatt",
         "sending": "Sender",
         "receiving": "Mottar",
         "confirmed": "Bekreftet",
-        "pending": "Ventende",
+        "pending": "Venter",
         "bundleHash": "Bunt Hash",
         "addresses": "Adresser",
-        "reattach": "KOBLE TRANSAKSJON PÅ NYTT",
+        "reattach": "RE-TILKNYTTE",
         "promote": "PROMOTER",
         "rebroadcast": "KRINGKAST PÅ NYTT",
-        "pressBackAgain": "Trykk tilbake igjen for å stenge app",
-        "autoreattaching": "Retilknytter automatisk",
-        "autoreattachingExplanation": "Retiljknytter transaksjon med hash-{{hash}}",
-        "autopromoting": "Sender hjelpetransaksjoner",
-        "autopromotingExplanation": "Sende hjelpetransaksjoner for {{hash}}",
+        "pressBackAgain": "Trykk tilbake igjen for å stenge applikasjonen",
+        "autoreattaching": "Re-tilknytter Tangle automatisk",
+        "autoreattachingExplanation": "Re-tilknytter transaksjon med hash-{{hash}}",
+        "autopromoting": "Promoterer transaksjon automatisk",
+        "autopromotingExplanation": "Promoterer transaksjon med hash {{hash}}",
         "cannotSendToOwn": "Sender til egen adresse",
         "cannotSendToOwnExplanation": "Du kan ikke sende transaksjoner med verdi til egne adresser.",
         "pleaseWait": "Vennligst vent",
@@ -95,8 +95,8 @@
         "accountName": "Kontonavn",
         "noNickname": "Ingen kontonavn angitt",
         "noNicknameExplanation": "Vennligst skriv inn et kontonavn for hovednøkkelen.",
-        "seedInUse": "Nøkkel er allerede i bruk",
-        "seedInUseExplanation": "Denne nøkkelen er allerede tilknyttet din lommebok. Bruk en annen."
+        "seedInUse": "Hovednøkkel er allerede i bruk",
+        "seedInUseExplanation": "Denne hovednøkkelen er allerede tilknyttet din lommebok. Bruk en annen."
     },
     "changePassword": {
         "oops": "Au da. Noe gikk galt",
@@ -163,10 +163,10 @@
         "seedNotGenerated": "Hovednøkkel har ikke blitt generert",
         "seedNotGeneratedExplanation": "Vennligst generer ny hovednøkkel.",
         "pressForNewSeed": "TRYKK FOR NY HOVEDNØKKEL",
-        "individualLetters": "Trykk enkelte tegn for å gi de tilfeldig plassering."
+        "individualLetters": "Trykk individuelle tegn for å randomisere dem."
     },
     "onboardingComplete": {
-        "walletReady": "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Innstillinger menyen."
+        "walletReady": "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du benytte Innstillinger menyen."
     },
     "paperWallet": {
         "clickToPrint": "Klikk knappen nedenfor for å skrive ut en papirkopi av din hovednøkkel.",
@@ -186,7 +186,7 @@
     },
     "saveYourSeed": {
         "seedCleared": "Hovednøkkel er fjernet",
-        "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstaven for din sikkerhet.",
+        "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstavlen for din sikkerhet.",
         "mustSaveYourSeed": "<0><0>Du må lagre din nøkkel med</0> <1>minst én</1> <2>av alternativene nedenfor.</2></0>"
     },
     "seedReentry": {
