@@ -355,7 +355,7 @@
         "one": "Un"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Tu Seed y tu historial de transacciones serán eliminados.",
         "thisAction": "Esta acción no se puede deshacer.",
         "enterPassword": "Escribe tu contraseña para eliminar la cuenta."
