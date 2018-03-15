@@ -101,7 +101,7 @@ export default function withSendData(SendComponent) {
     const mapStateToProps = (state) => ({
         tempAccount: state.tempAccount,
         balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-        accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+        accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
         settings: state.settings,
         account: state.account,
         seed: state.seeds.seeds[state.tempAccount.seedIndex],

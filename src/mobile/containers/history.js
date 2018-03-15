@@ -24,7 +24,7 @@ import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/
 import tinycolor from 'tinycolor2';
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
-import keychain, { getSeed } from '../util/keychain';
+import { getSeedFromKeychain } from '../util/keychain';
 import { isAndroid } from '../util/device';
 import CtaButton from '../components/ctaButton';
 
@@ -89,6 +89,7 @@ class History extends Component {
         isBroadcastingBundle: PropTypes.bool.isRequired,
         isPromotingTransaction: PropTypes.bool.isRequired,
         mode: PropTypes.string.isRequired,
+        password: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -99,7 +100,11 @@ class History extends Component {
     }
 
     componentWillReceiveProps(newProps) {
+        const { seedIndex } = this.props;
         if (this.props.isFetchingLatestAccountInfoOnLogin && !newProps.isFetchingLatestAccountInfoOnLogin) {
+            this.setState({ isRefreshing: false });
+        }
+        if (seedIndex !== newProps.seedIndex) {
             this.setState({ isRefreshing: false });
         }
     }
@@ -169,11 +174,16 @@ class History extends Component {
     }
 
     updateAccountData() {
-        const { selectedAccountName, seedIndex } = this.props;
-        keychain
-            .get()
-            .then((credentials) => {
-                const seed = getSeed(credentials.data, seedIndex);
+        const { t, selectedAccountName, password } = this.props;
+        getSeedFromKeychain(password, selectedAccountName)
+            .then((seed) => {
+                if (seed === null) {
+                    return this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongTryAgain'),
+                    );
+                }
                 this.props.getAccountInfo(seed, selectedAccountName);
             })
             .catch((err) => console.log(err));
@@ -322,7 +332,7 @@ class History extends Component {
 const mapStateToProps = ({ tempAccount, account, settings, polling, ui }) => ({
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.accountNames),
     seedIndex: tempAccount.seedIndex,
     mode: settings.mode,
     negative: settings.theme.negative,
@@ -340,6 +350,7 @@ const mapStateToProps = ({ tempAccount, account, settings, polling, ui }) => ({
     isTransitioning: tempAccount.isTransitioning,
     isBroadcastingBundle: ui.isBroadcastingBundle,
     isPromotingTransaction: ui.isPromotingTransaction,
+    password: tempAccount.password,
 });
 
 const mapDispatchToProps = {
