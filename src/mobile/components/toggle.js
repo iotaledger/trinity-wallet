@@ -27,22 +27,22 @@ const styles = StyleSheet.create({
 
 class Toggle extends React.Component {
     static propTypes = {
-        primary: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
+        bodyColor: PropTypes.string.isRequired,
+        primaryColor: PropTypes.string.isRequired,
         active: PropTypes.bool.isRequired,
     };
 
     render() {
         const {
             active,
-            primary,
-            body
+            primaryColor,
+            bodyColor
         } = this.props;
 
         return (
             <View style={styles.toggleContainer}>
-                <View style={[ styles.toggle, { alignItems: active ? 'flex-end' : 'flex-start', borderColor: body.color } ]}>
-                    <View style={[ styles.toggleCircle, { backgroundColor: primary.color} ]}/>
+                <View style={[ styles.toggle, { alignItems: active ? 'flex-end' : 'flex-start', borderColor: bodyColor } ]}>
+                    <View style={[ styles.toggleCircle, { backgroundColor: primaryColor} ]}/>
                 </View>
             </View>
         );

@@ -376,7 +376,8 @@ class Settings extends Component {
                 negativeColor: negative.color,
                 textColor: { color: body.color },
                 borderColor: { borderColor: body.color },
-                bodyColor: body.color,
+                body,
+                primary,
             },
             pow: {
                 backPress: () => this.props.setSetting('mainSettings'),

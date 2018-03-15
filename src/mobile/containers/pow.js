@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
-import tinycolor from 'tinycolor2';
-import Switch from 'react-native-switch-pro';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { updatePowSettings } from 'iota-wallet-shared-modules/actions/settings';
 import Fonts from '../theme/Fonts';
 import { width, height } from '../util/dimensions';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/infoBox';
+import Toggle from '../components/toggle';
 
 const styles = StyleSheet.create({
     container: {
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.secondary,
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
-        textAlign: 'justify',
+        textAlign: 'center',
     },
     toggleTextContainer: {
         justifyContent: 'center',
@@ -71,6 +70,7 @@ class Pow extends Component {
         t: PropTypes.func.isRequired,
         updatePowSettings: PropTypes.func.isRequired,
         body: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -88,18 +88,8 @@ class Pow extends Component {
         );
     }
 
-    getSwitchColor() {
-        const props = this.props;
-
-        const baseColor = tinycolor(props.body.bg);
-
-        return baseColor.isLight() ? baseColor.darken(25).toString() : baseColor.lighten(50).toString();
-    }
-
     render() {
-        const { t, remotePoW, body } = this.props;
-
-        const switchColor = this.getSwitchColor();
+        const { t, remotePoW, body, primary } = this.props;
         const textColor = { color: body.color };
         const infoTextPadding = { paddingTop: height / 50 };
 
@@ -126,26 +116,20 @@ class Pow extends Component {
                                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 70, right: width / 35 }}
                             >
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 70 }]}>
+                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
                                         {t('local')}
                                     </Text>
                                 </View>
                             </TouchableWithoutFeedback>
-                            <Switch
-                                style={styles.toggle}
-                                circleColorActive={body.bg}
-                                circleColorInactive={body.bg}
-                                backgroundActive={switchColor}
-                                backgroundInactive={switchColor}
-                                value={remotePoW}
-                                onSyncPress={this.onChange}
-                            />
+                            <TouchableOpacity onPress={this.changeMode}>
+                                <Toggle active={remotePoW} bodyColor={body.color} primaryColor={primary.color} />
+                            </TouchableOpacity>
                             <TouchableWithoutFeedback
                                 onPress={this.onChange}
                                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 35, right: width / 70 }}
                             >
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 70 }]}>
+                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
                                         {t('remote')}
                                     </Text>
                                 </View>
@@ -173,6 +157,7 @@ class Pow extends Component {
 const mapStateToProps = (state) => ({
     remotePoW: state.settings.remotePoW,
     body: state.settings.theme.body,
+    primary: state.settings.theme.primary,
 });
 
 const mapDispatchToProps = {
