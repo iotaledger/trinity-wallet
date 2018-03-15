@@ -124,7 +124,7 @@ class CustomTextInput extends React.Component {
 
     getLabelStyle() {
         const { theme } = this.props;
-        const focusedFieldLabel = { color: theme.negative.color, fontFamily: 'Lato-Regular' };
+        const focusedFieldLabel = { color: theme.primary.color, fontFamily: 'Lato-Regular' };
         const unfocusedFieldLabel = { color: theme.body.color, fontFamily: 'Lato-Regular' };
 
         return this.state.isFocused ? focusedFieldLabel : unfocusedFieldLabel;
