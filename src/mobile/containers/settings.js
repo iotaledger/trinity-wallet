@@ -423,6 +423,7 @@ class Settings extends Component {
                 secondaryBackgroundColor: body.color,
                 borderColor: { borderColor: body.color },
                 isPromoting,
+                selectedAccountName,
                 shouldPreventAction: () => this.shouldPreventAction(),
                 generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
                 theme,
