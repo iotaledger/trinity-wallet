@@ -141,7 +141,7 @@ class Home extends Component {
                                     <TabContent navigator={navigator} onTabSwitch={(name) => this.onTabSwitch(name)} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <Tabs onPress={(name) => this.onTabSwitch(name)} barColor={bar.bg}>
+                                    <Tabs onPress={(name) => this.onTabSwitch(name)} barBg={bar.bg}>
                                         <Tab
                                             name="balance"
                                             icon="wallet"
@@ -199,7 +199,7 @@ class Home extends Component {
                                 backgroundColor={body.bg}
                                 negativeColor={negative.color}
                                 positiveColor={positive.color}
-                                secondaryBackgroundColor={body.color}
+                                bodyColor={body.color}
                                 textColor={textColor}
                                 isFingerprintEnabled={isFingerprintEnabled}
                             />

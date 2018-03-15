@@ -246,8 +246,8 @@ class History extends Component {
                     defaultTextColor: { color: body.color },
                     backgroundColor: body.bg,
                     borderColor: { borderColor: body.color },
-                    barColor: bar.bg,
-                    secondaryBarColor: bar.color,
+                    barBg: bar.bg,
+                    barColor: bar.color,
                     buttonsOpacity: { opacity: disableWhen ? 0.5 : 1 },
                 },
             };
@@ -296,7 +296,7 @@ class History extends Component {
                                     animating={isRefreshing}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={negative.color}
+                                    color={primary.color}
                                 />
                             </View>
                         )}

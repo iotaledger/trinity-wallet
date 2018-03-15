@@ -129,7 +129,6 @@ export class Send extends Component {
         closeTopBar: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
         bar: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
@@ -613,7 +612,6 @@ export class Send extends Component {
             theme,
             body,
             primary,
-            negative,
         } = this.props;
         const textColor = { color: body.color };
         const conversionText =
@@ -679,7 +677,11 @@ export class Send extends Component {
                                         }}
                                     >
                                         <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
-                                        <Toggle active={maxPressed} body={body} primary={primary} />
+                                        <Toggle
+                                            active={maxPressed}
+                                            bodyColor={body.color}
+                                            primaryColor={primary.color}
+                                        />
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -732,7 +734,7 @@ export class Send extends Component {
                                         }
                                         style={styles.activityIndicator}
                                         size="large"
-                                        color={negative.color}
+                                        color={primary.color}
                                     />
                                 </View>
                             )}
@@ -786,7 +788,6 @@ const mapStateToProps = (state) => ({
     usdPrice: state.marketData.usdPrice,
     isGettingSensitiveInfoToMakeTransaction: state.keychain.isGettingSensitiveInfo.send.makeTransaction,
     theme: state.settings.theme,
-    negative: state.settings.theme.negative,
     body: state.settings.theme.body,
     primary: state.settings.theme.primary,
     bar: state.settings.theme.bar,
