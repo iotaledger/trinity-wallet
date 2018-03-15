@@ -4,6 +4,7 @@ import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
 import filter from 'lodash/filter';
+import union from 'lodash/union';
 import { ActionTypes } from '../actions/account';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 
@@ -193,7 +194,7 @@ const account = (
                 ...state,
                 ...updateAccountInfo(state, action.payload),
                 seedCount: state.seedCount + 1,
-                accountNames: [...state.accountNames, action.payload.accountName],
+                accountNames: union(state.accountNames, [action.payload.accountName]),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 txHashesForUnspentAddresses: {
                     ...state.txHashesForUnspentAddresses,

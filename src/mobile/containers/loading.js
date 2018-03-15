@@ -4,8 +4,10 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import whiteLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-white.json';
 import blackLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-black.json';
-import whiteWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-white.json';
-import blackWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-black.json';
+import whiteWelcomeAnimationPartOne from 'iota-wallet-shared-modules/animations/welcome-part-one-white.json';
+import whiteWelcomeAnimationPartTwo from 'iota-wallet-shared-modules/animations/welcome-part-two-white.json';
+import blackWelcomeAnimationPartOne from 'iota-wallet-shared-modules/animations/welcome-part-one-black.json';
+import blackWelcomeAnimationPartTwo from 'iota-wallet-shared-modules/animations/welcome-part-two-black.json';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
@@ -39,12 +41,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         textAlign: 'center',
         paddingBottom: height / 30,
-    },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 40,
     },
     animationLoading: {
         justifyContent: 'center',
@@ -88,13 +84,16 @@ class Loading extends Component {
         changeHomeScreenRoute: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
     };
+
     constructor() {
         super();
         this.state = {
             elipsis: '',
+            animationPartOneDone: false,
         };
     }
-    async componentDidMount() {
+
+    componentDidMount() {
         const {
             firstUse,
             addingAdditionalAccount,
@@ -105,8 +104,11 @@ class Loading extends Component {
             navigator,
             t,
         } = this.props;
-        this.getWalletData();
         this.animation.play();
+        if (!firstUse && !addingAdditionalAccount) {
+            this.setAnimationOneTimout();
+        }
+        this.getWalletData();
         this.animateElipses(['.', '..', ''], 0);
         KeepAwake.activate();
         this.props.changeHomeScreenRoute('balance');
@@ -122,21 +124,20 @@ class Loading extends Component {
             );
         }
 
-        const currentSeed = await getSeedFromKeychain(password, selectedAccountName);
-
-        if (currentSeed === null) {
-            return this.props.generateAlert(
-                'error',
-                t('global:somethingWentWrong'),
-                t('global:somethingWentWrongRestart'),
-            );
-        }
-
-        if (firstUse) {
-            this.props.getFullAccountInfoFirstSeed(currentSeed, selectedAccountName, navigator);
-        } else {
-            this.props.getAccountInfo(currentSeed, selectedAccountName, navigator);
-        }
+        getSeedFromKeychain(password, selectedAccountName).then((currentSeed) => {
+            if (currentSeed === null) {
+                return this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongRestart'),
+                );
+            }
+            if (firstUse) {
+                this.props.getFullAccountInfoFirstSeed(currentSeed, selectedAccountName, navigator);
+            } else {
+                this.props.getAccountInfo(currentSeed, selectedAccountName, navigator);
+            }
+        });
     }
 
     componentWillReceiveProps(newProps) {
@@ -167,6 +168,7 @@ class Loading extends Component {
 
     componentWillUnmount() {
         clearTimeout(this.timeout);
+        clearTimeout(this.animationTimeout);
     }
 
     getWalletData() {
@@ -175,6 +177,15 @@ class Loading extends Component {
         this.props.getChartData();
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
+    }
+
+    setAnimationOneTimout() {
+        this.animationTimeout = setTimeout(() => this.playAnimationTwo(), 2000);
+    }
+
+    playAnimationTwo() {
+        this.setState({ animationPartOneDone: true });
+        this.animation.play();
     }
 
     animateElipses = (chars, index, timer = 750) => {
@@ -189,7 +200,12 @@ class Loading extends Component {
         const { firstUse, t, addingAdditionalAccount, body } = this.props;
         const textColor = { color: body.color };
         const loadingAnimationPath = tinycolor(body.bg).isDark() ? whiteLoadingAnimation : blackLoadingAnimation;
-        const welcomeAnimationPath = tinycolor(body.bg).isDark() ? whiteWelcomeAnimation : blackWelcomeAnimation;
+        const welcomeAnimationPartOnePath = tinycolor(body.bg).isDark()
+            ? whiteWelcomeAnimationPartOne
+            : blackWelcomeAnimationPartOne;
+        const welcomeAnimationPartTwoPath = tinycolor(body.bg).isDark()
+            ? whiteWelcomeAnimationPartTwo
+            : blackWelcomeAnimationPartTwo;
 
         if (firstUse || addingAdditionalAccount) {
             return (
@@ -228,14 +244,24 @@ class Loading extends Component {
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.animationContainer}>
                     <View>
-                        <LottieView
-                            ref={(animation) => {
-                                this.animation = animation;
-                            }}
-                            source={welcomeAnimationPath}
-                            style={styles.animationLoading}
-                            loop
-                        />
+                        {(!this.state.animationPartOneDone && (
+                            <LottieView
+                                ref={(animation) => {
+                                    this.animation = animation;
+                                }}
+                                source={welcomeAnimationPartOnePath}
+                                style={styles.animationLoading}
+                            />
+                        )) || (
+                            <LottieView
+                                ref={(animation) => {
+                                    this.animation = animation;
+                                }}
+                                source={welcomeAnimationPartTwoPath}
+                                style={styles.animationLoading}
+                                loop
+                            />
+                        )}
                     </View>
                 </View>
             </View>
