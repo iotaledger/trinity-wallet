@@ -355,7 +355,7 @@
         "one": "Ένα"
     },
     "deleteAccount": {
-        "areYouSure": "Είστε βέβαιοι ότι θέλετε να διαγράψετε το  όνομα λογαριασμού ;",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Ο σπόρος σας και το ιστορικό συναλλαγών θα διαγραφούν.",
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να διαγράψετε αυτό το λογαριασμό."
