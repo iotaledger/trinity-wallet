@@ -355,7 +355,7 @@
         "one": "Jedna"
     },
     "deleteAccount": {
-        "areYouSure": "Určite chcete odstrániť účet {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Váš Seed a história transakcií budú odstránené.",
         "thisAction": "Tento účet nie je možné obnoviť.",
         "enterPassword": "Pre zmazanie účtu vložte svoje heslo."
