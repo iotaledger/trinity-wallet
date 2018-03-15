@@ -347,11 +347,8 @@ class Settings extends Component {
         const borderColor = { borderColor: body.color };
         const props = {
             mainSettings: {
-                t: this.props.t,
                 setSetting: (setting) => this.props.setSetting(setting),
                 setModalContent: (content) => this.setModalContent(content),
-                onThemePress: () => this.props.setSetting('themeCustomisation'),
-                onModePress: () => this.props.setSetting('modeSelection'),
                 mode,
                 onLanguagePress: () => this.props.setSetting('languageSelection'),
                 themeName: this.props.themeName,
