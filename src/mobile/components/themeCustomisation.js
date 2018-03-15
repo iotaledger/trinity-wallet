@@ -269,7 +269,7 @@ class ThemeCustomisation extends Component {
                                 <View
                                     style={[
                                         styles.ctaButton,
-                                        { backgroundColor: primary.color, borderColor: primary.hover },
+                                        { backgroundColor: primary.color, borderColor: primary.color },
                                     ]}
                                 >
                                     <Text style={[styles.ctaText, { color: primary.body }]}>
@@ -285,11 +285,7 @@ class ThemeCustomisation extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon
-                                    name="chevronLeft"
-                                    size={width / 28}
-                                    color={this.props.bodyColor}
-                                />
+                                <Icon name="chevronLeft" size={width / 28} color={this.props.bodyColor} />
                                 <Text style={[styles.titleTextLeft, { color: this.props.bodyColor }]}>
                                     {t('global:backLowercase')}
                                 </Text>

@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
 
 class GenerateAddressButton extends PureComponent {
     static propTypes = {
-        secondaryCtaColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
         primaryColor: PropTypes.string.isRequired,
         primaryBody: PropTypes.string.isRequired,
@@ -31,7 +30,6 @@ class GenerateAddressButton extends PureComponent {
             t,
             primaryColor,
             primaryBody,
-            secondaryCtaColor,
             receiveAddress,
             message,
             isGeneratingReceiveAddress,
@@ -45,8 +43,8 @@ class GenerateAddressButton extends PureComponent {
                         <View style={{ flex: 1, justifyContent: 'center' }}>
                             <CtaButton
                                 ctaColor={primaryColor}
-                                ctaBorderColor={primaryBody}
-                                secondaryCtaColor={secondaryCtaColor}
+                                ctaBorderColor={primaryColor}
+                                secondaryCtaColor={primaryBody}
                                 text={t('generateNewAddress')}
                                 onPress={() => {
                                     if (!isGeneratingReceiveAddress) {
