@@ -355,7 +355,7 @@
         "one": "Yksi"
     },
     "deleteAccount": {
-        "areYouSure": "Oletko varma että haluat poistaa tilin {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoria poistetaan.",
         "thisAction": "Tätä toimintoa ei voi jälkikäteen peruuttaa.",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
