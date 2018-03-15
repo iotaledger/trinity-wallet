@@ -74,7 +74,7 @@ export default function withSendData(SendComponent) {
             if (typeof taskRunner === 'function') {
                 taskRunner('makeTransaction', [seed, address, value, message, accountName, powFn]);
             } else {
-                makeTransaction(seed, address, value, message, accountName, powFn);
+                this.props.makeTransaction(seed, address, value, message, accountName, powFn);
             }
         };
 
