@@ -108,7 +108,9 @@ class Loading extends Component {
             navigator,
         } = this.props;
         this.animation.play();
-        this.setAnimationTimout();
+        if (!firstUse && !addingAdditionalAccount) {
+            this.setAnimationOneTimout();
+        }
         this.getWalletData();
         this.animateElipses(['.', '..', ''], 0);
         KeepAwake.activate();
@@ -176,7 +178,7 @@ class Loading extends Component {
         this.props.getCurrencyData(currency);
     }
 
-    setAnimationTimout() {
+    setAnimationOneTimout() {
         this.animationTimeout = setTimeout(() => this.playAnimationTwo(), 2000);
     }
 
