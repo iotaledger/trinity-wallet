@@ -49,7 +49,7 @@
         "password": "Passwort",
         "passwordOrFingerprint": "Passwort oder Fingerabdruck",
         "unrecognisedPassword": "Unbekanntes Passwort",
-        "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte nochmal versuchen.",
+        "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
         "syncInProgress": "Synchronisiere...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
