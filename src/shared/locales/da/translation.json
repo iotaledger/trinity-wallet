@@ -11,9 +11,9 @@
         "transferError": "Overførselsfejl",
         "transferErrorMessage": "Noget gik galt under din overførsel. Prøv venligst igen.",
         "transferSent": "Overførsel sendt",
-        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "transferSentMessage": "Din overførsel er blevet sendt til netværket.",
         "messageSent": "Beskeden er sendt",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
+        "messageSentMessage": "Din meddelelse er blevet sendt til netværket.",
         "keyReuse": "Nøglegenbrug",
         "keyReuseError": "Du kan ikke sende til en adresse, der allerede er overført fra.",
         "invalidResponse": "Ugyldigt svar",
@@ -72,7 +72,7 @@
         "promote": "PROMOVER",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Tryk tilbage igen for at lukke app'en",
-        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattaching": "Fastgør automatisk til netværket",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
@@ -328,7 +328,7 @@
         "selectNode": "Vælg node",
         "addCustomNode": "Tilføje brugerdefinerede node",
         "manualSync": "Manuel synkronisering",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot synkronisering"
     },
     "advancedThemeCustomisation": {
         "background": "Baggrund",
@@ -433,13 +433,13 @@
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
+        "local": "Lokalt",
+        "remote": "Fjernadgang"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransition": "Kan ikke fuldføre snapshot synkroniseringen",
+        "cannotCompleteTransitionExplanation": "Din balance skal være større end 0 for at fuldføre synkroniseringen.",
+        "transitionComplete": "Snapshot synkronisering gennemgørt",
+        "transitionCompleteExplanation": "Snapshot synkronisering blev gennemført med succes."
     }
 }
