@@ -94,10 +94,10 @@ class DeleteAccount extends Component {
         t: PropTypes.func.isRequired,
         backgroundColor: PropTypes.string.isRequired,
         currentAccountName: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        primaryColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         borderColor: PropTypes.object.isRequired,
         isPromoting: PropTypes.bool.isRequired,
         shouldPreventAction: PropTypes.func.isRequired,
@@ -180,9 +180,9 @@ class DeleteAccount extends Component {
     render() {
         const {
             t,
-            negativeColor,
+            primaryColor,
             textColor,
-            secondaryBackgroundColor,
+            bodyColor,
             backgroundColor,
             borderColor,
             theme,
@@ -198,7 +198,7 @@ class DeleteAccount extends Component {
                             <View style={styles.textContainer}>
                                 <Text style={[styles.infoText, textColor]}>{t('areYouSure', { accountName: selectedAccountName })}</Text>
                                 <Text style={[styles.infoText, textColor]}>{t('yourSeedWillBeRemoved')}</Text>
-                                <Text style={[styles.warningText, { color: negativeColor }]}>{t('thisAction')}</Text>
+                                <Text style={[styles.warningText, { color: primaryColor }]}>{t('thisAction')}</Text>
                             </View>
                         )}
                         {this.state.pressedContinue && (
@@ -227,7 +227,7 @@ class DeleteAccount extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -237,7 +237,7 @@ class DeleteAccount extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:continue')}</Text>
-                                <Icon name="tick" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="tick" size={width / 28} color={bodyColor} />
                             </View>
                         </TouchableOpacity>
                     </View>

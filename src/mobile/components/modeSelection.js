@@ -78,7 +78,7 @@ class ModeSelection extends Component {
         generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -96,12 +96,12 @@ class ModeSelection extends Component {
     }
 
     render() {
-        const { t, mode, textColor, borderColor, secondaryBackgroundColor } = this.props;
-        const switchColor = tinycolor(secondaryBackgroundColor).isLight()
-            ? tinycolor(secondaryBackgroundColor)
+        const { t, mode, textColor, borderColor, bodyColor } = this.props;
+        const switchColor = tinycolor(bodyColor).isLight()
+            ? tinycolor(bodyColor)
                   .darken(25)
                   .toString()
-            : tinycolor(secondaryBackgroundColor)
+            : tinycolor(bodyColor)
                   .lighten(50)
                   .toString();
         return (
@@ -110,7 +110,7 @@ class ModeSelection extends Component {
                     <View style={styles.topContainer}>
                         <View style={{ flex: 2.3 }} />
                         <View style={[styles.infoTextWrapper, borderColor]}>
-                            <Icon name="info" size={width / 20} color={secondaryBackgroundColor} />
+                            <Icon name="info" size={width / 20} color={bodyColor} />
                             <Text style={[styles.infoText, textColor]}>{t('expertModeExplanation')}</Text>
                             <Text style={[styles.infoText, textColor]}>{t('modesExplanation')}</Text>
                         </View>
@@ -123,8 +123,8 @@ class ModeSelection extends Component {
                             </TouchableWithoutFeedback>
                             <Switch
                                 style={styles.toggle}
-                                circleColorActive={secondaryBackgroundColor}
-                                circleColorInactive={secondaryBackgroundColor}
+                                circleColorActive={bodyColor}
+                                circleColorInactive={bodyColor}
                                 backgroundActive={switchColor}
                                 backgroundInactive={switchColor}
                                 value={mode === 'Expert'}
@@ -144,7 +144,7 @@ class ModeSelection extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>

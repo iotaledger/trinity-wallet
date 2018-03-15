@@ -199,7 +199,7 @@ class Home extends Component {
                                 backgroundColor={body.bg}
                                 negativeColor={negative.color}
                                 positiveColor={positive.color}
-                                secondaryBackgroundColor={body.color}
+                                bodyColor={body.color}
                                 textColor={textColor}
                                 isFingerprintEnabled={isFingerprintEnabled}
                             />

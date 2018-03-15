@@ -74,14 +74,14 @@ class AdvancedSettings extends Component {
         setSetting: PropTypes.func.isRequired,
         onResetWalletPress: PropTypes.func.isRequired,
         node: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
     };
 
     render() {
-        const { t, textColor, borderColor, secondaryBackgroundColor } = this.props;
+        const { t, textColor, borderColor, bodyColor } = this.props;
 
         return (
             <View style={styles.container}>
@@ -92,7 +92,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="node" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="node" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('selectNode')}</Text>
                                 <Text numberOfLines={1} style={[styles.settingText, textColor]}>
                                     {this.props.node}
@@ -106,7 +106,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="plus" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="plus" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('addCustomNode')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -117,7 +117,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="pow" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="pow" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>Proof of Work</Text>
                             </View>
                         </TouchableOpacity>
@@ -131,7 +131,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="snapshot" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="snapshot" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('snapshotTransition')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -142,7 +142,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="sync" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="sync" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('manualSync')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -156,7 +156,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="trash" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="trash" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('settings:reset')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -170,7 +170,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
                                 <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
