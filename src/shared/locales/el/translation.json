@@ -277,8 +277,8 @@
         "fingerprint": "Ταυτοποίηση με χρήση δακτυλικών αποτυπωμάτων",
         "couldNotFetchRates": "Δεν ταιριάζει με τους κανόνες της κανονικής έκφρασης",
         "couldNotFetchRatesExplanation": "Κάτι πήγε στραβά κατά τη λήψη των ισοτιμιών μετατροπής του νομίσματος.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "fetchedConversionRates": "Ανάκληση συναλλαγματικές ισοτιμίες",
+        "fetchedConversionRatesExplanation": "Με επιτυχία η ανάκληση τελευταίες ισοτιμίες νομίσματος"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",
