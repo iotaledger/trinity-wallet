@@ -24,7 +24,7 @@ class Toggle extends React.Component {
     };
 
     static defaultProps = {
-        size: 1,
+        scale: 1,
     };
 
     render() {
