@@ -355,7 +355,7 @@
         "one": "Een"
     },
     "deleteAccount": {
-        "areYouSure": "Weet u zeker dat u de account '{{accountName}}' wilt verwijderen?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Uw sleutel en transactiegeschiedenis zullen worden verwijderd.",
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
         "enterPassword": "Typ uw wachtwoord als u deze account wilt verwijderen."
