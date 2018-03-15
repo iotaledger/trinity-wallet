@@ -80,7 +80,7 @@
         "cannotSendToOwnExplanation": "Du kan ikke lave en værdi-overførsel til en af dine egne adresser.",
         "pleaseWait": "Vent venligst",
         "pleaseWaitExplanation": "Trinity udfører en anden funktion. Vent venligst og prøv igen.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
+        "pleaseWaitTransferExplanation": "Din disponible balance bruges i øjeblikket i andre overførsler. Vent venligst på at disse bekræftes før du prøver igen.",
         "snapshotTransitionInProgress": "Snapshot synkronisering i gang",
         "snapshotTransitionInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført."
     },
@@ -332,7 +332,7 @@
     },
     "advancedThemeCustomisation": {
         "background": "Baggrund",
-        "frame": "Frame"
+        "frame": "Ramme"
     },
     "themeCustomisation": {
         "theme": "Tema"
@@ -428,11 +428,11 @@
     },
     "rootDetection": {
         "warning": "ADVARSEL",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Din enhed ser ud til at være rooted/jailbreaked.</0><1>Dette kan udgøre en betydelig risiko for sikkerheden for din tegnebog</1><2>Ønsker du at fortsætte trods denne risko?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "feeless": "Det er nødvendigt at udføre en mindre netværksvalidering (PoW) for at sende gratis overførsler med IOTA.",
+        "localOrRemote": "'Proof of work' kan enten gennemføres lokalt på din enhed eller overlades til din node.",
         "local": "Lokalt",
         "remote": "Fjernadgang"
     },
