@@ -54,9 +54,9 @@
         "syncInProgressExplanation": "Please wait until syncing is complete.",
         "somethingWentWrong": "Midagi läks valesti",
         "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongTryAgain": "Palun proovige uuesti.",
         "node": "Sõlm",
-        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformAction": "Toimingut ei saa teha",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
@@ -72,7 +72,7 @@
         "reattach": "REATTACH",
         "promote": "PROMOTE",
         "rebroadcast": "REBROADCAST",
-        "pressBackAgain": "Press back again to close the app",
+        "pressBackAgain": "Rakenduse sulgemiseks vajutage uuesti tagasi nuppu",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
         "autopromoting": "Autopromoting transfer",
@@ -127,14 +127,14 @@
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
         "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy seed",
+        "copyToClipboard": "Kopeeri seeme",
         "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShort": "Seeme on liiga ühike",
+        "seedTooShortExplanation": "Seemned peavad olema {{maxLength}} tähemärki pikad. Teie seeme on praegu {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
         "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
     },
@@ -151,18 +151,18 @@
     "login": {
         "emptyPassword": "Tühi parool",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
+        "enterPassword": "Palun sisestage oma parool.",
+        "useSeed": "KASUTA SEEMET",
         "login": "LOGI SISSE",
-        "selectDifferentNode": "Do you want to select a different node?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "selectDifferentNode": "Kas te tahate valida teise sõlme?",
+        "setNode": "MÄÄRA SÕLM",
+        "cannotConnect": "Ei saa IOTA sõlmega ühendust."
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
+        "loadingFirstTime": "Laadin esimest korda seemet.",
         "thisMayTake": "See võib aega võtta.",
-        "doNotMinimise": "Do not minimise or close the app.",
-        "youMayNotice": "You may notice your device slowing down."
+        "doNotMinimise": "Ära välju rakendusest.",
+        "youMayNotice": "Sa võid märgata seadme aeglustumist."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
@@ -175,14 +175,14 @@
     },
     "paperWallet": {
         "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
+        "storeSafely": "Hoidke see turvaliselt.",
+        "neverShare": "Ärge jagage oma seemet kunagi.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "printWallet": "PRINDI PABERRAHAKOTT"
     },
     "receive": {
         "addressCopied": "Aadress kopeeritud",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "addressCopiedExplanation": "Teie aadress on kopeeritud.",
         "generateNewAddress": "UUS AADRESS",
         "message": "Valikuline sõnum",
         "removeMessage": "EEMALDA SÕNUM",
@@ -195,16 +195,16 @@
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "incorrectSeed": "Vale seeme",
+        "incorrectSeedExplanation": "Sisestatud seeme on vale. Palun proovige uuesti.",
+        "thisIsACheck": "See on kontroll, et te ikka oma seemne ära salvestasid.",
+        "ifYouHaveNotSaved": "Kui te pole oma seemet salvestanud, siis palun minge tagasi ja tehke seda."
     },
     "send": {
         "invalidAddress": "Vigane aadress",
         "invalidAddressExplanation1": "Aadress peaks koosnema {{maxLength}} tähemärgist ja tal peaks olema kontrollsumma.",
         "invalidAddressExplanation2": "Aadress sisaldab sobimatuid tähemärke.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
+        "invalidAddressExplanation3": "Aadress sisaldab vigast kontrollsummat.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Ebapiisavad vahendid",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
@@ -244,27 +244,27 @@
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
+        "transferSending": "Toimub ülekanne",
+        "transferSendingExplanation": "Palun oodake kuni teie ülekanne on tehtud.",
+        "generatingAddress": "Saaja aadressi loomine",
+        "generatingAddressExplanation": "Palun oodake kuni teie aadress on loodud.",
+        "mode": "Režiim",
+        "theme": "Teema",
         "currency": "Valuuta",
         "language": "Keel",
-        "accountManagement": "Account management",
-        "addNewSeed": "Add new seed",
-        "twoFA": "Two-factor authentication",
+        "accountManagement": "Kontohaldus",
+        "addNewSeed": "Lisa uus seeme",
+        "twoFA": "Kahe teguriga autentimine",
         "changePassword": "Vaheta parool",
         "advanced": "Täpsemad sätted",
         "logout": "Logi välja",
         "reset": "Reset wallet",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
+        "syncingComplete": "Sünkroniseeritud",
+        "syncingCompleteExplanation": "Teie konto on edukalt sünkrooniseritud.",
+        "nicknameChanged": "Konto nimi muudetud",
+        "nicknameChangedExplanation": "Teie konto nimi on muudetud.",
         "accountDeleted": "Konto kustutatud",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "accountDeletedExplanation": "Teie konto eemaldati rahakotist.",
         "cannotPerformAction": "Cannot perform action",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
         "poorConnection": "Kehv ühendus",
@@ -312,12 +312,12 @@
         "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "send": "SAADA",
-        "receive": "RECEIVE"
+        "receive": "VÕTA VASTU"
     },
     "accountManagement": {
         "viewSeed": "Vaata seemet",
         "viewAddresses": "Vaata aadresse",
-        "editAccountName": "Edit account name",
+        "editAccountName": "Muuda konto nime",
         "deleteAccount": "Kustuta konto",
         "addNewAccount": "Lisa uus konto"
     },
@@ -336,8 +336,8 @@
         "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Taustapilt",
+        "frame": "Raam"
     },
     "themeCustomisation": {
         "theme": "Teema"
