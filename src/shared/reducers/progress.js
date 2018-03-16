@@ -4,7 +4,7 @@ import { ActionTypes } from '../actions/progress';
 const initialState = {
     lastStepInitializationTime: Date.now(),
     timeTakenByEachStep: [],
-    activeStepIndex: -1,
+    activeStepIndex: 0,
     activeSteps: [],
 };
 
