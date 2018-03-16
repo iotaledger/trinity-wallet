@@ -387,7 +387,7 @@
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "SEDA TOIMINGUT EI SAA TAGASI VÕTTA.",
         "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
@@ -416,7 +416,7 @@
         "wrongCode": "Vale kood",
         "wrongCodeExplanation": "Sisestatud kood on vale.",
         "emptyCode": "Tühi kood",
-        "emptyCodeExplanation": "Please enter a code and try again.",
+        "emptyCodeExplanation": "Palun sisestage kood ja proovige uuesti.",
         "keyCopied": "Võti kopeeritud",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
         "addKey": "Add this key to your 2FA app",
