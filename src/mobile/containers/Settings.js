@@ -261,26 +261,6 @@ class Settings extends Component {
         return this.props.setSetting('deleteAccount');
     }
 
-    onResetWalletPress() {
-        const { body } = this.props;
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'walletResetConfirm',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
-            },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: false,
-            },
-        });
-    }
-
     setModalContent(modalSetting) {
         let modalContent;
         const { body } = this.props;
@@ -336,25 +316,6 @@ class Settings extends Component {
         const textColor = { color: body.color };
         const borderColor = { borderColor: body.color };
         const props = {
-            mainSettings: {
-                setSetting: (setting) => this.props.setSetting(setting),
-                setModalContent: (content) => this.setModalContent(content),
-                mode,
-                onLanguagePress: () => this.props.setSetting('languageSelection'),
-                themeName: this.props.themeName,
-                currency: this.props.currency,
-                borderBottomColor: { borderBottomColor: body.color },
-                textColor: { color: body.color },
-                bodyColor: body.color,
-            },
-            advancedSettings: {
-                setSetting: (setting) => this.props.setSetting(setting),
-                onResetWalletPress: () => this.onResetWalletPress(),
-                node: this.props.fullNode,
-                textColor: { color: body.color },
-                borderColor: { borderBottomColor: body.color },
-                bodyColor: body.color,
-            },
             modeSelection: {
                 setMode: (selectedMode) => this.props.setMode(selectedMode),
                 mode,

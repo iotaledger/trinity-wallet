@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import { connect } from 'react-redux';
+import { Navigation } from 'react-native-navigation';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
 
@@ -70,16 +73,46 @@ const styles = StyleSheet.create({
 class AdvancedSettings extends PureComponent {
     static propTypes = {
         setSetting: PropTypes.func.isRequired,
-        onResetWalletPress: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
         node: PropTypes.string.isRequired,
         bodyColor: PropTypes.string.isRequired,
-        textColor: PropTypes.object.isRequired,
-        borderColor: PropTypes.object.isRequired,
-        t: PropTypes.func.isRequired,
+        bg: PropTypes.string.isRequired,
+        borderColor: PropTypes.shape({
+            borderBottomColor: PropTypes.string.isRequired,
+        }).isRequired,
+        textColor: PropTypes.shape({
+            color: PropTypes.string.isRequired,
+        }).isRequired,
     };
 
+    reset() {
+        const { bg } = this.props;
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'walletResetConfirm',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: bg,
+                },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: false,
+            },
+        });
+    }
+
     render() {
-        const { t, textColor, borderColor, bodyColor } = this.props;
+        const {
+            t,
+            textColor,
+            borderColor,
+            bodyColor,
+            node
+            } = this.props;
 
         return (
             <View style={styles.container}>
@@ -93,7 +126,7 @@ class AdvancedSettings extends PureComponent {
                                 <Icon name="node" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('selectNode')}</Text>
                                 <Text numberOfLines={1} style={[styles.settingText, textColor]}>
-                                    {this.props.node}
+                                    {node}
                                 </Text>
                             </View>
                         </TouchableOpacity>
@@ -150,7 +183,7 @@ class AdvancedSettings extends PureComponent {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.onResetWalletPress()}
+                            onPress={this.reset}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -179,4 +212,26 @@ class AdvancedSettings extends PureComponent {
     }
 }
 
-export default translate(['advancedSettings', 'settings', 'global'])(AdvancedSettings);
+const mapStateToProps = (state) => {
+    const theme = state.settings.theme;
+    const color = theme.body.color;
+    const bg = theme.body.bg;
+
+    return {
+        node: state.settings.fullNode,
+        bodyColor: color,
+        borderBottomColor: { borderBottomColor: color },
+        textColor: { color },
+        bg
+    };
+};
+
+const mapDispatchToProps = {
+    setSetting
+};
+
+export default translate(['advancedSettings', 'settings', 'global'])
+    (connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(AdvancedSettings));
