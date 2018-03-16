@@ -57,6 +57,7 @@ class TwoFactorSetupEnterToken extends Component {
         set2FAStatus: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
+        password: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -116,23 +117,28 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     check2FA() {
-        const { t } = this.props;
-        getTwoFactorAuthKeyFromKeychain()
-            .then((key) => {
-                const verified = authenticator.verifyToken(key, this.state.code);
+        const { t, password } = this.props;
+        getTwoFactorAuthKeyFromKeychain(password).then((key) => {
+            if (key === null) {
+                this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongTryAgain'),
+                );
+            }
+            const verified = authenticator.verifyToken(key, this.state.code);
 
-                if (verified) {
-                    this.props.set2FAStatus(true);
-                    this.navigateToHome();
+            if (verified) {
+                this.props.set2FAStatus(true);
+                this.navigateToHome();
 
-                    this.timeout = setTimeout(() => {
-                        this.props.generateAlert('success', t('twoFAEnabled'), t('twoFAEnabledExplanation'));
-                    }, 300);
-                } else {
-                    this.props.generateAlert('error', t('wrongCode'), t('wrongCodeExplanation'));
-                }
-            })
-            .catch((err) => console.error(err)); // generate an alert.
+                this.timeout = setTimeout(() => {
+                    this.props.generateAlert('success', t('twoFAEnabled'), t('twoFAEnabledExplanation'));
+                }, 300);
+            } else {
+                this.props.generateAlert('error', t('wrongCode'), t('wrongCodeExplanation'));
+            }
+        });
     }
 
     render() {
@@ -184,6 +190,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     body: state.settings.theme.body,
+    password: state.tempAccount.password,
 });
 
 export default translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken));

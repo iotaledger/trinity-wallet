@@ -35,6 +35,9 @@ export default function withNodeData(NodeComponent) {
         changeNode = (nodeSelected) => {
             const { nodes, node, setFullNode, addCustomPoWNode, generateAlert, backPress, t } = this.props;
 
+            if (!nodeSelected || nodeSelected.length < 4) {
+                return;
+            }
             //Remove trailing slash
             nodeSelected = nodeSelected.replace(/\/$/, '');
 
