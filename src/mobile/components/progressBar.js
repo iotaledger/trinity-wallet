@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: height / 30,
     },
+    textWrapper: {
+        flex: 1,
+    },
     text: {
         color: 'white',
         marginBottom: height / 40,
@@ -19,7 +22,9 @@ const styles = StyleSheet.create({
 const ProgressBar = (props) => {
     return (
         <View style={styles.container}>
-            <Text style={[styles.text, { color: props.textColor }]}>{props.children}</Text>
+            <View style={styles.textWrapper}>
+                <Text style={[styles.text, { color: props.textColor }]}>{props.children}</Text>
+            </View>
             <Progress.Bar
                 indeterminate={props.indeterminate}
                 useNativeDriver={true} // eslint-disable-line react/jsx-boolean-value
