@@ -77,6 +77,9 @@
         "autoreattachingExplanation": "Opětovné připojení transakce s hash {{hash}}",
         "autopromoting": "Automatická podpora přenosu",
         "autopromotingExplanation": "Podpora transakcí s hash {{hash}}",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Odesílání na vlastní adresu",
         "cannotSendToOwnExplanation": "Nemůžete převést částku na vlastní adresy.",
         "pleaseWait": "Prosím čekejte",
@@ -430,13 +433,22 @@
     },
     "rootDetection": {
         "warning": "VAROVÁNÍ",
-        "rootDetected": "<0>Zdá se že Vaše zařízení je rooted/jailbroken.</ 0><1>To může znamenat značné riziko pro zabezpečení peněženky.</ 1><2>Chcete pokračovat navzdory tomuto riziku?</ 2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "Pro odeslání bezplatné transakce v IOTA je potřebné vykonat malý důkaz práce - proof of work.",
         "localOrRemote": "Proof of work může být dokončen lokálně ve Vašem zařízení a nebo převeden do Nodu.",
         "local": "Lokální",
         "remote": "Vzdálený"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validating receive address",
+        "syncingAccount": "Syncing account",
+        "preparingInputs": "Preparing inputs",
+        "preparingTransfers": "Preparing transfers",
+        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "proofOfWork": "Completing proof of work",
+        "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Není možné dokončit aktualizaci údajů po Snapshotu",
