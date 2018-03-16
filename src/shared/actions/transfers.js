@@ -33,7 +33,7 @@ import { syncAccountAfterReattachment, syncAccount } from '../libs/iota/accounts
 import { updateAccountAfterReattachment, updateAccountInfo, accountInfoFetchSuccess } from './account';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
-import { generateAlert, generateTransferErrorAlert } from './alerts';
+import { generateAlert, generateTransferErrorAlert, generatePromotionErrorAlert } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
 
@@ -108,7 +108,7 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
         .then((isValid) => {
             if (!isValid) {
                 chainBrokenInternally = true;
-                throw new Error('Bundle no longer valid');
+                throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
             return getFirstConsistentTail(tailTransactions, 0);
@@ -126,12 +126,13 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
             return dispatch(promoteTransactionSuccess());
         })
         .catch((err) => {
-            if (err.message.includes('no longer valid') && chainBrokenInternally) {
+            if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
                 dispatch(
                     generateAlert('error', 'Promotion', 'The bundle you are trying to promote is no longer valid. '),
                 );
             }
 
+            dispatch(generatePromotionErrorAlert());
             return dispatch(promoteTransactionError());
         });
 };
