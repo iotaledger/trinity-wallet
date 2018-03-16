@@ -36,7 +36,7 @@ import {
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
 import QRScanner from '../components/qrScanner';
@@ -153,6 +153,7 @@ export class Send extends Component {
         activeSteps: PropTypes.array.isRequired,
         timeTakenByEachProgressStep: PropTypes.array.isRequired,
         password: PropTypes.string.isRequired,
+        generateTransferErrorAlert: PropTypes.func.isRequired,
     };
 
     static isValidAddress(address) {
@@ -517,6 +518,26 @@ export class Send extends Component {
         return 1;
     }
 
+    getProgressSummary() {
+        const { timeTakenByEachProgressStep, t } = this.props;
+        const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
+
+        return (
+            <Text>
+                <Text>{t('global:done')} </Text>
+                <Text style={styles.progressSummaryText}>
+                    ({map(timeTakenByEachProgressStep, (time, index) => {
+                        if (index === size(timeTakenByEachProgressStep) - 1) {
+                            return `${time}=${totalTimeTaken.toFixed(1)} s`;
+                        }
+
+                        return `${time}+`;
+                    })})
+                </Text>
+            </Text>
+        );
+    }
+
     resetToggleSwitch() {
         const { maxPressed } = this.state;
         const { t } = this.props;
@@ -601,51 +622,35 @@ export class Send extends Component {
 
         this.props.getFromKeychainRequest('send', 'makeTransaction');
 
-        getSeedFromKeychain(password, selectedAccountName).then((seed) => {
-            this.props.getFromKeychainSuccess('send', 'makeTransaction');
+        getSeedFromKeychain(password, selectedAccountName)
+            .then((seed) => {
+                this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
-            if (seed !== null) {
-                let powFn = null;
+                if (seed !== null) {
+                    let powFn = null;
 
-                if (isAndroid) {
-                    powFn = NativeModules.PoWModule.doPoW;
-                } else if (isIOS) {
-                    powFn = NativeModules.Iota.doPoW;
+                    if (isAndroid) {
+                        powFn = NativeModules.PoWModule.doPoW;
+                    } else if (isIOS) {
+                        powFn = NativeModules.Iota.doPoW;
+                    }
+
+                    return this.props.makeTransaction(seed, address, value, message, selectedAccountName, powFn);
                 }
 
-                return this.props.prepareTransfer(seed, address, value, message, selectedAccountName, powFn);
-            }
-
-            this.props.getFromKeychainError('send', 'makeTransaction');
-            return this.props.generateAlert(
-                'error',
-                t('global:somethingWentWrong'),
-                t('global:somethingWentWrongTryAgain'),
-            );
-        });
+                return this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongTryAgain'),
+                );
+            })
+            .catch((error) => {
+                this.props.getFromKeychainError('send', 'makeTransaction');
+                this.props.generateTransferErrorAlert(error);
+            });
     }
 
     renderModalContent = () => <View>{this.state.modalContent}</View>;
-
-    getProgressSummary() {
-        const { timeTakenByEachProgressStep } = this.props;
-        const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
-
-        return (
-            <Text>
-                <Text>DONE </Text>
-                <Text style={styles.progressSummaryText}>
-                    ({map(timeTakenByEachProgressStep, (time, index) => {
-                        if (index === size(timeTakenByEachProgressStep) - 1) {
-                            return `${time}=${totalTimeTaken.toFixed(1)} s`;
-                        }
-
-                        return `${time}+`;
-                    })})
-                </Text>
-            </Text>
-        );
-    }
 
     renderProgressBarChildren() {
         const { activeStepIndex, activeSteps } = this.props;
@@ -872,6 +877,7 @@ const mapDispatchToProps = {
     setSendDenomination,
     resetProgress,
     startTrackingProgress,
+    generateTransferErrorAlert,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
