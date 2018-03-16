@@ -123,7 +123,7 @@
     "copyToClipboard": {
         "seedCleared": "Seed removida",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida do clipboard.",
-        "seedCopied": "A Seed foi copiada para o clipboard",
+        "seedCopied": "A Seed foi copiada para a área de transferência",
         "seedCopiedExplanation": "A Seed será removida quando pressionar \"CONCLUÍDO\" ou ao passar de 60 segundos.",
         "clickToCopy": "Clique no botão abaixo e copie a sua Seed para o gerenciador de senha.",
         "doNotStore": "Não grave a seed em arquivo de texto descriptografado.",
@@ -167,7 +167,7 @@
     "newSeedSetup": {
         "seedNotGenerated": "A Seed não foi gerada",
         "seedNotGeneratedExplanation": "Por favor, gere uma seed nova.",
-        "pressForNewSeed": "PRESSIONE PARA OBTER NOVA SEED",
+        "pressForNewSeed": "GERAR UMA NOVA SEED",
         "individualLetters": "Toque sobre as letras individuais para tornar o processo ainda mais aleatório."
     },
     "onboardingComplete": {
@@ -178,7 +178,7 @@
         "storeSafely": "Guarde em local seguro.",
         "neverShare": "Nunca revele sua seed a ninguém.",
         "iotaLogo": "Logotipo da IOTA",
-        "printWallet": "IMPRIMIR CARTEIRA DE PAPEL"
+        "printWallet": "IMPRIMIR SUA SEED"
     },
     "receive": {
         "addressCopied": "Endereço copiado",
@@ -191,12 +191,12 @@
     },
     "saveYourSeed": {
         "seedCleared": "Seed removida",
-        "seedClearedExplanation": "Para sua segurança, a Seed foi removida do clipboard.",
-        "mustSaveYourSeed": "<0><0>Você precisa salvar sua seed com </0><1>pelo menos uma</1><2> das opções listadas abaixo.</2></0>"
+        "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
+        "mustSaveYourSeed": "<0><0>Você deve salvar sua Seed usando </0><1>pelo menos uma</1><2> das opções abaixo.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorreta",
-        "incorrectSeedExplanation": "A Seed introduzida está incorreta. Por favor, tente novamente.",
+        "incorrectSeedExplanation": "A Seed infromada está incorreta. Por favor, tente novamente.",
         "thisIsACheck": "Isto é uma verificação para certificar-se que você gravou a sua Seed.",
         "ifYouHaveNotSaved": "Se não gravou a sua Seed, por favor volte para a tela anterior e grave-a."
     },
@@ -207,9 +207,9 @@
         "invalidAddressExplanation3": "O endereço contém um código de verificação incorreto.",
         "invalidAddressExplanationGeneric": "Endereços válidos devem possuir 90 caracteres e conter apenas A-Z ou 9.",
         "notEnoughFunds": "Fundos insuficientes",
-        "notEnoughFundsExplanation": "Você não tem IOTA suficiente para realizar esta transferência.",
+        "notEnoughFundsExplanation": "Você não possui IOTAs suficientes para realizar esta transferência.",
         "keyReuse": "Reutilização da chave",
-        "keyReuseExplanation": "O endereço que você esta tentando usar já foi usado. Por favor, tente outro endereço.",
+        "keyReuseExplanation": "O endereço que você esta tentando usar já foi utilizado. Por favor, tente outro endereço.",
         "recipientAddress": "Endereço do destinatário",
         "amount": "Quantia",
         "max": "MÁXIMO",
@@ -261,8 +261,8 @@
         "reset": "Redefinir a carteira",
         "syncingComplete": "Sincronização completa",
         "syncingCompleteExplanation": "Sua conta foi sincronizada com sucesso.",
-        "nicknameChanged": "Nome da conta alterada",
-        "nicknameChangedExplanation": "O nome da sua conta foi alterada.",
+        "nicknameChanged": "Nome da Conta alterado",
+        "nicknameChangedExplanation": "O nome da sua conta foi alterado.",
         "accountDeleted": "Conta excluída",
         "accountDeletedExplanation": "Sua conta foi removida da carteira.",
         "cannotPerformAction": "Não é possível executar a ação",
@@ -293,14 +293,14 @@
     "walletSetup": {
         "okay": "Ok. Vamos configurar a sua carteira!",
         "doYouAlreadyHaveASeed": "Já possui uma seed que gostaria de utilizar?",
-        "seedExplanation": "A seed IOTA representa, simultaneamente, o nome do utilizador e a senha da sua conta, combinados numa sequência de 81 caracteres.",
+        "seedExplanation": "A seed IOTA representa, simultaneamente, o nome do usuário e a senha de sua conta, combinados em uma sequência de 81 caracteres.",
         "explanation": "<0><0>Voce pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder a sua seed, também perderá as suas IOTAS.</4></0>",
         "keepSafe": "Por favor, mantenha a sua seed protegida e segura."
     },
     "welcome": {
         "thankYou": "Obrigado por baixar a carteira IOTA.",
         "weWillSpend": "Vamos passar os próximos minutos configurando sua carteira.",
-        "reminder": "Você pode se sentir tentado a ignorar alguns passos, mas aconselhamos que conclua o processo."
+        "reminder": "Você pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que conclua todo o processo."
     },
     "writeSeedDown": {
         "yourSeedIs": "Sua seed é {{maxSeedLength}} caracteres lidos da esquerda para a direita.",
@@ -418,7 +418,7 @@
         "emptyCode": "Código vazio",
         "emptyCodeExplanation": "Por favor, introduza um código e tente novamente.",
         "keyCopied": "Chave copiada para a área de transferência",
-        "keyCopiedExplanation": "Sua chave 2FA foi copiada para o clipboard.",
+        "keyCopiedExplanation": "Seu código 2FA foi copiado para a área de transferência.",
         "addKey": "Adicione essa chave para seu app 2FA",
         "key": "Chave",
         "twoFAEnabled": "2FA foi habilitado",
