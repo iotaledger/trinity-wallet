@@ -32,7 +32,7 @@
         "close": "SULGE",
         "continue": "Jätka",
         "manualCopy": "Kirjutan seemne üles",
-        "paperWallet": "Prindi välja",
+        "paperWallet": "Prindi koopia",
         "copyToClipboard": "Lisa paroolihaldurisse",
         "notAvailable": "See funktsioon ei ole saadaval",
         "notAvailableExplanation": "See lisatakse hilisemas staadiumis.",
@@ -121,9 +121,9 @@
         "confirmPassword": "Kinnita uus parool"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
+        "seedCleared": "Seeme tühjendatud",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Copied seed to clipboard",
+        "seedCopied": "Seeme kopeeritud",
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
         "doNotStore": "Do not store your seed in plain text.",
@@ -131,7 +131,7 @@
         "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
+        "invalidCharacters": "Seeme sisaldab sobimatuid tähemärke",
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Seeme on liiga ühike",
         "seedTooShortExplanation": "Seemned peavad olema {{maxLength}} tähemärki pikad. Teie seeme on praegu {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
@@ -165,20 +165,20 @@
         "youMayNotice": "Sa võid märgata seadme aeglustumist."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGenerated": "Seemet ei ole loodud",
         "seedNotGeneratedExplanation": "Palun genereerige uus seeme.",
-        "pressForNewSeed": "VAJUTAGE UUEKS SEEMNEKS",
-        "individualLetters": "Press individual letters to randomise them."
+        "pressForNewSeed": "VAJUTA UUE SEEMNE JAOKS",
+        "individualLetters": "Vajutage juhuslikkuseks üksikuid tähti."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Rahakott on nüüd seadistatud ja kasutamiseks valmis. Vaadake sätetesse, kui soovite muudatusi teha."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
+        "clickToPrint": "Vajutage oma seemnest paberkoopia printimiseks järgnevat nuppu.",
         "storeSafely": "Hoidke see turvaliselt.",
         "neverShare": "Ärge jagage oma seemet kunagi.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINDI PABERRAHAKOTT"
+        "printWallet": "PRINDI RAHAKOTT PABERILE"
     },
     "receive": {
         "addressCopied": "Aadress kopeeritud",
@@ -212,10 +212,10 @@
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Saaja aadress",
         "amount": "Summa",
-        "max": "MAX",
+        "max": "MAKS.",
         "message": "Sõnum",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "Sobimatu sõnum",
+        "invalidMessageExplanation": "Teie sõnum sisaldab sobimatuid tähemärke.",
         "send": "SAADA",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
@@ -330,7 +330,7 @@
         "createNewSeed": "Loo uus seeme"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
+        "selectNode": "Vali sõlm",
         "addCustomNode": "Add custom node",
         "manualSync": "Manual sync",
         "snapshotTransition": "Snapshot transition"
@@ -367,22 +367,22 @@
     },
     "manualSync": {
         "outOfSync": "Kas teie tehingute ajalugu näeb välja nagu see oleks sünkroniseerimata?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "pressToSync": "Konto sünkroniseerimiseks vajutage järgnevat nuppu.",
+        "thisMayTake": "See võib aega võtta. Te võite märgata oma seadme aeglustumist.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "syncAccount": "SÜNKRONISEERI KONTO",
+        "syncingYourAccount": "Sünkroniseerin teie kontot."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Sisesta seeme ja konto nimi."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Seemne vaatamiseks sisestage oma parool.",
+        "viewSeed": "NÄITA SEEMET",
+        "hideSeed": "PEIDA SEEME"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
+        "alreadyHave": "Ma olen oma seemne salvestanud",
         "reenter": "You will now be asked to re-enter your seed.",
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
@@ -417,7 +417,7 @@
         "wrongCodeExplanation": "Sisestatud kood on vale.",
         "emptyCode": "Tühi kood",
         "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
+        "keyCopied": "Võti kopeeritud",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
         "addKey": "Add this key to your 2FA app",
         "key": "Võti",
@@ -442,17 +442,17 @@
         "remote": "Remote"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
+        "validatingReceiveAddress": "Saaja aadressi kontrollimine",
+        "syncingAccount": "Sünkroniseeri konto",
+        "preparingInputs": "Sisendite ettevalmistamine",
+        "preparingTransfers": "Ülekannete ettevalmistamine",
         "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
+        "proofOfWork": "Valmistan töötõendust",
         "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "cannotCompleteTransitionExplanation": "Ülemineku lõpuleviimiseks peab teie kontojääk olema suurem kui 0.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully."
     }
