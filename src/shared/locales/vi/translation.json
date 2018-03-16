@@ -77,6 +77,9 @@
         "autoreattachingExplanation": "Đang kết nối giao dịch với dữ liệu {{hash}}",
         "autopromoting": "Tự động thúc đẩy chuyển khoảng",
         "autopromotingExplanation": "Tự động thúc đẩy chuyển khoản với dữ liệu {{hash}}",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Gửi đến địa chỉ của mình",
         "cannotSendToOwnExplanation": "Bạn không thể chuyển khoản vào một trong những địa chỉ của riêng bạn.",
         "pleaseWait": "Vui lòng đợi",
@@ -430,13 +433,22 @@
     },
     "rootDetection": {
         "warning": "CẢNH BÁO",
-        "rootDetected": "<0>Máy của bạn đã root/jailbreak.</0><1>Điều này sẽ mang đến một nguy cơ đáng kể cho sự an toàn của ví điện tử của bạn.</1><2>Bạn có muốn tiếp tục bất chấp nguy cơ này?</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
         "remote": "Remote"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validating receive address",
+        "syncingAccount": "Syncing account",
+        "preparingInputs": "Preparing inputs",
+        "preparingTransfers": "Preparing transfers",
+        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "proofOfWork": "Completing proof of work",
+        "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
