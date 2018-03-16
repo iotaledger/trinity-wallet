@@ -47,7 +47,7 @@
         "yes": "SIM",
         "no": "NÃO",
         "password": "Senha",
-        "passwordOrFingerprint": "Senha ou impressão digital",
+        "passwordOrFingerprint": "Senha ou Autenticação Biométrica",
         "unrecognisedPassword": "Senha não reconhecida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
         "syncInProgress": "Sincronizando",
@@ -77,6 +77,9 @@
         "autoreattachingExplanation": "Anexando transação automaticamente com hash {{hash}}",
         "autopromoting": "Promovendo transferência automaticamente",
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Enviando para próprio endereço",
         "cannotSendToOwnExplanation": "Você não pode fazer uma transferência de valor para um dos seus próprios endereços.",
         "pleaseWait": "Por favor aguarde",
@@ -105,7 +108,7 @@
         "passwordUpdated": "Senha atualizada",
         "passwordUpdatedExplanation": "A sua senha foi atualizada com sucesso.",
         "incorrectPassword": "Senha incorreta",
-        "incorrectPasswordExplanation": "A sua senha está incorreta. Por favor, tente novamente.",
+        "incorrectPasswordExplanation": "A sua Senha Atual está incorreta. Por favor, tente novamente.",
         "passwordsDoNotMatch": "As senhas não conferem",
         "passwordsDoNotMatchExplanation": "As senhas não conferem. Por favor, tente novamente.",
         "passwordTooShort": "A senha é muito curta",
@@ -165,7 +168,7 @@
         "seedNotGenerated": "A Seed não foi gerada",
         "seedNotGeneratedExplanation": "Por favor, gere uma seed nova.",
         "pressForNewSeed": "PRESSIONE PARA OBTER NOVA SEED",
-        "individualLetters": "Digite letras individuais para tornar o processo mais aleatório."
+        "individualLetters": "Toque sobre as letras individuais para tornar o processo ainda mais aleatório."
     },
     "onboardingComplete": {
         "walletReady": "A carteira está configurada e pronta para ser utilizada. Se desejar efetuar alterações no futuro, utilize o menu Opções."
@@ -180,7 +183,7 @@
     "receive": {
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
-        "generateNewAddress": "NOVO ENDEREÇO",
+        "generateNewAddress": "GERAR ENDEREÇO",
         "message": "Mensagem opcional",
         "removeMessage": "REMOVER MENSAGEM",
         "noAddresses": "SEM ENDEREÇOS",
@@ -215,7 +218,7 @@
         "invalidMessageExplanation": "Sua mensagem contém caracteres inválidos.",
         "send": "ENVIAR",
         "invalidAmount": "Valor inserido está incorreto",
-        "invalidAmountExplanation": "Por favor, insira uma quantidade de transação válida. Pode ser útil ver a explicação de unidade IOTA na parte inferior desta página.",
+        "invalidAmountExplanation": "Por favor, insira uma quantidade válida para a transação. Pode ser útil ver a explicação sobre as unidades da IOTA, na parte inferior desta página.",
         "maximumSelected": "Quantia MÁXIMA selecionada",
         "iotaUnits": "Unidades IOTA explicadas",
         "sendMax": "ENVIAR O MÁXIMO"
@@ -276,7 +279,7 @@
         "paste": "Colar",
         "selectAll": "Selecionar Tudo",
         "securitySettings": "Opções de segurança",
-        "fingerprint": "Autenticação biométrica",
+        "fingerprint": "Autenticação Biométrica",
         "couldNotFetchRates": "Não foi possível obter taxas de câmbio",
         "couldNotFetchRatesExplanation": "Algo deu errado ao obter as taxas de câmbio para {{currency}}.",
         "fetchedConversionRates": "Conversão de câmbio obtida",
@@ -314,7 +317,7 @@
     "accountManagement": {
         "viewSeed": "Ver seed",
         "viewAddresses": "Ver endereços",
-        "editAccountName": "Editar o nome da conta",
+        "editAccountName": "Editar o nome da Conta",
         "deleteAccount": "Excluir Conta",
         "addNewAccount": "Adicionar nova Conta"
     },
@@ -357,9 +360,9 @@
         "one": "Um"
     },
     "deleteAccount": {
-        "areYouSure": "Você deseja realmente remover {{accountName}}?",
-        "yourSeedWillBeRemoved": "Sua seed e histórico de transação serão removidos.",
-        "thisAction": "Esta ação não pode ser desfeita.",
+        "areYouSure": "Você deseja realmente remover a conta {{accountName}}?",
+        "yourSeedWillBeRemoved": "Sua Seed e histórico de transações serão removidos.",
+        "thisAction": "Esta operação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
     },
     "manualSync": {
@@ -388,22 +391,22 @@
         "warning": "<0><0>Todos os seus dados da carteira, incluindo suas </0><1>seeds, senhas,</1><2> e </2><3>outras informações da conta</3><4> serão perdidas.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Toque o leitor de impressão digital do seu dispositivo para habilitar a autenticação de impressão digital.",
-        "instructionsDisable": "Toque o leitor de impressão digital do seu dispositivo para desabilitar a autenticação de impressão digital.",
-        "fingerprintAuthEnabled": "Autenticação de impressão digital habilitada",
-        "fingerprintAuthEnabledExplanation": "Você habilitou a autenticação de impressão digital com sucesso.",
-        "fingerprintAuthDisabled": "Notificações de impressão digital desabilitadas",
-        "fingerprintAuthDisabledExplanation": "Você desabilitou a autenticação de impressão digital com sucesso.",
-        "fingerprintAuthFailed": "Autenticação de impressão digital falhou",
-        "fingerprintAuthFailedExplanation": "Falha na autenticação de impressão digital. Por favor, tente novamente.",
-        "status": "Estado",
+        "instructionsEnable": "Toque o leitor de impressão digital de seu dispositivo para habilitar a autenticação biométrica.",
+        "instructionsDisable": "Toque o leitor de impressão digital de seu dispositivo para desabilitar a autenticação biométrica.",
+        "fingerprintAuthEnabled": "Autenticação Biométrica habilitada",
+        "fingerprintAuthEnabledExplanation": "Você habilitou a autenticação biométrica com sucesso.",
+        "fingerprintAuthDisabled": "Autenticação Biométrica desabilitada",
+        "fingerprintAuthDisabledExplanation": "Você desabilitou a autenticação biométrica com sucesso.",
+        "fingerprintAuthFailed": "A Autenticação Biométrica falhou",
+        "fingerprintAuthFailedExplanation": "Falha na autenticação biométrica. Por favor, tente novamente.",
+        "status": "Situação",
         "enabled": "Ativado",
         "disabled": "Desativado",
-        "fingerprintUnavailable": "Sensor de impressão digital indisponível",
-        "fingerprintUnavailableExplanation": "Seu dispositivo não suporta reconhecimento de impressões digitais ou não foi configurado nas opções do dispositivo.",
-        "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação de impressão digital.",
-        "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação de impressão digital.",
-        "instructionsLogin": "Toque o leitor de impressão digital para logar."
+        "fingerprintUnavailable": "Sensor de biometria indisponível",
+        "fingerprintUnavailableExplanation": "Seu dispositivo não suporta reconhecimento de biometria ou não está configurado nas opções do dispositivo.",
+        "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação biométrica.",
+        "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação biométrica.",
+        "instructionsLogin": "Toque o leitor de impressão digital para acessar."
     },
     "transferConfirmation": {
         "youAreAbout": "Você está prestes a enviar {{contents}} para o endereço",
@@ -414,13 +417,13 @@
         "wrongCodeExplanation": "O código inserido está incorreto.",
         "emptyCode": "Código vazio",
         "emptyCodeExplanation": "Por favor, introduza um código e tente novamente.",
-        "keyCopied": "Chave copiada para o clipboard",
+        "keyCopied": "Chave copiada para a área de transferência",
         "keyCopiedExplanation": "Sua chave 2FA foi copiada para o clipboard.",
         "addKey": "Adicione essa chave para seu app 2FA",
         "key": "Chave",
         "twoFAEnabled": "2FA foi habilitado",
         "twoFAEnabledExplanation": "Você ativou a autenticação de dois fatores com sucesso.",
-        "enterCode": "Digite o código da sua app 2FA",
+        "enterCode": "Digite o código de seu aplicativo 2FA",
         "code": "Código"
     },
     "chart": {
@@ -430,13 +433,22 @@
     },
     "rootDetection": {
         "warning": "AVISO",
-        "rootDetected": "<0>Seu dispositivo parece ter root/jailbrake.</0> <1>Isso pode representar um risco significativo para a segurança de sua carteira.</1> <2>Você deseja continuar apesar deste risco?</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "É necessário completar uma prova de trabalho para enviar transações em IOTA gratuitamente.",
         "localOrRemote": "Prova de trabalho pode ser concluída localmente, ou descarregada para um servidor.",
         "local": "Local",
         "remote": "Remoto"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validating receive address",
+        "syncingAccount": "Syncing account",
+        "preparingInputs": "Preparing inputs",
+        "preparingTransfers": "Preparing transfers",
+        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "proofOfWork": "Completing proof of work",
+        "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "A transição do registro instantâneo não pode ser concluída",
