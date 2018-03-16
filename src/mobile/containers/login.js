@@ -91,24 +91,23 @@ class Login extends Component {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
             const pwdHash = getPasswordHash(password);
-            getAllSeedsFromKeychain(pwdHash)
-                .then((seedInfo) => {
-                    if (seedInfo !== null){
-                        this.props.setPassword(pwdHash);
-                        this.props.setLoginPasswordField('');
-                        if (!is2FAEnabled) {
-                            this.navigateToLoading();
-                        } else {
-                            this.setState({ completing2FA: true });
-                        }
+            getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
+                if (seedInfo !== null) {
+                    this.props.setPassword(pwdHash);
+                    this.props.setLoginPasswordField('');
+                    if (!is2FAEnabled) {
+                        this.navigateToLoading();
                     } else {
-                        this.props.generateAlert(
-                            'error',
-                            t('global:unrecognisedPassword'),
-                            t('global:unrecognisedPasswordExplanation'),
-                        );
+                        this.setState({ completing2FA: true });
                     }
-                });
+                } else {
+                    this.props.generateAlert(
+                        'error',
+                        t('global:unrecognisedPassword'),
+                        t('global:unrecognisedPasswordExplanation'),
+                    );
+                }
+            });
         }
     }
 

@@ -17,6 +17,9 @@ import omitBy from 'lodash/omitBy';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 
+const errors = require('iota.lib.js/lib/errors/inputErrors');
+const async = require('async');
+
 /**
  *   Starts traversing from specified index backwards
  *   Keeps on calling findTransactions to see if there's any associated tx with address
@@ -73,9 +76,8 @@ const removeUnusedAddresses = (resolve, reject, index, latestAddress, finalAddre
  *   @param {array} allAddresses
  *   @returns {array} All addresses
  **/
-
-const getAddressesWithTransactions = (resolve, reject, seed, opts, allAddresses) => {
-    iota.api.getNewAddress(seed, opts, (err, addresses) => {
+const getAddressesWithTransactions = (resolve, reject, seed, opts, genFn, allAddresses) => {
+    getNewAddress(seed, opts, genFn, (err, addresses) => {
         if (err) {
             reject(err);
         } else {
@@ -83,7 +85,7 @@ const getAddressesWithTransactions = (resolve, reject, seed, opts, allAddresses)
                 if (size(hashes)) {
                     allAddresses = [...allAddresses, ...addresses];
                     const newOpts = assign({}, opts, { index: opts.total + opts.index });
-                    getAddressesWithTransactions(resolve, reject, seed, newOpts, allAddresses);
+                    getAddressesWithTransactions(resolve, reject, seed, newOpts, genFn, allAddresses);
                 } else {
                     // Traverse backwards to remove all unused addresses
                     new Promise((res, rej) => {
@@ -96,7 +98,7 @@ const getAddressesWithTransactions = (resolve, reject, seed, opts, allAddresses)
                         removeUnusedAddresses(res, rej, lastAddressIndex, latestAddress, allAddresses.slice());
                     })
                         .then((finalAddresses) => {
-                            resolve(finalAddresses);
+                            return resolve(finalAddresses);
                         })
                         .catch((err) => reject(err));
                 }
@@ -113,15 +115,12 @@ const getAddressesWithTransactions = (resolve, reject, seed, opts, allAddresses)
  *   @param {object} [addressesOpts={index: 0, total: 10, returnAll: true, security: 2}] - Default options for address generation
  *   @returns {promise}
  **/
-export const getAllAddresses = (
-    seed,
-    addressesOpts = {
-        index: 0,
-        total: 10,
-        returnAll: true,
-        security: 2,
-    },
-) => new Promise((res, rej) => getAddressesWithTransactions(res, rej, seed, addressesOpts, []));
+export const getAllAddresses = (seed, genFn) => {
+    return new Promise((res, rej) => {
+        const opts = { index: 0, total: 10, returnAll: true, security: 2 };
+        getAddressesWithTransactions(res, rej, seed, opts, genFn, []);
+    });
+};
 
 /**
  *   Accepts addresses as an array.
@@ -355,10 +354,10 @@ export const getBalancesSync = (addresses, addressData) => {
  *   @returns {array} - Array of latest used addresses
  **/
 
-export const getLatestAddresses = (seed, index) => {
+export const getLatestAddresses = (seed, index, genFn) => {
     return new Promise((resolve, reject) => {
         const options = { checksum: false, index, returnAll: true };
-        iota.api.getNewAddress(seed, options, (err, addresses) => {
+        return getNewAddress(seed, options, genFn, (err, addresses) => {
             if (err) {
                 reject(err);
             } else {
@@ -390,10 +389,10 @@ export const getLatestAddress = (addressData) => {
  *   @returns {object} - Updated account data data including latest used addresses
  **/
 
-export const syncAddresses = (seed, accountData, addNewAddress = false) => {
+export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) => {
     const thisAccountDataCopy = cloneDeep(accountData);
     let index = getStartingSearchIndexToFetchLatestAddresses(thisAccountDataCopy.addresses);
-    return getLatestAddresses(seed, index).then((newAddresses) => {
+    return getLatestAddresses(seed, index, genFn).then((newAddresses) => {
         // Remove unused address
         if (!addNewAddress) {
             newAddresses.pop();
@@ -469,3 +468,142 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
         (input) => input,
     );
 };
+
+/**
+ * The same as iota.api.getNewAddress, but rewritten to support native address generation
+ * See https://github.com/iotaledger/iota.lib.js/blob/a1b2e9e05d7cab3ef394900e5ca75fb46464e608/lib/api/api.js#L772
+ *   @param {string} seed
+ *   @param {object} options
+ *       @property   {int} index         Key index to start search from
+ *       @property   {bool} checksum     add 9-tryte checksum
+ *       @property   {int} total         Total number of addresses to return
+ *       @property   {int} security      Security level to be used for the private key / address. Can be 1, 2 or 3
+ *       @property   {bool} returnAll    return all searched addresses
+ *   @param {function} genFn Native address function
+ *   @param {function} callback
+ *   @returns {string | array} address List of addresses
+ **/
+/*eslint-disable no-var*/
+/*eslint-disable prefer-const*/
+/*eslint-disable brace-style*/
+/*eslint-disable no-else-return*/
+/*eslint-disable no-loop-func*/
+
+export const getNewAddress = (seed, options, genFn = null, callback) => {
+    // If desktop, use iota lib js API call
+    if (genFn === null) {
+        return iota.api.getNewAddress(seed, options, callback);
+    }
+
+    // If no options provided, switch arguments
+    if (arguments.length === 2 && Object.prototype.toString.call(options) === '[object Function]') {
+        callback = options;
+        options = {};
+    }
+
+    // validate the seed
+    if (!iota.valid.isTrytes(seed)) {
+        return callback(errors.invalidSeed());
+    }
+
+    // default index value
+    var index = 0;
+
+    if ('index' in options) {
+        index = options.index;
+
+        // validate the index option
+        if (!iota.valid.isValue(index) || index < 0) {
+            return callback(errors.invalidIndex());
+        }
+    }
+
+    var checksum = options.checksum || false;
+    var total = options.total || null;
+    // If no user defined security, use the standard value of 2
+    var security = 2;
+
+    if ('security' in options) {
+        security = options.security;
+
+        // validate the security option
+        if (!iota.valid.isValue(security) || security < 1 || security > 3) {
+            return callback(errors.invalidSecurity());
+        }
+    }
+
+    let allAddresses = [];
+
+    // Case 1: total
+    //
+    // If total number of addresses to generate is supplied, simply generate
+    // and return the list of all addresses
+    if (total) {
+        // Increase index with each iteration
+        return genFn(seed, index, total, security, checksum).then((addresses) => {
+            allAddresses = addresses;
+            return callback(null, allAddresses);
+        });
+    } else {
+        //  Case 2: no total provided
+        //
+        //  Continue calling wasAddressSpenFrom & findTransactions to see if address was already created
+        //  if null, return list of addresses
+        //
+        async.doWhilst(
+            (callback) => {
+                // Iteratee function
+                var newAddress = '';
+                return genFn(seed, index, security, checksum).then((address) => {
+                    newAddress = address;
+                    if (options.returnAll) {
+                        allAddresses.push(newAddress);
+                    }
+                    // Increase the index
+                    index += 1;
+                    iota.api.wereAddressesSpentFrom(newAddress, (err, res) => {
+                        if (err) {
+                            return callback(err);
+                        }
+
+                        // Validity check
+                        if (res[0]) {
+                            callback(null, newAddress, true);
+                        } else {
+                            // Check for txs if address isn't spent
+                            iota.api.findTransactions({ addresses: [newAddress] }, (err, transactions) => {
+                                if (err) {
+                                    return callback(err);
+                                }
+
+                                callback(err, newAddress, transactions.length > 0);
+                            });
+                        }
+                    });
+                });
+            },
+            (address, isUsed) => {
+                return isUsed;
+            },
+            (err, address) => {
+                // Final callback
+
+                if (err) {
+                    return callback(err);
+                } else {
+                    // If returnAll, return list of allAddresses
+                    // else return the last address that was generated
+                    var addressToReturn = options.returnAll ? allAddresses : address;
+
+                    return callback(null, addressToReturn);
+                }
+            },
+        );
+    }
+};
+
+/*eslint-enable no-var*/
+/*eslint-enable prefer-const*/
+/*eslint-enable brace-style*/
+/*eslint-enable no-else-return*/
+/*eslint-enable no-loop-func*/
