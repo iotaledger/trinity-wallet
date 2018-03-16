@@ -8,7 +8,12 @@ import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-w
 import { clearTempData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import CustomTextInput from '../components/customTextInput';
-import { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain, getAllSeedsFromKeychain } from '../util/keychain';
+import {
+    hasDuplicateSeed,
+    hasDuplicateAccountName,
+    storeSeedInKeychain,
+    getAllSeedsFromKeychain,
+} from '../util/keychain';
 import { getPasswordHash } from '../util/crypto';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
@@ -131,24 +136,22 @@ class SetPassword extends Component {
         if (password.length >= MIN_PASSWORD_LENGTH && password === reentry) {
             const pwdHash = getPasswordHash(password);
 
-            getAllSeedsFromKeychain(pwdHash)
-                .then((seedInfo) => {
-                    if (hasDuplicateAccountName(seedInfo, accountName)) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('addAdditionalSeed:nameInUse'),
-                            t('addAdditionalSeed:nameInUseExplanation'),
-                        );
-                    } else if (hasDuplicateSeed(seedInfo, seed)) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('addAdditionalSeed:seedInUse'),
-                            t('addAdditionalSeed:seedInUseExplanation'),
-                        );
-                    }
-                    return ifNoKeychainDuplicates(pwdHash, seed, accountName);
-                });
-
+            getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
+                if (hasDuplicateAccountName(seedInfo, accountName)) {
+                    return this.props.generateAlert(
+                        'error',
+                        t('addAdditionalSeed:nameInUse'),
+                        t('addAdditionalSeed:nameInUseExplanation'),
+                    );
+                } else if (hasDuplicateSeed(seedInfo, seed)) {
+                    return this.props.generateAlert(
+                        'error',
+                        t('addAdditionalSeed:seedInUse'),
+                        t('addAdditionalSeed:seedInUseExplanation'),
+                    );
+                }
+                return ifNoKeychainDuplicates(pwdHash, seed, accountName);
+            });
         } else if (!(password === reentry)) {
             this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
         } else if (password.length < MIN_PASSWORD_LENGTH || reentry.length < MIN_PASSWORD_LENGTH) {

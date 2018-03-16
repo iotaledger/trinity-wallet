@@ -193,11 +193,10 @@ export const setAdditionalAccountInfo = (payload) => ({
     payload,
 });
 
-export const generateNewAddress = (seed, accountName, existingAccountData) => {
+export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-
-        return syncAddresses(seed, existingAccountData, true)
+        return syncAddresses(seed, existingAccountData, genFn, true)
             .then((newAccountData) => {
                 const receiveAddress = iota.utils.addChecksum(getLatestAddress(newAccountData.addresses));
                 dispatch(updateAddresses(accountName, newAccountData.addresses));
@@ -284,7 +283,7 @@ const makeTransfer = (seed, address, value, accountName, transfer, options = nul
         });
 };
 
-export const prepareTransfer = (seed, address, value, message, accountName, powFn) => {
+export const prepareTransfer = (seed, address, value, message, accountName, powFn, genFn) => {
     return (dispatch, getState) => {
         dispatch(sendTransferRequest());
 
@@ -374,7 +373,7 @@ export const prepareTransfer = (seed, address, value, message, accountName, powF
         const syncAndGetInputs = () => {
             const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-            return syncAddresses(seed, existingAccountState, true)
+            return syncAddresses(seed, existingAccountState, genFn, true)
                 .then((accountData) => {
                     return syncAccount(seed, accountData);
                 })

@@ -8,7 +8,7 @@ import {
     mapPendingTransactionHashesForSpentAddressesToState,
     syncAccountAfterSpending,
 } from '../libs/iota/accounts';
-import { formatAddresses, syncAddresses } from '../libs/iota/addresses';
+import { formatAddresses, syncAddresses, getNewAddress } from '../libs/iota/addresses';
 import {
     clearTempData,
     updateTransitionBalance,
@@ -210,6 +210,7 @@ export const getFullAccountInfoAdditionalSeed = (
     password,
     storeInKeychainPromise,
     navigator = null,
+    genFn,
 ) => (dispatch) => {
     const onError = (err) => {
         if (navigator) {
@@ -221,7 +222,7 @@ export const getFullAccountInfoAdditionalSeed = (
     };
 
     dispatch(fullAccountInfoAdditionalSeedFetchRequest());
-    getAccountData(seed, accountName)
+    getAccountData(seed, accountName, genFn)
         .then((data) => {
             dispatch(clearTempData()); // Clean up partial state for reducer.
             return mapTransactionHashesForUnspentAddressesToState(data);
@@ -237,17 +238,17 @@ export const getFullAccountInfoAdditionalSeed = (
                     )
                     .catch((err) => onError(err));
             } else {
-                dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithPendingTxHashesForSpentAddresses));
+                dispatch(fullAccountInfoAdditionalSeedFetchSuccess(dataWithPendingTxHashesForSpentAddresses));
             }
         })
         .catch((err) => onError(err));
 };
 
-export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null) => {
+export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null, genFn) => {
     return (dispatch) => {
         dispatch(fullAccountInfoFirstSeedFetchRequest());
 
-        getAccountData(seed, accountName)
+        getAccountData(seed, accountName, genFn)
             .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
             .then((dataWithTxHashesForUnspentAddresses) =>
                 mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
@@ -263,11 +264,11 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null)
     };
 };
 
-export const manuallySyncAccount = (seed, accountName) => {
+export const manuallySyncAccount = (seed, accountName, genFn) => {
     return (dispatch) => {
         dispatch(manualSyncRequest());
 
-        getAccountData(seed, accountName)
+        getAccountData(seed, accountName, genFn)
             .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
             .then((dataWithTxHashesForUnspentAddresses) =>
                 mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
@@ -299,13 +300,13 @@ export const manuallySyncAccount = (seed, accountName) => {
  *   @param {object} [navigator=null]
  *   @returns {function} dispatch
  **/
-export const getAccountInfo = (seed, accountName, navigator = null) => {
+export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAddresses(seed, existingAccountState)
+        return syncAddresses(seed, existingAccountState, genFn)
             .then((accountData) => {
                 return syncAccount(seed, accountData);
             })
@@ -435,9 +436,8 @@ export const generateAddressesAndGetBalance = (seed, index) => {
             returnAll: true,
             security: 2,
         };
-        iota.api.getNewAddress(seed, options, (error, addresses) => {
+        getNewAddress(seed, options, (error, addresses) => {
             if (error) {
-                console.log(error);
                 dispatch(snapshotTransitionError());
                 dispatch(generateTransitionErrorAlert());
             } else {

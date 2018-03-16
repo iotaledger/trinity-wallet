@@ -167,6 +167,7 @@
     "loading": {
         "loadingFirstTime": "Loading seed for the first time.",
         "thisMayTake": "This may take a while.",
+        "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "You may notice your device slowing down."
     },
     "newSeedSetup": {
