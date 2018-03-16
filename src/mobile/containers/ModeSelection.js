@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
+import { connect } from 'react-redux';
+import { setMode } from 'iota-wallet-shared-modules/actions/settings';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Fonts from '../theme/fonts';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -64,7 +68,7 @@ class ModeSelection extends Component {
     static propTypes = {
         mode: PropTypes.string.isRequired,
         setMode: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired,
+        setSetting: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
@@ -87,6 +91,7 @@ class ModeSelection extends Component {
 
     render() {
         const { t, mode, textColor, body, primary } = this.props;
+
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -132,7 +137,7 @@ class ModeSelection extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.backPress()}
+                            onPress={() => this.props.setSetting('mainSettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
@@ -147,4 +152,18 @@ class ModeSelection extends Component {
     }
 }
 
-export default translate(['modeSelection', 'global'])(ModeSelection);
+const mapStateToProps = (state) => ({
+    mode: state.settings.mode,
+    textColor: { color: state.theme.body.color },
+    borderColor: { borderColor: state.theme.body.color },
+    body: state.theme.body,
+    primary: state.theme.body,
+});
+
+const mapDispatchToProps = {
+    setMode,
+    setSetting,
+    generateAlert,
+};
+
+export default translate(['modeSelection', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ModeSelection));

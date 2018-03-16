@@ -316,17 +316,6 @@ class Settings extends Component {
         const textColor = { color: body.color };
         const borderColor = { borderColor: body.color };
         const props = {
-            modeSelection: {
-                setMode: (selectedMode) => this.props.setMode(selectedMode),
-                mode,
-                backPress: () => this.props.setSetting('mainSettings'),
-                generateAlert: this.props.generateAlert,
-                negativeColor: negative.color,
-                textColor: { color: body.color },
-                borderColor: { borderColor: body.color },
-                body,
-                primary,
-            },
             pow: {
                 backPress: () => this.props.setSetting('mainSettings'),
             },
