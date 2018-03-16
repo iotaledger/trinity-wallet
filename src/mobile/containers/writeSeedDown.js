@@ -181,12 +181,7 @@ class WriteSeedDown extends Component {
                             <Text style={styles.infoTextNormal}> that they are correct.</Text>
                         </Trans>
                     </Text>
-                    <Seedbox
-                        backgroundColor={body.bg}
-                        borderColor={borderColor}
-                        textColor={textColor}
-                        seed={seed}
-                    />
+                    <Seedbox backgroundColor={body.bg} borderColor={borderColor} textColor={textColor} seed={seed} />
                     <View style={[styles.checksum, borderColor]}>
                         <Text style={[styles.checksumText, textColor]}>{checksum}</Text>
                     </View>

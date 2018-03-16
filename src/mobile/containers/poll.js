@@ -95,17 +95,16 @@ export class Poll extends Component {
     fetchLatestAccountInfo() {
         const { t, selectedAccountName, password } = this.props;
 
-        getSeedFromKeychain(password, selectedAccountName)
-            .then((seed) => {
-                if (seed === null) {
-                    return this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongRestart'),
-                    );
-                }
-                this.props.getAccountInfo(seed, selectedAccountName);
-            });
+        getSeedFromKeychain(password, selectedAccountName).then((seed) => {
+            if (seed === null) {
+                return this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongRestart'),
+                );
+            }
+            this.props.getAccountInfo(seed, selectedAccountName);
+        });
     }
 
     startBackgroundProcesses() {
@@ -163,7 +162,7 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     unconfirmedBundleTails: state.account.unconfirmedBundleTails,
     isTransitioning: state.tempAccount.isTransitioning,
-    password: state.tempAccount.password
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {
