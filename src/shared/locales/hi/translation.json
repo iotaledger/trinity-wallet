@@ -77,6 +77,9 @@
         "autoreattachingExplanation": "हैश {{hash}} ट्रांजेक्शन को री अटैच कर रहे है",
         "autopromoting": "ऑटोप्रोमोटिंग ट्रांसफर",
         "autopromotingExplanation": "हैश {{hash}} ट्रांजेक्शन को प्रमोट कर रहे है",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "स्वयं के पते पर भेजा जा रहा है",
         "cannotSendToOwnExplanation": "आप स्वयं के किसी पते पर मूल्य हस्तांतरण नहीं कर सकते",
         "pleaseWait": "कृपया प्रतीक्षा करें",
@@ -430,13 +433,22 @@
     },
     "rootDetection": {
         "warning": "चेतावनी!",
-        "rootDetected": "<0> अपने डिवाइसरूटेड/जेलब्रोकेन निहित प्रतीत होता है/</0> <1> यह अपने बटुए की सुरक्षा के लिए एक महत्वपूर्ण जोखिम पैदा कर सकते हैं । </1> <2> क्या आप इस जोखिम के बावजूद जारी रखना चाहते हैं? </2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "IOTA में निशुल्क ट्रांजेक्शन भेजने के लिए काम का थोड़ा सा सबूत पूरा करना जरूरी होता है ।",
         "localOrRemote": "काम का सबूत या तो अपने डिवाइस पर स्थानीय रूप से पूरा किया जा सकता है, या एक नोड के लिए बिकवाली की ।",
         "local": "स्थानीय",
         "remote": "दूरस्थ"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validating receive address",
+        "syncingAccount": "Syncing account",
+        "preparingInputs": "Preparing inputs",
+        "preparingTransfers": "Preparing transfers",
+        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "proofOfWork": "Completing proof of work",
+        "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "स्नैपशॉट पूरा नहीं कर सकता",
