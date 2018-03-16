@@ -79,7 +79,11 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
     return broadcastBundleAsync(tailTransaction.hash)
         .then(() => {
             dispatch(
-                generateAlert('success', 'Rebroadcast', `Rebroadcasted transaction with hash ${tailTransaction.hash}.`),
+                generateAlert(
+                    'success',
+                    'Rebroadcasted transaction',
+                    `Rebroadcasted transaction with hash ${tailTransaction.hash}.`,
+                ),
             );
 
             return dispatch(broadcastBundleSuccess());
@@ -88,7 +92,7 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
             dispatch(
                 generateAlert(
                     'error',
-                    'Rebroadcast',
+                    'Could not rebroadcast transaction ',
                     'Something went wrong while rebroadcasting your transaction. Please try again.',
                 ),
             );
@@ -118,7 +122,7 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
             dispatch(
                 generateAlert(
                     'success',
-                    i18next.t('global:autopromoting'),
+                    i18next.t('global:promoting'),
                     i18next.t('global:autopromotingExplanation', { hash }),
                 ),
             );
@@ -127,9 +131,7 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
         })
         .catch((err) => {
             if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
-                dispatch(
-                    generateAlert('error', 'Promotion', 'The bundle you are trying to promote is no longer valid. '),
-                );
+                dispatch(generateAlert('error', i18next.t('global:promotionError'), i18next.t('global:noLongerValid')));
             }
 
             dispatch(generatePromotionErrorAlert());
