@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import size from 'lodash/size';
 import map from 'lodash/map';
@@ -47,8 +46,8 @@ import {
     getBalanceForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from '../../shared/selectors/account';
-import keychain, { getSeed } from '../util/keychain';
 import ProgressSteps from '../util/progressSteps';
+import { getSeedFromKeychain } from '../util/keychain';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
 import CustomTextInput from '../components/customTextInput';
@@ -153,6 +152,7 @@ export class Send extends Component {
         activeStepIndex: PropTypes.number.isRequired,
         activeSteps: PropTypes.array.isRequired,
         timeTakenByEachProgressStep: PropTypes.array.isRequired,
+        password: PropTypes.string.isRequired,
         generateTransferErrorAlert: PropTypes.func.isRequired,
     };
 
@@ -221,7 +221,9 @@ export class Send extends Component {
     }
 
     componentDidMount() {
-        this.props.resetProgress();
+        if (!this.props.isSendingTransfer) {
+            this.props.resetProgress();
+        }
     }
 
     componentWillReceiveProps(newProps) {
@@ -231,7 +233,6 @@ export class Send extends Component {
             KeepAwake.activate();
         } else if (isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
-            this.props.setSendDenomination('i');
             this.setState({ sending: false });
             // Reset toggle switch in case maximum was on
             this.resetToggleSwitch();
@@ -515,32 +516,22 @@ export class Send extends Component {
     }
 
     getProgressSummary() {
-        const { timeTakenByEachProgressStep } = this.props;
+        const { timeTakenByEachProgressStep, t } = this.props;
         const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
 
         return (
             <Text>
-                <Text>DONE </Text>
                 <Text style={styles.progressSummaryText}>
-                    ({map(timeTakenByEachProgressStep, (time, index) => {
+                    {map(timeTakenByEachProgressStep, (time, index) => {
                         if (index === size(timeTakenByEachProgressStep) - 1) {
-                            return `${time}=${totalTimeTaken.toFixed(1)} s`;
+                            return `${time} = ${totalTimeTaken.toFixed(1)} s`;
                         }
 
-                        return `${time}+`;
-                    })})
+                        return `${time} + `;
+                    })}
                 </Text>
             </Text>
         );
-    }
-
-    shouldConversionTextShowInvalid() {
-        const { amount, denomination } = this.props;
-        const { currencySymbol } = this.state;
-        const multiplier = this.getUnitMultiplier();
-        const isFiat = denomination === currencySymbol;
-        const amountIsValid = Send.isValidAmount(amount, multiplier, isFiat);
-        return !amountIsValid && amount !== '';
     }
 
     resetToggleSwitch() {
@@ -564,6 +555,15 @@ export class Send extends Component {
         this.setModalContent(selectedSetting);
         this.setState({ selectedSetting }); // eslint-disable-line react/no-unused-state
         this.showModal();
+    }
+
+    shouldConversionTextShowInvalid() {
+        const { amount, denomination } = this.props;
+        const { currencySymbol } = this.state;
+        const multiplier = this.getUnitMultiplier();
+        const isFiat = denomination === currencySymbol;
+        const amountIsValid = Send.isValidAmount(amount, multiplier, isFiat);
+        return !amountIsValid && amount !== '';
     }
 
     showModal = () => this.setState({ isModalVisible: true });
@@ -593,7 +593,7 @@ export class Send extends Component {
     }
 
     sendTransfer() {
-        const { t, seedIndex, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
+        const { t, password, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
 
         if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
@@ -617,31 +617,34 @@ export class Send extends Component {
         this.startTrackingTransactionProgress(value === 0);
 
         this.props.getFromKeychainRequest('send', 'makeTransaction');
-
-        keychain
-            .get()
-            .then((credentials) => {
+        getSeedFromKeychain(password, selectedAccountName)
+            .then((seed) => {
                 this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
-                if (get(credentials, 'data')) {
-                    const seed = getSeed(credentials.data, seedIndex);
+                if (seed === null) {
+                    this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongTryAgain'),
+                    );
 
-                    let powFn = null;
-
-                    if (isAndroid) {
-                        powFn = NativeModules.PoWModule.doPoW;
-                    } else if (isIOS) {
-                        powFn = NativeModules.Iota.doPoW;
-                    }
-
-                    return this.props.makeTransaction(seed, address, value, message, selectedAccountName, powFn);
+                    throw new Error('Error');
                 }
+                let powFn = null;
+                let genFn = null;
+
+                if (isAndroid) {
+                    powFn = NativeModules.PoWModule.doPoW;
+                } else if (isIOS) {
+                    powFn = NativeModules.Iota.doPoW;
+                    genFn = NativeModules.Iota.address;
+                }
+
+                return this.props.makeTransaction(seed, address, value, message, selectedAccountName, powFn, genFn);
             })
             .catch((error) => {
                 this.props.getFromKeychainError('send', 'makeTransaction');
-
-                // FIXME: Catch transfer exceptions in makeTransaction function instead of generating alerts from here
-                return this.props.generateTransferErrorAlert(error);
+                this.props.generateTransferErrorAlert(error);
             });
     }
 
@@ -737,7 +740,11 @@ export class Send extends Component {
                                         }}
                                     >
                                         <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
-                                        <Toggle active={maxPressed} body={body} primary={primary} />
+                                        <Toggle
+                                            active={maxPressed}
+                                            bodyColor={body.color}
+                                            primaryColor={primary.color}
+                                        />
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -765,31 +772,41 @@ export class Send extends Component {
                         <View style={{ flex: 0.3 }} />
                         {!isSendingTransfer &&
                             !isGettingSensitiveInfoToMakeTransaction && (
-                                <CtaButton
-                                    ctaColor={primary.color}
-                                    ctaBorderColor={primary.hover}
-                                    secondaryCtaColor={primary.body}
-                                    text={t('send')}
-                                    onPress={() => {
-                                        this.onSendPress();
-                                        if (address === '' && amount === '' && message && '') {
-                                            this.addressField.blur();
-                                            this.amountField.blur();
-                                            this.messageField.blur();
-                                        }
-                                    }}
-                                />
+                                <View style={{ flex: 1 }}>
+                                    <CtaButton
+                                        ctaColor={primary.color}
+                                        ctaBorderColor={primary.hover}
+                                        secondaryCtaColor={primary.body}
+                                        text={t('send')}
+                                        onPress={() => {
+                                            this.onSendPress();
+                                            if (address === '' && amount === '' && message && '') {
+                                                this.addressField.blur();
+                                                this.amountField.blur();
+                                                this.messageField.blur();
+                                            }
+                                        }}
+                                    />
+                                </View>
                             )}
                         {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
                             !isModalVisible && (
-                                <ProgressBar
-                                    indeterminate={this.props.activeStepIndex === -1}
-                                    progress={this.props.activeStepIndex / size(this.props.activeSteps)}
-                                    color={body.color}
-                                    textColor={body.color}
+                                <View
+                                    style={{
+                                        flex: 1,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                    }}
                                 >
-                                    {this.renderProgressBarChildren()}
-                                </ProgressBar>
+                                    <ProgressBar
+                                        indeterminate={this.props.activeStepIndex === -1}
+                                        progress={this.props.activeStepIndex / size(this.props.activeSteps)}
+                                        color={primary.color}
+                                        textColor={body.color}
+                                    >
+                                        {this.renderProgressBarChildren()}
+                                    </ProgressBar>
+                                </View>
                             )}
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
@@ -807,6 +824,7 @@ export class Send extends Component {
                                 </View>
                             </TouchableOpacity>
                         </View>
+                        <View style={{ flex: 0.3 }} />
                     </View>
                     <Modal
                         animationIn="bounceInUp"
@@ -833,7 +851,7 @@ export class Send extends Component {
 const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     isSyncing: state.tempAccount.isSyncing,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     seedIndex: state.tempAccount.seedIndex,
@@ -853,6 +871,7 @@ const mapStateToProps = (state) => ({
     activeSteps: state.progress.activeSteps,
     timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
     remotePoW: state.settings.remotePoW,
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {

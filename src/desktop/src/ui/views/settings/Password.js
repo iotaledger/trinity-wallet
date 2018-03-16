@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { showError, showNotification } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
 
 import { isValidPassword } from 'libs/util';
-import { getSecurelyPersistedSeeds, securelyPersistSeeds } from 'libs/crypto';
+import { setVault } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -16,16 +16,13 @@ import Button from 'ui/components/Button';
  */
 class SetPassword extends PureComponent {
     static propTypes = {
-        /** Error helper function
-         * @param {Object} content - Error notification content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
-        /** Notification helper function
-         * @param {Object} content - Success notification content
-         * @ignore
-         */
-        showNotification: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
@@ -41,28 +38,28 @@ class SetPassword extends PureComponent {
 
     changePassword = () => {
         const { passwordCurrent, passwordNew, passwordConfirm } = this.state;
-        const { showError, showNotification, t } = this.props;
+        const { generateAlert, t } = this.props;
 
         if (passwordNew !== passwordConfirm) {
-            showError({
-                title: t('changePassword:passwordsDoNotMatch'),
-                text: t('changePassword:passwordsDoNotMatchExplanation'),
-            });
+            generateAlert(
+                'error',
+                t('changePassword:passwordsDoNotMatch'),
+                t('changePassword:passwordsDoNotMatchExplanation'),
+            );
             return;
         }
 
         if (!isValidPassword(passwordNew)) {
-            showError({
-                title: t('changePassword:passwordTooShort'),
-                text: t('changePassword:passwordTooShortExplanation'),
-            });
+            generateAlert(
+                'error',
+                t('changePassword:passwordTooShort'),
+                t('changePassword:passwordTooShortExplanation'),
+            );
             return;
         }
 
         try {
-            const seeds = getSecurelyPersistedSeeds(passwordCurrent);
-
-            securelyPersistSeeds(passwordNew, seeds);
+            setVault(passwordCurrent, passwordNew);
 
             this.setState({
                 passwordCurrent: '',
@@ -70,15 +67,17 @@ class SetPassword extends PureComponent {
                 passwordConfirm: '',
             });
 
-            showNotification({
-                title: t('changePassword:passwordUpdated'),
-                text: t('changePassword:passwordUpdatedExplanation'),
-            });
+            generateAlert(
+                'success',
+                t('changePassword:passwordUpdated'),
+                t('changePassword:passwordUpdatedExplanation'),
+            );
         } catch (err) {
-            showError({
-                title: t('changePassword:incorrectPassword'),
-                text: t('changePassword:incorrectPasswordExplanation'),
-            });
+            generateAlert(
+                'error',
+                t('changePassword:incorrectPassword'),
+                t('changePassword:incorrectPasswordExplanation'),
+            );
             return;
         }
     };
@@ -111,11 +110,8 @@ class SetPassword extends PureComponent {
     }
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = {
-    showError,
-    showNotification,
+    generateAlert,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(SetPassword));
+export default connect(null, mapDispatchToProps)(translate()(SetPassword));

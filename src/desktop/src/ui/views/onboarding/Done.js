@@ -24,30 +24,28 @@ class Done extends React.PureComponent {
     setComplete = () => {
         const { history, setOnboardingComplete } = this.props;
         setOnboardingComplete(true);
-        history.push('/');
+        history.push('/onboarding/');
     };
 
     render() {
         const { t } = this.props;
         return (
-            <main>
+            <React.Fragment>
                 <section>
                     <p>{t('onboardingComplete:walletReady')}</p>
                 </section>
                 <footer>
                     <Button onClick={this.setComplete} className="outline" variant="primary">
-                        {t('global:done')}
+                        {t('done')}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }
-
-const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
     setOnboardingComplete,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Done));
+export default connect(null, mapDispatchToProps)(translate()(Done));
