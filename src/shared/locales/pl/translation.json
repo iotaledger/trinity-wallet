@@ -77,6 +77,9 @@
         "autoreattachingExplanation": "Reattaching transakcji z hashem {{hash}}",
         "autopromoting": "Autopromowanie transferu",
         "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Wysyłka na własny adres",
         "cannotSendToOwnExplanation": "Nie możesz wykonać transferu środków na swój własny adres.",
         "pleaseWait": "Proszę czekać",
@@ -430,13 +433,22 @@
     },
     "rootDetection": {
         "warning": "OSTRZEŻENIE",
-        "rootDetected": "<0>Twoje urządzenie wydaje się być odblokowane (dostęp root).</0><1>To może stanowić istotne zagrożenie dla bezpieczeństwa Twojego portfela.</1><2>Czy chcesz kontynuować pomimo tego ryzyka?</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "Niezbędnym jest wykonanie niewielkiego proof of work, aby przesyłać transakcje IOTA bez prowizji.",
         "localOrRemote": "Proof of work może być wykonany lokalnie na Twoim urządzeniu lub przy użyciu serwera.",
         "local": "Lokalnie",
         "remote": "Zdalnie"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validating receive address",
+        "syncingAccount": "Syncing account",
+        "preparingInputs": "Preparing inputs",
+        "preparingTransfers": "Preparing transfers",
+        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "proofOfWork": "Completing proof of work",
+        "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nie można zakończyć aktualizacji środków",
