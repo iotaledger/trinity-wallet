@@ -443,9 +443,9 @@
     },
     "progressSteps": {
         "validatingReceiveAddress": "受取アドレスの検証",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
+        "syncingAccount": "アカウントの同期",
+        "preparingInputs": "入力の準備",
+        "preparingTransfers": "送金の準備",
         "gettingTransactionsToApprove": "Getting transactions to approve",
         "proofOfWork": "Completing proof of work",
         "broadcasting": "ブロードキャスト"
