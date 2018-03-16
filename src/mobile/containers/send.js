@@ -214,7 +214,6 @@ export class Send extends Component {
             KeepAwake.activate();
         } else if (isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
-            this.props.setSendDenomination('i');
             this.setState({ sending: false });
             // Reset toggle switch in case maximum was on
             this.resetToggleSwitch();
