@@ -17,7 +17,7 @@ import Login from '../containers/Login';
 import WalletResetConfirmation from '../containers/WalletResetConfirmation';
 import WalletResetRequirePassword from '../containers/WalletResetRequirePassword';
 import OnboardingComplete from '../containers/OnboardingComplete';
-import SetAccountNameComponent from '../containers/setAccountName';
+import SetAccountNameComponent from '../containers/SetAccountName';
 import SeedReentry from '../containers/SeedReentry';
 import TwoFactorSetupAddKeyComponent from '../containers/TwoFactorSetupAddKey';
 import TwoFactorSetupEnterToken from '../containers/TwoFactorSetupEnterToken';
