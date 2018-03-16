@@ -346,10 +346,10 @@
         "currency": "Valuuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Kas olete kindel, et soovite välja logida?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Skännige oma QR-koodi"
     },
     "unitInfoModal": {
         "unitSystem": "ÜHIKUSÜSTEEM",
@@ -360,13 +360,13 @@
         "one": "Üks"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Kas olete kindel, et tahate kustutada {{accountName}}?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "thisAction": "Seda tegevust ei saa tagasi võtta.",
+        "enterPassword": "Konto kustutamiseks sisestage oma parool."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "outOfSync": "Kas teie tehingute ajalugu näeb välja nagu see oleks sünkroniseerimata?",
         "pressToSync": "Press the button below to sync your account.",
         "thisMayTake": "This may take a while. You may notice your device slowing down.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
