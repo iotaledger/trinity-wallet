@@ -77,6 +77,9 @@
         "autoreattachingExplanation": "아래의 트랜잭션 해시를 다시 어태치합니다: {{hash}}",
         "autopromoting": "거래 자동 프로모트 중",
         "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "내 주소로 보내는 중",
         "cannotSendToOwnExplanation": "내 주소로는 가치 전송을 할 수 없습니다.",
         "pleaseWait": "잠시 기다려 주세요",
@@ -430,13 +433,22 @@
     },
     "rootDetection": {
         "warning": "경고",
-        "rootDetected": "<0>기기가 탈옥되었거나 루팅된 것으로 감지되었습니다. </0><1>이 경우 지갑의 보안에 위험을 끼칠 수 있습니다.</1><2> 보안 위험을 감수하고 진행하시겠습니까?</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
         "remote": "Remote"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validating receive address",
+        "syncingAccount": "Syncing account",
+        "preparingInputs": "Preparing inputs",
+        "preparingTransfers": "Preparing transfers",
+        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "proofOfWork": "Completing proof of work",
+        "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
