@@ -55,7 +55,8 @@
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
         "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
+        "somethingWentWrongRestart": "Please restart the app.",
+        "somethingWentWrongTryAgain": "Please try again.",
         "node": "Node",
         "cannotPerformAction": "Cannot perform action",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
@@ -375,7 +376,7 @@
         "one": "One"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "This action cannot be undone.",
         "enterPassword": "Enter your password to delete this account."

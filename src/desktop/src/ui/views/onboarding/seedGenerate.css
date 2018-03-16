@@ -56,8 +56,8 @@
             bottom: calc(50% - 100px);
             z-index: 2;
             @media (max-width: 810px) {
-               width: calc(100% -  40px);
-           }
+                width: calc(100% - 40px);
+            }
         }
         > div:last-of-type {
             display: none;
