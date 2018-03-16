@@ -8,7 +8,7 @@ const actions = {
     generateNewAddress,
     getAccountInfo,
     getFullAccountInfo,
-    fetchFullAccountInfoForFirstUse
+    fetchFullAccountInfoForFirstUse,
 };
 
 const dispatch = (action) => {

@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -16,7 +15,7 @@ import {
     getFromKeychainSuccess,
     getFromKeychainError,
 } from 'iota-wallet-shared-modules/actions/keychain';
-import keychain, { getSeed } from '../util/keychain';
+import { getSeedFromKeychain } from '../util/keychain';
 import GENERAL from '../theme/general';
 import CustomTextInput from '../components/customTextInput';
 import GenerateAddressButton from '../components/generateAddressButton';
@@ -79,7 +78,7 @@ class Receive extends Component {
         selectedAccountData: PropTypes.object.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         isSyncing: PropTypes.bool.isRequired,
-        seedIndex: PropTypes.number.isRequired,
+        password: PropTypes.string.isRequired,
         receiveAddress: PropTypes.string.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isGettingSensitiveInfoToGenerateAddress: PropTypes.bool.isRequired,
@@ -91,7 +90,6 @@ class Receive extends Component {
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         input: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
@@ -126,36 +124,29 @@ class Receive extends Component {
         this.resetAddress();
     }
 
-    onGeneratePress() {
-        const { t, seedIndex, selectedAccountData, selectedAccountName, isSyncing, isTransitioning } = this.props;
+    async onGeneratePress() {
+        const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, password } = this.props;
 
         if (isSyncing || isTransitioning) {
-            return this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
         const error = () => {
             this.props.getFromKeychainError('receive', 'addressGeneration');
-            this.props.generateAlert(
+            return this.props.generateAlert(
                 'error',
                 t('global:somethingWentWrong'),
-                t('global:somethingWentWrongExplanation'),
+                t('global:somethingWentWrongTryAgain'),
             );
         };
 
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
-        return keychain
-            .get()
-            .then((credentials) => {
-                this.props.getFromKeychainSuccess('receive', 'addressGeneration');
-
-                if (get(credentials, 'data')) {
-                    const seed = getSeed(credentials.data, seedIndex);
-                    this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData);
-                } else {
-                    error();
-                }
-            })
-            .catch(() => this.props.getFromKeychainError('receive', 'addressGeneration'));
+        const seed = await getSeedFromKeychain(password, selectedAccountName);
+        if (seed === null) {
+            return error();
+        }
+        this.props.getFromKeychainSuccess('receive', 'addressGeneration');
+        this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData);
     }
 
     onAddressPress(address) {
@@ -203,7 +194,6 @@ class Receive extends Component {
             theme,
             primary,
             input,
-            negative,
             isGeneratingReceiveAddress,
             isGettingSensitiveInfoToGenerateAddress,
         } = this.props;
@@ -216,7 +206,7 @@ class Receive extends Component {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.4 }} />
-                    <View style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent'}]}>
+                    <View style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent' }]}>
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
                             size={width / 2.8}
@@ -243,7 +233,9 @@ class Receive extends Component {
                         // Place holder
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                             <View style={[styles.receiveAddressContainer, { backgroundColor: input.bg }, opacity]}>
-                                <Text style={[styles.receiveAddressText, { color: input.color }]}>{Array(19).join(' ')}</Text>
+                                <Text style={[styles.receiveAddressText, { color: input.color }]}>
+                                    {Array(19).join(' ')}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     )}
@@ -263,8 +255,8 @@ class Receive extends Component {
                     />
                     <View style={{ flex: 0.35 }} />
                     <View style={{ flex: 0.7 }}>
-                        {receiveAddress.length > 1 &&
-                            message.length >= 1 &&
+                        {(receiveAddress.length > 1 &&
+                            message.length >= 1 && (
                                 <View style={{ flex: 0.7 }}>
                                     <View style={{ flex: 0.1 }} />
                                     <TouchableOpacity
@@ -276,26 +268,26 @@ class Receive extends Component {
                                         style={styles.removeButtonContainer}
                                     >
                                         <View style={[styles.removeButton, borderColor]}>
-                                            <Text style={[styles.removeText, { color: body.color }]}>{t('removeMessage')}</Text>
+                                            <Text style={[styles.removeText, { color: body.color }]}>
+                                                {t('removeMessage')}
+                                            </Text>
                                         </View>
                                     </TouchableOpacity>
                                     <View style={{ flex: 0.2 }} />
                                 </View>
-                                ||
-                                <GenerateAddressButton
-                                    ctaColor={primary.color}
-                                    ctaBorderColor={primary.hover}
-                                    negativeColor={negative.color}
-                                    secondaryCtaColor={primary.body}
-                                    t={t}
-                                    receiveAddress={receiveAddress}
-                                    isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
-                                    isGeneratingReceiveAddress={isGeneratingReceiveAddress}
-                                    onGeneratePress={this.onGeneratePress}
-                                    message={message}
-                                />
-                            }
-
+                            )) || (
+                            <GenerateAddressButton
+                                ctaBorderColor={primary.hover}
+                                primaryColor={primary.color}
+                                primaryBody={primary.body}
+                                t={t}
+                                receiveAddress={receiveAddress}
+                                isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
+                                isGeneratingReceiveAddress={isGeneratingReceiveAddress}
+                                onGeneratePress={this.onGeneratePress}
+                                message={message}
+                            />
+                        )}
                     </View>
                     <View style={{ flex: 0.65 }} />
                 </View>
@@ -306,7 +298,7 @@ class Receive extends Component {
 
 const mapStateToProps = (state) => ({
     selectedAccountData: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     isSyncing: state.tempAccount.isSyncing,
     seedIndex: state.tempAccount.seedIndex,
     receiveAddress: state.tempAccount.receiveAddress,
@@ -315,9 +307,9 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     primary: state.settings.theme.primary,
     input: state.settings.theme.input,
-    negative: state.settings.theme.negative,
     body: state.settings.theme.body,
     isTransitioning: state.tempAccount.isTransitioning,
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {
