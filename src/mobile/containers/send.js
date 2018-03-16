@@ -214,7 +214,6 @@ export class Send extends Component {
             KeepAwake.activate();
         } else if (isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
-            this.props.setSendDenomination('i');
             this.setState({ sending: false });
             // Reset toggle switch in case maximum was on
             this.resetToggleSwitch();
@@ -578,23 +577,24 @@ export class Send extends Component {
         getSeedFromKeychain(password, selectedAccountName).then((seed) => {
             this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
-            if (seed !== null) {
-                let powFn = null;
-
-                if (isAndroid) {
-                    powFn = NativeModules.PoWModule.doPoW;
-                } else if (isIOS) {
-                    powFn = NativeModules.Iota.doPoW;
-                }
-
-                return this.props.prepareTransfer(seed, address, value, message, selectedAccountName, powFn);
+            if (seed === null) {
+                this.props.getFromKeychainError('send', 'makeTransaction');
+                return this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongTryAgain'),
+                );
             }
-            this.props.getFromKeychainError('send', 'makeTransaction');
-            return this.props.generateAlert(
-                'error',
-                t('global:somethingWentWrong'),
-                t('global:somethingWentWrongTryAgain'),
-            );
+            let powFn = null;
+            let genFn = null;
+
+            if (isAndroid) {
+                powFn = NativeModules.PoWModule.doPoW;
+            } else if (isIOS) {
+                powFn = NativeModules.Iota.doPoW;
+                genFn = NativeModules.Iota.address;
+            }
+            return this.props.prepareTransfer(seed, address, value, message, selectedAccountName, powFn, genFn);
         });
     }
 
