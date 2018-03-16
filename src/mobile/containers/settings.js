@@ -221,7 +221,7 @@ class Settings extends Component {
                     if (isAndroid) {
                         //  genFn = Android multiAddress function
                     } else if (isIOS) {
-                        genFn = NativeModules.Iota.address;
+                        genFn = NativeModules.Iota.multiAddress;
                     }
                     this.props.manuallySyncAccount(seed, selectedAccountName, genFn);
                 })
@@ -536,7 +536,7 @@ class Settings extends Component {
                 selectedAccountName,
                 isAttachingToTangle,
                 addresses: Object.keys(selectedAccount.addresses),
-                transitionForSnapshot: (seed, addresses) => this.props.transitionForSnapshot(seed, addresses),
+                transitionForSnapshot: (seed, addresses) => this.performSnapshotTransition(seed, addresses),
                 generateAddressesAndGetBalance: (seed, index) => this.props.generateAddressesAndGetBalance(seed, index),
                 completeSnapshotTransition: (seed, accountName, addresses) =>
                     this.props.completeSnapshotTransition(seed, accountName, addresses),
@@ -624,6 +624,16 @@ class Settings extends Component {
             },
         });
         BackHandler.removeEventListener('homeBackPress');
+    }
+
+    performSnapshotTransition(seed, address) {
+        let genFn = null;
+        if (isAndroid) {
+            //  genFn = Android address function
+        } else if (isIOS) {
+            genFn = NativeModules.Iota.multiAddress;
+        }
+        this.props.transitionForSnapshot(seed, address, genFn);
     }
 
     featureUnavailable() {
