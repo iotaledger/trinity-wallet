@@ -53,8 +53,8 @@
         "syncInProgress": "Sincronizando",
         "syncInProgressExplanation": "Por favor, aguarde até que a sincronização seja concluída.",
         "somethingWentWrong": "Ocorreu um problema",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongRestart": "Por favor, reinicie o aplicativo.",
+        "somethingWentWrongTryAgain": "Por favor, tente novamente.",
         "node": "Servidor",
         "cannotPerformAction": "Não é possível executar a ação",
         "cannotPerformActionExplanation": "Vá para opções para redefinir a carteira.",
@@ -77,9 +77,9 @@
         "autoreattachingExplanation": "Anexando transação automaticamente com hash {{hash}}",
         "autopromoting": "Promovendo transferência automaticamente",
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "promoting": "Criando a transferência",
+        "promotionError": "A transação não pode ser criada",
+        "noLongerValid": "O pacote que você está tentando criar não é mais válido",
         "cannotSendToOwn": "Enviando para próprio endereço",
         "cannotSendToOwnExplanation": "Você não pode fazer uma transferência de valor para um dos seus próprios endereços.",
         "pleaseWait": "Por favor aguarde",
@@ -161,7 +161,7 @@
     "loading": {
         "loadingFirstTime": "Carregando a Seed pela primeira vez.",
         "thisMayTake": "Isto pode demorar algum tempo.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Não feche ou minimize o aplicativo.",
         "youMayNotice": "Você pode notar seu dispositivo ficar mais lento."
     },
     "newSeedSetup": {
@@ -235,7 +235,7 @@
     },
     "setSeedName": {
         "canUseMultipleSeeds": "Com esta carteira você poderá utilizar diversas Seeds, cada Seed requer um nome de conta exclusivo.",
-        "youCanAdd": "Pode adicionar mais Seeds no menu de opções."
+        "youCanAdd": "Você poderá adicionar novas Seeds no menu de opções."
     },
     "modeSelection": {
         "expert": "Avançado",
@@ -303,8 +303,8 @@
         "reminder": "Você pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que conclua todo o processo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Sua seed é {{maxSeedLength}} caracteres lidos da esquerda para a direita.",
-        "writeDownYourSeed": "<0>Anote suas seed e soma de verificação e </0><1>tenha certeza</1><2> que elas estão corretas.</2>"
+        "yourSeedIs": "A Seed possui {{maxSeedLength}} caracteres, lidos da esquerda para a direita.",
+        "writeDownYourSeed": "<0>Anote sua Seed e os dígitos de verificação e </0><1>certifique-se</1><2> que estão corretos.</2>"
     },
     "history": {
         "bundleHashCopied": "Pacote hash copiado",
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "AVISO",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Seu dispositivo aparenta ter sofrido um root.</0><1>Isso pode oferecer riscos à segurança de sua carteira.</1><2>Continuar, apesar dos riscos?</2>"
     },
     "pow": {
         "feeless": "É necessário completar uma prova de trabalho para enviar transações em IOTA gratuitamente.",
@@ -442,13 +442,13 @@
         "remote": "Remoto"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
+        "validatingReceiveAddress": "Validando o endereço de recebimento",
+        "syncingAccount": "Sincronizando a conta",
         "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "preparingTransfers": "Preparando as transferências",
+        "gettingTransactionsToApprove": "Obtendo as transações para aprovação",
+        "proofOfWork": "Completando a aprovação",
+        "broadcasting": "Transmitindo"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "A transição do registro instantâneo não pode ser concluída",
