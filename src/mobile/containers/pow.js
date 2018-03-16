@@ -7,6 +7,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { updatePowSettings } from 'iota-wallet-shared-modules/actions/settings';
 import Fonts from '../theme/Fonts';
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/infoBox';
 import Toggle from '../components/toggle';
@@ -80,12 +81,18 @@ class Pow extends Component {
     }
 
     onChange() {
-        this.props.updatePowSettings();
-        this.props.generateAlert(
-            'success',
-            'Proof of work settings',
-            'Your proof of work configuration has been updated.',
-        );
+        // Temporarily disable enabling PoW for android
+        // Version 3.4.0
+        if (isAndroid) {
+            this.props.generateAlert('error', 'Not available', 'On device proof of work is not available for android.');
+        } else {
+            this.props.updatePowSettings();
+            this.props.generateAlert(
+                'success',
+                'Proof of work settings',
+                'Your proof of work configuration has been updated.',
+            );
+        }
     }
 
     render() {
