@@ -184,7 +184,7 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails) =>
     return promoteTransactionAsync(consistentTail.hash);
 };
 
-export const makeTransaction = (seed, address, value, message, accountName, powFn) => (dispatch, getState) => {
+export const makeTransaction = (seed, address, value, message, accountName, powFn, genFn) => (dispatch, getState) => {
     dispatch(sendTransferRequest());
 
     // Use a local variable to keep track if the promise chain was interrupted internally.
@@ -208,7 +208,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
             .then((shouldAllowSending) => {
                 if (shouldAllowSending) {
                     const currentAccountState = selectedAccountStateFactory(accountName)(getState());
-                    return syncAddresses(seed, currentAccountState, true);
+                    return syncAddresses(seed, currentAccountState, genFn, true);
                 }
 
                 chainBrokenInternally = true;

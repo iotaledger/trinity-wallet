@@ -110,36 +110,29 @@ class Pow extends Component {
                             }
                         />
                         <View style={{ flex: 1.1 }} />
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            <TouchableWithoutFeedback
-                                onPress={this.onChange}
-                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 70, right: width / 35 }}
-                            >
+                        <TouchableWithoutFeedback
+                            onPress={this.onChange}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 70, right: width / 35 }}
+                        >
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={styles.toggleTextContainer}>
                                     <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
                                         {t('local')}
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={this.onChange}>
                                 <Toggle
                                     active={remotePoW}
                                     bodyColor={body.color}
                                     primaryColor={primary.color}
                                     scale={1.3}
                                 />
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback
-                                onPress={this.onChange}
-                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 35, right: width / 70 }}
-                            >
                                 <View style={styles.toggleTextContainer}>
                                     <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
                                         {t('remote')}
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
-                        </View>
+                            </View>
+                        </TouchableWithoutFeedback>
                         <View style={{ flex: 1.5 }} />
                     </View>
                     <View style={styles.bottomContainer}>
