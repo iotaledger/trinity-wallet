@@ -444,7 +444,7 @@
     "progressSteps": {
         "validatingReceiveAddress": "Validando o endereço de recebimento",
         "syncingAccount": "Sincronizando a conta",
-        "preparingInputs": "Preparing inputs",
+        "preparingInputs": "Preparando entradas",
         "preparingTransfers": "Preparando as transferências",
         "gettingTransactionsToApprove": "Obtendo as transações para aprovação",
         "proofOfWork": "Completando a aprovação",
