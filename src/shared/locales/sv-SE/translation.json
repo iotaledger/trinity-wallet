@@ -77,6 +77,9 @@
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
         "autopromoting": "Auto-befordrar överföring",
         "autopromotingExplanation": "Befordrar transaktion med hashen {{hash}}",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Skickar till egen adress",
         "cannotSendToOwnExplanation": "Du kan inte göra en värdetransaktion till en av dina egna adresser.",
         "pleaseWait": "Var god vänta",
@@ -430,13 +433,22 @@
     },
     "rootDetection": {
         "warning": "VARNING",
-        "rootDetected": "<0>Din enhet verkar vara rootad/jailbreakad.</0><1>Detta kan utgöra en betydande risk för din plånboks säkerhet.</1><2>Vill du fortsätta trots denna risk?</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "Det är nödvändigt att genomföra ett bevis på arbete för att skicka avgiftsfria transaktioner i IOTA.",
         "localOrRemote": "Bevis på arbete kan antingen slutföras lokalt på din enhet eller avlastas till en nod.",
         "local": "Lokal",
         "remote": "Fjärr"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validating receive address",
+        "syncingAccount": "Syncing account",
+        "preparingInputs": "Preparing inputs",
+        "preparingTransfers": "Preparing transfers",
+        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "proofOfWork": "Completing proof of work",
+        "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan inte slutföra snapshot-övergången",
