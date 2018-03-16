@@ -440,8 +440,8 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "A transição do registro instantâneo não pode ser concluída",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransitionExplanation": "Seu saldo deve ser maior que 0 (zero) para completar esta transação.",
+        "transitionComplete": "Transição de registro instantâneo concluída",
+        "transitionCompleteExplanation": "A transição do registro instantâneo foi concluída com sucesso."
     }
 }
