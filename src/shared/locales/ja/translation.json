@@ -53,7 +53,7 @@
         "syncInProgress": "同期中...",
         "syncInProgressExplanation": "同期が完了するまでお待ち下さい。",
         "somethingWentWrong": "何かが間違っています。",
-        "somethingWentWrongRestart": "Please restart the app.",
+        "somethingWentWrongRestart": "アプリを再起動して下さい。",
         "somethingWentWrongTryAgain": "Please try again.",
         "node": "ノード",
         "cannotPerformAction": "操作を実行できません。",
