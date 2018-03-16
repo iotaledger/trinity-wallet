@@ -79,7 +79,7 @@
         "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進",
         "promoting": "送金促進",
         "promotionError": "送金を促進できませんでした。",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "noLongerValid": "促進しようとしているバンドルはもう有効ではありません。",
         "cannotSendToOwn": "自分のアドレスに送金する。",
         "cannotSendToOwnExplanation": "自分のアドレスに送金することができません。",
         "pleaseWait": "少々お待ちください。",
@@ -161,7 +161,7 @@
     "loading": {
         "loadingFirstTime": "初めてのSeedを読み込んでいます。",
         "thisMayTake": "少々お待ち下さい。",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "アプリを最小化したり終了したりしないでください。",
         "youMayNotice": "あなたのデバイスが遅くなることがあります。"
     },
     "newSeedSetup": {
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "警告",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>あなたのデバイスはルート化されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
     },
     "pow": {
         "feeless": "IOTAの取引手数料無しの送金を行うには小規模のPoWを行う必要があります。",
@@ -442,13 +442,13 @@
         "remote": "リモート"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
+        "validatingReceiveAddress": "受取アドレスの検証",
         "syncingAccount": "Syncing account",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
         "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "ブロードキャスト"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "スナップショットの遷移を完了できません。",
