@@ -77,6 +77,9 @@
         "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションを再登録",
         "autopromoting": "送金を自動促進",
         "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "自分のアドレスに送金する。",
         "cannotSendToOwnExplanation": "自分のアドレスに送金することができません。",
         "pleaseWait": "少々お待ちください。",
@@ -430,13 +433,22 @@
     },
     "rootDetection": {
         "warning": "警告",
-        "rootDetected": "<0>あなたのデバイスはルート化もしくは脱獄されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "IOTAの取引手数料無しの送金を行うには小規模のPoWを行う必要があります。",
         "localOrRemote": "PoWはデバイス上でローカルに行うか、ノードにお任せすることができます。",
         "local": "ローカル",
         "remote": "リモート"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validating receive address",
+        "syncingAccount": "Syncing account",
+        "preparingInputs": "Preparing inputs",
+        "preparingTransfers": "Preparing transfers",
+        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "proofOfWork": "Completing proof of work",
+        "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "スナップショットの遷移を完了できません。",
