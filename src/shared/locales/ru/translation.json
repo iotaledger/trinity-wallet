@@ -53,7 +53,8 @@
         "syncInProgress": "Идёт синхронизация",
         "syncInProgressExplanation": "Пожалуйста, подождите пока синхронизация будет завершена.",
         "somethingWentWrong": "Что-то пошло не так",
-        "somethingWentWrongExplanation": "Пожалуйста, перезапустите приложение.",
+        "somethingWentWrongRestart": "Please restart the app.",
+        "somethingWentWrongTryAgain": "Please try again.",
         "node": "Узел",
         "cannotPerformAction": "Не удается выполнить действие",
         "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса кошелька.",
@@ -157,6 +158,7 @@
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
         "thisMayTake": "Это может занять некоторое время.",
+        "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "Вы можете заметить замедление работы Вашего устройства."
     },
     "newSeedSetup": {
