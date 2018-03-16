@@ -91,7 +91,7 @@ export class TwoFactorSetupAddKey extends Component {
     onKeyPress(key) {
         const { t } = this.props;
         if (key) {
-            Clipboard.setString(key);
+            Clipboard.setString(key.replace(/\s/g, ''));
             this.props.generateAlert('success', t('keyCopied'), t('keyCopiedExplanation'));
         }
     }
