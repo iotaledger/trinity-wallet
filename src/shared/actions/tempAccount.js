@@ -18,7 +18,7 @@ export const ActionTypes = {
     SEND_TRANSFER_ERROR: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_ERROR',
     SET_COPIED_TO_CLIPBOARD: 'IOTA/TEMP_ACCOUNT/SET_COPIED_TO_CLIPBOARD',
     SET_RECEIVE_ADDRESS: 'IOTA/TEMP_ACCOUNT/SET_RECEIVE_ADDRESS',
-    SET_SEED_NAME: 'IOTA/TEMP_ACCOUNT/SET_SEED_NAME',
+    SET_ACCOUNT_NAME: 'IOTA/TEMP_ACCOUNT/SET_ACCOUNT_NAME',
     SET_PASSWORD: 'IOTA/TEMP_ACCOUNT/SET_PASSWORD',
     CLEAR_TEMP_DATA: 'IOTA/TEMP_ACCOUNT/CLEAR_TEMP_DATA',
     SET_USED_SEED_TO_LOGIN: 'IOTA/TEMP_ACCOUNT/SET_USED_SEED_TO_LOGIN',
@@ -163,8 +163,8 @@ export const setPassword = (payload) => ({
     payload,
 });
 
-export const setSeedName = (payload) => ({
-    type: ActionTypes.SET_SEED_NAME,
+export const setAccountName = (payload) => ({
+    type: ActionTypes.SET_ACCOUNT_NAME,
     payload,
 });
 
@@ -173,11 +173,10 @@ export const setAdditionalAccountInfo = (payload) => ({
     payload,
 });
 
-export const generateNewAddress = (seed, accountName, existingAccountData) => {
+export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-
-        return syncAddresses(seed, existingAccountData, true)
+        return syncAddresses(seed, existingAccountData, genFn, true)
             .then((newAccountData) => {
                 const receiveAddress = iota.utils.addChecksum(getLatestAddress(newAccountData.addresses));
                 dispatch(updateAddresses(accountName, newAccountData.addresses));

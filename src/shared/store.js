@@ -8,7 +8,6 @@ import account from './reducers/account';
 import app from './reducers/app';
 import settings from './reducers/settings';
 import seeds from './reducers/seeds';
-import notifications from './reducers/notifications';
 import alerts from './reducers/alerts';
 import home from './reducers/home';
 import keychain from './reducers/keychain';
@@ -30,7 +29,6 @@ const reducers = combineReducers({
     app,
     settings,
     seeds,
-    notifications,
     home,
     keychain,
     polling,

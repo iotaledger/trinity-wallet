@@ -55,7 +55,8 @@
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
         "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
+        "somethingWentWrongRestart": "Please restart the app.",
+        "somethingWentWrongTryAgain": "Please try again.",
         "node": "Node",
         "cannotPerformAction": "Cannot perform action",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
@@ -78,6 +79,9 @@
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
         "pleaseWait": "Please wait",
@@ -166,6 +170,7 @@
     "loading": {
         "loadingFirstTime": "Loading seed for the first time.",
         "thisMayTake": "This may take a while.",
+        "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "You may notice your device slowing down."
     },
     "newSeedSetup": {
@@ -375,7 +380,7 @@
         "one": "One"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "This action cannot be undone.",
         "enterPassword": "Enter your password to delete this account."
@@ -465,7 +470,7 @@
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Proof of work",
+        "proofOfWork": "Completing proof of work",
         "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {

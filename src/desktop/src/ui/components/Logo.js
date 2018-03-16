@@ -12,6 +12,8 @@ import css from './logo.css';
  */
 export default class Logo extends React.PureComponent {
     static propTypes = {
+        /** On animation end  event */
+        onEnd: PropTypes.func,
         /** Logo size */
         size: PropTypes.number,
         /** Animation state */
@@ -21,7 +23,7 @@ export default class Logo extends React.PureComponent {
     };
 
     render() {
-        const { size, loop, animate } = this.props;
+        const { size, loop, animate, onEnd } = this.props;
 
         const options = {
             loop: loop,
@@ -31,7 +33,25 @@ export default class Logo extends React.PureComponent {
 
         return (
             <div className={css.logo} style={{ width: size, height: size }}>
-                {!animate ? <Icon icon="iota" size={size} /> : <Lottie width={size} height={size} options={options} />}
+                {!animate ? (
+                    <Icon icon="iota" size={size} />
+                ) : (
+                    <Lottie
+                        width={size}
+                        height={size}
+                        options={options}
+                        eventListeners={[
+                            {
+                                eventName: 'complete',
+                                callback: () => {
+                                    if (typeof onEnd === 'function') {
+                                        onEnd();
+                                    }
+                                },
+                            },
+                        ]}
+                    />
+                )}
             </div>
         );
     }

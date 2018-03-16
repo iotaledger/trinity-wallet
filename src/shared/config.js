@@ -1,3 +1,5 @@
+export const DESKTOP_VERSION = '0.1.0';
+
 export const defaultNode = 'http://trinity.iota.fm:80';
 export const nodes = [
     'http://trinity.iota.fm:80',
@@ -9,6 +11,8 @@ export const nodes = [
     'http://148.251.181.105:14265',
     'http://nodes.iota.fm:80',
 ];
+
+export const UPDATE_URL = 'https://trinity-releases.now.sh/release.json';
 
 export const DEFAULT_DEPTH = 4;
 export const DEFAULT_MIN_WEIGHT_MAGNITUDE = 14;
