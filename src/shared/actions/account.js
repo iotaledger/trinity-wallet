@@ -222,23 +222,16 @@ export const getFullAccountInfoAdditionalSeed = (
     };
 
     dispatch(fullAccountInfoAdditionalSeedFetchRequest());
+
     getAccountData(seed, accountName, genFn)
         .then((data) => {
             dispatch(clearTempData()); // Clean up partial state for reducer.
-            return mapTransactionHashesForUnspentAddressesToState(data);
-        })
-        .then((dataWithTxHashesForUnspentAddresses) =>
-            mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
-        )
-        .then((dataWithPendingTxHashesForSpentAddresses) => {
             if (storeInKeychainPromise) {
                 storeInKeychainPromise(password, seed, accountName)
-                    .then(() =>
-                        dispatch(fullAccountInfoAdditionalSeedFetchSuccess(dataWithPendingTxHashesForSpentAddresses)),
-                    )
+                    .then(() => dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data)))
                     .catch((err) => onError(err));
             } else {
-                dispatch(fullAccountInfoAdditionalSeedFetchSuccess(dataWithPendingTxHashesForSpentAddresses));
+                dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
             }
         })
         .catch((err) => onError(err));
@@ -249,13 +242,7 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
         dispatch(fullAccountInfoFirstSeedFetchRequest());
 
         getAccountData(seed, accountName, genFn)
-            .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
-            .then((dataWithTxHashesForUnspentAddresses) =>
-                mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
-            )
-            .then((dataWithPendingTxHashesForSpentAddresses) =>
-                dispatch(fullAccountInfoFirstSeedFetchSuccess(dataWithPendingTxHashesForSpentAddresses)),
-            )
+            .then((data) => dispatch(fullAccountInfoFirstSeedFetchSuccess(data)))
             .catch((err) => {
                 pushScreen(navigator, 'login');
                 dispatch(generateAccountInfoErrorAlert(err));
@@ -269,13 +256,9 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
         dispatch(manualSyncRequest());
 
         getAccountData(seed, accountName, genFn)
-            .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
-            .then((dataWithTxHashesForUnspentAddresses) =>
-                mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
-            )
-            .then((dataWithPendingTxHashesForSpentAddresses) => {
+            .then((data) => {
                 dispatch(generateSyncingCompleteAlert());
-                dispatch(manualSyncSuccess(dataWithPendingTxHashesForSpentAddresses));
+                dispatch(manualSyncSuccess(data));
             })
             .catch((err) => {
                 dispatch(generateSyncingErrorAlert(err));

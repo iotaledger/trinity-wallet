@@ -9,8 +9,8 @@ import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isNull from 'lodash/isNull';
 import isEmpty from 'lodash/isEmpty';
+import isFunction from 'lodash/isFunction';
 import filter from 'lodash/filter';
-import omitBy from 'lodash/omitBy';
 import size from 'lodash/size';
 import some from 'lodash/some';
 import reduce from 'lodash/reduce';
@@ -21,17 +21,21 @@ import flatten from 'lodash/flatten';
 import orderBy from 'lodash/orderBy';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 import { iota } from './index';
-import { getBalancesSync, accumulateBalance } from './addresses';
+import {
+    getBalancesSync,
+    accumulateBalance,
+    getUnspentAddressesSync,
+    getSpentAddressesWithPendingTransfersSync,
+} from './addresses';
 import {
     getBalancesAsync,
     getTransactionsObjectsAsync,
     getBundleAsync,
     getLatestInclusionAsync,
     findTransactionObjectsAsync,
-    prepareTransfersAsync,
-    getTransactionsToApproveAsync,
-    storeAndBroadcastAsync,
+    findTransactionsAsync,
 } from './extendedApi';
+import Errors from './../errors';
 
 /**
  *   Returns a transfer array
@@ -118,20 +122,6 @@ export const categorizeTransactionsByPersistence = (tailTransactions, states) =>
             unconfirmed: {},
         },
     );
-};
-
-/**
- *   Accepts unconfirmed and confirmed transactions.
- *   Removes all those unconfirmed transfers that are already confirmed.
- *
- *   @method removeIrrelevantUnconfirmedTransfers
- *   @param {object} categorizedTransfers - transfers categorized by confirmed/unconfirmed as dictionary with key as bundle hash
- *   @returns {object} Unconfirmed transfers as dictionary after removing transfer objects that are already confirmed.
- **/
-
-export const removeIrrelevantUnconfirmedTransfers = (categorizedTransfers) => {
-    const { unconfirmed, confirmed } = categorizedTransfers;
-    return omitBy(unconfirmed, (tx, bundle) => bundle in confirmed);
 };
 
 export const isReceivedTransfer = (bundle, addresses) => {
@@ -356,19 +346,6 @@ export const getFirstConsistentTail = (tails, idx) => {
         .catch(() => false);
 };
 
-export const formatTransfers = (transfers) => {
-    // Order transfers from oldest to newest
-    return transfers.slice().sort((a, b) => {
-        if (a[0].timestamp > b[0].timestamp) {
-            return -1;
-        }
-        if (a[0].timestamp < b[0].timestamp) {
-            return 1;
-        }
-        return 0;
-    });
-};
-
 /**
  *   Takes in transfer bundles and only keep a single copy
  *
@@ -478,7 +455,8 @@ export const getBundlesWithPersistence = (inclusionStates, hashes) => {
 };
 
 /**
- *   Checks if there is a difference between local transaction hashes and ledger's transaction hashes.
+ *   Accepts tail transaction object and all transaction objects from bundle hashes
+ *   Then construct a bundle by following trunk transaction from tail transaction object.
  *
  *   @method constructBundle
  *   @param {object} tailTransaction
@@ -499,15 +477,6 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
 
     let hasFoundLastTransfer = false;
 
-    // Assign parent transactions (trunk and branch)
-    // Starting from the remainder transaction object (index = 0 in sortedTransactionObjects)
-    // - When index === 0 i.e. remainder transaction object
-    //    * Assign trunkTransaction with provided trunk transaction from (getTransactionsToApprove)
-    //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)
-    // - When index > 0 i.e. not remainder transaction objects
-    //    * Assign trunkTransaction with hash of previous transaction object
-    //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)    let nextTrunk = tailTransaction.trunkTransaction;
-
     // Start off from by searching for trunk transaction of tail transaction object,
     // Which is hash of the next transfer i.e. transfer with current index 1
     let nextTrunkTransaction = tailTransaction.trunkTransaction;
@@ -527,7 +496,7 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
         const isLastTransferInBundle = transfer.currentIndex === transfer.lastIndex;
 
         // Assign trunk transaction of this transaction as the next trunk transaction to be searched for,
-        // Next trunk transaction should always be the hash of currentIndex + 1 except for the case of remainder objects (currentIndex === lastIndex)
+        // Next trunk transaction should always be the hash of currentIndex + 1 except for the case in remainder objects (currentIndex === lastIndex)
         nextTrunkTransaction = transfer.trunkTransaction;
 
         bundle.push(transfer);
@@ -569,7 +538,7 @@ export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
 
 /**
  *   Get transaction objects associated with hashes, assign persistence by calling inclusion states
- *   Resolves formatted transfers.
+ *   Resolves transfers.
  *
  *   @method syncTransfers
  *   @param {array} diff
@@ -608,7 +577,7 @@ export const syncTransfers = (diff, accountState) => {
             const updatedTransfers = [...accountState.transfers, ...newTransfers];
 
             return {
-                transfers: formatTransfers(updatedTransfers),
+                transfers: updatedTransfers,
                 newTransfers,
             };
         });
@@ -774,7 +743,7 @@ export const getAllTailTransactionsForBundle = (bundleHash, transfers) => {
  *
  *   @method performPow
  *   @param {function} powFn
- *   @param {array} transactionObjects
+ *   @param {array} trytes
  *   @param {string} trunkTransaction
  *   @param {string} branchTransaction
  *   @param {integer} [minWeightMagnitude = 14]
@@ -782,11 +751,23 @@ export const getAllTailTransactionsForBundle = (bundleHash, transfers) => {
  **/
 export const performPow = (
     powFn,
-    transactionObjects,
+    trytes,
     trunkTransaction,
     branchTransaction,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
 ) => {
+    if (!isFunction(powFn)) {
+        throw new Error(Errors.POW_FUNCTION_UNDEFINED);
+    }
+
+    const transactionObjects = map(trytes, (transactionTrytes) =>
+        assign({}, iota.utils.transactionObject(transactionTrytes), {
+            attachmentTimestamp: Date.now(),
+            attachmentTimestampLowerBound: 0,
+            attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
+        }),
+    );
+
     // Order transaction objects in descending to make sure it starts from remainder object.
     const sortedTransactionObjects = orderBy(transactionObjects, 'currentIndex', ['desc']);
 
@@ -813,8 +794,8 @@ export const performPow = (
                     const trytesWithNonce = transactionTryteString.substr(0, 2673 - nonce.length).concat(nonce);
                     const transactionObjectWithNonce = iota.utils.transactionObject(trytesWithNonce);
 
-                    result.trytes.push(trytesWithNonce);
-                    result.transactionObjects.push(transactionObjectWithNonce);
+                    result.trytes.unshift(trytesWithNonce);
+                    result.transactionObjects.unshift(transactionObjectWithNonce);
 
                     return result;
                 });
@@ -825,57 +806,55 @@ export const performPow = (
 };
 
 /**
- *   Wrapper function that prepares transfers by signing
- *   inputs if it's a value transfer and send trytes to tangle
+ *   Finds latest transaction hashes for unspent addresses.
  *
- *   @method makeTransferWithLocalPow
- *   @param {string} seed
- *   @param {array} transfers
- *   @param {function} powFn
- *   @param {object} [options = null]
- *   @returns {promise}
+ *   IMPORTANT: This function should always be used after the account is synced.
+ *
+ *   @method getTransactionHashesForUnspentAddresses
+ *   @param {object} addressData
+ *
+ *   @returns {Promise<array>}.
  **/
-export const makeTransferWithLocalPow = (seed, transfers, powFn, options = null) => {
-    return prepareTransfersAsync(seed, transfers, options).then((trytes) => sendTrytes(trytes, powFn));
+export const getTransactionHashesForUnspentAddresses = (addressData) => {
+    const unspentAddresses = getUnspentAddressesSync(addressData);
+
+    if (isEmpty(unspentAddresses)) {
+        return Promise.resolve([]);
+    }
+
+    return findTransactionsAsync({ addresses: unspentAddresses });
 };
 
 /**
- *   Get transaction to approve (trunk and branch)
- *   Perform proof of work
- *   Store and broadcast trytes
+ *   Finds latest pending transaction hashes for spent addresses.
  *
- *   @method sendTrytes
- *   @param {array} trytes
- *   @param {function} powFn
- *   @returns {promise<object>}
+ *   IMPORTANT: This function should always be used after the account is sycnced.
+ *
+ *   @method getPendingTransactionHashesForSpentAddresses
+ *   @param {array} transfers
+ *   @param {object} addressData
+ *
+ *   @returns {Promise<array>}
  **/
-export const sendTrytes = (trytes, powFn) => {
-    const cached = {
-        trytes: [],
-        transactionObjects: [],
-    };
+export const getPendingTransactionHashesForSpentAddresses = (transfers, addressData) => {
+    const pendingTransfers = filterConfirmedTransfers(transfers);
 
-    cached.trytes = trytes;
+    const spentAddressesWithPendingTransfers = getSpentAddressesWithPendingTransfersSync(pendingTransfers, addressData);
 
-    return getTransactionsToApproveAsync()
-        .then(({ trunkTransaction, branchTransaction }) => {
-            cached.transactionObjects = map(cached.trytes, (transactionTrytes) =>
-                assign({}, iota.utils.transactionObject(transactionTrytes), {
-                    attachmentTimestamp: Date.now(),
-                    attachmentTimestampLowerBound: 0,
-                    attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
-                }),
-            );
+    if (isEmpty(spentAddressesWithPendingTransfers)) {
+        return Promise.resolve([]);
+    }
 
-            return performPow(powFn, cached.transactionObjects, trunkTransaction, branchTransaction);
-        })
-        .then(({ trytes, transactionObjects }) => {
-            // performPow orders transactions/trytes in descending order
-            // Sort trytes/transactions in ascending before storing and broadcasting
-            cached.trytes = trytes.reverse();
-            cached.transactionObjects = transactionObjects.reverse();
+    return findTransactionsAsync({ addresses: spentAddressesWithPendingTransfers });
+};
 
-            return storeAndBroadcastAsync(cached.trytes);
-        })
-        .then(() => cached.transactionObjects);
+export const getLatestTransactionHashes = (transfers, addresses) => {
+    return Promise.all([
+        getTransactionHashesForUnspentAddresses(addresses),
+        getPendingTransactionHashesForSpentAddresses(transfers, addresses),
+    ]).then((hashes) => {
+        const [txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses] = hashes;
+
+        return { txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses };
+    });
 };
