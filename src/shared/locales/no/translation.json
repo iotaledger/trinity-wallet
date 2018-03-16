@@ -53,7 +53,8 @@
         "syncInProgress": "Synkronisering pågår",
         "syncInProgressExplanation": "Vent til synkronisering er fullført.",
         "somethingWentWrong": "Noe gikk galt",
-        "somethingWentWrongExplanation": "Vennligst start applikasjonen på nytt.",
+        "somethingWentWrongRestart": "Please restart the app.",
+        "somethingWentWrongTryAgain": "Please try again.",
         "node": "Node",
         "cannotPerformAction": "Kan ikke utføre handling",
         "cannotPerformActionExplanation": "Gå til avanserte innstillinger for å tilbakestille lommeboken.",
@@ -157,6 +158,7 @@
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
         "thisMayTake": "Dette kan ta en stund.",
+        "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "Du kan merke en treghet på enheten din."
     },
     "newSeedSetup": {
