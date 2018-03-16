@@ -521,12 +521,12 @@ export class Send extends Component {
     }
 
     getProgressSummary() {
-        const { timeTakenByEachProgressStep } = this.props;
+        const { timeTakenByEachProgressStep, t } = this.props;
         const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
 
         return (
             <Text>
-                {/*<Text>{t('global:done')} </Text>*/}
+                <Text>{t('global:done')} </Text>
                 <Text style={styles.progressSummaryText}>
                     {map(timeTakenByEachProgressStep, (time, index) => {
                         if (index === size(timeTakenByEachProgressStep) - 1) {
@@ -795,7 +795,13 @@ export class Send extends Component {
                             )}
                         {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
                             !isModalVisible && (
-                                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                <View
+                                    style={{
+                                        flex: 1,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                    }}
+                                >
                                     <ProgressBar
                                         indeterminate={this.props.activeStepIndex === -1}
                                         progress={this.props.activeStepIndex / size(this.props.activeSteps)}
