@@ -355,7 +355,7 @@
         "one": "एक"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "क्या आप निश्चित है कि आपको {{accountName}} खाता मिटाना है?",
         "yourSeedWillBeRemoved": "आपके सीड और लेन-देन विवरण को हटा दिया जाएगा ।",
         "thisAction": "यह पूर्ववत् नहीं किया जा सकता है!",
         "enterPassword": "इस खाते को हटाने के लिए अपना पासवर्ड दर्ज करें ।"
