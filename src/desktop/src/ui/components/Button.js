@@ -52,7 +52,7 @@ export default class Button extends React.PureComponent {
                 style={style}
                 type={type ? type : 'button'}
                 onClick={onClick}
-                disabled={(disabled)}
+                disabled={disabled}
                 className={classNames(css.button, css[className], css[variant], loadingClass)}
             >
                 {children}

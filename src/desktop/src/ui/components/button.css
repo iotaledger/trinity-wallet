@@ -54,10 +54,10 @@
     }
 }
 
-footer{
-   .button + .button {
-      margin-left: 40px;
-   }
+footer {
+    .button + .button {
+        margin-left: 40px;
+    }
 }
 
 .primary {
