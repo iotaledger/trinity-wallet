@@ -234,7 +234,7 @@
         "retypePassword": "Digite a Senha Novamente"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Com esta carteira você poderá utilizar diversas Seeds, cada Seed requer um nome de conta exclusivo.",
+        "canUseMultipleSeeds": "Com sua carteira você poderá utilizar diversas Seeds, cada Seed requer um nome de conta exclusivo.",
         "youCanAdd": "Você poderá adicionar novas Seeds no menu de opções."
     },
     "modeSelection": {
