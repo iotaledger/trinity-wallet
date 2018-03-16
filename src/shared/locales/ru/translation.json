@@ -77,6 +77,9 @@
         "autoreattachingExplanation": "Повторное присоединение транзакций с хэш {{hash}}",
         "autopromoting": "Передача автопромотирования",
         "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Отправка на собственный адрес",
         "cannotSendToOwnExplanation": "Вы не можете переводить средства на один из Ваших собственных адресов.",
         "pleaseWait": "Пожалуйста, подождите",
@@ -430,13 +433,22 @@
     },
     "rootDetection": {
         "warning": "ВНИМАНИЕ",
-        "rootDetected": "<0>Похоже, что Ваше устройство было скомпрометировано (rooted/jailbroken).</0> <1>Это может представлять серьёзную угрозу безопасности Вашего кошелька.</1> <2>Хотите ли Вы продолжить, несмотря на этот риск?</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "Для отправки транзакций без комиссий в IOTA необходимо выполнить процедуру доказательства выполнения работы (proof-of-work).",
         "localOrRemote": "Процедура доказательства выполнения работы может быть выполнена локально на Вашем устройстве или удалённо на узле, к которому вы подключены.",
         "local": "На Вашем устройстве",
         "remote": "На узле"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validating receive address",
+        "syncingAccount": "Syncing account",
+        "preparingInputs": "Preparing inputs",
+        "preparingTransfers": "Preparing transfers",
+        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "proofOfWork": "Completing proof of work",
+        "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
