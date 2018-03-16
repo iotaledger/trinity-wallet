@@ -7,7 +7,7 @@ const initialState = {
     receiveAddress: ' ',
     password: '',
     seed: Array(82).join(' '),
-    seedName: 'MAIN WALLET',
+    accountName: 'MAIN WALLET',
     seedIndex: 0,
     isGeneratingReceiveAddress: false,
     usedSeedToLogin: false,
@@ -42,10 +42,10 @@ export default (state = initialState, action) => {
                 ...state,
                 seed: action.payload,
             };
-        case ActionTypes.SET_SEED_NAME:
+        case ActionTypes.SET_ACCOUNT_NAME:
             return {
                 ...state,
-                seedName: action.payload,
+                accountName: action.payload,
             };
         case ActionTypes.SET_PASSWORD:
             return {
@@ -134,12 +134,12 @@ export default (state = initialState, action) => {
                 ...state,
                 copiedToClipboard: action.payload,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST:
+        case AccountActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST:
             return {
                 ...state,
                 ready: false,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
+        case AccountActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS:
             return {
                 ...state,
                 ready: true,
@@ -147,18 +147,18 @@ export default (state = initialState, action) => {
                 addingAdditionalAccount: false,
                 additionalAccountName: '',
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST:
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
                 ...state,
                 hasErrorFetchingAccountInfoOnLogin: false,
                 ready: false,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
             return {
                 ...state,
                 ready: true,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR:
             return {
                 ...state,
                 hasErrorFetchingAccountInfoOnLogin: true,

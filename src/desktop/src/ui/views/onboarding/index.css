@@ -23,8 +23,8 @@
         > a {
             margin-left: auto;
             margin-right: 30px;
-            &:hover span{
-               color: var(--primary);
+            &:hover span {
+                color: var(--primary);
             }
         }
     }
