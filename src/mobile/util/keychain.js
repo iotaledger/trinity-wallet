@@ -136,11 +136,12 @@ export const hasDuplicateSeed = (seedInfo, seed) => {
 
 export const updateAccountNameInKeychain = async (pwdHash, oldAccountName, newAccountName, alias = 'seeds') => {
     const seedInfo = await getAllSeedsFromKeychain(pwdHash);
+    let info = {};
     if (oldAccountName !== newAccountName) {
-        Object.defineProperty(seedInfo, newAccountName, Object.getOwnPropertyDescriptor(seedInfo, oldAccountName));
-        delete seedInfo[oldAccountName];
+        info = assign({}, seedInfo, { [newAccountName]: seedInfo[oldAccountName] });
+        delete info[oldAccountName];
     }
-    return await createAndStoreBoxInKeychain(pwdHash, seedInfo, alias);
+    return await createAndStoreBoxInKeychain(pwdHash, info, alias);
 };
 
 export const deleteSeedFromKeychain = async (pwdHash, accountNameToDelete, alias = 'seeds') => {
