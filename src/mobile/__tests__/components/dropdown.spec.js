@@ -15,7 +15,7 @@ const getProps = (overrides) =>
         {},
         {
             body: { color: 'white' },
-            negative: { color: 'green' },
+            primary: { color: 'green' },
             onRef: noop,
             options: [],
             disableWhen: false,
