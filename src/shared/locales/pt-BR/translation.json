@@ -7,7 +7,7 @@
         "refresh": "ATUALIZAR",
         "qr": "QR",
         "balanceError": "Saldo insuficiente",
-        "balanceErrorMessage": "Você não tem IOTA suficiente para realizar esta transferência.",
+        "balanceErrorMessage": "Você não tem IOTAs suficientes para realizar esta transferência.",
         "transferError": "Erro de transferência",
         "transferErrorMessage": "Algo deu errado ao enviar a sua transferência. Por favor, tente novamente.",
         "transferSent": "Transferência enviada",
@@ -23,7 +23,7 @@
         "invalidResponseSendingTransfer": "O servidor retornou uma resposta inválida ao enviar a transferência.",
         "seed": "Seed",
         "back": "VOLTAR",
-        "backLowercase": "Anterior",
+        "backLowercase": "Voltar",
         "done": "CONCLUIR",
         "doneLowercase": "Concluir",
         "next": "PRÓXIMO",
@@ -53,7 +53,8 @@
         "syncInProgress": "Sincronizando",
         "syncInProgressExplanation": "Por favor, aguarde até que a sincronização seja concluída.",
         "somethingWentWrong": "Ocorreu um problema",
-        "somethingWentWrongExplanation": "Por favor, reinicie o aplicativo.",
+        "somethingWentWrongRestart": "Please restart the app.",
+        "somethingWentWrongTryAgain": "Please try again.",
         "node": "Servidor",
         "cannotPerformAction": "Não é possível executar a ação",
         "cannotPerformActionExplanation": "Vá para opções para redefinir a carteira.",
@@ -81,8 +82,8 @@
         "pleaseWait": "Por favor aguarde",
         "pleaseWaitExplanation": "A Trinity está efetuando outra função. Por favor, aguarde e tente novamente.",
         "pleaseWaitTransferExplanation": "Seu saldo atual disponível está sendo usado em outras transferências. Por favor aguarde uma confirmação antes de tentar novamente.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgress": "Transição de Registro Instantâneo em andamento",
+        "snapshotTransitionInProgressExplanation": "Por favor, aguarde até a transição ser finalizada."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -157,6 +158,7 @@
     "loading": {
         "loadingFirstTime": "Carregando a Seed pela primeira vez.",
         "thisMayTake": "Isto pode demorar algum tempo.",
+        "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "Você pode notar seu dispositivo ficar mais lento."
     },
     "newSeedSetup": {
@@ -200,7 +202,7 @@
         "invalidAddressExplanation1": "O endereço deve ter {{maxLength}} caracteres e deve conter o código de verificação.",
         "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
         "invalidAddressExplanation3": "O endereço contém um código de verificação incorreto.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanationGeneric": "Endereços válidos devem possuir 90 caracteres e conter apenas A-Z ou 9.",
         "notEnoughFunds": "Fundos insuficientes",
         "notEnoughFundsExplanation": "Você não tem IOTA suficiente para realizar esta transferência.",
         "keyReuse": "Reutilização da chave",
@@ -247,7 +249,7 @@
         "theme": "Tema",
         "currency": "Moeda",
         "language": "Idioma",
-        "accountManagement": "Gerenciamento de conta",
+        "accountManagement": "Gerenciar Contas",
         "addNewSeed": "Adicionar nova seed",
         "twoFA": "Autenticação 2FA",
         "changePassword": "Mudar senha",
@@ -314,7 +316,7 @@
         "viewAddresses": "Ver endereços",
         "editAccountName": "Editar o nome da conta",
         "deleteAccount": "Excluir conta",
-        "addNewAccount": "Adicionar nova conta"
+        "addNewAccount": "Adicionar nova Conta"
     },
     "addCustomNode": {
         "customNode": "Servidor personalizado",
@@ -322,7 +324,7 @@
     },
     "addNewAccount": {
         "useExistingSeed": "Usar seed existente",
-        "createNewSeed": "Criar uma seed nova"
+        "createNewSeed": "Criar uma nova seed"
     },
     "advancedSettings": {
         "selectNode": "Selecionar servidor",
@@ -355,7 +357,7 @@
         "one": "Um"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Você deseja realmente remover {{accountName}}?",
         "yourSeedWillBeRemoved": "Sua seed e histórico de transação serão removidos.",
         "thisAction": "Esta ação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
@@ -437,7 +439,7 @@
         "remote": "Remoto"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransition": "A transição do registro instantâneo não pode ser concluída",
         "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully."
