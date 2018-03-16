@@ -526,7 +526,6 @@ export class Send extends Component {
 
         return (
             <Text>
-                <Text>{t('global:done')} </Text>
                 <Text style={styles.progressSummaryText}>
                     {map(timeTakenByEachProgressStep, (time, index) => {
                         if (index === size(timeTakenByEachProgressStep) - 1) {
