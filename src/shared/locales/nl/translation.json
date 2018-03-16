@@ -77,6 +77,9 @@
         "autoreattachingExplanation": "Transactie herbevestigen met hash {{hash}}",
         "autopromoting": "Auto-promoten transactie",
         "autopromotingExplanation": "Promoten transactie met hash {{hash}}",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Versturen naar eigen adres",
         "cannotSendToOwnExplanation": "U kunt geen transactie sturen naar een van uw eigen adressen.",
         "pleaseWait": "Een ogenblik geduld",
@@ -430,13 +433,22 @@
     },
     "rootDetection": {
         "warning": "WAARSCHUWING",
-        "rootDetected": "<0>Uw apparaat lijkt ge-root/jailbroken te zijn.</0><1>Dit vormt een aanzienlijk risico voor de veiligheid van uw wallet.</1><2>Wenst verder te gaan, ondanks dit risico?</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "Een bewijs van inspanning (Proof of Work) is nodig om kostenloze transacties in IOTA te verzenden.",
         "localOrRemote": "Bewijs van inspanning kan lokaal gedaan worden op uw apparaat, of overgedragen worden aan een node.",
         "local": "Lokaal",
         "remote": "Extern"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validating receive address",
+        "syncingAccount": "Syncing account",
+        "preparingInputs": "Preparing inputs",
+        "preparingTransfers": "Preparing transfers",
+        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "proofOfWork": "Completing proof of work",
+        "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot transitie kan niet worden voltooid",
