@@ -179,7 +179,7 @@
     },
     "receive": {
         "addressCopied": "Endereço copiado",
-        "addressCopiedExplanation": "O seu endereço foi copiado para o clipboard.",
+        "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "generateNewAddress": "NOVO ENDEREÇO",
         "message": "Mensagem opcional",
         "removeMessage": "REMOVER MENSAGEM",
@@ -226,12 +226,12 @@
         "passwordMismatch": "As senhas não são iguais",
         "passwordMismatchExplanation": "As senhas digitadas são diferentes. Tente novamente.",
         "nowWeNeedTo": "Agora precisamos criar uma senha.",
-        "anEncryptedCopy": "Um cópia criptografada da sua Seed será guardada no seu dispositivo. Você usará esta senha para acessar sua carteira no futuro.",
+        "anEncryptedCopy": "Um cópia criptografada da sua Seed será armazenada em seu dispositivo. Você usará esta senha para acessar sua carteira no futuro.",
         "ensure": "Certifique-se de usar uma senha forte de pelo menos 12 caracteres.",
         "retypePassword": "Digite a Senha Novamente"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Pode utilizar várias Seeds com esta carteira. Cada Seed requer um nome de conta.",
+        "canUseMultipleSeeds": "Com esta carteira você poderá utilizar diversas Seeds, cada Seed requer um nome de conta exclusivo.",
         "youCanAdd": "Pode adicionar mais Seeds no menu de opções."
     },
     "modeSelection": {
@@ -305,9 +305,9 @@
     },
     "history": {
         "bundleHashCopied": "Pacote hash copiado",
-        "bundleHashCopiedExplanation": "O pacote hash foi copiado para o clipboard.",
+        "bundleHashCopiedExplanation": "A chave do pacote foi copiada para a área de transferência.",
         "addressCopied": "Endereço copiado",
-        "addressCopiedExplanation": "O seu endereço foi copiado para o clipboard.",
+        "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "send": "ENVIAR",
         "receive": "RECEBER"
     },
@@ -315,7 +315,7 @@
         "viewSeed": "Ver seed",
         "viewAddresses": "Ver endereços",
         "editAccountName": "Editar o nome da conta",
-        "deleteAccount": "Excluir conta",
+        "deleteAccount": "Excluir Conta",
         "addNewAccount": "Adicionar nova Conta"
     },
     "addCustomNode": {
