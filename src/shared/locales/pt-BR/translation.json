@@ -368,9 +368,9 @@
     "manualSync": {
         "outOfSync": "O seu histórico de transações parece estar fora de sincronia?",
         "pressToSync": "Pressione o botão abaixo para sincronizar sua conta.",
-        "thisMayTake": "Isto pode demorar um pouco. Você pode notar o seu dispositivo ficar mais lento.",
+        "thisMayTake": "Isto pode demorar um pouco. Você poderá notar que seu dispositivo ficará mais lento.",
         "doNotClose": "Atenção, minimizar o app irá cancelar a sincronização.",
-        "syncAccount": "SINCRONIZAR CONTA",
+        "syncAccount": "SINCRONIZAR",
         "syncingYourAccount": "Sincronizando sua conta."
     },
     "useExistingSeed": {
