@@ -48,7 +48,7 @@
         "no": "NÃO",
         "password": "Senha",
         "passwordOrFingerprint": "Senha ou Autenticação Biométrica",
-        "unrecognisedPassword": "Senha não reconhecida",
+        "unrecognisedPassword": "Senha Inválida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
         "syncInProgress": "Sincronizando",
         "syncInProgressExplanation": "Por favor, aguarde até que a sincronização seja concluída.",
@@ -171,7 +171,7 @@
         "individualLetters": "Toque sobre as letras individuais para tornar o processo ainda mais aleatório."
     },
     "onboardingComplete": {
-        "walletReady": "A carteira está configurada e pronta para ser utilizada. Se desejar efetuar alterações no futuro, utilize o menu Opções."
+        "walletReady": "Sua carteira está configurada e pronta para ser utilizada. Se desejar efetuar alterações no futuro, utilize o menu Opções."
     },
     "paperWallet": {
         "clickToPrint": "Clique no botão abaixo para imprimir uma cópia em papel da sua seed.",
@@ -298,7 +298,7 @@
         "keepSafe": "Por favor, mantenha a sua seed protegida e segura."
     },
     "welcome": {
-        "thankYou": "Obrigado por baixar a carteira IOTA.",
+        "thankYou": "Obrigado por instalar a carteira IOTA.",
         "weWillSpend": "Vamos passar os próximos minutos configurando sua carteira.",
         "reminder": "Você pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que conclua todo o processo."
     },
