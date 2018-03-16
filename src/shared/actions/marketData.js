@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import filter from 'lodash/filter';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/marketData';
 
 // FIXME: Hacking no-console linting.
@@ -74,24 +75,57 @@ export function getPrice() {
     };
 }
 
+// export function getChartData() {
+//     return (dispatch) => {
+//         const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
+//         //const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
+//         const timeframes = ['24h', '7d', '1m', '1h'];
+//
+//         currencies.forEach((currency) => {
+//             timeframes.forEach((timeframe) => {
+//                 const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
+//                     timeframe,
+//                 )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeframe)}`;
+//                 return fetch(url)
+//                     .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error))
+//                     .then((json) => {
+//                         if (json) {
+//                             const data = formatChartData(json, currency, timeframe);
+//                             dispatch(setChartData(data, currency, timeframe));
+//                         }
+//                     });
+//             });
+//         });
+//     };
+// }
+
 export function getChartData() {
     return (dispatch) => {
+        let arrayResultsFormated = [];
+        let arrayCurrenciesTimeFrames = [];
         const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
+        let arrayPromises = [];
+        currencies.forEach((currencyItem) => {
+            filter(timeframes, timeFrameItem => {
+                arrayCurrenciesTimeFrames.push({currency: currencyItem, timeFrame: timeFrameItem});
+            });
+        });
 
-        currencies.forEach((currency) => {
-            timeframes.forEach((timeframe) => {
-                const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
-                    timeframe,
-                )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeframe)}`;
-                return fetch(url)
-                    .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error))
-                    .then((json) => {
-                        if (json) {
-                            const data = formatChartData(json, currency, timeframe);
-                            dispatch(setChartData(data, currency, timeframe));
-                        }
-                    });
+        arrayCurrenciesTimeFrames.forEach((currencyTimeFrameArrayItem) => {
+            let url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat
+            (currencyTimeFrameArrayItem.timeFrame)}?fsym=IOT&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat
+            (currencyTimeFrameArrayItem.timeFrame)}`;
+            arrayPromises.push(fetch(url).then( (response)=> {
+                return response.json();
+            }));
+        });
+        Promise.all(arrayPromises).then( (results) => {
+            results.forEach( (resultItem, index) => {
+                let resultFormated = formatChartData(resultItem,
+                    arrayCurrenciesTimeFrames[index].currency, arrayCurrenciesTimeFrames[index].timeFrame);
+                dispatch(setChartData(resultFormated, arrayCurrenciesTimeFrames[index].currency,
+                    arrayCurrenciesTimeFrames[index].timeFrame));
             });
         });
     };
