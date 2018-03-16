@@ -1,13 +1,7 @@
 import takeRight from 'lodash/takeRight';
 import { iota } from '../libs/iota';
 import { selectedAccountStateFactory } from '../selectors/account';
-import {
-    syncAccount,
-    getAccountData,
-    mapTransactionHashesForUnspentAddressesToState,
-    mapPendingTransactionHashesForSpentAddressesToState,
-    syncAccountAfterSpending,
-} from '../libs/iota/accounts';
+import { syncAccount, getAccountData, syncAccountAfterSpending } from '../libs/iota/accounts';
 import { formatAddresses, syncAddresses, getNewAddress } from '../libs/iota/addresses';
 import {
     clearTempData,
@@ -331,7 +325,7 @@ export const set2FAStatus = (payload) => ({
     payload,
 });
 
-export const transitionForSnapshot = (seed, addresses) => {
+export const transitionForSnapshot = (seed, addresses, genFn) => {
     return (dispatch) => {
         dispatch(snapshotTransitionRequest());
         if (addresses.length > 0) {
@@ -339,7 +333,7 @@ export const transitionForSnapshot = (seed, addresses) => {
             dispatch(updateTransitionAddresses(addresses));
         } else {
             setTimeout(() => {
-                dispatch(generateAddressesAndGetBalance(seed, 0));
+                dispatch(generateAddressesAndGetBalance(seed, 0, genFn));
             });
         }
     };
@@ -361,8 +355,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                     return dispatch(
                         generateAlert(
                             'error',
-                            t('cannotCompleteTransition'),
-                            t('cannotCompleteTransitionExplanation'),
+                            i18next.t('cannotCompleteTransition'),
+                            i18next.t('cannotCompleteTransitionExplanation'),
                             10000,
                         ),
                     );
@@ -386,8 +380,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                                 dispatch(
                                     generateAlert(
                                         'success',
-                                        t('transitionComplete'),
-                                        t('transitionCompleteExplanation'),
+                                        i18next.t('transitionComplete'),
+                                        i18next.t('transitionCompleteExplanation'),
                                         20000,
                                     ),
                                 );
@@ -411,7 +405,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
     };
 };
 
-export const generateAddressesAndGetBalance = (seed, index) => {
+export const generateAddressesAndGetBalance = (seed, index, genFn) => {
     return (dispatch) => {
         const options = {
             index: index,
@@ -419,7 +413,7 @@ export const generateAddressesAndGetBalance = (seed, index) => {
             returnAll: true,
             security: 2,
         };
-        getNewAddress(seed, options, (error, addresses) => {
+        getNewAddress(seed, options, genFn, (error, addresses) => {
             if (error) {
                 dispatch(snapshotTransitionError());
                 dispatch(generateTransitionErrorAlert());
