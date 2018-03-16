@@ -261,10 +261,6 @@ export class Send extends Component {
             return false;
         }
 
-        if (balance !== newProps.balance) {
-            return false;
-        }
-
         return true;
     }
 
