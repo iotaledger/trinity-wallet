@@ -519,20 +519,20 @@ export class Send extends Component {
     }
 
     getProgressSummary() {
-        const { timeTakenByEachProgressStep, t } = this.props;
+        const { timeTakenByEachProgressStep } = this.props;
         const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
 
         return (
             <Text>
-                <Text>{t('global:done')} </Text>
+                {/*<Text>{t('global:done')} </Text>*/}
                 <Text style={styles.progressSummaryText}>
-                    ({map(timeTakenByEachProgressStep, (time, index) => {
+                    {map(timeTakenByEachProgressStep, (time, index) => {
                         if (index === size(timeTakenByEachProgressStep) - 1) {
-                            return `${time}=${totalTimeTaken.toFixed(1)} s`;
+                            return `${time} = ${totalTimeTaken.toFixed(1)} s`;
                         }
 
-                        return `${time}+`;
-                    })})
+                        return `${time} + `;
+                    })}
                 </Text>
             </Text>
         );
@@ -774,31 +774,35 @@ export class Send extends Component {
                         <View style={{ flex: 0.3 }} />
                         {!isSendingTransfer &&
                             !isGettingSensitiveInfoToMakeTransaction && (
-                                <CtaButton
-                                    ctaColor={primary.color}
-                                    ctaBorderColor={primary.hover}
-                                    secondaryCtaColor={primary.body}
-                                    text={t('send')}
-                                    onPress={() => {
-                                        this.onSendPress();
-                                        if (address === '' && amount === '' && message && '') {
-                                            this.addressField.blur();
-                                            this.amountField.blur();
-                                            this.messageField.blur();
-                                        }
-                                    }}
-                                />
+                                <View style={{ flex: 1 }}>
+                                    <CtaButton
+                                        ctaColor={primary.color}
+                                        ctaBorderColor={primary.hover}
+                                        secondaryCtaColor={primary.body}
+                                        text={t('send')}
+                                        onPress={() => {
+                                            this.onSendPress();
+                                            if (address === '' && amount === '' && message && '') {
+                                                this.addressField.blur();
+                                                this.amountField.blur();
+                                                this.messageField.blur();
+                                            }
+                                        }}
+                                    />
+                                </View>
                             )}
                         {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
                             !isModalVisible && (
-                                <ProgressBar
-                                    indeterminate={this.props.activeStepIndex === -1}
-                                    progress={this.props.activeStepIndex / size(this.props.activeSteps)}
-                                    color={body.color}
-                                    textColor={body.color}
-                                >
-                                    {this.renderProgressBarChildren()}
-                                </ProgressBar>
+                                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                    <ProgressBar
+                                        indeterminate={this.props.activeStepIndex === -1}
+                                        progress={this.props.activeStepIndex / size(this.props.activeSteps)}
+                                        color={primary.color}
+                                        textColor={body.color}
+                                    >
+                                        {this.renderProgressBarChildren()}
+                                    </ProgressBar>
+                                </View>
                             )}
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
@@ -816,6 +820,7 @@ export class Send extends Component {
                                 </View>
                             </TouchableOpacity>
                         </View>
+                        <View style={{ flex: 0.3 }} />
                     </View>
                     <Modal
                         animationIn="bounceInUp"
