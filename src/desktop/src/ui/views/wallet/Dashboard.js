@@ -31,7 +31,7 @@ class Dashboard extends React.PureComponent {
     componentWillMount() {
         if (this.props.deepLinks.address !== '') {
             const { generateAlert} = this.props;
-            generateAlert('success', 'Link', 'Send amount was updated.');
+            generateAlert('success', 'Autofill', 'Transaction data autofilled from link.');
             this.props.history.push('/wallet/send');
         }
     }
