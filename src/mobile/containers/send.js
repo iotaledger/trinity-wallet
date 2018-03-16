@@ -221,7 +221,9 @@ export class Send extends Component {
     }
 
     componentDidMount() {
-        this.props.resetProgress();
+        if (!this.props.isSendingTransfer) {
+            this.props.resetProgress();
+        }
     }
 
     componentWillReceiveProps(newProps) {
