@@ -3,7 +3,7 @@ import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, BackHandler } from 'react-native';
+import { StyleSheet, View, BackHandler, NativeModules } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
@@ -44,7 +44,7 @@ import {
 } from '../util/keychain';
 import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
 import { height } from '../util/dimensions';
-import { isAndroid } from '../util/device';
+import { isAndroid, isIOS } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -217,7 +217,13 @@ class Settings extends Component {
                             t('global:somethingWentWrongTryAgain'),
                         );
                     }
-                    this.props.manuallySyncAccount(seed, selectedAccountName);
+                    let genFn = null;
+                    if (isAndroid) {
+                        //  genFn = Android multiAddress function
+                    } else if (isIOS) {
+                        genFn = NativeModules.Iota.address;
+                    }
+                    this.props.manuallySyncAccount(seed, selectedAccountName, genFn);
                 })
                 .catch((err) => console.error(err)); // eslint-disable-line no-console
         } else {
