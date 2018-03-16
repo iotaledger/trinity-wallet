@@ -82,7 +82,6 @@ export class MainSettings extends Component {
         themeName: PropTypes.string.isRequired,
         bodyColor: PropTypes.string.isRequired,
         bg: PropTypes.string.isRequired,
-        color: PropTypes.string.isRequired,
         borderBottomColor: PropTypes.shape({
             borderBottomColor: PropTypes.string.isRequired,
         }).isRequired,
@@ -130,7 +129,7 @@ export class MainSettings extends Component {
     }
 
     renderModalContent() {
-        const { textColor, bg, color } = this.props;
+        const { textColor, bg, bodyColor } = this.props;
         return (
             <LogoutConfirmationModal
                 style={{ flex: 1 }}
@@ -138,7 +137,7 @@ export class MainSettings extends Component {
                 logout={this.logout}
                 backgroundColor={bg}
                 textColor={textColor}
-                borderColor={{ borderColor: color }}
+                borderColor={{ borderColor: bodyColor }}
             />
         );
     }
@@ -313,8 +312,7 @@ const mapStateToProps = (state) => {
         bodyColor: color,
         borderBottomColor: { borderBottomColor: color },
         textColor: { color },
-        bg,
-        color,
+        bg
     };
 };
 
