@@ -1,11 +1,12 @@
 .list {
     margin: 0px;
     padding: 0px;
+    overflow: scroll;
+    max-height: calc(100vh - var(--header-height) - 40px);
 
     &.compact {
         border-top: 1px solid var(--body-alt);
-        border-bottom: 1px solid var(--body-alt);
-        padding: 20px 0;
+        padding: 10px 0;
     }
 
     a {
@@ -14,7 +15,7 @@
         > div {
             list-style: none;
             display: flex;
-            line-height: 32px;
+            line-height: 38px;
             cursor: pointer;
             width: 100%;
             > span {
@@ -23,7 +24,7 @@
             }
             > span:nth-child(1) {
                 width: 24px;
-                line-height: 32px;
+                line-height: 38px;
             }
             > span:nth-child(2) {
                 text-align: left;
@@ -40,17 +41,25 @@
         &:hover > div {
             background: var(--body-hover);
         }
-    }
-
-    .received {
-        strong {
-            color: var(--extra);
+        &.received {
+            > strong {
+                color: var(--primary);
+            }
         }
-    }
-
-    .sent {
-        strong {
-            color: var(--highlight);
+        &.sent {
+            strong {
+                color: var(--secondary);
+            }
+        }
+        &.confirmed {
+            span:nth-child(4) {
+                color: var(--positive);
+            }
+        }
+        &.pending {
+            span:nth-child(4) {
+                color: var(--negative);
+            }
         }
     }
 
@@ -103,6 +112,12 @@
     padding: 35px;
     border-radius: 8px;
     font-size: var(--font-size-small);
+
+    @media (max-width: 810px) {
+        width: 100%;
+        padding: 35px 0px;
+    }
+
     header {
         display: flex;
         justify-content: space-between;

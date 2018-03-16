@@ -4,4 +4,7 @@
     @media print {
         display: none;
     }
+    svg path {
+        fill: var(--body);
+    }
 }
