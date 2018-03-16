@@ -53,7 +53,8 @@
         "syncInProgress": "Synchronisation en cours",
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
-        "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
+        "somethingWentWrongRestart": "Please restart the app.",
+        "somethingWentWrongTryAgain": "Please try again.",
         "node": "Serveur",
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
@@ -157,6 +158,7 @@
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
         "thisMayTake": "Cela peut prendre un certain temps.",
+        "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "Il se peut que votre appareil ralentisse."
     },
     "newSeedSetup": {
