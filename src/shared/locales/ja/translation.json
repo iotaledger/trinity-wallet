@@ -74,11 +74,11 @@
         "rebroadcast": "再放送",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "autoreattaching": "Tangleに自動再登録",
-        "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションを再登録",
+        "autoreattachingExplanation": "ハッシュ {{hash}} と取引を再登録",
         "autopromoting": "送金を自動促進",
-        "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進",
+        "autopromotingExplanation": "ハッシュ{{hash}}による取引の促進",
         "promoting": "送金促進",
-        "promotionError": "送金を促進できませんでした。",
+        "promotionError": "取引を促進できませんでした。",
         "noLongerValid": "促進しようとしているバンドルはもう有効ではありません。",
         "cannotSendToOwn": "自分のアドレスに送金する。",
         "cannotSendToOwnExplanation": "自分のアドレスに送金することができません。",
@@ -361,7 +361,7 @@
     },
     "deleteAccount": {
         "areYouSure": "{{accountName}}を削除してもよろしいですか？",
-        "yourSeedWillBeRemoved": "Seedとトランザクションの履歴を削除します。",
+        "yourSeedWillBeRemoved": "Seedと取引の履歴を削除します。",
         "thisAction": "この操作は元に戻せません。",
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
     },
@@ -446,8 +446,8 @@
         "syncingAccount": "アカウントの同期",
         "preparingInputs": "入力の準備",
         "preparingTransfers": "送金の準備",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
+        "gettingTransactionsToApprove": "取引の承認",
+        "proofOfWork": "PoWの完了",
         "broadcasting": "ブロードキャスト"
     },
     "snapshotTransition": {
