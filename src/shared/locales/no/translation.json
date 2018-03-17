@@ -161,7 +161,7 @@
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
         "thisMayTake": "Dette kan ta en stund.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Ikke minimer eller lukk applikasjonen.",
         "youMayNotice": "Du kan merke en treghet på enheten din."
     },
     "newSeedSetup": {
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "ADVARSEL",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Enheten synes å være \"rooted/jailbroken\".</0><1>Dette kan utgjøre en betydelig risiko for sikkerheten til lommeboken.</1><2>Vil du fortsette tross denne risikoen?</2>"
     },
     "pow": {
         "feeless": "Det er nødvendig for å utføre litt PoW (Proof of Work) for å sende gebyrfrie transaksjoner i IOTA.",
@@ -442,13 +442,13 @@
         "remote": "Ekstern"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "validatingReceiveAddress": "Validerer mottaksadressen",
+        "syncingAccount": "Synkroniser konto",
+        "preparingInputs": "Forbereder innganger",
+        "preparingTransfers": "Forbereder transaksjoner",
+        "gettingTransactionsToApprove": "Mottar transaksjoner til godkjenning",
+        "proofOfWork": "Fullfører PoW (Proof of Work)",
+        "broadcasting": "Kringkaster"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan ikke fullføre snapshot synkronisering",
