@@ -362,7 +362,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoria poistetaan.",
-        "thisAction": "Tätä toimintoa ei voi jälkikäteen peruuttaa.",
+        "thisAction": "Tätä toimintoa ei voi peruuttaa jälkikäteen.",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {
