@@ -53,12 +53,12 @@
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
         "somethingWentWrong": "Coś poszło nie tak",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongRestart": "Uruchom aplikację ponownie.",
+        "somethingWentWrongTryAgain": "Proszę spróbować ponownie.",
         "node": "Serwer",
         "cannotPerformAction": "Nie można wykonać akcji",
         "cannotPerformActionExplanation": "Aby zresetować portfel, przejdź do ustawień zaawansowanych.",
-        "attachToTangleUnavailable": "Dołączenie do sieci Tangle niedostępne",
+        "attachToTangleUnavailable": "Dowiązanie do sieci Tangle niedostępne",
         "attachToTangleUnavailableExplanation": "Dowiązanie do sieci Tangle nie jest dostępne na wybranym serwerze.",
         "wallet": "Portfel",
         "sent": "Wysłano",
@@ -77,9 +77,9 @@
         "autoreattachingExplanation": "Reattaching transakcji z hashem {{hash}}",
         "autopromoting": "Autopromowanie transferu",
         "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "promoting": "Promowanie transferu",
+        "promotionError": "Nie można wypromować transakcji",
+        "noLongerValid": "Pakiet, który próbujesz promować, nie jest już ważny",
         "cannotSendToOwn": "Wysyłka na własny adres",
         "cannotSendToOwnExplanation": "Nie możesz wykonać transferu środków na swój własny adres.",
         "pleaseWait": "Proszę czekać",
@@ -161,7 +161,7 @@
     "loading": {
         "loadingFirstTime": "Ładowanie klucza seed po raz pierwszy.",
         "thisMayTake": "To może chwilę potrwać.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Nie minimalizuj ani nie zamykaj aplikacji.",
         "youMayNotice": "Możesz zaobserwować spowolnienie Twojego urządzenia."
     },
     "newSeedSetup": {
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "OSTRZEŻENIE",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Twoje urządzenie wydaje się być odblokowane (dostęp root).</0><1>To może stanowić istotne zagrożenie dla bezpieczeństwa Twojego portfela.</1><2>Czy chcesz kontynuować pomimo tego ryzyka?</2>"
     },
     "pow": {
         "feeless": "Niezbędnym jest wykonanie niewielkiego proof of work, aby przesyłać transakcje IOTA bez prowizji.",
@@ -442,17 +442,17 @@
         "remote": "Zdalnie"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
+        "validatingReceiveAddress": "Sprawdzanie adresu odbiorczego",
+        "syncingAccount": "Synchronizacja konta",
+        "preparingInputs": "Przygotowywanie danych wejściowych",
+        "preparingTransfers": "Przygotowywanie transferów",
+        "gettingTransactionsToApprove": "Uzyskiwanie transakcji do potwierdzenia",
+        "proofOfWork": "Finalizacja proof of work",
         "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nie można zakończyć aktualizacji środków",
-        "cannotCompleteTransitionExplanation": "Twoje saldo musi być większe niż 0, aby zakończyć aktualizację środków.",
+        "cannotCompleteTransitionExplanation": "Aby wykonać aktualizację środków, Twoje saldo musi być większe niż 0.",
         "transitionComplete": "Zakończono aktualizację",
         "transitionCompleteExplanation": "Aktualizacja środków zakończyła się sukcesem."
     }
