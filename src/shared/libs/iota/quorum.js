@@ -1,6 +1,37 @@
-import { getValidNodes } from './multinode';
+import { setApiTimeout, clearApiTimeout } from './multinode';
 import { quorum_nodes } from '../../config';
 import objectHash from 'object-hash';
+
+export function getQuorumResult(nodefunc, nodelist, timeout, unorderedArrays, callback) {
+    let promises = [];
+
+    for (nodeapi of nodelist) {
+        promises.push(
+            new Promise((resolve, reject) => {
+                setApiTimeout(nodeapi, timeout);
+                nodefunc(nodeapi, (err, res) => {
+                    if (err) {
+                        resolve(null);
+                        return;
+                    }
+                    clearApiTimeout(nodeapi);
+                    resolve(res);
+                });
+            }),
+        );
+    }
+
+    Promise.all(promises).then((result) => {
+        // filter out all falsey values
+        result = result.filter(Boolean);
+
+        for (r of result) {
+            r.duration = 0;
+        }
+
+        callback(getMostCommon(result, unorderedArrays));
+    });
+}
 
 export function getMostCommon(objs, unorderedArrays) {
     /*
