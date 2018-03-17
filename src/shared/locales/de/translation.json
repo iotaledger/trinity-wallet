@@ -84,7 +84,7 @@
         "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden.",
         "pleaseWait": "Bitte warten",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
-        "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Überweisungen verwendet. Bitte warte, bis diese Überweisungen bestätigt sind, und versuche es erneut.",
+        "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Transaktionen verwendet. Bitte warte, bis diese Transaktionen bestätigt sind, und versuche es erneut.",
         "snapshotTransitionInProgress": "Snapshot-Umstellung wird ausgeführt",
         "snapshotTransitionInProgressExplanation": "Bitte warte, bis die Umstellung abgeschlossen ist."
     },
@@ -245,7 +245,7 @@
     },
     "settings": {
         "transferSending": "Sende Überweisung",
-        "transferSendingExplanation": "Bitte warte bis deine Überweisung gesendet wurde.",
+        "transferSendingExplanation": "Bitte warte, bis deine Transaktion gesendet wurde.",
         "generatingAddress": "Erzeuge Empfangsadresse",
         "generatingAddressExplanation": "Bitte warte bis deine Adresse erzeugt wurde.",
         "mode": "Modus",
@@ -279,7 +279,7 @@
         "paste": "Einfügen",
         "selectAll": "Alle auswählen",
         "securitySettings": "Sicherheitseinstellungen",
-        "fingerprint": "Fingerabdruck-Authentifizierung",
+        "fingerprint": "Biometrische Authentifizierung",
         "couldNotFetchRates": "Kurse konnten nicht abgerufen werden",
         "couldNotFetchRatesExplanation": "Beim Abrufen der Umrechnungskurse für {{currency}} ist etwas schief gelaufen.",
         "fetchedConversionRates": "Umrechnungskurse abgerufen",
@@ -294,7 +294,7 @@
         "okay": "Okay. Lass uns dein Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
-        "explanation": "<0><0>Du kannst ihn verwenden, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Endgerät</3><4> aus auf dein Guthaben zuzugreifen. Aber wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
+        "explanation": "<0><0>Du kannst ihn verwenden, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Gerät</3><4> auf dein Guthaben zuzugreifen. Aber wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
@@ -333,7 +333,7 @@
         "selectNode": "Server auswählen",
         "addCustomNode": "Benutzerdefinierten Server hinzufügen",
         "manualSync": "Manuell synchronisieren",
-        "snapshotTransition": "Snapshot-Übertragung"
+        "snapshotTransition": "Snapshot-Umstellung"
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
@@ -367,9 +367,9 @@
     },
     "manualSync": {
         "outOfSync": "Sieht der Verlauf deiner Transaktionen so aus, als ob er nicht synchronisiert wäre?",
-        "pressToSync": "Drücke den Knopf unten, um dein Konto zu synchronisieren.",
+        "pressToSync": "Drücke die Schaltfläche unten, um dein Konto zu synchronisieren.",
         "thisMayTake": "Dies könnte eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
-        "doNotClose": "Beim minimieren der App wird die Synchronisierung abgebrochen.",
+        "doNotClose": "Beim Minimieren der App wird die Synchronisierung abgebrochen.",
         "syncAccount": "SYNCHRONISIEREN",
         "syncingYourAccount": "Konto wird synchronisiert."
     },
@@ -436,10 +436,10 @@
         "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
-        "feeless": "Um gebührenfreie Transaktionen mit IOTA zu tätigen ist ein kleiner \"proof of work\" nötig.",
-        "localOrRemote": "Der \"proof of work\" kann entweder lokal auf dem Gerät errechnet oder von einem Server übernommen werden.",
+        "feeless": "Um gebührenfreie Transaktionen mit IOTA zu senden, ist eine kleine Berechnung (\"Proof of Work\") nötig.",
+        "localOrRemote": "Der \"Proof of Work\" kann entweder lokal auf deinem Gerät erfolgen oder an einen Server übertragen werden.",
         "local": "Lokal",
-        "remote": "Fernberechnung"
+        "remote": "Berechnung durch Server"
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validating receive address",
@@ -452,8 +452,8 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot-Umstellung kann nicht abgeschlossenn werden",
-        "cannotCompleteTransitionExplanation": "Ihr Guthaben muss größer als 0 sein, um die Umstellung abzuschliessen.",
+        "cannotCompleteTransitionExplanation": "Ihr Guthaben muss größer als 0 sein, um die Umstellung abzuschließen.",
         "transitionComplete": "Snapshot-Umstellung abgeschlossen",
-        "transitionCompleteExplanation": "Snapshot-Umstellung wurde erfolgreich ausgeführt."
+        "transitionCompleteExplanation": "Die Snapshot-Umstellung wurde erfolgreich abgeschlossen."
     }
 }
