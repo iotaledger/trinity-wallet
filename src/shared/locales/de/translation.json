@@ -79,7 +79,7 @@
         "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
         "promoting": "Transfer promoten",
         "promotionError": "Die Transaktion konnte nicht promoted werden",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "noLongerValid": "Den Bundle, welchen Du promoten möchtest, ist nicht mehr gültig",
         "cannotSendToOwn": "An eigene Adresse senden",
         "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden.",
         "pleaseWait": "Bitte warten",
@@ -161,7 +161,7 @@
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
         "thisMayTake": "Dies kann eine Weile dauern.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Die App nicht minimieren oder schließen.",
         "youMayNotice": "Dein Gerät könnte dabei langsamer werden."
     },
     "newSeedSetup": {
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "WARNUNG",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Das Betriebssystem deines Geräts scheint manipuliert zu sein.</0> <1>Dies kann ein erhebliches Risiko für die Sicherheit deiner Wallet darstellen.</1> <2>Möchtest du trotz dieses Risikos fortfahren?</2>"
     },
     "pow": {
         "feeless": "Um gebührenfreie Transaktionen mit IOTA zu senden, ist eine kleine Berechnung (\"Proof of Work\") nötig.",
@@ -442,13 +442,13 @@
         "remote": "Berechnung durch Server"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "validatingReceiveAddress": "Überprüfe Empfangsadresse",
+        "syncingAccount": "Konto synchronisieren",
+        "preparingInputs": "Vorbereitung der Daten",
+        "preparingTransfers": "Vorbereitung der Transaktionen",
+        "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktionen",
+        "proofOfWork": "Vervollständige Proof of Work",
+        "broadcasting": "An Tangle senden"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot-Umstellung kann nicht abgeschlossenn werden",
