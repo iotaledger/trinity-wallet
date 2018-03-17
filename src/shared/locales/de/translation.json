@@ -15,7 +15,7 @@
         "messageSent": "Nachricht gesendet",
         "messageSentMessage": "Deine Nachricht wurde an den Tangle gesendet.",
         "keyReuse": "Wiederverwendung des Keys",
-        "keyReuseError": "Du kannst an diese Adresse nicht senden, da von ihr bereits eine andere Transaktion ausgegangen ist.",
+        "keyReuseError": "Du kannst an keine Adresse senden, von der bereits eine andere Transaktion ausgegangen ist.",
         "invalidResponse": "Ungültige Antwort",
         "invalidResponseExplanation": "Der Server hat eine ungültige Antwort zurückgegeben.",
         "invalidResponsePollingExplanation": "Der Server hat beim Aktualisieren eine ungültige Antwort zurückgegeben.",
