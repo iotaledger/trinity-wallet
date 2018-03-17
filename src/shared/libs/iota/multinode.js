@@ -62,7 +62,7 @@ export function getValidNodes(urls, callback) {
                     if (err) {
                         resolve(undefined);
                     } else {
-                        resolve([iota, nodeinfo]);
+                        resolve(iota);
                     }
                 });
             }),
