@@ -234,8 +234,8 @@
         "retypePassword": "Kirjoita Salasana Uudelleen"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Voit lisätä useita seed-lukuja lompakkoosi. Jokainen seed-luku tulee nimetä erikseen.",
-        "youCanAdd": "Voit lisätä useampia seed-lukuja Asetukset-valikossa."
+        "canUseMultipleSeeds": "Voit lisätä useita seed-lukuja lompakkoosi. Jokainen seed-tili tulee nimetä erikseen.",
+        "youCanAdd": "Voit lisätä seed-lukuja Asetukset-valikossa."
     },
     "modeSelection": {
         "expert": "Edistynyt käyttäjä",
@@ -384,7 +384,7 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Olen tallettanut seed-lukuni",
         "reenter": "Sinua pyydetään nyt syöttämään seed-lukusi uudelleen.",
-        "reenterWarning": "Jos laitteesi hajoaa, etkä ole tallettanut seed-lukuasi, menetät IOTA-varasi."
+        "reenterWarning": "Jos laitteesi hajoaa, etkä ole tallettanut seed-lukuasi, varojesi palautus on mahdotonta."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TÄTÄ TOIMINTOA EI VOI KUMOTA.",
