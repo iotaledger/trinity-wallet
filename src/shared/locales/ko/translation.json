@@ -53,8 +53,8 @@
         "syncInProgress": "동기화 진행 중",
         "syncInProgressExplanation": "동기화가 완료될 때까지 기다려 주세요.",
         "somethingWentWrong": "알 수 없는 오류가 발생하였습니다.",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongRestart": "앱을 다시 실행하여 주십시오.",
+        "somethingWentWrongTryAgain": "다시 시도해 주십시오.",
         "node": "노드",
         "cannotPerformAction": "작업을 수행할 수 없음",
         "cannotPerformActionExplanation": "고급 설정으로 이동하여 지갑을 초기화하십시오.",
@@ -71,22 +71,22 @@
         "addresses": "주소",
         "reattach": "다시 어태치",
         "promote": "프로모트",
-        "rebroadcast": "REBROADCAST",
+        "rebroadcast": "재송출",
         "pressBackAgain": "앱을 닫으려면 뒤로가기를 다시 누르세요.",
         "autoreattaching": "어태치 자동 재시도중",
         "autoreattachingExplanation": "아래의 트랜잭션 해시를 다시 어태치합니다: {{hash}}",
         "autopromoting": "거래 자동 프로모트 중",
         "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "promoting": "거래 프로모트 중",
+        "promotionError": "트랜잭션을 프로모트할 수 없음",
+        "noLongerValid": "프로모트하려는 번들이 더 이상 유효하지 않습니다.",
         "cannotSendToOwn": "내 주소로 보내는 중",
         "cannotSendToOwnExplanation": "내 주소로는 가치 전송을 할 수 없습니다.",
         "pleaseWait": "잠시 기다려 주세요",
         "pleaseWaitExplanation": "트리니티가 다른 작업을 수행하는 중입니다. 잠시 후 다시 시도해 주십시오.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "pleaseWaitTransferExplanation": "현재 잔액이 다른 거래에 사용되고 있습니다. 진행중인 거래가 종료된 후 다시 시도해 주십시오.",
+        "snapshotTransitionInProgress": "스냅샷 이전 진행 중",
+        "snapshotTransitionInProgressExplanation": "스냅샷 이전 작업이 완료될 때까지 기다려 주십시오."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -161,12 +161,12 @@
     "loading": {
         "loadingFirstTime": "처음으로 시드를 불러오는 중입니다.",
         "thisMayTake": "시간이 조금 걸릴 수 있습니다.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "앱을 최소화하거나 종료하지 말아 주십시오.",
         "youMayNotice": "기기가 느려질 수도 있습니다."
     },
     "newSeedSetup": {
         "seedNotGenerated": "시드가 생성되지 않았습니다",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "새 시드를 생성해 주십시오.",
         "pressForNewSeed": "여기를 눌러 새 시드 생성",
         "individualLetters": "개별 문자를 눌러 해당 문자를 무작위로 바꿀 수 있습니다."
     },
@@ -187,7 +187,7 @@
         "message": "메시지 (선택)",
         "removeMessage": "메시지 삭제하기",
         "noAddresses": "주소 없음",
-        "spent": "Spent"
+        "spent": "사용됨"
     },
     "saveYourSeed": {
         "seedCleared": "시드 삭제됨",
@@ -280,10 +280,10 @@
         "selectAll": "전체 선택",
         "securitySettings": "보안 설정",
         "fingerprint": "생체 인증",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "couldNotFetchRates": "환율을 가져올 수 없음",
+        "couldNotFetchRatesExplanation": "{{currency}}로의 환율을 가져오는 중에 문제가 발생하였습니다.",
+        "fetchedConversionRates": "환율 가져옴",
+        "fetchedConversionRatesExplanation": "{{currency}}로의 최신 환율을 성공적으로 가져왔습니다."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "지갑을 초기화하려면 비밀번호를 입력하세요.",
@@ -360,7 +360,7 @@
         "one": "일"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "정말로 {{accountName}}을(를) 삭제하시겠습니까?",
         "yourSeedWillBeRemoved": "등록된 시드 및 거래 내역이 전부 제거됩니다.",
         "thisAction": "이 작업은 되돌릴 수 없습니다.",
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
