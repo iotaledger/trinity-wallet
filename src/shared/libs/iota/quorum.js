@@ -2,7 +2,7 @@ import { getValidNodes } from './multinode';
 import { quorum_nodes } from '../../config';
 import objectHash from 'object-hash';
 
-export function getMostCommon(objs) {
+export function getMostCommon(objs, unorderedArrays) {
     /*
       Returns the most commonly seen object in array.
     */
@@ -10,8 +10,12 @@ export function getMostCommon(objs) {
     let maxseen = 0;
     let seentimes = new Map();
 
+    unorderedArrays = unorderedArrays || false;
+
     for (let ob of objs) {
-        let rhash = objectHash(ob);
+        let rhash = objectHash(ob, {
+            unorderedArrays: unorderedArrays,
+        });
         let cnt = seentimes.get(rhash);
         if (!cnt) {
             cnt = 0;
