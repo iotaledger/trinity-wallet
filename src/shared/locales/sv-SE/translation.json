@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "VARNING",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Din enhet verkar vara rootad.</0><1>Detta kan utgöra en betydande risk för din plånboks säkerhet.</1><2>Vill du fortsätta trots denna risk?</2>"
     },
     "pow": {
         "feeless": "Det är nödvändigt att genomföra ett bevis på arbete för att skicka avgiftsfria transaktioner i IOTA.",
