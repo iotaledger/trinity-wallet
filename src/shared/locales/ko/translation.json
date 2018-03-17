@@ -366,10 +366,10 @@
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
+        "outOfSync": "거래 내역이 동기화되지 않았습니까?",
+        "pressToSync": "아래 버튼을 눌러 계정을 동기화할 수 있습니다.",
         "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "doNotClose": "동기화 중 앱을 최소화할 경우 동기화가 취소됩니다.",
         "syncAccount": "계정 동기화",
         "syncingYourAccount": "계정을 동기화 중입니다."
     },
@@ -433,11 +433,11 @@
     },
     "rootDetection": {
         "warning": "경고",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>기기가 루팅된 것이 감지되었습니다. </0><1>이 경우 지갑의 보안에 위험을 끼칠 수 있습니다.</1><2> 보안 위험을 감수하고 진행하시겠습니까?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "feeless": "IOTA에서는 수수료 없는 거래를 하기 위해 약간의 작업증명을 수행해야 합니다.",
+        "localOrRemote": "이러한 작업증명은 기기에서 직접 이루어지거나, 연결된 노드 측에서 수행할 수 있습니다.",
         "local": "Local",
         "remote": "Remote"
     },
