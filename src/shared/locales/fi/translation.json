@@ -383,7 +383,7 @@
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Olen tallettanut seed-lukuni",
-        "reenter": "Sinua pyydetään nyt uudelleensyöttämään seed-lukusi.",
+        "reenter": "Sinua pyydetään nyt syöttämään seed-lukusi uudelleen.",
         "reenterWarning": "Jos laitteesi hajoaa, etkä ole tallettanut seed-lukuasi, menetät IOTA-varasi."
     },
     "walletResetConfirmation": {
