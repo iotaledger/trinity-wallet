@@ -331,7 +331,7 @@
     },
     "advancedSettings": {
         "selectNode": "Valitse palvelin",
-        "addCustomNode": "Lisää mukautettu palvelin",
+        "addCustomNode": "Lisää omavalintainen palvelin",
         "manualSync": "Manuaalinen synkronointi",
         "snapshotTransition": "Snapshot hallinta"
     },
