@@ -99,7 +99,7 @@
         "accountName": "Ime računa",
         "noNickname": "Niste vnesli imena računa",
         "noNicknameExplanation": "Prosimo vnesite ime računa za pridobitev generirane vrednosti.",
-        "seedInUse": "Seed already in use",
+        "seedInUse": "Seme je že v uporabi",
         "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
