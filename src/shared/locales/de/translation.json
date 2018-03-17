@@ -70,8 +70,8 @@
         "bundleHash": "Bundle-Hash",
         "addresses": "Adressen",
         "reattach": "REATTACH",
-        "promote": "PROMOTE",
-        "rebroadcast": "REBROADCAST",
+        "promote": "PROMOTEN",
+        "rebroadcast": "ERNEUT SENDEN",
         "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
         "autoreattaching": "Automatisches anhängen an den Tangle",
         "autoreattachingExplanation": "Erneutes anhängen der Transaktion mit dem Hash {{hash}}",
@@ -208,7 +208,7 @@
         "invalidAddressExplanationGeneric": "Zulässige Adressen sollten aus 90 Zeichen bestehen und nur die Zeichen A-Z oder 9 enthalten.",
         "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
-        "keyReuse": "Key-Wiederverwendung",
+        "keyReuse": "Erneute Schlüsselverwendung",
         "keyReuseExplanation": "Die Adresse, die du zum Senden verwendest, wurde bereits benutzt. Bitte versuche es mit einer anderen Adresse.",
         "recipientAddress": "Adresse des Empfängers",
         "amount": "Betrag",
@@ -218,7 +218,7 @@
         "invalidMessageExplanation": "Deine Nachricht enthält ungültige Zeichen.",
         "send": "SENDEN",
         "invalidAmount": "Falschen Betrag eingegeben",
-        "invalidAmountExplanation": "Bitte gib einen gültigen Transaktionsbetrag ein. Die Liste der IOTA Einheiten am unteren Rand dieser Seite könnte hilfreich sein.",
+        "invalidAmountExplanation": "Bitte gib einen gültigen Betrag ein. Die Liste der IOTA Einheiten am unteren Rand dieser Seite könnte hilfreich sein.",
         "maximumSelected": "MAXIMALER Betrag ausgewählt",
         "iotaUnits": "IOTA Einheiten erklärt",
         "sendMax": "SENDE MAX"
@@ -429,7 +429,7 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Veränderung",
-        "volume": "Volumen (24Std)"
+        "volume": "Volumen (24h)"
     },
     "rootDetection": {
         "warning": "WARNUNG",
