@@ -53,8 +53,8 @@
         "syncInProgress": "सिंक्रनाइज़ेशन प्रगति पर है",
         "syncInProgressExplanation": "सिंकिंग पूर्ण होने तक कृपया प्रतीक्षा करें ।",
         "somethingWentWrong": "कुछ गलत हो गया",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongRestart": "कृपया वॉलेट रीस्टार्ट करें",
+        "somethingWentWrongTryAgain": "कृपया फिर से प्रयास करें।",
         "node": "नोड",
         "cannotPerformAction": "कार्रवाई नहीं कर सकते",
         "cannotPerformActionExplanation": "वॉलेट रीसेट करने के लिए एडवांस सेटिंग पर जाएं ।",
@@ -77,9 +77,9 @@
         "autoreattachingExplanation": "हैश {{hash}} ट्रांजेक्शन को री अटैच कर रहे है",
         "autopromoting": "ऑटोप्रोमोटिंग ट्रांसफर",
         "autopromotingExplanation": "हैश {{hash}} ट्रांजेक्शन को प्रमोट कर रहे है",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "promoting": "प्रोमोटिंग ट्रांसफर",
+        "promotionError": "ट्रांसैक्शन को प्रोमोट नहीं कर सकते",
+        "noLongerValid": "जिस बंडल को आप प्रोमोट करने का प्रयास कर रहे है वह अब मान्य नहीं है",
         "cannotSendToOwn": "स्वयं के पते पर भेजा जा रहा है",
         "cannotSendToOwnExplanation": "आप स्वयं के किसी पते पर मूल्य हस्तांतरण नहीं कर सकते",
         "pleaseWait": "कृपया प्रतीक्षा करें",
@@ -161,7 +161,7 @@
     "loading": {
         "loadingFirstTime": "पहली बार के लिए seed लोड हो रहा है ।",
         "thisMayTake": "इसमें कुछ समय लग सकता है ।",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "एप्लिकेशन को बंद न करे ।",
         "youMayNotice": "आप अपने डिवाइस धीमा देख सकते हैं ।"
     },
     "newSeedSetup": {
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "चेतावनी!",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0> अपने डिवाइसरूटेड/जेलब्रोकेन निहित प्रतीत होता है/</0> <1> यह अपने बटुए की सुरक्षा के लिए एक महत्वपूर्ण जोखिम पैदा कर सकते हैं । </1> <2> क्या आप इस जोखिम के बावजूद जारी रखना चाहते हैं? </2>"
     },
     "pow": {
         "feeless": "IOTA में निशुल्क ट्रांजेक्शन भेजने के लिए काम का थोड़ा सा सबूत पूरा करना जरूरी होता है ।",
@@ -442,13 +442,13 @@
         "remote": "दूरस्थ"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "validatingReceiveAddress": "प्राप्त पता की जाँच कर रहे है",
+        "syncingAccount": "खाता सिंकिंग",
+        "preparingInputs": "इनपुट की तैयारी",
+        "preparingTransfers": "ट्रांसफर के लिए रेडी हो रहे है",
+        "gettingTransactionsToApprove": "लेन-देन को मंजूरी मिल रही",
+        "proofOfWork": "काम का प्रमाण पूरा करना",
+        "broadcasting": "प्रसारण"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "स्नैपशॉट पूरा नहीं कर सकता",
