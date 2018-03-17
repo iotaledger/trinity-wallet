@@ -4,7 +4,7 @@
         "cancel": "ANNULEREN",
         "continue?": "Weet u zeker dat u wilt doorgaan?",
         "noTransactions": "Geen recente geschiedenis",
-        "refresh": "HERLAAD",
+        "refresh": "Herlaad",
         "qr": "QR",
         "balanceError": "Onvoldoende saldo",
         "balanceErrorMessage": "U hoeft niet genoeg IOTA om deze transactie te voltooien.",
@@ -69,12 +69,12 @@
         "pending": "In afwachting",
         "bundleHash": "Bundel Hash",
         "addresses": "Adressen",
-        "reattach": "HERBEVESTIGEN",
+        "reattach": "Opnieuw toevoegen",
         "promote": "PROMOTEN",
-        "rebroadcast": "HERVERZENDEN",
+        "rebroadcast": "Opnieuw verzenden",
         "pressBackAgain": "Druk nogmaals op Terug om de app te sluiten",
-        "autoreattaching": "Automatisch herbevestigen aan Tangle",
-        "autoreattachingExplanation": "Transactie herbevestigen met hash {{hash}}",
+        "autoreattaching": "Opnieuw koppelen aan Tangle",
+        "autoreattachingExplanation": "Transactie koppelen met hash {{hash}}",
         "autopromoting": "Auto-promoten transactie",
         "autopromotingExplanation": "Promoten transactie met hash {{hash}}",
         "promoting": "Promoten transactie",
@@ -360,7 +360,7 @@
         "one": "Een"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Weet u zeker dat u {{accountName}} wilt verwijderen?",
         "yourSeedWillBeRemoved": "Uw sleutel en transactiegeschiedenis zullen worden verwijderd.",
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
         "enterPassword": "Typ uw wachtwoord als u deze account wilt verwijderen."
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "WAARSCHUWING",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Uw apparaat lijkt ge-root te zijn.</0><1>Dit vormt een aanzienlijk risico voor de beveiliging van uw wallet.</1><2>Wenst verder te gaan, ondanks dit risico?</2>"
     },
     "pow": {
         "feeless": "Een bewijs van inspanning (Proof of Work) is nodig om kostenloze transacties in IOTA te verzenden.",
@@ -442,13 +442,13 @@
         "remote": "Extern"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "validatingReceiveAddress": "Ontvangstadres wordt gevalideerd",
+        "syncingAccount": "Account synchroniseren",
+        "preparingInputs": "Invoer voorbereiden",
+        "preparingTransfers": "Voorbereiding van transacties",
+        "gettingTransactionsToApprove": "Bezig met transacties akkoorderen",
+        "proofOfWork": "Bewijs van inspanning voltooien",
+        "broadcasting": "Uitzenden"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot transitie kan niet worden voltooid",
