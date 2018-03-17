@@ -53,8 +53,8 @@
         "syncInProgress": "Bezig met synchroniseren",
         "syncInProgressExplanation": "Wacht tot de synchronisatie is voltooid.",
         "somethingWentWrong": "Er ging iets mis",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongRestart": "Start de app opnieuw.",
+        "somethingWentWrongTryAgain": "Probeer het opnieuw.",
         "node": "Node",
         "cannotPerformAction": "Kan actie niet uitvoeren",
         "cannotPerformActionExplanation": "Ga naar Geavanceerde instellingen om uw wallet opnieuw in te stellen.",
@@ -77,9 +77,9 @@
         "autoreattachingExplanation": "Transactie herbevestigen met hash {{hash}}",
         "autopromoting": "Auto-promoten transactie",
         "autopromotingExplanation": "Promoten transactie met hash {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "promoting": "Promoten transactie",
+        "promotionError": "Kon transactie niet promoten",
+        "noLongerValid": "De bundel die u probeert te promoten is niet langer geldig",
         "cannotSendToOwn": "Versturen naar eigen adres",
         "cannotSendToOwnExplanation": "U kunt geen transactie sturen naar een van uw eigen adressen.",
         "pleaseWait": "Een ogenblik geduld",
@@ -161,7 +161,7 @@
     "loading": {
         "loadingFirstTime": "Sleutel voor de eerste keer laden.",
         "thisMayTake": "Dit kan even duren.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Minimaliseer of sluit de app niet.",
         "youMayNotice": "U kunt mogelijk een vertraging ervaren op uw apparaat."
     },
     "newSeedSetup": {
