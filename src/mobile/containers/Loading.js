@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, NativeModules } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import whiteLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-white.json';
 import blackLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-black.json';
@@ -26,6 +26,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import { getSeedFromKeychain, storeSeedInKeychain } from '../utils/keychain';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import { isAndroid, isIOS } from '../utils/device';
 
 import { width, height } from '../utils/dimensions';
 
@@ -37,10 +38,10 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'Lato-Light',
-        fontSize: width / 23,
+        fontSize: width / 25.9,
         backgroundColor: 'transparent',
         textAlign: 'center',
-        paddingBottom: height / 30,
+        paddingBottom: height / 40,
     },
     animationLoading: {
         justifyContent: 'center',
@@ -57,6 +58,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: height / 30,
+    },
+    infoTextContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        paddingBottom: height / 20,
     },
 });
 
@@ -114,6 +120,22 @@ class Loading extends Component {
         this.props.changeHomeScreenRoute('balance');
         this.props.setSetting('mainSettings');
 
+        let genFn = null;
+
+        if (firstUse || addingAdditionalAccount) {
+            if (isAndroid) {
+                //  genFn = Android address function
+            } else if (isIOS) {
+                genFn = NativeModules.Iota.multiAddress;
+            }
+        } else {
+            if (isAndroid) {
+                //  genFn = Android multiAddress function
+            } else if (isIOS) {
+                genFn = NativeModules.Iota.address;
+            }
+        }
+
         if (!firstUse && addingAdditionalAccount) {
             return this.props.getFullAccountInfoAdditionalSeed(
                 seed,
@@ -121,6 +143,7 @@ class Loading extends Component {
                 password,
                 storeSeedInKeychain,
                 navigator,
+                genFn,
             );
         }
 
@@ -133,9 +156,9 @@ class Loading extends Component {
                 );
             }
             if (firstUse) {
-                this.props.getFullAccountInfoFirstSeed(currentSeed, selectedAccountName, navigator);
+                this.props.getFullAccountInfoFirstSeed(currentSeed, selectedAccountName, navigator, genFn);
             } else {
-                this.props.getAccountInfo(currentSeed, selectedAccountName, navigator);
+                this.props.getAccountInfo(currentSeed, selectedAccountName, navigator, genFn);
             }
         });
     }
@@ -224,9 +247,10 @@ class Loading extends Component {
                             />
                         </View>
                     </View>
-                    <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: height / 15 }}>
+                    <View style={styles.infoTextContainer}>
                         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                             <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
+                            <Text style={[styles.infoText, textColor]}>{t('doNotMinimise')}</Text>
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
                                 <View style={{ alignItems: 'flex-start', width: width / 30 }}>

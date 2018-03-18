@@ -1,5 +1,6 @@
 import assign from 'lodash/assign';
 import get from 'lodash/get';
+import omit from 'lodash/omit';
 import isEmpty from 'lodash/isEmpty';
 import values from 'lodash/values';
 import keys from 'lodash/keys';
@@ -136,18 +137,19 @@ export const hasDuplicateSeed = (seedInfo, seed) => {
 
 export const updateAccountNameInKeychain = async (pwdHash, oldAccountName, newAccountName, alias = 'seeds') => {
     const seedInfo = await getAllSeedsFromKeychain(pwdHash);
+    let newSeedInfo = {};
     if (oldAccountName !== newAccountName) {
-        Object.defineProperty(seedInfo, newAccountName, Object.getOwnPropertyDescriptor(seedInfo, oldAccountName));
-        delete seedInfo[oldAccountName];
+        newSeedInfo = assign({}, seedInfo, { [newAccountName]: seedInfo[oldAccountName] });
+        delete newSeedInfo[oldAccountName];
     }
-    return await createAndStoreBoxInKeychain(pwdHash, seedInfo, alias);
+    return await createAndStoreBoxInKeychain(pwdHash, newSeedInfo, alias);
 };
 
 export const deleteSeedFromKeychain = async (pwdHash, accountNameToDelete, alias = 'seeds') => {
     const seedInfo = await getAllSeedsFromKeychain(pwdHash);
     if (seedInfo) {
-        delete seedInfo[accountNameToDelete];
-        return await createAndStoreBoxInKeychain(pwdHash, seedInfo, alias);
+        const newSeedInfo = omit(seedInfo, accountNameToDelete);
+        return await createAndStoreBoxInKeychain(pwdHash, newSeedInfo, alias);
     }
     throw new Error('Something went wrong while deleting from keychain.');
 };
@@ -163,6 +165,7 @@ export const clearKeychain = async (aliasOne = 'authKey', aliasTwo = 'seeds') =>
 
 export const changePassword = async (oldPwdHash, newPwdHash, alias = 'seeds') => {
     const seedInfo = await getSecretBoxFromKeychainAndOpenIt(alias, oldPwdHash);
+    await keychain.clear(alias);
     return await createAndStoreBoxInKeychain(newPwdHash, seedInfo, alias);
 };
 

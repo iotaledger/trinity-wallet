@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import * as Progress from 'react-native-progress';
-import { height } from '../utils/dimensions';
+import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        marginTop: height / 50,
+        marginBottom: height / 30,
+    },
+    textWrapper: {
+        flex: 1,
     },
     text: {
         color: 'white',
-        marginTop: height / 50,
+        marginBottom: height / 40,
         fontFamily: 'Lato-Light',
     },
 });
@@ -19,15 +22,19 @@ const styles = StyleSheet.create({
 const ProgressBar = (props) => {
     return (
         <View style={styles.container}>
+            <View style={styles.textWrapper}>
+                <Text style={[styles.text, { color: props.textColor }]}>{props.children}</Text>
+            </View>
             <Progress.Bar
                 indeterminate={props.indeterminate}
                 useNativeDriver={true} // eslint-disable-line react/jsx-boolean-value
                 progress={props.progress}
                 animationType={props.animationType}
+                style={{ width: props.width, height: props.height, borderRadius: height / 10 }}
+                height={props.height}
                 width={props.width}
                 color={props.color}
             />
-            <Text style={[styles.text, { color: props.textColor }]}>{props.children}</Text>
         </View>
     );
 };
@@ -39,12 +46,14 @@ ProgressBar.propTypes = {
     indeterminate: PropTypes.bool,
     animationType: PropTypes.string,
     width: PropTypes.number,
+    height: PropTypes.number,
     textColor: PropTypes.string,
 };
 
 ProgressBar.defaultProps = {
     animationType: 'timing',
-    width: 200,
+    width: width / 2,
+    height: height / 40,
     indeterminate: false,
     color: 'rgba(247, 208, 2, 0.75)',
     textColor: 'rgba(247, 208, 2, 0.75)',

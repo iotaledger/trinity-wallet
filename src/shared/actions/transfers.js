@@ -33,7 +33,7 @@ import { syncAccountAfterReattachment, syncAccount } from '../libs/iota/accounts
 import { updateAccountAfterReattachment, updateAccountInfo, accountInfoFetchSuccess } from './account';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
-import { generateAlert, generateTransferErrorAlert } from './alerts';
+import { generateAlert, generateTransferErrorAlert, generatePromotionErrorAlert } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
 
@@ -79,7 +79,11 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
     return broadcastBundleAsync(tailTransaction.hash)
         .then(() => {
             dispatch(
-                generateAlert('success', 'Rebroadcast', `Rebroadcasted transaction with hash ${tailTransaction.hash}.`),
+                generateAlert(
+                    'success',
+                    'Rebroadcasted transaction',
+                    `Rebroadcasted transaction with hash ${tailTransaction.hash}.`,
+                ),
             );
 
             return dispatch(broadcastBundleSuccess());
@@ -88,7 +92,7 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
             dispatch(
                 generateAlert(
                     'error',
-                    'Rebroadcast',
+                    'Could not rebroadcast transaction ',
                     'Something went wrong while rebroadcasting your transaction. Please try again.',
                 ),
             );
@@ -108,7 +112,7 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
         .then((isValid) => {
             if (!isValid) {
                 chainBrokenInternally = true;
-                throw new Error('Bundle no longer valid');
+                throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
             return getFirstConsistentTail(tailTransactions, 0);
@@ -118,7 +122,7 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
             dispatch(
                 generateAlert(
                     'success',
-                    i18next.t('global:autopromoting'),
+                    i18next.t('global:promoting'),
                     i18next.t('global:autopromotingExplanation', { hash }),
                 ),
             );
@@ -126,12 +130,11 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
             return dispatch(promoteTransactionSuccess());
         })
         .catch((err) => {
-            if (err.message.includes('no longer valid') && chainBrokenInternally) {
-                dispatch(
-                    generateAlert('error', 'Promotion', 'The bundle you are trying to promote is no longer valid. '),
-                );
+            if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
+                dispatch(generateAlert('error', i18next.t('global:promotionError'), i18next.t('global:noLongerValid')));
             }
 
+            dispatch(generatePromotionErrorAlert());
             return dispatch(promoteTransactionError());
         });
 };
@@ -181,7 +184,7 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails) =>
     return promoteTransactionAsync(consistentTail.hash);
 };
 
-export const makeTransaction = (seed, address, value, message, accountName, powFn) => (dispatch, getState) => {
+export const makeTransaction = (seed, address, value, message, accountName, powFn, genFn) => (dispatch, getState) => {
     dispatch(sendTransferRequest());
 
     // Use a local variable to keep track if the promise chain was interrupted internally.
@@ -205,7 +208,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
             .then((shouldAllowSending) => {
                 if (shouldAllowSending) {
                     const currentAccountState = selectedAccountStateFactory(accountName)(getState());
-                    return syncAddresses(seed, currentAccountState, true);
+                    return syncAddresses(seed, currentAccountState, genFn, true);
                 }
 
                 chainBrokenInternally = true;

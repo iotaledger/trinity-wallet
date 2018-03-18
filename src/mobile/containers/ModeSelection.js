@@ -109,30 +109,29 @@ class ModeSelection extends Component {
                             }
                         />
                         <View style={{ flex: 0.8 }} />
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            <TouchableWithoutFeedback onPress={this.changeMode}>
+                        <TouchableWithoutFeedback
+                            onPress={this.changeMode}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 70, right: width / 35 }}
+                        >
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={styles.toggleTextContainer}>
                                     <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
                                         {t('standard')}
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={this.changeMode} style={{ alignSelf: 'center' }}>
                                 <Toggle
                                     active={mode === 'Expert'}
                                     bodyColor={body.color}
                                     primaryColor={primary.color}
                                     scale={1.3}
                                 />
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={this.changeMode}>
                                 <View style={styles.toggleTextContainer}>
                                     <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
                                         {t('expert')}
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
-                        </View>
+                            </View>
+                        </TouchableWithoutFeedback>
                         <View style={{ flex: 1.5 }} />
                     </View>
                     <View style={styles.bottomContainer}>
