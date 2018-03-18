@@ -14,6 +14,7 @@ import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-mod
 import StatefulDropdownAlert from '../containers/statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import CtaButton from '../components/ctaButton';
 
 const styles = StyleSheet.create({
     container: {
@@ -108,21 +109,6 @@ const styles = StyleSheet.create({
     },
     buttonWhenDisabled: {
         opacity: 0.4,
-    },
-    button: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 4,
-        height: height / 17,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-        opacity: 1,
-    },
-    buttonText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
     },
     buttonsContainer: {
         flex: 1,
@@ -287,30 +273,32 @@ export default class HistoryModalContent extends PureComponent {
                                         mode === 'Expert' &&
                                         value > 0 && (
                                             <View style={[styles.buttonsContainer, style.buttonsOpacity]}>
-                                                <TouchableOpacity
-                                                    style={[styles.button, style.borderColor]}
+                                                <CtaButton
+                                                    ctaColor={style.primaryColor}
+                                                    secondaryCtaColor={style.primaryBody}
+                                                    ctaWidth={width / 2.75}
+                                                    ctaHeight={height / 17}
+                                                    fontSize={width / 29.6}
+                                                    text={t('promote')}
                                                     onPress={() => {
                                                         if (!disableWhen) {
                                                             promote(bundle);
                                                         }
                                                     }}
-                                                >
-                                                    <Text style={[styles.buttonText, style.defaultTextColor]}>
-                                                        {t('promote')}
-                                                    </Text>
-                                                </TouchableOpacity>
-                                                <TouchableOpacity
-                                                    style={[styles.button, style.borderColor]}
+                                                />
+                                                <CtaButton
+                                                    ctaColor={style.secondaryColor}
+                                                    secondaryCtaColor={style.secondaryBody}
+                                                    ctaWidth={width / 2.75}
+                                                    ctaHeight={height / 17}
+                                                    fontSize={width / 29.6}
+                                                    text={t('rebroadcast')}
                                                     onPress={() => {
                                                         if (!disableWhen) {
                                                             rebroadcast(bundle);
                                                         }
                                                     }}
-                                                >
-                                                    <Text style={[styles.buttonText, style.defaultTextColor]}>
-                                                        {t('rebroadcast')}
-                                                    </Text>
-                                                </TouchableOpacity>
+                                                />
                                             </View>
                                         )}
                                 </View>

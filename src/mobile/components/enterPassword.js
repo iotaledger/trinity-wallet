@@ -127,6 +127,4 @@ const mapDispatchToProps = {
     setLoginPasswordField,
 };
 
-export default translate(['login', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(EnterPassword),
-);
+export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterPassword));

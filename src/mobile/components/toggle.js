@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { width } from '../util/dimensions';
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     toggleCircle: {},
 });
 
-class Toggle extends React.Component {
+class Toggle extends PureComponent {
     static propTypes = {
         bodyColor: PropTypes.string.isRequired,
         primaryColor: PropTypes.string.isRequired,

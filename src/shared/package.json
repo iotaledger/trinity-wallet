@@ -14,11 +14,13 @@
     },
     "license": "MIT",
     "dependencies": {
+        "async": "^2.6.0",
         "bluebird": "^3.5.1",
         "i18next": "^10.2.2",
         "i18next-browser-languagedetector": "^2.1.0",
         "iota.lib.js": "^0.4.7",
         "lodash": "^4.17.4",
+        "lodash.concat": "^4.5.0",
         "moment": "^2.19.1",
         "react": "^16.2.0",
         "react-i18next": "^7.3.4",
@@ -40,6 +42,7 @@
         "chai": "^4.1.2",
         "mocha": "^4.0.1",
         "redux-logger": "^3.0.6",
+        "timekeeper": "^2.0.0",
         "svg2ttf": "^4.1.0",
         "svgicons2svgfont": "^9.0.1"
     }
