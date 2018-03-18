@@ -7,8 +7,12 @@ import { translate } from 'react-i18next';
 import { iota } from 'iota-wallet-shared-modules/libs/iota';
 import { View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-native';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
+import {
+    getSelectedAccountViaSeedIndex,
+} from 'iota-wallet-shared-modules/selectors/account';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
@@ -88,7 +92,8 @@ const styles = StyleSheet.create({
 
 export class ViewAddresses extends Component {
     static propTypes = {
-        addressData: PropTypes.object.isRequired,
+        selectedAccount: PropTypes.object.isRequired,
+        setSetting: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         body: PropTypes.object.isRequired,
@@ -96,9 +101,9 @@ export class ViewAddresses extends Component {
     };
 
     prepAddresses() {
-        const { addressData } = this.props;
+        const { addresses } = this.props.selectedAccount;
 
-        const preparedAddresses = map(addressData, (data, address) => ({
+        const preparedAddresses = map(addresses, (data, address) => ({
             ...data,
             balance: round(formatValue(data.balance), 1),
             unit: formatUnit(data.balance),
@@ -182,7 +187,7 @@ export class ViewAddresses extends Component {
                 <View style={{ flex: 0.2 }} />
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity
-                        onPress={() => this.props.backPress()}
+                        onPress={() => this.props.setSetting('accountManagement')}
                         style={{ flex: 1 }}
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
@@ -205,9 +210,11 @@ export class ViewAddresses extends Component {
 
 const mapDispatchToProps = {
     generateAlert,
+    setSetting
 };
 
 const mapStateToProps = (state) => ({
+    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     body: state.settings.theme.body,
 });
 
