@@ -349,48 +349,6 @@ class Settings extends Component {
         const textColor = { color: body.color };
         const borderColor = { borderColor: body.color };
         const props = {
-            mainSettings: {
-                t: this.props.t,
-                setSetting: (setting) => this.props.setSetting(setting),
-                setModalContent: (content) => this.setModalContent(content),
-                onThemePress: () => this.props.setSetting('themeCustomisation'),
-                onModePress: () => this.props.setSetting('modeSelection'),
-                mode,
-                onLanguagePress: () => this.props.setSetting('languageSelection'),
-                themeName: this.props.themeName,
-                currency: this.props.currency,
-                borderBottomColor: { borderBottomColor: body.color },
-                textColor: { color: body.color },
-                bodyColor: body.color,
-            },
-            advancedSettings: {
-                setSetting: (setting) => this.props.setSetting(setting),
-                onResetWalletPress: () => this.onResetWalletPress(),
-                node: this.props.fullNode,
-                textColor: { color: body.color },
-                borderColor: { borderBottomColor: body.color },
-                bodyColor: body.color,
-            },
-            modeSelection: {
-                setMode: (selectedMode) => this.props.setMode(selectedMode),
-                mode,
-                backPress: () => this.props.setSetting('mainSettings'),
-                generateAlert: this.props.generateAlert,
-                negativeColor: negative.color,
-                textColor: { color: body.color },
-                borderColor: { borderColor: body.color },
-                body,
-                primary,
-            },
-            pow: {
-                backPress: () => this.props.setSetting('mainSettings'),
-            },
-            accountManagement: {
-                setSetting: (setting) => this.props.setSetting(setting),
-                onDeleteAccountPress: () => this.onDeleteAccountPress(),
-                textColor: { color: body.color },
-                bodyColor: body.color,
-            },
             viewSeed: {
                 seedIndex,
                 password,
