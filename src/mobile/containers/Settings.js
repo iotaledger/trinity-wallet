@@ -3,7 +3,7 @@ import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, BackHandler } from 'react-native';
+import { StyleSheet, View, BackHandler, NativeModules } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
@@ -34,10 +34,17 @@ import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota'
 import KeepAwake from 'react-native-keep-awake';
 import LogoutConfirmationModal from '../components/LogoutConfirmationModal';
 import SettingsContent from '../components/SettingsContent';
-import { getSeedFromKeychain, deleteSeedFromKeychain, getAllSeedsFromKeychain } from '../utils/keychain';
+import {
+    getSeedFromKeychain,
+    hasDuplicateAccountName,
+    hasDuplicateSeed,
+    updateAccountNameInKeychain,
+    deleteSeedFromKeychain,
+    getAllSeedsFromKeychain,
+} from '../utils/keychain';
 import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
 import { height } from '../utils/dimensions';
-import { isAndroid } from '../utils/device';
+import { isAndroid, isIOS } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -210,7 +217,13 @@ class Settings extends Component {
                             t('global:somethingWentWrongTryAgain'),
                         );
                     }
-                    this.props.manuallySyncAccount(seed, selectedAccountName);
+                    let genFn = null;
+                    if (isAndroid) {
+                        //  genFn = Android multiAddress function
+                    } else if (isIOS) {
+                        genFn = NativeModules.Iota.multiAddress;
+                    }
+                    this.props.manuallySyncAccount(seed, selectedAccountName, genFn);
                 })
                 .catch((err) => console.error(err)); // eslint-disable-line no-console
         } else {
@@ -259,6 +272,26 @@ class Settings extends Component {
         }
 
         return this.props.setSetting('deleteAccount');
+    }
+
+    onResetWalletPress() {
+        const { body } = this.props;
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'walletResetConfirm',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
+                },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: false,
+            },
+        });
     }
 
     setModalContent(modalSetting) {
@@ -316,6 +349,39 @@ class Settings extends Component {
         const textColor = { color: body.color };
         const borderColor = { borderColor: body.color };
         const props = {
+            mainSettings: {
+                t: this.props.t,
+                setSetting: (setting) => this.props.setSetting(setting),
+                setModalContent: (content) => this.setModalContent(content),
+                onThemePress: () => this.props.setSetting('themeCustomisation'),
+                onModePress: () => this.props.setSetting('modeSelection'),
+                mode,
+                onLanguagePress: () => this.props.setSetting('languageSelection'),
+                themeName: this.props.themeName,
+                currency: this.props.currency,
+                borderBottomColor: { borderBottomColor: body.color },
+                textColor: { color: body.color },
+                bodyColor: body.color,
+            },
+            advancedSettings: {
+                setSetting: (setting) => this.props.setSetting(setting),
+                onResetWalletPress: () => this.onResetWalletPress(),
+                node: this.props.fullNode,
+                textColor: { color: body.color },
+                borderColor: { borderBottomColor: body.color },
+                bodyColor: body.color,
+            },
+            modeSelection: {
+                setMode: (selectedMode) => this.props.setMode(selectedMode),
+                mode,
+                backPress: () => this.props.setSetting('mainSettings'),
+                generateAlert: this.props.generateAlert,
+                negativeColor: negative.color,
+                textColor: { color: body.color },
+                borderColor: { borderColor: body.color },
+                body,
+                primary,
+            },
             pow: {
                 backPress: () => this.props.setSetting('mainSettings'),
             },
@@ -470,7 +536,7 @@ class Settings extends Component {
                 selectedAccountName,
                 isAttachingToTangle,
                 addresses: Object.keys(selectedAccount.addresses),
-                transitionForSnapshot: (seed, addresses) => this.props.transitionForSnapshot(seed, addresses),
+                transitionForSnapshot: (seed, addresses) => this.performSnapshotTransition(seed, addresses),
                 generateAddressesAndGetBalance: (seed, index) => this.props.generateAddressesAndGetBalance(seed, index),
                 completeSnapshotTransition: (seed, accountName, addresses) =>
                     this.props.completeSnapshotTransition(seed, accountName, addresses),
@@ -558,6 +624,16 @@ class Settings extends Component {
             },
         });
         BackHandler.removeEventListener('homeBackPress');
+    }
+
+    performSnapshotTransition(seed, address) {
+        let genFn = null;
+        if (isAndroid) {
+            //  genFn = Android address function
+        } else if (isIOS) {
+            genFn = NativeModules.Iota.multiAddress;
+        }
+        this.props.transitionForSnapshot(seed, address, genFn);
     }
 
     featureUnavailable() {
