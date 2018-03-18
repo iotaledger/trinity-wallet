@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback, AppState } from 'react-native';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import {
+    getSelectedAccountNameViaSeedIndex,
+} from 'iota-wallet-shared-modules/selectors/account';
 import Fonts from '../theme/fonts';
 import Seedbox from '../components/SeedBox';
 import CustomTextInput from '../components/CustomTextInput';
@@ -74,15 +80,15 @@ class ViewSeed extends Component {
     static propTypes = {
         seedIndex: PropTypes.number.isRequired,
         password: PropTypes.string.isRequired,
+        selectedAccountName: PropTypes.string.isRequired,
+        borderColor: PropTypes.object.isRequired,
         textColor: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-        borderColor: PropTypes.object.isRequired,
-        onWrongPassword: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired,
-        selectedAccountName: PropTypes.string.isRequired,
+        setSetting: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -115,8 +121,9 @@ class ViewSeed extends Component {
     }
 
     viewSeed() {
-        const { password, selectedAccountName } = this.props;
+        const { password, selectedAccountName, t } = this.props;
         const pwdHash = getPasswordHash(this.state.password);
+
         if (password === pwdHash) {
             getSeedFromKeychain(pwdHash, selectedAccountName)
                 .then((seed) => {
@@ -129,7 +136,11 @@ class ViewSeed extends Component {
                 })
                 .catch((err) => console.error(err)); // eslint-disable-line no-console
         } else {
-            this.props.onWrongPassword();
+            this.props.generateAlert(
+                'error',
+                t('global:unrecognisedPassword'),
+                t('global:unrecognisedPasswordExplanation'),
+            );
         }
     }
 
@@ -220,7 +231,7 @@ class ViewSeed extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.backPress()}
+                            onPress={() => this.props.setSetting('accountManagement')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -235,4 +246,22 @@ class ViewSeed extends Component {
     }
 }
 
-export default translate(['viewSeed', 'global'])(ViewSeed);
+const mapStateToProps = (state) => ({
+    seedIndex: state.tempAccount.seedIndex,
+    password: state.tempAccount.password,
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    borderColor: { borderColor: state.settings.theme.body.color },
+    textColor: { color: state.settings.theme.body.color },
+    theme: state.settings.theme,
+    body: state.settings.theme.body,
+    primary: state.settings.theme.primary
+});
+
+const mapDispatchToProps = {
+    setSetting,
+    generateAlert
+};
+
+export default translate(['viewSeed', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(ViewSeed),
+);
