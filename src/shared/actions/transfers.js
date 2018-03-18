@@ -218,8 +218,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                 // Syncing account
                 dispatch(setNextStepAsActive());
 
-                // TODO: seed is not needed anymore in syncAccount
-                return syncAccount(seed, newState);
+                return syncAccount(newState);
             })
             .then((newState) => {
                 latestAccountState = newState;
