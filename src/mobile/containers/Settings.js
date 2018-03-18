@@ -348,19 +348,8 @@ class Settings extends Component {
         } = this.props;
         const textColor = { color: body.color };
         const borderColor = { borderColor: body.color };
+
         const props = {
-            viewSeed: {
-                seedIndex,
-                password,
-                backPress: () => this.props.setSetting('accountManagement'),
-                onWrongPassword: () => this.onWrongPassword(),
-                selectedAccountName,
-                borderColor,
-                textColor,
-                theme,
-                body,
-                primary,
-            },
             viewAddresses: {
                 addressData: this.props.selectedAccount.addresses,
                 backPress: () => this.props.setSetting('accountManagement'),
