@@ -173,11 +173,10 @@ export const setAdditionalAccountInfo = (payload) => ({
     payload,
 });
 
-export const generateNewAddress = (seed, accountName, existingAccountData) => {
+export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-
-        return syncAddresses(seed, existingAccountData, true)
+        return syncAddresses(seed, existingAccountData, genFn, true)
             .then((newAccountData) => {
                 const receiveAddress = iota.utils.addChecksum(getLatestAddress(newAccountData.addresses));
                 dispatch(updateAddresses(accountName, newAccountData.addresses));
