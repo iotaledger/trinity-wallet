@@ -118,28 +118,27 @@ class TwoFactorSetupEnterToken extends Component {
 
     check2FA() {
         const { t, password } = this.props;
-        getTwoFactorAuthKeyFromKeychain(password)
-            .then((key) => {
-                if (key === null) {
-                    this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongTryAgain')
-                    );
-                }
-                const verified = authenticator.verifyToken(key, this.state.code);
+        getTwoFactorAuthKeyFromKeychain(password).then((key) => {
+            if (key === null) {
+                this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongTryAgain'),
+                );
+            }
+            const verified = authenticator.verifyToken(key, this.state.code);
 
-                if (verified) {
-                    this.props.set2FAStatus(true);
-                    this.navigateToHome();
+            if (verified) {
+                this.props.set2FAStatus(true);
+                this.navigateToHome();
 
-                    this.timeout = setTimeout(() => {
-                        this.props.generateAlert('success', t('twoFAEnabled'), t('twoFAEnabledExplanation'));
-                    }, 300);
-                } else {
-                    this.props.generateAlert('error', t('wrongCode'), t('wrongCodeExplanation'));
-                }
-            });
+                this.timeout = setTimeout(() => {
+                    this.props.generateAlert('success', t('twoFAEnabled'), t('twoFAEnabledExplanation'));
+                }, 300);
+            } else {
+                this.props.generateAlert('error', t('wrongCode'), t('wrongCodeExplanation'));
+            }
+        });
     }
 
     render() {

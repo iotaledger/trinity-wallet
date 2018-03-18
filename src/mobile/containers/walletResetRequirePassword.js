@@ -214,7 +214,7 @@ class WalletResetRequirePassword extends Component {
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     body: state.settings.theme.body,
-    password: state.tempAccount.password
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {
