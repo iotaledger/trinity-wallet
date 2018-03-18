@@ -48,6 +48,12 @@ const getProps = (overrides) =>
             setSendDenomination: noop,
             denomination: 'i',
             theme: {},
+            resetProgress: noop,
+            startTrackingProgress: noop,
+            activeStepIndex: 0,
+            activeSteps: [],
+            timeTakenByEachProgressStep: [],
+            remotePoW: false,
         },
         overrides,
     );

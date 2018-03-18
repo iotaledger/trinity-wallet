@@ -12,8 +12,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
-        paddingVertical: height / 18,
-        width: width / 1.1,
+        paddingVertical: height / 30,
+        width: width / 1.2,
+        paddingHorizontal: width / 50,
     },
     warningText: {
         backgroundColor: 'transparent',
@@ -21,38 +22,35 @@ const styles = StyleSheet.create({
         fontSize: width / 22,
         textAlign: 'center',
         color: 'red',
-        paddingBottom: height / 40,
+        paddingVertical: height / 25,
     },
     questionText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 24,
         paddingBottom: height / 35,
-        paddingHorizontal: width / 75,
         textAlign: 'center',
     },
 });
 
 class RootDetectionModal extends Component {
     static propTypes = {
-        closeApp: PropTypes.func.isRooted,
-        hideModal: PropTypes.func.isRooted,
-        t: PropTypes.func.isRooted,
-        backgroundColor: PropTypes.string.isRooted,
-        textColor: PropTypes.object.isRooted,
-        borderColor: PropTypes.object.isRooted,
+        closeApp: PropTypes.func.isRequired,
+        hideModal: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
+        borderColor: PropTypes.object.isRequired,
     };
     render() {
         const { t, backgroundColor, textColor, borderColor } = this.props;
         return (
-            <View style={{ width: width / 1.1, alignItems: 'center', backgroundColor: backgroundColor }}>
+            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={styles.warningText}>{t('warning')}</Text>
                     <View style={{ marginBottom: height / 35 }}>
                         <Trans i18nKey="rootDetected">
-                            <Text style={[styles.questionText, textColor]}>
-                                Your device appears to be rooted/jailbroken.
-                            </Text>
+                            <Text style={[styles.questionText, textColor]}>Your device appears to be rooted.</Text>
                             <Text style={[styles.questionText, textColor]}>
                                 This can pose a significant risk to the security of your wallet.
                             </Text>

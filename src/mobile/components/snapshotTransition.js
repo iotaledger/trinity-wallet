@@ -95,7 +95,6 @@ class SnapshotTransition extends Component {
         isTransitioning: PropTypes.bool.isRequired,
         backPress: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
-        primaryColor: PropTypes.string.isRequired,
         primary: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         transitionForSnapshot: PropTypes.func.isRequired,
@@ -209,16 +208,7 @@ class SnapshotTransition extends Component {
     };
 
     render() {
-        const {
-            isTransitioning,
-            backPress,
-            body,
-            textColor,
-            primaryColor,
-            primary,
-            t,
-            isAttachingToTangle,
-        } = this.props;
+        const { isTransitioning, backPress, body, textColor, primary, t, isAttachingToTangle } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
@@ -273,7 +263,7 @@ class SnapshotTransition extends Component {
                                     animating={isTransitioning}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={primaryColor}
+                                    color={primary.color}
                                 />
                             </View>
                         )}
@@ -300,7 +290,7 @@ class SnapshotTransition extends Component {
                                     animating={isTransitioning}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={primaryColor}
+                                    color={primary.color}
                                 />
                             </View>
                         )}
