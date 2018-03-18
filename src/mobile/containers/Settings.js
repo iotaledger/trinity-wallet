@@ -350,10 +350,6 @@ class Settings extends Component {
         const borderColor = { borderColor: body.color };
 
         const props = {
-            viewAddresses: {
-                addressData: this.props.selectedAccount.addresses,
-                backPress: () => this.props.setSetting('accountManagement'),
-            },
             editAccountName: {
                 accountName: this.props.selectedAccountName,
                 saveAccountName: (accountName) => this.saveAccountName(accountName),
