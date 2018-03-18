@@ -1,9 +1,21 @@
+import map from 'lodash/map';
 import trim from 'lodash/trim';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
-import CustomTextInput from './CustomTextInput';
+import {
+    getSelectedAccountNameViaSeedIndex,
+} from 'iota-wallet-shared-modules/selectors/account';
+import { renameKeys } from 'iota-wallet-shared-modules/libs/util';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { changeAccountName } from 'iota-wallet-shared-modules/actions/account';
+import {
+    updateAccountNameInKeychain
+} from '../utils/keychain';
+import CustomTextInput from '../components/CustomTextInput';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
@@ -61,10 +73,15 @@ const styles = StyleSheet.create({
 
 export class EditAccountName extends Component {
     static propTypes = {
+        selectedAccountName: PropTypes.string.isRequired,
+        accountInfo: PropTypes.object.isRequired,
+        seedIndex: PropTypes.number.isRequired,
+        accountNames: PropTypes.array.isRequired,
+        password: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
-        accountName: PropTypes.string.isRequired,
-        saveAccountName: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired,
+        setSetting: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        changeAccountName: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         bodyColor: PropTypes.string.isRequired,
         theme: PropTypes.object.isRequired,
@@ -74,13 +91,54 @@ export class EditAccountName extends Component {
         super(props);
 
         this.state = {
-            accountName: props.accountName,
+            accountName: props.selectedAccountName,
         };
     }
 
     componentWillReceiveProps(newProps) {
-        if (this.props.accountName !== newProps.accountName) {
-            this.setState({ accountName: newProps.accountName });
+        if (this.props.selectedAccountName !== newProps.selectedAccountName) {
+            this.setState({ accountName: newProps.selectedAccountName });
+        }
+    }
+
+    save(accountName) {
+        const {
+            seedIndex,
+            accountNames,
+            password,
+            selectedAccountName,
+            t,
+            accountInfo
+            } = this.props;
+
+        if (accountNames.includes(accountName)) {
+            this.props.generateAlert(
+                'error',
+                t('addAdditionalSeed:nameInUse'),
+                t('addAdditionalSeed:nameInUseExplanation'),
+            );
+        } else {
+            // Update keychain
+            updateAccountNameInKeychain(password, selectedAccountName, accountName)
+                .then(() => {
+                    const keyMap = { [selectedAccountName]: accountName };
+                    const newAccountInfo = renameKeys(accountInfo, keyMap);
+
+                    const updateName = (name, idx) => {
+                        if (idx === seedIndex) {
+                            return accountName;
+                        }
+
+                        return name;
+                    };
+
+                    const updatedaccountNames = map(accountNames, updateName);
+                    this.props.changeAccountName(newAccountInfo, updatedaccountNames);
+                    this.props.setSetting('accountManagement');
+
+                    this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
+                })
+                .catch((err) => console.log(err)); // eslint-disable-line no-console
         }
     }
 
@@ -101,7 +159,7 @@ export class EditAccountName extends Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
-                                onSubmitEditing={() => this.props.saveAccountName(trim(this.state.accountName))}
+                                onSubmitEditing={() => this.save(trim(this.state.accountName))}
                                 value={this.state.accountName}
                                 theme={theme}
                             />
@@ -110,7 +168,7 @@ export class EditAccountName extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.backPress()}
+                            onPress={() => this.props.setSetting('accountManagement')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
@@ -119,7 +177,7 @@ export class EditAccountName extends Component {
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => this.props.saveAccountName(trim(this.state.accountName))}
+                            onPress={() => this.save(trim(this.state.accountName))}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemRight}>
@@ -134,4 +192,23 @@ export class EditAccountName extends Component {
     }
 }
 
-export default translate(['addAdditionalSeed', 'global'])(EditAccountName);
+const mapStateToProps = (state) => ({
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    accountInfo: state.account.accountInfo,
+    seedIndex: state.tempAccount.seedIndex,
+    accountNames: state.account.accountNames,
+    password: state.tempAccount.password,
+    textColor: { color: state.settings.theme.body.color },
+    bodyColor: state.settings.theme.body.color,
+    theme: state.settings.theme
+});
+
+const mapDispatchToProps = {
+    setSetting,
+    generateAlert,
+    changeAccountName
+};
+
+export default translate(['addAdditionalSeed', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(EditAccountName),
+);
