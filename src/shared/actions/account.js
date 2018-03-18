@@ -24,7 +24,9 @@ import {
 } from '../actions/alerts';
 import { pushScreen } from '../libs/util';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
-import i18next from '../i18next.js';
+import i18next from '../i18next';
+
+const { t } = i18next.t;
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -283,7 +285,7 @@ export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
 
         return syncAddresses(seed, existingAccountState, genFn)
             .then((accountData) => {
-                return syncAccount(seed, accountData);
+                return syncAccount(accountData);
             })
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
@@ -323,7 +325,7 @@ export const set2FAStatus = (payload) => ({
     payload,
 });
 
-export const transitionForSnapshot = (seed, addresses, genFn) => {
+export const transitionForSnapshot = (seed, addresses) => {
     return (dispatch) => {
         dispatch(snapshotTransitionRequest());
         if (addresses.length > 0) {
@@ -331,7 +333,7 @@ export const transitionForSnapshot = (seed, addresses, genFn) => {
             dispatch(updateTransitionAddresses(addresses));
         } else {
             setTimeout(() => {
-                dispatch(generateAddressesAndGetBalance(seed, 0, genFn));
+                dispatch(generateAddressesAndGetBalance(seed, 0));
             });
         }
     };
@@ -353,8 +355,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                     return dispatch(
                         generateAlert(
                             'error',
-                            i18next.t('snapshotTransition:cannotCompleteTransition'),
-                            i18next.t('snapshotTransition:cannotCompleteTransitionExplanation'),
+                            t('cannotCompleteTransition'),
+                            t('cannotCompleteTransitionExplanation'),
                             10000,
                         ),
                     );
@@ -378,8 +380,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                                 dispatch(
                                     generateAlert(
                                         'success',
-                                        i18next.t('snapshotTransition:transitionComplete'),
-                                        i18next.t('snapshotTransition:transitionCompleteExplanation'),
+                                        t('transitionComplete'),
+                                        t('transitionCompleteExplanation'),
                                         20000,
                                     ),
                                 );
@@ -403,7 +405,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
     };
 };
 
-export const generateAddressesAndGetBalance = (seed, index, genFn) => {
+export const generateAddressesAndGetBalance = (seed, index) => {
     return (dispatch) => {
         const options = {
             index: index,
@@ -411,7 +413,7 @@ export const generateAddressesAndGetBalance = (seed, index, genFn) => {
             returnAll: true,
             security: 2,
         };
-        getNewAddress(seed, options, genFn, (error, addresses) => {
+        getNewAddress(seed, options, (error, addresses) => {
             if (error) {
                 dispatch(snapshotTransitionError());
                 dispatch(generateTransitionErrorAlert());
