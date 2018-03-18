@@ -128,7 +128,7 @@
         "clickToCopy": "아래 버튼을 눌러 시드를 복사하고, 비밀번호 관리자에 저장하십시오.",
         "doNotStore": "시드를 암호화하지 않은 채로 저장하지 마십시오.",
         "copyToClipboard": "시드 복사",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "안전한 비밀번호 관리자로 시드를 공유하십시오"
     },
     "enterSeed": {
         "invalidCharacters": "시드에 잘못된 문자 포함",
@@ -205,7 +205,7 @@
         "invalidAddressExplanation1": "주소는 {{maxLength}}글자로 구성되어야 하며, 체크섬을 포함해야 합니다.",
         "invalidAddressExplanation2": "주소에 유효하지 않은 문자가 포함되어 있습니다.",
         "invalidAddressExplanation3": "주소에 유효하지 않은 체크섬이 포함되어 있습니다.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanationGeneric": "주소는 90글자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함합니다.",
         "notEnoughFunds": "잔액 부족",
         "notEnoughFundsExplanation": "IOTA 잔고가 부족하여 거래를 완료할 수 없습니다.",
         "keyReuse": "키 재사용",
@@ -368,7 +368,7 @@
     "manualSync": {
         "outOfSync": "거래 내역이 동기화되지 않았습니까?",
         "pressToSync": "아래 버튼을 눌러 계정을 동기화할 수 있습니다.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "thisMayTake": "시간이 조금 걸릴 수 있습니다. 기기가 느려질 수도 있습니다.",
         "doNotClose": "동기화 중 앱을 최소화할 경우 동기화가 취소됩니다.",
         "syncAccount": "계정 동기화",
         "syncingYourAccount": "계정을 동기화 중입니다."
@@ -438,22 +438,22 @@
     "pow": {
         "feeless": "IOTA에서는 수수료 없는 거래를 하기 위해 약간의 작업증명을 수행해야 합니다.",
         "localOrRemote": "이러한 작업증명은 기기에서 직접 이루어지거나, 연결된 노드 측에서 수행할 수 있습니다.",
-        "local": "Local",
-        "remote": "Remote"
+        "local": "기기",
+        "remote": "노드"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "validatingReceiveAddress": "받는 주소 확인 중",
+        "syncingAccount": "계정 동기화중",
+        "preparingInputs": "출금 트랜잭션 준비중",
+        "preparingTransfers": "전송 준비중",
+        "gettingTransactionsToApprove": "승인할 트랜잭션을 받아오는 중",
+        "proofOfWork": "작업 증명 수행중",
+        "broadcasting": "송출중"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransition": "스냅샷 이전을 완료할 수 없음",
+        "cannotCompleteTransitionExplanation": "스냅샷 이전을 수행하기 위해서는 잔액이 0보다 커야 합니다.",
+        "transitionComplete": "스냅샷 이전 완료",
+        "transitionCompleteExplanation": "스냅샷 이전이 성공적으로 완료되었습니다."
     }
 }
