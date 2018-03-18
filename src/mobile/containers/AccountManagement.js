@@ -1,6 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -69,16 +72,31 @@ const styles = StyleSheet.create({
 });
 
 /**
- * AdvancedSettings component
+ * AccountManagement component
  */
-class AdvancedSettings extends PureComponent {
+class AccountManagement extends Component {
     static propTypes = {
+        seedCount: PropTypes.number.isRequired,
         bodyColor: PropTypes.string.isRequired,
         setSetting: PropTypes.func.isRequired,
-        onDeleteAccountPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
     };
+
+    deleteAccount() {
+        const { seedCount, t } = this.props;
+
+        if (seedCount === 1) {
+            return this.props.generateAlert(
+                'error',
+                t('global:cannotPerformAction'),
+                t('global:cannotPerformActionExplanation'),
+            );
+        }
+
+        return this.props.setSetting('deleteAccount');
+    }
 
     render() {
         const { t, bodyColor, textColor } = this.props;
@@ -121,7 +139,7 @@ class AdvancedSettings extends PureComponent {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.onDeleteAccountPress()}
+                            onPress={this.deleteAccount}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -164,4 +182,16 @@ class AdvancedSettings extends PureComponent {
     }
 }
 
-export default translate(['accountManagement', 'global'])(AdvancedSettings);
+const mapStateToProps = (state) => ({
+    seedCount: state.account.seedCount,
+    textColor: { color: state.settings.theme.body.color },
+    bodyColor: state.settings.theme.body.color,
+});
+
+const mapDispatchToProps = {
+    generateAlert,
+    setSetting,
+};
+
+export default translate(['accountManagement', 'global'])
+(connect(mapStateToProps, mapDispatchToProps)(AccountManagement));
