@@ -101,7 +101,6 @@ export function getPrice() {
 
 export function getChartData() {
     return (dispatch) => {
-        let arrayResultsFormated = [];
         let arrayCurrenciesTimeFrames = [];
         const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
@@ -124,19 +123,16 @@ export function getChartData() {
             results.forEach( (resultItem, index) => {
                 let resultFormated = formatChartData(resultItem,
                     arrayCurrenciesTimeFrames[index].currency, arrayCurrenciesTimeFrames[index].timeFrame);
-                dispatch(setChartData(resultFormated, arrayCurrenciesTimeFrames[index].currency,
-                    arrayCurrenciesTimeFrames[index].timeFrame));
+                dispatch(setChartData(resultFormated));
             });
         });
     };
 }
 
-export function setChartData(data, currency, timeframe) {
+export function setChartData(data) {
     return {
         type: ActionTypes.SET_CHART_DATA,
         data,
-        currency,
-        timeframe,
     };
 }
 
