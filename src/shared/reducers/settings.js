@@ -79,7 +79,7 @@ const initialState = {
         version: DESKTOP_VERSION,
         notes: [],
     },
-    remotePoW: false,
+    remotePoW: true,
 };
 
 const settingsReducer = (state = initialState, action) => {

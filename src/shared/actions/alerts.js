@@ -70,6 +70,13 @@ export const generateTransferErrorAlert = (error) => (dispatch) =>
         error,
     );
 
+export const generatePromotionErrorAlert = (error) => (dispatch) =>
+    dispatch(
+        generateAlert('error', 'Promotion', 'Something went wrong while promoting your transaction. Please try again.'),
+        20000,
+        error,
+    );
+
 export const disposeOffAlert = () => (dispatch) => dispatch(dispose());
 
 export const prepareLogUpdate = (err) => (dispatch) => {
