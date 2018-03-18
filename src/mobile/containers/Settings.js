@@ -350,15 +350,6 @@ class Settings extends Component {
         const borderColor = { borderColor: body.color };
 
         const props = {
-            editAccountName: {
-                accountName: this.props.selectedAccountName,
-                saveAccountName: (accountName) => this.saveAccountName(accountName),
-                backPress: () => this.props.setSetting('accountManagement'),
-                negativeColor: negative.color,
-                textColor: { color: body.color },
-                bodyColor: body.color,
-                theme,
-            },
             deleteAccount: {
                 backPress: () => this.props.setSetting('accountManagement'),
                 password: this.props.password,
@@ -683,39 +674,7 @@ class Settings extends Component {
     }
 
     // EditAccountName method
-    saveAccountName(accountName) {
-        const { seedIndex, accountNames, password, selectedAccountName, t, accountInfo } = this.props;
 
-        if (accountNames.includes(accountName)) {
-            this.props.generateAlert(
-                'error',
-                t('addAdditionalSeed:nameInUse'),
-                t('addAdditionalSeed:nameInUseExplanation'),
-            );
-        } else {
-            // Update keychain
-            updateAccountNameInKeychain(password, selectedAccountName, accountName)
-                .then(() => {
-                    const keyMap = { [selectedAccountName]: accountName };
-                    const newAccountInfo = renameKeys(accountInfo, keyMap);
-
-                    const updateName = (name, idx) => {
-                        if (idx === seedIndex) {
-                            return accountName;
-                        }
-
-                        return name;
-                    };
-
-                    const updatedaccountNames = map(accountNames, updateName);
-                    this.props.changeAccountName(newAccountInfo, updatedaccountNames);
-                    this.props.setSetting('accountManagement');
-
-                    this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
-                })
-                .catch((err) => console.log(err)); // eslint-disable-line no-console
-        }
-    }
 
     shouldPreventAction() {
         const {
