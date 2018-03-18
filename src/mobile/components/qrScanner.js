@@ -62,11 +62,7 @@ class QRScanner extends Component {
     }
 
     render() {
-        const {
-            t,
-            body,
-            primary,
-        } = this.props;
+        const { t, body, primary } = this.props;
 
         return (
             <View style={styles.modalContent}>
@@ -76,12 +72,14 @@ class QRScanner extends Component {
                     <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
                     <View style={{ paddingBottom: height / 15 }}>
                         <TouchableOpacity
-                            style={[styles.closeButton, { backgroundColor: primary.color }, { borderColor: 'transparent' }]}
+                            style={[
+                                styles.closeButton,
+                                { backgroundColor: primary.color },
+                                { borderColor: 'transparent' },
+                            ]}
                             onPress={() => this.props.hideModal()}
                         >
-                            <Text style={[styles.closeButtonText, { color: primary.body }]}>
-                                {t('global:close')}
-                            </Text>
+                            <Text style={[styles.closeButtonText, { color: primary.body }]}>{t('global:close')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
