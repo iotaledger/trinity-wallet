@@ -5,6 +5,7 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { updatePowSettings } from 'iota-wallet-shared-modules/actions/settings';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import Fonts from '../theme/fonts';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
@@ -65,11 +66,11 @@ const styles = StyleSheet.create({
 
 class Pow extends Component {
     static propTypes = {
-        backPress: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         remotePoW: PropTypes.bool.isRequired,
         t: PropTypes.func.isRequired,
         updatePowSettings: PropTypes.func.isRequired,
+        setSetting: PropTypes.func.isRequired,
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
     };
@@ -144,7 +145,7 @@ class Pow extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.backPress()}
+                            onPress={() => this.props.setSetting('mainSettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
@@ -168,6 +169,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     updatePowSettings,
+    setSetting,
 };
 
 export default translate(['pow', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Pow));
