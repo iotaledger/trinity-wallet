@@ -10,6 +10,34 @@
         flex: 1;
     }
 
+    > div:first-of-type > div {
+        position: absolute;
+        top: var(--header-height);
+        left: 0px;
+        height: calc(100% - var(--header-height));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        z-index: 2;
+        width: 100%;
+
+        > form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 0px;
+            width: calc(100vw - 20px);
+            max-width: 560px;
+
+            section {
+                width: 100%;
+            }
+        }
+    }
+
     header {
         width: 100%;
         height: var(--header-height);
@@ -23,33 +51,170 @@
         > a {
             margin-left: auto;
             margin-right: 30px;
-            &:hover span{
-               color: var(--primary);
+            &:hover span {
+                color: var(--primary);
             }
         }
     }
 
     section {
-        max-width: 540px;
-        width: 100vw;
+        width: auto;
         padding: 0 20px;
+        margin: auto;
+        text-align: center;
+
+        h1 {
+            font-size: 26px;
+        }
+        h2 {
+            font-size: 21px;
+            font-weight: 300;
+        }
+        form {
+            width: calc(100vw - 20px);
+            max-width: 560px;
+        }
+
+        > p {
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 300;
+            width: 100%;
+            text-align: center;
+            max-width: none;
+        }
     }
 
     footer {
-        height: var(--footer-height);
+        height: 130px;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
-
-        p {
-            position: absolute;
-            top: -16px;
-        }
+        z-index: 2;
+        margin-bottom: 0px;
 
         @media print {
             display: none;
+        }
+    }
+}
+
+.seed {
+    display: block;
+    margin: 32px auto;
+    width: calc(100vw - 20px);
+    max-width: 864px;
+    text-align: left;
+
+    button,
+    span {
+        display: inline-block;
+        background: transparent;
+        border: none;
+        color: var(--secondary);
+        font-size: 21px;
+        line-height: 21px;
+        width: 32px;
+        height: 32px;
+        margin: 5px 0;
+        font-family: 'SourceCode';
+        font-weight: 300;
+
+        &:hover {
+            position: relative;
+            cursor: pointer;
+            background: var(--body-hover);
+        }
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    span {
+        pointer-events: none;
+    }
+}
+
+.wave {
+    position: absolute;
+    bottom: 0px;
+    width: 100vw;
+    height: 227px;
+    > div {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background: url('animations/wave.svg') repeat-x;
+        background-size: auto 227px;
+        background-position: 0 0;
+        opacity: 0.15;
+        transition: background-position 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    > div:last-child {
+        opacity: 0.25;
+        background-position: 50% 0;
+    }
+}
+
+.steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0px;
+    li {
+        display: block;
+        list-style: none;
+        width: 12px;
+        height: 12px;
+        background: var(--body-hover);
+        margin: 0 18px;
+        position: relative;
+        border-radius: 12px;
+        > span {
+            display: block;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            transform: scale(0);
+            border-radius: 12px;
+            transition: transform 0.2s ease-out;
+        }
+        &:before,
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 5px;
+            left: -36px;
+            height: 2px;
+            width: 36px;
+            background: var(--body-hover);
+            transition: width 0.2s ease-out;
+        }
+        &:after {
+            width: 0px;
+            background: var(--primary);
+        }
+        &:first-child:before,
+        &:first-child:after {
+            display: none;
+        }
+    }
+    .active {
+        > span {
+            background: var(--primary);
+            transform: scale(1);
+            transition: transform 0.4s ease-out;
+        }
+        &:after {
+            width: 36px;
         }
     }
 }
