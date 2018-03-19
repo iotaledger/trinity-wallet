@@ -362,16 +362,13 @@ class Settings extends Component {
                 theme,
             },
             addExistingSeed: {
-                seedCount: this.props.seedCount,
                 addAccount: (seed, accountName) => this.addExistingSeed(seed, accountName),
-                backPress: () => this.props.setSetting('addNewAccount'),
                 body,
                 primary,
                 theme,
                 textColor,
                 input,
                 borderColor,
-                generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
             },
             nodeSelection: {
                 setNode: (selectedNode) => {
@@ -605,6 +602,7 @@ class Settings extends Component {
     // UseExistingSeed method
     addExistingSeed(seed, accountName) {
         const { t, accountNames, password } = this.props;
+
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',
