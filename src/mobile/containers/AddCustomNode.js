@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Keyboard
+} from 'react-native';
+import { connect } from 'react-redux';
+import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
+import {
+    setFullNode,
+    addCustomPoWNode
+} from 'iota-wallet-shared-modules/actions/settings';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
-import CustomTextInput from './CustomTextInput';
+import CustomTextInput from '../components/CustomTextInput';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
@@ -54,18 +69,16 @@ const styles = StyleSheet.create({
 
 class AddCustomNode extends Component {
     static propTypes = {
-        nodes: PropTypes.array.isRequired,
-        currentNode: PropTypes.string.isRequired,
-        onDuplicateNodeError: PropTypes.func.isRequired,
-        checkNode: PropTypes.func.isRequired,
+        availablePoWNodes: PropTypes.array.isRequired,
+        fullNode: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
-        setNode: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired,
-        onAddNodeError: PropTypes.func.isRequired,
-        onAddNodeSuccess: PropTypes.func.isRequired,
+        setFullNode: PropTypes.func.isRequired,
+        setSetting: PropTypes.func.isRequired,
         bodyColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        addCustomPoWNode: PropTypes.func.isRequired
     };
 
     constructor() {
@@ -76,41 +89,60 @@ class AddCustomNode extends Component {
         };
     }
 
+    onAddNodeError() {
+        return this.props.generateAlert(
+            'error',
+            'Custom node could not be added',
+            'The node returned an invalid response.',
+        );
+    }
+
+    onAddNodeSuccess(customNode) {
+        this.props.addCustomPoWNode(customNode);
+
+        return this.props.generateAlert('success', 'Custom node added', 'The custom node has been added successfully.');
+    }
+
+    onDuplicateNodeError() {
+        return this.props.generateAlert('error', 'Duplicate node', 'The custom node is already listed.');
+    }
+
+    setNode(selectedNode) {
+        changeIotaNode(selectedNode);
+        this.props.setFullNode(selectedNode);
+    }
+
     addNode() {
         const {
-            setNode,
-            checkNode,
-            backPress,
-            currentNode,
-            onAddNodeError,
-            onAddNodeSuccess,
-            nodes,
-            onDuplicateNodeError,
+            fullNode,
+            availablePoWNodes,
         } = this.props;
+
         const { customNode } = this.state;
 
         if (!customNode.startsWith('http')) {
-            return onAddNodeError();
+            return this.onAddNodeError();
         }
 
-        if (!nodes.includes(customNode.replace(/ /g, ''))) {
-            setNode(customNode);
+        if (!availablePoWNodes.includes(customNode.replace(/ /g, ''))) {
+            this.setNode(customNode);
+            
             checkNode((error) => {
                 if (error) {
-                    onAddNodeError();
-                    setNode(currentNode);
+                    this.onAddNodeError();
+                    this.setNode(fullNode);
                 } else {
-                    onAddNodeSuccess(customNode);
-                    backPress();
+                    this.onAddNodeSuccess(customNode);
+                    this.props.setSetting('advancedSettings');
                 }
             });
         } else {
-            onDuplicateNodeError();
+            this.onDuplicateNodeError();
         }
     }
 
     render() {
-        const { backPress, t, textColor, bodyColor, theme } = this.props;
+        const { t, textColor, bodyColor, theme } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -132,7 +164,7 @@ class AddCustomNode extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => backPress()}
+                            onPress={() => this.props.setSetting('advancedSettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
@@ -156,4 +188,22 @@ class AddCustomNode extends Component {
     }
 }
 
-export default translate(['addCustomNode', 'global'])(AddCustomNode);
+const mapStateToProps = (state) => ({
+    availablePoWNodes: state.settings.availablePoWNodes,
+    fullNode: state.settings.fullNode,
+    negativeColor: state.settings.theme.negative,
+    textColor: { color: state.settings.theme.body.color },
+    bodyColor: state.settings.theme.body.color,
+    theme: state.settings.theme
+});
+
+const mapDispatchToProps = {
+    setFullNode,
+    generateAlert,
+    addCustomPoWNode,
+    setSetting
+};
+
+export default translate(['addCustomNode', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(AddCustomNode),
+);
