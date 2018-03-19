@@ -86,7 +86,7 @@
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
         "pleaseWaitTransferExplanation": "Varallisuuttasi käytetään jo olemassa olevissa siirroissa. Odota että ne on vahvistettu ennen kuin yrität uudelleen.",
         "snapshotTransitionInProgress": "Snapshot hallinta käynnissä",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgressExplanation": "Odota kunnes prosessi on valmis."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -161,7 +161,7 @@
     "loading": {
         "loadingFirstTime": "Ladataan seed-lukua ensimmäistä kertaa.",
         "thisMayTake": "Tämä saattaa kestää hetken.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Älä sulje tai siirrä sovellusta taustalle.",
         "youMayNotice": "Laitteessa voi ilmetä hitautta."
     },
     "newSeedSetup": {
@@ -205,7 +205,7 @@
         "invalidAddressExplanation1": "Osoitteen on oltava {{maxLength}} merkkiä pitkä ja sen pitäisi sisältää tarkistussumma.",
         "invalidAddressExplanation2": "Osoite sisältää virheellisiä merkkejä.",
         "invalidAddressExplanation3": "Osoite sisältää virheellisen tarkistussumman.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanationGeneric": "Osoitteen on oltava 90 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.",
         "notEnoughFunds": "Varoja ei riittävästi",
         "notEnoughFundsExplanation": "Sinulla ei ole tarpeeksi IOTAa suorittaaksesi siirtoa loppuun.",
         "keyReuse": "Avaimen uudelleenkäyttö",
