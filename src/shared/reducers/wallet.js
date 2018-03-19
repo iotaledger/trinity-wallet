@@ -1,6 +1,6 @@
 import union from 'lodash/union';
-import { ActionTypes } from '../actions/tempAccount';
-import { ActionTypes as AccountActionTypes } from '../actions/account';
+import { ActionTypes } from '../actions/wallet';
+import { ActionTypes as AccountActionTypes } from '../actions/accounts';
 
 const initialState = {
     ready: false,
@@ -9,25 +9,12 @@ const initialState = {
     seed: Array(82).join(' '),
     accountName: 'MAIN WALLET',
     seedIndex: 0,
-    isGeneratingReceiveAddress: false,
     usedSeedToLogin: false,
-    lastTxAddress: '',
-    lastTxValue: 0,
-    isSendingTransfer: false,
-    isSyncing: false,
     currentSetting: 'mainSettings',
     copiedToClipboard: false,
-    hasErrorFetchingAccountInfoOnLogin: false,
-    inactive: false,
-    minimised: false,
-    addingAdditionalAccount: false,
     additionalAccountName: '',
-    isFetchingLatestAccountInfoOnLogin: false,
-    isTransitioning: false,
     transitionBalance: 0,
     transitionAddresses: [],
-    balanceCheckToggle: false,
-    isAttachingToTangle: false,
 };
 
 export default (state = initialState, action) => {
@@ -81,9 +68,7 @@ export default (state = initialState, action) => {
         case ActionTypes.SEND_TRANSFER_SUCCESS:
             return {
                 ...state,
-                isSendingTransfer: false,
-                lastTxAddress: action.payload.address,
-                lastTxValue: action.payload.value,
+                isSendingTransfer: false
             };
         case ActionTypes.SEND_TRANSFER_ERROR:
             return {
@@ -114,8 +99,6 @@ export default (state = initialState, action) => {
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
                 isSendingTransfer: false,
-                lastTxAddress: '',
-                lastTxValue: 0,
                 currentSetting: 'mainSettings',
                 copiedToClipboard: false,
             };

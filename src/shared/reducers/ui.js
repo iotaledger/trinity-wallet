@@ -3,10 +3,21 @@ import { ActionTypes as UiActionTypes } from '../actions/ui';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 
 const initialState = {
+    isGeneratingReceiveAddress: false,
     isFetchingCurrencyData: false,
     hasErrorFetchingCurrencyData: false,
     isBroadcastingBundle: false,
     isPromotingTransaction: false,
+    isTransitioning: false,
+    balanceCheckToggle: false,
+    isAttachingToTangle: false,
+    isFetchingLatestAccountInfoOnLogin: false,
+    hasErrorFetchingAccountInfoOnLogin: false,
+    isSendingTransfer: false,
+    isSyncing: false,
+    inactive: false,
+    minimised: false,
+    addingAdditionalAccount: false,
     sendAddressFieldText: '',
     sendAmountFieldText: '',
     sendMessageFieldText: '',
@@ -86,6 +97,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isPromotingTransaction: false,
+            };
+        case ActionTypes.SET_USER_ACTIVITY:
+            return {
+                ...state,
+                ...action.payload,
             };
         default:
             return state;

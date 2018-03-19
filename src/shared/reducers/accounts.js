@@ -5,7 +5,7 @@ import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
 import filter from 'lodash/filter';
 import union from 'lodash/union';
-import { ActionTypes } from '../actions/account';
+import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 
 const updateAccountInfo = (state, payload) => ({
@@ -32,9 +32,7 @@ const account = (
         accountInfo: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
         txHashesForUnspentAddresses: {},
-        pendingTxHashesForSpentAddresses: {},
-        is2FAEnabled: false,
-        isFingerprintEnabled: false,
+        pendingTxHashesForSpentAddresses: {}
     },
     action,
 ) => {
@@ -115,17 +113,6 @@ const account = (
             return {
                 ...state,
                 firstUse: action.payload,
-            };
-        case ActionTypes.SET_BALANCE:
-            return {
-                ...state,
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.payload.accountName]: {
-                        ...state.accountInfo[action.payload.accountName],
-                        balance: action.payload.balance,
-                    },
-                },
             };
         case ActionTypes.SET_ONBOARDING_COMPLETE:
             return {
@@ -219,16 +206,6 @@ const account = (
                     ...state.pendingTxHashesForSpentAddresses,
                     [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
-            };
-        case ActionTypes.SET_2FA_STATUS:
-            return {
-                ...state,
-                is2FAEnabled: action.payload,
-            };
-        case ActionTypes.SET_FINGERPRINT_STATUS:
-            return {
-                ...state,
-                isFingerprintEnabled: action.payload,
             };
         case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
             return {
