@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
+    TouchableWithoutFeedback
+} from 'react-native';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
@@ -79,6 +88,45 @@ class SecuritySettings extends Component {
         //onFingerprintSetupPress: PropTypes.func.isRequired,
     };
 
+    on2FASetupPress() {
+        const { is2FAEnabled, body } = this.props;
+        if (!is2FAEnabled) {
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: 'twoFactorSetupAddKey',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundColor: body.bg,
+                        drawUnderStatusBar: true,
+                        statusBarColor: body.bg,
+                    },
+                },
+                appStyle: {
+                    orientation: 'portrait',
+                    keepStyleAcrossPush: false,
+                },
+            });
+        } else {
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: 'disable2FA',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundColor: body.bg,
+                        drawUnderStatusBar: true,
+                        statusBarColor: body.bg,
+                    },
+                },
+                appStyle: {
+                    orientation: 'portrait',
+                    keepStyleAcrossPush: false,
+                },
+            });
+        }
+    }
+
     render() {
         const { t, textColor, bodyColor } = this.props;
 
@@ -129,4 +177,17 @@ class SecuritySettings extends Component {
     }
 }
 
-export default translate(['settings', 'global'])(SecuritySettings);
+const mapStateToProps = (state) => ({
+    is2FAEnabled: state.account.is2FAEnabled,
+    body: state.settings.theme.body,
+    fullNode: state.settings.fullNode
+});
+
+const mapDispatchToProps = {
+    setSetting
+};
+
+export default translate(['settings', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)
+        (SecuritySettings),
+);
