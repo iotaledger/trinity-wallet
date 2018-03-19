@@ -1,10 +1,20 @@
 import trim from 'lodash/trim';
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Keyboard
+} from 'react-native';
 import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import CustomTextInput from '../components/CustomTextInput';
 import Checksum from '../components/Checksum';
 import QRScanner from '../components/QrScanner';
@@ -92,16 +102,16 @@ const styles = StyleSheet.create({
     },
 });
 
-class UseExistingSeed extends React.Component {
+class UseExistingSeed extends Component {
     static propTypes = {
         seedCount: PropTypes.number.isRequired,
         theme: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
         addAccount: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        setSetting: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         input: PropTypes.object.isRequired,
     };
@@ -223,7 +233,7 @@ class UseExistingSeed extends React.Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.backPress()}
+                            onPress={() => this.props.setSetting('addNewAccount')}
                             style={{ flex: 1 }}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
@@ -266,4 +276,17 @@ class UseExistingSeed extends React.Component {
     }
 }
 
-export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(UseExistingSeed);
+const mapStateToProps = (state) => ({
+    seedCount: state.account.seedCount
+});
+
+const mapDispatchToProps = {
+    setSetting,
+    generateAlert
+};
+
+export default translate(
+    ['addAdditionalSeed', 'useExistingSeed', 'global']
+)(
+    connect(mapStateToProps, mapDispatchToProps)(UseExistingSeed),
+);
