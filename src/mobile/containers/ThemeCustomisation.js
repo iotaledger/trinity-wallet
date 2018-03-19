@@ -2,9 +2,17 @@ import cloneDeep from 'lodash/cloneDeep';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    TouchableWithoutFeedback
+} from 'react-native';
+import { connect } from 'react-redux';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import THEMES from 'iota-wallet-shared-modules/themes/themes';
-import Dropdown from './Dropdown'; // eslint-disable-line import/no-named-as-default
+import Dropdown from '../components/Dropdown'; // eslint-disable-line import/no-named-as-default
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
@@ -156,11 +164,10 @@ const styles = StyleSheet.create({
 class ThemeCustomisation extends Component {
     static propTypes = {
         updateTheme: PropTypes.func.isRequired,
-        onAdvancedPress: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
         themeName: PropTypes.string.isRequired,
         bodyColor: PropTypes.string.isRequired,
-        backPress: PropTypes.func.isRequired,
+        setSetting: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -178,10 +185,6 @@ class ThemeCustomisation extends Component {
         const newTheme = cloneDeep(theme);
         const newThemeName = cloneDeep(themeName);
         this.props.updateTheme(newTheme, newThemeName);
-    }
-
-    onAdvancedPress() {
-        this.props.onAdvancedPress();
     }
 
     render() {
@@ -281,7 +284,7 @@ class ThemeCustomisation extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.backPress()}
+                            onPress={() => this.props.setSetting('mainSettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
@@ -309,4 +312,15 @@ class ThemeCustomisation extends Component {
     }
 }
 
-export default translate(['themeCustomisation', 'global'])(ThemeCustomisation);
+const mapStateToProps = (state) => ({
+    theme: state.settings.theme,
+    themeName: state.settings.themeName
+});
+
+const mapDispatchToProps = {
+    setSetting
+};
+
+export default translate(['themeCustomisation', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(ThemeCustomisation),
+);
