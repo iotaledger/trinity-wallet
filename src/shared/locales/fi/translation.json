@@ -136,7 +136,7 @@
         "seedTooShort": "Seed-luku on liian lyhyt",
         "seedTooShortExplanation": "Seed-luvun on oltava {{maxLength}} merkkiä pitkä. Sinun seed-lukusi on tällä hetkellä {{currentLength}} merkkiä pitkä. Yritä uudelleen.",
         "seedExplanation": "Seed-lukusi tulee olla {{maxLength}} merkkiä pitkä ja sisältää isoja kirjaimia A-Z tai numeron yhdeksän (9). Yli {{maxLength}} merkkiä pitkiä Seed-lukuja ei voi käyttää.",
-        "neverShare": "ÄLÄ KOSKAAN JAA SEED-LUKUASI KENENKÄÄN KANSSA"
+        "neverShare": "ÄLÄ KOSKAAN JAA SEED-LUKUASI KENELLEKÄÄN"
     },
     "home": {
         "balance": "SALDO",
@@ -333,7 +333,7 @@
         "selectNode": "Valitse palvelin",
         "addCustomNode": "Lisää omavalintainen palvelin",
         "manualSync": "Manuaalinen synkronointi",
-        "snapshotTransition": "Snapshot hallinta"
+        "snapshotTransition": "Snapshot-hallinta"
     },
     "advancedThemeCustomisation": {
         "background": "Tausta",
@@ -436,8 +436,8 @@
         "rootDetected": "<0>Laitteesi näyttää olevan rootattu.</0><1>Tämä voi johtaa merkittäviin ongelmiin lompakon tietoturvassa.</1><2>Haluatko jatkaa tästä huolimatta?</2>"
     },
     "pow": {
-        "feeless": "Kuluttoman siirron tekeminen vaatii vähäistä määrää laskentatyötä (proof of work).",
-        "localOrRemote": "Työ voidaan tehdä joko paikallisesti omalla laitteella tai ulkoiselle palvelimella.",
+        "feeless": "Kuluttoman siirron tekeminen vaatii vähäistä määrää laskentatyötä (Proof of Work).",
+        "localOrRemote": "Työ (PoW) voidaan tehdä joko paikallisesti omalla laitteella tai ulkoiselle palvelimella.",
         "local": "Paikallinen",
         "remote": "Ulkoinen"
     },
@@ -447,13 +447,13 @@
         "preparingInputs": "Alustetaan sisältöä",
         "preparingTransfers": "Alustetaan siirtoja",
         "gettingTransactionsToApprove": "Odotetaan siirtoja hyväksyttäväksi",
-        "proofOfWork": "Viimeistellään työ (proof of work)",
+        "proofOfWork": "Viimeistellään työ (Proof of Work)",
         "broadcasting": "Lähetetään"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Snapshot siirtymä ei onnistu",
+        "cannotCompleteTransition": "Snapshot-siirtymä ei onnistu",
         "cannotCompleteTransitionExplanation": "Tilin saldon tulee olla suurempi kuin 0, jotta siirtymäprosessi voidaan käynnistää.",
-        "transitionComplete": "Snapshot siirtymä valmis",
-        "transitionCompleteExplanation": "Snapshot siirtymäprosessi suoritettu onnistuneesti."
+        "transitionComplete": "Snapshot-siirtymä valmis",
+        "transitionCompleteExplanation": "Snapshot-siirtymäprosessi suoritettu onnistuneesti."
     }
 }
