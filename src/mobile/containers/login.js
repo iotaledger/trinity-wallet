@@ -20,7 +20,7 @@ import NodeSelection from '../components/nodeSelection';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
+import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, logTwoFa } from '../util/keychain';
 import { getPasswordHash } from '../util/crypto';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
@@ -60,6 +60,7 @@ class Login extends Component {
         migrate: PropTypes.func.isRequired,
         setLoginPasswordField: PropTypes.func.isRequired,
         password: PropTypes.string.isRequired,
+        pwdHash: PropTypes.string.isRequired,
         setFullNode: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
@@ -91,31 +92,33 @@ class Login extends Component {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
             const pwdHash = getPasswordHash(password);
-            getAllSeedsFromKeychain(pwdHash)
-                .then((seedInfo) => {
-                    if (seedInfo !== null){
-                        this.props.setPassword(pwdHash);
-                        this.props.setLoginPasswordField('');
-                        if (!is2FAEnabled) {
-                            this.navigateToLoading();
-                        } else {
-                            this.setState({ completing2FA: true });
-                        }
+            getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
+                if (seedInfo !== null) {
+                    this.props.setPassword(pwdHash);
+                    this.props.setLoginPasswordField('');
+                    if (!is2FAEnabled) {
+                        this.navigateToLoading();
                     } else {
-                        this.props.generateAlert(
-                            'error',
-                            t('global:unrecognisedPassword'),
-                            t('global:unrecognisedPasswordExplanation'),
-                        );
+                        this.setState({ completing2FA: true });
                     }
-                });
+                } else {
+                    this.props.generateAlert(
+                        'error',
+                        t('global:unrecognisedPassword'),
+                        t('global:unrecognisedPasswordExplanation'),
+                    );
+                }
+            });
         }
     }
 
     async onComplete2FA(token) {
-        const { t, password } = this.props;
+        const { t, pwdHash } = this.props;
         if (token) {
-            const key = await getTwoFactorAuthKeyFromKeychain(password);
+            console.log(pwdHash);
+            logTwoFa(pwdHash);
+            const key = await getTwoFactorAuthKeyFromKeychain(pwdHash);
+            //console.log(key)
             if (key === null) {
                 this.props.generateAlert(
                     'error',
@@ -172,7 +175,7 @@ class Login extends Component {
     }
 
     render() {
-        const { body, theme, password } = this.props;
+        const { body, theme, password, pwdHash } = this.props;
         const textColor = { color: body.bg };
 
         return (
@@ -192,11 +195,11 @@ class Login extends Component {
                 {!this.state.changingNode &&
                     this.state.completing2FA && (
                         <Enter2FA
-                            theme={theme}
                             onComplete2FA={this.onComplete2FA}
                             onBackPress={this.onBackPress}
                             navigateToNodeSelection={this.navigateToNodeSelection}
-                            textColor={textColor}
+                            theme={theme}
+                            pwdHash={pwdHash}
                         />
                     )}
                 {this.state.changingNode && (
@@ -234,6 +237,7 @@ const mapStateToProps = (state) => ({
     versions: state.app.versions,
     accountInfo: state.account.accountInfo,
     password: state.ui.loginPasswordFieldText,
+    pwdHash: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {

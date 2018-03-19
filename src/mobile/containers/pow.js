@@ -7,6 +7,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { updatePowSettings } from 'iota-wallet-shared-modules/actions/settings';
 import Fonts from '../theme/Fonts';
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/infoBox';
 import Toggle from '../components/toggle';
@@ -80,12 +81,18 @@ class Pow extends Component {
     }
 
     onChange() {
-        this.props.updatePowSettings();
-        this.props.generateAlert(
-            'success',
-            'Proof of work settings',
-            'Your proof of work configuration has been updated.',
-        );
+        // Temporarily disable enabling PoW for android
+        // Version 3.4.0
+        if (isAndroid) {
+            this.props.generateAlert('error', 'Not available', 'On device proof of work is not available for android.');
+        } else {
+            this.props.updatePowSettings();
+            this.props.generateAlert(
+                'success',
+                'Proof of work settings',
+                'Your proof of work configuration has been updated.',
+            );
+        }
     }
 
     render() {
@@ -110,36 +117,29 @@ class Pow extends Component {
                             }
                         />
                         <View style={{ flex: 1.1 }} />
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            <TouchableWithoutFeedback
-                                onPress={this.onChange}
-                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 70, right: width / 35 }}
-                            >
+                        <TouchableWithoutFeedback
+                            onPress={this.onChange}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 70, right: width / 35 }}
+                        >
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={styles.toggleTextContainer}>
                                     <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
                                         {t('local')}
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={this.onChange}>
                                 <Toggle
                                     active={remotePoW}
                                     bodyColor={body.color}
                                     primaryColor={primary.color}
                                     scale={1.3}
                                 />
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback
-                                onPress={this.onChange}
-                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 35, right: width / 70 }}
-                            >
                                 <View style={styles.toggleTextContainer}>
                                     <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
                                         {t('remote')}
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
-                        </View>
+                            </View>
+                        </TouchableWithoutFeedback>
                         <View style={{ flex: 1.5 }} />
                     </View>
                     <View style={styles.bottomContainer}>

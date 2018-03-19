@@ -79,11 +79,7 @@ class UnitInfoModal extends Component {
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
                 <View style={[styles.modalContent, { backgroundColor: bar.bg }, borderColor]}>
-                    <Icon
-                        name='iota'
-                        size={width / 14}
-                        color={bar.color}
-                    />
+                    <Icon name="iota" size={width / 14} color={bar.color} />
                     <TextWithLetterSpacing spacing={4} textStyle={[styles.iotaText, textColor]}>
                         IOTA
                     </TextWithLetterSpacing>
