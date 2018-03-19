@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import Modal from 'react-native-modal';
+import {
+    getSelectedAccountNameViaSeedIndex,
+} from 'iota-wallet-shared-modules/selectors/account';
+import {
+    deleteAccount
+} from 'iota-wallet-shared-modules/actions/account';
 import Fonts from '../theme/fonts';
+import {
+    deleteSeedFromKeychain,
+} from '../utils/keychain';
+
 import OnboardingButtons from '../components/OnboardingButtons';
 import { width, height } from '../utils/dimensions';
 import { getPasswordHash } from '../utils/crypto';
@@ -88,13 +101,12 @@ const styles = StyleSheet.create({
 
 class DeleteAccount extends Component {
     static propTypes = {
-        backPress: PropTypes.func.isRequired,
+        setSetting: PropTypes.func.isRequired,
         password: PropTypes.string.isRequired,
-        onWrongPassword: PropTypes.func.isRequired,
         deleteAccount: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         backgroundColor: PropTypes.string.isRequired,
-        currentAccountName: PropTypes.string.isRequired,
+        selectedAccountName: PropTypes.string.isRequired,
         primaryColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
@@ -103,7 +115,6 @@ class DeleteAccount extends Component {
         isPromoting: PropTypes.bool.isRequired,
         shouldPreventAction: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        selectedAccountName: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -118,22 +129,30 @@ class DeleteAccount extends Component {
 
     onBackPress() {
         if (!this.state.pressedContinue) {
-            this.props.backPress();
+            this.props.setSetting('accountManagement');
         } else {
             this.setState({ pressedContinue: false });
         }
     }
 
     onContinuePress() {
-        const { password } = this.props;
+        const { password, t } = this.props;
+
         if (!this.state.pressedContinue) {
             return this.setState({ pressedContinue: true });
         }
+
         const pwdHash = getPasswordHash(this.state.password);
+
         if (password === pwdHash) {
             return this.showModal();
         }
-        return this.props.onWrongPassword();
+
+        return this.props.generateAlert(
+            'error',
+            t('global:unrecognisedPassword'),
+            t('global:unrecognisedPasswordExplanation'),
+        );
     }
 
     onYesPress() {
@@ -149,12 +168,20 @@ class DeleteAccount extends Component {
         this.hideModal();
     }
 
+    delete() {
+        const { password, selectedAccountName } = this.props;
+
+        deleteSeedFromKeychain(password, selectedAccountName)
+            .then(() => this.props.deleteAccount(selectedAccountName))
+            .catch((err) => console.error(err));
+    }
+
     showModal = () => this.setState({ isModalVisible: true });
 
     hideModal = () => this.setState({ isModalVisible: false });
 
     renderModalContent = (borderColor, textColor) => {
-        const { t, backgroundColor, currentAccountName } = this.props;
+        const { t, backgroundColor, selectedAccountName } = this.props;
         return (
             <View
                 style={{
@@ -165,7 +192,7 @@ class DeleteAccount extends Component {
             >
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={[styles.modalInfoText, { paddingBottom: height / 16 }, textColor]}>
-                        {t('areYouSure', { accountName: currentAccountName })}
+                        {t('areYouSure', { accountName: selectedAccountName })}
                     </Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onNoPress()}
@@ -269,4 +296,18 @@ class DeleteAccount extends Component {
     }
 }
 
-export default translate(['deleteAccount', 'global'])(DeleteAccount);
+const mapStateToProps = (state) => ({
+    password: state.tempAccount.password,
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+
+});
+
+const mapDispatchToProps = {
+    setSetting,
+    generateAlert,
+    deleteAccount
+};
+
+export default translate(['deleteAccount', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(DeleteAccount),
+);
