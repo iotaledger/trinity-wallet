@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import {
+    ActivityIndicator,
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    TouchableWithoutFeedback
+} from 'react-native';
+import { connect } from 'react-redux';
+import {
+    getCurrencyData
+} from 'iota-wallet-shared-modules/actions/settings';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
-import DropdownComponent from './Dropdown';
+import DropdownComponent from '../components/Dropdown';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
@@ -70,8 +82,8 @@ export class CurrencySelection extends Component {
     static propTypes = {
         isFetchingCurrencyData: PropTypes.bool.isRequired,
         currency: PropTypes.string.isRequired,
-        currencies: PropTypes.array.isRequired,
-        backPress: PropTypes.func.isRequired,
+        availableCurrencies: PropTypes.array.isRequired,
+        setSetting: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         primaryColor: PropTypes.string.isRequired,
         getCurrencyData: PropTypes.func.isRequired,
@@ -85,7 +97,7 @@ export class CurrencySelection extends Component {
         const shouldNavigateBack = wasFetchingCurrencyData && !newProps.hasErrorFetchingCurrencyData;
 
         if (shouldNavigateBack) {
-            props.backPress();
+            props.setSetting('mainSettings');
         }
     }
 
@@ -102,7 +114,7 @@ export class CurrencySelection extends Component {
 
         return (
             <TouchableOpacity
-                onPress={this.props.backPress}
+                onPress={() => this.props.setSetting('mainSettings')}
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemLeft}>
@@ -130,7 +142,13 @@ export class CurrencySelection extends Component {
     }
 
     render() {
-        const { currency, currencies, t, primaryColor, isFetchingCurrencyData } = this.props;
+        const {
+            currency,
+            availableCurrencies,
+            t,
+            primaryColor,
+            isFetchingCurrencyData
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -148,7 +166,7 @@ export class CurrencySelection extends Component {
                                 this.dropdown = c;
                             }}
                             title={t('currency')}
-                            options={currencies}
+                            options={availableCurrencies}
                             defaultOption={currency}
                             dropdownWidth={{ width: width / 2 }}
                             disableWhen={isFetchingCurrencyData}
@@ -175,4 +193,20 @@ export class CurrencySelection extends Component {
     }
 }
 
-export default translate(['currencySelection', 'global'])(CurrencySelection);
+const mapStateToProps = (state) => ({
+    currency: state.settings.currency,
+    availableCurrencies: state.settings.availableCurrencies,
+    isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
+    hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
+    bodyColor: state.settings.theme.body.color,
+    primaryColor: state.settings.theme.primary.color
+});
+
+const mapDispatchToProps = {
+    getCurrencyData,
+    setSetting
+};
+
+export default translate(['currencySelection', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(CurrencySelection),
+);
