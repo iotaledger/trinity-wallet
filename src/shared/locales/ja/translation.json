@@ -370,7 +370,7 @@
         "pressToSync": "アカウントを同期するには下のボタンを押してください。",
         "thisMayTake": "これには時間がかかることがあり、デバイスが遅くなることがあります。",
         "doNotClose": "アプリを最小化すると同期がキャンセルされますのでご注意ください。",
-        "syncAccount": "同期アカウント",
+        "syncAccount": "アカウントを同期",
         "syncingYourAccount": "アカウントを同期中"
     },
     "useExistingSeed": {
