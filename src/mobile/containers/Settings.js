@@ -370,18 +370,6 @@ class Settings extends Component {
                 input,
                 borderColor,
             },
-            nodeSelection: {
-                setNode: (selectedNode) => {
-                    changeIotaNode(selectedNode);
-                    this.props.setFullNode(selectedNode);
-                },
-                node: this.props.fullNode,
-                nodes: this.props.availablePoWNodes,
-                backPress: () => this.props.setSetting('advancedSettings'),
-                textColor: { color: body.color },
-                bodyColor: body.color,
-                body,
-            },
             addCustomNode: {
                 setNode: (selectedNode) => {
                     changeIotaNode(selectedNode);
