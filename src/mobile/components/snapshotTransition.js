@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import Modal from 'react-native-modal';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -6,7 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'rea
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from './onboardingButtons';
 import GENERAL from '../theme/general';
-import keychain, { getSeed } from '../util/keychain';
+import { getSeedFromKeychain } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import { Icon } from '../theme/icons.js';
 import CtaButton from '../components/ctaButton';
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.8)',
         width: width / 1.05,
         paddingHorizontal: width / 20,
-        paddingBottom: height / 25
+        paddingBottom: height / 25,
     },
     container: {
         flex: 1,
@@ -96,12 +95,9 @@ class SnapshotTransition extends Component {
         isTransitioning: PropTypes.bool.isRequired,
         backPress: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.string.isRequired,
         primary: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
-        borderColor: PropTypes.object.isRequired,
         transitionForSnapshot: PropTypes.func.isRequired,
-        seedIndex: PropTypes.number.isRequired,
         transitionBalance: PropTypes.number.isRequired,
         balanceCheckToggle: PropTypes.bool.isRequired,
         generateAddressesAndGetBalance: PropTypes.func.isRequired,
@@ -113,6 +109,7 @@ class SnapshotTransition extends Component {
         shouldPreventAction: PropTypes.func.isRequired,
         isAttachingToTangle: PropTypes.bool.isRequired,
         body: PropTypes.object.isRequired,
+        password: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -135,16 +132,13 @@ class SnapshotTransition extends Component {
 
     onBalanceCompletePress() {
         this.hideModal();
-        const { completeSnapshotTransition, seedIndex, transitionAddresses, selectedAccountName } = this.props;
+        const { completeSnapshotTransition, transitionAddresses, selectedAccountName, password } = this.props;
         setTimeout(() => {
-            keychain
-                .get()
-                .then((credentials) => {
-                    const data = get(credentials, 'data');
-                    if (!data) {
+            getSeedFromKeychain(password, selectedAccountName)
+                .then((seed) => {
+                    if (seed === null) {
                         throw new Error('Error');
                     } else {
-                        const seed = getSeed(data, seedIndex);
                         completeSnapshotTransition(seed, selectedAccountName, transitionAddresses);
                     }
                 })
@@ -155,36 +149,28 @@ class SnapshotTransition extends Component {
     onBalanceIncompletePress() {
         this.hideModal();
 
-        const { generateAddressesAndGetBalance, transitionAddresses, seedIndex } = this.props;
+        const { generateAddressesAndGetBalance, transitionAddresses, password, selectedAccountName } = this.props;
         const currentIndex = transitionAddresses.length;
         setTimeout(() => {
-            keychain
-                .get()
-                .then((credentials) => {
-                    const data = get(credentials, 'data');
-                    if (!data) {
-                        throw new Error('Error');
-                    } else {
-                        const seed = getSeed(data, seedIndex);
-                        generateAddressesAndGetBalance(seed, currentIndex);
-                    }
-                })
-                .catch((err) => console.error(err));
+            getSeedFromKeychain(password, selectedAccountName).then((seed) => {
+                if (seed === null) {
+                    throw new Error('Error');
+                } else {
+                    generateAddressesAndGetBalance(seed, currentIndex);
+                }
+            });
         }, 300);
     }
 
     onSnapshotTransititionPress() {
-        const { transitionForSnapshot, seedIndex, addresses, shouldPreventAction } = this.props;
+        const { transitionForSnapshot, addresses, shouldPreventAction, password, selectedAccountName } = this.props;
 
         if (!shouldPreventAction()) {
-            keychain
-                .get()
-                .then((credentials) => {
-                    const data = get(credentials, 'data');
-                    if (!data) {
+            getSeedFromKeychain(password, selectedAccountName)
+                .then((seed) => {
+                    if (seed === null) {
                         throw new Error('Error');
                     } else {
-                        const seed = getSeed(data, seedIndex);
                         transitionForSnapshot(seed, addresses);
                     }
                 })
@@ -199,11 +185,11 @@ class SnapshotTransition extends Component {
     hideModal = () => this.setState({ isModalVisible: false });
 
     renderModalContent = () => {
-        const { transitionBalance, t, borderColor, textColor, body } = this.props;
+        const { transitionBalance, t, textColor, body } = this.props;
 
         return (
             <View style={{ width: width / 1.05, alignItems: 'center', backgroundColor: body.bg }}>
-                <View style={[styles.modalContent, borderColor]}>
+                <View style={[styles.modalContent, { borderColor: body.color }]}>
                     <View style={styles.textContainer}>
                         <Text style={[styles.buttonInfoText, textColor]}>
                             Detected balance: {round(formatValue(transitionBalance), 1)} {formatUnit(transitionBalance)}
@@ -222,16 +208,7 @@ class SnapshotTransition extends Component {
     };
 
     render() {
-        const {
-            isTransitioning,
-            backPress,
-            body,
-            textColor,
-            negativeColor,
-            primary,
-            t,
-            isAttachingToTangle,
-        } = this.props;
+        const { isTransitioning, backPress, body, textColor, primary, t, isAttachingToTangle } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
@@ -242,8 +219,12 @@ class SnapshotTransition extends Component {
                                 body={body}
                                 text={
                                     <View>
-                                        <Text style={[styles.infoText, textColor]}>Every so often, a snapshot is performed to prune the size of the Tangle.</Text>
-                                        <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>Has a snapshot taken place? Press the button below to transition.</Text>
+                                        <Text style={[styles.infoText, textColor]}>
+                                            Every so often, a snapshot is performed to prune the size of the Tangle.
+                                        </Text>
+                                        <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                            Has a snapshot taken place? Press the button below to transition.
+                                        </Text>
                                     </View>
                                 }
                             />
@@ -251,7 +232,7 @@ class SnapshotTransition extends Component {
                                 <CtaButton
                                     ctaColor={primary.color}
                                     secondaryCtaColor={primary.body}
-                                    text='TRANSITION'
+                                    text="TRANSITION"
                                     onPress={this.onSnapshotTransititionPress}
                                     ctaWidth={width / 2}
                                     ctaHeight={height / 16}
@@ -266,9 +247,15 @@ class SnapshotTransition extends Component {
                                     body={body}
                                     text={
                                         <View>
-                                            <Text style={[styles.infoText, textColor]}>Transitioning for the snapshot.</Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>Generating addresses and detecting balance.</Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>Please wait...</Text>
+                                            <Text style={[styles.infoText, textColor]}>
+                                                Transitioning for the snapshot.
+                                            </Text>
+                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                                Generating addresses and detecting balance.
+                                            </Text>
+                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                                Please wait...
+                                            </Text>
                                         </View>
                                     }
                                 />
@@ -276,7 +263,7 @@ class SnapshotTransition extends Component {
                                     animating={isTransitioning}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={negativeColor}
+                                    color={primary.color}
                                 />
                             </View>
                         )}
@@ -287,9 +274,15 @@ class SnapshotTransition extends Component {
                                     body={body}
                                     text={
                                         <View>
-                                            <Text style={[styles.infoText, textColor]}>Attaching addresses to Tangle</Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>This may take a while</Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>Please wait...</Text>
+                                            <Text style={[styles.infoText, textColor]}>
+                                                Attaching addresses to Tangle
+                                            </Text>
+                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                                This may take a while
+                                            </Text>
+                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                                Please wait...
+                                            </Text>
                                         </View>
                                     }
                                 />
@@ -297,7 +290,7 @@ class SnapshotTransition extends Component {
                                     animating={isTransitioning}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={negativeColor}
+                                    color={primary.color}
                                 />
                             </View>
                         )}
@@ -309,11 +302,7 @@ class SnapshotTransition extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon
-                                    name='chevronLeft'
-                                    size={width / 28}
-                                    color={body.color}
-                                />
+                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>

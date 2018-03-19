@@ -64,7 +64,7 @@ class AddCustomNode extends Component {
         backPress: PropTypes.func.isRequired,
         onAddNodeError: PropTypes.func.isRequired,
         onAddNodeSuccess: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -110,7 +110,7 @@ class AddCustomNode extends Component {
     }
 
     render() {
-        const { backPress, t, textColor, secondaryBackgroundColor, theme } = this.props;
+        const { backPress, t, textColor, bodyColor, theme } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -120,7 +120,7 @@ class AddCustomNode extends Component {
                         <CustomTextInput
                             label={t('customNode')}
                             onChangeText={(customNode) => this.setState({ customNode })}
-                            containerStyle={{ width: width / 1.36 }}
+                            containerStyle={{ width: width / 1.2 }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -136,7 +136,7 @@ class AddCustomNode extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -146,7 +146,7 @@ class AddCustomNode extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('add')}</Text>
-                                <Icon name="tick" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="tick" size={width / 28} color={bodyColor} />
                             </View>
                         </TouchableOpacity>
                     </View>

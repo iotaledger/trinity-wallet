@@ -1,25 +1,24 @@
 import assign from 'lodash/assign';
 import get from 'lodash/get';
+import omit from 'lodash/omit';
 import isEmpty from 'lodash/isEmpty';
-import some from 'lodash/some';
-import map from 'lodash/map';
+import values from 'lodash/values';
+import keys from 'lodash/keys';
 import isString from 'lodash/isString';
-import filter from 'lodash/filter';
 import * as Keychain from 'react-native-keychain';
-import { serialize, parse } from 'iota-wallet-shared-modules/libs/util';
+import { getNonce, createSecretBox, openSecretBox, hexStringToByte, encodeBase64, decodeBase64 } from './crypto';
 
 const keychain = {
-    get: () => {
+    get: (alias) => {
         return new Promise((resolve, reject) => {
-            Keychain.getGenericPassword()
+            Keychain.getInternetCredentials(alias)
                 .then((credentials) => {
                     if (isEmpty(credentials)) {
                         resolve(null);
                     } else {
                         const payload = {
-                            password: get(credentials, 'username'),
-                            data: get(credentials, 'password'),
-                            service: get(credentials, 'service'),
+                            nonce: get(credentials, 'username'),
+                            box: get(credentials, 'password'),
                         };
 
                         resolve(payload);
@@ -28,154 +27,146 @@ const keychain = {
                 .catch((err) => reject(err));
         });
     },
-    clear: () => {
+    clear: (alias) => {
         return new Promise((resolve, reject) => {
-            Keychain.resetGenericPassword()
+            Keychain.resetInternetCredentials(alias)
                 .then(() => resolve())
                 .catch((err) => reject(err));
         });
     },
-    set: (key, value) => {
+    set: (alias, nonce, box) => {
         return new Promise((resolve, reject) => {
-            Keychain.setGenericPassword(key, value)
+            Keychain.setInternetCredentials(alias, nonce, box)
                 .then(() => resolve())
                 .catch((err) => reject(err));
         });
     },
 };
 
-export const storeSeedInKeychain = async (password, seed, name) => {
-    const existingInfo = await keychain.get();
-    const existingData = get(existingInfo, 'data');
+export const getSecretBoxFromKeychainAndOpenIt = async (alias, key) => {
+    const secretBox = await keychain.get(alias);
+    const boxUInt8 = await decodeBase64(secretBox.box);
+    const nonceUInt8 = await decodeBase64(secretBox.nonce);
+    const keyUInt8 = hexStringToByte(key);
+    return await openSecretBox(boxUInt8, nonceUInt8, keyUInt8);
+};
 
-    // In case this is the first seed with account name
-    // Set the new seed with account name
-    if (isEmpty(existingData)) {
-        const info = { accounts: [{ seed, name }], shared: { twoFactorAuthKey: null } };
-        return keychain.set(password, serialize(info));
+export const createAndStoreBoxInKeychain = async (key, message, alias) => {
+    const nonce = await getNonce();
+    const box = await createSecretBox(message, nonce, key);
+    const nonce64 = await encodeBase64(nonce);
+    const box64 = await encodeBase64(box);
+    return await keychain.set(alias, nonce64, box64);
+};
+
+export const storeSeedInKeychain = async (pwdHash, seed, name, alias = 'seeds') => {
+    const existingInfo = await keychain.get(alias);
+    const info = { [name]: seed };
+    // If this is the first seed, store the seed with account name
+    if (isEmpty(existingInfo)) {
+        return await createAndStoreBoxInKeychain(pwdHash, info, alias);
     }
-
-    const parsed = parse(existingData);
-
-    const updatedKeychainInfo = assign({}, parsed, {
-        accounts: [...get(parsed, 'accounts'), { seed, name }],
-    });
-
-    return keychain.set(password, serialize(updatedKeychainInfo));
+    // If this is an additional seed, get existing seed info and update with new seed info before storing
+    const existingSeedInfo = await getSecretBoxFromKeychainAndOpenIt(alias, pwdHash);
+    const updatedSeedInfo = assign({}, existingSeedInfo, info);
+    return await createAndStoreBoxInKeychain(pwdHash, updatedSeedInfo, alias);
 };
 
-export const storeTwoFactorAuthKeyInKeychain = async (key) => {
-    const info = await keychain.get();
+export const getAllSeedsFromKeychain = async (pwdHash) => {
+    try {
+        return await getSecretBoxFromKeychainAndOpenIt('seeds', pwdHash);
+    } catch (error) {
+        // In case no seeds in keychain or password hash is incorrect
+        return null;
+    }
+};
 
-    const { password, data } = info;
+export const getSeedFromKeychain = async (pwdHash, accountName) => {
+    try {
+        return (await getSecretBoxFromKeychainAndOpenIt('seeds', pwdHash))[accountName];
+    } catch (error) {
+        // In case no seeds in keychain or password hash is incorrect
+        return null;
+    }
+};
 
-    // Should only allow storing two factor authentication key
-    // if a user has an account and is logged in.
-    const shouldNotAllow = !password || !data;
+export const logSeeds = async (pwdHash) => {
+    try {
+        const seeds = await getSecretBoxFromKeychainAndOpenIt('seeds', pwdHash);
+        console.log(seeds);
+    } catch (error) {
+        // In case no seeds in keychain or password hash is incorrect
+        return console.log(null);
+    }
+};
 
-    if (!isString(key)) {
+export const logTwoFa = async (pwdHash) => {
+    const twofa = await getSecretBoxFromKeychainAndOpenIt('authKey', pwdHash);
+    console.log(twofa);
+};
+
+export const getTwoFactorAuthKeyFromKeychain = async (pwdHash) => {
+    try {
+        return await getSecretBoxFromKeychainAndOpenIt('authKey', pwdHash);
+    } catch (error) {
+        // In case no 2FA key in keychain or password hash is incorrect
+        return null;
+    }
+};
+
+export const storeTwoFactorAuthKeyInKeychain = async (pwdHash, authKey, alias = 'authKey') => {
+    // Should only allow storing two factor authkey if the user has an account
+    const info = await keychain.get('seeds');
+    const shouldNotAllow = !info;
+
+    if (!isString(authKey)) {
         throw new Error('Invalid two factor authentication key.');
     } else if (shouldNotAllow) {
-        throw new Error('Cannot store two factor authentication key. No account information found in keychain.');
+        throw new Error('Cannot store two factor authentication key.');
     }
-
-    const parsed = parse(data);
-    const withTwoFactorAuthKey = assign({}, parsed, {
-        shared: {
-            twoFactorAuthKey: key,
-        },
-    });
-
-    return keychain.set(password, serialize(withTwoFactorAuthKey));
+    return await createAndStoreBoxInKeychain(pwdHash, authKey, alias);
 };
 
-export const getTwoFactorAuthKeyFromKeychain = async () => {
-    const info = await keychain.get();
-
-    const { data } = info;
-
-    return get(parse(data), 'shared.twoFactorAuthKey');
+export const hasDuplicateAccountName = (seedInfo, accountName) => {
+    return keys(seedInfo).indexOf(accountName) > -1;
 };
 
-export const getPasswordFromKeychain = async () => {
-    const info = await keychain.get();
-
-    return get(info, 'password');
+export const hasDuplicateSeed = (seedInfo, seed) => {
+    return values(seedInfo).indexOf(seed) > -1;
 };
 
-export const hasDuplicateAccountName = (data, name) => {
-    const parsed = parse(data);
-    const hasDuplicate = (d) => get(d, 'name') === name;
-
-    return some(get(parsed, 'accounts'), hasDuplicate);
-};
-
-export const hasDuplicateSeed = (data, seed) => {
-    const parsed = parse(data);
-    const hasDuplicate = (d) => get(d, 'seed') === seed;
-
-    return some(get(parsed, 'accounts'), hasDuplicate);
-};
-
-export const getSeed = (value, index) => {
-    const parsed = parse(value);
-    const accounts = get(parsed, 'accounts');
-
-    // Should check seed prop - Dangerous
-    return accounts[index] ? accounts[index].seed : '';
-};
-
-export const updateAccountNameInKeychain = async (replaceAtIndex, newAccountName, password) => {
-    const info = await keychain.get();
-    const data = get(info, 'data');
-
-    if (data) {
-        const parsed = parse(data);
-        const replace = (d, i) => {
-            if (i === replaceAtIndex) {
-                return {
-                    ...d,
-                    name: newAccountName,
-                };
-            }
-
-            return d;
-        };
-
-        const updatedAccountInfo = map(get(parsed, 'accounts'), replace);
-
-        return keychain.set(
-            password,
-            serialize(
-                assign({}, parsed, {
-                    accounts: updatedAccountInfo,
-                }),
-            ),
-        );
+export const updateAccountNameInKeychain = async (pwdHash, oldAccountName, newAccountName, alias = 'seeds') => {
+    const seedInfo = await getAllSeedsFromKeychain(pwdHash);
+    let newSeedInfo = {};
+    if (oldAccountName !== newAccountName) {
+        newSeedInfo = assign({}, seedInfo, { [newAccountName]: seedInfo[oldAccountName] });
+        delete newSeedInfo[oldAccountName];
     }
-
-    return Promise.reject(new Error('Something went wrong while updating account name.'));
+    return await createAndStoreBoxInKeychain(pwdHash, newSeedInfo, alias);
 };
 
-export const deleteFromKeychain = async (indexToDelete, password) => {
-    const info = await keychain.get();
-    const data = get(info, 'data');
-
-    if (data) {
-        const parsed = parse(data);
-        const updatedAccountInfo = filter(get(parsed, 'accounts'), (d, i) => i !== indexToDelete);
-
-        return keychain.set(
-            password,
-            serialize(
-                assign({}, parsed, {
-                    accounts: updatedAccountInfo,
-                }),
-            ),
-        );
+export const deleteSeedFromKeychain = async (pwdHash, accountNameToDelete, alias = 'seeds') => {
+    const seedInfo = await getAllSeedsFromKeychain(pwdHash);
+    if (seedInfo) {
+        const newSeedInfo = omit(seedInfo, accountNameToDelete);
+        return await createAndStoreBoxInKeychain(pwdHash, newSeedInfo, alias);
     }
+    throw new Error('Something went wrong while deleting from keychain.');
+};
 
-    return Promise.reject(new Error('Something went wrong while deleting from keychain.'));
+export const deleteTwoFactorAuthKeyFromKeychain = async (alias = 'authKey') => {
+    return await keychain.clear(alias);
+};
+
+export const clearKeychain = async (aliasOne = 'authKey', aliasTwo = 'seeds') => {
+    await keychain.clear(aliasOne);
+    return await keychain.clear(aliasTwo);
+};
+
+export const changePassword = async (oldPwdHash, newPwdHash, alias = 'seeds') => {
+    const seedInfo = await getSecretBoxFromKeychainAndOpenIt(alias, oldPwdHash);
+    await keychain.clear(alias);
+    return await createAndStoreBoxInKeychain(newPwdHash, seedInfo, alias);
 };
 
 export default keychain;

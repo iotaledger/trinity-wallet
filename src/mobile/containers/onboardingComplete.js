@@ -96,25 +96,21 @@ class OnboardingComplete extends Component {
     render() {
         const { t, body, positive } = this.props;
         return (
-            <View style={[ styles.container, { backgroundColor: body.bg }]}>
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
-                    <Icon
-                        name='iota'
-                        size={width / 8}
-                        color={body.color}
-                    />
+                    <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                        <Text style={[ styles.infoText, { color: body.color } ]}>{t('walletReady')}</Text>
+                        <Text style={[styles.infoText, { color: body.color }]}>{t('walletReady')}</Text>
                     </View>
                     <Image source={balloonsImagePath} style={styles.party} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onNextPress()}>
-                        <View style={[ styles.nextButton, { borderColor: positive.color }]}>
-                            <Text style={[ styles.nextText, { color: positive.color }]}>{t('global:next')}</Text>
+                        <View style={[styles.nextButton, { borderColor: positive.color }]}>
+                            <Text style={[styles.nextText, { color: positive.color }]}>{t('global:next')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -128,4 +124,6 @@ const mapStateToProps = (state) => ({
     positive: state.settings.theme.positive,
 });
 
-export default WithBackPressCloseApp()(translate(['onboardingComplete', 'global'])(connect(mapStateToProps, null)(OnboardingComplete)));
+export default WithBackPressCloseApp()(
+    translate(['onboardingComplete', 'global'])(connect(mapStateToProps, null)(OnboardingComplete)),
+);
