@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+    Keyboard
+} from 'react-native';
+import { connect } from 'react-redux';
+import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Fonts from '../theme/fonts';
 import { changePassword } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
-import CustomTextInput from './CustomTextInput';
+import CustomTextInput from '../components/CustomTextInput';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
 
@@ -86,7 +96,7 @@ class ChangePassword extends Component {
     static propTypes = {
         password: PropTypes.string.isRequired,
         setPassword: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired,
+        setSetting: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
@@ -134,7 +144,7 @@ class ChangePassword extends Component {
 
                     generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
 
-                    this.props.backPress();
+                    this.props.setSetting('mainSettings');
                 })
                 .catch(() => throwErr());
         }
@@ -241,7 +251,7 @@ class ChangePassword extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.backPress()}
+                            onPress={() => this.props.setSetting('mainSettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
@@ -274,4 +284,20 @@ class ChangePassword extends Component {
     }
 }
 
-export default translate(['changePassword', 'global'])(ChangePassword);
+const mapStateToProps = (state) => ({
+    password: state.tempAccount.password,
+    textColor: { color: state.settings.theme.body.color },
+    borderColor: { borderColor: state.settings.theme.body.color },
+    body: state.settings.theme.body,
+    theme: state.settings.theme
+});
+
+const mapDispatchToProps = {
+    setPassword,
+    setSetting,
+    generateAlert
+};
+
+export default translate(['changePassword', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(ChangePassword),
+);
