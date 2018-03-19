@@ -120,12 +120,12 @@ class Login extends React.Component {
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
 
-        if (account.firstUse && !tempAccount.addingAdditionalAccount) {
-            runTask('getFullAccountInfo', [seed, account.seedNames[tempAccount.seedIndex]]);
-        } else if (!account.firstUse && tempAccount.addingAdditionalAccount) {
-            runTask('fetchFullAccountInfoForFirstUse', [seed, tempAccount.additionalAccountName]);
+        if (account.firstUse) {
+            runTask('getFullAccountInfoFirstSeed', [seed, account.accountNames[tempAccount.seedIndex]]);
+        } else if (tempAccount.addingAdditionalAccount) {
+            runTask('getFullAccountInfoAdditionalSeed', [seed, tempAccount.additionalAccountName]);
         } else {
-            runTask('getAccountInfo', [seed, account.seedNames[tempAccount.seedIndex]]);
+            runTask('getAccountInfo', [seed, account.accountNames[tempAccount.seedIndex]]);
         }
     }
 
