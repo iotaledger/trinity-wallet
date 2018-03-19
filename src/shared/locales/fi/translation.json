@@ -85,7 +85,7 @@
         "pleaseWait": "Odota hetki",
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
         "pleaseWaitTransferExplanation": "Varallisuuttasi käytetään jo olemassa olevissa siirroissa. Odota että ne on vahvistettu ennen kuin yrität uudelleen.",
-        "snapshotTransitionInProgress": "Snapshot hallinta käynnissä",
+        "snapshotTransitionInProgress": "Snapshot siirtymä käynnissä",
         "snapshotTransitionInProgressExplanation": "Odota kunnes prosessi on valmis."
     },
     "addAdditionalSeed": {
@@ -360,7 +360,7 @@
         "one": "Yksi"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Oletko varma, että haluat poistaa tilin {{accountName}}?",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoria poistetaan.",
         "thisAction": "Tätä toimintoa ei voi peruuttaa jälkikäteen.",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "VAROITUS",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Laitteesi näyttää olevan rootattu.</0><1>Tämä voi johtaa merkittäviin ongelmiin lompakon tietoturvassa.</1><2>Haluatko jatkaa tästä huolimatta?</2>"
     },
     "pow": {
         "feeless": "Kuluttoman siirron tekeminen vaatii vähäistä määrää laskentatyötä (proof of work).",
@@ -442,16 +442,16 @@
         "remote": "Ulkoinen"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "validatingReceiveAddress": "Varmistetaan vastaanottajan osoite",
+        "syncingAccount": "Synkronoidaan tiliä",
+        "preparingInputs": "Alustetaan sisältöä",
+        "preparingTransfers": "Alustetaan siirtoja",
+        "gettingTransactionsToApprove": "Odotetaan siirtoja hyväksyttäväksi",
         "proofOfWork": "Viimeistellään työ (proof of work)",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "Lähetetään"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransition": "Snapshot siirtymä ei onnistu",
         "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully."
