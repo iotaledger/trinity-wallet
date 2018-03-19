@@ -351,11 +351,6 @@ class Settings extends Component {
 
         const props = {
             deleteAccount: {
-                backPress: () => this.props.setSetting('accountManagement'),
-                password: this.props.password,
-                onWrongPassword: () => this.onWrongPassword(),
-                deleteAccount: () => this.deleteAccount(),
-                currentAccountName: this.props.selectedAccountName,
                 primaryColor: primary.color,
                 backgroundColor: body.bg,
                 textColor: { color: body.color },
@@ -364,7 +359,6 @@ class Settings extends Component {
                 isPromoting,
                 selectedAccountName,
                 shouldPreventAction: () => this.shouldPreventAction(),
-                generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
                 theme,
             },
             addNewAccount: {
