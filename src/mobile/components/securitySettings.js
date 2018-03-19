@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { width, height } from '../util/dimensions';
 import { Icon } from '../theme/icons.js';
 
@@ -72,15 +72,15 @@ const styles = StyleSheet.create({
 class SecuritySettings extends Component {
     static propTypes = {
         setSetting: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         on2FASetupPress: PropTypes.func.isRequired,
-        onFingerprintSetupPress: PropTypes.func.isRequired,
+        //onFingerprintSetupPress: PropTypes.func.isRequired,
     };
 
     render() {
-        const { t, textColor, secondaryBackgroundColor } = this.props;
+        const { t, textColor, bodyColor } = this.props;
 
         return (
             <View style={styles.container}>
@@ -91,21 +91,23 @@ class SecuritySettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="twoFA" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="twoFA" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('twoFA')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.onFingerprintSetupPress()}
+                        <TouchableWithoutFeedback
+                            onPress={() => {
+                                /*this.props.onFingerprintSetupPress()*/
+                            }}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
-                            <View style={styles.item}>
-                                <Icon name="biometric" size={width / 22} color={secondaryBackgroundColor} />
+                            <View style={[styles.item, { opacity: 0.2 }]}>
+                                <Icon name="biometric" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('fingerprint')}</Text>
                             </View>
-                        </TouchableOpacity>
+                        </TouchableWithoutFeedback>
                     </View>
                     <View style={{ flex: 7 }} />
                 </View>
@@ -116,7 +118,7 @@ class SecuritySettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
                                 <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>

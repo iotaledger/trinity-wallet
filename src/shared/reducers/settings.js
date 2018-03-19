@@ -70,8 +70,8 @@ const initialState = {
         'ZAR',
     ],
     conversionRate: 1,
-    themeName: 'Ionic',
-    theme: themes.Ionic,
+    themeName: 'Default',
+    theme: themes.Default,
     hasRandomizedNode: false,
     update: {
         done: true,
@@ -79,7 +79,7 @@ const initialState = {
         version: DESKTOP_VERSION,
         notes: [],
     },
-    remotePoW: false,
+    remotePoW: true,
 };
 
 const settingsReducer = (state = initialState, action) => {

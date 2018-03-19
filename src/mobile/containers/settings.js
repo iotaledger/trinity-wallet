@@ -1,10 +1,9 @@
-import get from 'lodash/get';
 import map from 'lodash/map';
 import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, BackHandler } from 'react-native';
+import { StyleSheet, View, BackHandler, NativeModules } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
@@ -12,7 +11,6 @@ import {
     changeAccountName,
     deleteAccount,
     manuallySyncAccount,
-    update2FA,
     transitionForSnapshot,
     generateAddressesAndGetBalance,
     completeSnapshotTransition,
@@ -35,16 +33,17 @@ import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota'
 import KeepAwake from 'react-native-keep-awake';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal';
 import SettingsContent from '../components/settingsContent';
-import keychain, {
+import {
+    getSeedFromKeychain,
     hasDuplicateAccountName,
     hasDuplicateSeed,
-    getSeed,
     updateAccountNameInKeychain,
-    deleteFromKeychain,
+    deleteSeedFromKeychain,
+    getAllSeedsFromKeychain,
 } from '../util/keychain';
 import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
 import { height } from '../util/dimensions';
-import { isAndroid } from '../util/device';
+import { isAndroid, isIOS } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -74,7 +73,7 @@ class Settings extends Component {
         currentSetting: PropTypes.string.isRequired,
         seedIndex: PropTypes.number.isRequired,
         password: PropTypes.string.isRequired,
-        seedNames: PropTypes.array.isRequired,
+        accountNames: PropTypes.array.isRequired,
         seedCount: PropTypes.number.isRequired,
         currency: PropTypes.string.isRequired,
         mode: PropTypes.string.isRequired,
@@ -205,22 +204,25 @@ class Settings extends Component {
     }
 
     onManualSyncPress() {
-        const { seedIndex, selectedAccountName, t } = this.props;
+        const { password, selectedAccountName, t } = this.props;
 
         if (!this.shouldPreventAction()) {
-            keychain
-                .get()
-                .then((credentials) => {
-                    if (get(credentials, 'data')) {
-                        const seed = getSeed(credentials.data, seedIndex);
-                        this.props.manuallySyncAccount(seed, selectedAccountName);
-                    } else {
-                        this.props.generateAlert(
+            getSeedFromKeychain(password, selectedAccountName)
+                .then((seed) => {
+                    if (seed === null) {
+                        return this.props.generateAlert(
                             'error',
                             t('global:somethingWentWrong'),
-                            t('global:somethingWentWrongExplanation'),
+                            t('global:somethingWentWrongTryAgain'),
                         );
                     }
+                    let genFn = null;
+                    if (isAndroid) {
+                        //  genFn = Android multiAddress function
+                    } else if (isIOS) {
+                        genFn = NativeModules.Iota.multiAddress;
+                    }
+                    this.props.manuallySyncAccount(seed, selectedAccountName, genFn);
                 })
                 .catch((err) => console.error(err)); // eslint-disable-line no-console
         } else {
@@ -358,7 +360,7 @@ class Settings extends Component {
                 currency: this.props.currency,
                 borderBottomColor: { borderBottomColor: body.color },
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
             advancedSettings: {
                 setSetting: (setting) => this.props.setSetting(setting),
@@ -366,7 +368,7 @@ class Settings extends Component {
                 node: this.props.fullNode,
                 textColor: { color: body.color },
                 borderColor: { borderBottomColor: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
             modeSelection: {
                 setMode: (selectedMode) => this.props.setMode(selectedMode),
@@ -376,7 +378,8 @@ class Settings extends Component {
                 negativeColor: negative.color,
                 textColor: { color: body.color },
                 borderColor: { borderColor: body.color },
-                secondaryBackgroundColor: body.color,
+                body,
+                primary,
             },
             pow: {
                 backPress: () => this.props.setSetting('mainSettings'),
@@ -385,13 +388,14 @@ class Settings extends Component {
                 setSetting: (setting) => this.props.setSetting(setting),
                 onDeleteAccountPress: () => this.onDeleteAccountPress(),
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
             viewSeed: {
-                seedIndex: seedIndex,
-                password: password,
+                seedIndex,
+                password,
                 backPress: () => this.props.setSetting('accountManagement'),
                 onWrongPassword: () => this.onWrongPassword(),
+                selectedAccountName,
                 borderColor,
                 textColor,
                 theme,
@@ -408,7 +412,7 @@ class Settings extends Component {
                 backPress: () => this.props.setSetting('accountManagement'),
                 negativeColor: negative.color,
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
                 theme,
             },
             deleteAccount: {
@@ -417,12 +421,13 @@ class Settings extends Component {
                 onWrongPassword: () => this.onWrongPassword(),
                 deleteAccount: () => this.deleteAccount(),
                 currentAccountName: this.props.selectedAccountName,
-                negativeColor: negative.color,
+                primaryColor: primary.color,
                 backgroundColor: body.bg,
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
                 borderColor: { borderColor: body.color },
                 isPromoting,
+                selectedAccountName,
                 shouldPreventAction: () => this.shouldPreventAction(),
                 generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
                 theme,
@@ -432,7 +437,7 @@ class Settings extends Component {
                 addNewSeed: () => this.navigateNewSeed(),
                 backPress: () => this.props.setSetting('accountManagement'),
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
             addExistingSeed: {
                 seedCount: this.props.seedCount,
@@ -455,7 +460,7 @@ class Settings extends Component {
                 nodes: this.props.availablePoWNodes,
                 backPress: () => this.props.setSetting('advancedSettings'),
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
                 body,
             },
             addCustomNode: {
@@ -472,7 +477,7 @@ class Settings extends Component {
                 backPress: () => this.props.setSetting('advancedSettings'),
                 negativeColor: negative.color,
                 textColor: { color: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
                 theme,
             },
             currencySelection: {
@@ -480,8 +485,8 @@ class Settings extends Component {
                 currency: this.props.currency,
                 currencies: this.props.availableCurrencies,
                 backPress: () => this.props.setSetting('mainSettings'),
-                secondaryBackgroundColor: body.color,
-                negativeColor: negative.color,
+                bodyColor: body.color,
+                primaryColor: primary.color,
                 isFetchingCurrencyData: this.props.isFetchingCurrencyData,
                 hasErrorFetchingCurrencyData: this.props.hasErrorFetchingCurrencyData,
             },
@@ -490,7 +495,7 @@ class Settings extends Component {
                 textColor: { color: body.color },
                 language,
                 setLanguage: (lang) => this.props.setLanguage(lang),
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
             changePassword: {
                 password: this.props.password,
@@ -511,11 +516,14 @@ class Settings extends Component {
                 primary,
                 body,
                 negative,
+                password,
+                selectedAccountName,
             },
             snapshotTransition: {
                 t: this.props.t,
                 backPress: () => this.props.setSetting('advancedSettings'),
                 isTransitioning,
+                password,
                 textColor: { color: body.color },
                 primary,
                 body,
@@ -527,7 +535,7 @@ class Settings extends Component {
                 selectedAccountName,
                 isAttachingToTangle,
                 addresses: Object.keys(selectedAccount.addresses),
-                transitionForSnapshot: (seed, addresses) => this.props.transitionForSnapshot(seed, addresses),
+                transitionForSnapshot: (seed, addresses) => this.performSnapshotTransition(seed, addresses),
                 generateAddressesAndGetBalance: (seed, index) => this.props.generateAddressesAndGetBalance(seed, index),
                 completeSnapshotTransition: (seed, accountName, addresses) =>
                     this.props.completeSnapshotTransition(seed, accountName, addresses),
@@ -538,19 +546,19 @@ class Settings extends Component {
                 backPress: () => this.props.setSetting('mainSettings'),
                 onAdvancedPress: () => this.props.setSetting('advancedThemeCustomisation'),
                 backgroundColor: body.bg,
-                barColor: bar.bg,
+                barBg: bar.bg,
                 theme: this.props.theme,
                 themeName: this.props.themeName,
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
-                secondaryBackgroundColor: body.color,
-                secondaryBarColor: bar.color,
+                bodyColor: body.color,
+                barColor: bar.color,
                 navigator,
             },
             advancedThemeCustomisation: {
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
                 theme: this.props.theme,
                 backgroundColor: body.bg,
-                barColor: bar.bg,
+                barBg: bar.bg,
                 ctaColor: primary.color,
                 positiveColor: positive.color,
                 negativeColor: negative.color,
@@ -566,7 +574,7 @@ class Settings extends Component {
                 node: this.props.fullNode,
                 textColor: { color: body.color },
                 borderColor: { borderBottomColor: body.color },
-                secondaryBackgroundColor: body.color,
+                bodyColor: body.color,
             },
         };
 
@@ -617,6 +625,16 @@ class Settings extends Component {
         BackHandler.removeEventListener('homeBackPress');
     }
 
+    performSnapshotTransition(seed, address) {
+        let genFn = null;
+        if (isAndroid) {
+            //  genFn = Android address function
+        } else if (isIOS) {
+            genFn = NativeModules.Iota.multiAddress;
+        }
+        this.props.transitionForSnapshot(seed, address, genFn);
+    }
+
     featureUnavailable() {
         const { t } = this.props;
 
@@ -647,9 +665,9 @@ class Settings extends Component {
     }
 
     deleteAccount() {
-        const { seedIndex, password, selectedAccountName } = this.props;
+        const { password, selectedAccountName } = this.props;
 
-        deleteFromKeychain(seedIndex, password)
+        deleteSeedFromKeychain(password, selectedAccountName)
             .then(() => this.props.deleteAccount(selectedAccountName))
             .catch((err) => console.error(err));
     }
@@ -664,7 +682,7 @@ class Settings extends Component {
 
     // UseExistingSeed method
     addExistingSeed(seed, accountName) {
-        const { t, seedNames } = this.props;
+        const { t, accountNames, password } = this.props;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',
@@ -686,7 +704,7 @@ class Settings extends Component {
                 t('addAdditionalSeed:noNickname'),
                 t('addAdditionalSeed:noNicknameExplanation'),
             );
-        } else if (seedNames.includes(accountName)) {
+        } else if (accountNames.includes(accountName)) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
@@ -696,19 +714,18 @@ class Settings extends Component {
             if (this.shouldPreventAction()) {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
-            keychain
-                .get()
-                .then((credentials) => {
-                    if (isNull(credentials)) {
+            getAllSeedsFromKeychain(password)
+                .then((seedInfo) => {
+                    if (isNull(seedInfo)) {
                         return this.fetchAccountInfo(seed, accountName);
                     }
-                    if (hasDuplicateAccountName(credentials.data, accountName)) {
+                    if (hasDuplicateAccountName(seedInfo, accountName)) {
                         return this.props.generateAlert(
                             'error',
                             t('addAdditionalSeed:nameInUse'),
                             t('addAdditionalSeed:nameInUseExplanation'),
                         );
-                    } else if (hasDuplicateSeed(credentials.data, seed)) {
+                    } else if (hasDuplicateSeed(seedInfo, seed)) {
                         return this.props.generateAlert(
                             'error',
                             t('addAdditionalSeed:seedInUse'),
@@ -723,9 +740,9 @@ class Settings extends Component {
 
     // EditAccountName method
     saveAccountName(accountName) {
-        const { seedIndex, seedNames, password, selectedAccountName, t, accountInfo } = this.props;
+        const { seedIndex, accountNames, password, selectedAccountName, t, accountInfo } = this.props;
 
-        if (seedNames.includes(accountName)) {
+        if (accountNames.includes(accountName)) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
@@ -733,7 +750,7 @@ class Settings extends Component {
             );
         } else {
             // Update keychain
-            updateAccountNameInKeychain(seedIndex, accountName, password)
+            updateAccountNameInKeychain(password, selectedAccountName, accountName)
                 .then(() => {
                     const keyMap = { [selectedAccountName]: accountName };
                     const newAccountInfo = renameKeys(accountInfo, keyMap);
@@ -746,8 +763,8 @@ class Settings extends Component {
                         return name;
                     };
 
-                    const updatedSeedNames = map(seedNames, updateName);
-                    this.props.changeAccountName(newAccountInfo, updatedSeedNames);
+                    const updatedaccountNames = map(accountNames, updateName);
+                    this.props.changeAccountName(newAccountInfo, updatedaccountNames);
                     this.props.setSetting('accountManagement');
 
                     this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
@@ -821,7 +838,6 @@ const mapDispatchToProps = {
     manuallySyncAccount,
     updateTheme,
     setAdditionalAccountInfo,
-    update2FA,
     setLanguage,
     transitionForSnapshot,
     generateAddressesAndGetBalance,
@@ -831,11 +847,11 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,
     password: state.tempAccount.password,
-    seedNames: state.account.seedNames,
+    accountNames: state.account.accountNames,
     accountInfo: state.account.accountInfo,
     seedCount: state.account.seedCount,
     currency: state.settings.currency,

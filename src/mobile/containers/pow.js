@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
-import tinycolor from 'tinycolor2';
-import Switch from 'react-native-switch-pro';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { updatePowSettings } from 'iota-wallet-shared-modules/actions/settings';
 import Fonts from '../theme/Fonts';
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/infoBox';
+import Toggle from '../components/toggle';
 
 const styles = StyleSheet.create({
     container: {
@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
     },
     toggleText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 24.4,
+        fontSize: width / 23,
         backgroundColor: 'transparent',
-        textAlign: 'justify',
+        textAlign: 'center',
     },
     toggleTextContainer: {
         justifyContent: 'center',
@@ -71,6 +71,7 @@ class Pow extends Component {
         t: PropTypes.func.isRequired,
         updatePowSettings: PropTypes.func.isRequired,
         body: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -80,26 +81,22 @@ class Pow extends Component {
     }
 
     onChange() {
-        this.props.updatePowSettings();
-        this.props.generateAlert(
-            'success',
-            'Proof of work settings',
-            'Your proof of work configuration has been updated.',
-        );
-    }
-
-    getSwitchColor() {
-        const props = this.props;
-
-        const baseColor = tinycolor(props.body.bg);
-
-        return baseColor.isLight() ? baseColor.darken(25).toString() : baseColor.lighten(50).toString();
+        // Temporarily disable enabling PoW for android
+        // Version 3.4.0
+        if (isAndroid) {
+            this.props.generateAlert('error', 'Not available', 'On device proof of work is not available for android.');
+        } else {
+            this.props.updatePowSettings();
+            this.props.generateAlert(
+                'success',
+                'Proof of work settings',
+                'Your proof of work configuration has been updated.',
+            );
+        }
     }
 
     render() {
-        const { t, remotePoW, body } = this.props;
-
-        const switchColor = this.getSwitchColor();
+        const { t, remotePoW, body, primary } = this.props;
         const textColor = { color: body.color };
         const infoTextPadding = { paddingTop: height / 50 };
 
@@ -120,37 +117,29 @@ class Pow extends Component {
                             }
                         />
                         <View style={{ flex: 1.1 }} />
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            <TouchableWithoutFeedback
-                                onPress={this.onChange}
-                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 70, right: width / 35 }}
-                            >
+                        <TouchableWithoutFeedback
+                            onPress={this.onChange}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 70, right: width / 35 }}
+                        >
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 70 }]}>
+                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
                                         {t('local')}
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <Switch
-                                style={styles.toggle}
-                                circleColorActive={body.bg}
-                                circleColorInactive={body.bg}
-                                backgroundActive={switchColor}
-                                backgroundInactive={switchColor}
-                                value={remotePoW}
-                                onSyncPress={this.onChange}
-                            />
-                            <TouchableWithoutFeedback
-                                onPress={this.onChange}
-                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 35, right: width / 70 }}
-                            >
+                                <Toggle
+                                    active={remotePoW}
+                                    bodyColor={body.color}
+                                    primaryColor={primary.color}
+                                    scale={1.3}
+                                />
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 70 }]}>
+                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
                                         {t('remote')}
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
-                        </View>
+                            </View>
+                        </TouchableWithoutFeedback>
                         <View style={{ flex: 1.5 }} />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -173,6 +162,7 @@ class Pow extends Component {
 const mapStateToProps = (state) => ({
     remotePoW: state.settings.remotePoW,
     body: state.settings.theme.body,
+    primary: state.settings.theme.primary,
 });
 
 const mapDispatchToProps = {

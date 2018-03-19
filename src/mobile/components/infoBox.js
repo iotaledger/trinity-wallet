@@ -56,7 +56,7 @@ class InfoBox extends PureComponent {
     };
 
     static defaultProps = {
-        secondaryBackgroundColor: 'white',
+        bodyColor: 'white',
     };
 
     render() {
