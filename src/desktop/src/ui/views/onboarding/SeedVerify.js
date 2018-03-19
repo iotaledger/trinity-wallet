@@ -46,7 +46,7 @@ class SeedVerify extends React.PureComponent {
     };
 
     componentDidMount() {
-        //Electron.clipboard('');
+        Electron.clipboard('');
     }
 
     onChange = (value) => {

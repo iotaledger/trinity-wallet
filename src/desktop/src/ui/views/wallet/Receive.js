@@ -62,7 +62,7 @@ class Receive extends React.PureComponent {
 const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     account: currentAccountSelectorBySeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    accountName: state.account.seedNames[state.tempAccount.seedIndex],
+    accountName: state.account.accountNames[state.tempAccount.seedIndex],
     seed: state.seeds.seeds[state.tempAccount.seedIndex],
 });
 
