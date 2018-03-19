@@ -243,7 +243,7 @@ export class Send extends Component {
     }
 
     shouldComponentUpdate(newProps) {
-        const { isSyncing, isTransitioning, usdPrice, conversionRate, balance } = this.props;
+        const { isSyncing, isTransitioning, usdPrice, conversionRate } = this.props;
 
         if (isSyncing !== newProps.isSyncing) {
             return false;
@@ -516,7 +516,7 @@ export class Send extends Component {
     }
 
     getProgressSummary() {
-        const { timeTakenByEachProgressStep, t } = this.props;
+        const { timeTakenByEachProgressStep } = this.props;
         const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
 
         return (
