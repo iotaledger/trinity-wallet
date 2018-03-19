@@ -167,7 +167,7 @@ describe('Reducer: account', () => {
             expect(newState.accountNames).to.eql(expectedState.accountNames);
         });
 
-        it('should update account name for each tail transaction in "unconfirmedBundleTails" state prop', () => {
+        it('should update account prop for each tail transaction with new account name in "unconfirmedBundleTails" state prop', () => {
             const initialState = {
                 unconfirmedBundleTails: {
                     bundleOne: [{ account: 'foo', hash: '9'.repeat(81) }, { account: 'foo', hash: '9'.repeat(81) }],
