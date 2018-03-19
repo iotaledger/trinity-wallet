@@ -54,7 +54,7 @@
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
         "somethingWentWrongRestart": "Veuillez redémarrer l'application.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongTryAgain": "Veuillez réessayer.",
         "node": "Serveur",
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
@@ -77,8 +77,8 @@
         "autoreattachingExplanation": "Rattachement de la transaction de hash {{hash}}",
         "autopromoting": "Promotion automatique du transfert",
         "autopromotingExplanation": "Promotion de la transaction de hash {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
+        "promoting": "Lancement du transfert",
+        "promotionError": "Impossible de lancer la transaction",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Envoi à votre propre adresse",
         "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers vos propres adresses.",
@@ -442,13 +442,13 @@
         "remote": "A distance"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "validatingReceiveAddress": "Validation de l'adresse de réception",
+        "syncingAccount": "Synchronisation du compte",
+        "preparingInputs": "Préparation des entrées",
+        "preparingTransfers": "Préparation des transferts",
+        "gettingTransactionsToApprove": "Réception de transactions à valider",
+        "proofOfWork": "Finalisation de la PoW (Proof of Work)",
+        "broadcasting": "Diffusion en cours"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Impossible de terminer la transition du snapshot",
