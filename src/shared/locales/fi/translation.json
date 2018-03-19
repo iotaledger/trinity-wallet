@@ -81,7 +81,7 @@
         "promotionError": "Siirtoa ei voitu edistää",
         "noLongerValid": "Paketti jonka siirtoa yrität edistää ei ole enää voimassa",
         "cannotSendToOwn": "Lähetys omaan osoitteeseen",
-        "cannotSendToOwnExplanation": "Et voi siirtää varallisuutta yhteen omista osoitteistasi.",
+        "cannotSendToOwnExplanation": "Et voi siirtää varoja yhteen omista osoitteistasi.",
         "pleaseWait": "Odota hetki",
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
         "pleaseWaitTransferExplanation": "Varallisuuttasi käytetään jo olemassa olevissa siirroissa. Odota että ne on vahvistettu ennen kuin yrität uudelleen.",
