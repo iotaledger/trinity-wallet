@@ -101,7 +101,7 @@ class AccountName extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seedCount: state.account.seedNames.length,
+    seedCount: state.account.accountNames.length,
 });
 
 const mapDispatchToProps = {
