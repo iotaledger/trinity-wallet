@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    TouchableWithoutFeedback
+} from 'react-native';
+import {
+    setFullNode
+} from 'iota-wallet-shared-modules/actions/settings';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { translate } from 'react-i18next';
+import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import DropdownComponent from '../components/Dropdown';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -52,23 +64,26 @@ const styles = StyleSheet.create({
 
 class NodeSelection extends Component {
     static propTypes = {
-        node: PropTypes.string.isRequired,
-        nodes: PropTypes.array.isRequired,
-        backPress: PropTypes.func.isRequired,
-        setNode: PropTypes.func.isRequired,
+        fullNode: PropTypes.string.isRequired,
+        availablePoWNodes: PropTypes.array.isRequired,
+        setSetting: PropTypes.func.isRequired,
+        setFullNode: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         body: PropTypes.object.isRequired,
     };
 
-    saveNodeSelection() {
-        const { setNode, backPress } = this.props;
+    setNode(selectedNode) {
+        changeIotaNode(selectedNode);
+        this.props.setFullNode(selectedNode);
+    }
 
-        setNode(this.dropdown.getSelected());
-        backPress();
+    saveNodeSelection() {
+        this.setNode(this.dropdown.getSelected());
+        this.props.setSetting('advancedSettings');
     }
 
     render() {
-        const { node, nodes, backPress, t, body } = this.props;
+        const { fullNode, availablePoWNodes, t, body } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -88,14 +103,14 @@ class NodeSelection extends Component {
                             }}
                             title={t('global:node')}
                             dropdownWidth={{ width: width / 1.5 }}
-                            defaultOption={node}
-                            options={nodes}
+                            defaultOption={fullNode}
+                            options={availablePoWNodes}
                             background
                         />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => backPress()}
+                            onPress={() => this.props.setSetting('advancedSettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
@@ -119,4 +134,16 @@ class NodeSelection extends Component {
     }
 }
 
-export default translate('global')(NodeSelection);
+const mapStateToProps = (state) => ({
+    fullNode: state.settings.fullNode,
+    availablePoWNodes: state.settings.availablePoWNodes
+});
+
+const mapDispatchToProps = {
+    setFullNode,
+    setSetting
+};
+
+export default translate('global')(
+    connect(mapStateToProps, mapDispatchToProps)(NodeSelection),
+);
