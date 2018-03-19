@@ -86,7 +86,7 @@
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
         "pleaseWaitTransferExplanation": "Varallisuuttasi käytetään jo olemassa olevissa siirroissa. Odota että ne on vahvistettu ennen kuin yrität uudelleen.",
         "snapshotTransitionInProgress": "Snapshot siirtymä käynnissä",
-        "snapshotTransitionInProgressExplanation": "Odota kunnes prosessi on valmis."
+        "snapshotTransitionInProgressExplanation": "Odota kunnes siirtymäprosessi on valmis."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -452,8 +452,8 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot siirtymä ei onnistu",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransitionExplanation": "Tilin saldon tulee olla suurempi kuin 0, jotta siirtymäprosessi voidaan käynnistää.",
+        "transitionComplete": "Snapshot siirtymä valmis",
+        "transitionCompleteExplanation": "Snapshot siirtymäprosessi suoritettu onnistuneesti."
     }
 }
