@@ -361,13 +361,6 @@ class Settings extends Component {
                 shouldPreventAction: () => this.shouldPreventAction(),
                 theme,
             },
-            addNewAccount: {
-                addExistingSeed: () => this.props.setSetting('addExistingSeed'),
-                addNewSeed: () => this.navigateNewSeed(),
-                backPress: () => this.props.setSetting('accountManagement'),
-                textColor: { color: body.color },
-                bodyColor: body.color,
-            },
             addExistingSeed: {
                 seedCount: this.props.seedCount,
                 addAccount: (seed, accountName) => this.addExistingSeed(seed, accountName),
