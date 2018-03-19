@@ -231,24 +231,6 @@ class Settings extends Component {
         }
     }
 
-    onAddNodeError() {
-        return this.props.generateAlert(
-            'error',
-            'Custom node could not be added',
-            'The node returned an invalid response.',
-        );
-    }
-
-    onDuplicateNodeError() {
-        return this.props.generateAlert('error', 'Duplicate node', 'The custom node is already listed.');
-    }
-
-    onAddNodeSuccess(customNode) {
-        this.props.addCustomPoWNode(customNode);
-
-        return this.props.generateAlert('success', 'Custom node added', 'The custom node has been added successfully.');
-    }
-
     // EditAccountName and ViewSeed method
     onWrongPassword() {
         const { t } = this.props;
@@ -369,23 +351,6 @@ class Settings extends Component {
                 textColor,
                 input,
                 borderColor,
-            },
-            addCustomNode: {
-                setNode: (selectedNode) => {
-                    changeIotaNode(selectedNode);
-                    this.props.setFullNode(selectedNode);
-                },
-                nodes: this.props.availablePoWNodes,
-                onDuplicateNodeError: () => this.onDuplicateNodeError(),
-                checkNode: (cb) => checkNode(cb), // TODO: Try to get rid of the callback
-                currentNode: this.props.fullNode,
-                onAddNodeError: () => this.onAddNodeError(),
-                onAddNodeSuccess: (customNode) => this.onAddNodeSuccess(customNode),
-                backPress: () => this.props.setSetting('advancedSettings'),
-                negativeColor: negative.color,
-                textColor: { color: body.color },
-                bodyColor: body.color,
-                theme,
             },
             currencySelection: {
                 getCurrencyData: (currency, withAlerts) => this.props.getCurrencyData(currency, withAlerts),
