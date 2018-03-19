@@ -41,9 +41,7 @@ class Checksum extends React.Component {
     }
 
     render() {
-        const {
-            input,
-        } = this.props;
+        const { input } = this.props;
 
         return (
             <View style={[styles.checksum, { backgroundColor: input.bg }]}>
