@@ -47,8 +47,7 @@ const styles = StyleSheet.create({
 class Enter2FA extends Component {
     static propTypes = {
         onComplete2FA: PropTypes.func.isRequired,
-        bodyColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
         onBackPress: PropTypes.func.isRequired,
     };
 
@@ -71,13 +70,13 @@ class Enter2FA extends Component {
 
     render() {
         const { codefor2FA } = this.state;
-        const { bodyColor, negativeColor } = this.props;
+        const { theme } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Icon name="iota" size={width / 8} color={bodyColor} />
+                        <Icon name="iota" size={width / 8} color={theme.body.color} />
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
@@ -90,8 +89,7 @@ class Enter2FA extends Component {
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
                             onSubmitEditing={this.handleDonePress}
-                            bodyColor={bodyColor}
-                            negativeColor={negativeColor}
+                            theme={theme}
                             value={codefor2FA}
                         />
                     </View>
