@@ -9,7 +9,7 @@
         "balanceError": "Ei tarpeeksi katetta",
         "balanceErrorMessage": "Sinulla ei ole tarpeeksi IOTAa siirron loppuun suorittamiseksi.",
         "transferError": "Siirtovirhe",
-        "transferErrorMessage": "Siirrossa tapahtu virhe. Yritä uudelleen.",
+        "transferErrorMessage": "Siirrossa tapahtui virhe. Yritä uudelleen.",
         "transferSent": "Siirto lähetty",
         "transferSentMessage": "Siirtosi on lähetetty Tangle-verkkoon.",
         "messageSent": "Viesti lähetetty",
