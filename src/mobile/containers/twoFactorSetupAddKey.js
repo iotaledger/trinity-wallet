@@ -91,7 +91,7 @@ export class TwoFactorSetupAddKey extends Component {
     onKeyPress(key) {
         const { t } = this.props;
         if (key) {
-            Clipboard.setString(key);
+            Clipboard.setString(key.replace(/\s/g, ''));
             this.props.generateAlert('success', t('keyCopied'), t('keyCopiedExplanation'));
         }
     }
@@ -154,7 +154,7 @@ export class TwoFactorSetupAddKey extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={body.color} backgroundColor={body.bg} />
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topWrapper}>
                     <Icon name="iota" size={width / 8} color={body.color} />
                 </View>

@@ -174,7 +174,7 @@ class WalletResetRequirePassword extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={body.color} backgroundColor={body.bg} />
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
@@ -214,7 +214,7 @@ class WalletResetRequirePassword extends Component {
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     body: state.settings.theme.body,
-    password: state.tempAccount.password
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {

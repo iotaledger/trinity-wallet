@@ -1,14 +1,8 @@
 import takeRight from 'lodash/takeRight';
 import { iota } from '../libs/iota';
 import { selectedAccountStateFactory } from '../selectors/account';
-import {
-    syncAccount,
-    getAccountData,
-    mapTransactionHashesForUnspentAddressesToState,
-    mapPendingTransactionHashesForSpentAddressesToState,
-    syncAccountAfterSpending,
-} from '../libs/iota/accounts';
-import { formatAddresses, syncAddresses } from '../libs/iota/addresses';
+import { syncAccount, getAccountData, syncAccountAfterSpending } from '../libs/iota/accounts';
+import { formatAddresses, syncAddresses, getNewAddress } from '../libs/iota/addresses';
 import {
     clearTempData,
     updateTransitionBalance,
@@ -210,6 +204,7 @@ export const getFullAccountInfoAdditionalSeed = (
     password,
     storeInKeychainPromise,
     navigator = null,
+    genFn,
 ) => (dispatch) => {
     const onError = (err) => {
         if (navigator) {
@@ -221,40 +216,27 @@ export const getFullAccountInfoAdditionalSeed = (
     };
 
     dispatch(fullAccountInfoAdditionalSeedFetchRequest());
-    getAccountData(seed, accountName)
+
+    getAccountData(seed, accountName, genFn)
         .then((data) => {
             dispatch(clearTempData()); // Clean up partial state for reducer.
-            return mapTransactionHashesForUnspentAddressesToState(data);
-        })
-        .then((dataWithTxHashesForUnspentAddresses) =>
-            mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
-        )
-        .then((dataWithPendingTxHashesForSpentAddresses) => {
             if (storeInKeychainPromise) {
                 storeInKeychainPromise(password, seed, accountName)
-                    .then(() =>
-                        dispatch(fullAccountInfoAdditionalSeedFetchSuccess(dataWithPendingTxHashesForSpentAddresses)),
-                    )
+                    .then(() => dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data)))
                     .catch((err) => onError(err));
             } else {
-                dispatch(fullAccountInfoForFirstUseFetchSuccess(dataWithPendingTxHashesForSpentAddresses));
+                dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
             }
         })
         .catch((err) => onError(err));
 };
 
-export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null) => {
+export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null, genFn) => {
     return (dispatch) => {
         dispatch(fullAccountInfoFirstSeedFetchRequest());
 
-        getAccountData(seed, accountName)
-            .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
-            .then((dataWithTxHashesForUnspentAddresses) =>
-                mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
-            )
-            .then((dataWithPendingTxHashesForSpentAddresses) =>
-                dispatch(fullAccountInfoFirstSeedFetchSuccess(dataWithPendingTxHashesForSpentAddresses)),
-            )
+        getAccountData(seed, accountName, genFn)
+            .then((data) => dispatch(fullAccountInfoFirstSeedFetchSuccess(data)))
             .catch((err) => {
                 pushScreen(navigator, 'login');
                 dispatch(generateAccountInfoErrorAlert(err));
@@ -263,18 +245,14 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null)
     };
 };
 
-export const manuallySyncAccount = (seed, accountName) => {
+export const manuallySyncAccount = (seed, accountName, genFn) => {
     return (dispatch) => {
         dispatch(manualSyncRequest());
 
-        getAccountData(seed, accountName)
-            .then((data) => mapTransactionHashesForUnspentAddressesToState(data))
-            .then((dataWithTxHashesForUnspentAddresses) =>
-                mapPendingTransactionHashesForSpentAddressesToState(dataWithTxHashesForUnspentAddresses),
-            )
-            .then((dataWithPendingTxHashesForSpentAddresses) => {
+        getAccountData(seed, accountName, genFn)
+            .then((data) => {
                 dispatch(generateSyncingCompleteAlert());
-                dispatch(manualSyncSuccess(dataWithPendingTxHashesForSpentAddresses));
+                dispatch(manualSyncSuccess(data));
             })
             .catch((err) => {
                 dispatch(generateSyncingErrorAlert(err));
@@ -299,15 +277,15 @@ export const manuallySyncAccount = (seed, accountName) => {
  *   @param {object} [navigator=null]
  *   @returns {function} dispatch
  **/
-export const getAccountInfo = (seed, accountName, navigator = null) => {
+export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAddresses(seed, existingAccountState)
+        return syncAddresses(seed, existingAccountState, genFn)
             .then((accountData) => {
-                return syncAccount(seed, accountData);
+                return syncAccount(accountData);
             })
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
@@ -347,7 +325,7 @@ export const set2FAStatus = (payload) => ({
     payload,
 });
 
-export const transitionForSnapshot = (seed, addresses) => {
+export const transitionForSnapshot = (seed, addresses, genFn) => {
     return (dispatch) => {
         dispatch(snapshotTransitionRequest());
         if (addresses.length > 0) {
@@ -355,7 +333,7 @@ export const transitionForSnapshot = (seed, addresses) => {
             dispatch(updateTransitionAddresses(addresses));
         } else {
             setTimeout(() => {
-                dispatch(generateAddressesAndGetBalance(seed, 0));
+                dispatch(generateAddressesAndGetBalance(seed, 0, genFn));
             });
         }
     };
@@ -427,7 +405,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
     };
 };
 
-export const generateAddressesAndGetBalance = (seed, index) => {
+export const generateAddressesAndGetBalance = (seed, index, genFn) => {
     return (dispatch) => {
         const options = {
             index: index,
@@ -435,9 +413,8 @@ export const generateAddressesAndGetBalance = (seed, index) => {
             returnAll: true,
             security: 2,
         };
-        iota.api.getNewAddress(seed, options, (error, addresses) => {
+        getNewAddress(seed, options, genFn, (error, addresses) => {
             if (error) {
-                console.log(error);
                 dispatch(snapshotTransitionError());
                 dispatch(generateTransitionErrorAlert());
             } else {
