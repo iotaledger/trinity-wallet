@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+    BackHandler,
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity
+} from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -44,20 +53,34 @@ const styles = StyleSheet.create({
 
 class AddNewAccount extends Component {
     static propTypes = {
-        addExistingSeed: PropTypes.func.isRequired,
-        addNewSeed: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired,
+        setSetting: PropTypes.func.isRequired,
         textColor: PropTypes.object.isRequired,
         bodyColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
+        body: PropTypes.object.isRequired
     };
 
-    onNewSeedPress() {
-        this.props.addNewSeed();
-    }
+    addNewSeed() {
+        const { body } = this.props;
 
-    onExistingSeedPress() {
-        this.props.addExistingSeed();
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'newSeedSetup',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
+                },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: false,
+            },
+        });
+
+        BackHandler.removeEventListener('homeBackPress');
     }
 
     render() {
@@ -68,7 +91,7 @@ class AddNewAccount extends Component {
                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={() => this.onExistingSeedPress()}
+                            onPress={() => this.props.setSetting('addExistingSeed')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -79,7 +102,7 @@ class AddNewAccount extends Component {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={() => this.onNewSeedPress()}
+                            onPress={this.addNewSeed}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -92,7 +115,7 @@ class AddNewAccount extends Component {
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <TouchableOpacity
-                        onPress={() => this.props.backPress()}
+                        onPress={() => this.props.setSetting('accountManagement')}
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
@@ -106,4 +129,21 @@ class AddNewAccount extends Component {
     }
 }
 
-export default translate(['addNewAccount', 'global'])(AddNewAccount);
+const mapStateToProps = (state) => ({
+    body: state.settings.theme.body,
+    textColor: { color: state.settings.theme.body.color },
+    bodyColor: state.settings.theme.body.color
+});
+
+const mapDispatchToProps = {
+    setSetting
+};
+
+export default translate(
+    ['addNewAccount', 'global']
+)
+    (connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(AddNewAccount)
+);
