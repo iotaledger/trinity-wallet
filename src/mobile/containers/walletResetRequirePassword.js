@@ -12,7 +12,8 @@ import OnboardingButtons from '../components/onboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import FONTS from '../theme/Fonts';
-import keychain from '../util/keychain';
+import { clearKeychain } from '../util/keychain';
+import { getPasswordHash } from '../util/crypto';
 import CustomTextInput from '../components/customTextInput';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Icon } from '../theme/icons.js';
@@ -108,7 +109,9 @@ class WalletResetRequirePassword extends Component {
     }
 
     isAuthenticated() {
-        return this.props.password === this.state.password;
+        const { password } = this.props;
+        const pwdHash = getPasswordHash(this.state.password);
+        return password === pwdHash;
     }
 
     redirectToInitialScreen() {
@@ -140,7 +143,7 @@ class WalletResetRequirePassword extends Component {
         if (isAuthenticated) {
             persistor
                 .purge()
-                .then(() => keychain.clear())
+                .then(() => clearKeychain())
                 .then(() => {
                     this.redirectToInitialScreen();
                     this.props.setOnboardingComplete(false);
@@ -171,7 +174,7 @@ class WalletResetRequirePassword extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={body.color} backgroundColor={body.bg} />
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
@@ -211,7 +214,7 @@ class WalletResetRequirePassword extends Component {
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     body: state.settings.theme.body,
-    password: state.tempAccount.password
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {

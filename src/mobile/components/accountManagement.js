@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 /* eslint-disable react/prefer-stateless-function */
 class AdvancedSettings extends Component {
     static propTypes = {
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         setSetting: PropTypes.func.isRequired,
         onDeleteAccountPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
@@ -79,7 +79,7 @@ class AdvancedSettings extends Component {
     };
 
     render() {
-        const { t, secondaryBackgroundColor, textColor } = this.props;
+        const { t, bodyColor, textColor } = this.props;
 
         return (
             <View style={styles.advancedSettingsContainer}>
@@ -90,7 +90,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="eye" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="eye" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('viewSeed')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -101,7 +101,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="addresses" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="addresses" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('viewAddresses')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -112,7 +112,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="edit" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="edit" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('editAccountName')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -123,13 +123,13 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="trash" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="trash" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('deleteAccount')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.separatorContainer}>
-                        <View style={[styles.separator, { borderBottomColor: secondaryBackgroundColor }]} />
+                        <View style={[styles.separator, { borderBottomColor: bodyColor }]} />
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
@@ -137,7 +137,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="plus" size={width / 22} color={secondaryBackgroundColor} />
+                                <Icon name="plus" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('addNewAccount')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -151,7 +151,7 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="chevronLeft" size={width / 28} color={secondaryBackgroundColor} />
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
                                 <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
