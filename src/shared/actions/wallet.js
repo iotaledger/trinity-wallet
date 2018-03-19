@@ -1,5 +1,5 @@
 import { iota } from '../libs/iota';
-import { updateAddresses } from '../actions/account';
+import { updateAddresses } from '../actions/accounts';
 import { clearSendFields } from '../actions/ui';
 import { syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { MAX_SEED_LENGTH } from '../libs/util';
@@ -7,15 +7,9 @@ import { MAX_SEED_LENGTH } from '../libs/util';
 /* eslint-disable no-console */
 
 export const ActionTypes = {
-    GET_TRANSFERS_REQUEST: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_REQUEST',
-    GET_TRANSFERS_SUCCESS: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_SUCCESS',
-    GET_TRANSFERS_ERROR: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_ERROR',
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_REQUEST',
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_ERROR',
-    SEND_TRANSFER_REQUEST: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_REQUEST',
-    SEND_TRANSFER_SUCCESS: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_SUCCESS',
-    SEND_TRANSFER_ERROR: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_ERROR',
     SET_COPIED_TO_CLIPBOARD: 'IOTA/TEMP_ACCOUNT/SET_COPIED_TO_CLIPBOARD',
     SET_RECEIVE_ADDRESS: 'IOTA/TEMP_ACCOUNT/SET_RECEIVE_ADDRESS',
     SET_ACCOUNT_NAME: 'IOTA/TEMP_ACCOUNT/SET_ACCOUNT_NAME',
@@ -27,7 +21,6 @@ export const ActionTypes = {
     SET_SEED: 'IOTA/TEMP_ACCOUNT/SET_SEED',
     CLEAR_SEED: 'IOTA/TEMP_ACCOUNT/CLEAR_SEED',
     SET_SETTING: 'IOTA/TEMP_ACCOUNT/SET_SETTING',
-    SET_USER_ACTIVITY: 'IOTA/TEMP_ACCOUNT/SET_USER_ACTIVITY',
     SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/TEMP_ACCOUNT/SET_ADDITIONAL_ACCOUNT_INFO',
     SNAPSHOT_TRANSITION_REQUEST: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_REQUEST',
     SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_SUCCESS',
@@ -75,19 +68,6 @@ export const snapshotAttachToTangleComplete = () => ({
     type: ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE,
 });
 
-export const getTransfersRequest = () => ({
-    type: ActionTypes.GET_TRANSFERS_REQUEST,
-});
-
-export const getTransfersSuccess = (payload) => ({
-    type: ActionTypes.GET_TRANSFERS_SUCCESS,
-    payload,
-});
-
-export const getTransfersError = () => ({
-    type: ActionTypes.GET_TRANSFERS_ERROR,
-});
-
 export const setCopiedToClipboard = (payload) => ({
     type: ActionTypes.SET_COPIED_TO_CLIPBOARD,
     payload,
@@ -119,19 +99,6 @@ export const generateNewAddressSuccess = (payload) => ({
 
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
-});
-
-export const sendTransferRequest = () => ({
-    type: ActionTypes.SEND_TRANSFER_REQUEST,
-});
-
-export const sendTransferSuccess = (payload) => ({
-    type: ActionTypes.SEND_TRANSFER_SUCCESS,
-    payload,
-});
-
-export const sendTransferError = () => ({
-    type: ActionTypes.SEND_TRANSFER_ERROR,
 });
 
 export const setReady = () => ({
@@ -186,19 +153,6 @@ export const generateNewAddress = (seed, accountName, existingAccountData, genFn
     };
 };
 
-/**
- *   On successful transfer, update store, generate alert and clear send text fields
- *   @method completeTransfer
- *   @param {object} payload - sending status, address, transfer value
- **/
-
-export const completeTransfer = (payload) => {
-    return (dispatch) => {
-        dispatch(clearSendFields());
-        dispatch(sendTransferSuccess(payload));
-    };
-};
-
 export const randomiseSeed = (randomBytesFn) => {
     return (dispatch) => {
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
@@ -216,9 +170,129 @@ export const randomiseSeed = (randomBytesFn) => {
     };
 };
 
-export function setUserActivity(payload) {
-    return {
-        type: ActionTypes.SET_USER_ACTIVITY,
-        payload,
+export const transitionForSnapshot = (seed, addresses, genFn) => {
+    return (dispatch) => {
+        dispatch(snapshotTransitionRequest());
+        if (addresses.length > 0) {
+            dispatch(getBalanceForCheck(addresses));
+            dispatch(updateTransitionAddresses(addresses));
+        } else {
+            setTimeout(() => {
+                dispatch(generateAddressesAndGetBalance(seed, 0, genFn));
+            });
+        }
     };
-}
+};
+
+export const completeSnapshotTransition = (seed, accountName, addresses) => {
+    return (dispatch) => {
+        iota.api.getBalances(addresses, 1, (error, success) => {
+            if (!error) {
+                const allBalances = success.balances.map((a) => Number(a));
+                const balance = allBalances.reduce((a, b) => a + b, 0);
+                const lastAddressBalance = takeRight(allBalances.filter((balance) => balance > 0));
+                const lastIndexWithBalance = allBalances.lastIndexOf(lastAddressBalance.pop());
+                const relevantBalances = allBalances.slice(0, lastIndexWithBalance + 1);
+                const relevantAddresses = addresses.slice(0, lastIndexWithBalance + 1);
+
+                if (lastIndexWithBalance === -1) {
+                    dispatch(snapshotTransitionError());
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            t('cannotCompleteTransition'),
+                            t('cannotCompleteTransitionExplanation'),
+                            10000,
+                        ),
+                    );
+                }
+
+                iota.api.wereAddressesSpentFrom(addresses, (error, addressSpendStatus) => {
+                    if (!error) {
+                        const formattedAddresses = formatAddresses(
+                            relevantAddresses,
+                            relevantBalances,
+                            addressSpendStatus,
+                        );
+                        const attachToTangleBundle = createAttachToTangleBundle(seed, relevantAddresses);
+                        const args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, attachToTangleBundle];
+                        dispatch(snapshotAttachToTangleRequest());
+                        iota.api.sendTransfer(...args, (error) => {
+                            if (!error) {
+                                dispatch(updateAccountAfterTransition(accountName, formattedAddresses, balance));
+                                dispatch(snapshotTransitionSuccess());
+                                dispatch(snapshotAttachToTangleComplete());
+                                dispatch(
+                                    generateAlert(
+                                        'success',
+                                        t('transitionComplete'),
+                                        t('transitionCompleteExplanation'),
+                                        20000,
+                                    ),
+                                );
+                            } else {
+                                console.log(error);
+                                dispatch(snapshotTransitionError());
+                                dispatch(snapshotAttachToTangleComplete());
+                                dispatch(generateTransitionErrorAlert());
+                            }
+                        });
+                    } else {
+                        console.log(error);
+                    }
+                });
+            } else {
+                dispatch(snapshotTransitionError());
+                dispatch(generateTransitionErrorAlert());
+                console.log(error);
+            }
+        });
+    };
+};
+
+export const generateAddressesAndGetBalance = (seed, index, genFn) => {
+    return (dispatch) => {
+        const options = {
+            index: index,
+            total: 20,
+            returnAll: true,
+            security: 2,
+        };
+        getNewAddress(seed, options, genFn, (error, addresses) => {
+            if (error) {
+                dispatch(snapshotTransitionError());
+                dispatch(generateTransitionErrorAlert());
+            } else {
+                dispatch(updateTransitionAddresses(addresses));
+                dispatch(getBalanceForCheck(addresses));
+            }
+        });
+    };
+};
+
+export const createAttachToTangleBundle = (seed, addresses) => {
+    const transfers = [];
+    for (let i = 0; i < addresses.length; i++) {
+        transfers.push({
+            address: addresses[i],
+            value: 0,
+        });
+    }
+    return transfers;
+};
+
+export const getBalanceForCheck = (addresses) => {
+    return (dispatch) => {
+        iota.api.getBalances(addresses, 1, (error, success) => {
+            if (!error) {
+                const balances = success.balances.map((a) => Number(a));
+                const balance = balances.reduce((a, b) => a + b, 0);
+                dispatch(updateTransitionBalance(balance));
+                dispatch(switchBalanceCheckToggle());
+            } else {
+                dispatch(snapshotTransitionError());
+                dispatch(generateTransitionErrorAlert());
+            }
+        });
+    };
+};
