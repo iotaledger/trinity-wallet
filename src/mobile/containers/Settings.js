@@ -352,16 +352,6 @@ class Settings extends Component {
                 input,
                 borderColor,
             },
-            changePassword: {
-                password: this.props.password,
-                setPassword: (password) => this.props.setPassword(password),
-                backPress: () => this.props.setSetting('mainSettings'),
-                generateAlert: this.props.generateAlert,
-                textColor: { color: body.color },
-                borderColor: { borderColor: body.color },
-                body,
-                theme,
-            },
             manualSync: {
                 t: this.props.t,
                 onManualSyncPress: () => this.onManualSyncPress(),
