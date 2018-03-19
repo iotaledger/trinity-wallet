@@ -352,13 +352,6 @@ class Settings extends Component {
                 input,
                 borderColor,
             },
-            languageSelection: {
-                backPress: () => this.props.setSetting('mainSettings'),
-                textColor: { color: body.color },
-                language,
-                setLanguage: (lang) => this.props.setLanguage(lang),
-                bodyColor: body.color,
-            },
             changePassword: {
                 password: this.props.password,
                 setPassword: (password) => this.props.setPassword(password),
