@@ -1,28 +1,8 @@
-import get from 'lodash/get';
-import some from 'lodash/some';
-import isFunction from 'lodash/isFunction';
 import { iota } from '../libs/iota';
-import { updateAddresses, updateAccountInfo, accountInfoFetchSuccess } from '../actions/account';
-import {
-    selectedAccountStateFactory,
-    getRemotePoWFromState,
-    selectFirstAddressFromAccountFactory,
-} from '../selectors/account';
+import { updateAddresses } from '../actions/account';
 import { clearSendFields } from '../actions/ui';
-import { generateAlert } from '../actions/alerts';
-import {
-    prepareTransferArray,
-    filterInvalidPendingTransfers,
-    filterZeroValueTransfers,
-    makeTransferWithLocalPow,
-} from '../libs/iota/transfers';
-import { syncAccount } from '../libs/iota/accounts';
-import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
-import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
+import { syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { MAX_SEED_LENGTH } from '../libs/util';
-import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
-import { sendTransferAsync } from '../libs/iota/extendedApi';
-import i18next from '../i18next.js';
 
 /* eslint-disable no-console */
 
@@ -38,7 +18,7 @@ export const ActionTypes = {
     SEND_TRANSFER_ERROR: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_ERROR',
     SET_COPIED_TO_CLIPBOARD: 'IOTA/TEMP_ACCOUNT/SET_COPIED_TO_CLIPBOARD',
     SET_RECEIVE_ADDRESS: 'IOTA/TEMP_ACCOUNT/SET_RECEIVE_ADDRESS',
-    SET_SEED_NAME: 'IOTA/TEMP_ACCOUNT/SET_SEED_NAME',
+    SET_ACCOUNT_NAME: 'IOTA/TEMP_ACCOUNT/SET_ACCOUNT_NAME',
     SET_PASSWORD: 'IOTA/TEMP_ACCOUNT/SET_PASSWORD',
     CLEAR_TEMP_DATA: 'IOTA/TEMP_ACCOUNT/CLEAR_TEMP_DATA',
     SET_USED_SEED_TO_LOGIN: 'IOTA/TEMP_ACCOUNT/SET_USED_SEED_TO_LOGIN',
@@ -183,8 +163,8 @@ export const setPassword = (payload) => ({
     payload,
 });
 
-export const setSeedName = (payload) => ({
-    type: ActionTypes.SET_SEED_NAME,
+export const setAccountName = (payload) => ({
+    type: ActionTypes.SET_ACCOUNT_NAME,
     payload,
 });
 
@@ -193,11 +173,10 @@ export const setAdditionalAccountInfo = (payload) => ({
     payload,
 });
 
-export const generateNewAddress = (seed, accountName, existingAccountData) => {
+export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-
-        return syncAddresses(seed, existingAccountData, true)
+        return syncAddresses(seed, existingAccountData, genFn, true)
             .then((newAccountData) => {
                 const receiveAddress = iota.utils.addChecksum(getLatestAddress(newAccountData.addresses));
                 dispatch(updateAddresses(accountName, newAccountData.addresses));
@@ -217,219 +196,6 @@ export const completeTransfer = (payload) => {
     return (dispatch) => {
         dispatch(clearSendFields());
         dispatch(sendTransferSuccess(payload));
-    };
-};
-
-const makeTransfer = (seed, address, value, accountName, transfer, options = null, powFn = null) => (dispatch) => {
-    // If powFn is provided, proof of work would be performed locally
-    const shouldOffloadPow = !isFunction(powFn);
-
-    let args = shouldOffloadPow
-        ? [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, transfer]
-        : [seed, transfer, powFn];
-
-    if (options) {
-        args = [...args, options];
-    }
-
-    const promise = shouldOffloadPow ? sendTransferAsync : makeTransferWithLocalPow;
-
-    return promise(...args)
-        .then((newTransfer) => {
-            dispatch(updateAccountInfo(accountName, newTransfer, value));
-
-            if (value === 0) {
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('global:messageSent'),
-                        i18next.t('global:messageSentMessage'),
-                        20000,
-                    ),
-                );
-            } else {
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('global:transferSent'),
-                        i18next.t('global:transferSentMessage'),
-                        20000,
-                    ),
-                );
-            }
-
-            dispatch(completeTransfer({ address, value }));
-        })
-        .catch((error) => {
-            dispatch(sendTransferError());
-            const alerts = {
-                attachToTangle: [
-                    i18next.t('global:attachToTangleUnavailable'),
-                    i18next.t('global:attachToTangleUnavailableExplanation'),
-                    20000,
-                    error,
-                ],
-                default: [
-                    i18next.t('global:invalidResponse'),
-                    i18next.t('global:invalidResponseSendingTransfer'),
-                    20000,
-                    error,
-                ],
-            };
-
-            const args =
-                error.message.indexOf('attachToTangle is not available') > -1 ? alerts.attachToTangle : alerts.default;
-
-            dispatch(generateAlert('error', ...args));
-        });
-};
-
-export const prepareTransfer = (seed, address, value, message, accountName, powFn) => {
-    return (dispatch, getState) => {
-        dispatch(sendTransferRequest());
-
-        const shouldOffloadPow = getRemotePoWFromState(getState());
-        const firstAddress = selectFirstAddressFromAccountFactory(accountName)(getState());
-        const transfer = prepareTransferArray(address, value, message, firstAddress);
-        const isZeroValue = value === 0;
-
-        // If its a zero value transfer,
-        // Do not need to trigger pre-transfer checks
-        if (isZeroValue && shouldOffloadPow) {
-            return dispatch(makeTransfer(seed, address, value, accountName, transfer));
-        } else if (isZeroValue && !shouldOffloadPow) {
-            return dispatch(makeTransfer(seed, address, value, accountName, transfer, null, powFn));
-        }
-
-        const makeTransferWithBalanceCheck = (inputs) => {
-            // allBalance -> total balance associated with addresses.
-            // Contains balance from addresses regardless of the fact they are spent from.
-            // Less than the value user is about to send to -> Not enough balance.
-            if (get(inputs, 'allBalance') < value) {
-                dispatch(sendTransferError());
-                return dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:balanceError'),
-                        i18next.t('global:balanceErrorMessage'),
-                        20000,
-                    ),
-                );
-
-                // totalBalance -> balance after filtering out addresses that are spent.
-                // Contains balance from those addresses only that are not spent from.
-                // Less than value user is about to send to -> Has already spent from addresses and the txs aren't confirmed.
-                // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
-            } else if (get(inputs, 'totalBalance') < value) {
-                dispatch(sendTransferError());
-                return dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:pleaseWait'),
-                        i18next.t('global:pleaseWaitTransferExplanation'),
-                        20000,
-                    ),
-                );
-            }
-
-            // Verify if a user is sending to on of his own addresses.
-            // This would fail if a pre-requisite check for checksums fail.
-            const isSendingToOwnAddress = some(
-                get(inputs, 'inputs'),
-                (input) => iota.utils.addChecksum(input.address, 9, true) === address,
-            );
-
-            if (isSendingToOwnAddress) {
-                dispatch(sendTransferError());
-                return dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:cannotSendToOwn'),
-                        i18next.t('global:cannotSendToOwnExplanation'),
-                        20000,
-                    ),
-                );
-            }
-
-            const remainderAddress = getLatestAddress(newAccountData.addresses);
-
-            return dispatch(
-                makeTransfer(
-                    seed,
-                    address,
-                    value,
-                    accountName,
-                    transfer,
-                    {
-                        inputs: get(inputs, 'inputs'),
-                        address: remainderAddress,
-                    },
-                    powFn,
-                ),
-            );
-        };
-
-        let newAccountData = {};
-
-        const syncAndGetInputs = () => {
-            const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-
-            return syncAddresses(seed, existingAccountState, true)
-                .then((accountData) => {
-                    return syncAccount(seed, accountData);
-                })
-                .then((accountData) => {
-                    dispatch(accountInfoFetchSuccess(accountData));
-                    newAccountData = accountData;
-
-                    const valueTransfers = filterZeroValueTransfers(newAccountData.transfers);
-                    return filterInvalidPendingTransfers(valueTransfers, newAccountData.addresses);
-                })
-                .then((filteredTransfers) => {
-                    const newAddressData = newAccountData.addresses;
-                    const startIndex = getStartingSearchIndexToPrepareInputs(newAddressData);
-
-                    getUnspentInputs(newAddressData, filteredTransfers, startIndex, value, null, unspentInputs);
-                })
-                .catch(() => {
-                    dispatch(sendTransferError());
-                });
-        };
-
-        const unspentInputs = (err, inputs) => {
-            if (err) {
-                dispatch(sendTransferError());
-                return dispatch(
-                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
-                    20000,
-                    err,
-                );
-            }
-
-            return makeTransferWithBalanceCheck(inputs);
-        };
-
-        // Make sure that the address a user is about to send to is not already used.
-        // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
-        // Omit input preparation in case the address is already spent from.
-        return shouldAllowSendingToAddress([address])
-            .then((shouldAllowSending) => {
-                if (shouldAllowSending) {
-                    return syncAndGetInputs();
-                }
-
-                dispatch(sendTransferError());
-                return dispatch(
-                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
-                );
-            })
-            .catch((err) => {
-                return dispatch(
-                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
-                    20000,
-                    err,
-                );
-            });
     };
 };
 

@@ -1,12 +1,12 @@
-import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import size from 'lodash/size';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { iota } from 'iota-wallet-shared-modules/libs/iota';
 import {
-    ActivityIndicator,
     StyleSheet,
     View,
     Text,
@@ -28,23 +28,26 @@ import {
     getFromKeychainSuccess,
     getFromKeychainError,
 } from 'iota-wallet-shared-modules/actions/keychain';
-import { prepareTransfer } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { makeTransaction } from 'iota-wallet-shared-modules/actions/transfers';
 import {
     setSendAddressField,
     setSendAmountField,
     setSendMessageField,
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
+import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
 import QRScanner from '../components/qrScanner';
 import Toggle from '../components/toggle';
+import ProgressBar from '../components/progressBar';
 import {
     getBalanceForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from '../../shared/selectors/account';
-import keychain, { getSeed } from '../util/keychain';
+import ProgressSteps from '../util/progressSteps';
+import { getSeedFromKeychain } from '../util/keychain';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
 import CustomTextInput from '../components/customTextInput';
@@ -108,6 +111,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    progressSummaryText: {
+        fontSize: width / 30.9,
+    },
 });
 
 export class Send extends Component {
@@ -121,7 +127,7 @@ export class Send extends Component {
         conversionRate: PropTypes.number.isRequired,
         usdPrice: PropTypes.number.isRequired,
         isGettingSensitiveInfoToMakeTransaction: PropTypes.bool.isRequired,
-        prepareTransfer: PropTypes.func.isRequired,
+        makeTransaction: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         getFromKeychainRequest: PropTypes.func.isRequired,
         getFromKeychainSuccess: PropTypes.func.isRequired,
@@ -129,7 +135,6 @@ export class Send extends Component {
         closeTopBar: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
         bar: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
@@ -141,7 +146,14 @@ export class Send extends Component {
         setSendAmountField: PropTypes.func.isRequired,
         setSendMessageField: PropTypes.func.isRequired,
         setSendDenomination: PropTypes.func.isRequired,
+        resetProgress: PropTypes.func.isRequired,
+        startTrackingProgress: PropTypes.func.isRequired,
         denomination: PropTypes.string.isRequired,
+        activeStepIndex: PropTypes.number.isRequired,
+        activeSteps: PropTypes.array.isRequired,
+        timeTakenByEachProgressStep: PropTypes.array.isRequired,
+        password: PropTypes.string.isRequired,
+        generateTransferErrorAlert: PropTypes.func.isRequired,
     };
 
     static isValidAddress(address) {
@@ -208,6 +220,12 @@ export class Send extends Component {
         }
     }
 
+    componentDidMount() {
+        if (!this.props.isSendingTransfer) {
+            this.props.resetProgress();
+        }
+    }
+
     componentWillReceiveProps(newProps) {
         const { seedIndex, isSendingTransfer } = this.props;
 
@@ -215,7 +233,6 @@ export class Send extends Component {
             KeepAwake.activate();
         } else if (isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
-            this.props.setSendDenomination('i');
             this.setState({ sending: false });
             // Reset toggle switch in case maximum was on
             this.resetToggleSwitch();
@@ -226,7 +243,7 @@ export class Send extends Component {
     }
 
     shouldComponentUpdate(newProps) {
-        const { isSyncing, isTransitioning, usdPrice, conversionRate, balance } = this.props;
+        const { isSyncing, isTransitioning, usdPrice, conversionRate } = this.props;
 
         if (isSyncing !== newProps.isSyncing) {
             return false;
@@ -241,10 +258,6 @@ export class Send extends Component {
         }
 
         if (conversionRate !== newProps.conversionRate) {
-            return false;
-        }
-
-        if (balance !== newProps.balance) {
             return false;
         }
 
@@ -494,13 +507,31 @@ export class Send extends Component {
         return conversionText;
     }
 
-    shouldConversionTextShowInvalid() {
-        const { amount, denomination } = this.props;
-        const { currencySymbol } = this.state;
-        const multiplier = this.getUnitMultiplier();
-        const isFiat = denomination === currencySymbol;
-        const amountIsValid = Send.isValidAmount(amount, multiplier, isFiat);
-        return !amountIsValid && amount !== '';
+    getOpacity() {
+        const { balance } = this.props;
+        if (balance === 0) {
+            return 0.2;
+        }
+        return 1;
+    }
+
+    getProgressSummary() {
+        const { timeTakenByEachProgressStep } = this.props;
+        const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
+
+        return (
+            <Text>
+                <Text style={styles.progressSummaryText}>
+                    {map(timeTakenByEachProgressStep, (time, index) => {
+                        if (index === size(timeTakenByEachProgressStep) - 1) {
+                            return `${time} = ${totalTimeTaken.toFixed(1)} s`;
+                        }
+
+                        return `${time} + `;
+                    })}
+                </Text>
+            </Text>
+        );
     }
 
     resetToggleSwitch() {
@@ -526,12 +557,13 @@ export class Send extends Component {
         this.showModal();
     }
 
-    getOpacity() {
-        const { balance } = this.props;
-        if (balance === 0) {
-            return 0.2;
-        }
-        return 1;
+    shouldConversionTextShowInvalid() {
+        const { amount, denomination } = this.props;
+        const { currencySymbol } = this.state;
+        const multiplier = this.getUnitMultiplier();
+        const isFiat = denomination === currencySymbol;
+        const amountIsValid = Send.isValidAmount(amount, multiplier, isFiat);
+        return !amountIsValid && amount !== '';
     }
 
     showModal = () => this.setState({ isModalVisible: true });
@@ -554,8 +586,14 @@ export class Send extends Component {
         return true;
     }
 
+    startTrackingTransactionProgress(isZeroValueTransaction) {
+        const steps = isZeroValueTransaction ? ProgressSteps.zeroValueTransaction : ProgressSteps.valueTransaction;
+
+        this.props.startTrackingProgress(steps);
+    }
+
     sendTransfer() {
-        const { t, seedIndex, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
+        const { t, password, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
 
         if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
@@ -575,30 +613,53 @@ export class Send extends Component {
         const formattedAmount = amount === '' ? 0 : amount;
         const value = parseInt(parseFloat(formattedAmount) * this.getUnitMultiplier(), 10);
 
+        // Start tracking progress for each transaction step
+        this.startTrackingTransactionProgress(value === 0);
+
         this.props.getFromKeychainRequest('send', 'makeTransaction');
-        keychain
-            .get()
-            .then((credentials) => {
+        getSeedFromKeychain(password, selectedAccountName)
+            .then((seed) => {
                 this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
-                if (get(credentials, 'data')) {
-                    const seed = getSeed(credentials.data, seedIndex);
+                if (seed === null) {
+                    this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongTryAgain'),
+                    );
 
-                    let powFn = null;
-
-                    if (isAndroid) {
-                        powFn = NativeModules.PoWModule.doPoW;
-                    } else if (isIOS) {
-                        powFn = NativeModules.Iota.doPoW;
-                    }
-
-                    this.props.prepareTransfer(seed, address, value, message, selectedAccountName, powFn);
+                    throw new Error('Error');
                 }
+                let powFn = null;
+                let genFn = null;
+
+                if (isAndroid) {
+                    powFn = NativeModules.PoWModule.doPoW;
+                } else if (isIOS) {
+                    powFn = NativeModules.Iota.doPoW;
+                    genFn = NativeModules.Iota.address;
+                }
+
+                return this.props.makeTransaction(seed, address, value, message, selectedAccountName, powFn, genFn);
             })
-            .catch(() => this.props.getFromKeychainError('send', 'makeTransaction'));
+            .catch((error) => {
+                this.props.getFromKeychainError('send', 'makeTransaction');
+                this.props.generateTransferErrorAlert(error);
+            });
     }
 
     renderModalContent = () => <View>{this.state.modalContent}</View>;
+
+    renderProgressBarChildren() {
+        const { activeStepIndex, activeSteps } = this.props;
+        const totalSteps = size(activeSteps);
+
+        if (activeStepIndex === totalSteps) {
+            return this.getProgressSummary();
+        }
+
+        return activeSteps[activeStepIndex] ? activeSteps[activeStepIndex] : null;
+    }
 
     render() {
         const { isModalVisible, maxPressed, maxColor, maxText, sending, currencySymbol } = this.state;
@@ -613,12 +674,12 @@ export class Send extends Component {
             theme,
             body,
             primary,
-            negative,
         } = this.props;
         const textColor = { color: body.color };
         const conversionText =
             denomination === currencySymbol ? this.getConversionTextFiat() : this.getConversionTextIota();
         const opacity = this.getOpacity();
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
@@ -679,7 +740,11 @@ export class Send extends Component {
                                         }}
                                     >
                                         <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
-                                        <Toggle active={maxPressed} body={body} primary={primary} />
+                                        <Toggle
+                                            active={maxPressed}
+                                            bodyColor={body.color}
+                                            primaryColor={primary.color}
+                                        />
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -707,33 +772,40 @@ export class Send extends Component {
                         <View style={{ flex: 0.3 }} />
                         {!isSendingTransfer &&
                             !isGettingSensitiveInfoToMakeTransaction && (
-                                <CtaButton
-                                    ctaColor={primary.color}
-                                    ctaBorderColor={primary.hover}
-                                    secondaryCtaColor={primary.body}
-                                    text={t('send')}
-                                    onPress={() => {
-                                        this.onSendPress();
-                                        if (address === '' && amount === '' && message && '') {
-                                            this.addressField.blur();
-                                            this.amountField.blur();
-                                            this.messageField.blur();
-                                        }
-                                    }}
-                                />
+                                <View style={{ flex: 1 }}>
+                                    <CtaButton
+                                        ctaColor={primary.color}
+                                        ctaBorderColor={primary.hover}
+                                        secondaryCtaColor={primary.body}
+                                        text={t('send')}
+                                        onPress={() => {
+                                            this.onSendPress();
+                                            if (address === '' && amount === '' && message && '') {
+                                                this.addressField.blur();
+                                                this.amountField.blur();
+                                                this.messageField.blur();
+                                            }
+                                        }}
+                                    />
+                                </View>
                             )}
                         {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
                             !isModalVisible && (
-                                <View style={{ height: height / 14 }}>
-                                    <ActivityIndicator
-                                        animating={
-                                            (isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
-                                            !isModalVisible
-                                        }
-                                        style={styles.activityIndicator}
-                                        size="large"
-                                        color={negative.color}
-                                    />
+                                <View
+                                    style={{
+                                        flex: 1,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <ProgressBar
+                                        indeterminate={this.props.activeStepIndex === -1}
+                                        progress={this.props.activeStepIndex / size(this.props.activeSteps)}
+                                        color={primary.color}
+                                        textColor={body.color}
+                                    >
+                                        {this.renderProgressBarChildren()}
+                                    </ProgressBar>
                                 </View>
                             )}
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -752,6 +824,7 @@ export class Send extends Component {
                                 </View>
                             </TouchableOpacity>
                         </View>
+                        <View style={{ flex: 0.3 }} />
                     </View>
                     <Modal
                         animationIn="bounceInUp"
@@ -778,7 +851,7 @@ export class Send extends Component {
 const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     isSyncing: state.tempAccount.isSyncing,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     seedIndex: state.tempAccount.seedIndex,
@@ -786,7 +859,6 @@ const mapStateToProps = (state) => ({
     usdPrice: state.marketData.usdPrice,
     isGettingSensitiveInfoToMakeTransaction: state.keychain.isGettingSensitiveInfo.send.makeTransaction,
     theme: state.settings.theme,
-    negative: state.settings.theme.negative,
     body: state.settings.theme.body,
     primary: state.settings.theme.primary,
     bar: state.settings.theme.bar,
@@ -795,10 +867,15 @@ const mapStateToProps = (state) => ({
     amount: state.ui.sendAmountFieldText,
     message: state.ui.sendMessageFieldText,
     denomination: state.ui.sendDenomination,
+    activeStepIndex: state.progress.activeStepIndex,
+    activeSteps: state.progress.activeSteps,
+    timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
+    remotePoW: state.settings.remotePoW,
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {
-    prepareTransfer,
+    makeTransaction,
     generateAlert,
     getFromKeychainRequest,
     getFromKeychainSuccess,
@@ -807,6 +884,9 @@ const mapDispatchToProps = {
     setSendAmountField,
     setSendMessageField,
     setSendDenomination,
+    resetProgress,
+    startTrackingProgress,
+    generateTransferErrorAlert,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));

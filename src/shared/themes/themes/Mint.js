@@ -1,7 +1,7 @@
 export default {
     body: { color: '#F0F2F6', bg: '#003241', alt: '#335E74' },
     bar: { color: '#F0F2F6', bg: '#141825', alt: '#192733' },
-    primary: { color: '#09F9BA', hover: '#00CF98', body: '#FFFFFF' },
+    primary: { color: '#09F9BA', hover: '#00CF98', body: '#003241' },
     secondary: { color: '#5CBAFE', hover: '#4996CE', body: '#1E1E1E' },
     positive: { color: '#44C27F', hover: '#409568', body: '#1E1E1E' },
     negative: { color: '#CF6666', hover: '#B94006', body: '#1E1E1E' },

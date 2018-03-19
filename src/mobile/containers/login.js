@@ -6,7 +6,6 @@ import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
 import { StyleSheet, View } from 'react-native';
-import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { setPassword, setReady, setUserActivity, setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -21,7 +20,8 @@ import NodeSelection from '../components/nodeSelection';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import keychain, { getPasswordFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
+import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, logTwoFa } from '../util/keychain';
+import { getPasswordHash } from '../util/crypto';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
 import { width, height } from '../util/dimensions';
@@ -57,10 +57,10 @@ class Login extends Component {
         theme: PropTypes.object.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
-        isFingerprintEnabled: PropTypes.bool.isRequired,
         migrate: PropTypes.func.isRequired,
         setLoginPasswordField: PropTypes.func.isRequired,
         password: PropTypes.string.isRequired,
+        pwdHash: PropTypes.string.isRequired,
         setFullNode: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
@@ -86,58 +86,53 @@ class Login extends Component {
         this.props.setUserActivity({ inactive: false });
     }
 
-    componentWillUnmount() {
-        if (this.props.isFingerprintEnabled) {
-            FingerprintScanner.release();
-        }
-    }
-
-    onLoginPress(password) {
+    async onLoginPress(password) {
         const { t, is2FAEnabled } = this.props;
-
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
-            getPasswordFromKeychain()
-                .then((passwordFromKeychain) => {
-                    const hasCorrectPassword = passwordFromKeychain === password;
-
-                    if (hasCorrectPassword) {
-                        this.props.setPassword(password);
-                        this.props.setLoginPasswordField('');
-
-                        if (!is2FAEnabled) {
-                            this.navigateToLoading();
-                        } else {
-                            this.setState({ completing2FA: true });
-                        }
+            const pwdHash = getPasswordHash(password);
+            getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
+                if (seedInfo !== null) {
+                    this.props.setPassword(pwdHash);
+                    this.props.setLoginPasswordField('');
+                    if (!is2FAEnabled) {
+                        this.navigateToLoading();
                     } else {
-                        this.props.generateAlert(
-                            'error',
-                            t('global:unrecognisedPassword'),
-                            t('global:unrecognisedPasswordExplanation'),
-                        );
+                        this.setState({ completing2FA: true });
                     }
-                })
-                .catch((err) => console.log(err)); // Generate an alert.
+                } else {
+                    this.props.generateAlert(
+                        'error',
+                        t('global:unrecognisedPassword'),
+                        t('global:unrecognisedPasswordExplanation'),
+                    );
+                }
+            });
         }
     }
 
-    onComplete2FA(token) {
-        const { t } = this.props;
-
+    async onComplete2FA(token) {
+        const { t, pwdHash } = this.props;
         if (token) {
-            getTwoFactorAuthKeyFromKeychain()
-                .then((key) => {
-                    const verified = authenticator.verifyToken(key, token);
-                    if (verified) {
-                        this.navigateToLoading();
-                        this.setState({ completing2FA: false });
-                    } else {
-                        this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
-                    }
-                })
-                .catch((err) => console.error(err)); // Generate an alert here.
+            console.log(pwdHash);
+            logTwoFa(pwdHash);
+            const key = await getTwoFactorAuthKeyFromKeychain(pwdHash);
+            //console.log(key)
+            if (key === null) {
+                this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongTryAgain'),
+                );
+            }
+            const verified = authenticator.verifyToken(key, token);
+            if (verified) {
+                this.navigateToLoading();
+                this.setState({ completing2FA: false });
+            } else {
+                this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
+            }
         } else {
             this.props.generateAlert('error', t('twoFA:emptyCode'), t('emptyCodeExplanation'));
         }
@@ -145,32 +140,6 @@ class Login extends Component {
 
     onBackPress() {
         this.setState({ completing2FA: false });
-    }
-
-    activateFingerPrintScanner() {
-        const { t, is2FAEnabled } = this.props;
-        FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
-            .then(() => {
-                keychain
-                    .get()
-                    .then((credentials) => {
-                        const password = get(credentials, 'password');
-                        this.props.setPassword(password);
-                        if (!is2FAEnabled) {
-                            this.navigateToLoading();
-                        } else {
-                            this.setState({ completing2FA: true });
-                        }
-                    })
-                    .catch((err) => console.log(err));
-            })
-            .catch(() => {
-                this.props.generateAlert(
-                    'error',
-                    t('fingerprintSetup:fingerprintAuthFailed'),
-                    t('fingerprintSetup:fingerprintAuthFailedExplanation'),
-                );
-            });
     }
 
     checkForUpdates() {
@@ -206,7 +175,7 @@ class Login extends Component {
     }
 
     render() {
-        const { body, theme, password, isFingerprintEnabled } = this.props;
+        const { body, theme, password, pwdHash } = this.props;
         const textColor = { color: body.bg };
 
         return (
@@ -221,18 +190,16 @@ class Login extends Component {
                             textColor={textColor}
                             setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
                             password={password}
-                            activateFingerPrintScanner={() => this.activateFingerPrintScanner()}
-                            isFingerprintEnabled={isFingerprintEnabled}
                         />
                     )}
                 {!this.state.changingNode &&
                     this.state.completing2FA && (
                         <Enter2FA
-                            theme={theme}
                             onComplete2FA={this.onComplete2FA}
                             onBackPress={this.onBackPress}
                             navigateToNodeSelection={this.navigateToNodeSelection}
-                            textColor={textColor}
+                            theme={theme}
+                            pwdHash={pwdHash}
                         />
                     )}
                 {this.state.changingNode && (
@@ -267,10 +234,10 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     body: state.settings.theme.body,
     is2FAEnabled: state.account.is2FAEnabled,
-    isFingerprintEnabled: state.account.isFingerprintEnabled,
     versions: state.app.versions,
     accountInfo: state.account.accountInfo,
     password: state.ui.loginPasswordFieldText,
+    pwdHash: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {
@@ -286,5 +253,5 @@ const mapDispatchToProps = {
 };
 
 export default WithBackPressCloseApp()(
-    translate(['login', 'global', 'twoFA', 'fingerprintSetup'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
+    translate(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
 );
