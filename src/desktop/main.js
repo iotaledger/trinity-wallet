@@ -102,19 +102,10 @@ app.setAsDefaultProtocolClient('iota');
 app.on('open-url', function(event, url) {
         event.preventDefault();
         deeplinkingUrl = url;
-        console.log('test main' + url);
     setTimeout(() => {
         windows.main.webContents.send('url-params', url);
-        logEverywhere('open-url# ' + deeplinkingUrl);
     }, delayForWindowToBeLoaded);
 });
-
-function logEverywhere(s) {
-    console.log(s);
-    if (windows.main && windows.main.webContents) {
-        windows.main.webContents.executeJavaScript(`console.log("${s}")`);
-    }
-}
 
 ipc.on('refresh.deepLink', () => {
     delayForWindowToBeLoaded = 0;

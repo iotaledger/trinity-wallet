@@ -12,6 +12,7 @@ import alerts from './reducers/alerts';
 import home from './reducers/home';
 import keychain from './reducers/keychain';
 import polling from './reducers/polling';
+import progress from './reducers/progress';
 import ui from './reducers/ui';
 import deepLinks from './reducers/deepLinks';
 import { ActionTypes } from './actions/app';
@@ -32,6 +33,7 @@ const reducers = combineReducers({
     home,
     keychain,
     polling,
+    progress,
     ui,
     deepLinks,
 });

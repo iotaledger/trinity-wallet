@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from '../../actions/alerts';
 
-import { prepareTransfer } from '../../actions/tempAccount';
+import { makeTransaction } from '../../actions/transfers';
 import { getSelectedAccountNameViaSeedIndex, getBalanceForSelectedAccountViaSeedIndex } from '../../selectors/account';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/util';
 import { iota } from '../../libs/iota';
@@ -25,7 +25,7 @@ export default function withSendData(SendComponent) {
             seed: PropTypes.string.isRequired,
             settings: PropTypes.object.isRequired,
             generateAlert: PropTypes.func.isRequired,
-            prepareTransfer: PropTypes.func.isRequired,
+            makeTransaction: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
             deepLinks: PropTypes.object.isRequired,
@@ -67,7 +67,7 @@ export default function withSendData(SendComponent) {
         };
 
         sendTransfer = (seed, address, value, message, taskRunner, powFn) => {
-            const { prepareTransfer, tempAccount, accountName, generateAlert, t } = this.props;
+            const { tempAccount, accountName, generateAlert, t } = this.props;
 
             if (tempAccount.isSyncing) {
                 generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
@@ -84,9 +84,9 @@ export default function withSendData(SendComponent) {
             }
 
             if (typeof taskRunner === 'function') {
-                taskRunner('prepareTransfer', [seed, address, value, message, accountName, powFn]);
+                taskRunner('makeTransaction', [seed, address, value, message, accountName, powFn]);
             } else {
-                prepareTransfer(seed, address, value, message, accountName, powFn);
+                this.props.makeTransaction(seed, address, value, message, accountName, powFn);
             }
         };
 
@@ -124,7 +124,7 @@ export default function withSendData(SendComponent) {
 
     const mapDispatchToProps = {
         generateAlert,
-        prepareTransfer,
+        makeTransaction,
         sendAmount,
     };
 

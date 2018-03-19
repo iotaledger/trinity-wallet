@@ -171,7 +171,7 @@ class UseExistingSeed extends React.Component {
                 hideModal={() => this.hideModal()}
             />
         );
-    }
+    };
 
     render() {
         const { t, body, theme, textColor, input } = this.props;
@@ -202,7 +202,7 @@ class UseExistingSeed extends React.Component {
                             onQRPress={() => this.onQRPress()}
                         />
                         <View style={{ flex: 0.6 }} />
-                        <Checksum seed={seed} input={input}/>
+                        <Checksum seed={seed} input={input} />
                         <View style={{ flex: 0.3 }} />
                         <CustomTextInput
                             onRef={(c) => {
