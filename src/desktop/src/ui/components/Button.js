@@ -25,7 +25,7 @@ export default class Button extends React.PureComponent {
         /** Buttons style type */
         variant: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'extra', 'highlight']).isRequired,
         /** Buttons custom class */
-        className: PropTypes.oneOf(['outline', 'small']),
+        className: PropTypes.oneOf(['outline', 'small', 'large', 'inline', 'icon']),
         /** Buttons loading state */
         loading: PropTypes.bool,
     };
@@ -52,7 +52,7 @@ export default class Button extends React.PureComponent {
                 style={style}
                 type={type ? type : 'button'}
                 onClick={onClick}
-                disabled={(disabled)}
+                disabled={disabled}
                 className={classNames(css.button, css[className], css[variant], loadingClass)}
             >
                 {children}
