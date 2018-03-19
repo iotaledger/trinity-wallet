@@ -53,7 +53,7 @@
         "syncInProgress": "Synchronisation en cours",
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
-        "somethingWentWrongRestart": "Please restart the app.",
+        "somethingWentWrongRestart": "Veuillez redémarrer l'application.",
         "somethingWentWrongTryAgain": "Please try again.",
         "node": "Serveur",
         "cannotPerformAction": "Impossible d’effectuer cette action",
