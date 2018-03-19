@@ -397,7 +397,6 @@ class Settings extends Component {
             },
             securitySettings: {
                 setSetting: (setting) => this.props.setSetting(setting),
-                backPress: () => this.props.setSetting('mainSettings'),
                 on2FASetupPress: () => this.on2FASetupPress(),
                 onFingerprintSetupPress: () => this.onFingerprintSetupPress(),
                 node: this.props.fullNode,
