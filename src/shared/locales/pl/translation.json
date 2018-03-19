@@ -417,11 +417,11 @@
         "wrongCodeExplanation": "Podany kod jest nieprawidłowy.",
         "emptyCode": "Kod pusty",
         "emptyCodeExplanation": "Wprowadź kod i spróbuj ponownie.",
-        "keyCopied": "Klucz został skopiowany do schowka",
+        "keyCopied": "Klucz skopiowany do schowka",
         "keyCopiedExplanation": "Twój klucz dwustopniowej autoryzacji został skopiowany do schowka.",
         "addKey": "Dodaj ten klucz do aplikacji dwustopniowej autoryzacji",
         "key": "Klucz",
-        "twoFAEnabled": "Autoryzacja dwustopniowa jest teraz włączona",
+        "twoFAEnabled": "Włączono 2FA",
         "twoFAEnabledExplanation": "Pomyślnie włączono funkcję dwustopniowej autoryzacji.",
         "enterCode": "Wpisz kod z aplikacji dwustopniowej autoryzacji",
         "code": "Kod"
