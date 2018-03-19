@@ -21,7 +21,10 @@ export default class Icon extends React.PureComponent {
     render() {
         const { size, icon, color } = this.props;
         return (
-            <span className={classNames(css.icon, css[icon])} style={{ fontSize: size || 32, color: color || null }}>
+            <span
+                className={classNames(css.icon, css[icon])}
+                style={{ fontSize: size || 32, lineHeight: size ? `${size}px` : 32, color: color || null }}
+            >
                 {icons[icon]}
             </span>
         );

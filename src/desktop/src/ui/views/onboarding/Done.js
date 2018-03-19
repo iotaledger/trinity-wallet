@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { setOnboardingComplete } from 'actions/account';
+
 import Button from 'ui/components/Button';
+import Logo from 'ui/components/Logo';
 
 /**
  * Onboarding complete component
@@ -32,11 +34,11 @@ class Done extends React.PureComponent {
         return (
             <React.Fragment>
                 <section>
-                    <p>{t('onboardingComplete:walletReady')}</p>
+                    <h2>{t('onboardingComplete:walletReady')}</h2>
                 </section>
                 <footer>
-                    <Button onClick={this.setComplete} className="outline" variant="primary">
-                        {t('done')}
+                    <Button onClick={this.setComplete} className="large" variant="primary">
+                        {t('done').toLowerCase()}
                     </Button>
                 </footer>
             </React.Fragment>

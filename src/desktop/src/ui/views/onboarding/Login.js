@@ -197,11 +197,11 @@ class Login extends React.Component {
                         />
                     </section>
                     <footer>
-                        <Button to="/settings/node" className="outline" variant="secondary">
-                            {t('home:settings')}
+                        <Button to="/settings/node" className="inline" variant="secondary">
+                            {t('home:settings').toLowerCase()}
                         </Button>
-                        <Button type="submit" className="outline" variant="primary">
-                            {t('login:login')}
+                        <Button type="submit" className="large" variant="primary">
+                            {t('login:login').toLowerCase()}
                         </Button>
                     </footer>
                 </form>
