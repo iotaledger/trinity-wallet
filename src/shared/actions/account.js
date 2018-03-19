@@ -325,7 +325,7 @@ export const set2FAStatus = (payload) => ({
     payload,
 });
 
-export const transitionForSnapshot = (seed, addresses) => {
+export const transitionForSnapshot = (seed, addresses, genFn) => {
     return (dispatch) => {
         dispatch(snapshotTransitionRequest());
         if (addresses.length > 0) {
@@ -333,7 +333,7 @@ export const transitionForSnapshot = (seed, addresses) => {
             dispatch(updateTransitionAddresses(addresses));
         } else {
             setTimeout(() => {
-                dispatch(generateAddressesAndGetBalance(seed, 0));
+                dispatch(generateAddressesAndGetBalance(seed, 0, genFn));
             });
         }
     };
@@ -405,7 +405,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
     };
 };
 
-export const generateAddressesAndGetBalance = (seed, index) => {
+export const generateAddressesAndGetBalance = (seed, index, genFn) => {
     return (dispatch) => {
         const options = {
             index: index,
@@ -413,7 +413,7 @@ export const generateAddressesAndGetBalance = (seed, index) => {
             returnAll: true,
             security: 2,
         };
-        getNewAddress(seed, options, (error, addresses) => {
+        getNewAddress(seed, options, genFn, (error, addresses) => {
             if (error) {
                 dispatch(snapshotTransitionError());
                 dispatch(generateTransitionErrorAlert());
