@@ -117,10 +117,9 @@ export const updateAddresses = (accountName, addresses) => ({
     addresses,
 });
 
-export const changeAccountName = (accountInfo, accountNames) => ({
+export const changeAccountName = (payload) => ({
     type: ActionTypes.CHANGE_ACCOUNT_NAME,
-    accountInfo,
-    accountNames,
+    payload
 });
 
 export const removeAccount = (payload) => ({
