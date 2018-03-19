@@ -22,7 +22,7 @@ class AccountName extends PureComponent {
         accountName: PropTypes.string.isRequired,
         /** Change current account name
          * @param {Object} AccountInfo - updated account info
-         * @param {Object} SeedNames - updated seed names
+         * @param {Object} accountNames - updated seed names
          */
         changeAccountName: PropTypes.func.isRequired,
         /** Create a notification message
@@ -88,7 +88,7 @@ class AccountName extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountInfo: state.account.accountInfo,
-    accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
 });
 
 const mapDispatchToProps = {
