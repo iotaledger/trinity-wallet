@@ -352,16 +352,6 @@ class Settings extends Component {
                 input,
                 borderColor,
             },
-            currencySelection: {
-                getCurrencyData: (currency, withAlerts) => this.props.getCurrencyData(currency, withAlerts),
-                currency: this.props.currency,
-                currencies: this.props.availableCurrencies,
-                backPress: () => this.props.setSetting('mainSettings'),
-                bodyColor: body.color,
-                primaryColor: primary.color,
-                isFetchingCurrencyData: this.props.isFetchingCurrencyData,
-                hasErrorFetchingCurrencyData: this.props.hasErrorFetchingCurrencyData,
-            },
             languageSelection: {
                 backPress: () => this.props.setSetting('mainSettings'),
                 textColor: { color: body.color },
