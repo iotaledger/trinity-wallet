@@ -8,6 +8,10 @@ import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modul
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import { detectLocale, selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { connect } from 'react-redux';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import {
+    setLanguage,
+} from 'iota-wallet-shared-modules/actions/settings';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import { width, height } from '../utils/dimensions';
 import DropdownComponent from '../components/Dropdown';
@@ -68,6 +72,7 @@ class LanguageSetup extends Component {
         navigator: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
+        setLanguage: PropTypes.func.isRequired
     };
 
     static clickDropdownItem(languageLabel) {
@@ -143,6 +148,16 @@ const mapStateToProps = (state) => ({
     primary: state.settings.theme.primary,
 });
 
+const mapDispatchToProps = {
+    setSetting,
+    setLanguage
+};
+
 export default WithBackPressCloseApp()(
-    translate(['languageSetup', 'global'])(connect(mapStateToProps, null)(LanguageSetup)),
+    translate(['languageSetup', 'global'])(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps
+        )
+            (LanguageSetup)),
 );
