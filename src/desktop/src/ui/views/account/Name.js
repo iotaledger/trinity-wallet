@@ -55,9 +55,10 @@ class AccountName extends PureComponent {
             return;
         }
 
-        const newAccountInfo = Object.assign({}, accountInfo, { [newAccountName]: accountInfo[accountName] });
-        delete newAccountInfo[accountName];
-        changeAccountName(newAccountInfo, Object.keys(newAccountInfo));
+        changeAccountName({
+            oldAccountName: accountName,
+            newAccountName,
+        });
     }
 
     render() {
