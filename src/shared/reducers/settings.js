@@ -1,37 +1,11 @@
 import { ActionTypes } from '../actions/settings.js';
-import { DESKTOP_VERSION, defaultNode as fullNode, nodes as availablePoWNodes } from '../config';
+import { DESKTOP_VERSION, defaultNode as node, nodes } from '../config';
 import themes from '../themes/themes';
 
 const initialState = {
     locale: 'en',
-    fullNode,
-    availablePoWNodes,
-    availableNodes: [
-        'http://iri2.iota.fm:80',
-        'https://ceres.iota.community:14600',
-        'https://nodes.iota.cafe:443',
-        'https://node.tangle.works:443',
-        'http://148.251.181.105:14265',
-        'http://iri3.iota.fm:80',
-        'http://nelson1.iota.fm:80',
-        'https://iotanode.us:443',
-        'http://node.lukaseder.de:14265',
-        'http://eugene.iotasupport.com:14999',
-        'http://node02.iotatoken.nl:14265',
-        'http://eugeneoldisoft.iotasupport.com:14265',
-        'http://88.198.230.98:14265',
-        'http://eugene.iota.community:14265',
-        'http://node03.iotatoken.nl:15265',
-        'http://wallets.iotamexico.com:80',
-        'http://node01.iotatoken.nl:14265',
-        'http://5.9.149.169:14265',
-        'http://5.9.137.199:14265',
-        'http://service.iotasupport.com:14265',
-        'http://5.9.118.112:14265',
-        'http://176.9.3.149:14265',
-        'http://mainnet.necropaz.com:14500',
-        'http://iota.bitfinex.com:80',
-    ],
+    node,
+    nodes,
     mode: 'Standard',
     language: 'English (International)',
     currency: 'USD',
@@ -80,6 +54,9 @@ const initialState = {
         notes: [],
     },
     remotePoW: true,
+    versions: {},
+    is2FAEnabled: false,
+    isFingerprintEnabled: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -104,20 +81,12 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.SET_FULLNODE:
             return {
                 ...state,
-                fullNode: action.payload,
-            };
-
-        case ActionTypes.ADD_CUSTOM_NODE:
-            return {
-                ...state,
-                availableNodes: state.availableNodes.includes(action.payload)
-                    ? state.availableNodes
-                    : [].concat(state.availableNodes, action.payload),
+                node: action.payload,
             };
         case ActionTypes.ADD_CUSTOM_POW_NODE:
             return {
                 ...state,
-                availablePoWNodes: state.availablePoWNodes.includes(action.payload)
+                nodes: state.availablePoWNodes.includes(action.payload)
                     ? state.availablePoWNodes
                     : [].concat(state.availablePoWNodes, action.payload),
             };
@@ -184,6 +153,20 @@ const settingsReducer = (state = initialState, action) => {
                     done: true,
                 },
             };
+        case ActionTypes.SET_2FA_STATUS:
+            return {
+                ...state,
+                is2FAEnabled: action.payload,
+            };
+        case ActionTypes.SET_FINGERPRINT_STATUS:
+            return {
+                ...state,
+                isFingerprintEnabled: action.payload,
+            };
+        case ActionTypes.SET_VERSIONS:
+            return merge({}, state, {
+                versions: action.payload,
+            });
     }
 
     return state;

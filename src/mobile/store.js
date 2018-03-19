@@ -8,7 +8,14 @@ import { updatePersistedState } from '../shared/libs/util';
 
 export const persistConfig = {
     storage: AsyncStorage,
-    blacklist: ['tempAccount', 'keychain', 'polling', 'ui', 'progress'],
+    blacklist: [
+        'app',
+        'keychain',
+        'polling',
+        'ui',
+        'progress',
+        'seeds'
+    ],
 };
 
 const shouldMigrate = (restoredState) => {
