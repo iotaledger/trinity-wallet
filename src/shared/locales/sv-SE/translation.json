@@ -53,8 +53,8 @@
         "syncInProgress": "Synkronisering pågår",
         "syncInProgressExplanation": "Vänta tills synkroniseringen är klar.",
         "somethingWentWrong": "Något gick fel",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongRestart": "Var god och starta om appen.",
+        "somethingWentWrongTryAgain": "Försök igen.",
         "node": "Nod",
         "cannotPerformAction": "Kan inte utföra åtgärden",
         "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
@@ -77,7 +77,7 @@
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
         "autopromoting": "Auto-befordrar överföring",
         "autopromotingExplanation": "Befordrar transaktion med hashen {{hash}}",
-        "promoting": "Promoting transfer",
+        "promoting": "Befordrar överföring",
         "promotionError": "Could not promote transaction",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Skickar till egen adress",
@@ -447,8 +447,8 @@
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "proofOfWork": "Utför proof of work",
+        "broadcasting": "Sändning pågår"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan inte slutföra snapshot-övergången",
