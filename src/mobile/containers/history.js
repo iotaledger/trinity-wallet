@@ -271,7 +271,7 @@ class History extends Component {
     }
 
     renderTransactions() {
-        const { negative, primary, t } = this.props;
+        const { primary, t } = this.props;
         const { isRefreshing } = this.state;
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
@@ -288,7 +288,7 @@ class History extends Component {
                     <RefreshControl
                         refreshing={isRefreshing && !noTransactions}
                         onRefresh={this.onRefresh}
-                        tintColor={negative.color}
+                        tintColor={primary.color}
                     />
                 }
                 ListEmptyComponent={
