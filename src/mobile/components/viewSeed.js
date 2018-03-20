@@ -166,7 +166,7 @@ class ViewSeed extends Component {
                             <View style={styles.seedBoxContainer}>
                                 <Seedbox
                                     seed={this.state.seed}
-                                    backgroundColor={body.color}
+                                    bodyColor={body.color}
                                     borderColor={borderColor}
                                     textColor={textColor}
                                 />
