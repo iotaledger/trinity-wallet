@@ -101,28 +101,35 @@ export function getPrice() {
 
 export function getChartData() {
     return (dispatch) => {
-        let arrayCurrenciesTimeFrames = [];
+        const arrayCurrenciesTimeFrames = [];
         const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
-        let arrayPromises = [];
+        const arrayPromises = [];
         currencies.forEach((currencyItem) => {
-            filter(timeframes, timeFrameItem => {
-                arrayCurrenciesTimeFrames.push({currency: currencyItem, timeFrame: timeFrameItem});
+            filter(timeframes, (timeFrameItem) => {
+                arrayCurrenciesTimeFrames.push({ currency: currencyItem, timeFrame: timeFrameItem });
             });
         });
 
         arrayCurrenciesTimeFrames.forEach((currencyTimeFrameArrayItem) => {
-            let url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat
-            (currencyTimeFrameArrayItem.timeFrame)}?fsym=IOT&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat
-            (currencyTimeFrameArrayItem.timeFrame)}`;
-            arrayPromises.push(fetch(url).then( (response)=> {
-                return response.json();
-            }));
+            const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
+                currencyTimeFrameArrayItem.timeFrame,
+            )}?fsym=IOT&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat(
+                currencyTimeFrameArrayItem.timeFrame,
+            )}`;
+            arrayPromises.push(
+                fetch(url).then((response) => {
+                    return response.json();
+                }),
+            );
         });
-        Promise.all(arrayPromises).then( (results) => {
-            results.forEach( (resultItem, index) => {
-                let resultFormated = formatChartData(resultItem,
-                    arrayCurrenciesTimeFrames[index].currency, arrayCurrenciesTimeFrames[index].timeFrame);
+        Promise.all(arrayPromises).then((results) => {
+            results.forEach((resultItem, index) => {
+                const resultFormated = formatChartData(
+                    resultItem,
+                    arrayCurrenciesTimeFrames[index].currency,
+                    arrayCurrenciesTimeFrames[index].timeFrame,
+                );
                 dispatch(setChartData(resultFormated));
             });
         });
