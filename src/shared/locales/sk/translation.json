@@ -79,7 +79,7 @@
         "autopromotingExplanation": "Podpora transakcií z hash {{hash}}",
         "promoting": "Podporujem transfer",
         "promotionError": "Nepodarilo sa podporiť transakciu",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "noLongerValid": "Zväzok, ktorý sa pokúšate podporiť už nie je platný",
         "cannotSendToOwn": "Odosielanie na vlastnú adresu",
         "cannotSendToOwnExplanation": "Nemôžete previesť čiastku na vlastné adresy.",
         "pleaseWait": "Prosím čakajte...",
@@ -161,7 +161,7 @@
     "loading": {
         "loadingFirstTime": "Prvotné načítanie Seedu.",
         "thisMayTake": "Môže to chvíľu trvat.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Neminimalizujte, ani nezatvárajte aplikáciu.",
         "youMayNotice": "Môžete zaregistrovať spomalenie Vášho zariadenia."
     },
     "newSeedSetup": {
@@ -298,7 +298,7 @@
         "keepSafe": "Svoj seed prosím uchovávajte v bezpečí."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Ďakujeme, že Ste si stiahli Trinity.",
         "weWillSpend": "Nasledujúcich pár minút strávime nastavením Vašej peňaženky.",
         "reminder": "Možno budete v pokušení niektoré kroky vynechať, dôrazne však odporúčame, aby ste dokončili všetky."
     },
