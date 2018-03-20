@@ -86,58 +86,6 @@ const organizeAccountState = (accountName, data) => {
 };
 
 /**
- *   Takes in account object, get unspent addresses from all addresses, fetch transaction hashes associated with those
- *   and assigns them to the account object under a prop name txHashesForUnspentAddresses.
- *
- *   IMPORTANT: This function should always be utilized after the account is synced.
- *
- *   @method mapTransactionHashesForUnspentAddressesToState
- *   @param {object} account
- *
- *   @returns {Promise} - Resolves account object.
- **/
-export const mapTransactionHashesForUnspentAddressesToState = (account) => {
-    const unspentAddresses = getUnspentAddressesSync(account.addresses);
-
-    if (isEmpty(unspentAddresses)) {
-        return Promise.resolve(assign({}, account, { txHashesForUnspentAddresses: [] }));
-    }
-
-    return findTransactionsAsync({ addresses: unspentAddresses }).then((hashes) => {
-        return assign({}, account, { txHashesForUnspentAddresses: hashes });
-    });
-};
-
-/**
- *   Takes in account object, get spent addresses with pending transfers,
- *   fetch transaction hashes associated with those
- *   and assigns them to the account object under a prop name pendingTxHashesForSpentAddresses.
- *
- *   IMPORTANT: This function should always be utilized after the account is sycnced.
- *
- *   @method mapPendingTransactionHashesForSpentAddressesToState
- *   @param {object} account
- *
- *   @returns {Promise} - Resolves account object.
- **/
-export const mapPendingTransactionHashesForSpentAddressesToState = (account) => {
-    const pendingTransfers = filterConfirmedTransfers(account.transfers);
-
-    const spentAddressesWithPendingTransfers = getSpentAddressesWithPendingTransfersSync(
-        pendingTransfers,
-        account.addresses,
-    );
-
-    if (isEmpty(spentAddressesWithPendingTransfers)) {
-        return Promise.resolve(assign({}, account, { pendingTxHashesForSpentAddresses: [] }));
-    }
-
-    return findTransactionsAsync({ addresses: spentAddressesWithPendingTransfers }).then((hashes) => {
-        return assign({}, account, { pendingTxHashesForSpentAddresses: hashes });
-    });
-};
-
-/**
  *   Gets information associated with a seed from the ledger.
  *   - Communicates with node by checking its information. (getNodeInfoAsync)
  *   - Gets all used addresses (addresses with transactions) from the ledger. (getAllAddresses)
