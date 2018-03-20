@@ -12,7 +12,7 @@ import { setPassword, setReady, setUserActivity, setSetting } from 'iota-wallet-
 import { setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
-import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import DynamicStatusBar from '../components/dynamicStatusBar';
@@ -20,7 +20,7 @@ import NodeSelection from '../components/nodeSelection';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
+import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, logTwoFa } from '../util/keychain';
 import { getPasswordHash } from '../util/crypto';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
@@ -60,6 +60,7 @@ class Login extends Component {
         migrate: PropTypes.func.isRequired,
         setLoginPasswordField: PropTypes.func.isRequired,
         password: PropTypes.string.isRequired,
+        pwdHash: PropTypes.string.isRequired,
         setFullNode: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
@@ -112,9 +113,12 @@ class Login extends Component {
     }
 
     async onComplete2FA(token) {
-        const { t, password } = this.props;
+        const { t, pwdHash } = this.props;
         if (token) {
-            const key = await getTwoFactorAuthKeyFromKeychain(password);
+            console.log(pwdHash);
+            logTwoFa(pwdHash);
+            const key = await getTwoFactorAuthKeyFromKeychain(pwdHash);
+            //console.log(key)
             if (key === null) {
                 this.props.generateAlert(
                     'error',
@@ -171,7 +175,7 @@ class Login extends Component {
     }
 
     render() {
-        const { body, theme, password } = this.props;
+        const { body, theme, password, pwdHash } = this.props;
         const textColor = { color: body.bg };
 
         return (
@@ -191,11 +195,11 @@ class Login extends Component {
                 {!this.state.changingNode &&
                     this.state.completing2FA && (
                         <Enter2FA
-                            theme={theme}
                             onComplete2FA={this.onComplete2FA}
                             onBackPress={this.onBackPress}
                             navigateToNodeSelection={this.navigateToNodeSelection}
-                            textColor={textColor}
+                            theme={theme}
+                            pwdHash={pwdHash}
                         />
                     )}
                 {this.state.changingNode && (
@@ -224,7 +228,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => ({
     firstUse: state.account.firstUse,
-    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    selectedAccount: getSelectedAccountName(state),
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
     theme: state.settings.theme,
@@ -233,6 +237,7 @@ const mapStateToProps = (state) => ({
     versions: state.app.versions,
     accountInfo: state.account.accountInfo,
     password: state.ui.loginPasswordFieldText,
+    pwdHash: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {

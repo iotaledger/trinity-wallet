@@ -120,12 +120,12 @@ class Login extends React.Component {
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
 
-        if (account.firstUse && !tempAccount.addingAdditionalAccount) {
-            runTask('getFullAccountInfo', [seed, account.seedNames[tempAccount.seedIndex]]);
-        } else if (!account.firstUse && tempAccount.addingAdditionalAccount) {
-            runTask('fetchFullAccountInfoForFirstUse', [seed, tempAccount.additionalAccountName]);
+        if (account.firstUse) {
+            runTask('getFullAccountInfoFirstSeed', [seed, account.accountNames[tempAccount.seedIndex]]);
+        } else if (tempAccount.addingAdditionalAccount) {
+            runTask('getFullAccountInfoAdditionalSeed', [seed, tempAccount.additionalAccountName]);
         } else {
-            runTask('getAccountInfo', [seed, account.seedNames[tempAccount.seedIndex]]);
+            runTask('getAccountInfo', [seed, account.accountNames[tempAccount.seedIndex]]);
         }
     }
 
@@ -178,8 +178,8 @@ class Login extends React.Component {
             return (
                 <Loading
                     loop
-                    title={account.firstUse ? t('loading:thisMayTake') : null}
-                    subtitle={account.firstUse ? t('loading:loadingFirstTime') : null}
+                    title={account.firstUse ? t('loading:loadingFirstTime') : null}
+                    subtitle={account.firstUse ? t('loading:thisMayTake') : null}
                 />
             );
         }
@@ -197,11 +197,11 @@ class Login extends React.Component {
                         />
                     </section>
                     <footer>
-                        <Button to="/settings/node" className="outline" variant="secondary">
-                            {t('home:settings')}
+                        <Button to="/settings/node" className="inline" variant="secondary">
+                            {t('home:settings').toLowerCase()}
                         </Button>
-                        <Button type="submit" className="outline" variant="primary">
-                            {t('login:login')}
+                        <Button type="submit" className="large" variant="primary">
+                            {t('login:login').toLowerCase()}
                         </Button>
                     </footer>
                 </form>

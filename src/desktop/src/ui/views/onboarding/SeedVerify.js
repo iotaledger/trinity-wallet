@@ -82,19 +82,24 @@ class SeedVerify extends React.PureComponent {
         const { seed = '' } = this.state;
         return (
             <form onSubmit={(e) => this.setSeed(e)}>
-                <div />
                 <section>
                     <SeedInput seed={seed} onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
                     <Infobox>
                         {newSeed ? (
                             <React.Fragment>
-                                <p>{t('seedReentry:thisIsACheck')}</p>
-                                <p>{t('seedReentry:ifYouHaveNotSaved')}</p>
+                                <p>
+                                    {t('seedReentry:thisIsACheck')}
+                                    <br />
+                                    {t('seedReentry:ifYouHaveNotSaved')}
+                                </p>
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
-                                <p>{t('enterSeed:seedExplanation')}</p>
-                                <p>{t('enterSeed:neverShare')}</p>
+                                <p>
+                                    {t('enterSeed:seedExplanation')}
+                                    <br />
+                                    {t('enterSeed:neverShare')}
+                                </p>
                             </React.Fragment>
                         )}
                     </Infobox>
@@ -102,13 +107,13 @@ class SeedVerify extends React.PureComponent {
                 <footer>
                     <Button
                         to={`/onboarding/seed-${newSeed ? 'save' : 'intro'}`}
-                        className="outline"
+                        className="inline"
                         variant="secondary"
                     >
-                        {t('back')}
+                        {t('back').toLowerCase()}
                     </Button>
-                    <Button type="submit" className="outline" variant="primary">
-                        {t('next')}
+                    <Button type="submit" className="large" variant="primary">
+                        {t('next').toLowerCase()}
                     </Button>
                 </footer>
             </form>

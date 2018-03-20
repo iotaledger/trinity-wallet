@@ -24,7 +24,9 @@ import {
 } from '../actions/alerts';
 import { pushScreen } from '../libs/util';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
-import i18next from '../i18next.js';
+import i18next from '../i18next';
+
+const { t } = i18next.t;
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -115,10 +117,9 @@ export const updateAddresses = (accountName, addresses) => ({
     addresses,
 });
 
-export const changeAccountName = (accountInfo, accountNames) => ({
+export const changeAccountName = (payload) => ({
     type: ActionTypes.CHANGE_ACCOUNT_NAME,
-    accountInfo,
-    accountNames,
+    payload
 });
 
 export const removeAccount = (payload) => ({
@@ -283,7 +284,7 @@ export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
 
         return syncAddresses(seed, existingAccountState, genFn)
             .then((accountData) => {
-                return syncAccount(seed, accountData);
+                return syncAccount(accountData);
             })
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
@@ -353,8 +354,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                     return dispatch(
                         generateAlert(
                             'error',
-                            i18next.t('snapshotTransition:cannotCompleteTransition'),
-                            i18next.t('snapshotTransition:cannotCompleteTransitionExplanation'),
+                            t('cannotCompleteTransition'),
+                            t('cannotCompleteTransitionExplanation'),
                             10000,
                         ),
                     );
@@ -378,8 +379,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                                 dispatch(
                                     generateAlert(
                                         'success',
-                                        i18next.t('snapshotTransition:transitionComplete'),
-                                        i18next.t('snapshotTransition:transitionCompleteExplanation'),
+                                        t('transitionComplete'),
+                                        t('transitionCompleteExplanation'),
                                         20000,
                                     ),
                                 );
