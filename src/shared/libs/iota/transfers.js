@@ -570,6 +570,8 @@ export const bundlesFromTransactionObjects = (tailTransactions, transactionObjec
             transfers.push(map(bundle, (transfer) => ({ ...transfer, persistence: tx.persistence })));
         }
     });
+
+    return transfers;
 };
 
 /**
