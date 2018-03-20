@@ -15,10 +15,7 @@ import {
     generateAddressesAndGetBalance,
     completeSnapshotTransition,
 } from 'iota-wallet-shared-modules/actions/account';
-import {
-    getSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { selectAccountInfo, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
 import {
     setFullNode,
     getCurrencyData,
@@ -837,8 +834,8 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    selectedAccount: selectAccountInfo(state),
+    selectedAccountName: getSelectedAccountName(state),
     currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,
     password: state.tempAccount.password,
