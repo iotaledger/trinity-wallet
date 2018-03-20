@@ -2,8 +2,6 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
 import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
-import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -209,21 +207,8 @@ class TopBar extends Component {
         const subtitleColor = tinycolor(bar.color).isDark() ? '#262626' : '#d3d3d3';
 
         const getBalance = (currentIdx) => {
-            const seedStrings = Object.keys(accountInfo);
-            const data = accountInfo[seedStrings[currentIdx]].addresses;
-            const balances = Object.values(data).map((x) => x.balance);
-
-            if (isEmpty(data)) {
-                return TopBar.humanizeBalance(0); // no addresses
-            }
-
-            const calc = (res, value) => {
-                const result = res + value;
-                return result;
-            };
-
-            const bal = reduce(balances, calc, 0);
-            return TopBar.humanizeBalance(bal);
+            const account = accountInfo[accountNames[currentIdx]];
+            return TopBar.humanizeBalance(account.balance);
         };
 
         const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
