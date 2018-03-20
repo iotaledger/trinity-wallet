@@ -61,12 +61,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: height / 14,
-    },
     topContainer: {
         flex: 3.6,
         justifyContent: 'flex-start',
