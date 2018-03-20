@@ -106,8 +106,7 @@
                 span {
                     display: block;
                     float: left;
-                    line-height: 58px;
-                    margin-right: 14px;
+                    margin: 18px 14px 0 0;
                 }
                 strong {
                     font-weight: 300;
