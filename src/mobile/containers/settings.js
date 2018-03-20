@@ -15,10 +15,7 @@ import {
     generateAddressesAndGetBalance,
     completeSnapshotTransition,
 } from 'iota-wallet-shared-modules/actions/account';
-import {
-    getSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { selectAccountInfo, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
 import {
     setFullNode,
     getCurrencyData,
@@ -28,7 +25,7 @@ import {
     setMode,
 } from 'iota-wallet-shared-modules/actions/settings';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
 import KeepAwake from 'react-native-keep-awake';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal';
@@ -67,7 +64,6 @@ class Settings extends Component {
         isFetchingCurrencyData: PropTypes.bool.isRequired,
         hasErrorFetchingCurrencyData: PropTypes.bool.isRequired,
         navigator: PropTypes.object.isRequired,
-        accountInfo: PropTypes.object.isRequired,
         selectedAccount: PropTypes.object.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         currentSetting: PropTypes.string.isRequired,
@@ -732,6 +728,7 @@ class Settings extends Component {
                             t('addAdditionalSeed:seedInUseExplanation'),
                         );
                     }
+
                     return this.fetchAccountInfo(seed, accountName);
                 })
                 .catch((err) => console.log(err)); // eslint-disable no-console
@@ -740,7 +737,7 @@ class Settings extends Component {
 
     // EditAccountName method
     saveAccountName(accountName) {
-        const { seedIndex, accountNames, password, selectedAccountName, t, accountInfo } = this.props;
+        const { accountNames, password, selectedAccountName, t } = this.props;
 
         if (accountNames.includes(accountName)) {
             this.props.generateAlert(
@@ -752,21 +749,12 @@ class Settings extends Component {
             // Update keychain
             updateAccountNameInKeychain(password, selectedAccountName, accountName)
                 .then(() => {
-                    const keyMap = { [selectedAccountName]: accountName };
-                    const newAccountInfo = renameKeys(accountInfo, keyMap);
+                    this.props.changeAccountName({
+                        oldAccountName: selectedAccountName,
+                        newAccountName: accountName,
+                    });
 
-                    const updateName = (name, idx) => {
-                        if (idx === seedIndex) {
-                            return accountName;
-                        }
-
-                        return name;
-                    };
-
-                    const updatedaccountNames = map(accountNames, updateName);
-                    this.props.changeAccountName(newAccountInfo, updatedaccountNames);
                     this.props.setSetting('accountManagement');
-
                     this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
                 })
                 .catch((err) => console.log(err)); // eslint-disable-line no-console
@@ -846,13 +834,12 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    selectedAccount: selectAccountInfo(state),
+    selectedAccountName: getSelectedAccountName(state),
     currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,
     password: state.tempAccount.password,
     accountNames: state.account.accountNames,
-    accountInfo: state.account.accountInfo,
     seedCount: state.account.seedCount,
     currency: state.settings.currency,
     mode: state.settings.mode,

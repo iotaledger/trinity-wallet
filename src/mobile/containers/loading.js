@@ -23,7 +23,7 @@ import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
 import { getSeedFromKeychain, storeSeedInKeychain } from '../util/keychain';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { isAndroid, isIOS } from '../util/device';
@@ -295,7 +295,7 @@ class Loading extends Component {
 
 const mapStateToProps = (state) => ({
     firstUse: state.account.firstUse,
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    selectedAccountName: getSelectedAccountName(state),
     addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,
     additionalAccountName: state.tempAccount.additionalAccountName,
     seed: state.tempAccount.seed,

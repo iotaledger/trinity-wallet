@@ -37,4 +37,6 @@ module.exports = {
     sync: '🔄',
     biometric: '🙎',
     security: '🔰',
+    copy: '📋',
+    print: '🖨',
 };
