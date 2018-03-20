@@ -11,10 +11,7 @@ import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { clearLog } from 'iota-wallet-shared-modules/actions/alerts';
-import {
-    getBalanceForSelectedAccountViaSeedIndex,
-    getSelectedAccountViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/account';
 import {
     View,
     Text,
@@ -416,7 +413,7 @@ class TopBar extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    balance: getBalanceForSelectedAccount(state),
     accountNames: state.account.accountNames,
     accountInfo: state.account.accountInfo,
     currentSetting: state.tempAccount.currentSetting,
@@ -426,7 +423,7 @@ const mapStateToProps = (state) => ({
     isSyncing: state.tempAccount.isSyncing,
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
-    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    selectedAccount: selectAccountInfo(state),
     body: state.settings.theme.body,
     bar: state.settings.theme.bar,
     notificationLog: state.alerts.notificationLog,
