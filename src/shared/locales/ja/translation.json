@@ -19,8 +19,7 @@
         "invalidResponse": "無効な応答",
         "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
         "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
-        "invalidResponseFetchingAccount":
-            "アカウント情報を取得中にノードが無効な返答をしました。ノードを変更してみてください。",
+        "invalidResponseFetchingAccount": "アカウント情報を取得中にノードが無効な返答をしました。ノードを変更してみてください。",
         "invalidResponseSendingTransfer": "送金中にノードが無効な応答をしました。",
         "seed": "Seed",
         "back": "戻る",
@@ -54,7 +53,8 @@
         "syncInProgress": "同期中...",
         "syncInProgressExplanation": "同期が完了するまでお待ち下さい。",
         "somethingWentWrong": "何かが間違っています。",
-        "somethingWentWrongExplanation": "アプリを再起動して下さい。",
+        "somethingWentWrongRestart": "アプリを再起動してください。",
+        "somethingWentWrongTryAgain": "もう一度お試しください。",
         "node": "ノード",
         "cannotPerformAction": "操作を実行できません。",
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
@@ -74,23 +74,25 @@
         "rebroadcast": "再放送",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "autoreattaching": "Tangleに自動再登録",
-        "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションを再登録",
+        "autoreattachingExplanation": "ハッシュ {{hash}} と取引を再登録",
         "autopromoting": "送金を自動促進",
-        "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進",
+        "autopromotingExplanation": "ハッシュ{{hash}}による取引の促進",
+        "promoting": "送金促進",
+        "promotionError": "取引を促進できませんでした。",
+        "noLongerValid": "促進しようとしているバンドルはもう有効ではありません。",
         "cannotSendToOwn": "自分のアドレスに送金する。",
         "cannotSendToOwnExplanation": "自分のアドレスに送金することができません。",
         "pleaseWait": "少々お待ちください。",
         "pleaseWaitExplanation": "Trinityは別の機能を実行しています。お待ち頂き、もう一度実行してください。",
-        "pleaseWaitTransferExplanation":
-            "利用可能な残高は、現在、別の送金で使用されています。送金が承認されるまで少々お待ちください。"
+        "pleaseWaitTransferExplanation": "利用可能な残高は、現在、別の送金で使用されています。送金が承認されるまで少々お待ちください。",
+        "snapshotTransitionInProgress": "スナップショットの遷移が進行中",
+        "snapshotTransitionInProgressExplanation": "遷移が完了するまで少々お待ちください。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
-        "seedInvalidCharsExplanation":
-            "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation":
-            "Seedは{{maxLength}}文字にする必要があります。現在のSeedは{{currentLength}}文字です。もう一度やり直して下さい。",
+        "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。現在のSeedは{{currentLength}}文字です。もう一度やり直して下さい。",
         "nameInUse": "このアカウント名はすでに使われています。",
         "nameInUseExplanation": "あなたのSeedに唯一のアカウント名を付けてください。",
         "enterAccountName": "アカウント名を入力して下さい。",
@@ -112,8 +114,7 @@
         "passwordTooShort": "パスワードが短すぎます。",
         "passwordTooShortExplanation": "パスワードは最低12文字で設定しましょう。もう一度やり直してください。",
         "oldPassword": "古いパスワードは使えません。",
-        "oldPasswordExplanation":
-            "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直して下さい。",
+        "oldPasswordExplanation": "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直して下さい。",
         "ensureStrongPassword": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
         "currentPassword": "現在のパスワード",
         "newPassword": "新しいパスワード",
@@ -131,13 +132,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだSeedです。",
-        "invalidCharactersExplanation":
-            "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation":
-            "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
-        "seedExplanation":
-            "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
+        "seedExplanation": "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -163,11 +161,12 @@
     "loading": {
         "loadingFirstTime": "初めてのSeedを読み込んでいます。",
         "thisMayTake": "少々お待ち下さい。",
+        "doNotMinimise": "アプリを最小化したり終了したりしないでください。",
         "youMayNotice": "あなたのデバイスが遅くなることがあります。"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seedが生成されていません。",
-        "seedNotGeneratedExplanation": "「新しいSeedを生成する。」ボタンをクリックして下さい。",
+        "seedNotGeneratedExplanation": "新しいSeedを生成してください。",
         "pressForNewSeed": "新しいSeedの元を作成",
         "individualLetters": "文字をタップして更にランダムにしてください。"
     },
@@ -206,6 +205,7 @@
         "invalidAddressExplanation1": "アドレスは{{maxLength}}文字、また、チェックサムを含む必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
+        "invalidAddressExplanationGeneric": "有効なアドレスは90文字で、A〜Zまたは9のみを含む必要があります。",
         "notEnoughFunds": "残高不足",
         "notEnoughFundsExplanation": "送金を完了するための十分なIOTAが有りません。",
         "keyReuse": "キーの再使用",
@@ -225,13 +225,11 @@
     },
     "setPassword": {
         "passwordTooShort": "パスワードが短すぎます。",
-        "passwordTooShortExplanation":
-            "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直して下さい。",
+        "passwordTooShortExplanation": "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直して下さい。",
         "passwordMismatch": "パスワードが一致しません。",
         "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
         "nowWeNeedTo": "次にパスワードの設定です。",
-        "anEncryptedCopy":
-            "暗号化されたSeedのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
+        "anEncryptedCopy": "暗号化されたSeedのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
         "ensure": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
         "retypePassword": "パスワードを再入力して下さい。"
     },
@@ -243,8 +241,7 @@
         "expert": "上級",
         "standard": "標準",
         "expertModeExplanation": "上級モードでは手動促進や再添付などの追加機能をご利用になれます。",
-        "modesExplanation":
-            "経験豊富なTangleユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
+        "modesExplanation": "経験豊富なTangleユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
     },
     "settings": {
         "transferSending": "送金中",
@@ -297,8 +294,7 @@
         "okay": "それではウォレットの設定を行いましょう。",
         "doYouAlreadyHaveASeed": "IOTAのSeedはすでにお持ちでしょうか？",
         "seedExplanation": "IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
-        "explanation":
-            "<0><0>同じSeedを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>Seedを紛失すると、口座とその預金にもアクセスできなくなります。</4></0>",
+        "explanation": "<0><0>同じSeedを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>Seedを紛失すると、口座とその預金にもアクセスできなくなります。</4></0>",
         "keepSafe": "Seedは安全に保管してください。"
     },
     "welcome": {
@@ -364,16 +360,17 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "{{accountName}}のアカウントデータを削除してもよろしいですか？",
-        "yourSeedWillBeRemoved": "Seedとトランザクションの履歴を削除します。",
+        "areYouSure": "{{accountName}}を削除してもよろしいですか？",
+        "yourSeedWillBeRemoved": "Seedと取引の履歴を削除します。",
         "thisAction": "この操作は元に戻せません。",
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
     },
     "manualSync": {
-        "pressToSync": "アカウントを同期するには下のボタンを押して下さい。",
-        "thisMayTake": "少々お待ち下さい。",
-        "youMayNotice": "デバイスが遅くなることがあります。",
-        "syncAccount": "同期アカウント",
+        "outOfSync": "取引履歴が同期していないでしょうか？",
+        "pressToSync": "アカウントを同期するには下のボタンを押してください。",
+        "thisMayTake": "これには時間がかかることがあり、デバイスが遅くなることがあります。",
+        "doNotClose": "アプリを最小化すると同期がキャンセルされますのでご注意ください。",
+        "syncAccount": "アカウントを同期",
         "syncingYourAccount": "アカウントを同期中"
     },
     "useExistingSeed": {
@@ -391,8 +388,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "この操作は元に戻せません。",
-        "warning":
-            "<0><0>Seedやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消えます。</4></0>"
+        "warning": "<0><0>Seedやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消えます。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "指紋認証を有効にするには、指紋リーダーに触れてください。",
@@ -407,8 +403,7 @@
         "enabled": "有効",
         "disabled": "無効",
         "fingerprintUnavailable": "指紋センサーが利用できません。",
-        "fingerprintUnavailableExplanation":
-            "お使いのデバイスは指紋認識をサポートしていないか、デバイス設定で有効化されていません。",
+        "fingerprintUnavailableExplanation": "お使いのデバイスは指紋認識をサポートしていないか、デバイス設定で有効化されていません。",
         "buttonInstructionsDisable": "指紋認証を無効にするには、下のボタンを押してください。",
         "buttonInstructionsEnable": "指紋認証を有効にするには、下のボタンを押してください。",
         "instructionsLogin": "指紋リーダに触れてログインしてください。"
@@ -438,7 +433,27 @@
     },
     "rootDetection": {
         "warning": "警告",
-        "rootDetected":
-            "<0>あなたのデバイスはルート化もしくは脱獄されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
+        "rootDetected": "<0>あなたのデバイスはルート化されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
+    },
+    "pow": {
+        "feeless": "IOTAの取引手数料無しの送金を行うには小規模のPoWを行う必要があります。",
+        "localOrRemote": "PoWはデバイス上でローカルに行うか、ノードにお任せすることができます。",
+        "local": "ローカル",
+        "remote": "リモート"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "受取アドレスの検証",
+        "syncingAccount": "アカウントの同期",
+        "preparingInputs": "入力の準備",
+        "preparingTransfers": "送金の準備",
+        "gettingTransactionsToApprove": "取引の承認",
+        "proofOfWork": "PoWの完了",
+        "broadcasting": "ブロードキャスト"
+    },
+    "snapshotTransition": {
+        "cannotCompleteTransition": "スナップショットの遷移を完了できません。",
+        "cannotCompleteTransitionExplanation": "遷移を完了するには、残高が0より大きくなければなりません。",
+        "transitionComplete": "スナップショットの遷移完了",
+        "transitionCompleteExplanation": "スナップショットの遷移が正常に完了しました。"
     }
 }
