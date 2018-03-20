@@ -12,7 +12,7 @@ import { setPassword, setReady, setUserActivity, setSetting } from 'iota-wallet-
 import { setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
-import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import DynamicStatusBar from '../components/dynamicStatusBar';
@@ -228,7 +228,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => ({
     firstUse: state.account.firstUse,
-    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    selectedAccount: getSelectedAccountName(state),
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
     theme: state.settings.theme,

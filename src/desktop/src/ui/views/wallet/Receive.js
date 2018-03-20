@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import QRCode from 'qrcode.react';
-import { currentAccountSelectorBySeedIndex } from 'selectors/account';
+import { selectAccountInfo } from 'selectors/account';
 import { runTask } from 'worker';
 
 import Button from 'ui/components/Button';
@@ -61,8 +61,8 @@ class Receive extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
-    account: currentAccountSelectorBySeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    accountName: state.account.accountNames[state.tempAccount.seedIndex],
+    account: selectAccountInfo(state),
+    accountName: state.account.seedNames[state.tempAccount.seedIndex],
     seed: state.seeds.seeds[state.tempAccount.seedIndex],
 });
 

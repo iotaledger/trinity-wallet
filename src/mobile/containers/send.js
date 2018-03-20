@@ -42,10 +42,7 @@ import KeepAwake from 'react-native-keep-awake';
 import QRScanner from '../components/qrScanner';
 import Toggle from '../components/toggle';
 import ProgressBar from '../components/progressBar';
-import {
-    getBalanceForSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from '../../shared/selectors/account';
+import { getBalanceForSelectedAccount, getSelectedAccountName } from '../../shared/selectors/account';
 import ProgressSteps from '../util/progressSteps';
 import { getSeedFromKeychain } from '../util/keychain';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
@@ -850,8 +847,8 @@ export class Send extends Component {
 
 const mapStateToProps = (state) => ({
     currency: state.settings.currency,
-    balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    balance: getBalanceForSelectedAccount(state),
+    selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.tempAccount.isSyncing,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     seedIndex: state.tempAccount.seedIndex,
