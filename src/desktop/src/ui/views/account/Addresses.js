@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getSelectedAccountViaSeedIndex } from 'selectors/account';
+import { selectAccountInfo } from 'selectors/account';
 
 import css from './addresses.css';
 
@@ -33,7 +33,7 @@ class Addresses extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    account: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    account: selectAccountInfo(state),
 });
 
 export default connect(mapStateToProps)(Addresses);
