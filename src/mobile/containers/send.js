@@ -53,7 +53,7 @@ import UnitInfoModal from '../components/unitInfoModal';
 import CustomTextInput from '../components/customTextInput';
 import CtaButton from '../components/ctaButton';
 import { Icon } from '../theme/icons.js';
-import { width, height } from '../util/dimensions';
+import { width } from '../util/dimensions';
 import { isAndroid, isIOS } from '../util/device';
 
 const styles = StyleSheet.create({
