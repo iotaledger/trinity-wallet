@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { translate, Trans } from 'react-i18next';
-import { isValidSeed, MAX_SEED_LENGTH } from 'libs/util';
+import { translate } from 'react-i18next';
+import { isValidSeed } from 'libs/util';
 import { createRandomSeed } from 'libs/crypto';
 
 import { setNewSeed, clearNewSeed } from 'actions/seeds';
 import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
-import Infobox from 'ui/components/Info';
+import Icon from 'ui/components/Icon';
 
-import css from './seedGenerate.css';
+import css from './index.css';
 
 /**
  * Onboarding, Seed generation component
@@ -44,7 +43,7 @@ class GenerateSeed extends React.PureComponent {
     };
 
     state = {
-        seed: null,
+        seed: createRandomSeed(),
     };
 
     onUpdatedSeed = (seed) => {
@@ -95,32 +94,12 @@ class GenerateSeed extends React.PureComponent {
         const { t } = this.props;
         const { seed } = this.state;
 
-        const letters = seed ? seed.split('') : Array(MAX_SEED_LENGTH).fill('');
-
         return (
             <React.Fragment>
-                <section className={classNames(css.wrapper, seed ? css.enabled : css.disabled)}>
-                    <Infobox>
-                        <p>{t('walletSetup:seedExplanation')}</p>
-                        <Trans i18nKey="walletSetup:explanation">
-                            <p>
-                                <span>You can use it to access your funds from</span>
-                                <strong> any wallet</strong>
-                                <span>, on</span>
-                                <strong> any device</strong>
-                                <span>. But if you lose your seed, you also lose your IOTA.</span>
-                            </p>
-                        </Trans>
-                        <p>
-                            <strong>{t('walletSetup:keepSafe')}</strong>
-                        </p>
-                    </Infobox>
-                    <Button type="button" onClick={this.generateNewSeed} className="outline" variant="primary">
-                        {t('newSeedSetup:pressForNewSeed')}
-                    </Button>
-                    <small>{this.state.seed ? t('newSeedSetup:individualLetters') : '\u00A0'}</small>
-                    <div>
-                        {letters.map((letter, index) => {
+                <section>
+                    <p>{t('newSeedSetup:individualLetters')}</p>
+                    <div className={css.seed}>
+                        {seed.split('').map((letter, index) => {
                             return (
                                 <button
                                     onClick={() => this.updateLetter(index)}
@@ -132,13 +111,17 @@ class GenerateSeed extends React.PureComponent {
                             );
                         })}
                     </div>
+                    <Button type="button" onClick={this.generateNewSeed} className="icon">
+                        <Icon icon="sync" size={32} />
+                        {t('newSeedSetup:pressForNewSeed').toLowerCase()}
+                    </Button>
                 </section>
                 <footer>
-                    <Button onClick={this.onRequestPrevious} className="outline" variant="secondary">
-                        {t('back')}
+                    <Button onClick={this.onRequestPrevious} className="inline" variant="secondary">
+                        {t('back').toLowerCase()}
                     </Button>
-                    <Button onClick={this.onRequestNext} className="outline" disabled={!seed} variant="primary">
-                        {t('next')}
+                    <Button onClick={this.onRequestNext} className="large" variant="primary">
+                        {t('next').toLowerCase()}
                     </Button>
                 </footer>
             </React.Fragment>
