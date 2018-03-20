@@ -7,16 +7,16 @@ import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/a
 import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, Image, BackHandler } from 'react-native';
+import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import FONTS from '../theme/Fonts';
-import keychain from '../util/keychain';
+import { clearKeychain } from '../util/keychain';
+import { getPasswordHash } from '../util/crypto';
 import CustomTextInput from '../components/customTextInput';
 import StatefulDropdownAlert from './statefulDropdownAlert';
+import { Icon } from '../theme/icons.js';
 
 import { width, height } from '../util/dimensions';
 
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midWrapper: {
         flex: 3.7,
@@ -50,10 +50,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 10,
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
     buttonsContainer: {
         alignItems: 'flex-end',
         justifyContent: 'center',
@@ -70,9 +66,8 @@ class WalletResetRequirePassword extends Component {
         clearTempData: PropTypes.func.isRequired,
         setPassword: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
     };
@@ -100,26 +95,43 @@ class WalletResetRequirePassword extends Component {
     }
 
     goBack() {
-        this.props.navigator.pop({ animated: false });
+        const { body } = this.props;
+        this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
+            },
+            animated: false,
+        });
     }
 
     isAuthenticated() {
-        return this.props.password === this.state.password;
+        const { password } = this.props;
+        const pwdHash = getPasswordHash(this.state.password);
+        return password === pwdHash;
     }
 
     redirectToInitialScreen() {
+        const { body } = this.props;
+
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'languageSetup',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
+                    screenBackgroundColor: body.bg,
+                    statusBarColor: body.bg,
+                    drawUnderStatusBar: true,
                 },
                 overrideBackPress: true,
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: true,
             },
         });
     }
@@ -131,7 +143,7 @@ class WalletResetRequirePassword extends Component {
         if (isAuthenticated) {
             persistor
                 .purge()
-                .then(() => keychain.clear())
+                .then(() => clearKeychain())
                 .then(() => {
                     this.redirectToInitialScreen();
                     this.props.setOnboardingComplete(false);
@@ -157,17 +169,16 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
-        const { t, negativeColor, secondaryBackgroundColor } = this.props;
-        const backgroundColor = { backgroundColor: this.props.backgroundColor };
-        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
+        const { t, body, theme } = this.props;
+        const backgroundColor = { backgroundColor: body.bg };
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
+                            <Icon name="iota" size={width / 8} color={body.color} />
                         </View>
                         <View style={styles.midWrapper}>
                             <CustomTextInput
@@ -175,13 +186,11 @@ class WalletResetRequirePassword extends Component {
                                 onChangeText={(password) => this.setState({ password })}
                                 value={this.state.password}
                                 containerStyle={{ width: width / 1.2 }}
-                                autoCapitalize={'none'}
+                                autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
-                                onSubmitEditing={this.handleLogin}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                negativeColor={negativeColor}
+                                theme={theme}
                                 secureTextEntry
                             />
                             <View style={{ flex: 0.2 }} />
@@ -196,17 +205,16 @@ class WalletResetRequirePassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
+    theme: state.settings.theme,
+    body: state.settings.theme.body,
     password: state.tempAccount.password,
-    negativeColor: state.settings.theme.negativeColor,
-    backgroundColor: state.settings.theme.backgroundColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {

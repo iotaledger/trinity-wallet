@@ -6,14 +6,17 @@ import PropTypes from 'prop-types';
 import { isAndroid } from '../util/device';
 
 const mapStateToProps = (state) => ({
-    backgroundColor: state.settings.theme.backgroundColor,
+    body: state.settings.theme.body,
 });
 
 export default () => (C) => {
     class WithBackPressGoToHome extends Component {
         constructor(props) {
             super(props);
-            if (isAndroid) this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+
+            if (isAndroid) {
+                this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+            }
         }
 
         onNavigatorEvent(event) {
@@ -30,13 +33,14 @@ export default () => (C) => {
         }
 
         handleBackPress = () => {
+            const { body } = this.props;
             Navigation.startSingleScreenApp({
                 screen: {
                     screen: 'home',
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundColor: this.props.backgroundColor,
+                        screenBackgroundColor: body.bg,
                     },
                 },
             });
@@ -50,7 +54,7 @@ export default () => (C) => {
 
     WithBackPressGoToHome.propTypes = {
         navigator: PropTypes.object.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
     };
 
     return connect(mapStateToProps, null)(WithBackPressGoToHome);

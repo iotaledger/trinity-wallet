@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
 import { set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
-import { Clipboard, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
 import WithBackPressGoToHome from '../components/withBackPressGoToHome';
@@ -18,6 +16,7 @@ import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
         width,
     },
     midWrapper: {
@@ -61,10 +60,6 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
     qrContainer: {
         backgroundColor: 'white',
         borderRadius: GENERAL.borderRadiusLarge,
@@ -75,11 +70,11 @@ const styles = StyleSheet.create({
 
 export class TwoFactorSetupAddKey extends Component {
     static propTypes = {
-        backgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
+        password: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -96,59 +91,72 @@ export class TwoFactorSetupAddKey extends Component {
     onKeyPress(key) {
         const { t } = this.props;
         if (key) {
-            Clipboard.setString(key);
+            Clipboard.setString(key.replace(/\s/g, ''));
             this.props.generateAlert('success', t('keyCopied'), t('keyCopiedExplanation'));
         }
     }
 
     goBack() {
+        const { body } = this.props;
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
                 },
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: true,
             },
         });
     }
 
     navigateToEnterToken() {
         Clipboard.setString(' ');
+        const { t, body, password } = this.props;
 
-        return storeTwoFactorAuthKeyInKeychain(this.state.authKey)
+        return storeTwoFactorAuthKeyInKeychain(password, this.state.authKey)
             .then(() => {
                 this.props.navigator.push({
                     screen: 'twoFactorSetupEnterToken',
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundColor: this.props.backgroundColor,
+                        screenBackgroundColor: body.bg,
+                        drawUnderStatusBar: true,
+                        statusBarColor: body.bg,
                     },
                     animated: false,
                     appStyle: {
                         orientation: 'portrait',
+                        keepStyleAcrossPush: true,
                     },
                 });
             })
-            .catch((err) => console.error(err)); // Generate an alert.
+            .catch(() =>
+                this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongTryAgain'),
+                ),
+            );
     }
 
     render() {
-        const { secondaryBackgroundColor, t } = this.props;
-        const backgroundColor = { backgroundColor: this.props.backgroundColor };
-        const textColor = { color: secondaryBackgroundColor };
-        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
+        const { body, t } = this.props;
+        const backgroundColor = { backgroundColor: body.bg };
+        const textColor = { color: body.color };
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topWrapper}>
-                    <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
+                    <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midWrapper}>
                     <View style={{ flex: 0.4 }} />
@@ -177,7 +185,7 @@ export class TwoFactorSetupAddKey extends Component {
                         rightText={t('global:next')}
                     />
                 </View>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
     }
@@ -188,9 +196,10 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    backgroundColor: state.settings.theme.backgroundColor,
-    positiveColor: state.settings.theme.positiveColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    positive: state.settings.theme.positiveColor,
+    negative: state.settings.theme.negativeColor,
+    body: state.settings.theme.body,
+    password: state.tempAccount.password,
 });
 
 export default WithBackPressGoToHome()(

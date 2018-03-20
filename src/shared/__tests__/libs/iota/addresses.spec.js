@@ -1,7 +1,116 @@
 import { expect } from 'chai';
-import { accumulateBalance, mapBalancesToAddresses } from '../../../libs/iota/addresses';
+import {
+    accumulateBalance,
+    getUnspentAddressesSync,
+    getSpentAddressesWithPendingTransfersSync,
+    getBalancesSync,
+    filterAddressesWithIncomingTransfers,
+} from '../../../libs/iota/addresses';
 
 describe('libs: iota/addresses', () => {
+    describe('#getUnspentAddressesSync', () => {
+        describe('when argument is not an object', () => {
+            it('should always return an array', () => {
+                const args = [null, undefined, '', {}, 0, -1];
+
+                args.forEach((arg) => expect(getUnspentAddressesSync(arg)).to.eql([]));
+            });
+        });
+
+        describe('when argument is an object', () => {
+            it('should return an array of addresses with "spent" prop true', () => {
+                const firstAddress = 'U'.repeat(81);
+                const secondAddress = 'A'.repeat(81);
+                const thirdAddress = 'B'.repeat(81);
+
+                const addressData = {
+                    [firstAddress]: { spent: false, balance: 0, index: 0 },
+                    [secondAddress]: { spent: true, balance: 4, index: 5 },
+                    [thirdAddress]: { spent: false, balance: 100, index: 100 },
+                };
+
+                expect(getUnspentAddressesSync(addressData)).to.eql([firstAddress, thirdAddress]);
+            });
+        });
+    });
+
+    describe('#getSpentAddressesWithPendingTransfersSync', () => {
+        describe('when no address in transaction objects is found in addressData with "spent" prop true', () => {
+            it('should return an empty array', () => {
+                const fakeAddress = 'U'.repeat(81);
+
+                const firstAddress = 'D'.repeat(81);
+                const secondAddress = 'A'.repeat(81);
+                const thirdAddress = 'B'.repeat(81);
+
+                const addressData = {
+                    [fakeAddress]: { spent: true, balance: 0, index: 0 },
+                };
+
+                const transfers = [
+                    [{ currentIndex: 0, value: 0, lastIndex: 0, address: firstAddress, persistence: false }],
+                    [
+                        { currentIndex: 0, value: -50, lastIndex: 3, address: firstAddress },
+                        { currentIndex: 1, value: 50, lastIndex: 3, address: secondAddress },
+                        { currentIndex: 2, value: 0, lastIndex: 3, address: firstAddress },
+                        { currentIndex: 3, value: 20, lastIndex: 3, address: thirdAddress },
+                    ],
+                ];
+
+                expect(getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([]);
+            });
+        });
+
+        describe('when address in transaction objects is found in addressData with "spent" prop true', () => {
+            it('should return an empty array if value on transfer is greater than or equal to zero and it is not a remainder object', () => {
+                const firstAddress = 'D'.repeat(81);
+
+                const addressData = {
+                    [firstAddress]: { spent: true, balance: 0, index: 0 },
+                };
+
+                const transfers = [
+                    [{ currentIndex: 1, value: 0, lastIndex: 1, address: firstAddress, persistence: false }],
+                ];
+
+                expect(getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([]);
+            });
+
+            it('should return an empty array if value on transfer is less zero but transaction object is a remainder', () => {
+                const address = 'A'.repeat(81);
+
+                const addressData = {
+                    [address]: { spent: true, balance: 4, index: 5 },
+                };
+
+                const transfers = [[{ currentIndex: 3, value: -30, lastIndex: 3, address }]];
+
+                expect(getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([]);
+            });
+
+            it('should return an array of addresses in transaction objects that are not remainders and have value less than zero', () => {
+                const firstAddress = 'D'.repeat(81);
+                const secondAddress = 'A'.repeat(81);
+                const thirdAddress = 'B'.repeat(81);
+
+                const addressData = {
+                    [firstAddress]: { spent: true, balance: 0, index: 0 },
+                };
+
+                const transfers = [
+                    [
+                        { currentIndex: 0, value: -50, lastIndex: 3, address: firstAddress },
+                        { currentIndex: 1, value: 50, lastIndex: 3, address: secondAddress },
+                        { currentIndex: 2, value: 0, lastIndex: 3, address: firstAddress },
+                        { currentIndex: 3, value: 20, lastIndex: 3, address: thirdAddress },
+                    ],
+                ];
+
+                expect(getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([firstAddress]);
+            });
+        });
+    });
+
     describe('#accumulateBalance', () => {
         describe('when argument is not an array', () => {
             it('should return 0', () => {
@@ -26,45 +135,129 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe('#mapBalancesToAddresses', () => {
-        describe('when balances passed as second arg not equals size of addresses passed as third arg', () => {
-            it('should not assign balances to each address', () => {
+    describe('#getBalancesSync', () => {
+        describe('when none of the items in first argument array is found in second argument dictionary', () => {
+            it('should return an empty array', () => {
+                const firstAddress = 'A'.repeat(81);
+                const secondAddress = 'B'.repeat(81);
+
+                const addresses = [firstAddress, secondAddress];
+
                 const addressData = {
-                    foo: { balance: 10, spent: true, address: 'foo' },
+                    ['9'.repeat(81)]: { index: 100, balance: 10, spent: false },
                 };
 
-                expect(mapBalancesToAddresses(addressData, [0], [])).to.eql(addressData);
+                expect(getBalancesSync(addresses, addressData)).to.eql([]);
             });
         });
 
-        describe('when addresses passed as third arg not equals size of keys of addressData passed as first arg', () => {
-            it('should not assign balances to each address if size of ', () => {
+        describe('when any item in first argument array is found in second argument dictionary', () => {
+            it('should return an array with corrensponding balance "prop" value', () => {
+                const firstAddress = 'A'.repeat(81);
+                const secondAddress = 'B'.repeat(81);
+
+                const addresses = [firstAddress, secondAddress];
+
                 const addressData = {
-                    foo: { balance: 10, spent: true, address: 'foo' },
+                    [secondAddress]: { index: 100, balance: 10, spent: false },
                 };
 
-                // Balances length === addresses length
-                expect(mapBalancesToAddresses(addressData, [0, 2], ['foo', 'baz'])).to.eql(addressData);
+                expect(getBalancesSync(addresses, addressData)).to.eql([10]);
+            });
+        });
+    });
+
+    describe('#filterAddressesWithIncomingTransfers', () => {
+        describe('when inputs passed as first argument is an empty array', () => {
+            it('should return an empty array', () => {
+                expect(filterAddressesWithIncomingTransfers([], [{}, {}])).to.eql([]);
             });
         });
 
-        describe('when addresses passed as third arg equals size of keys of addressData passed as first arg and balances passed as second arg ength equals addresses length', () => {
-            it('should assign balances to each address if size of ', () => {
-                const addressData = {
-                    foo: { balance: 30, spent: true, address: 'foo' },
-                    baz: { balance: 40, spent: false, address: 'baz' },
-                    bar: { balance: 50, spent: true, address: 'bar' },
-                };
+        describe('when pendingValueTransfers passed as second argument is an empty array', () => {
+            it('should return inputs passed as first argument', () => {
+                expect(filterAddressesWithIncomingTransfers([{}], [])).to.eql([{}]);
+            });
+        });
 
-                const returnValue = {
-                    foo: { balance: 0, spent: true, address: 'foo' },
-                    baz: { balance: 0, spent: false, address: 'baz' },
-                    bar: { balance: 100, spent: true, address: 'bar' },
-                };
+        describe('when inputs passed as first argument is not an empty array and pendingValueTransfers passed as second argument is not an empty array', () => {
+            let pendingTransfers;
+            const firstOwnAddress = 'A'.repeat(81);
+            const secondOwnAddress = 'B'.repeat(81);
+            const changeAddress = 'C'.repeat(81);
+            const otherAddress = 'U'.repeat(81);
 
-                // Balances length === addresses length
-                // AddressData keys length ==== addresses length
-                expect(mapBalancesToAddresses(addressData, [0, 0, 100], ['foo', 'baz', 'bar'])).to.eql(returnValue);
+            beforeEach(() => {
+                pendingTransfers = [
+                    // Outgoing
+                    [
+                        {
+                            value: 1,
+                            currentIndex: 0,
+                            address: otherAddress,
+                            lastIndex: 3,
+                        },
+                        {
+                            value: -1,
+                            currentIndex: 1,
+                            address: firstOwnAddress,
+                            lastIndex: 3,
+                        },
+                        {
+                            value: 0,
+                            currentIndex: 2,
+                            address: firstOwnAddress,
+                            lastIndex: 3,
+                        },
+                        {
+                            value: -1,
+                            currentIndex: 3,
+                            address: changeAddress,
+                            lastIndex: 3,
+                        },
+                    ],
+                    // Incoming
+                    [
+                        {
+                            value: 1,
+                            currentIndex: 0,
+                            address: firstOwnAddress,
+                            lastIndex: 2,
+                        },
+                        {
+                            value: 1,
+                            currentIndex: 1,
+                            address: otherAddress,
+                            lastIndex: 2,
+                        },
+                        {
+                            value: 0,
+                            currentIndex: 2,
+                            address: otherAddress,
+                            lastIndex: 2,
+                        },
+                    ],
+                ];
+            });
+
+            it('should filter inputs that have pending incoming value transfers ', () => {
+                const inputs = [{ address: firstOwnAddress }, { address: secondOwnAddress }];
+
+                expect(filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
+                    { address: secondOwnAddress },
+                ]);
+            });
+
+            it('should filter inputs that have pending outgoing value transfers on change addresses', () => {
+                const inputs = [
+                    { address: firstOwnAddress },
+                    { address: secondOwnAddress },
+                    { address: changeAddress },
+                ];
+
+                expect(filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
+                    { address: secondOwnAddress },
+                ]);
             });
         });
     });

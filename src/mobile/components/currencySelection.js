@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    ActivityIndicator,
-    Image,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-} from 'react-native';
+import { ActivityIndicator, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
 import { width, height } from '../util/dimensions';
-import Dropdown from './dropdown';
+import DropdownComponent from './dropdown';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -39,28 +32,18 @@ const styles = StyleSheet.create({
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-end',
-    },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-    },
-    iconRight: {
-        width: width / 28,
-        height: width / 28,
+        marginLeft: width / 20,
     },
     infoText: {
         fontFamily: 'Lato-Light',
@@ -90,11 +73,9 @@ export class CurrencySelection extends Component {
         currencies: PropTypes.array.isRequired,
         backPress: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        primaryColor: PropTypes.string.isRequired,
         getCurrencyData: PropTypes.func.isRequired,
-        tickImagePath: PropTypes.number.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
+        bodyColor: PropTypes.string.isRequired,
     };
 
     componentWillReceiveProps(newProps) {
@@ -117,7 +98,7 @@ export class CurrencySelection extends Component {
     }
 
     renderBackOption() {
-        const { arrowLeftImagePath, secondaryBackgroundColor, t } = this.props;
+        const { bodyColor, t } = this.props;
 
         return (
             <TouchableOpacity
@@ -125,17 +106,15 @@ export class CurrencySelection extends Component {
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemLeft}>
-                    <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                    <Text style={[styles.titleTextLeft, { color: secondaryBackgroundColor }]}>
-                        {t('global:backLowercase')}
-                    </Text>
+                    <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
+                    <Text style={[styles.titleTextLeft, { color: bodyColor }]}>{t('global:backLowercase')}</Text>
                 </View>
             </TouchableOpacity>
         );
     }
 
     renderSaveOption() {
-        const { tickImagePath, t, secondaryBackgroundColor } = this.props;
+        const { t, bodyColor } = this.props;
 
         return (
             <TouchableOpacity
@@ -143,15 +122,15 @@ export class CurrencySelection extends Component {
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemRight}>
-                    <Text style={[styles.titleTextRight, { color: secondaryBackgroundColor }]}>{t('global:save')}</Text>
-                    <Image source={tickImagePath} style={styles.iconRight} />
+                    <Text style={[styles.titleTextRight, { color: bodyColor }]}>{t('global:save')}</Text>
+                    <Icon name="tick" size={width / 28} color={bodyColor} />
                 </View>
             </TouchableOpacity>
         );
     }
 
     render() {
-        const { currency, currencies, t, negativeColor, isFetchingCurrencyData } = this.props;
+        const { currency, currencies, t, primaryColor, isFetchingCurrencyData } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -164,7 +143,7 @@ export class CurrencySelection extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 1.2 }} />
-                        <Dropdown
+                        <DropdownComponent
                             onRef={(c) => {
                                 this.dropdown = c;
                             }}
@@ -182,7 +161,7 @@ export class CurrencySelection extends Component {
                                 animating
                                 style={styles.activityIndicator}
                                 size="large"
-                                color={negativeColor}
+                                color={primaryColor}
                             />
                         </View>
                     )) || <View style={styles.innerContainer} />}

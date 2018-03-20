@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { translate } from 'react-i18next';
 import { width, height } from '../util/dimensions';
 import CustomTextInput from './customTextInput';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -27,28 +28,18 @@ const styles = StyleSheet.create({
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
     },
     itemRight: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-end',
-    },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleTextLeft: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-    },
-    iconRight: {
-        width: width / 28,
-        height: width / 28,
+        marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'Lato-Regular',
@@ -67,16 +58,14 @@ class AddCustomNode extends Component {
         currentNode: PropTypes.string.isRequired,
         onDuplicateNodeError: PropTypes.func.isRequired,
         checkNode: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
         setNode: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         onAddNodeError: PropTypes.func.isRequired,
         onAddNodeSuccess: PropTypes.func.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
-        addImagePath: PropTypes.number.isRequired,
     };
 
     constructor() {
@@ -100,7 +89,9 @@ class AddCustomNode extends Component {
         } = this.props;
         const { customNode } = this.state;
 
-        if (!customNode.startsWith('http')) return onAddNodeError();
+        if (!customNode.startsWith('http')) {
+            return onAddNodeError();
+        }
 
         if (!nodes.includes(customNode.replace(/ /g, ''))) {
             setNode(customNode);
@@ -119,15 +110,7 @@ class AddCustomNode extends Component {
     }
 
     render() {
-        const {
-            backPress,
-            t,
-            secondaryBackgroundColor,
-            textColor,
-            arrowLeftImagePath,
-            addImagePath,
-            negativeColor,
-        } = this.props;
+        const { backPress, t, textColor, bodyColor, theme } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -137,15 +120,14 @@ class AddCustomNode extends Component {
                         <CustomTextInput
                             label={t('customNode')}
                             onChangeText={(customNode) => this.setState({ customNode })}
-                            containerStyle={{ width: width / 1.36 }}
-                            autoCapitalize={'none'}
+                            containerStyle={{ width: width / 1.2 }}
+                            autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
                             onSubmitEditing={() => this.addNode()}
-                            secondaryBackgroundColor={secondaryBackgroundColor}
-                            negativeColor={negativeColor}
                             value={this.state.accountName}
+                            theme={theme}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -154,7 +136,7 @@ class AddCustomNode extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -164,7 +146,7 @@ class AddCustomNode extends Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('add')}</Text>
-                                <Image source={addImagePath} style={styles.iconRight} />
+                                <Icon name="tick" size={width / 28} color={bodyColor} />
                             </View>
                         </TouchableOpacity>
                     </View>

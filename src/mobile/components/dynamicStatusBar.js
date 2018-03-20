@@ -1,14 +1,17 @@
-import { translate } from 'react-i18next';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { StatusBar } from 'react-native';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import tinycolor from 'tinycolor2';
 
-class DynamicStatusBar extends Component {
+class DynamicStatusBar extends PureComponent {
+    static propTypes = {
+        backgroundColor: PropTypes.string.isRequired,
+    };
     render() {
-        const { textColor } = this.props;
-        const statusBarStyle = textColor === 'white' ? 'light-content' : 'dark-content';
+        const { backgroundColor } = this.props;
+        const statusBarStyle = tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
 
-        return <StatusBar barStyle={statusBarStyle} />;
+        return <StatusBar barStyle={statusBarStyle} backgroundColor={backgroundColor} translucent />;
     }
 }
 

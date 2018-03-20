@@ -85,7 +85,7 @@ describe('Testing Poll component', () => {
             each(argsMap.allowed, (value, arg) => {
                 describe(`when argument is ${arg}`, () => {
                     it(`should call ${value.instance ? 'instance' : 'prop'} method ${value.func}`, () => {
-                        let props = getProps();
+                        const props = getProps();
 
                         if (!value.instance) {
                             props[value.func] = jest.fn();

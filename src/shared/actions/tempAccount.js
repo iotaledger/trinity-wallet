@@ -1,18 +1,8 @@
-import i18next from '../i18next.js';
-import cloneDeep from 'lodash/cloneDeep';
-import size from 'lodash/size';
-import get from 'lodash/get';
-import some from 'lodash/some';
-import last from 'lodash/last';
 import { iota } from '../libs/iota';
-import { updateAddresses, updateAccountInfo } from '../actions/account';
-import { generateAlert } from '../actions/alerts';
-import { prepareTransferArray } from '../libs/iota/transfers';
-import { shouldAllowSendingToAddress } from '../libs/iota/addresses';
-import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
+import { updateAddresses } from '../actions/account';
+import { clearSendFields } from '../actions/ui';
+import { syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { MAX_SEED_LENGTH } from '../libs/util';
-import { getSelectedAccount } from '../selectors/account';
-import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 
 /* eslint-disable no-console */
 
@@ -28,7 +18,7 @@ export const ActionTypes = {
     SEND_TRANSFER_ERROR: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_ERROR',
     SET_COPIED_TO_CLIPBOARD: 'IOTA/TEMP_ACCOUNT/SET_COPIED_TO_CLIPBOARD',
     SET_RECEIVE_ADDRESS: 'IOTA/TEMP_ACCOUNT/SET_RECEIVE_ADDRESS',
-    SET_SEED_NAME: 'IOTA/TEMP_ACCOUNT/SET_SEED_NAME',
+    SET_ACCOUNT_NAME: 'IOTA/TEMP_ACCOUNT/SET_ACCOUNT_NAME',
     SET_PASSWORD: 'IOTA/TEMP_ACCOUNT/SET_PASSWORD',
     CLEAR_TEMP_DATA: 'IOTA/TEMP_ACCOUNT/CLEAR_TEMP_DATA',
     SET_USED_SEED_TO_LOGIN: 'IOTA/TEMP_ACCOUNT/SET_USED_SEED_TO_LOGIN',
@@ -173,8 +163,8 @@ export const setPassword = (payload) => ({
     payload,
 });
 
-export const setSeedName = (payload) => ({
-    type: ActionTypes.SET_SEED_NAME,
+export const setAccountName = (payload) => ({
+    type: ActionTypes.SET_ACCOUNT_NAME,
     payload,
 });
 
@@ -183,227 +173,29 @@ export const setAdditionalAccountInfo = (payload) => ({
     payload,
 });
 
-export const generateNewAddress = (seed, seedName, addresses) => {
+export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        let index = 0;
-
-        size(addresses) === 0 ? (index = 0) : (index = size(addresses) - 1);
-        const options = { checksum: true, index, returnAll: true };
-
-        iota.api.getNewAddress(seed, options, (error, newAddresses) => {
-            if (!error) {
-                //const addressToCheck = [{ address: address }];
-                //Promise.resolve(filterSpentAddresses(addressToCheck)).then(value => console.log(value));
-                const updatedAddresses = cloneDeep(addresses);
-                newAddresses.forEach((newAddress) => {
-                    const newAddressNoChecksum = newAddress.substring(0, MAX_SEED_LENGTH);
-                    // In case the newly created address is not part of the addresses object
-                    // Add that as a key with a 0 balance.
-                    if (!(newAddressNoChecksum in addresses)) {
-                        updatedAddresses[newAddressNoChecksum] = { index, balance: 0, spent: false };
-                    }
-                });
-                const receiveAddress = last(newAddresses);
-                dispatch(updateAddresses(seedName, updatedAddresses));
+        return syncAddresses(seed, existingAccountData, genFn, true)
+            .then((newAccountData) => {
+                const receiveAddress = iota.utils.addChecksum(getLatestAddress(newAccountData.addresses));
+                dispatch(updateAddresses(accountName, newAccountData.addresses));
                 dispatch(generateNewAddressSuccess(receiveAddress));
-            } else {
-                dispatch(generateNewAddressError());
-            }
-        });
+            })
+            .catch(() => dispatch(generateNewAddressError()));
     };
 };
 
-const makeTransfer = (seed, address, value, accountName, transfer, options = null) => (dispatch, getState) => {
-    const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-    const addressData = selectedAccount.addresses;
-    let args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, transfer];
+/**
+ *   On successful transfer, update store, generate alert and clear send text fields
+ *   @method completeTransfer
+ *   @param {object} payload - sending status, address, transfer value
+ **/
 
-    if (options) {
-        args = [...args, options];
-    }
-
-    return iota.api.sendTransfer(...args, (error, success) => {
-        if (!error) {
-            dispatch(checkForNewAddress(accountName, addressData, success));
-            dispatch(updateAccountInfo(accountName, success, value));
-            if (value === 0) {
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('global:messageSent'),
-                        i18next.t('global:messageSentMessage'),
-                        20000,
-                    ),
-                );
-            } else {
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('global:transferSent'),
-                        i18next.t('global:transferSentMessage'),
-                        20000,
-                    ),
-                );
-            }
-            dispatch(sendTransferSuccess({ address, value }));
-        } else {
-            dispatch(sendTransferError());
-            const alerts = {
-                attachToTangle: [
-                    i18next.t('global:attachToTangleUnavailable'),
-                    i18next.t('global:attachToTangleUnavailableExplanation'),
-                    20000,
-                    error,
-                ],
-                default: [
-                    i18next.t('global:invalidResponse'),
-                    i18next.t('global:invalidResponseSendingTransfer'),
-                    20000,
-                    error,
-                ],
-            };
-
-            const args =
-                error.message.indexOf('attachToTangle is not available') > -1 ? alerts.attachToTangle : alerts.default;
-
-            dispatch(generateAlert('error', ...args));
-        }
-    });
-};
-
-export const prepareTransfer = (seed, address, value, message, accountName) => {
-    return (dispatch, getState) => {
-        dispatch(sendTransferRequest());
-
-        const transfer = prepareTransferArray(address, value, message);
-
-        if (value === 0) {
-            return dispatch(makeTransfer(seed, address, value, accountName, transfer));
-        }
-
-        const makeTransferWithBalanceCheck = (inputs) => {
-            // allBalance -> total balance associated with addresses.
-            // Contains balance from addresses regardless of the fact they are spent from.
-            // Less than the value user is about to send to -> Not enough balance.
-            if (get(inputs, 'allBalance') < value) {
-                dispatch(sendTransferError());
-                return dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:balanceError'),
-                        i18next.t('global:balanceErrorMessage'),
-                        20000,
-                    ),
-                );
-
-                // totalBalance -> balance after filtering out addresses that are spent.
-                // Contains balance from those addresses only that are not spent from.
-                // Less than value user is about to send to -> Has already spent from addresses and the txs aren't confirmed.
-                // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
-            } else if (get(inputs, 'totalBalance') < value) {
-                dispatch(sendTransferError());
-                return dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:pleaseWait'),
-                        i18next.t('global:pleaseWaitTransferExplanation'),
-                        20000,
-                    ),
-                );
-            }
-
-            // Verify if a user is sending to on of his own addresses.
-            // This would fail if a pre-requisite check for checksums fail.
-            const isSendingToOwnAddress = some(
-                get(inputs, 'inputs'),
-                (input) => iota.utils.addChecksum(input.address, 9, true) === address,
-            );
-
-            if (isSendingToOwnAddress) {
-                dispatch(sendTransferError());
-                return dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:cannotSendToOwn'),
-                        i18next.t('global:cannotSendToOwnExplanation'),
-                        20000,
-                    ),
-                );
-            }
-
-            return dispatch(
-                makeTransfer(seed, address, value, accountName, transfer, { inputs: get(inputs, 'inputs') }),
-            );
-        };
-
-        const unspentInputs = (err, inputs) => {
-            if (err) {
-                dispatch(sendTransferError());
-
-                return dispatch(
-                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
-                    20000,
-                    err,
-                );
-            }
-
-            return makeTransferWithBalanceCheck(inputs);
-        };
-
-        const addressData = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
-
-        const startIndex = getStartingSearchIndexToPrepareInputs(addressData);
-
-        // Make sure that the address a user is about to send to is not already used.
-        // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
-        // Omit input preparation in case the address is already spent from.
-        return shouldAllowSendingToAddress([address], (err, shouldAllowSending) => {
-            if (err) {
-                return dispatch(
-                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
-                    20000,
-                    err,
-                );
-            }
-
-            return shouldAllowSending
-                ? getUnspentInputs(addressData, startIndex, value, null, unspentInputs)
-                : (() => {
-                      dispatch(sendTransferError());
-                      return dispatch(
-                          generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
-                      );
-                  })();
-        });
-    };
-};
-
-export const checkForNewAddress = (seedName, addressData, txArray) => {
+export const completeTransfer = (payload) => {
     return (dispatch) => {
-        // Check if 0 value transfer
-        if (txArray[0].value !== 0) {
-            const changeAddress = txArray[txArray.length - 1].address;
-            const addresses = Object.keys(addressData);
-            // Remove checksum
-            const addressNoChecksum = changeAddress.substring(0, MAX_SEED_LENGTH);
-            // If current addresses does not include change address, add new address and balance
-            if (!addresses.includes(addressNoChecksum)) {
-                const addressArray = [addressNoChecksum];
-                const index = addresses.length + 1;
-
-                // Check change address balance
-                iota.api.getBalances(addressArray, 1, (error, success) => {
-                    if (!error) {
-                        const addressBalance = parseInt(success.balances[0]);
-                        addressData[addressNoChecksum] = { index, balance: addressBalance, spent: false };
-                    } else {
-                        addressData[addressNoChecksum] = { index, balance: 0, spent: false };
-                    }
-                });
-            }
-            dispatch(updateAddresses(seedName, addressData));
-        }
+        dispatch(clearSendFields());
+        dispatch(sendTransferSuccess(payload));
     };
 };
 

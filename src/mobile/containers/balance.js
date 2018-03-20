@@ -1,15 +1,16 @@
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
-import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
-import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
-import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
-import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
+import {
+    getRelevantTransfer,
+    isReceivedTransfer,
+    getTransferValue,
+} from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
@@ -19,6 +20,7 @@ import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -46,7 +48,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     fiatBalance: {
-        paddingTop: height / 150,
+        paddingTop: isAndroid ? null : height / 200,
+        paddingBottom: isAndroid ? height / 200 : null,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
@@ -77,13 +80,14 @@ export class Balance extends Component {
         balance: PropTypes.number.isRequired,
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
-        settings: PropTypes.object.isRequired,
-        extraColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        primary: PropTypes.object.isRequired,
+        secondary: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
         onTabSwitch: PropTypes.func.isRequired,
+        currency: PropTypes.string.isRequired,
+        conversionRate: PropTypes.number.isRequired,
     };
 
     /**
@@ -92,7 +96,7 @@ export class Balance extends Component {
      * @return {int}   Human-readable balance
      */
     static getDecimalPlaces(n) {
-        const s = `${+n}`;
+        const s = `+${n}`;
         const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(s);
 
         if (!match) {
@@ -118,7 +122,11 @@ export class Balance extends Component {
 
     shouldComponentUpdate(newProps) {
         const { marketData } = this.props;
-        if (newProps.marketData !== marketData) return false;
+
+        if (newProps.marketData !== marketData) {
+            return false;
+        }
+
         return true;
     }
 
@@ -139,7 +147,7 @@ export class Balance extends Component {
      */
 
     prepTransactions() {
-        const { transfers, addresses, t, extraColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const { transfers, addresses, t, primary, secondary, body } = this.props;
         const recentTransactions = transfers.slice(0, 4);
 
         const computeConfirmationStatus = (persistence, incoming) => {
@@ -158,32 +166,31 @@ export class Balance extends Component {
             return incoming ? '+' : '-';
         };
 
-        const isSecondaryBackgroundColorWhite = secondaryBackgroundColor === 'white';
-
-        const outgoingIconPath = isSecondaryBackgroundColorWhite ? whiteSendImagePath : blackSendImagePath;
-        const incomingIconPath = isSecondaryBackgroundColorWhite ? whiteReceiveImagePath : blackReceiveImagePath;
-
-        return map(recentTransactions, (transfer) => {
+        const formattedTransfers = map(recentTransactions, (transfer) => {
             const tx = getRelevantTransfer(transfer, addresses);
+            const value = getTransferValue(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
 
             return {
                 time: tx.timestamp,
                 confirmationStatus: computeConfirmationStatus(tx.persistence, incoming),
-                value: round(formatValue(tx.value), 1),
-                unit: formatUnit(tx.value),
-                sign: getSign(tx.value, incoming),
-                iconPath: incoming ? incomingIconPath : outgoingIconPath,
+                value: round(formatValue(value), 1),
+                unit: formatUnit(value),
+                sign: getSign(value, incoming),
+                incoming,
                 style: {
-                    titleColor: incoming ? extraColor : negativeColor,
-                    defaultTextColor: { color: secondaryBackgroundColor },
+                    titleColor: incoming ? primary.color : secondary.color,
+                    defaultTextColor: { color: body.color },
+                    iconColor: body.color,
                 },
             };
         });
+
+        return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
     renderTransactions() {
-        const { secondaryBackgroundColor, t } = this.props;
+        const { body, t } = this.props;
         const data = this.prepTransactions();
 
         return (
@@ -195,24 +202,22 @@ export class Balance extends Component {
                 contentContainerStyle={styles.listView}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={() => (
-                    <Text style={[styles.noTransactions, { color: secondaryBackgroundColor }]}>
-                        {t('global:noTransactions')}
-                    </Text>
+                    <Text style={[styles.noTransactions, { color: body.color }]}>{t('global:noTransactions')}</Text>
                 )}
             />
         );
     }
 
     render() {
-        const { balance, settings, marketData, secondaryBackgroundColor } = this.props;
+        const { balance, conversionRate, currency, marketData, body } = this.props;
 
         const shortenedBalance =
             roundDown(formatValue(balance), 1) +
             (balance < 1000 || Balance.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+');
-        const currencySymbol = getCurrencySymbol(settings.currency);
-        const fiatBalance = balance * marketData.usdPrice / 1000000 * settings.conversionRate;
-        const textColor = { color: secondaryBackgroundColor };
-        const lineBorder = { borderBottomColor: secondaryBackgroundColor };
+        const currencySymbol = getCurrencySymbol(currency);
+        const fiatBalance = balance * marketData.usdPrice / 1000000 * conversionRate;
+        const textColor = { color: body.color };
+        const lineBorder = { borderBottomColor: body.color };
         const recentTransactions = this.renderTransactions();
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
@@ -247,12 +252,11 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     balance: getBalanceForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
-    settings,
-    negativeColor: settings.theme.negativeColor,
-    extraColor: settings.theme.extraColor,
-    secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
-    chartLineColorPrimary: settings.theme.chartLineColorPrimary,
-    chartLineColorSecondary: settings.theme.chartLineColorSecondary,
+    currency: settings.currency,
+    conversionRate: settings.conversionRate,
+    primary: settings.theme.primary,
+    secondary: settings.theme.secondary,
+    body: settings.theme.body,
 });
 
 export default translate(['global'])(connect(mapStateToProps)(Balance));

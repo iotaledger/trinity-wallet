@@ -19,7 +19,8 @@
         "invalidResponse": "Đáp ứng không hợp lệ",
         "invalidResponseExplanation": "Nút mạng phản hồi không hợp lệ.",
         "invalidResponsePollingExplanation": "Nút mạng phản hồi lỗi khi lấy thông tin tài khoản từ nút mạng.",
-        "invalidResponseFetchingAccount": "Nút mạng phản hồi không hợp lệ khi lấy thông tin tài khoản của bạn. Xin vui lòng thay đổi nút mạng.",
+        "invalidResponseFetchingAccount":
+            "Nút mạng phản hồi không hợp lệ khi lấy thông tin tài khoản của bạn. Xin vui lòng thay đổi nút mạng.",
         "invalidResponseSendingTransfer": "Nút mạng phản hồi không hợp lệ khi chuyển khoản.",
         "seed": "Từ Khoá",
         "back": "TRỞ LẠI",
@@ -53,8 +54,7 @@
         "syncInProgress": "Đang đồng bộ hoá",
         "syncInProgressExplanation": "Vui lòng chờ cho đến khi đồng bộ hoá thành công.",
         "somethingWentWrong": "Đã xảy ra lỗi",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongExplanation": "Vui lòng khởi động lại chương trình.",
         "node": "Nút mạng",
         "cannotPerformAction": "Không thể thực hiện thao tác này",
         "cannotPerformActionExplanation": "Vào thiết lập nâng cao để cài lại ví điện tử.",
@@ -77,22 +77,20 @@
         "autoreattachingExplanation": "Đang kết nối giao dịch với dữ liệu {{hash}}",
         "autopromoting": "Tự động thúc đẩy chuyển khoảng",
         "autopromotingExplanation": "Tự động thúc đẩy chuyển khoản với dữ liệu {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Gửi đến địa chỉ của mình",
         "cannotSendToOwnExplanation": "Bạn không thể chuyển khoản vào một trong những địa chỉ của riêng bạn.",
         "pleaseWait": "Vui lòng đợi",
         "pleaseWaitExplanation": "Trinity đang thực hiện một chức năng khác. Vui lòng đợi và thử lại.",
-        "pleaseWaitTransferExplanation": "Số tiền của bạn đang được sử dụng trong một giao dịch khác. Vui lòng đợi xác nhận xong trước khi thử gửi lại.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "pleaseWaitTransferExplanation":
+            "Số tiền của bạn đang được sử dụng trong một giao dịch khác. Vui lòng đợi xác nhận xong trước khi thử gửi lại."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
-        "seedInvalidCharsExplanation": "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
+        "seedInvalidCharsExplanation":
+            "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
         "seedTooShort": "Từ khoá quá ngắn",
-        "seedTooShortExplanation": "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
+        "seedTooShortExplanation":
+            "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
         "nameInUse": "Tên tài khoản đã được dùng",
         "nameInUseExplanation": "Xin vui lòng sử dụng tên tài khoản riêng cho từ khoá của bạn.",
         "enterAccountName": "Nhập tên tài khoản.",
@@ -114,7 +112,8 @@
         "passwordTooShort": "Mật khẩu quá ngắn",
         "passwordTooShortExplanation": "Mật khẩu ít nhất phải chứa 12 ký tự. Xin vui lòng thử lại.",
         "oldPassword": "Không thể dùng mật khẩu cũ",
-        "oldPasswordExplanation": "Bạn không thể dùng mật khẩu cũ lúc tạo mật khẩu mới. Xin vui lòng thử lại với một mật khẩu mới.",
+        "oldPasswordExplanation":
+            "Bạn không thể dùng mật khẩu cũ lúc tạo mật khẩu mới. Xin vui lòng thử lại với một mật khẩu mới.",
         "ensureStrongPassword": "Hãy đảm bảo bạn dùng mật khẩu mạnh với ít nhất 12 ký tự.",
         "currentPassword": "Mật Khẩu Hiện Tại",
         "newPassword": "Mật Khẩu Mới",
@@ -132,10 +131,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "Từ khoá chứa ký tự không hợp lệ",
-        "invalidCharactersExplanation": "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
+        "invalidCharactersExplanation":
+            "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
         "seedTooShort": "Từ khoá quá ngắn",
-        "seedTooShortExplanation": "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
-        "seedExplanation": "Từ khoá có tối đa {{maxLength}} ký tự, và bao gồm chữ viết hoa A-Z, hoặc số 9. Bạn không thể dùng từ khoá dài hơn {{maxLength}} ký tự.",
+        "seedTooShortExplanation":
+            "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
+        "seedExplanation":
+            "Từ khoá có tối đa {{maxLength}} ký tự, và bao gồm chữ viết hoa A-Z, hoặc số 9. Bạn không thể dùng từ khoá dài hơn {{maxLength}} ký tự.",
         "neverShare": "ĐỪNG BAO GIỜ CHIA SẺ TỪ KHOÁ CHO NGƯỜI KHÁC BIẾT"
     },
     "home": {
@@ -161,17 +163,17 @@
     "loading": {
         "loadingFirstTime": "Đang tải từ khoá lần đầu tiên.",
         "thisMayTake": "Thao tác này sẽ hơi lâu.",
-        "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "Bạn có thể thấy máy của bạn chậm lại."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Từ khoá chưa được tạo ra",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Xin vui lòng nhấn nút Tạo Từ Khoá Mới.",
         "pressForNewSeed": "ẤN VÀO CHO TỪ KHOÁ MỚI",
         "individualLetters": "Nhấn từng chữ cái để xáo trộn chúng."
     },
     "onboardingComplete": {
-        "walletReady": "Ví điện tử đã được thiết lập và sẵn sàng để sử dụng. Nếu bạn muốn thay đổi bất kỳ điều gì trong tương lai, hãy vào mục Thiết Lập."
+        "walletReady":
+            "Ví điện tử đã được thiết lập và sẵn sàng để sử dụng. Nếu bạn muốn thay đổi bất kỳ điều gì trong tương lai, hãy vào mục Thiết Lập."
     },
     "paperWallet": {
         "clickToPrint": "Nhấn vào nút dưới đây để in ra giấy bản sao từ khoá của bạn.",
@@ -192,7 +194,8 @@
     "saveYourSeed": {
         "seedCleared": "Đã xoá từ khoá",
         "seedClearedExplanation": "Từ khoá đã được xoá khỏi bộ nhớ tạm để bảo mật.",
-        "mustSaveYourSeed": "<0><0>Bạn phải lưu từ khoá với </0><1>ít nhất một</1><2>trong những sự lựa chọn dưới đây.</2></0>"
+        "mustSaveYourSeed":
+            "<0><0>Bạn phải lưu từ khoá với </0><1>ít nhất một</1><2>trong những sự lựa chọn dưới đây.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Từ khoá không đúng",
@@ -205,7 +208,6 @@
         "invalidAddressExplanation1": "Địa chỉ phải có {{maxLength}} ký tự và phải có sự kiểm tra tổng.",
         "invalidAddressExplanation2": "Địa chỉ có chứa ký tự không hợp lệ.",
         "invalidAddressExplanation3": "Địa chỉ chứa kiểm tra tổng không hợp lệ.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Không đủ tiền",
         "notEnoughFundsExplanation": "Bạn không có đủ IOTA để hoàn thành giao dịch này.",
         "keyReuse": "Tái sử dụng mã key",
@@ -218,30 +220,36 @@
         "invalidMessageExplanation": "Tin nhắn có chứa ký tự không hợp lệ.",
         "send": "GỬI",
         "invalidAmount": "Số lượng nhập không đúng",
-        "invalidAmountExplanation": "Xin vui lòng nhập số tiền muốn giao dịch. Các bạn nên đọc chú thích ở cuối trang này để hiểu thêm về đơn vị của IOTA.",
+        "invalidAmountExplanation":
+            "Xin vui lòng nhập số tiền muốn giao dịch. Các bạn nên đọc chú thích ở cuối trang này để hiểu thêm về đơn vị của IOTA.",
         "maximumSelected": "Số lượng TỐI ĐA được chọn",
         "iotaUnits": "Đơn vị IOTA được giải thích",
         "sendMax": "GỬI TỐI ĐA"
     },
     "setPassword": {
         "passwordTooShort": "Mật khẩu quá ngắn",
-        "passwordTooShortExplanation": "Mật khẩu của bạn phải có ít nhất {{minLength}} ký tự. Mật khẩu hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
+        "passwordTooShortExplanation":
+            "Mật khẩu của bạn phải có ít nhất {{minLength}} ký tự. Mật khẩu hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
         "passwordMismatch": "Mật khẩu không trùng khớp",
         "passwordMismatchExplanation": "Mật khẩu vừa nhập không trùng khớp. Xin vui lòng thử lại.",
         "nowWeNeedTo": "Bây giờ chúng ta cần cài mật khẩu.",
-        "anEncryptedCopy": "Một bản sao mã hoá của từ khoá sẽ được lưu trên máy của bạn. Bạn sẽ phải xài mật khẩu này để truy cập ví điện tử của mình.",
+        "anEncryptedCopy":
+            "Một bản sao mã hoá của từ khoá sẽ được lưu trên máy của bạn. Bạn sẽ phải xài mật khẩu này để truy cập ví điện tử của mình.",
         "ensure": "Hãy đảm bảo bạn dùng mật khẩu mạnh với ít nhất 12 ký tự.",
         "retypePassword": "Nhập Lại Mật Khẩu"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Bạn có thể sử dụng nhiều từ khoá cho ví điện tử này. Mỗi từ khoá cần một tên tài khoản khác.",
+        "canUseMultipleSeeds":
+            "Bạn có thể sử dụng nhiều từ khoá cho ví điện tử này. Mỗi từ khoá cần một tên tài khoản khác.",
         "youCanAdd": "Bạn có thể cho thêm nhiều từ khoá nữa trong mục Thiết Lập."
     },
     "modeSelection": {
         "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation":
+            "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation":
+            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Đang chuyển khoản",
@@ -293,18 +301,22 @@
     "walletSetup": {
         "okay": "Ok. Hãy thiết lập ví điện tử của bạn!",
         "doYouAlreadyHaveASeed": "Bạn đã có từ khoá mà bạn muốn dùng chưa?",
-        "seedExplanation": "Từ khoá của IOTA giống như là tên tài khoản và mật khẩu hợp lại với một dãy chữ có 81 ký tự.",
-        "explanation": "<0><0>Bạn có thể xài nó để truy cập vào tài khoản từ</0><1> bất kỳ ví điện tử nào</1><2>trên</2><3>bất kỳ máy nào</3><4>. Nhưng nếu bạn mất từ khoá, bạn sẽ mất hết IOTA của bạn.</4></0>",
+        "seedExplanation":
+            "Từ khoá của IOTA giống như là tên tài khoản và mật khẩu hợp lại với một dãy chữ có 81 ký tự.",
+        "explanation":
+            "<0><0>Bạn có thể xài nó để truy cập vào tài khoản từ</0><1> bất kỳ ví điện tử nào</1><2>trên</2><3>bất kỳ máy nào</3><4>. Nhưng nếu bạn mất từ khoá, bạn sẽ mất hết IOTA của bạn.</4></0>",
         "keepSafe": "Vui lòng giữ từ khoá ở một nơi an toàn."
     },
     "welcome": {
         "thankYou": "Cám ơn bạn đã tải ví điện tử IOTA về.",
         "weWillSpend": "Chúng ta sẽ dành vài phút để cài đặt ví điện tử cho bạn.",
-        "reminder": "Bạn sẽ bị lôi cuốn bỏ qua một số bước, nhưng chúng tôi khuyên bạn nên làm theo từng bước để hoàn thành quy trình này."
+        "reminder":
+            "Bạn sẽ bị lôi cuốn bỏ qua một số bước, nhưng chúng tôi khuyên bạn nên làm theo từng bước để hoàn thành quy trình này."
     },
     "writeSeedDown": {
         "yourSeedIs": "Từ khoá của bạn có {{maxSeedLength}} ký tự đọc từ trái sang phải.",
-        "writeDownYourSeed": "<0> Ghi từ khoá và mã kiểm tra xuống và </0><1>kiểm tra 3 lần</1><2>để chắc chắn nó đúng.</2>"
+        "writeDownYourSeed":
+            "<0> Ghi từ khoá và mã kiểm tra xuống và </0><1>kiểm tra 3 lần</1><2>để chắc chắn nó đúng.</2>"
     },
     "history": {
         "bundleHashCopied": "Đã sao chép nhóm hash",
@@ -360,16 +372,15 @@
         "one": "Một"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Từ khóa và lịch sử của các giao dịch sẽ bị xóa.",
         "thisAction": "Thao tác này không thể đảo ngược.",
         "enterPassword": "Nhập mật khẩu để xóa tài khoản này."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "pressToSync": "Nhấn vào nút dưới đây để đồng bộ hóa tài khoản.",
+        "thisMayTake": "Thao tác này sẽ hơi lâu.",
+        "youMayNotice": "Bạn có thể thấy máy của bạn chậm lại.",
         "syncAccount": "ĐỒNG BỘ TÀI KHOẢN",
         "syncingYourAccount": "Đang đồng bộ tài khoản."
     },
@@ -388,7 +399,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "THAO TÁC NÀY KHÔNG THỂ ĐẢO NGƯỢC.",
-        "warning": "<0><0>Tất cả những dữ liệu trong ví điện tử của bạn như </0><1>từ khóa, mật khẩu,</1><2> và</2><3>những thông tin khác</3><4> sẽ bị mất.</4></0>"
+        "warning":
+            "<0><0>Tất cả những dữ liệu trong ví điện tử của bạn như </0><1>từ khóa, mật khẩu,</1><2> và</2><3>những thông tin khác</3><4> sẽ bị mất.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Chạm vào thiết bị đọc vân tay để kích hoạt chức năng xác thực vân tay.",
@@ -403,7 +415,8 @@
         "enabled": "Kích Hoạt",
         "disabled": "Vô Hiệu",
         "fingerprintUnavailable": "Cảm biến vân tay không tồn tại",
-        "fingerprintUnavailableExplanation": "Thiết bị của bạn không hỗ trợ nhận dạng vân tay hoặc không được cấu hình trong trình cài đặt.",
+        "fingerprintUnavailableExplanation":
+            "Thiết bị của bạn không hỗ trợ nhận dạng vân tay hoặc không được cấu hình trong trình cài đặt.",
         "buttonInstructionsDisable": "Nhấn vào nút dưới đây để vô hiệu hóa xác thực vân tay.",
         "buttonInstructionsEnable": "Nhấn vào nút dưới đây để kích hoạt xác thực vân tay.",
         "instructionsLogin": "Chạm đầu đọc vân tay để đăng nhập."
@@ -433,27 +446,7 @@
     },
     "rootDetection": {
         "warning": "CẢNH BÁO",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
-    },
-    "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
-    },
-    "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
-    },
-    "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "rootDetected":
+            "<0>Máy của bạn đã root/jailbreak.</0><1>Điều này sẽ mang đến một nguy cơ đáng kể cho sự an toàn của ví điện tử của bạn.</1><2>Bạn có muốn tiếp tục bất chấp nguy cơ này?</2>"
     }
 }
