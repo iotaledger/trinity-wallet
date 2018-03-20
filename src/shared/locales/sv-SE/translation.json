@@ -446,7 +446,7 @@
         "syncingAccount": "Synkroniserar kontot",
         "preparingInputs": "Förbereder indata",
         "preparingTransfers": "Förbereder överföringar",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "gettingTransactionsToApprove": "Godkänner transaktioner",
         "proofOfWork": "Utför proof of work",
         "broadcasting": "Sändning pågår"
     },
