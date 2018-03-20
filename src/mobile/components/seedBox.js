@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import whiteArrowImagePath from 'iota-wallet-shared-modules/images/arrow-white.png';
-import blackArrowImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
-import tinycolor from 'tinycolor2';
 import TextWithLetterSpacing from './textWithLetterSpacing';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
@@ -98,7 +95,7 @@ class SeedBox extends Component {
                         styles.seedBoxTextContainer,
                         {
                             width: width / 1.65 * scale,
-                            paddingTop: height / 160 * scale,
+                            paddingTop: height / 150 * scale,
                             paddingLeft: width / 30 * scale,
                         },
                     ]}
