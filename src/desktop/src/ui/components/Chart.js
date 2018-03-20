@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { LineChart, ResponsiveContainer, Line, YAxis } from 'recharts';
+import { LineChart, ResponsiveContainer, Line, YAxis, XAxis } from 'recharts';
 
 import withChartData from 'containers/components/Chart';
 
@@ -60,13 +60,13 @@ class Chart extends PureComponent {
                             <YAxis
                                 interval="preserveStartEnd"
                                 strokeWidth={0}
-                                width={60}
-                                dataKey="y"
+                                width={36}
                                 domain={['dataMin', 'dataMax']}
                             />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
+                <hr />
                 <nav>
                     <Button variant="secondary" className="outline" onClick={() => setCurrency()}>
                         {priceData.currency}
