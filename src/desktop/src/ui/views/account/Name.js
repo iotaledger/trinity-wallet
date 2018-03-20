@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSelectedAccountNameViaSeedIndex } from 'selectors/account';
+import { selectAccountInfo } from 'selectors/account';
 
 import { changeAccountName } from 'actions/account';
 import { generateAlert } from 'actions/alerts';
@@ -89,7 +89,7 @@ class AccountName extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountInfo: state.account.accountInfo,
-    accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    accountName: selectAccountInfo(state),
 });
 
 const mapDispatchToProps = {
