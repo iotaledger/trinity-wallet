@@ -125,7 +125,7 @@ class Sidebar extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    accounts: state.account.seedNames,
+    accounts: state.account.accountNames,
     seedIndex: state.tempAccount.seedIndex,
 });
 

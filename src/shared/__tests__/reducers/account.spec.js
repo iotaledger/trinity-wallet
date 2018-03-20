@@ -77,21 +77,120 @@ describe('Reducer: account', () => {
     });
 
     describe('CHANGE_ACCOUNT_NAME', () => {
-        it('should set accountNames to accountNames and accountInfo to accountInfo props in action', () => {
+        it('should update account name in "accountInfo" state prop', () => {
             const initialState = {
-                accountNames: [{}],
-                accountInfo: {},
+                accountInfo: {
+                    foo: {},
+                    baz: {},
+                },
             };
 
-            const action = actions.changeAccountName(null, [{}, {}]);
+            const action = actions.changeAccountName({
+                oldAccountName: 'foo',
+                newAccountName: 'bar',
+            });
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                accountNames: [{}, {}],
-                accountInfo: null,
+                accountInfo: {
+                    bar: {},
+                    baz: {},
+                },
             };
 
-            expect(newState).to.eql(expectedState);
+            expect(newState.accountInfo).to.eql(expectedState.accountInfo);
+        });
+
+        it('should update account name in "txHashesForUnspentAddresses" state prop', () => {
+            const initialState = {
+                txHashesForUnspentAddresses: {
+                    foo: [{}],
+                    baz: [{}, {}],
+                },
+            };
+
+            const action = actions.changeAccountName({
+                oldAccountName: 'foo',
+                newAccountName: 'bar',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                txHashesForUnspentAddresses: {
+                    bar: [{}],
+                    baz: [{}, {}],
+                },
+            };
+
+            expect(newState.txHashesForUnspentAddresses).to.eql(expectedState.txHashesForUnspentAddresses);
+        });
+
+        it('should update account name in "pendingTxHashesForSpentAddresses" state prop', () => {
+            const initialState = {
+                pendingTxHashesForSpentAddresses: {
+                    foo: [{}],
+                    baz: [{}, {}],
+                },
+            };
+
+            const action = actions.changeAccountName({
+                oldAccountName: 'foo',
+                newAccountName: 'bar',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                pendingTxHashesForSpentAddresses: {
+                    bar: [{}],
+                    baz: [{}, {}],
+                },
+            };
+
+            expect(newState.pendingTxHashesForSpentAddresses).to.eql(expectedState.pendingTxHashesForSpentAddresses);
+        });
+
+        it('should update account name in "accountNames" state prop', () => {
+            const initialState = {
+                accountNames: ['foo', 'baz'],
+            };
+
+            const action = actions.changeAccountName({
+                oldAccountName: 'foo',
+                newAccountName: 'bar',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountNames: ['bar', 'baz'],
+            };
+
+            expect(newState.accountNames).to.eql(expectedState.accountNames);
+        });
+
+        it('should update account prop for each tail transaction with new account name in "unconfirmedBundleTails" state prop', () => {
+            const initialState = {
+                unconfirmedBundleTails: {
+                    bundleOne: [{ account: 'foo', hash: '9'.repeat(81) }, { account: 'foo', hash: '9'.repeat(81) }],
+                    bundleTwo: [{ account: 'foo', hash: '9'.repeat(81) }, { account: 'foo', hash: '9'.repeat(81) }],
+                    bundleThree: [{ account: 'baz', hash: '9'.repeat(81) }, { account: 'baz', hash: '9'.repeat(81) }],
+                },
+            };
+
+            const action = actions.changeAccountName({
+                oldAccountName: 'foo',
+                newAccountName: 'bar',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                unconfirmedBundleTails: {
+                    bundleOne: [{ account: 'bar', hash: '9'.repeat(81) }, { account: 'bar', hash: '9'.repeat(81) }],
+                    bundleTwo: [{ account: 'bar', hash: '9'.repeat(81) }, { account: 'bar', hash: '9'.repeat(81) }],
+                    bundleThree: [{ account: 'baz', hash: '9'.repeat(81) }, { account: 'baz', hash: '9'.repeat(81) }],
+                },
+            };
+
+            expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
         });
     });
 

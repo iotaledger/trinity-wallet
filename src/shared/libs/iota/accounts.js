@@ -242,7 +242,7 @@ export const getAccountData = (seed, accountName, genFn) => {
  *
  *   @returns {Promise<object>}
  **/
-export const syncAccount = (seed, existingAccountState) => {
+export const syncAccount = (existingAccountState) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
     return getLatestTransactionHashes(thisStateCopy.transfers, thisStateCopy.addresses)
@@ -256,7 +256,7 @@ export const syncAccount = (seed, existingAccountState) => {
             );
 
             // Set new latest transaction hashes against current state copy.
-            thisStateCopy.txHashesForUnspentAddresses = pendingTxHashesForSpentAddresses;
+            thisStateCopy.txHashesForUnspentAddresses = txHashesForUnspentAddresses;
             thisStateCopy.pendingTxHashesForSpentAddresses = pendingTxHashesForSpentAddresses;
 
             return size(diff)
