@@ -84,7 +84,7 @@
         "cannotSendToOwnExplanation": "Et voi siirtää varoja yhteen omista osoitteistasi.",
         "pleaseWait": "Odota hetki",
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
-        "pleaseWaitTransferExplanation": "Varallisuuttasi käytetään jo olemassa olevissa siirroissa. Odota että ne on vahvistettu ennen kuin yrität uudelleen.",
+        "pleaseWaitTransferExplanation": "Saldoasi käytetään jo olemassa olevissa siirroissa. Odota, että ne on vahvistettu ennen kuin yrität uudelleen.",
         "snapshotTransitionInProgress": "Snapshot-siirtymä käynnissä",
         "snapshotTransitionInProgressExplanation": "Odota kunnes siirtymäprosessi on valmis."
     },
@@ -115,7 +115,7 @@
         "passwordTooShortExplanation": "Salasanan tulee olla vähintään 12 merkkiä pitkä. Yritä uudelleen.",
         "oldPassword": "Vanhaa salasanaa ei voi käyttää",
         "oldPasswordExplanation": "Et voi käyttää vanhaa salasanaa toista kertaa. Yritä uudelleen.",
-        "ensureStrongPassword": "Varmista että käytät hyvää salasanaa joka on vähintään 12-merkkiä pitkä ja sisältää erikoismerkkejä.",
+        "ensureStrongPassword": "Varmista, että käytät vahvaa salasanaa, joka on vähintään 12 merkkiä pitkä ja sisältää erikoismerkkejä.",
         "currentPassword": "Nykyinen Salasana",
         "newPassword": "Uusi Salasana",
         "confirmPassword": "Vahvista Uusi Salasana"
@@ -307,8 +307,8 @@
         "writeDownYourSeed": "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>"
     },
     "history": {
-        "bundleHashCopied": "Kokoelman tiiviste-luku kopioitu",
-        "bundleHashCopiedExplanation": "Kokoelman tiiviste-luku on kopioitu leikepöydälle.",
+        "bundleHashCopied": "Kokoelman tiivisteluku kopioitu",
+        "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
         "send": "LÄHETÄ",
