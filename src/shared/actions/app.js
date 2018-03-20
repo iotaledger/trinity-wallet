@@ -6,6 +6,7 @@ export const ActionTypes = {
     WALLET_LOGOUT: 'IOTA/APP/WALLET/LOGOUT',
     WALLET_RESET: 'IOTA/APP/WALLET/RESET',
     SET_VERSIONS: 'IOTA/APP/WALLET/SET_VERSIONS',
+    SET_ACTIVATION_CODE: 'IOTA/APP/WALLET/SET_ACTIVATION_CODE'
 };
 
 export const setAppVersions = (payload) => ({
@@ -56,3 +57,10 @@ export const migrate = (versions, config, persistor) => (dispatch, getState) => 
         })
         .catch((err) => console.error(err));
 };
+
+export function setActivationCode(code) {
+    return {
+        type: ActionTypes.SET_ACTIVATION_CODE,
+        payload: code,
+    };
+}
