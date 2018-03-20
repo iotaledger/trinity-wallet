@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import size from 'lodash/size';
@@ -17,13 +16,11 @@ import {
     getAccountInfo,
     promoteTransfer,
 } from 'iota-wallet-shared-modules/actions/polling';
-import keychain, { getSeed } from '../util/keychain';
 
 export class Poll extends Component {
     static propTypes = {
         pollFor: PropTypes.string.isRequired,
         allPollingServices: PropTypes.array.isRequired, // oneOf
-        seedIndex: PropTypes.number.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         unconfirmedBundleTails: PropTypes.object.isRequired,
         setPollFor: PropTypes.func.isRequired,
@@ -90,17 +87,9 @@ export class Poll extends Component {
     }
 
     fetchLatestAccountInfo() {
-        const { seedIndex, selectedAccountName } = this.props;
+        const { selectedAccountName } = this.props;
 
-        keychain
-            .get()
-            .then((credentials) => {
-                if (get(credentials, 'data')) {
-                    const seed = getSeed(credentials.data, seedIndex);
-                    this.props.getAccountInfo(seed, selectedAccountName);
-                }
-            })
-            .catch((err) => console.error(err)); // eslint-disable-line no-console
+        this.props.getAccountInfo(selectedAccountName);
     }
 
     startBackgroundProcesses() {
@@ -155,7 +144,7 @@ const mapStateToProps = (state) => ({
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     isFetchingLatestAccountInfoOnLogin: state.tempAccount.isFetchingLatestAccountInfoOnLogin,
     seedIndex: state.tempAccount.seedIndex,
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
     unconfirmedBundleTails: state.account.unconfirmedBundleTails,
     isTransitioning: state.tempAccount.isTransitioning,
 });

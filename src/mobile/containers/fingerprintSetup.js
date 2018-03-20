@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { setFingerprintStatus } from 'iota-wallet-shared-modules/actions/account';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
-import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-white.png';
-import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-black.png';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Image } from 'react-native';
+import tinycolor from 'tinycolor2';
+import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-white.png';
+import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-black.png';
 import WithBackPressGoToHome from '../components/withBackPressGoToHome';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import Fonts from '../theme/Fonts';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
         width,
     },
     midWrapper: {
@@ -52,10 +52,6 @@ const styles = StyleSheet.create({
         height: width / 5,
         width: width / 5,
     },
-    fingerprint: {
-        height: width / 5,
-        width: width / 5,
-    },
     backButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
@@ -72,14 +68,18 @@ const styles = StyleSheet.create({
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
+    fingerprint: {
+        height: width / 5,
+        width: width / 5,
+    },
 });
 
 class FingerprintEnable extends Component {
     static propTypes = {
-        backgroundColor: PropTypes.string.isRequired,
         generateAlert: PropTypes.func.isRequired,
         setFingerprintStatus: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
+        secondary: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         isFingerprintEnabled: PropTypes.bool.isRequired,
     };
@@ -156,6 +156,8 @@ class FingerprintEnable extends Component {
     }
 
     navigateToHome() {
+        const { body } = this.props;
+
         // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
             screen: {
@@ -163,28 +165,34 @@ class FingerprintEnable extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
                 },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: false,
             },
         });
     }
 
     render() {
-        const { t, secondaryBackgroundColor, isFingerprintEnabled } = this.props;
-        const backgroundColor = { backgroundColor: this.props.backgroundColor };
-        const textColor = { color: secondaryBackgroundColor };
-        const isWhite = secondaryBackgroundColor === 'white';
-        const iotaLogoImagePath = isWhite ? whiteIotaImagePath : blackIotaImagePath;
-        const fingerprintImagePath = isWhite ? whiteFingerprintImagePath : blackFingerprintImagePath;
+        const { t, body, isFingerprintEnabled, secondary } = this.props;
+        const backgroundColor = { backgroundColor: body.bg };
+        const textColor = { color: body.color };
         const authenticationStatus = isFingerprintEnabled ? t('enabled') : t('disabled');
         const instructions = isFingerprintEnabled ? t('buttonInstructionsDisable') : t('buttonInstructionsEnable');
+        const fingerprintImagePath = tinycolor(body.bg).isDark()
+            ? whiteFingerprintImagePath
+            : blackFingerprintImagePath;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, backgroundColor]}>
-                    <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                    <DynamicStatusBar backgroundColor={body.bg} />
                     <View style={styles.topWrapper}>
-                        <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
+                        <Icon name="iota" size={width / 8} color={body.color} />
                     </View>
                     <View style={styles.midWrapper}>
                         <View style={{ flex: 0.25 }} />
@@ -200,12 +208,12 @@ class FingerprintEnable extends Component {
                     </View>
                     <View style={styles.bottomWrapper}>
                         <TouchableOpacity onPress={() => this.navigateToHome()}>
-                            <View style={styles.backButton}>
-                                <Text style={styles.backText}>{t('global:back')}</Text>
+                            <View style={[styles.backButton, { borderColor: secondary.color }]}>
+                                <Text style={[styles.backText, { color: secondary.color }]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <StatefulDropdownAlert />
+                    <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -217,10 +225,9 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    backgroundColor: state.settings.theme.backgroundColor,
-    positiveColor: state.settings.theme.positiveColor,
-    negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    body: state.settings.theme.body,
+    positive: state.settings.theme.positive,
+    secondary: state.settings.theme.secondary,
     isFingerprintEnabled: state.account.isFingerprintEnabled,
 });
 

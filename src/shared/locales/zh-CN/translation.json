@@ -19,7 +19,8 @@
         "invalidResponse": "无效响应",
         "invalidResponseExplanation": "节点返回无效的响应。",
         "invalidResponsePollingExplanation": "该节点在轮询时返回无效响应。",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount":
+            "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "该节点在发送交易时返回无效响应。",
         "seed": "种子",
         "back": "返回",
@@ -53,8 +54,7 @@
         "syncInProgress": "同步中",
         "syncInProgressExplanation": "请稍候, 直到同步完成。",
         "somethingWentWrong": "出现错误",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongExplanation": "请重新启动应用程序",
         "node": "节点",
         "cannotPerformAction": "无法执行操作",
         "cannotPerformActionExplanation": "转到高级设置以重置钱包。",
@@ -77,16 +77,12 @@
         "autoreattachingExplanation": "使用哈希{{hash}} 的重新事务",
         "autopromoting": "自动提示转移",
         "autopromotingExplanation": "使用哈希{{hash}} 促进事务",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "发送到自己的地址",
         "cannotSendToOwnExplanation": "您不能转账到您自己的地址。",
         "pleaseWait": "Please wait",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "pleaseWaitTransferExplanation":
+            "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -135,7 +131,8 @@
         "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
-        "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
+        "seedExplanation":
+            "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
         "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
@@ -161,12 +158,11 @@
     "loading": {
         "loadingFirstTime": "首次读取种子",
         "thisMayTake": "可能需要一段时间",
-        "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "您的设备可能会变慢。"
     },
     "newSeedSetup": {
         "seedNotGenerated": "尚未生成种子",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "请点击生成种子按钮",
         "pressForNewSeed": "点击生成新种子",
         "individualLetters": "通过点击各个字母来随机生成。"
     },
@@ -205,7 +201,6 @@
         "invalidAddressExplanation1": "地址应该是{{maxLength}} 字符, 并且应该有校验和。",
         "invalidAddressExplanation2": "地址包含无效字符.",
         "invalidAddressExplanation3": "地址包含无效校验和",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "余额不足",
         "notEnoughFundsExplanation": "您的IOTA不足以完成本次交易。",
         "keyReuse": "密钥重用",
@@ -225,7 +220,8 @@
     },
     "setPassword": {
         "passwordTooShort": "密码太短",
-        "passwordTooShortExplanation": "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
+        "passwordTooShortExplanation":
+            "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
         "passwordMismatch": "密码不相符",
         "passwordMismatchExplanation": "您输入的密码不匹配。请再试一次。",
         "nowWeNeedTo": "现在我们需要设置一个密码。",
@@ -240,8 +236,10 @@
     "modeSelection": {
         "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation":
+            "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation":
+            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "正在发送交易",
@@ -294,7 +292,8 @@
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-        "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
+        "explanation":
+            "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
         "keepSafe": "请您保管好你的种子."
     },
     "welcome": {
@@ -360,16 +359,15 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
         "thisAction": "本操作无法撤销。",
         "enterPassword": "请输入您的密码以确认将帐号删除。"
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "pressToSync": "点击下面按钮以同步您的帐户。",
+        "thisMayTake": "可能需要一段时间",
+        "youMayNotice": "您的设备可能会变慢。",
         "syncAccount": "同步帐户",
         "syncingYourAccount": "正在同步您的账号"
     },
@@ -433,27 +431,7 @@
     },
     "rootDetection": {
         "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
-    },
-    "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote"
-    },
-    "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
-    },
-    "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "rootDetected":
+            "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }

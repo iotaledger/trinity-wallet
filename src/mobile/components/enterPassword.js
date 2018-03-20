@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
-import { setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 import CustomTextInput from '../components/customTextInput';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     topContainer: {
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 4.8,
@@ -62,10 +59,7 @@ const styles = StyleSheet.create({
 
 class EnterPassword extends Component {
     static propTypes = {
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        setUserActivity: PropTypes.func.isRequired,
-        generateAlert: PropTypes.func.isRequired,
+        theme: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -73,27 +67,6 @@ class EnterPassword extends Component {
         this.state = {
             password: '',
         };
-    }
-    componentWillUnmount() {
-        if (this.props.isFingerprintEnabled) {
-            FingerprintScanner.release();
-        }
-    }
-
-    activateFingerPrintScanner() {
-        const { t } = this.props;
-
-        FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
-            .then(() => {
-                this.props.setUserActivity({ inactive: false });
-            })
-            .catch(() => {
-                this.props.generateAlert(
-                    'error',
-                    t('fingerprintSetup:fingerprintAuthFailed'),
-                    t('fingerprintSetup:fingerprintAuthFailedExplanation'),
-                );
-            });
     }
 
     handleLogin = () => {
@@ -103,38 +76,34 @@ class EnterPassword extends Component {
     };
 
     render() {
-        const { t, positiveColor, secondaryBackgroundColor, negativeColor, isFingerprintEnabled } = this.props;
-        const borderColor = { borderColor: positiveColor };
-        const positiveTextColor = { color: positiveColor };
-        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
+        const { t, theme } = this.props;
+        const borderColor = { borderColor: theme.primary.color };
+        const primaryTextColor = { color: theme.primary.color };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
+                        <Icon name="iota" size={width / 8} color={theme.body.color} />
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={(text) => this.setState({ password: text })}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'none'}
+                            autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
                             secureTextEntry
                             onSubmitEditing={this.handleLogin}
-                            secondaryBackgroundColor={secondaryBackgroundColor}
-                            negativeColor={negativeColor}
-                            onFingerprintPress={() => this.activateFingerPrintScanner()}
-                            fingerprintAuthentication={isFingerprintEnabled}
+                            theme={theme}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={this.handleLogin}>
                             <View style={[styles.loginButton, borderColor]}>
-                                <Text style={[styles.loginText, positiveTextColor]}>{t('login')}</Text>
+                                <Text style={[styles.loginText, primaryTextColor]}>{t('login')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -147,21 +116,15 @@ class EnterPassword extends Component {
 EnterPassword.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    positiveColor: PropTypes.string.isRequired,
-    secondaryBackgroundColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.string.isRequired,
-    isFingerprintEnabled: PropTypes.bool.isRequired,
+    theme: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-    isFingerprintEnabled: state.account.isFingerprintEnabled,
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {
     setLoginPasswordField,
-    setUserActivity,
 };
 
-export default translate(['login', 'global', 'fingerprintSetup'])(
-    connect(mapStateToProps, mapDispatchToProps)(EnterPassword),
-);
+export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterPassword));

@@ -20,18 +20,26 @@ export default function withChartData(ChartComponent) {
             theme: PropTypes.object.isRequired,
         };
 
-        currencies = ['USD', 'BTC', 'ETH', 'USD'];
+        currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         timeframes = ['1h', '24h', '7d', '1m', '1h'];
 
         changeCurrency = () => {
             const { marketData, setCurrency } = this.props;
-            const nextCurrency = this.currencies[this.currencies.indexOf(marketData.currency) + 1];
+            const nextCurrency = this.currencies[
+                this.currencies.indexOf(marketData.currency) < this.currencies.length - 1
+                    ? this.currencies.indexOf(marketData.currency) + 1
+                    : 0
+            ];
             setCurrency(nextCurrency);
         };
 
         changeTimeframe = () => {
             const { marketData, setTimeframe } = this.props;
-            const nextTimeframe = this.timeframes[this.timeframes.indexOf(marketData.timeframe) + 1];
+            const nextTimeframe = this.timeframes[
+                this.timeframes.indexOf(marketData.timeframe) < this.timeframes.length - 1
+                    ? this.timeframes.indexOf(marketData.timeframe) + 1
+                    : 0
+            ];
             setTimeframe(nextTimeframe);
         };
 
@@ -40,8 +48,25 @@ export default function withChartData(ChartComponent) {
             return marketData.currency === 'USD' ? parseFloat(x).toFixed(2) : parseFloat(x).toFixed(6);
         };
 
+        getPriceForCurrency = (x) => {
+            const { marketData } = this.props;
+            switch (x) {
+                case 'USD':
+                    return marketData.usdPrice;
+                case 'EUR':
+                    return marketData.eurPrice;
+                case 'BTC':
+                    return marketData.btcPrice;
+                case 'ETH':
+                    return marketData.ethPrice;
+            }
+        };
+
         getTicks(dataSet) {
-            if (dataSet === undefined || dataSet.length === 0) return;
+            if (dataSet === undefined || dataSet.length === 0) {
+                return;
+            }
+
             const limit = dataSet.reduce(
                 (range, data) => ({
                     min: Math.min(range.min, data.y),
@@ -64,6 +89,7 @@ export default function withChartData(ChartComponent) {
                 setCurrency: this.changeCurrency,
                 setTimeframe: this.changeTimeframe,
                 getPriceFormat: this.getPriceFormat,
+                getPriceForCurrency: this.getPriceForCurrency,
                 priceData: {
                     currency: marketData.currency,
                     symbol: getCurrencySymbol(marketData.currency),

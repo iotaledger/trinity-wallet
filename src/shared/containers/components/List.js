@@ -1,32 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getSelectedAccountNameViaSeedIndex } from '../../selectors/account';
 import { translate } from 'react-i18next';
+import { currentAccountSelectorBySeedIndex } from '../../selectors/account';
 
 /**
  * List component container
  * @ignore
  */
 export default function withListData(ListComponent) {
-    class ListData extends React.Component {
+    class ListData extends React.PureComponent {
         static propTypes = {
-            account: PropTypes.object.isRequired,
-            accountName: PropTypes.string.isRequired,
+            accountInfo: PropTypes.object.isRequired,
             limit: PropTypes.number,
             filter: PropTypes.string,
+            compact: PropTypes.bool,
             t: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
         };
 
         render() {
-            const { account, accountName, limit, filter, theme, t } = this.props;
-
-            const accountInfo = account.accountInfo[accountName];
+            const { accountInfo, limit, compact, filter, theme, t } = this.props;
 
             const ListProps = {
-                transfers: accountInfo.transfers.length ? accountInfo.transfers : [],
+                transfers: accountInfo.transfers && accountInfo.transfers.length ? accountInfo.transfers : [],
                 addresses: Object.keys(accountInfo.addresses),
+                compact,
                 theme,
                 limit,
                 filter,
@@ -41,7 +40,7 @@ export default function withListData(ListComponent) {
 
     const mapStateToProps = (state) => ({
         account: state.account,
-        accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+        accountInfo: currentAccountSelectorBySeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
         theme: state.settings.theme,
     });
 
