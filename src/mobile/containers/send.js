@@ -50,19 +50,13 @@ import UnitInfoModal from '../components/unitInfoModal';
 import CustomTextInput from '../components/customTextInput';
 import CtaButton from '../components/ctaButton';
 import { Icon } from '../theme/icons.js';
-import { width, height } from '../util/dimensions';
+import { width } from '../util/dimensions';
 import { isAndroid, isIOS } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-    },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: height / 14,
     },
     topContainer: {
         flex: 3.6,
