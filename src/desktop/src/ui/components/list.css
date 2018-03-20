@@ -1,13 +1,25 @@
+.nav {
+    display: flex;
+    padding: 0 0 10px 10px;
+    a {
+        color: var(--secondary);
+        font-weight: 300;
+        margin: 0 28px 0 0;
+        &.active {
+            color: var(--primary);
+        }
+        &.empty {
+            color: var(--body-hover);
+        }
+    }
+}
+
 .list {
+    flex: 1;
     margin: 0px;
     padding: 0px;
     overflow: scroll;
-    max-height: calc(100vh - var(--header-height) - 40px);
-
-    &.compact {
-        border-top: 1px solid var(--body-alt);
-        padding: 10px 0;
-    }
+    position: relative;
 
     a {
         list-style: none;
@@ -65,10 +77,13 @@
 
     .empty {
         display: block;
+        position: absolute;
+        top: 50%;
         text-align: center;
         width: 100%;
-        opacity: 0.65;
-        padding: 30px 0;
+        opacity: 0.5;
+        padding: 0;
+        margin: -20px 0 0;
     }
 
     .pending {

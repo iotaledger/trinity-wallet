@@ -3,6 +3,7 @@
     width: 100%;
     padding-top: 265px;
     position: relative;
+    color: var(--body);
     nav,
     ul {
         width: 100%;
@@ -10,17 +11,13 @@
         justify-content: space-between;
     }
     nav {
-        border-top: 1px solid var(--body-alt);
         margin: 0 0 20px;
-        padding: 20px 0 0;
         button,
         p {
-            margin: 0px;
-        }
-        p {
-            line-height: 28px;
-            font-size: 21px;
+            line-height: 24px;
+            font-size: 24px;
             text-align: center;
+            margin: 0px;
         }
         button {
             display: block;
@@ -28,13 +25,14 @@
             line-height: 26px;
             font-size: 11px;
             min-width: 60px;
+            background: none;
         }
     }
     ul {
         margin: 0px;
         padding: 0px;
         li {
-            font-size: var(--font-size-small);
+            font-size: 14px;
             list-style: none;
         }
     }
