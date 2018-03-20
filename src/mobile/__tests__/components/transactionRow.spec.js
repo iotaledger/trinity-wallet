@@ -5,6 +5,11 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import TransactionRow from '../../components/transactionRow';
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
@@ -17,14 +22,19 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
+            rebroadcast: noop,
+            promote: noop,
             status: 'Receive',
             confirmation: 'Received',
+            disableWhen: false,
             value: 200,
             unit: 'i',
             time: Date.now(),
             message: 'Honey and the moon',
             bundle: 'BUNDLE',
             addresses: [{ address: 'U'.repeat(81), value: 1, unit: 'i' }],
+            confirmationBool: false,
+            mode: 'Standard',
             style: {
                 titleColor: 'white',
                 containerBorderColor: { borderColor: 'white' },
@@ -32,7 +42,10 @@ const getProps = (overrides) =>
                 confirmationStatusColor: { color: 'red' },
                 defaultTextColor: { color: 'green' },
                 backgroundColor: 'yellow',
-                borderColor: { borderColor: 'orange' },
+                borderColor: { borderColor: 'white' },
+                barColor: 'white',
+                barBg: 'white',
+                buttonsOpacity: { opacity: 1 },
             },
         },
         overrides,
@@ -74,6 +87,14 @@ describe('Testing TransactionRow component', () => {
 
         it('should require a bundle string as a prop', () => {
             expect(TransactionRow.propTypes.bundle).toEqual(PropTypes.string.isRequired);
+        });
+
+        it('should require a rebroadcast function as a prop', () => {
+            expect(TransactionRow.propTypes.rebroadcast).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a disableWHen boolean as a prop', () => {
+            expect(TransactionRow.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
         });
     });
 

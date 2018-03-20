@@ -4,10 +4,9 @@ import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
+import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from '../util/dimensions';
-
-const StatusBarDefaultBarStyle = 'light-content';
 
 const styles = StyleSheet.create({
     dropdownTitle: {
@@ -46,17 +45,24 @@ class StatefulDropdownAlert extends Component {
         alerts: PropTypes.object.isRequired,
         disposeOffAlert: PropTypes.func.isRequired,
         closeInterval: PropTypes.number,
+        backgroundColor: PropTypes.string.isRequired,
+        onRef: PropTypes.func,
     };
 
     static defaultProps = {
         closeInterval: 5500,
     };
 
+    constructor() {
+        super();
+        this.refFunc = this.refFunc.bind(this);
+    }
+
     componentWillReceiveProps(newProps) {
         const { alerts } = this.props;
-        const didNotHaveAlertPreviously = !alerts.category && !alerts.title && !alerts.message;
-        const hasANewAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
-        const shouldGenerateAlert = hasANewAlert && didNotHaveAlertPreviously;
+        const hasAnAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
+        const alertIsNew = alerts.message !== newProps.alerts.message;
+        const shouldGenerateAlert = hasAnAlert && alertIsNew;
 
         if (shouldGenerateAlert) {
             if (this.dropdown) {
@@ -69,12 +75,19 @@ class StatefulDropdownAlert extends Component {
         this.props.disposeOffAlert();
     }
 
+    refFunc = (ref) => {
+        this.dropdown = ref;
+    };
+
     render() {
         const { closeInterval } = this.props.alerts;
+        const { backgroundColor, onRef } = this.props;
         const closeAfter = closeInterval;
+        const statusBarStyle = tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
+
         return (
             <DropdownAlert
-                ref={ref => (this.dropdown = ref)}
+                ref={onRef || this.refFunc}
                 elevation={120}
                 successColor="#009f3f"
                 errorColor="#A10702"
@@ -82,10 +95,12 @@ class StatefulDropdownAlert extends Component {
                 defaultTextContainer={styles.dropdownTextContainer}
                 messageStyle={styles.dropdownMessage}
                 imageStyle={styles.dropdownImage}
-                inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                inactiveStatusBarStyle={statusBarStyle}
+                inactiveStatusBarBackgroundColor={backgroundColor}
                 onCancel={this.props.disposeOffAlert}
                 onClose={this.props.disposeOffAlert}
                 closeInterval={closeAfter}
+                translucent
             />
         );
     }

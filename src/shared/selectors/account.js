@@ -1,15 +1,10 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
+import findKey from 'lodash/findKey';
 import { createSelector } from 'reselect';
 import { deduplicateTransferBundles } from '../libs/iota/transfers';
 
-export const getAccountFromState = (state) => state.account || {};
-
-export const getAccountInfoFromState = createSelector(getAccountFromState, (state) => {
-    return state.accountInfo || {};
-});
-
-export const currentAccountSelector = (seedName, accountInfo) => get(accountInfo, seedName);
+export const currentAccountSelector = (accountName, accountInfo) => get(accountInfo, accountName);
 
 export const currentAccountSelectorBySeedIndex = (seedIndex, accountInfo) => {
     if (isEmpty(accountInfo) || seedIndex < 0) {
@@ -19,17 +14,12 @@ export const currentAccountSelectorBySeedIndex = (seedIndex, accountInfo) => {
     const allAccountNames = Object.keys(accountInfo);
     // Might be good to validate first
     const currentlySelectedAccountName = allAccountNames[seedIndex];
-
     return accountInfo[currentlySelectedAccountName];
 };
 
-const currentAccountNameSelectorBySeedIndex = (seedIndex, seedNames) => {
-    return seedNames[seedIndex];
+const currentAccountNameSelectorBySeedIndex = (seedIndex, accountNames) => {
+    return accountNames[seedIndex];
 };
-
-const unspentAddressesHashesSelector = (seedName, hashesDict) => get(hashesDict, seedName);
-
-export const getExistingUnspentAddressesHashes = createSelector(unspentAddressesHashesSelector, (hashes) => hashes);
 
 export const getSelectedAccount = createSelector(currentAccountSelector, (account) => account);
 
@@ -37,9 +27,8 @@ export const getSelectedAccountViaSeedIndex = createSelector(currentAccountSelec
 
 export const getSelectedAccountNameViaSeedIndex = createSelector(currentAccountNameSelectorBySeedIndex, (name) => name);
 
-export const getBalanceForSelectedAccountViaSeedIndex = createSelector(
-    currentAccountSelectorBySeedIndex,
-    (account) => get(account, 'balance') || 0,
+export const getBalanceForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) =>
+    get(account, 'balance'),
 );
 
 export const getAddressesForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) =>
@@ -59,3 +48,118 @@ export const getDeduplicatedTransfersForSelectedAccountViaSeedIndex = createSele
     currentAccountSelectorBySeedIndex,
     (account) => deduplicateTransferBundles(get(account, 'transfers')),
 );
+
+/**
+ *   Selects settings prop from state.
+ *
+ *   @method getSettingsFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getSettingsFromState = (state) => state.settings || {};
+
+/**
+ *   Selects remotePoW prop from settings reducer state object.
+ *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
+ *
+ *   @method getRemotePoWFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getRemotePoWFromState = createSelector(getSettingsFromState, (state) => state.remotePoW);
+
+/**
+ *   Selects account prop from state.
+ *
+ *   @method getAccountFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getAccountFromState = (state) => state.account || {};
+
+/**
+ *   Selects accountInfo prop from account reducer state object.
+ *   Uses getAccountFromState selector for slicing account state from the whole state object.
+ *
+ *   @method getAccountInfoFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getAccountInfoFromState = createSelector(getAccountFromState, (state) => state.accountInfo || {});
+
+/**
+ *   Selects unconfirmedBundleTails prop from account reducer state object.
+ *   Uses getAccountFromState selector for slicing account state from the state object.
+ *
+ *   @method getUnconfirmedBundleTailsFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getUnconfirmedBundleTailsFromState = createSelector(
+    getAccountFromState,
+    (state) => state.unconfirmedBundleTails || {},
+);
+
+/**
+ *   Selects txHashesForUnspentAddresses prop from account reducer state object.
+ *   Uses getAccountFromState selector for slicing account state from the state object.
+ *
+ *   @method getTxHashesForUnspentAddressesFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getTxHashesForUnspentAddressesFromState = createSelector(
+    getAccountFromState,
+    (state) => state.txHashesForUnspentAddresses || {},
+);
+
+/**
+ *   Selects pendingTxHashesForSpentAddressesFromState prop from account reducer state object.
+ *   Uses getAccountFromState selector for slicing account state from the state object.
+ *
+ *   @method getPendingTxHashesForSpentAddressesFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getPendingTxHashesForSpentAddressesFromState = createSelector(
+    getAccountFromState,
+    (state) => state.pendingTxHashesForSpentAddresses || {},
+);
+
+/**
+ *   Selects all relevent account information from the state object.
+ *   When returned function (createSelector) is called with the whole state object,
+ *   it slices off state partials for the accountName.
+ *
+ *   @method selectedAccountStateFactory
+ *   @param {string} accountName
+ *   @returns {function}
+ **/
+export const selectedAccountStateFactory = (accountName) => {
+    return createSelector(
+        getAccountInfoFromState,
+        getUnconfirmedBundleTailsFromState,
+        getTxHashesForUnspentAddressesFromState,
+        getPendingTxHashesForSpentAddressesFromState,
+        (accountInfo, unconfirmedBundleTails, txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses) => ({
+            ...(accountInfo[accountName] || {}),
+            accountName,
+            unconfirmedBundleTails,
+            txHashesForUnspentAddresses: txHashesForUnspentAddresses[accountName] || [],
+            pendingTxHashesForSpentAddresses: pendingTxHashesForSpentAddresses[accountName] || [],
+        }),
+    );
+};
+
+/**
+ *   Selects address at index 0 from account info state partial.
+ *
+ *   @method selectFirstAddressFromAccountFactory
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const selectFirstAddressFromAccountFactory = (accountName) => {
+    return createSelector(getAccountInfoFromState, (state) =>
+        findKey(state[accountName].addresses, (addressMeta) => addressMeta.index === 0),
+    );
+};

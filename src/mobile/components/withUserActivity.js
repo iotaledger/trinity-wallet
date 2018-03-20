@@ -12,7 +12,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default () => C => {
+export default () => (C) => {
     class WithUserActivity extends Component {
         componentDidMount() {
             AppState.addEventListener('change', this.handleAppStateChange);
@@ -23,7 +23,7 @@ export default () => C => {
             timer.clearTimeout('background');
         }
 
-        handleAppStateChange = nextAppState => {
+        handleAppStateChange = (nextAppState) => {
             if (nextAppState.match(/inactive|background/)) {
                 this.props.setUserActivity({ minimised: true });
             } else if (nextAppState === 'active') {

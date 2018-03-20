@@ -1,34 +1,32 @@
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    RefreshControl,
-    FlatList,
-    TouchableOpacity,
-    ActivityIndicator,
-} from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { getRelevantTransfer, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota/transfers';
+import { broadcastBundle, promoteTransaction } from 'iota-wallet-shared-modules/actions/transfers';
+import {
+    getRelevantTransfer,
+    isReceivedTransfer,
+    getTransferValue,
+} from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
-import { iota } from 'iota-wallet-shared-modules/libs/iota';
+import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
+import tinycolor from 'tinycolor2';
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
-import keychain, { getSeed } from '../util/keychain';
-import GENERAL from '../theme/general';
+import { getSeedFromKeychain } from '../util/keychain';
 import { isAndroid } from '../util/device';
+import CtaButton from '../components/ctaButton';
 
 const styles = StyleSheet.create({
     container: {
@@ -56,20 +54,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: isAndroid ? null : height / 50,
     },
-    refreshButton: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 17,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-    },
-    refreshText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
-        backgroundColor: 'transparent',
-    },
     activityIndicator: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -82,12 +66,13 @@ class History extends Component {
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
         closeTopBar: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        positiveColor: PropTypes.string.isRequired,
-        extraColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        pendingColor: PropTypes.string.isRequired,
+        primary: PropTypes.object.isRequired,
+        secondary: PropTypes.object.isRequired,
+        extra: PropTypes.object.isRequired,
+        negative: PropTypes.object.isRequired,
+        positive: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
+        bar: PropTypes.object.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
@@ -95,38 +80,54 @@ class History extends Component {
         generateAlert: PropTypes.func.isRequired,
         seedIndex: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
+        broadcastBundle: PropTypes.func.isRequired,
+        promoteTransaction: PropTypes.func.isRequired,
         isSyncing: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
+        isBroadcastingBundle: PropTypes.bool.isRequired,
+        isPromotingTransaction: PropTypes.bool.isRequired,
+        mode: PropTypes.string.isRequired,
+        password: PropTypes.string.isRequired,
     };
 
     constructor() {
         super();
 
-        this.state = { isRefreshing: false, isModalVisible: false };
+        this.state = { isRefreshing: false };
         this.onRefresh = this.onRefresh.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
+        const { seedIndex } = this.props;
         if (this.props.isFetchingLatestAccountInfoOnLogin && !newProps.isFetchingLatestAccountInfoOnLogin) {
+            this.setState({ isRefreshing: false });
+        }
+        if (seedIndex !== newProps.seedIndex) {
             this.setState({ isRefreshing: false });
         }
     }
 
     shouldComponentUpdate(newProps) {
-        const {
-            isFetchingAccountInfo,
-            isSyncing,
-            isSendingTransfer,
-            isGeneratingReceiveAddress,
-            isTransitioning,
-        } = this.props;
-        if (isFetchingAccountInfo !== newProps.isFetchingAccountInfo) return false;
-        if (isSyncing !== newProps.isSyncing) return false;
-        if (isSendingTransfer !== newProps.isSendingTransfer) return false;
-        if (isGeneratingReceiveAddress !== newProps.isGeneratingReceiveAddress) return false;
-        if (isTransitioning !== newProps.isTransitioning) return false;
+        const { isSyncing, isSendingTransfer, isGeneratingReceiveAddress, isTransitioning } = this.props;
+
+        if (isSyncing !== newProps.isSyncing) {
+            return false;
+        }
+
+        if (isSendingTransfer !== newProps.isSendingTransfer) {
+            return false;
+        }
+
+        if (isGeneratingReceiveAddress !== newProps.isGeneratingReceiveAddress) {
+            return false;
+        }
+
+        if (isTransitioning !== newProps.isTransitioning) {
+            return false;
+        }
+
         return true;
     }
 
@@ -135,7 +136,11 @@ class History extends Component {
      */
     onRefresh() {
         const { isRefreshing } = this.state;
-        if (isRefreshing) return;
+
+        if (isRefreshing) {
+            return;
+        }
+
         if (!this.shouldPreventManualRefresh()) {
             this.setState({ isRefreshing: true });
             this.updateAccountData();
@@ -169,11 +174,16 @@ class History extends Component {
     }
 
     updateAccountData() {
-        const { selectedAccountName, seedIndex } = this.props;
-        keychain
-            .get()
-            .then((credentials) => {
-                const seed = getSeed(credentials.data, seedIndex);
+        const { t, selectedAccountName, password } = this.props;
+        getSeedFromKeychain(password, selectedAccountName)
+            .then((seed) => {
+                if (seed === null) {
+                    return this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongTryAgain'),
+                    );
+                }
                 this.props.getAccountInfo(seed, selectedAccountName);
             })
             .catch((err) => console.log(err));
@@ -187,14 +197,20 @@ class History extends Component {
         const {
             transfers,
             addresses,
-            extraColor,
-            negativeColor,
-            positiveColor,
-            pendingColor,
-            secondaryBackgroundColor,
-            backgroundColor,
+            negative,
+            primary,
+            secondary,
+            positive,
+            body,
+            bar,
+            mode,
             t,
+            selectedAccountName,
+            isBroadcastingBundle,
+            isPromotingTransaction,
         } = this.props;
+        const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
+        const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
         const computeConfirmationStatus = (persistence, incoming) => {
             if (!persistence) {
@@ -204,57 +220,64 @@ class History extends Component {
             return incoming ? t('global:received') : t('global:sent');
         };
 
-        const isSecondaryBackgroundColorWhite = secondaryBackgroundColor === 'white';
-
-        const containerBorderColor = isSecondaryBackgroundColorWhite
-            ? 'rgba(255, 255, 255, 0.25)'
-            : 'rgba(0, 0, 0, 0.25)';
-        const containerBackgroundColor = isSecondaryBackgroundColorWhite ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
-
         const withValueAndUnit = (item) => ({
-            address: iota.utils.addChecksum(item.address, 9, true),
+            address: item.address,
             value: round(formatValue(item.value), 1),
             unit: formatUnit(item.value),
         });
 
-        return map(transfers, (transfer) => {
+        const formattedTransfers = map(transfers, (transfer) => {
             const tx = getRelevantTransfer(transfer, addresses);
+            const value = getTransferValue(transfer, addresses);
             const incoming = isReceivedTransfer(transfer, addresses);
+            const disableWhen = isBroadcastingBundle || isPromotingTransaction;
 
             return {
                 t,
+                disableWhen,
+                rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
+                promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName),
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
                 addresses: map(transfer, withValueAndUnit),
                 status: incoming ? t('history:receive') : t('history:send'),
                 confirmation: computeConfirmationStatus(tx.persistence, incoming),
-                value: round(formatValue(tx.value), 1),
-                unit: formatUnit(tx.value),
+                confirmationBool: tx.persistence,
+                value: round(formatValue(value), 1),
+                unit: formatUnit(value),
                 time: tx.timestamp,
                 message: convertFromTrytes(tx.signatureMessageFragment),
                 bundle: tx.bundle,
+                mode,
                 style: {
-                    titleColor: incoming ? extraColor : negativeColor,
+                    titleColor: incoming ? primary.color : secondary.color,
                     containerBorderColor: { borderColor: containerBorderColor },
                     containerBackgroundColor: { backgroundColor: containerBackgroundColor },
-                    confirmationStatusColor: { color: !tx.persistence ? pendingColor : positiveColor },
-                    defaultTextColor: { color: secondaryBackgroundColor },
-                    backgroundColor,
-                    borderColor: { borderColor: secondaryBackgroundColor },
+                    confirmationStatusColor: { color: !tx.persistence ? negative.color : positive.color },
+                    defaultTextColor: { color: body.color },
+                    backgroundColor: body.bg,
+                    borderColor: { borderColor: body.color },
+                    barBg: bar.bg,
+                    primaryColor: primary.color,
+                    primaryBody: primary.body,
+                    secondaryColor: secondary.color,
+                    secondaryBody: secondary.body,
+                    barColor: bar.color,
+                    buttonsOpacity: { opacity: disableWhen ? 0.5 : 1 },
                 },
             };
         });
+
+        return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
     renderTransactions() {
-        const { negativeColor, secondaryBackgroundColor, t } = this.props;
+        const { negative, primary, t } = this.props;
         const { isRefreshing } = this.state;
-        const textColor = { color: secondaryBackgroundColor };
-        const borderColor = { borderColor: secondaryBackgroundColor };
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
 
         return (
-            <FlatList
+            <OptimizedFlatList
                 contentContainerStyle={noTransactions ? styles.flatList : null}
                 data={data}
                 initialNumToRender={8} // TODO: Should be dynamically computed.
@@ -265,27 +288,29 @@ class History extends Component {
                     <RefreshControl
                         refreshing={isRefreshing && !noTransactions}
                         onRefresh={this.onRefresh}
-                        tintColor={negativeColor}
+                        tintColor={negative.color}
                     />
                 }
-                ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
                     <View style={styles.noTransactionsContainer}>
-                        {(!isRefreshing && (
+                        {!isRefreshing ? (
                             <View style={styles.refreshButtonContainer}>
-                                <TouchableOpacity onPress={this.onRefresh}>
-                                    <View style={[styles.refreshButton, borderColor]}>
-                                        <Text style={[styles.refreshText, textColor]}>{t('global:refresh')}</Text>
-                                    </View>
-                                </TouchableOpacity>
+                                <CtaButton
+                                    ctaColor={primary.color}
+                                    secondaryCtaColor={primary.body}
+                                    text={t('global:refresh')}
+                                    onPress={this.onRefresh}
+                                    ctaWidth={width / 2}
+                                    ctaHeight={height / 16}
+                                />
                             </View>
-                        )) || (
+                        ) : (
                             <View style={styles.refreshButtonContainer}>
                                 <ActivityIndicator
                                     animating={isRefreshing}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color={negativeColor}
+                                    color={primary.color}
                                 />
                             </View>
                         )}
@@ -308,28 +333,35 @@ class History extends Component {
     }
 }
 
-const mapStateToProps = ({ tempAccount, account, settings, polling }) => ({
+const mapStateToProps = ({ tempAccount, account, settings, polling, ui }) => ({
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.seedNames),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.accountNames),
     seedIndex: tempAccount.seedIndex,
-    negativeColor: settings.theme.negativeColor,
-    positiveColor: settings.theme.positiveColor,
-    backgroundColor: settings.theme.backgroundColor,
-    extraColor: settings.theme.extraColor,
-    secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
-    pendingColor: settings.theme.pendingColor,
+    mode: settings.mode,
+    negative: settings.theme.negative,
+    primary: settings.theme.primary,
+    secondary: settings.theme.secondary,
+    positive: settings.theme.positive,
+    extra: settings.theme.extra,
+    body: settings.theme.body,
+    bar: settings.theme.bar,
     isFetchingLatestAccountInfoOnLogin: tempAccount.isFetchingLatestAccountInfoOnLogin,
     isFetchingAccountInfo: polling.isFetchingAccountInfo,
     isGeneratingReceiveAddress: tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: tempAccount.isSendingTransfer,
     isSyncing: tempAccount.isSyncing,
     isTransitioning: tempAccount.isTransitioning,
+    isBroadcastingBundle: ui.isBroadcastingBundle,
+    isPromotingTransaction: ui.isPromotingTransaction,
+    password: tempAccount.password,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     getAccountInfo,
+    broadcastBundle,
+    promoteTransaction,
 };
 
 export default translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History));

@@ -4,7 +4,7 @@ export const ActionTypes = {
     CLOSE_TOP_BAR: 'IOTA/APP/HOME/TOP_BAR/CLOSE',
 };
 
-export const changeHomeScreenRoute = payload => ({
+export const changeHomeScreenRoute = (payload) => ({
     type: ActionTypes.CHANGE_HOME_SCREEN_CHILD_ROUTE,
     payload,
 });

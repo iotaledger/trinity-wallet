@@ -4,14 +4,16 @@ import MainSettings from './mainSettings';
 import AdvancedSettings from './advancedSettings';
 import AccountManagement from './accountManagement';
 import ViewSeed from './viewSeed';
-import ViewAddresses from '../containers/viewAddresses';
-import EditAccountName from './editAccountName';
+import ViewAddressesComponent from '../containers/viewAddresses';
+import ProofOfWork from '../containers/pow';
+import EditAccountNameComponent from './editAccountName';
 import DeleteAccount from './deleteAccount';
 import AddNewAccount from './addNewAccount';
 import UseExistingSeed from './useExistingSeed';
 import NodeSelection from './nodeSelection';
 import AddCustomNode from './addCustomNode';
-import CurrencySelection from './currencySelection';
+import CurrencySelectionComponent from './currencySelection';
+import ModeSelection from './modeSelection';
 import LanguageSelection from './languageSelection';
 import ChangePassword from './changePassword';
 import ManualSync from './manualSync';
@@ -25,14 +27,14 @@ const SETTINGS_COMPONENTS = {
     advancedSettings: AdvancedSettings,
     accountManagement: AccountManagement,
     viewSeed: ViewSeed,
-    viewAddresses: ViewAddresses,
-    editAccountName: EditAccountName,
+    viewAddresses: ViewAddressesComponent,
+    editAccountName: EditAccountNameComponent,
     deleteAccount: DeleteAccount,
     addNewAccount: AddNewAccount,
     addExistingSeed: UseExistingSeed,
     nodeSelection: NodeSelection,
     addCustomNode: AddCustomNode,
-    currencySelection: CurrencySelection,
+    currencySelection: CurrencySelectionComponent,
     languageSelection: LanguageSelection,
     changePassword: ChangePassword,
     manualSync: ManualSync,
@@ -40,6 +42,8 @@ const SETTINGS_COMPONENTS = {
     advancedThemeCustomisation: AdvancedThemeCustomisation,
     snapshotTransition: SnapshotTransition,
     securitySettings: SecuritySettings,
+    modeSelection: ModeSelection,
+    pow: ProofOfWork,
 };
 
 const SettingsContent = ({ component, ...props }) => {

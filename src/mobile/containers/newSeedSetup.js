@@ -2,15 +2,13 @@ import split from 'lodash/split';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableHighlight, FlatList, Image, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Navigation } from 'react-native-navigation';
-import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import CtaButton from '../components/ctaButton';
 import { width, height } from '../util/dimensions';
 import { isIPhoneX } from '../util/device';
@@ -18,6 +16,7 @@ import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/dynamicStatusBar';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
         flex: 2.1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 5.55,
@@ -99,10 +98,6 @@ const styles = StyleSheet.create({
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
@@ -122,13 +117,10 @@ class NewSeedSetup extends Component {
         setSeed: PropTypes.func.isRequired,
         randomiseSeed: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        ctaColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        secondaryCtaColor: PropTypes.string.isRequired,
-        ctaBorderColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
+        input: PropTypes.object.isRequired,
         clearSeed: PropTypes.func.isRequired,
         seed: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
@@ -161,19 +153,25 @@ class NewSeedSetup extends Component {
     }
 
     onGeneratePress() {
+        const { body } = this.props;
         this.props.randomiseSeed(generateSecureRandom);
-        this.setState({ randomised: true, infoTextColor: this.props.secondaryBackgroundColor });
+        this.setState({ randomised: true, infoTextColor: body.color });
     }
 
     onNextPress() {
-        const { t } = this.props;
+        const { t, body } = this.props;
 
         if (this.state.randomised) {
             this.props.navigator.push({
                 screen: 'saveYourSeed',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    drawUnderStatusBar: true,
+                    screenBackgroundColor: body.bg,
+                    statusBarColor: body.bg,
+                },
                 animated: false,
-                screenBackgroundColor: this.props.backgroundColor,
             });
         } else {
             this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
@@ -181,9 +179,17 @@ class NewSeedSetup extends Component {
     }
 
     onBackPress() {
+        const { body } = this.props;
         this.props.clearSeed();
         if (!this.props.onboardingComplete) {
             this.props.navigator.pop({
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
+                },
                 animated: false,
             });
         } else {
@@ -215,6 +221,7 @@ class NewSeedSetup extends Component {
     }
 
     goBack() {
+        const { body } = this.props;
         // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
             screen: {
@@ -222,7 +229,7 @@ class NewSeedSetup extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: this.props.backgroundColor,
+                    screenBackgroundColor: body.bg,
                 },
             },
             appStyle: {
@@ -231,20 +238,20 @@ class NewSeedSetup extends Component {
         });
     }
 
-    renderSeedBox(character, index) {
-        const { secondaryBackgroundColor, negativeColor, backgroundColor } = this.props;
+    renderChequerboard(character, index) {
+        const { input, primary } = this.props;
 
         const { randomised } = this.state;
 
         return (
             <TouchableHighlight
                 onPress={() => this.onItemPress(index)}
-                style={[styles.tileContainer, { backgroundColor: secondaryBackgroundColor }]}
-                underlayColor={negativeColor}
+                style={[styles.tileContainer, { backgroundColor: input.bg }]}
+                underlayColor={primary.color}
                 hitSlop={{ top: height / 80, bottom: height / 80, left: height / 80, right: height / 80 }}
             >
                 <View style={styles.tile}>
-                    <Text style={[styles.tileText, { color: backgroundColor, opacity: randomised ? 1 : 0.1 }]}>
+                    <Text style={[styles.tileText, { color: input.color, opacity: randomised ? 1 : 0.1 }]}>
                         {character}
                     </Text>
                 </View>
@@ -253,28 +260,20 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const {
-            seed,
-            t,
-            ctaColor,
-            backgroundColor,
-            secondaryBackgroundColor,
-            secondaryCtaColor,
-            ctaBorderColor,
-        } = this.props;
-        const viewOpacity = this.state.randomised ? 1 : 0.1;
-        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
+        const { seed, t, primary, body } = this.props;
+        const viewOpacity = this.state.randomised ? 1 : 0.2;
+        const opacity = this.state.randomised ? 1 : 0.1;
 
         return (
-            <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaImagePath} style={styles.iotaLogo} />
+                    <Icon name="iota" size={width / 8} color={body.color} />
                     <View style={{ flex: 150 }} />
                     <CtaButton
-                        ctaColor={ctaColor}
-                        ctaBorderColor={ctaBorderColor}
-                        secondaryCtaColor={secondaryCtaColor}
+                        ctaColor={primary.color}
+                        ctaBorderColor={primary.hover}
+                        secondaryCtaColor={primary.body}
                         text={t('pressForNewSeed')}
                         onPress={() => {
                             this.onGeneratePress();
@@ -289,7 +288,7 @@ class NewSeedSetup extends Component {
                         contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
                         data={split(seed, '')}
                         keyExtractor={(item, index) => index}
-                        renderItem={({ item, index }) => this.renderSeedBox(item, index)}
+                        renderItem={({ item, index }) => this.renderChequerboard(item, index)}
                         initialNumToRender={MAX_SEED_LENGTH}
                         scrollEnabled={false}
                     />
@@ -315,9 +314,10 @@ class NewSeedSetup extends Component {
                         rightText={t('global:next')}
                         leftButtonTestID="newSeedSetup-back"
                         rightButtonTestID="newSeedSetup-next"
+                        opacity={opacity}
                     />
                 </View>
-                <StatefulDropdownAlert />
+                <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
     }
@@ -325,13 +325,10 @@ class NewSeedSetup extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
-    backgroundColor: state.settings.theme.backgroundColor,
-    ctaColor: state.settings.theme.ctaColor,
-    negativeColor: state.settings.theme.negativeColor,
+    body: state.settings.theme.body,
+    primary: state.settings.theme.primary,
+    input: state.settings.theme.input,
     onboardingComplete: state.account.onboardingComplete,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
-    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
-    ctaBorderColor: state.settings.theme.ctaBorderColor,
 });
 
 const mapDispatchToProps = {

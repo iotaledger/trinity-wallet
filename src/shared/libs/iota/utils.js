@@ -1,12 +1,14 @@
 import { iota } from './index';
 
 export const convertFromTrytes = (trytes) => {
-    trytes = trytes.replace(/9+$/, '');
-    const message = iota.utils.fromTrytes(trytes);
-    if (trytes === '') {
-        return 'Empty';
+    const trytesWithoutNines = trytes.replace(/9+$/, '');
+    const message = iota.utils.fromTrytes(trytesWithoutNines);
+
+    if (trytesWithoutNines && message) {
+        return message;
     }
-    return message;
+
+    return 'Empty';
 };
 
 export const getChecksum = (seed) => {

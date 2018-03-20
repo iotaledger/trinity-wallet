@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import { connect } from 'react-redux';
 import WithBackPressCloseApp from '../components/withBackPressCloseApp';
-import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 2,
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     nextButton: {
-        borderColor: '#9DFFAF',
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
         width: width / 3,
@@ -43,14 +42,9 @@ const styles = StyleSheet.create({
         marginBottom: height / 20,
     },
     nextText: {
-        color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
     },
     infoTextContainer: {
         paddingHorizontal: width / 8,
@@ -60,7 +54,6 @@ const styles = StyleSheet.create({
         top: height / 6,
     },
     infoText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -80,15 +73,20 @@ class OnboardingComplete extends Component {
     static propTypes = {
         t: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
+        positive: PropTypes.object.isRequired,
     };
 
     onNextPress() {
+        const { body } = this.props;
         this.props.navigator.push({
             screen: 'loading',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: COLORS.backgroundGreen,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
             animated: false,
             overrideBackPress: true,
@@ -96,24 +94,23 @@ class OnboardingComplete extends Component {
     }
 
     render() {
-        const { t } = this.props;
-
+        const { t, body, positive } = this.props;
         return (
-            <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                        <Text style={styles.infoText}>{t('walletReady')}</Text>
+                        <Text style={[styles.infoText, { color: body.color }]}>{t('walletReady')}</Text>
                     </View>
                     <Image source={balloonsImagePath} style={styles.party} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onNextPress()}>
-                        <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>{t('global:next')}</Text>
+                        <View style={[styles.nextButton, { borderColor: positive.color }]}>
+                            <Text style={[styles.nextText, { color: positive.color }]}>{t('global:next')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -122,4 +119,11 @@ class OnboardingComplete extends Component {
     }
 }
 
-export default WithBackPressCloseApp()(translate(['onboardingComplete', 'global'])(OnboardingComplete));
+const mapStateToProps = (state) => ({
+    body: state.settings.theme.body,
+    positive: state.settings.theme.positive,
+});
+
+export default WithBackPressCloseApp()(
+    translate(['onboardingComplete', 'global'])(connect(mapStateToProps, null)(OnboardingComplete)),
+);

@@ -2,21 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import RNExitApp from 'react-native-exit-app';
-import { StyleSheet, View, TouchableWithoutFeedback, Image, Keyboard, BackHandler } from 'react-native';
-import { connect } from 'react-redux';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import OnboardingButtons from './onboardingButtons';
 import CustomTextInput from './customTextInput';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     topContainer: {
         flex: 2.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 3.6,
@@ -61,8 +59,7 @@ const styles = StyleSheet.create({
 
 class EnterPasswordOnLogin extends Component {
     static propTypes = {
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
         password: PropTypes.string.isRequired,
     };
 
@@ -86,31 +83,27 @@ class EnterPasswordOnLogin extends Component {
     };
 
     render() {
-        const { t, secondaryBackgroundColor, negativeColor, password, isFingerprintEnabled } = this.props;
-        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
+        const { t, theme, password } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
+                        <Icon name="iota" size={width / 8} color={theme.body.color} />
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={this.handleChangeText}
                             containerStyle={{ width: width / 1.2 }}
-                            autoCapitalize={'none'}
+                            autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
                             secureTextEntry
                             onSubmitEditing={this.handleLogin}
-                            secondaryBackgroundColor={secondaryBackgroundColor}
-                            negativeColor={negativeColor}
+                            theme={theme}
                             value={password}
-                            fingerprintAuthentication={isFingerprintEnabled}
-                            onFingerprintPress={() => this.props.activateFingerPrintScanner()}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -130,16 +123,9 @@ class EnterPasswordOnLogin extends Component {
 EnterPasswordOnLogin.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    secondaryBackgroundColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.string.isRequired,
+    theme: PropTypes.object.isRequired,
     navigateToNodeSelection: PropTypes.func.isRequired,
     setLoginPasswordField: PropTypes.func.isRequired,
-    isFingerprintEnabled: PropTypes.bool.isRequired,
-    activateFingerPrintScanner: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-    isFingerprintEnabled: state.account.isFingerprintEnabled,
-});
-
-export default translate(['login', 'global'])(connect(mapStateToProps)(EnterPasswordOnLogin));
+export default translate(['login', 'global'])(EnterPasswordOnLogin);

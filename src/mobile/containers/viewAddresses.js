@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { iota } from 'iota-wallet-shared-modules/libs/iota';
-import { Image, View, Text, StyleSheet, TouchableOpacity, FlatList, Clipboard } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-native';
+import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
-import COLORS from '../theme/Colors';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -20,24 +21,13 @@ const styles = StyleSheet.create({
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
-    },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: height / 50,
-        justifyContent: 'flex-end',
-    },
-    icon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     infoText: {
         fontFamily: 'Lato-Light',
@@ -45,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     spentText: {
-        color: COLORS.redLight,
+        color: '#B21C17',
         textDecorationLine: 'line-through',
         marginRight: width / 100,
         fontFamily: 'Inconsolata-Bold',
@@ -101,8 +91,7 @@ export class ViewAddresses extends Component {
         addressData: PropTypes.object.isRequired,
         generateAlert: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
+        body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -127,7 +116,7 @@ export class ViewAddresses extends Component {
     }
 
     renderAddress(address) {
-        const { secondaryBackgroundColor } = this.props;
+        const { body } = this.props;
 
         return (
             <View style={{ flexDirection: 'row', paddingHorizontal: width / 15, height: height / 25 }}>
@@ -141,7 +130,7 @@ export class ViewAddresses extends Component {
                             style={[
                                 styles.addressText,
                                 { textDecorationLine: address.spent ? 'line-through' : 'none' },
-                                { color: address.spent ? COLORS.redLight : secondaryBackgroundColor },
+                                { color: address.spent ? '#B21C17' : body.color },
                             ]}
                         >
                             {address.address}
@@ -149,7 +138,7 @@ export class ViewAddresses extends Component {
                     </View>
                 </TouchableOpacity>
                 <View style={{ alignItems: 'flex-end', flex: 2, justifyContent: 'center' }}>
-                    <Text style={[styles.balanceText, { color: secondaryBackgroundColor }]}>
+                    <Text style={[styles.balanceText, { color: body.color }]}>
                         {address.balance} {address.unit}
                     </Text>
                 </View>
@@ -158,12 +147,12 @@ export class ViewAddresses extends Component {
     }
 
     renderAddresses() {
-        const { secondaryBackgroundColor, t } = this.props;
+        const { body, t } = this.props;
         const addresses = this.prepAddresses();
         const noAddresses = addresses.length === 0;
 
         return (
-            <FlatList
+            <OptimizedFlatList
                 contentContainerStyle={noAddresses ? styles.flatList : null}
                 data={addresses}
                 initialNumToRender={10} // TODO: Should be dynamically computed.
@@ -172,9 +161,7 @@ export class ViewAddresses extends Component {
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
                     <View style={styles.noAddressesContainer}>
-                        <Text style={[styles.noAddresses, { color: secondaryBackgroundColor }]}>
-                            {t('noAddresses')}
-                        </Text>
+                        <Text style={[styles.noAddresses, { color: body.color }]}>{t('noAddresses')}</Text>
                     </View>
                 }
             />
@@ -182,10 +169,10 @@ export class ViewAddresses extends Component {
     }
 
     render() {
-        const { secondaryBackgroundColor, arrowLeftImagePath, t } = this.props;
+        const { body, t } = this.props;
         const listOfAddresses = this.renderAddresses();
         const addresses = this.prepAddresses();
-        const textColor = { color: secondaryBackgroundColor };
+        const textColor = { color: body.color };
 
         return (
             <View style={styles.container}>
@@ -200,7 +187,7 @@ export class ViewAddresses extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.itemLeft}>
-                            <Image source={arrowLeftImagePath} style={styles.icon} />
+                            <Icon name="chevronLeft" size={width / 28} color={body.color} />
                             <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
@@ -221,7 +208,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    body: state.settings.theme.body,
 });
 
 export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewAddresses));

@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import whiteNodeImagePath from 'iota-wallet-shared-modules/images/node-white.png';
-import blackNodeImagePath from 'iota-wallet-shared-modules/images/node-black.png';
-import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-icon-white.png';
-import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-icon-black.png';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -35,11 +32,6 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
-    },
     backIcon: {
         width: width / 28,
         height: width / 28,
@@ -49,6 +41,13 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 25,
+    },
+    backText: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     separator: {
         borderBottomColor: 'white',
@@ -73,19 +72,15 @@ const styles = StyleSheet.create({
 class SecuritySettings extends Component {
     static propTypes = {
         setSetting: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
         on2FASetupPress: PropTypes.func.isRequired,
-        onFingerprintSetupPress: PropTypes.func.isRequired,
+        //onFingerprintSetupPress: PropTypes.func.isRequired,
     };
 
     render() {
-        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath } = this.props;
-        const nodeImagePath = secondaryBackgroundColor === 'white' ? whiteNodeImagePath : blackNodeImagePath;
-        const fingerprintImagePath =
-            secondaryBackgroundColor === 'white' ? whiteFingerprintImagePath : blackFingerprintImagePath;
+        const { t, textColor, bodyColor } = this.props;
 
         return (
             <View style={styles.container}>
@@ -96,21 +91,23 @@ class SecuritySettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={nodeImagePath} style={styles.icon} />
+                                <Icon name="twoFA" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('twoFA')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.onFingerprintSetupPress()}
+                        <TouchableWithoutFeedback
+                            onPress={() => {
+                                /*this.props.onFingerprintSetupPress()*/
+                            }}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
-                            <View style={styles.item}>
-                                <Image source={fingerprintImagePath} style={styles.icon} />
+                            <View style={[styles.item, { opacity: 0.2 }]}>
+                                <Icon name="biometric" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('fingerprint')}</Text>
                             </View>
-                        </TouchableOpacity>
+                        </TouchableWithoutFeedback>
                     </View>
                     <View style={{ flex: 7 }} />
                 </View>
@@ -121,8 +118,8 @@ class SecuritySettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={arrowLeftImagePath} style={styles.backIcon} />
-                                <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
+                                <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

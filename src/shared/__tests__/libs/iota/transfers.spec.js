@@ -3,33 +3,65 @@ import { expect } from 'chai';
 import {
     prepareTransferArray,
     extractTailTransferFromBundle,
+    categorizeTransactionsByPersistence,
     getPendingTxTailsHashes,
     markTransfersConfirmed,
     hasNewTransfers,
     findBundlesFromTransfers,
+    getHashesDiff,
 } from '../../../libs/iota/transfers';
 
 describe('libs: iota/transfers', () => {
     describe('#prepareTransferArray', () => {
-        let args;
-
-        beforeEach(() => {
-            args = ['foo', 0, 'message'];
-        });
-
         it('should return an array', () => {
+            const args = ['foo', 1, 'message', 'U'.repeat(81)];
             expect(Array.isArray(prepareTransferArray(...args))).to.equal(true);
         });
 
-        it('should only have address, value, message and tag props in the first element of the array', () => {
+        it('should only have address, value, message and tag props in any element of the array', () => {
+            const args = ['foo', 0, 'message', 'U'.repeat(81)];
             const result = prepareTransferArray(...args);
-            ['address', 'value', 'message', 'tag'].forEach((item) => expect(item in result[0]).to.equal(true));
+
+            // Zero value transfers return two transfer objects
+            ['address', 'value', 'message', 'tag'].forEach((item) => {
+                expect(item in result[0]).to.equal(true);
+                expect(item in result[1]).to.equal(true);
+            });
+
             expect(Object.keys(result[0]).length).to.equal(4);
+            expect(Object.keys(result[1]).length).to.equal(4);
         });
 
-        it('should not have any other props other than address, value, message and tag props in the first element of the array', () => {
+        it('should not have any other props other than address, value, message and tag props in any element of the array', () => {
+            const args = ['foo', 0, 'message', 'U'.repeat(81)];
             const result = prepareTransferArray(...args);
-            ['foo', 'baz'].forEach((item) => expect(item in result[0]).to.equal(false));
+
+            ['foo', 'baz'].forEach((item) => {
+                expect(item in result[0]).to.equal(false);
+                expect(item in result[1]).to.equal(false); // Zero value transfers return two transfer objects
+            });
+        });
+
+        it('should return two transfer objects if value passed as second argument is 0', () => {
+            const args = ['foo', 0, 'message', 'U'.repeat(81)];
+            const result = prepareTransferArray(...args);
+
+            expect(result.length).to.equal(2);
+        });
+
+        it('should return a single transfer object if value passed as second argument is not 0', () => {
+            const args = ['foo', 1, 'message', 'U'.repeat(81)];
+            const result = prepareTransferArray(...args);
+
+            expect(result.length).to.equal(1);
+        });
+
+        it('should assign "firstOwnAddress" passed as fourth argument to second transfer object if value passed as second argument is 0', () => {
+            const firstOwnAddress = 'U'.repeat(81);
+            const args = ['foo', 0, 'message', firstOwnAddress];
+            const result = prepareTransferArray(...args);
+
+            expect(result[1].address).to.equal(firstOwnAddress);
         });
     });
 
@@ -59,6 +91,45 @@ describe('libs: iota/transfers', () => {
                 const bundle = Array.from(Array(5), (x, idx) => ({ currentIndex: idx + 1 }));
 
                 expect(extractTailTransferFromBundle(bundle)).to.eql({});
+            });
+        });
+    });
+
+    describe('#categorizeTransactionsByPersistence', () => {
+        it('should always return an object with props "unconfirmed" and "confirmed"', () => {
+            const args = [
+                [undefined, undefined],
+                [undefined, null],
+                [null, null],
+                [[], []],
+                [{}, {}],
+                ['', undefined],
+                [0, 0],
+                ['foo', undefined],
+            ];
+
+            args.forEach((arg) => {
+                expect(categorizeTransactionsByPersistence(...arg)).to.have.keys(['confirmed', 'unconfirmed']);
+            });
+        });
+
+        it('should map all tail transactions to "confirmed" prop object that have corresponding states true', () => {
+            const tailTransactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
+
+            const states = [true, false];
+
+            expect(categorizeTransactionsByPersistence(tailTransactions, states).confirmed).to.eql({
+                foo: { bundle: 'foo' },
+            });
+        });
+
+        it('should map all tail transactions to "unconfirmed" prop object that have corresponding states false', () => {
+            const tailTransactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
+
+            const states = [true, false];
+
+            expect(categorizeTransactionsByPersistence(tailTransactions, states).unconfirmed).to.eql({
+                baz: { bundle: 'baz' },
             });
         });
     });
@@ -167,6 +238,96 @@ describe('libs: iota/transfers', () => {
             const expected = [[{ bundle: 'foo', currentIndex: 0 }, { bundle: 'foo', currentIndex: 1 }]];
 
             expect(findBundlesFromTransfers('foo', transfers)).to.eql(expected);
+        });
+    });
+
+    describe('#getHashesDiff', () => {
+        describe('when second argument size is not greater than first argument size', () => {
+            let firstArgument;
+            let secondArgument;
+
+            beforeEach(() => {
+                firstArgument = ['foo'];
+                secondArgument = ['foo'];
+            });
+
+            describe('when fourth argument size is not greater than third argument size', () => {
+                it('should return an empty array', () => {
+                    expect(getHashesDiff(firstArgument, secondArgument, [], [])).to.eql([]);
+                });
+            });
+
+            describe('when fourth argument size is greater than third argument size', () => {
+                it('should return an array with difference of third and fourth arguments', () => {
+                    expect(getHashesDiff(firstArgument, secondArgument, [], ['baz'])).to.eql(['baz']);
+                });
+            });
+        });
+
+        describe('when fourth argument size is not greater than third argument size', () => {
+            let thirdArgument;
+            let fourthArgument;
+
+            beforeEach(() => {
+                thirdArgument = ['foo'];
+                fourthArgument = ['foo'];
+            });
+
+            describe('when second argument size is not greater than first argument size', () => {
+                it('should return an empty array', () => {
+                    expect(getHashesDiff([], [], thirdArgument, fourthArgument)).to.eql([]);
+                });
+            });
+
+            describe('when second argument size is not greater than first argument size', () => {
+                it('should return an array with difference of first and second arguments', () => {
+                    expect(getHashesDiff([], ['baz'], thirdArgument, fourthArgument)).to.eql(['baz']);
+                });
+            });
+        });
+
+        describe('when second argument size is greater than first argument size', () => {
+            let firstArgument;
+            let secondArgument;
+
+            beforeEach(() => {
+                firstArgument = ['foo'];
+                secondArgument = ['foo', 'foo', 'baz'];
+            });
+
+            describe('when fourth argument size is not greater than third argument size', () => {
+                it('should return a unique array of difference between second and first argument', () => {
+                    expect(getHashesDiff(firstArgument, secondArgument, [], [])).to.eql(['baz']);
+                });
+            });
+
+            describe('when fourth argument size is greater than third argument size', () => {
+                it('should return a unique array of difference between second and first argument and difference between fourth and third argument', () => {
+                    expect(getHashesDiff(firstArgument, secondArgument, [], ['bar', 'bar'])).to.eql(['baz', 'bar']);
+                });
+            });
+        });
+
+        describe('when fourth argument size is greater than third argument size', () => {
+            let thirdArgument;
+            let fourthArgument;
+
+            beforeEach(() => {
+                thirdArgument = ['foo'];
+                fourthArgument = ['foo', 'foo', 'baz'];
+            });
+
+            describe('when second argument size is not greater than first argument size', () => {
+                it('should return a unique array of difference between fourth and third argument', () => {
+                    expect(getHashesDiff([], [], thirdArgument, fourthArgument)).to.eql(['baz']);
+                });
+            });
+
+            describe('when second argument size is greater than first argument size', () => {
+                it('should return a unique array of difference between second and first argument and difference between fourth and third argument', () => {
+                    expect(getHashesDiff([], ['bar'], thirdArgument, fourthArgument)).to.eql(['bar', 'baz']);
+                });
+            });
         });
     });
 });

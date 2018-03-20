@@ -8,6 +8,12 @@
     align-items: center;
     justify-content: center;
     background: var(--body-bg);
+    -webkit-app-region: drag;
+
+    &.inline {
+        position: relative;
+    }
+
     > div {
         text-align: center;
     }

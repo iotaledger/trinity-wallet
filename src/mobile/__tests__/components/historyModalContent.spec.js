@@ -6,12 +6,16 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import HistoryModalContent from '../../components/historyModalContent';
 
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
         {
             onPress: noop,
-            generateAlert: noop,
             t: (arg) => {
                 const translations = {
                     'send:message': 'Message',
@@ -25,6 +29,9 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
+            rebroadcast: noop,
+            promote: noop,
+            disableWhen: false,
             status: 'Receive',
             confirmation: 'Received',
             value: 200,
@@ -33,14 +40,19 @@ const getProps = (overrides) =>
             message: 'Pink floyd',
             bundle: 'BUNDLE',
             addresses: [{ address: 'U'.repeat(81), value: 1, unit: 'i' }],
+            confirmationBool: false,
+            mode: 'Standard',
             style: {
                 titleColor: 'white',
                 containerBorderColor: { borderColor: 'white' },
                 containerBackgroundColor: { backgroundColor: 'white' },
                 confirmationStatusColor: { color: 'red' },
                 defaultTextColor: { color: 'green' },
-                backgroundColor: 'yellow',
+                backgroundColor: 'white',
                 borderColor: { borderColor: 'orange' },
+                barBg: 'black',
+                barColor: 'white',
+                buttonsOpacity: { opacity: 1 },
             },
         },
         overrides,
@@ -50,10 +62,6 @@ describe('Testing HistoryModalContent component', () => {
     describe('propTypes', () => {
         it('should require an onPress function as a prop', () => {
             expect(HistoryModalContent.propTypes.onPress).toEqual(PropTypes.func.isRequired);
-        });
-
-        it('should require a generateAlert function as a prop', () => {
-            expect(HistoryModalContent.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a t function as a prop', () => {
@@ -87,6 +95,14 @@ describe('Testing HistoryModalContent component', () => {
         it('should require a bundle string as a prop', () => {
             expect(HistoryModalContent.propTypes.bundle).toEqual(PropTypes.string.isRequired);
         });
+
+        it('should require a rebroadcast function as a prop', () => {
+            expect(HistoryModalContent.propTypes.rebroadcast).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a disableWhen boolean as a prop', () => {
+            expect(HistoryModalContent.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
+        });
     });
 
     describe('when renders', () => {
@@ -101,14 +117,14 @@ describe('Testing HistoryModalContent component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.find('View').length).toEqual(6);
+            expect(wrapper.find('View').length).toEqual(7);
         });
 
         it('should return eight Text components', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.find('Text').length).toEqual(8);
+            expect(wrapper.find('Text').length).toEqual(7);
         });
 
         it('should return a ScrollView component', () => {
@@ -228,7 +244,21 @@ describe('Testing HistoryModalContent component', () => {
             expect(instance.copy).toHaveBeenCalledWith('BUNDLE', 'bundle');
         });
 
-        it('should return a translated "Addresses" message as first child to sixth Text component', () => {
+        it('should return a ":" message as second child to sixth Text component', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<HistoryModalContent {...props} />);
+            expect(
+                wrapper
+                    .find('Text')
+                    .at(5)
+                    .children()
+                    .at(1)
+                    .text(),
+            ).toEqual(':');
+        });
+
+        it('should return a translated "Message" message as first child to sixth Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
@@ -239,7 +269,7 @@ describe('Testing HistoryModalContent component', () => {
                     .children()
                     .at(0)
                     .text(),
-            ).toEqual('Addresses');
+            ).toEqual('Message');
         });
 
         it('should return a ":" message as second child to sixth Text component', () => {
@@ -256,7 +286,7 @@ describe('Testing HistoryModalContent component', () => {
             ).toEqual(':');
         });
 
-        it('should return a translated "Message" message as first child to seventh Text component', () => {
+        it('should return message prop as a child to seventh Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
@@ -264,34 +294,6 @@ describe('Testing HistoryModalContent component', () => {
                 wrapper
                     .find('Text')
                     .at(6)
-                    .children()
-                    .at(0)
-                    .text(),
-            ).toEqual('Message');
-        });
-
-        it('should return a ":" message as second child to seventh Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(6)
-                    .children()
-                    .at(1)
-                    .text(),
-            ).toEqual(':');
-        });
-
-        it('should return message prop as a child to eighth Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(7)
                     .children()
                     .text(),
             ).toEqual('Pink floyd');
@@ -315,47 +317,6 @@ describe('Testing HistoryModalContent component', () => {
                     instance.copy('arg', 'type');
 
                     expect(Clipboard.setString).toHaveBeenCalledWith('arg');
-                });
-
-                it('should not call prop method generateAlert if second argument is not "bundle" or "address"', () => {
-                    const props = getProps({
-                        generateAlert: jest.fn(),
-                    });
-
-                    const instance = shallow(<HistoryModalContent {...props} />).instance();
-                    instance.copy('arg', 'not-bundle-or-address');
-
-                    expect(props.generateAlert).toHaveBeenCalledTimes(0);
-                });
-
-                it('should call prop method generateAlert if second argument is "bundle"', () => {
-                    const props = getProps({
-                        generateAlert: jest.fn(),
-                    });
-
-                    const instance = shallow(<HistoryModalContent {...props} />).instance();
-                    instance.copy('arg', 'bundle');
-
-                    expect(props.generateAlert).toHaveBeenCalledWith(
-                        'success',
-                        'Bundle hash copied',
-                        'Your bundle has been copied to clipboard',
-                    );
-                });
-
-                it('should call prop method generateAlert if second argument is "address"', () => {
-                    const props = getProps({
-                        generateAlert: jest.fn(),
-                    });
-
-                    const instance = shallow(<HistoryModalContent {...props} />).instance();
-                    instance.copy('arg', 'address');
-
-                    expect(props.generateAlert).toHaveBeenCalledWith(
-                        'success',
-                        'Address copied',
-                        'Your address has been copied to clipboard',
-                    );
                 });
             });
         });

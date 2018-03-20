@@ -3,37 +3,38 @@
         "send": "SEND",
         "cancel": "ANNULLER",
         "continue?": "Er du sikker på, du vil fortsætte?",
-        "noTransactions": "INGEN NYLIG HISTORIK",
-        "refresh": "GENINDLÆS",
+        "noTransactions": "NO RECENT HISTORY",
+        "refresh": "REFRESH",
         "qr": "QR",
-        "balanceError": "Ikke nok balance",
+        "balanceError": "Not enough balance",
         "balanceErrorMessage": "Du har ikke nok IOTA til at gennemføre denne overførsel.",
-        "transferError": "Overførselsfejl",
-        "transferErrorMessage": "Noget gik galt under din overførsel. Prøv venligst igen.",
-        "transferSent": "Overførsel sendt",
-        "transferSentMessage": "Din overførsel er blevet sendt til netværket.",
-        "messageSent": "Beskeden er sendt",
-        "messageSentMessage": "Din meddelelse er blevet sendt til netværket.",
+        "transferError": "Transfer error",
+        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
+        "transferSent": "Transfer sent",
+        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "messageSent": "Message sent",
+        "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Nøglegenbrug",
-        "keyReuseError": "Du kan ikke sende til en adresse, der allerede er overført fra.",
+        "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Ugyldigt svar",
         "invalidResponseExplanation": "Noden returnerede et ugyldigt svar.",
         "invalidResponsePollingExplanation": "Noden returnerede et ugyldigt svar under polling.",
-        "invalidResponseFetchingAccount": "Noden returnerede et ugyldigt svar ved hentning af dine kontooplysninger. Prøv at ændre noden.",
-        "invalidResponseSendingTransfer": "Noden returnerede et ugyldigt svar under afsendelse af overførslen.",
+        "invalidResponseFetchingAccount":
+            "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "TILBAGE",
         "backLowercase": "Tilbage",
         "done": "FÆRDIG",
-        "doneLowercase": "Udført",
+        "doneLowercase": "Done",
         "next": "NÆSTE",
-        "apply": "Anvend",
-        "save": "Gem",
+        "apply": "Apply",
+        "save": "Save",
         "close": "LUK",
-        "continue": "Fortsæt",
-        "manualCopy": "Skriv dit seed ned",
-        "paperWallet": "Udskrive papirkopi",
-        "copyToClipboard": "Tilføj til passwordmanager",
+        "continue": "Continue",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "notAvailable": "Denne funktion er ikke tilgængelig",
         "notAvailableExplanation": "Den bliver tilføjet på et senere tidspunkt.",
         "enterSeed": "Indtast venligst dit seed.",
@@ -47,64 +48,62 @@
         "yes": "JA",
         "no": "NEJ",
         "password": "Adgangskode",
-        "passwordOrFingerprint": "Adgangskode eller fingeraftryk",
+        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Ukendt adgangskode",
         "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
         "syncInProgress": "Synkronisering i gang",
         "syncInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
         "somethingWentWrong": "Der gik noget galt",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongExplanation": "Genstart venligst appen.",
         "node": "Node",
         "cannotPerformAction": "Kan ikke udføre handling",
         "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen.",
-        "attachToTangleUnavailable": "Fastgørelse til netværket er utilgængelig",
-        "attachToTangleUnavailableExplanation": "Fastgørelse til netværket er ikke tilgængeligt på din valgte node.",
-        "wallet": "Tegnebog",
-        "sent": "Sendt",
-        "received": "Modtaget",
-        "sending": "Sender",
-        "receiving": "Modtager",
-        "confirmed": "Bekræftet",
-        "pending": "Afventende",
-        "bundleHash": "Grupper Hash",
-        "addresses": "Adresser",
-        "reattach": "GENSEND",
-        "promote": "PROMOVER",
-        "rebroadcast": "Gensend overførsel til netværk",
-        "pressBackAgain": "Tryk tilbage igen for at lukke app'en",
-        "autoreattaching": "Gensend automatisk til netværket",
-        "autoreattachingExplanation": "Gensend overførsel med hash {{hash}}",
-        "autopromoting": "Valider automatisk overførsel",
-        "autopromotingExplanation": "Valider overførsel med hash {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
-        "cannotSendToOwn": "Send til egen adresse",
-        "cannotSendToOwnExplanation": "Du kan ikke lave en værdi-overførsel til en af dine egne adresser.",
-        "pleaseWait": "Vent venligst",
-        "pleaseWaitExplanation": "Trinity udfører en anden funktion. Vent venligst og prøv igen.",
-        "pleaseWaitTransferExplanation": "Din disponible balance bruges i øjeblikket i andre overførsler. Vent venligst på at disse bekræftes før du prøver igen.",
-        "snapshotTransitionInProgress": "Snapshot synkronisering i gang",
-        "snapshotTransitionInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført."
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "wallet": "Wallet",
+        "sent": "Sent",
+        "received": "Received",
+        "sending": "Sending",
+        "receiving": "Receiving",
+        "confirmed": "Confirmed",
+        "pending": "Pending",
+        "bundleHash": "Bundle Hash",
+        "addresses": "Addresses",
+        "reattach": "REATTACH",
+        "promote": "PROMOTE",
+        "rebroadcast": "REBROADCAST",
+        "pressBackAgain": "Press back again to close the app",
+        "autoreattaching": "Autoreattaching to Tangle",
+        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autopromoting": "Autopromoting transfer",
+        "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
+        "cannotSendToOwn": "Sending to own address",
+        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "pleaseWait": "Please wait",
+        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitTransferExplanation":
+            "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seedet indeholder ugyldige tegn",
-        "seedInvalidCharsExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
+        "seedInvalidCharsExplanation":
+            "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
         "seedTooShort": "Seedet er for kort",
-        "seedTooShortExplanation": "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
+        "seedTooShortExplanation":
+            "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
         "nameInUse": "Kontonavnet er allerede i brug",
         "nameInUseExplanation": "Brug venligst et unikt kontonavn til dit seed.",
         "enterAccountName": "Indtast et kontonavn.",
         "accountName": "Kontonavn",
         "noNickname": "Intet kontonavn angivet",
         "noNicknameExplanation": "Indtast venligst et kontonavn til dit seed.",
-        "seedInUse": "Dette seed er allerede i brug",
-        "seedInUseExplanation": "Dette seed er allerede forbundet til din tegnebog. Brug venligst en anden."
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Ups! Der gik noget galt",
-        "oopsExplanation": "Det ser ud til, at der gik noget galt under opdateringen af din adgangskode. Prøv venligst igen.",
+        "oopsExplanation":
+            "Det ser ud til, at der gik noget galt under opdateringen af din adgangskode. Prøv venligst igen.",
         "passwordUpdated": "Adgangskode opdateret",
         "passwordUpdatedExplanation": "Din adgangskode er blevet opdateret.",
         "incorrectPassword": "Forkert adgangskode",
@@ -114,7 +113,8 @@
         "passwordTooShort": "Adgangskoden er for kort",
         "passwordTooShortExplanation": "Din adgangskode skal være mindst 12 tegn lang. Prøv venligst igen.",
         "oldPassword": "Kan ikke bruge en gammel adgangskode",
-        "oldPasswordExplanation": "Du kan ikke bruge den gamle adgangskode som din nye adgangskode. Prøv venligst igen med en ny adgangskode.",
+        "oldPasswordExplanation":
+            "Du kan ikke bruge den gamle adgangskode som din nye adgangskode. Prøv venligst igen med en ny adgangskode.",
         "ensureStrongPassword": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
         "currentPassword": "Nuværende adgangskode",
         "newPassword": "Ny adgangskode",
@@ -123,19 +123,22 @@
     "copyToClipboard": {
         "seedCleared": "Seed ryddet",
         "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
-        "seedCopied": "Seed kopieret til din udklipsholder",
-        "seedCopiedExplanation": "Dit seed vil blive slettet, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Klik på knappen nedenfor for at kopiere dit seed til en adgangskodemanager.",
         "doNotStore": "Opbevar ikke dit seed i klartekst.",
-        "copyToClipboard": "Kopier seed",
-        "shareSeed": "Del dine dit seed til en sikker password manager"
+        "copyToClipboard": "Copy seed",
+        "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
         "invalidCharacters": "Seedet indeholder ugyldige tegn",
-        "invalidCharactersExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
+        "invalidCharactersExplanation":
+            "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
         "seedTooShort": "Seedet er for kort",
-        "seedTooShortExplanation": "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
-        "seedExplanation": "Seeds bør indeholde {{maxLength}} tegn og skal indeholde de store bogstaver A-Z eller tallet 9. Du kan ikke bruge seeds, som indeholder flere end {{maxLength}} tegn.",
+        "seedTooShortExplanation":
+            "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
+        "seedExplanation":
+            "Seeds bør indeholde {{maxLength}} tegn og skal indeholde de store bogstaver A-Z eller tallet 9. Du kan ikke bruge seeds, som indeholder flere end {{maxLength}} tegn.",
         "neverShare": "DEL ALDRIG DIT SEED MED NOGEN"
     },
     "home": {
@@ -154,24 +157,24 @@
         "enterPassword": "Indtast venligst din adgangskode.",
         "useSeed": "BRUG SEED",
         "login": "LOG IND",
-        "selectDifferentNode": "Ønsker du at vælge en anden node?",
-        "setNode": "SÆT NODE",
-        "cannotConnect": "Kan ikke forbinde til IOTA node."
+        "selectDifferentNode": "Do you want to select a different node?",
+        "setNode": "SET NODE",
+        "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Indlæser seed for første gang.",
         "thisMayTake": "Dette kan tage noget tid.",
-        "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "Dette kan reducere hastigheden på din enhed."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seedet er ikke blevet genereret",
-        "seedNotGeneratedExplanation": "Vær venlig at generere et nyt seed.",
+        "seedNotGeneratedExplanation": "Klik venligst på knappen \"Generer nyt seed\".",
         "pressForNewSeed": "TRYK FOR AT FÅ ET NYT SEED",
         "individualLetters": "Tryk på individuelle bogstaver for at vælge nye tilfældigt."
     },
     "onboardingComplete": {
-        "walletReady": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
+        "walletReady":
+            "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
     },
     "paperWallet": {
         "clickToPrint": "Klik på knappen nedenfor for at udskrive en papirkopi af dit seed.",
@@ -183,53 +186,57 @@
     "receive": {
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
-        "generateNewAddress": "NY ADRESSE",
+        "generateNewAddress": "NEW ADDRESS",
         "message": "Valgfri besked",
         "removeMessage": "FJERN BESKED",
-        "noAddresses": "INGEN ADRESSER",
-        "spent": "Forbrugt"
+        "noAddresses": "NO ADDRESSES",
+        "spent": "Spent"
     },
     "saveYourSeed": {
         "seedCleared": "Seed ryddet",
         "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
-        "mustSaveYourSeed": "<0><0>Du skal gemme dit seed med </0><1>mindst én</1><2> af valgmulighederne herunder.</2></0>"
+        "mustSaveYourSeed":
+            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Forkert seed",
         "incorrectSeedExplanation": "Seedet, du indtastede, er forkert. Prøv venligst igen.",
         "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit seed.",
-        "ifYouHaveNotSaved": "Gå venligst tilbage og gem dit seed, hvis du ikke allerede har gjort dette."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
         "invalidAddressExplanation1": "Adressen bør indeholde {{maxLength}} tegn og skal have en kontrolsum.",
         "invalidAddressExplanation2": "Adressen indeholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressen indeholder en ugyldig kontrolsum.",
-        "invalidAddressExplanationGeneric": "Gyldige adresser skal være på 90 tegn og må kun indeholde A-Z eller 9.",
-        "notEnoughFunds": "Utilstrækkelig saldo",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til at gennemføre denne overførsel.",
         "keyReuse": "Nøglegenbrug",
-        "keyReuseExplanation": "Adressen, du forsøger at sende til, er allerede blevet brugt. Prøv venligst en anden adresse.",
+        "keyReuseExplanation":
+            "Adressen, du forsøger at sende til, er allerede blevet brugt. Prøv venligst en anden adresse.",
         "recipientAddress": "Modtageradresse",
         "amount": "Beløb",
         "max": "MAKS.",
         "message": "Besked",
-        "invalidMessage": "Ugyldig besked",
-        "invalidMessageExplanation": "Dit besked indeholder ugyldige tegn.",
+        "invalidMessage": "Invalid message",
+        "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "SEND",
         "invalidAmount": "Forkert beløb indtastet",
-        "invalidAmountExplanation": "Angiv et gyldigt posteringsbeløb. Det kan være nyttigt at se IOTAs enhedsforklaring i bunden af denne side.",
+        "invalidAmountExplanation":
+            "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAKSIMALT beløb valgt",
-        "iotaUnits": "IOTA enheder forklaret",
+        "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX"
     },
     "setPassword": {
         "passwordTooShort": "Adgangskoden er for kort",
-        "passwordTooShortExplanation": "Din adgangskode skal indeholde mindst {{minLength}} tegn. Den indeholder i øjeblikket {{currentLength}} tegn. Prøv venligst igen.",
+        "passwordTooShortExplanation":
+            "Din adgangskode skal indeholde mindst {{minLength}} tegn. Den indeholder i øjeblikket {{currentLength}} tegn. Prøv venligst igen.",
         "passwordMismatch": "Adgangskoderne er ikke ens",
         "passwordMismatchExplanation": "Adgangskoderne, du har indtastet, er ikke ens. Prøv venligst igen.",
         "nowWeNeedTo": "Nu skal vi opsætte en adgangskode.",
-        "anEncryptedCopy": "En krypteret kopi af dit seed bliver opbevaret på din enhed. Denne adgangskode skal bruges til at tilgå din tegnebog fremover.",
+        "anEncryptedCopy":
+            "En krypteret kopi af dit seed bliver opbevaret på din enhed. Denne adgangskode skal bruges til at tilgå din tegnebog fremover.",
         "ensure": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
         "retypePassword": "Gentag adgangskode"
     },
@@ -238,10 +245,12 @@
         "youCanAdd": "Du kan tilføje flere seeds i menuen \"Indstillinger\"."
     },
     "modeSelection": {
-        "expert": "Ekspert",
+        "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation": "Ekspert-tilstand vil give adgang til yderligere funktioner såsom manuel validering af overførsel og gensendelse af overførsel.",
-        "modesExplanation": "Aktiver kun ekspert-tilstand, hvis du er en erfaren Tangle bruger. Ellers vil det muligvis virke uigennemskueligt."
+        "expertModeExplanation":
+            "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation":
+            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Overførsel sendes",
@@ -252,7 +261,7 @@
         "theme": "Tema",
         "currency": "Valuta",
         "language": "Sprog",
-        "accountManagement": "Konto administration",
+        "accountManagement": "Account management",
         "addNewSeed": "Tilføj nyt seed",
         "twoFA": "Totrinsbekræftelse",
         "changePassword": "Skift adgangskode",
@@ -267,77 +276,81 @@
         "accountDeletedExplanation": "Din konto er blevet fjernet fra tegnebogen.",
         "cannotPerformAction": "Kan ikke udføre handling",
         "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen.",
-        "poorConnection": "Dårlig forbindelse",
-        "poorConnectionExplanation": "Fejlede under ændring af valuta grundet dårlig forbindelse.",
-        "hide": "Skjul",
-        "hideOthers": "Skjul øvrige",
-        "showAll": "Vis alle",
-        "quit": "Afslut",
-        "edit": "Rediger",
-        "cut": "Klip",
-        "copy": "Kopier",
-        "paste": "Sæt ind",
-        "selectAll": "Vælg alle",
-        "securitySettings": "Sikkerhedsindstillinger",
-        "fingerprint": "Biometric autentificering",
-        "couldNotFetchRates": "Kunne ikke hente priser",
-        "couldNotFetchRatesExplanation": "Noget gik galt under hentning af omregningskurser for {{currency}}.",
-        "fetchedConversionRates": "Hentede omregningskurser",
-        "fetchedConversionRatesExplanation": "Har succesfuldt hentet nyeste omregningskurser for {{currency}}."
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
+        "hide": "Hide",
+        "hideOthers": "Hide Others",
+        "showAll": "Show All",
+        "quit": "Quit",
+        "edit": "Edit",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "selectAll": "Select All",
+        "securitySettings": "Security settings",
+        "fingerprint": "Biometric authentication",
+        "couldNotFetchRates": "Could not fetch rates",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rates",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Indtast din adgangskode for at nulstille tegnebogen.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ANNULLER",
         "reset": "NULSTIL"
     },
     "walletSetup": {
         "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouAlreadyHaveASeed": "Har du allerede et seed, du gerne vil bruge?",
-        "seedExplanation": "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
-        "explanation": "<0><0>du kan bruge det til at hente dine midler fra</0><1> enhver tegnebog</1><2>, på</2><3> hvilken som helst enhed</3><4>. Men mister du dit seed, mister du også dine IOTA.</4></0>",
+        "seedExplanation":
+            "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Du bedes opbevare dit seed sikkert."
     },
     "welcome": {
         "thankYou": "Tak fordi du downloadede IOTA-tegnebogen.",
         "weWillSpend": "Vi bruger de næste par minutter på at opsætte din tegnebog.",
-        "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
+        "reminder":
+            "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Dit seed er {{maxSeedLength}} tegn fra venstre til højre.",
-        "writeDownYourSeed": "<0> Skriv dit seed og din kontrolsum ned, og lav et</0><1>tredobbelt tjek</1><2> for at sikre, at de er korrekte.</2>"
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
-        "bundleHashCopiedExplanation": "Den gruppérede hash er blevet kopiret til udklipsholderen.",
+        "bundleHashCopiedExplanation": "Bundt-hashet er blevet kopiret til udklipsholderen.",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen.",
         "send": "SEND",
-        "receive": "MODTAG"
+        "receive": "RECEIVE"
     },
     "accountManagement": {
-        "viewSeed": "Se seed",
-        "viewAddresses": "Se adresser",
-        "editAccountName": "Rediger kontonavn",
-        "deleteAccount": "Slet konto",
-        "addNewAccount": "Tilføj ny konto"
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
     },
     "addCustomNode": {
-        "customNode": "Brugerdefinerede node",
-        "add": "Tilføj"
+        "customNode": "Custom node",
+        "add": "Add"
     },
     "addNewAccount": {
-        "useExistingSeed": "Brug eksisterende seed",
-        "createNewSeed": "Opret ny seed"
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
     },
     "advancedSettings": {
-        "selectNode": "Vælg node",
-        "addCustomNode": "Tilføje brugerdefinerede node",
-        "manualSync": "Manuel synkronisering",
-        "snapshotTransition": "Snapshot synkronisering"
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync",
+        "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
-        "background": "Baggrund",
-        "frame": "Ramme"
+        "background": "Background",
+        "frame": "Frame"
     },
     "themeCustomisation": {
         "theme": "Tema"
@@ -346,114 +359,95 @@
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Er du sikker på, at du vil logge ud?"
+        "logoutConfirmation": "Are you sure you want to log out?"
     },
     "qrScanner": {
-        "scan": "Skan din QR-kode"
+        "scan": "Scan your QR code"
     },
     "unitInfoModal": {
-        "unitSystem": "ENHED SYSTEM",
-        "trillion": "Trillioner",
-        "billion": "Milliarder",
-        "million": "Millioner",
-        "thousand": "Tusind",
-        "one": "En"
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     },
     "deleteAccount": {
-        "areYouSure": "Er du sikker på du vil slette {{accountName}}?",
-        "yourSeedWillBeRemoved": "Dit seed og transaktionshistorik vil blive fjernet.",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "Denne handling kan ikke fortrydes.",
-        "enterPassword": "Indtast din adgangskode for at slette denne konto."
+        "enterPassword": "Enter your password to delete this account."
     },
     "manualSync": {
-        "outOfSync": "Ser din transaktionshistorik ud til at være ude af synkronisering?",
-        "pressToSync": "Klik på knappen herunder for at synkronisere din konto.",
-        "thisMayTake": "Dette kan tage noget tid. Din enhed vil muligvis reagere langsommere.",
-        "doNotClose": "Bæmærk venligst, at minimering af app'en vil annullere din synkronisering.",
-        "syncAccount": "SYNKRONISER KONTO",
-        "syncingYourAccount": "Synkroniser din konto."
+        "pressToSync": "Press the button below to sync your account.",
+        "thisMayTake": "Dette kan tage noget tid.",
+        "youMayNotice": "Dette kan reducere hastigheden på din enhed.",
+        "syncAccount": "SYNC ACCOUNT",
+        "syncingYourAccount": "Syncing your account."
     },
     "useExistingSeed": {
-        "title": "Indtast et seed- og kontonavn."
+        "title": "Enter a seed and account name."
     },
     "viewSeed": {
-        "enterPassword": "Indtast adgangskode for at se din tegnebog.",
-        "viewSeed": "SE SEED",
-        "hideSeed": "SKJUL SEED"
+        "enterPassword": "Enter password to view your seed.",
+        "viewSeed": "VIEW SEED",
+        "hideSeed": "HIDE SEED"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "Jeg har gemt mit seed",
-        "reenter": "Du vil nu blive bedt om at genindtaste dit seed.",
-        "reenterWarning": "Hvis din enhed fejler and du ikke har indtastet dit seed, vil du miste dine IOTA."
+        "alreadyHave": "I have saved my seed",
+        "reenter": "You will now be asked to re-enter your seed.",
+        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "DENNE HANDLING KAN IKKE FORTRYDES.",
-        "warning": "<0><0>Alle dine data i tegnebogen, inkluderende dit </0><1>seed, adgangskode,</1><2> og </2><3>andre kontoinformationer</3><4> vil gå tabt.</4></0>"
+        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Berør din enheden fingeraftrykslæser for at aktivere fingeraftryk som identifikation.",
-        "instructionsDisable": "Berør din enheden fingeraftrykslæser for at deaktivere fingeraftryk som identifikation.",
-        "fingerprintAuthEnabled": "Godkendelse med fingeraftryk aktiveret",
-        "fingerprintAuthEnabledExplanation": "Du har succesfuldt aktiveret godkendelse med fingeraftryk.",
-        "fingerprintAuthDisabled": "Godkendelse med fingeraftryk deaktiveret",
-        "fingerprintAuthDisabledExplanation": "Du har succesfuldt deaktiveret godkendelse med fingeraftryk.",
-        "fingerprintAuthFailed": "Godkendelse med fingeraftryk fejlede",
-        "fingerprintAuthFailedExplanation": "Godkendelse med fingeraftryk fejlede. Prøv venligst igen.",
+        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
+        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
+        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Status",
-        "enabled": "Aktiveret",
-        "disabled": "Deaktiveret",
-        "fingerprintUnavailable": "Fingeraftrykscensor er deaktiveret",
-        "fingerprintUnavailableExplanation": "Din enhed understøtter ikke godkendelse ved hjælp af fingeraftryk, eller også er dette ikke konfigureret i enhedens indstillinger.",
-        "buttonInstructionsDisable": "Tryk på knappen nedenfor for at deaktivere godkendelse med fingeraftryk.",
-        "buttonInstructionsEnable": "Tryk på knappen nedenfor for at aktivere godkendelse med fingeraftryk.",
-        "instructionsLogin": "Berør fingeraftrykslæseren for at logge ind."
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "instructionsLogin": "Touch fingerprint reader to log in."
     },
     "transferConfirmation": {
-        "youAreAbout": "Du er ved at sende {{contents}} til adressen",
-        "aMessage": "en besked"
+        "youAreAbout": "You are about to send {{contents}} to the address",
+        "aMessage": "a message"
     },
     "twoFA": {
-        "wrongCode": "Forkert kode",
-        "wrongCodeExplanation": "Den indtastede adgangskode er forkert.",
-        "emptyCode": "Tom kode",
-        "emptyCodeExplanation": "Indtast venligst en kode og prøv igen.",
-        "keyCopied": "Nøgle kopieret til udklipsholder",
-        "keyCopiedExplanation": "Din 2FA nøgle er blevet kopieret til udklipsholderen.",
-        "addKey": "Tilføje denne nøgle til din 2FA app",
-        "key": "Nøgle",
-        "twoFAEnabled": "2FA er nu aktiveret",
-        "twoFAEnabledExplanation": "Du har succesfuldt aktiveret to faktor godkendelse.",
-        "enterCode": "Indtast koden fra din 2FA app",
-        "code": "Kode"
+        "wrongCode": "Wrong code",
+        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "emptyCode": "Empty code",
+        "emptyCodeExplanation": "Please enter a code and try again.",
+        "keyCopied": "Key copied to clipboard",
+        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "addKey": "Add this key to your 2FA app",
+        "key": "Key",
+        "twoFAEnabled": "2FA is now enabled",
+        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "enterCode": "Enter the code from your 2FA app",
+        "code": "Code"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Ændring",
-        "volume": "Volumen (24t)"
+        "change": "Change",
+        "volume": "Volume (24h)"
     },
     "rootDetection": {
-        "warning": "ADVARSEL",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
-    },
-    "pow": {
-        "feeless": "Det er nødvendigt at udføre en mindre netværksvalidering (PoW) for at sende gratis overførsler med IOTA.",
-        "localOrRemote": "'Proof of work' kan enten gennemføres lokalt på din enhed eller overlades til din node.",
-        "local": "Lokalt",
-        "remote": "Fjernadgang"
-    },
-    "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
-    },
-    "snapshotTransition": {
-        "cannotCompleteTransition": "Kan ikke fuldføre snapshot synkroniseringen",
-        "cannotCompleteTransitionExplanation": "Din balance skal være større end 0 for at fuldføre synkroniseringen.",
-        "transitionComplete": "Snapshot synkronisering gennemgørt",
-        "transitionCompleteExplanation": "Snapshot synkronisering blev gennemført med succes."
+        "warning": "WARNING",
+        "rootDetected":
+            "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     }
 }

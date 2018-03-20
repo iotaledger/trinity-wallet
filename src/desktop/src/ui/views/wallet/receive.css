@@ -1,35 +1,49 @@
 .receive {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 
-    .address {
-        display: block;
-        padding: 0px;
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        word-wrap: break-word;
-        border-radius: 4px;
+    p {
         width: 100%;
-        margin: 0 auto 30px;
-        min-height: 100px;
-        max-width: 320px;
-        > span {
-            display: block;
-            padding: 20px;
+        margin-bottom: 20px;
+        span {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 100%;
+            letter-spacing: 1px;
+            font-family: monospace;
+            font-size: 16px;
+            line-height: 32px;
         }
     }
 
     canvas {
         display: block;
-        margin: 0 auto 30px;
         background: #fff;
+        padding: 10px;
         border-radius: 4px;
-        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    button {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        top: calc(100% + 20px);
+        transition: top 0.12s cubic-bezier(0.4, 0, 0.2, 1);
     }
 }
 
 .empty {
     p,
-    canvas {
-        opacity: 0.2;
+    canvas,
+    fieldset {
+        opacity: 0.06;
         pointer-events: none;
+    }
+    button {
+        top: 50%;
     }
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import GENERAL from '../theme/general';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { width, height } from '../util/dimensions';
+import { Icon } from '../theme/icons.js';
+import CtaButton from '../components/ctaButton';
+import InfoBox from '../components/infoBox';
 
 const styles = StyleSheet.create({
     container: {
@@ -29,44 +31,24 @@ const styles = StyleSheet.create({
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-end',
-    },
-    icon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     syncButtonContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
-    syncButton: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 17,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-    },
-    syncButtonText: {
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
-    },
     infoText: {
         fontFamily: 'Lato-Light',
-        fontSize: width / 23,
+        fontSize: width / 27.6,
+        textAlign: 'justify',
         backgroundColor: 'transparent',
-        paddingTop: height / 30,
-        textAlign: 'center',
     },
     activityIndicator: {
         flex: 1,
@@ -82,34 +64,54 @@ const ManualSync = (props) => (
             <View style={{ flex: 0.8 }} />
             {!props.isSyncing && (
                 <View style={styles.innerContainer}>
-                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:pressToSync')}</Text>
-                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:thisMayTake')}</Text>
-                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:youMayNotice')}</Text>
-                    <View style={styles.syncButtonContainer}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                props.onManualSyncPress();
-                            }}
-                        >
-                            <View style={[styles.syncButton, props.borderColor]}>
-                                <Text style={[styles.syncButtonText, props.textColor]}>
-                                    {props.t('manualSync:syncAccount')}
+                    <InfoBox
+                        body={props.body}
+                        text={
+                            <View>
+                                <Text style={[styles.infoText, props.textColor]}>
+                                    {props.t('manualSync:outOfSync')}
+                                </Text>
+                                <Text style={[styles.infoText, props.textColor, { paddingTop: height / 50 }]}>
+                                    {props.t('manualSync:pressToSync')}
                                 </Text>
                             </View>
-                        </TouchableOpacity>
+                        }
+                    />
+                    <View style={styles.syncButtonContainer}>
+                        <CtaButton
+                            ctaColor={props.primary.color}
+                            secondaryCtaColor={props.primary.body}
+                            text={props.t('manualSync:syncAccount')}
+                            onPress={() => props.onManualSyncPress()}
+                            ctaWidth={width / 2}
+                            ctaHeight={height / 16}
+                        />
                     </View>
                 </View>
             )}
             {props.isSyncing && (
                 <View style={styles.innerContainer}>
-                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:syncingYourAccount')}</Text>
-                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:thisMayTake')}</Text>
-                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:youMayNotice')}</Text>
+                    <InfoBox
+                        body={props.body}
+                        text={
+                            <View>
+                                <Text style={[styles.infoText, props.textColor]}>
+                                    {props.t('manualSync:syncingYourAccount')}
+                                </Text>
+                                <Text style={[styles.infoText, props.textColor, { paddingTop: height / 50 }]}>
+                                    {props.t('manualSync:thisMayTake')}
+                                </Text>
+                                <Text style={[styles.infoText, props.textColor, { paddingTop: height / 50 }]}>
+                                    {props.t('manualSync:doNotClose')}
+                                </Text>
+                            </View>
+                        }
+                    />
                     <ActivityIndicator
                         animating={props.isSyncing}
                         style={styles.activityIndicator}
                         size="large"
-                        color={props.negativeColor}
+                        color={props.primary.color}
                     />
                 </View>
             )}
@@ -121,7 +123,7 @@ const ManualSync = (props) => (
                     hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                 >
                     <View style={styles.item}>
-                        <Image source={props.arrowLeftImagePath} style={styles.icon} />
+                        <Icon name="chevronLeft" size={width / 28} color={props.body.color} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('global:backLowercase')}</Text>
                     </View>
                 </TouchableOpacity>
@@ -136,9 +138,8 @@ ManualSync.propTypes = {
     onManualSyncPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     textColor: PropTypes.object.isRequired,
-    arrowLeftImagePath: PropTypes.number.isRequired,
-    negativeColor: PropTypes.string.isRequired,
-    borderColor: PropTypes.object.isRequired,
+    primary: PropTypes.object.isRequired,
+    body: PropTypes.object.isRequired,
 };
 
 export default ManualSync;

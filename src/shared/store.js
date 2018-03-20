@@ -8,11 +8,11 @@ import account from './reducers/account';
 import app from './reducers/app';
 import settings from './reducers/settings';
 import seeds from './reducers/seeds';
-import notifications from './reducers/notifications';
 import alerts from './reducers/alerts';
 import home from './reducers/home';
 import keychain from './reducers/keychain';
 import polling from './reducers/polling';
+import progress from './reducers/progress';
 import ui from './reducers/ui';
 import { ActionTypes } from './actions/app';
 
@@ -29,10 +29,10 @@ const reducers = combineReducers({
     app,
     settings,
     seeds,
-    notifications,
     home,
     keychain,
     polling,
+    progress,
     ui,
 });
 
