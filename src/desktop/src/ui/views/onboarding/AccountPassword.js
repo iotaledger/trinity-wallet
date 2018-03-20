@@ -144,7 +144,6 @@ class AccountPassword extends React.PureComponent {
 
         return (
             <form onSubmit={(e) => this.createAccount(e)}>
-                <div />
                 <section>
                     <PasswordInput
                         value={this.state.password}
@@ -161,11 +160,11 @@ class AccountPassword extends React.PureComponent {
                     </Infobox>
                 </section>
                 <footer>
-                    <Button to="/onboarding/account-name" className="outline" variant="secondary">
-                        {t('back')}
+                    <Button to="/onboarding/account-name" className="inline" variant="secondary">
+                        {t('back').toLowerCase()}
                     </Button>
-                    <Button type="submit" className="outline" variant="primary">
-                        {t('done')}
+                    <Button type="submit" className="large" variant="primary">
+                        {t('next').toLowerCase()}
                     </Button>
                 </footer>
             </form>

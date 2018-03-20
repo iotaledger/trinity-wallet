@@ -42,10 +42,7 @@ import KeepAwake from 'react-native-keep-awake';
 import QRScanner from '../components/qrScanner';
 import Toggle from '../components/toggle';
 import ProgressBar from '../components/progressBar';
-import {
-    getBalanceForSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from '../../shared/selectors/account';
+import { getBalanceForSelectedAccount, getSelectedAccountName } from '../../shared/selectors/account';
 import ProgressSteps from '../util/progressSteps';
 import { getSeedFromKeychain } from '../util/keychain';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
@@ -60,12 +57,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-    },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: height / 14,
     },
     topContainer: {
         flex: 3.6,
@@ -243,7 +234,7 @@ export class Send extends Component {
     }
 
     shouldComponentUpdate(newProps) {
-        const { isSyncing, isTransitioning, usdPrice, conversionRate, balance } = this.props;
+        const { isSyncing, isTransitioning, usdPrice, conversionRate } = this.props;
 
         if (isSyncing !== newProps.isSyncing) {
             return false;
@@ -516,7 +507,7 @@ export class Send extends Component {
     }
 
     getProgressSummary() {
-        const { timeTakenByEachProgressStep, t } = this.props;
+        const { timeTakenByEachProgressStep } = this.props;
         const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
 
         return (
@@ -850,8 +841,8 @@ export class Send extends Component {
 
 const mapStateToProps = (state) => ({
     currency: state.settings.currency,
-    balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    balance: getBalanceForSelectedAccount(state),
+    selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.tempAccount.isSyncing,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     seedIndex: state.tempAccount.seedIndex,
