@@ -4,7 +4,6 @@ import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons';
-import GENERAL from '../theme/general';
 import InfoBox from '../components/infoBox';
 import { Icon } from '../theme/icons.js';
 import DynamicStatusBar from '../components/dynamicStatusBar';
@@ -33,16 +32,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
-    infoTextContainer: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.3,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingHorizontal: width / 30,
-        borderStyle: 'dotted',
-        paddingVertical: height / 35,
-    },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
@@ -63,17 +52,17 @@ const styles = StyleSheet.create({
     greetingTextContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: width / 1.2,
+        width: width / 1.5,
     },
     greetingText: {
         fontFamily: 'Lato-Light',
-        fontSize: width / 20.7,
+        fontSize: width / 23,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     questionText: {
         fontFamily: 'Lato-Light',
-        fontSize: width / 20.7,
+        fontSize: width / 23,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
