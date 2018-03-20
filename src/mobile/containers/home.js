@@ -11,40 +11,24 @@ import {
     setSetting,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import whiteBalanceImagePath from 'iota-wallet-shared-modules/images/balance-white.png';
-import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
-import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
-import whiteHistoryImagePath from 'iota-wallet-shared-modules/images/history-white.png';
-import whiteSettingsImagePath from 'iota-wallet-shared-modules/images/settings-white.png';
-import blackBalanceImagePath from 'iota-wallet-shared-modules/images/balance-black.png';
-import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
-import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
-import blackHistoryImagePath from 'iota-wallet-shared-modules/images/history-black.png';
-import blackSettingsImagePath from 'iota-wallet-shared-modules/images/settings-black.png';
+import { getPasswordHash } from '../util/crypto';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import UserInactivity from '../components/userInactivity';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import WithUserActivity from '../components/withUserActivity';
 import WithBackPress from '../components/withBackPress';
-import Poll from './poll';
+import PollComponent from './poll';
 import Tabs from '../components/tabs';
 import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
 import EnterPassword from '../components/enterPassword';
-import { width, height } from '../util/dimensions';
+import { height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     topContainer: {
         flex: 0.8,
         marginBottom: height / 100,
-    },
-    balance: {
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 27.9,
-        paddingTop: height / 150,
     },
     midContainer: {
         flex: 4.62,
@@ -52,35 +36,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 0.68,
-    },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
     },
 });
 
@@ -90,20 +45,35 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
     }
 
+    componentDidMount() {
+        this.userInactivity.setActiveFromComponent();
+    }
+
     shouldComponentUpdate(newProps) {
         const { isSyncing, isSendingTransfer, isTransitioning } = this.props;
-        if (isSyncing !== newProps.isSyncing) return false;
-        if (isSendingTransfer !== newProps.isSendingTransfer) return false;
-        if (isTransitioning !== newProps.isTransitioning) return false;
+
+        if (isSyncing !== newProps.isSyncing) {
+            return false;
+        }
+
+        if (isSendingTransfer !== newProps.isSendingTransfer) {
+            return false;
+        }
+
+        if (isTransitioning !== newProps.isTransitioning) {
+            return false;
+        }
+
         return true;
     }
 
     onLoginPress = (password) => {
         const { t, storedPassword } = this.props;
 
+        const pwdHash = getPasswordHash(password);
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
-        } else if (password !== storedPassword) {
+        } else if (storedPassword !== pwdHash) {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
@@ -143,23 +113,16 @@ class Home extends Component {
             navigator,
             inactive,
             minimised,
-            barColor,
-            backgroundColor,
-            negativeColor,
-            positiveColor,
-            secondaryBarColor,
-            secondaryBackgroundColor,
+            bar,
+            body,
+            negative,
+            positive,
             isFingerprintEnabled,
+            primary,
         } = this.props;
 
-        const balanceImagePath = secondaryBarColor === 'white' ? whiteBalanceImagePath : blackBalanceImagePath;
-        const sendImagePath = secondaryBarColor === 'white' ? whiteSendImagePath : blackSendImagePath;
-        const receiveImagePath = secondaryBarColor === 'white' ? whiteReceiveImagePath : blackReceiveImagePath;
-        const historyImagePath = secondaryBarColor === 'white' ? whiteHistoryImagePath : blackHistoryImagePath;
-        const settingsImagePath = secondaryBarColor === 'white' ? whiteSettingsImagePath : blackSettingsImagePath;
-
-        const barTextColor = { color: secondaryBarColor };
-        const textColor = { color: secondaryBackgroundColor };
+        const barTextColor = { color: bar.color };
+        const textColor = { color: body.color };
 
         return (
             <UserInactivity
@@ -170,8 +133,8 @@ class Home extends Component {
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
-                <KeyboardAvoidingView style={{ flex: 1, backgroundColor }}>
-                    <DynamicStatusBar textColor={secondaryBarColor} />
+                <KeyboardAvoidingView style={{ flex: 1, backgroundColor: body.bg }}>
+                    <DynamicStatusBar backgroundColor={bar.bg} />
                     {!inactive &&
                         !minimised && (
                             <View style={{ flex: 1 }}>
@@ -180,34 +143,49 @@ class Home extends Component {
                                     <TabContent navigator={navigator} onTabSwitch={(name) => this.onTabSwitch(name)} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <Tabs onPress={(name) => this.onTabSwitch(name)} barColor={barColor}>
+                                    <Tabs onPress={(name) => this.onTabSwitch(name)} barBg={bar.bg}>
                                         <Tab
                                             name="balance"
-                                            icon={balanceImagePath}
+                                            icon="wallet"
+                                            iconColor={bar.color}
+                                            activeBorderColor={primary.color}
+                                            activeColor={bar.alt}
                                             textColor={barTextColor}
                                             text={t('home:balance').toUpperCase()}
                                         />
                                         <Tab
                                             name="send"
-                                            icon={sendImagePath}
+                                            icon="send"
+                                            iconColor={bar.color}
+                                            activeBorderColor={primary.color}
+                                            activeColor={bar.alt}
                                             textColor={barTextColor}
                                             text={t('home:send').toUpperCase()}
                                         />
                                         <Tab
                                             name="receive"
-                                            icon={receiveImagePath}
+                                            icon="receive"
+                                            iconColor={bar.color}
+                                            activeBorderColor={primary.color}
+                                            activeColor={bar.alt}
                                             textColor={barTextColor}
                                             text={t('home:receive').toUpperCase()}
                                         />
                                         <Tab
                                             name="history"
-                                            icon={historyImagePath}
+                                            icon="history"
+                                            iconColor={bar.color}
+                                            activeBorderColor={primary.color}
+                                            activeColor={bar.alt}
                                             textColor={barTextColor}
                                             text={t('home:history').toUpperCase()}
                                         />
                                         <Tab
                                             name="settings"
-                                            icon={settingsImagePath}
+                                            icon="settings"
+                                            iconColor={bar.color}
+                                            activeBorderColor={primary.color}
+                                            activeColor={bar.alt}
                                             textColor={barTextColor}
                                             text={t('home:settings').toUpperCase()}
                                         />
@@ -220,18 +198,18 @@ class Home extends Component {
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <EnterPassword
                                 onLoginPress={this.onLoginPress}
-                                backgroundColor={backgroundColor}
-                                negativeColor={negativeColor}
-                                positiveColor={positiveColor}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                backgroundColor={body.bg}
+                                negativeColor={negative.color}
+                                positiveColor={positive.color}
+                                bodyColor={body.color}
                                 textColor={textColor}
                                 isFingerprintEnabled={isFingerprintEnabled}
                             />
                         </View>
                     )}
                     {minimised && <View />}
-                    <Poll />
-                    <StatefulDropdownAlert />
+                    <PollComponent />
+                    <StatefulDropdownAlert backgroundColor={bar.bg} />
                 </KeyboardAvoidingView>
             </UserInactivity>
         );
@@ -242,12 +220,11 @@ const mapStateToProps = (state) => ({
     storedPassword: state.tempAccount.password,
     inactive: state.tempAccount.inactive,
     minimised: state.tempAccount.minimised,
-    barColor: state.settings.theme.barColor,
-    backgroundColor: state.settings.theme.backgroundColor,
-    negativeColor: state.settings.theme.negativeColor,
-    positiveColor: state.settings.theme.positiveColor,
-    secondaryBarColor: state.settings.theme.secondaryBarColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    body: state.settings.theme.body,
+    negative: state.settings.theme.negative,
+    positive: state.settings.theme.positive,
+    primary: state.settings.theme.primary,
+    bar: state.settings.theme.bar,
     currentRoute: state.home.childRoute,
     isSyncing: state.tempAccount.isSyncing,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
@@ -272,13 +249,12 @@ Home.propTypes = {
     setUserActivity: PropTypes.func.isRequired,
     inactive: PropTypes.bool.isRequired,
     minimised: PropTypes.bool.isRequired,
-    backgroundColor: PropTypes.string.isRequired,
-    barColor: PropTypes.string.isRequired,
-    negativeColor: PropTypes.string.isRequired,
-    positiveColor: PropTypes.string.isRequired,
+    body: PropTypes.object.isRequired,
+    negative: PropTypes.object.isRequired,
+    positive: PropTypes.object.isRequired,
     storedPassword: PropTypes.string.isRequired,
-    secondaryBarColor: PropTypes.string.isRequired,
-    secondaryBackgroundColor: PropTypes.string.isRequired,
+    bar: PropTypes.object.isRequired,
+    primary: PropTypes.object.isRequired,
     isTransitioning: PropTypes.bool.isRequired,
     isSyncing: PropTypes.bool.isRequired,
     isSendingTransfer: PropTypes.bool.isRequired,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -37,10 +37,19 @@ const styles = StyleSheet.create({
     },
 });
 
-class OnboardingButtons extends Component {
+class OnboardingButtons extends PureComponent {
     static propTypes = {
         buttonWidth: PropTypes.object,
         containerWidth: PropTypes.object,
+        primary: PropTypes.object,
+        secondary: PropTypes.object,
+        opacity: PropTypes.number,
+        leftButtonTestID: PropTypes.string,
+        rightButtonTestID: PropTypes.string,
+        leftText: PropTypes.string.isRequired,
+        rightText: PropTypes.string.isRequired,
+        onLeftButtonPress: PropTypes.func.isRequired,
+        onRightButtonPress: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
@@ -49,11 +58,11 @@ class OnboardingButtons extends Component {
     };
 
     render() {
-        const { style, positiveColor, negativeColor, opacity, buttonWidth, containerWidth } = this.props;
-        const rightTextColor = { color: positiveColor };
-        const rightBorderColor = { borderColor: positiveColor };
-        const leftTextColor = { color: negativeColor };
-        const leftBorderColor = { borderColor: negativeColor };
+        const { primary, secondary, opacity, buttonWidth, containerWidth } = this.props;
+        const rightTextColor = { color: primary.color };
+        const rightBorderColor = { borderColor: primary.color };
+        const leftTextColor = { color: secondary.color };
+        const leftBorderColor = { borderColor: secondary.color };
         const rightButtonOpacity = { opacity };
 
         return (
@@ -75,8 +84,8 @@ class OnboardingButtons extends Component {
 
 const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
-    positiveColor: state.settings.theme.positiveColor,
-    negativeColor: state.settings.theme.negativeColor,
+    primary: state.settings.theme.primary,
+    secondary: state.settings.theme.secondary,
 });
 
 export default connect(mapStateToProps)(OnboardingButtons);

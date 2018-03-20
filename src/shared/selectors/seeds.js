@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const seedsSelector = state => state.seeds;
+export const seedsSelector = (state) => state.seeds;
 
 export const getSelectedSeed = createSelector(
     seedsSelector,
@@ -22,5 +22,5 @@ export const seedItemsSelector = createSelector(seedsSelector, ({ items }) => it
 
 export const getMostRecentSeedIndex = createSelector(
     getSeedItems,
-    items => (items.length === 0 ? 0 : items.length - 1),
+    (items) => (items.length === 0 ? 0 : items.length - 1),
 );

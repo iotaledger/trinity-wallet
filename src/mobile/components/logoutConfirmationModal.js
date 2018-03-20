@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { translate } from 'react-i18next';
 import OnboardingButtons from './onboardingButtons';
@@ -23,7 +24,16 @@ const styles = StyleSheet.create({
     },
 });
 
-class LogoutConfirmationModal extends Component {
+class LogoutConfirmationModal extends PureComponent {
+    static propTypes = {
+        t: PropTypes.func.isRequired,
+        hideModal: PropTypes.func.isRequired,
+        logout: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
+        borderColor: PropTypes.object.isRequired,
+    };
+
     render() {
         const { t, backgroundColor, textColor, borderColor } = this.props;
 

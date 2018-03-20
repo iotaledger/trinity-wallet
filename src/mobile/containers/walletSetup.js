@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
-import { StyleSheet, View, Text, Image, StatusBar } from 'react-native';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import { StyleSheet, View, Text } from 'react-native';
+import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons';
-import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import InfoBox from '../components/infoBox';
+import { Icon } from '../theme/icons.js';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 
 import { width, height } from '../util/dimensions';
 
@@ -15,13 +16,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 4,
@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     infoTextContainer: {
-        borderColor: 'white',
         borderWidth: 1,
         borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.3,
@@ -45,7 +44,6 @@ const styles = StyleSheet.create({
         paddingVertical: height / 35,
     },
     infoText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
@@ -53,20 +51,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoTextLight: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
-    },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
     },
     greetingTextContainer: {
         alignItems: 'center',
@@ -74,14 +66,12 @@ const styles = StyleSheet.create({
         width: width / 1.2,
     },
     greetingText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     questionText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 20.7,
         textAlign: 'center',
@@ -92,93 +82,67 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
     },
-    yesButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    yesText: {
-        color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
-    noButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginRight: width / 10,
-    },
-    noText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
 });
 
 class WalletSetup extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
+        body: PropTypes.object.isRequired,
     };
 
     onYesPress() {
+        const { body } = this.props;
         this.props.navigator.push({
             screen: 'enterSeed',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: COLORS.backgroundGreen,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
     }
 
     onNoPress() {
+        const { body } = this.props;
         this.props.navigator.push({
             screen: 'newSeedSetup',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: COLORS.backgroundGreen,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
             animated: false,
         });
     }
 
     render() {
-        const { t } = this.props;
+        const { t, body } = this.props;
+        const textColor = { color: body.color };
         return (
-            <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 0.7 }} />
                     <View style={styles.greetingTextContainer}>
-                        <Text style={styles.greetingText}>{t('okay')}</Text>
+                        <Text style={[styles.greetingText, textColor]}>{t('okay')}</Text>
                     </View>
                     <View style={{ flex: 0.5 }} />
                     <InfoBox
+                        body={body}
                         text={
                             <View>
-                                <Text style={styles.infoText}>{t('seedExplanation')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('seedExplanation')}</Text>
                                 <Trans i18nKey="walletSetup:explanation">
-                                    <Text style={styles.infoText}>
+                                    <Text style={[styles.infoText, textColor]}>
                                         <Text style={styles.infoTextLight}>
                                             You can use it to access your funds from
                                         </Text>
@@ -190,13 +154,13 @@ class WalletSetup extends Component {
                                         </Text>
                                     </Text>
                                 </Trans>
-                                <Text style={styles.infoText}>{t('keepSafe')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('keepSafe')}</Text>
                             </View>
                         }
                     />
                     <View style={{ flex: 0.5 }} />
                     <View style={styles.greetingTextContainer}>
-                        <Text style={styles.questionText}>{t('doYouAlreadyHaveASeed')}</Text>
+                        <Text style={[styles.questionText, textColor]}>{t('doYouAlreadyHaveASeed')}</Text>
                     </View>
                     <View style={{ flex: 0.5 }} />
                 </View>
@@ -215,4 +179,8 @@ class WalletSetup extends Component {
     }
 }
 
-export default translate(['walletSetup', 'global'])(WalletSetup);
+const mapStateToProps = (state) => ({
+    body: state.settings.theme.body,
+});
+
+export default translate(['walletSetup', 'global'])(connect(mapStateToProps, null)(WalletSetup));

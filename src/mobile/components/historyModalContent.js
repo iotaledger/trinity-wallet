@@ -1,9 +1,20 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Clipboard, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
+import {
+    Clipboard,
+    TouchableOpacity,
+    View,
+    Text,
+    StyleSheet,
+    FlatList,
+    ScrollView,
+    TouchableWithoutFeedback,
+} from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
+import StatefulDropdownAlert from '../containers/statefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import CtaButton from '../components/ctaButton';
 
 const styles = StyleSheet.create({
     container: {
@@ -96,20 +107,34 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textAlign: 'right',
     },
+    buttonWhenDisabled: {
+        opacity: 0.4,
+    },
+    buttonsContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: height / 40,
+    },
 });
 
 export default class HistoryModalContent extends PureComponent {
     static propTypes = {
         onPress: PropTypes.func.isRequired,
-        generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        rebroadcast: PropTypes.func.isRequired,
+        promote: PropTypes.func.isRequired,
         status: PropTypes.string.isRequired,
         confirmation: PropTypes.string.isRequired,
+        confirmationBool: PropTypes.bool.isRequired,
+        mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
         value: PropTypes.number.isRequired,
         unit: PropTypes.string.isRequired,
         time: PropTypes.number.isRequired,
         message: PropTypes.string,
         bundle: PropTypes.string.isRequired,
+        disableWhen: PropTypes.bool.isRequired,
         addresses: PropTypes.arrayOf(
             PropTypes.shape({
                 address: PropTypes.string.isRequired,
@@ -125,6 +150,7 @@ export default class HistoryModalContent extends PureComponent {
             defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
+            buttonsOpacity: PropTypes.shape({ opacity: PropTypes.number.isRequired }).isRequired,
         }).isRequired,
     };
 
@@ -142,8 +168,8 @@ export default class HistoryModalContent extends PureComponent {
 
         Clipboard.setString(item);
 
-        if (types[type]) {
-            this.props.generateAlert('success', ...types[type]);
+        if (types[type] && this.dropdown) {
+            this.dropdown.alertWithType('success', ...types[type]);
         }
     }
 
@@ -183,45 +209,109 @@ export default class HistoryModalContent extends PureComponent {
     }
 
     render() {
-        const { status, onPress, value, unit, confirmation, time, bundle, message, t, style } = this.props;
+        const {
+            status,
+            onPress,
+            value,
+            unit,
+            confirmation,
+            confirmationBool,
+            time,
+            bundle,
+            message,
+            t,
+            style,
+            mode,
+            rebroadcast,
+            promote,
+            disableWhen,
+        } = this.props;
 
         return (
             <TouchableOpacity style={styles.container} onPress={onPress}>
                 <View style={styles.wrapper}>
                     <View style={[styles.content, style.borderColor, { backgroundColor: style.backgroundColor }]}>
                         <ScrollView>
-                            <View style={styles.statusWrapper}>
-                                <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                    {status} {value} {unit}
-                                </Text>
-                                <View style={styles.confirmationWrapper}>
-                                    <Text style={[styles.confirmation, style.confirmationStatusColor]}>
-                                        {confirmation}
-                                    </Text>
-                                    <Text style={[styles.timestamp, style.defaultTextColor]}>
-                                        {formatModalTime(convertUnixTimeToJSDate(time))}
-                                    </Text>
+                            <TouchableWithoutFeedback style={{ flex: 1 }}>
+                                <View style={{ flex: 1 }}>
+                                    <View style={styles.statusWrapper}>
+                                        <Text style={[styles.statusText, { color: style.titleColor }]}>
+                                            {status} {value} {unit}
+                                        </Text>
+                                        <View style={styles.confirmationWrapper}>
+                                            <Text style={[styles.confirmation, style.confirmationStatusColor]}>
+                                                {confirmation}
+                                            </Text>
+                                            <Text style={[styles.timestamp, style.defaultTextColor]}>
+                                                {formatModalTime(convertUnixTimeToJSDate(time))}
+                                            </Text>
+                                        </View>
+                                    </View>
+                                    <Text style={[styles.heading, style.defaultTextColor]}>{t('bundleHash')}:</Text>
+                                    <View style={styles.bundleWrapper}>
+                                        <TouchableOpacity
+                                            onPress={() => this.copy(bundle, 'bundle')}
+                                            style={styles.bundleInnerWrapper}
+                                        >
+                                            <Text style={[styles.bundleHash, style.defaultTextColor]} numberOfLines={2}>
+                                                {bundle}
+                                            </Text>
+                                            <View style={styles.bundleSeparator} />
+                                        </TouchableOpacity>
+                                    </View>
+                                    {mode === 'Expert' && (
+                                        <View>
+                                            <Text style={[styles.heading, style.defaultTextColor]}>
+                                                {t('addresses')}:
+                                            </Text>
+                                            {this.renderAddresses()}
+                                        </View>
+                                    )}
+                                    <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
+                                    <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
+                                    {!confirmationBool &&
+                                        mode === 'Expert' &&
+                                        value > 0 && (
+                                            <View style={[styles.buttonsContainer, style.buttonsOpacity]}>
+                                                <CtaButton
+                                                    ctaColor={style.primaryColor}
+                                                    secondaryCtaColor={style.primaryBody}
+                                                    ctaWidth={width / 2.75}
+                                                    ctaHeight={height / 17}
+                                                    fontSize={width / 29.6}
+                                                    text={t('promote')}
+                                                    onPress={() => {
+                                                        if (!disableWhen) {
+                                                            promote(bundle);
+                                                        }
+                                                    }}
+                                                />
+                                                <CtaButton
+                                                    ctaColor={style.secondaryColor}
+                                                    secondaryCtaColor={style.secondaryBody}
+                                                    ctaWidth={width / 2.75}
+                                                    ctaHeight={height / 17}
+                                                    fontSize={width / 29.6}
+                                                    text={t('rebroadcast')}
+                                                    onPress={() => {
+                                                        if (!disableWhen) {
+                                                            rebroadcast(bundle);
+                                                        }
+                                                    }}
+                                                />
+                                            </View>
+                                        )}
                                 </View>
-                            </View>
-                            <Text style={[styles.heading, style.defaultTextColor]}>{t('bundleHash')}:</Text>
-                            <View style={styles.bundleWrapper}>
-                                <TouchableOpacity
-                                    onPress={() => this.copy(bundle, 'bundle')}
-                                    style={styles.bundleInnerWrapper}
-                                >
-                                    <Text style={[styles.bundleHash, style.defaultTextColor]} numberOfLines={2}>
-                                        {bundle}
-                                    </Text>
-                                    <View style={styles.bundleSeparator} />
-                                </TouchableOpacity>
-                            </View>
-                            <Text style={[styles.heading, style.defaultTextColor]}>{t('addresses')}:</Text>
-                            {this.renderAddresses()}
-                            <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
-                            <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
+                            </TouchableWithoutFeedback>
                         </ScrollView>
                     </View>
                 </View>
+                <StatefulDropdownAlert
+                    backgroundColor={style.barBg}
+                    onRef={(c) => {
+                        this.dropdown = c;
+                    }}
+                />
             </TouchableOpacity>
         );
     }

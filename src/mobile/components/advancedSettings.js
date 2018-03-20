@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import whiteNodeImagePath from 'iota-wallet-shared-modules/images/node-white.png';
-import whiteSyncImagePath from 'iota-wallet-shared-modules/images/sync-white.png';
-import whiteCrossImagePath from 'iota-wallet-shared-modules/images/cross-white.png';
-import whiteSnapshotImagePath from 'iota-wallet-shared-modules/images/snapshot-white.png';
-import blackNodeImagePath from 'iota-wallet-shared-modules/images/node-black.png';
-import blackSyncImagePath from 'iota-wallet-shared-modules/images/sync-black.png';
-import blackCrossImagePath from 'iota-wallet-shared-modules/images/cross-black.png';
-import blackSnapshotImagePath from 'iota-wallet-shared-modules/images/snapshot-black.png';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Icon } from '../theme/icons.js';
 
 import { width, height } from '../util/dimensions';
 
@@ -40,20 +33,21 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
-    },
     backIcon: {
         width: width / 28,
         height: width / 28,
-        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 25,
+    },
+    backText: {
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
     separator: {
         borderBottomColor: 'white',
@@ -80,32 +74,25 @@ class AdvancedSettings extends Component {
         setSetting: PropTypes.func.isRequired,
         onResetWalletPress: PropTypes.func.isRequired,
         node: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        bodyColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
-        arrowLeftImagePath: PropTypes.number.isRequired,
-        addImagePath: PropTypes.number.isRequired,
         t: PropTypes.func.isRequired,
     };
 
     render() {
-        const { t, textColor, borderColor, secondaryBackgroundColor, arrowLeftImagePath, addImagePath } = this.props;
-        const nodeImagePath = secondaryBackgroundColor === 'white' ? whiteNodeImagePath : blackNodeImagePath;
-        const syncImagePath = secondaryBackgroundColor === 'white' ? whiteSyncImagePath : blackSyncImagePath;
-        const crossImagePath = secondaryBackgroundColor === 'white' ? whiteCrossImagePath : blackCrossImagePath;
-        const snapshotImagePath =
-            secondaryBackgroundColor === 'white' ? whiteSnapshotImagePath : blackSnapshotImagePath;
+        const { t, textColor, borderColor, bodyColor } = this.props;
 
         return (
             <View style={styles.container}>
-                <View style={{ flex: 5.5 }}>
+                <View style={{ flex: 7 }}>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
                             onPress={() => this.props.setSetting('nodeSelection')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={nodeImagePath} style={styles.icon} />
+                                <Icon name="node" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('selectNode')}</Text>
                                 <Text numberOfLines={1} style={[styles.settingText, textColor]}>
                                     {this.props.node}
@@ -119,8 +106,33 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={addImagePath} style={styles.icon} />
+                                <Icon name="plus" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('addCustomNode')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.setSetting('pow')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Icon name="pow" size={width / 22} color={bodyColor} />
+                                <Text style={[styles.titleText, textColor]}>Proof of Work</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.separatorContainer}>
+                        <View style={[styles.separator, borderColor]} />
+                    </View>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.setSetting('snapshotTransition')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Icon name="snapshot" size={width / 22} color={bodyColor} />
+                                <Text style={[styles.titleText, textColor]}>{t('snapshotTransition')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -130,19 +142,8 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={syncImagePath} style={styles.icon} />
+                                <Icon name="sync" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('manualSync')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('snapshotTransition')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Image source={snapshotImagePath} style={styles.icon} />
-                                <Text style={[styles.titleText, textColor]}>Snapshot Transition</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -155,22 +156,22 @@ class AdvancedSettings extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={crossImagePath} style={styles.icon} />
+                                <Icon name="trash" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('settings:reset')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={{ flex: 4.5, justifyContent: 'flex-end' }}>
-                    <View style={{ flex: 3.5 }} />
+                <View style={{ flex: 3, justifyContent: 'flex-end' }}>
+                    <View style={{ flex: 2 }} />
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
                             onPress={() => this.props.setSetting('mainSettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Image source={arrowLeftImagePath} style={styles.backIcon} />
-                                <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
+                                <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

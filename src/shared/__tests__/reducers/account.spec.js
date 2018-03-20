@@ -7,12 +7,13 @@ describe('Reducer: account', () => {
         it('should have an initial state', () => {
             const initialState = {
                 seedCount: 0,
-                seedNames: [],
+                accountNames: [],
                 firstUse: true,
                 onboardingComplete: false,
                 accountInfo: {},
                 unconfirmedBundleTails: {},
-                unspentAddressesHashes: {},
+                txHashesForUnspentAddresses: {},
+                pendingTxHashesForSpentAddresses: {},
                 is2FAEnabled: false,
                 isFingerprintEnabled: false,
             };
@@ -76,9 +77,9 @@ describe('Reducer: account', () => {
     });
 
     describe('CHANGE_ACCOUNT_NAME', () => {
-        it('should set seedNames to accountNames and accountInfo to accountInfo props in action', () => {
+        it('should set accountNames to accountNames and accountInfo to accountInfo props in action', () => {
             const initialState = {
-                seedNames: [{}],
+                accountNames: [{}],
                 accountInfo: {},
             };
 
@@ -86,7 +87,7 @@ describe('Reducer: account', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                seedNames: [{}, {}],
+                accountNames: [{}, {}],
                 accountInfo: null,
             };
 
@@ -110,19 +111,19 @@ describe('Reducer: account', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should remove payload from seedNames array', () => {
+        it('should remove payload from accountNames array', () => {
             const initialState = {
-                seedNames: ['foo', 'baz'],
+                accountNames: ['foo', 'baz'],
             };
 
             const action = actions.removeAccount('foo');
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                seedNames: ['baz'],
+                accountNames: ['baz'],
             };
 
-            expect(newState.seedNames).to.eql(expectedState.seedNames);
+            expect(newState.accountNames).to.eql(expectedState.accountNames);
         });
 
         it('should subtract one from seedCount', () => {
@@ -138,6 +139,57 @@ describe('Reducer: account', () => {
             };
 
             expect(newState.seedCount).to.eql(expectedState.seedCount);
+        });
+
+        it('should omit "payload" prop in action from "txHashesForUnspentAddresses" in state', () => {
+            const initialState = {
+                txHashesForUnspentAddresses: { foo: {} },
+            };
+
+            const action = actions.removeAccount('foo');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                txHashesForUnspentAddresses: {},
+            };
+
+            expect(newState.txHashesForUnspentAddresses).to.eql(expectedState.txHashesForUnspentAddresses);
+        });
+
+        it('should omit "payload" prop in action from "pendingTxHashesForSpentAddresses" in state', () => {
+            const initialState = {
+                pendingTxHashesForSpentAddresses: { foo: {} },
+            };
+
+            const action = actions.removeAccount('foo');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                pendingTxHashesForSpentAddresses: {},
+            };
+
+            expect(newState.pendingTxHashesForSpentAddresses).to.eql(expectedState.pendingTxHashesForSpentAddresses);
+        });
+
+        it('should omit all keys from "unconfrimedBundleTails" that have any "account" prop equal to "payload" prop in action', () => {
+            const initialState = {
+                unconfirmedBundleTails: {
+                    foo: [{ account: 'account-one' }, { account: 'account-one' }],
+                    baz: [{ account: 'account-one' }, { account: 'account-one' }],
+                    bar: [{ account: 'account-two' }, { account: 'account-two' }],
+                },
+            };
+
+            const action = actions.removeAccount('account-one');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                unconfirmedBundleTails: {
+                    bar: [{ account: 'account-two' }, { account: 'account-two' }],
+                },
+            };
+
+            expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
         });
     });
 
@@ -193,16 +245,16 @@ describe('Reducer: account', () => {
     });
 
     describe('ADD_SEED_NAME', () => {
-        it('should concat seedName to list of seedNames in state', () => {
+        it('should concat accountName to list of accountNames in state', () => {
             const initialState = {
-                seedNames: ['foo'],
+                accountNames: ['foo'],
             };
 
             const action = actions.addAccountName('baz');
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                seedNames: ['foo', 'baz'],
+                accountNames: ['foo', 'baz'],
             };
 
             expect(newState).to.not.eql(['baz', 'foo']);
@@ -274,9 +326,9 @@ describe('Reducer: account', () => {
             expect(newState.accountInfo[accountName].balance).to.eql(expectedState.accountInfo[accountName].balance);
         });
 
-        it('should set unspentAddressesHashes in payload to unspentAddressesHashes in state', () => {
+        it('should set txHashesForUnspentAddresses in payload to txHashesForUnspentAddresses in state', () => {
             const initialState = {
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     firstAccount: ['baz', 'bar'],
                     secondAccount: ['hash'],
                 },
@@ -284,18 +336,42 @@ describe('Reducer: account', () => {
 
             const action = actions.accountInfoFetchSuccess({
                 accountName: 'firstAccount',
-                unspentAddressesHashes: ['baz'],
+                txHashesForUnspentAddresses: ['baz'],
             });
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     firstAccount: ['baz'],
                     secondAccount: ['hash'],
                 },
             };
 
-            expect(newState.unspentAddressesHashes).to.eql(expectedState.unspentAddressesHashes);
+            expect(newState.txHashesForUnspentAddresses).to.eql(expectedState.txHashesForUnspentAddresses);
+        });
+
+        it('should set pendingTxHashesForSpentAddresses in payload to pendingTxHashesForSpentAddresses in state', () => {
+            const initialState = {
+                pendingTxHashesForSpentAddresses: {
+                    firstAccount: ['baz', 'bar'],
+                    secondAccount: ['hash'],
+                },
+            };
+
+            const action = actions.accountInfoFetchSuccess({
+                accountName: 'firstAccount',
+                pendingTxHashesForSpentAddresses: ['baz'],
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                pendingTxHashesForSpentAddresses: {
+                    firstAccount: ['baz'],
+                    secondAccount: ['hash'],
+                },
+            };
+
+            expect(newState.pendingTxHashesForSpentAddresses).to.eql(expectedState.pendingTxHashesForSpentAddresses);
         });
 
         it('should set unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
@@ -320,22 +396,49 @@ describe('Reducer: account', () => {
     });
 
     describe('MANUAL_SYNC_SUCCESS', () => {
-        it('should merge unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
+        it('should remove all bundle hashes that have any element in array with "account" prop equals "accountName" in payload', () => {
             const initialState = {
-                unconfirmedBundleTails: { foo: {} },
+                unconfirmedBundleTails: {
+                    foo: [{ account: 'to-be-deleted' }],
+                    baz: [{ account: 'not-to-be-deleted' }],
+                },
             };
 
-            const action = actions.manualSyncSuccess({ unconfirmedBundleTails: { baz: {} } });
+            const action = actions.manualSyncSuccess({ unconfirmedBundleTails: {}, accountName: 'to-be-deleted' });
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                unconfirmedBundleTails: { baz: {}, foo: {} },
+                unconfirmedBundleTails: { baz: [{ account: 'not-to-be-deleted' }] },
             };
 
             expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
         });
 
-        it('should merge addresses in payload to accountName in accountInfo', () => {
+        it('should merge "unconfirmedBundleTails" prop in payload to "unconfirmedBundleTails" prop in state after deleting existing tail transactions associated with account', () => {
+            const initialState = {
+                unconfirmedBundleTails: {
+                    foo: [{ account: 'main', toBeDeletedMeta: {} }],
+                    baz: [{ account: 'secondary' }],
+                },
+            };
+
+            const action = actions.manualSyncSuccess({
+                unconfirmedBundleTails: { foo: [{ account: 'main' }, { account: 'main' }] },
+                accountName: 'main',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                unconfirmedBundleTails: {
+                    foo: [{ account: 'main' }, { account: 'main' }],
+                    baz: [{ account: 'secondary' }],
+                },
+            };
+
+            expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
+        });
+
+        it('should set addresses in payload to "addresses" prop under accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
@@ -347,29 +450,24 @@ describe('Reducer: account', () => {
             const action = actions.manualSyncSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
-                transfers: [{}],
-                balance: 100,
             });
 
             const newState = reducer(initialState, action);
             const expectedState = {
                 accountInfo: {
                     foo: {
-                        addresses: { foo: {}, baz: {} },
-                        transfers: [{}],
-                        balance: 100,
+                        addresses: { baz: {} },
                     },
                 },
             };
 
-            expect(newState.accountInfo).to.eql(expectedState.accountInfo);
+            expect(newState.accountInfo.addresses).to.eql(expectedState.accountInfo.addresses);
         });
 
-        it('should set transfers and balance in payload to accountName in accountInfo', () => {
+        it('should set "transfers" and "balance" props in payload to "transfers" and "balance" props under accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
-                        addresses: { foo: {} },
                         transfers: [[{}, {}], [{}, {}]],
                         balance: 0,
                     },
@@ -378,7 +476,6 @@ describe('Reducer: account', () => {
 
             const action = actions.manualSyncSuccess({
                 accountName: 'foo',
-                addresses: { baz: {} },
                 transfers: [[{}, {}], [{}, {}], [{}, {}]],
                 balance: 100,
             });
@@ -387,19 +484,19 @@ describe('Reducer: account', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
-                        addresses: { foo: {}, baz: {} },
                         transfers: [[{}, {}], [{}, {}], [{}, {}]],
                         balance: 100,
                     },
                 },
             };
 
-            expect(newState.accountInfo).to.eql(expectedState.accountInfo);
+            expect(newState.accountInfo.transfers).to.eql(expectedState.accountInfo.transfers);
+            expect(newState.accountInfo.balance).to.eql(expectedState.accountInfo.balance);
         });
 
-        it('should set unspentAddressesHashes in payload to unspentAddressesHashes in state', () => {
+        it('should set txHashesForUnspentAddresses in payload to txHashesForUnspentAddresses in state', () => {
             const initialState = {
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     firstAccount: ['baz', 'bar'],
                     secondAccount: ['hash'],
                 },
@@ -407,28 +504,52 @@ describe('Reducer: account', () => {
 
             const action = actions.manualSyncSuccess({
                 accountName: 'firstAccount',
-                unspentAddressesHashes: ['baz'],
+                txHashesForUnspentAddresses: ['baz'],
             });
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     firstAccount: ['baz'],
                     secondAccount: ['hash'],
                 },
             };
 
-            expect(newState.unspentAddressesHashes).to.eql(expectedState.unspentAddressesHashes);
+            expect(newState.txHashesForUnspentAddresses).to.eql(expectedState.txHashesForUnspentAddresses);
+        });
+
+        it('should set pendingTxHashesForSpentAddresses in payload to pendingTxHashesForSpentAddresses in state', () => {
+            const initialState = {
+                pendingTxHashesForSpentAddresses: {
+                    firstAccount: ['baz', 'bar'],
+                    secondAccount: ['hash'],
+                },
+            };
+
+            const action = actions.manualSyncSuccess({
+                accountName: 'firstAccount',
+                pendingTxHashesForSpentAddresses: ['baz'],
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                pendingTxHashesForSpentAddresses: {
+                    firstAccount: ['baz'],
+                    secondAccount: ['hash'],
+                },
+            };
+
+            expect(newState.pendingTxHashesForSpentAddresses).to.eql(expectedState.pendingTxHashesForSpentAddresses);
         });
     });
 
-    describe('FULL_ACCOUNT_INFO_FETCH_SUCCESS', () => {
+    describe('FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS', () => {
         it('should merge unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
             const initialState = {
                 unconfirmedBundleTails: { foo: {} },
             };
 
-            const action = actions.fullAccountInfoFetchSuccess({ unconfirmedBundleTails: { baz: {} } });
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({ unconfirmedBundleTails: { baz: {} } });
 
             const newState = reducer(initialState, action);
             const expectedState = {
@@ -449,7 +570,7 @@ describe('Reducer: account', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoFetchSuccess({
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [{}],
@@ -481,7 +602,7 @@ describe('Reducer: account', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoFetchSuccess({
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [[{}, {}], [{}, {}]],
@@ -502,28 +623,52 @@ describe('Reducer: account', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should set unspentAddressesHashes in payload to unspentAddressesHashes in state', () => {
+        it('should set txHashesForUnspentAddresses in payload to txHashesForUnspentAddresses in state', () => {
             const initialState = {
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     firstAccount: ['baz', 'bar'],
                     secondAccount: ['hash'],
                 },
             };
 
-            const action = actions.fullAccountInfoFetchSuccess({
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
                 accountName: 'firstAccount',
-                unspentAddressesHashes: ['baz'],
+                txHashesForUnspentAddresses: ['baz'],
             });
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     firstAccount: ['baz'],
                     secondAccount: ['hash'],
                 },
             };
 
-            expect(newState.unspentAddressesHashes).to.eql(expectedState.unspentAddressesHashes);
+            expect(newState.txHashesForUnspentAddresses).to.eql(expectedState.txHashesForUnspentAddresses);
+        });
+
+        it('should set pendingTxHashesForSpentAddresses in payload to pendingTxHashesForSpentAddresses in state', () => {
+            const initialState = {
+                pendingTxHashesForSpentAddresses: {
+                    firstAccount: ['baz', 'bar'],
+                    secondAccount: ['hash'],
+                },
+            };
+
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
+                accountName: 'firstAccount',
+                pendingTxHashesForSpentAddresses: ['baz'],
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                pendingTxHashesForSpentAddresses: {
+                    firstAccount: ['baz'],
+                    secondAccount: ['hash'],
+                },
+            };
+
+            expect(newState.pendingTxHashesForSpentAddresses).to.eql(expectedState.pendingTxHashesForSpentAddresses);
         });
 
         it('should set firstUse in state to false', () => {
@@ -531,7 +676,7 @@ describe('Reducer: account', () => {
                 firstUse: true,
             };
 
-            const action = actions.fullAccountInfoFetchSuccess({ accountName: 'foo' }); // Would break if accountName is missing
+            const action = actions.fullAccountInfoFirstSeedFetchSuccess({ accountName: 'foo' }); // Would break if accountName is missing
 
             const newState = reducer(initialState, action);
             const expectedState = {
@@ -542,7 +687,7 @@ describe('Reducer: account', () => {
         });
     });
 
-    describe('FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS', () => {
+    describe('FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS', () => {
         it('should merge addresses in payload to accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
@@ -552,11 +697,11 @@ describe('Reducer: account', () => {
                         balance: 0,
                     },
                 },
-                seedNames: [],
+                accountNames: [],
                 seedCount: 0,
             };
 
-            const action = actions.fullAccountInfoForFirstUseFetchSuccess({
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [{}],
@@ -572,7 +717,7 @@ describe('Reducer: account', () => {
                         balance: 100,
                     },
                 },
-                seedNames: [],
+                accountNames: [],
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
@@ -587,11 +732,11 @@ describe('Reducer: account', () => {
                         balance: 0,
                     },
                 },
-                seedNames: [],
+                accountNames: [],
                 seedCount: 0,
             };
 
-            const action = actions.fullAccountInfoForFirstUseFetchSuccess({
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [[{}, {}], [{}, {}]],
@@ -607,45 +752,71 @@ describe('Reducer: account', () => {
                         balance: 100,
                     },
                 },
-                seedNames: [],
+                accountNames: [],
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should set hashes in payload to unspentAddressesHashes in state', () => {
+        it('should set txHashesForUnspentAddresses in payload to txHashesForUnspentAddresses in state', () => {
             const initialState = {
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     firstAccount: ['baz', 'bar'],
                     secondAccount: ['hash'],
                 },
-                seedNames: [],
+                accountNames: [],
                 seedCount: 0,
             };
 
-            const action = actions.fullAccountInfoForFirstUseFetchSuccess({
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'firstAccount',
-                unspentAddressesHashes: ['baz'],
+                txHashesForUnspentAddresses: ['baz'],
             });
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     firstAccount: ['baz'],
                     secondAccount: ['hash'],
                 },
             };
 
-            expect(newState.unspentAddressesHashes).to.eql(expectedState.unspentAddressesHashes);
+            expect(newState.txHashesForUnspentAddresses).to.eql(expectedState.txHashesForUnspentAddresses);
+        });
+
+        it('should set pendingTxHashesForSpentAddresses in payload to pendingTxHashesForSpentAddresses in state', () => {
+            const initialState = {
+                pendingTxHashesForSpentAddresses: {
+                    firstAccount: ['baz', 'bar'],
+                    secondAccount: ['hash'],
+                },
+                accountNames: [],
+                seedCount: 0,
+            };
+
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
+                accountName: 'firstAccount',
+                pendingTxHashesForSpentAddresses: ['baz'],
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                pendingTxHashesForSpentAddresses: {
+                    firstAccount: ['baz'],
+                    secondAccount: ['hash'],
+                },
+            };
+
+            expect(newState.pendingTxHashesForSpentAddresses).to.eql(expectedState.pendingTxHashesForSpentAddresses);
         });
 
         it('should increment seedCount by one', () => {
             const initialState = {
                 seedCount: 1,
-                seedNames: [],
+                accountNames: [],
             };
 
-            const action = actions.fullAccountInfoForFirstUseFetchSuccess({
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [{}],
@@ -655,19 +826,19 @@ describe('Reducer: account', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 seedCount: 2,
-                seedNames: [],
+                accountNames: [],
             };
 
             expect(newState.seedCount).to.eql(expectedState.seedCount);
         });
 
-        it('should concat accountName to seedNames', () => {
+        it('should concat accountName to accountNames', () => {
             const initialState = {
                 seedCount: 1,
-                seedNames: ['foo'],
+                accountNames: ['foo'],
             };
 
-            const action = actions.fullAccountInfoForFirstUseFetchSuccess({
+            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'foo',
                 addresses: { baz: {} },
                 transfers: [{}],
@@ -677,11 +848,11 @@ describe('Reducer: account', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 seedCount: 1,
-                seedNames: ['foo', 'baz'],
+                accountNames: ['foo', 'baz'],
             };
 
-            expect(newState.seedNames).to.not.eql(['baz', 'foo']);
-            expect(newState.seedNames).to.not.eql(expectedState.seedNames);
+            expect(newState.accountNames).to.not.eql(['baz', 'foo']);
+            expect(newState.accountNames).to.not.eql(expectedState.accountNames);
         });
     });
 
@@ -749,9 +920,9 @@ describe('Reducer: account', () => {
             );
         });
 
-        it('should set unspentAddressesHashes in payload to unspentAddressesHashes in state', () => {
+        it('should set txHashesForUnspentAddresses in payload to txHashesForUnspentAddresses in state', () => {
             const initialState = {
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     firstAccount: ['baz', 'bar'],
                     secondAccount: ['hash'],
                 },
@@ -759,18 +930,42 @@ describe('Reducer: account', () => {
 
             const action = actions.updateAccountInfoAfterSpending({
                 accountName: 'firstAccount',
-                unspentAddressesHashes: ['baz'],
+                txHashesForUnspentAddresses: ['baz'],
             });
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                unspentAddressesHashes: {
+                txHashesForUnspentAddresses: {
                     firstAccount: ['baz'],
                     secondAccount: ['hash'],
                 },
             };
 
-            expect(newState.unspentAddressesHashes).to.eql(expectedState.unspentAddressesHashes);
+            expect(newState.txHashesForUnspentAddresses).to.eql(expectedState.txHashesForUnspentAddresses);
+        });
+
+        it('should set pendingTxHashesForSpentAddresses in payload to pendingTxHashesForSpentAddresses in state', () => {
+            const initialState = {
+                pendingTxHashesForSpentAddresses: {
+                    firstAccount: ['baz', 'bar'],
+                    secondAccount: ['hash'],
+                },
+            };
+
+            const action = actions.updateAccountInfoAfterSpending({
+                accountName: 'firstAccount',
+                pendingTxHashesForSpentAddresses: ['baz'],
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                pendingTxHashesForSpentAddresses: {
+                    firstAccount: ['baz'],
+                    secondAccount: ['hash'],
+                },
+            };
+
+            expect(newState.pendingTxHashesForSpentAddresses).to.eql(expectedState.pendingTxHashesForSpentAddresses);
         });
 
         it('should merge unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {

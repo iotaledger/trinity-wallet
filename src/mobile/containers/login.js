@@ -4,10 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
-import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import { StyleSheet, View, Text, AppState } from 'react-native';
-import FingerprintScanner from 'react-native-fingerprint-scanner';
+import { StyleSheet, View } from 'react-native';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { setPassword, setReady, setUserActivity, setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -16,19 +14,14 @@ import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import whiteArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-white.png';
-import blackArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-black.png';
-import whiteTickImagePath from 'iota-wallet-shared-modules/images/tick-white.png';
-import blackTickImagePath from 'iota-wallet-shared-modules/images/tick-black.png';
 import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import keychain, { getPasswordFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../util/keychain';
-import GENERAL from '../theme/general';
+import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, logTwoFa } from '../util/keychain';
+import { getPasswordHash } from '../util/crypto';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
 import { width, height } from '../util/dimensions';
@@ -38,15 +31,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    modalContent: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
-        borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.8)',
-        paddingVertical: height / 18,
-        width: width / 1.15,
     },
     questionText: {
         backgroundColor: 'transparent',
@@ -64,22 +48,19 @@ const styles = StyleSheet.create({
 
 class Login extends Component {
     static propTypes = {
-        hasErrorFetchingAccountInfoOnLogin: PropTypes.bool.isRequired,
         fullNode: PropTypes.string.isRequired,
         availablePoWNodes: PropTypes.array.isRequired,
         versions: PropTypes.object.isRequired,
         setPassword: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
-        positiveColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.string.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
-        isFingerprintEnabled: PropTypes.bool.isRequired,
         migrate: PropTypes.func.isRequired,
         setLoginPasswordField: PropTypes.func.isRequired,
         password: PropTypes.string.isRequired,
+        pwdHash: PropTypes.string.isRequired,
         setFullNode: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         navigator: PropTypes.object.isRequired,
@@ -89,10 +70,8 @@ class Login extends Component {
         super();
 
         this.state = {
-            isModalVisible: false,
             changingNode: false,
             completing2FA: false,
-            appState: AppState.currentState,
         };
 
         this.onComplete2FA = this.onComplete2FA.bind(this);
@@ -107,64 +86,53 @@ class Login extends Component {
         this.props.setUserActivity({ inactive: false });
     }
 
-    componentWillReceiveProps(newProps) {
-        if (newProps.hasErrorFetchingAccountInfoOnLogin && !this.props.hasErrorFetchingAccountInfoOnLogin) {
-            this.showModal();
-        }
-    }
-
-    componentWillUnmount() {
-        if (this.props.isFingerprintEnabled) {
-            FingerprintScanner.release();
-        }
-    }
-
-    onLoginPress(password) {
+    async onLoginPress(password) {
         const { t, is2FAEnabled } = this.props;
-
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
-            getPasswordFromKeychain()
-                .then((passwordFromKeychain) => {
-                    const hasCorrectPassword = passwordFromKeychain === password;
-
-                    if (hasCorrectPassword) {
-                        this.props.setPassword(password);
-                        this.props.setLoginPasswordField('');
-
-                        if (!is2FAEnabled) {
-                            this.navigateToLoading();
-                        } else {
-                            this.setState({ completing2FA: true });
-                        }
+            const pwdHash = getPasswordHash(password);
+            getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
+                if (seedInfo !== null) {
+                    this.props.setPassword(pwdHash);
+                    this.props.setLoginPasswordField('');
+                    if (!is2FAEnabled) {
+                        this.navigateToLoading();
                     } else {
-                        this.props.generateAlert(
-                            'error',
-                            t('global:unrecognisedPassword'),
-                            t('global:unrecognisedPasswordExplanation'),
-                        );
+                        this.setState({ completing2FA: true });
                     }
-                })
-                .catch((err) => console.log(err)); // Generate an alert.
+                } else {
+                    this.props.generateAlert(
+                        'error',
+                        t('global:unrecognisedPassword'),
+                        t('global:unrecognisedPasswordExplanation'),
+                    );
+                }
+            });
         }
     }
 
-    onComplete2FA(token) {
-        const { t } = this.props;
-
+    async onComplete2FA(token) {
+        const { t, pwdHash } = this.props;
         if (token) {
-            getTwoFactorAuthKeyFromKeychain()
-                .then((key) => {
-                    const verified = authenticator.verifyToken(key, token);
-                    if (verified) {
-                        this.navigateToLoading();
-                        this.setState({ completing2FA: false });
-                    } else {
-                        this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
-                    }
-                })
-                .catch((err) => console.error(err)); // Generate an alert here.
+            console.log(pwdHash);
+            logTwoFa(pwdHash);
+            const key = await getTwoFactorAuthKeyFromKeychain(pwdHash);
+            //console.log(key)
+            if (key === null) {
+                this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongTryAgain'),
+                );
+            }
+            const verified = authenticator.verifyToken(key, token);
+            if (verified) {
+                this.navigateToLoading();
+                this.setState({ completing2FA: false });
+            } else {
+                this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
+            }
         } else {
             this.props.generateAlert('error', t('twoFA:emptyCode'), t('emptyCodeExplanation'));
         }
@@ -172,32 +140,6 @@ class Login extends Component {
 
     onBackPress() {
         this.setState({ completing2FA: false });
-    }
-
-    activateFingerPrintScanner() {
-        const { t, is2FAEnabled } = this.props;
-        FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
-            .then(() => {
-                keychain
-                    .get()
-                    .then((credentials) => {
-                        const password = get(credentials, 'password');
-                        this.props.setPassword(password);
-                        if (!is2FAEnabled) {
-                            this.navigateToLoading();
-                        } else {
-                            this.setState({ completing2FA: true });
-                        }
-                    })
-                    .catch((err) => console.log(err));
-            })
-            .catch(() => {
-                this.props.generateAlert(
-                    'error',
-                    t('fingerprintSetup:fingerprintAuthFailed'),
-                    t('fingerprintSetup:fingerprintAuthFailedExplanation'),
-                );
-            });
     }
 
     checkForUpdates() {
@@ -212,89 +154,52 @@ class Login extends Component {
         }
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
-
-    hideModal = () => this.setState({ isModalVisible: false });
-
     navigateToNodeSelection() {
-        this.hideModal();
         this.setState({ changingNode: true });
     }
 
     navigateToLoading() {
+        const { body } = this.props;
         this.props.navigator.push({
             screen: 'loading',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: this.props.backgroundColor,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
             animated: false,
             overrideBackPress: true,
         });
     }
 
-    renderModalContent = () => {
-        const { backgroundColor, secondaryBackgroundColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-        return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
-                <View style={styles.modalContent}>
-                    <Text style={[styles.questionText, textColor]}>Cannot connect to IOTA node.</Text>
-                    <Text style={[styles.infoText, textColor]}>Do you want to select a different node?</Text>
-                    <OnboardingButtons
-                        onLeftButtonPress={() => this.hideModal()}
-                        onRightButtonPress={() => this.navigateToNodeSelection()}
-                        leftText={'NO'}
-                        rightText={'YES'}
-                    />
-                </View>
-            </View>
-        );
-    };
-
     render() {
-        const {
-            backgroundColor,
-            positiveColor,
-            negativeColor,
-            secondaryBackgroundColor,
-            password,
-            isFingerprintEnabled,
-        } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-        const arrowLeftImagePath =
-            secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
-        const tickImagePath = secondaryBackgroundColor === 'white' ? whiteTickImagePath : blackTickImagePath;
+        const { body, theme, password, pwdHash } = this.props;
+        const textColor = { color: body.bg };
+
         return (
-            <View style={[styles.container, { backgroundColor }]}>
-                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <DynamicStatusBar backgroundColor={body.bg} />
                 {!this.state.changingNode &&
                     !this.state.completing2FA && (
                         <EnterPasswordOnLogin
-                            backgroundColor={backgroundColor}
-                            negativeColor={negativeColor}
-                            positiveColor={positiveColor}
+                            theme={theme}
                             onLoginPress={this.onLoginPress}
                             navigateToNodeSelection={this.navigateToNodeSelection}
-                            secondaryBackgroundColor={secondaryBackgroundColor}
                             textColor={textColor}
                             setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
                             password={password}
-                            activateFingerPrintScanner={() => this.activateFingerPrintScanner()}
-                            isFingerprintEnabled={isFingerprintEnabled}
                         />
                     )}
                 {!this.state.changingNode &&
                     this.state.completing2FA && (
                         <Enter2FA
-                            negativeColor={negativeColor}
-                            positiveColor={positiveColor}
                             onComplete2FA={this.onComplete2FA}
                             onBackPress={this.onBackPress}
                             navigateToNodeSelection={this.navigateToNodeSelection}
-                            secondaryBackgroundColor={secondaryBackgroundColor}
-                            textColor={textColor}
+                            theme={theme}
+                            pwdHash={pwdHash}
                         />
                     )}
                 {this.state.changingNode && (
@@ -309,31 +214,13 @@ class Login extends Component {
                                 node={this.props.fullNode}
                                 nodes={this.props.availablePoWNodes}
                                 backPress={() => this.setState({ changingNode: false })}
-                                textColor={textColor}
-                                tickImagePath={tickImagePath}
-                                arrowLeftImagePath={arrowLeftImagePath}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                body={body}
                             />
                         </View>
                         <View style={{ flex: 0.2 }} />
                     </View>
                 )}
-                <StatefulDropdownAlert />
-                <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
-                    animationInTiming={1000}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={500}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={'#132d38'}
-                    backdropOpacity={0.6}
-                    style={{ alignItems: 'center' }}
-                    isVisible={this.state.isModalVisible}
-                    onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                >
-                    {this.renderModalContent()}
-                </Modal>
+                <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
     }
@@ -344,16 +231,13 @@ const mapStateToProps = (state) => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
-    hasErrorFetchingAccountInfoOnLogin: state.tempAccount.hasErrorFetchingAccountInfoOnLogin,
-    backgroundColor: state.settings.theme.backgroundColor,
-    positiveColor: state.settings.theme.positiveColor,
-    negativeColor: state.settings.theme.negativeColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    theme: state.settings.theme,
+    body: state.settings.theme.body,
     is2FAEnabled: state.account.is2FAEnabled,
-    isFingerprintEnabled: state.account.isFingerprintEnabled,
     versions: state.app.versions,
     accountInfo: state.account.accountInfo,
     password: state.ui.loginPasswordFieldText,
+    pwdHash: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {
@@ -369,5 +253,5 @@ const mapDispatchToProps = {
 };
 
 export default WithBackPressCloseApp()(
-    translate(['login', 'global', 'twoFA', 'fingerprintSetup'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
+    translate(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
 );

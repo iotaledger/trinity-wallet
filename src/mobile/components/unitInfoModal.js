@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, View, StyleSheet, TouchableOpacity } from 'react-native';
-import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
-import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
 import TextWithLetterSpacing from './textWithLetterSpacing';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -67,22 +66,20 @@ const styles = StyleSheet.create({
 /* eslint-disable react/prefer-stateless-function */
 class UnitInfoModal extends Component {
     static propTypes = {
-        backgroundColor: PropTypes.string.isRequired,
         borderColor: PropTypes.object.isRequired,
+        bar: PropTypes.object.isRequired,
         textColor: PropTypes.object.isRequired,
-        secondaryBarColor: PropTypes.string.isRequired,
         hideModal: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
     };
 
     render() {
-        const { t, backgroundColor, textColor, borderColor, secondaryBarColor } = this.props;
-        const iotaImagePath = secondaryBarColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
+        const { t, textColor, borderColor, bar } = this.props;
 
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
-                <View style={[styles.modalContent, { backgroundColor }, borderColor]}>
-                    <Image source={iotaImagePath} style={styles.iotaIcon} />
+                <View style={[styles.modalContent, { backgroundColor: bar.bg }, borderColor]}>
+                    <Icon name="iota" size={width / 14} color={bar.color} />
                     <TextWithLetterSpacing spacing={4} textStyle={[styles.iotaText, textColor]}>
                         IOTA
                     </TextWithLetterSpacing>
