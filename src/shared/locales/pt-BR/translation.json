@@ -57,7 +57,7 @@
         "somethingWentWrongTryAgain": "Por favor, tente novamente.",
         "node": "Servidor",
         "cannotPerformAction": "Não é possível executar a ação",
-        "cannotPerformActionExplanation": "Vá para opções para redefinir a carteira.",
+        "cannotPerformActionExplanation": "Vá para configurações avançadas para redefinir a carteira.",
         "attachToTangleUnavailable": "Anexar ao Tangle indisponível",
         "attachToTangleUnavailableExplanation": "Anexar ao Tangle não está disponível no nó selecionado.",
         "wallet": "Carteira",
@@ -72,7 +72,7 @@
         "reattach": "REANEXAR",
         "promote": "PROMOVER",
         "rebroadcast": "RETRANSMITIR",
-        "pressBackAgain": "Toque novamente para fechar o app",
+        "pressBackAgain": "Pressione o botão \"voltar\" novamente para fechar o aplicativo",
         "autoreattaching": "Anexando automaticamente ao Tangle",
         "autoreattachingExplanation": "Anexando transação automaticamente com hash {{hash}}",
         "autopromoting": "Promovendo transferência automaticamente",
@@ -95,7 +95,7 @@
         "seedTooShortExplanation": "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
         "nameInUse": "Nome da conta já está sendo utilizado",
         "nameInUseExplanation": "Por favor, use um nome de conta exclusivo para a sua Seed.",
-        "enterAccountName": "Entre um nome de conta.",
+        "enterAccountName": "Informe o nome de conta.",
         "accountName": "Nome da Conta",
         "noNickname": "Nenhum nome de conta inserido",
         "noNicknameExplanation": "Por favor, insira um nome de conta para a sua Seed.",
@@ -122,7 +122,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed removida",
-        "seedClearedExplanation": "Para sua segurança, a Seed foi removida do clipboard.",
+        "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
         "seedCopied": "A Seed foi copiada para a área de transferência",
         "seedCopiedExplanation": "A Seed será removida quando pressionar \"CONCLUÍDO\" ou ao passar de 60 segundos.",
         "clickToCopy": "Clique no botão abaixo e copie a sua Seed para o gerenciador de senha.",
@@ -143,13 +143,13 @@
         "send": "ENVIAR",
         "receive": "RECEBER",
         "history": "HISTÓRICO",
-        "settings": "OPÇÕES"
+        "settings": "CONFIGURAÇÕES"
     },
     "languageSetup": {
         "language": "Idioma"
     },
     "login": {
-        "emptyPassword": "Senha vazia",
+        "emptyPassword": "Senha em branco",
         "emptyPasswordExplanation": "Você deve digitar uma senha para entrar. Por favor, tente novamente.",
         "enterPassword": "Por favor, digite sua senha.",
         "useSeed": "USAR A SEED",
@@ -387,7 +387,7 @@
         "reenterWarning": "Se seu dispositivo falhar e você não salvar sua Seed, você perderá seu IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "ESTA AÇÃO NÃO PODE SER REVERTIDA.",
+        "cannotUndo": "ESTA AÇÃO NÃO PODE SER DESFEITA.",
         "warning": "<0><0>Todos os seus dados da carteira, incluindo suas </0><1>seeds, senhas,</1><2> e </2><3>outras informações da conta</3><4> serão perdidas.</4></0>"
     },
     "fingerprintSetup": {
@@ -419,7 +419,7 @@
         "emptyCodeExplanation": "Por favor, introduza um código e tente novamente.",
         "keyCopied": "Chave copiada para a área de transferência",
         "keyCopiedExplanation": "Seu código 2FA foi copiado para a área de transferência.",
-        "addKey": "Adicione essa chave para seu app 2FA",
+        "addKey": "Adicione essa chave em seu aplicativo 2FA",
         "key": "Chave",
         "twoFAEnabled": "2FA foi habilitado",
         "twoFAEnabledExplanation": "Você ativou a autenticação de dois fatores com sucesso.",
@@ -428,16 +428,16 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Mudança",
+        "change": "Variação",
         "volume": "Volume (24h)"
     },
     "rootDetection": {
-        "warning": "AVISO",
+        "warning": "ATENÇÃO",
         "rootDetected": "<0>Seu dispositivo aparenta ter sofrido um root.</0><1>Isso pode oferecer riscos à segurança de sua carteira.</1><2>Continuar, apesar dos riscos?</2>"
     },
     "pow": {
-        "feeless": "É necessário completar uma prova de trabalho para enviar transações em IOTA gratuitamente.",
-        "localOrRemote": "Prova de trabalho pode ser concluída localmente, ou descarregada para um servidor.",
+        "feeless": "É necessário completar a aprovação para enviar transações em IOTA gratuitamente.",
+        "localOrRemote": "A aprovação pode ser concluída localmente, ou transferida a um servidor.",
         "local": "Local",
         "remote": "Remoto"
     },
