@@ -20,8 +20,6 @@ class List extends React.PureComponent {
     static propTypes = {
         /** List item count limit */
         limit: PropTypes.number,
-        /** Compact style state  */
-        compact: PropTypes.bool,
         /** Transaction type filter */
         filter: PropTypes.oneOf(['sent', 'received', 'pending']),
         /** Transaction history */
@@ -45,37 +43,8 @@ class List extends React.PureComponent {
         });
     };
 
-    compactItem = (transfer, isReceived, isConfirmed, t) => {
-        return (
-            <div>
-                <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
-                <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
-                <strong>{!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}</strong>
-                <span>{`${round(formatValue(transfer.value))} ${formatUnit(transfer.value)}`}</span>
-            </div>
-        );
-    };
-
-    fullItem = (transfer, isReceived, isConfirmed, t) => {
-        return (
-            <div className={css.full}>
-                <p>
-                    <span>
-                        {isReceived ? t('received') : t('sent')}{' '}
-                        {`${round(formatValue(transfer.value))} ${formatUnit(transfer.value)}`}
-                    </span>
-                    <strong>{!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}</strong>
-                </p>
-                <p>
-                    <span>Message: {convertFromTrytes(transfer.signatureMessageFragment)}</span>
-                    <span>{formatModalTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
-                </p>
-            </div>
-        );
-    };
-
     render() {
-        const { transfers, addresses, limit, t, compact, filter } = this.props;
+        const { transfers, addresses, limit, t, filter } = this.props;
 
         const transferLimit = limit ? limit : transfers.length;
 
@@ -83,8 +52,15 @@ class List extends React.PureComponent {
         const activeTransfer = activeTransfers ? activeTransfers[0] : null;
 
         return (
-            <div>
-                <nav className={classNames(css.list, compact ? css.compact : null)}>
+            <React.Fragment>
+                <nav className={css.nav}>
+                    <a className={css.active}>All</a>
+                    <a>Sent</a>
+                    <a>Received</a>
+                    <a>Pending</a>
+                </nav>
+                <hr />
+                <div className={css.list}>
                     {transfers && transfers.length ? (
                         transfers.slice(0, transferLimit).map((transferRow, key) => {
                             const transfer = transferRow[0];
@@ -108,16 +84,23 @@ class List extends React.PureComponent {
                                         isConfirmed ? css.confirmed : css.pending,
                                     )}
                                 >
-                                    {compact
-                                        ? this.compactItem(transfer, isReceived, isConfirmed, t)
-                                        : this.fullItem(transfer, isReceived, isConfirmed, t)}
+                                    <div>
+                                        <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
+                                        <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
+                                        <strong>
+                                            {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
+                                        </strong>
+                                        <span>{`${round(formatValue(transfer.value))} ${formatUnit(
+                                            transfer.value,
+                                        )}`}</span>
+                                    </div>
                                 </a>
                             );
                         })
                     ) : (
-                        <a className={css.empty}>No recent history</a>
+                        <p className={css.empty}>No recent history</p>
                     )}
-                </nav>
+                </div>
                 {activeTransfer !== null ? (
                     <Modal isOpen onClose={() => this.setState({ activeItem: null })}>
                         <div className={css.historyItem}>
@@ -178,7 +161,7 @@ class List extends React.PureComponent {
                         </div>
                     </Modal>
                 ) : null}
-            </div>
+            </React.Fragment>
         );
     }
 }

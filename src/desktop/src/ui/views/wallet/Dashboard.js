@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import TweetEmbed from 'react-tweet-embed';
 
 import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
 import Button from 'ui/components/Button';
 import Balance from 'ui/components/Balance';
+import Icon from 'ui/components/Icon';
 
 import css from './dashboard.css';
 
@@ -29,27 +31,30 @@ class Dashboard extends React.PureComponent {
         const { t, history } = this.props;
 
         return (
-            <React.Fragment>
-                <section className={css.balance}>
-                    <div>
-                        <h1>{t('home:balance')}</h1>
+            <div className={css.dashboard}>
+                <div>
+                    <section className={css.balance}>
                         <Balance />
-                    </div>
-                    <div>
-                        <Button onClick={() => history.push('/wallet/receive')} variant="secondary">
-                            Receive
-                        </Button>
-                        <Button onClick={() => history.push('/wallet/send')} variant="primary">
-                            Send
-                        </Button>
-                    </div>
-                    <List compact limit={10} />
-                </section>
-                <section className={css.market}>
-                    <Chart />
-                    <div className={css.news} />
-                </section>
-            </React.Fragment>
+                        <hr />
+                        <nav>
+                            <Button onClick={() => history.push('/wallet/receive')} variant="secondary">
+                                Receive
+                            </Button>
+                            <Button onClick={() => history.push('/wallet/send')} variant="primary">
+                                Send
+                            </Button>
+                        </nav>
+                    </section>
+                    <section className={css.history}>
+                        <List compact />
+                    </section>
+                </div>
+                <div>
+                    <section className={css.market}>
+                        <Chart />
+                    </section>
+                </div>
+            </div>
         );
     }
 }
