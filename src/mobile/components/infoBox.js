@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderBottomLeftRadius: GENERAL.borderRadiusSmall,
         borderBottomRightRadius: GENERAL.borderRadiusSmall,
-        width: width / 1.2,
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: height / 23,
@@ -45,7 +44,6 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 6,
         height: height / 24,
         alignItems: 'center',
-        width: width / 1.2,
     },
 });
 
@@ -53,14 +51,16 @@ class InfoBox extends PureComponent {
     static propTypes = {
         body: PropTypes.object.isRequired,
         text: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+        width: PropTypes.number,
     };
 
     static defaultProps = {
         bodyColor: 'white',
+        width: width / 1.2,
     };
 
     render() {
-        const { body, text } = this.props;
+        const { body, text, width } = this.props;
         const isDark = tinycolor(body.color).isDark();
         const infoImagePath = isDark ? blackInfoImagePath : whiteInfoImagePath;
         const innerContainerBackgroundColor = isDark
@@ -75,10 +75,10 @@ class InfoBox extends PureComponent {
 
         return (
             <View style={styles.fieldContainer}>
-                <View style={[styles.banner, bannerBackgroundColor]} />
+                <View style={[styles.banner, bannerBackgroundColor, { width }]} />
                 <View style={[styles.iconContainer, iconContainerBackgroundColor]} />
                 <Image source={infoImagePath} style={styles.icon} />
-                <View style={[styles.innerContainer, innerContainerBackgroundColor]}>{text}</View>
+                <View style={[styles.innerContainer, innerContainerBackgroundColor, { width }]}>{text}</View>
             </View>
         );
     }
