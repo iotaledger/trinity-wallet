@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { currentAccountSelectorBySeedIndex } from '../../selectors/account';
+import { selectAccountInfo } from '../../selectors/account';
 
 /**
  * List component container
@@ -40,7 +40,7 @@ export default function withListData(ListComponent) {
 
     const mapStateToProps = (state) => ({
         account: state.account,
-        accountInfo: currentAccountSelectorBySeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+        accountInfo: selectAccountInfo(state),
         theme: state.settings.theme,
     });
 
