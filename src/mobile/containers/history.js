@@ -288,7 +288,7 @@ class History extends Component {
                     <RefreshControl
                         refreshing={isRefreshing && !noTransactions}
                         onRefresh={this.onRefresh}
-                        tintColor={negative.color}
+                        tintColor={primary.color}
                     />
                 }
                 ListEmptyComponent={
