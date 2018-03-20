@@ -11,7 +11,6 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Navigation } from 'react-native-navigation';
 import CtaButton from '../components/ctaButton';
 import { width, height } from '../util/dimensions';
-import { isIPhoneX } from '../util/device';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
