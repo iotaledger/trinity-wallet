@@ -167,7 +167,7 @@ class EnterSeed extends React.Component {
         const { t, body, theme, input } = this.props;
         return (
             <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
-                <View style={styles.container}>
+                <View style={[styles.container, { backgroundColor: body.bg }]}>
                     <StatusBar barStyle="light-content" backgroundColor={body.bg} />
                     <View style={styles.topContainer}>
                         <View style={styles.logoContainer}>
