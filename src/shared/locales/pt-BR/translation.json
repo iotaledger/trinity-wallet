@@ -239,7 +239,7 @@
     },
     "modeSelection": {
         "expert": "Avançado",
-        "standard": "Normal",
+        "standard": "Padrão",
         "expertModeExplanation": "Modo avançado fornecerá acesso aos recursos adicionais como promoção manual e reanexo.",
         "modesExplanation": "Somente habilite o modo Avançado se você for um usuário experiente do Tangle. Você pode se confundir caso contrário."
     },
