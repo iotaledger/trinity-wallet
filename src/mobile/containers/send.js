@@ -303,6 +303,7 @@ export class Send extends Component {
 
     onAmountType(amount) {
         const { t, body } = this.props;
+        amount = amount.replace(/,/g, '.');
         this.props.setSendAmountField(amount);
         if (amount === (this.props.balance / this.getUnitMultiplier()).toString()) {
             this.onMaxPress();
