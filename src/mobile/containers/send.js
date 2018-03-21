@@ -42,10 +42,7 @@ import KeepAwake from 'react-native-keep-awake';
 import QRScanner from '../components/qrScanner';
 import Toggle from '../components/toggle';
 import ProgressBar from '../components/progressBar';
-import {
-    getBalanceForSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from '../../shared/selectors/account';
+import { getBalanceForSelectedAccount, getSelectedAccountName } from '../../shared/selectors/account';
 import ProgressSteps from '../util/progressSteps';
 import { getSeedFromKeychain } from '../util/keychain';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
@@ -53,19 +50,13 @@ import UnitInfoModal from '../components/unitInfoModal';
 import CustomTextInput from '../components/customTextInput';
 import CtaButton from '../components/ctaButton';
 import { Icon } from '../theme/icons.js';
-import { width, height } from '../util/dimensions';
+import { width } from '../util/dimensions';
 import { isAndroid, isIOS } from '../util/device';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-    },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: height / 14,
     },
     topContainer: {
         flex: 3.6,
@@ -850,8 +841,8 @@ export class Send extends Component {
 
 const mapStateToProps = (state) => ({
     currency: state.settings.currency,
-    balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    balance: getBalanceForSelectedAccount(state),
+    selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.tempAccount.isSyncing,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     seedIndex: state.tempAccount.seedIndex,
