@@ -90,7 +90,7 @@ class Activation extends React.PureComponent {
                     <form className="center" onSubmit={this.setCode}>
                         <fieldset>
                             <h2>Activate your copy of Trinity wallet</h2>
-                            <p>Enter your activation code or e-mail to receive it.</p>
+                            <p>Enter your activation code or e-mail below</p>
                             <Text value={this.state.input} onChange={(value) => this.setState({ input: value })} />
                             <Button type="submit" loading={this.state.loading} className="large" variant="primary">
                                 Activate
