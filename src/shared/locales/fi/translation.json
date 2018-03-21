@@ -128,7 +128,7 @@
         "clickToCopy": "Klikkaa alla olevaa painiketta ja kopioi seed-lukusi salasanan hallintaohjelmaan.",
         "doNotStore": "Älä säilytä seed-lukuasi pelkkänä tekstinä.",
         "copyToClipboard": "Kopioi seed-luku",
-        "shareSeed": "Jaa seed-lukusi salasanan hallintaohjelman kanssa"
+        "shareSeed": "Tallenna seed-lukusi turvalliseen salasanan hallintaohjelmaan"
     },
     "enterSeed": {
         "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
