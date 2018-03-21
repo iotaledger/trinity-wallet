@@ -35,7 +35,7 @@
         "paperWallet": "Udskrive papirkopi",
         "copyToClipboard": "Tilføj til passwordmanager",
         "notAvailable": "Denne funktion er ikke tilgængelig",
-        "notAvailableExplanation": "Den bliver tilføjet på et senere tidspunkt.",
+        "notAvailableExplanation": "Dette vil blivee tilføjet på et senere tidspunkt.",
         "enterSeed": "Indtast venligst dit seed.",
         "mainWallet": "HOVEDKONTO",
         "secondWallet": "2. KONTO",
@@ -293,13 +293,13 @@
     "walletSetup": {
         "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouAlreadyHaveASeed": "Har du allerede et seed, du gerne vil bruge?",
-        "seedExplanation": "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
+        "seedExplanation": "Dit IOTA seed fungerer som din kontos brugernavn og adgangskode, og består af en kombineret streng på 81 tegn.",
         "explanation": "<0><0>du kan bruge det til at hente dine midler fra</0><1> enhver tegnebog</1><2>, på</2><3> hvilken som helst enhed</3><4>. Men mister du dit seed, mister du også dine IOTA.</4></0>",
         "keepSafe": "Du bedes opbevare dit seed sikkert."
     },
     "welcome": {
         "thankYou": "Tak fordi du downloadede Trinity.",
-        "weWillSpend": "Vi bruger de næste par minutter på at opsætte din tegnebog.",
+        "weWillSpend": "Vi vil bruge de næste par minutter på at opsætte din tegnebog.",
         "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
     },
     "writeSeedDown": {
