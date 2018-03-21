@@ -56,13 +56,14 @@ class Activation extends React.PureComponent {
                 uuid: uuid,
             };
 
-            fetch('https://tobeannounced', {
+            fetch('https://trinity-alpha-fphqhjwuwu.now.sh', {
                 method: 'POST',
                 body: JSON.stringify(data),
             })
                 .then(() => {
                     this.setState({
                         loading: false,
+                        input: '',
                     });
 
                     generateAlert(
