@@ -444,11 +444,11 @@
     "progressSteps": {
         "validatingReceiveAddress": "Validating receive address",
         "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "preparingInputs": "Forbereder input",
+        "preparingTransfers": "Forberede overførsler",
+        "gettingTransactionsToApprove": "Modtager transaktioner til godkendelse",
+        "proofOfWork": "Fuldføre Proof of Work",
+        "broadcasting": "Sender overførsel til netværk"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan ikke fuldføre snapshot synkroniseringen",
