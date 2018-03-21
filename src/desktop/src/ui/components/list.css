@@ -24,7 +24,7 @@
             }
             > span:nth-child(1) {
                 width: 24px;
-                line-height: 38px;
+                margin-top: 10px;
             }
             > span:nth-child(2) {
                 text-align: left;

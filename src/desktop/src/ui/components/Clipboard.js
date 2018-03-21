@@ -31,6 +31,8 @@ class Clipboard extends React.PureComponent {
         generateAlert: PropTypes.func.isRequired,
     };
 
+    static timeout = null;
+
     copy() {
         const { text, generateAlert, title, success, timeout } = this.props;
 
@@ -38,9 +40,12 @@ class Clipboard extends React.PureComponent {
         generateAlert('success', title, success);
 
         if (timeout > 0) {
-            setTimeout(() => {
+            if (this.timeout) {
+                clearTimeout(this.timeout);
+            }
+            this.timeout = setTimeout(() => {
                 Electron.clipboard('');
-            }, timeout * 6000);
+            }, timeout * 1000);
         }
     }
 

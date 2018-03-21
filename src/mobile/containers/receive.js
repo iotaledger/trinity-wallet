@@ -15,10 +15,7 @@ import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
 import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import {
-    getSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { selectAccountInfo, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
 import {
     getFromKeychainRequest,
     getFromKeychainSuccess,
@@ -314,8 +311,8 @@ class Receive extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    selectedAccountData: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    selectedAccountData: selectAccountInfo(state),
+    selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.tempAccount.isSyncing,
     seedIndex: state.tempAccount.seedIndex,
     receiveAddress: state.tempAccount.receiveAddress,
