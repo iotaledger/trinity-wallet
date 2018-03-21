@@ -808,7 +808,7 @@ export class Send extends Component {
                                 <View style={styles.info}>
                                     <Icon
                                         name="info"
-                                        size={width / 12}
+                                        size={width / 25}
                                         color={body.color}
                                         style={{ marginRight: width / 60 }}
                                     />
