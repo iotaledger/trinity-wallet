@@ -213,7 +213,7 @@
         "recipientAddress": "Vastaanottajan osoite",
         "amount": "Summa",
         "max": "MAX",
-        "message": "Viesti",
+        "message": "Viesti (vapaaehtoinen)",
         "invalidMessage": "Virheellinen viesti",
         "invalidMessageExplanation": "Viestisi sisältää virheellisiä merkkejä.",
         "send": "LÄHETÄ",
@@ -298,7 +298,7 @@
         "keepSafe": "Muista aina pitää seed-lukusi turvassa."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Kiitos että latasit Trinity-lompakon.",
         "weWillSpend": "Seuraavaksi määritämme lompakkosi asetukset.",
         "reminder": "Kaikki tulevat vaiheet ovat tärkeitä lompakon toimivuuden kannalta, suorita ne huolellisesti loppuun asti."
     },
