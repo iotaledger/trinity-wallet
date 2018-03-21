@@ -439,7 +439,7 @@
         "feeless": "Det är nödvändigt att genomföra ett bevis på arbete för att skicka avgiftsfria transaktioner i IOTA.",
         "localOrRemote": "Bevis på arbete kan antingen slutföras lokalt på din enhet eller avlastas till en nod.",
         "local": "Lokal",
-        "remote": "Fjärr"
+        "remote": "Avlägsen"
     },
     "progressSteps": {
         "validatingReceiveAddress": "Bekräftar mottagaradress",
