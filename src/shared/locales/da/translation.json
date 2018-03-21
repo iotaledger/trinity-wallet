@@ -48,7 +48,7 @@
         "no": "NEJ",
         "password": "Adgangskode",
         "passwordOrFingerprint": "Adgangskode eller fingeraftryk",
-        "unrecognisedPassword": "Ukendt adgangskode",
+        "unrecognisedPassword": "Adgangskode ikke genkendt",
         "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
         "syncInProgress": "Synkronisering i gang",
         "syncInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
