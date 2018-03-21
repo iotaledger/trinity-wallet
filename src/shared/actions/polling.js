@@ -152,7 +152,11 @@ export const fetchChartData = () => {
             )}`;
             arrayPromises.push(
                 fetch(url).then((response) => {
-                    return response.json();
+                    try {
+                        return response.json();
+                    } catch (err) {
+                        dispatch(fetchChartDataError());
+                    }
                 }),
             );
         });
