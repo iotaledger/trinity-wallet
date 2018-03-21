@@ -18,7 +18,7 @@
         "bluebird": "^3.5.1",
         "i18next": "^10.2.2",
         "i18next-browser-languagedetector": "^2.1.0",
-        "iota.lib.js": "^0.4.7",
+        "iota.lib.js": "git+https://git@github.com/laumair/iota.lib.js#1559282",
         "lodash": "^4.17.4",
         "lodash.concat": "^4.5.0",
         "moment": "^2.19.1",

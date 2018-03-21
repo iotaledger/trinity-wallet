@@ -31,7 +31,7 @@
     "i18next": "^10.1.0",
     "inherits": "^2.0.3",
     "iota-wallet-shared-modules": "../shared/",
-    "iota.lib.js": "^0.4.7",
+    "iota.lib.js": "git+https://git@github.com/laumair/iota.lib.js#1559282",
     "lodash": "^4.17.4",
     "lottie-ios": "^2.1.5",
     "lottie-react-native": "2.2.7",
