@@ -5,6 +5,7 @@ import each from 'lodash/each';
 import find from 'lodash/find';
 import head from 'lodash/head';
 import map from 'lodash/map';
+import omitBy from 'lodash/omitBy';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isNull from 'lodash/isNull';
@@ -17,6 +18,7 @@ import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
 import difference from 'lodash/difference';
 import union from 'lodash/union';
+import unionBy from 'lodash/unionBy';
 import flatten from 'lodash/flatten';
 import orderBy from 'lodash/orderBy';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
@@ -537,6 +539,42 @@ export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
 };
 
 /**
+ *   Construct bundles, assign confirmation states and filter invalid bundles.
+ *
+ *   @method bundlesFromTransactionObjects
+ *   @param {array} tailTransactions
+ *   @param {array} transactionObjects
+ *   @param {array} inclusionStates
+ *
+ *   @returns {array}
+ **/
+export const bundlesFromTransactionObjects = (tailTransactions, transactionObjects, inclusionStates) => {
+    const transfers = [];
+
+    const { unconfirmed, confirmed } = categorizeTransactionsByPersistence(tailTransactions, inclusionStates);
+
+    // Make sure we keep a single bundle for confirmed transfers i.e. get rid of reattachments.
+    const updatedUnconfirmedTailTransactions = omitBy(unconfirmed, (tx, bundle) => bundle in confirmed);
+
+    // Map persistence to tail transactions so that they can later be mapped to other transaction objects in the bundle
+    const finalTailTransactions = [
+        ...map(confirmed, (tx) => ({ ...tx, persistence: true })),
+        ...map(updatedUnconfirmedTailTransactions, (tx) => ({ ...tx, persistence: false })),
+    ];
+
+    each(finalTailTransactions, (tx) => {
+        const bundle = constructBundle(tx, transactionObjects);
+
+        if (iota.utils.isBundle(bundle)) {
+            // Map persistence from tail transaction object to all transfer objects in the bundle
+            transfers.push(map(bundle, (transfer) => ({ ...transfer, persistence: tx.persistence })));
+        }
+    });
+
+    return transfers;
+};
+
+/**
  *   Get transaction objects associated with hashes, assign persistence by calling inclusion states
  *   Resolves transfers.
  *
@@ -547,37 +585,42 @@ export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
  *   @returns {Promise<object>} - { transfers (Updated transfers), newTransfers }
  **/
 export const syncTransfers = (diff, accountState) => {
-    const tailTransactionsHashes = new Set();
-    const nonTailBundleHashes = new Set();
+    const bundleHashes = new Set();
+
+    const cached = {
+        tailTransactions: [],
+        transactionObjects: [],
+    };
 
     return getTransactionsObjectsAsync(diff)
         .then((transactionObjects) => {
-            each(transactionObjects, (transactionObject) => {
-                if (transactionObject.currentIndex === 0) {
-                    tailTransactionsHashes.add(transactionObject.hash);
-                } else {
-                    nonTailBundleHashes.add(transactionObject.bundle);
-                }
-            });
+            each(transactionObjects, (transactionObject) => bundleHashes.add(transactionObject.bundle));
 
-            // Find tail transactions for non-tail bundle hashes
-            return findTransactionObjectsAsync({ bundles: Array.from(nonTailBundleHashes) });
+            // Find all transaction objects from bundle hashes
+            return findTransactionObjectsAsync({ bundles: Array.from(bundleHashes) });
         })
-        .then((bundleObjects) => {
-            each(bundleObjects, (transaction) => {
-                if (transaction.currentIndex === 0) {
-                    tailTransactionsHashes.add(transaction.hash);
-                }
-            });
+        .then((transactionObjects) => {
+            cached.transactionObjects = transactionObjects;
 
-            return getHashesWithPersistence(Array.from(tailTransactionsHashes));
+            const storeTailTransactions = (tx) => {
+                if (tx.currentIndex === 0) {
+                    cached.tailTransactions = unionBy(cached.tailTransactions, [tx], 'hash');
+                }
+            };
+
+            each(cached.transactionObjects, storeTailTransactions);
+
+            return getLatestInclusionAsync(map(cached.tailTransactions, (tx) => tx.hash));
         })
-        .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
-        .then((newTransfers) => {
-            const updatedTransfers = [...accountState.transfers, ...newTransfers];
+        .then((states) => {
+            const newTransfers = bundlesFromTransactionObjects(
+                cached.tailTransactions,
+                cached.transactionObjects,
+                states,
+            );
 
             return {
-                transfers: updatedTransfers,
+                transfers: [...accountState.transfers, ...newTransfers],
                 newTransfers,
             };
         });
