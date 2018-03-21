@@ -16,6 +16,19 @@ export function getUrlTimeFormat(timeframe) {
     }
 }
 
+// export function getUrlNumberFormat(timeframe) {
+//     // Used for setting correct CryptoCompare URL when fetching chart data
+//     switch (timeframe) {
+//         case '24h':
+//             return '23';
+//         case '7d':
+//             return '6';
+//         case '1m':
+//             return '29';
+//         case '1h':
+//             return '59';
+//     }
+// }
 export function getUrlNumberFormat(timeframe) {
     // Used for setting correct CryptoCompare URL when fetching chart data
     switch (timeframe) {
@@ -29,7 +42,6 @@ export function getUrlNumberFormat(timeframe) {
             return '59';
     }
 }
-
 export function formatChartData(json, currency, timeframe) {
     const timeValue = getUrlNumberFormat(timeframe);
     const response = get(json, 'Data');
