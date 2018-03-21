@@ -240,25 +240,25 @@
     "modeSelection": {
         "expert": "Avançado",
         "standard": "Padrão",
-        "expertModeExplanation": "Modo avançado fornecerá acesso aos recursos adicionais como promoção manual e reanexo.",
-        "modesExplanation": "Somente habilite o modo Avançado se você for um usuário experiente do Tangle. Você pode se confundir caso contrário."
+        "expertModeExplanation": "Modo Avançado fornece acesso a recursos adicionais, como promoção manual e reanexação.",
+        "modesExplanation": "Somente habilite o modo Avançado se você for um usuário experiente do Tangle. Caso contrário, poderá confundir-se."
     },
     "settings": {
         "transferSending": "Enviando transferência",
-        "transferSendingExplanation": "Por favor aguarde até que sua transferência seja realizada.",
+        "transferSendingExplanation": "Por favor aguarde até que sua transferência seja enviada.",
         "generatingAddress": "Gerando endereço de recebimento",
-        "generatingAddressExplanation": "Por favor aguarde enquanto o seu endereço está a ser gerado.",
+        "generatingAddressExplanation": "Por favor aguarde até que seu endereço seja gerado.",
         "mode": "Modo",
         "theme": "Tema",
         "currency": "Moeda",
         "language": "Idioma",
         "accountManagement": "Gerenciar Contas",
-        "addNewSeed": "Adicionar nova seed",
+        "addNewSeed": "Adicionar nova Seed",
         "twoFA": "Autenticação 2FA",
-        "changePassword": "Mudar senha",
-        "advanced": "Opções",
-        "logout": "Terminar sessão",
-        "reset": "Redefinir a carteira",
+        "changePassword": "Alterar Senha",
+        "advanced": "Configurações Avançadas",
+        "logout": "Desconectar",
+        "reset": "Redefinir a Carteira",
         "syncingComplete": "Sincronização completa",
         "syncingCompleteExplanation": "Sua conta foi sincronizada com sucesso.",
         "nicknameChanged": "Nome da Conta alterado",
@@ -292,10 +292,10 @@
     },
     "walletSetup": {
         "okay": "Ok. Vamos configurar a sua carteira!",
-        "doYouAlreadyHaveASeed": "Já possui uma seed que gostaria de utilizar?",
-        "seedExplanation": "A seed IOTA representa, simultaneamente, o nome do usuário e a senha de sua conta, combinados em uma sequência de 81 caracteres.",
-        "explanation": "<0><0>Voce pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder a sua seed, também perderá as suas IOTAS.</4></0>",
-        "keepSafe": "Por favor, mantenha a sua seed protegida e segura."
+        "doYouAlreadyHaveASeed": "Já possui uma Seed que gostaria de utilizar?",
+        "seedExplanation": "A Seed IOTA representa, simultaneamente, o nome do usuário e a senha de sua conta, combinados em uma sequência de 81 caracteres.",
+        "explanation": "<0><0>Voce pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder sua Seed, também perderá o acesso às suas IOTAs.</4></0>",
+        "keepSafe": "Por favor, mantenha a sua Seed protegida e segura."
     },
     "welcome": {
         "thankYou": "Thank you for downloading Trinity.",
@@ -315,9 +315,9 @@
         "receive": "RECEBER"
     },
     "accountManagement": {
-        "viewSeed": "Ver seed",
-        "viewAddresses": "Ver endereços",
-        "editAccountName": "Editar o nome da Conta",
+        "viewSeed": "Ver Seed",
+        "viewAddresses": "Ver Endereços",
+        "editAccountName": "Editar Nome da Conta",
         "deleteAccount": "Excluir Conta",
         "addNewAccount": "Adicionar nova Conta"
     },
@@ -326,8 +326,8 @@
         "add": "Adicionar"
     },
     "addNewAccount": {
-        "useExistingSeed": "Usar seed existente",
-        "createNewSeed": "Criar uma nova seed"
+        "useExistingSeed": "Usar Seed existente",
+        "createNewSeed": "Criar Nova Seed"
     },
     "advancedSettings": {
         "selectNode": "Selecionar servidor",
