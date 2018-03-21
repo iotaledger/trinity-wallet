@@ -11,7 +11,6 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Navigation } from 'react-native-navigation';
 import CtaButton from '../components/ctaButton';
 import { width, height } from '../util/dimensions';
-import { isIPhoneX } from '../util/device';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import GENERAL from '../theme/general';
@@ -24,24 +23,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 2.1,
+        flex: 1.75,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 16,
     },
     midContainer: {
-        flex: 5.55,
+        flex: 5.65,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 0.75,
+        flex: 0.6,
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
     list: {
         justifyContent: 'center',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap',
         paddingHorizontal: width / 20,
@@ -70,38 +69,16 @@ const styles = StyleSheet.create({
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
-    buttonsContainer: {
-        flex: 1,
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        flexDirection: 'row',
-    },
-    rightText: {
-        color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
-    leftButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginRight: width / 14,
-    },
-    leftText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
+    },
+    infoTextContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 40,
+        paddingBottom: width / 40,
     },
     tileText: {
         backgroundColor: 'transparent',
@@ -269,7 +246,7 @@ class NewSeedSetup extends Component {
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
-                    <View style={{ flex: 150 }} />
+                    <View style={{ flex: 1 }} />
                     <CtaButton
                         ctaColor={primary.color}
                         ctaBorderColor={primary.hover}
@@ -283,7 +260,7 @@ class NewSeedSetup extends Component {
                     />
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: isIPhoneX ? 100 : 30 }} />
+                    <View style={{ flex: 15 }} />
                     <FlatList
                         contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
                         data={split(seed, '')}
@@ -292,7 +269,7 @@ class NewSeedSetup extends Component {
                         initialNumToRender={MAX_SEED_LENGTH}
                         scrollEnabled={false}
                     />
-                    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 100 }}>
+                    <View style={styles.infoTextContainer}>
                         <Text
                             style={{
                                 color: this.state.infoTextColor,
