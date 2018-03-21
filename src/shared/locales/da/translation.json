@@ -7,11 +7,11 @@
         "refresh": "GENINDLÆS",
         "qr": "QR",
         "balanceError": "Ikke nok balance",
-        "balanceErrorMessage": "Du har ikke nok IOTA til at gennemføre denne overførsel.",
-        "transferError": "Overførselsfejl",
-        "transferErrorMessage": "Noget gik galt under din overførsel. Prøv venligst igen.",
-        "transferSent": "Overførsel sendt",
-        "transferSentMessage": "Din overførsel er blevet sendt til netværket.",
+        "balanceErrorMessage": "Du har ikke nok IOTA til at gennemføre denne transaktion.",
+        "transferError": "Transaktionsfejl",
+        "transferErrorMessage": "Noget gik galt under din transaktion. Prøv venligst igen.",
+        "transferSent": "Transaktion sendt",
+        "transferSentMessage": "Din transaktion er blevet sendt til netværket.",
         "messageSent": "Beskeden er sendt",
         "messageSentMessage": "Din meddelelse er blevet sendt til netværket.",
         "keyReuse": "Nøglegenbrug",
@@ -20,7 +20,7 @@
         "invalidResponseExplanation": "Noden returnerede et ugyldigt svar.",
         "invalidResponsePollingExplanation": "Noden returnerede et ugyldigt svar under polling.",
         "invalidResponseFetchingAccount": "Noden returnerede et ugyldigt svar ved hentning af dine kontooplysninger. Prøv at ændre noden.",
-        "invalidResponseSendingTransfer": "Noden returnerede et ugyldigt svar under afsendelse af overførslen.",
+        "invalidResponseSendingTransfer": "Noden returnerede et ugyldigt svar under afsendelse af transaktion.",
         "seed": "Seed",
         "back": "TILBAGE",
         "backLowercase": "Tilbage",
@@ -71,20 +71,20 @@
         "addresses": "Adresser",
         "reattach": "GENSEND",
         "promote": "PROMOVER",
-        "rebroadcast": "Gensend overførsel til netværk",
+        "rebroadcast": "Gensend transaktion til netværk",
         "pressBackAgain": "Tryk tilbage igen for at lukke app'en",
         "autoreattaching": "Gensend automatisk til netværket",
-        "autoreattachingExplanation": "Gensend overførsel med hash {{hash}}",
-        "autopromoting": "Valider automatisk overførsel",
-        "autopromotingExplanation": "Valider overførsel med hash {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
+        "autoreattachingExplanation": "Gensend transaktion med hash {{hash}}",
+        "autopromoting": "Valider automatisk transaktion",
+        "autopromotingExplanation": "Valider transaktion med hash {{hash}}",
+        "promoting": "Promovere transaktion",
+        "promotionError": "Kunne ikke promovere transaktionen",
         "noLongerValid": "Pakken du forsøger at promovere er ikke længere gyldig",
         "cannotSendToOwn": "Send til egen adresse",
-        "cannotSendToOwnExplanation": "Du kan ikke lave en værdi-overførsel til en af dine egne adresser.",
+        "cannotSendToOwnExplanation": "Du kan ikke lave en værdibaseret transaktion til en af dine egne adresser.",
         "pleaseWait": "Vent venligst",
         "pleaseWaitExplanation": "Trinity udfører en anden funktion. Vent venligst og prøv igen.",
-        "pleaseWaitTransferExplanation": "Din disponible balance bruges i øjeblikket i andre overførsler. Vent venligst på at disse bekræftes før du prøver igen.",
+        "pleaseWaitTransferExplanation": "Din disponible balance bruges i øjeblikket i andre transaktioner. Vent venligst på at disse bekræftes før du prøver igen.",
         "snapshotTransitionInProgress": "Snapshot synkronisering i gang",
         "snapshotTransitionInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført."
     },
@@ -161,7 +161,7 @@
     "loading": {
         "loadingFirstTime": "Indlæser seed for første gang.",
         "thisMayTake": "Dette kan tage noget tid.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Undlad at minimere eller lukke app'en.",
         "youMayNotice": "Dette kan reducere hastigheden på din enhed."
     },
     "newSeedSetup": {
@@ -207,7 +207,7 @@
         "invalidAddressExplanation3": "Adressen indeholder en ugyldig kontrolsum.",
         "invalidAddressExplanationGeneric": "Gyldige adresser skal være på 90 tegn og må kun indeholde A-Z eller 9.",
         "notEnoughFunds": "Utilstrækkelig saldo",
-        "notEnoughFundsExplanation": "Du har ikke nok IOTA til at gennemføre denne overførsel.",
+        "notEnoughFundsExplanation": "Du har ikke nok IOTA til at gennemføre denne transaktion.",
         "keyReuse": "Nøglegenbrug",
         "keyReuseExplanation": "Adressen, du forsøger at sende til, er allerede blevet brugt. Prøv venligst en anden adresse.",
         "recipientAddress": "Modtageradresse",
@@ -240,12 +240,12 @@
     "modeSelection": {
         "expert": "Ekspert",
         "standard": "Standard",
-        "expertModeExplanation": "Ekspert-tilstand vil give adgang til yderligere funktioner såsom manuel validering af overførsel og gensendelse af overførsel.",
+        "expertModeExplanation": "Ekspert-tilstand vil give adgang til yderligere funktioner såsom manuel validering og gensendelse af transaktioner.",
         "modesExplanation": "Aktiver kun ekspert-tilstand, hvis du er en erfaren Tangle bruger. Ellers vil det muligvis virke uigennemskueligt."
     },
     "settings": {
-        "transferSending": "Overførsel sendes",
-        "transferSendingExplanation": "Vent venligst, indtil din overførsel er blevet sendt.",
+        "transferSending": "Sender transaktion",
+        "transferSendingExplanation": "Vent venligst indtil din transaktion er blevet sendt.",
         "generatingAddress": "Genererer modtageradresse",
         "generatingAddressExplanation": "Vent venligst, indtil din adresse er blevet genereret.",
         "mode": "Tilstand",
@@ -298,7 +298,7 @@
         "keepSafe": "Du bedes opbevare dit seed sikkert."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Tak fordi du downloadede Trinity.",
         "weWillSpend": "Vi bruger de næste par minutter på at opsætte din tegnebog.",
         "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
     },
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "ADVARSEL",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Din enhed ser ud til at være rooted/jailbreaked.</0><1>Dette kan udgøre en væsentlig risiko for sikkerheden i din tegnebog</1><2>Ønsker du at fortsætte trods denne risiko?</2>"
     },
     "pow": {
         "feeless": "Det er nødvendigt at udføre en mindre netværksvalidering (PoW) for at sende gratis overførsler med IOTA.",
@@ -442,13 +442,13 @@
         "remote": "Fjernadgang"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
+        "validatingReceiveAddress": "Validering modtageradresse",
+        "syncingAccount": "Synkroniserer konto",
         "preparingInputs": "Forbereder input",
-        "preparingTransfers": "Forberede overførsler",
-        "gettingTransactionsToApprove": "Modtager transaktioner til godkendelse",
+        "preparingTransfers": "Forberede transaktion",
+        "gettingTransactionsToApprove": "Modtager transaktion til godkendelse",
         "proofOfWork": "Fuldføre Proof of Work",
-        "broadcasting": "Sender overførsel til netværk"
+        "broadcasting": "Sender transaktion til netværk"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan ikke fuldføre snapshot synkroniseringen",
