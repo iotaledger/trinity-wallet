@@ -79,7 +79,7 @@
         "autopromotingExplanation": "Valider overførsel med hash {{hash}}",
         "promoting": "Promoting transfer",
         "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "noLongerValid": "Pakken du forsøger at promovere er ikke længere gyldig",
         "cannotSendToOwn": "Send til egen adresse",
         "cannotSendToOwnExplanation": "Du kan ikke lave en værdi-overførsel til en af dine egne adresser.",
         "pleaseWait": "Vent venligst",
