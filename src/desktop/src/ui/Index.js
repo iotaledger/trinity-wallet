@@ -6,9 +6,11 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
+
 import { clearTempData } from 'actions/tempAccount';
 import { getUpdateData } from 'actions/settings';
 import { clearSeeds } from 'actions/seeds';
+import { disposeOffAlert } from 'actions/alerts';
 
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
@@ -42,6 +44,10 @@ class App extends React.Component {
          * @ignore
          */
         tempAccount: PropTypes.object.isRequired,
+        /** Clear  alert state data
+         * @ignore
+         */
+        disposeOffAlert: PropTypes.func.isRequired,
         /** Clear temporary account state data
          * @ignore
          */
@@ -78,6 +84,10 @@ class App extends React.Component {
         if (!this.props.tempAccount.ready && nextProps.tempAccount.ready) {
             Electron.updateMenu('authorised', true);
             this.props.history.push('/wallet/');
+        }
+
+        if (this.props.location.pathname !== nextProps.location.pathname) {
+            this.props.disposeOffAlert();
         }
     }
 
@@ -150,6 +160,7 @@ const mapDispatchToProps = {
     clearTempData,
     clearSeeds,
     getUpdateData,
+    disposeOffAlert,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(App)));

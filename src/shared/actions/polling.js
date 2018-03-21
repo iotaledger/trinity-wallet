@@ -170,13 +170,13 @@ export const fetchChartData = () => {
  *   @param {string} accountName
  *   @returns {function} dispatch
  **/
-export const getAccountInfo = (seed, accountName) => {
+export const getAccountInfo = (accountName) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAccount(seed, existingAccountState)
+        return syncAccount(existingAccountState)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 dispatch(accountInfoFetchError());
