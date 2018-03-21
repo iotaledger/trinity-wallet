@@ -73,7 +73,7 @@
         "promote": "BEFORDRA",
         "rebroadcast": "ÅTERSÄND",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
-        "autoreattaching": "Auto-fastsättning till Tangle",
+        "autoreattaching": "Återfäster automatiskt till Tangle",
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
         "autopromoting": "Auto-befordrar överföring",
         "autopromotingExplanation": "Befordrar transaktion med hashen {{hash}}",
