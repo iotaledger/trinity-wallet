@@ -75,41 +75,44 @@ export function getPrice() {
     };
 }
 
-
 export function getChartData() {
     return (dispatch) => {
-        let arrayCurrenciesTimeFrames = [];
+        const arrayCurrenciesTimeFrames = [];
         //If you want a new currency just add it in this array, the function will handle the rest.
         const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
-        let chartData = {};
-        let arrayPromises = [];
+        const chartData = {};
+        const arrayPromises = [];
 
-        currencies.forEach( (itemCurrency) => {
+        currencies.forEach((itemCurrency) => {
             chartData[itemCurrency] = {};
-            filter(timeframes, timeFrameItem => {
-                arrayCurrenciesTimeFrames.push({currency: itemCurrency, timeFrame: timeFrameItem});
+            filter(timeframes, (timeFrameItem) => {
+                arrayCurrenciesTimeFrames.push({ currency: itemCurrency, timeFrame: timeFrameItem });
             });
         });
 
         arrayCurrenciesTimeFrames.forEach((currencyTimeFrameArrayItem) => {
-            let url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat
-            (currencyTimeFrameArrayItem.timeFrame)}?fsym=IOT&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat
-            (currencyTimeFrameArrayItem.timeFrame)}`;
-            arrayPromises.push(fetch(url).then( (response)=> {
-                return response.json();
-            }));
+            const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
+                currencyTimeFrameArrayItem.timeFrame,
+            )}?fsym=IOT&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat(
+                currencyTimeFrameArrayItem.timeFrame,
+            )}`;
+            arrayPromises.push(
+                fetch(url).then((response) => {
+                    return response.json();
+                }),
+            );
         });
-        Promise.all(arrayPromises).then( (results) => {
-            let chartData = {'BTC':{}, 'ETH': {}, 'EUR': {}, 'USD': {}};
-            let actualCurrency = "";
-            let currentTimeFrame = "";
-            let currentCurrency = "";
-            results.forEach( (resultItem, index) => {
+
+        Promise.all(arrayPromises).then((results) => {
+            const chartData = { BTC: {}, ETH: {}, EUR: {}, USD: {} };
+            let actualCurrency = '';
+            let currentTimeFrame = '';
+            let currentCurrency = '';
+            results.forEach((resultItem, index) => {
                 currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
                 currentCurrency = arrayCurrenciesTimeFrames[index].currency;
-                let formatedData = formatChartData(resultItem,
-                    currentCurrency, currentTimeFrame);
+                const formatedData = formatChartData(resultItem, currentCurrency, currentTimeFrame);
 
                 if (actualCurrency !== currentCurrency) {
                     actualCurrency = currentCurrency;
