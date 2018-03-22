@@ -61,7 +61,7 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  *   @param {number} start - Index to start the search from
  *   @param {number} threshold - Maximum value (balance) to stop the search
  *   @param {object} inputs - Could be initialized with null. In case its null default inputs would be defined.
- *   @param {function} callback
+ *   @returns {promise<object>}
  **/
 export const getUnspentInputs = (addressData, pendingValueTransfers, start, threshold, inputs) => {
     if (isNull(inputs)) {
