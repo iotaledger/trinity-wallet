@@ -71,7 +71,7 @@ export const getUnspentInputs = (addressData, pendingValueTransfers, start, thre
     const preparedInputs = prepareInputs(addressData, start, threshold);
     inputs.allBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
 
-    filterSpentAddresses(preparedInputs.inputs).then((unspentInputs) => {
+    return filterSpentAddresses(preparedInputs.inputs).then((unspentInputs) => {
         const filtered = filterAddressesWithIncomingTransfers(unspentInputs, pendingValueTransfers);
 
         const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
