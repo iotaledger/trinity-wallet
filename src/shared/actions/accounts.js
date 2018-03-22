@@ -24,19 +24,17 @@ import {
 } from '../actions/alerts';
 import { pushScreen } from '../libs/util';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
-import i18next from '../i18next';
-
-const { t } = i18next.t;
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
+    UPDATE_ACCOUNT_AFTER_REATTACHMENT: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
     SET_FIRST_USE: 'IOTA/ACCOUNTS/SET_FIRST_USE',
     UPDATE_ADDRESSES: 'IOTA/ACCOUNTS/UPDATE_ADDRESSES',
     CHANGE_ACCOUNT_NAME: 'IOTA/ACCOUNTS/CHANGE_ACCOUNT_NAME',
     REMOVE_ACCOUNT: 'IOTA/ACCOUNTS/REMOVE_ACCOUNT',
     SET_ONBOARDING_COMPLETE: 'IOTA/ACCOUNTS/SET_ONBOARDING_COMPLETE',
     INCREASE_SEED_COUNT: 'IOTA/ACCOUNTS/INCREASE_SEED_COUNT',
-    ADD_SEED_NAME: 'IOTA/ACCOUNTS/ADD_SEED_NAME',
+    ADD_ACCOUNT_NAME: 'IOTA/ACCOUNTS/ADD_ACCOUNT_NAME',
     UPDATE_ACCOUNT_AFTER_TRANSITION: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_TRANSITION',
     SET_NEW_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNTS/SET_NEW_UNCONFIRMED_BUNDLE_TAILS',
     UPDATE_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNTS/UPDATE_UNCONFIRMED_BUNDLE_TAILS',
@@ -53,46 +51,16 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_REQUEST',
     ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_SUCCESS',
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_ERROR',
-    UPDATE_ACCOUNT_AFTER_REATTACHMENT: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
 };
 
-export const manualSyncRequest = () => ({
-    type: ActionTypes.MANUAL_SYNC_REQUEST,
-});
-
-export const manualSyncSuccess = (payload) => ({
-    type: ActionTypes.MANUAL_SYNC_SUCCESS,
+export const updateAccountInfoAfterSpending = (payload) => ({
+    type: ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING,
     payload,
 });
 
-export const manualSyncError = () => ({
-    type: ActionTypes.MANUAL_SYNC_ERROR,
-});
-
-export const fullAccountInfoAdditionalSeedFetchRequest = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST,
-});
-
-export const fullAccountInfoAdditionalSeedFetchSuccess = (payload) => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS,
+export const updateAccountAfterReattachment = (payload) => ({
+    type: ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT,
     payload,
-});
-
-export const fullAccountInfoAdditionalSeedFetchError = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR,
-});
-
-export const fullAccountInfoFirstSeedFetchRequest = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST,
-});
-
-export const fullAccountInfoFirstSeedFetchSuccess = (payload) => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS,
-    payload,
-});
-
-export const fullAccountInfoFirstSeedFetchError = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR,
 });
 
 export const setFirstUse = (payload) => ({
@@ -122,13 +90,13 @@ export const setOnboardingComplete = (payload) => ({
     payload,
 });
 
-export const increaseSeedCount = () => ({
-    type: ActionTypes.INCREASE_SEED_COUNT,
-});
-
 export const addAccountName = (accountName) => ({
     type: ActionTypes.ADD_ACCOUNT_NAME,
     accountName,
+});
+
+export const increaseSeedCount = () => ({
+    type: ActionTypes.INCREASE_SEED_COUNT,
 });
 
 export const updateAccountAfterTransition = (accountName, addresses, balance) => ({
@@ -138,13 +106,13 @@ export const updateAccountAfterTransition = (accountName, addresses, balance) =>
     balance,
 });
 
-export const updateUnconfirmedBundleTails = (payload) => ({
-    type: ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS,
+export const setNewUnconfirmedBundleTails = (payload) => ({
+    type: ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS,
     payload,
 });
 
-export const setNewUnconfirmedBundleTails = (payload) => ({
-    type: ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS,
+export const updateUnconfirmedBundleTails = (payload) => ({
+    type: ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS,
     payload,
 });
 
@@ -153,7 +121,46 @@ export const removeBundleFromUnconfirmedBundleTails = (payload) => ({
     payload,
 });
 
-const accountInfoFetchRequest = () => ({
+export const fullAccountInfoAdditionalSeedFetchRequest = () => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST,
+});
+
+export const fullAccountInfoAdditionalSeedFetchSuccess = (payload) => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS,
+    payload,
+});
+
+export const fullAccountInfoAdditionalSeedFetchError = () => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR,
+});
+
+export const fullAccountInfoFirstSeedFetchRequest = () => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST,
+});
+
+export const fullAccountInfoFirstSeedFetchSuccess = (payload) => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS,
+    payload,
+});
+
+export const fullAccountInfoFirstSeedFetchError = () => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR,
+});
+
+export const manualSyncRequest = () => ({
+    type: ActionTypes.MANUAL_SYNC_REQUEST,
+});
+
+export const manualSyncSuccess = (payload) => ({
+    type: ActionTypes.MANUAL_SYNC_SUCCESS,
+    payload,
+});
+
+export const manualSyncError = () => ({
+    type: ActionTypes.MANUAL_SYNC_ERROR,
+});
+
+export const accountInfoFetchRequest = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
 });
 
@@ -162,20 +169,22 @@ export const accountInfoFetchSuccess = (payload) => ({
     payload,
 });
 
-const accountInfoFetchError = () => ({
+export const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
-export const updateAccountInfoAfterSpending = (payload) => ({
-    type: ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING,
-    payload,
-});
-
-export const updateAccountAfterReattachment = (payload) => ({
-    type: ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT,
-    payload,
-});
-
+/**
+ *   Fetches account information from tangle for an additional seed.
+ * 
+ *   @method getFullAccountInfoAdditionalSeed
+ *   @param {string} seed
+ *   @param {string} accountName
+ *   @param {string} password
+ *   @param {function} storeInKeychainPromise
+ *   @param {object} [navigator=null]
+ *   @param {function} genFn
+ *   @returns {function} dispatch
+ **/
 export const getFullAccountInfoAdditionalSeed = (
     seed,
     accountName,
