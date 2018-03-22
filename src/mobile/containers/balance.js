@@ -28,28 +28,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     balanceContainer: {
-        flex: 1.8,
+        flex: 1.96,
         alignItems: 'center',
         justifyContent: 'center',
     },
     transactionsContainer: {
-        flex: 2,
-        justifyContent: 'space-between',
+        flex: 2.12,
+        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 10,
     },
     chartContainer: {
-        flex: 5,
-        paddingVertical: height / 70,
+        flex: 4.68,
     },
     iotaBalance: {
         fontFamily: 'Lato-Heavy',
         fontSize: width / 8,
         backgroundColor: 'transparent',
+        paddingBottom: isAndroid ? null : height / 110,
     },
     fiatBalance: {
-        paddingTop: isAndroid ? null : height / 200,
-        paddingBottom: isAndroid ? height / 200 : null,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
@@ -59,17 +56,12 @@ const styles = StyleSheet.create({
         fontSize: width / 37.6,
         backgroundColor: 'transparent',
     },
-    line: {
-        borderBottomWidth: height / 1000,
-        width: width / 1.2,
-    },
     separator: {
         height: height / 120,
     },
     listView: {
         flex: 1,
         justifyContent: 'center',
-        paddingVertical: height / 50,
     },
 });
 
@@ -218,7 +210,6 @@ export class Balance extends Component {
         const currencySymbol = getCurrencySymbol(currency);
         const fiatBalance = balance * marketData.usdPrice / 1000000 * conversionRate;
         const textColor = { color: body.color };
-        const lineBorder = { borderBottomColor: body.color };
         const recentTransactions = this.renderTransactions();
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
@@ -232,11 +223,9 @@ export class Balance extends Component {
                         </Text>
                     </View>
                     <View style={styles.transactionsContainer}>
-                        <View style={[styles.line, lineBorder]} />
                         <TouchableOpacity onPress={() => this.props.onTabSwitch('history')}>
                             {recentTransactions}
                         </TouchableOpacity>
-                        <View style={[styles.line, lineBorder]} />
                     </View>
                     <View style={styles.chartContainer}>
                         <Chart />
