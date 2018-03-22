@@ -1,49 +1,115 @@
+import takeRight from 'lodash/takeRight';
 import { iota } from '../libs/iota';
-import { updateAddresses } from '../actions/accounts';
-import { clearSendFields } from '../actions/ui';
-import { syncAddresses, getLatestAddress } from '../libs/iota/addresses';
-import { MAX_SEED_LENGTH } from '../libs/util';
+import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
+import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
+import {
+    getNewAddress,
+    formatAddresses,
+    syncAddresses,
+    getLatestAddress
+} from '../libs/iota/addresses';
+import { MAX_SEED_LENGTH } from '../libs/utils';
+import { DEFAULT_MIN_WEIGHT_MAGNITUDE, DEFAULT_DEPTH } from '../config';
+import i18next from '../i18next';
 
-/* eslint-disable no-console */
+const { t } = i18next.t;
 
 export const ActionTypes = {
-    GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_REQUEST',
-    GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_SUCCESS',
-    GENERATE_NEW_ADDRESS_ERROR: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_ERROR',
-    SET_COPIED_TO_CLIPBOARD: 'IOTA/TEMP_ACCOUNT/SET_COPIED_TO_CLIPBOARD',
-    SET_RECEIVE_ADDRESS: 'IOTA/TEMP_ACCOUNT/SET_RECEIVE_ADDRESS',
-    SET_ACCOUNT_NAME: 'IOTA/TEMP_ACCOUNT/SET_ACCOUNT_NAME',
-    SET_PASSWORD: 'IOTA/TEMP_ACCOUNT/SET_PASSWORD',
-    CLEAR_TEMP_DATA: 'IOTA/TEMP_ACCOUNT/CLEAR_TEMP_DATA',
-    SET_USED_SEED_TO_LOGIN: 'IOTA/TEMP_ACCOUNT/SET_USED_SEED_TO_LOGIN',
-    SET_SEED_INDEX: 'IOTA/TEMP_ACCOUNT/SET_SEED_INDEX',
-    SET_READY: 'IOTA/TEMP_ACCOUNT/SET_READY',
-    SET_SEED: 'IOTA/TEMP_ACCOUNT/SET_SEED',
-    CLEAR_SEED: 'IOTA/TEMP_ACCOUNT/CLEAR_SEED',
-    SET_SETTING: 'IOTA/TEMP_ACCOUNT/SET_SETTING',
-    SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/TEMP_ACCOUNT/SET_ADDITIONAL_ACCOUNT_INFO',
-    SNAPSHOT_TRANSITION_REQUEST: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_REQUEST',
-    SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_SUCCESS',
-    SNAPSHOT_TRANSITION_ERROR: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_TRANSITION_ERROR',
-    SNAPSHOT_ATTACH_TO_TANGLE_REQUEST: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_ATTACH_TO_TANGLE_REQUEST',
-    SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE: 'IOTA/TEMP_ACCOUNT/SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE',
-    UPDATE_TRANSITION_BALANCE: 'IOTA/TEMP_ACCOUNT/UPDATE_TRANSITION_BALANCE',
-    SWITCH_BALANCE_CHECK_TOGGLE: 'IOTA/TEMP_ACCOUNT/SWITCH_BALANCE_CHECK_TOGGLE',
-    UPDATE_TRANSITION_ADDRESSES: 'IOTA/TEMP_ACCOUNT/UPDATE_TRANSITION_ADDRESSES',
+    GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
+    GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
+    GENERATE_NEW_ADDRESS_ERROR: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_ERROR',
+    SET_COPIED_TO_CLIPBOARD: 'IOTA/WALLET/SET_COPIED_TO_CLIPBOARD',
+    SET_RECEIVE_ADDRESS: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
+    SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
+    SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
+    CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
+    SET_USED_SEED_TO_LOGIN: 'IOTA/WALLET/SET_USED_SEED_TO_LOGIN',
+    SET_SEED_INDEX: 'IOTA/WALLET/SET_SEED_INDEX',
+    SET_READY: 'IOTA/WALLET/SET_READY',
+    SET_SEED: 'IOTA/WALLET/SET_SEED',
+    CLEAR_SEED: 'IOTA/WALLET/CLEAR_SEED',
+    SET_SETTING: 'IOTA/WALLET/SET_SETTING',
+    SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/WALLET/SET_ADDITIONAL_ACCOUNT_INFO',
+    SNAPSHOT_TRANSITION_REQUEST: 'IOTA/WALLET/SNAPSHOT_TRANSITION_REQUEST',
+    SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/WALLET/SNAPSHOT_TRANSITION_SUCCESS',
+    SNAPSHOT_TRANSITION_ERROR: 'IOTA/WALLET/SNAPSHOT_TRANSITION_ERROR',
+    SNAPSHOT_ATTACH_TO_TANGLE_REQUEST: 'IOTA/WALLET/SNAPSHOT_ATTACH_TO_TANGLE_REQUEST',
+    SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE: 'IOTA/WALLET/SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE',
+    UPDATE_TRANSITION_BALANCE: 'IOTA/WALLET/UPDATE_TRANSITION_BALANCE',
+    UPDATE_TRANSITION_ADDRESSES: 'IOTA/WALLET/UPDATE_TRANSITION_ADDRESSES',
+    SWITCH_BALANCE_CHECK_TOGGLE: 'IOTA/WALLET/SWITCH_BALANCE_CHECK_TOGGLE',
 };
 
-export const updateTransitionAddresses = (payload) => ({
-    type: ActionTypes.UPDATE_TRANSITION_ADDRESSES,
+export const generateNewAddressRequest = () => ({
+    type: ActionTypes.GENERATE_NEW_ADDRESS_REQUEST,
+});
+
+export const generateNewAddressSuccess = (payload) => ({
+    type: ActionTypes.GENERATE_NEW_ADDRESS_SUCCESS,
     payload,
 });
 
-export const updateTransitionBalance = (payload) => ({
-    type: ActionTypes.UPDATE_TRANSITION_BALANCE,
+export const generateNewAddressError = () => ({
+    type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
+});
+
+export const setCopiedToClipboard = (payload) => ({
+    type: ActionTypes.SET_COPIED_TO_CLIPBOARD,
     payload,
 });
 
-export const switchBalanceCheckToggle = () => ({
-    type: ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE,
+export const setReceiveAddress = (payload) => ({
+    type: ActionTypes.SET_RECEIVE_ADDRESS,
+    payload,
+});
+
+export const setAccountName = (payload) => ({
+    type: ActionTypes.SET_ACCOUNT_NAME,
+    payload,
+});
+
+export const setPassword = (payload) => ({
+    type: ActionTypes.SET_PASSWORD,
+    payload,
+});
+
+export const clearWalletData = () => ({
+    type: ActionTypes.CLEAR_WALLET_DATA,
+});
+
+export const setUsedSeedToLogin = () => ({
+    type: ActionTypes.SET_USED_SEED_TO_LOGIN,
+    payload: true,
+});
+
+export const setSeedIndex = (payload) => ({
+    type: ActionTypes.SET_SEED_INDEX,
+    payload,
+});
+
+export const setReady = () => ({
+    type: ActionTypes.SET_READY,
+    payload: true,
+});
+
+export const setSeed = (payload) => ({
+    type: ActionTypes.SET_SEED,
+    payload,
+});
+
+export const clearSeed = () => ({
+    type: ActionTypes.CLEAR_SEED,
+    payload: Array(82).join(' '),
+});
+
+export const setSetting = (payload) => ({
+    type: ActionTypes.SET_SETTING,
+    payload,
+});
+
+export const setAdditionalAccountInfo = (payload) => ({
+    type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
+    payload,
 });
 
 export const snapshotTransitionRequest = () => ({
@@ -68,76 +134,18 @@ export const snapshotAttachToTangleComplete = () => ({
     type: ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE,
 });
 
-export const setCopiedToClipboard = (payload) => ({
-    type: ActionTypes.SET_COPIED_TO_CLIPBOARD,
+export const updateTransitionBalance = (payload) => ({
+    type: ActionTypes.UPDATE_TRANSITION_BALANCE,
     payload,
 });
 
-export const setReceiveAddress = (payload) => ({
-    type: ActionTypes.SET_RECEIVE_ADDRESS,
+export const updateTransitionAddresses = (payload) => ({
+    type: ActionTypes.UPDATE_TRANSITION_ADDRESSES,
     payload,
 });
 
-export const setUsedSeedToLogin = () => ({
-    type: ActionTypes.SET_USED_SEED_TO_LOGIN,
-    payload: true,
-});
-
-export const setSeedIndex = (payload) => ({
-    type: ActionTypes.SET_SEED_INDEX,
-    payload,
-});
-
-export const generateNewAddressRequest = () => ({
-    type: ActionTypes.GENERATE_NEW_ADDRESS_REQUEST,
-});
-
-export const generateNewAddressSuccess = (payload) => ({
-    type: ActionTypes.GENERATE_NEW_ADDRESS_SUCCESS,
-    payload,
-});
-
-export const generateNewAddressError = () => ({
-    type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
-});
-
-export const setReady = () => ({
-    type: ActionTypes.SET_READY,
-    payload: true,
-});
-
-export const setSeed = (payload) => ({
-    type: ActionTypes.SET_SEED,
-    payload,
-});
-
-export const clearSeed = () => ({
-    type: ActionTypes.CLEAR_SEED,
-    payload: Array(82).join(' '),
-});
-
-export const setSetting = (payload) => ({
-    type: ActionTypes.SET_SETTING,
-    payload,
-});
-
-export const clearTempData = () => ({
-    type: ActionTypes.CLEAR_TEMP_DATA,
-});
-
-export const setPassword = (payload) => ({
-    type: ActionTypes.SET_PASSWORD,
-    payload,
-});
-
-export const setAccountName = (payload) => ({
-    type: ActionTypes.SET_ACCOUNT_NAME,
-    payload,
-});
-
-export const setAdditionalAccountInfo = (payload) => ({
-    type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
-    payload,
+export const switchBalanceCheckToggle = () => ({
+    type: ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE,
 });
 
 export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
@@ -231,7 +239,6 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                                     ),
                                 );
                             } else {
-                                console.log(error);
                                 dispatch(snapshotTransitionError());
                                 dispatch(snapshotAttachToTangleComplete());
                                 dispatch(generateTransitionErrorAlert());
@@ -244,7 +251,6 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
             } else {
                 dispatch(snapshotTransitionError());
                 dispatch(generateTransitionErrorAlert());
-                console.log(error);
             }
         });
     };
