@@ -8,7 +8,7 @@ import withChartData from 'iota-wallet-shared-modules/containers/components/Char
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 
-const chartWidth = width * 0.98;
+const chartWidth = width;
 const chartHeight = height * 0.38;
 
 const styles = StyleSheet.create({
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
-        paddingLeft: width / 8,
+        paddingLeft: width / 8.5,
     },
     emptyChartContainer: {
         flex: 5,
