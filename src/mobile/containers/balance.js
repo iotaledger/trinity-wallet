@@ -21,6 +21,7 @@ import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
+import TextWithLetterSpacing from '../components/textWithLetterSpacing';
 
 const styles = StyleSheet.create({
     container: {
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
         flex: 4.68,
     },
     iotaBalance: {
-        fontFamily: 'Lato-Heavy',
+        fontFamily: 'Lato-Light',
         fontSize: width / 8,
         backgroundColor: 'transparent',
         paddingBottom: isAndroid ? null : height / 110,
@@ -211,17 +212,20 @@ export class Balance extends Component {
         const fiatBalance = balance * marketData.usdPrice / 1000000 * conversionRate;
         const textColor = { color: body.color };
         const recentTransactions = this.renderTransactions();
+        const text = (this.state.balanceIsShort ? shortenedBalance : formatValue(balance)) + ' ' + formatUnit(balance);
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
-                    <View style={styles.balanceContainer}>
-                        <Text style={[styles.iotaBalance, textColor]} onPress={() => this.onBalanceClick()}>
-                            {this.state.balanceIsShort ? shortenedBalance : formatValue(balance)} {formatUnit(balance)}
-                        </Text>
-                        <Text style={[styles.fiatBalance, textColor]}>
-                            {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
-                        </Text>
-                    </View>
+                    <TouchableWithoutFeedback onPress={() => this.onBalanceClick()}>
+                        <View style={styles.balanceContainer}>
+                            <TextWithLetterSpacing spacing={width / 200} textStyle={[styles.iotaBalance, textColor]}>
+                                {text}
+                            </TextWithLetterSpacing>
+                            <Text style={[styles.fiatBalance, textColor]}>
+                                {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
+                            </Text>
+                        </View>
+                    </TouchableWithoutFeedback>
                     <View style={styles.transactionsContainer}>
                         <TouchableOpacity onPress={() => this.props.onTabSwitch('history')}>
                             {recentTransactions}
