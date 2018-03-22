@@ -10,7 +10,7 @@ import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
-import InfoBox from '../components/infoBox';
+import InfoBox from '../components/InfoBox';
 
 const styles = StyleSheet.create({
     container: {

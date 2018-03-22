@@ -1,10 +1,21 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { autoRehydrate, persistStore, getStoredState, purgeStoredState, createPersistor } from 'redux-persist';
+import {
+    createStore,
+    combineReducers,
+    applyMiddleware,
+    compose
+} from 'redux';
+import {
+    autoRehydrate,
+    persistStore,
+    getStoredState,
+    purgeStoredState,
+    createPersistor
+} from 'redux-persist';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import marketData from './reducers/marketData';
-import tempAccount from './reducers/tempAccount';
-import account from './reducers/account';
+import wallet from './reducers/wallet';
+import accounts from './reducers/accounts';
 import app from './reducers/app';
 import settings from './reducers/settings';
 import seeds from './reducers/seeds';
@@ -24,8 +35,7 @@ const productionMiddleware = [thunk];
 const reducers = combineReducers({
     alerts,
     marketData,
-    tempAccount,
-    account,
+    accounts,
     app,
     settings,
     seeds,
@@ -34,12 +44,14 @@ const reducers = combineReducers({
     polling,
     progress,
     ui,
+    wallet
 });
 
 const rootReducer = (state, action) => {
     if (action.type === ActionTypes.WALLET_RESET) {
         state = undefined;
     }
+
     /* eslint-enable no-param-reassign */
     return reducers(state, action);
 };
