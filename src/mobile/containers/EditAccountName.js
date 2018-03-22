@@ -5,16 +5,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
-import {
-    getSelectedAccountNameViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import { renameKeys } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeAccountName } from 'iota-wallet-shared-modules/actions/account';
-import {
-    updateAccountNameInKeychain
-} from '../utils/keychain';
+import { updateAccountNameInKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -102,14 +98,7 @@ export class EditAccountName extends Component {
     }
 
     save(accountName) {
-        const {
-            seedIndex,
-            accountNames,
-            password,
-            selectedAccountName,
-            t,
-            accountInfo
-            } = this.props;
+        const { accountNames, password, selectedAccountName, t } = this.props;
 
         if (accountNames.includes(accountName)) {
             this.props.generateAlert(
@@ -121,21 +110,12 @@ export class EditAccountName extends Component {
             // Update keychain
             updateAccountNameInKeychain(password, selectedAccountName, accountName)
                 .then(() => {
-                    const keyMap = { [selectedAccountName]: accountName };
-                    const newAccountInfo = renameKeys(accountInfo, keyMap);
+                    this.props.changeAccountName({
+                        oldAccountName: selectedAccountName,
+                        newAccountName: accountName,
+                    });
 
-                    const updateName = (name, idx) => {
-                        if (idx === seedIndex) {
-                            return accountName;
-                        }
-
-                        return name;
-                    };
-
-                    const updatedaccountNames = map(accountNames, updateName);
-                    this.props.changeAccountName(newAccountInfo, updatedaccountNames);
                     this.props.setSetting('accountManagement');
-
                     this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
                 })
                 .catch((err) => console.log(err)); // eslint-disable-line no-console
@@ -200,13 +180,13 @@ const mapStateToProps = (state) => ({
     password: state.tempAccount.password,
     textColor: { color: state.settings.theme.body.color },
     bodyColor: state.settings.theme.body.color,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {
     setSetting,
     generateAlert,
-    changeAccountName
+    changeAccountName,
 };
 
 export default translate(['addAdditionalSeed', 'global'])(

@@ -5,9 +5,7 @@ import { translate } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback, AppState } from 'react-native';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import {
-    getSelectedAccountNameViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import Fonts from '../theme/fonts';
 import Seedbox from '../components/SeedBox';
 import CustomTextInput from '../components/CustomTextInput';
@@ -177,7 +175,7 @@ class ViewSeed extends Component {
                             <View style={styles.seedBoxContainer}>
                                 <Seedbox
                                     seed={this.state.seed}
-                                    backgroundColor={body.bg}
+                                    bodyColor={body.color}
                                     borderColor={borderColor}
                                     textColor={textColor}
                                 />
@@ -254,14 +252,12 @@ const mapStateToProps = (state) => ({
     textColor: { color: state.settings.theme.body.color },
     theme: state.settings.theme,
     body: state.settings.theme.body,
-    primary: state.settings.theme.primary
+    primary: state.settings.theme.primary,
 });
 
 const mapDispatchToProps = {
     setSetting,
-    generateAlert
+    generateAlert,
 };
 
-export default translate(['viewSeed', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(ViewSeed),
-);
+export default translate(['viewSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewSeed));

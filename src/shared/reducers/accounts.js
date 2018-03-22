@@ -1,12 +1,16 @@
 import get from 'lodash/get';
 import some from 'lodash/some';
+import map from 'lodash/map';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
 import filter from 'lodash/filter';
+import findIndex from 'lodash/findIndex';
+import transform from 'lodash/transform';
 import union from 'lodash/union';
 import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
+import { renameKeys } from '../libs/util';
 
 const updateAccountInfo = (state, payload) => ({
     accountInfo: {
@@ -23,6 +27,45 @@ const updateAccountInfo = (state, payload) => ({
     },
 });
 
+const updateAccountName = (state, payload) => {
+    const {
+        accountInfo,
+        accountNames,
+        unconfirmedBundleTails,
+        txHashesForUnspentAddresses,
+        pendingTxHashesForSpentAddresses,
+    } = state;
+
+    const { oldAccountName, newAccountName } = payload;
+
+    const keyMap = { [oldAccountName]: newAccountName };
+    const accountIndex = findIndex(accountNames, (name) => name === oldAccountName);
+
+    const updateName = (name, idx) => {
+        if (idx === accountIndex) {
+            return newAccountName;
+        }
+
+        return name;
+    };
+
+    const updateAccountInUnconfirmedBundleTails = (acc, tailTransactions, bundle) => {
+        if (some(tailTransactions, (tx) => tx.account === oldAccountName)) {
+            acc[bundle] = map(tailTransactions, (tx) => ({ ...tx, account: newAccountName }));
+        } else {
+            acc[bundle] = tailTransactions;
+        }
+    };
+
+    return {
+        accountInfo: renameKeys(accountInfo, keyMap),
+        txHashesForUnspentAddresses: renameKeys(txHashesForUnspentAddresses, keyMap),
+        pendingTxHashesForSpentAddresses: renameKeys(pendingTxHashesForSpentAddresses, keyMap),
+        accountNames: map(accountNames, updateName),
+        unconfirmedBundleTails: transform(unconfirmedBundleTails, updateAccountInUnconfirmedBundleTails, {}),
+    };
+};
+
 const account = (
     state = {
         seedCount: 0,
@@ -32,7 +75,7 @@ const account = (
         accountInfo: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
         txHashesForUnspentAddresses: {},
-        pendingTxHashesForSpentAddresses: {}
+        pendingTxHashesForSpentAddresses: {},
     },
     action,
 ) => {
@@ -55,8 +98,7 @@ const account = (
         case ActionTypes.CHANGE_ACCOUNT_NAME:
             return {
                 ...state,
-                accountNames: action.accountNames,
-                accountInfo: action.accountInfo,
+                ...updateAccountName(state, action.payload),
             };
         case ActionTypes.REMOVE_ACCOUNT:
             return {

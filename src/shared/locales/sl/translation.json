@@ -3,32 +3,32 @@
         "send": "Pošlji",
         "cancel": "PREKLIČI",
         "continue?": "Ali ste prepričani da želite nadaljevati?",
-        "noTransactions": "NO RECENT HISTORY",
-        "refresh": "REFRESH",
+        "noTransactions": "NI NEDAVNE ZGODOVINE",
+        "refresh": "OSVEŽI",
         "qr": "QR",
-        "balanceError": "Not enough balance",
+        "balanceError": "Ni dovolj sredstev",
         "balanceErrorMessage": "Nimate dovolj IOTA za dokončanje tega prenosa.",
         "transferError": "Napaka pri prenosu",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
+        "transferErrorMessage": "Nekaj je šlo narobe med pošiljanjem prenosa. Prosimo, poskusite znova.",
         "transferSent": "Prenos uspešen",
-        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "transferSentMessage": "Vaš prenos je bil poslan v Tangle.",
         "messageSent": "Sporočilo poslano",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
+        "messageSentMessage": "Vaše sporočilo je bilo poslano v Tangle.",
         "keyReuse": "Ponovna uporaba ključa",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuseError": "Ne morete poslati na naslov, kateri je že bil uporabljen za pošiljanje.",
         "invalidResponse": "Neveljaven odziv",
         "invalidResponseExplanation": "Vozlišče je vrnilo neveljaven odziv.",
         "invalidResponsePollingExplanation": "Vozlišče ke vrnilo neveljaven odziv med pozivanjem.",
         "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information. Try changing node.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+            "Vozlišče je vrnilo neveljaven odziv med pridobivanjem podatkov o vašem računu. Poskusite menjati vozlišče.",
+        "invalidResponseSendingTransfer": "Vozlišče je vrnilo neveljaven odziv med pošiljanjem prenosa.",
         "seed": "Generirano število",
         "back": "NAZAJ",
         "backLowercase": "Nazaj",
         "done": "OPRAVLJENO",
-        "doneLowercase": "Done",
+        "doneLowercase": "Končano",
         "next": "NAPREJ",
-        "apply": "Apply",
+        "apply": "Potrdi",
         "save": "Shrani",
         "close": "Zapri",
         "continue": "Nadaljuj",
@@ -48,41 +48,47 @@
         "yes": "DA",
         "no": "NE",
         "password": "Geslo",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "Geslo ali prstni odtis",
         "unrecognisedPassword": "Neprepoznano geslo",
         "unrecognisedPasswordExplanation": "Geslo ni bilo prepoznano. Prosimo, poskusite ponovno.",
         "syncInProgress": "Sinhronizacija v teku",
         "syncInProgressExplanation": "Prosimo počakajte dokler sinhronizacija ni končana.",
         "somethingWentWrong": "Nekaj je šlo narobe",
-        "somethingWentWrongExplanation": "Prosimo ponovno zaženite aplikacijo.",
+        "somethingWentWrongRestart": "Prosimo ponovno zaženite aplikacijo.",
+        "somethingWentWrongTryAgain": "Prosimo poskusite ponovno.",
         "node": "Vozlišče",
         "cannotPerformAction": "Dejanja ni mogoče izvesti",
         "cannotPerformActionExplanation": "Pojdite v napredne nastavitve za ponastavitev denarnice.",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "attachToTangleUnavailable": "Pripnitev na Tangle ni na voljo",
+        "attachToTangleUnavailableExplanation": "Pripnitev na Tangle ni na voljo na izbranem vozlišču.",
         "wallet": "Denarnica",
         "sent": "Poslano",
         "received": "Prejeto",
         "sending": "Pošiljanje",
-        "receiving": "Receiving",
-        "confirmed": "Confirmed",
+        "receiving": "Prejemanje",
+        "confirmed": "Potrjeno",
         "pending": "Na čakanju",
         "bundleHash": "Bundle Hash",
         "addresses": "Naslovi",
-        "reattach": "REATTACH",
-        "promote": "PROMOTE",
-        "rebroadcast": "REBROADCAST",
-        "pressBackAgain": "Press back again to close the app",
-        "autoreattaching": "Autoreattaching to Tangle",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
+        "reattach": "PONOVNO PRIPNI",
+        "promote": "SPODBUDI",
+        "rebroadcast": "PONOVNO ODDAJ",
+        "pressBackAgain": "Pritisnite nazaj ponovno za zapreti app",
+        "autoreattaching": "Automatsko pripenjanje na Tangle",
+        "autoreattachingExplanation": "Ponovno pripenjanje transakcije s hešom {{hash}}",
+        "autopromoting": "Automatsko spodbujanje prenosa",
+        "autopromotingExplanation": "Spodbujanje transakcije s hešom {{hash}}",
+        "promoting": "Promoting transfer",
+        "promotionError": "Could not promote transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
-        "pleaseWait": "Please wait",
+        "pleaseWait": "Prosim, počakajte",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
         "pleaseWaitTransferExplanation":
-            "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+            "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
+        "snapshotTransitionInProgress": "Snapshot transition in progress",
+        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
@@ -97,7 +103,7 @@
         "accountName": "Ime računa",
         "noNickname": "Niste vnesli imena računa",
         "noNicknameExplanation": "Prosimo vnesite ime računa za pridobitev generirane vrednosti.",
-        "seedInUse": "Seed already in use",
+        "seedInUse": "Seme je že v uporabi",
         "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
@@ -164,11 +170,12 @@
     "loading": {
         "loadingFirstTime": "Nalaganje generirane vrednosti prvič.",
         "thisMayTake": "To lahko traja nekaj časa.",
+        "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "Opazite lahko upočasnjevanje naprave."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Generirana vrednost ni bila ustvarjena",
-        "seedNotGeneratedExplanation": "Kliknite gumb ustvari novo generirano seme.",
+        "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "PRITISNITE ZA NOVO VREDNOST",
         "individualLetters": "Pritisnite posamezne znake za jih ponaključit."
     },
@@ -190,7 +197,7 @@
         "message": "Neobvezno sporočilo",
         "removeMessage": "ODSTRANI SPOROČILO",
         "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "spent": "Porabljeno"
     },
     "saveYourSeed": {
         "seedCleared": "Generiranava vrednost odstranjena",
@@ -209,7 +216,8 @@
         "invalidAddressExplanation1": "Naslov mora biti {{maxLenght}} znakov dolgo in mora biti preverjeno.",
         "invalidAddressExplanation2": "Naslov vsebuje neveljavne znake.",
         "invalidAddressExplanation3": "Naslov vsebuje nepreverjen znak.",
-        "notEnoughFunds": "Insufficient funds",
+        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "notEnoughFunds": "Premalo sredstev",
         "notEnoughFundsExplanation": "Nimate dovolj IOTA za dokončanje tega prenosa.",
         "keyReuse": "Ponovna uporaba ključa",
         "keyReuseExplanation": "Ta naslov je že bil uporabljen. Poskusite drug naslov.",
@@ -217,7 +225,7 @@
         "amount": "Količina",
         "max": "MAKSIMALNO",
         "message": "Sporočilo",
-        "invalidMessage": "Invalid message",
+        "invalidMessage": "Napačno sporočilo",
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "Pošlji",
         "invalidAmount": "Neveljavna vsota",
@@ -245,7 +253,7 @@
         "youCanAdd": "Dodate lahko več generiranih vrednosti v meniju za nastavitve."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "expert": "Strokovnjak",
         "standard": "Standard",
         "expertModeExplanation":
             "Expert mode will provide access to additional features like manual promotion and reattachment.",
@@ -276,7 +284,7 @@
         "accountDeletedExplanation": "Vaš račun je bil odstranjen iz denarnice.",
         "cannotPerformAction": "Dejanja ni mogoče izvesti",
         "cannotPerformActionExplanation": "Pojdite v napredne nastavitve za ponastavitev denarnice.",
-        "poorConnection": "Poor connection",
+        "poorConnection": "Slaba povezava",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "Skrij",
         "hideOthers": "Skrij ostale",
@@ -365,21 +373,22 @@
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
         "trillion": "Trillion",
-        "billion": "Billion",
+        "billion": "Miljarda",
         "million": "Million",
         "thousand": "Thousand",
         "one": "One"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "Tega dejanja ni mogoče razveljaviti.",
         "enterPassword": "Enter your password to delete this account."
     },
     "manualSync": {
+        "outOfSync": "Does your transaction history look like it may be out of sync?",
         "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "To lahko traja nekaj časa.",
-        "youMayNotice": "Opazite lahko upočasnjevanje naprave.",
+        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
     },
@@ -446,6 +455,27 @@
     "rootDetection": {
         "warning": "WARNING",
         "rootDetected":
-            "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+            "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+    },
+    "pow": {
+        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "local": "Local",
+        "remote": "Remote"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validating receive address",
+        "syncingAccount": "Syncing account",
+        "preparingInputs": "Preparing inputs",
+        "preparingTransfers": "Preparing transfers",
+        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "proofOfWork": "Completing proof of work",
+        "broadcasting": "Broadcasting"
+    },
+    "snapshotTransition": {
+        "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "transitionComplete": "Snapshot transition complete",
+        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
     }
 }

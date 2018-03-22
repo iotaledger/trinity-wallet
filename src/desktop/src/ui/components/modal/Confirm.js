@@ -32,7 +32,7 @@ export default class Confirm extends React.PureComponent {
                     <Button onClick={this.props.onCancel} variant="secondary">
                         {content.cancel}
                     </Button>
-                    <Button onClick={this.props.onConfirm} variant={category ? category : 'positive'}>
+                    <Button onClick={this.props.onConfirm} variant={category ? category : 'primary'}>
                         {content.confirm}
                     </Button>
                 </footer>
