@@ -53,22 +53,21 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
-        textAlign: 'left',
-        paddingTop: height / 10,
         backgroundColor: 'transparent',
         paddingHorizontal: width / 9,
+        textAlign: 'center',
     },
     infoTextNormal: {
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
-        textAlign: 'left',
         backgroundColor: 'transparent',
+        textAlign: 'center',
     },
     infoTextBold: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
-        textAlign: 'center',
         backgroundColor: 'transparent',
+        textAlign: 'center',
     },
 });
 
@@ -191,6 +190,9 @@ class SaveYourSeed extends Component {
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
+                </View>
+                <View style={styles.midContainer}>
+                    <View style={{ flex: 0.4 }} />
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
                         <Text style={[styles.infoText, textColor]}>
                             <Text style={styles.infoTextNormal}>You must save your seed with </Text>
@@ -198,9 +200,8 @@ class SaveYourSeed extends Component {
                             <Text style={styles.infoTextNormal}> of the options listed below.</Text>
                         </Text>
                     </Trans>
-                </View>
-                <View style={styles.midContainer}>
-                    <View style={{ paddingTop: height / 20 }}>
+                    <View style={{ flex: 0.5 }} />
+                    <View>
                         <TouchableOpacity onPress={() => this.onWriteClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
@@ -227,6 +228,7 @@ class SaveYourSeed extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
+                    <View style={{ flex: 1 }} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons

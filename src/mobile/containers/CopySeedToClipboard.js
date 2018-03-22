@@ -13,6 +13,7 @@ import GENERAL from '../theme/general';
 import CtaButton from '../components/CtaButton';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
+import InfoBox from '../components/infoBox';
 
 const styles = StyleSheet.create({
     container: {
@@ -55,20 +56,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     infoTextNormal: {
-        paddingTop: height / 12,
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        paddingHorizontal: width / 5,
     },
     infoTextBold: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        paddingTop: height / 80,
-        paddingBottom: height / 40,
     },
     doneButton: {
         borderWidth: 1.2,
@@ -93,7 +90,6 @@ class CopySeedToClipboard extends Component {
         setCopiedToClipboard: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        positive: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
     };
@@ -171,7 +167,7 @@ class CopySeedToClipboard extends Component {
     }
 
     render() {
-        const { t, positive, body, primary, seed } = this.props;
+        const { t, body, primary, seed } = this.props;
         const textColor = { color: body.color };
         const borderColor = { borderColor: body.color };
 
@@ -182,9 +178,18 @@ class CopySeedToClipboard extends Component {
                     <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midContainer}>
-                    <Text style={[styles.infoTextNormal, textColor]}>{t('clickToCopy')}</Text>
-                    <Text style={[styles.infoTextBold, textColor]}>{t('doNotStore')}</Text>
-                    <Seedbox backgroundColor={body.bg} borderColor={borderColor} textColor={textColor} seed={seed} />
+                    <View style={{ flex: 0.5 }} />
+                    <InfoBox
+                        body={body}
+                        text={
+                            <Text>
+                                <Text style={[styles.infoTextNormal, textColor]}>{t('clickToCopy')} </Text>
+                                <Text style={[styles.infoTextBold, textColor]}>{t('doNotStore')}</Text>
+                            </Text>
+                        }
+                    />
+                    <View style={{ flex: 0.2 }} />
+                    <Seedbox bodyColor={body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
                     <View style={{ flex: 0.2 }} />
                     <CtaButton
                         ctaColor={primary.color}
@@ -196,11 +201,12 @@ class CopySeedToClipboard extends Component {
                         }}
                         ctaWidth={width / 1.65}
                     />
+                    <View style={{ flex: 0.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: positive.color }]}>
-                            <Text style={[styles.doneText, { color: positive.color }]}>{t('global:done')}</Text>
+                        <View style={[styles.doneButton, { borderColor: primary.color }]}>
+                            <Text style={[styles.doneText, { color: primary.color }]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -213,8 +219,6 @@ class CopySeedToClipboard extends Component {
 const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     backgroundColor: state.settings.theme.backgroundColor,
-    positive: state.settings.theme.positive,
-    negative: state.settings.theme.negative,
     primary: state.settings.theme.primary,
     secondary: state.settings.theme.secondary,
     body: state.settings.theme.body,

@@ -89,7 +89,7 @@ class Remove extends PureComponent {
 
 const mapStateToProps = (state) => ({
     seedIndex: state.tempAccount.seedIndex,
-    accountName: state.account.seedNames[state.tempAccount.seedIndex],
+    accountName: state.account.accountNames[state.tempAccount.seedIndex],
 });
 
 const mapDispatchToProps = {

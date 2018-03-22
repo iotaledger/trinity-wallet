@@ -54,7 +54,8 @@
         "syncInProgress": "Synchronisation en cours",
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
-        "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
+        "somethingWentWrongRestart": "Veuillez redémarrer l'application.",
+        "somethingWentWrongTryAgain": "Veuillez réessayer.",
         "node": "Serveur",
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
@@ -78,12 +79,18 @@
         "autoreattachingExplanation": "Rattachement de la transaction de hash {{hash}}",
         "autopromoting": "Promotion automatique du transfert",
         "autopromotingExplanation": "Promotion de la transaction de hash {{hash}}",
+        "promoting": "Lancement du transfert",
+        "promotionError": "Impossible de lancer la transaction",
+        "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Envoi à votre propre adresse",
         "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers vos propres adresses.",
         "pleaseWait": "Veuillez patienter",
         "pleaseWaitExplanation": "Trinity est en train d'effectuer une autre tâche. Veuillez réessayer plus tard.",
         "pleaseWaitTransferExplanation":
-            "Votre solde disponible est actuellement utilisé dans d'autres transferts. Veuillez attendre qu'un des transferts soit confirmé avant de réessayer."
+            "Votre solde disponible est actuellement utilisé dans d'autres transferts. Veuillez attendre qu'un des transferts soit confirmé avant de réessayer.",
+        "snapshotTransitionInProgress": "Transition du Snapshot en cours",
+        "snapshotTransitionInProgressExplanation":
+            "Veuillez patienter jusqu'à ce que la synchronisation de la transition soit terminée."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -165,11 +172,12 @@
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
         "thisMayTake": "Cela peut prendre un certain temps.",
+        "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "Il se peut que votre appareil ralentisse."
     },
     "newSeedSetup": {
         "seedNotGenerated": "La seed n'a pas été générée",
-        "seedNotGeneratedExplanation": "Cliquez sur le bouton \"Générer une Nouvelle Seed\".",
+        "seedNotGeneratedExplanation": "Veuillez générer un nouveau seed.",
         "pressForNewSeed": "NOUVELLE SEED",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées."
     },
@@ -211,6 +219,8 @@
             "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
         "invalidAddressExplanation2": "L'adresse contient des caractères invalides.",
         "invalidAddressExplanation3": "L'adresse contient un code de vérification invalide.",
+        "invalidAddressExplanationGeneric":
+            "Une adresse valide doit être composée de 90 caractères compris entre A-Z ou 9.",
         "notEnoughFunds": "Fonds insuffisants",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
         "keyReuse": "Réutilisation de clé",
@@ -351,7 +361,7 @@
         "selectNode": "Sélectionner un serveur",
         "addCustomNode": "Ajouter un serveur personnalisé",
         "manualSync": "Synchro manuelle",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Transition du Snapshot"
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -378,15 +388,16 @@
         "one": "Un"
     },
     "deleteAccount": {
-        "areYouSure": "Êtes-vous sûr de vouloir supprimer le compte nommé \"{{accountName}}\" ?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "L’historique de vos seeds et de vos transactions sera supprimé.",
         "thisAction": "Cette action est irréversible.",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
     },
     "manualSync": {
+        "outOfSync": "Est-ce que votre historique de transaction semble ne pas être synchronisé?",
         "pressToSync": "Appuyez sur le bouton ci-dessous pour synchroniser votre compte.",
-        "thisMayTake": "Cela peut prendre un certain temps.",
-        "youMayNotice": "Il se peut que votre appareil ralentisse.",
+        "thisMayTake": "Cela peut prendre un peu de temps. Vous remarquerez peut être votre appareil ralentir.",
+        "doNotClose": "Veuillez noter que réduire l'application annulera la synchronisation.",
         "syncAccount": "SYNCHRONISER LE COMPTE",
         "syncingYourAccount": "Synchronisation de votre compte."
     },
@@ -459,6 +470,29 @@
     "rootDetection": {
         "warning": "ATTENTION",
         "rootDetected":
-            "<0>Votre appareil semble être rooté/jailbreaké</0><1>Ceci peut poser un risque important pour la sécurité de votre portefeuille.</1><2>Voulez-vous continuer malgré ce risque ?</2>"
+            "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+    },
+    "pow": {
+        "feeless":
+            "Il est nécessaire de remplir une petite preuve du travail pour envoyer des transactions sans frais en IOTA.",
+        "localOrRemote":
+            "La preuve du travail peut être effectuée localement sur votre appareil ou sur un serveur à distance .",
+        "local": "Local",
+        "remote": "A distance"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validation de l'adresse de réception",
+        "syncingAccount": "Synchronisation du compte",
+        "preparingInputs": "Préparation des entrées",
+        "preparingTransfers": "Préparation des transferts",
+        "gettingTransactionsToApprove": "Réception de transactions à valider",
+        "proofOfWork": "Finalisation de la PoW (Proof of Work)",
+        "broadcasting": "Diffusion en cours"
+    },
+    "snapshotTransition": {
+        "cannotCompleteTransition": "Impossible de terminer la transition du snapshot",
+        "cannotCompleteTransitionExplanation": "Votre solde doit être supérieur à 0 pour terminer la transition.",
+        "transitionComplete": "Transition du snapshot terminée",
+        "transitionCompleteExplanation": "La transition du snapshot s'est terminée avec succès."
     }
 }

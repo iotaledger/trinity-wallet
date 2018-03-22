@@ -60,10 +60,9 @@ class CtaButton extends React.Component {
                             { borderColor: 'transparent' },
                             { width: ctaWidth },
                             { height: ctaHeight },
-                            { fontSize },
                         ]}
                     >
-                        <Text style={[styles.ctaText, { color: secondaryCtaColor }]}>{text}</Text>
+                        <Text style={[styles.ctaText, { color: secondaryCtaColor, fontSize }]}>{text}</Text>
                     </View>
                 </TouchableOpacity>
             </View>
