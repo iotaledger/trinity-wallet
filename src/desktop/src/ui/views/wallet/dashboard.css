@@ -4,11 +4,7 @@
     display: flex;
     position: relative;
     flex-direction: row;
-    padding: 32px 0 0 32px;
-
-    @media (max-width: 900px) {
-        padding: 20px;
-    }
+    padding: 20px;
 
     &:before,
     &:after {
@@ -33,7 +29,7 @@
         flex-direction: column;
         &:first-child {
             width: 40%;
-            min-width: 375px;
+            min-width: 420px;
 
             @media (max-width: 900px) {
                 width: 100%;
@@ -45,8 +41,8 @@
     }
 
     section {
-        background: #fff;
-        margin: 0 32px 32px 0;
+        background: rgba(255, 255, 255, 0.8);
+        margin: 0 20px 20px 0;
         padding: 20px;
         border-radius: 4px;
         position: relative;
@@ -55,44 +51,40 @@
 
         @media (max-width: 900px) {
             margin: 20px;
-            &:last-of-type {
-                margin-top: 0px;
-            }
         }
 
         &.balance {
             flex: 0;
+            flex-basis: 230px;
+            &.open {
+                flex-basis: 510px;
+            }
+
+            input,
+            textarea {
+                background: var(--body-bg);
+            }
+
+            form > fieldset {
+                margin-top: -20px;
+            }
         }
 
         &.history {
             flex: 1 1 auto;
             display: flex;
             flex-direction: column;
+            margin-bottom: 0px;
+            @media (max-width: 900px) {
+                margin: 0 20px 20px 20px;
+            }
         }
 
         &.market {
             flex: 0;
-        }
-
-        &.news {
-            flex: 1 1 auto;
-            position: relative;
-            overflow: hidden;
-            &:before {
-                content: '';
-                width: 100%;
-                height: 80px;
-                position: absolute;
-                bottom: 0px;
-                left: 0px;
-                pointer-events: none;
-                background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-            }
-            > div {
-                display: block;
-                width: 100%;
-                height: 50%;
-                overflow: scroll;
+            margin-right: 0px;
+            @media (max-width: 900px) {
+                margin: 20px;
             }
         }
     }
@@ -107,6 +99,8 @@
 }
 
 .balance {
+    transition: flex-basis 0.275s cubic-bezier(0, 0, 0.2, 1);
+    overflow: hidden;
     h1,
     h2 {
         font-size: 48px;
@@ -121,47 +115,46 @@
         margin: 0 0 24px;
     }
     nav {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        padding: 0 20px;
+        height: 62px;
         display: flex;
         justify-content: space-between;
     }
-}
-
-.news {
-    p {
-        display: flex;
-
-        > div {
-            display: block;
-            width: 38px;
-            height: 38px;
-            border-radius: 100%;
-            margin-right: 16px;
-            > img {
-                width: 32px;
-                height: 32px;
-                border-radius: 100%;
-            }
+    > span {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        transform: scale(0.75);
+        opacity: 0;
+        transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1), transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+        span {
+            cursor: pointer;
         }
+        &:hover {
+            color: var(--primary);
+        }
+    }
+    > div {
+        transform: scale(0.95);
+        opacity: 0;
+        transition: opacity 0.2s cubic-bezier(0, 0, 0.2, 1), transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+    }
+    &.open {
         > span {
-            flex: 1;
-
-            img {
-                display: block;
-                height: 29px;
-                margin: 4px 0 -4px;
-            }
-            nav {
-                margin: 7px 0 0;
-                span {
-                    margin-right: 6px;
-                    &:first-of-type {
-                        color: var(--primary);
-                    }
-                    &:last-of-type {
-                        color: var(--secondary);
-                    }
-                }
-            }
+            transform: scale(1);
+            opacity: 1;
+        }
+        nav {
+            display: none;
+        }
+        > div {
+            transform: scale(1);
+            opacity: 1;
         }
     }
 }
