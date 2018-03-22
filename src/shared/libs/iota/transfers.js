@@ -825,9 +825,9 @@ export const performPow = (
                 //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)
                 // - When index > 0 i.e. not remainder transaction objects
                 //    * Assign trunkTransaction with hash of previous transaction object
-                //    * Assign branchTransaction with provided branch transaction from (getTransactionsToApprove)
+                //    * Assign branchTransaction with provided trunk transaction from (getTransactionsToApprove)
                 const withParentTransactions = assign({}, transaction, {
-                    trunkTransaction: index ? result.transactionObjects[index - 1].hash : trunkTransaction,
+                    trunkTransaction: index ? head(result.transactionObjects).hash : trunkTransaction,
                     branchTransaction: index ? trunkTransaction : branchTransaction,
                 });
 
