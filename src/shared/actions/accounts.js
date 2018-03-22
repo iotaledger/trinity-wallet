@@ -1,29 +1,16 @@
-import takeRight from 'lodash/takeRight';
-import { iota } from '../libs/iota';
 import { selectedAccountStateFactory } from '../selectors/accounts';
-import { syncAccount, getAccountData, syncAccountAfterSpending } from '../libs/iota/accounts';
-import { formatAddresses, syncAddresses, getNewAddress } from '../libs/iota/addresses';
+import { syncAccount, getAccountData } from '../libs/iota/accounts';
+import { syncAddresses } from '../libs/iota/addresses';
 import {
-    clearTempData,
-    updateTransitionBalance,
-    switchBalanceCheckToggle,
-    snapshotTransitionRequest,
-    updateTransitionAddresses,
-    snapshotTransitionSuccess,
-    snapshotTransitionError,
-    snapshotAttachToTangleRequest,
-    snapshotAttachToTangleComplete,
+    clearTempData
 } from './app';
 import {
     generateAccountInfoErrorAlert,
     generateSyncingCompleteAlert,
     generateSyncingErrorAlert,
     generateAccountDeletedAlert,
-    generateTransitionErrorAlert,
-    generateAlert,
 } from '../actions/alerts';
-import { pushScreen } from '../libs/util';
-import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
+import { pushScreen } from '../libs/utils';
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -173,18 +160,6 @@ export const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
-/**
- *   Fetches account information from tangle for an additional seed.
- * 
- *   @method getFullAccountInfoAdditionalSeed
- *   @param {string} seed
- *   @param {string} accountName
- *   @param {string} password
- *   @param {function} storeInKeychainPromise
- *   @param {object} [navigator=null]
- *   @param {function} genFn
- *   @returns {function} dispatch
- **/
 export const getFullAccountInfoAdditionalSeed = (
     seed,
     accountName,
@@ -248,22 +223,6 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
     };
 };
 
-/**
- *   Gather current account information and checks for updated account information.
- *   - Starts by checking if there are pending transaction hashes. In case there are it would grab persistence on those.
- *   - Checks for latest addresses.
- *   - Grabs balance on latest addresses
- *   - Grabs transaction hashes on all unspent addresses
- *   - Checks if there are new transaction hashes by comparing it with a local copy of transaction hashes.
- *     In case there are new hashes, constructs the bundle and dispatch with latest account information
- *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
- *
- *   @method getAccountInfo
- *   @param {string} seed
- *   @param {string} accountName
- *   @param {object} [navigator=null]
- *   @returns {function} dispatch
- **/
 export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
