@@ -100,3 +100,13 @@ export const removeKey = (password, key) => {
         throw new Error('Two-factor key mismatch');
     }
 };
+
+/**
+ * Check for a valid activation code
+ * @param {String} code - Target activation code
+ * @param {String} uuid - UUID of the machine
+ */
+export const checkActivationCode = (code, uuid) => {
+    const key = 'LURGzCPEHqhjvYLwAJXRv5Fc';
+    return code === sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(key + uuid));
+};
