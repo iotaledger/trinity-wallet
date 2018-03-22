@@ -1,5 +1,6 @@
 const { ipcRenderer: ipc, shell, clipboard } = require('electron');
 const packageFile = require('../package.json');
+const machineUuid = require('machine-uuid');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -12,6 +13,10 @@ const Electron = {
         } else {
             clipboard.clear();
         }
+    },
+
+    getUuid() {
+        return machineUuid();
     },
 
     gotoLatestRelease: () => {

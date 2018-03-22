@@ -6,6 +6,7 @@ const initialState = {
     mode: 'STANDARD',
     root: 'initialLoading',
     versions: {},
+    activationCode: null,
 };
 
 export default (state = initialState, action) => {
@@ -18,6 +19,10 @@ export default (state = initialState, action) => {
         case ActionTypes.SET_VERSIONS:
             return merge({}, state, {
                 versions: action.payload,
+            });
+        case ActionTypes.SET_ACTIVATION_CODE:
+            return merge({}, state, {
+                activationCode: action.payload,
             });
     }
     return state;
