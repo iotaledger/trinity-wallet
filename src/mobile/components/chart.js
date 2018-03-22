@@ -7,7 +7,6 @@ import { translate } from 'react-i18next';
 import withChartData from 'iota-wallet-shared-modules/containers/components/Chart';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
-import GENERAL from '../theme/general';
 
 const chartWidth = width * 0.98;
 const chartHeight = height * 0.38;
@@ -17,8 +16,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusSmall,
-        paddingHorizontal: width / 50,
+        borderRadius: 1000,
+        paddingHorizontal: width / 35,
         paddingVertical: height / 110,
     },
     button: {
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
     },
     topContainer: {
         flex: 1,
@@ -37,7 +36,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         alignItems: 'center',
         zIndex: 1,
-        paddingVertical: height / 70,
     },
     priceContainer: {
         flex: 8,
@@ -67,7 +65,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: 'flex-start',
     },
     buttonText: {
         fontWeight: 'normal',
@@ -159,6 +157,7 @@ class Chart extends PureComponent {
         const borderColor = { borderColor: theme.body.color };
         return (
             <View style={styles.container}>
+                <View style={{ flex: 0.65 }} />
                 <View style={styles.topContainer}>
                     <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
@@ -246,7 +245,7 @@ class Chart extends PureComponent {
                         <Text style={styles.marketFigureTitle}>{t('chart:volume')}</Text> $ {priceData.volume}
                     </Text>
                 </View>
-                <View style={{ flex: 0.2 }} />
+                <View style={{ flex: 0.38 }} />
             </View>
         );
     }

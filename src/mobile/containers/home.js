@@ -24,15 +24,13 @@ import Tabs from '../components/tabs';
 import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
 import EnterPassword from '../components/enterPassword';
-import { height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 0.8,
-        marginBottom: height / 100,
+        flex: 0.7,
     },
     midContainer: {
-        flex: 4.62,
+        flex: 4.72,
         zIndex: 0,
     },
     bottomContainer: {
