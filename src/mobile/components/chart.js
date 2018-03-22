@@ -7,7 +7,6 @@ import { translate } from 'react-i18next';
 import withChartData from 'iota-wallet-shared-modules/containers/components/Chart';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
-import GENERAL from '../theme/general';
 
 const chartWidth = width * 0.98;
 const chartHeight = height * 0.38;
@@ -17,8 +16,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         borderWidth: 1,
-        borderRadius: GENERAL.borderRadius,
-        paddingHorizontal: width / 50,
+        borderRadius: 1000,
+        paddingHorizontal: width / 35,
         paddingVertical: height / 110,
     },
     button: {
