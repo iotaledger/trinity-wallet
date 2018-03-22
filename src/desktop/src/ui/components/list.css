@@ -30,6 +30,10 @@
     a {
         list-style: none;
 
+        strong {
+            font-weight: 300;
+        }
+
         > div {
             list-style: none;
             display: flex;
@@ -41,7 +45,7 @@
                 padding: 0 2%;
             }
             > span:nth-child(1) {
-                width: 24px;
+                width: 36px;
                 margin-top: 10px;
             }
             > span:nth-child(2) {
@@ -57,7 +61,7 @@
             }
         }
         &:hover > div {
-            background: var(--body-hover);
+            background: var(--body-bg);
         }
         &.received {
             > strong {
@@ -97,34 +101,6 @@
         strong {
             color: var(--negative);
         }
-    }
-
-    .full {
-        display: block;
-        margin-bottom: 12px;
-        padding: 12px;
-        border-radius: 4px;
-        border: 1px solid var(--body-alt);
-
-        &:hover {
-            background: var(--body-hover);
-        }
-
-        p {
-            margin: 0px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            line-height: 24px;
-            font-size: var(--font-size-small);
-            &:nth-child(2) {
-                color: var(--color-body);
-            }
-        }
-    }
-
-    strong {
-        font-weight: 200;
     }
 }
 
