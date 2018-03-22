@@ -39,7 +39,7 @@ class SeedSave extends PureComponent {
                             return <span key={`seed-${index}`}>{letter}</span>;
                         })}
                     </div>
-                    <nav>
+                    <nav className={css.hideOnPrint}>
                         <Clipboard
                             text={seed}
                             timeout={60}
