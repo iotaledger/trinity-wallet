@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { LineChart, ResponsiveContainer, Line, YAxis, XAxis } from 'recharts';
+import { LineChart, ResponsiveContainer, Line, YAxis, Tooltip } from 'recharts';
 
 import withChartData from 'containers/components/Chart';
 
@@ -16,7 +16,7 @@ class Chart extends PureComponent {
         priceData: PropTypes.shape({
             currency: PropTypes.string.isRequired,
             symbol: PropTypes.string.isRequired,
-            price: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
             volume: PropTypes.string.isRequired,
             change24h: PropTypes.string.isRequired,
             mcap: PropTypes.string.isRequired,
@@ -48,6 +48,12 @@ class Chart extends PureComponent {
         t: PropTypes.func.isRequired,
     };
 
+    renderTooltip(props) {
+        if (props.active) {
+            return <p className={css.label}>{props.payload[0].value}</p>;
+        }
+    }
+
     render() {
         const { priceData, chartData, theme, setCurrency, setTimeframe, getPriceFormat, t } = this.props;
 
@@ -64,6 +70,7 @@ class Chart extends PureComponent {
                                 label=""
                                 domain={['dataMin', 'dataMax']}
                             />
+                            <Tooltip content={this.renderTooltip} />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>

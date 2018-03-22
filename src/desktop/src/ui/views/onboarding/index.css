@@ -105,7 +105,7 @@
     display: block;
     margin: 32px auto;
     width: calc(100vw - 20px);
-    max-width: 864px;
+    max-width: 920px;
     text-align: left;
 
     button,
@@ -115,17 +115,23 @@
         border: none;
         color: var(--secondary);
         font-size: 21px;
-        line-height: 21px;
-        width: 32px;
-        height: 32px;
+        line-height: 36px;
+        width: 34px;
+        height: 34px;
         margin: 5px 0;
         font-family: 'SourceCode';
         font-weight: 300;
+        transition: transform 0.1s cubic-bezier(0.4, 0, 0.6, 1);
 
         &:hover {
             position: relative;
             cursor: pointer;
-            background: var(--body-hover);
+            color: var(--primary);
+            transform: scale(1.5);
+        }
+
+        &:active {
+            transform: scale(2);
         }
 
         &:focus {
