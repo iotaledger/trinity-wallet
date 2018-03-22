@@ -12,9 +12,9 @@ import {
     getTransferValue,
 } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
-    getAddressesForSelectedAccountViaSeedIndex,
-    getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
-    getBalanceForSelectedAccountViaSeedIndex,
+    getAddressesForSelectedAccount,
+    getDeduplicatedTransfersForSelectedAccount,
+    getBalanceForSelectedAccount,
 } from 'iota-wallet-shared-modules/selectors/account';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/SimpleTransactionRow';
@@ -246,17 +246,17 @@ export class Balance extends Component {
     }
 }
 
-const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
-    marketData,
-    seedIndex: tempAccount.seedIndex,
-    balance: getBalanceForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
-    addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
-    transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
-    currency: settings.currency,
-    conversionRate: settings.conversionRate,
-    primary: settings.theme.primary,
-    secondary: settings.theme.secondary,
-    body: settings.theme.body,
+const mapStateToProps = (state) => ({
+    marketData: state.marketData,
+    seedIndex: state.tempAccount.seedIndex,
+    balance: getBalanceForSelectedAccount(state),
+    addresses: getAddressesForSelectedAccount(state),
+    transfers: getDeduplicatedTransfersForSelectedAccount(state),
+    currency: state.settings.currency,
+    conversionRate: state.settings.conversionRate,
+    primary: state.settings.theme.primary,
+    secondary: state.settings.theme.secondary,
+    body: state.settings.theme.body,
 });
 
 export default translate(['global'])(connect(mapStateToProps)(Balance));

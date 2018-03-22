@@ -95,7 +95,7 @@ class Welcome extends Component {
     }
 
     componentWillMount() {
-        this.showModalIfRooted();
+        //this.showModalIfRooted();
     }
 
     onNextPress() {

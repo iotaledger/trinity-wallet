@@ -2,8 +2,6 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
 import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
-import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,10 +9,7 @@ import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { clearLog } from 'iota-wallet-shared-modules/actions/alerts';
-import {
-    getBalanceForSelectedAccountViaSeedIndex,
-    getSelectedAccountViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/account';
 import {
     View,
     Text,
@@ -212,21 +207,8 @@ class TopBar extends Component {
         const subtitleColor = tinycolor(bar.color).isDark() ? '#262626' : '#d3d3d3';
 
         const getBalance = (currentIdx) => {
-            const seedStrings = Object.keys(accountInfo);
-            const data = accountInfo[seedStrings[currentIdx]].addresses;
-            const balances = Object.values(data).map((x) => x.balance);
-
-            if (isEmpty(data)) {
-                return TopBar.humanizeBalance(0); // no addresses
-            }
-
-            const calc = (res, value) => {
-                const result = res + value;
-                return result;
-            };
-
-            const bal = reduce(balances, calc, 0);
-            return TopBar.humanizeBalance(bal);
+            const account = accountInfo[accountNames[currentIdx]];
+            return TopBar.humanizeBalance(account.balance);
         };
 
         const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
@@ -416,7 +398,7 @@ class TopBar extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    balance: getBalanceForSelectedAccount(state),
     accountNames: state.account.accountNames,
     accountInfo: state.account.accountInfo,
     currentSetting: state.tempAccount.currentSetting,
@@ -426,7 +408,7 @@ const mapStateToProps = (state) => ({
     isSyncing: state.tempAccount.isSyncing,
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
-    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    selectedAccount: selectAccountInfo(state),
     body: state.settings.theme.body,
     bar: state.settings.theme.bar,
     notificationLog: state.alerts.notificationLog,

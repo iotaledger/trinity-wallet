@@ -11,15 +11,11 @@ import {
     changeAccountName,
     deleteAccount,
     manuallySyncAccount,
-    update2FA,
     transitionForSnapshot,
     generateAddressesAndGetBalance,
     completeSnapshotTransition,
 } from 'iota-wallet-shared-modules/actions/account';
-import {
-    getSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { selectAccountInfo, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
 import {
     setFullNode,
     getCurrencyData,
@@ -29,7 +25,7 @@ import {
     setMode,
 } from 'iota-wallet-shared-modules/actions/settings';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
 import KeepAwake from 'react-native-keep-awake';
 import LogoutConfirmationModal from '../components/LogoutConfirmationModal';
@@ -68,7 +64,6 @@ class Settings extends Component {
         isFetchingCurrencyData: PropTypes.bool.isRequired,
         hasErrorFetchingCurrencyData: PropTypes.bool.isRequired,
         navigator: PropTypes.object.isRequired,
-        accountInfo: PropTypes.object.isRequired,
         selectedAccount: PropTypes.object.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         currentSetting: PropTypes.string.isRequired,
@@ -561,14 +556,12 @@ class Settings extends Component {
                             t('addAdditionalSeed:seedInUseExplanation'),
                         );
                     }
+
                     return this.fetchAccountInfo(seed, accountName);
                 })
                 .catch((err) => console.log(err)); // eslint-disable no-console
         }
     }
-
-    // EditAccountName method
-
 
     shouldPreventAction() {
         const {
@@ -635,7 +628,6 @@ const mapDispatchToProps = {
     manuallySyncAccount,
     updateTheme,
     setAdditionalAccountInfo,
-    update2FA,
     setLanguage,
     transitionForSnapshot,
     generateAddressesAndGetBalance,
@@ -644,13 +636,12 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    selectedAccount: selectAccountInfo(state),
+    selectedAccountName: getSelectedAccountName(state),
     currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,
     password: state.tempAccount.password,
     accountNames: state.account.accountNames,
-    accountInfo: state.account.accountInfo,
     seedCount: state.account.seedCount,
     currency: state.settings.currency,
     mode: state.settings.mode,
