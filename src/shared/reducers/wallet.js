@@ -44,36 +44,10 @@ export default (state = initialState, action) => {
                 ...state,
                 receiveAddress: action.payload,
             };
-        case ActionTypes.GENERATE_NEW_ADDRESS_REQUEST:
-            return {
-                ...state,
-                isGeneratingReceiveAddress: true,
-            };
         case ActionTypes.GENERATE_NEW_ADDRESS_SUCCESS:
             return {
                 ...state,
-                isGeneratingReceiveAddress: false,
                 receiveAddress: action.payload,
-            };
-        case ActionTypes.GENERATE_NEW_ADDRESS_ERROR:
-            return {
-                ...state,
-                isGeneratingReceiveAddress: false,
-            };
-        case ActionTypes.SEND_TRANSFER_REQUEST:
-            return {
-                ...state,
-                isSendingTransfer: true,
-            };
-        case ActionTypes.SEND_TRANSFER_SUCCESS:
-            return {
-                ...state,
-                isSendingTransfer: false
-            };
-        case ActionTypes.SEND_TRANSFER_ERROR:
-            return {
-                ...state,
-                isSendingTransfer: false,
             };
         case ActionTypes.SET_READY:
             return {
@@ -90,7 +64,7 @@ export default (state = initialState, action) => {
                 ...state,
                 usedSeedToLogin: action.payload,
             };
-        case ActionTypes.CLEAR_TEMP_DATA:
+        case ActionTypes.CLEAR_WALLET_DATA:
             return {
                 ...state,
                 ready: false,
@@ -98,7 +72,6 @@ export default (state = initialState, action) => {
                 usedSeedToLogin: false,
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
-                isSendingTransfer: false,
                 currentSetting: 'mainSettings',
                 copiedToClipboard: false,
             };

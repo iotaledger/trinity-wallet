@@ -10,7 +10,7 @@ import transform from 'lodash/transform';
 import union from 'lodash/union';
 import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
-import { renameKeys } from '../libs/util';
+import { renameKeys } from '../libs/utils';
 
 const updateAccountInfo = (state, payload) => ({
     accountInfo: {
@@ -140,17 +140,6 @@ const account = (
                     },
                 },
             };
-        case ActionTypes.UPDATE_TRANSFERS:
-            return {
-                ...state,
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.accountName]: {
-                        ...state.accountInfo[action.accountName],
-                        transfers: action.transfers,
-                    },
-                },
-            };
         case ActionTypes.SET_FIRST_USE:
             return {
                 ...state,
@@ -166,7 +155,7 @@ const account = (
                 ...state,
                 seedCount: state.seedCount + 1,
             };
-        case ActionTypes.ADD_SEED_NAME:
+        case ActionTypes.ADD_ACCOUNT_NAME:
             return {
                 ...state,
                 accountNames: [...state.accountNames, action.accountName],

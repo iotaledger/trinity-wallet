@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import { getStoredState } from 'redux-persist';
-import { updatePersistedState } from '../libs/util';
+import { updatePersistedState } from '../libs/utils';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
 import { UPDATE_URL } from '../config';
