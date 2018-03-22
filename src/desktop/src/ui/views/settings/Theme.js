@@ -49,6 +49,7 @@ class Theme extends React.PureComponent {
                     e.preventDefault();
                     if (themeName) {
                         Electron.updateSettings('backgroundColor', themes[themeName].body.bg);
+                        document.body.style.background = themes[themeName].body.bg;
                         updateTheme(themes[themeName], themeName);
                     }
                 }}
