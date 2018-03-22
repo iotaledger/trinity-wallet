@@ -148,7 +148,8 @@ export class Balance extends Component {
 
     prepTransactions() {
         const { transfers, addresses, t, primary, secondary, body } = this.props;
-        const recentTransactions = transfers.slice(0, 4);
+        const orderedTransfers = orderBy(transfers, (tx) => tx[0].timestamp, ['desc']);
+        const recentTransactions = orderedTransfers.slice(0, 4);
 
         const computeConfirmationStatus = (persistence, incoming) => {
             if (incoming) {
@@ -186,7 +187,7 @@ export class Balance extends Component {
             };
         });
 
-        return orderBy(formattedTransfers, 'time', ['desc']);
+        return formattedTransfers;
     }
 
     renderTransactions() {
