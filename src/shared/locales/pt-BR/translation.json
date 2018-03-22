@@ -262,7 +262,7 @@
         "syncingComplete": "Sincronização completa",
         "syncingCompleteExplanation": "Sua conta foi sincronizada com sucesso.",
         "nicknameChanged": "Nome da conta alterada",
-        "nicknameChangedExplanation": "O nome da sua conta foi alterado.",
+        "nicknameChangedExplanation": "O nome da sua conta foi alterada.",
         "accountDeleted": "Conta excluída",
         "accountDeletedExplanation": "Sua conta foi removida da carteira.",
         "cannotPerformAction": "Não é possível executar a ação",
@@ -279,7 +279,7 @@
         "paste": "Colar",
         "selectAll": "Selecionar Tudo",
         "securitySettings": "Opções de segurança",
-        "fingerprint": "Autenticação Biométrica",
+        "fingerprint": "Autenticação biométrica",
         "couldNotFetchRates": "Não foi possível obter taxas de câmbio",
         "couldNotFetchRatesExplanation": "Algo deu errado ao obter as taxas de câmbio para {{currency}}.",
         "fetchedConversionRates": "Conversão de câmbio obtida",
@@ -288,13 +288,13 @@
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
         "cancel": "CANCELAR",
-        "reset": "RECONFIGURAR COMPLETAMENTE"
+        "reset": "REDEFINIR"
     },
     "walletSetup": {
-        "okay": "Ok. Vamos configurar a sua carteira!",
+        "okay": "Vamos configurar a sua carteira!",
         "doYouAlreadyHaveASeed": "Já possui uma Seed que gostaria de utilizar?",
         "seedExplanation": "A Seed IOTA representa, simultaneamente, o nome do usuário e a senha de sua conta, combinados em uma sequência de 81 caracteres.",
-        "explanation": "<0><0>Voce pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder sua Seed, também perderá o acesso às suas IOTAs.</4></0>",
+        "explanation": "<0><0>Você pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder sua Seed, também perderá as suas IOTAs.</4></0>",
         "keepSafe": "Por favor, mantenha a sua Seed protegida e segura."
     },
     "welcome": {
@@ -303,7 +303,7 @@
         "reminder": "Você pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que conclua todo o processo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "A Seed possui {{maxSeedLength}} caracteres, lidos da esquerda para a direita.",
+        "yourSeedIs": "Sua seed é {{maxSeedLength}} caracteres lidos da esquerda para a direita.",
         "writeDownYourSeed": "<0>Anote sua Seed e os dígitos de verificação e </0><1>certifique-se</1><2> que estão corretos.</2>"
     },
     "history": {
@@ -360,7 +360,7 @@
         "one": "Um"
     },
     "deleteAccount": {
-        "areYouSure": "Você deseja realmente remover a conta {{accountName}}?",
+        "areYouSure": "Você deseja realmente remover {{accountName}}?",
         "yourSeedWillBeRemoved": "Sua Seed e histórico de transações serão removidos.",
         "thisAction": "Esta operação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
