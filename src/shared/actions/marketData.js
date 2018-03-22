@@ -105,7 +105,7 @@ export function getChartData() {
         });
 
         Promise.all(arrayPromises).then((results) => {
-            const chartData = { BTC: {}, ETH: {}, EUR: {}, USD: {} };
+            const chartData = { USD: {}, EUR: {}, BTC: {}, ETH: {} };
             let actualCurrency = '';
             let currentTimeFrame = '';
             let currentCurrency = '';

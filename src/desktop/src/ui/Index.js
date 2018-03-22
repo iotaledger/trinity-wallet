@@ -22,12 +22,15 @@ import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
+import Activation from 'ui/views/onboarding/Activation';
 
 import css from './index.css';
 
 /** Main wallet wrapper component */
 class App extends React.Component {
     static propTypes = {
+        /** Alpha versiona ctivation code */
+        activationCode: PropTypes.string,
         /** Browser location */
         location: PropTypes.object,
         /** Browser histoty object */
@@ -68,10 +71,21 @@ class App extends React.Component {
         t: PropTypes.func.isRequired,
     };
 
+    constructor(props) {
+        super(props);
+        this.state = { uuid: null };
+    }
+
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
         Electron.changeLanguage(this.props.t);
+
+        Electron.getUuid().then((uuid) => {
+            this.setState({
+                uuid: uuid,
+            });
+        });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -119,9 +133,23 @@ class App extends React.Component {
     };
 
     render() {
-        const { account, location } = this.props;
+        const { account, location, activationCode } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
+
+        if (!this.state.uuid) {
+            return null;
+        }
+
+        if (!activationCode) {
+            return (
+                <div className={css.trintiy}>
+                    <Theme />
+                    <Alerts />
+                    <Activation uuid={this.state.uuid} />
+                </div>
+            );
+        }
 
         return (
             <div className={css.trintiy}>
@@ -154,6 +182,7 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
     account: state.account,
     tempAccount: state.tempAccount,
+    activationCode: state.app.activationCode,
 });
 
 const mapDispatchToProps = {
