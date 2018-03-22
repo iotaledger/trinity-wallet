@@ -303,6 +303,7 @@ export class Send extends Component {
 
     onAmountType(amount) {
         const { t, body } = this.props;
+        amount = amount.replace(/,/g, '.');
         this.props.setSendAmountField(amount);
         if (amount === (this.props.balance / this.getUnitMultiplier()).toString()) {
             this.onMaxPress();
@@ -807,7 +808,7 @@ export class Send extends Component {
                                 <View style={styles.info}>
                                     <Icon
                                         name="info"
-                                        size={width / 12}
+                                        size={width / 25}
                                         color={body.color}
                                         style={{ marginRight: width / 60 }}
                                     />
