@@ -157,7 +157,7 @@ class Chart extends PureComponent {
         const borderColor = { borderColor: theme.body.color };
         return (
             <View style={styles.container}>
-                <View style={{ flex: 0.45 }} />
+                <View style={{ flex: 0.65 }} />
                 <View style={styles.topContainer}>
                     <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
@@ -245,7 +245,7 @@ class Chart extends PureComponent {
                         <Text style={styles.marketFigureTitle}>{t('chart:volume')}</Text> $ {priceData.volume}
                     </Text>
                 </View>
-                <View style={{ flex: 0.25 }} />
+                <View style={{ flex: 0.38 }} />
             </View>
         );
     }
