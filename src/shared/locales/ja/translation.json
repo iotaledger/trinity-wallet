@@ -54,7 +54,8 @@
         "syncInProgress": "同期中...",
         "syncInProgressExplanation": "同期が完了するまでお待ち下さい。",
         "somethingWentWrong": "何かが間違っています。",
-        "somethingWentWrongExplanation": "アプリを再起動して下さい。",
+        "somethingWentWrongRestart": "アプリを再起動してください。",
+        "somethingWentWrongTryAgain": "もう一度お試しください。",
         "node": "ノード",
         "cannotPerformAction": "操作を実行できません。",
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
@@ -74,15 +75,20 @@
         "rebroadcast": "再放送",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "autoreattaching": "Tangleに自動再登録",
-        "autoreattachingExplanation": "ハッシュ {{hash}} とトランザクションを再登録",
+        "autoreattachingExplanation": "ハッシュ {{hash}} と取引を再登録",
         "autopromoting": "送金を自動促進",
-        "autopromotingExplanation": "ハッシュ{{hash}}によるトランザクションの促進",
+        "autopromotingExplanation": "ハッシュ{{hash}}による取引の促進",
+        "promoting": "送金促進",
+        "promotionError": "取引を促進できませんでした。",
+        "noLongerValid": "促進しようとしているバンドルはもう有効ではありません。",
         "cannotSendToOwn": "自分のアドレスに送金する。",
         "cannotSendToOwnExplanation": "自分のアドレスに送金することができません。",
         "pleaseWait": "少々お待ちください。",
         "pleaseWaitExplanation": "Trinityは別の機能を実行しています。お待ち頂き、もう一度実行してください。",
         "pleaseWaitTransferExplanation":
-            "利用可能な残高は、現在、別の送金で使用されています。送金が承認されるまで少々お待ちください。"
+            "利用可能な残高は、現在、別の送金で使用されています。送金が承認されるまで少々お待ちください。",
+        "snapshotTransitionInProgress": "スナップショットの遷移が進行中",
+        "snapshotTransitionInProgressExplanation": "遷移が完了するまで少々お待ちください。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -163,11 +169,12 @@
     "loading": {
         "loadingFirstTime": "初めてのSeedを読み込んでいます。",
         "thisMayTake": "少々お待ち下さい。",
+        "doNotMinimise": "アプリを最小化したり終了したりしないでください。",
         "youMayNotice": "あなたのデバイスが遅くなることがあります。"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seedが生成されていません。",
-        "seedNotGeneratedExplanation": "「新しいSeedを生成する。」ボタンをクリックして下さい。",
+        "seedNotGeneratedExplanation": "新しいSeedを生成してください。",
         "pressForNewSeed": "新しいSeedの元を作成",
         "individualLetters": "文字をタップして更にランダムにしてください。"
     },
@@ -206,6 +213,7 @@
         "invalidAddressExplanation1": "アドレスは{{maxLength}}文字、また、チェックサムを含む必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
+        "invalidAddressExplanationGeneric": "有効なアドレスは90文字で、A〜Zまたは9のみを含む必要があります。",
         "notEnoughFunds": "残高不足",
         "notEnoughFundsExplanation": "送金を完了するための十分なIOTAが有りません。",
         "keyReuse": "キーの再使用",
@@ -364,16 +372,17 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "{{accountName}}のアカウントデータを削除してもよろしいですか？",
-        "yourSeedWillBeRemoved": "Seedとトランザクションの履歴を削除します。",
+        "areYouSure": "{{accountName}}を削除してもよろしいですか？",
+        "yourSeedWillBeRemoved": "Seedと取引の履歴を削除します。",
         "thisAction": "この操作は元に戻せません。",
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
     },
     "manualSync": {
-        "pressToSync": "アカウントを同期するには下のボタンを押して下さい。",
-        "thisMayTake": "少々お待ち下さい。",
-        "youMayNotice": "デバイスが遅くなることがあります。",
-        "syncAccount": "同期アカウント",
+        "outOfSync": "取引履歴が同期していないでしょうか？",
+        "pressToSync": "アカウントを同期するには下のボタンを押してください。",
+        "thisMayTake": "これには時間がかかることがあり、デバイスが遅くなることがあります。",
+        "doNotClose": "アプリを最小化すると同期がキャンセルされますのでご注意ください。",
+        "syncAccount": "アカウントを同期",
         "syncingYourAccount": "アカウントを同期中"
     },
     "useExistingSeed": {
@@ -439,6 +448,27 @@
     "rootDetection": {
         "warning": "警告",
         "rootDetected":
-            "<0>あなたのデバイスはルート化もしくは脱獄されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
+            "<0>あなたのデバイスはルート化されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
+    },
+    "pow": {
+        "feeless": "IOTAの取引手数料無しの送金を行うには小規模のPoWを行う必要があります。",
+        "localOrRemote": "PoWはデバイス上でローカルに行うか、ノードにお任せすることができます。",
+        "local": "ローカル",
+        "remote": "リモート"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "受取アドレスの検証",
+        "syncingAccount": "アカウントの同期",
+        "preparingInputs": "入力の準備",
+        "preparingTransfers": "送金の準備",
+        "gettingTransactionsToApprove": "取引の承認",
+        "proofOfWork": "PoWの完了",
+        "broadcasting": "ブロードキャスト"
+    },
+    "snapshotTransition": {
+        "cannotCompleteTransition": "スナップショットの遷移を完了できません。",
+        "cannotCompleteTransitionExplanation": "遷移を完了するには、残高が0より大きくなければなりません。",
+        "transitionComplete": "スナップショットの遷移完了",
+        "transitionCompleteExplanation": "スナップショットの遷移が正常に完了しました。"
     }
 }

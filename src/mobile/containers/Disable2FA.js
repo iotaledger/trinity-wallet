@@ -65,6 +65,7 @@ class Disable2FA extends Component {
         body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         set2FAStatus: PropTypes.func.isRequired,
+        password: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -82,7 +83,7 @@ class Disable2FA extends Component {
      * Attempts to disable 2FA, fails if the token is not correct
      */
     disable2FA() {
-        return getTwoFactorAuthKeyFromKeychain()
+        return getTwoFactorAuthKeyFromKeychain(this.props.password)
             .then((key) => {
                 const verified = authenticator.verifyToken(key, this.state.token);
 
@@ -131,18 +132,18 @@ class Disable2FA extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar textColor={body.color} />
+                <DynamicStatusBar backgroundColor={body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Icon name="iota" size={width / 8} color={body.color} />{' '}
+                            <Icon name="iota" size={width / 8} color={body.color} />
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={[styles.generalText, textColor]}>Enter your token to disable 2FA</Text>
                             <CustomTextInput
                                 label="Token"
                                 onChangeText={(token) => this.setState({ token })}
-                                containerStyle={{ width: width / 1.36 }}
+                                containerStyle={{ width: width / 1.2 }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -170,6 +171,8 @@ class Disable2FA extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
+    body: state.settings.theme.body,
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {

@@ -35,6 +35,7 @@ import {
     setSendMessageField,
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
+import { getBalanceForSelectedAccount, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
 import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
@@ -42,10 +43,6 @@ import KeepAwake from 'react-native-keep-awake';
 import QRScanner from '../components/QrScanner';
 import Toggle from '../components/Toggle';
 import ProgressBar from '../components/ProgressBar';
-import {
-    getBalanceForSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from '../../shared/selectors/account';
 import ProgressSteps from '../utils/progressSteps';
 import { getSeedFromKeychain } from '../utils/keychain';
 import TransferConfirmationModal from '../components/TransferConfirmationModal';
@@ -53,19 +50,13 @@ import UnitInfoModal from '../components/UnitInfoModal';
 import CustomTextInput from '../components/CustomTextInput';
 import CtaButton from '../components/CtaButton';
 import { Icon } from '../theme/icons.js';
-import { width, height } from '../utils/dimensions';
+import { width } from '../utils/dimensions';
 import { isAndroid, isIOS } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-    },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: height / 14,
     },
     topContainer: {
         flex: 3.6,
@@ -243,7 +234,7 @@ export class Send extends Component {
     }
 
     shouldComponentUpdate(newProps) {
-        const { isSyncing, isTransitioning, usdPrice, conversionRate, balance } = this.props;
+        const { isSyncing, isTransitioning, usdPrice, conversionRate } = this.props;
 
         if (isSyncing !== newProps.isSyncing) {
             return false;
@@ -516,7 +507,7 @@ export class Send extends Component {
     }
 
     getProgressSummary() {
-        const { timeTakenByEachProgressStep, t } = this.props;
+        const { timeTakenByEachProgressStep } = this.props;
         const totalTimeTaken = reduce(timeTakenByEachProgressStep, (acc, time) => acc + Number(time), 0);
 
         return (
@@ -850,8 +841,8 @@ export class Send extends Component {
 
 const mapStateToProps = (state) => ({
     currency: state.settings.currency,
-    balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    balance: getBalanceForSelectedAccount(state),
+    selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.tempAccount.isSyncing,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     seedIndex: state.tempAccount.seedIndex,

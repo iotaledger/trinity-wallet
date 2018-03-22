@@ -55,7 +55,8 @@
         "syncInProgress": "Sincronizzazione in corso",
         "syncInProgressExplanation": "Si prega di attendere che la sincronizzazione sia completa.",
         "somethingWentWrong": "Si è verificato un errore",
-        "somethingWentWrongExplanation": "Si prega di riavviare l'applicazione.",
+        "somethingWentWrongRestart": "Si prega di riavviare l'applicazione.",
+        "somethingWentWrongTryAgain": "Si prega di riprovare.",
         "node": "Nodo",
         "cannotPerformAction": "Non è possibile eseguire l'azione",
         "cannotPerformActionExplanation": "Vai alle impostazioni avanzate per reimpostare il portafoglio.",
@@ -79,12 +80,18 @@
         "autoreattachingExplanation": "Ricollegamento della transazione con hash {{hash}}",
         "autopromoting": "Promozione automatica del trasferimento",
         "autopromotingExplanation": "Promozione della transazione con hash {{hash}}",
+        "promoting": "Promozione della transazione",
+        "promotionError": "Non si è potuto promuovere la transazione",
+        "noLongerValid": "Il pacchetto che si sta tentando di promuovere non è più valido",
         "cannotSendToOwn": "Invio a un indirizzo proprio",
         "cannotSendToOwnExplanation": "Non puoi fare un trasferimento verso uno dei tuoi indirizzi.",
         "pleaseWait": "Attendere, per favore",
         "pleaseWaitExplanation": "Trinity sta eseguendo un altro lavoro. Attendere e riprovare.",
         "pleaseWaitTransferExplanation":
-            "Il tuo saldo disponibile è attualmente in uso in altri trasferimenti. Si prega di attendere la conferma di uno di questi prima di riprovare."
+            "Il tuo saldo disponibile è attualmente in uso in altri trasferimenti. Si prega di attendere la conferma di uno di questi prima di riprovare.",
+        "snapshotTransitionInProgress": "Passaggio allo snapshot in corso",
+        "snapshotTransitionInProgressExplanation":
+            "Si prega di attendere fino a quando il passaggio allo snapshot sarà completato."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -167,11 +174,12 @@
     "loading": {
         "loadingFirstTime": "Carico il seme per la prima volta.",
         "thisMayTake": "Potrebbe volerci un po'.",
+        "doNotMinimise": "Non minimizzare o chiudere l'app.",
         "youMayNotice": "Potresti notare che il dispositivo rallenta."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Il seme non è stato generato",
-        "seedNotGeneratedExplanation": "Fare clic sul pulsante \"Genera nuovo seme\".",
+        "seedNotGeneratedExplanation": "Si prega di generare un nuovo seme.",
         "pressForNewSeed": "PREMI PER UN NUOVO SEME",
         "individualLetters": "Premi alcune singole lettere per renderle maggiormente casuali."
     },
@@ -213,6 +221,7 @@
             "L'indirizzo deve essere {{maxLength}} caratteri e deve avere un valore di checksum.",
         "invalidAddressExplanation2": "L'indirizzo contiene caratteri non validi.",
         "invalidAddressExplanation3": "L'indirizzo contiene un checksum non valido.",
+        "invalidAddressExplanationGeneric": "Un indirizzo valido consta di 90 caratteri e contiene solo A-Z o 9.",
         "notEnoughFunds": "Fondi insufficienti",
         "notEnoughFundsExplanation": "Non hai abbastanza IOTA per completare questo trasferimento.",
         "keyReuse": "Riutilizzo di chiave",
@@ -379,15 +388,16 @@
         "one": "Unità"
     },
     "deleteAccount": {
-        "areYouSure": "Sei sicuro di volere rimuovere il conto chiamato {{accountName}}?",
+        "areYouSure": "Sei sicuro di voler eliminare il conto {{accountName}}?",
         "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
         "thisAction": "Questa azione non può essere annullata.",
         "enterPassword": "Immetti la tua password per cancellare il conto."
     },
     "manualSync": {
+        "outOfSync": "La cronologia delle tue transazioni ti sembra non sincronizzata?",
         "pressToSync": "Premi il pulsante sotto per sincronizzare il conto.",
-        "thisMayTake": "Potrebbe volerci un po'.",
-        "youMayNotice": "Potresti notare che il dispositivo rallenta.",
+        "thisMayTake": "Questo potrebbe richiedere del tempo. È possibile notare rallentamenti del dispositivo.",
+        "doNotClose": "Attenzione, se si minimizza l'app la sincronizzazione si annulla.",
         "syncAccount": "SINCRONIZZA CONTO",
         "syncingYourAccount": "Sto sincronizzando il tuo conto."
     },
@@ -458,6 +468,28 @@
     "rootDetection": {
         "warning": "ATTENZIONE",
         "rootDetected":
-            "<0>Il dispositivo sembra essere rooted/jailbroken.</0> <1>Ciò può rappresentare un rischio significativo per la sicurezza del tuo portafoglio.</1> <2>Vuoi continuare nonostante questo rischio?</2>"
+            "<0>Il dispositivo sembra essere rooted.</0> <1>Ciò può rappresentare un rischio significativo per la sicurezza del tuo portafoglio.</1> <2>Vuoi continuare nonostante questo rischio?</2>"
+    },
+    "pow": {
+        "feeless": "È necessario completare un piccolo calcolo (PoW) per inviare transazioni senza costi in IOTA.",
+        "localOrRemote":
+            "Il calcolo (PoW) può essere completato in locale nel tuo dispositivo, oppure demandato ad un nodo.",
+        "local": "Locale",
+        "remote": "Remoto"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Convalido l'indirizzo ricevente",
+        "syncingAccount": "Sincronizzo il conto",
+        "preparingInputs": "Preparo i fondi",
+        "preparingTransfers": "Preparo i trasferimenti",
+        "gettingTransactionsToApprove": "Ottengo le transazioni da approvare",
+        "proofOfWork": "Completo la prova di lavoro",
+        "broadcasting": "Trasmissione"
+    },
+    "snapshotTransition": {
+        "cannotCompleteTransition": "Non è possibile completare il passaggio allo snapshot",
+        "cannotCompleteTransitionExplanation": "Il saldo deve essere maggiore di 0 per completare il passaggio.",
+        "transitionComplete": "Passaggio allo snapshot completato",
+        "transitionCompleteExplanation": "Il passaggio allo snapshot è stato completato con successo."
     }
 }

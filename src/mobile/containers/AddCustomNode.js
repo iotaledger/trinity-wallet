@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Keyboard
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
-import {
-    setFullNode,
-    addCustomPoWNode
-} from 'iota-wallet-shared-modules/actions/settings';
+import { setFullNode, addCustomPoWNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
@@ -78,7 +68,7 @@ class AddCustomNode extends Component {
         bodyColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        addCustomPoWNode: PropTypes.func.isRequired
+        addCustomPoWNode: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -113,10 +103,7 @@ class AddCustomNode extends Component {
     }
 
     addNode() {
-        const {
-            fullNode,
-            availablePoWNodes,
-        } = this.props;
+        const { fullNode, availablePoWNodes } = this.props;
 
         const { customNode } = this.state;
 
@@ -126,7 +113,7 @@ class AddCustomNode extends Component {
 
         if (!availablePoWNodes.includes(customNode.replace(/ /g, ''))) {
             this.setNode(customNode);
-            
+
             checkNode((error) => {
                 if (error) {
                     this.onAddNodeError();
@@ -152,7 +139,7 @@ class AddCustomNode extends Component {
                         <CustomTextInput
                             label={t('customNode')}
                             onChangeText={(customNode) => this.setState({ customNode })}
-                            containerStyle={{ width: width / 1.36 }}
+                            containerStyle={{ width: width / 1.2 }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -194,16 +181,14 @@ const mapStateToProps = (state) => ({
     negativeColor: state.settings.theme.negative,
     textColor: { color: state.settings.theme.body.color },
     bodyColor: state.settings.theme.body.color,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {
     setFullNode,
     generateAlert,
     addCustomPoWNode,
-    setSetting
+    setSetting,
 };
 
-export default translate(['addCustomNode', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(AddCustomNode),
-);
+export default translate(['addCustomNode', 'global'])(connect(mapStateToProps, mapDispatchToProps)(AddCustomNode));

@@ -1,25 +1,22 @@
 .wrapper {
     display: inline-block;
-    border-radius: 4px;
-    background: var(--body-hover);
-    border-top: 20px solid var(--input-bg);
-    font-size: var(--font-size-small);
     margin: 0 0 20px;
-    padding: 21px 16px 21px 57px;
+    padding: 0 0 0 38px;
     text-align: left;
     position: relative;
     width: 100%;
+    text-align: left;
+
+    > p {
+        text-align: left;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 300;
+    }
     > span {
         position: absolute;
-        top: 16px;
-        left: 16px;
-    }
-    > :nth-child(2) {
-        margin-top: 0;
-        padding-top: 0px;
-    }
-    > :last-child {
-        margin-bottom: 0;
-        padding-bottom: 0px;
+        top: 0px;
+        left: 0px;
+        color: var(--body);
     }
 }
