@@ -27,10 +27,10 @@ import EnterPassword from '../components/enterPassword';
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 0.8,
+        flex: 0.7,
     },
     midContainer: {
-        flex: 4.62,
+        flex: 4.72,
         zIndex: 0,
     },
     bottomContainer: {

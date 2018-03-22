@@ -29,17 +29,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     balanceContainer: {
-        flex: 1.96,
+        flex: 2.2,
         alignItems: 'center',
         justifyContent: 'center',
     },
     transactionsContainer: {
-        flex: 2.12,
+        flex: 1.7,
         justifyContent: 'center',
         alignItems: 'center',
     },
     chartContainer: {
-        flex: 4.68,
+        flex: 5,
     },
     iotaBalance: {
         fontFamily: 'Lato-Light',
