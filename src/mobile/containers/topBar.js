@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 25,
-        paddingBottom: height / 50,
+        paddingTop: height / 27.5,
+        paddingBottom: height / 55,
         opacity: 0.98,
         flex: 1,
     },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     chevronWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 120,
+        paddingTop: height / 90,
         paddingRight: width / 18,
     },
     notificationContainer: {
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
         maxHeight: height,
     },
     empty: {
-        height: width / 17,
-        width: width / 17,
+        height: width / 22,
+        width: width / 22,
     },
 });
 
@@ -341,7 +341,7 @@ class TopBar extends Component {
                                 style={styles.notificationContainer}
                                 onPress={() => this.setState({ isModalVisible: true })}
                             >
-                                <Icon name="notification" size={width / 17} color={bar.color} />
+                                <Icon name="notification" size={width / 22} color={bar.color} />
                             </TouchableOpacity>
                         ) : (
                             <View style={styles.notificationContainer}>
@@ -353,7 +353,7 @@ class TopBar extends Component {
                             {hasMultipleSeeds ? (
                                 <Icon
                                     name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
-                                    size={width / 17}
+                                    size={width / 22}
                                     color={bar.color}
                                     style={
                                         shouldDisable
