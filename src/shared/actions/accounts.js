@@ -2,8 +2,8 @@ import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
 import { syncAddresses } from '../libs/iota/addresses';
 import {
-    clearTempData
-} from './app';
+    clearWalletData
+} from './wallet';
 import {
     generateAccountInfoErrorAlert,
     generateSyncingCompleteAlert,
@@ -181,7 +181,7 @@ export const getFullAccountInfoAdditionalSeed = (
 
     getAccountData(seed, accountName, genFn)
         .then((data) => {
-            dispatch(clearTempData()); // Clean up partial state for reducer.
+            dispatch(clearWalletData()); // Clean up partial state for reducer.
             if (storeInKeychainPromise) {
                 storeInKeychainPromise(password, seed, accountName)
                     .then(() => dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data)))
