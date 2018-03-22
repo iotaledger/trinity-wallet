@@ -131,8 +131,8 @@
         "shareSeed": "Compartilhe sua seed para um gerenciador de senhas seguro"
     },
     "enterSeed": {
-        "invalidCharacters": "A Seed contém carateres inválidos",
-        "invalidCharactersExplanation": "Seeds só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
+        "invalidCharacters": "A Seed contém caracteres inválidos",
+        "invalidCharactersExplanation": "Seeds só podem conter letras maiúsculas A-Z e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
         "seedTooShort": "A Seed é muito curta",
         "seedTooShortExplanation": "Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
         "seedExplanation": "Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Você não pode usar Seeds com mais de {{maxLength}} caracteres.",
@@ -160,7 +160,7 @@
     },
     "loading": {
         "loadingFirstTime": "Carregando a Seed pela primeira vez.",
-        "thisMayTake": "Isto pode demorar algum tempo.",
+        "thisMayTake": "Isso pode demorar algum tempo.",
         "doNotMinimise": "Não feche ou minimize o aplicativo.",
         "youMayNotice": "Você pode notar seu dispositivo ficar mais lento."
     },
@@ -168,7 +168,7 @@
         "seedNotGenerated": "A Seed não foi gerada",
         "seedNotGeneratedExplanation": "Por favor, gere uma seed nova.",
         "pressForNewSeed": "GERAR UMA NOVA SEED",
-        "individualLetters": "Toque sobre as letras individuais para tornar o processo ainda mais aleatório."
+        "individualLetters": "Pressione as letras individualmente para muda-las."
     },
     "onboardingComplete": {
         "walletReady": "Sua carteira está configurada e pronta para ser utilizada. Se desejar efetuar alterações no futuro, utilize o menu Opções."
@@ -178,7 +178,7 @@
         "storeSafely": "Guarde em local seguro.",
         "neverShare": "Nunca revele sua seed a ninguém.",
         "iotaLogo": "Logotipo da IOTA",
-        "printWallet": "IMPRIMIR SUA SEED"
+        "printWallet": "IMPRIMIR CARTEIRA"
     },
     "receive": {
         "addressCopied": "Endereço copiado",
@@ -258,10 +258,10 @@
         "changePassword": "Alterar Senha",
         "advanced": "Configurações Avançadas",
         "logout": "Desconectar",
-        "reset": "Redefinir a Carteira",
+        "reset": "Redefinir a carteira",
         "syncingComplete": "Sincronização completa",
         "syncingCompleteExplanation": "Sua conta foi sincronizada com sucesso.",
-        "nicknameChanged": "Nome da Conta alterado",
+        "nicknameChanged": "Nome da conta alterada",
         "nicknameChangedExplanation": "O nome da sua conta foi alterado.",
         "accountDeleted": "Conta excluída",
         "accountDeletedExplanation": "Sua conta foi removida da carteira.",
