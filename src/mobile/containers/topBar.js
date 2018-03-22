@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 25,
-        paddingBottom: height / 50,
+        paddingTop: height / 27.5,
+        paddingBottom: height / 55,
         opacity: 0.98,
         flex: 1,
     },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     chevronWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 120,
+        paddingTop: height / 90,
         paddingRight: width / 18,
     },
     notificationContainer: {
