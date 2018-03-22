@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusSmall,
+        borderRadius: GENERAL.borderRadius,
         paddingHorizontal: width / 50,
         paddingVertical: height / 110,
     },
