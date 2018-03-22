@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import filter from 'lodash/filter';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/marketData';
 import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
@@ -128,36 +129,55 @@ export const fetchPrice = () => {
 
 export const fetchChartData = () => {
     return (dispatch) => {
-        const currencies = ['USD', 'BTC', 'ETH'];
+        const arrayCurrenciesTimeFrames = [];
+        //If you want a new currency just add it in this array, the function will handle the rest.
+        const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
+        const chartData = {};
+        const arrayPromises = [];
 
         dispatch(fetchChartDataRequest());
-        currencies.forEach((currency, i) => {
-            timeframes.forEach((timeframe, j) => {
-                const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
-                    timeframe,
-                )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeframe)}`;
-                return fetch(url)
-                    .then(
-                        (response) => response.json(),
-                        () => {
-                            if (i === currencies.length - 1 && j === timeframes.length - 1) {
-                                dispatch(fetchChartDataError());
-                            }
-                        },
-                    )
-                    .then((json) => {
-                        if (json) {
-                            const data = formatChartData(json, currency, timeframe);
-                            dispatch(setChartData(data, currency, timeframe));
-                        }
-
-                        // Dirty hack
-                        if (i === currencies.length - 1 && j === timeframes.length - 1) {
-                            dispatch(fetchChartDataSuccess());
-                        }
-                    });
+        currencies.forEach((itemCurrency) => {
+            chartData[itemCurrency] = {};
+            filter(timeframes, (timeFrameItem) => {
+                arrayCurrenciesTimeFrames.push({ currency: itemCurrency, timeFrame: timeFrameItem });
             });
+        });
+
+        arrayCurrenciesTimeFrames.forEach((currencyTimeFrameArrayItem) => {
+            const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
+                currencyTimeFrameArrayItem.timeFrame,
+            )}?fsym=IOT&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat(
+                currencyTimeFrameArrayItem.timeFrame,
+            )}`;
+            arrayPromises.push(
+                fetch(url).then((response) => {
+                    try {
+                        return response.json();
+                    } catch (err) {
+                        dispatch(fetchChartDataError());
+                    }
+                }),
+            );
+        });
+
+        Promise.all(arrayPromises).then((results) => {
+            const chartData = { USD: {}, EUR: {}, BTC: {}, ETH: {} };
+            let actualCurrency = '';
+            let currentTimeFrame = '';
+            let currentCurrency = '';
+            results.forEach((resultItem, index) => {
+                currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
+                currentCurrency = arrayCurrenciesTimeFrames[index].currency;
+                const formatedData = formatChartData(resultItem, currentCurrency, currentTimeFrame);
+
+                if (actualCurrency !== currentCurrency) {
+                    actualCurrency = currentCurrency;
+                }
+                chartData[currentCurrency][currentTimeFrame] = formatedData;
+            });
+            dispatch(setChartData(chartData));
+            dispatch(fetchChartDataSuccess());
         });
     };
 };
