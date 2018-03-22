@@ -62,11 +62,16 @@ class Account extends React.PureComponent {
         }
 
         const PropsRoute = ({ component, ...props }) => {
+            const reactProps = {
+                history: this.props.history,
+                ...this.state,
+            };
+
             return (
                 <Route
                     {...props}
                     render={() => {
-                        return React.createElement(component, this.state);
+                        return React.createElement(component, reactProps);
                     }}
                 />
             );

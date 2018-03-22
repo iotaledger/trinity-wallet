@@ -54,11 +54,6 @@
                 margin-right: 20px;
             }
         }
-        img {
-            height: 16px;
-            width: 16px;
-            margin-right: 12px;
-        }
     }
 
     hr {
@@ -91,7 +86,7 @@
                     width: 100%;
                     text-align: center;
                     line-height: 60px;
-                    margin: 0px;
+                    margin: 18px 0 0;
                 }
                 strong {
                     display: none;
