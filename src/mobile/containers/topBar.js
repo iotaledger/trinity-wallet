@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
         maxHeight: height,
     },
     empty: {
-        height: width / 22,
-        width: width / 22,
+        height: width / 18,
+        width: width / 18,
     },
 });
 
@@ -341,7 +341,9 @@ class TopBar extends Component {
                                 style={styles.notificationContainer}
                                 onPress={() => this.setState({ isModalVisible: true })}
                             >
-                                <Icon name="notification" size={width / 22} color={bar.color} />
+                                <View style={{ width: width / 18, height: width / 18 }}>
+                                    <Icon name="notification" size={width / 18} color={bar.color} />
+                                </View>
                             </TouchableOpacity>
                         ) : (
                             <View style={styles.notificationContainer}>
@@ -351,16 +353,18 @@ class TopBar extends Component {
                         <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                         <View style={styles.chevronWrapper}>
                             {hasMultipleSeeds ? (
-                                <Icon
-                                    name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
-                                    size={width / 22}
-                                    color={bar.color}
-                                    style={
-                                        shouldDisable
-                                            ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                            : styles.chevron
-                                    }
-                                />
+                                <View style={{ width: width / 18, height: width / 18 }}>
+                                    <Icon
+                                        name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
+                                        size={width / 22}
+                                        color={bar.color}
+                                        style={
+                                            shouldDisable
+                                                ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
+                                                : styles.chevron
+                                        }
+                                    />
+                                </View>
                             ) : (
                                 <View style={styles.empty} />
                             )}
