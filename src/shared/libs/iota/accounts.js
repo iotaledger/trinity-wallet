@@ -11,12 +11,7 @@ import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import unionBy from 'lodash/unionBy';
-import {
-    findTransactionsAsync,
-    getNodeInfoAsync,
-    findTransactionObjectsAsync,
-    getLatestInclusionAsync,
-} from './extendedApi';
+import { getNodeInfoAsync, findTransactionObjectsAsync, getLatestInclusionAsync } from './extendedApi';
 import {
     getBundleTailsForPendingValidTransfers,
     syncTransfers,
@@ -24,18 +19,11 @@ import {
     getConfirmedTransactionHashes,
     markTransfersConfirmed,
     getBundleHashesForTailTransactionHashes,
-    filterConfirmedTransfers,
     getHashesDiff,
     getLatestTransactionHashes,
     bundlesFromTransactionObjects,
 } from './transfers';
-import {
-    getAllAddresses,
-    formatAddressesAndBalance,
-    getUnspentAddressesSync,
-    markAddressesAsSpentSync,
-    getSpentAddressesWithPendingTransfersSync,
-} from './addresses';
+import { getAllAddresses, formatAddressesAndBalance, markAddressesAsSpentSync } from './addresses';
 
 /**
  *   Takes in account data fetched from ledger.
