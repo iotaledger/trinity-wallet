@@ -60,7 +60,8 @@ class Chart extends PureComponent {
                             <YAxis
                                 interval="preserveStartEnd"
                                 strokeWidth={0}
-                                width={36}
+                                width={0}
+                                label=""
                                 domain={['dataMin', 'dataMax']}
                             />
                         </LineChart>

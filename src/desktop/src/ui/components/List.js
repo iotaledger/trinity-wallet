@@ -18,12 +18,14 @@ import css from './list.css';
  */
 class List extends React.PureComponent {
     static propTypes = {
-        /** List item count limit */
-        limit: PropTypes.number,
-        /** Transaction type filter */
-        filter: PropTypes.oneOf(['sent', 'received', 'pending']),
         /** Transaction history */
         transfers: PropTypes.array.isRequired,
+        /** Set active history item
+         * @param {Number} index - Current item index
+         */
+        setItem: PropTypes.func.isRequired,
+        /** Current active history item */
+        currentItem: PropTypes.number,
         /** Receive address list */
         addresses: PropTypes.array.isRequired,
         /** Translation helper
@@ -34,43 +36,54 @@ class List extends React.PureComponent {
     };
 
     state = {
-        activeItem: null,
+        filter: 'All',
     };
 
-    setHistoryItem = (itemIndex) => {
+    switchFilter(filter) {
         this.setState({
-            activeItem: itemIndex,
+            filter: filter,
         });
-    };
+    }
 
     render() {
-        const { transfers, addresses, limit, t, filter } = this.props;
+        const { transfers, addresses, setItem, currentItem, t } = this.props;
+        const { filter } = this.state;
 
-        const transferLimit = limit ? limit : transfers.length;
+        const filters = ['All', 'Sent', 'Received', 'Pending'];
 
-        const activeTransfers = this.state.activeItem !== null ? transfers[this.state.activeItem] : null;
+        const activeTransfers = currentItem ? transfers[parseInt(currentItem)] : null;
         const activeTransfer = activeTransfers ? activeTransfers[0] : null;
 
         return (
             <React.Fragment>
                 <nav className={css.nav}>
-                    <a className={css.active}>All</a>
-                    <a>Sent</a>
-                    <a>Received</a>
-                    <a>Pending</a>
+                    {filters.map((item) => {
+                        return (
+                            <a
+                                key={item}
+                                onClick={() => this.switchFilter(item)}
+                                className={classNames(
+                                    filter === item ? css.active : null,
+                                    !transfers || !transfers.length ? css.disabled : null,
+                                )}
+                            >
+                                {item}
+                            </a>
+                        );
+                    })}
                 </nav>
                 <hr />
                 <div className={css.list}>
                     {transfers && transfers.length ? (
-                        transfers.slice(0, transferLimit).map((transferRow, key) => {
+                        transfers.map((transferRow, key) => {
                             const transfer = transferRow[0];
                             const isReceived = addresses.includes(transfer.address);
                             const isConfirmed = transfer.persistence;
 
                             if (
-                                (filter === 'sent' && isReceived) ||
-                                (filter === 'received' && !isReceived) ||
-                                (filter === 'pending' && !isConfirmed)
+                                (filter === 'Sent' && isReceived) ||
+                                (filter === 'Received' && !isReceived) ||
+                                (filter === 'Pending' && isConfirmed)
                             ) {
                                 return null;
                             }
@@ -78,7 +91,7 @@ class List extends React.PureComponent {
                             return (
                                 <a
                                     key={key}
-                                    onClick={() => this.setHistoryItem(key)}
+                                    onClick={() => setItem(key)}
                                     className={classNames(
                                         isReceived ? css.received : css.sent,
                                         isConfirmed ? css.confirmed : css.pending,
@@ -102,7 +115,7 @@ class List extends React.PureComponent {
                     )}
                 </div>
                 {activeTransfer !== null ? (
-                    <Modal isOpen onClose={() => this.setState({ activeItem: null })}>
+                    <Modal isOpen onClose={() => setItem(null)}>
                         <div className={css.historyItem}>
                             <header
                                 className={classNames(
@@ -154,7 +167,7 @@ class List extends React.PureComponent {
                             <h6>Message</h6>
                             <p>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</p>
                             <footer>
-                                <Button onClick={() => this.setState({ activeItem: null })} variant="primary">
+                                <Button onClick={() => setItem(null)} variant="primary">
                                     {t('back')}
                                 </Button>
                             </footer>
