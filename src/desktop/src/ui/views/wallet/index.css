@@ -95,6 +95,9 @@
                 line-height: 60px;
                 padding-left: 30px;
                 text-transform: capitalize;
+                white-space: nowrap;
+                max-width: 200px;
+                overflow: hidden;
                 &:hover {
                     background: var(--bar-alt);
                 }

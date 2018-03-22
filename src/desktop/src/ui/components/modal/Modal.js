@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import css from './modal.css';
@@ -37,19 +38,14 @@ export default class Modal extends React.Component {
     render() {
         const { variant, isOpen, inline } = this.props;
 
-        return (
-            <div
-                className={classNames(
-                    css.backdrop,
-                    css[variant],
-                    !isOpen ? css.hidden : null,
-                    inline ? css.inline : null,
-                )}
-            >
+        const content = (
+            <div className={classNames(css.backdrop, css[variant], !isOpen ? css.hidden : null)}>
                 <div className={css.wrapper}>
                     <div className={css.content}>{this.props.children}</div>
                 </div>
             </div>
         );
+
+        return inline ? content : ReactDOM.createPortal(content, document.getElementById('modal'));
     }
 }
