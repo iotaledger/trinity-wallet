@@ -1,6 +1,7 @@
 import { ActionTypes as SettingsActionTypes } from '../actions/settings';
 import { ActionTypes as UiActionTypes } from '../actions/ui';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
+import { ActionTypes as WalletActionTypes } from '../actions/wallet';
 
 const initialState = {
     isGeneratingReceiveAddress: false,
@@ -98,10 +99,41 @@ export default (state = initialState, action) => {
                 ...state,
                 isPromotingTransaction: false,
             };
-        case ActionTypes.SET_USER_ACTIVITY:
+        case UiActionTypes.SET_USER_ACTIVITY:
             return {
                 ...state,
                 ...action.payload,
+            };
+        case WalletActionTypes.GENERATE_NEW_ADDRESS_REQUEST:
+            return {
+                ...state,
+                isGeneratingReceiveAddress: true,
+            };
+        case WalletActionTypes.GENERATE_NEW_ADDRESS_SUCCESS:
+            return {
+                ...state,
+                isGeneratingReceiveAddress: false
+            };
+        case WalletActionTypes.GENERATE_NEW_ADDRESS_ERROR:
+            return {
+                ...state,
+                isGeneratingReceiveAddress: false,
+            };
+        case TransfersActionTypes.SEND_TRANSFER_REQUEST:
+            return {
+                ...state,
+                isSendingTransfer: true,
+            };
+        case TransfersActionTypes.SEND_TRANSFER_SUCCESS:
+        case TransfersActionTypes.SEND_TRANSFER_ERROR:
+            return {
+                ...state,
+                isSendingTransfer: false
+            };
+        case WalletActionTypes.CLEAR_WALLET_DATA:
+            return {
+                ...state,
+                isSendingTransfer: false
             };
         default:
             return state;
