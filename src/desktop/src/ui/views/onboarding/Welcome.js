@@ -26,7 +26,7 @@ class Welcome extends React.PureComponent {
                     <form>
                         <Language />
                         <Button to="/onboarding/seed-intro" className="large" variant="primary">
-                            Get started
+                            {t('continue')}
                         </Button>
                     </form>
                 </section>

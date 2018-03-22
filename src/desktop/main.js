@@ -29,7 +29,7 @@ function createWindow() {
         width: 1024,
         height: 768,
         maxWidth: 1280,
-        maxHeight: 1024,
+        maxHeight: 860,
         minWidth: 500,
         minHeight: 720,
         titleBarStyle: 'hidden',
