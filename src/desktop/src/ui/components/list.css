@@ -11,15 +11,21 @@
         &.empty {
             color: var(--body-hover);
         }
+        &.disabled {
+            color: var(--body-hover);
+            pointer-events: none;
+        }
     }
 }
 
 .list {
-    flex: 1;
-    margin: 0px;
-    padding: 0px;
+    position: absolute;
+    top: 80px;
+    left: 0px;
+    width: 100%;
+    height: calc(100% - 80px);
+    padding: 0 20px;
     overflow: scroll;
-    position: relative;
 
     a {
         list-style: none;
@@ -79,6 +85,7 @@
         display: block;
         position: absolute;
         top: 50%;
+        left: 0px;
         text-align: center;
         width: 100%;
         opacity: 0.5;
