@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Key
 import { connect } from 'react-redux';
 import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
 import { setFullNode, addCustomPoWNode } from 'iota-wallet-shared-modules/actions/settings';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';

@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
 import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
-import { setFirstUse, setOnboardingComplete, set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
+import { setFirstUse, setOnboardingComplete, set2FAStatus } from 'iota-wallet-shared-modules/actions/accounts';
 import { Navigation } from 'react-native-navigation';
-import { clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
@@ -179,7 +178,6 @@ const mapDispatchToProps = {
     resetWallet,
     setFirstUse,
     setOnboardingComplete,
-    clearTempData,
     generateAlert,
     set2FAStatus,
 };

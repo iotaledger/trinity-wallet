@@ -16,11 +16,11 @@ import {
     getAddressesForSelectedAccount,
     getDeduplicatedTransfersForSelectedAccount,
     getSelectedAccountName,
-} from 'iota-wallet-shared-modules/selectors/account';
-import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
+} from 'iota-wallet-shared-modules/selectors/accounts';
+import { getAccountInfo } from 'iota-wallet-shared-modules/actions/accounts';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
-import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota/utils';
-import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
+import { round } from 'iota-wallet-shared-modules/libs/utils';
+import { convertFromTrytes, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import tinycolor from 'tinycolor2';
 import TransactionRow from '../components/TransactionRow';
 import { width, height } from '../utils/dimensions';

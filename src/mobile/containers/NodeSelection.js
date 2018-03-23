@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    TouchableWithoutFeedback
-} from 'react-native';
-import {
-    setFullNode
-} from 'iota-wallet-shared-modules/actions/settings';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import DropdownComponent from '../components/Dropdown';
@@ -136,14 +128,12 @@ class NodeSelection extends Component {
 
 const mapStateToProps = (state) => ({
     fullNode: state.settings.fullNode,
-    availablePoWNodes: state.settings.availablePoWNodes
+    availablePoWNodes: state.settings.availablePoWNodes,
 });
 
 const mapDispatchToProps = {
     setFullNode,
-    setSetting
+    setSetting,
 };
 
-export default translate('global')(
-    connect(mapStateToProps, mapDispatchToProps)(NodeSelection),
-);
+export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(NodeSelection));

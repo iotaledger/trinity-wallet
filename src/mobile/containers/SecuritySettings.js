@@ -3,14 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableOpacity,
-    TouchableWithoutFeedback
-} from 'react-native';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
@@ -180,14 +174,11 @@ class SecuritySettings extends Component {
 const mapStateToProps = (state) => ({
     is2FAEnabled: state.account.is2FAEnabled,
     body: state.settings.theme.body,
-    fullNode: state.settings.fullNode
+    fullNode: state.settings.fullNode,
 });
 
 const mapDispatchToProps = {
-    setSetting
+    setSetting,
 };
 
-export default translate(['settings', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)
-        (SecuritySettings),
-);
+export default translate(['settings', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SecuritySettings));

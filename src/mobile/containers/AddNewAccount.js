@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-    BackHandler,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity
-} from 'react-native';
+import { BackHandler, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -57,7 +51,7 @@ class AddNewAccount extends Component {
         textColor: PropTypes.object.isRequired,
         bodyColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
-        body: PropTypes.object.isRequired
+        body: PropTypes.object.isRequired,
     };
 
     addNewSeed() {
@@ -132,18 +126,11 @@ class AddNewAccount extends Component {
 const mapStateToProps = (state) => ({
     body: state.settings.theme.body,
     textColor: { color: state.settings.theme.body.color },
-    bodyColor: state.settings.theme.body.color
+    bodyColor: state.settings.theme.body.color,
 });
 
 const mapDispatchToProps = {
-    setSetting
+    setSetting,
 };
 
-export default translate(
-    ['addNewAccount', 'global']
-)
-    (connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(AddNewAccount)
-);
+export default translate(['addNewAccount', 'global'])(connect(mapStateToProps, mapDispatchToProps)(AddNewAccount));

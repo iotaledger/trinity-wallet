@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
-import { VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
+import { VALID_SEED_REGEX, getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 

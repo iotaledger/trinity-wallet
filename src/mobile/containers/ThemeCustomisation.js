@@ -2,15 +2,9 @@ import cloneDeep from 'lodash/cloneDeep';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    TouchableWithoutFeedback
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import THEMES from 'iota-wallet-shared-modules/themes/themes';
 import Dropdown from '../components/Dropdown'; // eslint-disable-line import/no-named-as-default
 import { width, height } from '../utils/dimensions';
@@ -314,11 +308,11 @@ class ThemeCustomisation extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
-    themeName: state.settings.themeName
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {
-    setSetting
+    setSetting,
 };
 
 export default translate(['themeCustomisation', 'global'])(
