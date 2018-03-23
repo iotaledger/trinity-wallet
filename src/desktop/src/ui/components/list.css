@@ -9,10 +9,10 @@
             color: var(--primary);
         }
         &.empty {
-            color: var(--body-hover);
+            color: var(--body-alt);
         }
         &.disabled {
-            color: var(--body-hover);
+            color: var(--body-alt);
             pointer-events: none;
         }
     }

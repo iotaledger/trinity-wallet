@@ -156,7 +156,7 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        background: url('animations/wave.svg') repeat-x;
+        background: var(--wave-file) repeat-x;
         background-size: auto 227px;
         background-position: 0 0;
         opacity: 0.15;
@@ -179,7 +179,7 @@
         list-style: none;
         width: 12px;
         height: 12px;
-        background: var(--body-hover);
+        background: var(--body-alt);
         margin: 0 18px;
         position: relative;
         border-radius: 12px;
@@ -201,7 +201,7 @@
             left: -36px;
             height: 2px;
             width: 36px;
-            background: var(--body-hover);
+            background: var(--body-alt);
             transition: width 0.2s ease-out;
         }
         &:after {
