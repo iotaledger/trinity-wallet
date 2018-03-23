@@ -172,7 +172,7 @@ class SecuritySettings extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    is2FAEnabled: state.account.is2FAEnabled,
+    is2FAEnabled: state.settings.is2FAEnabled,
     body: state.settings.theme.body,
     fullNode: state.settings.fullNode,
 });

@@ -11,7 +11,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import CustomTextInput from '../components/CustomTextInput';
 import Fonts from '../theme/fonts';
 import { getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -190,7 +190,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     body: state.settings.theme.body,
-    password: state.tempAccount.password,
+    password: state.wallet.password,
 });
 
 export default translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken));

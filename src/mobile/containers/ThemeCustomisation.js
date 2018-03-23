@@ -6,7 +6,7 @@ import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } fr
 import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import THEMES from 'iota-wallet-shared-modules/themes/themes';
-import Dropdown from '../components/Dropdown'; // eslint-disable-line import/no-named-as-default
+import Dropdown from '../containers/Dropdown'; // eslint-disable-line import/no-named-as-default
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';

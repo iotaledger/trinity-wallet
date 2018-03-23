@@ -313,17 +313,17 @@ class Receive extends Component {
 const mapStateToProps = (state) => ({
     selectedAccountData: selectAccountInfo(state),
     selectedAccountName: getSelectedAccountName(state),
-    isSyncing: state.tempAccount.isSyncing,
-    seedIndex: state.tempAccount.seedIndex,
-    receiveAddress: state.tempAccount.receiveAddress,
-    isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
+    isSyncing: state.ui.isSyncing,
+    seedIndex: state.wallet.seedIndex,
+    receiveAddress: state.wallet.receiveAddress,
+    isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
     theme: state.settings.theme,
     primary: state.settings.theme.primary,
     input: state.settings.theme.input,
     body: state.settings.theme.body,
-    isTransitioning: state.tempAccount.isTransitioning,
-    password: state.tempAccount.password,
+    isTransitioning: state.ui.isTransitioning,
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {

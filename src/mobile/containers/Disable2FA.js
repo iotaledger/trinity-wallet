@@ -12,7 +12,7 @@ import { getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import Fonts from '../theme/fonts';
 import CustomTextInput from '../components/CustomTextInput';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -171,7 +171,7 @@ class Disable2FA extends Component {
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     body: state.settings.theme.body,
-    password: state.tempAccount.password,
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {

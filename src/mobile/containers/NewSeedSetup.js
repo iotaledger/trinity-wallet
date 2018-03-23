@@ -11,7 +11,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Navigation } from 'react-native-navigation';
 import CtaButton from '../components/CtaButton';
 import { width, height } from '../utils/dimensions';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -301,11 +301,11 @@ class NewSeedSetup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.tempAccount.seed,
+    seed: state.wallet.seed,
     body: state.settings.theme.body,
     primary: state.settings.theme.primary,
     input: state.settings.theme.input,
-    onboardingComplete: state.account.onboardingComplete,
+    onboardingComplete: state.accounts.onboardingComplete,
 });
 
 const mapDispatchToProps = {

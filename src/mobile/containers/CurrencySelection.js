@@ -6,7 +6,7 @@ import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
-import DropdownComponent from '../components/Dropdown';
+import DropdownComponent from '../containers/Dropdown';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

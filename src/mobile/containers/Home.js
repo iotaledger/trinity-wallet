@@ -19,7 +19,7 @@ import PollComponent from './Poll';
 import Tabs from '../components/Tabs';
 import Tab from '../components/Tab';
 import TabContent from '../components/TabContent';
-import EnterPassword from '../components/EnterPassword';
+import EnterPassword from '../containers/EnterPassword';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -232,9 +232,9 @@ const mapStateToProps = (state) => ({
     primary: state.settings.theme.primary,
     bar: state.settings.theme.bar,
     currentRoute: state.home.childRoute,
-    isSyncing: state.wallet.isSyncing,
-    isSendingTransfer: state.wallet.isSendingTransfer,
-    isTransitioning: state.wallet.isTransitioning,
+    isSyncing: state.ui.isSyncing,
+    isSendingTransfer: state.ui.isSendingTransfer,
+    isTransitioning: state.ui.isTransitioning,
     currentSetting: state.wallet.currentSetting,
 });
 
