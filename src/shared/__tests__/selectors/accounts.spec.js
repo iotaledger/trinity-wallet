@@ -14,9 +14,9 @@ import {
     getAddressesForSelectedAccount,
     getBalanceForSelectedAccount,
     getSelectedAccountName,
-} from '../../selectors/account';
+} from '../../selectors/accounts';
 
-describe('selectors: account', () => {
+describe('selectors: accounts', () => {
     describe('#getAccountFromState', () => {
         describe('when "account" prop is not defined in argument', () => {
             it('should return an empty object', () => {

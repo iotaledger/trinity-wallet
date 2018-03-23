@@ -17,8 +17,8 @@ import {
     getRemotePoWFromState,
     selectFirstAddressFromAccountFactory,
 } from '../selectors/accounts';
-import { completeTransfer, sendTransferError, sendTransferRequest } from './wallet';
 import { setNextStepAsActive } from './progress';
+import { clearSendFields } from './ui';
 import {
     getTailTransactionForBundle,
     getAllTailTransactionsForBundle,
@@ -28,7 +28,7 @@ import {
     filterInvalidPendingTransfers,
     filterZeroValueTransfers,
     performPow,
-    syncAccountAfterSpending
+    syncAccountAfterSpending,
 } from '../libs/iota/transfers';
 import { syncAccountAfterReattachment, syncAccount } from '../libs/iota/accounts';
 import { updateAccountAfterReattachment, updateAccountInfoAfterSpending, accountInfoFetchSuccess } from './accounts';
@@ -92,7 +92,6 @@ export const sendTransferError = () => ({
  *   @method completeTransfer
  *   @param {object} payload - sending status, address, transfer value
  **/
-
 export const completeTransfer = (payload) => {
     return (dispatch) => {
         dispatch(clearSendFields());
