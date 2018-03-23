@@ -49,7 +49,7 @@ class Settings extends Component {
 
 const mapStateToProps = (state) => ({
     currentSetting: state.wallet.currentSetting,
-    isSyncing: state.wallet.isSyncing,
+    isSyncing: state.ui.isSyncing,
 });
 
 export default connect(mapStateToProps)(Settings);

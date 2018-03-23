@@ -83,7 +83,6 @@ class OnboardingButtons extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    tempAccount: state.tempAccount,
     primary: state.settings.theme.primary,
     secondary: state.settings.theme.secondary,
 });

@@ -6,7 +6,7 @@ import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
-import DropdownComponent from '../components/Dropdown';
+import DropdownComponent from '../containers/Dropdown';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 

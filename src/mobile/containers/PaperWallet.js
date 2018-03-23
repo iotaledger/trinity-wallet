@@ -528,7 +528,7 @@ class PaperWallet extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.tempAccount.seed,
+    seed: state.wallet.seed,
     primary: state.settings.theme.primary,
     body: state.settings.theme.body,
     secondary: state.settings.theme.secondary,

@@ -227,17 +227,17 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    firstUse: state.account.firstUse,
+    firstUse: state.accounts.firstUse,
     selectedAccount: getSelectedAccountName(state),
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
     theme: state.settings.theme,
     body: state.settings.theme.body,
-    is2FAEnabled: state.account.is2FAEnabled,
+    is2FAEnabled: state.accounts.is2FAEnabled,
     versions: state.app.versions,
-    accountInfo: state.account.accountInfo,
+    accountInfo: state.accounts.accountInfo,
     password: state.ui.loginPasswordFieldText,
-    pwdHash: state.tempAccount.password,
+    pwdHash: state.wallet.password,
 });
 
 const mapDispatchToProps = {

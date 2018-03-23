@@ -138,15 +138,15 @@ const mapStateToProps = (state) => ({
     isFetchingMarketData: state.polling.isFetchingMarketData,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
     isPromoting: state.polling.isPromoting,
-    isSyncing: state.tempAccount.isSyncing,
-    addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,
-    isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
-    isSendingTransfer: state.tempAccount.isSendingTransfer,
-    isFetchingLatestAccountInfoOnLogin: state.tempAccount.isFetchingLatestAccountInfoOnLogin,
-    seedIndex: state.tempAccount.seedIndex,
+    isSyncing: state.ui.isSyncing,
+    addingAdditionalAccount: state.wallet.addingAdditionalAccount,
+    isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
+    isSendingTransfer: state.ui.isSendingTransfer,
+    isFetchingLatestAccountInfoOnLogin: state.ui.isFetchingLatestAccountInfoOnLogin,
+    seedIndex: state.wallet.seedIndex,
     selectedAccountName: getSelectedAccountName(state),
-    unconfirmedBundleTails: state.account.unconfirmedBundleTails,
-    isTransitioning: state.tempAccount.isTransitioning,
+    unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,
+    isTransitioning: state.ui.isTransitioning,
 });
 
 const mapDispatchToProps = {

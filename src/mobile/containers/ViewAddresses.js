@@ -94,7 +94,6 @@ export class ViewAddresses extends Component {
         selectedAccount: PropTypes.object.isRequired,
         setSetting: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        backPress: PropTypes.func.isRequired,
         body: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
     };

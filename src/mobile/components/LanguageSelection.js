@@ -5,7 +5,7 @@ import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
-import DropdownComponent from './Dropdown';
+import DropdownComponent from '../containers/Dropdown';
 import { Icon } from '../theme/icons.js';
 
 const { width } = Dimensions.get('window');
