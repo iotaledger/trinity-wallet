@@ -366,7 +366,7 @@
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {
-        "outOfSync": "Onko mahdollista että tilisi historia ei ole synkronoitu?",
+        "outOfSync": "Näyttäkö siltä että tilihistoriasi ei ole ajan tasalla?",
         "pressToSync": "Alla olevalla painikkeella voit synkronoida tilisi.",
         "thisMayTake": "Tämä saattaa kestää hetken ja tänä aikana laitteen käyttö voi olla hidasta.",
         "doNotClose": "Huomioi että ohjelman sulkeminen taustalle lopettaa synkronoinnin.",
