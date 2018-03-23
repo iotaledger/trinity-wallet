@@ -68,8 +68,6 @@ const styles = StyleSheet.create({
 export class EditAccountName extends Component {
     static propTypes = {
         selectedAccountName: PropTypes.string.isRequired,
-        accountInfo: PropTypes.object.isRequired,
-        seedIndex: PropTypes.number.isRequired,
         accountNames: PropTypes.array.isRequired,
         password: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
@@ -172,10 +170,8 @@ export class EditAccountName extends Component {
 
 const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
-    accountInfo: state.account.accountInfo,
-    seedIndex: state.tempAccount.seedIndex,
-    accountNames: state.account.accountNames,
-    password: state.tempAccount.password,
+    accountNames: state.accounts.accountNames,
+    password: state.wallet.password,
     textColor: { color: state.settings.theme.body.color },
     bodyColor: state.settings.theme.body.color,
     theme: state.settings.theme,

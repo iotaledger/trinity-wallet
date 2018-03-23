@@ -8,7 +8,7 @@ import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';

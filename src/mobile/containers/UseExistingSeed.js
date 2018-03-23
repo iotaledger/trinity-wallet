@@ -270,7 +270,7 @@ class UseExistingSeed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seedCount: state.account.seedCount,
+    seedCount: state.accounts.seedCount,
 });
 
 const mapDispatchToProps = {

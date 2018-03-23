@@ -154,10 +154,6 @@ class ChangePassword extends Component {
     }
 
     renderTextField(ref, value, label, onChangeText, returnKeyType, onSubmitEditing) {
-        // This should be abstracted away as an independent component
-        // We are using almost the same field styles and props
-        // across all app
-
         const { theme } = this.props;
         const props = {
             onRef: ref,
@@ -180,6 +176,7 @@ class ChangePassword extends Component {
     renderInvalidSubmissionAlerts(currentPwdHash) {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
         const { password, generateAlert, t } = this.props;
+
         if (currentPwdHash !== password) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
         } else if (newPassword !== confirmedNewPassword) {
@@ -278,7 +275,7 @@ class ChangePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    password: state.tempAccount.password,
+    password: state.wallet.password,
     textColor: { color: state.settings.theme.body.color },
     borderColor: { borderColor: state.settings.theme.body.color },
     body: state.settings.theme.body,

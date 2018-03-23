@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 

@@ -38,10 +38,6 @@ class CtaButton extends PureComponent {
         testID: '',
     };
 
-    onCtaPress() {
-        this.props.onPress();
-    }
-
     render() {
         const { ctaColor, secondaryCtaColor, text, ctaWidth, ctaHeight, testID, fontSize } = this.props;
 
@@ -49,7 +45,7 @@ class CtaButton extends PureComponent {
             <View style={styles.ctaButtonContainer}>
                 <TouchableOpacity
                     onPress={() => {
-                        this.onCtaPress();
+                        this.props.onPress();
                     }}
                     testID={testID}
                 >

@@ -294,13 +294,13 @@ class Loading extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    firstUse: state.account.firstUse,
+    firstUse: state.accounts.firstUse,
     selectedAccountName: getSelectedAccountName(state),
-    addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,
-    additionalAccountName: state.tempAccount.additionalAccountName,
-    seed: state.tempAccount.seed,
-    ready: state.tempAccount.ready,
-    password: state.tempAccount.password,
+    addingAdditionalAccount: state.wallet.addingAdditionalAccount,
+    additionalAccountName: state.wallet.additionalAccountName,
+    seed: state.wallet.seed,
+    ready: state.wallet.ready,
+    password: state.wallet.password,
     body: state.settings.theme.body,
     currency: state.settings.currency,
 });

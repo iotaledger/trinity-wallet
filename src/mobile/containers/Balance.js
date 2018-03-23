@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 
 export class Balance extends Component {
     static propTypes = {
-        marketData: PropTypes.object.isRequired,
+        usdPrice: PropTypes.number.isRequired,
         seedIndex: PropTypes.number.isRequired,
         balance: PropTypes.number.isRequired,
         addresses: PropTypes.array.isRequired,
@@ -112,16 +112,6 @@ export class Balance extends Component {
         if (newProps.seedIndex !== this.props.seedIndex) {
             this.setState({ balanceIsShort: true });
         }
-    }
-
-    shouldComponentUpdate(newProps) {
-        const { marketData } = this.props;
-
-        if (newProps.marketData !== marketData) {
-            return false;
-        }
-
-        return true;
     }
 
     /**
@@ -204,16 +194,17 @@ export class Balance extends Component {
     }
 
     render() {
-        const { balance, conversionRate, currency, marketData, body } = this.props;
+        const { balance, conversionRate, currency, usdPrice, body } = this.props;
 
         const shortenedBalance =
             roundDown(formatValue(balance), 1) +
             (balance < 1000 || Balance.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+');
         const currencySymbol = getCurrencySymbol(currency);
-        const fiatBalance = balance * marketData.usdPrice / 1000000 * conversionRate;
+        const fiatBalance = balance * usdPrice / 1000000 * conversionRate;
         const textColor = { color: body.color };
         const recentTransactions = this.renderTransactions();
         const text = (this.state.balanceIsShort ? shortenedBalance : formatValue(balance)) + ' ' + formatUnit(balance);
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
@@ -242,8 +233,8 @@ export class Balance extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    marketData: state.marketData,
-    seedIndex: state.tempAccount.seedIndex,
+    usdPrice: state.marketData.usdPrice,
+    seedIndex: state.wallet.seedIndex,
     balance: getBalanceForSelectedAccount(state),
     addresses: getAddressesForSelectedAccount(state),
     transfers: getDeduplicatedTransfersForSelectedAccount(state),

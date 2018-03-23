@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import { width, height } from '../utils/dimensions';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
 import InfoBox from '../components/InfoBox';
@@ -278,17 +278,17 @@ export class SetAccountName extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.tempAccount.seed,
-    seedCount: state.account.seedCount,
-    onboardingComplete: state.account.onboardingComplete,
+    seed: state.wallet.seed,
+    seedCount: state.accounts.seedCount,
+    onboardingComplete: state.accounts.onboardingComplete,
     theme: state.settings.theme,
     body: state.settings.theme.body,
-    isTransitioning: state.tempAccount.isTransitioning,
-    isSendingTransfer: state.tempAccount.isSendingTransfer,
-    isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
+    isTransitioning: state.ui.isTransitioning,
+    isSendingTransfer: state.ui.isSendingTransfer,
+    isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
-    isSyncing: state.tempAccount.isSyncing,
-    password: state.tempAccount.password,
+    isSyncing: state.ui.isSyncing,
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {

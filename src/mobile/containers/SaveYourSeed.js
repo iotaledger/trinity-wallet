@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setCopiedToClipboard } from 'iota-wallet-shared-modules/actions/wallet';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
@@ -93,10 +93,12 @@ class SaveYourSeed extends Component {
 
     componentWillReceiveProps(newProps) {
         const { t } = this.props;
-        if (newProps.tempAccount.copiedToClipboard && isIOS) {
+
+        if (newProps.copiedToClipboard && isIOS) {
             this.timeout = setTimeout(() => {
                 this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
             }, 250);
+
             this.props.setCopiedToClipboard(false);
         }
     }
@@ -245,10 +247,10 @@ class SaveYourSeed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    tempAccount: state.tempAccount,
+    copiedToClipboard: state.wallet.copiedToClipboard,
     body: state.settings.theme.body,
     extra: state.settings.theme.extra,
-    onboardingComplete: state.account.onboardingComplete,
+    onboardingComplete: state.accounts.onboardingComplete,
 });
 
 const mapDispatchToProps = {
