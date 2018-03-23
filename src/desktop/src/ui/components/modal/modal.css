@@ -32,14 +32,6 @@
         p {
             max-width: none;
         }
-        :global {
-            h1.negative {
-                color: var(--negative);
-            }
-            h1.positive {
-                color: var(--positive);
-            }
-        }
         strong {
             max-width: 40vw;
             word-wrap: break-word;
@@ -86,4 +78,8 @@
     .wrapper {
         transform: scale(0.95);
     }
+}
+
+.negative {
+    color: var(--negative);
 }
