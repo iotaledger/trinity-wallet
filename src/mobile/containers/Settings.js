@@ -1,4 +1,3 @@
-import map from 'lodash/map';
 import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';

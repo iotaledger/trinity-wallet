@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 25,
-        paddingBottom: height / 50,
+        paddingTop: height / 27.5,
+        paddingBottom: height / 55,
         opacity: 0.98,
         flex: 1,
     },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     chevronWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 120,
+        paddingTop: height / 90,
         paddingRight: width / 18,
     },
     notificationContainer: {
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
         maxHeight: height,
     },
     empty: {
-        height: width / 17,
-        width: width / 17,
+        height: width / 18,
+        width: width / 18,
     },
 });
 
@@ -341,7 +341,9 @@ class TopBar extends Component {
                                 style={styles.notificationContainer}
                                 onPress={() => this.setState({ isModalVisible: true })}
                             >
-                                <Icon name="notification" size={width / 17} color={bar.color} />
+                                <View style={{ width: width / 18, height: width / 18 }}>
+                                    <Icon name="notification" size={width / 18} color={bar.color} />
+                                </View>
                             </TouchableOpacity>
                         ) : (
                             <View style={styles.notificationContainer}>
@@ -351,16 +353,18 @@ class TopBar extends Component {
                         <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                         <View style={styles.chevronWrapper}>
                             {hasMultipleSeeds ? (
-                                <Icon
-                                    name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
-                                    size={width / 17}
-                                    color={bar.color}
-                                    style={
-                                        shouldDisable
-                                            ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                            : styles.chevron
-                                    }
-                                />
+                                <View style={{ width: width / 18, height: width / 18 }}>
+                                    <Icon
+                                        name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
+                                        size={width / 22}
+                                        color={bar.color}
+                                        style={
+                                            shouldDisable
+                                                ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
+                                                : styles.chevron
+                                        }
+                                    />
+                                </View>
                             ) : (
                                 <View style={styles.empty} />
                             )}

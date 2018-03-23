@@ -219,7 +219,7 @@ class Receive extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View style={{ flex: 0.4 }} />
+                    <View style={{ flex: 0.55 }} />
                     <View style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent' }]}>
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
@@ -303,7 +303,7 @@ class Receive extends Component {
                             />
                         )}
                     </View>
-                    <View style={{ flex: 0.65 }} />
+                    <View style={{ flex: 0.55 }} />
                 </View>
             </TouchableWithoutFeedback>
         );
