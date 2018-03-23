@@ -12,7 +12,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import InfoBox from '../components/InfoBox';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
@@ -210,7 +210,7 @@ class SeedReentry extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.tempAccount.seed,
+    seed: state.wallet.seed,
     theme: state.settings.theme,
     body: state.settings.theme.body,
     input: state.settings.theme.input,

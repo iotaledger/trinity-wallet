@@ -228,7 +228,7 @@ const mapStateToProps = (state) => ({
     body: state.settings.theme.body,
     positive: state.settings.theme.positive,
     secondary: state.settings.theme.secondary,
-    isFingerprintEnabled: state.account.isFingerprintEnabled,
+    isFingerprintEnabled: state.accounts.isFingerprintEnabled,
 });
 
 export default WithBackPressGoToHome()(

@@ -183,7 +183,7 @@ class AccountManagement extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seedCount: state.account.seedCount,
+    seedCount: state.accounts.seedCount,
     textColor: { color: state.settings.theme.body.color },
     bodyColor: state.settings.theme.body.color,
 });

@@ -12,7 +12,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import InfoBox from '../components/InfoBox';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import QRScanner from '../components/QrScanner';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 

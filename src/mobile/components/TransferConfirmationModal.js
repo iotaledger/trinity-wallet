@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 

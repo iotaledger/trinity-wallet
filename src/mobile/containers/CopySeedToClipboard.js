@@ -217,7 +217,7 @@ class CopySeedToClipboard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.tempAccount.seed,
+    seed: state.wallet.seed,
     backgroundColor: state.settings.theme.backgroundColor,
     primary: state.settings.theme.primary,
     secondary: state.settings.theme.secondary,

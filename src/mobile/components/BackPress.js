@@ -11,7 +11,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    currentSetting: state.tempAccount.currentSetting,
+    currentSetting: state.wallet.currentSetting,
 });
 
 export default () => (C) => {

@@ -8,7 +8,7 @@ import { Navigation } from 'react-native-navigation';
 import { clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import Fonts from '../theme/fonts';
@@ -213,7 +213,7 @@ class WalletResetRequirePassword extends Component {
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     body: state.settings.theme.body,
-    password: state.tempAccount.password,
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {

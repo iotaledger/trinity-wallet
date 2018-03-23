@@ -11,7 +11,7 @@ import { deleteAccount } from 'iota-wallet-shared-modules/actions/accounts';
 import Fonts from '../theme/fonts';
 import { deleteSeedFromKeychain } from '../utils/keychain';
 
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import { width, height } from '../utils/dimensions';
 import { getPasswordHash } from '../utils/crypto';
 import CustomTextInput from '../components/CustomTextInput';
@@ -291,7 +291,7 @@ class DeleteAccount extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    password: state.tempAccount.password,
+    password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
 });
 

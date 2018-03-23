@@ -823,9 +823,9 @@ const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     balance: getBalanceForSelectedAccount(state),
     selectedAccountName: getSelectedAccountName(state),
-    isSyncing: state.tempAccount.isSyncing,
-    isSendingTransfer: state.tempAccount.isSendingTransfer,
-    seedIndex: state.tempAccount.seedIndex,
+    isSyncing: state.ui.isSyncing,
+    isSendingTransfer: state.ui.isSendingTransfer,
+    seedIndex: state.wallet.seedIndex,
     conversionRate: state.settings.conversionRate,
     usdPrice: state.marketData.usdPrice,
     isGettingSensitiveInfoToMakeTransaction: state.keychain.isGettingSensitiveInfo.send.makeTransaction,
@@ -833,7 +833,7 @@ const mapStateToProps = (state) => ({
     body: state.settings.theme.body,
     primary: state.settings.theme.primary,
     bar: state.settings.theme.bar,
-    isTransitioning: state.tempAccount.isTransitioning,
+    isTransitioning: state.ui.isTransitioning,
     address: state.ui.sendAddressFieldText,
     amount: state.ui.sendAmountFieldText,
     message: state.ui.sendMessageFieldText,
@@ -842,7 +842,7 @@ const mapStateToProps = (state) => ({
     activeSteps: state.progress.activeSteps,
     timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
     remotePoW: state.settings.remotePoW,
-    password: state.tempAccount.password,
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import WithBackPressGoToHome from '../components/BackPressGoToHome';
 import { width, height } from '../utils/dimensions';
 import Fonts from '../theme/fonts';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';

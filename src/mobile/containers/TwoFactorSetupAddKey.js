@@ -12,7 +12,7 @@ import WithBackPressGoToHome from '../components/BackPressGoToHome';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { storeTwoFactorAuthKeyInKeychain } from '../utils/keychain';
 import Fonts from '../theme/fonts';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
@@ -199,7 +199,7 @@ const mapStateToProps = (state) => ({
     positive: state.settings.theme.positiveColor,
     negative: state.settings.theme.negativeColor,
     body: state.settings.theme.body,
-    password: state.tempAccount.password,
+    password: state.wallet.password,
 });
 
 export default WithBackPressGoToHome()(

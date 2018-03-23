@@ -245,8 +245,8 @@ class ViewSeed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seedIndex: state.tempAccount.seedIndex,
-    password: state.tempAccount.password,
+    seedIndex: state.wallet.seedIndex,
+    password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
     borderColor: { borderColor: state.settings.theme.body.color },
     textColor: { color: state.settings.theme.body.color },
