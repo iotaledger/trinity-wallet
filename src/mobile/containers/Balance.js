@@ -5,7 +5,8 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import { round, roundDown } from 'iota-wallet-shared-modules/libs/utils';
+import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import {
     getRelevantTransfer,
     isReceivedTransfer,
@@ -15,7 +16,7 @@ import {
     getAddressesForSelectedAccount,
     getDeduplicatedTransfersForSelectedAccount,
     getBalanceForSelectedAccount,
-} from 'iota-wallet-shared-modules/selectors/account';
+} from 'iota-wallet-shared-modules/selectors/accounts';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/SimpleTransactionRow';
 import Chart from '../components/Chart';

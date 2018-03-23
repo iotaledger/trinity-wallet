@@ -4,9 +4,9 @@ import { StyleSheet, View, Text, TouchableOpacity, BackHandler } from 'react-nat
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { setCopiedToClipboard } from 'iota-wallet-shared-modules/actions/wallet';
 import OnboardingButtons from '../components/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import { setCopiedToClipboard } from 'iota-wallet-shared/module/actions/wallet';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';

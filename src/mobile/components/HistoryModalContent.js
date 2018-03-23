@@ -10,7 +10,7 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
 } from 'react-native';
-import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
+import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';

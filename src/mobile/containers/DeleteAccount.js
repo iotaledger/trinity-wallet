@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import Modal from 'react-native-modal';
-import {
-    getSelectedAccountNameViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
-import {
-    deleteAccount
-} from 'iota-wallet-shared-modules/actions/account';
+import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import { deleteAccount } from 'iota-wallet-shared-modules/actions/accounts';
 import Fonts from '../theme/fonts';
-import {
-    deleteSeedFromKeychain,
-} from '../utils/keychain';
+import { deleteSeedFromKeychain } from '../utils/keychain';
 
 import OnboardingButtons from '../components/OnboardingButtons';
 import { width, height } from '../utils/dimensions';
@@ -298,16 +292,13 @@ class DeleteAccount extends Component {
 
 const mapStateToProps = (state) => ({
     password: state.tempAccount.password,
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
-
+    selectedAccountName: getSelectedAccountName(state),
 });
 
 const mapDispatchToProps = {
     setSetting,
     generateAlert,
-    deleteAccount
+    deleteAccount,
 };
 
-export default translate(['deleteAccount', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(DeleteAccount),
-);
+export default translate(['deleteAccount', 'global'])(connect(mapStateToProps, mapDispatchToProps)(DeleteAccount));

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BackHandler, ToastAndroid } from 'react-native';
 import RNExitApp from 'react-native-exit-app';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isAndroid } from '../utils/device';

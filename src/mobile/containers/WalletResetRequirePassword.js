@@ -3,9 +3,9 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
-import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
+import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/accounts';
 import { Navigation } from 'react-native-navigation';
-import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import OnboardingButtons from '../components/OnboardingButtons';
@@ -62,7 +62,7 @@ class WalletResetRequirePassword extends Component {
         resetWallet: PropTypes.func.isRequired,
         setFirstUse: PropTypes.func.isRequired,
         setOnboardingComplete: PropTypes.func.isRequired,
-        clearTempData: PropTypes.func.isRequired,
+        clearWalletData: PropTypes.func.isRequired,
         setPassword: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
@@ -147,7 +147,7 @@ class WalletResetRequirePassword extends Component {
                     this.redirectToInitialScreen();
                     this.props.setOnboardingComplete(false);
                     this.props.setFirstUse(true);
-                    this.props.clearTempData();
+                    this.props.clearWalletData();
                     this.props.setPassword('');
                     this.props.resetWallet();
                 })
@@ -220,7 +220,7 @@ const mapDispatchToProps = {
     resetWallet,
     setFirstUse,
     setOnboardingComplete,
-    clearTempData,
+    clearWalletData,
     setPassword,
     generateAlert,
 };

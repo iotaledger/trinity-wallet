@@ -5,12 +5,8 @@ import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import {
-    clearTempData,
-    setPassword,
-    setUserActivity,
-    setSetting,
-} from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { setUserActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getPasswordHash } from '../utils/crypto';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -68,8 +64,8 @@ class Home extends Component {
 
     onLoginPress = (password) => {
         const { t, storedPassword } = this.props;
-
         const pwdHash = getPasswordHash(password);
+
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else if (storedPassword !== pwdHash) {
@@ -90,6 +86,7 @@ class Home extends Component {
 
     resetSettings() {
         const { currentSetting } = this.props;
+
         if (currentSetting !== 'mainSettings') {
             this.props.setSetting('mainSettings');
         }
@@ -226,25 +223,24 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    storedPassword: state.tempAccount.password,
-    inactive: state.tempAccount.inactive,
-    minimised: state.tempAccount.minimised,
+    storedPassword: state.wallet.password,
+    inactive: state.wallet.inactive,
+    minimised: state.wallet.minimised,
     body: state.settings.theme.body,
     negative: state.settings.theme.negative,
     positive: state.settings.theme.positive,
     primary: state.settings.theme.primary,
     bar: state.settings.theme.bar,
     currentRoute: state.home.childRoute,
-    isSyncing: state.tempAccount.isSyncing,
-    isSendingTransfer: state.tempAccount.isSendingTransfer,
-    isTransitioning: state.tempAccount.isTransitioning,
-    currentSetting: state.tempAccount.currentSetting,
+    isSyncing: state.wallet.isSyncing,
+    isSendingTransfer: state.wallet.isSendingTransfer,
+    isTransitioning: state.wallet.isTransitioning,
+    currentSetting: state.wallet.currentSetting,
 });
 
 const mapDispatchToProps = {
     changeHomeScreenRoute,
     generateAlert,
-    clearTempData,
     setPassword,
     setUserActivity,
     setSetting,

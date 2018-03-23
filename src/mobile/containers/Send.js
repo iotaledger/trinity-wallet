@@ -15,11 +15,7 @@ import {
     NativeModules,
 } from 'react-native';
 import { connect } from 'react-redux';
-import {
-    isValidAddress,
-    isValidMessage,
-    isValidAmount
-} from 'iota-wallet-shared-modules/libs/iota/utils';
+import { isValidAddress, isValidMessage, isValidAmount } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
@@ -35,7 +31,7 @@ import {
 } from 'iota-wallet-shared-modules/actions/ui';
 import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
 import { VALID_ADDRESS_WITH_CHECKSUM_REGEX, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/iota';
-import { getBalanceForSelectedAccount, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
+import { getBalanceForSelectedAccount, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
@@ -566,16 +562,7 @@ export class Send extends Component {
     }
 
     sendTransfer() {
-        const {
-            t,
-            password,
-            selectedAccountName,
-            isSyncing,
-            isTransitioning,
-            message,
-            amount,
-            address
-        } = this.props;
+        const { t, password, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
 
         if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));

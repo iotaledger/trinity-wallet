@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    ActivityIndicator,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    TouchableWithoutFeedback
-} from 'react-native';
+import { ActivityIndicator, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import {
-    getCurrencyData
-} from 'iota-wallet-shared-modules/actions/settings';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
 import DropdownComponent from '../components/Dropdown';
@@ -142,13 +133,7 @@ export class CurrencySelection extends Component {
     }
 
     render() {
-        const {
-            currency,
-            availableCurrencies,
-            t,
-            primaryColor,
-            isFetchingCurrencyData
-        } = this.props;
+        const { currency, availableCurrencies, t, primaryColor, isFetchingCurrencyData } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -199,12 +184,12 @@ const mapStateToProps = (state) => ({
     isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
     hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
     bodyColor: state.settings.theme.body.color,
-    primaryColor: state.settings.theme.primary.color
+    primaryColor: state.settings.theme.primary.color,
 });
 
 const mapDispatchToProps = {
     getCurrencyData,
-    setSetting
+    setSetting,
 };
 
 export default translate(['currencySelection', 'global'])(

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
-import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { changeAccountName } from 'iota-wallet-shared-modules/actions/account';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { changeAccountName } from 'iota-wallet-shared-modules/actions/accounts';
 import { updateAccountNameInKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import { width, height } from '../utils/dimensions';
@@ -171,7 +171,7 @@ export class EditAccountName extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    selectedAccountName: getSelectedAccountName(state),
     accountInfo: state.account.accountInfo,
     seedIndex: state.tempAccount.seedIndex,
     accountNames: state.account.accountNames,

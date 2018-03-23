@@ -13,9 +13,9 @@ import {
 } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
-import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { selectAccountInfo, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
+import { selectAccountInfo, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import {
     getFromKeychainRequest,
     getFromKeychainSuccess,

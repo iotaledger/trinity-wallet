@@ -4,8 +4,8 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
-import { clearTempData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/accounts';
+import { clearWalletData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import CustomTextInput from '../components/CustomTextInput';
 import {
@@ -74,7 +74,7 @@ class SetPassword extends Component {
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         setOnboardingComplete: PropTypes.func.isRequired,
-        clearTempData: PropTypes.func.isRequired,
+        clearWalletData: PropTypes.func.isRequired,
         clearSeed: PropTypes.func.isRequired,
         increaseSeedCount: PropTypes.func.isRequired,
         addAccountName: PropTypes.func.isRequired,
@@ -102,7 +102,7 @@ class SetPassword extends Component {
                     this.props.setPassword(pwdHash);
                     this.props.addAccountName(accountName);
                     this.props.increaseSeedCount();
-                    this.props.clearTempData();
+                    this.props.clearWalletData();
                     this.props.clearSeed();
                     this.props.setOnboardingComplete(true);
                     this.props.navigator.push({
@@ -273,7 +273,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setOnboardingComplete,
-    clearTempData,
+    clearWalletData,
     clearSeed,
     increaseSeedCount,
     addAccountName,
