@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { width, height } from '../utils/dimensions';
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class CtaButton extends React.Component {
+class CtaButton extends PureComponent {
     static propTypes = {
         onPress: PropTypes.func.isRequired,
         ctaColor: PropTypes.string.isRequired,

@@ -94,10 +94,6 @@ class Welcome extends Component {
         };
     }
 
-    componentWillMount() {
-        //this.showModalIfRooted();
-    }
-
     onNextPress() {
         const { body } = this.props;
         this.props.navigator.push({

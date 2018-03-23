@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { width, height } from '../utils/dimensions';
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class CustomTextInput extends React.Component {
+class CustomTextInput extends Component {
     static propTypes = {
         onChangeText: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
