@@ -5,8 +5,8 @@ import { translate } from 'react-i18next';
 import { generateAlert } from '../../actions/alerts';
 
 import { makeTransaction } from '../../actions/transfers';
-import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/account';
-import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/util';
+import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/accounts';
+import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/utils';
 import { iota } from '../../libs/iota';
 
 /**
