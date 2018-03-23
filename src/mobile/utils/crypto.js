@@ -1,9 +1,9 @@
-import { serialize, parse } from 'iota-wallet-shared-modules/libs/util';
+import { serialize, parse } from 'iota-wallet-shared-modules/libs/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { TextDecoder } from 'text-encoding';
 import nacl from 'tweetnacl';
 import naclUtil from 'tweetnacl-util';
-import crypto from 'crypto';
+const crypto = require('crypto');
 
 export const getNonce = async () => {
     return await generateSecureRandom(24);

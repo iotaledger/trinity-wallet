@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback, AppState } from 'react-native';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import Fonts from '../theme/fonts';
 import Seedbox from '../components/SeedBox';
 import CustomTextInput from '../components/CustomTextInput';
@@ -247,7 +247,7 @@ class ViewSeed extends Component {
 const mapStateToProps = (state) => ({
     seedIndex: state.tempAccount.seedIndex,
     password: state.tempAccount.password,
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    selectedAccountName: getSelectedAccountName(state),
     borderColor: { borderColor: state.settings.theme.body.color },
     textColor: { color: state.settings.theme.body.color },
     theme: state.settings.theme,

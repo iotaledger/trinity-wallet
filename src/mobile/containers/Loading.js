@@ -16,14 +16,14 @@ import {
     getAccountInfo,
     getFullAccountInfoFirstSeed,
     getFullAccountInfoAdditionalSeed,
-} from 'iota-wallet-shared-modules/actions/account';
+} from 'iota-wallet-shared-modules/actions/accounts';
 import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
+import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { getSeedFromKeychain, storeSeedInKeychain } from '../utils/keychain';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { isAndroid, isIOS } from '../utils/device';

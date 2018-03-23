@@ -7,9 +7,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
-import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/wallet';
 import { clearLog } from 'iota-wallet-shared-modules/actions/alerts';
-import { getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/account';
+import { getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/accounts';
 import {
     View,
     Text,
@@ -21,7 +21,8 @@ import {
 } from 'react-native';
 import tinycolor from 'tinycolor2';
 import { setPollFor } from 'iota-wallet-shared-modules/actions/polling';
-import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import { roundDown } from 'iota-wallet-shared-modules/libs/utils';
+import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import Modal from 'react-native-modal';
 import NotificationLog from '../components/NotificationLog';
 import { Icon } from '../theme/icons.js';

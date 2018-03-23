@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
+import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 

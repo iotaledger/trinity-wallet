@@ -4,11 +4,11 @@ import { StyleSheet, View, Text, TouchableOpacity, Clipboard, Share } from 'reac
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { setCopiedToClipboard } from 'iota-wallet-shared-modules/actions/wallet';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import Seedbox from '../components/SeedBox';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
-import { setCopiedToClipboard } from 'iota-wallet-shared-modules/actions/wallet';
 import GENERAL from '../theme/general';
 import CtaButton from '../components/CtaButton';
 import DynamicStatusBar from '../components/DynamicStatusBar';

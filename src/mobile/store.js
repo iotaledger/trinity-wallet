@@ -8,14 +8,7 @@ import { updatePersistedState } from '../shared/libs/utils';
 
 export const persistConfig = {
     storage: AsyncStorage,
-    blacklist: [
-        'app',
-        'keychain',
-        'polling',
-        'ui',
-        'progress',
-        'seeds'
-    ],
+    blacklist: ['app', 'keychain', 'polling', 'ui', 'progress', 'seeds'],
 };
 
 const shouldMigrate = (restoredState) => {
@@ -59,7 +52,7 @@ const migrate = (state, restoredState) => {
 
             return initializeApp(state);
         })
-        .catch(() => initializeApp(state));
+        .catch((err) => console.error(err)); // eslint-disable-line no-console
 };
 
 export const persistor = persistStore(store, persistConfig, (err, restoredState) => migrate(store, restoredState));

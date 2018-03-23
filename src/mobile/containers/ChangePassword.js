@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Keyboard
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Fonts from '../theme/fonts';
 import { changePassword } from '../utils/keychain';
@@ -289,15 +282,13 @@ const mapStateToProps = (state) => ({
     textColor: { color: state.settings.theme.body.color },
     borderColor: { borderColor: state.settings.theme.body.color },
     body: state.settings.theme.body,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {
     setPassword,
     setSetting,
-    generateAlert
+    generateAlert,
 };
 
-export default translate(['changePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(ChangePassword),
-);
+export default translate(['changePassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ChangePassword));

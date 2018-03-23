@@ -7,10 +7,10 @@ import Modal from 'react-native-modal';
 import { Navigation } from 'react-native-navigation';
 import i18next from 'i18next';
 import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
-import { setSetting, clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting, clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import LogoutConfirmationModal from '../components/LogoutConfirmationModal';
 import { width, height } from '../utils/dimensions';
-import { Icon } from '../theme/icons.js';
+import { Icon } from '../theme/icons';
 
 const styles = StyleSheet.create({
     container: {
@@ -90,7 +90,7 @@ export class MainSettings extends Component {
         }).isRequired,
         setSetting: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
-        clearTempData: PropTypes.func.isRequired,
+        clearWalletData: PropTypes.func.isRequired,
         setPassword: PropTypes.func.isRequired,
     };
 
@@ -107,7 +107,7 @@ export class MainSettings extends Component {
     }
 
     logout() {
-        this.props.clearTempData();
+        this.props.clearWalletData();
         this.props.setPassword('');
         Navigation.startSingleScreenApp({
             screen: {
@@ -312,13 +312,13 @@ const mapStateToProps = (state) => {
         bodyColor: color,
         borderBottomColor: { borderBottomColor: color },
         textColor: { color },
-        bg
+        bg,
     };
 };
 
 const mapDispatchToProps = {
     setSetting,
-    clearTempData,
+    clearWalletData,
     setPassword,
 };
 

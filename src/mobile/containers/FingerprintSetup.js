@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { setFingerprintStatus } from 'iota-wallet-shared-modules/actions/account';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Image } from 'react-native';
+import { setFingerprintStatus } from 'iota-wallet-shared-modules/actions/settings';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Image } from 'react-native';
 import tinycolor from 'tinycolor2';
 import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-white.png';
 import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-black.png';

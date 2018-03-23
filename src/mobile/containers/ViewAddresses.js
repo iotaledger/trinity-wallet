@@ -7,12 +7,11 @@ import { translate } from 'react-i18next';
 import { iota } from 'iota-wallet-shared-modules/libs/iota';
 import { View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-native';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
-import {
-    getSelectedAccountViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
-import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
+import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import { round } from 'iota-wallet-shared-modules/libs/utils';
+import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 
@@ -210,11 +209,11 @@ export class ViewAddresses extends Component {
 
 const mapDispatchToProps = {
     generateAlert,
-    setSetting
+    setSetting,
 };
 
 const mapStateToProps = (state) => ({
-    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    selectedAccount: getSelectedAccountName(state),
     body: state.settings.theme.body,
 });
 

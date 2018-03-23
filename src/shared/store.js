@@ -1,16 +1,5 @@
-import {
-    createStore,
-    combineReducers,
-    applyMiddleware,
-    compose
-} from 'redux';
-import {
-    autoRehydrate,
-    persistStore,
-    getStoredState,
-    purgeStoredState,
-    createPersistor
-} from 'redux-persist';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { autoRehydrate, persistStore, getStoredState, purgeStoredState, createPersistor } from 'redux-persist';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import marketData from './reducers/marketData';
@@ -29,7 +18,7 @@ import { ActionTypes } from './actions/app';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const developmentMiddleware = [thunk, logger];
+const developmentMiddleware = [thunk];
 const productionMiddleware = [thunk];
 
 const reducers = combineReducers({
@@ -44,7 +33,7 @@ const reducers = combineReducers({
     polling,
     progress,
     ui,
-    wallet
+    wallet,
 });
 
 const rootReducer = (state, action) => {

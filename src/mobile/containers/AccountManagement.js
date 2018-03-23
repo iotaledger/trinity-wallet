@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
@@ -193,5 +193,6 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default translate(['accountManagement', 'global'])
-(connect(mapStateToProps, mapDispatchToProps)(AccountManagement));
+export default translate(['accountManagement', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(AccountManagement),
+);

@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setMode } from 'iota-wallet-shared-modules/actions/settings';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Fonts from '../theme/fonts';
 import { width, height } from '../utils/dimensions';
