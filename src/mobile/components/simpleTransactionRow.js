@@ -40,7 +40,7 @@ export default class SimpleTransactionRow extends PureComponent {
         return (
             <View style={styles.container}>
                 <View style={{ flex: 0.8, alignItems: 'flex-start' }}>
-                    <Icon name={incoming ? 'receive' : 'send'} size={width / 28} color={style.iconColor} />
+                    <Icon name={incoming ? 'receive' : 'send'} size={width / 30} color={style.iconColor} />
                 </View>
                 <View style={{ flex: 3, alignItems: 'flex-start' }}>
                     <Text style={[styles.text, style.defaultTextColor, { padding: 5 }]}>
