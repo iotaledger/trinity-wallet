@@ -33,6 +33,10 @@ class Chart extends PureComponent {
         setCurrency: PropTypes.func.isRequired,
         /** Change chart time frame */
         setTimeframe: PropTypes.func.isRequired,
+        /** Get current market price for a currency
+         * @param {string} currency - Target currency
+         */
+        getPriceForCurrency: PropTypes.func.isRequired,
         /** Style price to current currency format
          * @param {number} price - Input price value for formatting
          */
@@ -55,7 +59,16 @@ class Chart extends PureComponent {
     }
 
     render() {
-        const { priceData, chartData, theme, setCurrency, setTimeframe, getPriceFormat, t } = this.props;
+        const {
+            priceData,
+            chartData,
+            theme,
+            setCurrency,
+            setTimeframe,
+            getPriceFormat,
+            getPriceForCurrency,
+            t,
+        } = this.props;
 
         return (
             <div className={css.chart}>
@@ -80,7 +93,7 @@ class Chart extends PureComponent {
                         {priceData.currency}
                     </Button>
                     <p>
-                        {priceData.symbol} {getPriceFormat(priceData.price)} / Mi
+                        {priceData.symbol} {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
                     </p>
                     <Button variant="secondary" className="outline" onClick={() => setTimeframe()}>
                         {chartData.timeframe}
