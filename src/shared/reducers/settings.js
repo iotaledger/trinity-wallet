@@ -1,4 +1,5 @@
-import { ActionTypes } from '../actions/settings.js';
+import merge from 'lodash/merge';
+import { ActionTypes } from '../actions/settings';
 import { DESKTOP_VERSION, defaultNode as node, nodes } from '../config';
 import themes from '../themes/themes';
 
@@ -66,18 +67,11 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 remotePoW: !state.remotePoW,
             };
-        case ActionTypes.LOCALE:
-            return {
-                ...state,
-                locale: action.payload,
-            };
-
         case ActionTypes.SET_LOCALE:
             return {
                 ...state,
                 locale: action.payload,
             };
-
         case ActionTypes.SET_FULLNODE:
             return {
                 ...state,

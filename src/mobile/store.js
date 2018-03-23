@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native';
 import store, { persistStore, purgeStoredState, createPersistor } from '../shared/store';
 import initializeApp from './routes/entry';
 import { setAppVersions, resetWallet } from '../shared/actions/app';
-import { updatePersistedState } from '../shared/libs/util';
+import { updatePersistedState } from '../shared/libs/utils';
 
 export const persistConfig = {
     storage: AsyncStorage,
