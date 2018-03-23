@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import reducer from '../../reducers/account';
-import * as actions from '../../actions/account';
+import reducer from '../../reducers/accounts';
+import * as actions from '../../actions/accounts';
 
-describe('Reducer: account', () => {
+describe('Reducer: accounts', () => {
     describe('initial state', () => {
         it('should have an initial state', () => {
             const initialState = {
@@ -14,8 +14,6 @@ describe('Reducer: account', () => {
                 unconfirmedBundleTails: {},
                 txHashesForUnspentAddresses: {},
                 pendingTxHashesForSpentAddresses: {},
-                is2FAEnabled: false,
-                isFingerprintEnabled: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -1080,23 +1078,6 @@ describe('Reducer: account', () => {
             };
 
             expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
-        });
-    });
-
-    describe('SET_2FA_STATUS', () => {
-        it('should set is2FAEnabled to payload', () => {
-            const initialState = {
-                is2FAEnabled: false,
-            };
-
-            const action = actions.set2FAStatus(true);
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                is2FAEnabled: true,
-            };
-
-            expect(newState).to.eql(expectedState);
         });
     });
 });

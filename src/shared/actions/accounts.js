@@ -1,9 +1,7 @@
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
 import { syncAddresses } from '../libs/iota/addresses';
-import {
-    clearWalletData
-} from './wallet';
+import { clearWalletData } from './wallet';
 import {
     generateAccountInfoErrorAlert,
     generateSyncingCompleteAlert,
@@ -61,10 +59,9 @@ export const updateAddresses = (accountName, addresses) => ({
     addresses,
 });
 
-export const changeAccountName = (accountInfo, accountNames) => ({
+export const changeAccountName = (payload) => ({
     type: ActionTypes.CHANGE_ACCOUNT_NAME,
-    accountInfo,
-    accountNames,
+    payload,
 });
 
 export const removeAccount = (payload) => ({
