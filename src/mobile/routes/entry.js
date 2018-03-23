@@ -21,15 +21,21 @@ const clearKeychain = () => {
 const renderInitialScreen = (store) => {
     Text.defaultProps.allowFontScaling = false;
     TextInput.defaultProps.allowFontScaling = false;
+
     // Ignore android warning against timers
     console.ignoredYellowBox = ['Setting a timer']; // eslint-disable-line no-console
+
     const state = store.getState();
+
     // Clear keychain if very first load
-    if (!state.account.onboardingComplete) {
+    if (!state.accounts.onboardingComplete) {
         clearKeychain();
     }
+
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
-    const initialScreen = state.account.onboardingComplete ? 'login' : 'languageSetup';
+
+    const initialScreen = state.accounts.onboardingComplete ? 'login' : 'languageSetup';
+
     Navigation.startSingleScreenApp({
         screen: {
             screen: initialScreen,

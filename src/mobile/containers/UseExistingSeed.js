@@ -3,17 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Keyboard
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Modal from 'react-native-modal';
-import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import CustomTextInput from '../components/CustomTextInput';
 import Checksum from '../components/Checksum';
@@ -277,16 +270,14 @@ class UseExistingSeed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seedCount: state.account.seedCount
+    seedCount: state.account.seedCount,
 });
 
 const mapDispatchToProps = {
     setSetting,
-    generateAlert
+    generateAlert,
 };
 
-export default translate(
-    ['addAdditionalSeed', 'useExistingSeed', 'global']
-)(
+export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(UseExistingSeed),
 );

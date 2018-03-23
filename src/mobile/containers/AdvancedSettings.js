@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
 
@@ -106,13 +106,7 @@ class AdvancedSettings extends PureComponent {
     }
 
     render() {
-        const {
-            t,
-            textColor,
-            borderColor,
-            bodyColor,
-            node
-            } = this.props;
+        const { t, textColor, borderColor, bodyColor, node } = this.props;
 
         return (
             <View style={styles.container}>
@@ -222,16 +216,14 @@ const mapStateToProps = (state) => {
         bodyColor: color,
         borderBottomColor: { borderBottomColor: color },
         textColor: { color },
-        bg
+        bg,
     };
 };
 
 const mapDispatchToProps = {
-    setSetting
+    setSetting,
 };
 
-export default translate(['advancedSettings', 'settings', 'global'])
-    (connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(AdvancedSettings));
+export default translate(['advancedSettings', 'settings', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings),
+);

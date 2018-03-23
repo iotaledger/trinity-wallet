@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
 import { AppState } from 'react-native';
-import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
-import { removeBundleFromUnconfirmedBundleTails } from 'iota-wallet-shared-modules/actions/account';
+import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import { removeBundleFromUnconfirmedBundleTails } from 'iota-wallet-shared-modules/actions/accounts';
 import {
     fetchMarketData,
     fetchChartData,

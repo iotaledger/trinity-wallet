@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { setAccountName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setAccountName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
 import { connect } from 'react-redux';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import CustomTextInput from '../components/CustomTextInput';

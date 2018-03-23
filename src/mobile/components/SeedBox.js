@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import TextWithLetterSpacing from './TextWithLetterSpacing';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
