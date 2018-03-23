@@ -8,12 +8,12 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import Seedbox from '../components/SeedBox';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
-import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
+import { setCopiedToClipboard } from 'iota-wallet-shared-modules/actions/wallet';
 import GENERAL from '../theme/general';
 import CtaButton from '../components/CtaButton';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
-import InfoBox from '../components/infoBox';
+import InfoBox from '../components/InfoBox';
 
 const styles = StyleSheet.create({
     container: {

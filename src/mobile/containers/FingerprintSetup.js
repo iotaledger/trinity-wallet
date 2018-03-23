@@ -12,7 +12,7 @@ import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerp
 import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-black.png';
 import WithBackPressGoToHome from '../components/BackPressGoToHome';
 import DynamicStatusBar from '../components/DynamicStatusBar';
-import Fonts from '../theme/Fonts';
+import Fonts from '../theme/fonts';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';

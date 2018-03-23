@@ -150,9 +150,7 @@ class WriteSeedDown extends Component {
     };
 
     onDonePress() {
-        this.props.navigator.pop({
-            animated: false,
-        });
+        this.props.navigator.pop({ animated: false });
     }
 
     render() {
@@ -205,7 +203,7 @@ class WriteSeedDown extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.tempAccount.seed,
+    seed: state.wallet.seed,
     body: state.settings.theme.body,
     primary: state.settings.theme.primary,
 });
