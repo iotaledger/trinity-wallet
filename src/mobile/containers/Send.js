@@ -5,7 +5,6 @@ import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { iota } from 'iota-wallet-shared-modules/libs/iota';
 import {
     StyleSheet,
     View,
@@ -17,11 +16,10 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import {
-    round,
-    VALID_SEED_REGEX,
-    ADDRESS_LENGTH,
-    VALID_ADDRESS_WITH_CHECKSUM_REGEX,
-} from 'iota-wallet-shared-modules/libs/util';
+    isValidAddress,
+    isValidMessage,
+    isValidAmount
+} from 'iota-wallet-shared-modules/libs/iota/utils';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
@@ -35,6 +33,8 @@ import {
     setSendMessageField,
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
+import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
+import { VALID_ADDRESS_WITH_CHECKSUM_REGEX, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/iota';
 import { getBalanceForSelectedAccount, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
 import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -149,42 +149,6 @@ export class Send extends Component {
         generateTransferErrorAlert: PropTypes.func.isRequired,
     };
 
-    static isValidAddress(address) {
-        if (Send.isValidAddressChars(address) !== null) {
-            return size(address) === 90 && iota.utils.isValidChecksum(address);
-        }
-        return false;
-    }
-
-    static isValidAddressChars(address) {
-        return address.match(VALID_SEED_REGEX);
-    }
-
-    static isValidMessage(message) {
-        return iota.utils.fromTrytes(iota.utils.toTrytes(message)) === message;
-    }
-
-    static isValidAmount(amount, multiplier, isFiat = false) {
-        const value = parseFloat(amount) * multiplier;
-        // For sending a message
-        if (amount === '') {
-            return true;
-        }
-
-        // Ensure iota value is an integer
-        if (!isFiat) {
-            if (value % 1 !== 0) {
-                return false;
-            }
-        }
-
-        if (value < 0) {
-            return false;
-        }
-
-        return !isNaN(amount);
-    }
-
     constructor(props) {
         super(props);
 
@@ -204,6 +168,7 @@ export class Send extends Component {
     componentWillMount() {
         const { t, balance, amount, primary } = this.props;
         const amountAsNumber = parseFloat(amount);
+
         if (amountAsNumber === balance / this.getUnitMultiplier() && amountAsNumber !== 0) {
             this.setState({
                 maxPressed: true,
@@ -227,9 +192,11 @@ export class Send extends Component {
         } else if (isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
             this.setState({ sending: false });
+
             // Reset toggle switch in case maximum was on
             this.resetToggleSwitch();
         }
+
         if (seedIndex !== newProps.seedIndex) {
             this.resetToggleSwitch();
         }
@@ -266,7 +233,9 @@ export class Send extends Component {
             indexOfDenomination === -1 || indexOfDenomination === 5
                 ? availableDenominations[0]
                 : availableDenominations[indexOfDenomination + 1];
+
         this.props.setSendDenomination(nextDenomination);
+
         this.setState({
             maxPressed: false,
             maxColor: body.color,
@@ -307,6 +276,7 @@ export class Send extends Component {
         const { t, body } = this.props;
         amount = amount.replace(/,/g, '.');
         this.props.setSendAmountField(amount);
+
         if (amount === (this.props.balance / this.getUnitMultiplier()).toString()) {
             this.onMaxPress();
         } else {
@@ -326,9 +296,9 @@ export class Send extends Component {
         const isFiat = denomination === currencySymbol;
 
         const enoughBalance = this.enoughBalance();
-        const messageIsValid = Send.isValidMessage(message);
-        const addressIsValid = Send.isValidAddress(address);
-        const amountIsValid = Send.isValidAmount(amount, multiplier, isFiat);
+        const messageIsValid = isValidMessage(message);
+        const addressIsValid = isValidAddress(address);
+        const amountIsValid = isValidAmount(amount, multiplier, isFiat);
 
         if (!addressIsValid) {
             return this.getInvalidAddressError(address);
@@ -354,8 +324,9 @@ export class Send extends Component {
         const { t } = this.props;
         if (dataString.match(/{/)) {
             // For codes containing JSON (iotaledger and Trinity)
-            const parsedData = JSON.parse(data);
+            const parsedData = parse(data);
             this.props.setSendAddressField(parsedData.address);
+
             if (data.message) {
                 this.props.setSendMessageField(data.message);
             }
@@ -369,6 +340,7 @@ export class Send extends Component {
         } else {
             this.props.generateAlert('error', t('invalidAddress'), t('invalidAmountExplanationGeneric'));
         }
+
         this.hideModal();
     }
 
@@ -388,6 +360,7 @@ export class Send extends Component {
     setModalContent(selectedSetting) {
         let modalContent;
         const { bar, body, primary, address, amount } = this.props;
+
         switch (selectedSetting) {
             case 'qrScanner':
                 modalContent = (
@@ -428,6 +401,7 @@ export class Send extends Component {
             default:
                 break;
         }
+
         this.setState({ modalContent });
     }
 
@@ -456,6 +430,7 @@ export class Send extends Component {
             default:
                 break;
         }
+
         return multiplier;
     }
 
@@ -506,6 +481,7 @@ export class Send extends Component {
         if (balance === 0) {
             return 0.2;
         }
+
         return 1;
     }
 
@@ -556,7 +532,8 @@ export class Send extends Component {
         const { currencySymbol } = this.state;
         const multiplier = this.getUnitMultiplier();
         const isFiat = denomination === currencySymbol;
-        const amountIsValid = Send.isValidAmount(amount, multiplier, isFiat);
+        const amountIsValid = isValidAmount(amount, multiplier, isFiat);
+
         return !amountIsValid && amount !== '';
     }
 
@@ -574,9 +551,11 @@ export class Send extends Component {
     enoughBalance() {
         const { amount, balance } = this.props;
         const multiplier = this.getUnitMultiplier();
+
         if (parseFloat(amount) * multiplier > balance) {
             return false;
         }
+
         return true;
     }
 
@@ -587,7 +566,16 @@ export class Send extends Component {
     }
 
     sendTransfer() {
-        const { t, password, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
+        const {
+            t,
+            password,
+            selectedAccountName,
+            isSyncing,
+            isTransitioning,
+            message,
+            amount,
+            address
+        } = this.props;
 
         if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
@@ -600,6 +588,7 @@ export class Send extends Component {
                 t('snapshotTransitionInProgress'),
                 t('snapshotTransitionInProgressExplanation'),
             );
+
             return;
         }
 
@@ -624,6 +613,7 @@ export class Send extends Component {
 
                     throw new Error('Error');
                 }
+
                 let powFn = null;
                 let genFn = null;
 
