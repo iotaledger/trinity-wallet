@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { selectAccountInfo } from '../../selectors/account';
+import { selectAccountInfo } from '../../selectors/accounts';
 
 /**
  * List component container
