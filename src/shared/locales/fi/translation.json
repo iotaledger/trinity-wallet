@@ -171,7 +171,7 @@
         "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi."
     },
     "onboardingComplete": {
-        "walletReady": "Lompakkosi on nyt käyttövalmis. Jos haluat tehdä muutoksia lompakkoosi, voit tehdä sen Asetukset-valikosta."
+        "walletReady": "Lompakkosi on nyt käyttövalmis. Voit tehdä siihen jatkossa muutoksia Asetukset-valikon kautta."
     },
     "paperWallet": {
         "clickToPrint": "Kilkkaa alla olevaa nappia tulostaaksesi paperikopion seed-luvustasi.",
@@ -192,7 +192,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed-luku tyhjennetty",
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
-        "mustSaveYourSeed": "<0><0>Sinun on tulee tallentaa seed-lukusi käyttäen </0><1>vähintään yhtä</1><2>alla olevista vaihtoehdoista.</2></0>"
+        "mustSaveYourSeed": "<0><0>Sinun on tulee tallentaa seed-lukusi käyttäen </0><1>vähintään yhtä</1><2> alla olevista vaihtoehdoista.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Virheellinen seed-luku",
@@ -311,7 +311,7 @@
         "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
-        "send": "LÄHETÄ",
+        "send": "LÄHETETTY",
         "receive": "VASTAANOTETAAN"
     },
     "accountManagement": {
