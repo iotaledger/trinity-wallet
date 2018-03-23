@@ -8,7 +8,6 @@ import map from 'lodash/map';
 import omitBy from 'lodash/omitBy';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
-import isNull from 'lodash/isNull';
 import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import filter from 'lodash/filter';
