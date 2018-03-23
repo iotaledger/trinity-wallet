@@ -22,8 +22,8 @@ import { isAndroid, isIOS } from '../utils/device';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
-import InfoBox from '../components/infoBox';
-import Seedbox from '../components/seedBox';
+import InfoBox from '../components/InfoBox';
+import Seedbox from '../components/SeedBox';
 
 const styles = StyleSheet.create({
     container: {

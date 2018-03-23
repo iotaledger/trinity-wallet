@@ -1,4 +1,3 @@
-import map from 'lodash/map';
 import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -6,7 +5,6 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
-import { renameKeys } from 'iota-wallet-shared-modules/libs/util';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeAccountName } from 'iota-wallet-shared-modules/actions/account';
