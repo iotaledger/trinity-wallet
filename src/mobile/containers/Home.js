@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import {
@@ -23,15 +24,13 @@ import Tabs from '../components/Tabs';
 import Tab from '../components/Tab';
 import TabContent from '../components/TabContent';
 import EnterPassword from '../components/EnterPassword';
-import { height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 0.8,
-        marginBottom: height / 100,
+        flex: 0.7,
     },
     midContainer: {
-        flex: 4.62,
+        flex: 4.72,
         zIndex: 0,
     },
     bottomContainer: {
@@ -133,84 +132,94 @@ class Home extends Component {
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
-                <KeyboardAvoidingView style={{ flex: 1, backgroundColor: body.bg }}>
-                    <DynamicStatusBar backgroundColor={bar.bg} />
-                    {!inactive &&
-                        !minimised && (
-                            <View style={{ flex: 1 }}>
-                                <View style={styles.topContainer} />
-                                <View style={styles.midContainer}>
-                                    <TabContent navigator={navigator} onTabSwitch={(name) => this.onTabSwitch(name)} />
+                <KeyboardAwareScrollView
+                    resetScrollToCoords={{ x: 0, y: 0 }}
+                    scrollEnabled={false}
+                    enableOnAndroid={false}
+                    contentContainerStyle={{ flex: 1, backgroundColor: body.bg }}
+                >
+                    <KeyboardAvoidingView style={{ flex: 1 }}>
+                        <DynamicStatusBar backgroundColor={bar.bg} />
+                        {!inactive &&
+                            !minimised && (
+                                <View style={{ flex: 1 }}>
+                                    <View style={styles.topContainer} />
+                                    <View style={styles.midContainer}>
+                                        <TabContent
+                                            navigator={navigator}
+                                            onTabSwitch={(name) => this.onTabSwitch(name)}
+                                        />
+                                    </View>
+                                    <View style={styles.bottomContainer}>
+                                        <Tabs onPress={(name) => this.onTabSwitch(name)} barBg={bar.bg}>
+                                            <Tab
+                                                name="balance"
+                                                icon="wallet"
+                                                iconColor={bar.color}
+                                                activeBorderColor={primary.color}
+                                                activeColor={bar.alt}
+                                                textColor={barTextColor}
+                                                text={t('home:balance').toUpperCase()}
+                                            />
+                                            <Tab
+                                                name="send"
+                                                icon="send"
+                                                iconColor={bar.color}
+                                                activeBorderColor={primary.color}
+                                                activeColor={bar.alt}
+                                                textColor={barTextColor}
+                                                text={t('home:send').toUpperCase()}
+                                            />
+                                            <Tab
+                                                name="receive"
+                                                icon="receive"
+                                                iconColor={bar.color}
+                                                activeBorderColor={primary.color}
+                                                activeColor={bar.alt}
+                                                textColor={barTextColor}
+                                                text={t('home:receive').toUpperCase()}
+                                            />
+                                            <Tab
+                                                name="history"
+                                                icon="history"
+                                                iconColor={bar.color}
+                                                activeBorderColor={primary.color}
+                                                activeColor={bar.alt}
+                                                textColor={barTextColor}
+                                                text={t('home:history').toUpperCase()}
+                                            />
+                                            <Tab
+                                                name="settings"
+                                                icon="settings"
+                                                iconColor={bar.color}
+                                                activeBorderColor={primary.color}
+                                                activeColor={bar.alt}
+                                                textColor={barTextColor}
+                                                text={t('home:settings').toUpperCase()}
+                                            />
+                                        </Tabs>
+                                    </View>
+                                    <TopBar />
                                 </View>
-                                <View style={styles.bottomContainer}>
-                                    <Tabs onPress={(name) => this.onTabSwitch(name)} barBg={bar.bg}>
-                                        <Tab
-                                            name="balance"
-                                            icon="wallet"
-                                            iconColor={bar.color}
-                                            activeBorderColor={primary.color}
-                                            activeColor={bar.alt}
-                                            textColor={barTextColor}
-                                            text={t('home:balance').toUpperCase()}
-                                        />
-                                        <Tab
-                                            name="send"
-                                            icon="send"
-                                            iconColor={bar.color}
-                                            activeBorderColor={primary.color}
-                                            activeColor={bar.alt}
-                                            textColor={barTextColor}
-                                            text={t('home:send').toUpperCase()}
-                                        />
-                                        <Tab
-                                            name="receive"
-                                            icon="receive"
-                                            iconColor={bar.color}
-                                            activeBorderColor={primary.color}
-                                            activeColor={bar.alt}
-                                            textColor={barTextColor}
-                                            text={t('home:receive').toUpperCase()}
-                                        />
-                                        <Tab
-                                            name="history"
-                                            icon="history"
-                                            iconColor={bar.color}
-                                            activeBorderColor={primary.color}
-                                            activeColor={bar.alt}
-                                            textColor={barTextColor}
-                                            text={t('home:history').toUpperCase()}
-                                        />
-                                        <Tab
-                                            name="settings"
-                                            icon="settings"
-                                            iconColor={bar.color}
-                                            activeBorderColor={primary.color}
-                                            activeColor={bar.alt}
-                                            textColor={barTextColor}
-                                            text={t('home:settings').toUpperCase()}
-                                        />
-                                    </Tabs>
-                                </View>
-                                <TopBar />
+                            )}
+                        {inactive && (
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                <EnterPassword
+                                    onLoginPress={this.onLoginPress}
+                                    backgroundColor={body.bg}
+                                    negativeColor={negative.color}
+                                    positiveColor={positive.color}
+                                    bodyColor={body.color}
+                                    textColor={textColor}
+                                    isFingerprintEnabled={isFingerprintEnabled}
+                                />
                             </View>
                         )}
-                    {inactive && (
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <EnterPassword
-                                onLoginPress={this.onLoginPress}
-                                backgroundColor={body.bg}
-                                negativeColor={negative.color}
-                                positiveColor={positive.color}
-                                bodyColor={body.color}
-                                textColor={textColor}
-                                isFingerprintEnabled={isFingerprintEnabled}
-                            />
-                        </View>
-                    )}
-                    {minimised && <View />}
-                    <PollComponent />
-                    <StatefulDropdownAlert backgroundColor={bar.bg} />
-                </KeyboardAvoidingView>
+                        {minimised && <View />}
+                        <PollComponent />
+                        <StatefulDropdownAlert backgroundColor={bar.bg} />
+                    </KeyboardAvoidingView>
+                </KeyboardAwareScrollView>
             </UserInactivity>
         );
     }
