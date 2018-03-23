@@ -21,6 +21,7 @@ import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
+import TextWithLetterSpacing from '../components/textWithLetterSpacing';
 
 const styles = StyleSheet.create({
     container: {
@@ -28,28 +29,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     balanceContainer: {
-        flex: 1.8,
+        flex: 2.2,
         alignItems: 'center',
         justifyContent: 'center',
     },
     transactionsContainer: {
-        flex: 2,
-        justifyContent: 'space-between',
+        flex: 1.7,
+        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 10,
     },
     chartContainer: {
         flex: 5,
-        paddingVertical: height / 70,
     },
     iotaBalance: {
-        fontFamily: 'Lato-Heavy',
+        fontFamily: 'Lato-Light',
         fontSize: width / 8,
         backgroundColor: 'transparent',
+        paddingBottom: isAndroid ? null : height / 110,
     },
     fiatBalance: {
-        paddingTop: isAndroid ? null : height / 200,
-        paddingBottom: isAndroid ? height / 200 : null,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
@@ -59,17 +57,12 @@ const styles = StyleSheet.create({
         fontSize: width / 37.6,
         backgroundColor: 'transparent',
     },
-    line: {
-        borderBottomWidth: height / 1000,
-        width: width / 1.2,
-    },
     separator: {
         height: height / 120,
     },
     listView: {
         flex: 1,
         justifyContent: 'center',
-        paddingVertical: height / 50,
     },
 });
 
@@ -148,7 +141,8 @@ export class Balance extends Component {
 
     prepTransactions() {
         const { transfers, addresses, t, primary, secondary, body } = this.props;
-        const recentTransactions = transfers.slice(0, 4);
+        const orderedTransfers = orderBy(transfers, (tx) => tx[0].timestamp, ['desc']);
+        const recentTransactions = orderedTransfers.slice(0, 4);
 
         const computeConfirmationStatus = (persistence, incoming) => {
             if (incoming) {
@@ -186,7 +180,7 @@ export class Balance extends Component {
             };
         });
 
-        return orderBy(formattedTransfers, 'time', ['desc']);
+        return formattedTransfers;
     }
 
     renderTransactions() {
@@ -217,25 +211,25 @@ export class Balance extends Component {
         const currencySymbol = getCurrencySymbol(currency);
         const fiatBalance = balance * marketData.usdPrice / 1000000 * conversionRate;
         const textColor = { color: body.color };
-        const lineBorder = { borderBottomColor: body.color };
         const recentTransactions = this.renderTransactions();
+        const text = (this.state.balanceIsShort ? shortenedBalance : formatValue(balance)) + ' ' + formatUnit(balance);
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
-                    <View style={styles.balanceContainer}>
-                        <Text style={[styles.iotaBalance, textColor]} onPress={() => this.onBalanceClick()}>
-                            {this.state.balanceIsShort ? shortenedBalance : formatValue(balance)} {formatUnit(balance)}
-                        </Text>
-                        <Text style={[styles.fiatBalance, textColor]}>
-                            {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
-                        </Text>
-                    </View>
+                    <TouchableWithoutFeedback onPress={() => this.onBalanceClick()}>
+                        <View style={styles.balanceContainer}>
+                            <TextWithLetterSpacing spacing={width / 200} textStyle={[styles.iotaBalance, textColor]}>
+                                {text}
+                            </TextWithLetterSpacing>
+                            <Text style={[styles.fiatBalance, textColor]}>
+                                {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
+                            </Text>
+                        </View>
+                    </TouchableWithoutFeedback>
                     <View style={styles.transactionsContainer}>
-                        <View style={[styles.line, lineBorder]} />
                         <TouchableOpacity onPress={() => this.props.onTabSwitch('history')}>
                             {recentTransactions}
                         </TouchableOpacity>
-                        <View style={[styles.line, lineBorder]} />
                     </View>
                     <View style={styles.chartContainer}>
                         <Chart />
