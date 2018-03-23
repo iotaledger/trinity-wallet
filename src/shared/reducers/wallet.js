@@ -1,6 +1,6 @@
 import union from 'lodash/union';
 import { ActionTypes } from '../actions/wallet';
-import { ActionTypes as AccountActionTypes } from '../actions/accounts';
+import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
 
 const initialState = {
     ready: false,
@@ -90,12 +90,12 @@ export default (state = initialState, action) => {
                 ...state,
                 copiedToClipboard: action.payload,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST:
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST:
             return {
                 ...state,
                 ready: false,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS:
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS:
             return {
                 ...state,
                 ready: true,
@@ -103,64 +103,31 @@ export default (state = initialState, action) => {
                 addingAdditionalAccount: false,
                 additionalAccountName: '',
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
                 ...state,
-                hasErrorFetchingAccountInfoOnLogin: false,
                 ready: false,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
             return {
                 ...state,
                 ready: true,
             };
-        case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR:
-            return {
-                ...state,
-                hasErrorFetchingAccountInfoOnLogin: true,
-            };
-        case AccountActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
+        case AccountsActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,
                 ready: false,
-                isFetchingLatestAccountInfoOnLogin: true,
             };
-        case AccountActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case AccountsActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 ready: true,
-                isFetchingLatestAccountInfoOnLogin: false,
             };
-        case AccountActionTypes.ACCOUNT_INFO_FETCH_ERROR:
-            return {
-                ...state,
-                isFetchingLatestAccountInfoOnLogin: false,
-            };
-        case AccountActionTypes.REMOVE_ACCOUNT:
+        case AccountsActionTypes.REMOVE_ACCOUNT:
             return {
                 ...state,
                 seedIndex: 0,
                 currentSetting: 'accountManagement',
-            };
-        case AccountActionTypes.MANUAL_SYNC_REQUEST:
-            return {
-                ...state,
-                isSyncing: true,
-            };
-        case AccountActionTypes.MANUAL_SYNC_SUCCESS:
-            return {
-                ...state,
-                isSyncing: false,
-            };
-        case ActionTypes.MANUAL_SYNC_ERROR:
-            return {
-                ...state,
-                isSyncing: false,
-            };
-        case ActionTypes.SET_USER_ACTIVITY:
-            return {
-                ...state,
-                ...action.payload,
             };
         case ActionTypes.SNAPSHOT_TRANSITION_REQUEST:
             return {

@@ -2,6 +2,7 @@ import { ActionTypes as SettingsActionTypes } from '../actions/settings';
 import { ActionTypes as UiActionTypes } from '../actions/ui';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { ActionTypes as WalletActionTypes } from '../actions/wallet';
+import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
 
 const initialState = {
     isGeneratingReceiveAddress: false,
@@ -134,6 +135,42 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isSendingTransfer: false
+            };
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
+            return {
+                ...state,
+                hasErrorFetchingAccountInfoOnLogin: false
+            };
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR:
+            return {
+                ...state,
+                hasErrorFetchingAccountInfoOnLogin: true
+            };
+        case AccountsActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
+            return {
+                ...state,
+                isFetchingLatestAccountInfoOnLogin: true
+            };
+        case AccountsActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case AccountsActionTypes.ACCOUNT_INFO_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingLatestAccountInfoOnLogin: false,
+            };
+        case AccountsActionTypes.MANUAL_SYNC_REQUEST:
+            return {
+                ...state,
+                isSyncing: true,
+            };
+        case AccountsActionTypes.MANUAL_SYNC_SUCCESS:
+            return {
+                ...state,
+                isSyncing: false,
+            };
+        case AccountsActionTypes.MANUAL_SYNC_ERROR:
+            return {
+                ...state,
+                isSyncing: false,
             };
         default:
             return state;
