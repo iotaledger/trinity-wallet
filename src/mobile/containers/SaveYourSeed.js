@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import OnboardingButtons from '../components/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
+import { setCopiedToClipboard } from 'iota-wallet-shared/module/actions/wallet';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
