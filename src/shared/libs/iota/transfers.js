@@ -32,7 +32,6 @@ import {
 import {
     getBalancesAsync,
     getTransactionsObjectsAsync,
-    getBundleAsync,
     getLatestInclusionAsync,
     findTransactionObjectsAsync,
     findTransactionsAsync,
@@ -432,30 +431,6 @@ export const isAboveMaxDepth = (timestamp) => {
     return timestamp < Date.now() && Date.now() - parseInt(timestamp) < 11 * 60 * 1000;
 };
 
-export const getHashesWithPersistence = (hashes) => {
-    return getLatestInclusionAsync(hashes).then((states) => ({ states, hashes }));
-};
-
-export const getBundlesWithPersistence = (inclusionStates, hashes) => {
-    return reduce(
-        hashes,
-        (promise, hash, idx) => {
-            return promise
-                .then((result) => {
-                    return getBundleAsync(hash).then((bundle) => {
-                        if (!isNull(bundle) && iota.utils.isBundle(bundle)) {
-                            result.push(map(bundle, (tx) => assign({}, tx, { persistence: inclusionStates[idx] })));
-                        }
-
-                        return result;
-                    });
-                })
-                .catch(console.error);
-        },
-        Promise.resolve([]),
-    );
-};
-
 /**
  *   Accepts tail transaction object and all transaction objects from bundle hashes
  *   Then construct a bundle by following trunk transaction from tail transaction object.
@@ -524,7 +499,7 @@ export const hasNewTransfers = (existingHashes, newHashes) =>
     isArray(existingHashes) && isArray(newHashes) && size(newHashes) > size(existingHashes);
 
 /**
- *   Calls getHashesWithPersistence to get latest inclusion states with hashes.
+ *   Get latest inclusion states with hashes.
  *   Filter confirmed hashes.
  *
  *   @method getConfirmedTransactionHashes
@@ -533,8 +508,8 @@ export const hasNewTransfers = (existingHashes, newHashes) =>
  *   @returns {Promise<array>}
  **/
 export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
-    return getHashesWithPersistence(pendingTxTailHashes).then(({ states, hashes }) =>
-        filter(hashes, (hash, idx) => states[idx]),
+    return getLatestInclusionAsync(pendingTxTailHashes).then((states) =>
+        filter(pendingTxTailHashes, (hash, idx) => states[idx]),
     );
 };
 
