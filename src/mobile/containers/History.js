@@ -326,6 +326,7 @@ class History extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
+                    <View style={{ flex: 0.2 }} />
                     <View style={styles.listView}>{transactions}</View>
                 </View>
             </TouchableWithoutFeedback>

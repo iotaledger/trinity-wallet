@@ -59,12 +59,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     topContainer: {
-        flex: 3.6,
+        flex: 3.8,
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
     bottomContainer: {
-        flex: 2.1,
+        flex: 1.9,
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
@@ -84,6 +84,8 @@ const styles = StyleSheet.create({
         flex: 0.7,
         justifyContent: 'flex-start',
         alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'white',
     },
     maxButtonText: {
         fontFamily: 'Lato-Regular',
@@ -303,6 +305,7 @@ export class Send extends Component {
 
     onAmountType(amount) {
         const { t, body } = this.props;
+        amount = amount.replace(/,/g, '.');
         this.props.setSendAmountField(amount);
         if (amount === (this.props.balance / this.getUnitMultiplier()).toString()) {
             this.onMaxPress();
@@ -674,7 +677,7 @@ export class Send extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View style={{ flex: 0.25 }} />
+                    <View style={{ flex: 0.5 }} />
                     <View style={styles.topContainer}>
                         <CustomTextInput
                             onRef={(c) => {
@@ -760,7 +763,7 @@ export class Send extends Component {
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <View style={{ flex: 0.3 }} />
+                        <View style={{ flex: 0.25 }} />
                         {!isSendingTransfer &&
                             !isGettingSensitiveInfoToMakeTransaction && (
                                 <View style={{ flex: 1 }}>
@@ -807,7 +810,7 @@ export class Send extends Component {
                                 <View style={styles.info}>
                                     <Icon
                                         name="info"
-                                        size={width / 12}
+                                        size={width / 22}
                                         color={body.color}
                                         style={{ marginRight: width / 60 }}
                                     />
