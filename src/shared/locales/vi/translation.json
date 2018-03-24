@@ -166,7 +166,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Từ khoá chưa được tạo ra",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Xin vui lòng nhấn nút Tạo Từ Khoá Mới.",
         "pressForNewSeed": "ẤN VÀO CHO TỪ KHOÁ MỚI",
         "individualLetters": "Nhấn từng chữ cái để xáo trộn chúng."
     },
@@ -298,7 +298,7 @@
         "keepSafe": "Vui lòng giữ từ khoá ở một nơi an toàn."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Cám ơn bạn đã tải ví điện tử IOTA về.",
         "weWillSpend": "Chúng ta sẽ dành vài phút để cài đặt ví điện tử cho bạn.",
         "reminder": "Bạn sẽ bị lôi cuốn bỏ qua một số bước, nhưng chúng tôi khuyên bạn nên làm theo từng bước để hoàn thành quy trình này."
     },
@@ -360,15 +360,15 @@
         "one": "Một"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Từ khóa và lịch sử của các giao dịch sẽ bị xóa.",
         "thisAction": "Thao tác này không thể đảo ngược.",
         "enterPassword": "Nhập mật khẩu để xóa tài khoản này."
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "pressToSync": "Nhấn vào nút dưới đây để đồng bộ hóa tài khoản.",
+        "thisMayTake": "Thao tác này sẽ hơi lâu.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "ĐỒNG BỘ TÀI KHOẢN",
         "syncingYourAccount": "Đang đồng bộ tài khoản."
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "CẢNH BÁO",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Máy của bạn đã root/jailbreak.</0><1>Điều này sẽ mang đến một nguy cơ đáng kể cho sự an toàn của ví điện tử của bạn.</1><2>Bạn có muốn tiếp tục bất chấp nguy cơ này?</2>"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
