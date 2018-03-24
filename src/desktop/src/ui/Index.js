@@ -6,9 +6,11 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
+
 import { clearTempData } from 'actions/tempAccount';
 import { getUpdateData } from 'actions/settings';
 import { clearSeeds } from 'actions/seeds';
+import { disposeOffAlert } from 'actions/alerts';
 
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
@@ -20,12 +22,15 @@ import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
+import Activation from 'ui/views/onboarding/Activation';
 
 import css from './index.css';
 
 /** Main wallet wrapper component */
 class App extends React.Component {
     static propTypes = {
+        /** Alpha versiona ctivation code */
+        activationCode: PropTypes.string,
         /** Browser location */
         location: PropTypes.object,
         /** Browser histoty object */
@@ -42,6 +47,10 @@ class App extends React.Component {
          * @ignore
          */
         tempAccount: PropTypes.object.isRequired,
+        /** Clear  alert state data
+         * @ignore
+         */
+        disposeOffAlert: PropTypes.func.isRequired,
         /** Clear temporary account state data
          * @ignore
          */
@@ -62,10 +71,21 @@ class App extends React.Component {
         t: PropTypes.func.isRequired,
     };
 
+    constructor(props) {
+        super(props);
+        this.state = { uuid: null };
+    }
+
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
         Electron.changeLanguage(this.props.t);
+
+        Electron.getUuid().then((uuid) => {
+            this.setState({
+                uuid: uuid,
+            });
+        });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -78,6 +98,10 @@ class App extends React.Component {
         if (!this.props.tempAccount.ready && nextProps.tempAccount.ready) {
             Electron.updateMenu('authorised', true);
             this.props.history.push('/wallet/');
+        }
+
+        if (this.props.location.pathname !== nextProps.location.pathname) {
+            this.props.disposeOffAlert();
         }
     }
 
@@ -109,9 +133,23 @@ class App extends React.Component {
     };
 
     render() {
-        const { account, location } = this.props;
+        const { account, location, activationCode } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
+
+        if (!this.state.uuid) {
+            return null;
+        }
+
+        if (!activationCode) {
+            return (
+                <div className={css.trintiy}>
+                    <Theme />
+                    <Alerts />
+                    <Activation uuid={this.state.uuid} />
+                </div>
+            );
+        }
 
         return (
             <div className={css.trintiy}>
@@ -144,12 +182,14 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
     account: state.account,
     tempAccount: state.tempAccount,
+    activationCode: state.app.activationCode,
 });
 
 const mapDispatchToProps = {
     clearTempData,
     clearSeeds,
     getUpdateData,
+    disposeOffAlert,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(App)));

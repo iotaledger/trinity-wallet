@@ -1,14 +1,14 @@
 import 'babel-polyfill';
 import { generateNewAddress } from 'actions/tempAccount';
-import { getAccountInfo, getFullAccountInfo, fetchFullAccountInfoForFirstUse } from 'actions/account';
+import { getAccountInfo, getFullAccountInfoFirstSeed, getFullAccountInfoAdditionalSeed } from 'actions/account';
 
 let state = {};
 
 const actions = {
     generateNewAddress,
     getAccountInfo,
-    getFullAccountInfo,
-    fetchFullAccountInfoForFirstUse,
+    getFullAccountInfoFirstSeed,
+    getFullAccountInfoAdditionalSeed,
 };
 
 const dispatch = (action) => {

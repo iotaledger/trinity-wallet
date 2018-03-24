@@ -2,8 +2,6 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
 import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
-import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,10 +9,7 @@ import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { clearLog } from 'iota-wallet-shared-modules/actions/alerts';
-import {
-    getBalanceForSelectedAccountViaSeedIndex,
-    getSelectedAccountViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/account';
 import {
     View,
     Text,
@@ -41,8 +36,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 25,
-        paddingBottom: height / 50,
+        paddingTop: height / 27.5,
+        paddingBottom: height / 55,
         opacity: 0.98,
         flex: 1,
     },
@@ -69,7 +64,7 @@ const styles = StyleSheet.create({
     chevronWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 120,
+        paddingTop: height / 90,
         paddingRight: width / 18,
     },
     notificationContainer: {
@@ -100,8 +95,8 @@ const styles = StyleSheet.create({
         maxHeight: height,
     },
     empty: {
-        height: width / 17,
-        width: width / 17,
+        height: width / 18,
+        width: width / 18,
     },
 });
 
@@ -212,21 +207,8 @@ class TopBar extends Component {
         const subtitleColor = tinycolor(bar.color).isDark() ? '#262626' : '#d3d3d3';
 
         const getBalance = (currentIdx) => {
-            const seedStrings = Object.keys(accountInfo);
-            const data = accountInfo[seedStrings[currentIdx]].addresses;
-            const balances = Object.values(data).map((x) => x.balance);
-
-            if (isEmpty(data)) {
-                return TopBar.humanizeBalance(0); // no addresses
-            }
-
-            const calc = (res, value) => {
-                const result = res + value;
-                return result;
-            };
-
-            const bal = reduce(balances, calc, 0);
-            return TopBar.humanizeBalance(bal);
+            const account = accountInfo[accountNames[currentIdx]];
+            return TopBar.humanizeBalance(account.balance);
         };
 
         const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
@@ -359,7 +341,9 @@ class TopBar extends Component {
                                 style={styles.notificationContainer}
                                 onPress={() => this.setState({ isModalVisible: true })}
                             >
-                                <Icon name="notification" size={width / 17} color={bar.color} />
+                                <View style={{ width: width / 18, height: width / 18 }}>
+                                    <Icon name="notification" size={width / 18} color={bar.color} />
+                                </View>
                             </TouchableOpacity>
                         ) : (
                             <View style={styles.notificationContainer}>
@@ -369,16 +353,18 @@ class TopBar extends Component {
                         <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                         <View style={styles.chevronWrapper}>
                             {hasMultipleSeeds ? (
-                                <Icon
-                                    name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
-                                    size={width / 17}
-                                    color={bar.color}
-                                    style={
-                                        shouldDisable
-                                            ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                            : styles.chevron
-                                    }
-                                />
+                                <View style={{ width: width / 18, height: width / 18 }}>
+                                    <Icon
+                                        name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
+                                        size={width / 22}
+                                        color={bar.color}
+                                        style={
+                                            shouldDisable
+                                                ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
+                                                : styles.chevron
+                                        }
+                                    />
+                                </View>
                             ) : (
                                 <View style={styles.empty} />
                             )}
@@ -416,7 +402,7 @@ class TopBar extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    balance: getBalanceForSelectedAccount(state),
     accountNames: state.account.accountNames,
     accountInfo: state.account.accountInfo,
     currentSetting: state.tempAccount.currentSetting,
@@ -426,7 +412,7 @@ const mapStateToProps = (state) => ({
     isSyncing: state.tempAccount.isSyncing,
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
-    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    selectedAccount: selectAccountInfo(state),
     body: state.settings.theme.body,
     bar: state.settings.theme.bar,
     notificationLog: state.alerts.notificationLog,

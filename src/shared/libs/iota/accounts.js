@@ -6,41 +6,24 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import keys from 'lodash/keys';
 import filter from 'lodash/filter';
-import isObject from 'lodash/isObject';
 import merge from 'lodash/merge';
 import find from 'lodash/find';
-import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
-import omitBy from 'lodash/omitBy';
 import unionBy from 'lodash/unionBy';
-import { iota } from './index';
-import {
-    findTransactionsAsync,
-    getNodeInfoAsync,
-    findTransactionObjectsAsync,
-    getLatestInclusionAsync,
-} from './extendedApi';
+import { getNodeInfoAsync, findTransactionObjectsAsync, getLatestInclusionAsync } from './extendedApi';
 import {
     getBundleTailsForPendingValidTransfers,
-    categorizeTransactionsByPersistence,
-    constructBundle,
     syncTransfers,
     getPendingTxTailsHashes,
     getConfirmedTransactionHashes,
     markTransfersConfirmed,
     getBundleHashesForTailTransactionHashes,
-    filterConfirmedTransfers,
     getHashesDiff,
     getLatestTransactionHashes,
+    bundlesFromTransactionObjects,
 } from './transfers';
-import {
-    getAllAddresses,
-    formatAddressesAndBalance,
-    getUnspentAddressesSync,
-    markAddressesAsSpentSync,
-    getSpentAddressesWithPendingTransfersSync,
-} from './addresses';
+import { getAllAddresses, formatAddressesAndBalance, markAddressesAsSpentSync } from './addresses';
 
 /**
  *   Takes in account data fetched from ledger.
@@ -91,58 +74,6 @@ const organizeAccountState = (accountName, data) => {
 };
 
 /**
- *   Takes in account object, get unspent addresses from all addresses, fetch transaction hashes associated with those
- *   and assigns them to the account object under a prop name txHashesForUnspentAddresses.
- *
- *   IMPORTANT: This function should always be utilized after the account is synced.
- *
- *   @method mapTransactionHashesForUnspentAddressesToState
- *   @param {object} account
- *
- *   @returns {Promise} - Resolves account object.
- **/
-export const mapTransactionHashesForUnspentAddressesToState = (account) => {
-    const unspentAddresses = getUnspentAddressesSync(account.addresses);
-
-    if (isEmpty(unspentAddresses)) {
-        return Promise.resolve(assign({}, account, { txHashesForUnspentAddresses: [] }));
-    }
-
-    return findTransactionsAsync({ addresses: unspentAddresses }).then((hashes) => {
-        return assign({}, account, { txHashesForUnspentAddresses: hashes });
-    });
-};
-
-/**
- *   Takes in account object, get spent addresses with pending transfers,
- *   fetch transaction hashes associated with those
- *   and assigns them to the account object under a prop name pendingTxHashesForSpentAddresses.
- *
- *   IMPORTANT: This function should always be utilized after the account is sycnced.
- *
- *   @method mapPendingTransactionHashesForSpentAddressesToState
- *   @param {object} account
- *
- *   @returns {Promise} - Resolves account object.
- **/
-export const mapPendingTransactionHashesForSpentAddressesToState = (account) => {
-    const pendingTransfers = filterConfirmedTransfers(account.transfers);
-
-    const spentAddressesWithPendingTransfers = getSpentAddressesWithPendingTransfersSync(
-        pendingTransfers,
-        account.addresses,
-    );
-
-    if (isEmpty(spentAddressesWithPendingTransfers)) {
-        return Promise.resolve(assign({}, account, { pendingTxHashesForSpentAddresses: [] }));
-    }
-
-    return findTransactionsAsync({ addresses: spentAddressesWithPendingTransfers }).then((hashes) => {
-        return assign({}, account, { pendingTxHashesForSpentAddresses: hashes });
-    });
-};
-
-/**
  *   Gets information associated with a seed from the ledger.
  *   - Communicates with node by checking its information. (getNodeInfoAsync)
  *   - Gets all used addresses (addresses with transactions) from the ledger. (getAllAddresses)
@@ -159,23 +90,18 @@ export const mapPendingTransactionHashesForSpentAddressesToState = (account) => 
  *   @returns {Promise}
  **/
 export const getAccountData = (seed, accountName, genFn) => {
-    const tailTransactions = [];
-    const allBundleHashes = [];
+    const bundleHashes = new Set();
 
-    let allTransactionObjects = [];
+    const cached = {
+        tailTransactions: [],
+        transactionObjects: [],
+    };
 
     const data = {
         addresses: [],
         transfers: [],
     };
 
-    const pushIfNew = (pushTo, value) => {
-        const isTrue = isObject(value) ? find(pushTo, { hash: value.hash }) : includes(pushTo, value);
-
-        if (!isTrue) {
-            pushTo.push(value);
-        }
-    };
     return getNodeInfoAsync()
         .then(() => getAllAddresses(seed, genFn))
         .then((addresses) => {
@@ -183,43 +109,25 @@ export const getAccountData = (seed, accountName, genFn) => {
 
             return findTransactionObjectsAsync({ addresses: data.addresses });
         })
-        .then((transactionsFromAddresses) => {
-            each(transactionsFromAddresses, (tx) => pushIfNew(allBundleHashes, tx.bundle)); // Grab all bundle hashes
+        .then((transactionObjects) => {
+            each(transactionObjects, (tx) => bundleHashes.add(tx.bundle)); // Grab all bundle hashes
 
-            return findTransactionObjectsAsync({ bundles: allBundleHashes });
+            return findTransactionObjectsAsync({ bundles: Array.from(bundleHashes) });
         })
-        .then((transactionsFromBundleHashes) => {
-            allTransactionObjects = transactionsFromBundleHashes;
+        .then((transactionObjects) => {
+            cached.transactionObjects = transactionObjects;
 
-            each(allTransactionObjects, (tx) => {
+            each(transactionObjects, (tx) => {
                 if (tx.currentIndex === 0) {
-                    pushIfNew(tailTransactions, tx); // Keep track of all tail transactions to check confirmations
+                    // Keep track of all tail transactions to check confirmations
+                    cached.tailTransactions = unionBy(cached.tailTransactions, [tx], 'hash');
                 }
             });
 
-            return getLatestInclusionAsync(map(tailTransactions, (tx) => tx.hash));
+            return getLatestInclusionAsync(map(cached.tailTransactions, (tx) => tx.hash));
         })
         .then((states) => {
-            const { unconfirmed, confirmed } = categorizeTransactionsByPersistence(tailTransactions, states);
-
-            // Make sure we keep a single bundle for confirmed transfers i.e. get rid of reattachments.
-            const updatedUnconfirmedTailTransactions = omitBy(unconfirmed, (tx, bundle) => bundle in confirmed);
-
-            // Map persistence to tail transactions so that they can later be mapped to other transaction objects in the bundle
-            const finalTailTransactions = [
-                ...map(confirmed, (tx) => ({ ...tx, persistence: true })),
-                ...map(updatedUnconfirmedTailTransactions, (tx) => ({ ...tx, persistence: false })),
-            ];
-
-            each(finalTailTransactions, (tx) => {
-                const bundle = constructBundle(tx, allTransactionObjects);
-
-                // Only add bundle to store if its a valid bundle
-                if (iota.utils.isBundle(bundle)) {
-                    // Map persistence from tail transaction object to all transfer objects in the bundle
-                    data.transfers.push(map(bundle, (transfer) => ({ ...transfer, persistence: tx.persistence })));
-                }
-            });
+            data.transfers = bundlesFromTransactionObjects(cached.tailTransactions, cached.transactionObjects, states);
 
             return organizeAccountState(accountName, data);
         });

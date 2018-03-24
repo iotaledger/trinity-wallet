@@ -42,10 +42,7 @@ import KeepAwake from 'react-native-keep-awake';
 import QRScanner from '../components/qrScanner';
 import Toggle from '../components/toggle';
 import ProgressBar from '../components/progressBar';
-import {
-    getBalanceForSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from '../../shared/selectors/account';
+import { getBalanceForSelectedAccount, getSelectedAccountName } from '../../shared/selectors/account';
 import ProgressSteps from '../util/progressSteps';
 import { getSeedFromKeychain } from '../util/keychain';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
@@ -53,7 +50,7 @@ import UnitInfoModal from '../components/unitInfoModal';
 import CustomTextInput from '../components/customTextInput';
 import CtaButton from '../components/ctaButton';
 import { Icon } from '../theme/icons.js';
-import { width, height } from '../util/dimensions';
+import { width } from '../util/dimensions';
 import { isAndroid, isIOS } from '../util/device';
 
 const styles = StyleSheet.create({
@@ -61,19 +58,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: height / 14,
-    },
     topContainer: {
-        flex: 3.6,
+        flex: 3.8,
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
     bottomContainer: {
-        flex: 2.1,
+        flex: 1.9,
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
@@ -93,6 +84,8 @@ const styles = StyleSheet.create({
         flex: 0.7,
         justifyContent: 'flex-start',
         alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'white',
     },
     maxButtonText: {
         fontFamily: 'Lato-Regular',
@@ -312,6 +305,7 @@ export class Send extends Component {
 
     onAmountType(amount) {
         const { t, body } = this.props;
+        amount = amount.replace(/,/g, '.');
         this.props.setSendAmountField(amount);
         if (amount === (this.props.balance / this.getUnitMultiplier()).toString()) {
             this.onMaxPress();
@@ -683,7 +677,7 @@ export class Send extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View style={{ flex: 0.25 }} />
+                    <View style={{ flex: 0.5 }} />
                     <View style={styles.topContainer}>
                         <CustomTextInput
                             onRef={(c) => {
@@ -769,7 +763,7 @@ export class Send extends Component {
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <View style={{ flex: 0.3 }} />
+                        <View style={{ flex: 0.25 }} />
                         {!isSendingTransfer &&
                             !isGettingSensitiveInfoToMakeTransaction && (
                                 <View style={{ flex: 1 }}>
@@ -816,7 +810,7 @@ export class Send extends Component {
                                 <View style={styles.info}>
                                     <Icon
                                         name="info"
-                                        size={width / 12}
+                                        size={width / 22}
                                         color={body.color}
                                         style={{ marginRight: width / 60 }}
                                     />
@@ -850,8 +844,8 @@ export class Send extends Component {
 
 const mapStateToProps = (state) => ({
     currency: state.settings.currency,
-    balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    balance: getBalanceForSelectedAccount(state),
+    selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.tempAccount.isSyncing,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     seedIndex: state.tempAccount.seedIndex,

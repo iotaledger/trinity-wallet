@@ -10,6 +10,7 @@ import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { Icon } from '../theme/icons.js';
+import InfoBox from '../components/infoBox';
 
 const styles = StyleSheet.create({
     container: {
@@ -54,22 +55,19 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'left',
-        paddingTop: height / 25,
-        marginBottom: height / 30,
-        paddingHorizontal: width / 7,
+        textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'left',
+        textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
-        textAlign: 'center',
+        textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     doneButton: {
@@ -131,10 +129,9 @@ const styles = StyleSheet.create({
         height: height / 20,
         borderRadius: GENERAL.borderRadiusSmall,
         borderColor: 'white',
-        borderWidth: height / 1000,
+        borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: height / 30,
     },
     checksumText: {
         fontSize: width / 29.6,
@@ -147,7 +144,7 @@ class WriteSeedDown extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
-        positive: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         seed: PropTypes.string.isRequired,
     };
@@ -159,7 +156,7 @@ class WriteSeedDown extends Component {
     }
 
     render() {
-        const { t, positive, body, seed } = this.props;
+        const { t, primary, body, seed } = this.props;
         const checksum = getChecksum(seed);
         const textColor = { color: body.color };
         const borderColor = { borderColor: body.color };
@@ -171,25 +168,34 @@ class WriteSeedDown extends Component {
                     <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midContainer}>
-                    <Text style={[styles.infoText, textColor]}>
-                        <Text style={styles.infoTextNormal}>
-                            {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
-                        </Text>
-                        <Trans i18nKey="writeDownYourSeed">
-                            <Text style={styles.infoTextNormal}> Write down your seed and checksum and </Text>
-                            <Text style={styles.infoTextBold}>triple check</Text>
-                            <Text style={styles.infoTextNormal}> that they are correct.</Text>
-                        </Trans>
-                    </Text>
-                    <Seedbox backgroundColor={body.bg} borderColor={borderColor} textColor={textColor} seed={seed} />
+                    <View style={{ flex: 1 }} />
+                    <InfoBox
+                        body={body}
+                        text={
+                            <Text style={[styles.infoText, textColor]}>
+                                <Text style={styles.infoTextNormal}>
+                                    {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
+                                </Text>
+                                <Trans i18nKey="writeDownYourSeed">
+                                    <Text style={styles.infoTextNormal}> Write down your seed and checksum and </Text>
+                                    <Text style={styles.infoTextBold}>triple check</Text>
+                                    <Text style={styles.infoTextNormal}> that they are correct.</Text>
+                                </Trans>
+                            </Text>
+                        }
+                    />
+                    <View style={{ flex: 0.5 }} />
+                    <Seedbox bodyColor={body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
+                    <View style={{ flex: 0.5 }} />
                     <View style={[styles.checksum, borderColor]}>
                         <Text style={[styles.checksumText, textColor]}>{checksum}</Text>
                     </View>
+                    <View style={{ flex: 1 }} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: positive.color }]}>
-                            <Text style={[styles.doneText, { color: positive.color }]}>{t('global:done')}</Text>
+                        <View style={[styles.doneButton, { borderColor: primary.color }]}>
+                            <Text style={[styles.doneText, { color: primary.color }]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -201,7 +207,7 @@ class WriteSeedDown extends Component {
 const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
     body: state.settings.theme.body,
-    positive: state.settings.theme.positive,
+    primary: state.settings.theme.primary,
 });
 
 export default translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown));

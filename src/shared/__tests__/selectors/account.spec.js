@@ -6,6 +6,14 @@ import {
     getTxHashesForUnspentAddressesFromState,
     getPendingTxHashesForSpentAddressesFromState,
     selectedAccountStateFactory,
+    selectFirstAddressFromAccountFactory,
+    getAccountNamesFromState,
+    getSeedIndexFromState,
+    selectAccountInfo,
+    getDeduplicatedTransfersForSelectedAccount,
+    getAddressesForSelectedAccount,
+    getBalanceForSelectedAccount,
+    getSelectedAccountName,
 } from '../../selectors/account';
 
 describe('selectors: account', () => {
@@ -115,6 +123,299 @@ describe('selectors: account', () => {
                 'unconfirmedBundleTails',
                 'accountName',
             ]);
+        });
+    });
+
+    describe('#selectFirstAddressFromAccountFactory', () => {
+        let state;
+
+        beforeEach(() => {
+            state = {
+                account: {
+                    unconfirmedBundleTails: {},
+                    pendingTxHashesForSpentAddresses: {},
+                    txHashesForUnspentAddresses: {},
+                    accountInfo: {
+                        foo: {
+                            transfers: [],
+                            addresses: {
+                                ['U'.repeat(81)]: { index: 0, balance: 0, spent: false },
+                                ['A'.repeat(81)]: { index: 1, balance: 10, spent: false },
+                            },
+                            balance: 10,
+                        },
+                        baz: {
+                            transfers: [],
+                            addresses: {
+                                addresses: {
+                                    ['B'.repeat(81)]: { index: 0, balance: 20, spent: false },
+                                },
+                            },
+                            balance: 20,
+                        },
+                    },
+                },
+                alerts: {},
+            };
+        });
+
+        it('should return the address from selected account with index zero', () => {
+            expect(selectFirstAddressFromAccountFactory('foo')(state)).to.equal('U'.repeat(81));
+        });
+    });
+
+    describe('#getAccountNamesFromState', () => {
+        describe('when "accountNames" prop is not defined as a nested prop under "account" prop in argument', () => {
+            it('should return an empty array', () => {
+                expect(getAccountNamesFromState({ account: { notAccountNames: [] } })).to.eql([]);
+            });
+        });
+
+        describe('when "accountNames" prop is defined as a nested prop under "account" prop in argument', () => {
+            it('should return value for "accountNames" prop', () => {
+                expect(getAccountNamesFromState({ account: { accountNames: [{}, {}] } })).to.eql([{}, {}]);
+            });
+        });
+    });
+
+    describe('#getSeedIndexFromState', () => {
+        describe('when "seedIndex" prop is not defined as a nested prop under "tempAccount" prop in argument', () => {
+            it('should return 0', () => {
+                expect(getSeedIndexFromState({ tempAccount: { notSeedIndex: 4 } })).to.equal(0);
+            });
+        });
+
+        describe('when "seedIndex" prop is defined as a nested prop under "tempAccount" prop in argument', () => {
+            it('should return value for "seedIndex" prop', () => {
+                expect(getSeedIndexFromState({ tempAccount: { seedIndex: 3 } })).to.equal(3);
+            });
+        });
+    });
+
+    describe('#selectAccountInfo', () => {
+        let state;
+
+        beforeEach(() => {
+            state = {
+                account: {
+                    accountInfo: {
+                        foo: {
+                            transfers: [],
+                            addresses: {},
+                            balance: 0,
+                        },
+                        baz: {
+                            transfers: [],
+                            addresses: {
+                                addresses: {
+                                    ['B'.repeat(81)]: { index: 0, balance: 20, spent: false },
+                                },
+                            },
+                            balance: 20,
+                        },
+                    },
+                    accountNames: ['foo', 'baz'],
+                },
+                tempAccount: {
+                    seedIndex: 0,
+                },
+            };
+        });
+
+        it('should slice accountInfo with currently selected account name', () => {
+            expect(selectAccountInfo(state)).to.eql({
+                transfers: [],
+                addresses: {},
+                balance: 0,
+            });
+        });
+    });
+
+    describe('#getDeduplicatedTransfersForSelectedAccount', () => {
+        describe('when "transfers" prop is not defined as a nested prop under selected account info object', () => {
+            it('should return an empty array', () => {
+                expect(
+                    getDeduplicatedTransfersForSelectedAccount({
+                        account: {
+                            accountInfo: {
+                                foo: {
+                                    addresses: {},
+                                    balance: 0,
+                                },
+                                baz: {
+                                    addresses: {},
+                                    balance: 0,
+                                },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        tempAccount: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.eql([]);
+            });
+        });
+
+        describe('when "transfers" prop is defined as a nested prop under selected account info object', () => {
+            // Test deduplication for transfers separately
+            it('should return transfers', () => {
+                expect(
+                    getDeduplicatedTransfersForSelectedAccount({
+                        account: {
+                            accountInfo: {
+                                foo: {
+                                    transfers: [
+                                        [{ bundle: 'bundleOne', currentIndex: 0 }],
+                                        [{ bundle: 'bundleTwo', currentIndex: 0 }],
+                                    ],
+                                    addresses: {},
+                                    balance: 0,
+                                },
+                                baz: {
+                                    transfers: [],
+                                    addresses: {},
+                                    balance: 0,
+                                },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        tempAccount: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.eql([[{ bundle: 'bundleOne', currentIndex: 0 }], [{ bundle: 'bundleTwo', currentIndex: 0 }]]);
+            });
+        });
+    });
+
+    describe('#getAddressesForSelectedAccount', () => {
+        describe('when "addresses" prop is not defined as a nested prop under selected account info object', () => {
+            it('should return an empty array', () => {
+                expect(
+                    getAddressesForSelectedAccount({
+                        account: {
+                            accountInfo: {
+                                foo: {
+                                    transfers: [],
+                                    balance: 0,
+                                },
+                                baz: {
+                                    transfers: [],
+                                    balance: 0,
+                                },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        tempAccount: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.eql([]);
+            });
+        });
+
+        describe('when "addresses" prop is defined as a nested prop under selected account info object', () => {
+            it('should return list of addresses', () => {
+                expect(
+                    getAddressesForSelectedAccount({
+                        account: {
+                            accountInfo: {
+                                foo: {
+                                    transfers: [],
+                                    addresses: {
+                                        ['U'.repeat(81)]: {},
+                                        ['A'.repeat(81)]: {},
+                                    },
+                                    balance: 0,
+                                },
+                                baz: {
+                                    transfers: [],
+                                    addresses: {},
+                                    balance: 0,
+                                },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        tempAccount: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.eql(['U'.repeat(81), 'A'.repeat(81)]);
+            });
+        });
+    });
+
+    describe('#getBalanceForSelectedAccount', () => {
+        describe('when "balance" prop is not defined as a nested prop under selected account info object', () => {
+            it('should return 0', () => {
+                expect(
+                    getBalanceForSelectedAccount({
+                        account: {
+                            accountInfo: {
+                                foo: {
+                                    transfers: [],
+                                    addresses: {},
+                                },
+                                baz: {
+                                    transfers: [],
+                                    addresses: {},
+                                },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        tempAccount: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.equal(0);
+            });
+        });
+
+        describe('when "balance" prop is defined as a nested prop under selected account info object', () => {
+            it('should return balance', () => {
+                expect(
+                    getBalanceForSelectedAccount({
+                        account: {
+                            accountInfo: {
+                                foo: {
+                                    transfers: [],
+                                    addresses: {},
+                                    balance: 10000,
+                                },
+                                baz: {
+                                    transfers: [],
+                                    addresses: {},
+                                    balance: 10,
+                                },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        tempAccount: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.equal(10000);
+            });
+        });
+    });
+
+    describe('#getSelectedAccountName', () => {
+        let state;
+
+        beforeEach(() => {
+            state = {
+                account: {
+                    accountNames: ['foo', 'baz'],
+                },
+                tempAccount: {
+                    seedIndex: 0,
+                },
+            };
+        });
+
+        it('should return account name for seed index', () => {
+            expect(getSelectedAccountName(state)).to.equal('foo');
         });
     });
 });

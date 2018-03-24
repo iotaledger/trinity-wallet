@@ -1,53 +1,8 @@
 import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
 import findKey from 'lodash/findKey';
+import keys from 'lodash/keys';
 import { createSelector } from 'reselect';
 import { deduplicateTransferBundles } from '../libs/iota/transfers';
-
-export const currentAccountSelector = (accountName, accountInfo) => get(accountInfo, accountName);
-
-export const currentAccountSelectorBySeedIndex = (seedIndex, accountInfo) => {
-    if (isEmpty(accountInfo) || seedIndex < 0) {
-        return {};
-    }
-
-    const allAccountNames = Object.keys(accountInfo);
-    // Might be good to validate first
-    const currentlySelectedAccountName = allAccountNames[seedIndex];
-    return accountInfo[currentlySelectedAccountName];
-};
-
-const currentAccountNameSelectorBySeedIndex = (seedIndex, accountNames) => {
-    return accountNames[seedIndex];
-};
-
-export const getSelectedAccount = createSelector(currentAccountSelector, (account) => account);
-
-export const getSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) => account);
-
-export const getSelectedAccountNameViaSeedIndex = createSelector(currentAccountNameSelectorBySeedIndex, (name) => name);
-
-export const getBalanceForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) =>
-    get(account, 'balance'),
-);
-
-export const getAddressesForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) =>
-    Object.keys(get(account, 'addresses')),
-);
-
-export const getAddressesWithBalanceForSelectedAccountViaSeedIndex = createSelector(
-    currentAccountSelectorBySeedIndex,
-    (account) => get(account, 'addresses'),
-);
-
-export const getTransfersForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, (account) =>
-    get(account, 'transfers'),
-);
-
-export const getDeduplicatedTransfersForSelectedAccountViaSeedIndex = createSelector(
-    currentAccountSelectorBySeedIndex,
-    (account) => deduplicateTransferBundles(get(account, 'transfers')),
-);
 
 /**
  *   Selects settings prop from state.
@@ -76,6 +31,15 @@ export const getRemotePoWFromState = createSelector(getSettingsFromState, (state
  *   @returns {object}
  **/
 export const getAccountFromState = (state) => state.account || {};
+
+/**
+ *   Selects tempAccount prop from state.
+ *
+ *   @method getTempAccountFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getTempAccountFromState = (state) => state.tempAccount || {};
 
 /**
  *   Selects accountInfo prop from account reducer state object.
@@ -163,3 +127,88 @@ export const selectFirstAddressFromAccountFactory = (accountName) => {
         findKey(state[accountName].addresses, (addressMeta) => addressMeta.index === 0),
     );
 };
+
+/**
+ *   Selects accountNames prop from account reducer state object.
+ *   Uses getAccountFromState selector for slicing account state from the whole state object.
+ *
+ *   @method getAccountNamesFromState
+ *   @param {object} state
+ *   @returns {array}
+ **/
+export const getAccountNamesFromState = createSelector(getAccountFromState, (state) => state.accountNames || []);
+
+/**
+ *   Selects seedIndex prop from tempAccount reducer state object.
+ *   Uses getTempAccountFromState selector for slicing tempAccount state from the whole state object.
+ *
+ *   @method getSeedIndexFromState
+ *   @param {object} state
+ *   @returns {number}
+ **/
+export const getSeedIndexFromState = createSelector(getTempAccountFromState, (state) => state.seedIndex || 0);
+
+/**
+ *   Selects account information (balance, addresses, transfers) from account reducer state object.
+ *
+ *   @method selectAccountInfo
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const selectAccountInfo = createSelector(
+    getAccountInfoFromState,
+    getAccountNamesFromState,
+    getSeedIndexFromState,
+    (accountInfo, accountNames, seedIndex) => {
+        const accountName = get(accountNames, seedIndex);
+
+        return accountInfo[accountName] || {};
+    },
+);
+
+/**
+ *   Selects transfers array from accountInfo object.
+ *   Deduplicates tranfsers to keep only a single bundle i.e. remove reattachments
+ *
+ *   @method getDeduplicatedTransfersForSelectedAccount
+ *   @param {object} state
+ *   @returns {array}
+ **/
+export const getDeduplicatedTransfersForSelectedAccount = createSelector(
+    selectAccountInfo,
+    (account) => deduplicateTransferBundles(account.transfers) || [],
+);
+
+/**
+ *   Selects addresses from accountInfo object.
+ *
+ *   @method getAddressesForSelectedAccount
+ *   @param {object} state
+ *   @returns {array}
+ **/
+export const getAddressesForSelectedAccount = createSelector(
+    selectAccountInfo,
+    (account) => keys(account.addresses) || [],
+);
+
+/**
+ *   Selects balance from accountInfo object.
+ *
+ *   @method getBalanceForSelectedAccount
+ *   @param {object} state
+ *   @returns {number}
+ **/
+export const getBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) => account.balance || 0);
+
+/**
+ *   Selects account name for currently selected account.
+ *
+ *   @method getSelectedAccountName
+ *   @param {object} state
+ *   @returns {string}
+ **/
+export const getSelectedAccountName = createSelector(
+    getAccountNamesFromState,
+    getSeedIndexFromState,
+    (accountNames, seedIndex) => get(accountNames, seedIndex),
+);

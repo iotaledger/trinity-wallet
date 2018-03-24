@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSelectedAccountNameViaSeedIndex } from 'selectors/account';
+import { getSelectedAccountName } from 'selectors/account';
 
 import { changeAccountName } from 'actions/account';
 import { generateAlert } from 'actions/alerts';
@@ -22,7 +22,7 @@ class AccountName extends PureComponent {
         accountName: PropTypes.string.isRequired,
         /** Change current account name
          * @param {Object} AccountInfo - updated account info
-         * @param {Object} SeedNames - updated seed names
+         * @param {Object} accountNames - updated seed names
          */
         changeAccountName: PropTypes.func.isRequired,
         /** Create a notification message
@@ -55,9 +55,10 @@ class AccountName extends PureComponent {
             return;
         }
 
-        const newAccountInfo = Object.assign({}, accountInfo, { [newAccountName]: accountInfo[accountName] });
-        delete newAccountInfo[accountName];
-        changeAccountName(newAccountInfo, Object.keys(newAccountInfo));
+        changeAccountName({
+            oldAccountName: accountName,
+            newAccountName,
+        });
     }
 
     render() {
@@ -88,7 +89,7 @@ class AccountName extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountInfo: state.account.accountInfo,
-    accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    accountName: getSelectedAccountName(state),
 });
 
 const mapDispatchToProps = {
