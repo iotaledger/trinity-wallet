@@ -21,6 +21,10 @@
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <target xml:lang="pt-BR" state="needs-translation">Trinity requires access to Face ID in order to enable biometric authentication.</target>
       </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright">
+        <source>2018 IOTA Foundation. All rights reserved.</source>
+        <target xml:lang="pt-BR" state="needs-translation">2018 IOTA Foundation. All rights reserved.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
