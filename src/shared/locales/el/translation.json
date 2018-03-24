@@ -166,7 +166,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Δεν έχει παραχθεί σπόρος",
-        "seedNotGeneratedExplanation": "Παρακαλώ κάντε κλικ στο κουμπί Δημιουργία νέου σπόρου.",
+        "seedNotGeneratedExplanation": "Παρακαλούμε να δημιουργήσετε ένα νέο κωδικό ",
         "pressForNewSeed": "ΠΑΤΗΣΤΕ ΓΙΑ ΝΕΟ ΣΠΟΡΟ",
         "individualLetters": "Πατήστε μεμονομένα γράμματα για να τα τυχαιοποιήσετε."
     },
@@ -298,7 +298,7 @@
         "keepSafe": "Παρακαλώ κρατήστε το σπόρο σας ασφαλή."
     },
     "welcome": {
-        "thankYou": "Σας ευχαριστούμε που κατεβάσατε το πορτοφόλι ΙΟΤΑ.",
+        "thankYou": "Thank you for downloading Trinity.",
         "weWillSpend": "Θα περάσουμε τα επόμενα λίγα λεπτά εγκαθιστώντας το πορτοφόλι σας.",
         "reminder": "Μπορεί να μπείτε στον πειρασμό να παραλείψετε ορισμένα βήματα, αλλά σας προτρέπουμε να ακολουθήσετε την πλήρη διαδικασία."
     },
@@ -360,15 +360,15 @@
         "one": "Ένα"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Ο σπόρος σας και το ιστορικό συναλλαγών θα διαγραφούν.",
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να διαγράψετε αυτό το λογαριασμό."
     },
     "manualSync": {
         "outOfSync": "Το ιστορικό συναλλαγών σας μοιάζει μπορεί να είναι εκτός συγχρονισμού;",
-        "pressToSync": "Πιέστε το κάτωθι κουμπί για να συφχρονίσετε το λογαριασμό σας.",
-        "thisMayTake": "Αυτό μπορεί να διαρκέσει λίγο.",
+        "pressToSync": "Πατήστε το κουμπί παρακάτω για να συγχρονίσετε το λογαριασμό σας.",
+        "thisMayTake": "Αυτό μπορεί να διαρκέσει για λίγο. Ενδέχεται να παρατηρήσετε τη συσκευή σας να επιβράδυνη.",
         "doNotClose": "Παρακαλώ σημειώστε, ελαχιστοποιώντας την εφαρμογή  θα ακυρώσετε το συγχρονισμό.",
         "syncAccount": "ΣΥΓΧΡΟΝΙΣΜΟΣ ΛΟΓΑΡΙΑΣΜΟΥ",
         "syncingYourAccount": "Ο λογαριασμός σας συντονίζεται."
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "ΠΡΟΕΙΔΟΠΟΙΗΣΗ",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "Είναι απαραίτητο να ολοκληρώσετε μια μικρή απόδειξη εργασίας να στείλετε χωρίς επιβάρυνση  συναλλαγές στο  IOTA ",
