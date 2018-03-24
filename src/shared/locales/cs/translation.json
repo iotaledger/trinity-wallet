@@ -298,7 +298,7 @@
         "keepSafe": "Uchovávejte Váš seed v bezpečí."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
+        "thankYou": "Thank you for downloading Trinity.",
         "weWillSpend": "Nyní si vyhraďte pár minut pro správné nastavení Vaší peněženky.",
         "reminder": "Možná budete chtít vynechat některé kroky, ale doporučujeme Vám, abyste je dokončily všechny."
     },
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "VAROVÁNÍ",
-        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "Pro odeslání bezplatné transakce v IOTA je potřebné vykonat malý důkaz práce - proof of work.",
