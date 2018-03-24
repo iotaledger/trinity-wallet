@@ -166,7 +166,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "尚未生成种子",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "请点击生成种子按钮",
         "pressForNewSeed": "点击生成新种子",
         "individualLetters": "通过点击各个字母来随机生成。"
     },
@@ -298,7 +298,7 @@
         "keepSafe": "请您保管好你的种子."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "感谢您下载IOTA钱包。",
         "weWillSpend": "接下来我们将花几分钟来设置您的钱包。",
         "reminder": "您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。"
     },
@@ -360,15 +360,15 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
         "thisAction": "本操作无法撤销。",
         "enterPassword": "请输入您的密码以确认将帐号删除。"
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "pressToSync": "点击下面按钮以同步您的帐户。",
+        "thisMayTake": "可能需要一段时间",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "同步帐户",
         "syncingYourAccount": "正在同步您的账号"
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
