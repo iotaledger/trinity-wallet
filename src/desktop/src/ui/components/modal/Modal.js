@@ -15,6 +15,8 @@ export default class Modal extends React.Component {
         variant: PropTypes.oneOf(['confirm']),
         /** Modal visibility state */
         isOpen: PropTypes.bool,
+        /** Should the dialog be without a cancel option */
+        isForced: PropTypes.bool,
         /** Modal inline style state */
         inline: PropTypes.bool,
         /** Modal visibility state */
@@ -30,7 +32,7 @@ export default class Modal extends React.Component {
     }
 
     onKeyDown = (e) => {
-        if (e.key === 'Escape' && this.props.isOpen) {
+        if (e.key === 'Escape' && this.props.isOpen && !this.props.isForced) {
             this.props.onClose();
         }
     };
