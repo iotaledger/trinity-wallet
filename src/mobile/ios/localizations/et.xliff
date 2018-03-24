@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="iotaWallet/Info.plist" source-language="en" datatype="plaintext" target-language="et">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C34b"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName">
+        <source>Trinity</source>
+        <target xml:lang="et" state="needs-translation">Trinity</target>
+      </trans-unit>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target xml:lang="et" state="needs-translation">$(PRODUCT_NAME)</target>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription">
+        <source>Trinity requires access to the camera in order to enable QR scanning.</source>
+        <target xml:lang="et" state="needs-translation">Trinity requires access to the camera in order to enable QR scanning.</target>
+      </trans-unit>
+      <trans-unit id="NSFaceIDUsageDescription">
+        <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
+        <target xml:lang="et" state="needs-translation">Trinity requires access to Face ID in order to enable biometric authentication.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
