@@ -15,6 +15,7 @@ import { disposeOffAlert } from 'actions/alerts';
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
 import Updates from 'ui/global/Updates';
+import Idle from 'ui/global/Idle';
 
 import Loading from 'ui/components/Loading';
 
@@ -158,6 +159,7 @@ class App extends React.Component {
                 <Theme />
                 <Alerts />
                 <Updates />
+                <Idle timeout={3 * 60 * 1000} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>

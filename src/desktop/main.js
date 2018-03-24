@@ -44,6 +44,8 @@ function createWindow() {
 
     windows.main.loadURL(url);
 
+    windows.main.on('close', hideOnClose);
+
     if (devMode) {
         windows.main.webContents.openDevTools();
 
@@ -56,11 +58,13 @@ function createWindow() {
         installExtension(REACT_DEVELOPER_TOOLS);
         installExtension(REDUX_DEVTOOLS);
     }
-
-    windows.main.on('closed', () => {
-        windows.main = null;
-    });
 }
+
+const hideOnClose = function(e) {
+    e.preventDefault();
+    windows.main.hide();
+    windows.main.webContents.send('lockScreen');
+};
 
 const getWindow = function(windowName) {
     return windows[windowName];
@@ -76,9 +80,17 @@ app.on('window-all-closed', () => {
     }
 });
 
+app.on('before-quit', () => {
+    if (windows.main && !windows.main.isDestroyed()) {
+        windows.main.removeListener('close', hideOnClose);
+    }
+});
+
 app.on('activate', () => {
     if (windows.main === null) {
         createWindow();
+    } else if (!windows.main.isVisible()) {
+        windows.main.show();
     }
 });
 
