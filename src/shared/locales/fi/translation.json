@@ -171,7 +171,7 @@
         "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi."
     },
     "onboardingComplete": {
-        "walletReady": "Lompakkosi on nyt käyttövalmis. Voit tehdä siihen jatkossa muutoksia Asetukset-valikon kautta."
+        "walletReady": "Lompakkosi on nyt käyttövalmis. Jos haluat tehdä muutoksia lompakkoosi, voit tehdä sen Asetukset-valikosta."
     },
     "paperWallet": {
         "clickToPrint": "Kilkkaa alla olevaa nappia tulostaaksesi paperikopion seed-luvustasi.",
@@ -192,7 +192,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed-luku tyhjennetty",
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
-        "mustSaveYourSeed": "<0><0>Sinun on tulee tallentaa seed-lukusi käyttäen </0><1>vähintään yhtä</1><2> alla olevista vaihtoehdoista.</2></0>"
+        "mustSaveYourSeed": "<0><0>Sinun on tulee tallentaa seed-lukusi käyttäen </0><1>vähintään yhtä</1><2>alla olevista vaihtoehdoista.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Virheellinen seed-luku",
@@ -298,7 +298,7 @@
         "keepSafe": "Muista aina pitää seed-lukusi turvassa."
     },
     "welcome": {
-        "thankYou": "Kiitos, että latasit Trinity-lompakon.",
+        "thankYou": "Kiitos, että olet ladannut IOTA-lompakon.",
         "weWillSpend": "Seuraavaksi määritämme lompakkosi asetukset.",
         "reminder": "Kaikki tulevat vaiheet ovat tärkeitä lompakon toimivuuden kannalta, suorita ne huolellisesti loppuun asti."
     },
@@ -311,7 +311,7 @@
         "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
-        "send": "LÄHETETTY",
+        "send": "LÄHETÄ",
         "receive": "VASTAANOTETAAN"
     },
     "accountManagement": {
@@ -366,7 +366,7 @@
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {
-        "outOfSync": "Näyttäkö siltä että tilihistoriasi ei ole ajan tasalla?",
+        "outOfSync": "Onko mahdollista että tilisi historia ei ole synkronoitu?",
         "pressToSync": "Alla olevalla painikkeella voit synkronoida tilisi.",
         "thisMayTake": "Tämä saattaa kestää hetken ja tänä aikana laitteen käyttö voi olla hidasta.",
         "doNotClose": "Huomioi että ohjelman sulkeminen taustalle lopettaa synkronoinnin.",
