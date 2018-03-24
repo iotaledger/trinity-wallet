@@ -166,7 +166,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seedet er ikke blevet genereret",
-        "seedNotGeneratedExplanation": "Vær venlig at generere et nyt seed.",
+        "seedNotGeneratedExplanation": "Klik venligst på knappen \"Generer nyt seed\".",
         "pressForNewSeed": "TRYK FOR AT FÅ ET NYT SEED",
         "individualLetters": "Tryk på individuelle bogstaver for at vælge nye tilfældigt."
     },
@@ -298,7 +298,7 @@
         "keepSafe": "Du bedes opbevare dit seed sikkert."
     },
     "welcome": {
-        "thankYou": "Tak fordi du downloadede Trinity.",
+        "thankYou": "Tak fordi du downloadede IOTA-tegnebogen.",
         "weWillSpend": "Vi vil bruge de næste par minutter på at opsætte din tegnebog.",
         "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
     },
@@ -360,7 +360,7 @@
         "one": "En"
     },
     "deleteAccount": {
-        "areYouSure": "Er du sikker på du vil slette {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
         "yourSeedWillBeRemoved": "Dit seed og transaktionshistorik vil blive fjernet.",
         "thisAction": "Denne handling kan ikke fortrydes.",
         "enterPassword": "Indtast din adgangskode for at slette denne konto."
@@ -368,7 +368,7 @@
     "manualSync": {
         "outOfSync": "Ser din transaktionshistorik ud til at være ude af synkronisering?",
         "pressToSync": "Klik på knappen herunder for at synkronisere din konto.",
-        "thisMayTake": "Dette kan tage noget tid. Din enhed vil muligvis reagere langsommere.",
+        "thisMayTake": "Dette kan tage noget tid.",
         "doNotClose": "Bæmærk venligst, at minimering af app'en vil annullere din synkronisering.",
         "syncAccount": "SYNKRONISER KONTO",
         "syncingYourAccount": "Synkroniser din konto."
@@ -433,7 +433,7 @@
     },
     "rootDetection": {
         "warning": "ADVARSEL",
-        "rootDetected": "<0>Din enhed ser ud til at være rooted/jailbreaked.</0><1>Dette kan udgøre en væsentlig risiko for sikkerheden i din tegnebog</1><2>Ønsker du at fortsætte trods denne risiko?</2>"
+        "rootDetected": "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "Det er nødvendigt at udføre en mindre netværksvalidering (PoW) for at sende gratis overførsler med IOTA.",
