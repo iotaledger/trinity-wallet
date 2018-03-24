@@ -57,9 +57,9 @@
         "somethingWentWrongTryAgain": "Por favor, tente novamente.",
         "node": "Servidor",
         "cannotPerformAction": "Não é possível executar a ação",
-        "cannotPerformActionExplanation": "Vá para Opções para redefinir a carteira.",
-        "attachToTangleUnavailable": "Anexamento ao Tangle indisponível",
-        "attachToTangleUnavailableExplanation": "Anexo ao Tangle não está disponível no servidor selecionado.",
+        "cannotPerformActionExplanation": "Vá para configurações avançadas para redefinir a carteira.",
+        "attachToTangleUnavailable": "Anexar ao Tangle indisponível",
+        "attachToTangleUnavailableExplanation": "Anexar ao Tangle não está disponível no nó selecionado.",
         "wallet": "Carteira",
         "sent": "Enviado",
         "received": "Recebido",
@@ -132,7 +132,7 @@
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém caracteres inválidos",
-        "invalidCharactersExplanation": "Seeds só podem conter letras maiúsculas A-Z e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
+        "invalidCharactersExplanation": "Seeds só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
         "seedTooShort": "A Seed é muito curta",
         "seedTooShortExplanation": "Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
         "seedExplanation": "Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Você não pode usar Seeds com mais de {{maxLength}} caracteres.",
@@ -218,7 +218,7 @@
         "invalidMessageExplanation": "Sua mensagem contém caracteres inválidos.",
         "send": "ENVIAR",
         "invalidAmount": "Valor inserido está incorreto",
-        "invalidAmountExplanation": "Por favor, insira um valor válido para a transação. Pode ser útil ver a explicação sobre as unidades da IOTA, na parte inferior desta página.",
+        "invalidAmountExplanation": "Por favor, insira uma quantidade válida para a transação. Pode ser útil ver a explicação sobre as unidades da IOTA, na parte inferior desta página.",
         "maximumSelected": "Valor MÁXIMO selecionado",
         "iotaUnits": "Explicação sobre Unidades IOTA",
         "sendMax": "ENVIAR O MÁXIMO"
@@ -317,7 +317,7 @@
     "accountManagement": {
         "viewSeed": "Ver Seed",
         "viewAddresses": "Ver Endereços",
-        "editAccountName": "Editar Nome da Conta",
+        "editAccountName": "Editar o nome da Conta",
         "deleteAccount": "Excluir Conta",
         "addNewAccount": "Adicionar nova Conta"
     },
@@ -327,7 +327,7 @@
     },
     "addNewAccount": {
         "useExistingSeed": "Usar Seed existente",
-        "createNewSeed": "Criar Nova Seed"
+        "createNewSeed": "Criar uma nova seed"
     },
     "advancedSettings": {
         "selectNode": "Selecionar servidor",
