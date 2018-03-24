@@ -83,5 +83,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<true/>
 </dict>
 </plist>
