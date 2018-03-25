@@ -81,12 +81,9 @@ class Pow extends Component {
     }
 
     onChange() {
+        const { t } = this.props;
         this.props.updatePowSettings();
-        this.props.generateAlert(
-            'success',
-            'Proof of work settings',
-            'Your proof of work configuration has been updated.',
-        );
+        this.props.generateAlert('success', t('powUpdated'), t('powUpdatedExplanation'));
     }
 
     render() {
