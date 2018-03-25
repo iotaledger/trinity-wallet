@@ -82,14 +82,8 @@ class Pow extends Component {
 
     onChange() {
         const { t } = this.props;
-        // Temporarily disable enabling PoW for android
-        // Version 3.4.0
-        if (isAndroid) {
-            this.props.generateAlert('error', 'Not available', 'On device proof of work is not available for android.');
-        } else {
-            this.props.updatePowSettings();
-            this.props.generateAlert('success', t('powUpdated'), t('powUpdatedExplanation'));
-        }
+        this.props.updatePowSettings();
+        this.props.generateAlert('success', t('powUpdated'), t('powUpdatedExplanation'));
     }
 
     render() {
