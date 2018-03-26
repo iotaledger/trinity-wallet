@@ -26,6 +26,7 @@
       android:icon="@mipmap/ic_launcher"
       android:theme="@style/AppTheme"
       tools:replace="android:allowBackup"
+        tools:node="replace"
         >
     <meta-data
         android:name="io.fabric.ApiKey"
