@@ -89,7 +89,9 @@
         "pleaseWaitTransferExplanation":
             "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
+        "checkForUpdates": "Check for Updates",
+        "account": "Account"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -152,7 +154,9 @@
         "send": "SEND",
         "receive": "RECEIVE",
         "history": "HISTORY",
-        "settings": "SETTINGS"
+        "settings": "SETTINGS",
+        "undo": "Undo",
+        "redo": "Redo"
     },
     "languageSetup": {
         "language": "Language"
