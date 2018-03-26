@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { VALID_SEED_REGEX, getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
@@ -19,10 +19,12 @@ const styles = StyleSheet.create({
     },
 });
 
-class Checksum extends React.Component {
+class Checksum extends Component {
     static propTypes = {
+        /** Seed value */
         seed: PropTypes.string.isRequired,
-        input: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
     };
 
     getChecksumValue() {
@@ -36,16 +38,16 @@ class Checksum extends React.Component {
         } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
             checksumValue = getChecksum(seed);
         }
-        
+
         return checksumValue;
     }
 
     render() {
-        const { input } = this.props;
+        const { theme } = this.props;
 
         return (
-            <View style={[styles.checksum, { backgroundColor: input.bg }]}>
-                <Text style={[styles.checksumText, { color: input.color }]}>{this.getChecksumValue()}</Text>
+            <View style={[styles.checksum, { backgroundColor: theme.input.bg }]}>
+                <Text style={[styles.checksumText, { color: theme.input.color }]}>{this.getChecksumValue()}</Text>
             </View>
         );
     }

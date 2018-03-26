@@ -59,8 +59,22 @@ const styles = StyleSheet.create({
 
 class EnterPasswordOnLogin extends Component {
     static propTypes = {
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Password text */
         password: PropTypes.string.isRequired,
+        /** Verify two factor authentication token */
+        /** @param {string} password - user's password */
+        onLoginPress: PropTypes.func.isRequired,
+        /** Navigate to node selection screen */
+        navigateToNodeSelection: PropTypes.func.isRequired,
+        /** Set updated text field password */
+        /** @param {string} password - Updated password in the text field */
+        setLoginPasswordField: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
+        t: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -119,13 +133,5 @@ class EnterPasswordOnLogin extends Component {
         );
     }
 }
-
-EnterPasswordOnLogin.propTypes = {
-    onLoginPress: PropTypes.func.isRequired,
-    t: PropTypes.func.isRequired,
-    theme: PropTypes.object.isRequired,
-    navigateToNodeSelection: PropTypes.func.isRequired,
-    setLoginPasswordField: PropTypes.func.isRequired,
-};
 
 export default translate(['login', 'global'])(EnterPasswordOnLogin);
