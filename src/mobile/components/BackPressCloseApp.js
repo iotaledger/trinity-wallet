@@ -33,6 +33,7 @@ export default () => (C) => {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
                 RNExitApp.exitApp();
             }
+            
             this.lastBackPressed = Date.now();
             ToastAndroid.show(t('global:pressBackAgain'), ToastAndroid.SHORT);
             return true;
