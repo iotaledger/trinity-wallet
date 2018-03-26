@@ -177,7 +177,7 @@
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
         "seedNotGeneratedExplanation": "Bitte erstelle einen neuen Seed.",
         "pressForNewSeed": "NEUEN SEED ERSTELLEN",
-        "individualLetters": "Drücke beliebige Buchstaben, um sie zufällig neu zu setzen."
+        "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren."
     },
     "onboardingComplete": {
         "walletReady":
@@ -320,7 +320,7 @@
         "keepSafe": "Bewahre deinen Seed sicher auf."
     },
     "welcome": {
-        "thankYou": "Vielen Dank für das Herunterladen des IOTA Wallets.",
+        "thankYou": "Danke, dass du Trinity heruntergeladen hast.",
         "weWillSpend": "Dein Wallet wird in den nächsten Minuten eingerichtet.",
         "reminder":
             "Du könntest in Versuchung geraten, einige Schritte zu überspringen. Wir raten dir aber dringend dazu, den Prozess vollständig zu durchlaufen."
