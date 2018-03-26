@@ -5085,6 +5085,10 @@ react-native-slider@^0.11.0:
   dependencies:
     prop-types "^15.5.6"
 
+react-native-splash-screen@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.0.6.tgz#c0bbf2c8ae40a313c4c7044f55e569414ff68332"
+
 react-native-svg@^6.0.1-rc.1:
   version "6.0.1-rc.1"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-6.0.1-rc.1.tgz#527a80aaed01e5d1ca80bc82d0e04ac59b001032"

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
+import SplashScreen from 'react-native-splash-screen';
 import { StyleSheet, View } from 'react-native';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
@@ -81,6 +82,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        SplashScreen.hide();
         this.checkForUpdates();
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
