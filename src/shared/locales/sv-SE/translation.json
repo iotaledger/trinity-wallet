@@ -74,7 +74,7 @@
         "promote": "BEFORDRA",
         "rebroadcast": "ÅTERSÄND",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
-        "autoreattaching": "Auto-fastsättning till Tangle",
+        "autoreattaching": "Återfäster automatiskt till Tangle",
         "autoreattachingExplanation": "Fastsätter transaktion med hashen {{hash}}",
         "autopromoting": "Auto-befordrar överföring",
         "autopromotingExplanation": "Befordrar transaktion med hashen {{hash}}",
@@ -315,7 +315,7 @@
         "keepSafe": "Vänligen förvara din seed säkert."
     },
     "welcome": {
-        "thankYou": "Tack för att du använder IOTA plånboken.",
+        "thankYou": "Tack för att du laddade ner Trinity.",
         "weWillSpend": "Vi kommer att tillbringa de närmsta minuterna åt att konfigurera din plånbok.",
         "reminder":
             "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig till att följa hela processen."
@@ -461,7 +461,7 @@
             "Det är nödvändigt att genomföra ett bevis på arbete för att skicka avgiftsfria transaktioner i IOTA.",
         "localOrRemote": "Bevis på arbete kan antingen slutföras lokalt på din enhet eller avlastas till en nod.",
         "local": "Lokal",
-        "remote": "Fjärr"
+        "remote": "Avlägsen"
     },
     "progressSteps": {
         "validatingReceiveAddress": "Bekräftar mottagaradress",
