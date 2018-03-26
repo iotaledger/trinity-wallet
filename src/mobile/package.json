@@ -44,7 +44,7 @@
     "react": "16.0.0",
     "react-i18next": "^7.3.0",
     "react-native": "0.51.0",
-    "react-native-camera": "^0.13.0",
+    "react-native-camera": "^1.0.3",
     "react-native-clipboard": "^0.0.5",
     "react-native-color": "^0.0.10",
     "react-native-crypto": "^2.0.2",
