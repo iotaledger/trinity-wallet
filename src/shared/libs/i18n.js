@@ -1,5 +1,5 @@
 // The order here matters for right now :/
-export const I18N_LOCALES = [
+const I18N_LOCALES = [
     'en',
     'ar',
     'cs',
@@ -34,7 +34,7 @@ export const I18N_LOCALES = [
     'zh_TW',
 ];
 
-export const I18N_LOCALE_LABELS = [
+const I18N_LOCALE_LABELS = [
     'English (International)',
     'عربى - Arabic',
     'Čeština - Czech',
@@ -69,7 +69,14 @@ export const I18N_LOCALE_LABELS = [
     '中文 (繁體) - Chinese (Traditional)',
 ];
 
-export const getLocaleFromLabel = (label) => {
+const getLocaleFromLabel = (label) => {
     const languageIndex = I18N_LOCALE_LABELS.findIndex((l) => l === label);
     return I18N_LOCALES[languageIndex];
+};
+
+// Export constants for pre-ES6 compatibility
+module.exports = {
+  I18N_LOCALES,
+  I18N_LOCALE_LABELS,
+  getLocaleFromLabel,
 };
