@@ -34,10 +34,10 @@ class SeedIntro extends React.PureComponent {
                         <fieldset>
                             <h2>{t('walletSetup:doYouAlreadyHaveASeed')}</h2>
                             <Button to="/onboarding/seed-verify" className="large" variant="secondary">
-                                Use existing seed
+                                {t('yes')}
                             </Button>
                             <Button to="/onboarding/seed-warning" className="large" variant="primary">
-                                Generate new one
+                                {t('no')}
                             </Button>
                         </fieldset>
                     </form>
