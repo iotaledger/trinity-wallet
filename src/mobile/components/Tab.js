@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { Icon } from '../theme/icons.js';
@@ -23,8 +23,7 @@ const styles = StyleSheet.create({
     },
 });
 
-/* eslint-disable react/prefer-stateless-function */
-class Tab extends Component {
+class Tab extends PureComponent {
     static propTypes = {
         icon: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
@@ -35,6 +34,7 @@ class Tab extends Component {
         isActive: PropTypes.bool.isRequired,
         onPress: PropTypes.func,
     };
+
     static defaultProps = {
         onPress: () => {},
         isActive: false,

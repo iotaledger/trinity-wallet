@@ -193,7 +193,7 @@ class EnterSeed extends React.Component {
                             testID="enterSeed-seedbox"
                         />
                         <View style={{ flex: 0.4 }} />
-                        <Checksum seed={seed} input={input} />
+                        <Checksum seed={seed} theme={theme} />
                         <View style={{ flex: 0.4 }} />
                         <InfoBox
                             body={body}

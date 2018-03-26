@@ -46,9 +46,13 @@ const styles = StyleSheet.create({
 
 class Enter2FA extends Component {
     static propTypes = {
-        onComplete2FA: PropTypes.func.isRequired,
+        /** Verify two factor authentication token */
+        /** @param {string} token - 2fa token */
+        verify: PropTypes.func.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
-        onBackPress: PropTypes.func.isRequired,
+        /** Cancel two factor authentication */
+        cancel: PropTypes.func.isRequired,
     };
 
     state = {
@@ -59,13 +63,11 @@ class Enter2FA extends Component {
 
     handleDonePress = () => {
         const { token2FA } = this.state;
-        const { onComplete2FA } = this.props;
-        onComplete2FA(token2FA);
+        this.props.verify(token2FA);
     };
 
     handleBackPress = () => {
-        const { onBackPress } = this.props;
-        onBackPress();
+        this.props.cancel();
     };
 
     render() {

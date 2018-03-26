@@ -58,34 +58,54 @@ const styles = StyleSheet.create({
 
 class CustomTextInput extends Component {
     static propTypes = {
+        /** Text Change event callback function */
+        /** @param {string} text - Updated text in the text field */
         onChangeText: PropTypes.func.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Label for text field */
         label: PropTypes.string,
+        /** Focus event callback function */
         onFocus: PropTypes.func,
+        /** Blur event callback function */
         onBlur: PropTypes.func,
+        /** Text field container view styles */
         containerStyle: PropTypes.object,
+        /** String to render appropriate icon for text field */
         widget: PropTypes.string,
+        /** Press event (denomination widget) callback function */
         onDenominationPress: PropTypes.func,
+        /** Denomination widget text */
         denominationText: PropTypes.string,
+        /** Press event (Qr widget) callback function */
         onQRPress: PropTypes.func,
-        testID: PropTypes.string,
-        onFingerprintPress: PropTypes.func,
-        innerPadding: PropTypes.object,
-        currencyConversion: PropTypes.bool,
+        /** Boolean for displaying fingerprint widget */
         fingerprintAuthentication: PropTypes.bool,
+        /** Press event (Fingerprint widget) callback function */
+        onFingerprintPress: PropTypes.func,
+        /** Text field inner padding */
+        innerPadding: PropTypes.object,
+        /** Boolean for displaying currency conversion text */
+        currencyConversion: PropTypes.bool,
+        /** Currency conversion text */
         conversionText: PropTypes.string,
+        /** Text field height */
         height: PropTypes.number,
+        /** Callback Function returning text field instance as an argument */
+        /** @param {object} instance - text field instance */
         onRef: PropTypes.func,
+        /** Id for automated screenshots */
+        testID: PropTypes.string
     };
 
     static defaultProps = {
-        onFocus: () => {},
-        onBlur: () => {},
-        onFingerprintPress: () => {},
+        onFocus: () => { },
+        onBlur: () => { },
+        onFingerprintPress: () => { },
         containerStyle: {},
         widget: 'empty',
-        onDenominationPress: () => {},
-        onQRPress: () => {},
+        onDenominationPress: () => { },
+        onQRPress: () => { },
         denominationText: 'i',
         bodyColor: 'white',
         negativeColor: '#F7D002',
@@ -95,7 +115,7 @@ class CustomTextInput extends Component {
         height: height / 14,
         fingerprintAuthentication: false,
         testID: '',
-        onRef: () => {},
+        onRef: () => { },
     };
 
     constructor(props) {

@@ -21,14 +21,22 @@ const styles = StyleSheet.create({
 
 class CtaButton extends PureComponent {
     static propTypes = {
+        /** Press event callback function */
         onPress: PropTypes.func.isRequired,
+        /** Button background color */
         ctaColor: PropTypes.string.isRequired,
+        /** Button text color */
         secondaryCtaColor: PropTypes.string.isRequired,
+        /** Button text */
         text: PropTypes.string.isRequired,
+        /** Button width */
         ctaWidth: PropTypes.number,
+        /** Button height */
         ctaHeight: PropTypes.number,
-        testID: PropTypes.string,
+        /** Button font size */
         fontSize: PropTypes.number,
+        /** Id for automated screenshots */
+        testID: PropTypes.string,
     };
 
     static defaultProps = {
