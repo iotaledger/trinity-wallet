@@ -180,7 +180,7 @@ class SeedReentry extends Component {
                                 value={seed}
                             />
                             <View style={{ flex: 0.15 }} />
-                            <Checksum seed={seed} input={input} />
+                            <Checksum seed={seed} theme={theme} />
                             <View style={{ flex: 0.15 }} />
                             <InfoBox
                                 body={body}

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { isAndroid } from '../utils/device';
 
 const mapStateToProps = (state) => ({
-    body: state.settings.theme.body,
+    theme: state.settings.theme,
 });
 
 export default () => (C) => {
@@ -33,17 +33,19 @@ export default () => (C) => {
         }
 
         handleBackPress = () => {
-            const { body } = this.props;
+            const { theme } = this.props;
+
             Navigation.startSingleScreenApp({
                 screen: {
                     screen: 'home',
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundColor: body.bg,
+                        screenBackgroundColor: theme.body.bg,
                     },
                 },
             });
+            
             return true;
         };
 
@@ -53,8 +55,10 @@ export default () => (C) => {
     }
 
     WithBackPressGoToHome.propTypes = {
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
     };
 
     return connect(mapStateToProps, null)(WithBackPressGoToHome);

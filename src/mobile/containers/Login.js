@@ -115,7 +115,6 @@ class Login extends Component {
     async onComplete2FA(token) {
         const { t, pwdHash } = this.props;
         if (token) {
-            console.log(pwdHash);
             logTwoFa(pwdHash);
             const key = await getTwoFactorAuthKeyFromKeychain(pwdHash);
             //console.log(key)
@@ -175,8 +174,7 @@ class Login extends Component {
     }
 
     render() {
-        const { body, theme, password, pwdHash } = this.props;
-        const textColor = { color: body.bg };
+        const { body, theme, password } = this.props;
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -187,7 +185,6 @@ class Login extends Component {
                             theme={theme}
                             onLoginPress={this.onLoginPress}
                             navigateToNodeSelection={this.navigateToNodeSelection}
-                            textColor={textColor}
                             setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
                             password={password}
                         />
@@ -195,11 +192,9 @@ class Login extends Component {
                 {!this.state.changingNode &&
                     this.state.completing2FA && (
                         <Enter2FA
-                            onComplete2FA={this.onComplete2FA}
-                            onBackPress={this.onBackPress}
-                            navigateToNodeSelection={this.navigateToNodeSelection}
+                            verify={this.onComplete2FA}
+                            cancel={this.onBackPress}
                             theme={theme}
-                            pwdHash={pwdHash}
                         />
                     )}
                 {this.state.changingNode && (

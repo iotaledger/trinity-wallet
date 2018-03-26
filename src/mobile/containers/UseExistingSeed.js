@@ -205,7 +205,7 @@ class UseExistingSeed extends Component {
                             onQRPress={() => this.onQRPress()}
                         />
                         <View style={{ flex: 0.6 }} />
-                        <Checksum seed={seed} input={input} />
+                        <Checksum seed={seed} theme={theme} />
                         <View style={{ flex: 0.3 }} />
                         <CustomTextInput
                             onRef={(c) => {
