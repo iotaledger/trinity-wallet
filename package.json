@@ -43,6 +43,7 @@
         "eslint-plugin-react": "^7.7.0",
         "eslint-plugin-react-native": "^3.2.1",
         "husky": "^0.14.3",
+        "iota-wallet-shared-modules": "./src/shared/",
         "lint-staged": "^4.2.3",
         "node-cmd": "^3.0.0",
         "os": "^0.1.1",
