@@ -12,7 +12,7 @@ import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { setLanguage } from 'iota-wallet-shared-modules/actions/settings';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import { width, height } from '../utils/dimensions';
-import DropdownComponent from '../components/Dropdown';
+import DropdownComponent from '../containers/Dropdown';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 import DynamicStatusBar from '../components/DynamicStatusBar';

@@ -15,6 +15,7 @@ const initialState = {
     additionalAccountName: '',
     transitionBalance: 0,
     transitionAddresses: [],
+    addingAdditionalAccount: false,
 };
 
 export default (state = initialState, action) => {

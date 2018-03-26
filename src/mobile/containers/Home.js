@@ -224,8 +224,8 @@ class Home extends Component {
 
 const mapStateToProps = (state) => ({
     storedPassword: state.wallet.password,
-    inactive: state.wallet.inactive,
-    minimised: state.wallet.minimised,
+    inactive: state.ui.inactive,
+    minimised: state.ui.minimised,
     body: state.settings.theme.body,
     negative: state.settings.theme.negative,
     positive: state.settings.theme.positive,
