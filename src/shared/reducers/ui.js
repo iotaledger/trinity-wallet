@@ -19,7 +19,6 @@ const initialState = {
     isSyncing: false,
     inactive: false,
     minimised: false,
-    addingAdditionalAccount: false,
     sendAddressFieldText: '',
     sendAmountFieldText: '',
     sendMessageFieldText: '',

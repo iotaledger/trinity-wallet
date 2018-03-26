@@ -36,6 +36,7 @@ class Checksum extends React.Component {
         } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
             checksumValue = getChecksum(seed);
         }
+        
         return checksumValue;
     }
 

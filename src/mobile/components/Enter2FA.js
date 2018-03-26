@@ -4,7 +4,7 @@ import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-nati
 import CustomTextInput from '../components/CustomTextInput';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
-import OnboardingButtons from './OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({

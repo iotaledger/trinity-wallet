@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
 
 class Login extends Component {
     static propTypes = {
-        fullNode: PropTypes.string.isRequired,
-        availablePoWNodes: PropTypes.array.isRequired,
+        node: PropTypes.string.isRequired,
+        nodes: PropTypes.array.isRequired,
         versions: PropTypes.object.isRequired,
         setPassword: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
@@ -211,8 +211,8 @@ class Login extends Component {
                                     changeIotaNode(selectedNode);
                                     this.props.setFullNode(selectedNode);
                                 }}
-                                node={this.props.fullNode}
-                                nodes={this.props.availablePoWNodes}
+                                node={this.props.node}
+                                nodes={this.props.nodes}
                                 backPress={() => this.setState({ changingNode: false })}
                                 body={body}
                             />
@@ -229,11 +229,11 @@ class Login extends Component {
 const mapStateToProps = (state) => ({
     firstUse: state.accounts.firstUse,
     selectedAccount: getSelectedAccountName(state),
-    fullNode: state.settings.fullNode,
-    availablePoWNodes: state.settings.availablePoWNodes,
+    node: state.settings.node,
+    nodes: state.settings.nodes,
     theme: state.settings.theme,
     body: state.settings.theme.body,
-    is2FAEnabled: state.accounts.is2FAEnabled,
+    is2FAEnabled: state.settings.is2FAEnabled,
     versions: state.app.versions,
     accountInfo: state.accounts.accountInfo,
     password: state.ui.loginPasswordFieldText,

@@ -15,7 +15,7 @@ import {
     getAllSeedsFromKeychain,
 } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
-import OnboardingButtons from '../components/OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { isAndroid } from '../utils/device';
 import { width, height } from '../utils/dimensions';

@@ -24,69 +24,69 @@ export const getSettingsFromState = (state) => state.settings || {};
 export const getRemotePoWFromState = createSelector(getSettingsFromState, (state) => state.remotePoW);
 
 /**
- *   Selects account prop from state.
+ *   Selects accounts prop from state.
  *
- *   @method getAccountFromState
+ *   @method getAccountsFromState
  *   @param {object} state
  *   @returns {object}
  **/
-export const getAccountFromState = (state) => state.account || {};
+export const getAccountsFromState = (state) => state.accounts || {};
 
 /**
- *   Selects tempAccount prop from state.
+ *   Selects wallet prop from state.
  *
- *   @method getTempAccountFromState
+ *   @method getWalletFromState
  *   @param {object} state
  *   @returns {object}
  **/
-export const getTempAccountFromState = (state) => state.tempAccount || {};
+export const getWalletFromState = (state) => state.wallet || {};
 
 /**
- *   Selects accountInfo prop from account reducer state object.
- *   Uses getAccountFromState selector for slicing account state from the whole state object.
+ *   Selects accountInfo prop from accounts reducer state object.
+ *   Uses getAccountFromState selector for slicing accounts state from the whole state object.
  *
  *   @method getAccountInfoFromState
  *   @param {object} state
  *   @returns {object}
  **/
-export const getAccountInfoFromState = createSelector(getAccountFromState, (state) => state.accountInfo || {});
+export const getAccountInfoFromState = createSelector(getAccountsFromState, (state) => state.accountInfo || {});
 
 /**
- *   Selects unconfirmedBundleTails prop from account reducer state object.
- *   Uses getAccountFromState selector for slicing account state from the state object.
+ *   Selects unconfirmedBundleTails prop from accounts reducer state object.
+ *   Uses getAccountFromState selector for slicing accounts state from the state object.
  *
  *   @method getUnconfirmedBundleTailsFromState
  *   @param {object} state
  *   @returns {object}
  **/
 export const getUnconfirmedBundleTailsFromState = createSelector(
-    getAccountFromState,
+    getAccountsFromState,
     (state) => state.unconfirmedBundleTails || {},
 );
 
 /**
- *   Selects txHashesForUnspentAddresses prop from account reducer state object.
- *   Uses getAccountFromState selector for slicing account state from the state object.
+ *   Selects txHashesForUnspentAddresses prop from accounts reducer state object.
+ *   Uses getAccountFromState selector for slicing accounts state from the state object.
  *
  *   @method getTxHashesForUnspentAddressesFromState
  *   @param {object} state
  *   @returns {object}
  **/
 export const getTxHashesForUnspentAddressesFromState = createSelector(
-    getAccountFromState,
+    getAccountsFromState,
     (state) => state.txHashesForUnspentAddresses || {},
 );
 
 /**
- *   Selects pendingTxHashesForSpentAddressesFromState prop from account reducer state object.
- *   Uses getAccountFromState selector for slicing account state from the state object.
+ *   Selects pendingTxHashesForSpentAddressesFromState prop from accounts reducer state object.
+ *   Uses getAccountFromState selector for slicing accounts state from the state object.
  *
  *   @method getPendingTxHashesForSpentAddressesFromState
  *   @param {object} state
  *   @returns {object}
  **/
 export const getPendingTxHashesForSpentAddressesFromState = createSelector(
-    getAccountFromState,
+    getAccountsFromState,
     (state) => state.pendingTxHashesForSpentAddresses || {},
 );
 
@@ -129,27 +129,27 @@ export const selectFirstAddressFromAccountFactory = (accountName) => {
 };
 
 /**
- *   Selects accountNames prop from account reducer state object.
- *   Uses getAccountFromState selector for slicing account state from the whole state object.
+ *   Selects accountNames prop from accounts reducer state object.
+ *   Uses getAccountFromState selector for slicing accounts state from the whole state object.
  *
  *   @method getAccountNamesFromState
  *   @param {object} state
  *   @returns {array}
  **/
-export const getAccountNamesFromState = createSelector(getAccountFromState, (state) => state.accountNames || []);
+export const getAccountNamesFromState = createSelector(getAccountsFromState, (state) => state.accountNames || []);
 
 /**
- *   Selects seedIndex prop from tempAccount reducer state object.
- *   Uses getTempAccountFromState selector for slicing tempAccount state from the whole state object.
+ *   Selects seedIndex prop from wallet reducer state object.
+ *   Uses getWalletFromState selector for slicing wallet state from the whole state object.
  *
  *   @method getSeedIndexFromState
  *   @param {object} state
  *   @returns {number}
  **/
-export const getSeedIndexFromState = createSelector(getTempAccountFromState, (state) => state.seedIndex || 0);
+export const getSeedIndexFromState = createSelector(getWalletFromState, (state) => state.seedIndex || 0);
 
 /**
- *   Selects account information (balance, addresses, transfers) from account reducer state object.
+ *   Selects account information (balance, addresses, transfers) from accounts reducer state object.
  *
  *   @method selectAccountInfo
  *   @param {object} state

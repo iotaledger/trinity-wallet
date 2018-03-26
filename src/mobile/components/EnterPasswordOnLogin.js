@@ -5,7 +5,7 @@ import RNExitApp from 'react-native-exit-app';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
-import OnboardingButtons from './OnboardingButtons';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import CustomTextInput from './CustomTextInput';
 import { Icon } from '../theme/icons.js';
 
