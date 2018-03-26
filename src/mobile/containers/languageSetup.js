@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Ima
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import i18next from 'i18next';
+import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
@@ -76,6 +77,10 @@ class LanguageSetup extends Component {
 
     componentWillMount() {
         i18next.changeLanguage(defaultLocale);
+    }
+
+    componentDidMount() {
+        SplashScreen.hide();
     }
 
     onNextPress() {

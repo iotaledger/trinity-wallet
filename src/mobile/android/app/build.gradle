@@ -186,6 +186,7 @@ dependencies {
     compile project(':randombytes')
     compile 'com.android.support:exifinterface:26.1.0'
     compile project(':react-native-vector-icons')
+    compile project(':react-native-splash-screen')
 }
 
 // Run this once to be able to run the application with BUCK
