@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
 const currentLocale = i18next.language;
 const currentLanguageLabel = selectLocale(currentLocale);
 
+/** Language Selection component */
 class LanguageSelection extends Component {
     static propTypes = {
         /** Set new setting
