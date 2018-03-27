@@ -69,16 +69,30 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Currency Selection component */
 export class CurrencySelection extends Component {
     static propTypes = {
+        /** Latest currency information fetch state */
         isFetchingCurrencyData: PropTypes.bool.isRequired,
+        /** Selected currency */
         currency: PropTypes.string.isRequired,
+        /** Available currencies */
         availableCurrencies: PropTypes.array.isRequired,
+        /** Change current setting
+        * @param {string} setting
+        */
         setSetting: PropTypes.func.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
-        primaryColor: PropTypes.string.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Fetch latest currency information
+        * @param {string} currency
+        * @param {boolean} withAlerts - Flag to generate an alert in case something went wrong during the network call.
+        */
         getCurrencyData: PropTypes.func.isRequired,
-        bodyColor: PropTypes.string.isRequired,
     };
 
     componentWillReceiveProps(newProps) {
@@ -101,7 +115,7 @@ export class CurrencySelection extends Component {
     }
 
     renderBackOption() {
-        const { bodyColor, t } = this.props;
+        const { theme, t } = this.props;
 
         return (
             <TouchableOpacity
@@ -109,15 +123,15 @@ export class CurrencySelection extends Component {
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemLeft}>
-                    <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                    <Text style={[styles.titleTextLeft, { color: bodyColor }]}>{t('global:backLowercase')}</Text>
+                    <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
+                    <Text style={[styles.titleTextLeft, { color: theme.body.color }]}>{t('global:backLowercase')}</Text>
                 </View>
             </TouchableOpacity>
         );
     }
 
     renderSaveOption() {
-        const { t, bodyColor } = this.props;
+        const { t, theme } = this.props;
 
         return (
             <TouchableOpacity
@@ -125,15 +139,15 @@ export class CurrencySelection extends Component {
                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
             >
                 <View style={styles.itemRight}>
-                    <Text style={[styles.titleTextRight, { color: bodyColor }]}>{t('global:save')}</Text>
-                    <Icon name="tick" size={width / 28} color={bodyColor} />
+                    <Text style={[styles.titleTextRight, { color: theme.body.color }]}>{t('global:save')}</Text>
+                    <Icon name="tick" size={width / 28} color={theme.body.color} />
                 </View>
             </TouchableOpacity>
         );
     }
 
     render() {
-        const { currency, availableCurrencies, t, primaryColor, isFetchingCurrencyData } = this.props;
+        const { currency, availableCurrencies, t, theme, isFetchingCurrencyData } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -164,7 +178,7 @@ export class CurrencySelection extends Component {
                                 animating
                                 style={styles.activityIndicator}
                                 size="large"
-                                color={primaryColor}
+                                color={theme.primary.color}
                             />
                         </View>
                     )) || <View style={styles.innerContainer} />}
@@ -183,8 +197,7 @@ const mapStateToProps = (state) => ({
     availableCurrencies: state.settings.availableCurrencies,
     isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
     hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
-    bodyColor: state.settings.theme.body.color,
-    primaryColor: state.settings.theme.primary.color,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {

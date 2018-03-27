@@ -65,17 +65,34 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Change account name component */
 export class EditAccountName extends Component {
     static propTypes = {
+        /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** List of all account names added to wallet */
         accountNames: PropTypes.array.isRequired,
+        /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
+        /** Translation helper
+       * @param {string} translationString - locale string identifier to be translated
+       */
         t: PropTypes.func.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
+        /** Generate a notification alert
+        * @param {String} type - notification type - success, error
+        * @param {String} title - notification title
+        * @param {String} text - notification explanation
+        */
         generateAlert: PropTypes.func.isRequired,
+        /** Updates account name
+       * @param {object} options - Contains old account name and new account name
+       */
         changeAccountName: PropTypes.func.isRequired,
-        textColor: PropTypes.object.isRequired,
-        bodyColor: PropTypes.string.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
     };
 
@@ -119,7 +136,9 @@ export class EditAccountName extends Component {
     }
 
     render() {
-        const { t, textColor, bodyColor, theme } = this.props;
+        const { t, theme } = this.props;
+        const textColor = { color: theme.body.color };
+        const bodyColor = theme.body.color;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -172,8 +191,6 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     accountNames: state.accounts.accountNames,
     password: state.wallet.password,
-    textColor: { color: state.settings.theme.body.color },
-    bodyColor: state.settings.theme.body.color,
     theme: state.settings.theme,
 });
 

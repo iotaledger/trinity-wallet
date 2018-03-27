@@ -93,28 +93,42 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Dropdown component */
 export class Dropdown extends Component {
     static propTypes = {
+        /** Callback function returning dropdpown component instance as an argument */
+        /** @param {object} instance - dropdown instance
+         */
         onRef: PropTypes.func,
+        /** Determines whether onPress event should be disabled for dropdown */
         disableWhen: PropTypes.bool,
+        /** Determines whether to render a shadow */
         shadow: PropTypes.bool,
+        /** Default selected option for dropdown */
         defaultOption: PropTypes.string,
+        /** Saves dropdown selection
+         * @param {string} option
+         */
         saveSelection: PropTypes.func,
+        /** Dropdown options list */
         options: PropTypes.array.isRequired,
+        /** Dropdown title */
         title: PropTypes.string,
+        /** Dropdown width */
         dropdownWidth: PropTypes.object,
+        /** Determines whether to render a background */
         background: PropTypes.bool,
-        primary: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired
     };
 
     static defaultProps = {
         shadow: false,
         disableWhen: false,
-        onRef: () => {},
+        onRef: () => { },
         defaultOption: '',
         background: false,
-        saveSelection: () => {},
+        saveSelection: () => { },
         title: '',
         dropdownWidth: { width: width / 1.2 },
     };
@@ -173,19 +187,19 @@ export class Dropdown extends Component {
     }
 
     render() {
-        const { options, title, dropdownWidth, background, disableWhen, primary, body, shadow } = this.props;
+        const { options, title, dropdownWidth, background, disableWhen, theme, shadow } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
         const heightValue =
             options.length < 8 ? height / 22.4 * options.length + height / 70 : height / 22.4 * 8 + height / 70;
         const dropdownHeight = isDropdownOpen ? heightValue : 0;
-        const backgroundColor = background ? { backgroundColor: body.bg } : { backgroundColor: 'transparent' };
+        const backgroundColor = background ? { backgroundColor: theme.body.bg } : { backgroundColor: 'transparent' };
         const shadowColor = shadow ? { shadowColor: '#222' } : { shadowColor: 'transparent' };
         const lastItem = options.length - 1;
 
         return (
             <View style={[styles.container, dropdownWidth]}>
-                <Text style={[styles.dropdownTitle, { color: primary.color }, isAndroid ? null : dropdownWidth]}>
+                <Text style={[styles.dropdownTitle, { color: theme.primary.color }, isAndroid ? null : dropdownWidth]}>
                     {title}
                 </Text>
                 <View style={styles.dropdownButtonContainer}>
@@ -196,14 +210,14 @@ export class Dropdown extends Component {
                             }
                         }}
                     >
-                        <View style={[styles.dropdownButton, dropdownWidth, { borderBottomColor: body.color }]}>
-                            <Text numberOfLines={1} style={[styles.selected, { color: body.color }]}>
+                        <View style={[styles.dropdownButton, dropdownWidth, { borderBottomColor: theme.body.color }]}>
+                            <Text numberOfLines={1} style={[styles.selected, { color: theme.body.color }]}>
                                 {selectedOption}
                             </Text>
                             <Triangle
                                 width={width / 40}
                                 height={width / 40}
-                                color={body.color}
+                                color={theme.body.color}
                                 direction={triangleDirection}
                                 style={styles.triangle}
                             />
@@ -243,7 +257,7 @@ export class Dropdown extends Component {
                                                             style={[
                                                                 styles.dropdownItem,
                                                                 dropdownWidth,
-                                                                { color: body.color },
+                                                                { color: theme.body.color },
                                                             ]}
                                                         >
                                                             {rowData}
@@ -264,7 +278,7 @@ export class Dropdown extends Component {
                                             >
                                                 <Text
                                                     numberOfLines={1}
-                                                    style={[styles.dropdownItem, dropdownWidth, { color: body.color }]}
+                                                    style={[styles.dropdownItem, dropdownWidth, { color: theme.body.color }]}
                                                 >
                                                     {rowData}
                                                 </Text>
@@ -284,9 +298,7 @@ export class Dropdown extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    bar: state.settings.theme.bar,
-    body: state.settings.theme.body,
-    primary: state.settings.theme.primary,
+    theme: state.settings.theme
 });
 
 export default connect(mapStateToProps)(Dropdown);
