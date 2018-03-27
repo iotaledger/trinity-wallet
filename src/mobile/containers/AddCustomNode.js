@@ -57,17 +57,38 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * Add Custom Node component
+ */
 class AddCustomNode extends Component {
     static propTypes = {
-        availablePoWNodes: PropTypes.array.isRequired,
-        fullNode: PropTypes.string.isRequired,
-        textColor: PropTypes.object.isRequired,
+        /** Available IRI nodes */
+        nodes: PropTypes.array.isRequired,
+        /** Currently selected IRI node */
+        node: PropTypes.string.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Set node
+         * @param {string} node
+         */
         setFullNode: PropTypes.func.isRequired,
+         /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
-        bodyColor: PropTypes.string.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+         /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
+        /** Add custom node to the list of available nodes
+         * @param {string} customNode
+         */
         addCustomPoWNode: PropTypes.func.isRequired,
     };
 
@@ -103,7 +124,7 @@ class AddCustomNode extends Component {
     }
 
     addNode() {
-        const { fullNode, availablePoWNodes } = this.props;
+        const { node, nodes } = this.props;
 
         const { customNode } = this.state;
 
@@ -111,13 +132,13 @@ class AddCustomNode extends Component {
             return this.onAddNodeError();
         }
 
-        if (!availablePoWNodes.includes(customNode.replace(/ /g, ''))) {
+        if (!nodes.includes(customNode.replace(/ /g, ''))) {
             this.setNode(customNode);
 
             checkNode((error) => {
                 if (error) {
                     this.onAddNodeError();
-                    this.setNode(fullNode);
+                    this.setNode(node);
                 } else {
                     this.onAddNodeSuccess(customNode);
                     this.props.setSetting('advancedSettings');
@@ -129,7 +150,9 @@ class AddCustomNode extends Component {
     }
 
     render() {
-        const { t, textColor, bodyColor, theme } = this.props;
+        const { t, theme } = this.props;
+        const textColor = { color: theme.body.color };
+        const bodyColor = theme.body.color;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -176,11 +199,8 @@ class AddCustomNode extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    availablePoWNodes: state.settings.availablePoWNodes,
-    fullNode: state.settings.fullNode,
-    negativeColor: state.settings.theme.negative,
-    textColor: { color: state.settings.theme.body.color },
-    bodyColor: state.settings.theme.body.color,
+    nodes: state.settings.nodes,
+    node: state.settings.node,
     theme: state.settings.theme,
 });
 

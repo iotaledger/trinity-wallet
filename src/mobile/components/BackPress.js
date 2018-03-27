@@ -93,7 +93,9 @@ export default () => (C) => {
     WithBackPress.propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Change current setting */
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
         /** Current setting */
         currentSetting: PropTypes.string.isRequired,
