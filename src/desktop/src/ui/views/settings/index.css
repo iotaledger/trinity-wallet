@@ -47,7 +47,7 @@
             cursor: pointer;
             &:hover,
             &[aria-current='true'] {
-                color: var(--highlight);
+                color: var(--secondary);
             }
 
             > span {
@@ -98,7 +98,7 @@
                 &[aria-current='true'] {
                     background: var(--bar-alt);
                     color: var(--bar);
-                    border-right: 2px solid var(--highlight);
+                    border-right: 2px solid var(--primary);
                 }
             }
 

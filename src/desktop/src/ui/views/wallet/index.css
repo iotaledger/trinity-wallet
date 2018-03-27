@@ -104,7 +104,7 @@
                 &[aria-current='true'],
                 &.active {
                     background: var(--bar-alt);
-                    border-right: 2px solid var(--highlight);
+                    border-right: 2px solid var(--primary);
                 }
 
                 span {
