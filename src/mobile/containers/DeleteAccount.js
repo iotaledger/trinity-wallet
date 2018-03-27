@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import Modal from 'react-native-modal';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { deleteAccount } from 'iota-wallet-shared-modules/actions/accounts';
 import Fonts from '../theme/fonts';
 import { deleteSeedFromKeychain } from '../utils/keychain';
@@ -93,21 +94,36 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Delete Account component */
 class DeleteAccount extends Component {
     static propTypes = {
+        /** Change current setting
+        * @param {string} setting
+        */
         setSetting: PropTypes.func.isRequired,
+        /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
+        /** Removes account and associated information
+        * @param {string} accountName
+        */
         deleteAccount: PropTypes.func.isRequired,
+        /** Translation helper
+       * @param {string} translationString - locale string identifier to be translated
+       */
         t: PropTypes.func.isRequired,
-        backgroundColor: PropTypes.string.isRequired,
+        /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
-        primaryColor: PropTypes.string.isRequired,
-        textColor: PropTypes.object.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
-        bodyColor: PropTypes.string.isRequired,
-        borderColor: PropTypes.object.isRequired,
+        /** Promotion state for polling */
         isPromoting: PropTypes.bool.isRequired,
-        shouldPreventAction: PropTypes.func.isRequired,
+        /** Determines whether to allow account deletion  */
+        shouldPreventAction: PropTypes.bool.isRequired,
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
     };
 
@@ -151,7 +167,7 @@ class DeleteAccount extends Component {
 
     onYesPress() {
         const { t, isPromoting } = this.props;
-        if (isPromoting || this.props.shouldPreventAction()) {
+        if (isPromoting || this.props.shouldPreventAction) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
         this.hideModal();
@@ -175,7 +191,9 @@ class DeleteAccount extends Component {
     hideModal = () => this.setState({ isModalVisible: false });
 
     renderModalContent = (borderColor, textColor) => {
-        const { t, backgroundColor, selectedAccountName } = this.props;
+        const { t, theme, selectedAccountName } = this.props;
+        const backgroundColor = theme.body.bg;
+
         return (
             <View
                 style={{
@@ -204,14 +222,15 @@ class DeleteAccount extends Component {
     render() {
         const {
             t,
-            primaryColor,
-            textColor,
-            bodyColor,
-            backgroundColor,
-            borderColor,
             theme,
             selectedAccountName,
         } = this.props;
+
+        const primaryColor = theme.primary.color;
+        const textColor = { color: theme.body.color };
+        const bodyColor = theme.body.color;
+        const backgroundColor = theme.body.bg;
+        const borderColor = { borderColor: theme.body.color };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -292,7 +311,10 @@ class DeleteAccount extends Component {
 
 const mapStateToProps = (state) => ({
     password: state.wallet.password,
+    theme: state.settings.theme,
+    isPromoting: state.polling.isPromoting,
     selectedAccountName: getSelectedAccountName(state),
+    shouldPreventAction: shouldPreventAction(state)
 });
 
 const mapDispatchToProps = {

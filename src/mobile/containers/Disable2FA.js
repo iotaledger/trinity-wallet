@@ -57,13 +57,26 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Disable Two Factor Authentication component */
 class Disable2FA extends Component {
     static propTypes = {
+        /** Generate a notification alert
+        * @param {String} type - notification type - success, error
+        * @param {String} title - notification title
+        * @param {String} text - notification explanation
+        */
         generateAlert: PropTypes.func.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+         /** Sets two factor security status
+        * @param {boolean} - status
+        */
         set2FAStatus: PropTypes.func.isRequired,
+        /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
     };
 
@@ -105,16 +118,16 @@ class Disable2FA extends Component {
     }
 
     goBack() {
-        const { body } = this.props;
+        const { theme } = this.props;
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: body.bg,
+                    screenBackgroundColor: theme.body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+                    statusBarColor: theme.body.bg,
                 },
             },
             appStyle: {
@@ -125,17 +138,17 @@ class Disable2FA extends Component {
     }
 
     render() {
-        const { t, body, theme } = this.props;
-        const backgroundColor = { backgroundColor: body.bg };
-        const textColor = { color: body.color };
+        const { t, theme } = this.props;
+        const backgroundColor = { backgroundColor: theme.body.bg };
+        const textColor = { color: theme.body.color };
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
+                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Icon name="iota" size={width / 8} color={body.color} />
+                            <Icon name="iota" size={width / 8} color={theme.body.color} />
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={[styles.generalText, textColor]}>Enter your token to disable 2FA</Text>
@@ -162,7 +175,7 @@ class Disable2FA extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
+                <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
             </View>
         );
     }
@@ -170,7 +183,6 @@ class Disable2FA extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
-    body: state.settings.theme.body,
     password: state.wallet.password,
 });
 
