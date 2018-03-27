@@ -83,15 +83,29 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Copy To Clipboard component */
 class CopySeedToClipboard extends Component {
     static propTypes = {
+        /** Seed value */
         seed: PropTypes.string.isRequired,
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Set a flag for clipboard copy
+         * @param {boolean} - true
+         */
         setCopiedToClipboard: PropTypes.func.isRequired,
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
-        body: PropTypes.object.isRequired,
-        primary: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired
     };
 
     constructor() {
@@ -109,7 +123,7 @@ class CopySeedToClipboard extends Component {
      * Clear the clipboard after pressing Done
      */
     onDonePress() {
-        const { body } = this.props;
+        const { theme } = this.props;
         this.clearTimeout();
         Clipboard.setString(' ');
         this.props.setCopiedToClipboard(true);
@@ -118,9 +132,9 @@ class CopySeedToClipboard extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: body.bg,
+                screenBackgroundColor: theme.body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+                statusBarColor: theme.body.bg,
             },
             animated: false,
         });
@@ -167,20 +181,20 @@ class CopySeedToClipboard extends Component {
     }
 
     render() {
-        const { t, body, primary, seed } = this.props;
-        const textColor = { color: body.color };
-        const borderColor = { borderColor: body.color };
+        const { t, theme, seed } = this.props;
+        const textColor = { color: theme.body.color };
+        const borderColor = { borderColor: theme.body.color };
 
         return (
-            <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
+            <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
+                    <Icon name="iota" size={width / 8} color={theme.body.color} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 0.5 }} />
                     <InfoBox
-                        body={body}
+                        body={theme.body}
                         text={
                             <Text>
                                 <Text style={[styles.infoTextNormal, textColor]}>{t('clickToCopy')} </Text>
@@ -189,12 +203,12 @@ class CopySeedToClipboard extends Component {
                         }
                     />
                     <View style={{ flex: 0.2 }} />
-                    <Seedbox bodyColor={body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
+                    <Seedbox bodyColor={theme.body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
                     <View style={{ flex: 0.2 }} />
                     <CtaButton
-                        ctaColor={primary.color}
-                        ctaBorderColor={primary.hover}
-                        secondaryCtaColor={primary.body}
+                        ctaColor={theme.primary.color}
+                        ctaBorderColor={theme.primary.hover}
+                        secondaryCtaColor={theme.primary.body}
                         text={t('copyToClipboard').toUpperCase()}
                         onPress={() => {
                             this.onCopyPress();
@@ -205,12 +219,12 @@ class CopySeedToClipboard extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: primary.color }]}>
-                            <Text style={[styles.doneText, { color: primary.color }]}>{t('global:done')}</Text>
+                        <View style={[styles.doneButton, { borderColor: theme.primary.color }]}>
+                            <Text style={[styles.doneText, { color: theme.primary.color }]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
-                <StatefulDropdownAlert backgroundColor={body.bg} />
+                <StatefulDropdownAlert backgroundColor={theme.body.bg} />
             </View>
         );
     }
@@ -218,11 +232,7 @@ class CopySeedToClipboard extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    backgroundColor: state.settings.theme.backgroundColor,
-    primary: state.settings.theme.primary,
-    secondary: state.settings.theme.secondary,
-    body: state.settings.theme.body,
-    ctaBorderColor: state.settings.theme.ctaBorderColor,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {

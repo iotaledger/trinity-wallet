@@ -63,16 +63,27 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Enter seed component */
 class EnterSeed extends React.Component {
     static propTypes = {
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
+        /** Translation helper
+       * @param {string} translationString - locale string identifier to be translated
+       */
         t: PropTypes.func.isRequired,
+        /** Sets seed in store
+       * @param {string} seed
+       */
         setSeed: PropTypes.func.isRequired,
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
-        primary: PropTypes.object.isRequired,
-        input: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired
     };
 
     constructor(props) {
@@ -88,7 +99,7 @@ class EnterSeed extends React.Component {
      * Validate seed
      */
     onDonePress() {
-        const { t, body } = this.props;
+        const { t, theme } = this.props;
         const { seed } = this.state;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
@@ -106,8 +117,8 @@ class EnterSeed extends React.Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                    screenBackgroundColor: body.bg,
+                    statusBarColor: theme.body.bg,
+                    screenBackgroundColor: theme.body.bg,
                 },
                 animated: false,
             });
@@ -151,7 +162,8 @@ class EnterSeed extends React.Component {
     };
 
     renderModalContent = () => {
-        const { body, primary } = this.props;
+        const { theme: { body, primary } } = this.props;
+        
         return (
             <QRScanner
                 primary={primary}
@@ -164,14 +176,15 @@ class EnterSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
-        const { t, body, theme, input } = this.props;
+        const { t, theme } = this.props;
+        
         return (
             <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
-                <View style={[styles.container, { backgroundColor: body.bg }]}>
-                    <StatusBar barStyle="light-content" backgroundColor={body.bg} />
+                <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+                    <StatusBar barStyle="light-content" backgroundColor={theme.body.bg} />
                     <View style={styles.topContainer}>
                         <View style={styles.logoContainer}>
-                            <Icon name="iota" size={width / 8} color={body.color} />
+                            <Icon name="iota" size={width / 8} color={theme.body.color} />
                         </View>
                     </View>
                     <View style={styles.midContainer}>
@@ -196,13 +209,13 @@ class EnterSeed extends React.Component {
                         <Checksum seed={seed} theme={theme} />
                         <View style={{ flex: 0.4 }} />
                         <InfoBox
-                            body={body}
+                            body={theme.body}
                             text={
                                 <View>
-                                    <Text style={[styles.infoText, { color: body.color }]}>
+                                    <Text style={[styles.infoText, { color: theme.body.color }]}>
                                         {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
                                     </Text>
-                                    <Text style={[styles.warningText, { color: body.color }]}>
+                                    <Text style={[styles.warningText, { color: theme.body.color }]}>
                                         {'\n'}
                                         {t('neverShare')}
                                     </Text>
@@ -221,7 +234,7 @@ class EnterSeed extends React.Component {
                             rightButtonTestID="enterSeed-next"
                         />
                     </View>
-                    <StatefulDropdownAlert textColor="white" backgroundColor={body.bg} />
+                    <StatefulDropdownAlert textColor="white" backgroundColor={theme.body.bg} />
                     <Modal
                         animationIn="bounceInUp"
                         animationOut="bounceOut"
@@ -246,10 +259,7 @@ class EnterSeed extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
-    body: state.settings.theme.body,
-    primary: state.settings.theme.primary,
-    input: state.settings.theme.input,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {
