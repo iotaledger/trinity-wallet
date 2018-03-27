@@ -8,7 +8,6 @@ import AmountInput from 'ui/components/input/Amount';
 import MessageInput from 'ui/components/input/Message';
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
-
 import withSendData from 'containers/wallet/Send';
 
 import css from './index.css';
@@ -21,6 +20,7 @@ class Send extends React.PureComponent {
         /** Current send status */
         isSending: PropTypes.bool.isRequired,
         /** Current seed value */
+        deepLinkAmount: PropTypes.object.isRequired,
         seed: PropTypes.string.isRequired,
         /** Total current account wallet ballance in iotas */
         balance: PropTypes.number.isRequired,
@@ -61,6 +61,10 @@ class Send extends React.PureComponent {
         isModalVisible: false,
     };
 
+    componentWillMount() {
+        this.refreshDeepLinkValues(this.props);
+    }
+
     componentWillReceiveProps(nextProps) {
         if (this.props.isSending && !nextProps.isSending) {
             this.setState({
@@ -69,7 +73,18 @@ class Send extends React.PureComponent {
                 message: '',
             });
         }
+        this.refreshDeepLinkValues(nextProps);
     }
+
+    refreshDeepLinkValues = (props) => {
+        if (props.deepLinkAmount.address !== this.state.address) {
+            this.setState({
+                amount: props.amount,
+                address: props.address,
+                message: props.message,
+            });
+        }
+    };
 
     validateInputs = (e) => {
         const { address, amount } = this.state;
