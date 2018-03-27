@@ -10,7 +10,7 @@ import { translate } from 'react-i18next';
 import { clearTempData } from 'actions/tempAccount';
 import { getUpdateData } from 'actions/settings';
 import { clearSeeds } from 'actions/seeds';
-import { disposeOffAlert } from 'actions/alerts';
+import { disposeOffAlert, generateAlert } from 'actions/alerts';
 
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
@@ -19,7 +19,8 @@ import Idle from 'ui/global/Idle';
 import Feedback from 'ui/global/Feedback';
 
 import Loading from 'ui/components/Loading';
-
+import { sendAmount } from 'actions/deepLinks';
+import { ADDRESS_LENGTH } from 'libs/util';
 import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
@@ -49,6 +50,13 @@ class App extends React.Component {
          * @ignore
          */
         tempAccount: PropTypes.object.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
         /** Clear  alert state data
          * @ignore
          */
@@ -71,6 +79,7 @@ class App extends React.Component {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        sendAmount: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -78,10 +87,39 @@ class App extends React.Component {
         this.state = { uuid: null };
     }
 
+    componentWillMount() {
+        const { generateAlert, t } = this.props;
+        Electron.onEvent('url-params', (data) => {
+            const regexAddress = /\:\/\/(.*?)\/\?/;
+            const regexAmount = /amount=(.*?)\&/;
+            const regexMessage = /message=([^\n\r]*)/;
+            const address = data.match(regexAddress);
+            if (address !== null) {
+                const amount = data.match(regexAmount);
+                const message = data.match(regexMessage);
+                if (address[1].length !== ADDRESS_LENGTH) {
+                    generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+                    this.props.sendAmount(0, '', '');
+                } else {
+                    this.setState({
+                        address: address[1],
+                        amount: amount[1],
+                        message: message[1],
+                    });
+                    this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
+                    if (this.props.tempAccount.ready === true) {
+                        this.props.history.push('/wallet/send');
+                    }
+                }
+            }
+        });
+    }
+
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
         Electron.changeLanguage(this.props.t);
+        Electron.refreshDeepLink();
 
         Electron.getUuid().then((uuid) => {
             this.setState({
@@ -191,14 +229,17 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
     account: state.account,
     tempAccount: state.tempAccount,
+    deepLinks: state.deepLinks,
     activationCode: state.app.activationCode,
 });
 
 const mapDispatchToProps = {
     clearTempData,
     clearSeeds,
+    sendAmount,
     getUpdateData,
     disposeOffAlert,
+    generateAlert,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(App)));
