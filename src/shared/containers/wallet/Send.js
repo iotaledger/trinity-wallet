@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from '../../actions/alerts';
 
+import { sendAmount } from '../../actions/deepLinks';
 import { makeTransaction } from '../../actions/transfers';
 import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/account';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/util';
 import { iota } from '../../libs/iota';
-import deepLinks from '../../reducers/deepLinks';
-import { sendAmount } from 'actions/deepLinks';
 
 /**
  * Send transaction component container
@@ -32,21 +31,16 @@ export default function withSendData(SendComponent) {
             sendAmount: PropTypes.func.isRequired,
         };
 
-        componentWillUnmount() {
-            this.props.sendAmount(0, '', '');
-        }
-
-        componentWillReceiveProps(props) {
-            this.validadeDeepLink();
-            this.props = props;
-        }
-
         componentWillMount() {
-            this.validadeDeepLink();
+            this.validadeDeepLink(this.props.deepLinks.address);
         }
 
-        validadeDeepLink() {
-            if (this.props.deepLinks.address !== '') {
+        componentWillReceiveProps(nextProps) {
+            this.validadeDeepLink(nextProps.deepLinks.address);
+        }
+
+        validadeDeepLink(address) {
+            if (address !== '') {
                 const { generateAlert } = this.props;
                 generateAlert('success', 'Autofill', 'Transaction data autofilled from link.');
             }
@@ -103,7 +97,7 @@ export default function withSendData(SendComponent) {
         };
 
         render() {
-            const { balance, seed, settings, tempAccount, theme, t, deepLinks } = this.props;
+            const { balance, seed, settings, tempAccount, theme, t, deepLinks, sendAmount } = this.props;
 
             const sendProps = {
                 isSending: tempAccount.isSendingTransfer,
@@ -115,6 +109,7 @@ export default function withSendData(SendComponent) {
                 theme,
                 t,
                 deepLinkAmount: deepLinks,
+                sendAmount: sendAmount,
             };
 
             return <SendComponent {...sendProps} />;

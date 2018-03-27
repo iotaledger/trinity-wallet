@@ -87,39 +87,15 @@ class App extends React.Component {
         this.state = { uuid: null };
     }
 
-    componentWillMount() {
-        const { generateAlert, t } = this.props;
-        Electron.onEvent('url-params', (data) => {
-            const regexAddress = /\:\/\/(.*?)\/\?/;
-            const regexAmount = /amount=(.*?)\&/;
-            const regexMessage = /message=([^\n\r]*)/;
-            const address = data.match(regexAddress);
-            if (address !== null) {
-                const amount = data.match(regexAmount);
-                const message = data.match(regexMessage);
-                if (address[1].length !== ADDRESS_LENGTH) {
-                    generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
-                    this.props.sendAmount(0, '', '');
-                } else {
-                    this.setState({
-                        address: address[1],
-                        amount: amount[1],
-                        message: message[1],
-                    });
-                    this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
-                    if (this.props.tempAccount.ready === true) {
-                        this.props.history.push('/wallet/send');
-                    }
-                }
-            }
-        });
-    }
-
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
+
+        this.onSetDeepUrl = this.setDeepUrl.bind(this);
+        Electron.onEvent('url-params', this.onSetDeepUrl);
+
         Electron.changeLanguage(this.props.t);
-        Electron.refreshDeepLink();
+        Electron.requestDeepLink();
 
         Electron.getUuid().then((uuid) => {
             this.setState({
@@ -147,6 +123,30 @@ class App extends React.Component {
 
     componentWillUnmount() {
         Electron.removeEvent('menu', this.onMenuToggle);
+        Electron.removeEvent('url-params', this.onSetDeepUrl);
+    }
+
+    setDeepUrl(data) {
+        const { generateAlert, t } = this.props;
+
+        const regexAddress = /\:\/\/(.*?)\/\?/;
+        const regexAmount = /amount=(.*?)\&/;
+        const regexMessage = /message=([^\n\r]*)/;
+        const address = data.match(regexAddress);
+
+        if (address !== null) {
+            const amount = data.match(regexAmount);
+            const message = data.match(regexMessage);
+
+            if (address[1].length !== ADDRESS_LENGTH) {
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+            } else {
+                this.props.sendAmount(amount[1], address[1], message[1]);
+                if (this.props.tempAccount.ready === true) {
+                    this.props.history.push('/wallet/send');
+                }
+            }
+        }
     }
 
     menuToggle(item) {
