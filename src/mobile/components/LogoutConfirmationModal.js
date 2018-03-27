@@ -26,11 +26,19 @@ const styles = StyleSheet.create({
 
 class LogoutConfirmationModal extends PureComponent {
     static propTypes = {
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
+        /** Log out from wallet */
         logout: PropTypes.func.isRequired,
+        /** Modal background color */
         backgroundColor: PropTypes.string.isRequired,
+        /** Modal text color */
         textColor: PropTypes.object.isRequired,
+        /** Modal border color */
         borderColor: PropTypes.object.isRequired,
     };
 
@@ -38,7 +46,7 @@ class LogoutConfirmationModal extends PureComponent {
         const { t, backgroundColor, textColor, borderColor } = this.props;
 
         return (
-            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: backgroundColor }}>
+            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={[styles.questionText, textColor]}>{t('logoutConfirmation')}</Text>
                     <OnboardingButtons

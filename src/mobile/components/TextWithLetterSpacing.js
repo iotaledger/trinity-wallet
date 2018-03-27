@@ -27,9 +27,13 @@ const TextWithLetterSpacing = (props) => {
 };
 
 TextWithLetterSpacing.propTypes = {
+    /** Children content */
     children: PropTypes.string.isRequired,
+    /** Spacing for letter text */
     spacing: PropTypes.number.isRequired,
+    /** View container styles */
     viewStyle: PropTypes.object,
+    /** Letter text styles */
     textStyle: PropTypes.array,
 };
 

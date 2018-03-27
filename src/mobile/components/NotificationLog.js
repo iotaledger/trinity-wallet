@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity, Text, ListView } from 'react-native';
 import { formatTimeAs } from 'iota-wallet-shared-modules/libs/date';
@@ -62,15 +62,21 @@ const styles = StyleSheet.create({
     },
 });
 
-/* eslint-disable react/prefer-stateless-function */
-class NotificationLog extends Component {
+class NotificationLog extends PureComponent {
     static propTypes = {
+        /** Content background color */
         backgroundColor: PropTypes.string.isRequired,
+        /** Content border color */
         borderColor: PropTypes.object.isRequired,
+        /** Content text color */
         textColor: PropTypes.object.isRequired,
+        /** Content border bottom color */
         barColor: PropTypes.string.isRequired,
+        /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
+        /** List of notifications */
         notificationLog: PropTypes.array.isRequired,
+        /** Clears all notifications */
         clearLog: PropTypes.func.isRequired,
     };
 

@@ -40,13 +40,21 @@ const ProgressBar = (props) => {
 };
 
 ProgressBar.propTypes = {
+    /** Progress percentage number */
     progress: PropTypes.number.isRequired,
+    /** Children content */
     children: PropTypes.node,
+    /** Bar color */
     color: PropTypes.string,
+    /** When true, progress prop will be ignored */
     indeterminate: PropTypes.bool,
+    /** Type of animation for progress bar */
     animationType: PropTypes.string,
+    /** Progress bar width */
     width: PropTypes.number,
+    /** Progress bar height */
     height: PropTypes.number,
+    /** Progress bar text color */
     textColor: PropTypes.string,
 };
 

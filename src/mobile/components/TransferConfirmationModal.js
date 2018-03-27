@@ -55,17 +55,29 @@ const styles = StyleSheet.create({
 
 class TransferConfirmationModal extends Component {
     static propTypes = {
+        /** Closes acive modal */
         hideModal: PropTypes.func.isRequired,
+        /** Make transaction */
         sendTransfer: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
+        /** Receive address */
         address: PropTypes.string.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Content text color */
         textColor: PropTypes.object.isRequired,
+        /** Content border color */
         borderColor: PropTypes.object.isRequired,
+        /** Transaction value */
         value: PropTypes.number.isRequired,
+        /** Set a flag for a transfer in progress */
         setSendingTransferFlag: PropTypes.func.isRequired,
+        /** Tokens to Fiat converted text */
         conversionText: PropTypes.string.isRequired,
+        /** Transaction value as a string */
         amount: PropTypes.string.isRequired,
+        body: PropTypes.object.isRequired,
     };
 
     constructor() {
