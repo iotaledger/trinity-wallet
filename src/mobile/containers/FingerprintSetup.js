@@ -93,7 +93,7 @@ class FingerprintEnable extends Component {
         * @param {string} translationString - locale string identifier to be translated
         */
         t: PropTypes.func.isRequired,
-        /** Determines whther fingerprint is enabled */
+        /** Determines whether fingerprint is enabled */
         isFingerprintEnabled: PropTypes.bool.isRequired,
     };
 

@@ -61,34 +61,63 @@ const styles = StyleSheet.create({
     },
 });
 
+/** History screen component */
 class History extends Component {
     static propTypes = {
+        /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
+        /** Transactions for selected account */
         transfers: PropTypes.array.isRequired,
+        /** Close active top bar */
         closeTopBar: PropTypes.func.isRequired,
-        primary: PropTypes.object.isRequired,
-        secondary: PropTypes.object.isRequired,
-        extra: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
-        positive: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
-        bar: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Fetch latest account information
+        * @param {string} seed - seed value
+        * @param {string} selectedAccountName 
+        */
         getAccountInfo: PropTypes.func.isRequired,
+        /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Determines if there is already a network call going on for fetching latest acocunt info */
         isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
+        /** Determines if background poll is already fetching latest acocunt info */
         isFetchingAccountInfo: PropTypes.bool.isRequired,
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
+        /** Index of currently selected account in accountNames list */
         seedIndex: PropTypes.number.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Rebroadcast bundle
+        * @param {string} bundle - bundle hash
+        */
         broadcastBundle: PropTypes.func.isRequired,
+        /** Promotes bundle
+        * @param {string} bundle - bundle hash
+        */
         promoteTransaction: PropTypes.func.isRequired,
+        /** Determines if wallet is manually syncing account information */
         isSyncing: PropTypes.bool.isRequired,
+        /** Determines if wallet is making a transaction */
         isSendingTransfer: PropTypes.bool.isRequired,
+        /** Determines if wallet is generating receive address */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        /** Determines if wallet is doing snapshot transition */
         isTransitioning: PropTypes.bool.isRequired,
+        /** Determines if wallet is broadcasting bundle */
         isBroadcastingBundle: PropTypes.bool.isRequired,
+        /** Determines if wallet is promoting transaction */
         isPromotingTransaction: PropTypes.bool.isRequired,
+        /** Currently selected mode for wallet */
         mode: PropTypes.string.isRequired,
+        /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
     };
 
@@ -197,12 +226,14 @@ class History extends Component {
         const {
             transfers,
             addresses,
-            negative,
-            primary,
-            secondary,
-            positive,
-            body,
-            bar,
+            theme: {
+                negative,
+                primary,
+                secondary,
+                positive,
+                body,
+                bar
+            },
             mode,
             t,
             selectedAccountName,
@@ -271,7 +302,7 @@ class History extends Component {
     }
 
     renderTransactions() {
-        const { primary, t } = this.props;
+        const { theme: { primary }, t } = this.props;
         const { isRefreshing } = this.state;
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
@@ -304,16 +335,15 @@ class History extends Component {
                                     ctaHeight={height / 16}
                                 />
                             </View>
-                        ) : (
-                            <View style={styles.refreshButtonContainer}>
-                                <ActivityIndicator
-                                    animating={isRefreshing}
-                                    style={styles.activityIndicator}
-                                    size="large"
-                                    color={primary.color}
-                                />
-                            </View>
-                        )}
+                        ) : (<View style={styles.refreshButtonContainer}>
+                            <ActivityIndicator
+                                animating={isRefreshing}
+                                style={styles.activityIndicator}
+                                size="large"
+                                color={primary.color}
+                            />
+                        </View>
+                            )}
                     </View>
                 }
             />
@@ -340,13 +370,7 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     seedIndex: state.wallet.seedIndex,
     mode: state.settings.mode,
-    negative: state.settings.theme.negative,
-    primary: state.settings.theme.primary,
-    secondary: state.settings.theme.secondary,
-    positive: state.settings.theme.positive,
-    extra: state.settings.theme.extra,
-    body: state.settings.theme.body,
-    bar: state.settings.theme.bar,
+    theme: state.settings.theme,
     isFetchingLatestAccountInfoOnLogin: state.ui.isFetchingLatestAccountInfoOnLogin,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,

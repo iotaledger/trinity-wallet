@@ -35,6 +35,51 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
+    static propTypes = {
+        /** Translation helper
+       * @param {string} translationString - locale string identifier to be translated
+       */
+        t: PropTypes.func.isRequired,
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
+        /** Updates home screen children route name
+       * @param {string} name - route name
+       */
+        changeHomeScreenRoute: PropTypes.func.isRequired,
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
+        generateAlert: PropTypes.func.isRequired,
+        /** Set application activity state
+         * @param {object} options - minimzed, active, inactive
+         */
+        setUserActivity: PropTypes.func.isRequired,
+        /** Determines if the application is inactive */
+        inactive: PropTypes.bool.isRequired,
+        /** Determines if the application is minimised */
+        minimised: PropTypes.bool.isRequired,
+        /** Hash for wallet's password */
+        storedPassword: PropTypes.string.isRequired,
+        /** Determines if wallet is doing snapshot transition */
+        isTransitioning: PropTypes.bool.isRequired,
+        /** Determines if wallet is doing a manual sync */
+        isSyncing: PropTypes.bool.isRequired,
+        /** Determines if wallet is making a transaction */
+        isSendingTransfer: PropTypes.bool.isRequired,
+        /** Change current setting
+        * @param {string} setting
+        */
+        setSetting: PropTypes.func.isRequired,
+        /** Determines whether fingerprint is enabled */
+        isFingerprintEnabled: PropTypes.bool.isRequired,
+        /** Currently selected setting */
+        currentSetting: PropTypes.string.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.onLoginPress = this.onLoginPress.bind(this);
@@ -109,12 +154,14 @@ class Home extends Component {
             navigator,
             inactive,
             minimised,
-            bar,
-            body,
-            negative,
-            positive,
+            theme: {
+                bar,
+                body,
+                negative,
+                positive,
+                primary,
+            },
             isFingerprintEnabled,
-            primary,
         } = this.props;
 
         const barTextColor = { color: bar.color };
@@ -226,16 +273,13 @@ const mapStateToProps = (state) => ({
     storedPassword: state.wallet.password,
     inactive: state.ui.inactive,
     minimised: state.ui.minimised,
-    body: state.settings.theme.body,
-    negative: state.settings.theme.negative,
-    positive: state.settings.theme.positive,
-    primary: state.settings.theme.primary,
-    bar: state.settings.theme.bar,
+    theme: state.settings.theme,
     currentRoute: state.home.childRoute,
     isSyncing: state.ui.isSyncing,
     isSendingTransfer: state.ui.isSendingTransfer,
     isTransitioning: state.ui.isTransitioning,
     currentSetting: state.wallet.currentSetting,
+    isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
 const mapDispatchToProps = {
@@ -244,32 +288,6 @@ const mapDispatchToProps = {
     setPassword,
     setUserActivity,
     setSetting,
-};
-
-Home.propTypes = {
-    t: PropTypes.func.isRequired,
-    navigator: PropTypes.object.isRequired,
-    changeHomeScreenRoute: PropTypes.func.isRequired,
-    generateAlert: PropTypes.func.isRequired,
-    setUserActivity: PropTypes.func.isRequired,
-    inactive: PropTypes.bool.isRequired,
-    minimised: PropTypes.bool.isRequired,
-    body: PropTypes.object.isRequired,
-    negative: PropTypes.object.isRequired,
-    positive: PropTypes.object.isRequired,
-    storedPassword: PropTypes.string.isRequired,
-    bar: PropTypes.object.isRequired,
-    primary: PropTypes.object.isRequired,
-    isTransitioning: PropTypes.bool.isRequired,
-    isSyncing: PropTypes.bool.isRequired,
-    isSendingTransfer: PropTypes.bool.isRequired,
-    setSetting: PropTypes.func.isRequired,
-    isFingerprintEnabled: PropTypes.bool,
-    currentSetting: PropTypes.string.isRequired,
-};
-
-Home.defaultProps = {
-    isFingerprintEnabled: false,
 };
 
 export default WithUserActivity()(
