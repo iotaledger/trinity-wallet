@@ -111,7 +111,9 @@ app.setAsDefaultProtocolClient('iota');
 app.on('open-url', (event, url) => {
     event.preventDefault();
     deeplinkingUrl = url;
-    windows.main.webContents.send('url-params', url);
+    if (windows.main) {
+        windows.main.webContents.send('url-params', url);
+    }
 });
 
 ipc.on('request.deepLink', () => {
