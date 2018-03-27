@@ -45,17 +45,25 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * Add new account component
+ */
 class AddNewAccount extends Component {
     static propTypes = {
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
-        textColor: PropTypes.object.isRequired,
-        bodyColor: PropTypes.string.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
-        body: PropTypes.object.isRequired,
     };
 
     addNewSeed() {
-        const { body } = this.props;
+        const { theme } = this.props;
 
         Navigation.startSingleScreenApp({
             screen: {
@@ -63,9 +71,9 @@ class AddNewAccount extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: body.bg,
+                    screenBackgroundColor: theme.body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+                    statusBarColor: theme.body.bg,
                 },
             },
             appStyle: {
@@ -78,7 +86,9 @@ class AddNewAccount extends Component {
     }
 
     render() {
-        const { t, textColor, bodyColor } = this.props;
+        const { t, theme } = this.props;
+        const textColor = { color: theme.body.color };
+        const bodyColor = theme.body.color;
 
         return (
             <View style={styles.container}>
@@ -124,9 +134,7 @@ class AddNewAccount extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    body: state.settings.theme.body,
-    textColor: { color: state.settings.theme.body.color },
-    bodyColor: state.settings.theme.body.color,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {
