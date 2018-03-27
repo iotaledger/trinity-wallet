@@ -7,7 +7,6 @@ import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
 import Button from 'ui/components/Button';
 import Balance from 'ui/components/Balance';
-import { generateAlert } from 'actions/alerts';
 
 import css from './dashboard.css';
 
@@ -30,9 +29,7 @@ class Dashboard extends React.PureComponent {
 
     componentWillMount() {
         if (this.props.deepLinks.address !== '') {
-            const { generateAlert} = this.props;
-            generateAlert('success', 'Autofill', 'Transaction data autofilled from link.');
-            this.props.history.push('/wallet/send');
+                this.props.history.push('/wallet/send');
         }
     }
 
@@ -69,8 +66,5 @@ const mapStateToProps = (state) => ({
     deepLinks: state.deepLinks,
 });
 
-const mapDispatchToProps = {
-    generateAlert,
-};
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export default translate()(connect(mapStateToProps)(Dashboard));

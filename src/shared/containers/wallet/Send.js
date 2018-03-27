@@ -37,7 +37,19 @@ export default function withSendData(SendComponent) {
         }
 
         componentWillReceiveProps(props) {
+            this.validadeDeepLink();
             this.props = props;
+        }
+
+        componentWillMount() {
+            this.validadeDeepLink();
+        }
+
+        validadeDeepLink () {
+            if (this.props.deepLinks.address !== '') {
+                const { generateAlert} = this.props;
+                generateAlert('success', 'Autofill', 'Transaction data autofilled from link.');
+            }
         }
 
         validateInputs = (address, amount) => {
