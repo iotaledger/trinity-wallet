@@ -70,32 +70,37 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * Advanced Settings component
+ */
 class AdvancedSettings extends PureComponent {
     static propTypes = {
+        /** Change current setting
+        * @param {string} setting
+        */
         setSetting: PropTypes.func.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Currently selected IRI node */
         node: PropTypes.string.isRequired,
-        bodyColor: PropTypes.string.isRequired,
-        bg: PropTypes.string.isRequired,
-        borderColor: PropTypes.shape({
-            borderBottomColor: PropTypes.string.isRequired,
-        }).isRequired,
-        textColor: PropTypes.shape({
-            color: PropTypes.string.isRequired,
-        }).isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired
     };
 
     reset() {
-        const { bg } = this.props;
+        const { theme } = this.props;
+
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'walletResetConfirm',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: bg,
+                    screenBackgroundColor: theme.body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: bg,
+                    statusBarColor: theme.body.bg,
                 },
             },
             appStyle: {
@@ -106,7 +111,10 @@ class AdvancedSettings extends PureComponent {
     }
 
     render() {
-        const { t, textColor, borderColor, bodyColor, node } = this.props;
+        const { t, theme, node } = this.props;
+        const textColor = { color: theme.body.color };
+        const bodyColor = theme.body.color;
+        const borderColor = { borderColor: theme.body.color };
 
         return (
             <View style={styles.container}>
@@ -206,19 +214,10 @@ class AdvancedSettings extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => {
-    const theme = state.settings.theme;
-    const color = theme.body.color;
-    const bg = theme.body.bg;
-
-    return {
-        node: state.settings.fullNode,
-        bodyColor: color,
-        borderBottomColor: { borderBottomColor: color },
-        textColor: { color },
-        bg,
-    };
-};
+const mapStateToProps = (state) => ({
+    node: state.settings.node,
+    theme: state.settings.theme
+});
 
 const mapDispatchToProps = {
     setSetting,

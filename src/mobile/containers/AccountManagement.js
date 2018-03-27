@@ -72,16 +72,28 @@ const styles = StyleSheet.create({
 });
 
 /**
- * AccountManagement component
+ * Account Management component
  */
 class AccountManagement extends Component {
     static propTypes = {
+        /** Total number of added seeds */
         seedCount: PropTypes.number.isRequired,
-        bodyColor: PropTypes.string.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+         /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
-        textColor: PropTypes.object.isRequired,
     };
 
     deleteAccount() {
@@ -99,7 +111,9 @@ class AccountManagement extends Component {
     }
 
     render() {
-        const { t, bodyColor, textColor } = this.props;
+        const { t, theme } = this.props;
+        const textColor = { color: theme.body.color };
+        const bodyColor = theme.body.color;
 
         return (
             <View style={styles.advancedSettingsContainer}>
@@ -184,8 +198,7 @@ class AccountManagement extends Component {
 
 const mapStateToProps = (state) => ({
     seedCount: state.accounts.seedCount,
-    textColor: { color: state.settings.theme.body.color },
-    bodyColor: state.settings.theme.body.color,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {
