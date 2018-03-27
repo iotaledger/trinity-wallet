@@ -11,7 +11,7 @@
         "transferError": "Erro de transferência",
         "transferErrorMessage": "Algo deu errado ao enviar a sua transferência. Por favor, tente novamente.",
         "transferSent": "Transferência enviada",
-        "transferSentMessage": "Sua transferência for enviada para o Tangle.",
+        "transferSentMessage": "Sua transferência foi enviada para o Tangle.",
         "messageSent": "Mensagem enviada",
         "messageSentMessage": "Sua mensagem foi enviada para o Tangle.",
         "keyReuse": "Reutilização da chave",
@@ -57,9 +57,9 @@
         "somethingWentWrongTryAgain": "Por favor, tente novamente.",
         "node": "Servidor",
         "cannotPerformAction": "Não é possível executar a ação",
-        "cannotPerformActionExplanation": "Vá para configurações avançadas para redefinir a carteira.",
-        "attachToTangleUnavailable": "Anexar ao Tangle indisponível",
-        "attachToTangleUnavailableExplanation": "Anexar ao Tangle não está disponível no nó selecionado.",
+        "cannotPerformActionExplanation": "Vá para Opções para redefinir a carteira.",
+        "attachToTangleUnavailable": "Anexamento ao Tangle indisponível",
+        "attachToTangleUnavailableExplanation": "Anexo ao Tangle não está disponível no servidor selecionado.",
         "wallet": "Carteira",
         "sent": "Enviado",
         "received": "Recebido",
@@ -74,10 +74,10 @@
         "rebroadcast": "RETRANSMITIR",
         "pressBackAgain": "Pressione o botão \"voltar\" novamente para fechar o aplicativo",
         "autoreattaching": "Anexando automaticamente ao Tangle",
-        "autoreattachingExplanation": "Anexando transação automaticamente com hash {{hash}}",
+        "autoreattachingExplanation": "Reanexando a transação com hash {{hash}}",
         "autopromoting": "Promovendo transferência automaticamente",
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
-        "promoting": "Criando a transferência",
+        "promoting": "Promovendo a transferência",
         "promotionError": "A transação não pode ser criada",
         "noLongerValid": "O pacote que você está tentando criar não é mais válido",
         "cannotSendToOwn": "Enviando para próprio endereço",
@@ -97,7 +97,7 @@
         "nameInUseExplanation": "Por favor, use um nome de conta exclusivo para a sua Seed.",
         "enterAccountName": "Informe o nome de conta.",
         "accountName": "Nome da Conta",
-        "noNickname": "Nenhum nome de conta inserido",
+        "noNickname": "Nome de conta não informado",
         "noNicknameExplanation": "Por favor, insira um nome de conta para a sua Seed.",
         "seedInUse": "Seed já em uso",
         "seedInUseExplanation": "Essa Seed já está anexada em sua carteira. Por favor, use outra Seed."
@@ -124,15 +124,15 @@
         "seedCleared": "Seed removida",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
         "seedCopied": "A Seed foi copiada para a área de transferência",
-        "seedCopiedExplanation": "A Seed será removida quando pressionar \"CONCLUÍDO\" ou ao passar de 60 segundos.",
+        "seedCopiedExplanation": "A seed será removida quando você pressionar \"CONCLUÍDO\" ou ao passar 60 segundos.",
         "clickToCopy": "Clique no botão abaixo e copie a sua Seed para o gerenciador de senha.",
         "doNotStore": "Não grave a seed em arquivo de texto descriptografado.",
         "copyToClipboard": "Copiar seed",
         "shareSeed": "Compartilhe sua seed para um gerenciador de senhas seguro"
     },
     "enterSeed": {
-        "invalidCharacters": "A Seed contém carateres inválidos",
-        "invalidCharactersExplanation": "Seeds só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
+        "invalidCharacters": "A Seed contém caracteres inválidos",
+        "invalidCharactersExplanation": "Seeds só podem conter letras maiúsculas A-Z e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
         "seedTooShort": "A Seed é muito curta",
         "seedTooShortExplanation": "Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
         "seedExplanation": "Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Você não pode usar Seeds com mais de {{maxLength}} caracteres.",
@@ -143,7 +143,7 @@
         "send": "ENVIAR",
         "receive": "RECEBER",
         "history": "HISTÓRICO",
-        "settings": "CONFIGURAÇÕES"
+        "settings": "OPÇÕES"
     },
     "languageSetup": {
         "language": "Idioma"
@@ -160,7 +160,7 @@
     },
     "loading": {
         "loadingFirstTime": "Carregando a Seed pela primeira vez.",
-        "thisMayTake": "Isto pode demorar algum tempo.",
+        "thisMayTake": "Isso pode demorar algum tempo.",
         "doNotMinimise": "Não feche ou minimize o aplicativo.",
         "youMayNotice": "Você pode notar seu dispositivo ficar mais lento."
     },
@@ -168,7 +168,7 @@
         "seedNotGenerated": "A Seed não foi gerada",
         "seedNotGeneratedExplanation": "Por favor, gere uma seed nova.",
         "pressForNewSeed": "GERAR UMA NOVA SEED",
-        "individualLetters": "Toque sobre as letras individuais para tornar o processo ainda mais aleatório."
+        "individualLetters": "Pressione as letras individualmente para muda-las."
     },
     "onboardingComplete": {
         "walletReady": "Sua carteira está configurada e pronta para ser utilizada. Se desejar efetuar alterações no futuro, utilize o menu Opções."
@@ -178,7 +178,7 @@
         "storeSafely": "Guarde em local seguro.",
         "neverShare": "Nunca revele sua seed a ninguém.",
         "iotaLogo": "Logotipo da IOTA",
-        "printWallet": "IMPRIMIR SUA SEED"
+        "printWallet": "IMPRIMIR CARTEIRA"
     },
     "receive": {
         "addressCopied": "Endereço copiado",
@@ -206,21 +206,21 @@
         "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
         "invalidAddressExplanation3": "O endereço contém um código de verificação incorreto.",
         "invalidAddressExplanationGeneric": "Endereços válidos devem possuir 90 caracteres e conter apenas A-Z ou 9.",
-        "notEnoughFunds": "Fundos insuficientes",
+        "notEnoughFunds": "Saldo insuficiente",
         "notEnoughFundsExplanation": "Você não possui IOTAs suficientes para realizar esta transferência.",
         "keyReuse": "Reutilização da chave",
         "keyReuseExplanation": "O endereço que você esta tentando usar já foi utilizado. Por favor, tente outro endereço.",
         "recipientAddress": "Endereço do destinatário",
-        "amount": "Quantia",
+        "amount": "Valor",
         "max": "MÁXIMO",
         "message": "Mensagem",
         "invalidMessage": "Mensagem inválida",
         "invalidMessageExplanation": "Sua mensagem contém caracteres inválidos.",
         "send": "ENVIAR",
         "invalidAmount": "Valor inserido está incorreto",
-        "invalidAmountExplanation": "Por favor, insira uma quantidade válida para a transação. Pode ser útil ver a explicação sobre as unidades da IOTA, na parte inferior desta página.",
-        "maximumSelected": "Quantia MÁXIMA selecionada",
-        "iotaUnits": "Unidades IOTA explicadas",
+        "invalidAmountExplanation": "Por favor, insira um valor válido para a transação. Pode ser útil ver a explicação sobre as unidades da IOTA, na parte inferior desta página.",
+        "maximumSelected": "Valor MÁXIMO selecionado",
+        "iotaUnits": "Explicação sobre Unidades IOTA",
         "sendMax": "ENVIAR O MÁXIMO"
     },
     "setPassword": {
@@ -239,25 +239,25 @@
     },
     "modeSelection": {
         "expert": "Avançado",
-        "standard": "Normal",
-        "expertModeExplanation": "Modo avançado fornecerá acesso aos recursos adicionais como promoção manual e reanexo.",
-        "modesExplanation": "Somente habilite o modo Avançado se você for um usuário experiente do Tangle. Você pode se confundir caso contrário."
+        "standard": "Padrão",
+        "expertModeExplanation": "Modo Avançado fornece acesso a recursos adicionais, como promoção manual e reanexação.",
+        "modesExplanation": "Somente habilite o modo Avançado se você for um usuário experiente do Tangle. Caso contrário, poderá confundir-se."
     },
     "settings": {
         "transferSending": "Enviando transferência",
-        "transferSendingExplanation": "Por favor aguarde até que sua transferência seja realizada.",
+        "transferSendingExplanation": "Por favor aguarde até que sua transferência seja enviada.",
         "generatingAddress": "Gerando endereço de recebimento",
-        "generatingAddressExplanation": "Por favor aguarde enquanto o seu endereço está a ser gerado.",
+        "generatingAddressExplanation": "Por favor aguarde até que seu endereço seja gerado.",
         "mode": "Modo",
         "theme": "Tema",
         "currency": "Moeda",
         "language": "Idioma",
         "accountManagement": "Gerenciar Contas",
-        "addNewSeed": "Adicionar nova seed",
+        "addNewSeed": "Adicionar nova Seed",
         "twoFA": "Autenticação 2FA",
-        "changePassword": "Mudar senha",
+        "changePassword": "Alterar Senha",
         "advanced": "Opções",
-        "logout": "Terminar sessão",
+        "logout": "Desconectar",
         "reset": "Redefinir a carteira",
         "syncingComplete": "Sincronização completa",
         "syncingCompleteExplanation": "Sua conta foi sincronizada com sucesso.",
@@ -279,7 +279,7 @@
         "paste": "Colar",
         "selectAll": "Selecionar Tudo",
         "securitySettings": "Opções de segurança",
-        "fingerprint": "Autenticação Biométrica",
+        "fingerprint": "Autenticação biométrica",
         "couldNotFetchRates": "Não foi possível obter taxas de câmbio",
         "couldNotFetchRatesExplanation": "Algo deu errado ao obter as taxas de câmbio para {{currency}}.",
         "fetchedConversionRates": "Conversão de câmbio obtida",
@@ -288,22 +288,22 @@
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
         "cancel": "CANCELAR",
-        "reset": "RECONFIGURAR COMPLETAMENTE"
+        "reset": "REDEFINIR"
     },
     "walletSetup": {
-        "okay": "Ok. Vamos configurar a sua carteira!",
-        "doYouAlreadyHaveASeed": "Já possui uma seed que gostaria de utilizar?",
-        "seedExplanation": "A seed IOTA representa, simultaneamente, o nome do usuário e a senha de sua conta, combinados em uma sequência de 81 caracteres.",
-        "explanation": "<0><0>Voce pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder a sua seed, também perderá as suas IOTAS.</4></0>",
-        "keepSafe": "Por favor, mantenha a sua seed protegida e segura."
+        "okay": "Vamos configurar a sua carteira!",
+        "doYouAlreadyHaveASeed": "Já possui uma Seed que gostaria de utilizar?",
+        "seedExplanation": "A Seed IOTA representa, simultaneamente, o nome do usuário e a senha de sua conta, combinados em uma sequência de 81 caracteres.",
+        "explanation": "<0><0>Você pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder sua Seed, também perderá as suas IOTAs.</4></0>",
+        "keepSafe": "Por favor, mantenha a sua Seed protegida e segura."
     },
     "welcome": {
-        "thankYou": "Obrigado por instalar a carteira IOTA.",
+        "thankYou": "Obrigado por baixar a Trinity.",
         "weWillSpend": "Vamos passar os próximos minutos configurando sua carteira.",
         "reminder": "Você pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que conclua todo o processo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "A Seed possui {{maxSeedLength}} caracteres, lidos da esquerda para a direita.",
+        "yourSeedIs": "Sua seed é {{maxSeedLength}} caracteres lidos da esquerda para a direita.",
         "writeDownYourSeed": "<0>Anote sua Seed e os dígitos de verificação e </0><1>certifique-se</1><2> que estão corretos.</2>"
     },
     "history": {
@@ -315,9 +315,9 @@
         "receive": "RECEBER"
     },
     "accountManagement": {
-        "viewSeed": "Ver seed",
-        "viewAddresses": "Ver endereços",
-        "editAccountName": "Editar o nome da Conta",
+        "viewSeed": "Ver Seed",
+        "viewAddresses": "Ver Endereços",
+        "editAccountName": "Editar Nome da Conta",
         "deleteAccount": "Excluir Conta",
         "addNewAccount": "Adicionar nova Conta"
     },
@@ -326,8 +326,8 @@
         "add": "Adicionar"
     },
     "addNewAccount": {
-        "useExistingSeed": "Usar seed existente",
-        "createNewSeed": "Criar uma nova seed"
+        "useExistingSeed": "Usar Seed existente",
+        "createNewSeed": "Criar Nova Seed"
     },
     "advancedSettings": {
         "selectNode": "Selecionar servidor",
@@ -360,7 +360,7 @@
         "one": "Um"
     },
     "deleteAccount": {
-        "areYouSure": "Você deseja realmente remover a conta {{accountName}}?",
+        "areYouSure": "Você deseja realmente remover {{accountName}}?",
         "yourSeedWillBeRemoved": "Sua Seed e histórico de transações serão removidos.",
         "thisAction": "Esta operação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
