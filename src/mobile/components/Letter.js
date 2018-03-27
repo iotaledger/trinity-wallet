@@ -11,7 +11,10 @@ export const Letter = (props) => {
 };
 
 Letter.propTypes = {
+    /** Letter children content */
     children: PropTypes.string.isRequired,
+    /** Letter spacing */
     spacing: PropTypes.number.isRequired,
+    /** Letter text styles */
     textStyle: PropTypes.array,
 };
