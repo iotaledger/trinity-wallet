@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import { generateAlert } from '../../actions/alerts';
 
 import { makeTransaction } from '../../actions/transfers';
-import { getSelectedAccountNameViaSeedIndex, getBalanceForSelectedAccountViaSeedIndex } from '../../selectors/account';
+import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/account';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/util';
 import { iota } from '../../libs/iota';
 import deepLinks from "../../reducers/deepLinks";
@@ -113,8 +113,8 @@ export default function withSendData(SendComponent) {
 
     const mapStateToProps = (state) => ({
         tempAccount: state.tempAccount,
-        balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-        accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+        balance: getBalanceForSelectedAccount(state),
+        accountName: getSelectedAccountName(state),
         settings: state.settings,
         account: state.account,
         seed: state.seeds.seeds[state.tempAccount.seedIndex],

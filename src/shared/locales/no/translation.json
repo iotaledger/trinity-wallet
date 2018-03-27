@@ -4,37 +4,36 @@
         "cancel": "AVBRYT",
         "continue?": "Er du sikker på at du vil fortsette?",
         "noTransactions": "INGEN NYLIG HISTORIKK",
-        "refresh": "REFRESH",
+        "refresh": "LAST INN PÅ NYTT",
         "qr": "QR",
-        "balanceError": "Ikke nok penger",
-        "balanceErrorMessage": "Du har ikke nok IOTA til å fullføre denne overføringen.",
-        "transferError": "Overføringsfeil",
-        "transferErrorMessage": "Noe gikk galt under overføringen. Vennligst prøv igjen.",
-        "transferSent": "Overføring sendt",
-        "transferSentMessage": "Din overføring er blitt levert til nettverket.",
+        "balanceError": "Saldo for lav",
+        "balanceErrorMessage": "Du har ikke nok IOTA til å fullføre denne transaksjonen.",
+        "transferError": "Transaksjonsfeil",
+        "transferErrorMessage": "Noe gikk galt under transaksjonen. Vennligst prøv igjen.",
+        "transferSent": "Transaksjon sendt",
+        "transferSentMessage": "Din transaksjon er blitt sendt til Tangle.",
         "messageSent": "Melding sendt",
-        "messageSentMessage": "Din melding er levert til nettverket.",
-        "keyReuse": "Privatnøkkelen er brukt før",
-        "keyReuseError": "Du kan ikke sende til en adresse som er blitt brukt til å sende fra.",
-        "invalidResponse": "Ugyldig svar",
+        "messageSentMessage": "Din melding er levert til Tangle.",
+        "keyReuse": "Adressen er brukt før",
+        "keyReuseError": "Du kan ikke sende til en adresse som allerede er blitt brukt til å sende fra.",
+        "invalidResponse": "Ugyldig respons",
         "invalidResponseExplanation": "Noden returnerte et ugyldig svar.",
         "invalidResponsePollingExplanation": "Noden returnerte et ugyldig svar.",
-        "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information. Try changing node.",
-        "invalidResponseSendingTransfer": "Noden returnerte et ugyldig svar når vi forsøkte å sende en overføring.",
+        "invalidResponseFetchingAccount": "Noden returnerte et ugyldig svar når vi forsøkte å hente dine kontodetaljer. Forsøk å endre node.",
+        "invalidResponseSendingTransfer": "Noden returnerte et ugyldig svar når transaksjonen ble sendt.",
         "seed": "Hovednøkkel",
         "back": "TILBAKE",
         "backLowercase": "Tilbake",
         "done": "FERDIG",
         "doneLowercase": "Ferdig",
         "next": "NESTE",
-        "apply": "Ta i bruk",
+        "apply": "Bruk",
         "save": "Lagre",
         "close": "LUKK",
         "continue": "Fortsett",
         "manualCopy": "Skriv ned hovednøkkelen",
         "paperWallet": "Skriv ut papirkopi",
-        "copyToClipboard": "Legg til i passord-lagrings program",
+        "copyToClipboard": "Legg til i sikker passord-applikasjon",
         "notAvailable": "Denne funksjonen er ikke tilgjengelig",
         "notAvailableExplanation": "Dette vil bli lagt til i en senere utgave.",
         "enterSeed": "Vennligst skriv inn din hovednøkkel.",
@@ -48,57 +47,60 @@
         "yes": "JA",
         "no": "NEI",
         "password": "Passord",
-        "passwordOrFingerprint": "Password or fingerprint",
-        "unrecognisedPassword": "Feil passord",
+        "passwordOrFingerprint": "Passord eller fingeravtrykk",
+        "unrecognisedPassword": "Ukjent passord",
         "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
         "syncInProgress": "Synkronisering pågår",
         "syncInProgressExplanation": "Vent til synkronisering er fullført.",
         "somethingWentWrong": "Noe gikk galt",
-        "somethingWentWrongExplanation": "Start programmet på nytt.",
+        "somethingWentWrongRestart": "Vennligst start applikasjonen på nytt.",
+        "somethingWentWrongTryAgain": "Vennligst prøv på nytt.",
         "node": "Node",
         "cannotPerformAction": "Kan ikke utføre handling",
         "cannotPerformActionExplanation": "Gå til avanserte innstillinger for å tilbakestille lommeboken.",
-        "attachToTangleUnavailable": "\"Attach to Tangle \" er ikke tilgjengelig",
-        "attachToTangleUnavailableExplanation": "\"Attach to Tangle \" er ikke tilgjengelig på den valgte node.",
+        "attachToTangleUnavailable": "Tilknytt Tangle er ikke tilgjengelig",
+        "attachToTangleUnavailableExplanation": "Tilknytt Tangle er ikke tilgjengelig på valgte node.",
         "wallet": "Lommebok",
         "sent": "Sendt",
         "received": "Mottatt",
         "sending": "Sender",
         "receiving": "Mottar",
         "confirmed": "Bekreftet",
-        "pending": "Ventende",
+        "pending": "Venter",
         "bundleHash": "Bunt Hash",
         "addresses": "Adresser",
-        "reattach": "REATTACH",
-        "promote": "PROMOTE",
-        "rebroadcast": "REBROADCAST",
-        "pressBackAgain": "Trykk tilbake igjen for å stenge app",
-        "autoreattaching": "Retilknytter automatisk",
-        "autoreattachingExplanation": "Retiljknytter transaksjon med hash-{{hash}}",
-        "autopromoting": "Sender hjelpetransaksjoner",
-        "autopromotingExplanation": "Sende hjelpetransaksjoner for {{hash}}",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation":
-            "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "reattach": "RE-TILKNYTTE",
+        "promote": "PROMOTER",
+        "rebroadcast": "KRINGKAST PÅ NYTT",
+        "pressBackAgain": "Trykk tilbake igjen for å lukke applikasjonen",
+        "autoreattaching": "Re-tilknytter Tangle automatisk",
+        "autoreattachingExplanation": "Re-tilknytter transaksjon med hash-{{hash}}",
+        "autopromoting": "Promoterer transaksjon automatisk",
+        "autopromotingExplanation": "Promoterer transaksjon med hash {{hash}}",
+        "promoting": "Promoterer transaksjon",
+        "promotionError": "Kunne ikke promotere transaksjonen",
+        "noLongerValid": "Pakken du prøver å promotere er ikke lenger gyldig",
+        "cannotSendToOwn": "Sender til egen adresse",
+        "cannotSendToOwnExplanation": "Du kan ikke sende transaksjoner med verdi til egne adresser.",
+        "pleaseWait": "Vennligst vent",
+        "pleaseWaitExplanation": "Trinity jobber med en annen oppgave. Vennligst vent og forsøk igjen.",
+        "pleaseWaitTransferExplanation": "Din tilgjengelige saldo blir benyttet i andre transaksjoner. Vent til en blir bekreftet før du forsøker på nytt.",
+        "snapshotTransitionInProgress": "Snapshot under behandling",
+        "snapshotTransitionInProgressExplanation": "Vent til synkroniseringen er fullført."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
-        "seedInvalidCharsExplanation":
-            "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
+        "seedInvalidCharsExplanation": "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
         "seedTooShort": "Hovednøkkelen er for kort",
-        "seedTooShortExplanation":
-            "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
+        "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
         "nameInUse": "Kontonavnet er allerede i bruk",
-        "nameInUseExplanation": "Bruk et unikt kontonavn for din hovednøkkel.",
+        "nameInUseExplanation": "Bruk et unikt kontonavn for denne hovednøkkelen.",
         "enterAccountName": "Angi et kontonavn.",
         "accountName": "Kontonavn",
         "noNickname": "Ingen kontonavn angitt",
         "noNicknameExplanation": "Vennligst skriv inn et kontonavn for hovednøkkelen.",
-        "seedInUse": "Nøkkel er allerede i bruk",
-        "seedInUseExplanation": "Denne nøkkelen er allerede tilknyttet din lommebok. Bruk en annen."
+        "seedInUse": "Hovednøkkel er allerede i bruk",
+        "seedInUseExplanation": "Denne hovednøkkelen er allerede tilknyttet din lommebok. Bruk en annen."
     },
     "changePassword": {
         "oops": "Au da. Noe gikk galt",
@@ -111,9 +113,8 @@
         "passwordsDoNotMatchExplanation": "Passordene er ikke like. Prøv igjen.",
         "passwordTooShort": "Passordet er for kort",
         "passwordTooShortExplanation": "Passordet ditt må være minst 12 tegn. Prøv igjen.",
-        "oldPassword": "Kan ikke angi gammelt passord",
-        "oldPasswordExplanation":
-            "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
+        "oldPassword": "Kan ikke bruke passord som er benyttet tidligere",
+        "oldPasswordExplanation": "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
         "ensureStrongPassword": "Sjekk at du bruker et sterkt passord med minst 12 tegn.",
         "currentPassword": "Nåværende passord",
         "newPassword": "Nytt passord",
@@ -121,24 +122,20 @@
     },
     "copyToClipboard": {
         "seedCleared": "Hovednøkkel er fjernet",
-        "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstaven for din sikkerhet.",
+        "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstavlen for din sikkerhet.",
         "seedCopied": "Kopierte hovednøkkelen til utklippstavle",
-        "seedCopiedExplanation":
-            "Hovednøkkelen vil fjernes med en gang du trykker \"FERDIG\" eller 60 sekunder har gått.",
-        "clickToCopy": "Klikk knappen nedenfor og kopier din hovednøkkel til et passord-lagrings program.",
+        "seedCopiedExplanation": "Hovednøkkelen vil fjernes med en gang du trykker \"FERDIG\" eller 60 sekunder har passert.",
+        "clickToCopy": "Klikk knappen nedenfor og kopier din hovednøkkel til en sikker passord-applikasjon.",
         "doNotStore": "Lagre ikke hovednøkkeleb din i klartekst.",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "copyToClipboard": "Kopier hovednøkkel",
+        "shareSeed": "Kopier din hovednøkkel til en sikker passord applikasjon"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
-        "invalidCharactersExplanation":
-            "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
+        "invalidCharactersExplanation": "Hovednøkkelen kan kun bestå av bokstavene A til Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
         "seedTooShort": "Hovednøkkelen er for kort",
-        "seedTooShortExplanation":
-            "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
-        "seedExplanation":
-            "Hovednøkler bør være {{maxLength}} tegn, og bør inneholde de store bokstavene A-Z, eller tallet 9. Du kan ikke bruke hovednøkler lenger enn {{maxLength}} tegn.",
+        "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
+        "seedExplanation": "Hovednøkler bør være {{maxLength}} tegn, og bør inneholde de store bokstavene A-Z, eller tallet 9. Du kan ikke bruke hovednøkler lenger enn {{maxLength}} tegn.",
         "neverShare": "OPPGI ALDRI DIN HOVEDNØKKEL TIL ANDRE"
     },
     "home": {
@@ -154,31 +151,31 @@
     "login": {
         "emptyPassword": "Tomt passord",
         "emptyPasswordExplanation": "Du må angi et passord for å logge inn. Prøv på nytt.",
-        "enterPassword": "Skriv inn passord.",
+        "enterPassword": "Skriv inn ditt passord.",
         "useSeed": "BRUK HOVEDNØKKEL",
         "login": "LOGG INN",
         "selectDifferentNode": "Vil du forsøke en annen node?",
-        "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "setNode": "ANGI NODE",
+        "cannotConnect": "Kan ikke koble til IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
         "thisMayTake": "Dette kan ta en stund.",
+        "doNotMinimise": "Ikke minimer eller lukk applikasjonen.",
         "youMayNotice": "Du kan merke en treghet på enheten din."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Hovednøkkel har ikke blitt generert",
-        "seedNotGeneratedExplanation": "Trykk knappen for å generere ny hovednøkkel.",
+        "seedNotGeneratedExplanation": "Vennligst generer ny hovednøkkel.",
         "pressForNewSeed": "TRYKK FOR NY HOVEDNØKKEL",
-        "individualLetters": "Trykk enkelte tegn for å gi de tilfeldig plassering."
+        "individualLetters": "Trykk individuelle tegn for å randomisere dem."
     },
     "onboardingComplete": {
-        "walletReady":
-            "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Innstillinger menyen."
+        "walletReady": "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du benytte Innstillinger menyen."
     },
     "paperWallet": {
         "clickToPrint": "Klikk knappen nedenfor for å skrive ut en papirkopi av din hovednøkkel.",
-        "storeSafely": "Lagre den trygt.",
+        "storeSafely": "Lagre det trygt.",
         "neverShare": "Du må aldri dele hovednøkkelen din med noen.",
         "iotaLogo": "IOTA logo",
         "printWallet": "SKRIV UT PAPIRLOMMEBOK"
@@ -189,18 +186,18 @@
         "generateNewAddress": "NY ADRESSE",
         "message": "Valgfri melding",
         "removeMessage": "FJERN MELDINGEN",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "INGEN ADRESSER",
+        "spent": "Brukt"
     },
     "saveYourSeed": {
         "seedCleared": "Hovednøkkel er fjernet",
-        "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstaven for din sikkerhet.",
+        "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstavlen for din sikkerhet.",
         "mustSaveYourSeed": "<0><0>Du må lagre din nøkkel med</0> <1>minst én</1> <2>av alternativene nedenfor.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Feil hovednøkkel",
         "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
-        "thisIsACheck": "Dette er en kontroll for å sikre at du har lagret nøkkelen din.",
+        "thisIsACheck": "Dette er en kontroll for å sikre at du har lagret hovednøkkelen din.",
         "ifYouHaveNotSaved": "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake for å lagre."
     },
     "send": {
@@ -208,59 +205,54 @@
         "invalidAddressExplanation1": "Adressen bør være {{maxLength}} tegn og ha kontrolltegn.",
         "invalidAddressExplanation2": "Adressen inneholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressens kontrolltegn stemmer ikke.",
-        "notEnoughFunds": "Ikke nok penger",
-        "notEnoughFundsExplanation": "Du har ikke nok IOTA til å gjøre denne overføringen.",
+        "invalidAddressExplanationGeneric": "Gyldige adresser må være 90 tegn og kun inneholde bokstavene A til Z og tallet 9.",
+        "notEnoughFunds": "Saldo for lav",
+        "notEnoughFundsExplanation": "Du har ikke nok IOTA til å fullføre denne transaksjonen.",
         "keyReuse": "Privatnøkkelen er brukt før",
         "keyReuseExplanation": "Adressen du prøver å sende til er allerede brukt. Prøv en annen adresse.",
-        "recipientAddress": "Mottakeradresse",
+        "recipientAddress": "Mottakerens adresse",
         "amount": "Beløp",
         "max": "MAKS",
         "message": "Melding",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
-        "send": "SENDE",
-        "invalidAmount": "Ugyldig beløp lagt inn",
-        "invalidAmountExplanation":
-            "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidMessage": "Ugyldig melding",
+        "invalidMessageExplanation": "Meldingen din inneholder ugyldige tegn.",
+        "send": "SEND",
+        "invalidAmount": "Ugyldig beløp inntastet",
+        "invalidAmountExplanation": "Angi et gyldig transaksjonsbeløp. Det kan være nyttig å lese IOTA enhets-forklaring nederst på denne siden.",
         "maximumSelected": "MAKSIMUM beløp valgt",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "iotaUnits": "IOTA enheter forklart",
+        "sendMax": "SENDE MAX"
     },
     "setPassword": {
         "passwordTooShort": "Passordet er for kort",
-        "passwordTooShortExplanation":
-            "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
+        "passwordTooShortExplanation": "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
         "passwordMismatch": "Passordene samsvarer ikke",
-        "passwordMismatchExplanation": "Passordene du angav samsvarer ikke. Prøv på nytt.",
+        "passwordMismatchExplanation": "Passordene du anga samsvarer ikke. Prøv på nytt.",
         "nowWeNeedTo": "Nå må vi sette opp et passord.",
-        "anEncryptedCopy":
-            "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du vil bruke dette passordet for å åpne lommeboken neste gang.",
+        "anEncryptedCopy": "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du vil bruke dette passordet for å åpne lommeboken neste gang.",
         "ensure": "Forsikre deg om at du bruker et sterkt passord med minst 12 tegn.",
         "retypePassword": "Skriv inn passordet på nytt"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "Du kan lagre flere hovednøkler i denne lommeboken. Hver av disse må ha et eget kontonavn.",
+        "canUseMultipleSeeds": "Du kan lagre flere hovednøkler i denne lommeboken. Hver av disse må ha et eget kontonavn.",
         "youCanAdd": "Du kan legge til flere hovednøkler i menyen for Innstillinger."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "expert": "Ekspert",
         "standard": "Standard",
-        "expertModeExplanation":
-            "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation":
-            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "Ekspertmodus gir tilgang til flere funksjoner som manuell promotering og re-tilknytning av transaksjoner.",
+        "modesExplanation": "Aktiver kun ekspertmodus om du er en erfaren Tangle bruker. Hvis ikke kan dette være forvirrende."
     },
     "settings": {
         "transferSending": "Sender overføring",
-        "transferSendingExplanation": "Vennligst vent til overføringen er ferdig.",
+        "transferSendingExplanation": "Vennligst vent til transaksjonen er sent.",
         "generatingAddress": "Lager mottaksadresse",
         "generatingAddressExplanation": "Vennligst vent til adressen er laget.",
         "mode": "Modus",
         "theme": "Tema",
         "currency": "Valuta",
         "language": "Språk",
-        "accountManagement": "Konto administrasjon",
+        "accountManagement": "Kontoadministrasjon",
         "addNewSeed": "Legg til ny hovednøkkel",
         "twoFA": "To-faktor autentisering",
         "changePassword": "Endre passord",
@@ -268,7 +260,7 @@
         "logout": "Logg ut",
         "reset": "Tilbakestill lommeboken",
         "syncingComplete": "Synkronisering fullført",
-        "syncingCompleteExplanation": "Din konto har blitt vellykket sybkronisert.",
+        "syncingCompleteExplanation": "Vellykket konto-synkronisering.",
         "nicknameChanged": "Kontonavnet er endret",
         "nicknameChangedExplanation": "Ditt kontonavn har blitt endret.",
         "accountDeleted": "Konto slettet",
@@ -286,12 +278,12 @@
         "copy": "Kopier",
         "paste": "Lim inn",
         "selectAll": "Velg alt",
-        "securitySettings": "Security settings",
-        "fingerprint": "Biometric authentication",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "securitySettings": "Sikkerhetsinnstillinger",
+        "fingerprint": "Biometrisk autentisering",
+        "couldNotFetchRates": "Kunne ikke hente valutakurser",
+        "couldNotFetchRatesExplanation": "Valutakurser kunne ikke hentes for {{currency}}.",
+        "fetchedConversionRates": "Mottatte valutakurser",
+        "fetchedConversionRatesExplanation": "Henting av valutakurs for {{currency}} var vellykket."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
@@ -301,50 +293,47 @@
     "walletSetup": {
         "okay": "OK. La oss sette opp lommeboken din!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøkkel du ønsker å bruke?",
-        "seedExplanation":
-            "IOTA hovednøkkel er som et brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
-        "explanation":
-            "<0><0>Du kan bruke den til å få tilgang til midler fra</0> <1>enhver lommebok</1> <2>, på</2> <3>enhver enhet</3> <4>. Men hvis du mister din nøkkel, du også miste din IOTA.</4></0>",
+        "seedExplanation": "IOTA hovednøkkel er som et brukernavn og passord til kontoen, kombinert i en streng på 81 tegn.",
+        "explanation": "<0><0>Du kan bruke den til å få tilgang til midler fra</0> <1>enhver lommebok</1> <2>, på</2> <3>enhver enhet</3> <4>. Men hvis du mister din nøkkel, du også miste din IOTA.</4></0>",
         "keepSafe": "Vennligst sikre din hovednøkkel godt."
     },
     "welcome": {
-        "thankYou": "Takk for at du lastet ned IOTA lommeboken.",
-        "weWillSpend": "Vi vil bruke neste minuttene til å sette opp lommeboken din.",
-        "reminder":
-            "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
+        "thankYou": "Thank you for downloading Trinity.",
+        "weWillSpend": "Vi vil bruke neste minuttene til å konfigurere lommeboken din.",
+        "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Din nøkkel er {{maxSeedLength}} tegn lest fra venstre mot høyre.",
-        "writeDownYourSeed": "<0>Skriv ned nøkkel og kontrolltegn og</0> <1>trippel Sjekk</1> <2>at de er riktige.</2>"
+        "yourSeedIs": "Din hovednøkkel er {{maxSeedLength}} tegn lest fra venstre mot høyre.",
+        "writeDownYourSeed": "<0>Skriv ned din hovednøkkel og kontrolltegn, og</0> <1>trippelsjekk</1> <2>at de er riktige.</2>"
     },
     "history": {
         "bundleHashCopied": "Pakke hash kopiert",
         "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "SENT",
+        "receive": "MOTTA"
     },
     "accountManagement": {
-        "viewSeed": "Vis nøkkel",
-        "viewAddresses": "Vis adresse",
-        "editAccountName": "Redigere kontonavn",
+        "viewSeed": "Vis hovednøkkel",
+        "viewAddresses": "Vis adresser",
+        "editAccountName": "Rediger kontonavn",
         "deleteAccount": "Slett konto",
-        "addNewAccount": "Legge til en ny konto"
+        "addNewAccount": "Legge til ny konto"
     },
     "addCustomNode": {
-        "customNode": "Egendefinerte node",
+        "customNode": "Egendefinert node",
         "add": "Legg til"
     },
     "addNewAccount": {
-        "useExistingSeed": "Bruk eksisterende nøkkel",
-        "createNewSeed": "Lag ny nøkkel"
+        "useExistingSeed": "Bruk eksisterende hovednøkkel",
+        "createNewSeed": "Lag ny hovednøkkel"
     },
     "advancedSettings": {
         "selectNode": "Velg node",
-        "addCustomNode": "Legge til egendefinerte node",
+        "addCustomNode": "Legg til egendefinert node",
         "manualSync": "Manuell synkronisering",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot synkronisering"
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrunn",
@@ -371,15 +360,16 @@
         "one": "En"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete the account called {{accountName}}?",
+        "areYouSure": "Er du sikker på at du vil slette {{accountName}}?",
         "yourSeedWillBeRemoved": "Din nøkkel og transaksjonsloggen vil bli fjernet.",
         "thisAction": "Denne handlingen kan ikke angres.",
         "enterPassword": "Skriv inn passordet for å slette kontoen."
     },
     "manualSync": {
+        "outOfSync": "Ser din transaksjonshistorikk ut til å ikke være synkronisert?",
         "pressToSync": "Trykk på knappen nedenfor for å synkronisere din konto.",
-        "thisMayTake": "Dette kan ta en stund.",
-        "youMayNotice": "Du kan merke en treghet på enheten din.",
+        "thisMayTake": "Dette kan ta en stund. Det kan hende din enhet blir tregere.",
+        "doNotClose": "Minimaliserer du applikasjonen vil du avbryte synkroniseringen.",
         "syncAccount": "SYNKRONISER KONTO",
         "syncingYourAccount": "Synkroniserer din konto."
     },
@@ -389,63 +379,81 @@
     "viewSeed": {
         "enterPassword": "Angi passord for å vise din nøkkel.",
         "viewSeed": "VIS NØKKEL",
-        "hideSeed": "SKJUL NØKKEL"
+        "hideSeed": "SKJUL HOVEDNØKKEL"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "Jeg har lagret min nøkkel",
-        "reenter": "Du vil nå bli spurt å gjenta din nøkkel.",
-        "reenterWarning": "Hvis enheten slutter å virke og du ikke har lagret dine nøkler, vil du miste dine IOTA."
+        "alreadyHave": "Jeg har lagret min hovednøkkel",
+        "reenter": "Du vil nå bli spurt å gjenta din hovednøkkel.",
+        "reenterWarning": "Hvis enheten slutter å virke og du ikke har lagret dine hovednøkler, vil du miste dine IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLINGEN KAN IKKE ANGRES.",
-        "warning":
-            "<0><0>Alle dine lommebokdata inkludert dine</0> <1>nøkler, passord</1> <2>og</2> <3>andre kontoopplysninger</3> <4> vil gå tapt.</4></0>"
+        "warning": "<0><0>Alle dine data, inkludert dine</0> <1>nøkler, passord</1> <2>og</2> <3>andre konto-opplysninger</3> <4> vil gå tapt.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "instructionsEnable": "Legg fingeren mot fingeravtrykk-leseren for å aktivere biometrisk autentisering.",
+        "instructionsDisable": "Legg fingeren mot fingeravtrykk-leseren for å deaktivere biometrisk autentisering.",
+        "fingerprintAuthEnabled": "Biometrisk autentisering aktivert",
+        "fingerprintAuthEnabledExplanation": "Du har nå aktivert biometrisk autentisering.",
+        "fingerprintAuthDisabled": "Biometrisk autentisering er deaktivert",
+        "fingerprintAuthDisabledExplanation": "Du har nå deaktivert biometrisk autentisering.",
+        "fingerprintAuthFailed": "Biometrisk autentisering feilet",
+        "fingerprintAuthFailedExplanation": "Biometrisk autentisering feilet. Vennligst prøv igjen.",
         "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation":
-            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "enabled": "Aktivert",
+        "disabled": "Deaktivert",
+        "fingerprintUnavailable": "Biometrisk sensor ikke tilgjengelig",
+        "fingerprintUnavailableExplanation": "Din enhet støtter ikke biometrisk autentisering, eller er ikke konfigurert for å benytte dette.",
+        "buttonInstructionsDisable": "Trykk på knappen under for å deaktivere biometrisk godkjenning.",
+        "buttonInstructionsEnable": "Trykk på knappen under for å aktivere biometrisk godkjenning.",
+        "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn."
     },
     "transferConfirmation": {
-        "youAreAbout": "Du skal til å sende {{contents}} til adressen",
+        "youAreAbout": "Du er nå klar til å sende {{contents}} til adressen",
         "aMessage": "en melding"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "wrongCode": "Feil kode",
+        "wrongCodeExplanation": "Koden du anga er feil.",
+        "emptyCode": "Mangler kode",
+        "emptyCodeExplanation": "Angi en kode, og prøv på nytt.",
+        "keyCopied": "Kode kopiert til utklippstavlen",
+        "keyCopiedExplanation": "2FA koden har blitt kopiert til utklippstavlen.",
+        "addKey": "Legge denne koden til i din 2FA app",
+        "key": "Kode",
+        "twoFAEnabled": "2FA er nå aktivert",
+        "twoFAEnabledExplanation": "Du har aktivert to faktor autentisering.",
+        "enterCode": "Angi koden fra din 2FA app",
+        "code": "Kode"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)"
+        "change": "Endring",
+        "volume": "Volum (24 timer)"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "rootDetected":
-            "<0>Your device appears to be rooted/jailbroken.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "warning": "ADVARSEL",
+        "rootDetected": "<0>Enheten synes å være \"rooted/jailbroken\".</0><1>Dette kan utgjøre en betydelig risiko for sikkerheten til lommeboken.</1><2>Vil du fortsette tross denne risikoen?</2>"
+    },
+    "pow": {
+        "feeless": "Det er nødvendig for å utføre litt PoW (Proof of Work) for å sende gebyrfrie transaksjoner i IOTA.",
+        "localOrRemote": "PoW (Proof of Work) kan enten utføres på din enhet, eller settes bort til noden du er tilkoblet.",
+        "local": "Lokal",
+        "remote": "Ekstern"
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Validerer mottaksadressen",
+        "syncingAccount": "Synkroniser konto",
+        "preparingInputs": "Forbereder innganger",
+        "preparingTransfers": "Forbereder transaksjoner",
+        "gettingTransactionsToApprove": "Mottar transaksjoner til godkjenning",
+        "proofOfWork": "Fullfører PoW (Proof of Work)",
+        "broadcasting": "Kringkaster"
+    },
+    "snapshotTransition": {
+        "cannotCompleteTransition": "Kan ikke fullføre snapshot synkronisering",
+        "cannotCompleteTransitionExplanation": "Tilgjengelig saldo må være større enn 0 for å fullføre transaksjonen.",
+        "transitionComplete": "Snapshot synkronisering gjennomført",
+        "transitionCompleteExplanation": "Snapshot synkronisering var vellykket."
     }
 }

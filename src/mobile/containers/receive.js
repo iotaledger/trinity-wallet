@@ -15,10 +15,7 @@ import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
 import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import {
-    getSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { selectAccountInfo, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
 import {
     getFromKeychainRequest,
     getFromKeychainSuccess,
@@ -222,7 +219,7 @@ class Receive extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View style={{ flex: 0.4 }} />
+                    <View style={{ flex: 0.55 }} />
                     <View style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent' }]}>
                         <QRCode
                             value={JSON.stringify({ address: receiveAddress, message })}
@@ -306,7 +303,7 @@ class Receive extends Component {
                             />
                         )}
                     </View>
-                    <View style={{ flex: 0.65 }} />
+                    <View style={{ flex: 0.55 }} />
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -314,8 +311,8 @@ class Receive extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    selectedAccountData: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    selectedAccountData: selectAccountInfo(state),
+    selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.tempAccount.isSyncing,
     seedIndex: state.tempAccount.seedIndex,
     receiveAddress: state.tempAccount.receiveAddress,
