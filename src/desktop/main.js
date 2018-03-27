@@ -5,25 +5,22 @@ const path = require('path');
 const settings = require('electron-settings');
 
 const BrowserWindow = electron.BrowserWindow;
-const url = require('url');
 const devMode = process.env.NODE_ENV === 'development';
 
-let deeplinkingUrl = '';
-let delayForWindowToBeLoaded = 0;
+let deeplinkingUrl = null;
+
 const windows = {
     main: null,
 };
 
 if (!devMode) {
     protocol.registerStandardSchemes(['iota']);
-    delayForWindowToBeLoaded = 2000;
 }
 
-const shouldQuit = app.makeSingleInstance((argv, workingDirectory) => {
-    if (process.platform == 'win32') {
+const shouldQuit = app.makeSingleInstance((argv) => {
+    if (process.platform === 'win32') {
         deeplinkingUrl = argv.slice(1);
     }
-    logEverywhere('app.makeSingleInstance# ' + deeplinkingUrl);
 });
 
 if (shouldQuit) {
@@ -111,16 +108,17 @@ app.on('activate', () => {
 });
 
 app.setAsDefaultProtocolClient('iota');
-app.on('open-url', function(event, url) {
+app.on('open-url', (event, url) => {
     event.preventDefault();
     deeplinkingUrl = url;
-    setTimeout(() => {
-        windows.main.webContents.send('url-params', url);
-    }, delayForWindowToBeLoaded);
+    windows.main.webContents.send('url-params', url);
 });
 
-ipc.on('refresh.deepLink', () => {
-    delayForWindowToBeLoaded = 0;
+ipc.on('request.deepLink', () => {
+    if (deeplinkingUrl) {
+        windows.main.webContents.send('url-params', deeplinkingUrl);
+        deeplinkingUrl = null;
+    }
 });
 
 ipc.on('settings.update', (e, data) => {

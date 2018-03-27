@@ -30,8 +30,8 @@ const Electron = {
         });
     },
 
-    refreshDeepLink: () => {
-        ipc.send('refresh.deepLink');
+    requestDeepLink: () => {
+        ipc.send('request.deepLink');
     },
 
     updateSettings: (attribute, value) => {
