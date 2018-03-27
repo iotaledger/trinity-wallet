@@ -13,9 +13,9 @@ import {
     getTransferValue,
 } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
-    getAddressesForSelectedAccountViaSeedIndex,
-    getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
+    getAddressesForSelectedAccount,
+    getDeduplicatedTransfersForSelectedAccount,
+    getSelectedAccountName,
 } from 'iota-wallet-shared-modules/selectors/account';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
@@ -271,7 +271,7 @@ class History extends Component {
     }
 
     renderTransactions() {
-        const { negative, primary, t } = this.props;
+        const { primary, t } = this.props;
         const { isRefreshing } = this.state;
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
@@ -288,7 +288,7 @@ class History extends Component {
                     <RefreshControl
                         refreshing={isRefreshing && !noTransactions}
                         onRefresh={this.onRefresh}
-                        tintColor={negative.color}
+                        tintColor={primary.color}
                     />
                 }
                 ListEmptyComponent={
@@ -326,6 +326,7 @@ class History extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
+                    <View style={{ flex: 0.2 }} />
                     <View style={styles.listView}>{transactions}</View>
                 </View>
             </TouchableWithoutFeedback>
@@ -333,28 +334,28 @@ class History extends Component {
     }
 }
 
-const mapStateToProps = ({ tempAccount, account, settings, polling, ui }) => ({
-    addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
-    transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.accountNames),
-    seedIndex: tempAccount.seedIndex,
-    mode: settings.mode,
-    negative: settings.theme.negative,
-    primary: settings.theme.primary,
-    secondary: settings.theme.secondary,
-    positive: settings.theme.positive,
-    extra: settings.theme.extra,
-    body: settings.theme.body,
-    bar: settings.theme.bar,
-    isFetchingLatestAccountInfoOnLogin: tempAccount.isFetchingLatestAccountInfoOnLogin,
-    isFetchingAccountInfo: polling.isFetchingAccountInfo,
-    isGeneratingReceiveAddress: tempAccount.isGeneratingReceiveAddress,
-    isSendingTransfer: tempAccount.isSendingTransfer,
-    isSyncing: tempAccount.isSyncing,
-    isTransitioning: tempAccount.isTransitioning,
-    isBroadcastingBundle: ui.isBroadcastingBundle,
-    isPromotingTransaction: ui.isPromotingTransaction,
-    password: tempAccount.password,
+const mapStateToProps = (state) => ({
+    addresses: getAddressesForSelectedAccount(state),
+    transfers: getDeduplicatedTransfersForSelectedAccount(state),
+    selectedAccountName: getSelectedAccountName(state),
+    seedIndex: state.tempAccount.seedIndex,
+    mode: state.settings.mode,
+    negative: state.settings.theme.negative,
+    primary: state.settings.theme.primary,
+    secondary: state.settings.theme.secondary,
+    positive: state.settings.theme.positive,
+    extra: state.settings.theme.extra,
+    body: state.settings.theme.body,
+    bar: state.settings.theme.bar,
+    isFetchingLatestAccountInfoOnLogin: state.tempAccount.isFetchingLatestAccountInfoOnLogin,
+    isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
+    isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
+    isSendingTransfer: state.tempAccount.isSendingTransfer,
+    isSyncing: state.tempAccount.isSyncing,
+    isTransitioning: state.tempAccount.isTransitioning,
+    isBroadcastingBundle: state.ui.isBroadcastingBundle,
+    isPromotingTransaction: state.ui.isPromotingTransaction,
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = {

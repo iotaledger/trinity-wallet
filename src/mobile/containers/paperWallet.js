@@ -14,7 +14,6 @@ import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
-import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import tinycolor from 'tinycolor2';
 import GENERAL from '../theme/general';
@@ -23,6 +22,8 @@ import { isAndroid, isIOS } from '../util/device';
 import { width, height } from '../util/dimensions';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { Icon } from '../theme/icons.js';
+import InfoBox from '../components/infoBox';
+import Seedbox from '../components/seedBox';
 
 const styles = StyleSheet.create({
     container: {
@@ -31,17 +32,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.2,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 16,
         paddingHorizontal: width / 20,
     },
     midContainer: {
-        flex: 3.8,
+        flex: 4,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 14,
     },
     bottomContainer: {
         justifyContent: 'flex-end',
@@ -67,22 +67,20 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'Lato-Light',
-        fontSize: width / 29,
-        paddingTop: height / 8,
-        paddingHorizontal: width / 8,
-        textAlign: 'center',
+        fontSize: width / 27.6,
+        textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'Lato-Light',
-        fontSize: width / 29,
-        textAlign: 'left',
+        fontSize: width / 27.6,
+        textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'Lato-Bold',
-        fontSize: width / 29,
-        textAlign: 'center',
+        fontSize: width / 27.6,
+        textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     doneButton: {
@@ -101,13 +99,12 @@ const styles = StyleSheet.create({
     },
     paperWalletContainer: {
         width: width / 1.1,
-        height: height / 4.3,
         backgroundColor: 'white',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        paddingHorizontal: width / 30,
-        paddingVertical: height / 50,
+        paddingHorizontal: width / 60,
+        paddingVertical: height / 40,
     },
     seedBox: {
         borderColor: 'black',
@@ -172,7 +169,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 50,
     },
     checkbox: {
         width: width / 30,
@@ -190,7 +186,7 @@ const styles = StyleSheet.create({
         height: height / 35,
         borderRadius: GENERAL.borderRadiusSmall,
         borderColor: 'black',
-        borderWidth: height / 1000,
+        borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -208,7 +204,6 @@ class PaperWallet extends Component {
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         seed: PropTypes.string.isRequired,
-        positive: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
     };
 
@@ -457,70 +452,37 @@ class PaperWallet extends Component {
     }
 
     render() {
-        const { t, seed, body, positive, primary } = this.props;
+        const { t, seed, body, primary } = this.props;
         const textColor = { color: body.color };
         const checksum = getChecksum(seed);
-        const positiveColorText = { color: positive.color };
-        const positiveColorBorder = { borderColor: positive.color };
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
-                    <Text style={[styles.infoText, textColor]}>
-                        <Text style={styles.infoTextNormal}>{t('clickToPrint')}</Text>
-                        <Text style={styles.infoTextBold}> {t('storeSafely')}</Text>
-                    </Text>
                 </View>
                 <View style={styles.midContainer}>
+                    <View style={{ flex: 0.3 }} />
+                    <InfoBox
+                        body={body}
+                        width={width / 1.1}
+                        text={
+                            <Text style={[styles.infoText, textColor]}>
+                                <Text style={styles.infoTextNormal}>{t('clickToPrint')}</Text>
+                                <Text style={styles.infoTextBold}> {t('storeSafely')}</Text>
+                            </Text>
+                        }
+                    />
+                    <View style={{ flex: 0.5 }} />
                     <View style={styles.paperWalletContainer}>
-                        <View style={styles.seedBox}>
-                            <View
-                                style={{ paddingVertical: height / 80, alignItems: 'center', justifyContent: 'center' }}
-                            >
-                                <Image source={arrowBlackImagePath} style={styles.arrow} />
-                                <View style={styles.seedBoxTextContainer}>
-                                    <View>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(0, 3)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(12, 15)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(24, 27)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(36, 39)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(48, 51)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(60, 63)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(72, 75)}</Text>
-                                    </View>
-                                    <View>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(3, 6)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(15, 18)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(27, 30)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(39, 42)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(51, 54)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(63, 66)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(75, 78)}</Text>
-                                    </View>
-                                    <View>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(6, 9)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(18, 21)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(30, 33)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(42, 45)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(54, 57)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>{seed.substring(66, 69)}</Text>
-                                        <Text style={styles.seedBoxTextLeft}>
-                                            {seed.substring(78, MAX_SEED_LENGTH)}
-                                        </Text>
-                                    </View>
-                                    <View>
-                                        <Text style={styles.seedBoxTextRight}>{seed.substring(9, 12)}</Text>
-                                        <Text style={styles.seedBoxTextRight}>{seed.substring(21, 24)}</Text>
-                                        <Text style={styles.seedBoxTextRight}>{seed.substring(33, 36)}</Text>
-                                        <Text style={styles.seedBoxTextRight}>{seed.substring(45, 48)}</Text>
-                                        <Text style={styles.seedBoxTextRight}>{seed.substring(57, 60)}</Text>
-                                        <Text style={styles.seedBoxTextRight}>{seed.substring(69, 72)}</Text>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
+                        <Seedbox
+                            scale={0.51}
+                            bodyColor="black"
+                            borderColor={{ borderColor: 'black' }}
+                            textColor={{ color: 'black' }}
+                            seed={seed}
+                        />
                         <View style={styles.paperWalletTextContainer}>
                             {this.renderIotaLogo()}
                             <Text style={styles.paperWalletText}>{t('neverShare')}</Text>
@@ -533,30 +495,31 @@ class PaperWallet extends Component {
                             getRef={(c) => {
                                 this.svg = c;
                             }}
-                            size={width / 3.4}
+                            size={width / 3.5}
                         />
                     </View>
+                    <View style={{ flex: 0.3 }} />
                     <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onCheckboxPress()}>
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />
                         <Text style={[styles.checkboxText, textColor]}>{t('iotaLogo')}</Text>
                     </TouchableOpacity>
-                    <View style={{ paddingTop: height / 25 }}>
-                        <CtaButton
-                            ctaColor={primary.color}
-                            ctaBorderColor={primary.hover}
-                            secondaryCtaColor={primary.body}
-                            text={t('printWallet')}
-                            onPress={() => {
-                                this.onPrintPress();
-                            }}
-                            ctaWidth={width / 1.1}
-                        />
-                    </View>
+                    <View style={{ flex: 0.3 }} />
+                    <CtaButton
+                        ctaColor={primary.color}
+                        ctaBorderColor={primary.hover}
+                        secondaryCtaColor={primary.body}
+                        text={t('printWallet')}
+                        onPress={() => {
+                            this.onPrintPress();
+                        }}
+                        ctaWidth={width / 1.1}
+                    />
+                    <View style={{ flex: 1.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, positiveColorBorder]}>
-                            <Text style={[styles.doneText, positiveColorText]}>{t('global:done')}</Text>
+                        <View style={[styles.doneButton, { borderColor: primary.color }]}>
+                            <Text style={[styles.doneText, { color: primary.color }]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -567,7 +530,6 @@ class PaperWallet extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.tempAccount.seed,
-    positive: state.settings.theme.positive,
     primary: state.settings.theme.primary,
     body: state.settings.theme.body,
     secondary: state.settings.theme.secondary,

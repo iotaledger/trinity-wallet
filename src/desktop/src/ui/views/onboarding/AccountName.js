@@ -77,7 +77,6 @@ class AccountName extends React.PureComponent {
         const { name } = this.state;
         return (
             <form onSubmit={this.setName}>
-                <div />
                 <section>
                     <Input
                         value={name}
@@ -89,11 +88,11 @@ class AccountName extends React.PureComponent {
                     </Infobox>
                 </section>
                 <footer>
-                    <Button to="/onboarding/seed-intro" className="outline" variant="secondary">
-                        {t('back')}
+                    <Button to="/onboarding/seed-intro" className="inline" variant="secondary">
+                        {t('back').toLowerCase()}
                     </Button>
-                    <Button type="submit" className="outline" variant="primary">
-                        {t('next')}
+                    <Button type="submit" className="large" variant="primary">
+                        {t('next').toLowerCase()}
                     </Button>
                 </footer>
             </form>
@@ -102,7 +101,7 @@ class AccountName extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seedCount: state.account.seedNames.length,
+    seedCount: state.account.accountNames.length,
 });
 
 const mapDispatchToProps = {
