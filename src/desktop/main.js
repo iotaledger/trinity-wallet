@@ -5,14 +5,30 @@ const path = require('path');
 const settings = require('electron-settings');
 
 const BrowserWindow = electron.BrowserWindow;
+const url = require('url');
 const devMode = process.env.NODE_ENV === 'development';
 
+let deeplinkingUrl = '';
+let delayForWindowToBeLoaded = 0;
 const windows = {
     main: null,
 };
 
 if (!devMode) {
     protocol.registerStandardSchemes(['iota']);
+    delayForWindowToBeLoaded = 2000;
+}
+
+const shouldQuit = app.makeSingleInstance((argv, workingDirectory) => {
+    if (process.platform == 'win32') {
+        deeplinkingUrl = argv.slice(1);
+    }
+    logEverywhere('app.makeSingleInstance# ' + deeplinkingUrl);
+});
+
+if (shouldQuit) {
+    app.quit();
+    return;
 }
 
 function createWindow() {
@@ -92,6 +108,19 @@ app.on('activate', () => {
     } else if (!windows.main.isVisible()) {
         windows.main.show();
     }
+});
+
+app.setAsDefaultProtocolClient('iota');
+app.on('open-url', function(event, url) {
+    event.preventDefault();
+    deeplinkingUrl = url;
+    setTimeout(() => {
+        windows.main.webContents.send('url-params', url);
+    }, delayForWindowToBeLoaded);
+});
+
+ipc.on('refresh.deepLink', () => {
+    delayForWindowToBeLoaded = 0;
 });
 
 ipc.on('settings.update', (e, data) => {
