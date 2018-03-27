@@ -51,6 +51,7 @@ const SettingsContent = ({ component, ...props }) => {
 };
 
 SettingsContent.propTypes = {
+    /** Children component */
     component: PropTypes.oneOf(Object.keys(SETTINGS_COMPONENTS)).isRequired,
 };
 

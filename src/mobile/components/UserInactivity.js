@@ -4,10 +4,17 @@ import { View, PanResponder, ViewPropTypes } from 'react-native';
 
 export default class UserInactivity extends Component {
     static propTypes = {
+        /** Inactivity time threshold for application */
         timeForInactivity: PropTypes.number,
+        /** Interval after application inactivity should be checked */
         checkInterval: PropTypes.number,
+        /** Children content */
         children: PropTypes.node.isRequired,
+        /** Content styles */
         style: ViewPropTypes.style,
+         /** On inactivity callback function
+        * @param {number} timeWentInactive
+        */
         onInactivity: PropTypes.func.isRequired,
     };
 

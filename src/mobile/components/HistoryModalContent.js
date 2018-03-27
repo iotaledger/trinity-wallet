@@ -135,9 +135,9 @@ export default class HistoryModalContent extends PureComponent {
         * @param {string} bundle - bundle hash
         */
         promote: PropTypes.func.isRequired,
-        /** Transaction textual incoming/outgoing state */
+        /** Transaction incoming/outgoing state */
         status: PropTypes.string.isRequired,
-        /** Transaction textual confirmation state */
+        /** Transaction confirmation state */
         confirmation: PropTypes.string.isRequired,
         /** Transaction boolean confirmation state */
         confirmationBool: PropTypes.bool.isRequired,
@@ -153,7 +153,7 @@ export default class HistoryModalContent extends PureComponent {
         message: PropTypes.string,
         /** Transaction bundle hash */
         bundle: PropTypes.string.isRequired,
-        /** Modal buttons onPress event disable state */
+        /** Determines whether the modal buttons should disable onPress event */
         disableWhen: PropTypes.bool.isRequired,
         /** Transaction addresses */
         addresses: PropTypes.arrayOf(

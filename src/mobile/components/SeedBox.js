@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
@@ -44,12 +44,15 @@ const styles = StyleSheet.create({
     },
 });
 
-/* eslint-disable react/prefer-stateless-function */
-class SeedBox extends Component {
+class SeedBox extends PureComponent {
     static propTypes = {
+        /** Seed value */
         seed: PropTypes.string.isRequired,
+        /** SeedBox text color */
         textColor: PropTypes.object.isRequired,
+        /** SeedBox body color */
         bodyColor: PropTypes.string.isRequired,
+        /** SeedBox border color */
         borderColor: PropTypes.object.isRequired,
         scale: PropTypes.number,
     };
