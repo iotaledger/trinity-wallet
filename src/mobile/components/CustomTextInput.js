@@ -91,8 +91,9 @@ class CustomTextInput extends Component {
         conversionText: PropTypes.string,
         /** Text field height */
         height: PropTypes.number,
-        /** Callback Function returning text field instance as an argument */
-        /** @param {object} instance - text field instance */
+        /** Callback function returning text field instance as an argument */
+        /** @param {object} instance - text field instance
+         */
         onRef: PropTypes.func,
         /** Id for automated screenshots */
         testID: PropTypes.string

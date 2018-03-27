@@ -149,7 +149,7 @@ class SnapshotTransition extends Component {
         setSetting: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
-        /** Determines whether to allow snapshot transition actions or not */
+        /** Determines whether to allow snapshot transition actions */
         shouldPreventAction: PropTypes.bool.isRequired,
         /** Attaching to tangle state */
         isAttachingToTangle: PropTypes.bool.isRequired,

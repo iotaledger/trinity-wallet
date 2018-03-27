@@ -74,13 +74,26 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Fingerprint enable component */
 class FingerprintEnable extends Component {
     static propTypes = {
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
+        /** Sets fingerprint security status
+       * @param {boolean} - status
+       */
         setFingerprintStatus: PropTypes.func.isRequired,
-        body: PropTypes.object.isRequired,
-        secondary: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Determines whther fingerprint is enabled */
         isFingerprintEnabled: PropTypes.bool.isRequired,
     };
 
@@ -107,29 +120,28 @@ class FingerprintEnable extends Component {
         const { t } = this.props;
         FingerprintScanner.isSensorAvailable()
             .then(
-                FingerprintScanner.authenticate({
-                    description: t('instructionsEnable'),
-                    onAttempt: this.handleAuthenticationAttempted,
-                })
-                    .then(() => {
-                        this.props.setFingerprintStatus(true);
-                        this.timeout = setTimeout(() => {
-                            this.props.generateAlert(
-                                'success',
-                                t('fingerprintAuthEnabled'),
-                                t('fingerprintAuthEnabledExplanation'),
-                            );
-                        }, 300);
-                    })
-                    .catch((err) => {
+            FingerprintScanner.authenticate({
+                description: t('instructionsEnable'),
+                onAttempt: this.handleAuthenticationAttempted,
+            })
+                .then(() => {
+                    this.props.setFingerprintStatus(true);
+                    this.timeout = setTimeout(() => {
                         this.props.generateAlert(
-                            'error',
-                            t('fingerprintAuthFailed'),
-                            t('fingerprintAuthFailedExplanation'),
+                            'success',
+                            t('fingerprintAuthEnabled'),
+                            t('fingerprintAuthEnabledExplanation'),
                         );
-                        console.log(err);
-                    }),
-            )
+                    }, 300);
+                })
+                .catch((err) => {
+                    this.props.generateAlert(
+                        'error',
+                        t('fingerprintAuthFailed'),
+                        t('fingerprintAuthFailedExplanation'),
+                    );
+                }),
+        )
             .catch(() => {
                 this.props.generateAlert('error', t('fingerprintUnavailable'), t('fingerprintUnavailableExplanation'));
             });
@@ -156,7 +168,7 @@ class FingerprintEnable extends Component {
     }
 
     navigateToHome() {
-        const { body } = this.props;
+        const { theme } = this.props;
 
         // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
@@ -165,9 +177,9 @@ class FingerprintEnable extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: body.bg,
+                    screenBackgroundColor: theme.body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+                    statusBarColor: theme.body.bg,
                 },
             },
             appStyle: {
@@ -178,21 +190,21 @@ class FingerprintEnable extends Component {
     }
 
     render() {
-        const { t, body, isFingerprintEnabled, secondary } = this.props;
-        const backgroundColor = { backgroundColor: body.bg };
-        const textColor = { color: body.color };
+        const { t, isFingerprintEnabled, theme } = this.props;
+        const backgroundColor = { backgroundColor: theme.body.bg };
+        const textColor = { color: theme.body.color };
         const authenticationStatus = isFingerprintEnabled ? t('enabled') : t('disabled');
         const instructions = isFingerprintEnabled ? t('buttonInstructionsDisable') : t('buttonInstructionsEnable');
-        const fingerprintImagePath = tinycolor(body.bg).isDark()
+        const fingerprintImagePath = tinycolor(theme.body.bg).isDark()
             ? whiteFingerprintImagePath
             : blackFingerprintImagePath;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, backgroundColor]}>
-                    <DynamicStatusBar backgroundColor={body.bg} />
+                    <DynamicStatusBar backgroundColor={theme.body.bg} />
                     <View style={styles.topWrapper}>
-                        <Icon name="iota" size={width / 8} color={body.color} />
+                        <Icon name="iota" size={width / 8} color={theme.body.color} />
                     </View>
                     <View style={styles.midWrapper}>
                         <View style={{ flex: 0.25 }} />
@@ -208,28 +220,27 @@ class FingerprintEnable extends Component {
                     </View>
                     <View style={styles.bottomWrapper}>
                         <TouchableOpacity onPress={() => this.navigateToHome()}>
-                            <View style={[styles.backButton, { borderColor: secondary.color }]}>
-                                <Text style={[styles.backText, { color: secondary.color }]}>{t('global:back')}</Text>
+                            <View style={[styles.backButton, { borderColor: theme.secondary.color }]}>
+                                <Text style={[styles.backText, { color: theme.secondary.color }]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
+                    <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
                 </View>
             </TouchableWithoutFeedback>
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    theme: state.settings.theme,
+    isFingerprintEnabled: state.settings.isFingerprintEnabled,
+});
+
 const mapDispatchToProps = {
     setFingerprintStatus,
     generateAlert,
 };
-
-const mapStateToProps = (state) => ({
-    body: state.settings.theme.body,
-    positive: state.settings.theme.positive,
-    secondary: state.settings.theme.secondary,
-    isFingerprintEnabled: state.accounts.isFingerprintEnabled,
-});
 
 export default WithBackPressGoToHome()(
     translate(['fingerprintSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(FingerprintEnable)),
