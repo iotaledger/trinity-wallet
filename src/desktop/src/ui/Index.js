@@ -94,9 +94,7 @@ class App extends React.Component {
                     });
                     this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
                     if(this.props.tempAccount.ready === true) {
-                        const { generateAlert} = this.props;
-                        generateAlert('success', 'Autofill', 'Transaction data autofilled from link.');
-                        this.props.history.push('/wallet/send');
+                            this.props.history.push('/wallet/send');
                     }
                 }
             }
