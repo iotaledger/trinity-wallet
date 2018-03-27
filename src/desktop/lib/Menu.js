@@ -7,6 +7,7 @@ const state = {
 let language = {
     about: 'About',
     checkUpdate: 'Check for Updates',
+    sendFeedback: 'Send feedback',
     settings: 'Settings',
     accountSettings: 'Account management',
     newAccount: 'Add new account',
@@ -57,8 +58,18 @@ const initMenu = (app, getWindow) => {
                         role: 'about',
                     },
                     {
+                        type: 'separator',
+                    },
+                    {
                         label: `${language.checkUpdate}...`,
                         click: () => navigate('update'),
+                    },
+                    {
+                        label: language.sendFeedback,
+                        click: () => navigate('feedback'),
+                    },
+                    {
+                        type: 'separator',
                     },
                     {
                         label: language.settings,
