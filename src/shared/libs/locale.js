@@ -1,4 +1,4 @@
-export function detectLocale(locale) {
+function detectLocale(locale) {
     const adaptedLocale = locale.substring(0, 2);
     if (adaptedLocale === 'es' && !locale.match(/ES/)) {
         // Catch all non-Spain Spanish
@@ -31,7 +31,7 @@ export function detectLocale(locale) {
     return adaptedLocale;
 }
 
-export function selectLocale(lang) {
+function selectLocale(lang) {
     if (lang === 'ar') {
         return 'عربى - Arabic';
     }
@@ -127,3 +127,8 @@ export function selectLocale(lang) {
     }
     return 'English (International)';
 }
+
+module.exports = {
+  detectLocale,
+  selectLocale,
+};

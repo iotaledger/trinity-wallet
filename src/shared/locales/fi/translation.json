@@ -67,16 +67,16 @@
         "receiving": "Odottaa",
         "confirmed": "Vahvistettu",
         "pending": "Odottaa",
-        "bundleHash": "Kokoelman Tiiviste-luku",
+        "bundleHash": "Kokoelman Tiivisteluku",
         "addresses": "Osoitteet",
         "reattach": "KIINNITÄ UUDELLEEN",
         "promote": "EDISTÄ",
         "rebroadcast": "LÄHETÄ UUDELLEEN",
         "pressBackAgain": "Paina paluu-painiketta sulkeaksesi sovelluksen",
         "autoreattaching": "Liitetään Tangle-verkkoon automaattisesti",
-        "autoreattachingExplanation": "Liitetään siirto uudelleen tiiviste-luvulla {{hash}}",
+        "autoreattachingExplanation": "Liitetään siirto uudelleen tiivisteluvulla {{hash}}",
         "autopromoting": "Edistetään siirtoa automaattisesti",
-        "autopromotingExplanation": "Edistetään siirtoa tiiviste-luvulla {{hash}}",
+        "autopromotingExplanation": "Edistetään siirtoa tiivisteluvulla {{hash}}",
         "promoting": "Edistetään siirtoa",
         "promotionError": "Siirtoa ei voitu edistää",
         "noLongerValid": "Paketti jonka siirtoa yrität edistää ei ole enää voimassa",
@@ -84,8 +84,8 @@
         "cannotSendToOwnExplanation": "Et voi siirtää varoja yhteen omista osoitteistasi.",
         "pleaseWait": "Odota hetki",
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
-        "pleaseWaitTransferExplanation": "Varallisuuttasi käytetään jo olemassa olevissa siirroissa. Odota että ne on vahvistettu ennen kuin yrität uudelleen.",
-        "snapshotTransitionInProgress": "Snapshot siirtymä käynnissä",
+        "pleaseWaitTransferExplanation": "Saldoasi käytetään jo olemassa olevissa siirroissa. Odota, että ne on vahvistettu ennen kuin yrität uudelleen.",
+        "snapshotTransitionInProgress": "Snapshot-siirtymä käynnissä",
         "snapshotTransitionInProgressExplanation": "Odota kunnes siirtymäprosessi on valmis."
     },
     "addAdditionalSeed": {
@@ -115,7 +115,7 @@
         "passwordTooShortExplanation": "Salasanan tulee olla vähintään 12 merkkiä pitkä. Yritä uudelleen.",
         "oldPassword": "Vanhaa salasanaa ei voi käyttää",
         "oldPasswordExplanation": "Et voi käyttää vanhaa salasanaa toista kertaa. Yritä uudelleen.",
-        "ensureStrongPassword": "Varmista että käytät hyvää salasanaa joka on vähintään 12-merkkiä pitkä ja sisältää erikoismerkkejä.",
+        "ensureStrongPassword": "Varmista, että käytät vahvaa salasanaa, joka on vähintään 12 merkkiä pitkä ja sisältää erikoismerkkejä.",
         "currentPassword": "Nykyinen Salasana",
         "newPassword": "Uusi Salasana",
         "confirmPassword": "Vahvista Uusi Salasana"
@@ -128,7 +128,7 @@
         "clickToCopy": "Klikkaa alla olevaa painiketta ja kopioi seed-lukusi salasanan hallintaohjelmaan.",
         "doNotStore": "Älä säilytä seed-lukuasi pelkkänä tekstinä.",
         "copyToClipboard": "Kopioi seed-luku",
-        "shareSeed": "Jaa seed-lukusi salasanan hallintaohjelman kanssa"
+        "shareSeed": "Tallenna seed-lukusi turvalliseen salasanan hallintaohjelmaan"
     },
     "enterSeed": {
         "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
@@ -171,7 +171,7 @@
         "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi."
     },
     "onboardingComplete": {
-        "walletReady": "Lompakkosi on nyt käyttövalmis. Jos haluat tehdä muutoksia lompakkoosi, voit tehdä sen Asetukset-valikosta."
+        "walletReady": "Lompakkosi on nyt käyttövalmis. Voit tehdä siihen jatkossa muutoksia Asetukset-valikon kautta."
     },
     "paperWallet": {
         "clickToPrint": "Kilkkaa alla olevaa nappia tulostaaksesi paperikopion seed-luvustasi.",
@@ -192,7 +192,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed-luku tyhjennetty",
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
-        "mustSaveYourSeed": "<0><0>Sinun on tulee tallentaa seed-lukusi käyttäen </0><1>vähintään yhtä</1><2>alla olevista vaihtoehdoista.</2></0>"
+        "mustSaveYourSeed": "<0><0>Sinun on tulee tallentaa seed-lukusi käyttäen </0><1>vähintään yhtä</1><2> alla olevista vaihtoehdoista.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Virheellinen seed-luku",
@@ -213,7 +213,7 @@
         "recipientAddress": "Vastaanottajan osoite",
         "amount": "Summa",
         "max": "MAX",
-        "message": "Viesti",
+        "message": "Viesti (vapaaehtoinen)",
         "invalidMessage": "Virheellinen viesti",
         "invalidMessageExplanation": "Viestisi sisältää virheellisiä merkkejä.",
         "send": "LÄHETÄ",
@@ -298,7 +298,7 @@
         "keepSafe": "Muista aina pitää seed-lukusi turvassa."
     },
     "welcome": {
-        "thankYou": "Kiitos, että olet ladannut IOTA-lompakon.",
+        "thankYou": "Kiitos, että latasit Trinity-lompakon.",
         "weWillSpend": "Seuraavaksi määritämme lompakkosi asetukset.",
         "reminder": "Kaikki tulevat vaiheet ovat tärkeitä lompakon toimivuuden kannalta, suorita ne huolellisesti loppuun asti."
     },
@@ -307,11 +307,11 @@
         "writeDownYourSeed": "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>"
     },
     "history": {
-        "bundleHashCopied": "Kokoelman tiiviste-luku kopioitu",
-        "bundleHashCopiedExplanation": "Kokoelman tiiviste-luku on kopioitu leikepöydälle.",
+        "bundleHashCopied": "Kokoelman tiivisteluku kopioitu",
+        "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
-        "send": "LÄHETÄ",
+        "send": "LÄHETETTY",
         "receive": "VASTAANOTETAAN"
     },
     "accountManagement": {
@@ -366,7 +366,7 @@
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {
-        "outOfSync": "Onko mahdollista että tilisi historia ei ole synkronoitu?",
+        "outOfSync": "Näyttäkö siltä että tilihistoriasi ei ole ajan tasalla?",
         "pressToSync": "Alla olevalla painikkeella voit synkronoida tilisi.",
         "thisMayTake": "Tämä saattaa kestää hetken ja tänä aikana laitteen käyttö voi olla hidasta.",
         "doNotClose": "Huomioi että ohjelman sulkeminen taustalle lopettaa synkronoinnin.",
