@@ -31,7 +31,7 @@ class SeedSave extends PureComponent {
                 <section>
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
                         <p className={css.hideOnPrint}>
-                            You must save your seed with<strong>at least one</strong> of the options listed below.
+                            You must save your seed with <strong>at least one</strong> of the options listed below.
                         </p>
                     </Trans>
                     <div className={css.seed}>

@@ -2,7 +2,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+
+import { setSeeds, clearSeeds } from 'actions/seeds';
 
 import ModalPassword from 'ui/components/modal/Password';
 
@@ -14,24 +15,28 @@ const events = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll'];
  */
 class Idle extends React.Component {
     static propTypes = {
+        /** Set seed state data
+         * @param {Array} seeds - Seed state data
+         * @ignore
+         */
+        setSeeds: PropTypes.func.isRequired,
+        /** Clear temporary seed state data
+         * @ignore
+         */
+        clearSeeds: PropTypes.func.isRequired,
         /** Idle timeout*/
         timeout: PropTypes.number.isRequired,
         /** User authorised state */
         isAuthorised: PropTypes.bool.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
-        t: PropTypes.func.isRequired,
     };
 
     state = {
-        idle: false,
+        locked: false,
     };
 
     componentDidMount() {
         this.attachEvents();
-        this.onSetIdle = this.setIdle.bind(this);
+        this.onSetIdle = this.lock.bind(this);
         Electron.onEvent('lockScreen', this.onSetIdle);
     }
 
@@ -46,23 +51,19 @@ class Idle extends React.Component {
         Electron.removeEvent('lockScreen', this.onSetIdle);
     }
 
-    setIdle() {
+    lock() {
         if (this.props.isAuthorised) {
-            this.setState({ idle: true });
+            this.props.clearSeeds();
+            this.setState({ locked: true });
         }
     }
 
-    handleEvent = () => {
-        clearTimeout(this.timeout);
-
-        this.timeout = setTimeout(() => {
-            if (this.props.isAuthorised) {
-                this.setState({ idle: true });
-            } else {
-                this.handleEvent();
-            }
-        }, this.props.timeout);
-    };
+    unlock(vault) {
+        this.props.setSeeds(vault.seeds);
+        this.setState({
+            locked: false,
+        });
+    }
 
     attachEvents() {
         events.forEach((event) => {
@@ -76,20 +77,23 @@ class Idle extends React.Component {
         });
     }
 
+    handleEvent = () => {
+        clearTimeout(this.timeout);
+
+        this.timeout = setTimeout(() => {
+            if (this.props.isAuthorised) {
+                this.lock();
+            } else {
+                this.handleEvent();
+            }
+        }, this.props.timeout);
+    };
+
     render() {
-        if (!this.state.idle) {
+        if (!this.state.locked) {
             return null;
         }
-        return (
-            <ModalPassword
-                isOpen
-                isForced
-                onSuccess={() => this.setState({ idle: false })}
-                content={{
-                    title: this.props.t('Enter password to access wallet'),
-                }}
-            />
-        );
+        return <ModalPassword isOpen isForced content={{}} onSuccess={(password, vault) => this.unlock(vault)} />;
     }
 }
 
@@ -97,4 +101,9 @@ const mapStateToProps = (state) => ({
     isAuthorised: state.tempAccount.ready,
 });
 
-export default connect(mapStateToProps)(translate()(Idle));
+const mapDispatchToProps = {
+    setSeeds,
+    clearSeeds,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Idle);
