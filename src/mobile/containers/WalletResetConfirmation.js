@@ -69,12 +69,19 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * Wallet Reset Confirmation screen component
+ */
 class WalletResetConfirmation extends Component {
     static propTypes = {
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
-        body: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired
     };
 
     constructor() {
@@ -85,22 +92,23 @@ class WalletResetConfirmation extends Component {
     }
 
     navigateTo(url) {
-        const { body } = this.props;
+        const { theme } = this.props;
+
         this.props.navigator.push({
             screen: url,
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: body.bg,
+                screenBackgroundColor: theme.body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+                statusBarColor: theme.body.bg,
             },
             animated: false,
         });
     }
 
     goBack() {
-        const { body } = this.props;
+        const { theme } = this.props;
         // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
             screen: {
@@ -108,9 +116,9 @@ class WalletResetConfirmation extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: body.bg,
+                    screenBackgroundColor: theme.body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+                    statusBarColor: theme.body.bg,
                 },
             },
             appStyle: {
@@ -125,21 +133,21 @@ class WalletResetConfirmation extends Component {
     }
 
     render() {
-        const { t, body, negative } = this.props;
-        const textColor = { color: body.color };
-        const backgroundColor = { backgroundColor: body.bg };
-        const negativeColor = { color: negative.color };
+        const { t, theme } = this.props;
+        const textColor = { color: theme.body.color };
+        const backgroundColor = { backgroundColor: theme.body.bg };
+        const negativeColor = { color: theme.negative.color };
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
+                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <View style={styles.topWrapper}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
+                    <Icon name="iota" size={width / 8} color={theme.body.color} />
                 </View>
                 <View style={styles.midWrapper}>
                     <View style={{ flex: 0.2 }} />
                     <InfoBox
-                        body={body}
+                        body={theme.body}
                         text={
                             <Trans i18nKey="walletResetConfirmation:warning">
                                 <Text style={[styles.infoText, textColor]}>
@@ -171,8 +179,7 @@ class WalletResetConfirmation extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    body: state.settings.theme.body,
-    negative: state.settings.theme.negative,
+    theme: state.settings.theme
 });
 
 export default WithBackPressGoToHome()(
