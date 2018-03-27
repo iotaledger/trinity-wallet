@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { formatValue, formatUnit, round } from 'libs/util';
-import { currentAccountSelectorBySeedIndex } from 'selectors/account';
+import { selectAccountInfo } from 'selectors/account';
 import { getCurrencySymbol } from 'libs/currency';
 
 class Balance extends React.PureComponent {
@@ -32,7 +32,7 @@ class Balance extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    account: currentAccountSelectorBySeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    account: selectAccountInfo(state),
     marketData: state.marketData,
     settings: state.settings,
 });

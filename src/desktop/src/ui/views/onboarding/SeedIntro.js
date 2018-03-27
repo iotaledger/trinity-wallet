@@ -32,12 +32,12 @@ class SeedIntro extends React.PureComponent {
                 <section>
                     <form className="center">
                         <fieldset>
-                            <p>{t('walletSetup:doYouAlreadyHaveASeed')}</p>
-                            <Button to="/onboarding/seed-generate" className="outline" variant="positive">
-                                {t('no')}
-                            </Button>
-                            <Button to="/onboarding/seed-verify" className="outline" variant="primary">
+                            <h2>{t('walletSetup:doYouAlreadyHaveASeed')}</h2>
+                            <Button to="/onboarding/seed-verify" className="large" variant="secondary">
                                 {t('yes')}
+                            </Button>
+                            <Button to="/onboarding/seed-warning" className="large" variant="primary">
+                                {t('no')}
                             </Button>
                         </fieldset>
                     </form>

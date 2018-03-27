@@ -22,20 +22,15 @@ class Welcome extends React.PureComponent {
         return (
             <React.Fragment>
                 <section>
-                    <h2>{t('welcome:thankYou')}</h2>
+                    <h1>{t('welcome:thankYou')}</h1>
                     <form>
                         <Language />
+                        <Button to="/onboarding/seed-intro" className="large" variant="primary">
+                            Get started
+                        </Button>
                     </form>
-                    <p>{t('welcome:weWillSpend')}</p>
-                    <p>
-                        <strong>{t('welcome:reminder')}</strong>
-                    </p>
                 </section>
-                <footer>
-                    <Button to="/onboarding/seed-intro" className="outline" variant="primary">
-                        {t('next')}
-                    </Button>
-                </footer>
+                <footer />
             </React.Fragment>
         );
     }

@@ -2994,7 +2994,7 @@ iota-wallet-shared-modules@../shared/:
     bluebird "^3.5.1"
     i18next "^10.2.2"
     i18next-browser-languagedetector "^2.1.0"
-    iota.lib.js "^0.4.7"
+    iota.lib.js "git+https://git@github.com/laumair/iota.lib.js#911e5e2"
     lodash "^4.17.4"
     lodash.concat "^4.5.0"
     moment "^2.19.1"
@@ -3009,9 +3009,9 @@ iota-wallet-shared-modules@../shared/:
     svgicons2svgfont "^9.0.1"
     tinycolor2 "^1.4.1"
 
-iota.lib.js@^0.4.7:
+"iota.lib.js@git+https://git@github.com/laumair/iota.lib.js#911e5e2":
   version "0.4.7"
-  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.4.7.tgz#c2af1a7886b8b0e239a4b54b5caa9dd239c2d7eb"
+  resolved "git+https://git@github.com/laumair/iota.lib.js#911e5e242e7eec5b3ed54dde3c2779906538d725"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
