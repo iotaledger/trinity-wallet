@@ -56,18 +56,42 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * Wallet Reset Require Password screen component
+ */
 class WalletResetRequirePassword extends Component {
     static propTypes = {
+        /** Hash for wallet password */
         password: PropTypes.string.isRequired,
+        /** Resets wallet to default state */
         resetWallet: PropTypes.func.isRequired,
+        /** Sets wallet's first use
+         * @param {boolean} - true
+         */
         setFirstUse: PropTypes.func.isRequired,
+        /** Sets wallet's onboarding
+        * @param {boolean} - false
+        */
         setOnboardingComplete: PropTypes.func.isRequired,
+        /** Clears wallet reducer data */
         clearWalletData: PropTypes.func.isRequired,
+        /** Set new password hash
+        * @param {string} passwordHash
+        */
         setPassword: PropTypes.func.isRequired,
+        /** Generate a notification alert
+        * @param {String} type - notification type - success, error
+        * @param {String} title - notification title
+        * @param {String} text - notification explanation
+        */
         generateAlert: PropTypes.func.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
     };
 
@@ -212,7 +236,6 @@ class WalletResetRequirePassword extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
-    body: state.settings.theme.body,
     password: state.wallet.password,
 });
 

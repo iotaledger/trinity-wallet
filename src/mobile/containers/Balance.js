@@ -67,21 +67,37 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * Balance screen component
+ */
 export class Balance extends Component {
     static propTypes = {
         usdPrice: PropTypes.number.isRequired,
+        /** Index of currently selected account in accountNames list */
         seedIndex: PropTypes.number.isRequired,
+        /** Balance for currently selected account */
         balance: PropTypes.number.isRequired,
+        /** Addresses for currently selected account */
         addresses: PropTypes.array.isRequired,
+        /** Transactions for currently selected account */
         transfers: PropTypes.array.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
+        t: PropTypes.func.isRequired,
+        /** Close active top bar */
+        closeTopBar: PropTypes.func.isRequired,
+        /** Switches bottom tabs on home screen 
+         * @param {string} - Default to 'history'
+        */
+        onTabSwitch: PropTypes.func.isRequired,
+        /** Currently selected currency */
+        currency: PropTypes.string.isRequired,
+        /** Currency coversion rate */
+        conversionRate: PropTypes.number.isRequired,
         primary: PropTypes.object.isRequired,
         secondary: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
-        t: PropTypes.func.isRequired,
-        closeTopBar: PropTypes.func.isRequired,
-        onTabSwitch: PropTypes.func.isRequired,
-        currency: PropTypes.string.isRequired,
-        conversionRate: PropTypes.number.isRequired,
     };
 
     /**
