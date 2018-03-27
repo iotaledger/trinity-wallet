@@ -1,4 +1,6 @@
 import map from 'lodash/map';
+import size from 'lodash/size';
+import clone from 'lodash/clone';
 import { iota } from './index';
 import { DEFAULT_BALANCES_THRESHOLD, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 
@@ -27,27 +29,24 @@ const getNodeInfoAsync = () => {
 };
 
 const getTransactionsObjectsAsync = (hashes) => {
+    const cachedHashes = clone(hashes);
     return new Promise((resolve, reject) => {
-        iota.api.getTransactionsObjects(hashes, (err, txs) => {
+        iota.api.getTrytes(hashes, (err, trytes) => {
             if (err) {
                 reject(err);
+            } else if (size(cachedHashes) !== size(trytes)) {
+                reject();
             } else {
-                resolve(txs);
+                resolve(
+                    map(trytes, (tryteString, idx) => iota.utils.fastTransactionObject(cachedHashes[idx], tryteString)),
+                );
             }
         });
     });
 };
 
 const findTransactionObjectsAsync = (args) => {
-    return new Promise((resolve, reject) => {
-        iota.api.findTransactionObjects(args, (err, txs) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(txs);
-            }
-        });
-    });
+    return findTransactionsAsync(args).then((hashes) => getTransactionsObjectsAsync(hashes));
 };
 
 const findTransactionsAsync = (args) => {

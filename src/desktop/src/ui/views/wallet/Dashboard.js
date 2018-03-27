@@ -47,11 +47,11 @@ class Dashboard extends React.PureComponent {
                         <Balance />
                     </div>
                     <div>
-                        <Button onClick={() => history.push('/wallet/send')} className="outline" variant="primary">
-                            Send
-                        </Button>
-                        <Button onClick={() => history.push('/wallet/receive')} className="outline" variant="primary">
+                        <Button onClick={() => history.push('/wallet/receive')} variant="secondary">
                             Receive
+                        </Button>
+                        <Button onClick={() => history.push('/wallet/send')} variant="primary">
+                            Send
                         </Button>
                     </div>
                     <List compact limit={10} />

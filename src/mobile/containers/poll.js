@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
 import { AppState } from 'react-native';
-import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/account';
 import { removeBundleFromUnconfirmedBundleTails } from 'iota-wallet-shared-modules/actions/account';
 import {
     fetchMarketData,
@@ -144,7 +144,7 @@ const mapStateToProps = (state) => ({
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     isFetchingLatestAccountInfoOnLogin: state.tempAccount.isFetchingLatestAccountInfoOnLogin,
     seedIndex: state.tempAccount.seedIndex,
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.accountNames),
+    selectedAccountName: getSelectedAccountName(state),
     unconfirmedBundleTails: state.account.unconfirmedBundleTails,
     isTransitioning: state.tempAccount.isTransitioning,
 });

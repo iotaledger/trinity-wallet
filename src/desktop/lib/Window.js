@@ -1,5 +1,6 @@
 const { ipcRenderer: ipc, shell, clipboard } = require('electron');
 const packageFile = require('../package.json');
+const machineUuid = require('machine-uuid');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -12,6 +13,10 @@ const Electron = {
         } else {
             clipboard.clear();
         }
+    },
+
+    getUuid() {
+        return machineUuid();
     },
 
     gotoLatestRelease: () => {
@@ -39,7 +44,7 @@ const Electron = {
     changeLanguage: (t) => {
         ipc.send('menu.language', {
             about: 'About',
-            checkUpdate: t('Check for Updates'),
+            checkUpdate: t('checkForUpdates'),
             settings: capitalize(t('home:settings')),
             accountSettings: t('settings:accountManagement'),
             newAccount: t('accountManagement:addNewAccount'),
@@ -68,8 +73,8 @@ const Electron = {
             history: capitalize(t('home:history')),
             logout: t('settings:logout'),
             logoutConfirm: t('logoutConfirmationModal:logoutConfirmation'),
-            yes: t('no'),
-            no: t('yes'),
+            yes: t('yes'),
+            no: t('no'),
         });
     },
 
