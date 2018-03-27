@@ -9,7 +9,6 @@ import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png
 import { detectLocale, selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
-import { setLanguage } from 'iota-wallet-shared-modules/actions/settings';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import { width, height } from '../utils/dimensions';
 import DropdownComponent from '../containers/Dropdown';
@@ -66,11 +65,14 @@ const defaultLanguageLabel = selectLocale(defaultLocale);
 
 class LanguageSetup extends Component {
     static propTypes = {
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
-        primary: PropTypes.object.isRequired,
-        setLanguage: PropTypes.func.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired
     };
 
     static clickDropdownItem(languageLabel) {
@@ -78,12 +80,11 @@ class LanguageSetup extends Component {
     }
 
     componentWillMount() {
-        console.log('In mount');
         i18next.changeLanguage(defaultLocale);
     }
 
     onNextPress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.push({
             screen: 'welcome',
             navigatorStyle: {
@@ -98,7 +99,7 @@ class LanguageSetup extends Component {
     }
 
     render() {
-        const { t, body, primary } = this.props;
+        const { t, theme: { body, primary } } = this.props;
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
@@ -143,13 +144,11 @@ class LanguageSetup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    body: state.settings.theme.body,
-    primary: state.settings.theme.primary,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {
-    setSetting,
-    setLanguage,
+    setSetting
 };
 
 export default WithBackPressCloseApp()(

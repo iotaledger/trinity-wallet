@@ -66,28 +66,79 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Loading screen component */
 class Loading extends Component {
     static propTypes = {
+        /** Determines whether this is the first time user is going to log in */
         firstUse: PropTypes.bool.isRequired,
+        /** Determines whether user is adding an additional account */
         addingAdditionalAccount: PropTypes.bool.isRequired,
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Fetch latest account info from the tangle
+         * @param {string} seed
+         * @param {string} accountName
+         * @param {string} navigationObject
+         * @param {string} genFn - Native address generation function
+         */
         getAccountInfo: PropTypes.func.isRequired,
+        /** Fetch latest account info for first account
+         * @param {string} seed
+         * @param {string} accountName
+         * @param {string} navigationObject
+         * @param {string} genFn - Native address generation function
+         */
         getFullAccountInfoFirstSeed: PropTypes.func.isRequired,
+        /** Fetch latest account info for additional account
+         * @param {string} seed
+         * @param {string} accountName
+         * @param {string} passwordHash
+         * @param {promise} storeInKeychainPromise
+         * @param {string} navigationObject
+         * @param {string} genFn - Native address generation function
+         */
         getFullAccountInfoAdditionalSeed: PropTypes.func.isRequired,
+        /** Name for currently selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Fetch latest market information */
         getMarketData: PropTypes.func.isRequired,
+        /** Fetch latest price information */
         getPrice: PropTypes.func.isRequired,
+        /** Fetch latest chart information */
         getChartData: PropTypes.func.isRequired,
+        /** Fetch latest currency information
+        * @param {string} currency
+        */
         getCurrencyData: PropTypes.func.isRequired,
+        /** Additional account name */
         additionalAccountName: PropTypes.string.isRequired,
+        /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
+        /** Seed value */
         seed: PropTypes.string.isRequired,
+        /** Currently selected currency */
         currency: PropTypes.string.isRequired,
+        /** Translation helper
+       * @param {string} translationString - locale string identifier to be translated
+       */
         t: PropTypes.func.isRequired,
+        /** Determines if the account information was successfully fetched from the tangle */
         ready: PropTypes.bool.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
+        /** Updates home screen children route name
+      * @param {string} name - route name
+      */
         changeHomeScreenRoute: PropTypes.func.isRequired,
+        /** Generate a notification alert
+        * @param {String} type - notification type - success, error
+        * @param {String} title - notification title
+        * @param {String} text - notification explanation
+        */
         generateAlert: PropTypes.func.isRequired,
     };
 
@@ -164,7 +215,7 @@ class Loading extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { ready, body } = this.props;
+        const { ready, theme: { body } } = this.props;
         const isReady = !ready && newProps.ready;
 
         if (isReady) {
@@ -220,7 +271,7 @@ class Loading extends Component {
     };
 
     render() {
-        const { firstUse, t, addingAdditionalAccount, body } = this.props;
+        const { firstUse, t, addingAdditionalAccount, theme: { body } } = this.props;
         const textColor = { color: body.color };
         const loadingAnimationPath = tinycolor(body.bg).isDark() ? whiteLoadingAnimation : blackLoadingAnimation;
         const welcomeAnimationPartOnePath = tinycolor(body.bg).isDark()
@@ -277,15 +328,15 @@ class Loading extends Component {
                                 style={styles.animationLoading}
                             />
                         )) || (
-                            <LottieView
-                                ref={(animation) => {
-                                    this.animation = animation;
-                                }}
-                                source={welcomeAnimationPartTwoPath}
-                                style={styles.animationLoading}
-                                loop
-                            />
-                        )}
+                                <LottieView
+                                    ref={(animation) => {
+                                        this.animation = animation;
+                                    }}
+                                    source={welcomeAnimationPartTwoPath}
+                                    style={styles.animationLoading}
+                                    loop
+                                />
+                            )}
                     </View>
                 </View>
             </View>
@@ -301,7 +352,7 @@ const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     ready: state.wallet.ready,
     password: state.wallet.password,
-    body: state.settings.theme.body,
+    theme: state.settings.theme,
     currency: state.settings.currency,
 });
 
