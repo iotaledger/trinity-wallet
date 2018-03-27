@@ -19,8 +19,9 @@ class Send extends React.PureComponent {
     static propTypes = {
         /** Current send status */
         isSending: PropTypes.bool.isRequired,
-        /** Current seed value */
+        /** Deep link state */
         deepLinkAmount: PropTypes.object.isRequired,
+        /** Current seed value */
         seed: PropTypes.string.isRequired,
         /** Total current account wallet ballance in iotas */
         balance: PropTypes.number.isRequired,
@@ -47,6 +48,8 @@ class Send extends React.PureComponent {
          *  @param {function} powFn - locla PoW function
          */
         sendTransfer: PropTypes.func.isRequired,
+        /** Set deep link amount */
+        sendAmount: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -62,7 +65,7 @@ class Send extends React.PureComponent {
     };
 
     componentWillMount() {
-        this.refreshDeepLinkValues(this.props);
+        this.refreshDeepLinkValues(this.props.deepLinkAmount);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -73,16 +76,17 @@ class Send extends React.PureComponent {
                 message: '',
             });
         }
-        this.refreshDeepLinkValues(nextProps);
+        this.refreshDeepLinkValues(nextProps.deepLinkAmount);
     }
 
     refreshDeepLinkValues = (props) => {
-        if (props.deepLinkAmount.address !== this.state.address) {
+        if (props.address.length > 0 && props.address !== this.state.address) {
             this.setState({
                 amount: props.amount,
                 address: props.address,
                 message: props.message,
             });
+            this.props.sendAmount(0, '', '');
         }
     };
 
