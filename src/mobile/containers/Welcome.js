@@ -68,11 +68,16 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Welcome screen component */
 class Welcome extends Component {
     static propTypes = {
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
-        primary: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Translation helper
+       * @param {string} translationString - locale string identifier to be translated
+       */
         t: PropTypes.func.isRequired,
     };
 
@@ -86,24 +91,25 @@ class Welcome extends Component {
                     style={{ flex: 1 }}
                     hideModal={() => this.hideModal()}
                     closeApp={() => this.closeApp()}
-                    backgroundColor={props.body.bg}
-                    textColor={{ color: props.body.color }}
-                    borderColor={{ borderColor: props.body.color }}
+                    backgroundColor={props.theme.body.bg}
+                    textColor={{ color: props.theme.body.color }}
+                    borderColor={{ borderColor: props.theme.body.color }}
                 />
             ),
         };
     }
 
     onNextPress() {
-        const { body } = this.props;
+        const { theme } = this.props;
+
         this.props.navigator.push({
             screen: 'walletSetup',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundColor: body.bg,
+                screenBackgroundColor: theme.body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+                statusBarColor: theme.body.bg,
             },
             animated: false,
         });
@@ -135,13 +141,14 @@ class Welcome extends Component {
 
     render() {
         const { isModalVisible } = this.state;
-        const { t, body, primary } = this.props;
-        const textColor = { color: body.color };
+        const { t, theme } = this.props;
+
+        const textColor = { color: theme.body.color };
         return (
-            <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
+            <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
+                    <Icon name="iota" size={width / 8} color={theme.body.color} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
@@ -152,8 +159,8 @@ class Welcome extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onNextPress()} testID="welcome-next">
-                        <View style={[styles.nextButton, { borderColor: primary.color }]}>
-                            <Text style={[styles.nextText, { color: primary.color }]}>{t('global:next')}</Text>
+                        <View style={[styles.nextButton, { borderColor: theme.primary.color }]}>
+                            <Text style={[styles.nextText, { color: theme.primary.color }]}>{t('global:next')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -164,13 +171,13 @@ class Welcome extends Component {
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
-                    backdropColor={body.bg}
+                    backdropColor={theme.body.bg}
                     backdropOpacity={0.8}
                     style={{ alignItems: 'center' }}
                     isVisible={isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
                 >
-                    <View style={[styles.modalContent, { backgroundColor: body.bg }]}>{this.state.modalContent}</View>
+                    <View style={[styles.modalContent, { backgroundColor: theme.body.bg }]}>{this.state.modalContent}</View>
                 </Modal>
             </View>
         );
@@ -178,8 +185,7 @@ class Welcome extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    primary: state.settings.theme.primary,
-    body: state.settings.theme.body,
+    theme: state.settings.theme
 });
 
-export default translate(['welcome', 'global'])(connect(mapStateToProps, null)(Welcome));
+export default translate(['welcome', 'global'])(connect(mapStateToProps)(Welcome));

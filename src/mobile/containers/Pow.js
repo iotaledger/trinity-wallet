@@ -8,8 +8,7 @@ import { updatePowSettings } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import Fonts from '../theme/fonts';
 import { width, height } from '../utils/dimensions';
-import { isAndroid } from '../utils/device';
-import { Icon } from '../theme/icons.js';
+import { Icon } from '../theme/icons';
 import InfoBox from '../components/InfoBox';
 import Toggle from '../components/Toggle';
 

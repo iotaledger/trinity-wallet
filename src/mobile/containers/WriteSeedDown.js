@@ -139,12 +139,18 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Write Seed Down component */
 class WriteSeedDown extends Component {
     static propTypes = {
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
-        primary: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Seed value */
         seed: PropTypes.string.isRequired,
     };
 
@@ -153,21 +159,21 @@ class WriteSeedDown extends Component {
     }
 
     render() {
-        const { t, primary, body, seed } = this.props;
+        const { t, theme, seed } = this.props;
         const checksum = getChecksum(seed);
-        const textColor = { color: body.color };
-        const borderColor = { borderColor: body.color };
+        const textColor = { color: theme.body.color };
+        const borderColor = { borderColor: theme.body.color };
 
         return (
-            <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
+            <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
+                    <Icon name="iota" size={width / 8} color={theme.body.color} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 1 }} />
                     <InfoBox
-                        body={body}
+                        body={theme.body}
                         text={
                             <Text style={[styles.infoText, textColor]}>
                                 <Text style={styles.infoTextNormal}>
@@ -182,7 +188,7 @@ class WriteSeedDown extends Component {
                         }
                     />
                     <View style={{ flex: 0.5 }} />
-                    <Seedbox bodyColor={body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
+                    <Seedbox bodyColor={theme.body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
                     <View style={{ flex: 0.5 }} />
                     <View style={[styles.checksum, borderColor]}>
                         <Text style={[styles.checksumText, textColor]}>{checksum}</Text>
@@ -191,8 +197,8 @@ class WriteSeedDown extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: primary.color }]}>
-                            <Text style={[styles.doneText, { color: primary.color }]}>{t('global:done')}</Text>
+                        <View style={[styles.doneButton, { borderColor: theme.primary.color }]}>
+                            <Text style={[styles.doneText, { color: theme.primary.color }]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -203,8 +209,7 @@ class WriteSeedDown extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    body: state.settings.theme.body,
-    primary: state.settings.theme.primary,
+    theme: state.settings.theme,
 });
 
 export default translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown));
