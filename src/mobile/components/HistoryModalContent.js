@@ -121,20 +121,41 @@ const styles = StyleSheet.create({
 
 export default class HistoryModalContent extends PureComponent {
     static propTypes = {
+        /** Container element press event callback function */
         onPress: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
+        /** Rebroadcast bundle
+         * @param {string} bundle - bundle hash
+         */
         rebroadcast: PropTypes.func.isRequired,
+        /** Promotes bundle
+        * @param {string} bundle - bundle hash
+        */
         promote: PropTypes.func.isRequired,
+        /** Transaction textual incoming/outgoing state */
         status: PropTypes.string.isRequired,
+        /** Transaction textual confirmation state */
         confirmation: PropTypes.string.isRequired,
+        /** Transaction boolean confirmation state */
         confirmationBool: PropTypes.bool.isRequired,
+        /** Currently selected mode */
         mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
+        /** Transaction value */
         value: PropTypes.number.isRequired,
+        /** Transaction unit */
         unit: PropTypes.string.isRequired,
+        /** Transaction time */
         time: PropTypes.number.isRequired,
+        /** Transaction message */
         message: PropTypes.string,
+        /** Transaction bundle hash */
         bundle: PropTypes.string.isRequired,
+        /** Modal buttons onPress event disable state */
         disableWhen: PropTypes.bool.isRequired,
+        /** Transaction addresses */
         addresses: PropTypes.arrayOf(
             PropTypes.shape({
                 address: PropTypes.string.isRequired,
@@ -142,6 +163,7 @@ export default class HistoryModalContent extends PureComponent {
                 unit: PropTypes.string.isRequired,
             }),
         ).isRequired,
+        /** Content styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
             containerBorderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,

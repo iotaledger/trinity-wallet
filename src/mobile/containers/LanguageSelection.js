@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Dimensions,
+    TouchableWithoutFeedback
+} from 'react-native';
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { setLanguage } from 'iota-wallet-shared-modules/actions/settings';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import DropdownComponent from '../containers/Dropdown';
@@ -58,12 +68,22 @@ const currentLanguageLabel = selectLocale(currentLocale);
 
 class LanguageSelection extends Component {
     static propTypes = {
-        backPress: PropTypes.func.isRequired,
+        /** Set new setting
+         * @param {string} setting
+         */
+        setSetting: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
+        /** Set language
+         * @param {string} language - newly selected language
+         */
         setLanguage: PropTypes.func.isRequired,
-        textColor: PropTypes.object.isRequired,
-        language: PropTypes.string.isRequired,
-        bodyColor: PropTypes.string.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Selected language */
+        language: PropTypes.string.isRequired
     };
 
     constructor() {
@@ -73,15 +93,20 @@ class LanguageSelection extends Component {
     }
 
     saveLanguageSelection() {
-        const { backPress, setLanguage } = this.props;
         const nextLanguage = this.languageSelected;
-        setLanguage(nextLanguage);
+
+        this.props.setLanguage(nextLanguage);
+
         i18next.changeLanguage(getLocaleFromLabel(nextLanguage));
-        backPress();
+
+        this.props.setSetting('mainSettings');
     }
 
     render() {
-        const { backPress, t, textColor, language, bodyColor } = this.props;
+        const { t, language, theme } = this.props;
+
+        const textColor = { color: theme.body.color };
+        const bodyColor = theme.body.color;
 
         return (
             <TouchableWithoutFeedback
@@ -110,7 +135,7 @@ class LanguageSelection extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => backPress()}
+                            onPress={() => this.props.setSetting('mainSettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
@@ -134,4 +159,16 @@ class LanguageSelection extends Component {
     }
 }
 
-export default translate(['languageSetup', 'global'])(LanguageSelection);
+const mapStateToProps = (state) => ({
+    language: state.settings.language,
+    theme: state.settings.theme
+});
+
+const mapDispatchToProps = {
+    setLanguage,
+    setSetting,
+};
+
+export default translate(['languageSetup', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(LanguageSelection),
+);

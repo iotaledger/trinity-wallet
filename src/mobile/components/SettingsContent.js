@@ -14,11 +14,10 @@ import NodeSelection from '../containers/NodeSelection';
 import AddCustomNode from '../containers/AddCustomNode';
 import CurrencySelectionComponent from '../containers/CurrencySelection';
 import ModeSelection from '../containers/ModeSelection';
-import LanguageSelection from './LanguageSelection';
+import LanguageSelection from '../containers/LanguageSelection';
 import ChangePassword from '../containers/ChangePassword';
 import ManualSync from '../containers/ManualSync';
 import ThemeCustomisation from '../containers/ThemeCustomisation';
-import AdvancedThemeCustomisation from './AdvancedThemeCustomisation';
 import SnapshotTransition from './SnapshotTransition';
 import SecuritySettings from '../containers/SecuritySettings';
 
@@ -39,7 +38,6 @@ const SETTINGS_COMPONENTS = {
     changePassword: ChangePassword,
     manualSync: ManualSync,
     themeCustomisation: ThemeCustomisation,
-    advancedThemeCustomisation: AdvancedThemeCustomisation,
     snapshotTransition: SnapshotTransition,
     securitySettings: SecuritySettings,
     modeSelection: ModeSelection,
