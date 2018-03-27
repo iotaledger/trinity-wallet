@@ -35,13 +35,22 @@ const styles = StyleSheet.create({
 
 class RootDetectionModal extends PureComponent {
     static propTypes = {
+        /** Exits the application */
         closeApp: PropTypes.func.isRequired,
+        /** Hides active modal */
         hideModal: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
+        /** Modal background color */
         backgroundColor: PropTypes.string.isRequired,
+        /** Modal text color */
         textColor: PropTypes.object.isRequired,
+        /** Modal border color */
         borderColor: PropTypes.object.isRequired,
     };
+    
     render() {
         const { t, backgroundColor, textColor, borderColor } = this.props;
         return (

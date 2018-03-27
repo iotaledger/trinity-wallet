@@ -52,10 +52,17 @@ const mapDispatchToProps = {
 };
 
 TabContent.propTypes = {
+    /** Navigation object */
     navigator: PropTypes.object.isRequired,
+    /** Currently selected home screen route */
     currentRoute: PropTypes.oneOf(Object.keys(routeToComponent)),
+    /** Determines whether the topbar is active */
     isTopBarActive: PropTypes.bool.isRequired,
+    /** Inverts topbar state (active/inactive) */
     toggleTopBarDisplay: PropTypes.func.isRequired,
+    /** onTabSwitch callback function 
+     * @param {string} name - Next route name
+    */
     onTabSwitch: PropTypes.func.isRequired,
 };
 

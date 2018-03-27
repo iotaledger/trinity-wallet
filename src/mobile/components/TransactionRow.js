@@ -81,18 +81,41 @@ const styles = StyleSheet.create({
 
 export default class TransactionRow extends PureComponent {
     static propTypes = {
+        /** Generate a notification alert
+        * @param {String} type - notification type - success, error
+        * @param {String} title - notification title
+        * @param {String} text - notification explanation
+        */
         generateAlert: PropTypes.func.isRequired,
+        /** Translation helper
+       * @param {string} translationString - locale string identifier to be translated
+       */
         t: PropTypes.func.isRequired,
+        /** Rebroadcast bundle
+         * @param {string} bundle - bundle hash
+         */
         rebroadcast: PropTypes.func.isRequired,
+        /** Promotes bundle
+        * @param {string} bundle - bundle hash
+        */
         promote: PropTypes.func.isRequired,
+        /** Transaction incoming/outgoing state */
         status: PropTypes.string.isRequired,
+        /** Transaction confirmation state */
         confirmation: PropTypes.string.isRequired,
+        /** Transaction value */
         value: PropTypes.number.isRequired,
+        /** Transaction unit */
         unit: PropTypes.string.isRequired,
+        /** Transaction time */
         time: PropTypes.number.isRequired,
+        /** Transaction message */
         message: PropTypes.string,
+        /** Transaction bundle hash */
         bundle: PropTypes.string.isRequired,
+        /** Determines whether the modal buttons should disable onPress event */
         disableWhen: PropTypes.bool.isRequired,
+        /** Transaction addresses */
         addresses: PropTypes.arrayOf(
             PropTypes.shape({
                 address: PropTypes.string.isRequired,
@@ -100,6 +123,7 @@ export default class TransactionRow extends PureComponent {
                 unit: PropTypes.string.isRequired,
             }),
         ).isRequired,
+        /** Content styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
             containerBorderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
@@ -184,7 +208,7 @@ export default class TransactionRow extends PureComponent {
                         useNativeDriver
                         hideModalContentWhileAnimating
                     >
-                        <HistoryModalContent {...this.getModalProps()} />
+                        <HistoryModalContent {...this.getModalProps() } />
                     </Modal>
                 </View>
             </TouchableOpacity>

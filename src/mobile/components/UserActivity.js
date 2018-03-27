@@ -37,7 +37,15 @@ export default () => (C) => {
     }
 
     WithUserActivity.propTypes = {
+        /** Set application activity state
+         * @param {object} options - minimzed, active, inactive
+         */
         setUserActivity: PropTypes.func.isRequired,
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
     };
 

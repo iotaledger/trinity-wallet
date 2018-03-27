@@ -22,16 +22,22 @@ const styles = StyleSheet.create({
 
 export default class SimpleTransactionRow extends PureComponent {
     static propTypes = {
+        /** Transaction timestamp */
         time: PropTypes.number.isRequired,
+        /** Transaction confirmaton status */
         confirmationStatus: PropTypes.string.isRequired,
+        /** Transaction value */
         value: PropTypes.number.isRequired,
+        /** Transaction value unit */
         unit: PropTypes.string.isRequired,
-        sign: PropTypes.string.isRequired,
+        /** Determines whether a transaction is incoming or outgoing */
         incoming: PropTypes.bool.isRequired,
+        /** TransactionRow styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
             defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
         }).isRequired,
+        sign: PropTypes.string.isRequired,
     };
 
     render() {

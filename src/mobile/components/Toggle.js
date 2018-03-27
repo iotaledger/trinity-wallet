@@ -17,9 +17,10 @@ const styles = StyleSheet.create({
 
 class Toggle extends PureComponent {
     static propTypes = {
+        /** Determines whether the toggle is active or not */
+        active: PropTypes.bool.isRequired,
         bodyColor: PropTypes.string.isRequired,
         primaryColor: PropTypes.string.isRequired,
-        active: PropTypes.bool.isRequired,
         scale: PropTypes.number,
     };
 
