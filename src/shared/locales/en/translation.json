@@ -89,7 +89,9 @@
         "pleaseWaitTransferExplanation":
             "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
+        "checkForUpdates": "Check for Updates",
+        "account": "Account"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -152,7 +154,9 @@
         "send": "SEND",
         "receive": "RECEIVE",
         "history": "HISTORY",
-        "settings": "SETTINGS"
+        "settings": "SETTINGS",
+        "undo": "Undo",
+        "redo": "Redo"
     },
     "languageSetup": {
         "language": "Language"
@@ -462,7 +466,9 @@
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
-        "remote": "Remote"
+        "remote": "Remote",
+        "powUpdated": "Proof of work settings",
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validating receive address",

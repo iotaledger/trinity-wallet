@@ -240,7 +240,7 @@
     "modeSelection": {
         "expert": "전문가",
         "standard": "기본",
-        "expertModeExplanation": "전문가 모드에서는 직접 프로모트나 다시 어태치를 할 수 있습니다.",
+        "expertModeExplanation": "전문가 모드에서는 프로모트 및 다시 어태치를 직접 실행할 수 있습니다.",
         "modesExplanation": "혼동을 피하기 위해 탱글을 사용하는 데에 익숙한 경우에만 전문가 모드를 사용해 주십시오."
     },
     "settings": {
@@ -298,7 +298,7 @@
         "keepSafe": "반드시 시드를 안전히 보관하십시오."
     },
     "welcome": {
-        "thankYou": "IOTA 지갑을 내려받아 주셔서 감사합니다.",
+        "thankYou": "트리니티를 다운로드해 주셔서 감사합니다.",
         "weWillSpend": "지갑을 만드는 데에는 몇 분 정도 걸릴 예정입니다.",
         "reminder": "중간중간 과정들을 건너뛰고 싶을 수 있지만 모든 과정을 따라 주시길 부탁드립니다."
     },
