@@ -85,16 +85,32 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * Change Password component
+ */
 class ChangePassword extends Component {
     static propTypes = {
+        /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
+        /** Set new password hash
+         * @param {string} passwordHash
+         */
         setPassword: PropTypes.func.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
-        textColor: PropTypes.object.isRequired,
-        borderColor: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
     };
 
@@ -192,14 +208,15 @@ class ChangePassword extends Component {
 
     render() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { t, textColor, body } = this.props;
+        const { t, theme } = this.props;
+        const textColor = { color: theme.body.color };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <InfoBox
-                            body={body}
+                            body={theme.body}
                             text={
                                 <View>
                                     <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
@@ -245,7 +262,7 @@ class ChangePassword extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
+                                <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -263,7 +280,7 @@ class ChangePassword extends Component {
                                 >
                                     <View style={styles.itemRight}>
                                         <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                        <Icon name="tick" size={width / 28} color={body.color} />
+                                        <Icon name="tick" size={width / 28} color={theme.body.color} />
                                     </View>
                                 </TouchableOpacity>
                             )}
@@ -276,9 +293,6 @@ class ChangePassword extends Component {
 
 const mapStateToProps = (state) => ({
     password: state.wallet.password,
-    textColor: { color: state.settings.theme.body.color },
-    borderColor: { borderColor: state.settings.theme.body.color },
-    body: state.settings.theme.body,
     theme: state.settings.theme,
 });
 

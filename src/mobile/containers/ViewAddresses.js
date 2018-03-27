@@ -89,12 +89,26 @@ const styles = StyleSheet.create({
     },
 });
 
+/** View Addresses component */
 export class ViewAddresses extends Component {
     static propTypes = {
+        /** Selected account. Contains transfers, addresses and balance  */
         selectedAccount: PropTypes.object.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
     };
 
@@ -119,7 +133,7 @@ export class ViewAddresses extends Component {
     }
 
     renderAddress(address) {
-        const { body } = this.props;
+        const { theme } = this.props;
 
         return (
             <View style={{ flexDirection: 'row', paddingHorizontal: width / 15, height: height / 25 }}>
@@ -133,7 +147,7 @@ export class ViewAddresses extends Component {
                             style={[
                                 styles.addressText,
                                 { textDecorationLine: address.spent ? 'line-through' : 'none' },
-                                { color: address.spent ? '#B21C17' : body.color },
+                                { color: address.spent ? '#B21C17' : theme.body.color },
                             ]}
                         >
                             {address.address}
@@ -141,7 +155,7 @@ export class ViewAddresses extends Component {
                     </View>
                 </TouchableOpacity>
                 <View style={{ alignItems: 'flex-end', flex: 2, justifyContent: 'center' }}>
-                    <Text style={[styles.balanceText, { color: body.color }]}>
+                    <Text style={[styles.balanceText, { color: theme.body.color }]}>
                         {address.balance} {address.unit}
                     </Text>
                 </View>
@@ -150,7 +164,7 @@ export class ViewAddresses extends Component {
     }
 
     renderAddresses() {
-        const { body, t } = this.props;
+        const { theme, t } = this.props;
         const addresses = this.prepAddresses();
         const noAddresses = addresses.length === 0;
 
@@ -164,7 +178,7 @@ export class ViewAddresses extends Component {
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
                     <View style={styles.noAddressesContainer}>
-                        <Text style={[styles.noAddresses, { color: body.color }]}>{t('noAddresses')}</Text>
+                        <Text style={[styles.noAddresses, { color: theme.body.color }]}>{t('noAddresses')}</Text>
                     </View>
                 }
             />
@@ -172,10 +186,10 @@ export class ViewAddresses extends Component {
     }
 
     render() {
-        const { body, t } = this.props;
+        const { theme, t } = this.props;
         const listOfAddresses = this.renderAddresses();
         const addresses = this.prepAddresses();
-        const textColor = { color: body.color };
+        const textColor = { color: theme.body.color };
 
         return (
             <View style={styles.container}>
@@ -190,7 +204,7 @@ export class ViewAddresses extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.itemLeft}>
-                            <Icon name="chevronLeft" size={width / 28} color={body.color} />
+                            <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
                             <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
@@ -213,7 +227,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     selectedAccount: getSelectedAccountName(state),
-    body: state.settings.theme.body,
+    theme: state.settings.theme
 });
 
 export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewAddresses));

@@ -74,18 +74,30 @@ const styles = StyleSheet.create({
     },
 });
 
+/** View Seed screen component */
 class ViewSeed extends Component {
     static propTypes = {
+        /** Index of currently selected account in accountNames list */
         seedIndex: PropTypes.number.isRequired,
+        /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
+        /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        borderColor: PropTypes.object.isRequired,
-        textColor: PropTypes.object.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
-        primary: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
+        /** Generate a notification alert
+       * @param {String} type - notification type - success, error
+       * @param {String} title - notification title
+       * @param {String} text - notification explanation
+       */
         generateAlert: PropTypes.func.isRequired,
     };
 
@@ -159,7 +171,10 @@ class ViewSeed extends Component {
     }
 
     render() {
-        const { t, textColor, body, primary, borderColor, theme } = this.props;
+        const { t, theme } = this.props;
+        const textColor = { color: theme.body.color };
+        const borderColor = { borderColor: theme.body.color };
+
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -175,7 +190,7 @@ class ViewSeed extends Component {
                             <View style={styles.seedBoxContainer}>
                                 <Seedbox
                                     seed={this.state.seed}
-                                    bodyColor={body.color}
+                                    bodyColor={theme.body.color}
                                     borderColor={borderColor}
                                     textColor={textColor}
                                 />
@@ -203,8 +218,8 @@ class ViewSeed extends Component {
                             !this.state.showSeed && (
                                 <View style={styles.viewButtonContainer}>
                                     <CtaButton
-                                        ctaColor={primary.color}
-                                        secondaryCtaColor={primary.body}
+                                        ctaColor={theme.primary.color}
+                                        secondaryCtaColor={theme.primary.body}
                                         text={t('viewSeed:viewSeed')}
                                         onPress={this.viewSeed}
                                         ctaWidth={width / 2}
@@ -215,8 +230,8 @@ class ViewSeed extends Component {
                         {this.state.showSeed && (
                             <View style={styles.hideButtonContainer}>
                                 <CtaButton
-                                    ctaColor={primary.color}
-                                    secondaryCtaColor={primary.body}
+                                    ctaColor={theme.primary.color}
+                                    secondaryCtaColor={theme.primary.body}
                                     text={t('viewSeed:hideSeed')}
                                     onPress={this.hideSeed}
                                     ctaWidth={width / 2}
@@ -233,7 +248,7 @@ class ViewSeed extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
-                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
+                                <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -248,11 +263,7 @@ const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
     password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
-    borderColor: { borderColor: state.settings.theme.body.color },
-    textColor: { color: state.settings.theme.body.color },
-    theme: state.settings.theme,
-    body: state.settings.theme.body,
-    primary: state.settings.theme.primary,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {
