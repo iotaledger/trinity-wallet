@@ -49,13 +49,15 @@ const styles = StyleSheet.create({
 
 class InfoBox extends PureComponent {
     static propTypes = {
+        /** Content base color */
         body: PropTypes.object.isRequired,
+        /** Infobox children content */
         text: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+        /** Infobox width */
         width: PropTypes.number,
     };
 
     static defaultProps = {
-        bodyColor: 'white',
         width: width / 1.2,
     };
 

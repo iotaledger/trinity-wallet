@@ -15,13 +15,23 @@ const styles = StyleSheet.create({
 
 class GenerateAddressButton extends PureComponent {
     static propTypes = {
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
+        /** Button background and border color */
         primaryColor: PropTypes.string.isRequired,
+        /** Button text color */
         primaryBody: PropTypes.string.isRequired,
+        /** Receive address text */
         receiveAddress: PropTypes.string.isRequired,
+        /** Receive address generation state */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        /** Keychain access state */
         isGettingSensitiveInfoToGenerateAddress: PropTypes.bool.isRequired,
+        /** Press event callback function */
         onGeneratePress: PropTypes.func.isRequired,
+        /** Message text */
         message: PropTypes.string.isRequired,
     };
 
