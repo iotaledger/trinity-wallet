@@ -31,9 +31,15 @@ class Tabs extends Component {
 }
 
 Tabs.propTypes = {
+    /** Tabs children content */
     children: PropTypes.node.isRequired,
+    /** Press event callback function 
+     * @param {string} name - Name prop for child component
+    */
     onPress: PropTypes.func.isRequired,
+    /** Currently selected home screen route */
     currentRoute: PropTypes.string.isRequired,
+    /** Tab bar background color */
     barBg: PropTypes.string.isRequired,
 };
 

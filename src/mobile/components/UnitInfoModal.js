@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
@@ -63,13 +63,19 @@ const styles = StyleSheet.create({
     },
 });
 
-/* eslint-disable react/prefer-stateless-function */
-class UnitInfoModal extends Component {
+class UnitInfoModal extends PureComponent {
     static propTypes = {
+        /** Modal border color */
         borderColor: PropTypes.object.isRequired,
+        /** Modal bar colors */
         bar: PropTypes.object.isRequired,
+        /** Modal content text color */
         textColor: PropTypes.object.isRequired,
+        /** Closes active modal */
         hideModal: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
     };
 

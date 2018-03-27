@@ -44,9 +44,17 @@ class QRScanner extends Component {
     }
 
     static propTypes = {
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
+        /** QrCodeScanner onRead event callback function
+         * @param {object} data
+         */
         onQRRead: PropTypes.func.isRequired,
+        /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
+        /** Content base colors */
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
     };
