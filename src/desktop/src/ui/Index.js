@@ -16,6 +16,7 @@ import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
 import Updates from 'ui/global/Updates';
 import Idle from 'ui/global/Idle';
+import Feedback from 'ui/global/Feedback';
 
 import Loading from 'ui/components/Loading';
 
@@ -112,6 +113,9 @@ class App extends React.Component {
 
     menuToggle(item) {
         switch (item) {
+            case 'feedback':
+                // Is processed in Feedback component
+                break;
             case 'addAccount':
                 this.props.history.push('/onboarding/seed-intro');
                 break;
@@ -156,6 +160,7 @@ class App extends React.Component {
 
         return (
             <div className={css.trintiy}>
+                <Feedback />
                 <Theme />
                 <Alerts />
                 <Updates />

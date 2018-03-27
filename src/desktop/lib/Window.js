@@ -41,6 +41,7 @@ const Electron = {
         ipc.send('menu.language', {
             about: 'About',
             checkUpdate: t('checkForUpdates'),
+            sendFeedback: 'Send feedback',
             settings: capitalize(t('home:settings')),
             accountSettings: t('settings:accountManagement'),
             newAccount: t('accountManagement:addNewAccount'),
