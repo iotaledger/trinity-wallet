@@ -29,7 +29,7 @@
             align-items: center;
             justify-content: flex-end;
             margin-bottom: 0px;
-            width: calc(100vw - 20px);
+            width: calc(100vw - 40px);
             max-width: 560px;
 
             section {
@@ -104,7 +104,7 @@
 .seed {
     display: block;
     margin: 32px auto;
-    width: calc(100vw - 20px);
+    width: calc(100vw - 40px);
     max-width: 920px;
     text-align: left;
 
@@ -116,7 +116,6 @@
         color: var(--secondary);
         font-size: 21px;
         line-height: 36px;
-        width: 34px;
         height: 34px;
         margin: 5px 0;
         font-family: 'SourceCode';
@@ -139,6 +138,18 @@
         }
     }
 
+    > div {
+        padding: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        > span,
+        button {
+            flex: 0 0 3.6%;
+        }
+    }
+
     span {
         pointer-events: none;
     }
@@ -146,23 +157,15 @@
     &.narrow {
         padding-left: 180px;
         position: relative;
+        > div {
+            height: 160px;
+        }
         canvas {
             position: absolute;
             top: 0px;
             left: 0px;
             border: 10px solid white;
             box-sizing: content-box;
-        }
-        > div {
-            height: 160px;
-            padding: 10px 0;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            > span {
-                flex: 0 0 3.6%;
-            }
         }
         @media (max-width: 900px) {
             padding: 180px 0 0 0;
