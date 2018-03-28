@@ -75,22 +75,30 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Main Settings component */
 export class MainSettings extends Component {
     static propTypes = {
+        /** Currently selected application mode (Expert or Standard) */
         mode: PropTypes.string.isRequired,
+        /** Currently selected currency */
         currency: PropTypes.string.isRequired,
+        /** Currently selected theme name */
         themeName: PropTypes.string.isRequired,
-        bodyColor: PropTypes.string.isRequired,
-        bg: PropTypes.string.isRequired,
-        borderBottomColor: PropTypes.shape({
-            borderBottomColor: PropTypes.string.isRequired,
-        }).isRequired,
-        textColor: PropTypes.shape({
-            color: PropTypes.string.isRequired,
-        }).isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Clears wallet reducer data */
         clearWalletData: PropTypes.func.isRequired,
+        /** Set new password hash
+         * @param {string} passwordHash
+         */
         setPassword: PropTypes.func.isRequired,
     };
 
@@ -107,17 +115,20 @@ export class MainSettings extends Component {
     }
 
     logout() {
+        const { theme: { body } } = this.props;
+
         this.props.clearWalletData();
         this.props.setPassword('');
+
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'login',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: this.props.bg,
+                    screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: this.props.bg,
+                    statusBarColor: body.bg,
                 },
                 overrideBackPress: true,
             },
@@ -129,13 +140,16 @@ export class MainSettings extends Component {
     }
 
     renderModalContent() {
-        const { textColor, bg, bodyColor } = this.props;
+        const { theme: { body } } = this.props;
+        const textColor = { color: body.color };
+        const bodyColor = body.color;
+
         return (
             <LogoutConfirmationModal
                 style={{ flex: 1 }}
                 hideModal={this.toggleModalDisplay}
                 logout={this.logout}
-                backgroundColor={bg}
+                backgroundColor={body.bg}
                 textColor={textColor}
                 borderColor={{ borderColor: bodyColor }}
             />
@@ -143,6 +157,11 @@ export class MainSettings extends Component {
     }
 
     render() {
+        const { theme, mode, t, themeName, currency } = this.props;
+        const textColor = { color: theme.body.color };
+        const bodyColor = theme.body.color;
+        const borderBottomColor = theme.body.color;
+
         return (
             <View style={styles.container}>
                 <View style={styles.itemContainer}>
@@ -152,11 +171,11 @@ export class MainSettings extends Component {
                     >
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
-                                <Icon name="mode" size={width / 22} color={this.props.bodyColor} />
-                                <Text style={[styles.titleText, this.props.textColor]}>{this.props.t('mode')}</Text>
+                                <Icon name="mode" size={width / 22} color={bodyColor} />
+                                <Text style={[styles.titleText, textColor]}>{t('mode')}</Text>
                             </View>
                             <View style={styles.innerItemContainerRight}>
-                                <Text style={[styles.settingText, this.props.textColor]}>{this.props.mode}</Text>
+                                <Text style={[styles.settingText, textColor]}>{mode}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -168,11 +187,11 @@ export class MainSettings extends Component {
                     >
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
-                                <Icon name="theme" size={width / 22} color={this.props.bodyColor} />
-                                <Text style={[styles.titleText, this.props.textColor]}>{this.props.t('theme')}</Text>
+                                <Icon name="theme" size={width / 22} color={bodyColor} />
+                                <Text style={[styles.titleText, textColor]}>{t('theme')}</Text>
                             </View>
                             <View style={styles.innerItemContainerRight}>
-                                <Text style={[styles.settingText, this.props.textColor]}>{this.props.themeName}</Text>
+                                <Text style={[styles.settingText, textColor]}>{themeName}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -184,11 +203,11 @@ export class MainSettings extends Component {
                     >
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
-                                <Icon name="currency" size={width / 22} color={this.props.bodyColor} />
-                                <Text style={[styles.titleText, this.props.textColor]}>{this.props.t('currency')}</Text>
+                                <Icon name="currency" size={width / 22} color={bodyColor} />
+                                <Text style={[styles.titleText, textColor]}>{t('currency')}</Text>
                             </View>
                             <View style={styles.innerItemContainerRight}>
-                                <Text style={[styles.settingText, this.props.textColor]}>{this.props.currency}</Text>
+                                <Text style={[styles.settingText, textColor]}>{currency}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -200,11 +219,11 @@ export class MainSettings extends Component {
                     >
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
-                                <Icon name="language" size={width / 22} color={this.props.bodyColor} />
-                                <Text style={[styles.titleText, this.props.textColor]}>{this.props.t('language')}</Text>
+                                <Icon name="language" size={width / 22} color={bodyColor} />
+                                <Text style={[styles.titleText, textColor]}>{t('language')}</Text>
                             </View>
                             <View style={styles.innerItemContainerRight}>
-                                <Text numberOfLines={1} style={[styles.settingText, this.props.textColor]}>
+                                <Text numberOfLines={1} style={[styles.settingText, textColor]}>
                                     {selectLocale(i18next.language)}
                                 </Text>
                             </View>
@@ -212,7 +231,7 @@ export class MainSettings extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.separatorContainer}>
-                    <View style={[styles.separator, this.props.borderBottomColor]} />
+                    <View style={[styles.separator, borderBottomColor]} />
                 </View>
                 <View style={styles.itemContainer}>
                     <TouchableOpacity
@@ -220,9 +239,9 @@ export class MainSettings extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
-                            <Icon name="user" size={width / 22} color={this.props.bodyColor} />
-                            <Text style={[styles.titleText, this.props.textColor]}>
-                                {this.props.t('accountManagement')}
+                            <Icon name="user" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>
+                                {t('accountManagement')}
                             </Text>
                         </View>
                     </TouchableOpacity>
@@ -233,9 +252,9 @@ export class MainSettings extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
-                            <Icon name="password" size={width / 22} color={this.props.bodyColor} />
-                            <Text style={[styles.titleText, this.props.textColor]}>
-                                {this.props.t('changePassword')}
+                            <Icon name="password" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>
+                                {t('changePassword')}
                             </Text>
                         </View>
                     </TouchableOpacity>
@@ -246,15 +265,15 @@ export class MainSettings extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
-                            <Icon name="security" size={width / 22} color={this.props.bodyColor} />
-                            <Text style={[styles.titleText, this.props.textColor]}>
-                                {this.props.t('securitySettings')}
+                            <Icon name="security" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>
+                                {t('securitySettings')}
                             </Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.separatorContainer}>
-                    <View style={[styles.separator, this.props.borderBottomColor]} />
+                    <View style={[styles.separator, borderBottomColor]} />
                 </View>
                 <View style={styles.itemContainer}>
                     <TouchableOpacity
@@ -262,8 +281,8 @@ export class MainSettings extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
-                            <Icon name="advanced" size={width / 22} color={this.props.bodyColor} />
-                            <Text style={[styles.titleText, this.props.textColor]}>{this.props.t('advanced')}</Text>
+                            <Icon name="advanced" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('advanced')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -273,8 +292,8 @@ export class MainSettings extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
-                            <Icon name="logout" size={width / 22} color={this.props.bodyColor} />
-                            <Text style={[styles.titleText, this.props.textColor]}>{this.props.t('logout')}</Text>
+                            <Icon name="logout" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('logout')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -285,7 +304,7 @@ export class MainSettings extends Component {
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
-                    backdropColor={this.props.bg}
+                    backdropColor={theme.body.bg}
                     backdropOpacity={0.8}
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalActive}
@@ -300,21 +319,12 @@ export class MainSettings extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const theme = state.settings.theme;
-    const color = theme.body.color;
-    const bg = theme.body.bg;
-
-    return {
-        mode: state.settings.mode,
-        currency: state.settings.currency,
-        themeName: state.settings.themeName,
-        bodyColor: color,
-        borderBottomColor: { borderBottomColor: color },
-        textColor: { color },
-        bg,
-    };
-};
+const mapStateToProps = (state) => ({
+    mode: state.settings.mode,
+    currency: state.settings.currency,
+    themeName: state.settings.themeName,
+    theme: state.settings.theme
+});
 
 const mapDispatchToProps = {
     setSetting,

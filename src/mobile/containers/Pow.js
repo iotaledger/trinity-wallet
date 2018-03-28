@@ -63,15 +63,29 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Proof Of Work settings component */
 class Pow extends Component {
     static propTypes = {
+        /** Generate a notification alert
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
+        /** Determines whether the proof of work should be off-loaded */
         remotePoW: PropTypes.bool.isRequired,
+         /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Set proof of work settings */
         updatePowSettings: PropTypes.func.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
-        body: PropTypes.object.isRequired,
-        primary: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired
     };
 
     constructor() {
@@ -87,7 +101,7 @@ class Pow extends Component {
     }
 
     render() {
-        const { t, remotePoW, body, primary } = this.props;
+        const { t, remotePoW, theme: { body, primary } } = this.props;
         const textColor = { color: body.color };
         const infoTextPadding = { paddingTop: height / 50 };
 
@@ -152,8 +166,7 @@ class Pow extends Component {
 
 const mapStateToProps = (state) => ({
     remotePoW: state.settings.remotePoW,
-    body: state.settings.theme.body,
-    primary: state.settings.theme.primary,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {

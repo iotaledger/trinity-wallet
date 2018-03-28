@@ -69,21 +69,44 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Set Password component */
 class SetPassword extends Component {
     static propTypes = {
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Translation helper
+       * @param {string} translationString - locale string identifier to be translated
+       */
         t: PropTypes.func.isRequired,
+        /** Sets wallet's onboarding status
+        * @param {boolean} - status
+        */
         setOnboardingComplete: PropTypes.func.isRequired,
+        /** Clears wallet reducer data */
         clearWalletData: PropTypes.func.isRequired,
+        /** Wipes seed from reducer */
         clearSeed: PropTypes.func.isRequired,
+        /** Increment number of seeds stored on device */
         increaseSeedCount: PropTypes.func.isRequired,
+        /** Add account name to the list of account names stored on device
+        * @param {string} - accountName
+        */
         addAccountName: PropTypes.func.isRequired,
+         /** Generate a notification alert
+       * @param {string} type - notification type - success, error
+       * @param {string} title - notification title
+       * @param {string} text - notification explanation
+       */
         generateAlert: PropTypes.func.isRequired,
+        /** Set new password hash
+         * @param {string} passwordHash
+         */
         setPassword: PropTypes.func.isRequired,
+        /** Seed value */
         seed: PropTypes.string.isRequired,
-        accountName: PropTypes.string.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
+        accountName: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -249,15 +272,15 @@ class SetPassword extends Component {
                 {isAndroid ? (
                     <View style={styles.container}>{this.renderContent()}</View>
                 ) : (
-                    <KeyboardAwareScrollView
-                        resetScrollToCoords={{ x: 0, y: 0 }}
-                        contentContainerStyle={styles.container}
-                        scrollEnabled={false}
-                        enableOnAndroid={false}
-                    >
-                        {this.renderContent()}
-                    </KeyboardAwareScrollView>
-                )}
+                        <KeyboardAwareScrollView
+                            resetScrollToCoords={{ x: 0, y: 0 }}
+                            contentContainerStyle={styles.container}
+                            scrollEnabled={false}
+                            enableOnAndroid={false}
+                        >
+                            {this.renderContent()}
+                        </KeyboardAwareScrollView>
+                    )}
                 <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
@@ -267,8 +290,7 @@ class SetPassword extends Component {
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     accountName: state.wallet.accountName,
-    theme: state.settings.theme,
-    body: state.settings.theme.body,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {
