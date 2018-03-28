@@ -5,6 +5,8 @@ import { translate } from 'react-i18next';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { runTask } from 'worker';
+
 import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
@@ -21,6 +23,14 @@ import css from './dashboard.css';
  */
 class Dashboard extends React.PureComponent {
     static propTypes = {
+        /** Current seed index */
+        seedIndex: PropTypes.number.isRequired,
+        /** Seed state state data */
+        seeds: PropTypes.array.isRequired,
+        /** Accounts state state data
+         * @ignore
+         */
+        account: PropTypes.object.isRequired,
         /* Browser location objects */
         location: PropTypes.object,
         /** Browser history object */
@@ -32,6 +42,7 @@ class Dashboard extends React.PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        /** Deep links state */
         deepLinks: PropTypes.object.isRequired,
     };
 
@@ -39,6 +50,11 @@ class Dashboard extends React.PureComponent {
         if (this.props.deepLinks.address !== '') {
             this.props.history.push('/wallet/send');
         }
+    }
+
+    updateAccount() {
+        const { account, seedIndex, seeds } = this.props;
+        runTask('getAccountInfo', [seeds[seedIndex], account.accountNames[seedIndex]]);
     }
 
     render() {
@@ -75,6 +91,7 @@ class Dashboard extends React.PureComponent {
                     </section>
                     <section className={css.history}>
                         <List
+                            updateAccount={() => this.updateAccount()}
                             setItem={(item) =>
                                 item !== null ? history.push(`/wallet/history/${item}`) : history.push('/wallet/')
                             }
@@ -93,6 +110,9 @@ class Dashboard extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
+    seeds: state.seeds.seeds,
+    seedIndex: state.tempAccount.seedIndex,
+    account: state.account,
     deepLinks: state.deepLinks,
 });
 
