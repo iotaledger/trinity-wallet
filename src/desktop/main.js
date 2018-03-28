@@ -14,7 +14,7 @@ const windows = {
 };
 
 if (!devMode) {
-    protocol.registerStandardSchemes(['iota']);
+    protocol.registerStandardSchemes(['iota'], { secure: true });
 }
 
 const shouldQuit = app.makeSingleInstance((argv) => {
