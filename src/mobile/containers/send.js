@@ -388,7 +388,7 @@ export class Send extends Component {
 
     setModalContent(selectedSetting) {
         let modalContent;
-        const { bar, body, primary, address, amount } = this.props;
+        const { bar, body, primary, address, amount, selectedAccountName } = this.props;
         switch (selectedSetting) {
             case 'qrScanner':
                 modalContent = (
@@ -413,6 +413,7 @@ export class Send extends Component {
                         borderColor={{ borderColor: body.color }}
                         textColor={{ color: body.color }}
                         setSendingTransferFlag={() => this.setSendingTransferFlag()}
+                        selectedAccountName={selectedAccountName}
                     />
                 );
                 break;
