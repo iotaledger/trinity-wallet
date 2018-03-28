@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {
-    getAccountFromState,
+    getAccountsFromState,
     getAccountInfoFromState,
     getUnconfirmedBundleTailsFromState,
     getTxHashesForUnspentAddressesFromState,
@@ -17,44 +17,44 @@ import {
 } from '../../selectors/accounts';
 
 describe('selectors: accounts', () => {
-    describe('#getAccountFromState', () => {
-        describe('when "account" prop is not defined in argument', () => {
+    describe('#getAccountsFromState', () => {
+        describe('when "accounts" prop is not defined in argument', () => {
             it('should return an empty object', () => {
-                expect(getAccountFromState({ foo: {} })).to.eql({});
+                expect(getAccountsFromState({ foo: {} })).to.eql({});
             });
         });
 
-        describe('when "account" prop is defined in argument', () => {
-            it('should return value for "account" prop', () => {
-                expect(getAccountFromState({ foo: {}, account: { baz: {} } })).to.eql({ baz: {} });
+        describe('when "accounts" prop is defined in argument', () => {
+            it('should return value for "accounts" prop', () => {
+                expect(getAccountsFromState({ foo: {}, accounts: { baz: {} } })).to.eql({ baz: {} });
             });
         });
     });
 
     describe('#getAccountInfoFromState', () => {
-        describe('when "accountInfo" prop is not defined as a nested prop under "account" prop in argument', () => {
+        describe('when "accountInfo" prop is not defined as a nested prop under "accounts" prop in argument', () => {
             it('should return an empty object', () => {
-                expect(getAccountInfoFromState({ account: { notAccountInfo: {} } })).to.eql({});
+                expect(getAccountInfoFromState({ accounts: { notAccountInfo: {} } })).to.eql({});
             });
         });
 
-        describe('when "accountInfo" prop is defined as a nested prop under "account" prop in argument', () => {
-            it('should return value for "account" prop', () => {
-                expect(getAccountInfoFromState({ account: { accountInfo: { foo: {} } } })).to.eql({ foo: {} });
+        describe('when "accountInfo" prop is defined as a nested prop under "accounts" prop in argument', () => {
+            it('should return value for "accounts" prop', () => {
+                expect(getAccountInfoFromState({ accounts: { accountInfo: { foo: {} } } })).to.eql({ foo: {} });
             });
         });
     });
 
     describe('#getUnconfirmedBundleTailsFromState', () => {
-        describe('when "unconfirmedBundleTails" prop is not defined as a nested prop under "account" prop in argument', () => {
+        describe('when "unconfirmedBundleTails" prop is not defined as a nested prop under "accounts" prop in argument', () => {
             it('should return an empty object', () => {
-                expect(getUnconfirmedBundleTailsFromState({ account: { foo: {} } })).to.eql({});
+                expect(getUnconfirmedBundleTailsFromState({ accounts: { foo: {} } })).to.eql({});
             });
         });
 
-        describe('when "unconfirmedBundleTails" prop is defined as a nested prop under "account" prop in argument', () => {
+        describe('when "unconfirmedBundleTails" prop is defined as a nested prop under "accounts" prop in argument', () => {
             it('should return value for "unconfirmedBundleTails" prop', () => {
-                expect(getUnconfirmedBundleTailsFromState({ account: { unconfirmedBundleTails: { foo: {} } } })).to.eql(
+                expect(getUnconfirmedBundleTailsFromState({ accounts: { unconfirmedBundleTails: { foo: {} } } })).to.eql(
                     { foo: {} },
                 );
             });
@@ -62,33 +62,33 @@ describe('selectors: accounts', () => {
     });
 
     describe('#getTxHashesForUnspentAddressesFromState', () => {
-        describe('when "txHashesForUnspentAddresses" prop is not defined as a nested prop under "account" prop in argument', () => {
+        describe('when "txHashesForUnspentAddresses" prop is not defined as a nested prop under "accounts" prop in argument', () => {
             it('should return an empty object', () => {
-                expect(getTxHashesForUnspentAddressesFromState({ account: { foo: {} } })).to.eql({});
+                expect(getTxHashesForUnspentAddressesFromState({ accounts: { foo: {} } })).to.eql({});
             });
         });
 
-        describe('when "txHashesForUnspentAddresses" prop is defined as a nested prop under "account" prop in argument', () => {
+        describe('when "txHashesForUnspentAddresses" prop is defined as a nested prop under "accounts" prop in argument', () => {
             it('should return value for "txHashesForUnspentAddresses" prop', () => {
                 expect(
-                    getTxHashesForUnspentAddressesFromState({ account: { txHashesForUnspentAddresses: { foo: {} } } }),
+                    getTxHashesForUnspentAddressesFromState({ accounts: { txHashesForUnspentAddresses: { foo: {} } } }),
                 ).to.eql({ foo: {} });
             });
         });
     });
 
     describe('#getPendingTxHashesForSpentAddressesFromState', () => {
-        describe('when "pendingTxHashesForSpentAddresses" prop is not defined as a nested prop under "account" prop in argument', () => {
+        describe('when "pendingTxHashesForSpentAddresses" prop is not defined as a nested prop under "accounts" prop in argument', () => {
             it('should return an empty object', () => {
-                expect(getPendingTxHashesForSpentAddressesFromState({ account: { foo: {} } })).to.eql({});
+                expect(getPendingTxHashesForSpentAddressesFromState({ accounts: { foo: {} } })).to.eql({});
             });
         });
 
-        describe('when "pendingTxHashesForSpentAddresses" prop is defined as a nested prop under "account" prop in argument', () => {
+        describe('when "pendingTxHashesForSpentAddresses" prop is defined as a nested prop under "accounts" prop in argument', () => {
             it('should return value for "pendingTxHashesForSpentAddresses" prop', () => {
                 expect(
                     getPendingTxHashesForSpentAddressesFromState({
-                        account: { pendingTxHashesForSpentAddresses: { foo: {} } },
+                        accounts: { pendingTxHashesForSpentAddresses: { foo: {} } },
                     }),
                 ).to.eql({ foo: {} });
             });
@@ -100,7 +100,7 @@ describe('selectors: accounts', () => {
 
         beforeEach(() => {
             state = {
-                account: {
+                accounts: {
                     unconfirmedBundleTails: { foo: {} },
                     pendingTxHashesForSpentAddresses: { valid: [], invalid: [] },
                     txHashesForUnspentAddresses: { valid: [], invalid: [] },
@@ -131,7 +131,7 @@ describe('selectors: accounts', () => {
 
         beforeEach(() => {
             state = {
-                account: {
+                accounts: {
                     unconfirmedBundleTails: {},
                     pendingTxHashesForSpentAddresses: {},
                     txHashesForUnspentAddresses: {},
@@ -165,29 +165,29 @@ describe('selectors: accounts', () => {
     });
 
     describe('#getAccountNamesFromState', () => {
-        describe('when "accountNames" prop is not defined as a nested prop under "account" prop in argument', () => {
+        describe('when "accountNames" prop is not defined as a nested prop under "accounts" prop in argument', () => {
             it('should return an empty array', () => {
-                expect(getAccountNamesFromState({ account: { notAccountNames: [] } })).to.eql([]);
+                expect(getAccountNamesFromState({ accounts: { notAccountNames: [] } })).to.eql([]);
             });
         });
 
-        describe('when "accountNames" prop is defined as a nested prop under "account" prop in argument', () => {
+        describe('when "accountNames" prop is defined as a nested prop under "accounts" prop in argument', () => {
             it('should return value for "accountNames" prop', () => {
-                expect(getAccountNamesFromState({ account: { accountNames: [{}, {}] } })).to.eql([{}, {}]);
+                expect(getAccountNamesFromState({ accounts: { accountNames: [{}, {}] } })).to.eql([{}, {}]);
             });
         });
     });
 
     describe('#getSeedIndexFromState', () => {
-        describe('when "seedIndex" prop is not defined as a nested prop under "tempAccount" prop in argument', () => {
+        describe('when "seedIndex" prop is not defined as a nested prop under "wallet" prop in argument', () => {
             it('should return 0', () => {
-                expect(getSeedIndexFromState({ tempAccount: { notSeedIndex: 4 } })).to.equal(0);
+                expect(getSeedIndexFromState({ wallet: { notSeedIndex: 4 } })).to.equal(0);
             });
         });
 
-        describe('when "seedIndex" prop is defined as a nested prop under "tempAccount" prop in argument', () => {
+        describe('when "seedIndex" prop is defined as a nested prop under "wallet" prop in argument', () => {
             it('should return value for "seedIndex" prop', () => {
-                expect(getSeedIndexFromState({ tempAccount: { seedIndex: 3 } })).to.equal(3);
+                expect(getSeedIndexFromState({ wallet: { seedIndex: 3 } })).to.equal(3);
             });
         });
     });
@@ -197,7 +197,7 @@ describe('selectors: accounts', () => {
 
         beforeEach(() => {
             state = {
-                account: {
+                accounts: {
                     accountInfo: {
                         foo: {
                             transfers: [],
@@ -216,7 +216,7 @@ describe('selectors: accounts', () => {
                     },
                     accountNames: ['foo', 'baz'],
                 },
-                tempAccount: {
+                wallet: {
                     seedIndex: 0,
                 },
             };
@@ -236,7 +236,7 @@ describe('selectors: accounts', () => {
             it('should return an empty array', () => {
                 expect(
                     getDeduplicatedTransfersForSelectedAccount({
-                        account: {
+                        accounts: {
                             accountInfo: {
                                 foo: {
                                     addresses: {},
@@ -249,7 +249,7 @@ describe('selectors: accounts', () => {
                             },
                             accountNames: ['foo', 'baz'],
                         },
-                        tempAccount: {
+                        wallet: {
                             seedIndex: 0,
                         },
                     }),
@@ -262,7 +262,7 @@ describe('selectors: accounts', () => {
             it('should return transfers', () => {
                 expect(
                     getDeduplicatedTransfersForSelectedAccount({
-                        account: {
+                        accounts: {
                             accountInfo: {
                                 foo: {
                                     transfers: [
@@ -280,7 +280,7 @@ describe('selectors: accounts', () => {
                             },
                             accountNames: ['foo', 'baz'],
                         },
-                        tempAccount: {
+                        wallet: {
                             seedIndex: 0,
                         },
                     }),
@@ -294,7 +294,7 @@ describe('selectors: accounts', () => {
             it('should return an empty array', () => {
                 expect(
                     getAddressesForSelectedAccount({
-                        account: {
+                        accounts: {
                             accountInfo: {
                                 foo: {
                                     transfers: [],
@@ -307,7 +307,7 @@ describe('selectors: accounts', () => {
                             },
                             accountNames: ['foo', 'baz'],
                         },
-                        tempAccount: {
+                        wallet: {
                             seedIndex: 0,
                         },
                     }),
@@ -319,7 +319,7 @@ describe('selectors: accounts', () => {
             it('should return list of addresses', () => {
                 expect(
                     getAddressesForSelectedAccount({
-                        account: {
+                        accounts: {
                             accountInfo: {
                                 foo: {
                                     transfers: [],
@@ -337,7 +337,7 @@ describe('selectors: accounts', () => {
                             },
                             accountNames: ['foo', 'baz'],
                         },
-                        tempAccount: {
+                        wallet: {
                             seedIndex: 0,
                         },
                     }),
@@ -351,7 +351,7 @@ describe('selectors: accounts', () => {
             it('should return 0', () => {
                 expect(
                     getBalanceForSelectedAccount({
-                        account: {
+                        accounts: {
                             accountInfo: {
                                 foo: {
                                     transfers: [],
@@ -364,7 +364,7 @@ describe('selectors: accounts', () => {
                             },
                             accountNames: ['foo', 'baz'],
                         },
-                        tempAccount: {
+                        wallet: {
                             seedIndex: 0,
                         },
                     }),
@@ -376,7 +376,7 @@ describe('selectors: accounts', () => {
             it('should return balance', () => {
                 expect(
                     getBalanceForSelectedAccount({
-                        account: {
+                        accounts: {
                             accountInfo: {
                                 foo: {
                                     transfers: [],
@@ -391,7 +391,7 @@ describe('selectors: accounts', () => {
                             },
                             accountNames: ['foo', 'baz'],
                         },
-                        tempAccount: {
+                        wallet: {
                             seedIndex: 0,
                         },
                     }),
@@ -405,10 +405,10 @@ describe('selectors: accounts', () => {
 
         beforeEach(() => {
             state = {
-                account: {
+                accounts: {
                     accountNames: ['foo', 'baz'],
                 },
-                tempAccount: {
+                wallet: {
                     seedIndex: 0,
                 },
             };
