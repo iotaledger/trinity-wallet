@@ -12,7 +12,6 @@ import { setPassword, setReady, setSetting } from 'iota-wallet-shared-modules/ac
 import { setUserActivity, setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
-import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -46,23 +45,56 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Login component */
 class Login extends Component {
     static propTypes = {
+        /** Currently selected IRI node */
         node: PropTypes.string.isRequired,
+        /** Available IRI nodes */
         nodes: PropTypes.array.isRequired,
+        /** Application version number and version name */
         versions: PropTypes.object.isRequired,
+        /** Set new password hash
+         * @param {string} passwordHash
+         */
         setPassword: PropTypes.func.isRequired,
+        /** Generate a notification alert
+        * @param {string} type - notification type - success, error
+        * @param {string} title - notification title
+        * @param {string} text - notification explanation
+        */
         generateAlert: PropTypes.func.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Determines whether two factor authentication is enabled */
         is2FAEnabled: PropTypes.bool.isRequired,
+        /** Set application activity state
+         * @param {object} options - minimzed, active, inactive
+         */
         setUserActivity: PropTypes.func.isRequired,
+        /** Migrate application state
+        * @param {object} versions - app version number and version name
+        * @param {object} persistConfig - redux persist configuration object
+        * @param {object} persistor - refux persist persistor instance
+        */
         migrate: PropTypes.func.isRequired,
+        /** Set password
+         * @param {string} password
+         */
         setLoginPasswordField: PropTypes.func.isRequired,
+        /** Password value */
         password: PropTypes.string.isRequired,
+        /** Hash for wallet's password */
         pwdHash: PropTypes.string.isRequired,
+        /** Set new IRI node
+         * @param {string} node
+         */
         setFullNode: PropTypes.func.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
     };
 
@@ -117,7 +149,6 @@ class Login extends Component {
         if (token) {
             logTwoFa(pwdHash);
             const key = await getTwoFactorAuthKeyFromKeychain(pwdHash);
-            //console.log(key)
             if (key === null) {
                 this.props.generateAlert(
                     'error',
@@ -158,7 +189,7 @@ class Login extends Component {
     }
 
     navigateToLoading() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.push({
             screen: 'loading',
             navigatorStyle: {
@@ -174,8 +205,9 @@ class Login extends Component {
     }
 
     render() {
-        const { body, theme, password } = this.props;
+        const { theme, password } = this.props;
 
+        const body = theme.body;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
@@ -222,14 +254,11 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    firstUse: state.accounts.firstUse,
-    selectedAccount: getSelectedAccountName(state),
     node: state.settings.node,
     nodes: state.settings.nodes,
     theme: state.settings.theme,
-    body: state.settings.theme.body,
     is2FAEnabled: state.settings.is2FAEnabled,
-    versions: state.app.versions,
+    versions: state.settings.versions,
     accountInfo: state.accounts.accountInfo,
     password: state.ui.loginPasswordFieldText,
     pwdHash: state.wallet.password,
@@ -238,9 +267,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     setPassword,
-    setReady,
     setFullNode,
-    changeHomeScreenRoute,
     setSetting,
     setUserActivity,
     migrate,

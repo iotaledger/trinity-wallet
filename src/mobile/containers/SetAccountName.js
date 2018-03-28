@@ -7,6 +7,7 @@ import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'reac
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setAccountName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
 import { connect } from 'react-redux';
+import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/shouldPreventAction';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
@@ -56,23 +57,38 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Set Account Name component */
 export class SetAccountName extends Component {
     static propTypes = {
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Set account name
+        * @param {string} accountName
+        */
         setAccountName: PropTypes.func.isRequired,
+        /** Generate a notification alert
+       * @param {string} type - notification type - success, error
+       * @param {string} title - notification title
+       * @param {string} text - notification explanation
+       */
         generateAlert: PropTypes.func.isRequired,
+        /** Set additional account information in store
+        * @param {object} info - (addingAdditionalAccount, additionalAccountName)
+        */
         setAdditionalAccountInfo: PropTypes.func.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Seed value */
         seed: PropTypes.string.isRequired,
+        /** Determines whether onboarding steps for wallet setup are completed */
         onboardingComplete: PropTypes.bool.isRequired,
+        /** Total number of accounts in the wallet */
         seedCount: PropTypes.number.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
-        isTransitioning: PropTypes.bool.isRequired,
-        isSendingTransfer: PropTypes.bool.isRequired,
-        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        isFetchingAccountInfo: PropTypes.bool.isRequired,
-        isSyncing: PropTypes.bool.isRequired,
+        /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
     };
 
@@ -144,7 +160,7 @@ export class SetAccountName extends Component {
     }
 
     onBackPress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
@@ -177,22 +193,9 @@ export class SetAccountName extends Component {
         return '';
     }
 
-    shouldPreventAction() {
-        const {
-            isTransitioning,
-            isSendingTransfer,
-            isGeneratingReceiveAddress,
-            isFetchingAccountInfo,
-            isSyncing,
-        } = this.props;
-        const isAlreadyDoingSomeHeavyLifting =
-            isSyncing || isSendingTransfer || isGeneratingReceiveAddress || isTransitioning || isFetchingAccountInfo;
-
-        return isAlreadyDoingSomeHeavyLifting;
-    }
-
     navigateTo(screen) {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
+
         if (screen === 'loading') {
             return this.props.navigator.push({
                 screen,
@@ -222,16 +225,16 @@ export class SetAccountName extends Component {
 
     render() {
         const { accountName } = this.state;
-        const { t, theme, body } = this.props;
-        const textColor = { color: body.color };
+        const { t, theme } = this.props;
+        const textColor = { color: theme.body.color };
 
         return (
-            <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
+            <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Icon name="iota" size={width / 8} color={body.color} />
+                            <Icon name="iota" size={width / 8} color={theme.body.color} />
                         </View>
                         <View style={styles.midContainer}>
                             <View style={{ flex: 0.5 }} />
@@ -249,7 +252,7 @@ export class SetAccountName extends Component {
                             />
                             <View style={{ flex: 0.3 }} />
                             <InfoBox
-                                body={body}
+                                body={theme.body}
                                 text={
                                     <View>
                                         <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
@@ -271,7 +274,7 @@ export class SetAccountName extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert backgroundColor={body.bg} />
+                <StatefulDropdownAlert backgroundColor={theme.body.bg} />
             </View>
         );
     }
@@ -282,12 +285,7 @@ const mapStateToProps = (state) => ({
     seedCount: state.accounts.seedCount,
     onboardingComplete: state.accounts.onboardingComplete,
     theme: state.settings.theme,
-    body: state.settings.theme.body,
-    isTransitioning: state.ui.isTransitioning,
-    isSendingTransfer: state.ui.isSendingTransfer,
-    isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
-    isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
-    isSyncing: state.ui.isSyncing,
+    shouldPreventAction: shouldPreventAction(state),
     password: state.wallet.password,
 });
 

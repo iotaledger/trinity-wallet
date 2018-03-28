@@ -94,10 +94,16 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Seed Seed Confirmation component */
 class SaveSeedConfirmation extends Component {
     static propTypes = {
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
     };
 
@@ -105,7 +111,7 @@ class SaveSeedConfirmation extends Component {
         super(props);
 
         this.state = {
-            checkboxImage: tinycolor(props.body.bg).isDark()
+            checkboxImage: tinycolor(props.theme.body.bg).isDark()
                 ? whiteCheckboxUncheckedImagePath
                 : blackCheckboxUncheckedImagePath,
             hasSavedSeed: false,
@@ -122,7 +128,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     onBackPress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
@@ -136,7 +142,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     onNextPress() {
-        const { body } = this.props;
+        const { theme: { body } }  = this.props;
         const { hasSavedSeed } = this.state;
         if (hasSavedSeed) {
             this.props.navigator.push({
@@ -154,7 +160,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     onCheckboxPress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         const checkboxUncheckedImagePath = tinycolor(body.bg).isDark()
             ? whiteCheckboxUncheckedImagePath
             : blackCheckboxUncheckedImagePath;
@@ -176,7 +182,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     render() {
-        const { t, body } = this.props;
+        const { t, theme: { body } } = this.props;
         const { hasSavedSeed } = this.state;
         const textColor = { color: body.color };
         const opacity = hasSavedSeed ? 1 : 0.1;
@@ -223,8 +229,7 @@ class SaveSeedConfirmation extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    negative: state.settings.theme.negative,
-    body: state.settings.theme.body,
+    theme: state.settings.theme
 });
 
 export default translate(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation));

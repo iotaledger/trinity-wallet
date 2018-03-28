@@ -49,14 +49,28 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Two factor authentication token verification component */
 class TwoFactorSetupEnterToken extends Component {
     static propTypes = {
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
+         /** Generate a notification alert
+       * @param {string} type - notification type - success, error
+       * @param {string} title - notification title
+       * @param {string} text - notification explanation
+       */
         generateAlert: PropTypes.func.isRequired,
+        /** Sets two factor security status
+        * @param {boolean} - status
+        */
         set2FAStatus: PropTypes.func.isRequired,
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Wallet's password hash */
         password: PropTypes.string.isRequired,
     };
 
@@ -83,7 +97,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     goBack() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
@@ -97,7 +111,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     navigateToHome() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
@@ -142,16 +156,16 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     render() {
-        const { theme, body, t } = this.props;
-        const backgroundColor = { backgroundColor: body.bg };
-        const textColor = { color: body.color };
+        const { theme, t } = this.props;
+        const backgroundColor = { backgroundColor: theme.body.bg };
+        const textColor = { color: theme.body.color };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, backgroundColor]}>
-                    <DynamicStatusBar backgroundColor={body.bg} />
+                    <DynamicStatusBar backgroundColor={theme.body.bg} />
                     <View style={styles.topWrapper}>
-                        <Icon name="iota" size={width / 8} color={body.color} />
+                        <Icon name="iota" size={width / 8} color={theme.body.color} />
                     </View>
                     <View style={styles.midWrapper}>
                         <View style={{ flex: 0.25 }} />
@@ -176,7 +190,7 @@ class TwoFactorSetupEnterToken extends Component {
                             rightText={t('global:done')}
                         />
                     </View>
-                    <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
+                    <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -189,7 +203,6 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
-    body: state.settings.theme.body,
     password: state.wallet.password,
 });
 

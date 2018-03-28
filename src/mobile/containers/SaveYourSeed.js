@@ -71,14 +71,28 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Save Your Seed component */
 class SaveYourSeed extends Component {
     static propTypes = {
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Set a flag for clipboard copy
+         * @param {boolean} - true
+         */
         setCopiedToClipboard: PropTypes.func.isRequired,
+        /** Generate a notification alert
+        * @param {string} type - notification type - success, error
+        * @param {string} title - notification title
+        * @param {string} text - notification explanation
+        */
         generateAlert: PropTypes.func.isRequired,
+        /** Determines whether onboarding steps for wallet setup are completed */
         onboardingComplete: PropTypes.bool.isRequired,
-        extra: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
     };
 
@@ -248,8 +262,7 @@ class SaveYourSeed extends Component {
 
 const mapStateToProps = (state) => ({
     copiedToClipboard: state.wallet.copiedToClipboard,
-    body: state.settings.theme.body,
-    extra: state.settings.theme.extra,
+    theme: state.settings.theme,
     onboardingComplete: state.accounts.onboardingComplete,
 });
 

@@ -54,14 +54,27 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Node Selection component */
 class NodeSelection extends Component {
     static propTypes = {
-        fullNode: PropTypes.string.isRequired,
-        availablePoWNodes: PropTypes.array.isRequired,
+        /** Currently selected IRI node */
+        node: PropTypes.string.isRequired,
+        /** Available IRI nodes */
+        nodes: PropTypes.array.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
+        /** Set new IRI node
+         * @param {string} node
+         */
         setFullNode: PropTypes.func.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
     };
 
     setNode(selectedNode) {
@@ -75,7 +88,7 @@ class NodeSelection extends Component {
     }
 
     render() {
-        const { fullNode, availablePoWNodes, t, body } = this.props;
+        const { node, nodes, t, theme: { body } } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -95,8 +108,8 @@ class NodeSelection extends Component {
                             }}
                             title={t('global:node')}
                             dropdownWidth={{ width: width / 1.5 }}
-                            defaultOption={fullNode}
-                            options={availablePoWNodes}
+                            defaultOption={node}
+                            options={nodes}
                             background
                         />
                     </View>
@@ -127,8 +140,8 @@ class NodeSelection extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    fullNode: state.settings.fullNode,
-    availablePoWNodes: state.settings.availablePoWNodes,
+    node: state.settings.node,
+    nodes: state.settings.nodes,
 });
 
 const mapDispatchToProps = {

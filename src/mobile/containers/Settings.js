@@ -20,9 +20,12 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Settings component */
 class Settings extends Component {
     static propTypes = {
+        /** Currently selected setting */
         currentSetting: PropTypes.string.isRequired,
+        /** Determines if wallet is manually syncing account information */
         isSyncing: PropTypes.bool.isRequired,
     };
 
