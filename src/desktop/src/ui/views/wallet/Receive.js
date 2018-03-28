@@ -41,7 +41,7 @@ class Receive extends React.PureComponent {
         return (
             <div className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : null)}>
                 <p className={css.address}>
-                    <QRCode value={JSON.stringify({ address: receiveAddress, message })} size={150} />
+                    <QRCode value={JSON.stringify({ address: receiveAddress, message: message })} size={150} />
                     <Clipboard
                         text={receiveAddress}
                         title={t('receive:addressCopied')}
