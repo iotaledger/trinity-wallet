@@ -73,7 +73,6 @@ footer {
     composes: button;
     color: var(--primary-body);
     background: var(--primary);
-    display: inline;
     &:hover {
         background: var(--primary-hover);
     }
