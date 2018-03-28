@@ -142,7 +142,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     onNextPress() {
-        const { theme: { body } }  = this.props;
+        const { theme: { body } } = this.props;
         const { hasSavedSeed } = this.state;
         if (hasSavedSeed) {
             this.props.navigator.push({
