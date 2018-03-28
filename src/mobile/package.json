@@ -159,7 +159,7 @@
   },
   "rnpm": {
     "android": {
-      "mainFilePath": "src/main/java/com/iotawallet/MainApplication.java"
+      "mainFilePath": "src/main/java/com/iota/wallet/MainApplication.java"
     }
   },
   "browser": {
