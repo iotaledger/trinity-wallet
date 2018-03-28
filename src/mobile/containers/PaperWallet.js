@@ -197,13 +197,20 @@ const styles = StyleSheet.create({
 });
 
 const qrPath = `${RNFS.DocumentDirectoryPath}/qr.png`;
+
+/** Paper Wallet component */
 class PaperWallet extends Component {
     static propTypes = {
-        body: PropTypes.object.isRequired,
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Seed value */
         seed: PropTypes.string.isRequired,
-        primary: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
     };
 
     static callback(dataURL) {
@@ -214,7 +221,7 @@ class PaperWallet extends Component {
         super(props);
 
         this.state = {
-            checkboxImage: tinycolor(props.body.bg).isDark()
+            checkboxImage: tinycolor(props.theme.body.bg).isDark()
                 ? whiteCheckboxCheckedImagePath
                 : blackCheckboxCheckedImagePath,
             showIotaLogo: true,
@@ -226,7 +233,7 @@ class PaperWallet extends Component {
     }
 
     onDonePress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
@@ -412,7 +419,7 @@ class PaperWallet extends Component {
     }
 
     onCheckboxPress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         const checkboxUncheckedImagePath = tinycolor(body.bg).isDark()
             ? whiteCheckboxUncheckedImagePath
             : blackCheckboxUncheckedImagePath;
@@ -451,7 +458,7 @@ class PaperWallet extends Component {
     }
 
     render() {
-        const { t, seed, body, primary } = this.props;
+        const { t, seed, theme: { body, primary } } = this.props;
         const textColor = { color: body.color };
         const checksum = getChecksum(seed);
 
@@ -529,9 +536,7 @@ class PaperWallet extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    primary: state.settings.theme.primary,
-    body: state.settings.theme.body,
-    secondary: state.settings.theme.secondary,
+    theme: state.settings.theme
 });
 
 export default translate(['paperWallet', 'global'])(connect(mapStateToProps)(PaperWallet));

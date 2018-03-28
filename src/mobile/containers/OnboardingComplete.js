@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
-import { Icon } from '../theme/icons.js';
+import { Icon } from '../theme/icons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 
 const styles = StyleSheet.create({
@@ -69,12 +69,17 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Onboarding Complete screen componenet */
 class OnboardingComplete extends Component {
     static propTypes = {
+        /** Translation helper
+       * @param {string} translationString - locale string identifier to be translated
+       */
         t: PropTypes.func.isRequired,
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
-        positive: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired
     };
 
     onNextPress() {
@@ -94,7 +99,7 @@ class OnboardingComplete extends Component {
     }
 
     render() {
-        const { t, body, positive } = this.props;
+        const { t, theme: { body, positive } } = this.props;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
@@ -120,10 +125,9 @@ class OnboardingComplete extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    body: state.settings.theme.body,
-    positive: state.settings.theme.positive,
+    theme: state.settings.theme
 });
 
 export default WithBackPressCloseApp()(
-    translate(['onboardingComplete', 'global'])(connect(mapStateToProps, null)(OnboardingComplete)),
+    translate(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete)),
 );

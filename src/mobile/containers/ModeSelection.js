@@ -64,15 +64,30 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Mode Selection component */
 class ModeSelection extends Component {
     static propTypes = {
+        /** Currently selected wallet mode (Expert or Standard) */
         mode: PropTypes.string.isRequired,
+        /** Change current mode
+        * @param {string} mode
+        */
         setMode: PropTypes.func.isRequired,
+        /** Change current setting
+        * @param {string} setting
+        */
         setSetting: PropTypes.func.isRequired,
+        /** Generate a notification alert
+        * @param {String} type - notification type - success, error
+        * @param {String} title - notification title
+        * @param {String} text - notification explanation
+        */
         generateAlert: PropTypes.func.isRequired,
-        textColor: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
-        primary: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
     };
 
@@ -153,10 +168,7 @@ class ModeSelection extends Component {
 
 const mapStateToProps = (state) => ({
     mode: state.settings.mode,
-    textColor: { color: state.theme.body.color },
-    borderColor: { borderColor: state.theme.body.color },
-    body: state.theme.body,
-    primary: state.theme.body,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {

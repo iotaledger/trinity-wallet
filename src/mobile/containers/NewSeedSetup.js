@@ -88,18 +88,36 @@ const styles = StyleSheet.create({
     },
 });
 
+/** New Seed Setup component */
 class NewSeedSetup extends Component {
     static propTypes = {
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Set seed in reducer
+       * @param {string} seed
+       */
         setSeed: PropTypes.func.isRequired,
+        /** Randomise seed
+       * @param {function} generateSecureRandom
+       */
         randomiseSeed: PropTypes.func.isRequired,
+        /** Generate a notification alert
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
+        /** Determines whether onboarding steps for wallet setup are completed */
         onboardingComplete: PropTypes.bool.isRequired,
-        body: PropTypes.object.isRequired,
-        primary: PropTypes.object.isRequired,
-        input: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Wipes seed from reducer */
         clearSeed: PropTypes.func.isRequired,
+        /** Seed value */
         seed: PropTypes.string.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
     };
 
@@ -130,13 +148,13 @@ class NewSeedSetup extends Component {
     }
 
     onGeneratePress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.randomiseSeed(generateSecureRandom);
         this.setState({ randomised: true, infoTextColor: body.color });
     }
 
     onNextPress() {
-        const { t, body } = this.props;
+        const { t, theme: { body } } = this.props;
 
         if (this.state.randomised) {
             this.props.navigator.push({
@@ -156,7 +174,7 @@ class NewSeedSetup extends Component {
     }
 
     onBackPress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.clearSeed();
         if (!this.props.onboardingComplete) {
             this.props.navigator.pop({
@@ -198,7 +216,7 @@ class NewSeedSetup extends Component {
     }
 
     goBack() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
             screen: {
@@ -216,7 +234,7 @@ class NewSeedSetup extends Component {
     }
 
     renderChequerboard(character, index) {
-        const { input, primary } = this.props;
+        const { theme: { input, primary } } = this.props;
 
         const { randomised } = this.state;
 
@@ -237,7 +255,7 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { seed, t, primary, body } = this.props;
+        const { seed, t, theme: { primary, body } } = this.props;
         const viewOpacity = this.state.randomised ? 1 : 0.2;
         const opacity = this.state.randomised ? 1 : 0.1;
 
@@ -302,9 +320,7 @@ class NewSeedSetup extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    body: state.settings.theme.body,
-    primary: state.settings.theme.primary,
-    input: state.settings.theme.input,
+    theme: state.settings.theme,
     onboardingComplete: state.accounts.onboardingComplete,
 });
 

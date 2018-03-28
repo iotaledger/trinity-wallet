@@ -69,8 +69,8 @@ class WalletResetRequirePassword extends Component {
          * @param {boolean} - true
          */
         setFirstUse: PropTypes.func.isRequired,
-        /** Sets wallet's onboarding
-        * @param {boolean} - false
+        /** Sets wallet's onboarding status
+        * @param {boolean} - status
         */
         setOnboardingComplete: PropTypes.func.isRequired,
         /** Clears wallet reducer data */

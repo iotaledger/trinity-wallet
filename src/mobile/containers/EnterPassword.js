@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
 import CustomTextInput from '../components/CustomTextInput';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
@@ -127,8 +126,4 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
 });
 
-const mapDispatchToProps = {
-    setLoginPasswordField,
-};
-
-export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterPassword));
+export default translate(['login', 'global'])(connect(mapStateToProps)(EnterPassword));

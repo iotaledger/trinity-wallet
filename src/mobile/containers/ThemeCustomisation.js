@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { updateTheme } from 'iota-wallet-shared-modules/actions/settings';
 import THEMES from 'iota-wallet-shared-modules/themes/themes';
 import Dropdown from '../containers/Dropdown'; // eslint-disable-line import/no-named-as-default
 import { width, height } from '../utils/dimensions';
@@ -157,11 +158,22 @@ const styles = StyleSheet.create({
 
 class ThemeCustomisation extends Component {
     static propTypes = {
+        /** Update wallet's theme
+        * @param {object} theme - New theme object
+        * @param {string} themeName - New theme name
+        */
         updateTheme: PropTypes.func.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Currently selected theme name */
         themeName: PropTypes.string.isRequired,
-        bodyColor: PropTypes.string.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
     };
 
@@ -177,14 +189,14 @@ class ThemeCustomisation extends Component {
 
     onApplyPress(theme, themeName) {
         const newTheme = cloneDeep(theme);
-        const newThemeName = cloneDeep(themeName);
-        this.props.updateTheme(newTheme, newThemeName);
+        this.props.updateTheme(newTheme, themeName);
     }
 
     render() {
         const { themes, theme, themeName } = this.state;
         const { body, bar, positive, negative, primary, extra } = this.state.theme;
         const { t } = this.props;
+        const bodyColor = this.props.theme.body.color;
 
         return (
             <TouchableWithoutFeedback
@@ -282,8 +294,8 @@ class ThemeCustomisation extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={this.props.bodyColor} />
-                                <Text style={[styles.titleTextLeft, { color: this.props.bodyColor }]}>
+                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
+                                <Text style={[styles.titleTextLeft, { color: bodyColor }]}>
                                     {t('global:backLowercase')}
                                 </Text>
                             </View>
@@ -293,10 +305,10 @@ class ThemeCustomisation extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, { color: this.props.bodyColor }]}>
+                                <Text style={[styles.titleTextRight, { color: bodyColor }]}>
                                     {t('global:apply')}
                                 </Text>
-                                <Icon name="tick" size={width / 28} color={this.props.bodyColor} />
+                                <Icon name="tick" size={width / 28} color={bodyColor} />
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -313,6 +325,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setSetting,
+    updateTheme
 };
 
 export default translate(['themeCustomisation', 'global'])(

@@ -71,19 +71,26 @@ const styles = StyleSheet.create({
     },
 });
 
-/* eslint-disable react/prefer-stateless-function */
+/** Security Setting component */
 class SecuritySettings extends Component {
     static propTypes = {
+         /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
-        bodyColor: PropTypes.string.isRequired,
-        textColor: PropTypes.object.isRequired,
+         /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         t: PropTypes.func.isRequired,
-        on2FASetupPress: PropTypes.func.isRequired,
-        //onFingerprintSetupPress: PropTypes.func.isRequired,
+        /** Currently selected IRI node */
+        node: PropTypes.string.isRequired
     };
 
     on2FASetupPress() {
-        const { is2FAEnabled, body } = this.props;
+        const { is2FAEnabled, theme: { body } } = this.props;
+
         if (!is2FAEnabled) {
             Navigation.startSingleScreenApp({
                 screen: {
@@ -122,14 +129,16 @@ class SecuritySettings extends Component {
     }
 
     render() {
-        const { t, textColor, bodyColor } = this.props;
+        const { t, theme: { body } } = this.props;
+        const textColor = { color: body.color };
+        const bodyColor = body.color;
 
         return (
             <View style={styles.container}>
                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.on2FASetupPress()}
+                            onPress={() => this.on2FASetupPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -140,9 +149,7 @@ class SecuritySettings extends Component {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableWithoutFeedback
-                            onPress={() => {
-                                /*this.props.onFingerprintSetupPress()*/
-                            }}
+                            onPress={() => { }}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={[styles.item, { opacity: 0.2 }]}>
@@ -173,8 +180,8 @@ class SecuritySettings extends Component {
 
 const mapStateToProps = (state) => ({
     is2FAEnabled: state.settings.is2FAEnabled,
-    body: state.settings.theme.body,
-    fullNode: state.settings.fullNode,
+    theme: state.settings.theme,
+    node: state.settings.node,
 });
 
 const mapDispatchToProps = {
