@@ -1,7 +1,7 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
-import { ADDRESS_LENGTH, VALID_ADDRESS_WITH_CHECKSUM_REGEX } from 'libs/util';
+import { ADDRESS_LENGTH, parseAddress } from 'libs/util';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -36,28 +36,8 @@ export default class AddressInput extends React.PureComponent {
             this.setState(() => ({
                 showScanner: false,
             }));
-
-            let address = data;
-            let message = null;
-            let ammount = null;
-
-            try {
-                const json = JSON.parse(data);
-
-                if (json.address) {
-                    address = json.address;
-                }
-                if (json.message && typeof json.message === 'string' && json.message.length < 256) {
-                    message = json.message;
-                }
-                if (json.ammount && json.ammount === parseInt(json.ammount, 10)) {
-                    ammount = parseInt(json.ammount, 10);
-                }
-            } catch (error) {}
-
-            if (address.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
-                this.props.onChange(address, message, ammount);
-            }
+            const input = parseAddress(data);
+            this.props.onChange(input.address, input.message, input.ammount);
         }
     };
 
@@ -94,7 +74,7 @@ export default class AddressInput extends React.PureComponent {
                 {showScanner && (
                     <Modal isOpen onClose={this.closeScanner}>
                         <div className={css.qrScanner}>
-                            <QrReader delay={350} onScan={this.onScanEvent} />
+                            <QrReader delay={350} onScan={this.onScanEvent} onError={() => {}} />
                             <Button type="button" onClick={this.closeScanner} variant="primary">
                                 {closeLabel}
                             </Button>
