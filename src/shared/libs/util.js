@@ -6,6 +6,7 @@ import keys from 'lodash/keys';
 import merge from 'lodash/merge';
 import filter from 'lodash/filter';
 import cloneDeep from 'lodash/cloneDeep';
+import URL from 'url-parse';
 
 export const MAX_SEED_LENGTH = 81;
 
@@ -244,10 +245,10 @@ export const parseAddress = (input) => {
         };
 
         if (input.toLowerCase().indexOf('iota://') === 0) {
-            const url = new URL(input);
-            parsed.address = url.pathname.substr(2);
-            parsed.message = url.searchParams.get('message');
-            parsed.ammount = url.searchParams.get('ammount');
+            const url = new URL(input, true);
+            parsed.address = url.hostname.toUpperCase();
+            parsed.message = url.query.message;
+            parsed.ammount = url.query.ammount;
         } else {
             parsed = JSON.parse(input);
         }
