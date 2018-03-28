@@ -18,6 +18,7 @@ import {
     Dimensions,
     ScrollView,
     TouchableWithoutFeedback,
+    Animated,
 } from 'react-native';
 import tinycolor from 'tinycolor2';
 import { setPollFor } from 'iota-wallet-shared-modules/actions/polling';
@@ -25,38 +26,37 @@ import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/l
 import Modal from 'react-native-modal';
 import NotificationLog from '../components/notificationLog';
 import { Icon } from '../theme/icons.js';
+import { isAndroid } from '../util/device';
 
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
-        position: 'absolute',
         width,
         elevation: 7,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 27.5,
-        paddingBottom: height / 55,
         opacity: 0.98,
         flex: 1,
     },
     titleWrapper: {
-        paddingHorizontal: width / 40,
         alignItems: 'center',
         justifyContent: 'center',
     },
     mainTitle: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 24.4,
-        paddingBottom: height / 170,
-        paddingHorizontal: width / 9,
+        paddingBottom: isAndroid ? 0 : height / 170,
     },
     subtitle: {
         textAlign: 'center',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
-        paddingHorizontal: width / 9,
+    },
+    childView: {
+        height: height / 10,
+        justifyContent: 'center',
     },
     centralView: {
         alignItems: 'center',
@@ -64,14 +64,12 @@ const styles = StyleSheet.create({
     chevronWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 90,
         paddingRight: width / 18,
     },
     notificationContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingLeft: width / 18,
-        paddingTop: height / 120,
     },
     disabled: {
         color: '#a9a9a9',
@@ -81,13 +79,11 @@ const styles = StyleSheet.create({
     },
     separator: {
         width: width / 2,
-        marginVertical: height / 60,
         height: 1,
         borderBottomWidth: height / 3000,
     },
     topSeparator: {
         width,
-        marginVertical: height / 60,
         height: 1,
         borderBottomWidth: height / 3000,
     },
@@ -121,6 +117,8 @@ class TopBar extends Component {
         setPollFor: PropTypes.func.isRequired,
         notificationLog: PropTypes.array.isRequired,
         clearLog: PropTypes.func.isRequired,
+        topBarHeight: PropTypes.object.isRequired,
+        isIOSKeyboardActive: PropTypes.bool.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -200,7 +198,7 @@ class TopBar extends Component {
     }
 
     renderTitles() {
-        const { isTopBarActive, accountNames, balance, accountInfo, seedIndex, bar } = this.props;
+        const { isTopBarActive, accountNames, balance, accountInfo, seedIndex, bar, topBarHeight } = this.props;
         const borderBottomColor = { borderBottomColor: bar.color };
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
@@ -216,7 +214,7 @@ class TopBar extends Component {
         const disableWhen = this.shouldDisable();
 
         const baseContent = (
-            <View style={styles.titleWrapper}>
+            <Animated.View style={[styles.titleWrapper, { height: topBarHeight }]}>
                 <TouchableWithoutFeedback
                     onPress={() => {
                         if (!disableWhen) {
@@ -229,8 +227,12 @@ class TopBar extends Component {
                             numberOfLines={1}
                             style={
                                 disableWhen
-                                    ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: bar.color }])
-                                    : [styles.mainTitle, { color: bar.color }]
+                                    ? StyleSheet.flatten([
+                                          styles.mainTitle,
+                                          styles.disabled,
+                                          { color: bar.color, marginTop: height / 55 },
+                                      ])
+                                    : [styles.mainTitle, { color: bar.color, marginTop: height / 55 }]
                             }
                         >
                             {selectedTitle}
@@ -246,7 +248,7 @@ class TopBar extends Component {
                         </Text>
                     </View>
                 </TouchableWithoutFeedback>
-            </View>
+            </Animated.View>
         );
 
         if (!isTopBarActive) {
@@ -267,25 +269,27 @@ class TopBar extends Component {
                     key={idx}
                     style={{ width, alignItems: 'center' }}
                 >
-                    <Text
-                        numberOfLines={1}
-                        style={
-                            disableWhen
-                                ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: bar.color }])
-                                : [styles.mainTitle, { color: bar.color }]
-                        }
-                    >
-                        {t.title}
-                    </Text>
-                    <Text
-                        style={
-                            disableWhen
-                                ? StyleSheet.flatten([styles.subtitle, styles.disabled, { color: subtitleColor }])
-                                : [styles.subtitle, { color: subtitleColor }]
-                        }
-                    >
-                        {t.subtitle}
-                    </Text>
+                    <View style={styles.childView}>
+                        <Text
+                            numberOfLines={1}
+                            style={
+                                disableWhen
+                                    ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: bar.color }])
+                                    : [styles.mainTitle, { color: bar.color }]
+                            }
+                        >
+                            {t.title}
+                        </Text>
+                        <Text
+                            style={
+                                disableWhen
+                                    ? StyleSheet.flatten([styles.subtitle, styles.disabled, { color: subtitleColor }])
+                                    : [styles.subtitle, { color: subtitleColor }]
+                            }
+                        >
+                            {t.subtitle}
+                        </Text>
+                    </View>
                 </TouchableOpacity>
             );
 
@@ -311,7 +315,16 @@ class TopBar extends Component {
     }
 
     render() {
-        const { seedIndex, accountNames, isTopBarActive, body, bar, notificationLog } = this.props;
+        const {
+            seedIndex,
+            accountNames,
+            isTopBarActive,
+            body,
+            bar,
+            notificationLog,
+            topBarHeight,
+            isIOSKeyboardActive,
+        } = this.props;
 
         const children = this.renderTitles();
         const hasMultipleSeeds = size(TopBar.filterSeedTitles(accountNames, seedIndex));
@@ -327,74 +340,81 @@ class TopBar extends Component {
                     }
                 }}
             >
-                <View
-                    style={[
-                        styles.container,
-                        {
-                            backgroundColor: bar.bg,
-                        },
-                    ]}
-                >
-                    <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-                        {hasNotifications ? (
-                            <TouchableOpacity
-                                style={styles.notificationContainer}
-                                onPress={() => this.setState({ isModalVisible: true })}
-                            >
-                                <View style={{ width: width / 18, height: width / 18 }}>
-                                    <Icon name="notification" size={width / 18} color={bar.color} />
-                                </View>
-                            </TouchableOpacity>
-                        ) : (
-                            <View style={styles.notificationContainer}>
-                                <View style={styles.empty} />
-                            </View>
-                        )}
-                        <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
-                        <View style={styles.chevronWrapper}>
-                            {hasMultipleSeeds ? (
-                                <View style={{ width: width / 18, height: width / 18 }}>
-                                    <Icon
-                                        name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
-                                        size={width / 22}
-                                        color={bar.color}
-                                        style={
-                                            shouldDisable
-                                                ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                                : styles.chevron
-                                        }
-                                    />
-                                </View>
-                            ) : (
-                                <View style={styles.empty} />
-                            )}
-                        </View>
-                    </View>
-                    <Modal
-                        animationIn="bounceInUp"
-                        animationOut="bounceOut"
-                        animationInTiming={1000}
-                        animationOutTiming={200}
-                        backdropTransitionInTiming={500}
-                        backdropTransitionOutTiming={200}
-                        backdropColor={body.bg}
-                        style={{ alignItems: 'center', margin: 0 }}
-                        isVisible={this.state.isModalVisible}
-                        onBackButtonPress={() => this.hideModal()}
-                        onBackdropPress={() => this.hideModal()}
-                        useNativeDriver
-                        hideModalContentWhileAnimating
+                <View style={{ flex: 1, position: 'absolute' }}>
+                    <View
+                        style={[
+                            styles.container,
+                            {
+                                backgroundColor: bar.bg,
+                            },
+                        ]}
                     >
-                        <NotificationLog
-                            backgroundColor={bar.bg}
-                            hideModal={() => this.hideModal()}
-                            textColor={{ color: bar.color }}
-                            borderColor={{ borderColor: bar.color }}
-                            barColor={bar.color}
-                            notificationLog={notificationLog}
-                            clearLog={this.props.clearLog}
-                        />
-                    </Modal>
+                        <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center' }}>
+                            {hasNotifications && !isIOSKeyboardActive ? (
+                                <TouchableOpacity
+                                    style={styles.notificationContainer}
+                                    onPress={() => this.setState({ isModalVisible: true })}
+                                >
+                                    <Animated.View
+                                        style={{ width: width / 18, height: topBarHeight, justifyContent: 'center' }}
+                                    >
+                                        <Icon name="notification" size={width / 18} color={bar.color} />
+                                    </Animated.View>
+                                </TouchableOpacity>
+                            ) : (
+                                <View style={styles.notificationContainer}>
+                                    <View style={styles.empty} />
+                                </View>
+                            )}
+                            <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
+                            <View style={styles.chevronWrapper}>
+                                {hasMultipleSeeds && !isIOSKeyboardActive ? (
+                                    <Animated.View
+                                        style={{ width: width / 18, height: topBarHeight, justifyContent: 'center' }}
+                                    >
+                                        <Icon
+                                            name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
+                                            size={width / 22}
+                                            color={bar.color}
+                                            style={
+                                                shouldDisable
+                                                    ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
+                                                    : styles.chevron
+                                            }
+                                        />
+                                    </Animated.View>
+                                ) : (
+                                    <View style={styles.empty} />
+                                )}
+                            </View>
+                        </View>
+                        <Modal
+                            animationIn="bounceInUp"
+                            animationOut="bounceOut"
+                            animationInTiming={1000}
+                            animationOutTiming={200}
+                            backdropTransitionInTiming={500}
+                            backdropTransitionOutTiming={200}
+                            backdropColor={body.bg}
+                            style={{ alignItems: 'center', margin: 0 }}
+                            isVisible={this.state.isModalVisible}
+                            onBackButtonPress={() => this.hideModal()}
+                            onBackdropPress={() => this.hideModal()}
+                            useNativeDriver
+                            hideModalContentWhileAnimating
+                        >
+                            <NotificationLog
+                                backgroundColor={bar.bg}
+                                hideModal={() => this.hideModal()}
+                                textColor={{ color: bar.color }}
+                                borderColor={{ borderColor: bar.color }}
+                                barColor={bar.color}
+                                notificationLog={notificationLog}
+                                clearLog={this.props.clearLog}
+                            />
+                        </Modal>
+                    </View>
+                    <View style={{ flex: 1 }} />
                 </View>
             </TouchableWithoutFeedback>
         );
