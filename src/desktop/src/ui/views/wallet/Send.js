@@ -142,7 +142,13 @@ class Send extends React.PureComponent {
                     />
                     <AddressInput
                         address={address}
-                        onChange={(value) => this.setState({ address: value })}
+                        onChange={(value, messageIn, ammountIn) =>
+                            this.setState({
+                                address: value,
+                                message: messageIn ? messageIn : message,
+                                amount: ammountIn ? ammountIn : amount,
+                            })
+                        }
                         label={t('send:recipientAddress')}
                         closeLabel={t('back')}
                     />
