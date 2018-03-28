@@ -18,13 +18,6 @@ const routeToComponent = {
 };
 
 class TabContent extends Component {
-    handleCloseTopBar = () => {
-        const { isTopBarActive } = this.props;
-        if (isTopBarActive) {
-            this.props.toggleTopBarDisplay();
-        }
-    };
-
     render() {
         const { currentRoute, navigator } = this.props;
         const Content = routeToComponent[currentRoute];
@@ -34,7 +27,7 @@ class TabContent extends Component {
                 <Content
                     type={currentRoute}
                     navigator={navigator}
-                    closeTopBar={this.handleCloseTopBar}
+                    closeTopBar={() => this.props.handleCloseTopBar()}
                     onTabSwitch={(name) => this.props.onTabSwitch(name)}
                 />
             </View>
@@ -57,6 +50,7 @@ TabContent.propTypes = {
     isTopBarActive: PropTypes.bool.isRequired,
     toggleTopBarDisplay: PropTypes.func.isRequired,
     onTabSwitch: PropTypes.func.isRequired,
+    handleCloseTopBar: PropTypes.func.isRequired,
 };
 
 TabContent.defaultProps = {
