@@ -104,6 +104,12 @@ form {
         button {
             margin: 10px 20px;
         }
+        small {
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            margin: 12px auto;
+        }
     }
 
     div + fieldset {
