@@ -10,7 +10,7 @@ import { getVault } from 'libs/crypto';
 import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
-import { clearTempData } from 'actions/tempAccount';
+import { clearWalletData } from 'actions/wallet';
 import { setSeeds, clearSeeds } from 'actions/seeds';
 
 import { runTask } from 'worker';
@@ -29,11 +29,11 @@ class Login extends React.Component {
         /** Accounts state state data
          * @ignore
          */
-        account: PropTypes.object.isRequired,
-        /** Temporary account state data
+        accounts: PropTypes.object.isRequired,
+        /** wallet state data
          * @ignore
          */
-        tempAccount: PropTypes.object.isRequired,
+        wallet: PropTypes.object.isRequired,
         /** Current currency symbol */
         currency: PropTypes.string.isRequired,
         /** Set seed state data
@@ -41,10 +41,10 @@ class Login extends React.Component {
          * @ignore
          */
         setSeeds: PropTypes.func.isRequired,
-        /** Clear temporary account state data
+        /** Clear wallet state data
          * @ignore
          */
-        clearTempData: PropTypes.func.isRequired,
+        clearWalletData: PropTypes.func.isRequired,
         /** Clear temporary seed state data
          * @ignore
          */
@@ -82,22 +82,22 @@ class Login extends React.Component {
     componentDidMount() {
         Electron.updateMenu('authorised', false);
 
-        const { seeds, tempAccount } = this.props;
+        const { seeds, wallet } = this.props;
 
-        if (tempAccount.ready && tempAccount.addingAdditionalAccount) {
-            const seed = seeds[tempAccount.seedIndex];
+        if (wallet.ready && wallet.addingAdditionalAccount) {
+            const seed = seeds[wallet.seedIndex];
             this.setupAccount(seed);
         } else {
-            this.props.clearTempData();
+            this.props.clearWalletData();
             this.props.clearSeeds();
         }
     }
 
     componentWillReceiveProps(newProps) {
-        const { tempAccount } = this.props;
+        const { wallet } = this.props;
 
         const hasError =
-            !tempAccount.hasErrorFetchingAccountInfoOnLogin && newProps.tempAccount.hasErrorFetchingAccountInfoOnLogin;
+            !wallet.hasErrorFetchingAccountInfoOnLogin && newProps.wallet.hasErrorFetchingAccountInfoOnLogin;
 
         if (hasError) {
             this.setState({
@@ -113,19 +113,19 @@ class Login extends React.Component {
     };
 
     setupAccount(seed) {
-        const { account, tempAccount, currency } = this.props;
+        const { accounts, wallet, currency } = this.props;
 
         this.props.getPrice();
         this.props.getChartData();
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
 
-        if (account.firstUse) {
-            runTask('getFullAccountInfoFirstSeed', [seed, account.accountNames[tempAccount.seedIndex]]);
-        } else if (tempAccount.addingAdditionalAccount) {
-            runTask('getFullAccountInfoAdditionalSeed', [seed, tempAccount.additionalAccountName]);
+        if (accounts.firstUse) {
+            runTask('getFullAccountInfoFirstSeed', [seed, accounts.accountNames[wallet.seedIndex]]);
+        } else if (wallet.addingAdditionalAccount) {
+            runTask('getFullAccountInfoAdditionalSeed', [seed, wallet.additionalAccountName]);
         } else {
-            runTask('getAccountInfo', [seed, account.accountNames[tempAccount.seedIndex]]);
+            runTask('getAccountInfo', [seed, accounts.accountNames[wallet.seedIndex]]);
         }
     }
 
@@ -135,7 +135,7 @@ class Login extends React.Component {
         }
 
         const { password, code, verifyTwoFA } = this.state;
-        const { setSeeds, tempAccount, generateAlert, t } = this.props;
+        const { setSeeds, wallet, generateAlert, t } = this.props;
 
         let vault = null;
 
@@ -160,7 +160,7 @@ class Login extends React.Component {
         if (vault) {
             setSeeds(vault.seeds);
 
-            const seed = vault.seeds[tempAccount.seedIndex];
+            const seed = vault.seeds[wallet.seedIndex];
 
             this.setState({
                 loading: true,
@@ -171,15 +171,15 @@ class Login extends React.Component {
     };
 
     render() {
-        const { t, account, tempAccount } = this.props;
+        const { t, accounts, wallet } = this.props;
         const { loading, verifyTwoFA, code } = this.state;
 
-        if (loading || tempAccount.addingAdditionalAccount) {
+        if (loading || wallet.addingAdditionalAccount) {
             return (
                 <Loading
                     loop
-                    title={account.firstUse ? t('loading:loadingFirstTime') : null}
-                    subtitle={account.firstUse ? t('loading:thisMayTake') : null}
+                    title={accounts.firstUse ? t('loading:loadingFirstTime') : null}
+                    subtitle={accounts.firstUse ? t('loading:thisMayTake') : null}
                 />
             );
         }
@@ -232,9 +232,9 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    account: state.account,
-    tempAccount: state.tempAccount,
-    firstUse: state.account.firstUse,
+    accounts: state.accounts,
+    wallet: state.wallet,
+    firstUse: state.accounts.firstUse,
     currency: state.settings.currency,
     seeds: state.seeds.seeds,
 });
@@ -242,7 +242,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     setSeeds,
-    clearTempData,
+    clearWalletData,
     clearSeeds,
     getChartData,
     getPrice,

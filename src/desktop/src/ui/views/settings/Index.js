@@ -25,10 +25,10 @@ class Settings extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Temporary account state data
+        /** wallet state data
          * @ignore
          */
-        tempAccount: PropTypes.object,
+        wallet: PropTypes.object,
         /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
@@ -37,9 +37,9 @@ class Settings extends React.PureComponent {
     };
 
     render() {
-        const { t, location, tempAccount, history } = this.props;
+        const { t, location, wallet, history } = this.props;
 
-        const backRoute = tempAccount.ready ? '/wallet/' : '/onboarding/';
+        const backRoute = wallet.ready ? '/wallet/' : '/onboarding/';
 
         return (
             <main className={css.settings}>
@@ -58,7 +58,7 @@ class Settings extends React.PureComponent {
                             <NavLink to="/settings/currency">
                                 <Icon icon="currency" size={20} /> <strong>{t('settings:currency')}</strong>
                             </NavLink>
-                            {tempAccount && tempAccount.ready ? (
+                            {wallet && wallet.ready ? (
                                 <div>
                                     <hr />
                                     <NavLink to="/settings/password">
@@ -100,7 +100,7 @@ class Settings extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    tempAccount: state.tempAccount,
+    wallet: state.wallet,
 });
 
 export default connect(mapStateToProps)(translate()(Settings));

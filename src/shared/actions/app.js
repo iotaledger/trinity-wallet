@@ -1,5 +1,6 @@
 import { getStoredState } from 'redux-persist';
 import { updatePersistedState } from '../libs/utils';
+import { resetWallet, setAppVersions } from './settings';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {

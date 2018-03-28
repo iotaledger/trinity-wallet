@@ -7,7 +7,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 
-import { clearTempData } from 'actions/tempAccount';
+import { clearWalletData } from 'actions/wallet';
 import { getUpdateData } from 'actions/settings';
 import { clearSeeds } from 'actions/seeds';
 import { disposeOffAlert } from 'actions/alerts';
@@ -42,19 +42,19 @@ class App extends React.Component {
         /** Accounts state state data
          * @ignore
          */
-        account: PropTypes.object.isRequired,
-        /** Temporary account state data
+        accounts: PropTypes.object.isRequired,
+        /** wallet state data
          * @ignore
          */
-        tempAccount: PropTypes.object.isRequired,
+        wallet: PropTypes.object.isRequired,
         /** Clear  alert state data
          * @ignore
          */
         disposeOffAlert: PropTypes.func.isRequired,
-        /** Clear temporary account state data
+        /** Clear wallet state data
          * @ignore
          */
-        clearTempData: PropTypes.func.isRequired,
+        clearWalletData: PropTypes.func.isRequired,
         /** Clear temporary seed state data
          * @ignore
          */
@@ -95,7 +95,7 @@ class App extends React.Component {
             Electron.changeLanguage(this.props.t);
         }
         /* On Login */
-        if (!this.props.tempAccount.ready && nextProps.tempAccount.ready) {
+        if (!this.props.wallet.ready && nextProps.wallet.ready) {
             Electron.updateMenu('authorised', true);
             this.props.history.push('/wallet/');
         }
@@ -118,7 +118,7 @@ class App extends React.Component {
                 this.props.getUpdateData(true);
                 break;
             case 'logout':
-                this.props.clearTempData();
+                this.props.clearWalletData();
                 this.props.clearSeeds();
                 this.props.history.push('/onboarding/login');
                 break;
@@ -133,7 +133,7 @@ class App extends React.Component {
     };
 
     render() {
-        const { account, location, activationCode } = this.props;
+        const { accounts, location, activationCode } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
@@ -165,7 +165,7 @@ class App extends React.Component {
                                 <Route path="/wallet" component={Wallet} />
                                 <Route
                                     path="/onboarding"
-                                    complete={account.onboardingComplete}
+                                    complete={accounts.onboardingComplete}
                                     component={Onboarding}
                                 />
                                 <Route exact path="/" loop={false} component={this.Init} />
@@ -180,13 +180,13 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
     settings: state.settings,
-    account: state.account,
-    tempAccount: state.tempAccount,
+    accounts: state.accounts,
+    wallet: state.wallet,
     activationCode: state.app.activationCode,
 });
 
 const mapDispatchToProps = {
-    clearTempData,
+    clearWalletData,
     clearSeeds,
     getUpdateData,
     disposeOffAlert,

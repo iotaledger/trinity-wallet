@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { generateAlert } from 'actions/alerts';
 
-import { isValidPassword } from 'libs/util';
+import { isValidPassword } from 'libs/utils';
 import { setVault } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
