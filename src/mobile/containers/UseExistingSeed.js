@@ -6,8 +6,14 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/iota/utils';
-import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { setSetting, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
+import {
+    hasDuplicateAccountName,
+    hasDuplicateSeed,
+    getAllSeedsFromKeychain,
+} from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import Checksum from '../components/Checksum';
 import QRScanner from '../components/QrScanner';
@@ -95,18 +101,37 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Use Existing Seed component */
 class UseExistingSeed extends Component {
     static propTypes = {
+        /** Total number of seeds stored on device */
         seedCount: PropTypes.number.isRequired,
+        /** List of account names  */
+        accountNames: PropTypes.array.isRequired,
+        /** Hash for wallet's password */
+        password: PropTypes.string.isRequired,
+        /** Determines whether addition of new seed is allowed */
+        shouldPreventAction: PropTypes.bool.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
-        primary: PropTypes.object.isRequired,
-        addAccount: PropTypes.func.isRequired,
+          /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+         /** Generate a notification alert
+       * @param {string} type - notification type - success, error
+       * @param {string} title - notification title
+       * @param {string} text - notification explanation
+       */
         generateAlert: PropTypes.func.isRequired,
+        /** Set additional account information in store
+        * @param {object} info - (addingAdditionalAccount, additionalAccountName, seed)
+        */
+        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
-        textColor: PropTypes.object.isRequired,
-        input: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -160,12 +185,95 @@ class UseExistingSeed extends Component {
         return '';
     }
 
+    fetchAccountInfo(seed, accountName) {
+        const { theme: { body } } = this.props;
+
+        this.props.setAdditionalAccountInfo({
+            addingAdditionalAccount: true,
+            additionalAccountName: accountName,
+            seed,
+        });
+
+        this.props.navigator.push({
+            screen: 'loading',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
+            },
+            animated: false,
+            overrideBackPress: true,
+        });
+    }
+
+
+    addExistingSeed(seed, accountName) {
+        const { t, accountNames, password, shouldPreventAction } = this.props;
+        if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
+            this.props.generateAlert(
+                'error',
+                t('addAdditionalSeed:seedInvalidChars'),
+                t('addAdditionalSeed:seedInvalidCharsExplanation'),
+            );
+        } else if (seed.length < MAX_SEED_LENGTH) {
+            this.props.generateAlert(
+                'error',
+                t('addAdditionalSeed:seedTooShort'),
+                t('addAdditionalSeed:seedTooShortExplanation', {
+                    maxLength: MAX_SEED_LENGTH,
+                    currentLength: seed.length,
+                }),
+            );
+        } else if (!(accountName.length > 0)) {
+            this.props.generateAlert(
+                'error',
+                t('addAdditionalSeed:noNickname'),
+                t('addAdditionalSeed:noNicknameExplanation'),
+            );
+        } else if (accountNames.includes(accountName)) {
+            this.props.generateAlert(
+                'error',
+                t('addAdditionalSeed:nameInUse'),
+                t('addAdditionalSeed:nameInUseExplanation'),
+            );
+        } else {
+            if (shouldPreventAction) {
+                return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+            }
+            getAllSeedsFromKeychain(password)
+                .then((seedInfo) => {
+                    if (isNull(seedInfo)) {
+                        return this.fetchAccountInfo(seed, accountName);
+                    }
+                    if (hasDuplicateAccountName(seedInfo, accountName)) {
+                        return this.props.generateAlert(
+                            'error',
+                            t('addAdditionalSeed:nameInUse'),
+                            t('addAdditionalSeed:nameInUseExplanation'),
+                        );
+                    } else if (hasDuplicateSeed(seedInfo, seed)) {
+                        return this.props.generateAlert(
+                            'error',
+                            t('addAdditionalSeed:seedInUse'),
+                            t('addAdditionalSeed:seedInUseExplanation'),
+                        );
+                    }
+
+                    return this.fetchAccountInfo(seed, accountName);
+                })
+                .catch((err) => console.log(err)); // eslint-disable no-console
+        }
+    }
+
+
     showModal = () => this.setState({ isModalVisible: true });
 
     hideModal = () => this.setState({ isModalVisible: false });
 
     renderModalContent = () => {
-        const { body, primary } = this.props;
+        const { theme: { body, primary } } = this.props;
         return (
             <QRScanner
                 primary={primary}
@@ -177,8 +285,10 @@ class UseExistingSeed extends Component {
     };
 
     render() {
-        const { t, body, theme, textColor, input } = this.props;
+        const { t, theme } = this.props;
         const { seed, accountName } = this.state;
+
+        const textColor = { color: theme.body.color };
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
@@ -231,18 +341,18 @@ class UseExistingSeed extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
+                                <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => this.props.addAccount(seed, trim(accountName))}
+                            onPress={() => this.addExistingSeed(seed, trim(accountName))}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                             style={{ flex: 1 }}
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:doneLowercase')}</Text>
-                                <Icon name="chevronRight" size={width / 28} color={body.color} />
+                                <Icon name="chevronRight" size={width / 28} color={theme.body.color} />
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -271,11 +381,15 @@ class UseExistingSeed extends Component {
 
 const mapStateToProps = (state) => ({
     seedCount: state.accounts.seedCount,
+    accountNames: state.accounts.accountNames,
+    password: state.wallet.password,
+    shouldPreventAction: shouldPreventAction(state)
 });
 
 const mapDispatchToProps = {
     setSetting,
     generateAlert,
+    setAdditionalAccountInfo
 };
 
 export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(
