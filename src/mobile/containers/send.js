@@ -258,7 +258,7 @@ export class Send extends Component {
     }
 
     onDenominationPress() {
-        const { body, denomination } = this.props;
+        const { t, body, denomination } = this.props;
         const { currencySymbol } = this.state;
         const availableDenominations = ['i', 'Ki', 'Mi', 'Gi', 'Ti', currencySymbol];
         const indexOfDenomination = availableDenominations.indexOf(denomination);
@@ -270,6 +270,7 @@ export class Send extends Component {
         this.setState({
             maxPressed: false,
             maxColor: body.color,
+            maxText: t('send:sendMax'),
         });
     }
 
