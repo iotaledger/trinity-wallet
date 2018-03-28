@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import QRCode from 'qrcode.react';
-import { selectAccountInfo, getSelectedAccountName } from 'selectors/account';
+import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
 import { runTask } from 'worker';
 
 import Button from 'ui/components/Button';
@@ -18,7 +18,7 @@ class Receive extends React.PureComponent {
         t: PropTypes.func.isRequired,
         account: PropTypes.object.isRequired,
         accountName: PropTypes.string.isRequired,
-        tempAccount: PropTypes.object.isRequired,
+        wallet: PropTypes.object.isRequired,
         seed: PropTypes.string,
     };
 
@@ -32,7 +32,7 @@ class Receive extends React.PureComponent {
     };
 
     render() {
-        const { t, tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
+        const { t, wallet: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
         const { message } = this.state;
 
         const content =
@@ -60,10 +60,10 @@ class Receive extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    tempAccount: state.tempAccount,
+    wallet: state.wallet,
     account: selectAccountInfo(state),
     accountName: getSelectedAccountName(state),
-    seed: state.seeds.seeds[state.tempAccount.seedIndex],
+    seed: state.seeds.seeds[state.wallet.seedIndex],
 });
 
 export default connect(mapStateToProps)(translate()(Receive));

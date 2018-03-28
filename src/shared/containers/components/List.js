@@ -39,7 +39,7 @@ export default function withListData(ListComponent) {
     ListData.displayName = `withListData(${ListComponent.displayName || ListComponent.name})`;
 
     const mapStateToProps = (state) => ({
-        account: state.account,
+        accounts: state.accounts,
         accountInfo: selectAccountInfo(state),
         theme: state.settings.theme,
     });
