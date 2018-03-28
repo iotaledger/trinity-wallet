@@ -17,16 +17,12 @@ const getProps = (overrides) =>
         {},
         {
             isFetchingCurrencyData: true,
-            hasErrorFetchingCurrencyData: false,
-            getCurrencyData: noop,
             currency: 'foo',
-            currencies: ['foo', 'baz'],
-            backPress: noop,
+            availableCurrencies: [],
+            setSetting: noop,
             t: noop,
-            bodyColor: 'white',
-            primaryColor: 'white',
-            tickImagePath: 0,
-            arrowLeftImagePath: 0,
+            theme: { body: {} },
+            getCurrencyData: noop
         },
         overrides,
     );

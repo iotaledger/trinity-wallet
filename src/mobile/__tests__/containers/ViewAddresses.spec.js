@@ -15,10 +15,10 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            addressData: {},
+            selectedAccount: { addresses: {}, transfers: [], balance: 0 },
+            setSetting: noop,
             generateAlert: noop,
-            backPress: noop,
-            body: { color: 'white' },
+            theme: { body: {} },
             t: noop,
         },
         overrides,
@@ -26,20 +26,20 @@ const getProps = (overrides) =>
 
 describe('Testing ViewAddresses component', () => {
     describe('propTypes', () => {
-        it('should require an addressData object as a prop', () => {
-            expect(ViewAddresses.propTypes.addressData).toEqual(PropTypes.object.isRequired);
+        it('should require a selectedAccount object as a prop', () => {
+            expect(ViewAddresses.propTypes.selectedAccount).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a body object as a prop', () => {
-            expect(ViewAddresses.propTypes.body).toEqual(PropTypes.object.isRequired);
+        it('should require a setSetting function as a prop', () => {
+            expect(ViewAddresses.propTypes.setSetting).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a t function as a prop', () => {
             expect(ViewAddresses.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a backPress function as a prop', () => {
-            expect(ViewAddresses.propTypes.backPress).toEqual(PropTypes.func.isRequired);
+        it('should require a theme object as a prop', () => {
+            expect(ViewAddresses.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a generateAlert function as a prop', () => {

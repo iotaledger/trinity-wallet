@@ -14,13 +14,12 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            account: {
-                onboardingComplete: false,
-            },
             navigator: {
                 push: noop,
             },
             setAccountName: noop,
+            generateAlert: noop,
+            setAdditionalAccountInfo: noop,
             t: (arg) => {
                 const translations = {
                     'global:mainWallet': 'MAIN ACCOUNT',
@@ -28,24 +27,38 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
-            generateAlert: noop,
-            setAdditionalAccountInfo: noop,
             seed: 'SEED',
             onboardingComplete: false,
             seedCount: 0,
-            body: { color: 'red', bg: 'white' },
             theme: {},
-            isTransitioning: false,
-            isSendingTransfer: false,
-            isGeneratingReceiveAddress: false,
-            isFetchingAccountInfo: false,
-            isSyncing: false,
+            password: 'foo',
+            shouldPreventAction: false
         },
         overrides,
     );
 
 describe('Testing SetAccountName component', () => {
     describe('propTypes', () => {
+        it('should require a navigator object as a prop', () => {
+            expect(SetAccountName.propTypes.navigator).toEqual(PropTypes.object.isRequired);
+        });
+
+        it('should require a setAccountName function as a prop', () => {
+            expect(SetAccountName.propTypes.setAccountName).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a generateAlert function as a prop', () => {
+            expect(SetAccountName.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a setAdditionalAccountInfo function as a prop', () => {
+            expect(SetAccountName.propTypes.setAdditionalAccountInfo).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a t function as a prop', () => {
+            expect(SetAccountName.propTypes.t).toEqual(PropTypes.func.isRequired);
+        });
+
         it('should require a seed string as a prop', () => {
             expect(SetAccountName.propTypes.seed).toEqual(PropTypes.string.isRequired);
         });
@@ -58,8 +71,16 @@ describe('Testing SetAccountName component', () => {
             expect(SetAccountName.propTypes.seedCount).toEqual(PropTypes.number.isRequired);
         });
 
-        it('should require a body object as a prop', () => {
-            expect(SetAccountName.propTypes.body).toEqual(PropTypes.object.isRequired);
+        it('should require a theme object as a prop', () => {
+            expect(SetAccountName.propTypes.theme).toEqual(PropTypes.object.isRequired);
+        });
+
+        it('should require a password string as a prop', () => {
+            expect(SetAccountName.propTypes.password).toEqual(PropTypes.string.isRequired);
+        });
+
+        it('should require a shouldPreventAction boolean as a prop', () => {
+            expect(SetAccountName.propTypes.shouldPreventAction).toEqual(PropTypes.bool.isRequired);
         });
     });
 
