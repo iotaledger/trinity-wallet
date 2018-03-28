@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, NativeModules } from 'react-native';
 import { translate } from 'react-i18next';
+import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
-import { selectedAccountName, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { manuallySyncAccount } from 'iota-wallet-shared-modules/actions/accounts';
 import {
     getSeedFromKeychain
 } from '../utils/keychain';
 import { width, height } from '../utils/dimensions';
+import { isAndroid, isIOS } from '../utils/device';
 import { Icon } from '../theme/icons';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
@@ -84,12 +86,22 @@ export class ManualSync extends Component {
         t: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
-         /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
-        generateAlert: PropTypes.func.isRequired
+        /** Hash for wallet's password */
+        password: PropTypes.string.isRequired,
+        /** Account name for selected account */
+        selectedAccountName: PropTypes.string.isRequired,
+        /** Generate a notification alert
+        * @param {string} type - notification type - success, error
+        * @param {string} title - notification title
+        * @param {string} text - notification explanation
+        */
+        generateAlert: PropTypes.func.isRequired,
+        /** Sync account with the tangle
+        * @param {string} seed
+        * @param {string} selectedAccountName
+        * @param {function} genFn - Native address generation function
+        */
+        manuallySyncAccount: PropTypes.func.isRequired
     };
 
     sync() {

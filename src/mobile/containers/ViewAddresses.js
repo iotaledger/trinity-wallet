@@ -7,7 +7,7 @@ import { translate } from 'react-i18next';
 import { iota } from 'iota-wallet-shared-modules/libs/iota';
 import { View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-native';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
-import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import { selectAccountInfo } from 'iota-wallet-shared-modules/selectors/accounts';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -226,7 +226,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    selectedAccount: getSelectedAccountName(state),
+    selectedAccount: selectAccountInfo(state),
     theme: state.settings.theme
 });
 

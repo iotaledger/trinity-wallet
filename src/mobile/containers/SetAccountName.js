@@ -7,7 +7,7 @@ import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'reac
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setAccountName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
 import { connect } from 'react-redux';
-import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/shouldPreventAction';
+import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';

@@ -96,6 +96,12 @@ class AccountManagement extends Component {
         generateAlert: PropTypes.func.isRequired,
     };
 
+    constructor() {
+        super();
+
+        this.deleteAccount = this.deleteAccount.bind(this);
+    }
+
     deleteAccount() {
         const { seedCount, t } = this.props;
 

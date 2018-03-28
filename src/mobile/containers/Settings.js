@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import KeepAwake from 'react-native-keep-awake';
 import SettingsContent from '../components/SettingsContent';
 import { height } from '../utils/dimensions';
@@ -27,6 +28,10 @@ class Settings extends Component {
         currentSetting: PropTypes.string.isRequired,
         /** Determines if wallet is manually syncing account information */
         isSyncing: PropTypes.bool.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
+        setSetting: PropTypes.func.isRequired
     };
 
     componentWillReceiveProps(newProps) {
@@ -37,12 +42,24 @@ class Settings extends Component {
         }
     }
 
+    getChildrenProps(child) {
+        const props = {
+            nodeSelection: {
+                backPress: () => this.props.setSetting('advancedSettings')
+            }
+        };
+
+        return props[child] || {};
+    }
+
     render() {
+        const childrenProps = this.getChildrenProps(this.props.currentSetting);
+
         return (
             <View style={styles.container}>
                 <View style={{ flex: 1 }} />
                 <View style={styles.settingsContainer}>
-                    <SettingsContent component={this.props.currentSetting} />
+                    <SettingsContent component={this.props.currentSetting} {...childrenProps} />
                 </View>
                 <View style={{ flex: 1 }} />
             </View>
@@ -55,4 +72,8 @@ const mapStateToProps = (state) => ({
     isSyncing: state.ui.isSyncing,
 });
 
-export default connect(mapStateToProps)(Settings);
+const mapDispatchToProps = {
+    setSetting
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

@@ -16,6 +16,7 @@ const initialState = {
     transitionBalance: 0,
     transitionAddresses: [],
     addingAdditionalAccount: false,
+    balanceCheckToggle: false,
 };
 
 export default (state = initialState, action) => {

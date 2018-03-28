@@ -3,17 +3,25 @@ import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { AsyncStorage } from 'react-native';
 import store, { persistStore, purgeStoredState, createPersistor } from '../shared/store';
 import initializeApp from './routes/entry';
-import { setAppVersions, resetWallet } from '../shared/actions/app';
+import { setAppVersions, resetWallet } from '../shared/actions/settings';
 import { updatePersistedState } from '../shared/libs/utils';
 
 export const persistConfig = {
     storage: AsyncStorage,
-    blacklist: ['app', 'keychain', 'polling', 'ui', 'progress', 'seeds'],
+    blacklist: [
+        'app',
+        'keychain',
+        'polling',
+        'ui',
+        'progress',
+        'seeds',
+        'wallet'
+    ],
 };
 
 const shouldMigrate = (restoredState) => {
-    const restoredVersion = get(restoredState, 'app.versions.version');
-    const restoredBuildNumber = get(restoredState, 'app.versions.buildNumber');
+    const restoredVersion = get(restoredState, 'settings.versions.version');
+    const restoredBuildNumber = get(restoredState, 'settings.versions.buildNumber');
 
     const currentVersion = getVersion();
     const currentBuildNumber = getBuildNumber();

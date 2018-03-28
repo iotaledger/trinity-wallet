@@ -108,6 +108,9 @@ export class MainSettings extends Component {
         this.state = {
             isModalActive: false,
         };
+
+        this.toggleModalDisplay = this.toggleModalDisplay.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     toggleModalDisplay() {
@@ -160,7 +163,7 @@ export class MainSettings extends Component {
         const { theme, mode, t, themeName, currency } = this.props;
         const textColor = { color: theme.body.color };
         const bodyColor = theme.body.color;
-        const borderBottomColor = theme.body.color;
+        const borderBottomColor = { borderBottomColor: theme.body.color };
 
         return (
             <View style={styles.container}>

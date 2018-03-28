@@ -74,18 +74,20 @@ const styles = StyleSheet.create({
 /** Security Setting component */
 class SecuritySettings extends Component {
     static propTypes = {
-         /** Change current setting
-         * @param {string} setting
-         */
+        /** Change current setting
+        * @param {string} setting
+        */
         setSetting: PropTypes.func.isRequired,
-         /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** Generate a notification alert
+        * @param {String} type - notification type - success, error
+        * @param {String} title - notification title
+        * @param {String} text - notification explanation
+        */
         t: PropTypes.func.isRequired,
-        /** Currently selected IRI node */
-        node: PropTypes.string.isRequired
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Determines if two factor authentication is enabled */
+        is2FAEnabled: PropTypes.bool.isRequired,
     };
 
     on2FASetupPress() {
@@ -181,7 +183,6 @@ class SecuritySettings extends Component {
 const mapStateToProps = (state) => ({
     is2FAEnabled: state.settings.is2FAEnabled,
     theme: state.settings.theme,
-    node: state.settings.node,
 });
 
 const mapDispatchToProps = {

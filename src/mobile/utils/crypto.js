@@ -3,6 +3,7 @@ import { generateSecureRandom } from 'react-native-securerandom';
 import { TextDecoder } from 'text-encoding';
 import nacl from 'tweetnacl';
 import naclUtil from 'tweetnacl-util';
+
 const crypto = require('crypto');
 
 export const getNonce = async () => {
