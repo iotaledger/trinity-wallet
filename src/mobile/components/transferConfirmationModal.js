@@ -134,24 +134,42 @@ class TransferConfirmationModal extends Component {
         return (
             <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: body.bg }}>
                 <View style={[styles.modalContent, borderColor]}>
-                    <View style={styles.textContainer}>
-                        <Text style={[styles.text, textColor, { paddingTop: height / 50 }]}>
-                            <Text style={[styles.regularText, textColor]}>
-                                You are about to send {transferContents} from
+                    {(value !== 0 && (
+                        <View style={styles.textContainer}>
+                            <Text style={[styles.text, textColor, { paddingTop: height / 50 }]}>
+                                <Text style={[styles.regularText, textColor]}>
+                                    You are about to send {transferContents} from
+                                </Text>
                             </Text>
-                        </Text>
-                        <Text style={[styles.boldText, textColor, { paddingTop: height / 25 }]}>
-                            {selectedAccountName}
-                        </Text>
-                        <Text style={[styles.regularText, textColor, { paddingTop: height / 90 }]}>to</Text>
-                        <Text style={[styles.addressText, textColor, { marginTop: height / 70 }]}>
-                            {this.props.address.substring(0, 30)}
-                        </Text>
-                        <Text style={[styles.addressText, textColor]}>{this.props.address.substring(30, 60)}</Text>
-                        <Text style={[styles.addressText, textColor, { marginBottom: height / 18 }]}>
-                            {this.props.address.substring(60, 90)}
-                        </Text>
-                    </View>
+                            <Text style={[styles.boldText, textColor, { paddingTop: height / 25 }]}>
+                                {selectedAccountName}
+                            </Text>
+                            <Text style={[styles.regularText, textColor, { paddingTop: height / 90 }]}>to</Text>
+                            <Text style={[styles.addressText, textColor, { marginTop: height / 70 }]}>
+                                {this.props.address.substring(0, 30)}
+                            </Text>
+                            <Text style={[styles.addressText, textColor]}>{this.props.address.substring(30, 60)}</Text>
+                            <Text style={[styles.addressText, textColor, { marginBottom: height / 18 }]}>
+                                {this.props.address.substring(60, 90)}
+                            </Text>
+                        </View>
+                    )) || (
+                        <View style={styles.textContainer}>
+                            <Text style={[styles.text, textColor, { paddingTop: height / 50 }]}>
+                                <Text style={[styles.regularText, textColor]}>
+                                    You are about to send {transferContents}
+                                </Text>
+                            </Text>
+                            <Text style={[styles.regularText, textColor, { paddingTop: height / 90 }]}>to</Text>
+                            <Text style={[styles.addressText, textColor, { marginTop: height / 70 }]}>
+                                {this.props.address.substring(0, 30)}
+                            </Text>
+                            <Text style={[styles.addressText, textColor]}>{this.props.address.substring(30, 60)}</Text>
+                            <Text style={[styles.addressText, textColor, { marginBottom: height / 18 }]}>
+                                {this.props.address.substring(60, 90)}
+                            </Text>
+                        </View>
+                    )}
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.hideModal()}
                         onRightButtonPress={() => this.onSendPress()}
