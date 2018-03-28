@@ -208,3 +208,64 @@ export const pushScreen = (
         });
     }
 };
+
+/**
+ * @typedef {Object} ParsedURL
+ * @property {string} address The parsed address
+ * @property {string} message The parsed message
+ * @property {string} ammount The parsed ammount
+ */
+
+/** Parse an IOTA address input
+ * @param {String} - Input value
+ * @returns {ParsedURL} - The parsed address, message and/or ammmount values
+ */
+export const parseAddress = (input) => {
+    const result = {
+        address: null,
+        message: null,
+        ammount: null,
+    };
+
+    if (!input || typeof input !== 'string') {
+        return null;
+    }
+
+    if (input.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
+        result.address = input;
+        return result;
+    }
+
+    try {
+        let parsed = {
+            address: null,
+            message: null,
+            ammount: null,
+        };
+
+        if (input.toLowerCase().indexOf('iota://') === 0) {
+            const url = new URL(input);
+            parsed.address = url.pathname.substr(2);
+            parsed.message = url.searchParams.get('message');
+            parsed.ammount = url.searchParams.get('ammount');
+        } else {
+            parsed = JSON.parse(input);
+        }
+
+        if (parsed.address.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
+            result.address = parsed.address;
+        } else {
+            return null;
+        }
+        if (parsed.message && typeof parsed.message === 'string') {
+            result.message = parsed.message;
+        }
+        if (parsed.ammount && parsed.ammount === parseInt(parsed.ammount, 10)) {
+            result.ammount = parseInt(parsed.ammount, 10);
+        }
+    } catch (error) {
+        return null;
+    }
+
+    return result;
+};
