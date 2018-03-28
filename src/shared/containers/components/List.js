@@ -12,6 +12,7 @@ export default function withListData(ListComponent) {
     class ListData extends React.PureComponent {
         static propTypes = {
             accountInfo: PropTypes.object.isRequired,
+            tempAccount: PropTypes.object.isRequired,
             limit: PropTypes.number,
             filter: PropTypes.string,
             compact: PropTypes.bool,
@@ -19,20 +20,42 @@ export default function withListData(ListComponent) {
             currentItem: PropTypes.any,
             t: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
+            updateAccount: PropTypes.func.isRequired,
         };
-
         render() {
-            const { accountInfo, limit, compact, filter, setItem, currentItem, theme, t } = this.props;
+            const {
+                accountInfo,
+                updateAccount,
+                limit,
+                compact,
+                filter,
+                setItem,
+                currentItem,
+                tempAccount,
+                theme,
+                t,
+            } = this.props;
+
+            console.log(this.props);
+
+            const isBusy =
+                tempAccount.isSyncing ||
+                tempAccount.isSendingTransfer ||
+                tempAccount.isAttachingToTangle ||
+                tempAccount.isTransitioning;
 
             const ListProps = {
                 transfers: accountInfo.transfers && accountInfo.transfers.length ? accountInfo.transfers : [],
                 addresses: Object.keys(accountInfo.addresses),
+                updateAccount,
                 setItem,
                 currentItem,
                 compact,
                 theme,
                 limit,
                 filter,
+                isBusy,
+                isLoading: tempAccount.isFetchingLatestAccountInfoOnLogin,
                 t,
             };
 
@@ -46,7 +69,8 @@ export default function withListData(ListComponent) {
         account: state.account,
         accountInfo: selectAccountInfo(state),
         theme: state.settings.theme,
+        tempAccount: state.tempAccount,
     });
 
-    return translate()(connect(mapStateToProps, {})(ListData));
+    return connect(mapStateToProps, {})(translate()(ListData));
 }

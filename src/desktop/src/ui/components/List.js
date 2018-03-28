@@ -18,6 +18,12 @@ import css from './list.css';
  */
 class List extends React.PureComponent {
     static propTypes = {
+        /** Can history be updated */
+        isBusy: PropTypes.bool.isRequired,
+        /** Is history updating */
+        isLoading: PropTypes.bool.isRequired,
+        /** Should update history */
+        updateAccount: PropTypes.func.isRequired,
         /** Transaction history */
         transfers: PropTypes.array.isRequired,
         /** Set active history item
@@ -46,7 +52,7 @@ class List extends React.PureComponent {
     }
 
     render() {
-        const { transfers, addresses, setItem, currentItem, t } = this.props;
+        const { isLoading, isBusy, updateAccount, transfers, addresses, setItem, currentItem, t } = this.props;
         const { filter } = this.state;
 
         const filters = ['All', 'Sent', 'Received', 'Pending'];
@@ -71,6 +77,12 @@ class List extends React.PureComponent {
                             </a>
                         );
                     })}
+                    <a
+                        onClick={() => updateAccount()}
+                        className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
+                    >
+                        <Icon icon="sync" size={32} />
+                    </a>
                 </nav>
                 <hr />
                 <div className={css.list}>
