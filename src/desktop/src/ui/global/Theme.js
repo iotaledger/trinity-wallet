@@ -71,7 +71,7 @@ class Theme extends PureComponent {
                 wave = '';
                 break;
         }
-        document.documentElement.style.setProperty('--wave-file', `url(${wave})`);
+        document.documentElement.style.setProperty('--wave-file', `url("${wave.replace('../dist', '')}")`);
     }
 
     render() {

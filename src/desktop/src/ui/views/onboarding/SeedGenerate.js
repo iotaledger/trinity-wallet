@@ -99,17 +99,19 @@ class GenerateSeed extends React.PureComponent {
                 <section>
                     <p>{t('newSeedSetup:individualLetters')}</p>
                     <div className={css.seed}>
-                        {seed.split('').map((letter, index) => {
-                            return (
-                                <button
-                                    onClick={() => this.updateLetter(index)}
-                                    key={`${index}${letter}`}
-                                    value={letter}
-                                >
-                                    {letter}
-                                </button>
-                            );
-                        })}
+                        <div>
+                            {seed.split('').map((letter, index) => {
+                                return (
+                                    <button
+                                        onClick={() => this.updateLetter(index)}
+                                        key={`${index}${letter}`}
+                                        value={letter}
+                                    >
+                                        {letter}
+                                    </button>
+                                );
+                            })}
+                        </div>
                     </div>
                     <Button type="button" onClick={this.generateNewSeed} className="icon">
                         <Icon icon="sync" size={32} />

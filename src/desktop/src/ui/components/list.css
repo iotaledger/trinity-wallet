@@ -195,7 +195,7 @@
 
     &.busy {
         pointer-events: none;
-        color: var(--body-hover);
+        color: var(--body-alt);
     }
 
     &.loading {
