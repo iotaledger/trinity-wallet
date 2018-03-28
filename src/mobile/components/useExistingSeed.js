@@ -196,7 +196,11 @@ class UseExistingSeed extends React.Component {
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
-                            onSubmitEditing={() => this.accountNameField.focus()}
+                            onSubmitEditing={() => {
+                                if (seed) {
+                                    this.accountNameField.focus();
+                                }
+                            }}
                             theme={theme}
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
