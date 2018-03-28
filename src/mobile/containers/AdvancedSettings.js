@@ -89,6 +89,12 @@ class AdvancedSettings extends PureComponent {
         theme: PropTypes.object.isRequired
     };
 
+    constructor() {
+        super();
+
+        this.reset = this.reset.bind(this);
+    }
+
     reset() {
         const { theme } = this.props;
 
