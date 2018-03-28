@@ -118,7 +118,7 @@ class SetPassword extends Component {
     }
 
     onDonePress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         const ifNoKeychainDuplicates = (pwdHash, seed, accountName) => {
             storeSeedInKeychain(pwdHash, seed, accountName)
                 .then(() => {
@@ -196,25 +196,25 @@ class SetPassword extends Component {
     }
 
     renderContent() {
-        const { t, theme, body } = this.props;
+        const { t, theme } = this.props;
 
         return (
             <View>
                 <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
-                    <View style={[styles.container, { backgroundColor: body.bg }]}>
+                    <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
                         <View style={styles.topContainer}>
-                            <Icon name="iota" size={width / 8} color={body.color} />
+                            <Icon name="iota" size={width / 8} color={theme.body.color} />
                         </View>
                         <View style={styles.midContainer}>
                             <View style={{ flex: 0.8 }} />
                             <InfoBox
-                                body={body}
+                                body={theme.body}
                                 text={
                                     <View>
-                                        <Text style={[styles.infoText, { color: body.color }]}>
+                                        <Text style={[styles.infoText, { color: theme.body.color }]}>
                                             {t('anEncryptedCopy')}
                                         </Text>
-                                        <Text style={[styles.warningText, { color: body.color }]}>{t('ensure')}</Text>
+                                        <Text style={[styles.warningText, { color: theme.body.color }]}>{t('ensure')}</Text>
                                     </View>
                                 }
                             />
@@ -266,7 +266,8 @@ class SetPassword extends Component {
     }
 
     render() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
+
         return (
             <View style={styles.container}>
                 {isAndroid ? (

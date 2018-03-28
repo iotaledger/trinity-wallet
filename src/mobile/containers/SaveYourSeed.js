@@ -124,7 +124,7 @@ class SaveYourSeed extends Component {
     }
 
     onDonePress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.push({
             screen: 'saveSeedConfirmation',
             navigatorStyle: {
@@ -139,7 +139,7 @@ class SaveYourSeed extends Component {
     }
 
     onBackPress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
@@ -153,7 +153,7 @@ class SaveYourSeed extends Component {
     }
 
     onWriteClick() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.push({
             screen: 'writeSeedDown',
             navigatorStyle: {
@@ -167,7 +167,7 @@ class SaveYourSeed extends Component {
         });
     }
     onPrintClick() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.push({
             screen: 'paperWallet',
             navigatorStyle: {
@@ -181,7 +181,7 @@ class SaveYourSeed extends Component {
         });
     }
     onCopyClick() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.push({
             screen: 'copySeedToClipboard',
             navigatorStyle: {
@@ -196,7 +196,7 @@ class SaveYourSeed extends Component {
     }
 
     render() {
-        const { t, body, extra } = this.props;
+        const { t, theme: { body, extra } } = this.props;
         const textColor = { color: body.color };
         const extraColorText = { color: extra.color };
         const extraColorBorder = { borderColor: extra.color };

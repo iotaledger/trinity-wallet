@@ -134,7 +134,7 @@ class FingerprintEnable extends Component {
                         );
                     }, 300);
                 })
-                .catch((err) => {
+                .catch(() => {
                     this.props.generateAlert(
                         'error',
                         t('fingerprintAuthFailed'),

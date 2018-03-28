@@ -1,4 +1,5 @@
 import trim from 'lodash/trim';
+import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
@@ -114,6 +115,8 @@ class UseExistingSeed extends Component {
         shouldPreventAction: PropTypes.bool.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
           /** Translation helper
         * @param {string} translationString - locale string identifier to be translated
         */
@@ -383,6 +386,7 @@ const mapStateToProps = (state) => ({
     seedCount: state.accounts.seedCount,
     accountNames: state.accounts.accountNames,
     password: state.wallet.password,
+    theme: state.settings.theme,
     shouldPreventAction: shouldPreventAction(state)
 });
 

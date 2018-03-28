@@ -7,7 +7,7 @@ import ViewSeed from '../containers/ViewSeed';
 import ViewAddressesComponent from '../containers/ViewAddresses';
 import ProofOfWork from '../containers/Pow';
 import EditAccountNameComponent from '../containers/EditAccountName';
-import DeleteAccount from './DeleteAccount';
+import DeleteAccount from '../containers/DeleteAccount';
 import AddNewAccount from '../containers/AddNewAccount';
 import UseExistingSeed from '../containers/UseExistingSeed';
 import NodeSelection from '../containers/NodeSelection';
@@ -18,7 +18,7 @@ import LanguageSelection from '../containers/LanguageSelection';
 import ChangePassword from '../containers/ChangePassword';
 import ManualSync from '../containers/ManualSync';
 import ThemeCustomisation from '../containers/ThemeCustomisation';
-import SnapshotTransition from './SnapshotTransition';
+import SnapshotTransition from '../containers/SnapshotTransition';
 import SecuritySettings from '../containers/SecuritySettings';
 
 const SETTINGS_COMPONENTS = {

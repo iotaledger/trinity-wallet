@@ -242,15 +242,12 @@ class Receive extends Component {
         const {
             receiveAddress,
             t,
-            body,
             theme,
-            primary,
-            input,
             isGeneratingReceiveAddress,
             isGettingSensitiveInfoToGenerateAddress,
         } = this.props;
         const message = this.state.message;
-        const borderColor = { borderColor: body.color };
+        const borderColor = { borderColor: theme.body.color };
         const opacity = { opacity: this.getOpacity() };
         const qrOpacity = { opacity: this.getQrOpacity() };
 
@@ -269,14 +266,14 @@ class Receive extends Component {
                     <View style={{ flex: 0.25 }} />
                     {receiveAddress.length > 1 ? (
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                            <View style={[styles.receiveAddressContainer, { backgroundColor: input.bg }]}>
-                                <Text style={[styles.receiveAddressText, { color: input.color }]}>
+                            <View style={[styles.receiveAddressContainer, { backgroundColor: theme.input.bg }]}>
+                                <Text style={[styles.receiveAddressText, { color: theme.input.color }]}>
                                     {receiveAddress.substring(0, 30)}
                                 </Text>
-                                <Text style={[styles.receiveAddressText, { color: input.color }]}>
+                                <Text style={[styles.receiveAddressText, { color: theme.input.color }]}>
                                     {receiveAddress.substring(30, 60)}
                                 </Text>
-                                <Text style={[styles.receiveAddressText, { color: input.color }]}>
+                                <Text style={[styles.receiveAddressText, { color: theme.input.color }]}>
                                     {receiveAddress.substring(60, 90)}
                                 </Text>
                             </View>
@@ -284,8 +281,8 @@ class Receive extends Component {
                     ) : (
                             // Place holder
                             <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                                <View style={[styles.receiveAddressContainer, { backgroundColor: input.bg }, opacity]}>
-                                    <Text style={[styles.receiveAddressText, { color: input.color }]}>
+                                <View style={[styles.receiveAddressContainer, { backgroundColor: theme.input.bg }, opacity]}>
+                                    <Text style={[styles.receiveAddressText, { color: theme.input.color }]}>
                                         {Array(19).join(' ')}
                                     </Text>
                                 </View>
@@ -320,7 +317,7 @@ class Receive extends Component {
                                         style={styles.removeButtonContainer}
                                     >
                                         <View style={[styles.removeButton, borderColor]}>
-                                            <Text style={[styles.removeText, { color: body.color }]}>
+                                            <Text style={[styles.removeText, { color: theme.body.color }]}>
                                                 {t('removeMessage')}
                                             </Text>
                                         </View>
@@ -329,9 +326,9 @@ class Receive extends Component {
                                 </View>
                             )) || (
                                 <GenerateAddressButton
-                                    ctaBorderColor={primary.hover}
-                                    primaryColor={primary.color}
-                                    primaryBody={primary.body}
+                                    ctaBorderColor={theme.primary.hover}
+                                    primaryColor={theme.primary.color}
+                                    primaryBody={theme.primary.body}
                                     t={t}
                                     receiveAddress={receiveAddress}
                                     isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}

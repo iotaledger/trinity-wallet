@@ -30,7 +30,7 @@ import {
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
-import { VALID_ADDRESS_WITH_CHECKSUM_REGEX, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/iota';
+import { VALID_ADDRESS_WITH_CHECKSUM_REGEX, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/iota';
 import { getBalanceForSelectedAccount, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
