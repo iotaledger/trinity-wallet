@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import BalanceComponent from '../containers/balance';
 import SendComponent from '../containers/send';
 import Receive from '../containers/receive';
@@ -37,18 +36,11 @@ class TabContent extends Component {
 
 const mapStateToProps = (state) => ({
     currentRoute: state.home.childRoute,
-    isTopBarActive: state.home.isTopBarActive,
 });
-
-const mapDispatchToProps = {
-    toggleTopBarDisplay,
-};
 
 TabContent.propTypes = {
     navigator: PropTypes.object.isRequired,
     currentRoute: PropTypes.oneOf(Object.keys(routeToComponent)),
-    isTopBarActive: PropTypes.bool.isRequired,
-    toggleTopBarDisplay: PropTypes.func.isRequired,
     onTabSwitch: PropTypes.func.isRequired,
     handleCloseTopBar: PropTypes.func.isRequired,
 };
@@ -57,4 +49,4 @@ TabContent.defaultProps = {
     currentRoute: 'balance',
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TabContent);
+export default connect(mapStateToProps, null)(TabContent);
