@@ -124,8 +124,11 @@ class App extends React.Component {
             i18next.changeLanguage(nextProps.settings.locale);
             Electron.changeLanguage(this.props.t);
         }
+
+        const currentKey = this.props.location.pathname.split('/')[1] || '/';
+
         /* On Login */
-        if (!this.props.tempAccount.ready && nextProps.tempAccount.ready) {
+        if (!this.props.tempAccount.ready && nextProps.tempAccount.ready && currentKey === 'onboarding') {
             Electron.updateMenu('authorised', true);
             this.props.history.push('/wallet/');
         }
