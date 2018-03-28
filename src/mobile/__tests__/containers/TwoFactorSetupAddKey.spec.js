@@ -27,10 +27,11 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            body: { bg: 'white', color: 'red' },
-            navigator: {},
+            theme: {},
             generateAlert: noop,
+            navigator: {},
             t: () => '',
+            password: 'foo'
         },
         overrides,
     );
