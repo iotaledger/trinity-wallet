@@ -12,12 +12,13 @@ import { getUpdateData } from 'actions/settings';
 import { clearSeeds } from 'actions/seeds';
 import { disposeOffAlert } from 'actions/alerts';
 
+import { generateAlert } from 'actions/alerts';
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
 import Updates from 'ui/global/Updates';
-
 import Loading from 'ui/components/Loading';
-
+import { sendAmount } from 'actions/deepLinks';
+import { ADDRESS_LENGTH } from 'libs/util';
 import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
@@ -69,7 +70,36 @@ class App extends React.Component {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        sendAmount: PropTypes.func.isRequired,
     };
+
+    componentWillMount() {
+        const { generateAlert, t } = this.props;
+        Electron.onEvent('url-params', (data) => {
+            let regexAddress = /\:\/\/(.*?)\/\?/;
+            let regexAmount = /amount=(.*?)\&/;
+            let regexMessage = /message=([^\n\r]*)/;
+            let address = data.match(regexAddress);
+            if (address !== null) {
+                let amount = data.match(regexAmount);
+                let message = data.match(regexMessage);
+                if (address[1].length !== ADDRESS_LENGTH) {
+                    generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+                    this.props.sendAmount(0, '', '');
+                } else {
+                    this.setState({
+                        address: address[1],
+                        amount: amount[1],
+                        message: message[1],
+                    });
+                    this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
+                    if(this.props.tempAccount.ready === true) {
+                            this.props.history.push('/wallet/send');
+                    }
+                }
+            }
+        });
+    }
 
     constructor(props) {
         super(props);
@@ -80,6 +110,7 @@ class App extends React.Component {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
         Electron.changeLanguage(this.props.t);
+        Electron.refreshDeepLink();
 
         Electron.getUuid().then((uuid) => {
             this.setState({
@@ -141,15 +172,15 @@ class App extends React.Component {
             return null;
         }
 
-        if (!activationCode) {
-            return (
-                <div className={css.trintiy}>
-                    <Theme />
-                    <Alerts />
-                    <Activation uuid={this.state.uuid} />
-                </div>
-            );
-        }
+        // if (!activationCode) {
+        //     return (
+        //         <div className={css.trintiy}>
+        //             <Theme />
+        //             <Alerts />
+        //             <Activation uuid={this.state.uuid} />
+        //         </div>
+        //     );
+        // }
 
         return (
             <div className={css.trintiy}>
@@ -182,14 +213,17 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
     account: state.account,
     tempAccount: state.tempAccount,
+    deepLinks: state.deepLinks,
     activationCode: state.app.activationCode,
 });
 
 const mapDispatchToProps = {
     clearTempData,
     clearSeeds,
+    sendAmount,
     getUpdateData,
     disposeOffAlert,
+    generateAlert,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(App)));
