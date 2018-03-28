@@ -83,7 +83,7 @@ class OnboardingComplete extends Component {
     };
 
     onNextPress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.push({
             screen: 'loading',
             navigatorStyle: {

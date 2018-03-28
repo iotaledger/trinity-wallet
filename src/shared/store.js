@@ -14,11 +14,11 @@ import keychain from './reducers/keychain';
 import polling from './reducers/polling';
 import progress from './reducers/progress';
 import ui from './reducers/ui';
-import { ActionTypes } from './actions/app';
+import { ActionTypes } from './actions/settings';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const developmentMiddleware = [thunk];
+const developmentMiddleware = [thunk, logger];
 const productionMiddleware = [thunk];
 
 const reducers = combineReducers({

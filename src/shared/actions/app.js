@@ -3,20 +3,8 @@ import { updatePersistedState } from '../libs/utils';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
-    WALLET_LOGOUT: 'IOTA/APP/LOGOUT',
-    WALLET_RESET: 'IOTA/APP/WALLET/RESET',
-    SET_VERSIONS: 'IOTA/APP/SET_VERSIONS',
     SET_ACTIVATION_CODE: 'IOTA/APP/SET_ACTIVATION_CODE',
 };
-
-export const setAppVersions = (payload) => ({
-    type: ActionTypes.SET_VERSIONS,
-    payload,
-});
-
-export const resetWallet = () => ({
-    type: ActionTypes.WALLET_RESET,
-});
 
 export const migrate = (versions, config, persistor) => (dispatch, getState) => {
     let restoredState = {};

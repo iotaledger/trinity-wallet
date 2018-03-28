@@ -11,7 +11,6 @@ const initialState = {
     isBroadcastingBundle: false,
     isPromotingTransaction: false,
     isTransitioning: false,
-    balanceCheckToggle: false,
     isAttachingToTangle: false,
     isFetchingLatestAccountInfoOnLogin: false,
     hasErrorFetchingAccountInfoOnLogin: false,
