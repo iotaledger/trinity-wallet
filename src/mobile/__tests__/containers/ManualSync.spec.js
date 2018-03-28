@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import ManualSync from '../../containers/ManualSync';
+import  { ManualSync } from '../../containers/ManualSync';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -15,8 +15,8 @@ const getProps = (overrides) =>
         {},
         {
             isSyncing: false,
-            backPress: noop,
-            onManualSyncPress: noop,
+            shouldPreventAction: false,
+            setSetting: noop,
             t: (arg) => {
                 const translations = {
                     'manualSync:youMayNotice': 'You may notice your device slowing down.',
@@ -28,9 +28,11 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
-            textColor: { color: 'white' },
-            body: { color: 'white' },
-            primary: { color: 'black' },
+            theme: { body: {} },
+            password: 'foo',
+            selectedAccountName: 'MAIN ACCOUNT',
+            generateAlert: noop,
+            manuallySyncAccount: noop
         },
         overrides,
     );
@@ -41,28 +43,36 @@ describe('Testing ManualSync component', () => {
             expect(ManualSync.propTypes.isSyncing).toEqual(PropTypes.bool.isRequired);
         });
 
-        it('should require a backPress function as a prop', () => {
-            expect(ManualSync.propTypes.backPress).toEqual(PropTypes.func.isRequired);
+        it('should require a shouldPreventAction boolean as a prop', () => {
+            expect(ManualSync.propTypes.shouldPreventAction).toEqual(PropTypes.bool.isRequired);
         });
 
-        it('should require a onManualSyncPress function as a prop', () => {
-            expect(ManualSync.propTypes.onManualSyncPress).toEqual(PropTypes.func.isRequired);
+        it('should require a setSetting function as a prop', () => {
+            expect(ManualSync.propTypes.setSetting).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a t function as a prop', () => {
             expect(ManualSync.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a textColor object as a prop', () => {
-            expect(ManualSync.propTypes.textColor).toEqual(PropTypes.object.isRequired);
+        it('should require a theme object as a prop', () => {
+            expect(ManualSync.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a primary object as a prop', () => {
-            expect(ManualSync.propTypes.primary).toEqual(PropTypes.object.isRequired);
+        it('should require a password string as a prop', () => {
+            expect(ManualSync.propTypes.password).toEqual(PropTypes.string.isRequired);
         });
 
-        it('should require a body object as a prop', () => {
-            expect(ManualSync.propTypes.body).toEqual(PropTypes.object.isRequired);
+        it('should require a selectedAccountName string as a prop', () => {
+            expect(ManualSync.propTypes.selectedAccountName).toEqual(PropTypes.string.isRequired);
+        });
+
+        it('should require a generateAlert function as a prop', () => {
+            expect(ManualSync.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a manuallySyncAccount function as a prop', () => {
+            expect(ManualSync.propTypes.manuallySyncAccount).toEqual(PropTypes.func.isRequired);
         });
     });
 

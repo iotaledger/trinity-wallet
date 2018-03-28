@@ -90,6 +90,7 @@ export class SetAccountName extends Component {
         theme: PropTypes.object.isRequired,
         /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
+        shouldPreventAction: PropTypes.bool.isRequired
     };
 
     constructor(props) {
@@ -101,7 +102,7 @@ export class SetAccountName extends Component {
     }
 
     onDonePress() {
-        const { t, onboardingComplete, seed, password } = this.props;
+        const { t, onboardingComplete, seed, password, shouldPreventAction } = this.props;
         const trimmedAccountName = trim(this.state.accountName);
 
         const fetch = (accountName) => {
@@ -119,7 +120,7 @@ export class SetAccountName extends Component {
 
                 this.navigateTo('setPassword');
             } else {
-                if (this.shouldPreventAction()) {
+                if (shouldPreventAction) {
                     return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
                 }
                 getAllSeedsFromKeychain(password)
