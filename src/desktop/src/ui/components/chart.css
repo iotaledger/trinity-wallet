@@ -65,6 +65,13 @@
         svg {
             overflow: visible;
         }
+        > span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--body-alt);
+        }
     }
 
     .label {

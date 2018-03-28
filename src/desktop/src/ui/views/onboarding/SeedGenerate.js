@@ -20,6 +20,7 @@ class GenerateSeed extends React.PureComponent {
     static propTypes = {
         /** Accept current generated seed
          * @param {String} seed - New seed
+         * @param {Boolean} isGenerated - Is the new seed generated
          */
         setNewSeed: PropTypes.func.isRequired,
         /** Browser history object */
@@ -59,7 +60,7 @@ class GenerateSeed extends React.PureComponent {
         if (!seed || !isValidSeed(seed)) {
             return generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
         }
-        setNewSeed(seed);
+        setNewSeed(seed, true);
         history.push('/onboarding/seed-save');
     };
 
