@@ -1,6 +1,7 @@
 .nav {
     display: flex;
     padding: 0 0 10px 10px;
+    margin: 0px;
     a {
         color: var(--secondary);
         font-weight: 300;
@@ -172,4 +173,33 @@
 .scroll {
     max-height: 200px;
     overflow: hidden;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.refresh {
+    display: block;
+    position: absolute;
+    top: 14px;
+    right: -10px;
+    margin: 0px;
+    height: 32px;
+
+    &:hover {
+        color: var(--primary);
+    }
+
+    &.busy {
+        pointer-events: none;
+        color: var(--body-hover);
+    }
+
+    &.loading {
+        pointer-events: none;
+        animation: spin 0.6s ease infinite;
+    }
 }
