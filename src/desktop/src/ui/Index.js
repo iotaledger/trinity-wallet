@@ -8,9 +8,11 @@ import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 
 import { clearTempData } from 'actions/tempAccount';
-import { getUpdateData } from 'actions/settings';
+import { getUpdateData, updateTheme } from 'actions/settings';
 import { clearSeeds } from 'actions/seeds';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
+
+import themes from 'themes/themes';
 
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
@@ -74,6 +76,16 @@ class App extends React.Component {
          * @ignore
          */
         getUpdateData: PropTypes.func.isRequired,
+        /** Current theme name
+         * @ignore
+         */
+        themeName: PropTypes.string.isRequired,
+        /** Change theme
+         * @param {Object} theme - Theme object
+         * @param {String} name - Theme name
+         * @ignore
+         */
+        updateTheme: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -129,8 +141,8 @@ class App extends React.Component {
     setDeepUrl(data) {
         const { generateAlert, t } = this.props;
 
-        const regexAddress = /\:\/\/(.*?)\/\?/;
-        const regexAmount = /amount=(.*?)\&/;
+        const regexAddress = /:\/\/(.*?)\/\?/;
+        const regexAmount = /amount=(.*?)&/;
         const regexMessage = /message=([^\n\r]*)/;
         const address = data.match(regexAddress);
 
@@ -178,7 +190,7 @@ class App extends React.Component {
     };
 
     render() {
-        const { account, location, activationCode } = this.props;
+        const { account, location, activationCode, themeName, updateTheme } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
@@ -187,6 +199,10 @@ class App extends React.Component {
         }
 
         if (!activationCode) {
+            //Hotfix: Temporary default theme difference between mobile and desktop
+            if (themeName === 'Default') {
+                updateTheme(themes.Ionic, 'Ionic');
+            }
             return (
                 <div className={css.trintiy}>
                     <Theme />
@@ -231,6 +247,7 @@ const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     deepLinks: state.deepLinks,
     activationCode: state.app.activationCode,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {
@@ -240,6 +257,7 @@ const mapDispatchToProps = {
     getUpdateData,
     disposeOffAlert,
     generateAlert,
+    updateTheme,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(App)));
