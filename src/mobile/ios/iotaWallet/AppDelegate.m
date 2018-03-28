@@ -11,6 +11,9 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
+#import <BugsnagReactNative/BugsnagReactNative.h>
+
+
 
 #import <React/RCTBundleURLProvider.h>
 #import "RCCManager.h"
@@ -29,6 +32,7 @@
   self.window.backgroundColor = [UIColor whiteColor];
   [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
   [Fabric with:@[[Crashlytics class]]];
+  [BugsnagReactNative start];
   // TODO: Move this to where you establish a user session
   [self logUser];
   return YES;
