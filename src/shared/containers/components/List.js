@@ -36,8 +36,6 @@ export default function withListData(ListComponent) {
                 t,
             } = this.props;
 
-            console.log(this.props);
-
             const isBusy =
                 tempAccount.isSyncing ||
                 tempAccount.isSendingTransfer ||
