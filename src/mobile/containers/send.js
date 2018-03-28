@@ -501,7 +501,7 @@ export class Send extends Component {
         return conversionText;
     }
 
-    getOpacity() {
+    getSendMaxOpacity() {
         const { balance } = this.props;
         if (balance === 0) {
             return 0.2;
@@ -672,7 +672,7 @@ export class Send extends Component {
         const textColor = { color: body.color };
         const conversionText =
             denomination === currencySymbol ? this.getConversionTextFiat() : this.getConversionTextIota();
-        const opacity = this.getOpacity();
+        const opacity = this.getSendMaxOpacity();
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -735,6 +735,7 @@ export class Send extends Component {
                                     >
                                         <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
                                         <Toggle
+                                            opacity={opacity}
                                             active={maxPressed}
                                             bodyColor={body.color}
                                             primaryColor={primary.color}
