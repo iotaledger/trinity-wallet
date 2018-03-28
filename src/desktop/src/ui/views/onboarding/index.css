@@ -142,6 +142,36 @@
     span {
         pointer-events: none;
     }
+
+    &.narrow {
+        padding-left: 180px;
+        position: relative;
+        canvas {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            border: 10px solid white;
+            box-sizing: content-box;
+        }
+        > div {
+            height: 160px;
+            padding: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            > span {
+                flex: 0 0 3.6%;
+            }
+        }
+        @media (max-width: 900px) {
+            padding: 180px 0 0 0;
+            canvas {
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+        }
+    }
 }
 
 .wave {
