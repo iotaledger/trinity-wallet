@@ -328,14 +328,14 @@ class Loading extends Component {
                                 style={styles.animationLoading}
                             />
                         )) || (
-                                <LottieView
-                                    ref={(animation) => {
-                                        this.animation = animation;
-                                    }}
-                                    source={welcomeAnimationPartTwoPath}
-                                    style={styles.animationLoading}
-                                    loop
-                                />
+                            <LottieView
+                                ref={(animation) => {
+                                    this.animation = animation;
+                                }}
+                                source={welcomeAnimationPartTwoPath}
+                                style={styles.animationLoading}
+                                loop
+                            />
                             )}
                     </View>
                 </View>

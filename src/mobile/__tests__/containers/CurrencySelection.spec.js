@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { CurrencySelection } from '../../components/CurrencySelection';
+import { CurrencySelection } from '../../containers/CurrencySelection';
 
 /* eslint-disable no-undef */
 
