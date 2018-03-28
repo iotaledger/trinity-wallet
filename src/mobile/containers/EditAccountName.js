@@ -200,6 +200,6 @@ const mapDispatchToProps = {
     changeAccountName,
 };
 
-export default translate(['addAdditionalSeed', 'global'])(
+export default translate(['addAdditionalSeed', 'global', 'settings'])(
     connect(mapStateToProps, mapDispatchToProps)(EditAccountName),
 );

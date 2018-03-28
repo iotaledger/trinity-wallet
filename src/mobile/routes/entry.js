@@ -60,7 +60,7 @@ export const setRandomIotaNode = (store) => {
     const hasAlreadyRandomized = get(settings, 'hasRandomizedNode');
 
     // Update provider
-    changeIotaNode(get(settings, 'fullNode'));
+    changeIotaNode(get(settings, 'node'));
 
     if (!hasAlreadyRandomized) {
         const node = getRandomNode();

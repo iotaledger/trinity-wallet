@@ -105,8 +105,9 @@ class ModeSelection extends Component {
     }
 
     render() {
-        const { t, mode, textColor, body, primary } = this.props;
+        const { t, mode, theme: { body, primary } } = this.props;
 
+        const textColor = { color: body.color };
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>

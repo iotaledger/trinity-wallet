@@ -62,6 +62,12 @@ class AddNewAccount extends Component {
         t: PropTypes.func.isRequired,
     };
 
+    constructor() {
+        super();
+
+        this.addNewSeed = this.addNewSeed.bind(this);
+    }
+
     addNewSeed() {
         const { theme } = this.props;
 

@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
-import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import DropdownComponent from '../containers/Dropdown';
 import { width, height } from '../utils/dimensions';
-import { Icon } from '../theme/icons.js';
+import { Icon } from '../theme/icons';
 
 const styles = StyleSheet.create({
     container: {
@@ -61,10 +60,8 @@ class NodeSelection extends Component {
         node: PropTypes.string.isRequired,
         /** Available IRI nodes */
         nodes: PropTypes.array.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
-        setSetting: PropTypes.func.isRequired,
+        /** Navigate to previous screen */
+        backPress: PropTypes.func.isRequired,
         /** Set new IRI node
          * @param {string} node
          */
@@ -84,7 +81,7 @@ class NodeSelection extends Component {
 
     saveNodeSelection() {
         this.setNode(this.dropdown.getSelected());
-        this.props.setSetting('advancedSettings');
+        this.props.backPress();
     }
 
     render() {
@@ -115,7 +112,7 @@ class NodeSelection extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.setSetting('advancedSettings')}
+                            onPress={() => this.props.backPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
@@ -142,11 +139,11 @@ class NodeSelection extends Component {
 const mapStateToProps = (state) => ({
     node: state.settings.node,
     nodes: state.settings.nodes,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {
-    setFullNode,
-    setSetting,
+    setFullNode
 };
 
 export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(NodeSelection));

@@ -159,7 +159,7 @@ export class TwoFactorSetupAddKey extends Component {
     }
 
     render() {
-        const { theme: { body, t } = this.props;
+        const { theme: { body, t } } = this.props;
         const backgroundColor = { backgroundColor: body.bg };
         const textColor = { color: body.color };
 

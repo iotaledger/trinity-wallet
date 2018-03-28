@@ -118,7 +118,7 @@ class WalletResetRequirePassword extends Component {
     }
 
     goBack() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
@@ -138,7 +138,7 @@ class WalletResetRequirePassword extends Component {
     }
 
     redirectToInitialScreen() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
 
         Navigation.startSingleScreenApp({
             screen: {
@@ -192,16 +192,16 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
-        const { t, body, theme } = this.props;
-        const backgroundColor = { backgroundColor: body.bg };
+        const { t, theme } = this.props;
+        const backgroundColor = { backgroundColor: theme.body.bg };
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
+                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Icon name="iota" size={width / 8} color={body.color} />
+                            <Icon name="iota" size={width / 8} color={theme.body.color} />
                         </View>
                         <View style={styles.midWrapper}>
                             <CustomTextInput
@@ -228,7 +228,7 @@ class WalletResetRequirePassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
+                <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
             </View>
         );
     }
