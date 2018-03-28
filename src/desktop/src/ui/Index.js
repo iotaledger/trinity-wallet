@@ -7,10 +7,13 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 
+import { parseAddress } from 'libs/util';
+
 import { clearTempData } from 'actions/tempAccount';
 import { getUpdateData, updateTheme } from 'actions/settings';
 import { clearSeeds } from 'actions/seeds';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
+import { sendAmount } from 'actions/deepLinks';
 
 import themes from 'themes/themes';
 
@@ -21,8 +24,7 @@ import Idle from 'ui/global/Idle';
 import Feedback from 'ui/global/Feedback';
 
 import Loading from 'ui/components/Loading';
-import { sendAmount } from 'actions/deepLinks';
-import { ADDRESS_LENGTH } from 'libs/util';
+
 import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
@@ -141,23 +143,15 @@ class App extends React.Component {
     setDeepUrl(data) {
         const { generateAlert, t } = this.props;
 
-        const regexAddress = /:\/\/(.*?)\/\?/;
-        const regexAmount = /amount=(.*?)&/;
-        const regexMessage = /message=([^\n\r]*)/;
-        const address = data.match(regexAddress);
+        const parsedData = parseAddress(data);
 
-        if (address !== null) {
-            const amount = data.match(regexAmount);
-            const message = data.match(regexMessage);
-
-            if (address[1].length !== ADDRESS_LENGTH) {
-                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
-            } else {
-                this.props.sendAmount(amount[1], address[1], message[1]);
-                if (this.props.tempAccount.ready === true) {
-                    this.props.history.push('/wallet/send');
-                }
+        if (parsedData) {
+            this.props.sendAmount(parsedData.ammount || 0, parsedData.address, parsedData.message || null);
+            if (this.props.tempAccount.ready === true) {
+                this.props.history.push('/wallet/send');
             }
+        } else {
+            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
         }
     }
 
