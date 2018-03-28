@@ -91,6 +91,7 @@
         font-weight: 300px;
         text-align: center;
         margin: 22px 0 10px;
+        max-width: none;
     }
     h2 {
         font-size: 21px;
@@ -105,7 +106,11 @@
         padding: 0 50px;
         height: 62px;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+
+        button {
+            margin: 0 12px;
+        }
     }
     > span {
         display: block;

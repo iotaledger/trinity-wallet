@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { LineChart, ResponsiveContainer, Line, YAxis, Tooltip } from 'recharts';
-import { format, subDays, subMonths, subHours, subMinutes } from 'date-fns';
+import { format, subDays, subHours, subMinutes } from 'date-fns';
 
 import withChartData from 'containers/components/Chart';
 
 import Button from 'ui/components/Button';
+import Icon from 'ui/components/Icon';
 import css from './chart.css';
 
 /**
@@ -98,27 +99,41 @@ class Chart extends PureComponent {
         return (
             <div className={css.chart}>
                 <div>
-                    <ResponsiveContainer height="100%" width="100%">
-                        <LineChart data={chartData.data}>
-                            <Line strokeWidth={2} type="natural" dataKey="y" stroke={theme.chart.color} dot={false} />
-                            <YAxis
-                                strokeWidth={0}
-                                width={70}
-                                tickMargin={10}
-                                tick={{ fill: theme.body.color }}
-                                tickCount={6}
-                                interval={0}
-                                ticks={chartData.yAxis.ticks.map((tick) => getPriceFormat(tick))}
-                                domain={['dataMin', 'dataMax']}
-                            />
-                            <Tooltip
-                                timeframe={chartData.timeframe}
-                                maxItems={chartData.data.length}
-                                symbol={priceData.symbol}
-                                content={this.renderTooltip}
-                            />
-                        </LineChart>
-                    </ResponsiveContainer>
+                    {chartData.data.length ? (
+                        <ResponsiveContainer height="100%" width="100%">
+                            <LineChart data={chartData.data}>
+                                <Line
+                                    strokeWidth={2}
+                                    type="natural"
+                                    dataKey="y"
+                                    stroke={theme.chart.color}
+                                    dot={false}
+                                />
+                                <YAxis
+                                    strokeWidth={0}
+                                    width={70}
+                                    tickMargin={10}
+                                    tick={{ fill: theme.body.color }}
+                                    tickCount={6}
+                                    interval={0}
+                                    ticks={
+                                        chartData.yAxis.ticks
+                                            ? chartData.yAxis.ticks.map((tick) => getPriceFormat(tick))
+                                            : null
+                                    }
+                                    domain={['dataMin', 'dataMax']}
+                                />
+                                <Tooltip
+                                    timeframe={chartData.timeframe}
+                                    maxItems={chartData.data.length}
+                                    symbol={priceData.symbol}
+                                    content={this.renderTooltip}
+                                />
+                            </LineChart>
+                        </ResponsiveContainer>
+                    ) : (
+                        <Icon icon="cross" size={128} />
+                    )}
                 </div>
                 <hr />
                 <nav>
