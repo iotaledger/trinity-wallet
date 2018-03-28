@@ -14,6 +14,7 @@ import keychain from './reducers/keychain';
 import polling from './reducers/polling';
 import progress from './reducers/progress';
 import ui from './reducers/ui';
+import deepLinks from './reducers/deepLinks';
 import { ActionTypes } from './actions/app';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -34,6 +35,7 @@ const reducers = combineReducers({
     polling,
     progress,
     ui,
+    deepLinks,
 });
 
 const rootReducer = (state, action) => {
