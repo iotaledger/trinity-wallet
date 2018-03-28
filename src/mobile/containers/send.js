@@ -674,6 +674,7 @@ export class Send extends Component {
         const conversionText =
             denomination === currencySymbol ? this.getConversionTextFiat() : this.getConversionTextIota();
         const opacity = this.getSendMaxOpacity();
+        const isSending = sending || isSendingTransfer;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -697,8 +698,8 @@ export class Send extends Component {
                             onQRPress={() => this.openModal('qrScanner')}
                             theme={theme}
                             value={address}
-                            editable={!sending}
-                            selectTextOnFocus={!sending}
+                            editable={!isSending}
+                            selectTextOnFocus={!isSending}
                         />
                         <View style={{ flex: 0.17 }} />
                         <View style={styles.fieldContainer}>
@@ -721,8 +722,8 @@ export class Send extends Component {
                                 denominationText={denomination}
                                 onDenominationPress={() => this.onDenominationPress()}
                                 value={amount}
-                                editable={!sending}
-                                selectTextOnFocus={!sending}
+                                editable={!isSending}
+                                selectTextOnFocus={!isSending}
                             />
                             <View style={{ flex: 0.2 }} />
                             <View style={[styles.maxContainer, { opacity: opacity }]}>
@@ -760,8 +761,8 @@ export class Send extends Component {
                             onSubmitEditing={() => this.onSendPress()}
                             theme={theme}
                             value={message}
-                            editable={!sending}
-                            selectTextOnFocus={!sending}
+                            editable={!isSending}
+                            selectTextOnFocus={!isSending}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
