@@ -1,7 +1,7 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
-import { ADDRESS_LENGTH } from 'libs/util';
+import { ADDRESS_LENGTH, VALID_ADDRESS_WITH_CHECKSUM_REGEX } from 'libs/util';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -20,7 +20,9 @@ export default class AddressInput extends React.PureComponent {
         /** Camera modal close button label */
         closeLabel: PropTypes.string.isRequired,
         /** Address change event function
-         * @param {string} value - Current address value
+         * @param {string} address - Current address value
+         * @param {string} message - Current message value
+         * @param {string} value - Current value
          */
         onChange: PropTypes.func.isRequired,
     };
@@ -29,12 +31,33 @@ export default class AddressInput extends React.PureComponent {
         showScanner: false,
     };
 
-    onScanEvent = (address) => {
-        if (address !== null) {
+    onScanEvent = (data) => {
+        if (data !== null) {
             this.setState(() => ({
                 showScanner: false,
             }));
-            this.props.onChange(address);
+
+            let address = data;
+            let message = null;
+            let ammount = null;
+
+            try {
+                const json = JSON.parse(data);
+
+                if (json.address) {
+                    address = json.address;
+                }
+                if (json.message && typeof json.message === 'string' && json.message.length < 256) {
+                    message = json.message;
+                }
+                if (json.ammount && json.ammount === parseInt(json.ammount, 10)) {
+                    ammount = parseInt(json.ammount, 10);
+                }
+            } catch (error) {}
+
+            if (address.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
+                this.props.onChange(address, message, ammount);
+            }
         }
     };
 
