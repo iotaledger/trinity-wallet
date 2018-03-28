@@ -693,7 +693,11 @@ export class Send extends Component {
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
-                            onSubmitEditing={() => this.amountField.focus()}
+                            onSubmitEditing={() => {
+                                if (address) {
+                                    this.amountField.focus();
+                                }
+                            }}
                             widget="qr"
                             onQRPress={() => this.openModal('qrScanner')}
                             theme={theme}
@@ -714,7 +718,11 @@ export class Send extends Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="next"
-                                onSubmitEditing={() => this.messageField.focus()}
+                                onSubmitEditing={() => {
+                                    if (amount) {
+                                        this.messageField.focus();
+                                    }
+                                }}
                                 widget="denomination"
                                 conversionText={conversionText}
                                 currencyConversion
