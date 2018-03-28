@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { setOnboardingComplete } from 'actions/account';
+import { setOnboardingComplete } from 'actions/accounts';
 
 import Button from 'ui/components/Button';
 import Logo from 'ui/components/Logo';

@@ -5,10 +5,10 @@ import { translate } from 'react-i18next';
 
 import { setSeeds } from 'actions/seeds';
 import { generateAlert } from 'actions/alerts';
-import { addAccountName } from 'actions/account';
-import { setAdditionalAccountInfo, setSeedIndex } from 'actions/tempAccount';
+import { addAccountName } from 'actions/accounts';
+import { setAdditionalAccountInfo, setSeedIndex } from 'actions/wallet';
 
-import { isValidPassword } from 'libs/util';
+import { isValidPassword } from 'libs/utils';
 import { setVault } from 'libs/crypto';
 
 import Button from 'ui/components/Button';
@@ -174,7 +174,7 @@ class AccountPassword extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     seeds: state.seeds,
-    firstAccount: !state.tempAccount.ready,
+    firstAccount: !state.wallet.ready,
 });
 
 const mapDispatchToProps = {

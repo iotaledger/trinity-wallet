@@ -7,7 +7,7 @@ import authenticator from 'authenticator';
 
 import { setVault, getVault, removeKey } from 'libs/crypto';
 
-import { set2FAStatus } from 'actions/account';
+import { set2FAStatus } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
@@ -243,7 +243,7 @@ class TwoFA extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    is2FAEnabled: state.account.is2FAEnabled,
+    is2FAEnabled: state.settings.is2FAEnabled,
 });
 
 const mapDispatchToProps = {
