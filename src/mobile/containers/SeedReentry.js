@@ -13,7 +13,7 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import InfoBox from '../components/InfoBox';
 import OnboardingButtons from '../containers/OnboardingButtons';
-import { Icon } from '../theme/icons.js';
+import { Icon } from '../theme/icons';
 
 const styles = StyleSheet.create({
     container: {
@@ -97,15 +97,25 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Seed Reentry component */
 class SeedReentry extends Component {
     static propTypes = {
+        /** Generate a notification alert
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Seed value */
         seed: PropTypes.string.isRequired,
-        input: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -117,7 +127,7 @@ class SeedReentry extends Component {
     }
 
     onDonePress() {
-        const { t, seed, body } = this.props;
+        const { t, seed, theme: { body } } = this.props;
         if (this.state.seed === seed) {
             this.props.navigator.push({
                 screen: 'setAccountName',
@@ -136,7 +146,7 @@ class SeedReentry extends Component {
     }
 
     onBackPress() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
@@ -151,17 +161,17 @@ class SeedReentry extends Component {
 
     render() {
         const { seed } = this.state;
-        const { t, body, theme, input } = this.props;
-        const textColor = { color: body.color };
+        const { t, theme } = this.props;
+        const textColor = { color: theme.body.color };
 
         return (
-            <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
+            <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
                             <View style={styles.logoContainer}>
-                                <Icon name="iota" size={width / 8} color={body.color} />
+                                <Icon name="iota" size={width / 8} color={theme.body.color} />
                             </View>
                         </View>
                         <View style={styles.midContainer}>
@@ -183,7 +193,7 @@ class SeedReentry extends Component {
                             <Checksum seed={seed} theme={theme} />
                             <View style={{ flex: 0.15 }} />
                             <InfoBox
-                                body={body}
+                                body={theme.body}
                                 text={
                                     <View>
                                         <Text style={[styles.infoTextTop, textColor]}>{t('thisIsACheck')}</Text>
@@ -203,7 +213,7 @@ class SeedReentry extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert backgroundColor={body.bg} />
+                <StatefulDropdownAlert backgroundColor={theme.body.bg} />
             </View>
         );
     }
@@ -211,9 +221,7 @@ class SeedReentry extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    theme: state.settings.theme,
-    body: state.settings.theme.body,
-    input: state.settings.theme.input,
+    theme: state.settings.theme
 });
 
 const mapDispatchToProps = {

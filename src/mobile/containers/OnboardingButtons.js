@@ -37,18 +37,28 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Onboarding buttons component */
 class OnboardingButtons extends PureComponent {
     static propTypes = {
+        /** Button width */
         buttonWidth: PropTypes.object,
+        /** Component container width */
         containerWidth: PropTypes.object,
-        primary: PropTypes.object,
-        secondary: PropTypes.object,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Buttons opacity */
         opacity: PropTypes.number,
+        /** Id for automated screenshots */
         leftButtonTestID: PropTypes.string,
+        /** Id for automated screenshots */
         rightButtonTestID: PropTypes.string,
+        /** Children content for button on left */
         leftText: PropTypes.string.isRequired,
+        /** Children content for button on right */
         rightText: PropTypes.string.isRequired,
+        /** Press event callback function for button on left */
         onLeftButtonPress: PropTypes.func.isRequired,
+        /** Press event callback function for button on right */
         onRightButtonPress: PropTypes.func.isRequired,
     };
 
@@ -58,7 +68,7 @@ class OnboardingButtons extends PureComponent {
     };
 
     render() {
-        const { primary, secondary, opacity, buttonWidth, containerWidth } = this.props;
+        const { theme: { primary, secondary }, opacity, buttonWidth, containerWidth } = this.props;
         const rightTextColor = { color: primary.color };
         const rightBorderColor = { borderColor: primary.color };
         const leftTextColor = { color: secondary.color };
@@ -83,8 +93,7 @@ class OnboardingButtons extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    primary: state.settings.theme.primary,
-    secondary: state.settings.theme.secondary,
+    theme: state.settings.theme,
 });
 
 export default connect(mapStateToProps)(OnboardingButtons);

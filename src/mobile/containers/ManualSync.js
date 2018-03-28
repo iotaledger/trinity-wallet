@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, NativeModules } from 'react-native';
+import { translate } from 'react-i18next';
+import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
+import { selectedAccountName, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import { manuallySyncAccount } from 'iota-wallet-shared-modules/actions/accounts';
+import {
+    getSeedFromKeychain
+} from '../utils/keychain';
 import { width, height } from '../utils/dimensions';
-import { Icon } from '../theme/icons.js';
+import { Icon } from '../theme/icons';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
 
@@ -58,88 +67,155 @@ const styles = StyleSheet.create({
     },
 });
 
-const ManualSync = (props) => (
-    <View style={styles.container}>
-        <View style={styles.topContainer}>
-            <View style={{ flex: 0.8 }} />
-            {!props.isSyncing && (
-                <View style={styles.innerContainer}>
-                    <InfoBox
-                        body={props.body}
-                        text={
-                            <View>
-                                <Text style={[styles.infoText, props.textColor]}>
-                                    {props.t('manualSync:outOfSync')}
-                                </Text>
-                                <Text style={[styles.infoText, props.textColor, { paddingTop: height / 50 }]}>
-                                    {props.t('manualSync:pressToSync')}
-                                </Text>
-                            </View>
-                        }
-                    />
-                    <View style={styles.syncButtonContainer}>
-                        <CtaButton
-                            ctaColor={props.primary.color}
-                            secondaryCtaColor={props.primary.body}
-                            text={props.t('manualSync:syncAccount')}
-                            onPress={() => props.onManualSyncPress()}
-                            ctaWidth={width / 2}
-                            ctaHeight={height / 16}
-                        />
-                    </View>
-                </View>
-            )}
-            {props.isSyncing && (
-                <View style={styles.innerContainer}>
-                    <InfoBox
-                        body={props.body}
-                        text={
-                            <View>
-                                <Text style={[styles.infoText, props.textColor]}>
-                                    {props.t('manualSync:syncingYourAccount')}
-                                </Text>
-                                <Text style={[styles.infoText, props.textColor, { paddingTop: height / 50 }]}>
-                                    {props.t('manualSync:thisMayTake')}
-                                </Text>
-                                <Text style={[styles.infoText, props.textColor, { paddingTop: height / 50 }]}>
-                                    {props.t('manualSync:doNotClose')}
-                                </Text>
-                            </View>
-                        }
-                    />
-                    <ActivityIndicator
-                        animating={props.isSyncing}
-                        style={styles.activityIndicator}
-                        size="large"
-                        color={props.primary.color}
-                    />
-                </View>
-            )}
-        </View>
-        <View style={styles.bottomContainer}>
-            {!props.isSyncing && (
-                <TouchableOpacity
-                    onPress={() => props.backPress()}
-                    hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                >
-                    <View style={styles.item}>
-                        <Icon name="chevronLeft" size={width / 28} color={props.body.color} />
-                        <Text style={[styles.titleText, props.textColor]}>{props.t('global:backLowercase')}</Text>
-                    </View>
-                </TouchableOpacity>
-            )}
-        </View>
-    </View>
-);
+/** Manual Sync component */
+export class ManualSync extends Component {
+    static propTypes = {
+        /** Determines whether the wallet is manually syncing account info */
+        isSyncing: PropTypes.bool.isRequired,
+        /** Determines whether to allow manual sync action  */
+        shouldPreventAction: PropTypes.bool.isRequired,
+        /** Change current setting
+         * @param {string} setting
+         */
+        setSetting: PropTypes.func.isRequired,
+        /** Translation helper
+       * @param {string} translationString - locale string identifier to be translated
+       */
+        t: PropTypes.func.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+         /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
+        generateAlert: PropTypes.func.isRequired
+    };
 
-ManualSync.propTypes = {
-    isSyncing: PropTypes.bool.isRequired,
-    backPress: PropTypes.func.isRequired,
-    onManualSyncPress: PropTypes.func.isRequired,
-    t: PropTypes.func.isRequired,
-    textColor: PropTypes.object.isRequired,
-    primary: PropTypes.object.isRequired,
-    body: PropTypes.object.isRequired,
+    sync() {
+        const { password, selectedAccountName, t, shouldPreventAction } = this.props;
+
+        if (!shouldPreventAction) {
+            getSeedFromKeychain(password, selectedAccountName)
+                .then((seed) => {
+                    if (seed === null) {
+                        return this.props.generateAlert(
+                            'error',
+                            t('global:somethingWentWrong'),
+                            t('global:somethingWentWrongTryAgain'),
+                        );
+                    }
+
+                    let genFn = null;
+
+                    if (isAndroid) {
+                        //  genFn = Android multiAddress function
+                    } else if (isIOS) {
+                        genFn = NativeModules.Iota.multiAddress;
+                    }
+
+                    this.props.manuallySyncAccount(seed, selectedAccountName, genFn);
+                })
+                .catch((err) => console.error(err)); // eslint-disable-line no-console
+        } else {
+            this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+        }
+    }
+
+    render() {
+        const { isSyncing, theme: { body, primary }, t } = this.props;
+        const textColor = { color: body.color };
+
+        return (
+            <View style={styles.container}>
+                <View style={styles.topContainer}>
+                    <View style={{ flex: 0.8 }} />
+                    {!isSyncing && (
+                        <View style={styles.innerContainer}>
+                            <InfoBox
+                                body={body}
+                                text={
+                                    <View>
+                                        <Text style={[styles.infoText, textColor]}>
+                                            {t('manualSync:outOfSync')}
+                                        </Text>
+                                        <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                            {t('manualSync:pressToSync')}
+                                        </Text>
+                                    </View>
+                                }
+                            />
+                            <View style={styles.syncButtonContainer}>
+                                <CtaButton
+                                    ctaColor={primary.color}
+                                    secondaryCtaColor={primary.body}
+                                    text={t('manualSync:syncAccount')}
+                                    onPress={() => this.sync()}
+                                    ctaWidth={width / 2}
+                                    ctaHeight={height / 16}
+                                />
+                            </View>
+                        </View>
+                    )}
+                    {isSyncing && (
+                        <View style={styles.innerContainer}>
+                            <InfoBox
+                                body={body}
+                                text={
+                                    <View>
+                                        <Text style={[styles.infoText, textColor]}>
+                                            {t('manualSync:syncingYourAccount')}
+                                        </Text>
+                                        <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                            {t('manualSync:thisMayTake')}
+                                        </Text>
+                                        <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                            {t('manualSync:doNotClose')}
+                                        </Text>
+                                    </View>
+                                }
+                            />
+                            <ActivityIndicator
+                                animating={isSyncing}
+                                style={styles.activityIndicator}
+                                size="large"
+                                color={primary.color}
+                            />
+                        </View>
+                    )}
+                </View>
+                <View style={styles.bottomContainer}>
+                    {!isSyncing && (
+                        <TouchableOpacity
+                            onPress={() => this.props.setSetting('advancedSettings')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Icon name="chevronLeft" size={width / 28} color={body.color} />
+                                <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
+                </View>
+            </View>
+        );
+    }
+}
+
+const mapStateToProps = (state) => ({
+    isSyncing: state.ui.isSyncing,
+    password: state.wallet.password,
+    theme: state.settings.theme,
+    selectedAccountName: getSelectedAccountName(state),
+    shouldPreventAction: shouldPreventAction(state)
+});
+
+const mapDispatchToProps = {
+    generateAlert,
+    setSetting,
+    manuallySyncAccount
 };
 
-export default ManualSync;
+export default translate(['manualSync', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(ManualSync),
+);

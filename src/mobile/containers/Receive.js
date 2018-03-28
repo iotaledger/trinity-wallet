@@ -79,27 +79,64 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Receive screen component */
 class Receive extends Component {
     static propTypes = {
+        /** Currently selected account information - Contains addresses, transfers and balance */
         selectedAccountData: PropTypes.object.isRequired,
+        /** Name of currently selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Determines whether the wallet is manually syncing */
         isSyncing: PropTypes.bool.isRequired,
+        /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
+        /** Receive address value */
         receiveAddress: PropTypes.string.isRequired,
+        /** Determines whether the wallet is generating a new receive address */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        /** Determines whether the wallet is fetching sensitive info from keychain */
         isGettingSensitiveInfoToGenerateAddress: PropTypes.bool.isRequired,
+        /** Generate receive address
+         * @param {string} seed
+         * @param {string} selectedAccountName
+         * @param {string} selectedAccountData
+         * @param {string} genFn - Native address generation function
+         */
         generateNewAddress: PropTypes.func.isRequired,
+        /** Close active top bar */
         closeTopBar: PropTypes.func.isRequired,
+         /** Set receive address in reducer
+         * @param {string} address
+         */
         setReceiveAddress: PropTypes.func.isRequired,
+        /** Generate a notification alert
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
+        /** Request keychain access
+         * @param {string} screen - Active screen
+         * @param {string} purpose - Purpose for accessing keychain e.g: addressGeneration
+         */
         getFromKeychainRequest: PropTypes.func.isRequired,
+         /** Successful keychain access callback function
+         * @param {string} screen - Active screen
+         * @param {string} purpose - Purpose for accessing keychain e.g: addressGeneration
+         */
         getFromKeychainSuccess: PropTypes.func.isRequired,
+         /** On error callback function for keychain access
+         * @param {string} screen - Active screen
+         * @param {string} purpose - Purpose for accessing keychain e.g: addressGeneration
+         */
         getFromKeychainError: PropTypes.func.isRequired,
+        /** Theme settings */
         theme: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
-        input: PropTypes.object.isRequired,
-        primary: PropTypes.object.isRequired,
+        /** Determines whether the wallet is doing a snapshot tranisition */
         isTransitioning: PropTypes.bool.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
     };
 
@@ -109,6 +146,7 @@ class Receive extends Component {
         this.state = {
             message: '',
         };
+
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
@@ -244,15 +282,15 @@ class Receive extends Component {
                             </View>
                         </TouchableOpacity>
                     ) : (
-                        // Place holder
-                        <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                            <View style={[styles.receiveAddressContainer, { backgroundColor: input.bg }, opacity]}>
-                                <Text style={[styles.receiveAddressText, { color: input.color }]}>
-                                    {Array(19).join(' ')}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
+                            // Place holder
+                            <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
+                                <View style={[styles.receiveAddressContainer, { backgroundColor: input.bg }, opacity]}>
+                                    <Text style={[styles.receiveAddressText, { color: input.color }]}>
+                                        {Array(19).join(' ')}
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+                        )}
                     <View style={{ flex: 0.2 }} />
                     <CustomTextInput
                         onRef={(c) => {
@@ -290,18 +328,18 @@ class Receive extends Component {
                                     <View style={{ flex: 0.2 }} />
                                 </View>
                             )) || (
-                            <GenerateAddressButton
-                                ctaBorderColor={primary.hover}
-                                primaryColor={primary.color}
-                                primaryBody={primary.body}
-                                t={t}
-                                receiveAddress={receiveAddress}
-                                isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
-                                isGeneratingReceiveAddress={isGeneratingReceiveAddress}
-                                onGeneratePress={this.onGeneratePress}
-                                message={message}
-                            />
-                        )}
+                                <GenerateAddressButton
+                                    ctaBorderColor={primary.hover}
+                                    primaryColor={primary.color}
+                                    primaryBody={primary.body}
+                                    t={t}
+                                    receiveAddress={receiveAddress}
+                                    isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
+                                    isGeneratingReceiveAddress={isGeneratingReceiveAddress}
+                                    onGeneratePress={this.onGeneratePress}
+                                    message={message}
+                                />
+                            )}
                     </View>
                     <View style={{ flex: 0.55 }} />
                 </View>
@@ -319,9 +357,6 @@ const mapStateToProps = (state) => ({
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
     theme: state.settings.theme,
-    primary: state.settings.theme.primary,
-    input: state.settings.theme.input,
-    body: state.settings.theme.body,
     isTransitioning: state.ui.isTransitioning,
     password: state.wallet.password,
 });

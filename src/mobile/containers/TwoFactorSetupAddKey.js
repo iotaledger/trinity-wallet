@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
-import { set2FAStatus } from 'iota-wallet-shared-modules/actions/settings';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
@@ -68,12 +67,24 @@ const styles = StyleSheet.create({
     },
 });
 
+/** Two factor authentication setup component */
 export class TwoFactorSetupAddKey extends Component {
     static propTypes = {
-        body: PropTypes.object.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
+        /** Generate a notification alert
+       * @param {string} type - notification type - success, error
+       * @param {string} title - notification title
+       * @param {string} text - notification explanation
+       */
         generateAlert: PropTypes.func.isRequired,
+        /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Translation helper
+        * @param {string} translationString - locale string identifier to be translated
+        */
         t: PropTypes.func.isRequired,
+        /** Wallet's password hash */
         password: PropTypes.string.isRequired,
     };
 
@@ -97,7 +108,7 @@ export class TwoFactorSetupAddKey extends Component {
     }
 
     goBack() {
-        const { body } = this.props;
+        const { theme: { body } } = this.props;
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
@@ -118,7 +129,7 @@ export class TwoFactorSetupAddKey extends Component {
 
     navigateToEnterToken() {
         Clipboard.setString(' ');
-        const { t, body, password } = this.props;
+        const { t, theme: { body }, password } = this.props;
 
         return storeTwoFactorAuthKeyInKeychain(password, this.state.authKey)
             .then(() => {
@@ -144,11 +155,11 @@ export class TwoFactorSetupAddKey extends Component {
                     t('global:somethingWentWrong'),
                     t('global:somethingWentWrongTryAgain'),
                 ),
-            );
+        );
     }
 
     render() {
-        const { body, t } = this.props;
+        const { theme: { body, t } = this.props;
         const backgroundColor = { backgroundColor: body.bg };
         const textColor = { color: body.color };
 
@@ -191,14 +202,11 @@ export class TwoFactorSetupAddKey extends Component {
     }
 }
 const mapDispatchToProps = {
-    set2FAStatus,
     generateAlert,
 };
 
 const mapStateToProps = (state) => ({
-    positive: state.settings.theme.positiveColor,
-    negative: state.settings.theme.negativeColor,
-    body: state.settings.theme.body,
+    theme: state.settings.theme,
     password: state.wallet.password,
 });
 
