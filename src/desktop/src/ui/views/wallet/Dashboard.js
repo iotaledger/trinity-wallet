@@ -81,11 +81,11 @@ class Dashboard extends React.PureComponent {
                             </Switch>
                         </div>
                         <nav>
-                            <Button onClick={() => history.push('/wallet/receive')} variant="secondary">
-                                {t('history:receive').toLowerCase()}
-                            </Button>
                             <Button onClick={() => history.push('/wallet/send')} variant="primary">
                                 {t('history:send').toLowerCase()}
+                            </Button>
+                            <Button onClick={() => history.push('/wallet/receive')} variant="secondary">
+                                {t('history:receive').toLowerCase()}
                             </Button>
                         </nav>
                     </section>
