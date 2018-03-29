@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
+import QRCode from 'qrcode.react';
 
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
@@ -31,15 +33,18 @@ class SeedSave extends PureComponent {
                 <section>
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
                         <p className={css.hideOnPrint}>
-                            You must save your seed with<strong>at least one</strong> of the options listed below.
+                            You must save your seed with <strong>at least one</strong> of the options listed below.
                         </p>
                     </Trans>
-                    <div className={css.seed}>
-                        {seed.split('').map((letter, index) => {
-                            return <span key={`seed-${index}`}>{letter}</span>;
-                        })}
+                    <div className={classNames(css.seed, css.narrow)}>
+                        <QRCode value={seed} size={140} />
+                        <div>
+                            {seed.split('').map((letter, index) => {
+                                return <span key={`seed-${index}`}>{letter}</span>;
+                            })}
+                        </div>
                     </div>
-                    <nav>
+                    <nav className={css.hideOnPrint}>
                         <Clipboard
                             text={seed}
                             timeout={60}

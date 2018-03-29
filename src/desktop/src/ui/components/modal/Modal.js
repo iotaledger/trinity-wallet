@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import css from './modal.css';
@@ -14,6 +15,8 @@ export default class Modal extends React.Component {
         variant: PropTypes.oneOf(['confirm']),
         /** Modal visibility state */
         isOpen: PropTypes.bool,
+        /** Should the dialog be without a cancel option */
+        isForced: PropTypes.bool,
         /** Modal inline style state */
         inline: PropTypes.bool,
         /** Modal visibility state */
@@ -29,7 +32,7 @@ export default class Modal extends React.Component {
     }
 
     onKeyDown = (e) => {
-        if (e.key === 'Escape' && this.props.isOpen) {
+        if (e.key === 'Escape' && this.props.isOpen && !this.props.isForced) {
             this.props.onClose();
         }
     };
@@ -37,19 +40,14 @@ export default class Modal extends React.Component {
     render() {
         const { variant, isOpen, inline } = this.props;
 
-        return (
-            <div
-                className={classNames(
-                    css.backdrop,
-                    css[variant],
-                    !isOpen ? css.hidden : null,
-                    inline ? css.inline : null,
-                )}
-            >
+        const content = (
+            <div className={classNames(css.backdrop, css[variant], !isOpen ? css.hidden : null)}>
                 <div className={css.wrapper}>
                     <div className={css.content}>{this.props.children}</div>
                 </div>
             </div>
         );
+
+        return inline ? content : ReactDOM.createPortal(content, document.getElementById('modal'));
     }
 }
