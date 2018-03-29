@@ -8,6 +8,7 @@ import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modul
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import { detectLocale, selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { connect } from 'react-redux';
+import { setLanguage } from 'iota-wallet-shared-modules/actions/settings';
 import WithBackPressCloseApp from '../components/withBackPressCloseApp';
 import { width, height } from '../util/dimensions';
 import DropdownComponent from '../components/dropdown';
@@ -68,11 +69,8 @@ class LanguageSetup extends Component {
         navigator: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
+        setLanguage: PropTypes.func.isRequired,
     };
-
-    static clickDropdownItem(languageLabel) {
-        i18next.changeLanguage(getLocaleFromLabel(languageLabel));
-    }
 
     componentWillMount() {
         i18next.changeLanguage(defaultLocale);
@@ -91,6 +89,11 @@ class LanguageSetup extends Component {
             },
             animated: false,
         });
+    }
+
+    clickDropdownItem(language) {
+        i18next.changeLanguage(getLocaleFromLabel(language));
+        this.props.setLanguage(language);
     }
 
     render() {
@@ -121,7 +124,7 @@ class LanguageSetup extends Component {
                                 dropdownWidth={{ width: width / 1.5 }}
                                 defaultOption={defaultLanguageLabel}
                                 options={I18N_LOCALE_LABELS}
-                                saveSelection={(language) => LanguageSetup.clickDropdownItem(language)}
+                                saveSelection={(language) => this.clickDropdownItem(language)}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -143,6 +146,10 @@ const mapStateToProps = (state) => ({
     primary: state.settings.theme.primary,
 });
 
+const mapDispatchToProps = {
+    setLanguage,
+};
+
 export default WithBackPressCloseApp()(
-    translate(['languageSetup', 'global'])(connect(mapStateToProps, null)(LanguageSetup)),
+    translate(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSetup)),
 );
