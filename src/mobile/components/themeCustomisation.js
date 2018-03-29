@@ -186,7 +186,7 @@ class ThemeCustomisation extends Component {
 
     render() {
         const { themes, theme, themeName } = this.state;
-        const { body, bar, positive, negative, primary, extra } = this.state.theme;
+        const { body, bar, secondary, primary, positive, negative } = this.state.theme;
         const { t } = this.props;
 
         return (
@@ -244,26 +244,23 @@ class ThemeCustomisation extends Component {
                                 <Text style={[styles.frameBarTitle, { color: bar.color }]}>
                                     {t('global:mainWallet').toUpperCase()}
                                 </Text>
-                                <View style={styles.chevronWrapper}>
-                                    <Icon name="chevronDown" size={width / 20} color={bar.color} />
-                                </View>
                             </View>
                             <View style={styles.buttonsContainer}>
-                                <View style={[styles.button, { borderColor: negative.color }]}>
-                                    <Text style={[styles.buttonText, { color: negative.color }]}>
-                                        {t('global:back').toUpperCase()}
-                                    </Text>
-                                </View>
                                 <View style={[styles.button, { borderColor: positive.color }]}>
                                     <Text style={[styles.buttonText, { color: positive.color }]}>
-                                        {t('global:next').toUpperCase()}
+                                        {t('global:yes').toUpperCase()}
+                                    </Text>
+                                </View>
+                                <View style={[styles.button, { borderColor: negative.color }]}>
+                                    <Text style={[styles.buttonText, { color: negative.color }]}>
+                                        {t('global:no').toUpperCase()}
                                     </Text>
                                 </View>
                             </View>
                             <View style={styles.buttonsContainer}>
-                                <View style={[styles.button, { borderColor: extra.color }]}>
-                                    <Text style={[styles.buttonText, { color: extra.color }]}>
-                                        {t('global:save').toUpperCase()}
+                                <View style={[styles.button, { borderColor: secondary.color }]}>
+                                    <Text style={[styles.buttonText, { color: secondary.color }]}>
+                                        {t('global:back').toUpperCase()}
                                     </Text>
                                 </View>
                                 <View
