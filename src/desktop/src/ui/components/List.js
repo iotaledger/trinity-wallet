@@ -18,14 +18,20 @@ import css from './list.css';
  */
 class List extends React.PureComponent {
     static propTypes = {
-        /** List item count limit */
-        limit: PropTypes.number,
-        /** Compact style state  */
-        compact: PropTypes.bool,
-        /** Transaction type filter */
-        filter: PropTypes.oneOf(['sent', 'received', 'pending']),
+        /** Can history be updated */
+        isBusy: PropTypes.bool.isRequired,
+        /** Is history updating */
+        isLoading: PropTypes.bool.isRequired,
+        /** Should update history */
+        updateAccount: PropTypes.func.isRequired,
         /** Transaction history */
         transfers: PropTypes.array.isRequired,
+        /** Set active history item
+         * @param {Number} index - Current item index
+         */
+        setItem: PropTypes.func.isRequired,
+        /** Current active history item */
+        currentItem: PropTypes.number,
         /** Receive address list */
         addresses: PropTypes.array.isRequired,
         /** Translation helper
@@ -36,65 +42,60 @@ class List extends React.PureComponent {
     };
 
     state = {
-        activeItem: null,
+        filter: 'All',
     };
 
-    setHistoryItem = (itemIndex) => {
+    switchFilter(filter) {
         this.setState({
-            activeItem: itemIndex,
+            filter: filter,
         });
-    };
-
-    compactItem = (transfer, isReceived, isConfirmed, t) => {
-        return (
-            <div>
-                <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
-                <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
-                <strong>{!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}</strong>
-                <span>{`${round(formatValue(transfer.value))} ${formatUnit(transfer.value)}`}</span>
-            </div>
-        );
-    };
-
-    fullItem = (transfer, isReceived, isConfirmed, t) => {
-        return (
-            <div className={css.full}>
-                <p>
-                    <span>
-                        {isReceived ? t('received') : t('sent')}{' '}
-                        {`${round(formatValue(transfer.value))} ${formatUnit(transfer.value)}`}
-                    </span>
-                    <strong>{!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}</strong>
-                </p>
-                <p>
-                    <span>Message: {convertFromTrytes(transfer.signatureMessageFragment)}</span>
-                    <span>{formatModalTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
-                </p>
-            </div>
-        );
-    };
+    }
 
     render() {
-        const { transfers, addresses, limit, t, compact, filter } = this.props;
+        const { isLoading, isBusy, updateAccount, transfers, addresses, setItem, currentItem, t } = this.props;
+        const { filter } = this.state;
 
-        const transferLimit = limit ? limit : transfers.length;
+        const filters = ['All', 'Sent', 'Received', 'Pending'];
 
-        const activeTransfers = this.state.activeItem !== null ? transfers[this.state.activeItem] : null;
+        const activeTransfers = currentItem ? transfers[parseInt(currentItem)] : null;
         const activeTransfer = activeTransfers ? activeTransfers[0] : null;
 
         return (
-            <div>
-                <nav className={classNames(css.list, compact ? css.compact : null)}>
+            <React.Fragment>
+                <nav className={css.nav}>
+                    {filters.map((item) => {
+                        return (
+                            <a
+                                key={item}
+                                onClick={() => this.switchFilter(item)}
+                                className={classNames(
+                                    filter === item ? css.active : null,
+                                    !transfers || !transfers.length ? css.disabled : null,
+                                )}
+                            >
+                                {item}
+                            </a>
+                        );
+                    })}
+                    <a
+                        onClick={() => updateAccount()}
+                        className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
+                    >
+                        <Icon icon="sync" size={32} />
+                    </a>
+                </nav>
+                <hr />
+                <div className={css.list}>
                     {transfers && transfers.length ? (
-                        transfers.slice(0, transferLimit).map((transferRow, key) => {
+                        transfers.map((transferRow, key) => {
                             const transfer = transferRow[0];
                             const isReceived = addresses.includes(transfer.address);
                             const isConfirmed = transfer.persistence;
 
                             if (
-                                (filter === 'sent' && isReceived) ||
-                                (filter === 'received' && !isReceived) ||
-                                (filter === 'pending' && !isConfirmed)
+                                (filter === 'Sent' && isReceived) ||
+                                (filter === 'Received' && !isReceived) ||
+                                (filter === 'Pending' && isConfirmed)
                             ) {
                                 return null;
                             }
@@ -102,24 +103,31 @@ class List extends React.PureComponent {
                             return (
                                 <a
                                     key={key}
-                                    onClick={() => this.setHistoryItem(key)}
+                                    onClick={() => setItem(key)}
                                     className={classNames(
                                         isReceived ? css.received : css.sent,
                                         isConfirmed ? css.confirmed : css.pending,
                                     )}
                                 >
-                                    {compact
-                                        ? this.compactItem(transfer, isReceived, isConfirmed, t)
-                                        : this.fullItem(transfer, isReceived, isConfirmed, t)}
+                                    <div>
+                                        <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
+                                        <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
+                                        <strong>
+                                            {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
+                                        </strong>
+                                        <span>{`${round(formatValue(transfer.value))} ${formatUnit(
+                                            transfer.value,
+                                        )}`}</span>
+                                    </div>
                                 </a>
                             );
                         })
                     ) : (
-                        <a className={css.empty}>No recent history</a>
+                        <p className={css.empty}>No recent history</p>
                     )}
-                </nav>
+                </div>
                 {activeTransfer !== null ? (
-                    <Modal isOpen onClose={() => this.setState({ activeItem: null })}>
+                    <Modal isOpen onClose={() => setItem(null)}>
                         <div className={css.historyItem}>
                             <header
                                 className={classNames(
@@ -171,14 +179,14 @@ class List extends React.PureComponent {
                             <h6>Message</h6>
                             <p>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</p>
                             <footer>
-                                <Button onClick={() => this.setState({ activeItem: null })} variant="primary">
+                                <Button onClick={() => setItem(null)} variant="primary">
                                     {t('back')}
                                 </Button>
                             </footer>
                         </div>
                     </Modal>
                 ) : null}
-            </div>
+            </React.Fragment>
         );
     }
 }

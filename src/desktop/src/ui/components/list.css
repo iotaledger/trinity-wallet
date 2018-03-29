@@ -1,16 +1,39 @@
-.list {
+.nav {
+    display: flex;
+    padding: 0 0 10px 10px;
     margin: 0px;
-    padding: 0px;
-    overflow: scroll;
-    max-height: calc(100vh - var(--header-height) - 40px);
-
-    &.compact {
-        border-top: 1px solid var(--body-alt);
-        padding: 10px 0;
+    a {
+        color: var(--secondary);
+        font-weight: 300;
+        margin: 0 28px 0 0;
+        &.active {
+            color: var(--primary);
+        }
+        &.empty {
+            color: var(--body-alt);
+        }
+        &.disabled {
+            color: var(--body-alt);
+            pointer-events: none;
+        }
     }
+}
+
+.list {
+    position: absolute;
+    top: 80px;
+    left: 0px;
+    width: 100%;
+    height: calc(100% - 80px);
+    padding: 0 20px;
+    overflow: scroll;
 
     a {
         list-style: none;
+
+        strong {
+            font-weight: 300;
+        }
 
         > div {
             list-style: none;
@@ -23,7 +46,7 @@
                 padding: 0 2%;
             }
             > span:nth-child(1) {
-                width: 24px;
+                width: 36px;
                 margin-top: 10px;
             }
             > span:nth-child(2) {
@@ -39,7 +62,7 @@
             }
         }
         &:hover > div {
-            background: var(--body-hover);
+            background: var(--body-bg);
         }
         &.received {
             > strong {
@@ -65,44 +88,20 @@
 
     .empty {
         display: block;
+        position: absolute;
+        top: 50%;
+        left: 0px;
         text-align: center;
         width: 100%;
-        opacity: 0.65;
-        padding: 30px 0;
+        opacity: 0.5;
+        padding: 0;
+        margin: -20px 0 0;
     }
 
     .pending {
         strong {
             color: var(--negative);
         }
-    }
-
-    .full {
-        display: block;
-        margin-bottom: 12px;
-        padding: 12px;
-        border-radius: 4px;
-        border: 1px solid var(--body-alt);
-
-        &:hover {
-            background: var(--body-hover);
-        }
-
-        p {
-            margin: 0px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            line-height: 24px;
-            font-size: var(--font-size-small);
-            &:nth-child(2) {
-                color: var(--color-body);
-            }
-        }
-    }
-
-    strong {
-        font-weight: 200;
     }
 }
 
@@ -174,4 +173,33 @@
 .scroll {
     max-height: 200px;
     overflow: hidden;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.refresh {
+    display: block;
+    position: absolute;
+    top: 14px;
+    right: -10px;
+    margin: 0px;
+    height: 32px;
+
+    &:hover {
+        color: var(--primary);
+    }
+
+    &.busy {
+        pointer-events: none;
+        color: var(--body-alt);
+    }
+
+    &.loading {
+        pointer-events: none;
+        animation: spin 0.6s ease infinite;
+    }
 }

@@ -1,80 +1,148 @@
-.balance {
-    margin: 0 auto;
-    text-align: center;
-    > div:first-child {
-        text-align: center;
-        padding: 26px 0;
-        border-radius: 4px;
+.dashboard {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    padding: 20px;
 
-        h1 {
-            font-size: 14px;
-            font-weight: 200;
-            margin-bottom: 10px;
-        }
-
-        strong {
-            font-size: 58px;
-            display: block;
-            line-height: 58px;
-            font-weight: 300;
-        }
-
-        small {
-            font-size: var(--font-size-default);
-        }
-    }
-    > div:nth-child(2) {
-        padding: 20px 0;
-        margin-bottom: 20px;
-        button {
-            margin: 0 20px;
-            &:first-of-type {
-                margin-left: 0px;
-            }
-            &:last-of-type {
-                margin-right: 0px;
-            }
-        }
-    }
-}
-
-.news {
-    border-top: 1px solid var(--body-alt);
-    margin-top: 20px;
-    padding: 21px 0;
-}
-
-.market {
-    article {
+    > div {
         display: flex;
-        text-align: left;
-        margin-bottom: 24px;
+        flex-direction: column;
+        &:first-child {
+            width: 40%;
+            min-width: 420px;
 
-        &:last-child {
+            @media (max-width: 900px) {
+                width: 100%;
+            }
+        }
+        &:last-of-type {
+            flex: 1 1 auto;
+        }
+    }
+
+    section {
+        background: var(--body-altBg);
+        margin: 0 20px 20px 0;
+        padding: 20px;
+        border-radius: 4px;
+        position: relative;
+        z-index: 2;
+        flex: 1 1 auto;
+
+        @media (max-width: 900px) {
+            margin: 20px;
+        }
+
+        &.balance {
+            flex: 0;
+            flex-basis: 230px;
+            &.open {
+                flex-basis: 510px;
+            }
+
+            input,
+            textarea {
+                background: var(--body-bg);
+            }
+
+            form > fieldset {
+                margin-top: -20px;
+            }
+        }
+
+        &.history {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
             margin-bottom: 0px;
+            @media (max-width: 900px) {
+                margin: 0 20px 20px 20px;
+            }
         }
 
-        > div {
-            height: 40px;
-            width: 40px;
-            flex: 0 0 40px;
-            margin-right: 20px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 4px;
-            font-size: 14px;
+        &.market {
+            flex: 0;
+            margin-right: 0px;
+            padding-bottom: 12px;
+            @media (max-width: 900px) {
+                margin: 20px;
+            }
         }
+    }
 
-        p {
-            margin-bottom: 0px;
-        }
+    hr {
+        background: var(--body-alt);
+        border: none;
+        height: 2px;
+        margin-bottom: 20px;
+        width: 100%;
     }
 }
 
-.tabs {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    background: red;
-    z-index: 3;
+.balance {
+    transition: flex-basis 0.275s cubic-bezier(0, 0, 0.2, 1);
+    overflow: hidden;
+    h1,
+    h2 {
+        font-size: 48px;
+        line-height: 48px;
+        font-weight: 300px;
+        text-align: center;
+        margin: 22px 0 10px;
+        max-width: none;
+    }
+    h2 {
+        font-size: 21px;
+        line-height: 21px;
+        margin: 0 0 24px;
+    }
+    nav {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        padding: 0 50px;
+        height: 62px;
+        display: flex;
+        justify-content: center;
+
+        button {
+            margin: 0 12px;
+        }
+    }
+    > span {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        transform: scale(0.75);
+        opacity: 0;
+        transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1), transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+        span {
+            cursor: pointer;
+        }
+        &:hover {
+            color: var(--primary);
+        }
+    }
+    > div {
+        transform: scale(0.95);
+        opacity: 0;
+        transition: opacity 0.2s cubic-bezier(0, 0, 0.2, 1), transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+    }
+    &.open {
+        > span {
+            transform: scale(1);
+            opacity: 1;
+        }
+        nav {
+            display: none;
+        }
+        > div {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 import { Provider as Redux } from 'react-redux';
 import store from 'store';
@@ -21,7 +22,6 @@ import Buttons from './pages/Buttons';
 import Inputs from './pages/Inputs';
 import Modals from './pages/Modals';
 import Typography from './pages/Typography';
-import Lists from './pages/Lists';
 import Icons from './pages/Icons';
 import Modify from './pages/Modify';
 
@@ -38,14 +38,19 @@ const Intro = () => {
     );
 };
 
-const Guide = () => {
+const Guide = (props) => {
     return (
         <div className={css.styleguide}>
             <Theme />
             <Alerts />
             <aside>
-                <Logo size={48} />
+                <NavLink to="/">
+                    <Logo size={48} />
+                </NavLink>
                 <h1>Trinity</h1>
+
+                <ThemePicker />
+                <hr />
                 <nav>
                     <NavLink to="/colors">Colors</NavLink>
                     <NavLink to="/icons">Icons</NavLink>
@@ -53,13 +58,11 @@ const Guide = () => {
                     <NavLink to="/buttons">Buttons</NavLink>
                     <NavLink to="/inputs">Inputs</NavLink>
                     <NavLink to="/modals">Modals & Alerts</NavLink>
-                    <NavLink to="/lists">Lists</NavLink>
+                    <hr />
                     <NavLink to="/modify">Modify theme</NavLink>
                 </nav>
-                <hr />
-                <ThemePicker />
             </aside>
-            <section>
+            <section className={props.location.pathname === '/' ? css.intro : null}>
                 <Switch>
                     <Route path="/colors" component={Colors} />
                     <Route path="/icons" component={Icons} />
@@ -67,13 +70,17 @@ const Guide = () => {
                     <Route path="/inputs" component={Inputs} />
                     <Route path="/modals" component={Modals} />
                     <Route path="/typography" component={Typography} />
-                    <Route path="/lists" component={Lists} />
                     <Route path="/modify" component={Modify} />
                     <Route path="/" component={Intro} />
                 </Switch>
             </section>
         </div>
     );
+};
+
+Guide.propTypes = {
+    /** Browser location */
+    location: PropTypes.object,
 };
 
 const App = withRouter(translate()(Guide));
