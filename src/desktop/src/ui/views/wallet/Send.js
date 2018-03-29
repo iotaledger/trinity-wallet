@@ -118,7 +118,7 @@ class Send extends React.PureComponent {
             };
         }
 
-        sendTransfer(seed, address, amount, message, null, powFn);
+        sendTransfer(seed, address, parseInt(amount), message, null, powFn);
     };
 
     render() {
