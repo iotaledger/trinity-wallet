@@ -52,7 +52,7 @@ export default () => (C) => {
                 case 'mainSettings':
                     this.pressBackTwiceToCloseApp();
                     return true;
-                case 'mode':
+                case 'modeSelection':
                 case 'themeCustomisation':
                 case 'currencySelection':
                 case 'languageSelection':
@@ -66,6 +66,7 @@ export default () => (C) => {
                 case 'addCustomNode':
                 case 'manualSync':
                 case 'snapshotTransition':
+                case 'pow':
                     this.props.setSetting('advancedSettings');
                     return true;
                 case 'viewSeed':
