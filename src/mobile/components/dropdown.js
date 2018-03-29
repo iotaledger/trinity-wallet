@@ -220,7 +220,7 @@ export class Dropdown extends Component {
                     }}
                 >
                     <View style={[styles.dropdownContainer, dropdownWidth]}>
-                        <View style={[styles.dropdownInnerContainer, shadowColor]}>
+                        <View style={[styles.dropdownInnerContainer, shadowColor, backgroundColor]}>
                             <ListView
                                 dataSource={ds.cloneWithRows(options)}
                                 renderRow={(rowData, sectionId, rowId) => {
