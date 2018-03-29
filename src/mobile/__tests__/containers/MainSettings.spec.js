@@ -15,18 +15,13 @@ const getProps = (overrides) =>
         {},
         {
             currency: 'USD',
-            theme: 'general',
-            mode: 'standard',
+            mode: 'Standard',
+            theme: { body: {} },
             themeName: 'custom',
-            onModePress: noop,
-            onLanguagePress: noop,
             setSetting: noop,
-            setModalContent: noop,
-            onThemePress: noop,
+            clearWalletData: noop,
+            setPassword: noop,
             t: (arg) => arg,
-            borderBottomColor: { borderColor: 'white' },
-            textColor: { color: 'white' },
-            bodyColor: 'white',
         },
         overrides,
     );
@@ -41,36 +36,24 @@ describe('Testing MainSettings component', () => {
             expect(MainSettings.propTypes.mode).toBe(PropTypes.string.isRequired);
         });
 
-        it('should require a onModePress function as a prop', () => {
-            expect(MainSettings.propTypes.onModePress).toBe(PropTypes.func.isRequired);
-        });
-
-        it('should require a onLanguagePress function as a prop', () => {
-            expect(MainSettings.propTypes.onLanguagePress).toBe(PropTypes.func.isRequired);
-        });
-
         it('should require a setSetting function as a prop', () => {
             expect(MainSettings.propTypes.setSetting).toBe(PropTypes.func.isRequired);
-        });
-
-        it('should require a setModalContent function as a prop', () => {
-            expect(MainSettings.propTypes.setModalContent).toBe(PropTypes.func.isRequired);
-        });
-
-        it('should require a onThemePress function as a prop', () => {
-            expect(MainSettings.propTypes.onThemePress).toBe(PropTypes.func.isRequired);
         });
 
         it('should require a t function as a prop', () => {
             expect(MainSettings.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a borderBottomColor object as a prop', () => {
-            expect(MainSettings.propTypes.borderBottomColor).toEqual(PropTypes.object.isRequired);
+        it('should require a theme object as a prop', () => {
+            expect(MainSettings.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a textColor object as a prop', () => {
-            expect(MainSettings.propTypes.textColor).toEqual(PropTypes.object.isRequired);
+        it('should require a setPassword function as a prop', () => {
+            expect(MainSettings.propTypes.setPassword).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a clearWalletData function as a prop', () => {
+            expect(MainSettings.propTypes.clearWalletData).toEqual(PropTypes.func.isRequired);
         });
     });
 
@@ -96,15 +79,14 @@ describe('Testing MainSettings component', () => {
         });
 
         [
-            { func: 'onModePress', calledWith: null },
-            { func: 'onThemePress', calledWith: null },
+            { func: 'setSetting', calledWith: 'modeSelection' },
+            { func: 'setSetting', calledWith: 'themeCustomisation' },
             { func: 'setSetting', calledWith: 'currencySelection' },
-            { func: 'onLanguagePress', calledWith: null },
+            { func: 'setSetting', calledWith: 'languageSelection' },
             { func: 'setSetting', calledWith: 'accountManagement' },
             { func: 'setSetting', calledWith: 'changePassword' },
             { func: 'setSetting', calledWith: 'securitySettings' },
             { func: 'setSetting', calledWith: 'advancedSettings' },
-            { func: 'setModalContent', calledWith: 'logoutConfirmation' },
         ].forEach((item, idx) => {
             describe(`when TouchableOpacity component prop onPress on index ${idx + 1} is triggered`, () => {
                 it(`should call prop method ${item.func}`, () => {
@@ -119,11 +101,7 @@ describe('Testing MainSettings component', () => {
                         .props()
                         .onPress();
 
-                    if (item.calledWith) {
-                        expect(props[item.func]).toHaveBeenCalledWith(item.calledWith);
-                    } else {
-                        expect(props[item.func]).toHaveBeenCalled();
-                    }
+                    expect(props[item.func]).toHaveBeenCalledWith(item.calledWith);
                 });
             });
         });

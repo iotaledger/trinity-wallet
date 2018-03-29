@@ -73,16 +73,16 @@ export class TwoFactorSetupAddKey extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Generate a notification alert
-       * @param {string} type - notification type - success, error
-       * @param {string} title - notification title
-       * @param {string} text - notification explanation
-       */
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Wallet's password hash */
         password: PropTypes.string.isRequired,
@@ -155,11 +155,11 @@ export class TwoFactorSetupAddKey extends Component {
                     t('global:somethingWentWrong'),
                     t('global:somethingWentWrongTryAgain'),
                 ),
-        );
+            );
     }
 
     render() {
-        const { theme: { body, t } } = this.props;
+        const { theme: { body }, t } = this.props;
         const backgroundColor = { backgroundColor: body.bg };
         const textColor = { color: body.color };
 
