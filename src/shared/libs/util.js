@@ -67,7 +67,8 @@ export const formatUnit = (value) => {
 export function formatIota(value) {
     const iota = formatValue(value);
     const unit = formatUnit(value);
-    const formatted = `${iota} ${unit}`;
+    const iotafmt = unit == 'i' ? iota : iota.toFixed(3);
+    const formatted = `${iotafmt} ${unit}`;
     return formatted;
 }
 
