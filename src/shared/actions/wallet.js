@@ -2,13 +2,8 @@ import takeRight from 'lodash/takeRight';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
 import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
-import {
-    getNewAddress,
-    formatAddresses,
-    syncAddresses,
-    getLatestAddress
-} from '../libs/iota/addresses';
-import { MAX_SEED_LENGTH } from '../libs/utils';
+import { getNewAddress, formatAddresses, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
+import { MAX_SEED_LENGTH } from '../libs/iota/utils';
 import { DEFAULT_MIN_WEIGHT_MAGNITUDE, DEFAULT_DEPTH } from '../config';
 import i18next from '../i18next';
 
