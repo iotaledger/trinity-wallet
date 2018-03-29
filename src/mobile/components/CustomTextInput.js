@@ -64,7 +64,7 @@ class CustomTextInput extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Label for text field */
-        label: PropTypes.string,
+        label: PropTypes.string.isRequired,
         /** Focus event callback function */
         onFocus: PropTypes.func,
         /** Blur event callback function */
