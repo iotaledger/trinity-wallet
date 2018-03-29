@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons';
 import InfoBox from '../components/infoBox';
 import { Icon } from '../theme/icons.js';
@@ -129,7 +130,9 @@ class WalletSetup extends Component {
                         body={body}
                         text={
                             <View>
-                                <Text style={[styles.infoText, textColor]}>{t('seedExplanation')}</Text>
+                                <Text style={[styles.infoText, textColor]}>
+                                    {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
+                                </Text>
                                 <Trans i18nKey="walletSetup:explanation">
                                     <Text style={[styles.infoText, textColor]}>
                                         <Text style={styles.infoTextLight}>

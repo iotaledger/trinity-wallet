@@ -12,6 +12,8 @@ import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
 import SeedInput from 'ui/components/input/Seed';
 
+import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from '../../../../../shared/libs/util'; // TODO: Change to iota-wallet-shared-modules
+
 /**
  * Onboarding, Seed correct backup validation or existing seed input component
  */
@@ -71,9 +73,14 @@ class SeedVerify extends React.PureComponent {
             return;
         }
 
-        if (!isValidSeed(seed)) {
-            generateAlert('error', t('seedReentry:incorrectSeed'), t('enterSeed:seedTooShort'));
-            return;
+        if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
+            generateAlert('error', t('enterSeed:invalidCharacters'), t('enterSeed:invalidCharactersExplanation'));
+        } else if (seed.length < MAX_SEED_LENGTH) {
+            generateAlert(
+                'error',
+                t('enterSeed:seedTooShort'),
+                t('enterSeed:seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
+            );
         }
 
         if (!isGenerated) {
@@ -102,7 +109,7 @@ class SeedVerify extends React.PureComponent {
                         ) : (
                             <React.Fragment>
                                 <p>
-                                    {t('enterSeed:seedExplanation')}
+                                    {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
                                     <br />
                                     {t('enterSeed:neverShare')}
                                 </p>
