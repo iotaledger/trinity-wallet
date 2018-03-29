@@ -15,14 +15,14 @@ const getProps = (overrides) =>
     assign(
         {},
         {
+            selectedAccountName: 'Main',
+            accountNames: ['Main'],
+            password: 'foo',
             t: () => 'foo',
-            seedIndex: 0,
-            accountName: 'foo',
-            saveAccountName: noop,
-            backPress: noop,
-            textColor: { color: 'white' },
-            bodyColor: 'white',
-            theme: {},
+            setSetting: noop,
+            generateAlert: noop,
+            changeAccountName: noop,
+            theme: { body: {} },
         },
         overrides,
     );
@@ -33,24 +33,32 @@ describe('Testing EditAccountName component', () => {
             expect(EditAccountName.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require an accountName string as a prop', () => {
-            expect(EditAccountName.propTypes.accountName).toEqual(PropTypes.string.isRequired);
+        it('should require a selectedAccountName string as a prop', () => {
+            expect(EditAccountName.propTypes.selectedAccountName).toEqual(PropTypes.string.isRequired);
         });
 
-        it('should require a saveAccountName function as a prop', () => {
-            expect(EditAccountName.propTypes.saveAccountName).toEqual(PropTypes.func.isRequired);
+        it('should require an accountNames array as a prop', () => {
+            expect(EditAccountName.propTypes.accountNames).toEqual(PropTypes.array.isRequired);
         });
 
-        it('should require a backPress function as a prop', () => {
-            expect(EditAccountName.propTypes.backPress).toEqual(PropTypes.func.isRequired);
+        it('should require a password string as a prop', () => {
+            expect(EditAccountName.propTypes.password).toEqual(PropTypes.string.isRequired);
         });
 
-        it('should require a textColor object as a prop', () => {
-            expect(EditAccountName.propTypes.textColor).toEqual(PropTypes.object.isRequired);
+        it('should require a generateAlert function as a prop', () => {
+            expect(EditAccountName.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a bodyColor string as a prop', () => {
-            expect(EditAccountName.propTypes.bodyColor).toEqual(PropTypes.string.isRequired);
+        it('should require a setSetting function as a prop', () => {
+            expect(EditAccountName.propTypes.setSetting).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a changeAccountName function as a prop', () => {
+            expect(EditAccountName.propTypes.changeAccountName).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a theme object as a prop', () => {
+            expect(EditAccountName.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
     });
 
@@ -66,34 +74,6 @@ describe('Testing EditAccountName component', () => {
                 const props = getProps();
                 const wrapper = shallow(<EditAccountName {...props} />);
                 expect(wrapper.find('TouchableOpacity').length).toBe(2);
-            });
-        });
-
-        describe('when onPress prop of second TouchableOpacity is triggered', () => {
-            it('should call prop method saveAccountName with trimmed accountName state prop', () => {
-                const props = getProps({
-                    saveAccountName: jest.fn(),
-                });
-
-                const wrapper = shallow(<EditAccountName {...props} />);
-                wrapper.setState({ accountName: 'foo   ' });
-                const lastTouchableOpacity = wrapper.find('TouchableOpacity').last();
-                lastTouchableOpacity.props().onPress();
-                expect(props.saveAccountName).toHaveBeenCalledWith('foo');
-            });
-        });
-
-        describe('when onSubmitEditing prop of second TextField component is triggered', () => {
-            it('should call prop method saveAccountName with trimmed accountName state prop', () => {
-                const props = getProps({
-                    saveAccountName: jest.fn(),
-                });
-
-                const wrapper = shallow(<EditAccountName {...props} />);
-                wrapper.setState({ accountName: 'foo   ' });
-                const textField = wrapper.find('CustomTextInput');
-                textField.props().onSubmitEditing();
-                expect(props.saveAccountName).toHaveBeenCalledWith('foo');
             });
         });
     });

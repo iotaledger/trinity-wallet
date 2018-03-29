@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import  { ManualSync } from '../../containers/ManualSync';
+import { ManualSync } from '../../containers/ManualSync';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -28,11 +28,11 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
-            theme: { body: {} },
+            theme: { body: {}, primary: { color: '#862888', body: '#FFFFFF' } },
             password: 'foo',
             selectedAccountName: 'MAIN ACCOUNT',
             generateAlert: noop,
-            manuallySyncAccount: noop
+            manuallySyncAccount: noop,
         },
         overrides,
     );

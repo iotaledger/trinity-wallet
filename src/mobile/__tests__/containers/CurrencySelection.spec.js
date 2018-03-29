@@ -21,8 +21,8 @@ const getProps = (overrides) =>
             availableCurrencies: [],
             setSetting: noop,
             t: noop,
-            theme: { body: {} },
-            getCurrencyData: noop
+            theme: { body: {}, primary: {} },
+            getCurrencyData: noop,
         },
         overrides,
     );
@@ -41,32 +41,28 @@ describe('Testing CurrencySelection component', () => {
             expect(CurrencySelection.propTypes.currency).toBe(PropTypes.string.isRequired);
         });
 
-        it('should require a currencies array as a prop', () => {
-            expect(CurrencySelection.propTypes.currencies).toBe(PropTypes.array.isRequired);
-        });
-
-        it('should require a backPress function as a prop', () => {
-            expect(CurrencySelection.propTypes.backPress).toBe(PropTypes.func.isRequired);
+        it('should require a availableCurrencies array as a prop', () => {
+            expect(CurrencySelection.propTypes.availableCurrencies).toBe(PropTypes.array.isRequired);
         });
 
         it('should require a t function as a prop', () => {
             expect(CurrencySelection.propTypes.t).toBe(PropTypes.func.isRequired);
         });
 
-        it('should require a bodyColor string as a prop', () => {
-            expect(CurrencySelection.propTypes.bodyColor).toBe(PropTypes.string.isRequired);
+        it('should require a setSetting function as a prop', () => {
+            expect(CurrencySelection.propTypes.setSetting).toBe(PropTypes.func.isRequired);
         });
 
-        it('should require a primaryColor object as a prop', () => {
-            expect(CurrencySelection.propTypes.primaryColor).toBe(PropTypes.string.isRequired);
+        it('should require a theme object as a prop', () => {
+            expect(CurrencySelection.propTypes.theme).toBe(PropTypes.object.isRequired);
         });
     });
 
     describe('#componentWillReceiveProps', () => {
         describe('when isFetchingCurrencyData is true', () => {
-            it('should not call prop method backPress when isFetchingCurrencyData is true in the newProps', () => {
+            it('should not call prop method setSetting when isFetchingCurrencyData is true in the newProps', () => {
                 const props = getProps({
-                    backPress: jest.fn(),
+                    setSetting: jest.fn(),
                 });
 
                 const wrapper = shallow(<CurrencySelection {...props} />);
@@ -75,12 +71,12 @@ describe('Testing CurrencySelection component', () => {
                     isFetchingCurrencyData: true,
                 });
 
-                expect(props.backPress).toHaveBeenCalledTimes(0);
+                expect(props.setSetting).toHaveBeenCalledTimes(0);
             });
 
-            it('should not call prop method backPress when isFetchingCurrencyData is false in the newProps but hasErrorFetchingCurrencyData is true', () => {
+            it('should not call prop method setSetting when isFetchingCurrencyData is false in the newProps but hasErrorFetchingCurrencyData is true', () => {
                 const props = getProps({
-                    backPress: jest.fn(),
+                    setSetting: jest.fn(),
                 });
 
                 const wrapper = shallow(<CurrencySelection {...props} />);
@@ -89,12 +85,12 @@ describe('Testing CurrencySelection component', () => {
                     hasErrorFetchingCurrencyData: true,
                 });
 
-                expect(props.backPress).toHaveBeenCalledTimes(0);
+                expect(props.setSetting).toHaveBeenCalledTimes(0);
             });
 
-            it('should call prop method backPress when isFetchingCurrencyData and hasErrorFetchingCurrencyData are false in the newProps', () => {
+            it('should call prop method setSetting when isFetchingCurrencyData and hasErrorFetchingCurrencyData are false in the newProps', () => {
                 const props = getProps({
-                    backPress: jest.fn(),
+                    setSetting: jest.fn(),
                 });
 
                 const wrapper = shallow(<CurrencySelection {...props} />);
@@ -103,7 +99,7 @@ describe('Testing CurrencySelection component', () => {
                     hasErrorFetchingCurrencyData: false,
                 });
 
-                expect(props.backPress).toHaveBeenCalledTimes(1);
+                expect(props.setSetting).toHaveBeenCalledTimes(1);
             });
         });
     });

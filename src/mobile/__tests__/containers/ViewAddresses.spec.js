@@ -15,7 +15,17 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            selectedAccount: { addresses: {}, transfers: [], balance: 0 },
+            selectedAccount: {
+                addresses: {
+                    ['U'.repeat(81)]: {
+                        balance: 0,
+                        index: 0,
+                        spent: false,
+                    },
+                },
+                transfers: [],
+                balance: 0,
+            },
             setSetting: noop,
             generateAlert: noop,
             theme: { body: {} },
@@ -89,7 +99,7 @@ describe('Testing ViewAddresses component', () => {
                     // When addresses are an empty object
                     expect(Array.isArray(returnValue)).toEqual(true);
 
-                    wrapper.setProps({ addressData: { ['U'.repeat(81)]: {} } });
+                    wrapper.setProps({ selectedAccount: { addresses: { ['U'.repeat(81)]: {} } } });
 
                     returnValue = instance.prepAddresses();
 
@@ -97,11 +107,7 @@ describe('Testing ViewAddresses component', () => {
                 });
 
                 it('should have atleast "balance", "unit" and "address" props in each item of the returned array', () => {
-                    const props = getProps({
-                        addressData: {
-                            ['U'.repeat(81)]: {},
-                        },
-                    });
+                    const props = getProps();
 
                     const wrapper = shallow(<ViewAddresses {...props} />);
 
@@ -119,11 +125,7 @@ describe('Testing ViewAddresses component', () => {
 
                 it('should assign checksum to address prop in each item of the returned array', () => {
                     const fakeAddress = 'U'.repeat(81);
-                    const props = getProps({
-                        addressData: {
-                            [fakeAddress]: {},
-                        },
-                    });
+                    const props = getProps();
 
                     const wrapper = shallow(<ViewAddresses {...props} />);
 
@@ -141,10 +143,12 @@ describe('Testing ViewAddresses component', () => {
 
                 it('should return an ordered array in descending by index prop', () => {
                     const props = getProps({
-                        addressData: {
-                            ['U'.repeat(81)]: { index: 0 },
-                            ['A'.repeat(81)]: { index: 3 },
-                            ['B'.repeat(81)]: { index: 32 },
+                        selectedAccount: {
+                            addresses: {
+                                ['U'.repeat(81)]: { index: 0 },
+                                ['A'.repeat(81)]: { index: 3 },
+                                ['B'.repeat(81)]: { index: 32 },
+                            },
                         },
                     });
 
