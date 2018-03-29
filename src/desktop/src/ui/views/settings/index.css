@@ -20,6 +20,7 @@
         justify-content: center;
         max-width: 720px;
         width: 100%;
+        height: 100%;
     }
 
     section:first-of-type {
@@ -46,17 +47,12 @@
             cursor: pointer;
             &:hover,
             &[aria-current='true'] {
-                color: var(--highlight);
+                color: var(--secondary);
             }
 
             > span {
                 margin-right: 20px;
             }
-        }
-        img {
-            height: 16px;
-            width: 16px;
-            margin-right: 12px;
         }
     }
 
@@ -90,7 +86,7 @@
                     width: 100%;
                     text-align: center;
                     line-height: 60px;
-                    margin: 0px;
+                    margin: 18px 0 0;
                 }
                 strong {
                     display: none;
@@ -102,7 +98,7 @@
                 &[aria-current='true'] {
                     background: var(--bar-alt);
                     color: var(--bar);
-                    border-right: 2px solid var(--highlight);
+                    border-right: 2px solid var(--primary);
                 }
             }
 

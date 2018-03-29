@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
 
+import css from './modal.css';
 /**
  * Confirmation window component
  */
@@ -12,7 +13,7 @@ export default class Confirm extends React.PureComponent {
         /** Confirm window visibility state */
         isOpen: PropTypes.bool.isRequired,
         /** Confirm window type */
-        category: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'highlight', 'extra']),
+        category: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative']),
         /** Confirm window content */
         content: PropTypes.object.isRequired,
         /** Confirm window cancel function */
@@ -26,7 +27,7 @@ export default class Confirm extends React.PureComponent {
 
         return (
             <Modal variant="confirm" onClose={this.props.onCancel} isOpen={isOpen}>
-                {content.title ? <h1 className={category ? category : null}>{content.title}</h1> : null}
+                {content.title ? <h1 className={category ? css[category] : null}>{content.title}</h1> : null}
                 {content.message ? <p>{content.message}</p> : null}
                 <footer>
                     <Button onClick={this.props.onCancel} variant="secondary">

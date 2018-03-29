@@ -10,6 +10,8 @@ import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
 
+import css from './index.css';
+
 /**
  * Send transaction component
  */
@@ -17,8 +19,9 @@ class Send extends React.PureComponent {
     static propTypes = {
         /** Current send status */
         isSending: PropTypes.bool.isRequired,
-        /** Current seed value */
+        /** Deep link state */
         deepLinkAmount: PropTypes.object.isRequired,
+        /** Current seed value */
         seed: PropTypes.string.isRequired,
         /** Total current account wallet ballance in iotas */
         balance: PropTypes.number.isRequired,
@@ -45,6 +48,8 @@ class Send extends React.PureComponent {
          *  @param {function} powFn - locla PoW function
          */
         sendTransfer: PropTypes.func.isRequired,
+        /** Set deep link amount */
+        sendAmount: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -59,24 +64,31 @@ class Send extends React.PureComponent {
         isModalVisible: false,
     };
 
-    refreshDeepLinkValues = () => {
-        if (this.props.deepLinkAmount.address !== '') {
-            const { amount, message, address } = this.props.deepLinkAmount;
-            this.state.amount = amount;
-            this.state.address = address;
-            this.state.message = message;
+    componentWillMount() {
+        this.refreshDeepLinkValues(this.props.deepLinkAmount);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isSending && !nextProps.isSending) {
+            this.setState({
+                address: '',
+                amount: 0,
+                message: '',
+            });
+        }
+        this.refreshDeepLinkValues(nextProps.deepLinkAmount);
+    }
+
+    refreshDeepLinkValues = (props) => {
+        if (props.address.length > 0 && props.address !== this.state.address) {
+            this.setState({
+                amount: props.amount,
+                address: props.address,
+                message: props.message,
+            });
+            this.props.sendAmount(0, '', '');
         }
     };
-
-    componentWillReceiveProps(props) {
-        this.props = props;
-        this.refreshDeepLinkValues();
-
-    }
-
-    componentWillMount() {
-        this.refreshDeepLinkValues();
-    }
 
     validateInputs = (e) => {
         const { address, amount } = this.state;
@@ -115,37 +127,45 @@ class Send extends React.PureComponent {
 
         return (
             <form onSubmit={(e) => this.validateInputs(e)}>
-                <Confirm
-                    category="primary"
-                    isOpen={isModalVisible}
-                    onCancel={() => this.setState({ isModalVisible: false })}
-                    onConfirm={() => this.confirmTransfer()}
-                    content={{
-                        title: `You are about to send ${formatValue(amount)} ${formatUnit(amount)} to the address`,
-                        message: address,
-                        confirm: 'confirm',
-                        cancel: 'Cancel',
-                    }}
-                />
-                <AddressInput
-                    address={address}
-                    onChange={(value) => this.setState({ address: value })}
-                    label={t('send:recipientAddress')}
-                    closeLabel={t('back')}
-                />
-                <AmountInput
-                    amount={amount.toString()}
-                    settings={settings}
-                    label={t('send:amount')}
-                    labelMax={t('send:max')}
-                    balance={balance}
-                    onChange={(value) => this.setState({ amount: value })}
-                />
-                <MessageInput
-                    message={message}
-                    label={t('send:message')}
-                    onChange={(value) => this.setState({ message: value })}
-                />
+                <div className={isSending ? css.sending : null}>
+                    <Confirm
+                        category="primary"
+                        isOpen={isModalVisible}
+                        onCancel={() => this.setState({ isModalVisible: false })}
+                        onConfirm={() => this.confirmTransfer()}
+                        content={{
+                            title: `You are about to send ${formatValue(amount)} ${formatUnit(amount)} to the address`,
+                            message: address,
+                            confirm: 'confirm',
+                            cancel: 'Cancel',
+                        }}
+                    />
+                    <AddressInput
+                        address={address}
+                        onChange={(value, messageIn, ammountIn) =>
+                            this.setState({
+                                address: value,
+                                message: messageIn ? messageIn : message,
+                                amount: ammountIn ? ammountIn : amount,
+                            })
+                        }
+                        label={t('send:recipientAddress')}
+                        closeLabel={t('back')}
+                    />
+                    <AmountInput
+                        amount={amount.toString()}
+                        settings={settings}
+                        label={t('send:amount')}
+                        labelMax={t('send:max')}
+                        balance={balance}
+                        onChange={(value) => this.setState({ amount: value })}
+                    />
+                    <MessageInput
+                        message={message}
+                        label={t('send:message')}
+                        onChange={(value) => this.setState({ message: value })}
+                    />
+                </div>
                 <fieldset>
                     <Button type="submit" loading={isSending} variant="primary">
                         {t('send:send')}

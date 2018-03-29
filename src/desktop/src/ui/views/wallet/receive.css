@@ -2,11 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
+    padding: 10px 0 0 0;
 
     p {
+        display: flex;
         width: 100%;
-        margin-bottom: 20px;
+
         span {
             display: flex;
             flex-wrap: wrap;
@@ -14,25 +15,16 @@
             height: 100%;
             letter-spacing: 1px;
             font-family: monospace;
-            font-size: 16px;
-            line-height: 32px;
+            font-size: 14px;
+            line-height: 26px;
+            padding-left: 20px;
         }
     }
 
     canvas {
         display: block;
         background: #fff;
-        padding: 10px;
         border-radius: 4px;
-        margin-bottom: 30px;
-    }
-
-    button {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        top: calc(100% + 20px);
-        transition: top 0.12s cubic-bezier(0.4, 0, 0.2, 1);
     }
 }
 
@@ -40,10 +32,7 @@
     p,
     canvas,
     fieldset {
-        opacity: 0.06;
+        opacity: 0.3;
         pointer-events: none;
-    }
-    button {
-        top: 50%;
     }
 }
