@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { formatValue, formatUnit, round } from 'libs/util';
+import { formatIota, round } from 'libs/util';
 import { selectAccountInfo } from 'selectors/account';
 import { getCurrencySymbol } from 'libs/currency';
 
@@ -24,7 +24,7 @@ class Balance extends React.PureComponent {
 
         return (
             <React.Fragment>
-                <h1>{`${formatValue(account.balance).toFixed(3)}${formatUnit(account.balance)}`}</h1>
+                <h1>{`${formatIota(account.balance)}`}</h1>
                 <h2>{`${currencySymbol} ${fiatBalance}`}</h2>
             </React.Fragment>
         );
