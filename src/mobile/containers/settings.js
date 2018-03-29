@@ -233,6 +233,14 @@ class Settings extends Component {
         );
     }
 
+    onAddHttpNodeError() {
+        return this.props.generateAlert(
+            'error',
+            'Custom node could not be added',
+            'Trinity Mobile only supports https nodes.',
+        );
+    }
+
     onDuplicateNodeError() {
         return this.props.generateAlert('error', 'Duplicate node', 'The custom node is already listed.');
     }
@@ -467,6 +475,7 @@ class Settings extends Component {
                 checkNode: (cb) => checkNode(cb), // TODO: Try to get rid of the callback
                 currentNode: this.props.fullNode,
                 onAddNodeError: () => this.onAddNodeError(),
+                onAddHttpNodeError: () => this.onAddHttpNodeError(),
                 onAddNodeSuccess: (customNode) => this.onAddNodeSuccess(customNode),
                 backPress: () => this.props.setSetting('advancedSettings'),
                 negativeColor: negative.color,
