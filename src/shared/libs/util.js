@@ -214,7 +214,7 @@ export const pushScreen = (
  * @typedef {Object} ParsedURL
  * @property {string} address The parsed address
  * @property {string} message The parsed message
- * @property {string} ammount The parsed ammount
+ * @property {number} ammount The parsed ammount
  */
 
 /** Parse an IOTA address input
