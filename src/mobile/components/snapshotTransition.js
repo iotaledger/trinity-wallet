@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
-        width: width / 1.05,
+        width: width / 1.2,
         paddingHorizontal: width / 20,
         paddingBottom: height / 25,
     },
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     textContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: width / 1.25,
         marginVertical: height / 20,
     },
 });
@@ -188,7 +187,7 @@ class SnapshotTransition extends Component {
         const { transitionBalance, t, textColor, body } = this.props;
 
         return (
-            <View style={{ width: width / 1.05, alignItems: 'center', backgroundColor: body.bg }}>
+            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: body.bg }}>
                 <View style={[styles.modalContent, { borderColor: body.color }]}>
                     <View style={styles.textContainer}>
                         <Text style={[styles.buttonInfoText, textColor]}>
@@ -201,6 +200,8 @@ class SnapshotTransition extends Component {
                         onRightButtonPress={() => this.onBalanceCompletePress()}
                         leftText={t('global:no')}
                         rightText={t('global:yes')}
+                        buttonWidth={{ width: width / 3.2 }}
+                        containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
             </View>
