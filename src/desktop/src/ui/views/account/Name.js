@@ -55,6 +55,8 @@ class AccountName extends PureComponent {
             return;
         }
 
+        generateAlert('success', t('settings:nicknameChanged'), t('settings:nicknameChangedExplanation'));
+
         changeAccountName({
             oldAccountName: accountName,
             newAccountName,

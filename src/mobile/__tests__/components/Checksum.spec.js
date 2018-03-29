@@ -1,7 +1,5 @@
 import assign from 'lodash/assign';
-import noop from 'lodash/noop';
 import React from 'react';
-import { Clipboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import Checksum from '../../components/Checksum';
