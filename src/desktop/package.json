@@ -2,7 +2,7 @@
     "name": "iota-desktop-wallet",
     "productName": "Trinity",
     "version": "0.1.0",
-    "url": "https://gitlab.com/iota-community/wallet",
+    "url": "https://trinity-alpha.iota.org",
     "description": "IOTA desktop wallet",
     "main": "main.js",
     "author": "IOTA Foundation",
