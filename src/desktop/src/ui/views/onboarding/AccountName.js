@@ -17,6 +17,8 @@ class AccountName extends React.PureComponent {
     static propTypes = {
         /** Current seed count */
         seedCount: PropTypes.number.isRequired,
+        /** is news seed generated */
+        isGenerated: PropTypes.boolean,
         /** Set new seed name */
         setNewSeedName: PropTypes.func.isRequired,
         /** Browser history object */
@@ -73,7 +75,7 @@ class AccountName extends React.PureComponent {
     };
 
     render() {
-        const { t } = this.props;
+        const { t, isGenerated } = this.props;
         const { name } = this.state;
         return (
             <form onSubmit={this.setName}>
@@ -88,7 +90,11 @@ class AccountName extends React.PureComponent {
                     </Infobox>
                 </section>
                 <footer>
-                    <Button to="/onboarding/seed-intro" className="inline" variant="secondary">
+                    <Button
+                        to={`/onboarding/seed-${isGenerated ? 'save' : 'verify'}`}
+                        className="inline"
+                        variant="secondary"
+                    >
                         {t('back').toLowerCase()}
                     </Button>
                     <Button type="submit" className="large" variant="primary">
@@ -102,6 +108,7 @@ class AccountName extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     seedCount: state.account.accountNames.length,
+    isGenerated: state.seeds.isGenerated,
 });
 
 const mapDispatchToProps = {

@@ -5,7 +5,6 @@ import { translate } from 'react-i18next';
 import { setOnboardingComplete } from 'actions/account';
 
 import Button from 'ui/components/Button';
-import Logo from 'ui/components/Logo';
 
 /**
  * Onboarding complete component
