@@ -75,7 +75,7 @@ class WalletResetConfirmation extends Component {
         navigator: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
         body: PropTypes.object.isRequired,
-        negative: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -126,10 +126,10 @@ class WalletResetConfirmation extends Component {
     }
 
     render() {
-        const { t, body, negative } = this.props;
+        const { t, body, primary } = this.props;
         const textColor = { color: body.color };
         const backgroundColor = { backgroundColor: body.bg };
-        const negativeColor = { color: negative.color };
+        const primaryColor = { color: primary.color };
 
         return (
             <View style={[styles.container, backgroundColor]}>
@@ -154,7 +154,7 @@ class WalletResetConfirmation extends Component {
                         }
                     />
                     <View style={{ flex: 0.4 }} />
-                    <Text style={[styles.subHeaderText, negativeColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
+                    <Text style={[styles.subHeaderText, primaryColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
                     <View style={{ flex: 0.2 }} />
                     <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                 </View>
@@ -173,7 +173,7 @@ class WalletResetConfirmation extends Component {
 
 const mapStateToProps = (state) => ({
     body: state.settings.theme.body,
-    negative: state.settings.theme.negative,
+    primary: state.settings.theme.primary,
 });
 
 export default WithBackPressGoToHome()(
