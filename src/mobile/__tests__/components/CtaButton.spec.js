@@ -1,7 +1,6 @@
 import assign from 'lodash/assign';
 import noop from 'lodash/noop';
 import React from 'react';
-import { Clipboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import CtaButton from '../../components/CtaButton';
@@ -80,7 +79,7 @@ describe('Testing CtaButton component', () => {
     describe('when press event of TouchableOpacity is triggered', () => {
         it('should call prop method "onPress"', () => {
             const props = getProps({
-                onPress: jest.fn()
+                onPress: jest.fn(),
             });
 
             const wrapper = shallow(<CtaButton {...props} />);

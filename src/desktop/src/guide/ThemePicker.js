@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateTheme } from 'actions/settings';
-import { themes } from 'themes/themes';
+import themes from 'themes/themes';
 
 import Select from 'ui/components/input/Select';
 

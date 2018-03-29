@@ -6,6 +6,7 @@
     position: relative;
     width: 100%;
     text-align: left;
+    max-width: 640px;
 
     > p {
         text-align: left;
