@@ -31,10 +31,6 @@
                 pointer-events: none;
                 opacity: 0.5;
             }
-            &.optional {
-                background: var(--inputOptional-bg);
-                color: var(--inputOptional);
-            }
         }
         select {
             position: relative;

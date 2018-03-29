@@ -178,8 +178,10 @@ class Login extends React.Component {
             return (
                 <Loading
                     loop
-                    title={account.firstUse ? t('loading:loadingFirstTime') : null}
-                    subtitle={account.firstUse ? t('loading:thisMayTake') : null}
+                    title={
+                        account.firstUse || tempAccount.addingAdditionalAccount ? t('loading:loadingFirstTime') : null
+                    }
+                    subtitle={account.firstUse || tempAccount.addingAdditionalAccount ? t('loading:thisMayTake') : null}
                 />
             );
         }
