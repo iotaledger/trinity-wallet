@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MainSettings from '../containers/MainSettings';
+import MainSettingsComponent from '../containers/MainSettings';
 import AdvancedSettings from '../containers/AdvancedSettings';
 import AccountManagement from '../containers/AccountManagement';
 import ViewSeed from '../containers/ViewSeed';
@@ -16,13 +16,13 @@ import CurrencySelectionComponent from '../containers/CurrencySelection';
 import ModeSelection from '../containers/ModeSelection';
 import LanguageSelection from '../containers/LanguageSelection';
 import ChangePassword from '../containers/ChangePassword';
-import ManualSync from '../containers/ManualSync';
+import ManualSyncComponent from '../containers/ManualSync';
 import ThemeCustomisation from '../containers/ThemeCustomisation';
 import SnapshotTransition from '../containers/SnapshotTransition';
 import SecuritySettings from '../containers/SecuritySettings';
 
 const SETTINGS_COMPONENTS = {
-    mainSettings: MainSettings,
+    mainSettings: MainSettingsComponent,
     advancedSettings: AdvancedSettings,
     accountManagement: AccountManagement,
     viewSeed: ViewSeed,
@@ -36,7 +36,7 @@ const SETTINGS_COMPONENTS = {
     currencySelection: CurrencySelectionComponent,
     languageSelection: LanguageSelection,
     changePassword: ChangePassword,
-    manualSync: ManualSync,
+    manualSync: ManualSyncComponent,
     themeCustomisation: ThemeCustomisation,
     snapshotTransition: SnapshotTransition,
     securitySettings: SecuritySettings,

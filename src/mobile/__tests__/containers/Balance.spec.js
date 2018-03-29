@@ -16,7 +16,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            marketData: {},
+            usdPrice: 1,
             seedIndex: 0,
             balance: 0,
             addresses: [],
@@ -44,10 +44,6 @@ const getProps = (overrides) =>
 
 describe('Testing Balance component', () => {
     describe('propTypes', () => {
-        it('should require a marketData object as a prop', () => {
-            expect(Balance.propTypes.marketData).toEqual(PropTypes.object.isRequired);
-        });
-
         it('should require an seedIndex number as a prop', () => {
             expect(Balance.propTypes.seedIndex).toEqual(PropTypes.number.isRequired);
         });

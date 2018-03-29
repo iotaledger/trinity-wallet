@@ -75,12 +75,12 @@ class SetPassword extends Component {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Translation helper
-       * @param {string} translationString - locale string identifier to be translated
-       */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Sets wallet's onboarding status
-        * @param {boolean} - status
-        */
+         * @param {boolean} - status
+         */
         setOnboardingComplete: PropTypes.func.isRequired,
         /** Clears wallet reducer data */
         clearWalletData: PropTypes.func.isRequired,
@@ -89,14 +89,14 @@ class SetPassword extends Component {
         /** Increment number of seeds stored on device */
         increaseSeedCount: PropTypes.func.isRequired,
         /** Add account name to the list of account names stored on device
-        * @param {string} - accountName
-        */
+         * @param {string} - accountName
+         */
         addAccountName: PropTypes.func.isRequired,
-         /** Generate a notification alert
-       * @param {string} type - notification type - success, error
-       * @param {string} title - notification title
-       * @param {string} text - notification explanation
-       */
+        /** Generate a notification alert
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
         /** Set new password hash
          * @param {string} passwordHash
@@ -214,7 +214,9 @@ class SetPassword extends Component {
                                         <Text style={[styles.infoText, { color: theme.body.color }]}>
                                             {t('anEncryptedCopy')}
                                         </Text>
-                                        <Text style={[styles.warningText, { color: theme.body.color }]}>{t('ensure')}</Text>
+                                        <Text style={[styles.warningText, { color: theme.body.color }]}>
+                                            {t('ensure')}
+                                        </Text>
                                     </View>
                                 }
                             />
@@ -273,15 +275,15 @@ class SetPassword extends Component {
                 {isAndroid ? (
                     <View style={styles.container}>{this.renderContent()}</View>
                 ) : (
-                        <KeyboardAwareScrollView
-                            resetScrollToCoords={{ x: 0, y: 0 }}
-                            contentContainerStyle={styles.container}
-                            scrollEnabled={false}
-                            enableOnAndroid={false}
-                        >
-                            {this.renderContent()}
-                        </KeyboardAwareScrollView>
-                    )}
+                    <KeyboardAwareScrollView
+                        resetScrollToCoords={{ x: 0, y: 0 }}
+                        contentContainerStyle={styles.container}
+                        scrollEnabled={false}
+                        enableOnAndroid={false}
+                    >
+                        {this.renderContent()}
+                    </KeyboardAwareScrollView>
+                )}
                 <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
@@ -291,7 +293,7 @@ class SetPassword extends Component {
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     accountName: state.wallet.accountName,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {

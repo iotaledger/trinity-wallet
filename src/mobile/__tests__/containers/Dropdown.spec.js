@@ -14,8 +14,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            body: { color: 'white' },
-            primary: { color: 'green' },
+            theme: { body: {}, primary: {} },
             onRef: noop,
             options: [],
             disableWhen: false,
