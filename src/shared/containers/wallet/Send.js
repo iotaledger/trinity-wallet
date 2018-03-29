@@ -8,6 +8,8 @@ import { makeTransaction } from '../../actions/transfers';
 import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/accounts';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/iota/utils';
 import { iota } from '../../libs/iota';
+import deepLinks from '../../reducers/deepLinks';
+import { sendAmount } from 'actions/deepLinks';
 
 /**
  * Send transaction component container
@@ -27,7 +29,29 @@ export default function withSendData(SendComponent) {
             makeTransaction: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
+            deepLinks: PropTypes.object.isRequired,
+            sendAmount: PropTypes.func.isRequired,
         };
+
+        componentWillUnmount() {
+            this.props.sendAmount(0, '', '');
+        }
+
+        componentWillReceiveProps(props) {
+            this.validadeDeepLink();
+            this.props = props;
+        }
+
+        componentWillMount() {
+            this.validadeDeepLink();
+        }
+
+        validadeDeepLink() {
+            if (this.props.deepLinks.address !== '') {
+                const { generateAlert } = this.props;
+                generateAlert('success', 'Autofill', 'Transaction data autofilled from link.');
+            }
+        }
 
         validateInputs = (address, amount) => {
             const { generateAlert, balance, t } = this.props;
@@ -80,7 +104,7 @@ export default function withSendData(SendComponent) {
         };
 
         render() {
-            const { balance, seed, settings, wallet, theme, t } = this.props;
+            const { balance, seed, settings, wallet, theme, t, deepLinks } = this.props;
 
             const sendProps = {
                 isSending: wallet.isSendingTransfer,
@@ -91,6 +115,7 @@ export default function withSendData(SendComponent) {
                 seed,
                 theme,
                 t,
+                deepLinkAmount: deepLinks,
             };
 
             return <SendComponent {...sendProps} />;
@@ -108,11 +133,13 @@ export default function withSendData(SendComponent) {
         seed: state.seeds.seeds[state.wallet.seedIndex],
         theme: state.settings.theme,
         ui: state.ui,
+        deepLinks: state.deepLinks,
     });
 
     const mapDispatchToProps = {
         generateAlert,
         makeTransaction,
+        sendAmount,
     };
 
     return translate()(connect(mapStateToProps, mapDispatchToProps)(SendData));
