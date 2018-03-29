@@ -11,7 +11,7 @@ export const nodes = [
     'https://field.carriota.com:443',
 ];
 
-export const UPDATE_URL = 'https://trinity-releases.now.sh/release.json';
+export const UPDATE_URL = 'https://trinity-alpha.iota.org/release';
 
 export const DEFAULT_DEPTH = 4;
 export const DEFAULT_MIN_WEIGHT_MAGNITUDE = 14;
