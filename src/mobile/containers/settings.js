@@ -415,7 +415,6 @@ class Settings extends Component {
                 password: this.props.password,
                 onWrongPassword: () => this.onWrongPassword(),
                 deleteAccount: () => this.deleteAccount(),
-                currentAccountName: this.props.selectedAccountName,
                 primaryColor: primary.color,
                 backgroundColor: body.bg,
                 textColor: { color: body.color },
