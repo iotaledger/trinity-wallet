@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import { connect } from 'react-redux';
 
 import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
@@ -23,7 +24,14 @@ class Dashboard extends React.PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        deepLinks: PropTypes.object.isRequired,
     };
+
+    componentWillMount() {
+        if (this.props.deepLinks.address !== '') {
+            this.props.history.push('/wallet/send');
+        }
+    }
 
     render() {
         const { t, history } = this.props;
@@ -54,4 +62,8 @@ class Dashboard extends React.PureComponent {
     }
 }
 
-export default translate()(Dashboard);
+const mapStateToProps = (state) => ({
+    deepLinks: state.deepLinks,
+});
+
+export default translate()(connect(mapStateToProps)(Dashboard));
