@@ -54,6 +54,9 @@ const getProps = (overrides) =>
             activeSteps: [],
             timeTakenByEachProgressStep: [],
             remotePoW: false,
+            password: 'foo',
+            makeTransaction: noop,
+            generateTransferErrorAlert: noop,
         },
         overrides,
     );

@@ -27,27 +27,35 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            theme: {},
+            theme: { body: { bg: '#ffffff' } },
             generateAlert: noop,
             navigator: {},
             t: () => '',
-            password: 'foo'
+            password: 'foo',
         },
         overrides,
     );
 
 describe('Testing TwoFactorSetupAddKey component', () => {
     describe('propTypes', () => {
-        it('should require a body object as a prop', () => {
-            expect(TwoFactorSetupAddKey.propTypes.body).toEqual(PropTypes.object.isRequired);
+        it('should require a theme object as a prop', () => {
+            expect(TwoFactorSetupAddKey.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a navigator object as a prop', () => {
             expect(TwoFactorSetupAddKey.propTypes.navigator).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a generateAlert string as a prop', () => {
+        it('should require a generateAlert function as a prop', () => {
             expect(TwoFactorSetupAddKey.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a t function as a prop', () => {
+            expect(TwoFactorSetupAddKey.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a password string as a prop', () => {
+            expect(TwoFactorSetupAddKey.propTypes.password).toEqual(PropTypes.string.isRequired);
         });
     });
 

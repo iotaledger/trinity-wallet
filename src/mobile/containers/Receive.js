@@ -105,7 +105,7 @@ class Receive extends Component {
         generateNewAddress: PropTypes.func.isRequired,
         /** Close active top bar */
         closeTopBar: PropTypes.func.isRequired,
-         /** Set receive address in reducer
+        /** Set receive address in reducer
          * @param {string} address
          */
         setReceiveAddress: PropTypes.func.isRequired,
@@ -120,12 +120,12 @@ class Receive extends Component {
          * @param {string} purpose - Purpose for accessing keychain e.g: addressGeneration
          */
         getFromKeychainRequest: PropTypes.func.isRequired,
-         /** Successful keychain access callback function
+        /** Successful keychain access callback function
          * @param {string} screen - Active screen
          * @param {string} purpose - Purpose for accessing keychain e.g: addressGeneration
          */
         getFromKeychainSuccess: PropTypes.func.isRequired,
-         /** On error callback function for keychain access
+        /** On error callback function for keychain access
          * @param {string} screen - Active screen
          * @param {string} purpose - Purpose for accessing keychain e.g: addressGeneration
          */
@@ -135,8 +135,8 @@ class Receive extends Component {
         /** Determines whether the wallet is doing a snapshot tranisition */
         isTransitioning: PropTypes.bool.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
     };
 
@@ -279,15 +279,17 @@ class Receive extends Component {
                             </View>
                         </TouchableOpacity>
                     ) : (
-                            // Place holder
-                            <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                                <View style={[styles.receiveAddressContainer, { backgroundColor: theme.input.bg }, opacity]}>
-                                    <Text style={[styles.receiveAddressText, { color: theme.input.color }]}>
-                                        {Array(19).join(' ')}
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                        )}
+                        // Place holder
+                        <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
+                            <View
+                                style={[styles.receiveAddressContainer, { backgroundColor: theme.input.bg }, opacity]}
+                            >
+                                <Text style={[styles.receiveAddressText, { color: theme.input.color }]}>
+                                    {Array(19).join(' ')}
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
                     <View style={{ flex: 0.2 }} />
                     <CustomTextInput
                         onRef={(c) => {
@@ -325,18 +327,18 @@ class Receive extends Component {
                                     <View style={{ flex: 0.2 }} />
                                 </View>
                             )) || (
-                                <GenerateAddressButton
-                                    ctaBorderColor={theme.primary.hover}
-                                    primaryColor={theme.primary.color}
-                                    primaryBody={theme.primary.body}
-                                    t={t}
-                                    receiveAddress={receiveAddress}
-                                    isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
-                                    isGeneratingReceiveAddress={isGeneratingReceiveAddress}
-                                    onGeneratePress={this.onGeneratePress}
-                                    message={message}
-                                />
-                            )}
+                            <GenerateAddressButton
+                                ctaBorderColor={theme.primary.hover}
+                                primaryColor={theme.primary.color}
+                                primaryBody={theme.primary.body}
+                                t={t}
+                                receiveAddress={receiveAddress}
+                                isGettingSensitiveInfoToGenerateAddress={isGettingSensitiveInfoToGenerateAddress}
+                                isGeneratingReceiveAddress={isGeneratingReceiveAddress}
+                                onGeneratePress={this.onGeneratePress}
+                                message={message}
+                            />
+                        )}
                     </View>
                     <View style={{ flex: 0.55 }} />
                 </View>
