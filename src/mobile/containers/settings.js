@@ -455,8 +455,7 @@ class Settings extends Component {
             },
             nodeSelection: {
                 setNode: (selectedNode) => {
-                    changeIotaNode(selectedNode);
-                    this.props.setFullNode(selectedNode);
+                    this.changeNode(selectedNode);
                 },
                 node: this.props.fullNode,
                 nodes: this.props.availablePoWNodes,
@@ -582,6 +581,16 @@ class Settings extends Component {
         };
 
         return props[child] || {};
+    }
+
+    changeNode(selectedNode) {
+        changeIotaNode(selectedNode);
+        this.props.setFullNode(selectedNode);
+        return this.props.generateAlert(
+            'success',
+            'Successfully changed node',
+            `The node was changed to ${selectedNode}.`,
+        );
     }
 
     logout() {
