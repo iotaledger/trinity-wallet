@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
+import { resetWallet } from 'iota-wallet-shared-modules/actions/settings';
 import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/accounts';
 import { Navigation } from 'react-native-navigation';
 import { clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
@@ -70,26 +70,26 @@ class WalletResetRequirePassword extends Component {
          */
         setFirstUse: PropTypes.func.isRequired,
         /** Sets wallet's onboarding status
-        * @param {boolean} - status
-        */
+         * @param {boolean} - status
+         */
         setOnboardingComplete: PropTypes.func.isRequired,
         /** Clears wallet reducer data */
         clearWalletData: PropTypes.func.isRequired,
         /** Set new password hash
-        * @param {string} passwordHash
-        */
+         * @param {string} passwordHash
+         */
         setPassword: PropTypes.func.isRequired,
         /** Generate a notification alert
-        * @param {String} type - notification type - success, error
-        * @param {String} title - notification title
-        * @param {String} text - notification explanation
-        */
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
