@@ -20,7 +20,7 @@ class SeedVerify extends React.PureComponent {
         /** Current generated seed */
         newSeed: PropTypes.string,
         /** is news seed generated */
-        isGenerated: PropTypes.boolean,
+        isGenerated: PropTypes.bool,
         /** Accept current generated seed
          * @param {String} seed - New seed
          * @param {Boolean} isGenerated - Is the new seed generated
