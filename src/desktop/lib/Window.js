@@ -30,8 +30,8 @@ const Electron = {
         });
     },
 
-    refreshDeepLink: () => {
-    ipc.send('refresh.deepLink');
+    requestDeepLink: () => {
+        ipc.send('request.deepLink');
     },
 
     updateSettings: (attribute, value) => {
@@ -45,6 +45,7 @@ const Electron = {
         ipc.send('menu.language', {
             about: 'About',
             checkUpdate: t('checkForUpdates'),
+            sendFeedback: 'Send feedback',
             settings: capitalize(t('home:settings')),
             accountSettings: t('settings:accountManagement'),
             newAccount: t('accountManagement:addNewAccount'),

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
+import themes from 'themes/themes';
+
 import { updatePowSettings } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
 import { getVault } from 'libs/crypto';
@@ -52,6 +54,8 @@ class Advanced extends PureComponent {
             getVault(password);
             localStorage.clear();
             location.reload();
+
+            document.body.style.background = themes.Ionic.body.bg;
         } catch (err) {
             generateAlert(
                 'error',
@@ -76,7 +80,7 @@ class Advanced extends PureComponent {
                 <ModalPassword
                     isOpen={resetConfirm}
                     category="negative"
-                    onSucces={(password) => this.resetWallet(password)}
+                    onSuccess={(password) => this.resetWallet(password)}
                     onClose={() => this.setState({ resetConfirm: false })}
                     content={{
                         title: t('walletResetConfirmation:cannotUndo'),
