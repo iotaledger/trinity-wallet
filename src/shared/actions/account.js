@@ -26,8 +26,6 @@ import { pushScreen } from '../libs/util';
 import { DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../config';
 import i18next from '../i18next';
 
-const { t } = i18next.t;
-
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
     SET_FIRST_USE: 'IOTA/ACCOUNT/SET_FIRST_USE',
@@ -119,7 +117,7 @@ export const updateAddresses = (accountName, addresses) => ({
 
 export const changeAccountName = (payload) => ({
     type: ActionTypes.CHANGE_ACCOUNT_NAME,
-    payload
+    payload,
 });
 
 export const removeAccount = (payload) => ({
@@ -354,8 +352,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                     return dispatch(
                         generateAlert(
                             'error',
-                            t('cannotCompleteTransition'),
-                            t('cannotCompleteTransitionExplanation'),
+                            i18next.t('snapshotTransition:cannotCompleteTransition'),
+                            i18next.t('snapshotTransition:cannotCompleteTransitionExplanation'),
                             10000,
                         ),
                     );
@@ -379,8 +377,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                                 dispatch(
                                     generateAlert(
                                         'success',
-                                        t('transitionComplete'),
-                                        t('transitionCompleteExplanation'),
+                                        i18next.t('snapshotTransition:transitionComplete'),
+                                        i18next.t('snapshotTransition:transitionCompleteExplanation'),
                                         20000,
                                     ),
                                 );
