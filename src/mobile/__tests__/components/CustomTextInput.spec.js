@@ -1,7 +1,6 @@
 import assign from 'lodash/assign';
 import noop from 'lodash/noop';
 import React from 'react';
-import { Clipboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import CustomTextInput from '../../components/CustomTextInput';
@@ -12,7 +11,7 @@ const getProps = (overrides) =>
         {
             onChangeText: noop,
             label: 'foo',
-            theme: { body: {}, input: {}, primary: {} }
+            theme: { body: {}, input: {}, primary: {} },
         },
         overrides,
     );
@@ -100,7 +99,12 @@ describe('Testing CustomTextInput component', () => {
             const props = getProps();
 
             const wrapper = shallow(<CustomTextInput {...props} />);
-            expect(wrapper.find('Text').children().text()).toEqual('FOO');
+            expect(
+                wrapper
+                    .find('Text')
+                    .children()
+                    .text(),
+            ).toEqual('FOO');
         });
 
         it('should return a "TextInput" component', () => {
@@ -117,7 +121,7 @@ describe('Testing CustomTextInput component', () => {
                 describe('when prop method "onRef" is defined', () => {
                     it('should call prop method "onRef" with component instance', () => {
                         const props = getProps({
-                            onRef: jest.fn()
+                            onRef: jest.fn(),
                         });
 
                         const instance = shallow(<CustomTextInput {...props} />).instance();
@@ -130,7 +134,7 @@ describe('Testing CustomTextInput component', () => {
                 describe('when prop method "onRef" is defined', () => {
                     it('should call prop method "onRef" with null', () => {
                         const props = getProps({
-                            onRef: jest.fn()
+                            onRef: jest.fn(),
                         });
 
                         const wrapper = shallow(<CustomTextInput {...props} />);

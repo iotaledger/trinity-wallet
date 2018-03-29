@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
+import { setSeeds } from 'actions/seeds';
 import { generateAlert } from 'actions/alerts';
-import { getVault, setVault } from 'libs/crypto';
+
+import { setVault } from 'libs/crypto';
 import { deleteAccount } from 'actions/accounts';
 
 import Button from 'ui/components/Button';
@@ -17,10 +19,21 @@ class Remove extends PureComponent {
     static propTypes = {
         /** Current seed index */
         seedIndex: PropTypes.number.isRequired,
+        /** Set seed state
+         * @param {Array} seeds - Seeds list
+         */
+        setSeeds: PropTypes.func.isRequired,
         /** Current account name */
         accountName: PropTypes.string.isRequired,
+        /** Current vault content */
+        vault: PropTypes.object.isRequired,
         /** Account password */
         password: PropTypes.string.isRequired,
+        /** Remove account
+         * @param {String} accountName - Target account name
+         * @ignore
+         */
+        deleteAccount: PropTypes.func.isRequired,
         /** Browser history object */
         history: PropTypes.object.isRequired,
         /** Create a notification message
@@ -42,14 +55,26 @@ class Remove extends PureComponent {
     };
 
     removeAccount = () => {
-        const { accountName, seedIndex, password, history, t, generateAlert } = this.props;
+        const {
+            accountName,
+            seedIndex,
+            setSeeds,
+            password,
+            vault,
+            history,
+            t,
+            generateAlert,
+            deleteAccount,
+        } = this.props;
 
         try {
-            const vault = getVault(password);
-            delete vault.seeds[seedIndex];
+            const seeds = vault.seeds.filter((seed, index) => index !== seedIndex);
 
-            setVault(password, password, { seeds: vault.seeds });
+            setVault(password, password, { seeds: seeds });
+            setSeeds(seeds);
+
             deleteAccount(accountName);
+
             history.push('/wallet/');
 
             generateAlert('success', t('settings:accountDeleted'), t('settings:accountDeletedExplanation'));
@@ -69,7 +94,9 @@ class Remove extends PureComponent {
 
         return (
             <div>
-                <Button onClick={() => this.setState({ removeConfirm: !removeConfirm })}>{t('settings:reset')}</Button>
+                <Button variant="negative" onClick={() => this.setState({ removeConfirm: !removeConfirm })}>
+                    {t('accountManagement:deleteAccount')}
+                </Button>
                 <Confirm
                     isOpen={removeConfirm}
                     category="negative"
@@ -95,6 +122,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     deleteAccount,
+    setSeeds,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Remove));

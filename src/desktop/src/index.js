@@ -9,7 +9,7 @@ import store, { persistStore } from 'store';
 import Index from 'ui/Index';
 
 const persistConfig = {
-    blacklist: ['wallet', 'polling', 'ui', 'seeds'],
+    blacklist: ['wallet', 'polling', 'ui', 'seeds', 'deepLinks'],
 };
 
 persistStore(store, persistConfig);
