@@ -3,7 +3,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
-import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
+import { resetWallet } from 'iota-wallet-shared-modules/actions/settings';
 import { setFirstUse, set2FAStatus } from 'iota-wallet-shared-modules/actions/accounts';
 import { Navigation } from 'react-native-navigation';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -61,20 +61,20 @@ const styles = StyleSheet.create({
 class Disable2FA extends Component {
     static propTypes = {
         /** Generate a notification alert
-        * @param {String} type - notification type - success, error
-        * @param {String} title - notification title
-        * @param {String} text - notification explanation
-        */
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
-         /** Sets two factor security status
-        * @param {boolean} - status
-        */
+        /** Sets two factor security status
+         * @param {boolean} - status
+         */
         set2FAStatus: PropTypes.func.isRequired,
         /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
