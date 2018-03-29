@@ -1,14 +1,12 @@
 export const DESKTOP_VERSION = '0.1.0';
 
-export const defaultNode = 'http://trinity.iota.fm:80';
+export const defaultNode = 'https://trinity.iota.fm:80';
 export const nodes = [
-    'http://trinity.iota.fm:80',
-    'http://iri2.iota.fm:80',
-    'https://iotanode.us:443',
-    'http://astra2261.startdedicated.net:14265',
-    'http://148.251.181.105:14265',
-    'http://nodes.iota.fm:80',
+    'https://trinity.iota.fm:443',
+    'https://iri2.iota.fm:443',
+    'https://nodes.iota.fm:443',
     'https://field.carriota.com:443',
+    'https://iotanode.us:443',
 ];
 
 export const UPDATE_URL = 'https://trinity-alpha.iota.org/release';
