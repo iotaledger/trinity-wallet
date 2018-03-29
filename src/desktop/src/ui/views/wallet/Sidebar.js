@@ -93,6 +93,9 @@ class Sidebar extends React.PureComponent {
                                     </a>
                                 );
                             })}
+                            <a onClick={() => history.push('/onboarding/seed-intro')}>
+                                + {t('accountManagement:addNewAccount')}
+                            </a>
                         </ul>
                     </div>
                     <NavLink to="/wallet/charts">

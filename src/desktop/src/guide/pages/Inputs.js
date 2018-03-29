@@ -18,7 +18,7 @@ class Inputs extends React.PureComponent {
         return (
             <div>
                 <h1>Input fields</h1>
-                <form>
+                <form style={{ width: '480px' }}>
                     <Select label="Select" defaultValue="en" onChange={() => {}}>
                         <option value="en">English (International)</option>
                         <option value="ar">عربى - Arabic</option>

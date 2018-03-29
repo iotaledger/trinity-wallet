@@ -19,8 +19,11 @@ class SeedVerify extends React.PureComponent {
     static propTypes = {
         /** Current generated seed */
         newSeed: PropTypes.string,
+        /** is news seed generated */
+        isGenerated: PropTypes.boolean,
         /** Accept current generated seed
          * @param {String} seed - New seed
+         * @param {Boolean} isGenerated - Is the new seed generated
          */
         setNewSeed: PropTypes.func.isRequired,
         /** Browser History object */
@@ -60,10 +63,10 @@ class SeedVerify extends React.PureComponent {
             e.preventDefault();
         }
 
-        const { history, setNewSeed, generateAlert, newSeed, t } = this.props;
+        const { history, setNewSeed, generateAlert, newSeed, isGenerated, t } = this.props;
         const { seed } = this.state;
 
-        if (newSeed && seed !== newSeed) {
+        if (isGenerated && seed !== newSeed) {
             generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
             return;
         }
@@ -73,19 +76,22 @@ class SeedVerify extends React.PureComponent {
             return;
         }
 
-        setNewSeed(seed);
+        if (!isGenerated) {
+            setNewSeed(seed, false);
+        }
+
         history.push('/onboarding/account-name');
     };
 
     render() {
-        const { newSeed, t } = this.props;
+        const { isGenerated, t } = this.props;
         const { seed = '' } = this.state;
         return (
             <form onSubmit={(e) => this.setSeed(e)}>
                 <section>
                     <SeedInput seed={seed} onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
                     <Infobox>
-                        {newSeed ? (
+                        {isGenerated ? (
                             <React.Fragment>
                                 <p>
                                     {t('seedReentry:thisIsACheck')}
@@ -106,7 +112,7 @@ class SeedVerify extends React.PureComponent {
                 </section>
                 <footer>
                     <Button
-                        to={`/onboarding/seed-${newSeed ? 'save' : 'intro'}`}
+                        to={`/onboarding/seed-${isGenerated ? 'save' : 'intro'}`}
                         className="inline"
                         variant="secondary"
                     >
@@ -123,6 +129,7 @@ class SeedVerify extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     newSeed: state.seeds.newSeed,
+    isGenerated: state.seeds.isGenerated,
 });
 
 const mapDispatchToProps = {

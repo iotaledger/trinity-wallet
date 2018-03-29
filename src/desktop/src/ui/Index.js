@@ -7,18 +7,24 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 
-import { clearWalletData } from 'actions/wallet';
-import { getUpdateData } from 'actions/settings';
-import { clearSeeds } from 'actions/seeds';
-import { disposeOffAlert } from 'actions/alerts';
+import { parseAddress } from 'libs/iota/utils';
 
-import { generateAlert } from 'actions/alerts';
+import { clearWalletData } from 'actions/wallet';
+import { getUpdateData, updateTheme } from 'actions/settings';
+import { clearSeeds } from 'actions/seeds';
+import { disposeOffAlert, generateAlert } from 'actions/alerts';
+import { sendAmount } from 'actions/deepLinks';
+
+import themes from 'themes/themes';
+
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
 import Updates from 'ui/global/Updates';
+import Idle from 'ui/global/Idle';
+import Feedback from 'ui/global/Feedback';
+
 import Loading from 'ui/components/Loading';
-import { sendAmount } from 'actions/deepLinks';
-import { ADDRESS_LENGTH } from 'libs/util';
+
 import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
@@ -48,6 +54,13 @@ class App extends React.Component {
          * @ignore
          */
         wallet: PropTypes.object.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
         /** Clear  alert state data
          * @ignore
          */
@@ -65,6 +78,16 @@ class App extends React.Component {
          * @ignore
          */
         getUpdateData: PropTypes.func.isRequired,
+        /** Current theme name
+         * @ignore
+         */
+        themeName: PropTypes.string.isRequired,
+        /** Change theme
+         * @param {Object} theme - Theme object
+         * @param {String} name - Theme name
+         * @ignore
+         */
+        updateTheme: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -72,34 +95,6 @@ class App extends React.Component {
         t: PropTypes.func.isRequired,
         sendAmount: PropTypes.func.isRequired,
     };
-
-    componentWillMount() {
-        const { generateAlert, t } = this.props;
-        Electron.onEvent('url-params', (data) => {
-            let regexAddress = /\:\/\/(.*?)\/\?/;
-            let regexAmount = /amount=(.*?)\&/;
-            let regexMessage = /message=([^\n\r]*)/;
-            let address = data.match(regexAddress);
-            if (address !== null) {
-                let amount = data.match(regexAmount);
-                let message = data.match(regexMessage);
-                if (address[1].length !== ADDRESS_LENGTH) {
-                    generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
-                    this.props.sendAmount(0, '', '');
-                } else {
-                    this.setState({
-                        address: address[1],
-                        amount: amount[1],
-                        message: message[1],
-                    });
-                    this.props.sendAmount(this.state.amount, this.state.address, this.state.message);
-                    if (this.props.tempAccount.ready === true) {
-                        this.props.history.push('/wallet/send');
-                    }
-                }
-            }
-        });
-    }
 
     constructor(props) {
         super(props);
@@ -109,8 +104,12 @@ class App extends React.Component {
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
+
+        this.onSetDeepUrl = this.setDeepUrl.bind(this);
+        Electron.onEvent('url-params', this.onSetDeepUrl);
+
         Electron.changeLanguage(this.props.t);
-        Electron.refreshDeepLink();
+        Electron.requestDeepLink();
 
         Electron.getUuid().then((uuid) => {
             this.setState({
@@ -125,8 +124,12 @@ class App extends React.Component {
             i18next.changeLanguage(nextProps.settings.locale);
             Electron.changeLanguage(this.props.t);
         }
+
+        const currentKey = this.props.location.pathname.split('/')[1] || '/';
+
         /* On Login */
-        if (!this.props.wallet.ready && nextProps.wallet.ready) {
+
+        if (!this.props.wallet.ready && nextProps.wallet.ready && currentKey === 'onboarding') {
             Electron.updateMenu('authorised', true);
             this.props.history.push('/wallet/');
         }
@@ -138,10 +141,29 @@ class App extends React.Component {
 
     componentWillUnmount() {
         Electron.removeEvent('menu', this.onMenuToggle);
+        Electron.removeEvent('url-params', this.onSetDeepUrl);
+    }
+
+    setDeepUrl(data) {
+        const { generateAlert, t } = this.props;
+
+        const parsedData = parseAddress(data);
+
+        if (parsedData) {
+            this.props.sendAmount(parsedData.ammount || 0, parsedData.address, parsedData.message || null);
+            if (this.props.wallet.ready === true) {
+                this.props.history.push('/wallet/send');
+            }
+        } else {
+            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+        }
     }
 
     menuToggle(item) {
         switch (item) {
+            case 'feedback':
+                // Is processed in Feedback component
+                break;
             case 'addAccount':
                 this.props.history.push('/onboarding/seed-intro');
                 break;
@@ -160,11 +182,13 @@ class App extends React.Component {
     }
 
     Init = (props) => {
-        return <Loading inline {...props} loop={false} onEnd={() => this.props.history.push('/onboarding/')} />;
+        return (
+            <Loading inline transparent {...props} loop={false} onEnd={() => this.props.history.push('/onboarding/')} />
+        );
     };
 
     render() {
-        const { accounts, location, activationCode } = this.props;
+        const { accounts, location, activationCode, themeName, updateTheme } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
@@ -172,21 +196,27 @@ class App extends React.Component {
             return null;
         }
 
-        // if (!activationCode) {
-        //     return (
-        //         <div className={css.trintiy}>
-        //             <Theme />
-        //             <Alerts />
-        //             <Activation uuid={this.state.uuid} />
-        //         </div>
-        //     );
-        // }
+        if (!activationCode) {
+            //Hotfix: Temporary default theme difference between mobile and desktop
+            if (themeName === 'Default') {
+                updateTheme(themes.Ionic, 'Ionic');
+            }
+            return (
+                <div className={css.trintiy}>
+                    <Theme />
+                    <Alerts />
+                    <Activation uuid={this.state.uuid} />
+                </div>
+            );
+        }
 
         return (
             <div className={css.trintiy}>
+                <Feedback />
                 <Theme />
                 <Alerts />
                 <Updates />
+                <Idle timeout={3 * 60 * 1000} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
@@ -215,6 +245,7 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     deepLinks: state.deepLinks,
     activationCode: state.app.activationCode,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {
@@ -224,6 +255,7 @@ const mapDispatchToProps = {
     getUpdateData,
     disposeOffAlert,
     generateAlert,
+    updateTheme,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(App)));

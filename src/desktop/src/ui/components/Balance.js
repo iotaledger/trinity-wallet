@@ -24,10 +24,10 @@ class Balance extends React.PureComponent {
         const fiatBalance = round(account.balance * marketData.usdPrice / 1000000 * settings.conversionRate).toFixed(2);
 
         return (
-            <div>
-                <strong>{`${formatValue(account.balance).toFixed(3)}${formatUnit(account.balance)}`}</strong>
-                <small>{`${currencySymbol} ${fiatBalance}`}</small>
-            </div>
+            <React.Fragment>
+                <h1>{`${formatValue(account.balance).toFixed(3)}${formatUnit(account.balance)}`}</h1>
+                <h2>{`${currencySymbol} ${fiatBalance}`}</h2>
+            </React.Fragment>
         );
     }
 }
