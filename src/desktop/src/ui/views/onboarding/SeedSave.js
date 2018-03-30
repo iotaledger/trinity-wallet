@@ -39,9 +39,11 @@ class SeedSave extends PureComponent {
                     <div className={classNames(css.seed, css.narrow)}>
                         <QRCode value={seed} size={140} />
                         <div>
-                            {seed.split('').map((letter, index) => {
-                                return <span key={`seed-${index}`}>{letter}</span>;
-                            })}
+                            {seed
+                                ? seed.split('').map((letter, index) => {
+                                      return <span key={`seed-${index}`}>{letter}</span>;
+                                  })
+                                : null}
                         </div>
                     </div>
                     <nav className={css.hideOnPrint}>
