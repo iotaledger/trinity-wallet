@@ -6,6 +6,7 @@ import keys from 'lodash/keys';
 import merge from 'lodash/merge';
 import filter from 'lodash/filter';
 import cloneDeep from 'lodash/cloneDeep';
+import URL from 'url-parse';
 
 export const MAX_SEED_LENGTH = 81;
 
@@ -207,4 +208,65 @@ export const pushScreen = (
             screen,
         });
     }
+};
+
+/**
+ * @typedef {Object} ParsedURL
+ * @property {string} address The parsed address
+ * @property {string} message The parsed message
+ * @property {number} ammount The parsed ammount
+ */
+
+/** Parse an IOTA address input
+ * @param {String} - Input value
+ * @returns {ParsedURL} - The parsed address, message and/or ammmount values
+ */
+export const parseAddress = (input) => {
+    const result = {
+        address: null,
+        message: null,
+        ammount: null,
+    };
+
+    if (!input || typeof input !== 'string') {
+        return null;
+    }
+
+    if (input.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
+        result.address = input;
+        return result;
+    }
+
+    try {
+        let parsed = {
+            address: null,
+            message: null,
+            ammount: null,
+        };
+
+        if (input.toLowerCase().indexOf('iota://') === 0) {
+            const url = new URL(input, true);
+            parsed.address = url.hostname.toUpperCase();
+            parsed.message = url.query.message;
+            parsed.ammount = url.query.ammount;
+        } else {
+            parsed = JSON.parse(input);
+        }
+
+        if (parsed.address.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
+            result.address = parsed.address;
+        } else {
+            return null;
+        }
+        if (parsed.message && typeof parsed.message === 'string') {
+            result.message = parsed.message;
+        }
+        if (parsed.ammount && parsed.ammount === parseInt(parsed.ammount, 10)) {
+            result.ammount = parseInt(parsed.ammount, 10);
+        }
+    } catch (error) {
+        return null;
+    }
+
+    return result;
 };
