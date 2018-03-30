@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class EnterPasswordOnLogin extends Component {
+export class EnterPasswordOnLogin extends Component {
     static propTypes = {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
