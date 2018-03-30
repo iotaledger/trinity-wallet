@@ -43,7 +43,7 @@ const Electron = {
 
     changeLanguage: (t) => {
         ipc.send('menu.language', {
-            about: 'About',
+            about: t('settings:about'),
             checkUpdate: t('checkForUpdates'),
             sendFeedback: 'Send feedback',
             settings: capitalize(t('home:settings')),

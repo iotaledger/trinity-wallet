@@ -94,7 +94,6 @@ class DeleteAccount extends Component {
         deleteAccount: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
         backgroundColor: PropTypes.string.isRequired,
-        currentAccountName: PropTypes.string.isRequired,
         primaryColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
@@ -154,7 +153,7 @@ class DeleteAccount extends Component {
     hideModal = () => this.setState({ isModalVisible: false });
 
     renderModalContent = (borderColor, textColor) => {
-        const { t, backgroundColor, currentAccountName } = this.props;
+        const { t, backgroundColor, selectedAccountName } = this.props;
         return (
             <View
                 style={{
@@ -164,8 +163,11 @@ class DeleteAccount extends Component {
                 }}
             >
                 <View style={[styles.modalContent, borderColor]}>
+                    <Text style={[styles.modalInfoText, { paddingBottom: height / 30 }, textColor]}>
+                        {t('areYouSure')}
+                    </Text>
                     <Text style={[styles.modalInfoText, { paddingBottom: height / 16 }, textColor]}>
-                        {t('areYouSure', { accountName: currentAccountName })}
+                        {selectedAccountName} ?
                     </Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onNoPress()}
@@ -199,10 +201,13 @@ class DeleteAccount extends Component {
                         <View style={{ flex: 0.5 }} />
                         {!this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                <Text style={[styles.infoText, textColor]}>
-                                    {t('areYouSure', { accountName: selectedAccountName })}
-                                </Text>
+                                <View style={{ flex: 0.3 }} />
+                                <Text style={[styles.infoText, textColor]}>{t('areYouSure')}</Text>
+                                <View style={{ flex: 0.25 }} />
+                                <Text style={[styles.infoText, textColor]}>{selectedAccountName} ?</Text>
+                                <View style={{ flex: 0.6 }} />
                                 <Text style={[styles.infoText, textColor]}>{t('yourSeedWillBeRemoved')}</Text>
+                                <View style={{ flex: 0.25 }} />
                                 <Text style={[styles.warningText, { color: primaryColor }]}>{t('thisAction')}</Text>
                             </View>
                         )}
@@ -258,7 +263,6 @@ class DeleteAccount extends Component {
                         style={{ alignItems: 'center' }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                        useNativeDriver
                         hideModalContentWhileAnimating
                     >
                         {this.renderModalContent(borderColor, textColor)}
