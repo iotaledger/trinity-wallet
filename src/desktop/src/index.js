@@ -5,6 +5,7 @@ import { Provider as Redux } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router';
 import i18next from 'libs/i18next';
 import store, { persistStore } from 'store';
+import { changeIotaNode } from 'libs/iota';
 
 import Index from 'ui/Index';
 
@@ -12,7 +13,10 @@ const persistConfig = {
     blacklist: ['tempAccount', 'polling', 'ui', 'seeds', 'deepLinks'],
 };
 
-persistStore(store, persistConfig);
+persistStore(store, persistConfig, (err, restoredState) => {
+    const { settings: { fullNode } } = restoredState;
+    changeIotaNode(fullNode);
+});
 
 render(
     <Redux store={store}>
