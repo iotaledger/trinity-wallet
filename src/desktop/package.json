@@ -2,10 +2,10 @@
     "name": "iota-desktop-wallet",
     "productName": "Trinity",
     "version": "0.1.0",
-    "url": "https://trinity-alpha.iota.org",
+    "homepage": "https://trinity-alpha.iota.org",
     "description": "IOTA desktop wallet",
     "main": "main.js",
-    "author": "IOTA Foundation",
+    "author": "IOTA Foundation <contact@iota.org>",
     "moduleRoots": [
         ".",
         "src",
