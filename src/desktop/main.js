@@ -41,8 +41,6 @@ function createWindow() {
     windows.main = new BrowserWindow({
         width: 1024,
         height: 768,
-        maxWidth: 1280,
-        maxHeight: 860,
         minWidth: 500,
         minHeight: 720,
         titleBarStyle: 'hidden',
