@@ -145,4 +145,35 @@ describe('Testing CustomTextInput component', () => {
             });
         });
     });
+
+    describe('instance methods', () => {
+        describe('when called', () => {
+            describe('#onFocus', () => {
+                it('should set state prop "isFocused" to true', () => {
+                    const props = getProps();
+
+                    const wrapper = shallow(<CustomTextInput {...props} />);
+                    const instance = wrapper.instance();
+
+                    expect(wrapper.state().isFocused).toEqual(false);
+                    instance.onFocus();
+                    expect(wrapper.state().isFocused).toEqual(true);
+                });
+            });
+
+            describe('#onBlur', () => {
+                it('should set state prop "isFocused" to false', () => {
+                    const props = getProps();
+
+                    const wrapper = shallow(<CustomTextInput {...props} />);
+                    wrapper.setState({ isFocused: true });
+
+                    const instance = wrapper.instance();
+
+                    instance.onBlur();
+                    expect(wrapper.state().isFocused).toEqual(false);
+                });
+            });
+        });
+    });
 });
