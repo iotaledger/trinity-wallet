@@ -18,7 +18,7 @@ class AccountName extends React.PureComponent {
         /** Current seed count */
         seedCount: PropTypes.number.isRequired,
         /** is news seed generated */
-        isGenerated: PropTypes.boolean,
+        isGenerated: PropTypes.bool,
         /** Set new seed name */
         setNewSeedName: PropTypes.func.isRequired,
         /** Browser history object */
