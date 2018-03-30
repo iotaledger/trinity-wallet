@@ -44,9 +44,16 @@ export default class AddressInput extends React.PureComponent {
 
     onChange = (value) => {
         value = value.replace(/,/g, '.');
+
+        if (this.state.unit === 'i' && value.indexOf('.') > -1) {
+            return;
+        }
+
         const trailingDot = value[value.length - 1] === '.' && value.match(/^\d+(\.\d{0,20})?$/g) ? '.' : '';
         value =
-            !value.length || value.match(/^\d+(\.\d{0,20})?$/g) ? value * this.getUnitMultiplier() : this.props.amount;
+            !value.length || value.match(/^\d+(\.\d{0,20})?$/g)
+                ? round(value * this.getUnitMultiplier())
+                : this.props.amount;
 
         this.props.onChange(value + trailingDot);
     };
@@ -133,7 +140,10 @@ export default class AddressInput extends React.PureComponent {
                     </a>
                     <input
                         type="text"
-                        value={amount / this.getUnitMultiplier() + (amount[amount.length - 1] === '.' ? '.' : '')}
+                        value={
+                            round(amount / this.getUnitMultiplier() * 1000000) / 1000000 +
+                            (amount[amount.length - 1] === '.' ? '.' : '')
+                        }
                         onChange={(e) => this.onChange(e.target.value)}
                     />
                     <small>{label}</small>

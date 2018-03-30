@@ -59,7 +59,7 @@ class Send extends React.PureComponent {
 
     state = {
         address: '',
-        amount: 0,
+        amount: '',
         message: '',
         isModalVisible: false,
     };
