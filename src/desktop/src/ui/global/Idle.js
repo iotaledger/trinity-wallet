@@ -98,7 +98,7 @@ class Idle extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    isAuthorised: state.tempAccount.ready,
+    isAuthorised: state.wallet.ready,
 });
 
 const mapDispatchToProps = {
