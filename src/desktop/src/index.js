@@ -10,7 +10,10 @@ import createPlugin from 'bugsnag-react';
 
 import Index from 'ui/Index';
 
-export const bugsnagClient = bugsnag('53981ba998df346f6377ebbeb1da46d3');
+export const bugsnagClient = bugsnag({
+    apiKey: '53981ba998df346f6377ebbeb1da46d3',
+    appVersion: '0.1.0',
+});
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 
 const persistConfig = {
