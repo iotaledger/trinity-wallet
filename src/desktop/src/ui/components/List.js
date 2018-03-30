@@ -59,12 +59,11 @@ class List extends React.PureComponent {
 
         const filters = ['All', 'Sent', 'Received', 'Pending'];
 
-        const activeTransfers = currentItem ? transfers[parseInt(currentItem)] : null;
-        const activeTransfer = activeTransfers ? activeTransfers[0] : null;
-
         const formattedTx =
             transfers && transfers.length ? transfers.map((transfer) => getRelevantTransfer(transfer, addresses)) : [];
         const historyTx = orderBy(formattedTx, 'timestamp', ['desc']);
+
+        const activeTransfer = currentItem ? historyTx.filter((tx) => tx.hash === currentItem)[0] : null;
 
         return (
             <React.Fragment>
@@ -108,10 +107,10 @@ class List extends React.PureComponent {
                             return (
                                 <a
                                     key={key}
-                                    onClick={() => setItem(key)}
+                                    onClick={() => setItem(transfer.hash)}
                                     className={classNames(
-                                        isReceived ? css.received : css.sent,
                                         isConfirmed ? css.confirmed : css.pending,
+                                        isReceived ? css.received : css.sent,
                                     )}
                                 >
                                     <div>
@@ -131,66 +130,48 @@ class List extends React.PureComponent {
                         <p className={css.empty}>No recent history</p>
                     )}
                 </div>
-                {activeTransfer !== null ? (
-                    <Modal isOpen onClose={() => setItem(null)}>
-                        <div className={css.historyItem}>
-                            <header
-                                className={classNames(
-                                    addresses.includes(activeTransfer.address) ? css.received : css.sent,
-                                    activeTransfer.persistence ? css.confirmed : css.pending,
-                                )}
-                            >
-                                <p>
-                                    <strong>
-                                        {!activeTransfer.persistence
-                                            ? t('pending')
-                                            : addresses.includes(activeTransfer.address) ? t('received') : t('sent')}
-                                    </strong>{' '}
-                                    <span>{`${round(formatValue(activeTransfer.value))} ${formatUnit(
-                                        activeTransfer.value,
-                                    )}`}</span>
-                                </p>
-                                <small>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</small>
-                            </header>
-                            <h6>Bundle Hash:</h6>
+                <div className={classNames(css.popup, activeTransfer ? css.on : null)} onClick={() => setItem(null)}>
+                    {activeTransfer ? (
+                        <div
+                            className={classNames(
+                                addresses.includes(activeTransfer.address) ? css.received : css.sent,
+                                activeTransfer.persistence ? css.confirmed : css.pending,
+                            )}
+                        >
                             <p>
+                                <strong>
+                                    {addresses.includes(activeTransfer.address)
+                                        ? t('history:receive')
+                                        : t('history:send')}
+                                    <span>
+                                        {' '}
+                                        {`${round(formatValue(activeTransfer.value))} ${formatUnit(
+                                            activeTransfer.value,
+                                        )}`}
+                                    </span>
+                                </strong>
+                                <small>
+                                    {!activeTransfer.persistence
+                                        ? t('pending')
+                                        : addresses.includes(activeTransfer.address) ? t('received') : t('sent')}
+                                    <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
+                                </small>
+                            </p>
+                            <h6>Bundle Hash:</h6>
+                            <p className={css.hash}>
                                 <Clipboard
                                     text={activeTransfer.bundle}
                                     title={t('history:bundleHashCopied')}
                                     success={t('history:bundleHashCopiedExplanation')}
                                 />
                             </p>
-                            <h6>Addresses</h6>
-                            <div className={css.scroll}>
-                                <ul>
-                                    {activeTransfers.map((tx, key) => {
-                                        return (
-                                            <li key={key}>
-                                                <p>
-                                                    <Clipboard
-                                                        text={tx.address}
-                                                        title={t('history:addressCopied')}
-                                                        success={t('history:addressCopiedExplanation')}
-                                                    />
-                                                </p>
-                                                <strong>{`${round(formatValue(tx.value))} ${formatUnit(
-                                                    tx.value,
-                                                )}`}</strong>
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
-                            </div>
-                            <h6>Message</h6>
-                            <p>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</p>
-                            <footer>
-                                <Button onClick={() => setItem(null)} variant="primary">
-                                    {t('back')}
-                                </Button>
-                            </footer>
+                            <p>
+                                <strong>{t('send:message')}</strong>
+                                <span>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</span>
+                            </p>
                         </div>
-                    </Modal>
-                ) : null}
+                    ) : null}
+                </div>
             </React.Fragment>
         );
     }
