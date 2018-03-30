@@ -72,15 +72,15 @@ class AddCustomNode extends Component {
          * @param {string} node
          */
         setFullNode: PropTypes.func.isRequired,
-         /** Change current setting
+        /** Change current setting
          * @param {string} setting
          */
         setSetting: PropTypes.func.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
-         /** Generate a notification alert
+        /** Generate a notification alert
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
          * @param {String} text - notification explanation
@@ -118,9 +118,23 @@ class AddCustomNode extends Component {
         return this.props.generateAlert('error', 'Duplicate node', 'The custom node is already listed.');
     }
 
+    onAddHttpNodeError() {
+        return this.props.generateAlert(
+            'error',
+            'Custom node could not be added',
+            'Trinity Mobile only supports https nodes.',
+        );
+    }
+
     setNode(selectedNode) {
         changeIotaNode(selectedNode);
         this.props.setFullNode(selectedNode);
+
+        return this.props.generateAlert(
+            'success',
+            'Successfully changed node',
+            `The node was changed to ${selectedNode}.`,
+        );
     }
 
     addNode() {
@@ -130,6 +144,10 @@ class AddCustomNode extends Component {
 
         if (!customNode.startsWith('http')) {
             return this.onAddNodeError();
+        }
+
+        if (customNode.startsWith('http://')) {
+            return this.onAddHttpNodeError();
         }
 
         if (!nodes.includes(customNode.replace(/ /g, ''))) {
