@@ -8,7 +8,7 @@ import { Navigation } from 'react-native-navigation';
 import i18next from 'i18next';
 import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { setSetting, clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
-import LogoutConfirmationModal from '../components/LogoutConfirmationModal';
+import LogoutConfirmationModalComponent from '../components/LogoutConfirmationModal';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons';
 
@@ -91,8 +91,8 @@ export class MainSettings extends Component {
          */
         setSetting: PropTypes.func.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Clears wallet reducer data */
         clearWalletData: PropTypes.func.isRequired,
@@ -148,7 +148,7 @@ export class MainSettings extends Component {
         const bodyColor = body.color;
 
         return (
-            <LogoutConfirmationModal
+            <LogoutConfirmationModalComponent
                 style={{ flex: 1 }}
                 hideModal={this.toggleModalDisplay}
                 logout={this.logout}
@@ -243,9 +243,7 @@ export class MainSettings extends Component {
                     >
                         <View style={styles.item}>
                             <Icon name="user" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>
-                                {t('accountManagement')}
-                            </Text>
+                            <Text style={[styles.titleText, textColor]}>{t('accountManagement')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -256,9 +254,7 @@ export class MainSettings extends Component {
                     >
                         <View style={styles.item}>
                             <Icon name="password" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>
-                                {t('changePassword')}
-                            </Text>
+                            <Text style={[styles.titleText, textColor]}>{t('changePassword')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -269,9 +265,7 @@ export class MainSettings extends Component {
                     >
                         <View style={styles.item}>
                             <Icon name="security" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>
-                                {t('securitySettings')}
-                            </Text>
+                            <Text style={[styles.titleText, textColor]}>{t('securitySettings')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -326,7 +320,7 @@ const mapStateToProps = (state) => ({
     mode: state.settings.mode,
     currency: state.settings.currency,
     themeName: state.settings.themeName,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {
