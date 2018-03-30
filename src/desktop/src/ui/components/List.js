@@ -131,46 +131,48 @@ class List extends React.PureComponent {
                     )}
                 </div>
                 <div className={classNames(css.popup, activeTransfer ? css.on : null)} onClick={() => setItem(null)}>
-                    {activeTransfer ? (
-                        <div
-                            className={classNames(
-                                addresses.includes(activeTransfer.address) ? css.received : css.sent,
-                                activeTransfer.persistence ? css.confirmed : css.pending,
-                            )}
-                        >
-                            <p>
-                                <strong>
-                                    {addresses.includes(activeTransfer.address)
-                                        ? t('history:receive')
-                                        : t('history:send')}
-                                    <span>
-                                        {' '}
-                                        {`${round(formatValue(activeTransfer.value))} ${formatUnit(
-                                            activeTransfer.value,
-                                        )}`}
-                                    </span>
-                                </strong>
-                                <small>
-                                    {!activeTransfer.persistence
-                                        ? t('pending')
-                                        : addresses.includes(activeTransfer.address) ? t('received') : t('sent')}
-                                    <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
-                                </small>
-                            </p>
-                            <h6>Bundle Hash:</h6>
-                            <p className={css.hash}>
-                                <Clipboard
-                                    text={activeTransfer.bundle}
-                                    title={t('history:bundleHashCopied')}
-                                    success={t('history:bundleHashCopiedExplanation')}
-                                />
-                            </p>
-                            <p>
-                                <strong>{t('send:message')}</strong>
-                                <span>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</span>
-                            </p>
-                        </div>
-                    ) : null}
+                    <div>
+                        {activeTransfer ? (
+                            <div
+                                className={classNames(
+                                    addresses.includes(activeTransfer.address) ? css.received : css.sent,
+                                    activeTransfer.persistence ? css.confirmed : css.pending,
+                                )}
+                            >
+                                <p>
+                                    <strong>
+                                        {addresses.includes(activeTransfer.address)
+                                            ? t('history:receive')
+                                            : t('history:send')}
+                                        <span>
+                                            {' '}
+                                            {`${round(formatValue(activeTransfer.value))} ${formatUnit(
+                                                activeTransfer.value,
+                                            )}`}
+                                        </span>
+                                    </strong>
+                                    <small>
+                                        {!activeTransfer.persistence
+                                            ? t('pending')
+                                            : addresses.includes(activeTransfer.address) ? t('received') : t('sent')}
+                                        <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
+                                    </small>
+                                </p>
+                                <h6>Bundle Hash:</h6>
+                                <p className={css.hash}>
+                                    <Clipboard
+                                        text={activeTransfer.bundle}
+                                        title={t('history:bundleHashCopied')}
+                                        success={t('history:bundleHashCopiedExplanation')}
+                                    />
+                                </p>
+                                <p>
+                                    <strong>{t('send:message')}</strong>
+                                    <span>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</span>
+                                </p>
+                            </div>
+                        ) : null}
+                    </div>
                 </div>
             </React.Fragment>
         );
