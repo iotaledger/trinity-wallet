@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import React from 'react';
 import { render } from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
@@ -14,8 +15,11 @@ const persistConfig = {
 };
 
 persistStore(store, persistConfig, (err, restoredState) => {
-    const { settings: { fullNode } } = restoredState;
-    changeIotaNode(fullNode);
+    const node = get(restoredState, 'settings.fullNode');
+
+    if (node) {
+        changeIotaNode(node);
+    }
 });
 
 render(
