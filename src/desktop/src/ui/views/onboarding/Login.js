@@ -73,7 +73,6 @@ class Login extends React.Component {
     };
 
     state = {
-        loading: false,
         verifyTwoFA: false,
         code: '',
         password: '',
@@ -90,19 +89,6 @@ class Login extends React.Component {
         } else {
             this.props.clearTempData();
             this.props.clearSeeds();
-        }
-    }
-
-    componentWillReceiveProps(newProps) {
-        const { tempAccount } = this.props;
-
-        const hasError =
-            !tempAccount.hasErrorFetchingAccountInfoOnLogin && newProps.tempAccount.hasErrorFetchingAccountInfoOnLogin;
-
-        if (hasError) {
-            this.setState({
-                loading: false,
-            });
         }
     }
 
@@ -163,7 +149,7 @@ class Login extends React.Component {
             const seed = vault.seeds[tempAccount.seedIndex];
 
             this.setState({
-                loading: true,
+                password: '',
             });
 
             this.setupAccount(seed);
@@ -172,9 +158,9 @@ class Login extends React.Component {
 
     render() {
         const { t, account, tempAccount } = this.props;
-        const { loading, verifyTwoFA, code } = this.state;
+        const { verifyTwoFA, code } = this.state;
 
-        if (loading || tempAccount.addingAdditionalAccount) {
+        if (tempAccount.isFetchingLatestAccountInfoOnLogin || tempAccount.addingAdditionalAccount) {
             return (
                 <Loading
                     loop
