@@ -15,7 +15,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import NodeSelection from './NodeSelection';
-import EnterPasswordOnLogin from '../components/EnterPasswordOnLogin';
+import EnterPasswordOnLoginComponent from '../components/EnterPasswordOnLogin';
 import Enter2FA from '../components/Enter2FA';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, logTwoFa } from '../utils/keychain';
@@ -58,10 +58,10 @@ class Login extends Component {
          */
         setPassword: PropTypes.func.isRequired,
         /** Generate a notification alert
-        * @param {string} type - notification type - success, error
-        * @param {string} title - notification title
-        * @param {string} text - notification explanation
-        */
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
@@ -72,10 +72,10 @@ class Login extends Component {
          */
         setUserActivity: PropTypes.func.isRequired,
         /** Migrate application state
-        * @param {object} versions - app version number and version name
-        * @param {object} persistConfig - redux persist configuration object
-        * @param {object} persistor - refux persist persistor instance
-        */
+         * @param {object} versions - app version number and version name
+         * @param {object} persistConfig - redux persist configuration object
+         * @param {object} persistor - refux persist persistor instance
+         */
         migrate: PropTypes.func.isRequired,
         /** Set password
          * @param {string} password
@@ -90,8 +90,8 @@ class Login extends Component {
          */
         setFullNode: PropTypes.func.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
@@ -212,7 +212,7 @@ class Login extends Component {
                 <DynamicStatusBar backgroundColor={body.bg} />
                 {!this.state.changingNode &&
                     !this.state.completing2FA && (
-                        <EnterPasswordOnLogin
+                        <EnterPasswordOnLoginComponent
                             theme={theme}
                             onLoginPress={this.onLoginPress}
                             navigateToNodeSelection={this.navigateToNodeSelection}
@@ -222,11 +222,7 @@ class Login extends Component {
                     )}
                 {!this.state.changingNode &&
                     this.state.completing2FA && (
-                        <Enter2FA
-                            verify={this.onComplete2FA}
-                            cancel={this.onBackPress}
-                            theme={theme}
-                        />
+                        <Enter2FA verify={this.onComplete2FA} cancel={this.onBackPress} theme={theme} />
                     )}
                 {this.state.changingNode && (
                     <View>
