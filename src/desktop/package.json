@@ -2,10 +2,10 @@
     "name": "iota-desktop-wallet",
     "productName": "Trinity",
     "version": "0.1.0",
-    "url": "https://gitlab.com/iota-community/wallet",
+    "homepage": "https://trinity-alpha.iota.org",
     "description": "IOTA desktop wallet",
     "main": "main.js",
-    "author": "IOTA Foundation",
+    "author": "IOTA Foundation <contact@iota.org>",
     "moduleRoots": [
         ".",
         "src",
@@ -20,7 +20,7 @@
         "build:styleguide": "rm -rf ./dist && cross-env NODE_ENV=production BUILD_TARGET=styleguide webpack --env=production --config webpack.config",
         "compile": "npm run compile:linux && npm run compile:mac && npm run compile:win",
         "compile:linux": "npm run build && electron-builder --linux --x64 --ia32",
-        "compile:mac": "npm run build && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false && electron-builder --mac --x64",
+        "compile:mac": "npm run build && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --x64",
         "compile:win": "npm run build && electron-builder --win --x64 --ia32",
         "compile:win64": "npm run build && electron-builder --win --x64",
         "compile:win32": "npm run build && electron-builder --win --x32"
@@ -73,6 +73,7 @@
     },
     "build": {
         "productName": "Trinity",
+        "copyright": "IOTA Foundation",
         "directories": {
             "buildResources": "./assets",
             "output": "./out"
@@ -88,18 +89,18 @@
             }
         ],
         "dmg": {
-            "iconSize": 125,
+            "iconSize": 120,
             "title": "${productName}",
             "contents": [
                 {
-                    "x": 235,
-                    "y": 290,
+                    "x": 520,
+                    "y": 250,
                     "type": "link",
                     "path": "/Applications"
                 },
                 {
-                    "x": 235,
-                    "y": 20,
+                    "x": 170,
+                    "y": 250,
                     "type": "file"
                 }
             ]
@@ -124,6 +125,7 @@
         "bugsnag-js": "^4.4.0",
         "bugsnag-react": "^1.0.1",
         "curl.lib.js": "^1.0.22",
+        "date-fns": "^1.29.0",
         "electron-settings": "^3.1.4",
         "machine-uuid": "^1.2.0",
         "react-lottie": "^1.0.0",

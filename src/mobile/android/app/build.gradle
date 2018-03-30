@@ -91,14 +91,6 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = true
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'key0'
-            keyPassword 'frankisg0d'
-            storeFile file('/Users/charlie/Desktop/Untitled')
-            storePassword 'frankisg0d'
-        }
-    }
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {

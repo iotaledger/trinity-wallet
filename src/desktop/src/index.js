@@ -17,7 +17,7 @@ export const bugsnagClient = bugsnag({
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 
 const persistConfig = {
-    blacklist: ['tempAccount', 'polling', 'ui', 'seeds'],
+    blacklist: ['tempAccount', 'polling', 'ui', 'seeds', 'deepLinks'],
 };
 
 persistStore(store, persistConfig);

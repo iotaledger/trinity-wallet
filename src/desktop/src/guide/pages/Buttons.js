@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'ui/components/Button';
 import css from './buttons.css';
 
-const variants = ['primary', 'secondary', 'positive', 'negative', 'extra', 'highlight'];
+const variants = ['primary', 'secondary', 'positive', 'negative', 'extra'];
 
 class Buttons extends React.PureComponent {
     state = {};
