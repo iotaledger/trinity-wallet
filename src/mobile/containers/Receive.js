@@ -220,6 +220,9 @@ class Receive extends Component {
     getQrOpacity() {
         const { receiveAddress } = this.props;
         if (receiveAddress === ' ') {
+            if (isAndroid) {
+                return 0.01;
+            }
             return 0.1;
         }
 

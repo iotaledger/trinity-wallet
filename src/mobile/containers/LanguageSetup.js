@@ -5,6 +5,7 @@ import { translate } from 'react-i18next';
 import i18next from 'i18next';
 import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
+import { setLanguage } from 'iota-wallet-shared-modules/actions/settings';
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import { detectLocale, selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { connect } from 'react-redux';
@@ -66,18 +67,18 @@ const defaultLanguageLabel = selectLocale(defaultLocale);
 class LanguageSetup extends Component {
     static propTypes = {
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Theme settings */
-        theme: PropTypes.object.isRequired
+        theme: PropTypes.object.isRequired,
+        /** Change selected language
+         * @param {string} language
+         */
+        setLanguage: PropTypes.func.isRequired,
     };
-
-    static clickDropdownItem(languageLabel) {
-        i18next.changeLanguage(getLocaleFromLabel(languageLabel));
-    }
 
     componentWillMount() {
         i18next.changeLanguage(defaultLocale);
@@ -96,6 +97,11 @@ class LanguageSetup extends Component {
             },
             animated: false,
         });
+    }
+
+    clickDropdownItem(language) {
+        i18next.changeLanguage(getLocaleFromLabel(language));
+        this.props.setLanguage(language);
     }
 
     render() {
@@ -126,7 +132,7 @@ class LanguageSetup extends Component {
                                 dropdownWidth={{ width: width / 1.5 }}
                                 defaultOption={defaultLanguageLabel}
                                 options={I18N_LOCALE_LABELS}
-                                saveSelection={(language) => LanguageSetup.clickDropdownItem(language)}
+                                saveSelection={(language) => this.clickDropdownItem(language)}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -144,11 +150,12 @@ class LanguageSetup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {
-    setSetting
+    setSetting,
+    setLanguage,
 };
 
 export default WithBackPressCloseApp()(

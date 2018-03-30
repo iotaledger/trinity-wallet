@@ -20,18 +20,23 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 20,
     },
     textContainer: {
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'center',
     },
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
-        fontSize: width / 31.8,
+        fontSize: width / 29.6,
     },
     regularText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
-        fontSize: width / 31.8,
+        fontSize: width / 29.6,
+    },
+    boldText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 25.9,
     },
     middleText: {
         backgroundColor: 'transparent',
@@ -41,15 +46,13 @@ const styles = StyleSheet.create({
     },
     addressText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 31.8,
-        marginBottom: height / 30,
-        marginTop: height / 70,
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 21.8,
     },
     iotaText: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 27.6,
+        fontSize: width / 25.9,
     },
 });
 
@@ -78,6 +81,8 @@ class TransferConfirmationModal extends Component {
         /** Transaction value as a string */
         amount: PropTypes.string.isRequired,
         body: PropTypes.object.isRequired,
+        /** Name for selected account */
+        selectedAccountName: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -108,7 +113,7 @@ class TransferConfirmationModal extends Component {
     }
 
     render() {
-        const { t, body, textColor, borderColor, value, conversionText, amount } = this.props;
+        const { t, body, textColor, borderColor, value, conversionText, amount, selectedAccountName } = this.props;
         // TODO: fix this using trans component
 
         /*
@@ -143,16 +148,42 @@ class TransferConfirmationModal extends Component {
         return (
             <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: body.bg }}>
                 <View style={[styles.modalContent, borderColor]}>
-                    <View style={styles.textContainer}>
-                        <Text style={[styles.text, textColor]}>
-                            <Text style={[styles.regularText, textColor]}>
-                                You are about to send {transferContents} to
+                    {(value !== 0 && (
+                        <View style={styles.textContainer}>
+                            <Text style={[styles.text, textColor, { paddingTop: height / 50 }]}>
+                                <Text style={[styles.regularText, textColor]}>
+                                    You are about to send {transferContents} from
+                                </Text>
                             </Text>
-                        </Text>
-                        <Text numberOfLines={3} style={[styles.addressText, textColor]}>
-                            {this.props.address}
-                        </Text>
-                    </View>
+                            <Text style={[styles.boldText, textColor, { paddingTop: height / 25 }]}>
+                                {selectedAccountName}
+                            </Text>
+                            <Text style={[styles.regularText, textColor, { paddingTop: height / 90 }]}>to</Text>
+                            <Text style={[styles.addressText, textColor, { marginTop: height / 70 }]}>
+                                {this.props.address.substring(0, 30)}
+                            </Text>
+                            <Text style={[styles.addressText, textColor]}>{this.props.address.substring(30, 60)}</Text>
+                            <Text style={[styles.addressText, textColor, { marginBottom: height / 18 }]}>
+                                {this.props.address.substring(60, 90)}
+                            </Text>
+                        </View>
+                    )) || (
+                        <View style={styles.textContainer}>
+                            <Text style={[styles.text, textColor, { paddingTop: height / 50 }]}>
+                                <Text style={[styles.regularText, textColor]}>
+                                    You are about to send {transferContents}
+                                </Text>
+                            </Text>
+                            <Text style={[styles.regularText, textColor, { paddingTop: height / 90 }]}>to</Text>
+                            <Text style={[styles.addressText, textColor, { marginTop: height / 70 }]}>
+                                {this.props.address.substring(0, 30)}
+                            </Text>
+                            <Text style={[styles.addressText, textColor]}>{this.props.address.substring(30, 60)}</Text>
+                            <Text style={[styles.addressText, textColor, { marginBottom: height / 18 }]}>
+                                {this.props.address.substring(60, 90)}
+                            </Text>
+                        </View>
+                    )}
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.hideModal()}
                         onRightButtonPress={() => this.onSendPress()}

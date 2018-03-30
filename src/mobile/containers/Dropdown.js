@@ -119,16 +119,16 @@ export class Dropdown extends Component {
         /** Determines whether to render a background */
         background: PropTypes.bool,
         /** Theme settings */
-        theme: PropTypes.object.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
         shadow: false,
         disableWhen: false,
-        onRef: () => { },
+        onRef: () => {},
         defaultOption: '',
         background: false,
-        saveSelection: () => { },
+        saveSelection: () => {},
         title: '',
         dropdownWidth: { width: width / 1.2 },
     };
@@ -234,7 +234,7 @@ export class Dropdown extends Component {
                     }}
                 >
                     <View style={[styles.dropdownContainer, dropdownWidth]}>
-                        <View style={[styles.dropdownInnerContainer, shadowColor]}>
+                        <View style={[styles.dropdownInnerContainer, shadowColor, backgroundColor]}>
                             <ListView
                                 dataSource={ds.cloneWithRows(options)}
                                 renderRow={(rowData, sectionId, rowId) => {
@@ -278,7 +278,11 @@ export class Dropdown extends Component {
                                             >
                                                 <Text
                                                     numberOfLines={1}
-                                                    style={[styles.dropdownItem, dropdownWidth, { color: theme.body.color }]}
+                                                    style={[
+                                                        styles.dropdownItem,
+                                                        dropdownWidth,
+                                                        { color: theme.body.color },
+                                                    ]}
                                                 >
                                                     {rowData}
                                                 </Text>
@@ -298,7 +302,7 @@ export class Dropdown extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 export default connect(mapStateToProps)(Dropdown);

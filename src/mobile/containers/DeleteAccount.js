@@ -98,18 +98,18 @@ const styles = StyleSheet.create({
 class DeleteAccount extends Component {
     static propTypes = {
         /** Change current setting
-        * @param {string} setting
-        */
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
         /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
         /** Removes account and associated information
-        * @param {string} accountName
-        */
+         * @param {string} accountName
+         */
         deleteAccount: PropTypes.func.isRequired,
         /** Translation helper
-       * @param {string} translationString - locale string identifier to be translated
-       */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
@@ -203,8 +203,11 @@ class DeleteAccount extends Component {
                 }}
             >
                 <View style={[styles.modalContent, borderColor]}>
+                    <Text style={[styles.modalInfoText, { paddingBottom: height / 30 }, textColor]}>
+                        {t('areYouSure')}
+                    </Text>
                     <Text style={[styles.modalInfoText, { paddingBottom: height / 16 }, textColor]}>
-                        {t('areYouSure', { accountName: selectedAccountName })}
+                        {selectedAccountName} ?
                     </Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onNoPress()}
@@ -220,11 +223,7 @@ class DeleteAccount extends Component {
     };
 
     render() {
-        const {
-            t,
-            theme,
-            selectedAccountName,
-        } = this.props;
+        const { t, theme, selectedAccountName } = this.props;
 
         const primaryColor = theme.primary.color;
         const textColor = { color: theme.body.color };
@@ -239,10 +238,13 @@ class DeleteAccount extends Component {
                         <View style={{ flex: 0.5 }} />
                         {!this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                <Text style={[styles.infoText, textColor]}>
-                                    {t('areYouSure', { accountName: selectedAccountName })}
-                                </Text>
+                                <View style={{ flex: 0.3 }} />
+                                <Text style={[styles.infoText, textColor]}>{t('areYouSure')}</Text>
+                                <View style={{ flex: 0.25 }} />
+                                <Text style={[styles.infoText, textColor]}>{selectedAccountName} ?</Text>
+                                <View style={{ flex: 0.6 }} />
                                 <Text style={[styles.infoText, textColor]}>{t('yourSeedWillBeRemoved')}</Text>
+                                <View style={{ flex: 0.25 }} />
                                 <Text style={[styles.warningText, { color: primaryColor }]}>{t('thisAction')}</Text>
                             </View>
                         )}
@@ -298,7 +300,6 @@ class DeleteAccount extends Component {
                         style={{ alignItems: 'center' }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                        useNativeDriver
                         hideModalContentWhileAnimating
                     >
                         {this.renderModalContent(borderColor, textColor)}
@@ -314,7 +315,7 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     isPromoting: state.polling.isPromoting,
     selectedAccountName: getSelectedAccountName(state),
-    shouldPreventAction: shouldPreventAction(state)
+    shouldPreventAction: shouldPreventAction(state),
 });
 
 const mapDispatchToProps = {
