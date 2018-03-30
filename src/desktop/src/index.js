@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import bugsnag from 'bugsnag-js';
 import React from 'react';
 import { render } from 'react-dom';
@@ -22,8 +23,11 @@ const persistConfig = {
 };
 
 persistStore(store, persistConfig, (err, restoredState) => {
-    const { settings: { fullNode } } = restoredState;
-    changeIotaNode(fullNode);
+    const node = get(restoredState, 'settings.fullNode');
+
+    if (node) {
+        changeIotaNode(node);
+    }
 });
 
 render(
