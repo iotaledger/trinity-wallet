@@ -30,7 +30,11 @@ import {
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
-import { VALID_ADDRESS_WITH_CHECKSUM_REGEX, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/iota';
+import {
+    VALID_ADDRESS_WITH_CHECKSUM_REGEX,
+    VALID_SEED_REGEX,
+    ADDRESS_LENGTH,
+} from 'iota-wallet-shared-modules/libs/iota';
 import { getBalanceForSelectedAccount, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -221,7 +225,7 @@ export class Send extends Component {
     }
 
     onDenominationPress() {
-        const { body, denomination } = this.props;
+        const { t, body, denomination } = this.props;
         const { currencySymbol } = this.state;
         const availableDenominations = ['i', 'Ki', 'Mi', 'Gi', 'Ti', currencySymbol];
         const indexOfDenomination = availableDenominations.indexOf(denomination);
@@ -235,6 +239,7 @@ export class Send extends Component {
         this.setState({
             maxPressed: false,
             maxColor: body.color,
+            maxText: t('send:sendMax'),
         });
     }
 
@@ -355,7 +360,7 @@ export class Send extends Component {
 
     setModalContent(selectedSetting) {
         let modalContent;
-        const { bar, body, primary, address, amount } = this.props;
+        const { bar, body, primary, address, amount, selectedAccountName } = this.props;
 
         switch (selectedSetting) {
             case 'qrScanner':
@@ -381,6 +386,7 @@ export class Send extends Component {
                         borderColor={{ borderColor: body.color }}
                         textColor={{ color: body.color }}
                         setSendingTransferFlag={() => this.setSendingTransferFlag()}
+                        selectedAccountName={selectedAccountName}
                     />
                 );
                 break;
@@ -472,7 +478,7 @@ export class Send extends Component {
         return conversionText;
     }
 
-    getOpacity() {
+    getSendMaxOpacity() {
         const { balance } = this.props;
         if (balance === 0) {
             return 0.2;
@@ -649,7 +655,8 @@ export class Send extends Component {
         const textColor = { color: body.color };
         const conversionText =
             denomination === currencySymbol ? this.getConversionTextFiat() : this.getConversionTextIota();
-        const opacity = this.getOpacity();
+        const opacity = this.getSendMaxOpacity();
+        const isSending = sending || isSendingTransfer;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -668,13 +675,17 @@ export class Send extends Component {
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
-                            onSubmitEditing={() => this.amountField.focus()}
+                            onSubmitEditing={() => {
+                                if (address) {
+                                    this.amountField.focus();
+                                }
+                            }}
                             widget="qr"
                             onQRPress={() => this.openModal('qrScanner')}
                             theme={theme}
                             value={address}
-                            editable={!sending}
-                            selectTextOnFocus={!sending}
+                            editable={!isSending}
+                            selectTextOnFocus={!isSending}
                         />
                         <View style={{ flex: 0.17 }} />
                         <View style={styles.fieldContainer}>
@@ -689,7 +700,11 @@ export class Send extends Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="next"
-                                onSubmitEditing={() => this.messageField.focus()}
+                                onSubmitEditing={() => {
+                                    if (amount) {
+                                        this.messageField.focus();
+                                    }
+                                }}
                                 widget="denomination"
                                 conversionText={conversionText}
                                 currencyConversion
@@ -697,8 +712,8 @@ export class Send extends Component {
                                 denominationText={denomination}
                                 onDenominationPress={() => this.onDenominationPress()}
                                 value={amount}
-                                editable={!sending}
-                                selectTextOnFocus={!sending}
+                                editable={!isSending}
+                                selectTextOnFocus={!isSending}
                             />
                             <View style={{ flex: 0.2 }} />
                             <View style={[styles.maxContainer, { opacity: opacity }]}>
@@ -712,6 +727,7 @@ export class Send extends Component {
                                     >
                                         <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
                                         <Toggle
+                                            opacity={opacity}
                                             active={maxPressed}
                                             bodyColor={body.color}
                                             primaryColor={primary.color}
@@ -735,8 +751,8 @@ export class Send extends Component {
                             onSubmitEditing={() => this.onSendPress()}
                             theme={theme}
                             value={message}
-                            editable={!sending}
-                            selectTextOnFocus={!sending}
+                            editable={!isSending}
+                            selectTextOnFocus={!isSending}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -808,7 +824,6 @@ export class Send extends Component {
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                        useNativeDriver
                         hideModalContentWhileAnimating
                     >
                         {this.renderModalContent()}

@@ -73,17 +73,17 @@ class EnterSeed extends React.Component {
          */
         generateAlert: PropTypes.func.isRequired,
         /** Translation helper
-       * @param {string} translationString - locale string identifier to be translated
-       */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Sets seed in store
-       * @param {string} seed
-       */
+         * @param {string} seed
+         */
         setSeed: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Theme settings */
-        theme: PropTypes.object.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -163,7 +163,7 @@ class EnterSeed extends React.Component {
 
     renderModalContent = () => {
         const { theme: { body, primary } } = this.props;
-        
+
         return (
             <QRScanner
                 primary={primary}
@@ -177,7 +177,7 @@ class EnterSeed extends React.Component {
     render() {
         const { seed } = this.state;
         const { t, theme } = this.props;
-        
+
         return (
             <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
                 <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
@@ -247,7 +247,6 @@ class EnterSeed extends React.Component {
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                        useNativeDriver
                         hideModalContentWhileAnimating
                     >
                         {this.renderModalContent()}
@@ -259,7 +258,7 @@ class EnterSeed extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {

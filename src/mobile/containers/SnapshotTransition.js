@@ -9,7 +9,7 @@ import {
     setSetting,
     transitionForSnapshot,
     generateAddressesAndGetBalance,
-    completeSnapshotTransition
+    completeSnapshotTransition,
 } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName, getAddressesForSelectedAccount } from 'iota-wallet-shared-modules/selectors/accounts';
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
-        width: width / 1.05,
+        width: width / 1.2,
         paddingHorizontal: width / 20,
         paddingBottom: height / 25,
     },
@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
     textContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: width / 1.25,
         marginVertical: height / 20,
     },
 });
@@ -107,13 +106,13 @@ class SnapshotTransition extends Component {
         /** Snapshot transitioning state */
         isTransitioning: PropTypes.bool.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Make snapshot transition
-        * @param {string} seed
-        * @param {array} addresses
-        */
+         * @param {string} seed
+         * @param {array} addresses
+         */
         transitionForSnapshot: PropTypes.func.isRequired,
         /** Total computed balance during transition */
         transitionBalance: PropTypes.number.isRequired,
@@ -122,18 +121,18 @@ class SnapshotTransition extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Generates addresses and checks for balance
-        * @param {string} seed
-        * @param {number} index
-        * @param {function} genFn - Native address generation function
-        */
+         * @param {string} seed
+         * @param {number} index
+         * @param {function} genFn - Native address generation function
+         */
         generateAddressesAndGetBalance: PropTypes.func.isRequired,
         /** Generated addresses during snapshot transition */
         transitionAddresses: PropTypes.array.isRequired,
         /** Attach addresses to tangle for completing snapshot transition
-           * @param {string} seed
-           * @param {string} selectedAccountName
-           * @param {array} transitionAddresses
-       */
+         * @param {string} seed
+         * @param {string} selectedAccountName
+         * @param {array} transitionAddresses
+         */
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
@@ -144,8 +143,8 @@ class SnapshotTransition extends Component {
          */
         generateAlert: PropTypes.func.isRequired,
         /** Set new setting
-        * @param {string} setting
-        */
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
@@ -236,7 +235,7 @@ class SnapshotTransition extends Component {
         const textColor = { color: theme.body.color };
 
         return (
-            <View style={{ width: width / 1.05, alignItems: 'center', backgroundColor: theme.body.bg }}>
+            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: theme.body.bg }}>
                 <View style={[styles.modalContent, { borderColor: theme.body.color }]}>
                     <View style={styles.textContainer}>
                         <Text style={[styles.buttonInfoText, textColor]}>
@@ -249,6 +248,8 @@ class SnapshotTransition extends Component {
                         onRightButtonPress={() => this.onBalanceCompletePress()}
                         leftText={t('global:no')}
                         rightText={t('global:yes')}
+                        buttonWidth={{ width: width / 3.2 }}
+                        containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
             </View>
@@ -370,7 +371,6 @@ class SnapshotTransition extends Component {
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
                     onBackButtonPress={() => this.hideModal()}
-                    useNativeDriver
                     hideModalContentWhileAnimating
                 >
                     {this.renderModalContent()}
@@ -398,9 +398,7 @@ const mapDispatchToProps = {
     transitionForSnapshot,
     generateAddressesAndGetBalance,
     completeSnapshotTransition,
-    generateAlert
+    generateAlert,
 };
 
-export default translate(['global'])(
-    connect(mapStateToProps, mapDispatchToProps)(SnapshotTransition),
-);
+export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(SnapshotTransition));

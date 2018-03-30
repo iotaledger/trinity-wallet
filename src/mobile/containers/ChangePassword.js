@@ -109,8 +109,8 @@ class ChangePassword extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
     };
 
@@ -232,7 +232,11 @@ class ChangePassword extends Component {
                             t('currentPassword'),
                             (password) => this.setState({ currentPassword: password }),
                             'next',
-                            () => this.newPassword.focus(),
+                            () => {
+                                if (currentPassword) {
+                                    this.newPassword.focus();
+                                }
+                            },
                         )}
                         {this.renderTextField(
                             (c) => {
@@ -242,7 +246,11 @@ class ChangePassword extends Component {
                             t('newPassword'),
                             (password) => this.setState({ newPassword: password }),
                             'next',
-                            () => this.confirmedNewPassword.focus(),
+                            () => {
+                                if (newPassword) {
+                                    this.confirmedNewPassword.focus();
+                                }
+                            },
                         )}
                         {this.renderTextField(
                             (c) => {
