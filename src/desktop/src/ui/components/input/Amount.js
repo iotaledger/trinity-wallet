@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { round } from 'libs/util';
+import { formatIota, round } from 'libs/util';
 import { getCurrencySymbol } from 'libs/currency';
 
 import Icon from 'ui/components/Icon';
@@ -137,6 +137,7 @@ export default class AddressInput extends React.PureComponent {
                                 ).toFixed(2)}
                             </p>
                         ) : null}
+                        {amount > 0 && unit === '$' ? <p>= {formatIota(amount)}</p> : null}
                     </a>
                     <input
                         type="text"
