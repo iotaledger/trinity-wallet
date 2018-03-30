@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { isValidSeed } from 'libs/util';
+import { isValidSeed, VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'libs/util';
 
 import { generateAlert } from 'actions/alerts';
 import { setNewSeed } from 'actions/seeds';
@@ -11,8 +11,6 @@ import { setNewSeed } from 'actions/seeds';
 import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
 import SeedInput from 'ui/components/input/Seed';
-
-import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from '../../../../../shared/libs/util'; // TODO: Change to iota-wallet-shared-modules
 
 /**
  * Onboarding, Seed correct backup validation or existing seed input component
