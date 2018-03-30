@@ -55,18 +55,23 @@ class Account extends React.PureComponent {
                     onSuccess={(password, vault) => this.setState({ password, vault })}
                     onClose={() => history.push('/wallet/')}
                     content={{
-                        title: t('Enter password to access account settings'),
+                        title: t('enterPasswordToAccessAccountSettings'),
                     }}
                 />
             );
         }
 
         const PropsRoute = ({ component, ...props }) => {
+            const reactProps = {
+                history: this.props.history,
+                ...this.state,
+            };
+
             return (
                 <Route
                     {...props}
                     render={() => {
-                        return React.createElement(component, this.state);
+                        return React.createElement(component, reactProps);
                     }}
                 />
             );

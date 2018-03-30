@@ -27,10 +27,10 @@ export const removeSeed = (seed) => {
     };
 };
 
-export const setNewSeed = (seed) => {
+export const setNewSeed = (seed, isGenerated) => {
     return {
         type: ActionTypes.SEEDS_NEW_SEED,
-        payload: seed,
+        payload: { seed, isGenerated },
     };
 };
 
