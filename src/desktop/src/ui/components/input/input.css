@@ -41,11 +41,10 @@
                 height: 0;
                 border-style: solid;
                 border-width: 6px 4px 0 4px;
-                border-color: var(--body) transparent transparent transparent;
+                border-color: var(--input-alt) transparent transparent transparent;
                 position: absolute;
                 right: 12px;
                 top: calc(50% - 2px);
-                opacity: 0.6;
                 pointer-event: none;
             }
         }
@@ -98,6 +97,17 @@
             &:hover {
                 color: var(--input);
             }
+        }
+        p {
+            display: block;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            right: 50px;
+            line-height: 38px;
+            white-space: nowrap;
+            color: var(--input-alt);
+            pointer-events: none;
         }
         a + input {
             padding-right: 40px;
@@ -161,6 +171,40 @@
     }
 }
 
+.dropdown {
+    position: absolute;
+    top: -5px;
+    left: 0px;
+    width: 100%;
+    padding: 26px 0 0 0;
+    z-index: 2;
+    max-height: 26px;
+    overflow: hidden;
+    li {
+        display: block;
+        list-style: none;
+        padding-left: 8px;
+        width: 100%;
+        text-align: left;
+        line-height: 28px;
+        background: var(--input-bg);
+        color: var(--input-alt);
+        &.selected {
+            color: var(--input);
+        }
+        &:last-of-type {
+            padding-bottom: 8px;
+            border-radius: 0 0 4px 4px;
+        }
+        &:hover {
+            color: var(--input);
+        }
+    }
+    &:hover {
+        max-height: none;
+    }
+}
+
 .strike {
     &:after {
         content: '';
@@ -178,7 +222,6 @@
 
 .down {
     position: relative;
-    opacity: 1;
     z-index: 2;
     pointer-events: none;
     &:before {

@@ -48,6 +48,10 @@
                 background: var(--body-bg);
             }
 
+            ul li {
+                background: var(--body-bg);
+            }
+
             form > fieldset {
                 margin-top: -20px;
             }
