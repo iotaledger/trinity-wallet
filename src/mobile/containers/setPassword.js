@@ -174,7 +174,7 @@ class SetPassword extends Component {
 
     renderContent() {
         const { t, theme, body } = this.props;
-
+        const { password } = this.state;
         return (
             <View>
                 <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
@@ -204,7 +204,11 @@ class SetPassword extends Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="next"
-                                onSubmitEditing={() => this.reentry.focus()}
+                                onSubmitEditing={() => {
+                                    if (password) {
+                                        this.reentry.focus();
+                                    }
+                                }}
                                 secureTextEntry
                                 testID="setPassword-passwordbox"
                                 theme={theme}

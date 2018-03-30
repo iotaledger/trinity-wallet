@@ -233,6 +233,14 @@ class Settings extends Component {
         );
     }
 
+    onAddHttpNodeError() {
+        return this.props.generateAlert(
+            'error',
+            'Custom node could not be added',
+            'Trinity Mobile only supports https nodes.',
+        );
+    }
+
     onDuplicateNodeError() {
         return this.props.generateAlert('error', 'Duplicate node', 'The custom node is already listed.');
     }
@@ -415,7 +423,6 @@ class Settings extends Component {
                 password: this.props.password,
                 onWrongPassword: () => this.onWrongPassword(),
                 deleteAccount: () => this.deleteAccount(),
-                currentAccountName: this.props.selectedAccountName,
                 primaryColor: primary.color,
                 backgroundColor: body.bg,
                 textColor: { color: body.color },
@@ -448,8 +455,7 @@ class Settings extends Component {
             },
             nodeSelection: {
                 setNode: (selectedNode) => {
-                    changeIotaNode(selectedNode);
-                    this.props.setFullNode(selectedNode);
+                    this.changeNode(selectedNode);
                 },
                 node: this.props.fullNode,
                 nodes: this.props.availablePoWNodes,
@@ -468,6 +474,7 @@ class Settings extends Component {
                 checkNode: (cb) => checkNode(cb), // TODO: Try to get rid of the callback
                 currentNode: this.props.fullNode,
                 onAddNodeError: () => this.onAddNodeError(),
+                onAddHttpNodeError: () => this.onAddHttpNodeError(),
                 onAddNodeSuccess: (customNode) => this.onAddNodeSuccess(customNode),
                 backPress: () => this.props.setSetting('advancedSettings'),
                 negativeColor: negative.color,
@@ -574,6 +581,16 @@ class Settings extends Component {
         };
 
         return props[child] || {};
+    }
+
+    changeNode(selectedNode) {
+        changeIotaNode(selectedNode);
+        this.props.setFullNode(selectedNode);
+        return this.props.generateAlert(
+            'success',
+            'Successfully changed node',
+            `The node was changed to ${selectedNode}.`,
+        );
     }
 
     logout() {
@@ -802,7 +819,6 @@ class Settings extends Component {
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                    useNativeDriver
                     hideModalContentWhileAnimating
                 >
                     {this.renderModalContent()}
