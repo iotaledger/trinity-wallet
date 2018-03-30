@@ -30,10 +30,12 @@ const styles = StyleSheet.create({
     passwordTextContainer: {
         flex: 1,
         justifyContent: 'center',
+        alignItems: 'center',
     },
     textFieldContainer: {
         flex: 2,
         justifyContent: 'flex-start',
+        alignItems: 'center',
         paddingTop: height / 20,
     },
     viewButtonContainer: {

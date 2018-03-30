@@ -196,7 +196,11 @@ class UseExistingSeed extends React.Component {
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
-                            onSubmitEditing={() => this.accountNameField.focus()}
+                            onSubmitEditing={() => {
+                                if (seed) {
+                                    this.accountNameField.focus();
+                                }
+                            }}
                             theme={theme}
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
@@ -255,7 +259,6 @@ class UseExistingSeed extends React.Component {
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                        useNativeDriver
                         hideModalContentWhileAnimating
                     >
                         {this.renderModalContent()}

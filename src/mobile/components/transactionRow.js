@@ -181,7 +181,6 @@ export default class TransactionRow extends PureComponent {
                         isVisible={isModalActive}
                         onBackButtonPress={this.toggleModal}
                         onBackdropPress={this.toggleModal}
-                        useNativeDriver
                         hideModalContentWhileAnimating
                     >
                         <HistoryModalContent {...this.getModalProps()} />
