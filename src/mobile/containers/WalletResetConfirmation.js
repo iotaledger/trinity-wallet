@@ -77,11 +77,11 @@ class WalletResetConfirmation extends Component {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Theme settings */
-        theme: PropTypes.object.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -136,7 +136,7 @@ class WalletResetConfirmation extends Component {
         const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
         const backgroundColor = { backgroundColor: theme.body.bg };
-        const negativeColor = { color: theme.negative.color };
+        const primaryColor = { color: theme.negative.color };
 
         return (
             <View style={[styles.container, backgroundColor]}>
@@ -161,7 +161,7 @@ class WalletResetConfirmation extends Component {
                         }
                     />
                     <View style={{ flex: 0.4 }} />
-                    <Text style={[styles.subHeaderText, negativeColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
+                    <Text style={[styles.subHeaderText, primaryColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
                     <View style={{ flex: 0.2 }} />
                     <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                 </View>
@@ -179,7 +179,7 @@ class WalletResetConfirmation extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 export default WithBackPressGoToHome()(

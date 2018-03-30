@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { width } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     toggle: {
@@ -22,14 +23,16 @@ class Toggle extends PureComponent {
         bodyColor: PropTypes.string.isRequired,
         primaryColor: PropTypes.string.isRequired,
         scale: PropTypes.number,
+        opacity: PropTypes.number,
     };
 
     static defaultProps = {
         scale: 1,
+        opacity: 1,
     };
 
     render() {
-        const { active, primaryColor, bodyColor, scale } = this.props;
+        const { active, primaryColor, bodyColor, scale, opacity } = this.props;
         const size = width * scale;
         return (
             <View style={[styles.toggleContainer, { width: size / 12, height: size / 12 }]}>
@@ -41,8 +44,9 @@ class Toggle extends PureComponent {
                             borderColor: bodyColor,
                             width: size / 13,
                             height: size / 22,
-                            borderRadius: size / 30,
+                            borderRadius: 1000,
                             paddingHorizontal: size / 300,
+                            opacity: isAndroid ? opacity * 2 : 1,
                         },
                     ]}
                 >

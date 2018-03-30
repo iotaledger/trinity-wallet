@@ -10,11 +10,7 @@ import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/li
 import { setSetting, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
-import {
-    hasDuplicateAccountName,
-    hasDuplicateSeed,
-    getAllSeedsFromKeychain,
-} from '../utils/keychain';
+import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import Checksum from '../components/Checksum';
 import QRScanner from '../components/QrScanner';
@@ -117,19 +113,19 @@ class UseExistingSeed extends Component {
         theme: PropTypes.object.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-          /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
-         /** Generate a notification alert
-       * @param {string} type - notification type - success, error
-       * @param {string} title - notification title
-       * @param {string} text - notification explanation
-       */
+        /** Generate a notification alert
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
         /** Set additional account information in store
-        * @param {object} info - (addingAdditionalAccount, additionalAccountName, seed)
-        */
+         * @param {object} info - (addingAdditionalAccount, additionalAccountName, seed)
+         */
         setAdditionalAccountInfo: PropTypes.func.isRequired,
         /** Change current setting
          * @param {string} setting
@@ -211,7 +207,6 @@ class UseExistingSeed extends Component {
         });
     }
 
-
     addExistingSeed(seed, accountName) {
         const { t, accountNames, password, shouldPreventAction } = this.props;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
@@ -270,7 +265,6 @@ class UseExistingSeed extends Component {
         }
     }
 
-
     showModal = () => this.setState({ isModalVisible: true });
 
     hideModal = () => this.setState({ isModalVisible: false });
@@ -312,7 +306,11 @@ class UseExistingSeed extends Component {
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
-                            onSubmitEditing={() => this.accountNameField.focus()}
+                            onSubmitEditing={() => {
+                                if (seed) {
+                                    this.accountNameField.focus();
+                                }
+                            }}
                             theme={theme}
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
@@ -371,7 +369,6 @@ class UseExistingSeed extends Component {
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                        useNativeDriver
                         hideModalContentWhileAnimating
                     >
                         {this.renderModalContent()}
@@ -387,13 +384,13 @@ const mapStateToProps = (state) => ({
     accountNames: state.accounts.accountNames,
     password: state.wallet.password,
     theme: state.settings.theme,
-    shouldPreventAction: shouldPreventAction(state)
+    shouldPreventAction: shouldPreventAction(state),
 });
 
 const mapDispatchToProps = {
     setSetting,
     generateAlert,
-    setAdditionalAccountInfo
+    setAdditionalAccountInfo,
 };
 
 export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(

@@ -34,10 +34,12 @@ const styles = StyleSheet.create({
     passwordTextContainer: {
         flex: 1,
         justifyContent: 'center',
+        alignItems: 'center',
     },
     textFieldContainer: {
         flex: 2,
         justifyContent: 'flex-start',
+        alignItems: 'center',
         paddingTop: height / 20,
     },
     viewButtonContainer: {
@@ -86,18 +88,18 @@ class ViewSeed extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Change current setting
          * @param {string} setting
          */
         setSetting: PropTypes.func.isRequired,
         /** Generate a notification alert
-       * @param {String} type - notification type - success, error
-       * @param {String} title - notification title
-       * @param {String} text - notification explanation
-       */
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
     };
 
@@ -263,7 +265,7 @@ const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
     password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {

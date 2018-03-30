@@ -197,6 +197,7 @@ class SetPassword extends Component {
 
     renderContent() {
         const { t, theme } = this.props;
+        const { password } = this.state;
 
         return (
             <View>
@@ -229,7 +230,11 @@ class SetPassword extends Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="next"
-                                onSubmitEditing={() => this.reentry.focus()}
+                                onSubmitEditing={() => {
+                                    if (password) {
+                                        this.reentry.focus();
+                                    }
+                                }}
                                 secureTextEntry
                                 testID="setPassword-passwordbox"
                                 theme={theme}

@@ -7,8 +7,6 @@ import { MAX_SEED_LENGTH } from '../libs/iota/utils';
 import { DEFAULT_MIN_WEIGHT_MAGNITUDE, DEFAULT_DEPTH } from '../config';
 import i18next from '../i18next';
 
-const { t } = i18next.t;
-
 export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
@@ -203,8 +201,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                     return dispatch(
                         generateAlert(
                             'error',
-                            t('cannotCompleteTransition'),
-                            t('cannotCompleteTransitionExplanation'),
+                            i18next.t('snapshotTransition:cannotCompleteTransition'),
+                            i18next.t('snapshotTransition:cannotCompleteTransitionExplanation'),
                             10000,
                         ),
                     );
@@ -228,8 +226,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                                 dispatch(
                                     generateAlert(
                                         'success',
-                                        t('transitionComplete'),
-                                        t('transitionCompleteExplanation'),
+                                        i18next.t('snapshotTransition:transitionComplete'),
+                                        i18next.t('snapshotTransition:transitionCompleteExplanation'),
                                         20000,
                                     ),
                                 );

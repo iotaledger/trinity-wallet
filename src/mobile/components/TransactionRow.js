@@ -82,22 +82,22 @@ const styles = StyleSheet.create({
 export default class TransactionRow extends PureComponent {
     static propTypes = {
         /** Generate a notification alert
-        * @param {String} type - notification type - success, error
-        * @param {String} title - notification title
-        * @param {String} text - notification explanation
-        */
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
         /** Translation helper
-       * @param {string} translationString - locale string identifier to be translated
-       */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Rebroadcast bundle
          * @param {string} bundle - bundle hash
          */
         rebroadcast: PropTypes.func.isRequired,
         /** Promotes bundle
-        * @param {string} bundle - bundle hash
-        */
+         * @param {string} bundle - bundle hash
+         */
         promote: PropTypes.func.isRequired,
         /** Transaction incoming/outgoing state */
         status: PropTypes.string.isRequired,
@@ -205,10 +205,9 @@ export default class TransactionRow extends PureComponent {
                         isVisible={isModalActive}
                         onBackButtonPress={this.toggleModal}
                         onBackdropPress={this.toggleModal}
-                        useNativeDriver
                         hideModalContentWhileAnimating
                     >
-                        <HistoryModalContent {...this.getModalProps() } />
+                        <HistoryModalContent {...this.getModalProps()} />
                     </Modal>
                 </View>
             </TouchableOpacity>

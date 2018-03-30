@@ -159,9 +159,9 @@ const styles = StyleSheet.create({
 class ThemeCustomisation extends Component {
     static propTypes = {
         /** Update wallet's theme
-        * @param {object} theme - New theme object
-        * @param {string} themeName - New theme name
-        */
+         * @param {object} theme - New theme object
+         * @param {string} themeName - New theme name
+         */
         updateTheme: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
@@ -172,8 +172,8 @@ class ThemeCustomisation extends Component {
          */
         setSetting: PropTypes.func.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
     };
 
@@ -194,7 +194,7 @@ class ThemeCustomisation extends Component {
 
     render() {
         const { themes, theme, themeName } = this.state;
-        const { body, bar, positive, negative, primary, extra } = this.state.theme;
+        const { body, bar, secondary, primary, positive, negative } = this.state.theme;
         const { t } = this.props;
         const bodyColor = this.props.theme.body.color;
 
@@ -253,26 +253,23 @@ class ThemeCustomisation extends Component {
                                 <Text style={[styles.frameBarTitle, { color: bar.color }]}>
                                     {t('global:mainWallet').toUpperCase()}
                                 </Text>
-                                <View style={styles.chevronWrapper}>
-                                    <Icon name="chevronDown" size={width / 20} color={bar.color} />
-                                </View>
                             </View>
                             <View style={styles.buttonsContainer}>
-                                <View style={[styles.button, { borderColor: negative.color }]}>
-                                    <Text style={[styles.buttonText, { color: negative.color }]}>
-                                        {t('global:back').toUpperCase()}
-                                    </Text>
-                                </View>
                                 <View style={[styles.button, { borderColor: positive.color }]}>
                                     <Text style={[styles.buttonText, { color: positive.color }]}>
-                                        {t('global:next').toUpperCase()}
+                                        {t('global:yes').toUpperCase()}
+                                    </Text>
+                                </View>
+                                <View style={[styles.button, { borderColor: negative.color }]}>
+                                    <Text style={[styles.buttonText, { color: negative.color }]}>
+                                        {t('global:no').toUpperCase()}
                                     </Text>
                                 </View>
                             </View>
                             <View style={styles.buttonsContainer}>
-                                <View style={[styles.button, { borderColor: extra.color }]}>
-                                    <Text style={[styles.buttonText, { color: extra.color }]}>
-                                        {t('global:save').toUpperCase()}
+                                <View style={[styles.button, { borderColor: secondary.color }]}>
+                                    <Text style={[styles.buttonText, { color: secondary.color }]}>
+                                        {t('global:back').toUpperCase()}
                                     </Text>
                                 </View>
                                 <View
@@ -305,9 +302,7 @@ class ThemeCustomisation extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, { color: bodyColor }]}>
-                                    {t('global:apply')}
-                                </Text>
+                                <Text style={[styles.titleTextRight, { color: bodyColor }]}>{t('global:apply')}</Text>
                                 <Icon name="tick" size={width / 28} color={bodyColor} />
                             </View>
                         </TouchableOpacity>
@@ -325,7 +320,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setSetting,
-    updateTheme
+    updateTheme,
 };
 
 export default translate(['themeCustomisation', 'global'])(
