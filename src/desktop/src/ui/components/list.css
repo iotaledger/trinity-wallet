@@ -132,9 +132,8 @@
     height: 100%;
     background: var(--body-altBg);
     opacity: 0;
-    transform: scale(0.9);
     pointer-events: none;
-    transition: opacity 0.15s ease-out, transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+    transition: opacity 0.15s ease-out;
     cursor: pointer;
     > div {
         position: absolute;
@@ -142,11 +141,11 @@
         left: 20px;
         width: calc(100% - 40px);
         min-height: 100px;
-        transform: translate(0, -50%);
+        transform: translate(0, -50%) scale(0.9);
         background: var(--body-bg);
         padding: 20px;
         border-radius: 4px;
-
+        transition: transform 0.2s cubic-bezier(0, 0, 0.2, 1);
         p {
             &:first-child {
                 display: flex;
@@ -189,22 +188,22 @@
             margin-bottom: 0px;
         }
 
-        &.received {
+        .received {
             p:first-child strong {
                 color: var(--primary);
             }
         }
-        &.sent {
+        .sent {
             p:first-child strong {
                 color: var(--secondary);
             }
         }
-        &.pending {
+        .pending {
             p:first-child small {
                 color: var(--negative);
             }
         }
-        &.confirmed {
+        .confirmed {
             p:first-child small {
                 color: var(--positive);
             }
@@ -212,7 +211,9 @@
     }
     &.on {
         opacity: 1;
-        transform: scale(1);
         pointer-events: all;
+        > div {
+            transform: translate(0, -50%) scale(1);
+        }
     }
 }
