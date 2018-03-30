@@ -63,6 +63,7 @@ class AddCustomNode extends Component {
         setNode: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         onAddNodeError: PropTypes.func.isRequired,
+        onAddHttpNodeError: PropTypes.func.isRequired,
         onAddNodeSuccess: PropTypes.func.isRequired,
         bodyColor: PropTypes.string.isRequired,
         t: PropTypes.func.isRequired,
@@ -82,6 +83,7 @@ class AddCustomNode extends Component {
             checkNode,
             backPress,
             currentNode,
+            onAddHttpNodeError,
             onAddNodeError,
             onAddNodeSuccess,
             nodes,
@@ -91,6 +93,10 @@ class AddCustomNode extends Component {
 
         if (!customNode.startsWith('http')) {
             return onAddNodeError();
+        }
+
+        if (customNode.startsWith('http://')) {
+            return onAddHttpNodeError();
         }
 
         if (!nodes.includes(customNode.replace(/ /g, ''))) {
