@@ -150,17 +150,20 @@ export default (state = initialState, action) => {
         case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
                 ...state,
+                isFetchingLatestAccountInfoOnLogin: true,
                 hasErrorFetchingAccountInfoOnLogin: false,
                 ready: false,
             };
         case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
             return {
                 ...state,
+                isFetchingLatestAccountInfoOnLogin: false,
                 ready: true,
             };
         case AccountActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR:
             return {
                 ...state,
+                isFetchingLatestAccountInfoOnLogin: false,
                 hasErrorFetchingAccountInfoOnLogin: true,
             };
         case AccountActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
