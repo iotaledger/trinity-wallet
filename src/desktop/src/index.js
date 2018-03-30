@@ -15,6 +15,7 @@ import Index from 'ui/Index';
 export const bugsnagClient = bugsnag({
     apiKey: '53981ba998df346f6377ebbeb1da46d3',
     appVersion: '0.1.1',
+    interactionBreadcrumbsEnabled: false,
 });
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 
