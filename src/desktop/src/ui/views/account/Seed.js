@@ -52,7 +52,9 @@ class Seed extends PureComponent {
                     </Clipboard>
                 </p>
                 <fieldset>
-                    <Button onClick={() => this.setState({ hidden: !hidden })}>{hidden ? t('show') : t('hide')}</Button>
+                    <Button onClick={() => this.setState({ hidden: !hidden })}>
+                        {hidden ? t('settings:show') : t('hide')}
+                    </Button>
                 </fieldset>
             </form>
         );

@@ -78,7 +78,7 @@
         "autoreattachingExplanation": "Erneutes anhängen der Transaktion mit dem Hash {{hash}}",
         "autopromoting": "Der Transfer wird autopromoted",
         "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
-        "promoting": "Transfer promoten",
+        "promoting": "Transfer wird promotet",
         "promotionError": "Die Transaktion konnte nicht promotet werden",
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
         "cannotSendToOwn": "An eigene Adresse senden",
@@ -88,7 +88,10 @@
         "pleaseWaitTransferExplanation":
             "Dein verfügbares Guthaben wird derzeit in anderen Transaktionen verwendet. Bitte warte, bis diese Transaktionen bestätigt sind, und versuche es erneut.",
         "snapshotTransitionInProgress": "Snapshot-Umstellung wird ausgeführt",
-        "snapshotTransitionInProgressExplanation": "Bitte warte, bis die Umstellung abgeschlossen ist."
+        "snapshotTransitionInProgressExplanation": "Bitte warte, bis die Umstellung abgeschlossen ist.",
+        "checkForUpdates": "Suche nach Updates",
+        "account": "Konto",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -290,6 +293,7 @@
         "poorConnectionExplanation": "Fehler beim Wechsel der Währung wegen schlechter Verbindung.",
         "hide": "Ausblenden",
         "hideOthers": "Andere ausblenden",
+        "show": "Show",
         "showAll": "Alle anzeigen",
         "quit": "Beenden",
         "edit": "Bearbeiten",
@@ -303,7 +307,10 @@
         "couldNotFetchRatesExplanation":
             "Beim Abrufen der Umrechnungskurse für {{currency}} ist etwas schief gelaufen.",
         "fetchedConversionRates": "Umrechnungskurse abgerufen",
-        "fetchedConversionRatesExplanation": "Umrechnungskurse für {{currency}} erfolgreich abgerufen."
+        "fetchedConversionRatesExplanation": "Umrechnungskurse für {{currency}} erfolgreich abgerufen.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -384,7 +391,7 @@
         "one": "Ein"
     },
     "deleteAccount": {
-        "areYouSure": "Bist du dir sicher, dass du {{accountName}} löschen möchtest?",
+        "areYouSure": "Are you sure you want to delete",
         "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
@@ -472,7 +479,9 @@
         "localOrRemote":
             "Der \"Proof of Work\" kann entweder lokal auf deinem Gerät erfolgen oder an einen Server übertragen werden.",
         "local": "Lokal",
-        "remote": "Berechnung durch Server"
+        "remote": "Berechnung durch Server",
+        "powUpdated": "\"Proof of Work\" Einstellungen",
+        "powUpdatedExplanation": "Deine Konfiguration des \"Proof of Work\" wurde aktualisiert."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Überprüfe Empfangsadresse",
@@ -481,7 +490,7 @@
         "preparingTransfers": "Vorbereitung der Transaktionen",
         "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktionen",
         "proofOfWork": "Vervollständige Proof of Work",
-        "broadcasting": "An Tangle senden"
+        "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot-Umstellung kann nicht abgeschlossenn werden",

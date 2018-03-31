@@ -88,7 +88,10 @@
         "pleaseWaitTransferExplanation":
             "Din tilgjengelige saldo blir benyttet i andre transaksjoner. Vent til en blir bekreftet før du forsøker på nytt.",
         "snapshotTransitionInProgress": "Snapshot under behandling",
-        "snapshotTransitionInProgressExplanation": "Vent til synkroniseringen er fullført."
+        "snapshotTransitionInProgressExplanation": "Vent til synkroniseringen er fullført.",
+        "checkForUpdates": "Søk etter oppdateringer",
+        "account": "Konto",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -288,6 +291,7 @@
         "poorConnectionExplanation": "Kan ikke endre valuta på grunn av en dårlig forbindelse.",
         "hide": "Skjul",
         "hideOthers": "Skjul andre",
+        "show": "Show",
         "showAll": "Vis alle",
         "quit": "Avslutt",
         "edit": "Rediger",
@@ -300,7 +304,10 @@
         "couldNotFetchRates": "Kunne ikke hente valutakurser",
         "couldNotFetchRatesExplanation": "Valutakurser kunne ikke hentes for {{currency}}.",
         "fetchedConversionRates": "Mottatte valutakurser",
-        "fetchedConversionRatesExplanation": "Henting av valutakurs for {{currency}} var vellykket."
+        "fetchedConversionRatesExplanation": "Henting av valutakurs for {{currency}} var vellykket.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
@@ -317,7 +324,7 @@
         "keepSafe": "Vennligst sikre din hovednøkkel godt."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Takk for at du lastet ned Trinity.",
         "weWillSpend": "Vi vil bruke neste minuttene til å konfigurere lommeboken din.",
         "reminder":
             "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
@@ -381,7 +388,7 @@
         "one": "En"
     },
     "deleteAccount": {
-        "areYouSure": "Er du sikker på at du vil slette {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete",
         "yourSeedWillBeRemoved": "Din nøkkel og transaksjonsloggen vil bli fjernet.",
         "thisAction": "Denne handlingen kan ikke angres.",
         "enterPassword": "Skriv inn passordet for å slette kontoen."
@@ -464,12 +471,14 @@
         "localOrRemote":
             "PoW (Proof of Work) kan enten utføres på din enhet, eller settes bort til noden du er tilkoblet.",
         "local": "Lokal",
-        "remote": "Ekstern"
+        "remote": "Ekstern",
+        "powUpdated": "PoW (Proof of Work) instillinger",
+        "powUpdatedExplanation": "Dine PoW (Proof of Work) innstillinger er oppdatert."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validerer mottaksadressen",
         "syncingAccount": "Synkroniser konto",
-        "preparingInputs": "Forbereder innganger",
+        "preparingInputs": "Forbereder input",
         "preparingTransfers": "Forbereder transaksjoner",
         "gettingTransactionsToApprove": "Mottar transaksjoner til godkjenning",
         "proofOfWork": "Fullfører PoW (Proof of Work)",

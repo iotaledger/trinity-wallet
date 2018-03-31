@@ -32,7 +32,7 @@
         list-style: none;
 
         strong {
-            font-weight: 300;
+            font-weight: 200;
         }
 
         > div {
@@ -65,22 +65,18 @@
             background: var(--body-bg);
         }
         &.received {
-            > strong {
+            span:nth-child(4) {
                 color: var(--primary);
             }
         }
         &.sent {
-            strong {
+            span:nth-child(4) {
                 color: var(--secondary);
             }
         }
-        &.confirmed {
-            span:nth-child(4) {
-                color: var(--positive);
-            }
-        }
         &.pending {
-            span:nth-child(4) {
+            span:nth-child(4),
+            strong {
                 color: var(--negative);
             }
         }
@@ -97,82 +93,6 @@
         padding: 0;
         margin: -20px 0 0;
     }
-
-    .pending {
-        strong {
-            color: var(--negative);
-        }
-    }
-}
-
-.history-item {
-    margin: 0 auto;
-    width: 560px;
-    padding: 35px;
-    border-radius: 8px;
-    font-size: var(--font-size-small);
-
-    @media (max-width: 810px) {
-        width: 100%;
-        padding: 35px 0px;
-    }
-
-    header {
-        display: flex;
-        justify-content: space-between;
-        &.received {
-            color: var(--color-extra);
-        }
-        &.sent {
-            color: var(--color-highlight);
-        }
-        p,
-        small {
-            font-size: var(--font-size-default);
-        }
-        small {
-            color: var(--color-body);
-        }
-    }
-    p {
-        overflow-wrap: break-word;
-        margin: 0px;
-    }
-    h6 {
-        font-size: var(--font-size-small);
-        margin: 20px 0 0 0;
-    }
-    ul {
-        padding: 0px;
-        max-height: 200px;
-        overflow: scroll;
-        overflow-x: hidden;
-        width: calc(100% + 50px);
-        padding-right: 50px;
-        li {
-            display: flex;
-            list-style: none;
-            width: 100%;
-            padding: 0 0 12px;
-            p {
-                width: 90%;
-            }
-            strong {
-                flex: 1 0;
-                width: 100px;
-                text-align: right;
-            }
-        }
-    }
-    footer {
-        padding-top: 20px;
-        text-align: center;
-    }
-}
-
-.scroll {
-    max-height: 200px;
-    overflow: hidden;
 }
 
 @keyframes spin {
@@ -201,5 +121,99 @@
     &.loading {
         pointer-events: none;
         animation: spin 0.6s ease infinite;
+    }
+}
+
+.popup {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: var(--body-altBg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease-out;
+    cursor: pointer;
+    > div {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        width: calc(100% - 40px);
+        min-height: 100px;
+        transform: translate(0, -50%) scale(0.9);
+        background: var(--body-bg);
+        padding: 20px;
+        border-radius: 4px;
+        transition: transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+        p {
+            &:first-child {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            &:last-child {
+                margin-top: 26px;
+
+                strong {
+                    margin-right: 12px;
+                }
+            }
+
+            strong {
+                font-weight: 300;
+                padding-top: 21px;
+            }
+
+            small {
+                font-size: 12px;
+                text-align: right;
+            }
+
+            em {
+                display: block;
+                font-style: normal;
+                color: var(--body);
+            }
+
+            &.hash {
+                display: block;
+                font-family: monospace;
+                word-break: break-word;
+            }
+        }
+
+        h6 {
+            font-size: 12px;
+            margin-bottom: 0px;
+        }
+
+        .received {
+            p:first-child strong {
+                color: var(--primary);
+            }
+        }
+        .sent {
+            p:first-child strong {
+                color: var(--secondary);
+            }
+        }
+        .pending {
+            p:first-child small {
+                color: var(--negative);
+            }
+        }
+        .confirmed {
+            p:first-child small {
+                color: var(--positive);
+            }
+        }
+    }
+    &.on {
+        opacity: 1;
+        pointer-events: all;
+        > div {
+            transform: translate(0, -50%) scale(1);
+        }
     }
 }
