@@ -108,22 +108,38 @@ export default (state = initialState, action) => {
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
                 ...state,
+                isFetchingLatestAccountInfoOnLogin: true,
+                hasErrorFetchingAccountInfoOnLogin: false,
                 ready: false,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
             return {
                 ...state,
+                isFetchingLatestAccountInfoOnLogin: false,
                 ready: true,
+            };
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingLatestAccountInfoOnLogin: false,
+                hasErrorFetchingAccountInfoOnLogin: true,
             };
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,
                 ready: false,
+                isFetchingLatestAccountInfoOnLogin: true,
             };
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 ready: true,
+                isFetchingLatestAccountInfoOnLogin: false,
+            };
+        case AccountsActionTypes.ACCOUNT_INFO_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingLatestAccountInfoOnLogin: false,
             };
         case AccountsActionTypes.REMOVE_ACCOUNT:
             return {

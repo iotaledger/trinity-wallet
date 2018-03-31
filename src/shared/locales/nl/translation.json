@@ -89,7 +89,10 @@
         "pleaseWaitTransferExplanation":
             "Uw saldo wordt momenteel gebruikt in andere transacties. Wacht op een bevestiging hiervan, voordat u het opnieuw probeert.",
         "snapshotTransitionInProgress": "Snapshot transitie in uitvoering",
-        "snapshotTransitionInProgressExplanation": "Wacht tot de transitie is voltooid."
+        "snapshotTransitionInProgressExplanation": "Wacht tot de transitie is voltooid.",
+        "checkForUpdates": "Check for Updates",
+        "account": "Account",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -289,6 +292,7 @@
         "poorConnectionExplanation": "Valuta wisselen is mislukt door slechte verbinding.",
         "hide": "Verberg",
         "hideOthers": "Verberg anderen",
+        "show": "Show",
         "showAll": "Toon alles",
         "quit": "Stop",
         "edit": "Bewerk",
@@ -301,7 +305,10 @@
         "couldNotFetchRates": "Koersen kunnen niet opgehaald worden",
         "couldNotFetchRatesExplanation": "Er ging iets mis bij het ophalen van de wisselkoers voor {{currency}}.",
         "fetchedConversionRates": "Wisselkoersen opgehaald",
-        "fetchedConversionRatesExplanation": "Recentste wisselkoersen opgehaald voor {{currency}}."
+        "fetchedConversionRatesExplanation": "Recentste wisselkoersen opgehaald voor {{currency}}.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Voer uw wachtwoord in om de wallet opnieuw in te stellen.",
@@ -381,7 +388,7 @@
         "one": "Een"
     },
     "deleteAccount": {
-        "areYouSure": "Weet u zeker dat u {{accountName}} wilt verwijderen?",
+        "areYouSure": "Are you sure you want to delete",
         "yourSeedWillBeRemoved": "Uw sleutel en transactiegeschiedenis zullen worden verwijderd.",
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
         "enterPassword": "Typ uw wachtwoord als u deze account wilt verwijderen."
@@ -464,7 +471,9 @@
         "localOrRemote":
             "Bewijs van inspanning kan lokaal gedaan worden op uw apparaat, of overgedragen worden aan een node.",
         "local": "Lokaal",
-        "remote": "Extern"
+        "remote": "Extern",
+        "powUpdated": "Proof of work settings",
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Ontvangstadres wordt gevalideerd",

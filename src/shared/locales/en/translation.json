@@ -91,7 +91,8 @@
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
-        "account": "Account"
+        "account": "Account",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -154,9 +155,7 @@
         "send": "SEND",
         "receive": "RECEIVE",
         "history": "HISTORY",
-        "settings": "SETTINGS",
-        "undo": "Undo",
-        "redo": "Redo"
+        "settings": "SETTINGS"
     },
     "languageSetup": {
         "language": "Language"
@@ -292,6 +291,7 @@
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "Hide",
         "hideOthers": "Hide Others",
+        "show": "Show",
         "showAll": "Show All",
         "quit": "Quit",
         "edit": "Edit",
@@ -304,7 +304,10 @@
         "couldNotFetchRates": "Could not fetch rates",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",

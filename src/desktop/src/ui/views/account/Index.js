@@ -55,7 +55,7 @@ class Account extends React.PureComponent {
                     onSuccess={(password, vault) => this.setState({ password, vault })}
                     onClose={() => history.push('/wallet/')}
                     content={{
-                        title: t('Enter password to access account settings'),
+                        title: t('enterPasswordToAccessAccountSettings'),
                     }}
                 />
             );
