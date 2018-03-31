@@ -147,34 +147,17 @@ export default (state = initialState, action) => {
                 seedIndex: 0,
                 currentSetting: 'accountManagement',
             };
-        case ActionTypes.SNAPSHOT_TRANSITION_REQUEST:
-            return {
-                ...state,
-                isTransitioning: true,
-            };
         case ActionTypes.SNAPSHOT_TRANSITION_SUCCESS:
             return {
                 ...state,
-                isTransitioning: false,
                 transitionBalance: 0,
                 transitionAddresses: [],
             };
         case ActionTypes.SNAPSHOT_TRANSITION_ERROR:
             return {
                 ...state,
-                isTransitioning: false,
                 transitionBalance: 0,
                 transitionAddresses: [],
-            };
-        case ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_REQUEST:
-            return {
-                ...state,
-                isAttachingToTangle: true,
-            };
-        case ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE:
-            return {
-                ...state,
-                isAttachingToTangle: false,
             };
         case ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE:
             return {
