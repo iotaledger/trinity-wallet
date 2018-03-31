@@ -111,7 +111,7 @@ export default (state = initialState, action) => {
         case WalletActionTypes.GENERATE_NEW_ADDRESS_SUCCESS:
             return {
                 ...state,
-                isGeneratingReceiveAddress: false
+                isGeneratingReceiveAddress: false,
             };
         case WalletActionTypes.GENERATE_NEW_ADDRESS_ERROR:
             return {
@@ -127,27 +127,27 @@ export default (state = initialState, action) => {
         case TransfersActionTypes.SEND_TRANSFER_ERROR:
             return {
                 ...state,
-                isSendingTransfer: false
+                isSendingTransfer: false,
             };
         case WalletActionTypes.CLEAR_WALLET_DATA:
             return {
                 ...state,
-                isSendingTransfer: false
+                isSendingTransfer: false,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
                 ...state,
-                hasErrorFetchingAccountInfoOnLogin: false
+                hasErrorFetchingAccountInfoOnLogin: false,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR:
             return {
                 ...state,
-                hasErrorFetchingAccountInfoOnLogin: true
+                hasErrorFetchingAccountInfoOnLogin: true,
             };
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,
-                isFetchingLatestAccountInfoOnLogin: true
+                isFetchingLatestAccountInfoOnLogin: true,
             };
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_ERROR:
@@ -169,6 +169,31 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isSyncing: false,
+            };
+        case WalletActionTypes.SNAPSHOT_TRANSITION_REQUEST:
+            return {
+                ...state,
+                isTransitioning: true,
+            };
+        case WalletActionTypes.SNAPSHOT_TRANSITION_SUCCESS:
+            return {
+                ...state,
+                isTransitioning: false,
+            };
+        case WalletActionTypes.SNAPSHOT_TRANSITION_ERROR:
+            return {
+                ...state,
+                isTransitioning: false,
+            };
+        case WalletActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_REQUEST:
+            return {
+                ...state,
+                isAttachingToTangle: true,
+            };
+        case WalletActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE:
+            return {
+                ...state,
+                isAttachingToTangle: false,
             };
         default:
             return state;
