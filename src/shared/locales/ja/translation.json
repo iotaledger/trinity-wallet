@@ -87,8 +87,11 @@
         "pleaseWaitExplanation": "Trinityは別の機能を実行しています。お待ち頂き、もう一度実行してください。",
         "pleaseWaitTransferExplanation":
             "利用可能な残高は、現在、別の送金で使用されています。送金が承認されるまで少々お待ちください。",
-        "snapshotTransitionInProgress": "スナップショットの遷移が進行中",
-        "snapshotTransitionInProgressExplanation": "遷移が完了するまで少々お待ちください。"
+        "snapshotTransitionInProgress": "スナップショットの移行が進行中",
+        "snapshotTransitionInProgressExplanation": "移行が完了するまで少々お待ちください。",
+        "checkForUpdates": "更新を確認",
+        "account": "アカウント",
+        "enterPasswordToAccessSettings": "アカウント設定にアクセスするためのパスワードを入力して下さい。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -282,6 +285,7 @@
         "poorConnectionExplanation": "接続不良により通貨を変更できませんでした。",
         "hide": "非表示",
         "hideOthers": "他を隠す",
+        "show": "表示",
         "showAll": "すべて表示",
         "quit": "終了",
         "edit": "編集",
@@ -290,11 +294,14 @@
         "paste": "貼り付け",
         "selectAll": "すべてを選択",
         "securitySettings": "セキュリティ設定",
-        "fingerprint": "指紋認証",
+        "fingerprint": "生体認証",
         "couldNotFetchRates": "換算率を取得できませんでした。",
         "couldNotFetchRatesExplanation": "{{currency}}の換算率の取得中に何らかの問題が発生しました。",
         "fetchedConversionRates": "換算率を取得しました。",
-        "fetchedConversionRatesExplanation": "{{currency}}の最新の換算率の取得に成功しました。"
+        "fetchedConversionRatesExplanation": "{{currency}}の最新の換算率の取得に成功しました。",
+        "undo": "取り消し",
+        "redo": "やり直し",
+        "about": "Trinityについて"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
@@ -345,7 +352,7 @@
         "selectNode": "ノード選択",
         "addCustomNode": "カスタムノードの追加",
         "manualSync": "手動同期",
-        "snapshotTransition": "スナップショットの遷移"
+        "snapshotTransition": "スナップショットの移行"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -372,7 +379,7 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "{{accountName}}を削除してもよろしいですか？",
+        "areYouSure": "削除してもよろしいですか？",
         "yourSeedWillBeRemoved": "Seedと取引の履歴を削除します。",
         "thisAction": "この操作は元に戻せません。",
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
@@ -454,7 +461,9 @@
         "feeless": "IOTAの取引手数料無しの送金を行うには小規模のPoWを行う必要があります。",
         "localOrRemote": "PoWはデバイス上でローカルに行うか、ノードにお任せすることができます。",
         "local": "ローカル",
-        "remote": "リモート"
+        "remote": "リモート",
+        "powUpdated": "PoWの設定",
+        "powUpdatedExplanation": "PoWの設定を更新しました。"
     },
     "progressSteps": {
         "validatingReceiveAddress": "受取アドレスの検証",
@@ -466,9 +475,9 @@
         "broadcasting": "ブロードキャスト"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "スナップショットの遷移を完了できません。",
-        "cannotCompleteTransitionExplanation": "遷移を完了するには、残高が0より大きくなければなりません。",
-        "transitionComplete": "スナップショットの遷移完了",
-        "transitionCompleteExplanation": "スナップショットの遷移が正常に完了しました。"
+        "cannotCompleteTransition": "スナップショットの移行を完了できません。",
+        "cannotCompleteTransitionExplanation": "移行を完了するには、残高が0より大きくなければなりません。",
+        "transitionComplete": "スナップショットの移行完了",
+        "transitionCompleteExplanation": "スナップショットの移行が正常に完了しました。"
     }
 }

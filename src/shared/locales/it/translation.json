@@ -91,7 +91,10 @@
             "Il tuo saldo disponibile è attualmente in uso in altri trasferimenti. Si prega di attendere la conferma di uno di questi prima di riprovare.",
         "snapshotTransitionInProgress": "Passaggio allo snapshot in corso",
         "snapshotTransitionInProgressExplanation":
-            "Si prega di attendere fino a quando il passaggio allo snapshot sarà completato."
+            "Si prega di attendere fino a quando il passaggio allo snapshot sarà completato.",
+        "checkForUpdates": "Check for Updates",
+        "account": "Account",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -294,6 +297,7 @@
         "poorConnectionExplanation": "Impossibile modificare la valuta a causa di una cattiva connessione.",
         "hide": "Nascondi",
         "hideOthers": "Nascondi altri",
+        "show": "Show",
         "showAll": "Mostra tutti",
         "quit": "Esci",
         "edit": "Modifica",
@@ -308,7 +312,10 @@
             "Qualcosa è andato storto durante il reperimento dei tassi di conversione per {{currency}}.",
         "fetchedConversionRates": "Reperiti i tassi di conversione",
         "fetchedConversionRatesExplanation":
-            "Reperiti con successo i più recenti tassi di conversione per {{currency}}."
+            "Reperiti con successo i più recenti tassi di conversione per {{currency}}.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Immetti la tua password per reimpostare il portafoglio.",
@@ -388,7 +395,7 @@
         "one": "Unità"
     },
     "deleteAccount": {
-        "areYouSure": "Sei sicuro di voler eliminare il conto {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete",
         "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
         "thisAction": "Questa azione non può essere annullata.",
         "enterPassword": "Immetti la tua password per cancellare il conto."
@@ -475,7 +482,9 @@
         "localOrRemote":
             "Il calcolo (PoW) può essere completato in locale nel tuo dispositivo, oppure demandato ad un nodo.",
         "local": "Locale",
-        "remote": "Remoto"
+        "remote": "Remoto",
+        "powUpdated": "Proof of work settings",
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Convalido l'indirizzo ricevente",

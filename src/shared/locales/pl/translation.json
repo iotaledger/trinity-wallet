@@ -89,7 +89,10 @@
         "pleaseWaitTransferExplanation":
             "Dostępne saldo jest aktualnie używane w innych transferach. Poczekaj na ich potwierdzenie, zanim spróbujesz ponownie.",
         "snapshotTransitionInProgress": "Aktualizacja środków w toku",
-        "snapshotTransitionInProgressExplanation": "Proszę czekać na zakończenie aktualizacji środków."
+        "snapshotTransitionInProgressExplanation": "Proszę czekać na zakończenie aktualizacji środków.",
+        "checkForUpdates": "Sprawdź aktualizacje",
+        "account": "Konto",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -291,6 +294,7 @@
         "poorConnectionExplanation": "Nie można zmienić waluty ze względu na słabe połączenie.",
         "hide": "Ukryj",
         "hideOthers": "Ukryj pozostałe",
+        "show": "Show",
         "showAll": "Pokaż wszystkie",
         "quit": "Zakończ",
         "edit": "Edytuj",
@@ -304,7 +308,10 @@
         "couldNotFetchRatesExplanation":
             "Coś poszło nie tak podczas pobierania kursów przeliczeniowych dla waluty {{currency}}.",
         "fetchedConversionRates": "Pobrano kursy przeliczeniowe",
-        "fetchedConversionRatesExplanation": "Pomyślnie pobrano najnowszy kurs przeliczeniowy dla waluty {{currency}}."
+        "fetchedConversionRatesExplanation": "Pomyślnie pobrano najnowszy kurs przeliczeniowy dla waluty {{currency}}.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź swoje hasło, aby zresetować portfel.",
@@ -384,7 +391,7 @@
         "one": "Jeden"
     },
     "deleteAccount": {
-        "areYouSure": "Czy na pewno chcesz usunąć Twoje konto o nazwie {{accountName}}?",
+        "areYouSure": "Czy na pewno chcesz usunąć",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
         "thisAction": "Tej czynności nie można cofnąć.",
         "enterPassword": "Wprowadź swoje hasło, aby usunąć to konto."
@@ -467,7 +474,9 @@
         "feeless": "Niezbędnym jest wykonanie niewielkiego proof of work, aby przesyłać transakcje IOTA bez prowizji.",
         "localOrRemote": "Proof of work może być wykonany lokalnie na Twoim urządzeniu lub przy użyciu serwera.",
         "local": "Lokalnie",
-        "remote": "Zdalnie"
+        "remote": "Zdalnie",
+        "powUpdated": "Ustawienia proof of work",
+        "powUpdatedExplanation": "Twoja konfiguracja proof of work została zaktualizowana."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Sprawdzanie adresu odbiorczego",

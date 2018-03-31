@@ -59,7 +59,7 @@ class Send extends React.PureComponent {
 
     state = {
         address: '',
-        amount: 0,
+        amount: '',
         message: '',
         isModalVisible: false,
     };
@@ -118,7 +118,7 @@ class Send extends React.PureComponent {
             };
         }
 
-        sendTransfer(seed, address, amount, message, null, powFn);
+        sendTransfer(seed, address, parseInt(amount), message, null, powFn);
     };
 
     render() {

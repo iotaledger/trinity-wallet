@@ -90,7 +90,10 @@
             "Votre solde disponible est actuellement utilisé dans d'autres transferts. Veuillez attendre qu'un des transferts soit confirmé avant de réessayer.",
         "snapshotTransitionInProgress": "Transition du Snapshot en cours",
         "snapshotTransitionInProgressExplanation":
-            "Veuillez patienter jusqu'à ce que la synchronisation de la transition soit terminée."
+            "Veuillez patienter jusqu'à ce que la synchronisation de la transition soit terminée.",
+        "checkForUpdates": "Check for Updates",
+        "account": "Compte",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -132,7 +135,7 @@
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "seedCopied": "Seed copiée dans le presse-papier",
         "seedCopiedExplanation":
-            "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
+            "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez votre seed dans un gestionnaire de mot de passe.",
         "doNotStore": "Ne stockez pas votre seed en texte en clair.",
         "copyToClipboard": "Copier le seed",
@@ -165,7 +168,7 @@
         "enterPassword": "Veuillez saisir votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
         "login": "SE CONNECTER",
-        "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
+        "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
         "setNode": "CONFIGURER UN SERVEUR",
         "cannotConnect": "Impossible de se connecter à un serveur IOTA."
     },
@@ -294,6 +297,7 @@
         "poorConnectionExplanation": "Impossible de changer de devise à cause de la mauvaise connexion.",
         "hide": "Masquer",
         "hideOthers": "Masquer les autres",
+        "show": "Show",
         "showAll": "Tout Afficher",
         "quit": "Quitter",
         "edit": "Modifier",
@@ -307,7 +311,10 @@
         "couldNotFetchRatesExplanation":
             "Une erreur s'est produite lors de la récupération des taux de change pour {{currency}}.",
         "fetchedConversionRates": "Taux de conversion récupérés",
-        "fetchedConversionRatesExplanation": "Récupération des derniers taux de conversion pour {{currency}} réussie."
+        "fetchedConversionRatesExplanation": "Récupération des derniers taux de conversion pour {{currency}} réussie.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
@@ -324,7 +331,7 @@
         "keepSafe": "Merci de garder votre Seed en sécurité."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Merci d’avoir téléchargé Trinity.",
         "weWillSpend": "Durant les prochaines minutes, nous allons configurer votre portefeuille.",
         "reminder":
             "Vous pourriez être tenté de brûler certaines étapes, mais il est impératif de suivre la procédure complète."
@@ -388,7 +395,7 @@
         "one": "Un"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete",
         "yourSeedWillBeRemoved": "L’historique de vos seeds et de vos transactions sera supprimé.",
         "thisAction": "Cette action est irréversible.",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
@@ -478,7 +485,9 @@
         "localOrRemote":
             "La preuve du travail peut être effectuée localement sur votre appareil ou sur un serveur à distance .",
         "local": "Local",
-        "remote": "A distance"
+        "remote": "A distance",
+        "powUpdated": "Proof of work settings",
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validation de l'adresse de réception",

@@ -21,7 +21,7 @@
     }
     &.confirm {
         &:before {
-            opacity: 0.95;
+            opacity: 1;
         }
         text-align: center;
         h1 {

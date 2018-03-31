@@ -73,7 +73,6 @@ class Login extends React.Component {
     };
 
     state = {
-        loading: false,
         verifyTwoFA: false,
         code: '',
         password: '',
@@ -90,19 +89,6 @@ class Login extends React.Component {
         } else {
             this.props.clearWalletData();
             this.props.clearSeeds();
-        }
-    }
-
-    componentWillReceiveProps(newProps) {
-        const { wallet } = this.props;
-
-        const hasError =
-            !wallet.hasErrorFetchingAccountInfoOnLogin && newProps.wallet.hasErrorFetchingAccountInfoOnLogin;
-
-        if (hasError) {
-            this.setState({
-                loading: false,
-            });
         }
     }
 
@@ -163,7 +149,7 @@ class Login extends React.Component {
             const seed = vault.seeds[wallet.seedIndex];
 
             this.setState({
-                loading: true,
+                password: '',
             });
 
             this.setupAccount(seed);
@@ -172,9 +158,9 @@ class Login extends React.Component {
 
     render() {
         const { t, accounts, wallet } = this.props;
-        const { loading, verifyTwoFA, code } = this.state;
+        const { verifyTwoFA, code } = this.state;
 
-        if (loading || wallet.addingAdditionalAccount) {
+        if (wallet.isFetchingLatestAccountInfoOnLogin || wallet.addingAdditionalAccount) {
             return (
                 <Loading
                     loop
