@@ -72,8 +72,8 @@ class Feedback extends React.PureComponent {
         delete filteredState.seeds;
         delete filteredState.keychain;
         delete filteredState.marketData.chartData;
-        delete filteredState.account.accountNames;
-        delete filteredState.account.accountInfo;
+        delete filteredState.accounts.accountNames;
+        delete filteredState.accounts.accountInfo;
         delete filteredState.settings.availableNodes;
         delete filteredState.settings.theme;
         delete filteredState.settings.availablePoWNodes;
