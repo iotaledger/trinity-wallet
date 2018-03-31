@@ -12,11 +12,13 @@
 languages([
    "en-UK",
    "ar_SA",
+   "cs_CZ"
    "da_DK",
    "de-DE",
    "el_GR",
    "es_ES",
    "es_MX",
+   "et_EE",
    "fi_FI",
    "fr_FR",
    "he_IL",
@@ -25,6 +27,7 @@ languages([
    "it-IT",
    "ja_JP",
    "ko_KR",
+   "lt_LT",
    "lv_LV",
    "nl_NL",
    "nb_NO",
@@ -33,10 +36,13 @@ languages([
    "pt_BR",
    "ro_RO",
    "ru_RU",
+   "sk_SK",
    "sl_SI",
    "sv_SE",
+   "th_TH",
    "tr_TR",
    "ur_PK",
+   "vi_VN",
    "zh_Hans_CN",
    "zh_Hant_TW"
    
