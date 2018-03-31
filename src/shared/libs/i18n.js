@@ -8,6 +8,7 @@ const I18N_LOCALES = [
     'el',
     'es_ES',
     'es_LA',
+    'et',
     'fi',
     'fr',
     'he',
@@ -16,6 +17,7 @@ const I18N_LOCALES = [
     'it',
     'ja',
     'ko',
+    'lt',
     'lv',
     'nl',
     'no',
@@ -27,6 +29,7 @@ const I18N_LOCALES = [
     'sk',
     'sl',
     'sv_SE',
+    'th',
     'tr',
     'ur',
     'vi',
@@ -43,6 +46,7 @@ const I18N_LOCALE_LABELS = [
     'Ελληνικά - Greek',
     'Español (España) - Spanish (Spain)',
     'Español (Latinoamérica) - Spanish (Latin America)',
+    'Eesti keel - Estonian',
     'Suomi - Finnish',
     'Français - French',
     'עִברִית - Hebrew',
@@ -51,6 +55,7 @@ const I18N_LOCALE_LABELS = [
     'Italiano - Italian',
     '日本語 - Japanese',
     '한국어 - Korean',
+    'Lietuviškai - Lithuanian',
     'Latviešu - Latvian',
     'Nederlands - Dutch',
     'Norsk - Norwegian',
@@ -62,6 +67,7 @@ const I18N_LOCALE_LABELS = [
     'Slovenský - Slovak',
     'Slovenščina - Slovenian',
     'Svenska - Swedish',
+    'ไทย - Thai',
     'Türkçe - Turkish',
     'اردو - Urdu',
     'Tiếng Việt - Vietnamese',
@@ -76,7 +82,7 @@ const getLocaleFromLabel = (label) => {
 
 // Export constants for pre-ES6 compatibility
 module.exports = {
-  I18N_LOCALES,
-  I18N_LOCALE_LABELS,
-  getLocaleFromLabel,
+    I18N_LOCALES,
+    I18N_LOCALE_LABELS,
+    getLocaleFromLabel,
 };
