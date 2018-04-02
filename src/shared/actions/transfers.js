@@ -218,9 +218,9 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
     // Use a local variable to keep track if the promise chain was interrupted internally.
     let chainBrokenInternally = false;
 
-    // Initialize latest account state, remainderAddress and startingSearchIndexToPrepareInputs as null
-    // Reassign all when account is synced
-    let latestAccountState = null;
+    // Initialize account state
+    // Reassign with latest state when account is synced
+    let accountState = selectedAccountStateFactory(accountName)(getState());
 
     // Security checks are not necessary for zero value transfers
     // Have them wrapped in a separate private function so in case it is a value transfer,
@@ -235,8 +235,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
         return shouldAllowSendingToAddress([address])
             .then((shouldAllowSending) => {
                 if (shouldAllowSending) {
-                    const currentAccountState = selectedAccountStateFactory(accountName)(getState());
-                    return syncAddresses(seed, currentAccountState, genFn, true);
+                    return syncAddresses(seed, accountState, genFn, true);
                 }
 
                 chainBrokenInternally = true;
@@ -249,16 +248,17 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                 return syncAccount(newState);
             })
             .then((newState) => {
-                latestAccountState = newState;
+                // Assign latest account
+                accountState = newState;
 
                 // Update local store with the latest account information
-                dispatch(accountInfoFetchSuccess(latestAccountState));
+                dispatch(accountInfoFetchSuccess(accountState));
 
-                const valueTransfers = filterZeroValueTransfers(latestAccountState.transfers);
-                return filterInvalidPendingTransfers(valueTransfers, latestAccountState.addresses);
+                const valueTransfers = filterZeroValueTransfers(accountState.transfers);
+                return filterInvalidPendingTransfers(valueTransfers, accountState.addresses);
             })
             .then((filteredTransfers) => {
-                const { addresses } = latestAccountState;
+                const { addresses } = accountState;
                 const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
 
                 // Preparing inputs
@@ -294,7 +294,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                const remainderAddress = getLatestAddress(latestAccountState.addresses);
+                const remainderAddress = getLatestAddress(accountState.addresses);
 
                 return {
                     inputs: get(inputs, 'inputs'),
@@ -354,7 +354,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                 return storeAndBroadcastAsync(cached.trytes);
             })
             .then(() =>
-                syncAccountAfterSpending(accountName, cached.transactionObjects, latestAccountState, !isZeroValue),
+                syncAccountAfterSpending(accountName, cached.transactionObjects, accountState, !isZeroValue),
             )
             .then(({ newState }) => {
                 // Progress summary
