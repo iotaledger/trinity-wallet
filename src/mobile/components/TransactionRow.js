@@ -6,6 +6,7 @@ import Modal from 'react-native-modal';
 import HistoryModalContent from '../components/HistoryModalContent';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -206,6 +207,7 @@ export default class TransactionRow extends PureComponent {
                         onBackButtonPress={this.toggleModal}
                         onBackdropPress={this.toggleModal}
                         hideModalContentWhileAnimating
+                        useNativeDriver={isAndroid ? true : false}
                     >
                         <HistoryModalContent {...this.getModalProps()} />
                     </Modal>

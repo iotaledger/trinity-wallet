@@ -22,6 +22,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     modalContent: {
@@ -372,6 +373,7 @@ class SnapshotTransition extends Component {
                     isVisible={this.state.isModalVisible}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating
+                    useNativeDriver={isAndroid ? true : false}
                 >
                     {this.renderModalContent()}
                 </Modal>

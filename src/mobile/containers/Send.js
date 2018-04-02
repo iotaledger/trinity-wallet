@@ -825,6 +825,7 @@ export class Send extends Component {
                         isVisible={isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
                         hideModalContentWhileAnimating
+                        useNativeDriver={isAndroid ? true : false}
                     >
                         {this.renderModalContent()}
                     </Modal>
