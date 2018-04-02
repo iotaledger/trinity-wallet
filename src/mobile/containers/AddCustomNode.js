@@ -129,12 +129,6 @@ class AddCustomNode extends Component {
     setNode(selectedNode) {
         changeIotaNode(selectedNode);
         this.props.setFullNode(selectedNode);
-
-        return this.props.generateAlert(
-            'success',
-            'Successfully changed node',
-            `The node was changed to ${selectedNode}.`,
-        );
     }
 
     addNode() {
@@ -149,6 +143,7 @@ class AddCustomNode extends Component {
         if (customNode.startsWith('http://')) {
             return this.onAddHttpNodeError();
         }
+        console.log(nodes);
 
         if (!nodes.includes(customNode.replace(/ /g, ''))) {
             this.setNode(customNode);
