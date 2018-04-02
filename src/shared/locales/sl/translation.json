@@ -19,8 +19,7 @@
         "invalidResponse": "Neveljaven odziv",
         "invalidResponseExplanation": "Vozlišče je vrnilo neveljaven odziv.",
         "invalidResponsePollingExplanation": "Vozlišče ke vrnilo neveljaven odziv med pozivanjem.",
-        "invalidResponseFetchingAccount":
-            "Vozlišče je vrnilo neveljaven odziv med pridobivanjem podatkov o vašem računu. Poskusite menjati vozlišče.",
+        "invalidResponseFetchingAccount": "Vozlišče je vrnilo neveljaven odziv med pridobivanjem podatkov o vašem računu. Poskusite menjati vozlišče.",
         "invalidResponseSendingTransfer": "Vozlišče je vrnilo neveljaven odziv med pošiljanjem prenosa.",
         "seed": "Generirano število",
         "back": "NAZAJ",
@@ -85,8 +84,7 @@
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
         "pleaseWait": "Prosim, počakajte",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation":
-            "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
+        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
@@ -95,11 +93,9 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
-        "seedInvalidCharsExplanation":
-            "Generirana vrednost lahko vsebuje samo črke od A-Z in številko 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite ponovno.",
+        "seedInvalidCharsExplanation": "Generirana vrednost lahko vsebuje samo črke od A-Z in številko 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite ponovno.",
         "seedTooShort": "Seed je prekratek",
-        "seedTooShortExplanation":
-            "Generirana vrednost mora biti {{maxLenght}} znakov dolga. Vaša generirana vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite znova.",
+        "seedTooShortExplanation": "Generirana vrednost mora biti {{maxLenght}} znakov dolga. Vaša generirana vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite znova.",
         "nameInUse": "Ime računa je že v uporabi",
         "nameInUseExplanation": "Prosimo vnesite edinstveno ime računa za pridobitev generirane vrednosti.",
         "enterAccountName": "Vnesite ime računa.",
@@ -111,8 +107,7 @@
     },
     "changePassword": {
         "oops": "Oops! Nekaj je šlo narobe",
-        "oopsExplanation":
-            "Izgleda kot da je nekaj šlo narobe pri posodabljanju vašega gesla. Prosimo poskusite ponovno.",
+        "oopsExplanation": "Izgleda kot da je nekaj šlo narobe pri posodabljanju vašega gesla. Prosimo poskusite ponovno.",
         "passwordUpdated": "Geslo posodobljeno",
         "passwordUpdatedExplanation": "Vaše geslo je bilo uspešno posodobljeno.",
         "incorrectPassword": "Napačno geslo",
@@ -122,8 +117,7 @@
         "passwordTooShort": "Geslo je prekratko",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Ni mogoče nastavite starega gesla",
-        "oldPasswordExplanation":
-            "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
+        "oldPasswordExplanation": "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
         "ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
         "currentPassword": "Trenutno Geslo",
         "newPassword": "Novo Geslo",
@@ -141,13 +135,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Generirana vrednost vsebuje beveljavne znake",
-        "invalidCharactersExplanation":
-            "Generirana vrednost lahko vsebuje samo velike črke od A-Z in število 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite znova.",
+        "invalidCharactersExplanation": "Generirana vrednost lahko vsebuje samo velike črke od A-Z in število 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite znova.",
         "seedTooShort": "Seed je prekratek",
-        "seedTooShortExplanation":
-            "Generirano vrednost mora biti {{maxLenght}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite ponovno.",
-        "seedExplanation":
-            "Generirana vrednost mora biti {{maxLenght}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLenght}}.",
+        "seedTooShortExplanation": "Generirano vrednost mora biti {{maxLenght}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite ponovno.",
+        "seedExplanation": "Generirana vrednost mora biti {{maxLenght}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLenght}}.",
         "neverShare": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA"
     },
     "home": {
@@ -183,8 +174,7 @@
         "individualLetters": "Pritisnite posamezne znake za jih ponaključit."
     },
     "onboardingComplete": {
-        "walletReady":
-            "Denarnica je nastavljena in pripravljena za uporabo. Če želite boste v prihodnosti želeleli kaj spreminjati poglejte v meni za nastavitve."
+        "walletReady": "Denarnica je nastavljena in pripravljena za uporabo. Če želite boste v prihodnosti želeleli kaj spreminjati poglejte v meni za nastavitve."
     },
     "paperWallet": {
         "clickToPrint": "Kliknite na spodnji gumb za printanje semena v papirnati obliki.",
@@ -205,8 +195,7 @@
     "saveYourSeed": {
         "seedCleared": "Generiranava vrednost odstranjena",
         "seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost.",
-        "mustSaveYourSeed":
-            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Napačno generirano število",
@@ -232,36 +221,30 @@
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "send": "Pošlji",
         "invalidAmount": "Neveljavna vsota",
-        "invalidAmountExplanation":
-            "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "NAJVIŠJI izbrani znesek",
         "iotaUnits": "IOTA units explained",
         "sendMax": "POŠLJI MAX"
     },
     "setPassword": {
         "passwordTooShort": "Geslo je prekratko",
-        "passwordTooShortExplanation":
-            "Vaše geslo mora biti vsaj {{minLenght}} znakov dolgo. Vaše trenutno geslo je {{currentLenght}} znakov dolgo. Prosimo poskusite ponovno.",
+        "passwordTooShortExplanation": "Vaše geslo mora biti vsaj {{minLenght}} znakov dolgo. Vaše trenutno geslo je {{currentLenght}} znakov dolgo. Prosimo poskusite ponovno.",
         "passwordMismatch": "Gesli se ne ujemata",
         "passwordMismatchExplanation": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
         "nowWeNeedTo": "Ok, zdaj moramo nastaviti geslo.",
-        "anEncryptedCopy":
-            "Šifrirana kopija vaše generirane vrednosti bo shranjena v napravi. Uporabite geslo za dostop do vaše denarnice v prihodnosti.",
+        "anEncryptedCopy": "Šifrirana kopija vaše generirane vrednosti bo shranjena v napravi. Uporabite geslo za dostop do vaše denarnice v prihodnosti.",
         "ensure": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
         "retypePassword": "Ponovno vnesite geslo"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "Uporabite lahko več generiranih vrednosti s to denarnico. Vsaka generirana vrednost potrebuje ime računa.",
+        "canUseMultipleSeeds": "Uporabite lahko več generiranih vrednosti s to denarnico. Vsaka generirana vrednost potrebuje ime računa.",
         "youCanAdd": "Dodate lahko več generiranih vrednosti v meniju za nastavitve."
     },
     "modeSelection": {
         "expert": "Strokovnjak",
         "standard": "Standard",
-        "expertModeExplanation":
-            "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation":
-            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Prenos pošiljanja",
@@ -318,8 +301,7 @@
         "okay": "Okej. Ustvarimo vašo denarnico!",
         "doYouAlreadyHaveASeed": "Ali že imate seed, ki bi ga želeli uporabiti?",
         "seedExplanation": "IOTA seed je kot uporabniško ime in geslo za vaš račun, združeni v enoten niz 81 znakov.",
-        "explanation":
-            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Prosimo vas, da imate seed shranjen na varnem."
     },
     "welcome": {
@@ -329,8 +311,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed":
-            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
@@ -386,7 +367,7 @@
         "one": "One"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "Tega dejanja ni mogoče razveljaviti.",
         "enterPassword": "Enter your password to delete this account."
@@ -414,8 +395,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning":
-            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
@@ -430,8 +410,7 @@
         "enabled": "Enabled",
         "disabled": "Disabled",
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation":
-            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "instructionsLogin": "Touch fingerprint reader to log in."
@@ -461,8 +440,7 @@
     },
     "rootDetection": {
         "warning": "WARNING",
-        "rootDetected":
-            "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
