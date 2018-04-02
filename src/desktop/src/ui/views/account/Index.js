@@ -23,10 +23,10 @@ class Account extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Temporary account state data
+        /** wallet state data
          * @ignore
          */
-        tempAccount: PropTypes.object,
+        wallet: PropTypes.object,
         /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
@@ -55,7 +55,7 @@ class Account extends React.PureComponent {
                     onSuccess={(password, vault) => this.setState({ password, vault })}
                     onClose={() => history.push('/wallet/')}
                     content={{
-                        title: t('Enter password to access account settings'),
+                        title: t('enterPasswordToAccessAccountSettings'),
                     }}
                 />
             );
@@ -121,7 +121,7 @@ class Account extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    tempAccount: state.tempAccount,
+    wallet: state.wallet,
 });
 
 export default connect(mapStateToProps)(translate()(Account));

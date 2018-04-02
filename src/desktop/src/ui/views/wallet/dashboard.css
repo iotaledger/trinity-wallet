@@ -12,6 +12,7 @@
         &:first-child {
             width: 40%;
             min-width: 420px;
+            max-width: 560px;
 
             @media (max-width: 900px) {
                 width: 100%;
@@ -44,6 +45,10 @@
 
             input,
             textarea {
+                background: var(--body-bg);
+            }
+
+            ul li {
                 background: var(--body-bg);
             }
 

@@ -1,4 +1,4 @@
-import IOTA from './lib.promisified';
+import IOTA from 'iota.lib.js';
 import { nodes, defaultNode } from '../../config';
 
 export const iota = new IOTA({ provider: defaultNode });
@@ -15,7 +15,6 @@ export const checkNode = (cb) => {
     iota.api.getNodeInfo((error, success) => {
         if (error) {
             cb(error);
-            console.log(error);
         } else {
             cb(null, success);
         }

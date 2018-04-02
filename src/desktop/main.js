@@ -41,8 +41,6 @@ function createWindow() {
     windows.main = new BrowserWindow({
         width: 1024,
         height: 768,
-        maxWidth: 1280,
-        maxHeight: 860,
         minWidth: 500,
         minHeight: 720,
         titleBarStyle: 'hidden',
@@ -74,9 +72,13 @@ function createWindow() {
 }
 
 const hideOnClose = function(e) {
-    e.preventDefault();
-    windows.main.hide();
-    windows.main.webContents.send('lockScreen');
+    if (process.platform === 'darwin') {
+        e.preventDefault();
+        windows.main.hide();
+        windows.main.webContents.send('lockScreen');
+    } else {
+        windows.main = null;
+    }
 };
 
 const getWindow = function(windowName) {
