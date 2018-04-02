@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import QRCode from 'qrcode.react';
-import { selectAccountInfo, getSelectedAccountName } from 'selectors/account';
+import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
 import { runTask } from 'worker';
-import { setReceiveAddress } from 'actions/tempAccount';
+import { setReceiveAddress } from 'actions/wallet';
 
 import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
@@ -85,11 +85,11 @@ class Receive extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    receiveAddress: state.tempAccount.receiveAddress,
-    isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
+    receiveAddress: state.wallet.receiveAddress,
+    isGeneratingReceiveAddress: state.wallet.isGeneratingReceiveAddress,
     account: selectAccountInfo(state),
     accountName: getSelectedAccountName(state),
-    seed: state.seeds.seeds[state.tempAccount.seedIndex],
+    seed: state.seeds.seeds[state.wallet.seedIndex],
 });
 
 const mapDispatchToProps = {

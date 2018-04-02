@@ -77,7 +77,7 @@ const Colors = () => {
             <div>
                 <div className={css.extraColor} /> <strong>extra.color</strong>
                 <span>
-                    Extra CTA and accent color <em>E.g. mobile "Save your seed" option buttons</em>
+                    Extra CTA and accent color <em>E.g. mobile {'Save your seed'} option buttons</em>
                 </span>
             </div>
             <div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { formatIota, round } from 'libs/util';
+import { formatIota } from 'libs/iota/utils';
+import { round } from 'libs/utils';
 import { getCurrencySymbol } from 'libs/currency';
 
 import Icon from 'ui/components/Icon';

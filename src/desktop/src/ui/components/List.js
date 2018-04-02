@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
-import { formatValue, formatUnit, round } from 'libs/util';
-import { convertFromTrytes } from 'libs/iota/utils';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/dateUtils';
+import { round } from 'libs/utils';
+import { convertFromTrytes, formatValue, formatUnit } from 'libs/iota/utils';
+import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
 import { getRelevantTransfer } from 'libs/iota/transfers';
-import Modal from 'ui/components/modal/Modal';
-import Button from 'ui/components/Button';
+
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
 

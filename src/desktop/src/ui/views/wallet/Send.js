@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatValue, formatUnit } from 'libs/util';
+import { formatValue, formatUnit } from 'libs/iota/utils';
 import Curl from 'curl.lib.js';
 
 import AddressInput from 'ui/components/input/Address';
