@@ -28,9 +28,8 @@ import {
     filterInvalidPendingTransfers,
     filterZeroValueTransfers,
     performPow,
-    syncAccountAfterSpending,
 } from '../libs/iota/transfers';
-import { syncAccountAfterReattachment, syncAccount } from '../libs/iota/accounts';
+import { syncAccountAfterReattachment, syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
 import { updateAccountAfterReattachment, updateAccountInfoAfterSpending, accountInfoFetchSuccess } from './accounts';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
@@ -354,7 +353,9 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
 
                 return storeAndBroadcastAsync(cached.trytes);
             })
-            .then(() => syncAccountAfterSpending(accountName, cached.transactionObjects, value))
+            .then(() =>
+                syncAccountAfterSpending(accountName, cached.transactionObjects, latestAccountState, !isZeroValue),
+            )
             .then(({ newState }) => {
                 // Progress summary
                 dispatch(setNextStepAsActive());
