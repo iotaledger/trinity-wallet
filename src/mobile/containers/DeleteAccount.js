@@ -18,6 +18,7 @@ import { getPasswordHash } from '../utils/crypto';
 import CustomTextInput from '../components/CustomTextInput';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -301,6 +302,7 @@ class DeleteAccount extends Component {
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
                         hideModalContentWhileAnimating
+                        useNativeDriver={isAndroid ? true : false}
                     >
                         {this.renderModalContent(borderColor, textColor)}
                     </Modal>
