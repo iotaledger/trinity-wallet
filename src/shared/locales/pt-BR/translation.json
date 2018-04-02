@@ -89,7 +89,7 @@
         "snapshotTransitionInProgressExplanation": "Por favor, aguarde até a transição ser finalizada.",
         "checkForUpdates": "Verificar Atualizações",
         "account": "Conta",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "Informe sua Senha par acessar as opções da conta"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -274,7 +274,7 @@
         "poorConnectionExplanation": "Falha ao alterar a moeda devido a uma conexão fraca.",
         "hide": "Ocultar",
         "hideOthers": "Ocultar Outros",
-        "show": "Show",
+        "show": "Exibir",
         "showAll": "Exibir Tudo",
         "quit": "Sair",
         "edit": "Editar",
@@ -288,9 +288,9 @@
         "couldNotFetchRatesExplanation": "Algo deu errado ao obter as taxas de câmbio para {{currency}}.",
         "fetchedConversionRates": "Conversão de câmbio obtida",
         "fetchedConversionRatesExplanation": "As taxas de câmbio foram obtidas com sucesso para {{currency}}.",
-        "undo": "Undo",
-        "redo": "Redo",
-        "about": "About Trinity"
+        "undo": "Desfazer",
+        "redo": "Refazer",
+        "about": "Sobre a Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
@@ -367,7 +367,7 @@
         "one": "Um"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Tem certeza que deseja excluir a conta: {{accountName}}?",
         "yourSeedWillBeRemoved": "Sua Seed e histórico de transações serão removidos.",
         "thisAction": "Esta operação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
