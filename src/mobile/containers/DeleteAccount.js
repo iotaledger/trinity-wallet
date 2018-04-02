@@ -171,7 +171,7 @@ class DeleteAccount extends Component {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
         this.hideModal();
-        this.props.deleteAccount();
+        this.delete();
     }
 
     onNoPress() {
