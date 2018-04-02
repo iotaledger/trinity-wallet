@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
-import { formatValue, formatUnit, round } from 'libs/util';
-import { convertFromTrytes } from 'libs/iota/utils';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/dateUtils';
-import Modal from 'ui/components/modal/Modal';
-import Button from 'ui/components/Button';
+import { round } from 'libs/utils';
+import { convertFromTrytes, formatValue, formatUnit } from 'libs/iota/utils';
+import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
+import { getRelevantTransfer } from 'libs/iota/transfers';
+
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
 
@@ -57,8 +58,11 @@ class List extends React.PureComponent {
 
         const filters = ['All', 'Sent', 'Received', 'Pending'];
 
-        const activeTransfers = currentItem ? transfers[parseInt(currentItem)] : null;
-        const activeTransfer = activeTransfers ? activeTransfers[0] : null;
+        const formattedTx =
+            transfers && transfers.length ? transfers.map((transfer) => getRelevantTransfer(transfer, addresses)) : [];
+        const historyTx = orderBy(formattedTx, 'timestamp', ['desc']);
+
+        const activeTransfer = currentItem ? historyTx.filter((tx) => tx.hash === currentItem)[0] : null;
 
         return (
             <React.Fragment>
@@ -86,9 +90,8 @@ class List extends React.PureComponent {
                 </nav>
                 <hr />
                 <div className={css.list}>
-                    {transfers && transfers.length ? (
-                        transfers.map((transferRow, key) => {
-                            const transfer = transferRow[0];
+                    {historyTx && historyTx.length ? (
+                        historyTx.map((transfer, key) => {
                             const isReceived = addresses.includes(transfer.address);
                             const isConfirmed = transfer.persistence;
 
@@ -103,10 +106,10 @@ class List extends React.PureComponent {
                             return (
                                 <a
                                     key={key}
-                                    onClick={() => setItem(key)}
+                                    onClick={() => setItem(transfer.hash)}
                                     className={classNames(
-                                        isReceived ? css.received : css.sent,
                                         isConfirmed ? css.confirmed : css.pending,
+                                        isReceived ? css.received : css.sent,
                                     )}
                                 >
                                     <div>
@@ -126,10 +129,10 @@ class List extends React.PureComponent {
                         <p className={css.empty}>No recent history</p>
                     )}
                 </div>
-                {activeTransfer !== null ? (
-                    <Modal isOpen onClose={() => setItem(null)}>
-                        <div className={css.historyItem}>
-                            <header
+                <div className={classNames(css.popup, activeTransfer ? css.on : null)} onClick={() => setItem(null)}>
+                    <div>
+                        {activeTransfer ? (
+                            <div
                                 className={classNames(
                                     addresses.includes(activeTransfer.address) ? css.received : css.sent,
                                     activeTransfer.persistence ? css.confirmed : css.pending,
@@ -137,55 +140,39 @@ class List extends React.PureComponent {
                             >
                                 <p>
                                     <strong>
+                                        {addresses.includes(activeTransfer.address)
+                                            ? t('history:receive')
+                                            : t('history:send')}
+                                        <span>
+                                            {' '}
+                                            {`${round(formatValue(activeTransfer.value))} ${formatUnit(
+                                                activeTransfer.value,
+                                            )}`}
+                                        </span>
+                                    </strong>
+                                    <small>
                                         {!activeTransfer.persistence
                                             ? t('pending')
                                             : addresses.includes(activeTransfer.address) ? t('received') : t('sent')}
-                                    </strong>{' '}
-                                    <span>{`${round(formatValue(activeTransfer.value))} ${formatUnit(
-                                        activeTransfer.value,
-                                    )}`}</span>
+                                        <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
+                                    </small>
                                 </p>
-                                <small>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</small>
-                            </header>
-                            <h6>Bundle Hash:</h6>
-                            <p>
-                                <Clipboard
-                                    text={activeTransfer.bundle}
-                                    title={t('history:bundleHashCopied')}
-                                    success={t('history:bundleHashCopiedExplanation')}
-                                />
-                            </p>
-                            <h6>Addresses</h6>
-                            <div className={css.scroll}>
-                                <ul>
-                                    {activeTransfers.map((tx, key) => {
-                                        return (
-                                            <li key={key}>
-                                                <p>
-                                                    <Clipboard
-                                                        text={tx.address}
-                                                        title={t('history:addressCopied')}
-                                                        success={t('history:addressCopiedExplanation')}
-                                                    />
-                                                </p>
-                                                <strong>{`${round(formatValue(tx.value))} ${formatUnit(
-                                                    tx.value,
-                                                )}`}</strong>
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
+                                <h6>Bundle Hash:</h6>
+                                <p className={css.hash}>
+                                    <Clipboard
+                                        text={activeTransfer.bundle}
+                                        title={t('history:bundleHashCopied')}
+                                        success={t('history:bundleHashCopiedExplanation')}
+                                    />
+                                </p>
+                                <p>
+                                    <strong>{t('send:message')}</strong>
+                                    <span>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</span>
+                                </p>
                             </div>
-                            <h6>Message</h6>
-                            <p>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</p>
-                            <footer>
-                                <Button onClick={() => setItem(null)} variant="primary">
-                                    {t('back')}
-                                </Button>
-                            </footer>
-                        </div>
-                    </Modal>
-                ) : null}
+                        ) : null}
+                    </div>
+                </div>
             </React.Fragment>
         );
     }

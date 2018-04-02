@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { isValidSeed } from 'libs/util';
+import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 import { generateAlert } from 'actions/alerts';
 import { setNewSeed } from 'actions/seeds';
@@ -20,7 +20,7 @@ class SeedVerify extends React.PureComponent {
         /** Current generated seed */
         newSeed: PropTypes.string,
         /** is news seed generated */
-        isGenerated: PropTypes.boolean,
+        isGenerated: PropTypes.bool,
         /** Accept current generated seed
          * @param {String} seed - New seed
          * @param {Boolean} isGenerated - Is the new seed generated
@@ -71,9 +71,14 @@ class SeedVerify extends React.PureComponent {
             return;
         }
 
-        if (!isValidSeed(seed)) {
-            generateAlert('error', t('seedReentry:incorrectSeed'), t('enterSeed:seedTooShort'));
-            return;
+        if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
+            generateAlert('error', t('enterSeed:invalidCharacters'), t('enterSeed:invalidCharactersExplanation'));
+        } else if (seed.length < MAX_SEED_LENGTH) {
+            generateAlert(
+                'error',
+                t('enterSeed:seedTooShort'),
+                t('enterSeed:seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
+            );
         }
 
         if (!isGenerated) {
@@ -102,7 +107,7 @@ class SeedVerify extends React.PureComponent {
                         ) : (
                             <React.Fragment>
                                 <p>
-                                    {t('enterSeed:seedExplanation')}
+                                    {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
                                     <br />
                                     {t('enterSeed:neverShare')}
                                 </p>

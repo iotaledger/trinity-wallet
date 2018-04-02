@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { selectAccountInfo } from '../../selectors/account';
+import { selectAccountInfo } from '../../selectors/accounts';
 
 /**
  * List component container
@@ -64,7 +64,7 @@ export default function withListData(ListComponent) {
     ListData.displayName = `withListData(${ListComponent.displayName || ListComponent.name})`;
 
     const mapStateToProps = (state) => ({
-        account: state.account,
+        accounts: state.accounts,
         accountInfo: selectAccountInfo(state),
         theme: state.settings.theme,
         tempAccount: state.tempAccount,

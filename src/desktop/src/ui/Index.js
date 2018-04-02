@@ -7,9 +7,9 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 
-import { parseAddress } from 'libs/util';
+import { parseAddress } from 'libs/iota/utils';
 
-import { clearTempData } from 'actions/tempAccount';
+import { clearWalletData } from 'actions/wallet';
 import { getUpdateData, updateTheme } from 'actions/settings';
 import { clearSeeds } from 'actions/seeds';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
@@ -49,11 +49,11 @@ class App extends React.Component {
         /** Accounts state state data
          * @ignore
          */
-        account: PropTypes.object.isRequired,
-        /** Temporary account state data
+        accounts: PropTypes.object.isRequired,
+        /** wallet state data
          * @ignore
          */
-        tempAccount: PropTypes.object.isRequired,
+        wallet: PropTypes.object.isRequired,
         /** Create a notification message
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
@@ -65,10 +65,10 @@ class App extends React.Component {
          * @ignore
          */
         disposeOffAlert: PropTypes.func.isRequired,
-        /** Clear temporary account state data
+        /** Clear wallet state data
          * @ignore
          */
-        clearTempData: PropTypes.func.isRequired,
+        clearWalletData: PropTypes.func.isRequired,
         /** Clear temporary seed state data
          * @ignore
          */
@@ -128,7 +128,8 @@ class App extends React.Component {
         const currentKey = this.props.location.pathname.split('/')[1] || '/';
 
         /* On Login */
-        if (!this.props.tempAccount.ready && nextProps.tempAccount.ready && currentKey === 'onboarding') {
+
+        if (!this.props.wallet.ready && nextProps.wallet.ready && currentKey === 'onboarding') {
             Electron.updateMenu('authorised', true);
             this.props.history.push('/wallet/');
         }
@@ -150,7 +151,7 @@ class App extends React.Component {
 
         if (parsedData) {
             this.props.sendAmount(parsedData.ammount || 0, parsedData.address, parsedData.message || null);
-            if (this.props.tempAccount.ready === true) {
+            if (this.props.wallet.ready === true) {
                 this.props.history.push('/wallet/send');
             }
         } else {
@@ -170,7 +171,7 @@ class App extends React.Component {
                 this.props.getUpdateData(true);
                 break;
             case 'logout':
-                this.props.clearTempData();
+                this.props.clearWalletData();
                 this.props.clearSeeds();
                 this.props.history.push('/onboarding/login');
                 break;
@@ -187,7 +188,7 @@ class App extends React.Component {
     };
 
     render() {
-        const { account, location, activationCode, themeName, updateTheme } = this.props;
+        const { accounts, location, activationCode, themeName, updateTheme } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
@@ -225,7 +226,7 @@ class App extends React.Component {
                                 <Route path="/wallet" component={Wallet} />
                                 <Route
                                     path="/onboarding"
-                                    complete={account.onboardingComplete}
+                                    complete={accounts.onboardingComplete}
                                     component={Onboarding}
                                 />
                                 <Route exact path="/" loop={false} component={this.Init} />
@@ -240,15 +241,15 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
     settings: state.settings,
-    account: state.account,
-    tempAccount: state.tempAccount,
+    accounts: state.accounts,
+    wallet: state.wallet,
     deepLinks: state.deepLinks,
     activationCode: state.app.activationCode,
     themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {
-    clearTempData,
+    clearWalletData,
     clearSeeds,
     sendAmount,
     getUpdateData,
