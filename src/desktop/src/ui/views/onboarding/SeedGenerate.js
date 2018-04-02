@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { isValidSeed } from 'libs/util';
+import { isValidSeed } from 'libs/iota/utils';
 import { createRandomSeed } from 'libs/crypto';
 
 import { setNewSeed, clearNewSeed } from 'actions/seeds';
@@ -23,6 +23,8 @@ class GenerateSeed extends React.PureComponent {
          * @param {Boolean} isGenerated - Is the new seed generated
          */
         setNewSeed: PropTypes.func.isRequired,
+        /** Current new seed */
+        newSeed: PropTypes.string,
         /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -44,7 +46,7 @@ class GenerateSeed extends React.PureComponent {
     };
 
     state = {
-        seed: createRandomSeed(),
+        seed: this.props.newSeed || createRandomSeed(),
     };
 
     onUpdatedSeed = (seed) => {
@@ -132,10 +134,14 @@ class GenerateSeed extends React.PureComponent {
     }
 }
 
+const mapStateToProps = (state) => ({
+    newSeed: state.seeds.newSeed,
+});
+
 const mapDispatchToProps = {
     setNewSeed,
     clearNewSeed,
     generateAlert,
 };
 
-export default connect(null, mapDispatchToProps)(translate()(GenerateSeed));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(GenerateSeed));

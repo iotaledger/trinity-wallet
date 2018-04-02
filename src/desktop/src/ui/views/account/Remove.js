@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 
 import { setSeeds } from 'actions/seeds';
 import { generateAlert } from 'actions/alerts';
+
 import { setVault } from 'libs/crypto';
-import { deleteAccount } from 'actions/account';
+import { deleteAccount } from 'actions/accounts';
 
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
@@ -114,8 +115,8 @@ class Remove extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seedIndex: state.tempAccount.seedIndex,
-    accountName: state.account.accountNames[state.tempAccount.seedIndex],
+    seedIndex: state.wallet.seedIndex,
+    accountName: state.accounts.accountNames[state.wallet.seedIndex],
 });
 
 const mapDispatchToProps = {
