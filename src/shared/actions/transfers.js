@@ -353,7 +353,9 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
 
                 return storeAndBroadcastAsync(cached.trytes);
             })
-            .then(() => syncAccountAfterSpending(accountName, cached.transactionObjects, value))
+            .then(() =>
+                syncAccountAfterSpending(accountName, cached.transactionObjects, latestAccountState, !isZeroValue),
+            )
             .then(({ newState }) => {
                 // Progress summary
                 dispatch(setNextStepAsActive());
