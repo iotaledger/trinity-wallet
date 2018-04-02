@@ -85,5 +85,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<true/>
+	<key>BugsnagAPIKey</key>
+	<string>724eeaea61c47c132b8c9acb2c8c2445</string>
 </dict>
 </plist>
