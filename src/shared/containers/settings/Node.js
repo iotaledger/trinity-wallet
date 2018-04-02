@@ -97,8 +97,8 @@ export default function withNodeData(NodeComponent) {
     NodeData.displayName = `withNodeData(${NodeComponent.name})`;
 
     const mapStateToProps = (state) => ({
-        node: state.settings.fullNode,
-        nodes: state.settings.availablePoWNodes,
+        node: state.settings.node,
+        nodes: state.settings.nodes,
         theme: state.settings.theme,
     });
 

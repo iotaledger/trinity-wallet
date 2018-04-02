@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatValue, formatUnit } from 'libs/util';
+import { formatValue, formatUnit } from 'libs/iota/utils';
 import Curl from 'curl.lib.js';
 
 import AddressInput from 'ui/components/input/Address';
@@ -59,7 +59,7 @@ class Send extends React.PureComponent {
 
     state = {
         address: '',
-        amount: 0,
+        amount: '',
         message: '',
         isModalVisible: false,
     };
@@ -118,7 +118,7 @@ class Send extends React.PureComponent {
             };
         }
 
-        sendTransfer(seed, address, amount, message, null, powFn);
+        sendTransfer(seed, address, parseInt(amount), message, null, powFn);
     };
 
     render() {

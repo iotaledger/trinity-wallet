@@ -5,7 +5,7 @@ const state = {
 };
 
 let language = {
-    about: 'About',
+    about: 'About Trinity',
     checkUpdate: 'Check for Updates',
     sendFeedback: 'Send feedback',
     settings: 'Settings',
@@ -54,7 +54,7 @@ const initMenu = (app, getWindow) => {
                 label: app.getName(),
                 submenu: [
                     {
-                        label: `${language.about} ${app.getName()}`,
+                        label: language.about,
                         role: 'about',
                     },
                     {

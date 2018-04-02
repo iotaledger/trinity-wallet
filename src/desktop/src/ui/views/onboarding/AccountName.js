@@ -18,7 +18,7 @@ class AccountName extends React.PureComponent {
         /** Current seed count */
         seedCount: PropTypes.number.isRequired,
         /** is news seed generated */
-        isGenerated: PropTypes.boolean,
+        isGenerated: PropTypes.bool,
         /** Set new seed name */
         setNewSeedName: PropTypes.func.isRequired,
         /** Browser history object */
@@ -107,7 +107,7 @@ class AccountName extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seedCount: state.account.accountNames.length,
+    seedCount: state.accounts.accountNames.length,
     isGenerated: state.seeds.isGenerated,
 });
 

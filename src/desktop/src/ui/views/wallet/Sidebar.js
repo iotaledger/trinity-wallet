@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
-import { clearTempData, setSeedIndex } from 'actions/tempAccount';
+import { clearWalletData, setSeedIndex } from 'actions/wallet';
 
 import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
@@ -34,10 +34,10 @@ class Sidebar extends React.PureComponent {
          * @ignore
          */
         seedIndex: PropTypes.number,
-        /** Clear temporary seed state data
+        /** Clear wallet state data
          * @ignore
          */
-        clearTempData: PropTypes.func.isRequired,
+        clearWalletData: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -59,7 +59,7 @@ class Sidebar extends React.PureComponent {
         this.setState({
             modalLogout: false,
         });
-        this.props.clearTempData();
+        this.props.clearWalletData();
         this.props.history.push('/onboarding/');
     };
 
@@ -128,12 +128,12 @@ class Sidebar extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    accounts: state.account.accountNames,
-    seedIndex: state.tempAccount.seedIndex,
+    accounts: state.accounts.accountNames,
+    seedIndex: state.wallet.seedIndex,
 });
 
 const mapDispatchToProps = {
-    clearTempData,
+    clearWalletData,
     setSeedIndex,
 };
 
