@@ -432,7 +432,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                         ),
                     );
                 }
-                console.log(error);
+
                 return dispatch(generateTransferErrorAlert(error));
             })
     );
