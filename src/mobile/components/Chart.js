@@ -211,7 +211,7 @@ class Chart extends PureComponent {
                                 }}
                                 scale={{ x: 'time', y: 'linear' }}
                                 animate={{
-                                    duration: 450,
+                                    duration: 380,
                                 }}
                             />
                             <VictoryAxis
