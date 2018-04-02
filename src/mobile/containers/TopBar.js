@@ -390,11 +390,11 @@ class TopBar extends Component {
                             </View>
                         </View>
                         <Modal
-                            animationIn="bounceInUp"
-                            animationOut="bounceOut"
-                            animationInTiming={1000}
+                            animationIn="zoomIn"
+                            animationOut="zoomOut"
+                            animationInTiming={300}
                             animationOutTiming={200}
-                            backdropTransitionInTiming={500}
+                            backdropTransitionInTiming={300}
                             backdropTransitionOutTiming={200}
                             backdropColor={body.bg}
                             style={{ alignItems: 'center', margin: 0 }}
