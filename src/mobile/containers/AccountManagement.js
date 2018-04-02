@@ -85,10 +85,10 @@ class AccountManagement extends Component {
          */
         setSetting: PropTypes.func.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
-         /** Generate a notification alert
+        /** Generate a notification alert
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
          * @param {String} text - notification explanation
@@ -204,7 +204,7 @@ class AccountManagement extends Component {
 
 const mapStateToProps = (state) => ({
     seedCount: state.accounts.seedCount,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {

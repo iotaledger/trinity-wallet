@@ -73,9 +73,9 @@ class History extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Fetch latest account information
-        * @param {string} seed - seed value
-        * @param {string} selectedAccountName 
-        */
+         * @param {string} seed - seed value
+         * @param {string} selectedAccountName
+         */
         getAccountInfo: PropTypes.func.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
@@ -92,16 +92,16 @@ class History extends Component {
         /** Index of currently selected account in accountNames list */
         seedIndex: PropTypes.number.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Rebroadcast bundle
-        * @param {string} bundle - bundle hash
-        */
+         * @param {string} bundle - bundle hash
+         */
         broadcastBundle: PropTypes.func.isRequired,
         /** Promotes bundle
-        * @param {string} bundle - bundle hash
-        */
+         * @param {string} bundle - bundle hash
+         */
         promoteTransaction: PropTypes.func.isRequired,
         /** Determines if wallet is manually syncing account information */
         isSyncing: PropTypes.bool.isRequired,
@@ -226,14 +226,7 @@ class History extends Component {
         const {
             transfers,
             addresses,
-            theme: {
-                negative,
-                primary,
-                secondary,
-                positive,
-                body,
-                bar
-            },
+            theme: { negative, primary, secondary, positive, body, bar },
             mode,
             t,
             selectedAccountName,
@@ -335,15 +328,16 @@ class History extends Component {
                                     ctaHeight={height / 16}
                                 />
                             </View>
-                        ) : (<View style={styles.refreshButtonContainer}>
-                            <ActivityIndicator
-                                animating={isRefreshing}
-                                style={styles.activityIndicator}
-                                size="large"
-                                color={primary.color}
-                            />
-                        </View>
-                            )}
+                        ) : (
+                            <View style={styles.refreshButtonContainer}>
+                                <ActivityIndicator
+                                    animating={isRefreshing}
+                                    style={styles.activityIndicator}
+                                    size="large"
+                                    color={primary.color}
+                                />
+                            </View>
+                        )}
                     </View>
                 }
             />

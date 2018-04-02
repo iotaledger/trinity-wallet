@@ -132,8 +132,8 @@ export default class HistoryModalContent extends PureComponent {
          */
         rebroadcast: PropTypes.func.isRequired,
         /** Promotes bundle
-        * @param {string} bundle - bundle hash
-        */
+         * @param {string} bundle - bundle hash
+         */
         promote: PropTypes.func.isRequired,
         /** Transaction incoming/outgoing state */
         status: PropTypes.string.isRequired,

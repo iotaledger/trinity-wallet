@@ -63,22 +63,22 @@ export class SetAccountName extends Component {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Set account name
-        * @param {string} accountName
-        */
+         * @param {string} accountName
+         */
         setAccountName: PropTypes.func.isRequired,
         /** Generate a notification alert
-       * @param {string} type - notification type - success, error
-       * @param {string} title - notification title
-       * @param {string} text - notification explanation
-       */
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
         /** Set additional account information in store
-        * @param {object} info - (addingAdditionalAccount, additionalAccountName)
-        */
+         * @param {object} info - (addingAdditionalAccount, additionalAccountName)
+         */
         setAdditionalAccountInfo: PropTypes.func.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Seed value */
         seed: PropTypes.string.isRequired,
@@ -90,7 +90,7 @@ export class SetAccountName extends Component {
         theme: PropTypes.object.isRequired,
         /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
-        shouldPreventAction: PropTypes.bool.isRequired
+        shouldPreventAction: PropTypes.bool.isRequired,
     };
 
     constructor(props) {

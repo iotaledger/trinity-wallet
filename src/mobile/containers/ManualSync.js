@@ -8,9 +8,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { manuallySyncAccount } from 'iota-wallet-shared-modules/actions/accounts';
-import {
-    getSeedFromKeychain
-} from '../utils/keychain';
+import { getSeedFromKeychain } from '../utils/keychain';
 import { width, height } from '../utils/dimensions';
 import { isAndroid, isIOS } from '../utils/device';
 import { Icon } from '../theme/icons';
@@ -81,8 +79,8 @@ export class ManualSync extends Component {
          */
         setSetting: PropTypes.func.isRequired,
         /** Translation helper
-       * @param {string} translationString - locale string identifier to be translated
-       */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
@@ -91,17 +89,17 @@ export class ManualSync extends Component {
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** Generate a notification alert
-        * @param {string} type - notification type - success, error
-        * @param {string} title - notification title
-        * @param {string} text - notification explanation
-        */
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
         /** Sync account with the tangle
-        * @param {string} seed
-        * @param {string} selectedAccountName
-        * @param {function} genFn - Native address generation function
-        */
-        manuallySyncAccount: PropTypes.func.isRequired
+         * @param {string} seed
+         * @param {string} selectedAccountName
+         * @param {function} genFn - Native address generation function
+         */
+        manuallySyncAccount: PropTypes.func.isRequired,
     };
 
     sync() {
@@ -148,9 +146,7 @@ export class ManualSync extends Component {
                                 body={body}
                                 text={
                                     <View>
-                                        <Text style={[styles.infoText, textColor]}>
-                                            {t('manualSync:outOfSync')}
-                                        </Text>
+                                        <Text style={[styles.infoText, textColor]}>{t('manualSync:outOfSync')}</Text>
                                         <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
                                             {t('manualSync:pressToSync')}
                                         </Text>
@@ -219,15 +215,13 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     theme: state.settings.theme,
     selectedAccountName: getSelectedAccountName(state),
-    shouldPreventAction: shouldPreventAction(state)
+    shouldPreventAction: shouldPreventAction(state),
 });
 
 const mapDispatchToProps = {
     generateAlert,
     setSetting,
-    manuallySyncAccount
+    manuallySyncAccount,
 };
 
-export default translate(['manualSync', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(ManualSync),
-);
+export default translate(['manualSync', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ManualSync));

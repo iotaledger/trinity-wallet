@@ -96,17 +96,17 @@ class CustomTextInput extends Component {
          */
         onRef: PropTypes.func,
         /** Id for automated screenshots */
-        testID: PropTypes.string
+        testID: PropTypes.string,
     };
 
     static defaultProps = {
-        onFocus: () => { },
-        onBlur: () => { },
-        onFingerprintPress: () => { },
+        onFocus: () => {},
+        onBlur: () => {},
+        onFingerprintPress: () => {},
         containerStyle: {},
         widget: 'empty',
-        onDenominationPress: () => { },
-        onQRPress: () => { },
+        onDenominationPress: () => {},
+        onQRPress: () => {},
         denominationText: 'i',
         bodyColor: 'white',
         negativeColor: '#F7D002',
@@ -116,7 +116,7 @@ class CustomTextInput extends Component {
         height: height / 14,
         fingerprintAuthentication: false,
         testID: '',
-        onRef: () => { },
+        onRef: () => {},
     };
 
     constructor(props) {

@@ -145,8 +145,8 @@ class WriteSeedDown extends Component {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
