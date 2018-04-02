@@ -104,6 +104,12 @@ form {
         button {
             margin: 10px 20px;
         }
+        small {
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            margin: 12px auto;
+        }
     }
 
     div + fieldset {
@@ -123,12 +129,22 @@ label {
     .fade-enter {
         opacity: 0;
         transform: scale(0.95);
-        z-index: 10;
+    }
+
+    .fade-exit {
+        opacity: 1;
+        transform: scale(1);
     }
 
     .fade-enter.fade-enter-active {
         opacity: 1;
         transform: scale(1);
+        transition: opacity 300ms ease-in, transform 200ms ease-out;
+    }
+
+    .fade-exit.fade-exit-active {
+        opacity: 0;
+        transform: scale(0.9);
         transition: opacity 300ms ease-in, transform 200ms ease-out;
     }
 

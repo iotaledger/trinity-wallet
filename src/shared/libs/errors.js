@@ -5,4 +5,5 @@ export default {
     CANNOT_SEND_TO_OWN_ADDRESS: 'Cannot send to an own address.',
     POW_FUNCTION_UNDEFINED: 'Proof of work function is undefined.',
     BUNDLE_NO_LONGER_VALID: 'Bundle no longer valid',
+    PERSISTOR_UNDEFINED: 'Persistor is undefined.',
 };

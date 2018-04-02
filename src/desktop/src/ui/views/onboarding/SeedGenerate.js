@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { isValidSeed } from 'libs/util';
+import { isValidSeed } from 'libs/iota/utils';
 import { createRandomSeed } from 'libs/crypto';
 
 import { setNewSeed, clearNewSeed } from 'actions/seeds';
@@ -20,8 +20,11 @@ class GenerateSeed extends React.PureComponent {
     static propTypes = {
         /** Accept current generated seed
          * @param {String} seed - New seed
+         * @param {Boolean} isGenerated - Is the new seed generated
          */
         setNewSeed: PropTypes.func.isRequired,
+        /** Current new seed */
+        newSeed: PropTypes.string,
         /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -43,7 +46,7 @@ class GenerateSeed extends React.PureComponent {
     };
 
     state = {
-        seed: createRandomSeed(),
+        seed: this.props.newSeed || createRandomSeed(),
     };
 
     onUpdatedSeed = (seed) => {
@@ -59,7 +62,7 @@ class GenerateSeed extends React.PureComponent {
         if (!seed || !isValidSeed(seed)) {
             return generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
         }
-        setNewSeed(seed);
+        setNewSeed(seed, true);
         history.push('/onboarding/seed-save');
     };
 
@@ -99,17 +102,19 @@ class GenerateSeed extends React.PureComponent {
                 <section>
                     <p>{t('newSeedSetup:individualLetters')}</p>
                     <div className={css.seed}>
-                        {seed.split('').map((letter, index) => {
-                            return (
-                                <button
-                                    onClick={() => this.updateLetter(index)}
-                                    key={`${index}${letter}`}
-                                    value={letter}
-                                >
-                                    {letter}
-                                </button>
-                            );
-                        })}
+                        <div>
+                            {seed.split('').map((letter, index) => {
+                                return (
+                                    <button
+                                        onClick={() => this.updateLetter(index)}
+                                        key={`${index}${letter}`}
+                                        value={letter}
+                                    >
+                                        {letter}
+                                    </button>
+                                );
+                            })}
+                        </div>
                     </div>
                     <Button type="button" onClick={this.generateNewSeed} className="icon">
                         <Icon icon="sync" size={32} />
@@ -129,10 +134,14 @@ class GenerateSeed extends React.PureComponent {
     }
 }
 
+const mapStateToProps = (state) => ({
+    newSeed: state.seeds.newSeed,
+});
+
 const mapDispatchToProps = {
     setNewSeed,
     clearNewSeed,
     generateAlert,
 };
 
-export default connect(null, mapDispatchToProps)(translate()(GenerateSeed));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(GenerateSeed));

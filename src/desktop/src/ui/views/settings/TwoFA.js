@@ -5,15 +5,14 @@ import { translate } from 'react-i18next';
 import QRCode from 'qrcode.react';
 import authenticator from 'authenticator';
 
-import { setVault, getVault, removeKey } from 'libs/crypto';
+import { setKey, removeKey, getVault } from 'libs/crypto';
 
-import { set2FAStatus } from 'actions/account';
+import { set2FAStatus } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
 import Text from 'ui/components/input/Text';
-import Password from 'ui/components/input/Password';
-import Modal from 'ui/components/modal/Modal';
+import Password from 'ui/components/modal/Password';
 import Clipboard from 'ui/components/Clipboard';
 
 import css from './twoFa.css';
@@ -50,7 +49,6 @@ class TwoFA extends React.Component {
             key: authenticator.generateKey(),
             code: '',
             passwordConfirm: false,
-            password: '',
         };
     }
 
@@ -73,22 +71,17 @@ class TwoFA extends React.Component {
         }
     }
 
-    enableTwoFA(e) {
-        const { key, password } = this.state;
+    enableTwoFA(password) {
+        const { key } = this.state;
         const { generateAlert, set2FAStatus, t } = this.props;
 
-        if (e) {
-            e.preventDefault();
-        }
-
         try {
-            setVault(password, key);
+            setKey(password, key);
             set2FAStatus(true);
 
             this.setState({
                 key: '',
                 code: '',
-                password: '',
                 passwordConfirm: false,
             });
 
@@ -103,13 +96,9 @@ class TwoFA extends React.Component {
         }
     }
 
-    disableTwoFA(e) {
-        const { code, password } = this.state;
+    disableTwoFA(password) {
+        const { code } = this.state;
         const { generateAlert, set2FAStatus, t } = this.props;
-
-        if (e) {
-            e.preventDefault();
-        }
 
         try {
             const key = getVault(password);
@@ -118,7 +107,6 @@ class TwoFA extends React.Component {
             if (!validCode) {
                 generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
                 this.setState({
-                    password: '',
                     passwordConfirm: false,
                 });
                 return;
@@ -131,7 +119,6 @@ class TwoFA extends React.Component {
                 key: authenticator.generateKey(),
                 code: '',
                 passwordConfirm: false,
-                password: '',
             });
 
             generateAlert('success', t('Two fa disabled'), t('Two fa disabled'));
@@ -193,57 +180,30 @@ class TwoFA extends React.Component {
     }
 
     render() {
-        const { password, passwordConfirm } = this.state;
+        const { passwordConfirm } = this.state;
         const { is2FAEnabled, t } = this.props;
 
         return (
             <React.Fragment>
                 {is2FAEnabled ? this.disableTwoFAview() : this.enableTwoFAview()}
-                <Modal
-                    variant="confirm"
+                <Password
                     isOpen={passwordConfirm}
+                    onSuccess={(password) => (is2FAEnabled ? this.disableTwoFA(password) : this.enableTwoFA(password))}
                     onClose={() => this.setState({ passwordConfirm: false })}
-                >
-                    <p>
-                        {is2FAEnabled
+                    content={{
+                        title: is2FAEnabled
                             ? t('Enter your password to disable Two-factor authentication')
-                            : t('Enter your password to enable Two-factor authentication')}
-                    </p>
-
-                    <form
-                        onSubmit={(e) => {
-                            if (is2FAEnabled) {
-                                this.disableTwoFA(e);
-                            } else {
-                                this.enableTwoFA(e);
-                            }
-                        }}
-                    >
-                        <Password
-                            value={password}
-                            label={t('password')}
-                            onChange={(value) => this.setState({ password: value })}
-                        />
-                        <Button
-                            onClick={() => {
-                                this.setState({ passwordConfirm: false });
-                            }}
-                            variant="secondary"
-                        >
-                            {t('cancel')}
-                        </Button>
-                        <Button type="submit" variant="primary">
-                            {is2FAEnabled ? t('Disable') : t('Enable')}
-                        </Button>
-                    </form>
-                </Modal>
+                            : t('Enter your password to enable Two-factor authentication'),
+                        confirm: is2FAEnabled ? t('Disable') : t('Enable'),
+                    }}
+                />
             </React.Fragment>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    is2FAEnabled: state.account.is2FAEnabled,
+    is2FAEnabled: state.settings.is2FAEnabled,
 });
 
 const mapDispatchToProps = {

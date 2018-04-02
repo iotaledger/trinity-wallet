@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import filter from 'lodash/filter';
-import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/marketData';
+import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
 
 // FIXME: Hacking no-console linting.
 // FIXME: Get rid of the unnecessary break statements.

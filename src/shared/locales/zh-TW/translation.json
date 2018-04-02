@@ -4,7 +4,7 @@
         "cancel": "取消",
         "continue?": "您確定要繼續嗎？",
         "noTransactions": "無近來歷史",
-        "refresh": "REFRESH",
+        "refresh": "刷新",
         "qr": "QR Code",
         "balanceError": "餘額不足",
         "balanceErrorMessage": "您的IOTA不足以完成本次交易。",
@@ -47,7 +47,7 @@
         "yes": "確認",
         "no": "否",
         "password": "密碼",
-        "passwordOrFingerprint": "Password or fingerprint",
+        "passwordOrFingerprint": "密碼或指紋",
         "unrecognisedPassword": "未知的密碼",
         "unrecognisedPasswordExplanation": "此為未知密碼，請再試一遍。",
         "syncInProgress": "同步進行中",
@@ -86,7 +86,10 @@
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
+        "checkForUpdates": "Check for Updates",
+        "account": "Account",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -271,6 +274,7 @@
         "poorConnectionExplanation": "由於連接不良, 無法更改幣別。",
         "hide": "隱藏",
         "hideOthers": "隱藏其他",
+        "show": "Show",
         "showAll": "全部顯示",
         "quit": "退出",
         "edit": "編輯",
@@ -283,7 +287,10 @@
         "couldNotFetchRates": "Could not fetch rates",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "輸入密碼以重設您的錢包。",
@@ -439,7 +446,9 @@
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
-        "remote": "Remote"
+        "remote": "Remote",
+        "powUpdated": "Proof of work settings",
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validating receive address",

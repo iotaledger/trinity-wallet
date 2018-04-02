@@ -86,7 +86,10 @@
         "pleaseWaitExplanation": "A Trinity está efetuando outra função. Por favor, aguarde e tente novamente.",
         "pleaseWaitTransferExplanation": "Seu saldo atual disponível está sendo usado em outras transferências. Por favor aguarde uma confirmação antes de tentar novamente.",
         "snapshotTransitionInProgress": "Transição de Registro Instantâneo em andamento",
-        "snapshotTransitionInProgressExplanation": "Por favor, aguarde até a transição ser finalizada."
+        "snapshotTransitionInProgressExplanation": "Por favor, aguarde até a transição ser finalizada.",
+        "checkForUpdates": "Verificar Atualizações",
+        "account": "Conta",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -256,7 +259,7 @@
         "addNewSeed": "Adicionar nova Seed",
         "twoFA": "Autenticação 2FA",
         "changePassword": "Alterar Senha",
-        "advanced": "Opções",
+        "advanced": "Opções Avançadas",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
         "syncingComplete": "Sincronização completa",
@@ -266,11 +269,12 @@
         "accountDeleted": "Conta excluída",
         "accountDeletedExplanation": "Sua conta foi removida da carteira.",
         "cannotPerformAction": "Não é possível executar a ação",
-        "cannotPerformActionExplanation": "Vá para opções para redefinir a carteira.",
+        "cannotPerformActionExplanation": "Vá para Opções para redefinir a carteira.",
         "poorConnection": "Conexão fraca",
         "poorConnectionExplanation": "Falha ao alterar a moeda devido a uma conexão fraca.",
         "hide": "Ocultar",
         "hideOthers": "Ocultar Outros",
+        "show": "Show",
         "showAll": "Exibir Tudo",
         "quit": "Sair",
         "edit": "Editar",
@@ -283,7 +287,10 @@
         "couldNotFetchRates": "Não foi possível obter taxas de câmbio",
         "couldNotFetchRatesExplanation": "Algo deu errado ao obter as taxas de câmbio para {{currency}}.",
         "fetchedConversionRates": "Conversão de câmbio obtida",
-        "fetchedConversionRatesExplanation": "As taxas de câmbio foram obtidas com sucesso para {{currency}}."
+        "fetchedConversionRatesExplanation": "As taxas de câmbio foram obtidas com sucesso para {{currency}}.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
@@ -360,7 +367,7 @@
         "one": "Um"
     },
     "deleteAccount": {
-        "areYouSure": "Você deseja realmente remover {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Sua Seed e histórico de transações serão removidos.",
         "thisAction": "Esta operação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
@@ -439,7 +446,9 @@
         "feeless": "É necessário completar a aprovação para enviar transações em IOTA gratuitamente.",
         "localOrRemote": "A aprovação pode ser concluída localmente, ou transferida a um servidor.",
         "local": "Local",
-        "remote": "Remoto"
+        "remote": "Remoto",
+        "powUpdated": "Opções de Prova de Trabalho",
+        "powUpdatedExplanation": "Suas configurações de Prova de Trabalho foram atualizadas."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validando o endereço de recebimento",
