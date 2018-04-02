@@ -98,7 +98,6 @@ class Disable2FA extends Component {
         return getTwoFactorAuthKeyFromKeychain(this.props.password)
             .then((key) => {
                 const verified = authenticator.verifyToken(key, this.state.token);
-                console.log(verified);
                 if (verified) {
                     this.props.set2FAStatus(false);
 
