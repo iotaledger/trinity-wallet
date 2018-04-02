@@ -3,8 +3,8 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
-import { resetWallet } from 'iota-wallet-shared-modules/actions/settings';
-import { setFirstUse, set2FAStatus } from 'iota-wallet-shared-modules/actions/accounts';
+import { resetWallet, set2FAStatus } from 'iota-wallet-shared-modules/actions/settings';
+import { setFirstUse } from 'iota-wallet-shared-modules/actions/accounts';
 import { Navigation } from 'react-native-navigation';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
@@ -98,7 +98,7 @@ class Disable2FA extends Component {
         return getTwoFactorAuthKeyFromKeychain(this.props.password)
             .then((key) => {
                 const verified = authenticator.verifyToken(key, this.state.token);
-
+                console.log(verified);
                 if (verified) {
                     this.props.set2FAStatus(false);
 
