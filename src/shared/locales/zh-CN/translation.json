@@ -89,7 +89,7 @@
         "snapshotTransitionInProgressExplanation": "请稍候, 直到转换完成。",
         "checkForUpdates": "检查更新",
         "account": "账户",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "输入密码以访问帐户设置"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -138,8 +138,7 @@
         "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
-        "seedExplanation":
-            "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
+        "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
         "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
@@ -229,8 +228,7 @@
     },
     "setPassword": {
         "passwordTooShort": "密码太短",
-        "passwordTooShortExplanation":
-            "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
+        "passwordTooShortExplanation": "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
         "passwordMismatch": "密码不相符",
         "passwordMismatchExplanation": "您输入的密码不匹配。请再试一次。",
         "nowWeNeedTo": "现在我们需要设置一个密码。",
@@ -276,7 +274,7 @@
         "poorConnectionExplanation": "由于网络连接问题, 无法更改货币。",
         "hide": "隐藏",
         "hideOthers": "隐藏其它",
-        "show": "Show",
+        "show": "显示",
         "showAll": "显示全部",
         "quit": "退出",
         "edit": "编辑",
@@ -290,9 +288,9 @@
         "couldNotFetchRatesExplanation": "当获取 {{currency}} 的汇率时, 出现了一些错误。",
         "fetchedConversionRates": "获取的汇率",
         "fetchedConversionRatesExplanation": "已成功获取 {{currency}} 的最新汇率。",
-        "undo": "Undo",
-        "redo": "Redo",
-        "about": "About Trinity"
+        "undo": "撤销",
+        "redo": "重做",
+        "about": "关于Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
@@ -303,8 +301,7 @@
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-        "explanation":
-            "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
+        "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
         "keepSafe": "请您保管好你的种子."
     },
     "welcome": {
@@ -370,7 +367,7 @@
         "one": "一"
     },
     "deleteAccount": {
-        "areYouSure": "是否确定想删除？",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
         "thisAction": "本操作无法撤销。",
         "enterPassword": "请输入您的密码以确认将帐号删除。"
@@ -398,8 +395,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",
-        "warning":
-            "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会丢失的。</4></0>"
+        "warning": "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会丢失的。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "触摸设备的指纹读取器以启用指纹验证。",
@@ -444,8 +440,7 @@
     },
     "rootDetection": {
         "warning": "警告",
-        "rootDetected":
-            "<0> 您的设备似乎root过 </0><1> 这可能会对您的钱包的安全性造成重大风险. </1><2> 尽管存在此风险, 您是否仍要继续？ </2>"
+        "rootDetected": "<0> 您的设备似乎root过 </0><1> 这可能会对您的钱包的安全性造成重大风险. </1><2> 尽管存在此风险, 您是否仍要继续？ </2>"
     },
     "pow": {
         "feeless": "有必要完成一点工作量证明来在IOTA中发送免收手续费的事务",
