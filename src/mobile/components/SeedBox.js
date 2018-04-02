@@ -65,12 +65,13 @@ class SeedBox extends PureComponent {
         const { textColor, bodyColor, seed, scale } = this.props;
         const fontSize = { fontSize: width / 25 * scale };
         const textBoxPadding = { paddingVertical: height / 200 * scale };
+
         return (
             <View
                 style={[
                     styles.seedBox,
                     this.props.borderColor,
-                    { width: width / 1.65 * scale, paddingVertical: height / 50 * scale },
+                    { width: width / 1.65 * scale, paddingVertical: height / 45 * scale },
                 ]}
             >
                 <View style={styles.arrow}>
