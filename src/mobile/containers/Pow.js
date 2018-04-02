@@ -74,9 +74,9 @@ class Pow extends Component {
         generateAlert: PropTypes.func.isRequired,
         /** Determines whether the proof of work should be off-loaded */
         remotePoW: PropTypes.bool.isRequired,
-         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Set proof of work settings */
         updatePowSettings: PropTypes.func.isRequired,
@@ -85,7 +85,7 @@ class Pow extends Component {
          */
         setSetting: PropTypes.func.isRequired,
         /** Theme settings */
-        theme: PropTypes.object.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -166,7 +166,7 @@ class Pow extends Component {
 
 const mapStateToProps = (state) => ({
     remotePoW: state.settings.remotePoW,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {

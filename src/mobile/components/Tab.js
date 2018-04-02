@@ -44,7 +44,7 @@ class Tab extends PureComponent {
     };
 
     static defaultProps = {
-        onPress: () => { },
+        onPress: () => {},
         isActive: false,
     };
 

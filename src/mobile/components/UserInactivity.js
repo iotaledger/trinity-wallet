@@ -12,9 +12,9 @@ export default class UserInactivity extends Component {
         children: PropTypes.node.isRequired,
         /** Content styles */
         style: ViewPropTypes.style,
-         /** On inactivity callback function
-        * @param {number} timeWentInactive
-        */
+        /** On inactivity callback function
+         * @param {number} timeWentInactive
+         */
         onInactivity: PropTypes.func.isRequired,
     };
 

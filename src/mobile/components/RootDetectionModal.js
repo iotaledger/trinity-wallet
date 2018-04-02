@@ -50,7 +50,7 @@ class RootDetectionModal extends PureComponent {
         /** Modal border color */
         borderColor: PropTypes.object.isRequired,
     };
-    
+
     render() {
         const { t, backgroundColor, textColor, borderColor } = this.props;
         return (

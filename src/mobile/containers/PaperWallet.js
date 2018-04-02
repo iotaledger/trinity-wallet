@@ -204,8 +204,8 @@ class PaperWallet extends Component {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Seed value */
         seed: PropTypes.string.isRequired,
@@ -536,7 +536,7 @@ class PaperWallet extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 export default translate(['paperWallet', 'global'])(connect(mapStateToProps)(PaperWallet));

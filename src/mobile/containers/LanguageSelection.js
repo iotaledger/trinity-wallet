@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Dimensions,
-    TouchableWithoutFeedback
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
@@ -84,7 +77,7 @@ class LanguageSelection extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Selected language */
-        language: PropTypes.string.isRequired
+        language: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -162,7 +155,7 @@ class LanguageSelection extends Component {
 
 const mapStateToProps = (state) => ({
     language: state.settings.language,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {
@@ -170,6 +163,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default translate(['languageSetup', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(LanguageSelection),
-);
+export default translate(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSelection));

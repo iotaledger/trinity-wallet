@@ -109,8 +109,8 @@ class Loading extends Component {
         /** Fetch latest chart information */
         getChartData: PropTypes.func.isRequired,
         /** Fetch latest currency information
-        * @param {string} currency
-        */
+         * @param {string} currency
+         */
         getCurrencyData: PropTypes.func.isRequired,
         /** Additional account name */
         additionalAccountName: PropTypes.string.isRequired,
@@ -121,8 +121,8 @@ class Loading extends Component {
         /** Currently selected currency */
         currency: PropTypes.string.isRequired,
         /** Translation helper
-       * @param {string} translationString - locale string identifier to be translated
-       */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Determines if the account information was successfully fetched from the tangle */
         ready: PropTypes.bool.isRequired,
@@ -131,14 +131,14 @@ class Loading extends Component {
          */
         setSetting: PropTypes.func.isRequired,
         /** Updates home screen children route name
-      * @param {string} name - route name
-      */
+         * @param {string} name - route name
+         */
         changeHomeScreenRoute: PropTypes.func.isRequired,
         /** Generate a notification alert
-        * @param {String} type - notification type - success, error
-        * @param {String} title - notification title
-        * @param {String} text - notification explanation
-        */
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
     };
 
@@ -336,7 +336,7 @@ class Loading extends Component {
                                 style={styles.animationLoading}
                                 loop
                             />
-                            )}
+                        )}
                     </View>
                 </View>
             </View>
