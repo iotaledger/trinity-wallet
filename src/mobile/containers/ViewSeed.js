@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     seedBoxContainer: {
-        flex: 3.5,
+        flex: 5,
         alignItems: 'center',
         justifyContent: 'center',
     },
