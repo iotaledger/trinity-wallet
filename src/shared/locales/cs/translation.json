@@ -53,8 +53,8 @@
         "syncInProgress": "Probíhá synchronizace",
         "syncInProgressExplanation": "Počkejte na dokončení synchronizace.",
         "somethingWentWrong": "Něco se pokazilo",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongRestart": "Restartujte aplikaci prosím.",
+        "somethingWentWrongTryAgain": "Prosím, zkuste to znovu.",
         "node": "Node",
         "cannotPerformAction": "Akci nelze provést",
         "cannotPerformActionExplanation": "Chcete-li obnovit peněženku, přejděte na Rozšířená nastavení.",
@@ -77,16 +77,19 @@
         "autoreattachingExplanation": "Opětovné připojení transakce s hash {{hash}}",
         "autopromoting": "Automatická podpora přenosu",
         "autopromotingExplanation": "Podpora transakcí s hash {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "promoting": "Podpora transakce",
+        "promotionError": "Podpora transakce se nezdařila",
+        "noLongerValid": "Balíček, který se snažíte podpořit, již není platný",
         "cannotSendToOwn": "Odesílání na vlastní adresu",
         "cannotSendToOwnExplanation": "Nemůžete převést částku na vlastní adresy.",
         "pleaseWait": "Prosím čekejte",
         "pleaseWaitExplanation": "Trinity vykonává jinou funkci. Počkejte prosím a poté zkuste znovu.",
         "pleaseWaitTransferExplanation": "Váš disponibilní zůstatek se momentálně používá v jiných převodech. Počkejte prosím na jedno potvrzení než to zkusíte znovu.",
         "snapshotTransitionInProgress": "Probíhá aktualizace údajů po Snapshotu",
-        "snapshotTransitionInProgressExplanation": "Počkejte prosím na dokončení aktualizace údajů po Snapshotu."
+        "snapshotTransitionInProgressExplanation": "Počkejte prosím na dokončení aktualizace údajů po Snapshotu.",
+        "checkForUpdates": "Kontrola aktualizací",
+        "account": "Účet",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -161,7 +164,7 @@
     "loading": {
         "loadingFirstTime": "První načítání Seedu.",
         "thisMayTake": "Toto může chvíli trvat.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Neminimalizujte, ani nezavírejte aplikaci.",
         "youMayNotice": "Může dojít ke zpomalení Vašeho zařízení."
     },
     "newSeedSetup": {
@@ -271,6 +274,7 @@
         "poorConnectionExplanation": "Nezdařilo se změnit měnu - špatné spojení.",
         "hide": "Skrýt",
         "hideOthers": "Skrýt ostatní",
+        "show": "Show",
         "showAll": "Zobrazit vše",
         "quit": "Ukončit",
         "edit": "Upravit",
@@ -283,7 +287,10 @@
         "couldNotFetchRates": "Nelze načíst kurzy",
         "couldNotFetchRatesExplanation": "Došlo k chybě při načítání kurzu pro {{currency}}.",
         "fetchedConversionRates": "Načítám kurzy",
-        "fetchedConversionRatesExplanation": "Úspěšně načtené nejnovější kurzy pro {{currency}}."
+        "fetchedConversionRatesExplanation": "Úspěšně načtené nejnovější kurzy pro {{currency}}.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pro smazání peněženky zadejte Vaše heslo.",
@@ -298,7 +305,7 @@
         "keepSafe": "Uchovávejte Váš seed v bezpečí."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Děkujeme, že jste si stáhli Trinity.",
         "weWillSpend": "Nyní si vyhraďte pár minut pro správné nastavení Vaší peněženky.",
         "reminder": "Možná budete chtít vynechat některé kroky, ale doporučujeme Vám, abyste je dokončily všechny."
     },
@@ -360,7 +367,7 @@
         "one": "Jedna"
     },
     "deleteAccount": {
-        "areYouSure": "Opravdu chcete smazat účet s názvem {{accountName}}?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Váš Seed a transakční historie budou odebrány.",
         "thisAction": "Tuto akci nelze vrátit zpět.",
         "enterPassword": "Pro smazání účtu, zadejte Vaše heslo."
@@ -433,22 +440,24 @@
     },
     "rootDetection": {
         "warning": "VAROVÁNÍ",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Zdá se, že vaše zařízení prošlo úpravou root/jailbreak.</0><1>To může znamenat značné riziko pro zabezpečení Vaší peněženky.</1><2>Chcete pokračovat navzdory tomuto riziku?</2>"
     },
     "pow": {
         "feeless": "Pro odeslání bezplatné transakce v IOTA je potřebné vykonat malý důkaz práce - proof of work.",
         "localOrRemote": "Proof of work může být dokončen lokálně ve Vašem zařízení a nebo převeden do Nodu.",
         "local": "Lokální",
-        "remote": "Vzdálený"
+        "remote": "Vzdálený",
+        "powUpdated": "Proof of work nastavení",
+        "powUpdatedExplanation": "Nastavení proof of work bylo aktualizováno."
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "validatingReceiveAddress": "Ověřování přijímací adresy",
+        "syncingAccount": "Synchronizace účtu",
+        "preparingInputs": "Příprava vstupních dat",
+        "preparingTransfers": "Příprava transakce",
+        "gettingTransactionsToApprove": "Získávání transakcí ke schválení",
+        "proofOfWork": "Dokončení proof of work",
+        "broadcasting": "Odesílání transakcí do sítě"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Není možné dokončit aktualizaci údajů po Snapshotu",

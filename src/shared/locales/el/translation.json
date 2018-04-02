@@ -53,8 +53,8 @@
         "syncInProgress": "Συγχρονισμός σε εξέλιξη",
         "syncInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί ο συγχρονισμός.",
         "somethingWentWrong": "Κάτι πήγε στραβά",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongRestart": "Παρακαλώ επανεκκινήστε την εφαρμογή.",
+        "somethingWentWrongTryAgain": "Παρακαλούμε δοκιμάστε ξανά.",
         "node": "Κόμβος",
         "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
         "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
@@ -77,7 +77,7 @@
         "autoreattachingExplanation": "Επανατοποθέτηση συναλλαγή με συνάρτηση κατατεμαχισμού ",
         "autopromoting": "Αυτόματη προώθηση συναλλαγής",
         "autopromotingExplanation": "Επανατοποθέτηση συναλλαγής με κατατεμαχισμό ",
-        "promoting": "Promoting transfer",
+        "promoting": "Αυτόματη προώθηση συναλλαγής",
         "promotionError": "Could not promote transaction",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Αποστολή σε ιδιωτική διεύθυνση",
@@ -86,7 +86,10 @@
         "pleaseWaitExplanation": "Το trinity εκτελεί μια άλλη λειτουργία. Παρακαλώ περιμένετε και προσπαθήστε ξανά.",
         "pleaseWaitTransferExplanation": "Το διαθέσιμο υπόλοιπό σας χρησιμοποιείται αυτήν τη στιγμή σε άλλες μεταφορές. Σας παρακαλώ να περιμένετε  για επιβεβαίωση πριν να προσπαθήσετε πάλι.",
         "snapshotTransitionInProgress": "Στιγμιότυπο μετάβασης σε εξέλιξη",
-        "snapshotTransitionInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί η μετάβαση."
+        "snapshotTransitionInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί η μετάβαση.",
+        "checkForUpdates": "Check for Updates",
+        "account": "Λογαριασμός",
+        "enterPasswordToAccessSettings": "Εισάγετε τον κωδικό πρόσβασής σας στις ρυθμίσεις του λογαριασμού πρόσβασης"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Το seed σας περιέχει μη έγκυρους χαρακτήρες",
@@ -271,6 +274,7 @@
         "poorConnectionExplanation": "Απέτυχε η αλλαγή νομίσματος εξαιτίας κακής σύνδεσης.",
         "hide": "Απόκρυψη",
         "hideOthers": "Απόκρυψη Άλλων",
+        "show": "Προβολή",
         "showAll": "Εμφάνιση Όλων",
         "quit": "Έξοδος",
         "edit": "Επεξεργασία",
@@ -283,7 +287,10 @@
         "couldNotFetchRates": "Δεν ταιριάζει με τους κανόνες της κανονικής έκφρασης",
         "couldNotFetchRatesExplanation": "Κάτι πήγε στραβά κατά τη λήψη των ισοτιμιών μετατροπής του νομίσματος.",
         "fetchedConversionRates": "Ανάκληση συναλλαγματικές ισοτιμίες",
-        "fetchedConversionRatesExplanation": "Με επιτυχία η ανάκληση τελευταίες ισοτιμίες νομίσματος"
+        "fetchedConversionRatesExplanation": "Με επιτυχία η ανάκληση τελευταίες ισοτιμίες νομίσματος",
+        "undo": "Αναίρεση",
+        "redo": "Redo",
+        "about": "Σχετικά με το Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",
@@ -298,7 +305,7 @@
         "keepSafe": "Παρακαλώ κρατήστε το σπόρο σας ασφαλή."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Σας ευχαριστούμε για τη λήψη του Trinity.",
         "weWillSpend": "Θα περάσουμε τα επόμενα λίγα λεπτά εγκαθιστώντας το πορτοφόλι σας.",
         "reminder": "Μπορεί να μπείτε στον πειρασμό να παραλείψετε ορισμένα βήματα, αλλά σας προτρέπουμε να ακολουθήσετε την πλήρη διαδικασία."
     },
@@ -360,7 +367,7 @@
         "one": "Ένα"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το λογαριασμό;",
         "yourSeedWillBeRemoved": "Ο σπόρος σας και το ιστορικό συναλλαγών θα διαγραφούν.",
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να διαγράψετε αυτό το λογαριασμό."
@@ -439,11 +446,13 @@
         "feeless": "Είναι απαραίτητο να ολοκληρώσετε μια μικρή απόδειξη εργασίας να στείλετε χωρίς επιβάρυνση  συναλλαγές στο  IOTA ",
         "localOrRemote": "Απόδειξη εργασίας μπορεί να ολοκληρωθεί τοπικά στη συσκευή σας, είτε  μετατόπιση φόρτου σε έναν κόμβο.",
         "local": "Τοπικά",
-        "remote": "Απομακρυσμένo"
+        "remote": "Απομακρυσμένo",
+        "powUpdated": "Proof of work ρυθμίσεις.",
+        "powUpdatedExplanation": "To proof of work  ενημερώθηκε."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
+        "syncingAccount": "Συγχρονισμός Λογαριασμού",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",

@@ -86,7 +86,10 @@
         "pleaseWaitExplanation": "Trinity voert een andere functie uit. Wacht even en probeer het opnieuw.",
         "pleaseWaitTransferExplanation": "Uw saldo wordt momenteel gebruikt in andere transacties. Wacht op een bevestiging hiervan, voordat u het opnieuw probeert.",
         "snapshotTransitionInProgress": "Snapshot transitie in uitvoering",
-        "snapshotTransitionInProgressExplanation": "Wacht tot de transitie is voltooid."
+        "snapshotTransitionInProgressExplanation": "Wacht tot de transitie is voltooid.",
+        "checkForUpdates": "Controleren op updates",
+        "account": "Account",
+        "enterPasswordToAccessSettings": "Voer uw wachtwoord in voor accountinstellingen"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -271,6 +274,7 @@
         "poorConnectionExplanation": "Valuta wisselen is mislukt door slechte verbinding.",
         "hide": "Verberg",
         "hideOthers": "Verberg anderen",
+        "show": "Toon",
         "showAll": "Toon alles",
         "quit": "Stop",
         "edit": "Bewerk",
@@ -283,7 +287,10 @@
         "couldNotFetchRates": "Koersen kunnen niet opgehaald worden",
         "couldNotFetchRatesExplanation": "Er ging iets mis bij het ophalen van de wisselkoers voor {{currency}}.",
         "fetchedConversionRates": "Wisselkoersen opgehaald",
-        "fetchedConversionRatesExplanation": "Recentste wisselkoersen opgehaald voor {{currency}}."
+        "fetchedConversionRatesExplanation": "Recentste wisselkoersen opgehaald voor {{currency}}.",
+        "undo": "Herstel",
+        "redo": "Opnieuw",
+        "about": "Over Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Voer uw wachtwoord in om de wallet opnieuw in te stellen.",
@@ -360,7 +367,7 @@
         "one": "Een"
     },
     "deleteAccount": {
-        "areYouSure": "Weet u zeker dat u {{accountName}} wilt verwijderen?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Uw sleutel en transactiegeschiedenis zullen worden verwijderd.",
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
         "enterPassword": "Typ uw wachtwoord als u deze account wilt verwijderen."
@@ -439,7 +446,9 @@
         "feeless": "Een bewijs van inspanning (Proof of Work) is nodig om kostenloze transacties in IOTA te verzenden.",
         "localOrRemote": "Bewijs van inspanning kan lokaal gedaan worden op uw apparaat, of overgedragen worden aan een node.",
         "local": "Lokaal",
-        "remote": "Extern"
+        "remote": "Extern",
+        "powUpdated": "Bewijs van inspanning instellingen",
+        "powUpdatedExplanation": "Uw bewijs van inspanning-configuratie is bijgewerkt."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Ontvangstadres wordt gevalideerd",

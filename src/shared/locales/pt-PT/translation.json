@@ -86,7 +86,10 @@
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete."
+        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
+        "checkForUpdates": "Check for Updates",
+        "account": "Account",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -271,6 +274,7 @@
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "Hide",
         "hideOthers": "Hide Others",
+        "show": "Show",
         "showAll": "Show All",
         "quit": "Quit",
         "edit": "Edit",
@@ -283,7 +287,10 @@
         "couldNotFetchRates": "Could not fetch rates",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -439,7 +446,9 @@
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
-        "remote": "Remote"
+        "remote": "Remote",
+        "powUpdated": "Proof of work settings",
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validating receive address",

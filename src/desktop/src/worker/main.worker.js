@@ -1,8 +1,14 @@
 import 'babel-polyfill';
-import { generateNewAddress } from 'actions/tempAccount';
-import { getAccountInfo, getFullAccountInfoFirstSeed, getFullAccountInfoAdditionalSeed } from 'actions/account';
+import { generateNewAddress } from 'actions/wallet';
+import { getAccountInfo, getFullAccountInfoFirstSeed, getFullAccountInfoAdditionalSeed } from 'actions/accounts';
+import { changeIotaNode } from 'libs/iota';
+import { defaultNode } from 'config';
 
-let state = {};
+let state = {
+    settings: {
+        fullNode: defaultNode,
+    },
+};
 
 const actions = {
     generateNewAddress,
@@ -31,6 +37,9 @@ self.onmessage = ({ data }) => {
 
     switch (type) {
         case 'setState':
+            if (state.settings.fullNode !== payload.settings.fullNode) {
+                changeIotaNode(payload.settings.fullNode);
+            }
             state = payload;
             break;
         default:
