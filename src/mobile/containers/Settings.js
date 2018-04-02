@@ -32,6 +32,8 @@ class Settings extends Component {
          * @param {string} setting
          */
         setSetting: PropTypes.func.isRequired,
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
     };
 
     componentWillReceiveProps(newProps) {
@@ -46,6 +48,9 @@ class Settings extends Component {
         const props = {
             nodeSelection: {
                 backPress: () => this.props.setSetting('advancedSettings'),
+            },
+            addExistingSeed: {
+                navigator: this.props.navigator,
             },
         };
 
