@@ -32,13 +32,17 @@ class SeedIntro extends React.PureComponent {
                 <section>
                     <form className="center">
                         <fieldset>
-                            <h2>{t('walletSetup:doYouAlreadyHaveASeed')}</h2>
+                            <h2>Do you want to create a new seed?</h2>
+
                             <Button to="/onboarding/seed-verify" className="large" variant="secondary">
-                                {t('yes')}
-                            </Button>
-                            <Button to="/onboarding/seed-warning" className="large" variant="primary">
                                 {t('no')}
                             </Button>
+                            <Button to="/onboarding/seed-warning" className="large" variant="primary">
+                                {t('yes')}
+                            </Button>
+                            <small>
+                                <strong>Hint:</strong> Click YES if this is your first time using IOTA.
+                            </small>
                         </fieldset>
                     </form>
                 </section>

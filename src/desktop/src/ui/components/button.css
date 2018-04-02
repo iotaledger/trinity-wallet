@@ -73,7 +73,6 @@ footer {
     composes: button;
     color: var(--primary-body);
     background: var(--primary);
-    display: inline;
     &:hover {
         background: var(--primary-hover);
     }
@@ -103,15 +102,6 @@ footer {
     background: var(--negative);
     &:hover {
         background: var(--negative-hover);
-    }
-}
-
-.highlight {
-    composes: button;
-    color: var(--highlight-body);
-    background: var(--highlight);
-    &:hover {
-        background: var(--highlight-hover);
     }
 }
 
@@ -175,12 +165,6 @@ footer {
         color: var(--extra);
         &:hover {
             color: var(--extra-hover);
-        }
-    }
-    &.highlight {
-        color: var(--highlight);
-        &:hover {
-            color: var(--highlight-hover);
         }
     }
 }

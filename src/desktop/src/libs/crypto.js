@@ -1,5 +1,5 @@
 import sjcl from 'sjcl';
-import { createRandomSeed as createRandomSeedWrapped, MAX_SEED_LENGTH } from 'libs/util';
+import { createRandomSeed as createRandomSeedWrapped, MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 /**
  * Create random bytes array

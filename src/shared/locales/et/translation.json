@@ -86,7 +86,10 @@
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Palun oodake, kuni üleminek on lõpule viidud."
+        "snapshotTransitionInProgressExplanation": "Palun oodake, kuni üleminek on lõpule viidud.",
+        "checkForUpdates": "Otsi uuendusi",
+        "account": "Konto",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
@@ -136,7 +139,7 @@
         "seedTooShort": "Seeme on liiga ühike",
         "seedTooShortExplanation": "Seemned peavad olema {{maxLength}} tähemärki pikad. Teie seeme on praegu {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
         "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "neverShare": "ÄRA JAGA KUNAGI OMA SEEMET KELLEGAGI"
     },
     "home": {
         "balance": "KONTOJÄÄK",
@@ -150,7 +153,7 @@
     },
     "login": {
         "emptyPassword": "Tühi parool",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "emptyPasswordExplanation": "Te peate sisse logimiseks oma parooli sisestama. Palun proovige uuesti.",
         "enterPassword": "Palun sisestage oma parool.",
         "useSeed": "KASUTA SEEMET",
         "login": "LOGI SISSE",
@@ -219,16 +222,16 @@
         "send": "SAADA",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
-        "maximumSelected": "MAXIMUM amount selected",
+        "maximumSelected": "valitud MAKSIMAALNE summa",
         "iotaUnits": "IOTA ühikute selgitus",
-        "sendMax": "SEND MAX"
+        "sendMax": "SAADA MAKS."
     },
     "setPassword": {
         "passwordTooShort": "Parool on liiga lühike",
         "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "Paroolid ei kattu",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
+        "nowWeNeedTo": "Nüüd peame me parooli panema.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "Ensure you use a strong password of at least 12 characters.",
         "retypePassword": "Retype Password"
@@ -265,12 +268,13 @@
         "nicknameChangedExplanation": "Teie konto nimi on muudetud.",
         "accountDeleted": "Konto kustutatud",
         "accountDeletedExplanation": "Teie konto eemaldati rahakotist.",
-        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformAction": "Toimingut ei saa teha",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
         "poorConnection": "Kehv ühendus",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "Peida",
         "hideOthers": "Peida teised",
+        "show": "Show",
         "showAll": "Kuva kõik",
         "quit": "Välju",
         "edit": "Muuda",
@@ -280,10 +284,13 @@
         "selectAll": "Vali kõik",
         "securitySettings": "Turvasätted",
         "fingerprint": "Biomeetriline autentimine",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "couldNotFetchRates": "Ei saanud vahetuskurssi kätte",
+        "couldNotFetchRatesExplanation": "Midagi läks {{currency}} jaoks vahetuskursi otsimisega nässu.",
+        "fetchedConversionRates": "Tõmbasin vahetuskursid",
+        "fetchedConversionRatesExplanation": "Uusimate {{currency}} vahetuskursside leidmine õnnestus.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -298,8 +305,8 @@
         "keepSafe": "Palun hoidke oma seemne turvalisust."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
+        "thankYou": "Täname Trinity alla laadimise eest.",
+        "weWillSpend": "Me veedame teie rahakoti üles seadmiseks järgmised paar minutit.",
         "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
     },
     "writeSeedDown": {
@@ -360,8 +367,8 @@
         "one": "Üks"
     },
     "deleteAccount": {
-        "areYouSure": "Kas olete kindel, et tahate kustutada {{accountName}}?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "yourSeedWillBeRemoved": "Teie seeme ja tehingute ajalugu eemaldatakse.",
         "thisAction": "Seda tegevust ei saa tagasi võtta.",
         "enterPassword": "Konto kustutamiseks sisestage oma parool."
     },
@@ -436,19 +443,21 @@
         "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "feeless": "IOTA tasudeta tehingute jaoks on vaja teha natuke tööd.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Kohalik",
-        "remote": "Remote"
+        "remote": "Remote",
+        "powUpdated": "Proof of work settings",
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Saaja aadressi kontrollimine",
         "syncingAccount": "Sünkroniseeri konto",
         "preparingInputs": "Sisendite ettevalmistamine",
         "preparingTransfers": "Ülekannete ettevalmistamine",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "gettingTransactionsToApprove": "Otsin tehinguid, mida heaks kiita",
         "proofOfWork": "Valmistan töötõendust",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "Kuulutamine"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",

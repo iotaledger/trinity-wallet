@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { LineChart, ResponsiveContainer, Line, YAxis } from 'recharts';
+import { LineChart, ResponsiveContainer, Line, YAxis, Tooltip } from 'recharts';
+import { format, subDays, subHours, subMinutes } from 'date-fns';
 
 import withChartData from 'containers/components/Chart';
 
 import Button from 'ui/components/Button';
+import Icon from 'ui/components/Icon';
 import css from './chart.css';
 
 /**
@@ -16,7 +18,7 @@ class Chart extends PureComponent {
         priceData: PropTypes.shape({
             currency: PropTypes.string.isRequired,
             symbol: PropTypes.string.isRequired,
-            price: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
             volume: PropTypes.string.isRequired,
             change24h: PropTypes.string.isRequired,
             mcap: PropTypes.string.isRequired,
@@ -33,6 +35,10 @@ class Chart extends PureComponent {
         setCurrency: PropTypes.func.isRequired,
         /** Change chart time frame */
         setTimeframe: PropTypes.func.isRequired,
+        /** Get current market price for a currency
+         * @param {string} currency - Target currency
+         */
+        getPriceForCurrency: PropTypes.func.isRequired,
         /** Style price to current currency format
          * @param {number} price - Input price value for formatting
          */
@@ -48,45 +54,109 @@ class Chart extends PureComponent {
         t: PropTypes.func.isRequired,
     };
 
+    renderTooltip(props) {
+        if (props.active) {
+            const distance = props.maxItems - props.payload[0].payload.x;
+
+            let date = subHours(new Date(), 24 * distance / props.maxItems);
+
+            switch (props.timeframe) {
+                case '1h':
+                    date = subMinutes(new Date(), 60 * distance / props.maxItems);
+                    break;
+                case '7d':
+                    date = subHours(new Date(), 24 * 7 * distance / props.maxItems);
+                    break;
+                case '1m':
+                    date = subDays(new Date(), 30 * distance / props.maxItems);
+                    break;
+            }
+
+            return (
+                <p className={css.label}>
+                    {format(date, 'DD.MM.YY. HH:mm')}
+                    <br />
+                    <strong>
+                        {props.symbol} {props.payload[0].value}
+                    </strong>
+                </p>
+            );
+        }
+    }
+
     render() {
-        const { priceData, chartData, theme, setCurrency, setTimeframe, getPriceFormat, t } = this.props;
+        const {
+            priceData,
+            chartData,
+            theme,
+            setCurrency,
+            setTimeframe,
+            getPriceFormat,
+            getPriceForCurrency,
+            t,
+        } = this.props;
 
         return (
             <div className={css.chart}>
                 <div>
-                    <ResponsiveContainer height="100%" width="100%">
-                        <LineChart data={chartData.data}>
-                            <Line strokeWidth={2} type="linear" dataKey="y" stroke={theme.chart.color} dot={false} />
-                            <YAxis
-                                interval="preserveStartEnd"
-                                strokeWidth={0}
-                                width={60}
-                                dataKey="y"
-                                domain={['dataMin', 'dataMax']}
-                            />
-                        </LineChart>
-                    </ResponsiveContainer>
+                    {chartData.data.length ? (
+                        <ResponsiveContainer height="100%" width="100%">
+                            <LineChart data={chartData.data}>
+                                <Line
+                                    strokeWidth={2}
+                                    type="natural"
+                                    dataKey="y"
+                                    stroke={theme.chart.color}
+                                    dot={false}
+                                />
+                                <YAxis
+                                    strokeWidth={0}
+                                    width={70}
+                                    tickMargin={10}
+                                    tick={{ fill: theme.body.color }}
+                                    tickCount={6}
+                                    interval={0}
+                                    ticks={
+                                        chartData.yAxis.ticks
+                                            ? chartData.yAxis.ticks.map((tick) => getPriceFormat(tick))
+                                            : null
+                                    }
+                                    domain={['dataMin', 'dataMax']}
+                                />
+                                <Tooltip
+                                    timeframe={chartData.timeframe}
+                                    maxItems={chartData.data.length}
+                                    symbol={priceData.symbol}
+                                    content={this.renderTooltip}
+                                />
+                            </LineChart>
+                        </ResponsiveContainer>
+                    ) : (
+                        <Icon icon="cross" size={128} />
+                    )}
                 </div>
+                <hr />
                 <nav>
                     <Button variant="secondary" className="outline" onClick={() => setCurrency()}>
                         {priceData.currency}
                     </Button>
                     <p>
-                        {priceData.symbol} {getPriceFormat(priceData.price)} / Mi
+                        <strong>Current value</strong>
+                        {priceData.symbol} {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
                     </p>
                     <Button variant="secondary" className="outline" onClick={() => setTimeframe()}>
-                        {chartData.timeframe}
+                        {chartData.timeframe.replace('1m', '28d')}
                     </Button>
                 </nav>
                 <ul>
                     <li>
-                        {t('chart:mcap')}: $ {priceData.mcap}
+                        {t('chart:mcap')}: <strong>$ {priceData.mcap}</strong>
                     </li>
                     <li>
-                        {t('chart:change')}: {priceData.change24h}%
+                        {t('chart:change')}: <strong>{priceData.change24h}%</strong>
                     </li>
                     <li>
-                        {t('chart:volume')} (24h): $ {priceData.volume}
+                        {t('chart:volume')}: <strong>$ {priceData.volume}</strong>
                     </li>
                 </ul>
             </div>

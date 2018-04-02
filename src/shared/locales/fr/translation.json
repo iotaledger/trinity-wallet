@@ -77,16 +77,19 @@
         "autoreattachingExplanation": "Rattachement de la transaction de hash {{hash}}",
         "autopromoting": "Promotion automatique du transfert",
         "autopromotingExplanation": "Promotion de la transaction de hash {{hash}}",
-        "promoting": "Lancement du transfert",
-        "promotionError": "Impossible de lancer la transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "promoting": "Promotion du transfert",
+        "promotionError": "Impossible de promouvoir la transaction",
+        "noLongerValid": "Le paquet que vous essayez de promouvoir n'est plus valide",
         "cannotSendToOwn": "Envoi à votre propre adresse",
         "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers vos propres adresses.",
         "pleaseWait": "Veuillez patienter",
         "pleaseWaitExplanation": "Trinity est en train d'effectuer une autre tâche. Veuillez réessayer plus tard.",
         "pleaseWaitTransferExplanation": "Votre solde disponible est actuellement utilisé dans d'autres transferts. Veuillez attendre qu'un des transferts soit confirmé avant de réessayer.",
         "snapshotTransitionInProgress": "Transition du Snapshot en cours",
-        "snapshotTransitionInProgressExplanation": "Veuillez patienter jusqu'à ce que la synchronisation de la transition soit terminée."
+        "snapshotTransitionInProgressExplanation": "Veuillez patienter jusqu'à ce que la transition soit terminée.",
+        "checkForUpdates": "Rechercher des mises à jour",
+        "account": "Compte",
+        "enterPasswordToAccessSettings": "Entrez votre mot de passe pour accéder aux réglages de compte"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -154,14 +157,14 @@
         "enterPassword": "Veuillez saisir votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
         "login": "SE CONNECTER",
-        "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
+        "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
         "setNode": "CONFIGURER UN SERVEUR",
         "cannotConnect": "Impossible de se connecter à un serveur IOTA."
     },
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
         "thisMayTake": "Cela peut prendre un certain temps.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Ne réduisez ou ne fermez pas l'application.",
         "youMayNotice": "Il se peut que votre appareil ralentisse."
     },
     "newSeedSetup": {
@@ -271,6 +274,7 @@
         "poorConnectionExplanation": "Impossible de changer de devise à cause de la mauvaise connexion.",
         "hide": "Masquer",
         "hideOthers": "Masquer les autres",
+        "show": "Afficher",
         "showAll": "Tout Afficher",
         "quit": "Quitter",
         "edit": "Modifier",
@@ -283,7 +287,10 @@
         "couldNotFetchRates": "Échec de la récupération des taux",
         "couldNotFetchRatesExplanation": "Une erreur s'est produite lors de la récupération des taux de change pour {{currency}}.",
         "fetchedConversionRates": "Taux de conversion récupérés",
-        "fetchedConversionRatesExplanation": "Récupération des derniers taux de conversion pour {{currency}} réussie."
+        "fetchedConversionRatesExplanation": "Récupération des derniers taux de conversion pour {{currency}} réussie.",
+        "undo": "Annuler",
+        "redo": "Rétablir",
+        "about": "A propos de Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
@@ -298,7 +305,7 @@
         "keepSafe": "Merci de garder votre Seed en sécurité."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Merci d’avoir téléchargé Trinity.",
         "weWillSpend": "Durant les prochaines minutes, nous allons configurer votre portefeuille.",
         "reminder": "Vous pourriez être tenté de brûler certaines étapes, mais il est impératif de suivre la procédure complète."
     },
@@ -360,7 +367,7 @@
         "one": "Un"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Êtes-vous certain de vouloir supprimer {{accountName}}?",
         "yourSeedWillBeRemoved": "L’historique de vos seeds et de vos transactions sera supprimé.",
         "thisAction": "Cette action est irréversible.",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
@@ -433,13 +440,15 @@
     },
     "rootDetection": {
         "warning": "ATTENTION",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Votre appareil semble être rooté/jailbreaké</0><1>Ceci peut poser un risque important pour la sécurité de votre portefeuille.</1><2>Voulez-vous continuer malgré ce risque ?</2>"
     },
     "pow": {
         "feeless": "Il est nécessaire de remplir une petite preuve du travail pour envoyer des transactions sans frais en IOTA.",
         "localOrRemote": "La preuve du travail peut être effectuée localement sur votre appareil ou sur un serveur à distance .",
         "local": "Local",
-        "remote": "A distance"
+        "remote": "A distance",
+        "powUpdated": "Réglages de la preuve de travail",
+        "powUpdatedExplanation": "Votre configuration de la preuve de travail à été mise à jour."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validation de l'adresse de réception",
@@ -447,7 +456,7 @@
         "preparingInputs": "Préparation des entrées",
         "preparingTransfers": "Préparation des transferts",
         "gettingTransactionsToApprove": "Réception de transactions à valider",
-        "proofOfWork": "Finalisation de la PoW (Proof of Work)",
+        "proofOfWork": "Finalisation de la preuve de travail",
         "broadcasting": "Diffusion en cours"
     },
     "snapshotTransition": {

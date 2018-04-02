@@ -21,7 +21,7 @@
         "invalidResponsePollingExplanation": "Noden returnerede et ugyldigt svar under polling.",
         "invalidResponseFetchingAccount": "Noden returnerede et ugyldigt svar ved hentning af dine kontooplysninger. Prøv at ændre noden.",
         "invalidResponseSendingTransfer": "Noden returnerede et ugyldigt svar under afsendelse af transaktion.",
-        "seed": "Seed",
+        "seed": "Hovednøgle",
         "back": "TILBAGE",
         "backLowercase": "Tilbage",
         "done": "FÆRDIG",
@@ -31,12 +31,12 @@
         "save": "Gem",
         "close": "LUK",
         "continue": "Fortsæt",
-        "manualCopy": "Skriv dit seed ned",
+        "manualCopy": "Skriv din hovednøgle ned",
         "paperWallet": "Udskrive papirkopi",
         "copyToClipboard": "Tilføj til passwordmanager",
         "notAvailable": "Denne funktion er ikke tilgængelig",
         "notAvailableExplanation": "Dette vil blivee tilføjet på et senere tidspunkt.",
-        "enterSeed": "Indtast venligst dit seed.",
+        "enterSeed": "Indtast venligst din hovednøgle.",
         "mainWallet": "HOVEDKONTO",
         "secondWallet": "2. KONTO",
         "thirdWallet": "3. KONTO",
@@ -86,21 +86,24 @@
         "pleaseWaitExplanation": "Trinity udfører en anden funktion. Vent venligst og prøv igen.",
         "pleaseWaitTransferExplanation": "Din disponible balance bruges i øjeblikket i andre transaktioner. Vent venligst på at disse bekræftes før du prøver igen.",
         "snapshotTransitionInProgress": "Snapshot synkronisering i gang",
-        "snapshotTransitionInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført."
+        "snapshotTransitionInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
+        "checkForUpdates": "Søg efter opdateringer",
+        "account": "Brugerkonto",
+        "enterPasswordToAccessSettings": "Indtast adgangskoden for at tilgå kontoindstillinger"
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Seedet indeholder ugyldige tegn",
-        "seedInvalidCharsExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
-        "seedTooShort": "Seedet er for kort",
-        "seedTooShortExplanation": "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
+        "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
+        "seedInvalidCharsExplanation": "Hovednøglen må kun indeholde store bogstaver fra A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
+        "seedTooShort": "Hovednøglen er for kort",
+        "seedTooShortExplanation": "Hovednøglen skal indeholde {{maxLength}} tegn. Din hovednøgle er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
         "nameInUse": "Kontonavnet er allerede i brug",
-        "nameInUseExplanation": "Brug venligst et unikt kontonavn til dit seed.",
+        "nameInUseExplanation": "Brug venligst et unikt kontonavn til din hovednøgle.",
         "enterAccountName": "Indtast et kontonavn.",
         "accountName": "Kontonavn",
         "noNickname": "Intet kontonavn angivet",
-        "noNicknameExplanation": "Indtast venligst et kontonavn til dit seed.",
-        "seedInUse": "Dette seed er allerede i brug",
-        "seedInUseExplanation": "Dette seed er allerede forbundet til din tegnebog. Brug venligst en anden."
+        "noNicknameExplanation": "Indtast venligst et kontonavn til din hovednøgle.",
+        "seedInUse": "Denne hovednøgle er allerede i brug",
+        "seedInUseExplanation": "Denne hovednøgle er allerede forbundet til din tegnebog. Brug venligst en anden."
     },
     "changePassword": {
         "oops": "Ups! Der gik noget galt",
@@ -121,22 +124,22 @@
         "confirmPassword": "Bekræft ny adgangskode"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed ryddet",
-        "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
-        "seedCopied": "Seed kopieret til din udklipsholder",
-        "seedCopiedExplanation": "Dit seed vil blive slettet, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
-        "clickToCopy": "Klik på knappen nedenfor for at kopiere dit seed til en adgangskodemanager.",
-        "doNotStore": "Opbevar ikke dit seed i klartekst.",
-        "copyToClipboard": "Kopier seed",
-        "shareSeed": "Del dine dit seed til en sikker password manager"
+        "seedCleared": "Hovednøglen er fjernet",
+        "seedClearedExplanation": "Hovednøglen er blevet fjernet fra udklipsholderen for at øge din sikkerhed.",
+        "seedCopied": "Hovednøglen er kopieret til din udklipsholder",
+        "seedCopiedExplanation": "Din hovednøgle vil blive slettet, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
+        "clickToCopy": "Klik på knappen nedenfor for at kopiere din hovednøgle til en adgangskodemanager.",
+        "doNotStore": "Opbevar ikke din hovednøgle i klartekst.",
+        "copyToClipboard": "Kopier hovednøgle",
+        "shareSeed": "Del din hovednøgle med en sikker password manager"
     },
     "enterSeed": {
-        "invalidCharacters": "Seedet indeholder ugyldige tegn",
-        "invalidCharactersExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
-        "seedTooShort": "Seedet er for kort",
-        "seedTooShortExplanation": "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
-        "seedExplanation": "Seeds bør indeholde {{maxLength}} tegn og skal indeholde de store bogstaver A-Z eller tallet 9. Du kan ikke bruge seeds, som indeholder flere end {{maxLength}} tegn.",
-        "neverShare": "DEL ALDRIG DIT SEED MED NOGEN"
+        "invalidCharacters": "Hovednøglen indeholder ugyldige tegn",
+        "invalidCharactersExplanation": "Hovednøglen må kun indeholde store bogstaver fra A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
+        "seedTooShort": "Hovednøglen er for kort",
+        "seedTooShortExplanation": "Hovednøgler skal indeholde {{maxLength}} tegn. Din hovednøgle er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
+        "seedExplanation": "Hovednøgler bør indeholde {{maxLength}} tegn og skal indeholde store bogstaver fra A-Z eller tallet 9. Du kan ikke brugehovednøgler med mere end {{maxLength}} tegn.",
+        "neverShare": "DEL ALDRIG DIN HOVEDNØGLE MED NOGEN"
     },
     "home": {
         "balance": "SALDO",
@@ -152,31 +155,31 @@
         "emptyPassword": "Tom adgangskode",
         "emptyPasswordExplanation": "Du skal indtaste en adgangskode for at logge ind. Prøv venligst igen.",
         "enterPassword": "Indtast venligst din adgangskode.",
-        "useSeed": "BRUG SEED",
+        "useSeed": "BRUG HOVEDNØGLE",
         "login": "LOG IND",
         "selectDifferentNode": "Ønsker du at vælge en anden node?",
         "setNode": "SÆT NODE",
         "cannotConnect": "Kan ikke forbinde til IOTA node."
     },
     "loading": {
-        "loadingFirstTime": "Indlæser seed for første gang.",
+        "loadingFirstTime": "Indlæser hovednøgle for første gang.",
         "thisMayTake": "Dette kan tage noget tid.",
         "doNotMinimise": "Undlad at minimere eller lukke app'en.",
         "youMayNotice": "Dette kan reducere hastigheden på din enhed."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seedet er ikke blevet genereret",
-        "seedNotGeneratedExplanation": "Vær venlig at generere et nyt seed.",
-        "pressForNewSeed": "TRYK FOR AT FÅ ET NYT SEED",
-        "individualLetters": "Tryk på individuelle bogstaver for at vælge nye tilfældigt."
+        "seedNotGenerated": "Hovednøglen er ikke blevet genereret",
+        "seedNotGeneratedExplanation": "Vær venlig at generere en ny hovednøgle.",
+        "pressForNewSeed": "GENERÈR HOVEDNØGLE",
+        "individualLetters": "Tryk på individuelle bogstaver for at randomisere dem."
     },
     "onboardingComplete": {
         "walletReady": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
     },
     "paperWallet": {
-        "clickToPrint": "Klik på knappen nedenfor for at udskrive en papirkopi af dit seed.",
+        "clickToPrint": "Klik på knappen nedenfor for at udskrive en papirkopi af din hovednøgle.",
         "storeSafely": "Opbevar den sikkert.",
-        "neverShare": "Del aldrig dit seed med nogen.",
+        "neverShare": "Del aldrig din hovednøgle med nogen.",
         "iotaLogo": "IOTA-logo",
         "printWallet": "UDSKRIV PAPIRTEGNEBOG"
     },
@@ -190,15 +193,15 @@
         "spent": "Forbrugt"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed ryddet",
-        "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
-        "mustSaveYourSeed": "<0><0>Du skal gemme dit seed med </0><1>mindst én</1><2> af valgmulighederne herunder.</2></0>"
+        "seedCleared": "Hovednøgle er fjernet",
+        "seedClearedExplanation": "Hovednøglen er fjernet fra din udklipsholder for at øge din sikkerhed.",
+        "mustSaveYourSeed": "<0><0>Du skal gemme din hovednøgle med </0><1>mindst én</1><2> af valgmulighederne herunder.</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Forkert seed",
-        "incorrectSeedExplanation": "Seedet, du indtastede, er forkert. Prøv venligst igen.",
-        "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit seed.",
-        "ifYouHaveNotSaved": "Gå venligst tilbage og gem dit seed, hvis du ikke allerede har gjort dette."
+        "incorrectSeed": "Forkert hovednøgle",
+        "incorrectSeedExplanation": "Hovednøglen du indtastede er forkert. Prøv venligst igen.",
+        "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit hovednøgle.",
+        "ifYouHaveNotSaved": "Gå venligst tilbage og gem din hovednøgle, hvis du ikke allerede har gjort dette."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -229,13 +232,13 @@
         "passwordMismatch": "Adgangskoderne er ikke ens",
         "passwordMismatchExplanation": "Adgangskoderne, du har indtastet, er ikke ens. Prøv venligst igen.",
         "nowWeNeedTo": "Nu skal vi opsætte en adgangskode.",
-        "anEncryptedCopy": "En krypteret kopi af dit seed bliver opbevaret på din enhed. Denne adgangskode skal bruges til at tilgå din tegnebog fremover.",
+        "anEncryptedCopy": "En krypteret kopi af din hovednøgle bliver opbevaret på din enhed. Du vil bruge denne adgangskode fremadrettet for at tilgå din tegnebog.",
         "ensure": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
         "retypePassword": "Gentag adgangskode"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Du kan bruge adskillige seeds med denne tegnebog. Hvert seed kræver et kontonavn.",
-        "youCanAdd": "Du kan tilføje flere seeds i menuen \"Indstillinger\"."
+        "canUseMultipleSeeds": "Du kan bruge adskillige hovednøgler med denne tegnebog. Hver hovednøgle kræver et kontonavn.",
+        "youCanAdd": "Du kan tilføje flere hovednøgler i menuen \"Indstillinger\"."
     },
     "modeSelection": {
         "expert": "Ekspert",
@@ -253,7 +256,7 @@
         "currency": "Valuta",
         "language": "Sprog",
         "accountManagement": "Konto administration",
-        "addNewSeed": "Tilføj nyt seed",
+        "addNewSeed": "Tilføj ny hovednøgle",
         "twoFA": "Totrinsbekræftelse",
         "changePassword": "Skift adgangskode",
         "advanced": "Avancerede indstillinger",
@@ -271,6 +274,7 @@
         "poorConnectionExplanation": "Fejlede under ændring af valuta grundet dårlig forbindelse.",
         "hide": "Skjul",
         "hideOthers": "Skjul øvrige",
+        "show": "Vis",
         "showAll": "Vis alle",
         "quit": "Afslut",
         "edit": "Rediger",
@@ -283,7 +287,10 @@
         "couldNotFetchRates": "Kunne ikke hente priser",
         "couldNotFetchRatesExplanation": "Noget gik galt under hentning af omregningskurser for {{currency}}.",
         "fetchedConversionRates": "Hentede omregningskurser",
-        "fetchedConversionRatesExplanation": "Har succesfuldt hentet nyeste omregningskurser for {{currency}}."
+        "fetchedConversionRatesExplanation": "Har succesfuldt hentet nyeste omregningskurser for {{currency}}.",
+        "undo": "Fortryd",
+        "redo": "Gendan",
+        "about": "Om Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Indtast din adgangskode for at nulstille tegnebogen.",
@@ -292,10 +299,10 @@
     },
     "walletSetup": {
         "okay": "Okay. Lad os opsætte din tegnebog!",
-        "doYouAlreadyHaveASeed": "Har du allerede et seed, du gerne vil bruge?",
-        "seedExplanation": "Dit IOTA seed fungerer som din kontos brugernavn og adgangskode, og består af en kombineret streng på 81 tegn.",
-        "explanation": "<0><0>du kan bruge det til at hente dine midler fra</0><1> enhver tegnebog</1><2>, på</2><3> hvilken som helst enhed</3><4>. Men mister du dit seed, mister du også dine IOTA.</4></0>",
-        "keepSafe": "Du bedes opbevare dit seed sikkert."
+        "doYouAlreadyHaveASeed": "Har du allerede en hovednøgle du gerne vil bruge?",
+        "seedExplanation": "En IOTA hovednøgle fungerer som din kontos brugernavn og adgangskode, og består af en kombineret streng på 81 tegn.",
+        "explanation": "<0><0>du kan bruge det til at hente dine midler fra</0><1> enhver tegnebog</1><2>, på</2><3> hvilken som helst enhed</3><4>. Men mister du din hovednøgle, mister du også dine IOTA.</4></0>",
+        "keepSafe": "Du bedes opbevare din hovednøgle sikkert."
     },
     "welcome": {
         "thankYou": "Tak fordi du downloadede Trinity.",
@@ -303,8 +310,8 @@
         "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Dit seed er {{maxSeedLength}} tegn fra venstre til højre.",
-        "writeDownYourSeed": "<0> Skriv dit seed og din kontrolsum ned, og lav et</0><1>tredobbelt tjek</1><2> for at sikre, at de er korrekte.</2>"
+        "yourSeedIs": "Din hovednøgle er {{maxSeedLength}} tegn fra venstre til højre.",
+        "writeDownYourSeed": "<0> Skriv din hovednøgle og din kontrolsum ned, og lav et</0><1>tredobbelt tjek</1><2> for at sikre, at de er korrekte.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
@@ -315,7 +322,7 @@
         "receive": "MODTAG"
     },
     "accountManagement": {
-        "viewSeed": "Se seed",
+        "viewSeed": "Se hovednøgle",
         "viewAddresses": "Se adresser",
         "editAccountName": "Rediger kontonavn",
         "deleteAccount": "Slet konto",
@@ -326,8 +333,8 @@
         "add": "Tilføj"
     },
     "addNewAccount": {
-        "useExistingSeed": "Brug eksisterende seed",
-        "createNewSeed": "Opret ny seed"
+        "useExistingSeed": "Brug eksisterende hovednøgle",
+        "createNewSeed": "Opret ny hovednøgle"
     },
     "advancedSettings": {
         "selectNode": "Vælg node",
@@ -360,8 +367,8 @@
         "one": "En"
     },
     "deleteAccount": {
-        "areYouSure": "Er du sikker på du vil slette {{accountName}}?",
-        "yourSeedWillBeRemoved": "Dit seed og transaktionshistorik vil blive fjernet.",
+        "areYouSure": "Er du sikker på, at du vil slette {{accountName}}?",
+        "yourSeedWillBeRemoved": "Din hovednøgle og transaktionshistorik vil blive fjernet.",
         "thisAction": "Denne handling kan ikke fortrydes.",
         "enterPassword": "Indtast din adgangskode for at slette denne konto."
     },
@@ -374,11 +381,11 @@
         "syncingYourAccount": "Synkroniser din konto."
     },
     "useExistingSeed": {
-        "title": "Indtast et seed- og kontonavn."
+        "title": "Indtast et kontonavn."
     },
     "viewSeed": {
-        "enterPassword": "Indtast adgangskode for at se din tegnebog.",
-        "viewSeed": "SE SEED",
+        "enterPassword": "Indtast din adgangskode for at se din hovednøgle.",
+        "viewSeed": "Vis hovednøgle",
         "hideSeed": "SKJUL SEED"
     },
     "saveSeedConfirmation": {
@@ -388,7 +395,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLING KAN IKKE FORTRYDES.",
-        "warning": "<0><0>Alle dine data i tegnebogen, inkluderende dit </0><1>seed, adgangskode,</1><2> og </2><3>andre kontoinformationer</3><4> vil gå tabt.</4></0>"
+        "warning": "<0><0>Alle dine data i tegnebogen, inkluderende din </0><1>hovednøgle, adgangskode,</1><2> og </2><3>andre kontoinformationer</3><4> vil gå tabt.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Berør din enheden fingeraftrykslæser for at aktivere fingeraftryk som identifikation.",
@@ -436,10 +443,12 @@
         "rootDetected": "<0>Din enhed ser ud til at være rooted/jailbreaked.</0><1>Dette kan udgøre en væsentlig risiko for sikkerheden i din tegnebog</1><2>Ønsker du at fortsætte trods denne risiko?</2>"
     },
     "pow": {
-        "feeless": "Det er nødvendigt at udføre en mindre netværksvalidering (PoW) for at sende gratis overførsler med IOTA.",
+        "feeless": "Det er nødvendigt at udføre en mindre netværksvalidering for at sende gratis transaktioner med IOTA.",
         "localOrRemote": "'Proof of work' kan enten gennemføres lokalt på din enhed eller overlades til din node.",
         "local": "Lokalt",
-        "remote": "Fjernadgang"
+        "remote": "Fjernadgang",
+        "powUpdated": "Indstillinger til netværksvalidering",
+        "powUpdatedExplanation": "Dine indstillinger til netværksvalideringen er opdateret."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validering modtageradresse",

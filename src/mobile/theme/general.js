@@ -1,4 +1,4 @@
-import { width } from '../util/dimensions';
+import { width } from '../utils/dimensions';
 
 export default {
     borderRadius: width / 60,

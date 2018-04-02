@@ -4,6 +4,7 @@ const initialState = {
     seeds: [],
     newSeed: null,
     newName: '',
+    isGenerated: false,
 };
 
 export default (state = initialState, action) => {
@@ -38,7 +39,8 @@ export default (state = initialState, action) => {
         case ActionTypes.SEEDS_NEW_SEED: {
             return {
                 ...state,
-                newSeed: action.payload,
+                newSeed: action.payload.seed,
+                isGenerated: action.payload.isGenerated,
             };
         }
 
@@ -54,6 +56,7 @@ export default (state = initialState, action) => {
                 ...state,
                 newSeed: null,
                 newName: null,
+                isGenerated: false,
             };
         }
     }

@@ -16,9 +16,9 @@ import {
     selectedAccountStateFactory,
     getRemotePoWFromState,
     selectFirstAddressFromAccountFactory,
-} from '../selectors/account';
-import { completeTransfer, sendTransferError, sendTransferRequest } from './tempAccount';
+} from '../selectors/accounts';
 import { setNextStepAsActive } from './progress';
+import { clearSendFields } from './ui';
 import {
     getTailTransactionForBundle,
     getAllTailTransactionsForBundle,
@@ -28,9 +28,10 @@ import {
     filterInvalidPendingTransfers,
     filterZeroValueTransfers,
     performPow,
+    syncAccountAfterSpending,
 } from '../libs/iota/transfers';
 import { syncAccountAfterReattachment, syncAccount } from '../libs/iota/accounts';
-import { updateAccountAfterReattachment, updateAccountInfo, accountInfoFetchSuccess } from './account';
+import { updateAccountAfterReattachment, updateAccountInfoAfterSpending, accountInfoFetchSuccess } from './accounts';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { generateAlert, generateTransferErrorAlert, generatePromotionErrorAlert } from './alerts';
@@ -44,6 +45,9 @@ export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR',
+    SEND_TRANSFER_REQUEST: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_REQUEST',
+    SEND_TRANSFER_SUCCESS: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_SUCCESS',
+    SEND_TRANSFER_ERROR: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_ERROR',
 };
 
 const broadcastBundleRequest = () => ({
@@ -69,6 +73,31 @@ const promoteTransactionSuccess = () => ({
 const promoteTransactionError = () => ({
     type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
 });
+
+export const sendTransferRequest = () => ({
+    type: ActionTypes.SEND_TRANSFER_REQUEST,
+});
+
+export const sendTransferSuccess = (payload) => ({
+    type: ActionTypes.SEND_TRANSFER_SUCCESS,
+    payload,
+});
+
+export const sendTransferError = () => ({
+    type: ActionTypes.SEND_TRANSFER_ERROR,
+});
+
+/**
+ *   On successful transfer, update store, generate alert and clear send text fields
+ *   @method completeTransfer
+ *   @param {object} payload - sending status, address, transfer value
+ **/
+export const completeTransfer = (payload) => {
+    return (dispatch) => {
+        dispatch(clearSendFields());
+        dispatch(sendTransferSuccess(payload));
+    };
+};
 
 export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState) => {
     dispatch(broadcastBundleRequest());
@@ -325,12 +354,13 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
 
                 return storeAndBroadcastAsync(cached.trytes);
             })
-            .then(() => {
+            .then(() => syncAccountAfterSpending(accountName, cached.transactionObjects, value))
+            .then(({ newState }) => {
                 // Progress summary
                 dispatch(setNextStepAsActive());
 
                 // TODO: Validate bundle
-                dispatch(updateAccountInfo(accountName, cached.transactionObjects, value));
+                dispatch(updateAccountInfoAfterSpending(newState));
 
                 // Delay dispatching alerts to display the progress summary
                 return setTimeout(() => {
