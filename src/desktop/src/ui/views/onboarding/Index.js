@@ -118,8 +118,8 @@ class Onboarding extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    complete: state.account.onboardingComplete,
-    isAuthorised: state.tempAccount.ready,
+    complete: state.accounts.onboardingComplete,
+    isAuthorised: state.wallet.ready,
 });
 
 export default withRouter(connect(mapStateToProps)(Onboarding));

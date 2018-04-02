@@ -86,7 +86,10 @@
         "pleaseWaitExplanation": "ट्रिनिटी एक और काम कर रहा है । कृपया प्रतीक्षा करें और पुन: प्रयास करे ।",
         "pleaseWaitTransferExplanation": "आपका उपलब्ध बैलेंस वर्तमान में अंय स्थानांतरण में उपयोग किया जा रहा है । पुन: प्रयास करने से पहले पुष्टि करने के लिए कृपया प्रतीक्षा करें ।",
         "snapshotTransitionInProgress": "स्नैपशॉट प्रगति में",
-        "snapshotTransitionInProgressExplanation": "इस प्रक्रिया के पूर्ण होने तक कृपया प्रतीक्षा करें ।"
+        "snapshotTransitionInProgressExplanation": "इस प्रक्रिया के पूर्ण होने तक कृपया प्रतीक्षा करें ।",
+        "checkForUpdates": "Check for Updates",
+        "account": "Account",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -146,7 +149,7 @@
         "settings": "सेटिंग्स"
     },
     "languageSetup": {
-        "language": "भाषा "
+        "language": "भाषा "
     },
     "login": {
         "emptyPassword": "खाली पासवर्ड",
@@ -251,7 +254,7 @@
         "mode": "मोड",
         "theme": "थीम",
         "currency": "मुद्रा",
-        "language": "भाषा ",
+        "language": "भाषा ",
         "accountManagement": "अकाउंट प्रबंध",
         "addNewSeed": "नए सीड जोड़ें",
         "twoFA": "Two-factor authentication",
@@ -271,6 +274,7 @@
         "poorConnectionExplanation": "किसी खराब कनेक्शन के कारण मुद्रा परिवर्तित करने में विफल ।",
         "hide": "छिपाएँ",
         "hideOthers": "अन्य छुपाएं",
+        "show": "Show",
         "showAll": "सभी दिखाएँ",
         "quit": "बंद करें",
         "edit": "संशोधन करें",
@@ -283,7 +287,10 @@
         "couldNotFetchRates": "रेट सूची लायी नहीं जा सकी",
         "couldNotFetchRatesExplanation": "{{currency}} के लिए रूपांतरण दरें लाते समय कुछ गलत हो गया था",
         "fetchedConversionRates": "रूपांतरण दर लाये",
-        "fetchedConversionRatesExplanation": "{{currency}} के लिए नवीनतम रूपांतरण दरों को सफलतापूर्वक दिलवाया ।"
+        "fetchedConversionRatesExplanation": "{{currency}} के लिए नवीनतम रूपांतरण दरों को सफलतापूर्वक दिलवाया ।",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "इस खाते को हटाने के लिए अपना पासवर्ड दर्ज करें ।",
@@ -360,7 +367,7 @@
         "one": "एक"
     },
     "deleteAccount": {
-        "areYouSure": "क्या आप निश्चित है कि आपको {{accountName}} खाता मिटाना है?",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "आपके सीड और लेन-देन विवरण को हटा दिया जाएगा ।",
         "thisAction": "यह पूर्ववत् नहीं किया जा सकता है!",
         "enterPassword": "इस खाते को हटाने के लिए अपना पासवर्ड दर्ज करें ।"
@@ -439,7 +446,9 @@
         "feeless": "IOTA में निशुल्क ट्रांजेक्शन भेजने के लिए काम का थोड़ा सा सबूत पूरा करना जरूरी होता है ।",
         "localOrRemote": "काम का सबूत या तो अपने डिवाइस पर स्थानीय रूप से पूरा किया जा सकता है, या एक नोड के लिए बिकवाली की ।",
         "local": "स्थानीय",
-        "remote": "दूरस्थ"
+        "remote": "दूरस्थ",
+        "powUpdated": "Proof of work settings",
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "progressSteps": {
         "validatingReceiveAddress": "प्राप्त पता की जाँच कर रहे है",

@@ -7,8 +7,8 @@ import { setRandomlySelectedNode } from 'iota-wallet-shared-modules/actions/sett
 import { changeIotaNode, getRandomNode } from 'iota-wallet-shared-modules/libs/iota';
 import i18next from 'i18next';
 import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import { isIOS } from '../util/device';
-import keychain from '../util/keychain';
+import { isIOS } from '../utils/device';
+import keychain from '../utils/keychain';
 import registerScreens from './navigation';
 import i18 from '../i18next';
 
@@ -21,15 +21,21 @@ const clearKeychain = () => {
 const renderInitialScreen = (store) => {
     Text.defaultProps.allowFontScaling = false;
     TextInput.defaultProps.allowFontScaling = false;
+
     // Ignore android warning against timers
     console.ignoredYellowBox = ['Setting a timer']; // eslint-disable-line no-console
+
     const state = store.getState();
+
     // Clear keychain if very first load
-    if (!state.account.onboardingComplete) {
+    if (!state.accounts.onboardingComplete) {
         clearKeychain();
     }
+
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
-    const initialScreen = state.account.onboardingComplete ? 'login' : 'languageSetup';
+
+    const initialScreen = state.accounts.onboardingComplete ? 'login' : 'languageSetup';
+
     Navigation.startSingleScreenApp({
         screen: {
             screen: initialScreen,
@@ -54,7 +60,7 @@ export const setRandomIotaNode = (store) => {
     const hasAlreadyRandomized = get(settings, 'hasRandomizedNode');
 
     // Update provider
-    changeIotaNode(get(settings, 'fullNode'));
+    changeIotaNode(get(settings, 'node'));
 
     if (!hasAlreadyRandomized) {
         const node = getRandomNode();

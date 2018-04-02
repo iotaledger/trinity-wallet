@@ -2,12 +2,29 @@
     > button {
         margin-right: 20px;
     }
+
+    textarea {
+        width: 100%;
+        height: 400px;
+        margin-bottom: 60px;
+        background: var(--input-bg);
+        color: var(--input);
+        font-size: 11px;
+        font-family: monospace;
+        border: none;
+        padding: 20px;
+        border-radius: 4px;
+        &:focus {
+            outline: none;
+        }
+    }
 }
 
 .columns {
     display: flex;
     ul {
-        margin-right: 50px;
+        margin: 0 100px 0 0;
+        padding: 0;
     }
 }
 
@@ -17,13 +34,8 @@
     > div {
         display: flex;
         width: 100%;
-        &:first-of-type {
-            padding-top: 20px;
-        }
-        &:last-of-type {
-            > div {
-                margin-bottom: 0px;
-            }
+        span {
+            margin-top: 24px;
         }
     }
     span {

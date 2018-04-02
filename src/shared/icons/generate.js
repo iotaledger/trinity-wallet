@@ -2,6 +2,7 @@ const SVGIcons2SVGFontStream = require('svgicons2svgfont');
 const svg2ttf = require('svg2ttf');
 const fs = require('fs');
 const icons = require('./icons.js');
+
 const fontStream = new SVGIcons2SVGFontStream({
     fontName: 'Icons',
 });

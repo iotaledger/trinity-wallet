@@ -1,11 +1,15 @@
-/*
- InfoPlist.strings
- iotaWallet
- 
- Created by Rajiv Shah on 3/24/18.
- Copyright © 2018 IOTA Foundation. All rights reserved.
- */
-"NSHumanReadableCopyright" = "2018 IOTA Foundation. All rights reserved.";
-"NSCameraUsageDescription" = "Trinity requires access to the camera in order to enable QR scanning.";
-"NSFaceIDUsageDescription" = "Trinity requires access to Face ID in order to enable biometric authentication.";
+/* (No Comment) */
+"CFBundleDisplayName" = "Trinity";
+
+/* (No Comment) */
+"CFBundleName" = "$(PRODUCT_NAME)";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "Trinity heeft toegang tot de camera nodig voor QR-scannen.";
+
+/* (No Comment) */
+"NSFaceIDUsageDescription" = "Trinity heeft toegang tot Face ID nodig voor biometrische verificatie.";
+
+/* (No Comment) */
+"NSHumanReadableCopyright" = "2018 IOTA Foundation. Alle rechten voorbehouden.";
 

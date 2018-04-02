@@ -86,7 +86,10 @@
         "pleaseWaitExplanation": "Trinity กำลังปฏิบัติการอย่างอื่นอยู่ กรุณารอสักครู่ และลองใหม่อีกครั้ง",
         "pleaseWaitTransferExplanation": "ยอดคงเหลือที่สามารถใช้ได้ของคุณในขณะนี้ กำลังถูกใช้งานในการโอนอื่นอยู่ กรุณารอจนกว่าผู้รับโอนทำการยืนยันก่อนที่จะทำการโอนอีกครั้ง",
         "snapshotTransitionInProgress": "การเปลี่ยนแปลงของ Snapshot อยู่ระหว่างการดำเนินการ",
-        "snapshotTransitionInProgressExplanation": "กรุณารอจนกว่าการเปลี่ยนแปลงเสร็จสมบูรณ์"
+        "snapshotTransitionInProgressExplanation": "กรุณารอจนกว่าการเปลี่ยนแปลงเสร็จสมบูรณ์",
+        "checkForUpdates": "Check for Updates",
+        "account": "Account",
+        "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
@@ -271,6 +274,7 @@
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "ซ่อน",
         "hideOthers": "ซ่อนคนอื่น",
+        "show": "Show",
         "showAll": "แสดงทั้งหมด",
         "quit": "ออก",
         "edit": "แก้ไข",
@@ -283,7 +287,10 @@
         "couldNotFetchRates": "Could not fetch rates",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}."
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
+        "undo": "Undo",
+        "redo": "Redo",
+        "about": "About Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -439,7 +446,9 @@
         "feeless": "PoW จำเป็นต้องสมบูรณ์เพื่อที่จะส่งรายการโดยไม่มีค่าใช้จ่ายใน IOTA",
         "localOrRemote": "Proof of Work สามารถเสร็จสมบูรณ์ได้ทั้งบนอุปกรณ์ของคุณ หรือส่งเข้าไปที่ node",
         "local": "อุปกรณ์ของคุณ",
-        "remote": "อุปกรณ์อื่น"
+        "remote": "อุปกรณ์อื่น",
+        "powUpdated": "Proof of work settings",
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validating receive address",
