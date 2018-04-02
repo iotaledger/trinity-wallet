@@ -124,12 +124,30 @@ export const categorizeTransactionsByPersistence = (tailTransactions, states) =>
     );
 };
 
-export const isReceivedTransfer = (bundle, addresses) => {
+/**
+ *   Check if the bundle is outgoing
+ *
+ *   @method isSentTransfer
+ *   @param {array} bundle
+ *   @param {array} addresses
+ *   @returns {boolean}
+ **/
+export const isSentTransfer = (bundle, addresses) => {
     return some(bundle, (tx) => {
         const isRemainder = tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
-        return addresses.indexOf(tx.address) > -1 && tx.value >= 0 && !isRemainder;
+        return includes(addresses, tx.address) && tx.value < 0 && !isRemainder;
     });
 };
+
+/**
+ *   Check if the bundle is incoming
+ *
+ *   @method isReceivedTransfer
+ *   @param {array} bundle
+ *   @param {array} addresses
+ *   @returns {boolean}
+ **/
+export const isReceivedTransfer = (bundle, addresses) => !isSentTransfer(bundle, addresses);
 
 export const getRelevantTransfer = (bundle, addresses) => {
     for (let i = 0; i < bundle.length; i++) {
