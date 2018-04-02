@@ -73,7 +73,7 @@ export const rearrangeObjectKeys = (obj, prop) => {
 };
 
 export const updatePersistedState = (incomingState, restoredState) => {
-    const { app: { versions }, settings: { availablePoWNodes, theme } } = incomingState;
+    const { app: { versions }, settings: { nodes, theme } } = incomingState;
     const restoredCopy = cloneDeep(restoredState);
 
     if ('app' in restoredCopy) {
@@ -81,7 +81,7 @@ export const updatePersistedState = (incomingState, restoredState) => {
     }
 
     if ('settings' in restoredCopy) {
-        restoredCopy.settings.availablePoWNodes = availablePoWNodes;
+        restoredCopy.settings.nodes = nodes;
         restoredCopy.settings.theme = theme;
     }
 
