@@ -107,8 +107,8 @@ export class ViewAddresses extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
     };
 
@@ -227,7 +227,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     selectedAccount: selectAccountInfo(state),
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewAddresses));

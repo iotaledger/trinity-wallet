@@ -82,14 +82,14 @@ export class Balance extends Component {
         /** Transactions for currently selected account */
         transfers: PropTypes.array.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Close active top bar */
         closeTopBar: PropTypes.func.isRequired,
-        /** Switches bottom tabs on home screen 
+        /** Switches bottom tabs on home screen
          * @param {string} - Default to 'history'
-        */
+         */
         onTabSwitch: PropTypes.func.isRequired,
         /** Currently selected currency */
         currency: PropTypes.string.isRequired,

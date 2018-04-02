@@ -79,19 +79,19 @@ export class CurrencySelection extends Component {
         /** Available currencies */
         availableCurrencies: PropTypes.array.isRequired,
         /** Change current setting
-        * @param {string} setting
-        */
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Fetch latest currency information
-        * @param {string} currency
-        * @param {boolean} withAlerts - Flag to generate an alert in case something went wrong during the network call.
-        */
+         * @param {string} currency
+         * @param {boolean} withAlerts - Flag to generate an alert in case something went wrong during the network call.
+         */
         getCurrencyData: PropTypes.func.isRequired,
     };
 
@@ -197,7 +197,7 @@ const mapStateToProps = (state) => ({
     availableCurrencies: state.settings.availableCurrencies,
     isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
     hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {

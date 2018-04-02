@@ -76,17 +76,17 @@ const styles = StyleSheet.create({
 class AdvancedSettings extends PureComponent {
     static propTypes = {
         /** Change current setting
-        * @param {string} setting
-        */
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Currently selected IRI node */
         node: PropTypes.string.isRequired,
         /** Theme settings */
-        theme: PropTypes.object.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -222,7 +222,7 @@ class AdvancedSettings extends PureComponent {
 
 const mapStateToProps = (state) => ({
     node: state.settings.node,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {

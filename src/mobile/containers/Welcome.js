@@ -76,8 +76,8 @@ class Welcome extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Translation helper
-       * @param {string} translationString - locale string identifier to be translated
-       */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
     };
 
@@ -177,7 +177,9 @@ class Welcome extends Component {
                     isVisible={isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
                 >
-                    <View style={[styles.modalContent, { backgroundColor: theme.body.bg }]}>{this.state.modalContent}</View>
+                    <View style={[styles.modalContent, { backgroundColor: theme.body.bg }]}>
+                        {this.state.modalContent}
+                    </View>
                 </Modal>
             </View>
         );
@@ -185,7 +187,7 @@ class Welcome extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 export default translate(['welcome', 'global'])(connect(mapStateToProps)(Welcome));

@@ -67,8 +67,8 @@ class NodeSelection extends Component {
          */
         setFullNode: PropTypes.func.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
@@ -139,11 +139,11 @@ class NodeSelection extends Component {
 const mapStateToProps = (state) => ({
     node: state.settings.node,
     nodes: state.settings.nodes,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {
-    setFullNode
+    setFullNode,
 };
 
 export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(NodeSelection));

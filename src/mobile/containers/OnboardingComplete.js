@@ -73,13 +73,13 @@ const styles = StyleSheet.create({
 class OnboardingComplete extends Component {
     static propTypes = {
         /** Translation helper
-       * @param {string} translationString - locale string identifier to be translated
-       */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Theme settings */
-        theme: PropTypes.object.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     onNextPress() {
@@ -125,7 +125,7 @@ class OnboardingComplete extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 export default WithBackPressCloseApp()(

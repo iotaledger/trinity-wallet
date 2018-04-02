@@ -81,18 +81,18 @@ class SaveYourSeed extends Component {
          */
         setCopiedToClipboard: PropTypes.func.isRequired,
         /** Generate a notification alert
-        * @param {string} type - notification type - success, error
-        * @param {string} title - notification title
-        * @param {string} text - notification explanation
-        */
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
         /** Determines whether onboarding steps for wallet setup are completed */
         onboardingComplete: PropTypes.bool.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
     };
 
