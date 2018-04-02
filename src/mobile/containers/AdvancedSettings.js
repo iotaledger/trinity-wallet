@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
         marginLeft: width / 20,
     },
     separator: {
-        borderBottomColor: 'white',
         borderBottomWidth: height / 1500,
         width: width / 1.16,
         alignSelf: 'center',
@@ -120,7 +119,7 @@ class AdvancedSettings extends PureComponent {
         const { t, theme, node } = this.props;
         const textColor = { color: theme.body.color };
         const bodyColor = theme.body.color;
-        const borderColor = { borderColor: theme.body.color };
+        const borderColor = { borderBottomColor: theme.body.color };
 
         return (
             <View style={styles.container}>
