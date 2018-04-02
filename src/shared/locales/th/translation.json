@@ -19,8 +19,7 @@
         "invalidResponse": "การตอบสนองไม่สมบูรณ์",
         "invalidResponseExplanation": "Node ส่งคืนการตอบสนองที่ไม่ถูกต้อง",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
-        "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "Node ส่งคืนการตอบสนองที่ไม่ถูกต้องขณะการส่งการโอน",
         "seed": "Seed (เลขที่บัญชี)",
         "back": "ย้อนกลับ",
@@ -85,8 +84,7 @@
         "cannotSendToOwnExplanation": "คุณไม่สามารถถ่ายโอนสกุลเงินไปยังที่อยู่อื่นของคุณเองได้",
         "pleaseWait": "กรุณารอสักครู่",
         "pleaseWaitExplanation": "Trinity กำลังปฏิบัติการอย่างอื่นอยู่ กรุณารอสักครู่ และลองใหม่อีกครั้ง",
-        "pleaseWaitTransferExplanation":
-            "ยอดคงเหลือที่สามารถใช้ได้ของคุณในขณะนี้ กำลังถูกใช้งานในการโอนอื่นอยู่ กรุณารอจนกว่าผู้รับโอนทำการยืนยันก่อนที่จะทำการโอนอีกครั้ง",
+        "pleaseWaitTransferExplanation": "ยอดคงเหลือที่สามารถใช้ได้ของคุณในขณะนี้ กำลังถูกใช้งานในการโอนอื่นอยู่ กรุณารอจนกว่าผู้รับโอนทำการยืนยันก่อนที่จะทำการโอนอีกครั้ง",
         "snapshotTransitionInProgress": "การเปลี่ยนแปลงของ Snapshot อยู่ระหว่างการดำเนินการ",
         "snapshotTransitionInProgressExplanation": "กรุณารอจนกว่าการเปลี่ยนแปลงเสร็จสมบูรณ์",
         "checkForUpdates": "Check for Updates",
@@ -95,11 +93,9 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
-        "seedInvalidCharsExplanation":
-            "Seed (เลขที่บัญชี) สามารถประกอบด้วยอักษรตัวใหญ่ A-Z และเลข 9 เท่านั้น, Seed (เลขที่บัญชี) ของคุณมีอักขระที่ไม่ถูกต้อง โปรดลองอีกครั้ง",
+        "seedInvalidCharsExplanation": "Seed (เลขที่บัญชี) สามารถประกอบด้วยอักษรตัวใหญ่ A-Z และเลข 9 เท่านั้น, Seed (เลขที่บัญชี) ของคุณมีอักขระที่ไม่ถูกต้อง โปรดลองอีกครั้ง",
         "seedTooShort": "Seed (เลขที่บัญชี) สั้นเกินไป",
-        "seedTooShortExplanation":
-            "Seed (เลขที่บัญชี) ของคุณจะต้องมีอักขระอย่างต่ำ {{maxLength}} หลัก ขณะนี้ Seed (เลขที่บัญชี) ปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
+        "seedTooShortExplanation": "Seed (เลขที่บัญชี) ของคุณจะต้องมีอักขระอย่างต่ำ {{maxLength}} หลัก ขณะนี้ Seed (เลขที่บัญชี) ปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
         "nameInUse": "ชื่อบัญชีถูกใช้ไปแล้ว",
         "nameInUseExplanation": "กรุณาใช้ชื่อบัญชีไม่ซ้ำกันกับ Seed (เลขที่บัญชี) ของคุณ",
         "enterAccountName": "กรุณาใส่ชื่อบัญชี",
@@ -107,8 +103,7 @@
         "noNickname": "ยังไม่ได้ใส่ชื่อบัญชี",
         "noNicknameExplanation": "กรุณาใส่ชื่อบัญชีสำหรับ Seed (เลขที่บัญชี) ของคุณ",
         "seedInUse": "Seed (เลขที่บัญชี) ถูกใช้ไปแล้ว",
-        "seedInUseExplanation":
-            "Seed (เลขที่บัญชี) นี้ได้เชื่อมต่อกับกระเป๋าสตางค์ของคุณแล้ว กรุณาใช้ Seed (เลขที่บัญชี) อื่น"
+        "seedInUseExplanation": "Seed (เลขที่บัญชี) นี้ได้เชื่อมต่อกับกระเป๋าสตางค์ของคุณแล้ว กรุณาใช้ Seed (เลขที่บัญชี) อื่น"
     },
     "changePassword": {
         "oops": "ขออภัย! มีข้อผิดพลาดเกิดขึ้น",
@@ -132,8 +127,7 @@
         "seedCleared": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดแล้ว",
         "seedClearedExplanation": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดเพื่อความปลอดภัยแล้ว",
         "seedCopied": "คัดลอก Seed (เลขที่บัญชี) ไปยังคลิปบอร์ดแล้ว",
-        "seedCopiedExplanation":
-            "Seed (เลขที่บัญชี) จะถูกเคลียร์ออกไปเมื่อคุณกด \"เสร็จสิ้น\" หรือเมื่อผ่านไป 60 วินาที",
+        "seedCopiedExplanation": "Seed (เลขที่บัญชี) จะถูกเคลียร์ออกไปเมื่อคุณกด \"เสร็จสิ้น\" หรือเมื่อผ่านไป 60 วินาที",
         "clickToCopy": "คลิกปุ่มด้านล่าง และคัดลอก Seed (เลขที่บัญชี) ไปยังการจัดการรหัสผ่าน",
         "doNotStore": "Do not store your seed in plain text.",
         "copyToClipboard": "คัดลอก Seed (เลขที่บัญชี)",
@@ -141,13 +135,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation":
-            "Seed (เลขที่บัญชี) สามารถประกอบด้วยอักษรตัวใหญ่ A-Z และเลข 9 เท่านั้น, Seed (เลขที่บัญชี) ของคุณมีอักขระที่ไม่ถูกต้อง โปรดลองอีกครั้ง",
+        "invalidCharactersExplanation": "Seed (เลขที่บัญชี) สามารถประกอบด้วยอักษรตัวใหญ่ A-Z และเลข 9 เท่านั้น, Seed (เลขที่บัญชี) ของคุณมีอักขระที่ไม่ถูกต้อง โปรดลองอีกครั้ง",
         "seedTooShort": "Seed (เลขที่บัญชี) สั้นเกินไป",
-        "seedTooShortExplanation":
-            "Seed (เลขที่บัญชี) ของคุณจะต้องมีอักขระอย่างต่ำ {{maxLength}} หลัก ขณะนี้ Seed (เลขที่บัญชี) ปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
-        "seedExplanation":
-            "Seed (เลขที่บัญชี) ควรมีความยาวอักขระเท่ากับ {{maxLength}} และควรประกอบด้วยตัวอักษรตัวใหญ่ A-Z หรือเลข 9, คุณไม่สามารถใช้ Seed (เลขที่บัญชี) ยาวกว่าอักขระของ {{maxLength}}",
+        "seedTooShortExplanation": "Seed (เลขที่บัญชี) ของคุณจะต้องมีอักขระอย่างต่ำ {{maxLength}} หลัก ขณะนี้ Seed (เลขที่บัญชี) ปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
+        "seedExplanation": "Seed (เลขที่บัญชี) ควรมีความยาวอักขระเท่ากับ {{maxLength}} และควรประกอบด้วยตัวอักษรตัวใหญ่ A-Z หรือเลข 9, คุณไม่สามารถใช้ Seed (เลขที่บัญชี) ยาวกว่าอักขระของ {{maxLength}}",
         "neverShare": "ไม่เปิดเผย Seed (เลขที่บัญชี) ให้แก่บุคคลอื่น"
     },
     "home": {
@@ -183,8 +174,7 @@
         "individualLetters": "กดตัวอักษรแต่ละตัวเพื่อที่จะสุ่มตัวอักษรอีกครั้"
     },
     "onboardingComplete": {
-        "walletReady":
-            "กระเป๋าสตางค์ถูกตั้งค่า และพร้อมใช้ ถ้าคุณต้องการเปลี่ยนแปลงในอนาคต สามารถค้นหาได้ในเมนูการตั้งค่า"
+        "walletReady": "กระเป๋าสตางค์ถูกตั้งค่า และพร้อมใช้ ถ้าคุณต้องการเปลี่ยนแปลงในอนาคต สามารถค้นหาได้ในเมนูการตั้งค่า"
     },
     "paperWallet": {
         "clickToPrint": "คลิกปุ่มด้านล่างเพื่อพิมพ์สำเนาของ Seed (เลขที่บัญชี)",
@@ -205,8 +195,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดแล้ว",
         "seedClearedExplanation": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดเพื่อความปลอดภัยแล้ว",
-        "mustSaveYourSeed":
-            "<0><0>คุณต้องบันทึก Seed (เลขที่บัญชี) ด้วย</0><1>อย่างน้อยหนึ่ง</1> <2>จากตัวเลือกด้านล่างนี้</2> </0>"
+        "mustSaveYourSeed": "<0><0>คุณต้องบันทึก Seed (เลขที่บัญชี) ด้วย</0><1>อย่างน้อยหนึ่ง</1> <2>จากตัวเลือกด้านล่างนี้</2> </0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seed (เลขที่บัญชี) ไม่ถูกต้อง",
@@ -216,11 +205,9 @@
     },
     "send": {
         "invalidAddress": "ที่อยู่ไม่ถูกต้อง",
-        "invalidAddressExplanation1":
-            "ที่อยู่ควรมีความยาวอักขระ {{maxLength}} และควรมี Checksum [ตัวเลือกที่อณุญาตให้ผู้ใช้งาน และระบบทำการตรวจสอบความถูกต้องของ Seed(เลขที่บัญชี) และที่อยู่]",
+        "invalidAddressExplanation1": "ที่อยู่ควรมีความยาวอักขระ {{maxLength}} และควรมี Checksum [ตัวเลือกที่อณุญาตให้ผู้ใช้งาน และระบบทำการตรวจสอบความถูกต้องของ Seed(เลขที่บัญชี) และที่อยู่]",
         "invalidAddressExplanation2": "ที่อยู่ประกอบด้วยอักขระที่ไม่ถูกต้อง",
-        "invalidAddressExplanation3":
-            "ที่อยู่ประกอบด้วย Checksum [ตัวเลือกที่อณุญาตให้ผู้ใช้งาน และระบบทำการตรวจสอบความถูกต้องของ Seed(เลขที่บัญชี) และที่อยู่] ที่ไม่ถูกต้อง",
+        "invalidAddressExplanation3": "ที่อยู่ประกอบด้วย Checksum [ตัวเลือกที่อณุญาตให้ผู้ใช้งาน และระบบทำการตรวจสอบความถูกต้องของ Seed(เลขที่บัญชี) และที่อยู่] ที่ไม่ถูกต้อง",
         "invalidAddressExplanationGeneric": "ที่อยู่ที่ถูกต้องจะต้องมี 90 หลัก ประกอบไปด้วย A-Z หรือ 0-9 เท่านั้น",
         "notEnoughFunds": "ยอดคงเหลือไม่เพียงพอ",
         "notEnoughFundsExplanation": "คุณมียอด IOTA คงเหลือไม่เพียงพอสำหรับการโอน",
@@ -234,21 +221,18 @@
         "invalidMessageExplanation": "ข้อความของคุณมีอักขระที่ไม่ถูกต้อง",
         "send": "ส่ง",
         "invalidAmount": "กรุณาใส่จำนวนให้ถูกต้อง",
-        "invalidAmountExplanation":
-            "กรุณาใส่จำนวนของรายการให้ถูกต้อง ข้อมูลอาจเป็นประโยชน์ในการเรียกดูหน่วยของ IOTA ด้านล่างของหน้านี้",
+        "invalidAmountExplanation": "กรุณาใส่จำนวนของรายการให้ถูกต้อง ข้อมูลอาจเป็นประโยชน์ในการเรียกดูหน่วยของ IOTA ด้านล่างของหน้านี้",
         "maximumSelected": "เลือกจำนวนสูงสุดแล้ว",
         "iotaUnits": "IOTA units explained",
         "sendMax": "ส่งสูงสุด"
     },
     "setPassword": {
         "passwordTooShort": "รหัสผ่านสั้นเกินไป",
-        "passwordTooShortExplanation":
-            "รหัสผ่านของคุณจะต้องมีอย่างต่ำ {{minLength}} หลัก ขณะนี้รหัสผ่านปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
+        "passwordTooShortExplanation": "รหัสผ่านของคุณจะต้องมีอย่างต่ำ {{minLength}} หลัก ขณะนี้รหัสผ่านปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
         "passwordMismatch": "รหัสผ่านไม่ตรงกัน",
         "passwordMismatchExplanation": "รหัสผ่าน​ที่​ใส่​ไม่​ตรง​กัน กรุณา​ลอง​อีก​ครั้ง.",
         "nowWeNeedTo": "คุณจำเป็นต้องสร้างรหัสผ่าน",
-        "anEncryptedCopy":
-            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "คุณแน่ใจว่ารหัสผ่านของคุณ มีอย่างน้อย 12 หลัก และยากต่อการคาดเดา",
         "retypePassword": "ใส่รหัสผ่านอีกครั้ง"
     },
@@ -259,10 +243,8 @@
     "modeSelection": {
         "expert": "ขั้นสูง",
         "standard": "มาตรฐาน",
-        "expertModeExplanation":
-            "หมวดหมู่ระดับสูง จะทำให้คุณเข้าถึงคุณลักษณะพิเศษเพิ่มเติม ตัวอย่างเช่น การเลื่อนขั้นด้วย และการส่งข้อมูลสู่ระบบอีกครั้งด้วยตนเอง",
-        "modesExplanation":
-            "เปิดใช้โหมดระดับสูง ในกรณีที่คุณมีประสบการณ์ การใช้ระบบ Tangle เท่านั้น มิเช่นนั้นคุณอาจเกิดความสับสนได้"
+        "expertModeExplanation": "หมวดหมู่ระดับสูง จะทำให้คุณเข้าถึงคุณลักษณะพิเศษเพิ่มเติม ตัวอย่างเช่น การเลื่อนขั้นด้วย และการส่งข้อมูลสู่ระบบอีกครั้งด้วยตนเอง",
+        "modesExplanation": "เปิดใช้โหมดระดับสูง ในกรณีที่คุณมีประสบการณ์ การใช้ระบบ Tangle เท่านั้น มิเช่นนั้นคุณอาจเกิดความสับสนได้"
     },
     "settings": {
         "transferSending": "Transfer sending",
@@ -318,10 +300,8 @@
     "walletSetup": {
         "okay": "Okay. Let's set up your wallet!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation":
-            "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "explanation":
-            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
@@ -331,8 +311,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed":
-            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
@@ -388,7 +367,7 @@
         "one": "หนึ่ง"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete",
+        "areYouSure": "Are you sure you want to delete {{accountName}}?",
         "yourSeedWillBeRemoved": "Seed (เลขที่บัญชี) และรายการของคุณจะถูกลบออก",
         "thisAction": "การกระทำนี้ไม่สามารถยกเลิกได้",
         "enterPassword": "ป้อนรหัสผ่านของคุณเพื่อที่จะลบบัญชีนี้"
@@ -416,8 +395,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "การกระทำนี้ไม่สามารถยกเลิกได้",
-        "warning":
-            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
@@ -432,8 +410,7 @@
         "enabled": "เปิดใช้งานแล้ว",
         "disabled": "ปิดการใช้งานแล้ว",
         "fingerprintUnavailable": "เซ็นเซอร์ลายนิ้วมือไม่สามารถใช้ได้",
-        "fingerprintUnavailableExplanation":
-            "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "instructionsLogin": "Touch fingerprint reader to log in."
@@ -463,8 +440,7 @@
     },
     "rootDetection": {
         "warning": "WARNING",
-        "rootDetected":
-            "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "PoW จำเป็นต้องสมบูรณ์เพื่อที่จะส่งรายการโดยไม่มีค่าใช้จ่ายใน IOTA",
