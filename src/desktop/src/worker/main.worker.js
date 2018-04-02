@@ -1,6 +1,6 @@
 import 'babel-polyfill';
-import { generateNewAddress } from 'actions/tempAccount';
-import { getAccountInfo, getFullAccountInfoFirstSeed, getFullAccountInfoAdditionalSeed } from 'actions/account';
+import { generateNewAddress } from 'actions/wallet';
+import { getAccountInfo, getFullAccountInfoFirstSeed, getFullAccountInfoAdditionalSeed } from 'actions/accounts';
 import { changeIotaNode } from 'libs/iota';
 import { defaultNode } from 'config';
 

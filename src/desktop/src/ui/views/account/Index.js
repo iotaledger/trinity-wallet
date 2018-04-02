@@ -23,10 +23,10 @@ class Account extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Temporary account state data
+        /** wallet state data
          * @ignore
          */
-        tempAccount: PropTypes.object,
+        wallet: PropTypes.object,
         /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
@@ -121,7 +121,7 @@ class Account extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    tempAccount: state.tempAccount,
+    wallet: state.wallet,
 });
 
 export default connect(mapStateToProps)(translate()(Account));

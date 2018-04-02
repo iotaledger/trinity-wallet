@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSelectedAccountName } from 'selectors/account';
+import { getSelectedAccountName } from 'selectors/accounts';
 
-import { changeAccountName } from 'actions/account';
+import { changeAccountName } from 'actions/accounts';
 import { generateAlert } from 'actions/alerts';
 import { setSeeds } from 'actions/seeds';
 
@@ -90,7 +90,7 @@ class AccountName extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    accountInfo: state.account.accountInfo,
+    accountInfo: state.accounts.accountInfo,
     accountName: getSelectedAccountName(state),
 });
 

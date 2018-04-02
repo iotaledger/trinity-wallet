@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { formatIota, round } from 'libs/util';
-import { selectAccountInfo } from 'selectors/account';
+import { formatIota } from 'libs/iota/utils';
+import { round } from 'libs/utils';
+import { selectAccountInfo } from 'selectors/accounts';
+
 import { getCurrencySymbol } from 'libs/currency';
 
 class Balance extends React.PureComponent {

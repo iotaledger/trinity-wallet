@@ -135,7 +135,7 @@
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "seedCopied": "Seed copiée dans le presse-papier",
         "seedCopiedExplanation":
-            "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
+            "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez votre seed dans un gestionnaire de mot de passe.",
         "doNotStore": "Ne stockez pas votre seed en texte en clair.",
         "copyToClipboard": "Copier le seed",
@@ -168,7 +168,7 @@
         "enterPassword": "Veuillez saisir votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
         "login": "SE CONNECTER",
-        "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
+        "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
         "setNode": "CONFIGURER UN SERVEUR",
         "cannotConnect": "Impossible de se connecter à un serveur IOTA."
     },
