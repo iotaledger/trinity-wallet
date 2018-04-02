@@ -223,7 +223,7 @@ class Home extends Component {
                                     behavior={isAndroid ? null : 'padding'}
                                 >
                                     <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
-                                    <View style={{ flex: 4.72 }}>
+                                    <View style={{ flex: 4.72, backgroundColor: body.bg }}>
                                         <TabContent
                                             navigator={navigator}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
