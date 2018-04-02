@@ -9,6 +9,7 @@ import MessageInput from 'ui/components/input/Message';
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
+import { generateAlert } from 'actions/alerts';
 
 import css from './index.css';
 
@@ -112,7 +113,17 @@ class Send extends React.PureComponent {
         let powFn = null;
 
         if (!settings.remotePow) {
-            Curl.init();
+            // Temporarily return an error if WebGL cannot be initialized
+            // Remove once we implement more PoW methods
+            try {
+                Curl.init();
+            } catch (e) {
+                return generateAlert(
+                    'error',
+                    'WebGL not supported',
+                    'Your computer does not support WebGL. Please use remote PoW.',
+                );
+            }
             powFn = (trytes, minWeight) => {
                 return Curl.pow({ trytes, minWeight });
             };
