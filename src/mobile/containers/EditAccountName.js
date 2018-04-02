@@ -75,22 +75,22 @@ export class EditAccountName extends Component {
         /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
         /** Translation helper
-       * @param {string} translationString - locale string identifier to be translated
-       */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Change current setting
          * @param {string} setting
          */
         setSetting: PropTypes.func.isRequired,
         /** Generate a notification alert
-        * @param {String} type - notification type - success, error
-        * @param {String} title - notification title
-        * @param {String} text - notification explanation
-        */
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         generateAlert: PropTypes.func.isRequired,
         /** Updates account name
-       * @param {object} options - Contains old account name and new account name
-       */
+         * @param {object} options - Contains old account name and new account name
+         */
         changeAccountName: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,

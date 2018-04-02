@@ -94,12 +94,12 @@ class NewSeedSetup extends Component {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Set seed in reducer
-       * @param {string} seed
-       */
+         * @param {string} seed
+         */
         setSeed: PropTypes.func.isRequired,
         /** Randomise seed
-       * @param {function} generateSecureRandom
-       */
+         * @param {function} generateSecureRandom
+         */
         randomiseSeed: PropTypes.func.isRequired,
         /** Generate a notification alert
          * @param {string} type - notification type - success, error
@@ -116,8 +116,8 @@ class NewSeedSetup extends Component {
         /** Seed value */
         seed: PropTypes.string.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
     };
 

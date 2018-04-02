@@ -31,7 +31,7 @@ class Settings extends Component {
         /** Change current setting
          * @param {string} setting
          */
-        setSetting: PropTypes.func.isRequired
+        setSetting: PropTypes.func.isRequired,
     };
 
     componentWillReceiveProps(newProps) {
@@ -45,8 +45,8 @@ class Settings extends Component {
     getChildrenProps(child) {
         const props = {
             nodeSelection: {
-                backPress: () => this.props.setSetting('advancedSettings')
-            }
+                backPress: () => this.props.setSetting('advancedSettings'),
+            },
         };
 
         return props[child] || {};
@@ -73,7 +73,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setSetting
+    setSetting,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

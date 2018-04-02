@@ -101,11 +101,11 @@ class CopySeedToClipboard extends Component {
          */
         generateAlert: PropTypes.func.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Theme settings */
-        theme: PropTypes.object.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -232,7 +232,7 @@ class CopySeedToClipboard extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = {

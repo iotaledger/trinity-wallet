@@ -75,14 +75,14 @@ const styles = StyleSheet.create({
 class SecuritySettings extends Component {
     static propTypes = {
         /** Change current setting
-        * @param {string} setting
-        */
+         * @param {string} setting
+         */
         setSetting: PropTypes.func.isRequired,
         /** Generate a notification alert
-        * @param {String} type - notification type - success, error
-        * @param {String} title - notification title
-        * @param {String} text - notification explanation
-        */
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
         t: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
@@ -151,7 +151,7 @@ class SecuritySettings extends Component {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableWithoutFeedback
-                            onPress={() => { }}
+                            onPress={() => {}}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={[styles.item, { opacity: 0.2 }]}>

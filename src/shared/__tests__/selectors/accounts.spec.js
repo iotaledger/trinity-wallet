@@ -54,9 +54,9 @@ describe('selectors: accounts', () => {
 
         describe('when "unconfirmedBundleTails" prop is defined as a nested prop under "accounts" prop in argument', () => {
             it('should return value for "unconfirmedBundleTails" prop', () => {
-                expect(getUnconfirmedBundleTailsFromState({ accounts: { unconfirmedBundleTails: { foo: {} } } })).to.eql(
-                    { foo: {} },
-                );
+                expect(
+                    getUnconfirmedBundleTailsFromState({ accounts: { unconfirmedBundleTails: { foo: {} } } }),
+                ).to.eql({ foo: {} });
             });
         });
     });

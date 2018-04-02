@@ -60,12 +60,12 @@ const styles = StyleSheet.create({
 class EnterPassword extends Component {
     static propTypes = {
         /** Press event callback function
-        * @param {string} password
-        */
+         * @param {string} password
+         */
         onLoginPress: PropTypes.func.isRequired,
         /** Translation helper
-       * @param {string} translationString - locale string identifier to be translated
-       */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,

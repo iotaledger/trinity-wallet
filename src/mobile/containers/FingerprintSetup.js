@@ -84,14 +84,14 @@ class FingerprintEnable extends Component {
          */
         generateAlert: PropTypes.func.isRequired,
         /** Sets fingerprint security status
-       * @param {boolean} - status
-       */
+         * @param {boolean} - status
+         */
         setFingerprintStatus: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Translation helper
-        * @param {string} translationString - locale string identifier to be translated
-        */
+         * @param {string} translationString - locale string identifier to be translated
+         */
         t: PropTypes.func.isRequired,
         /** Determines whether fingerprint is enabled */
         isFingerprintEnabled: PropTypes.bool.isRequired,
@@ -120,28 +120,28 @@ class FingerprintEnable extends Component {
         const { t } = this.props;
         FingerprintScanner.isSensorAvailable()
             .then(
-            FingerprintScanner.authenticate({
-                description: t('instructionsEnable'),
-                onAttempt: this.handleAuthenticationAttempted,
-            })
-                .then(() => {
-                    this.props.setFingerprintStatus(true);
-                    this.timeout = setTimeout(() => {
-                        this.props.generateAlert(
-                            'success',
-                            t('fingerprintAuthEnabled'),
-                            t('fingerprintAuthEnabledExplanation'),
-                        );
-                    }, 300);
+                FingerprintScanner.authenticate({
+                    description: t('instructionsEnable'),
+                    onAttempt: this.handleAuthenticationAttempted,
                 })
-                .catch(() => {
-                    this.props.generateAlert(
-                        'error',
-                        t('fingerprintAuthFailed'),
-                        t('fingerprintAuthFailedExplanation'),
-                    );
-                }),
-        )
+                    .then(() => {
+                        this.props.setFingerprintStatus(true);
+                        this.timeout = setTimeout(() => {
+                            this.props.generateAlert(
+                                'success',
+                                t('fingerprintAuthEnabled'),
+                                t('fingerprintAuthEnabledExplanation'),
+                            );
+                        }, 300);
+                    })
+                    .catch(() => {
+                        this.props.generateAlert(
+                            'error',
+                            t('fingerprintAuthFailed'),
+                            t('fingerprintAuthFailedExplanation'),
+                        );
+                    }),
+            )
             .catch(() => {
                 this.props.generateAlert('error', t('fingerprintUnavailable'), t('fingerprintUnavailableExplanation'));
             });
@@ -221,7 +221,9 @@ class FingerprintEnable extends Component {
                     <View style={styles.bottomWrapper}>
                         <TouchableOpacity onPress={() => this.navigateToHome()}>
                             <View style={[styles.backButton, { borderColor: theme.secondary.color }]}>
-                                <Text style={[styles.backText, { color: theme.secondary.color }]}>{t('global:back')}</Text>
+                                <Text style={[styles.backText, { color: theme.secondary.color }]}>
+                                    {t('global:back')}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
