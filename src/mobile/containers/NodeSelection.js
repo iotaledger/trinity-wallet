@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import DropdownComponent from '../containers/Dropdown';
@@ -72,11 +73,22 @@ class NodeSelection extends Component {
         t: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
+        generateAlert: PropTypes.func.isRequired,
     };
 
     setNode(selectedNode) {
         changeIotaNode(selectedNode);
         this.props.setFullNode(selectedNode);
+        return this.props.generateAlert(
+            'success',
+            'Successfully changed node',
+            `The node was changed to ${selectedNode}.`,
+        );
     }
 
     saveNodeSelection() {
@@ -144,6 +156,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setFullNode,
+    generateAlert,
 };
 
 export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(NodeSelection));
