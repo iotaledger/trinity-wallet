@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { MAX_SEED_LENGTH } from 'libs/util';
+import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
@@ -62,7 +62,7 @@ class Seed extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seedIndex: state.tempAccount.seedIndex,
+    seedIndex: state.wallet.seedIndex,
 });
 
 export default connect(mapStateToProps)(translate()(Seed));

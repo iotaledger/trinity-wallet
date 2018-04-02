@@ -157,7 +157,7 @@
         "settings": "सेटिंग्स"
     },
     "languageSetup": {
-        "language": "भाषा "
+        "language": "भाषा "
     },
     "login": {
         "emptyPassword": "खाली पासवर्ड",
@@ -271,7 +271,7 @@
         "mode": "मोड",
         "theme": "थीम",
         "currency": "मुद्रा",
-        "language": "भाषा ",
+        "language": "भाषा ",
         "accountManagement": "अकाउंट प्रबंध",
         "addNewSeed": "नए सीड जोड़ें",
         "twoFA": "Two-factor authentication",

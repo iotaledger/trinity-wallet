@@ -6,8 +6,8 @@ import { generateAlert } from '../../actions/alerts';
 
 import { sendAmount } from '../../actions/deepLinks';
 import { makeTransaction } from '../../actions/transfers';
-import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/account';
-import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/util';
+import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/accounts';
+import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/iota/utils';
 import { iota } from '../../libs/iota';
 
 /**
@@ -18,9 +18,10 @@ export default function withSendData(SendComponent) {
     class SendData extends React.Component {
         static propTypes = {
             balance: PropTypes.number.isRequired,
-            account: PropTypes.object.isRequired,
+            accounts: PropTypes.object.isRequired,
             accountName: PropTypes.string.isRequired,
-            tempAccount: PropTypes.object.isRequired,
+            wallet: PropTypes.object.isRequired,
+            ui: PropTypes.object.isRequired,
             seed: PropTypes.string.isRequired,
             settings: PropTypes.object.isRequired,
             marketData: PropTypes.object.isRequired,
@@ -74,14 +75,14 @@ export default function withSendData(SendComponent) {
         };
 
         sendTransfer = (seed, address, value, message, taskRunner, powFn) => {
-            const { tempAccount, accountName, generateAlert, t } = this.props;
+            const { ui, accountName, generateAlert, t } = this.props;
 
-            if (tempAccount.isSyncing) {
+            if (ui.isSyncing) {
                 generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
                 return;
             }
 
-            if (tempAccount.isTransitioning) {
+            if (ui.isTransitioning) {
                 generateAlert(
                     'error',
                     t('Snapshot transition in progress'),
@@ -98,10 +99,10 @@ export default function withSendData(SendComponent) {
         };
 
         render() {
-            const { balance, seed, settings, marketData, tempAccount, theme, t, deepLinks, sendAmount } = this.props;
+            const { balance, seed, settings, marketData, wallet, theme, t, deepLinks, sendAmount } = this.props;
 
             const sendProps = {
-                isSending: tempAccount.isSendingTransfer,
+                isSending: wallet.isSendingTransfer,
                 validateInputs: this.validateInputs,
                 sendTransfer: this.sendTransfer,
                 settings: {
@@ -124,14 +125,15 @@ export default function withSendData(SendComponent) {
     SendData.displayName = `withSendData(${SendComponent.name})`;
 
     const mapStateToProps = (state) => ({
-        tempAccount: state.tempAccount,
+        wallet: state.wallet,
         balance: getBalanceForSelectedAccount(state),
         accountName: getSelectedAccountName(state),
         settings: state.settings,
         marketData: state.marketData,
-        account: state.account,
-        seed: state.seeds.seeds[state.tempAccount.seedIndex],
+        accounts: state.accounts,
+        seed: state.seeds.seeds[state.wallet.seedIndex],
         theme: state.settings.theme,
+        ui: state.ui,
         deepLinks: state.deepLinks,
     });
 

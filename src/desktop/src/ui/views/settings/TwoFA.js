@@ -7,7 +7,7 @@ import authenticator from 'authenticator';
 
 import { setKey, removeKey, getVault } from 'libs/crypto';
 
-import { set2FAStatus } from 'actions/account';
+import { set2FAStatus } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
@@ -82,7 +82,6 @@ class TwoFA extends React.Component {
             this.setState({
                 key: '',
                 code: '',
-                password: '',
                 passwordConfirm: false,
             });
 
@@ -108,7 +107,6 @@ class TwoFA extends React.Component {
             if (!validCode) {
                 generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
                 this.setState({
-                    password: '',
                     passwordConfirm: false,
                 });
                 return;
@@ -121,7 +119,6 @@ class TwoFA extends React.Component {
                 key: authenticator.generateKey(),
                 code: '',
                 passwordConfirm: false,
-                password: '',
             });
 
             generateAlert('success', t('Two fa disabled'), t('Two fa disabled'));
@@ -183,7 +180,7 @@ class TwoFA extends React.Component {
     }
 
     render() {
-        const { password, passwordConfirm } = this.state;
+        const { passwordConfirm } = this.state;
         const { is2FAEnabled, t } = this.props;
 
         return (
@@ -206,7 +203,7 @@ class TwoFA extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    is2FAEnabled: state.account.is2FAEnabled,
+    is2FAEnabled: state.settings.is2FAEnabled,
 });
 
 const mapDispatchToProps = {

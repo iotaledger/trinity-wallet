@@ -1,4 +1,6 @@
 import get from 'lodash/get';
+import { getStoredState } from 'redux-persist';
+import { updatePersistedState } from '../libs/utils';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
 import { UPDATE_URL } from '../config';
@@ -21,7 +23,16 @@ export const ActionTypes = {
     SET_UPDATE_SUCCESS: 'IOTA/SETTINGS/UPDATE_SUCCESS',
     SET_UPDATE_DONE: 'IOTA/SETTINGS/UPDATE_DONE',
     UPDATE_POW_SETTINGS: 'IOTA/SETTINGS/UPDATE_POW_SETTINGS',
+    SET_VERSIONS: 'IOTA/SETTINGS/WALLET/SET_VERSIONS',
+    WALLET_RESET: 'IOTA/SETTINGS/WALLET/RESET',
+    SET_2FA_STATUS: 'IOTA/SETTINGS/SET_2FA_STATUS',
+    SET_FINGERPRINT_STATUS: 'IOTA/SETTINGS/SET_FINGERPRINT_STATUS',
 };
+
+export const setAppVersions = (payload) => ({
+    type: ActionTypes.SET_VERSIONS,
+    payload,
+});
 
 const currencyDataFetchRequest = () => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_REQUEST,
@@ -185,3 +196,44 @@ export function setUpdateDone() {
         });
     };
 }
+
+export function resetWallet() {
+    return {
+        type: ActionTypes.WALLET_RESET,
+    };
+}
+
+export const migrate = (versions, config, persistor) => (dispatch, getState) => {
+    let restoredState = {};
+    getStoredState(config)
+        .then((persistedState) => {
+            restoredState = persistedState;
+
+            if (persistor) {
+                return persistor.purge();
+            }
+
+            throw new Error('persistor not defined.');
+        })
+        .then(() => {
+            dispatch(resetWallet());
+            dispatch(setAppVersions(versions));
+
+            const updatedState = updatePersistedState(getState(), restoredState);
+
+            if (persistor) {
+                persistor.rehydrate(updatedState);
+            }
+        })
+        .catch((err) => console.error(err));
+};
+
+export const set2FAStatus = (payload) => ({
+    type: ActionTypes.SET_2FA_STATUS,
+    payload,
+});
+
+export const setFingerprintStatus = (payload) => ({
+    type: ActionTypes.SET_FINGERPRINT_STATUS,
+    payload,
+});
