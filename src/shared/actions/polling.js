@@ -1,14 +1,18 @@
 import get from 'lodash/get';
 import filter from 'lodash/filter';
 import { setPrice, setChartData, setMarketData } from './marketData';
-import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/marketData';
+import {
+    formatChartData,
+    getUrlTimeFormat,
+    getUrlNumberFormat,
+    rearrangeObjectKeys
+} from '../libs/utils';
 import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
-import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './account';
+import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
 import { getFirstConsistentTail, isValidForPromotion } from '../libs/iota/transfers';
-import { selectedAccountStateFactory } from '../selectors/account';
+import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import { rearrangeObjectKeys } from '../libs/util';
 import i18next from '../i18next.js';
 
 export const ActionTypes = {
@@ -103,11 +107,11 @@ export const fetchMarketData = () => {
         dispatch(fetchMarketDataRequest());
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD')
             .then(
-                (response) => response.json(),
-                () => {
-                    dispatch(fetchMarketDataError());
-                },
-            )
+            (response) => response.json(),
+            () => {
+                dispatch(fetchMarketDataError());
+            },
+        )
             .then((json) => {
                 dispatch(setMarketData(json));
                 dispatch(fetchMarketDataSuccess());

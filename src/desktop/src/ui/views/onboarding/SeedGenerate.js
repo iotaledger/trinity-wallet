@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { isValidSeed } from 'libs/util';
+import { isValidSeed } from 'libs/iota/utils';
 import { createRandomSeed } from 'libs/crypto';
 
 import { setNewSeed, clearNewSeed } from 'actions/seeds';
