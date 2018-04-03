@@ -195,7 +195,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed-luku tyhjennetty",
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
-        "mustSaveYourSeed": "<0><0>Sinun on tulee tallentaa seed-lukusi käyttäen </0><1>vähintään yhtä</1><2> alla olevista vaihtoehdoista.</2></0>"
+        "mustSaveYourSeed": "<0><0>Tallenna seed-lukusi käyttäen </0><1>vähintään yhtä</1><2> alla olevista vaihtoehdoista.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Virheellinen seed-luku",
