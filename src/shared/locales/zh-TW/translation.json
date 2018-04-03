@@ -130,8 +130,8 @@
         "seedCopiedExplanation": "只要按下“完成” 或是60秒後種子將被清除",
         "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。",
         "doNotStore": "不要儲存種子於ㄧ般文字",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "copyToClipboard": "複製種子",
+        "shareSeed": "將種子儲存至密碼管理工具"
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
