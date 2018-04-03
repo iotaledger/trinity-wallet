@@ -131,11 +131,11 @@
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
         "doNotStore": "Ärge hoidke oma seemet lihttekstina.",
         "copyToClipboard": "Kopeeri seeme",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "Jaga oma seemet turvalise paroolihalduriga"
     },
     "enterSeed": {
         "invalidCharacters": "Seeme sisaldab sobimatuid tähemärke",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation": "Seemned võivad koosneda ainult suurtest tähtedest A-Z ja numbrist 9. Teie seemnes on sobimatuid tähemärke. Palun proovige uuesti.",
         "seedTooShort": "Seeme on liiga ühike",
         "seedTooShortExplanation": "Seemned peavad olema {{maxLength}} tähemärki pikad. Teie seeme on praegu {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
         "seedExplanation": "Seemned peaksid olema {{maxLength}} tähemärki pikad ja peaksid sisaldama suuri tähti A-Z või numbrit 9. Te ei saa kasutada seemneid, mis on lühemad kui {{maxLength}} tähemärki.",
@@ -444,9 +444,9 @@
     },
     "pow": {
         "feeless": "IOTA tasudeta tehingute jaoks on vaja teha natuke tööd.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "localOrRemote": "Töötõendit saab valmistada kohalikult sinu seadmes või anda ülesanne mõnele sõlmele.",
         "local": "Kohalik",
-        "remote": "Remote",
+        "remote": "Eemal",
         "powUpdated": "Proof of work settings",
         "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
