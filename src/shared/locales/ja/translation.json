@@ -451,8 +451,8 @@
         "powUpdatedExplanation": "PoWの設定を更新しました。"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "受取アドレスの検証",
-        "syncingAccount": "アカウントの同期",
+        "validatingReceiveAddress": "受取アドレスを検証中",
+        "syncingAccount": "アカウントを同期中",
         "preparingInputs": "入力の準備",
         "preparingTransfers": "送金の準備",
         "gettingTransactionsToApprove": "取引の承認",
