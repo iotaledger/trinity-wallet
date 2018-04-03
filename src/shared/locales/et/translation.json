@@ -194,8 +194,8 @@
     },
     "saveYourSeed": {
         "seedCleared": "Seeme tühjendatud",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "seedClearedExplanation": "Seeme on turvalisuse kaalutlustel teie lõikelaualt eemaldatud.",
+        "mustSaveYourSeed": "<0><0>Peate oma seemne salvestama tehes vähemalt</0> <1>ühe</1> <2> alljärgnevatest valikutest.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Vale seeme",
