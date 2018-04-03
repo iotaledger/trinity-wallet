@@ -15,7 +15,10 @@
       </trans-unit>
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
-        <target xml:lang="de" state="translated">Trinity benötigt Zugriff auf die Kamera, um QR-Scans zu aktivieren.</target>
+        <target xml:lang="de" state="translated">Trinity benötigt Zugriff auf die Kamera, um QR-Codes zu scannen.</target>
+        <alt-trans>
+          <target xml:lang="de">Trinity benötigt Zugriff auf die Kamera, um QR-Scans zu aktivieren.</target>
+        </alt-trans>
         <alt-trans>
           <target xml:lang="de">Trinity benötigt Zugriff auf die Kamera, um QR-Codes zu fotografieren.</target>
         </alt-trans>
