@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
-import { setNewSeedName } from 'actions/seeds';
+import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
 
 import Infobox from 'ui/components/Info';
@@ -19,8 +19,10 @@ class AccountName extends React.PureComponent {
         seedCount: PropTypes.number.isRequired,
         /** is news seed generated */
         isGenerated: PropTypes.bool,
-        /** Set new seed name */
-        setNewSeedName: PropTypes.func.isRequired,
+        /** Set onboarding seed name */
+        setOnboardingName: PropTypes.func.isRequired,
+        /** Onboarding set seed and name */
+        onboarding: PropTypes.object.isRequired,
         /** Browser history object */
         history: PropTypes.object.isRequired,
         /** Create a notification message
@@ -38,7 +40,7 @@ class AccountName extends React.PureComponent {
     };
 
     state = {
-        name: this.getDefaultAccountName(),
+        name: this.props.onboarding.name.length ? this.props.onboarding.name : this.getDefaultAccountName(),
     };
 
     getDefaultAccountName() {
@@ -63,14 +65,14 @@ class AccountName extends React.PureComponent {
 
     setName = (e) => {
         e.preventDefault();
-        const { setNewSeedName, history, generateAlert, t } = this.props;
+        const { setOnboardingName, history, generateAlert, t } = this.props;
         const { name } = this.state;
         if (!name.length) {
             generateAlert('error', t('addAdditionalSeed:noNickname'), t('addAdditionalSeed:noNicknameExplanation'));
             return;
         }
 
-        setNewSeedName(this.state.name);
+        setOnboardingName(this.state.name);
         history.push('/onboarding/account-password');
     };
 
@@ -109,11 +111,12 @@ class AccountName extends React.PureComponent {
 const mapStateToProps = (state) => ({
     seedCount: state.accounts.accountNames.length,
     isGenerated: state.seeds.isGenerated,
+    onboarding: state.ui.onboarding,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    setNewSeedName,
+    setOnboardingName,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));

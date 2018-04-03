@@ -23,6 +23,11 @@ const initialState = {
     sendMessageFieldText: '',
     loginPasswordFieldText: '',
     sendDenomination: 'i',
+    onboarding: {
+        name: '',
+        seed: null,
+        isGenerated: false,
+    },
 };
 
 export default (state = initialState, action) => {
@@ -194,6 +199,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isAttachingToTangle: false,
+            };
+        case UiActionTypes.SET_ONBOARDING_SEED:
+            return {
+                ...state,
+                onboarding: Object.assign({}, state.onboarding, action.payload),
+            };
+        case UiActionTypes.SET_ONBOARDING_NAME:
+            return {
+                ...state,
+                onboarding: Object.assign({}, state.onboarding, { name: action.payload }),
             };
         default:
             return state;

@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { setSeeds, clearSeeds } from 'actions/seeds';
+import { setPassword } from 'actions/wallet';
 
 import ModalPassword from 'ui/components/modal/Password';
 
@@ -15,15 +15,11 @@ const events = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll'];
  */
 class Idle extends React.Component {
     static propTypes = {
-        /** Set seed state data
-         * @param {Array} seeds - Seed state data
+        /** Set password state data
+         * @param {String} password - Current password
          * @ignore
          */
-        setSeeds: PropTypes.func.isRequired,
-        /** Clear temporary seed state data
-         * @ignore
-         */
-        clearSeeds: PropTypes.func.isRequired,
+        setPassword: PropTypes.func.isRequired,
         /** Idle timeout*/
         timeout: PropTypes.number.isRequired,
         /** User authorised state */
@@ -53,13 +49,13 @@ class Idle extends React.Component {
 
     lock() {
         if (this.props.isAuthorised) {
-            this.props.clearSeeds();
+            this.props.setPassword('');
             this.setState({ locked: true });
         }
     }
 
-    unlock(vault) {
-        this.props.setSeeds(vault.seeds);
+    unlock(password) {
+        this.props.setPassword(password);
         this.setState({
             locked: false,
         });
@@ -93,7 +89,7 @@ class Idle extends React.Component {
         if (!this.state.locked) {
             return null;
         }
-        return <ModalPassword isOpen isForced content={{}} onSuccess={(password, vault) => this.unlock(vault)} />;
+        return <ModalPassword isOpen isForced content={{}} onSuccess={(password) => this.unlock(password)} />;
     }
 }
 
@@ -102,8 +98,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setSeeds,
-    clearSeeds,
+    setPassword,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Idle);

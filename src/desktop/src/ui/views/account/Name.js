@@ -6,7 +6,6 @@ import { getSelectedAccountName } from 'selectors/accounts';
 
 import { changeAccountName } from 'actions/accounts';
 import { generateAlert } from 'actions/alerts';
-import { setSeeds } from 'actions/seeds';
 
 import Text from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
@@ -22,7 +21,7 @@ class AccountName extends PureComponent {
         accountName: PropTypes.string.isRequired,
         /** Change current account name
          * @param {Object} AccountInfo - updated account info
-         * @param {Object} accountNames - updated seed names
+         * @param {Object} accountNames - updated account names
          */
         changeAccountName: PropTypes.func.isRequired,
         /** Create a notification message
@@ -96,7 +95,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     changeAccountName,
-    setSeeds,
     generateAlert,
 };
 

@@ -69,7 +69,6 @@ class Feedback extends React.PureComponent {
         });
 
         const filteredState = JSON.parse(JSON.stringify(state));
-        delete filteredState.seeds;
         delete filteredState.keychain;
         delete filteredState.marketData.chartData;
         delete filteredState.accounts.accountNames;
