@@ -71,15 +71,15 @@
         "addresses": "Aadressid",
         "reattach": "KINNITA UUESTI",
         "promote": "EDENDA",
-        "rebroadcast": "REBROADCAST",
+        "rebroadcast": "KUULUTA UUESTI",
         "pressBackAgain": "Rakenduse sulgemiseks vajutage uuesti tagasi nuppu",
-        "autoreattaching": "Autoreattaching to Tangle",
-        "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
+        "autoreattaching": "Kinnitan automaatselt",
+        "autoreattachingExplanation": "Kinnitan uuesti tehingut räsiga {{hash}}",
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "promotionError": "Tehingu edendamine ebaõnnestus",
+        "noLongerValid": "Edendatav kimp ei ole enam kehtiv",
         "cannotSendToOwn": "Enda aadressile saatmine",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
         "pleaseWait": "Palun oodake",
@@ -89,7 +89,7 @@
         "snapshotTransitionInProgressExplanation": "Palun oodake, kuni üleminek on lõpule viidud.",
         "checkForUpdates": "Otsi uuendusi",
         "account": "Konto",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "Konto sätetele juurdepääsuks sisestage oma parool"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
@@ -129,7 +129,7 @@
         "seedCopied": "Seeme kopeeritud",
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text.",
+        "doNotStore": "Ärge hoidke oma seemet lihttekstina.",
         "copyToClipboard": "Kopeeri seeme",
         "shareSeed": "Share your seed to a secure password manager"
     },
@@ -220,7 +220,7 @@
         "invalidMessage": "Sobimatu sõnum",
         "invalidMessageExplanation": "Teie sõnum sisaldab sobimatuid tähemärke.",
         "send": "SAADA",
-        "invalidAmount": "Incorrect amount entered",
+        "invalidAmount": "Sisestatud vale summa",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "valitud MAKSIMAALNE summa",
         "iotaUnits": "IOTA ühikute selgitus",
@@ -261,7 +261,7 @@
         "changePassword": "Vaheta parool",
         "advanced": "Täpsemad sätted",
         "logout": "Logi välja",
-        "reset": "Reset wallet",
+        "reset": "Tühjenda ülesseadistus",
         "syncingComplete": "Sünkroniseeritud",
         "syncingCompleteExplanation": "Teie konto on edukalt sünkrooniseritud.",
         "nicknameChanged": "Konto nimi muudetud",
@@ -274,7 +274,7 @@
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "Peida",
         "hideOthers": "Peida teised",
-        "show": "Show",
+        "show": "Näita",
         "showAll": "Kuva kõik",
         "quit": "Välju",
         "edit": "Muuda",
@@ -288,12 +288,12 @@
         "couldNotFetchRatesExplanation": "Midagi läks {{currency}} jaoks vahetuskursi otsimisega nässu.",
         "fetchedConversionRates": "Tõmbasin vahetuskursid",
         "fetchedConversionRatesExplanation": "Uusimate {{currency}} vahetuskursside leidmine õnnestus.",
-        "undo": "Undo",
-        "redo": "Redo",
-        "about": "About Trinity"
+        "undo": "Tühista",
+        "redo": "Korda",
+        "about": "Trinity kohta"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Rahakoti seadistuse nullimiseks sisestage oma parool.",
         "cancel": "KATKESTA",
         "reset": "RESET"
     },
@@ -310,8 +310,8 @@
         "reminder": "Teil võib tekkida kiusatus mõni samm vahele jätta, kuid me soovitame tungivalt kogu protsessi täielikult läbida."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "yourSeedIs": "Teie seeme on {{maxSeedLength}} tähemärki loetult vasakult paremale.",
+        "writeDownYourSeed": "<0> Kirjutage oma seeme ja kontrollsumma üles ja </0><1>tehke kindlaks</1><2>, et need on õiged.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
@@ -329,7 +329,7 @@
         "addNewAccount": "Lisa uus konto"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
+        "customNode": "Ise määratud sõlm",
         "add": "Lisa"
     },
     "addNewAccount": {
@@ -338,8 +338,8 @@
     },
     "advancedSettings": {
         "selectNode": "Vali sõlm",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync",
+        "addCustomNode": "Lisa ise sõlm",
+        "manualSync": "Käsitsi sünkroonimine",
         "snapshotTransition": "Snapshot transition"
     },
     "advancedThemeCustomisation": {
@@ -353,7 +353,7 @@
         "currency": "Valuuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Kas olete kindel, et soovite välja logida?"
+        "logoutConfirmation": "Kas soovite kindlasti välja logida?"
     },
     "qrScanner": {
         "scan": "Skännige oma QR-koodi"
@@ -367,7 +367,7 @@
         "one": "Üks"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Kas soovite kindlasti kustutada {{accountName}}?",
         "yourSeedWillBeRemoved": "Teie seeme ja tehingute ajalugu eemaldatakse.",
         "thisAction": "Seda tegevust ei saa tagasi võtta.",
         "enterPassword": "Konto kustutamiseks sisestage oma parool."
