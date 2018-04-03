@@ -436,10 +436,10 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Change",
-        "volume": "Volume (24h)"
+        "volume": "交易量(24小時內)"
     },
     "rootDetection": {
-        "warning": "WARNING",
+        "warning": "警告！",
         "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
@@ -452,9 +452,9 @@
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
+        "syncingAccount": "正在同步帳戶中",
+        "preparingInputs": "正在準備交易來源資訊",
+        "preparingTransfers": "正在準備交易資訊",
         "gettingTransactionsToApprove": "Getting transactions to approve",
         "proofOfWork": "Completing proof of work",
         "broadcasting": "Broadcasting"
