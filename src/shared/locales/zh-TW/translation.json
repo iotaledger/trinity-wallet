@@ -33,7 +33,7 @@
         "continue": "繼續",
         "manualCopy": "寫下種子碼",
         "paperWallet": "列印副本",
-        "copyToClipboard": "加入密碼管理器",
+        "copyToClipboard": "加入密碼管理工具",
         "notAvailable": "此功能尚未開放",
         "notAvailableExplanation": "此功能將於稍後加入。",
         "enterSeed": "請輸入您的種子碼",
@@ -118,7 +118,7 @@
         "passwordTooShortExplanation": "你的密碼必須至少有 12 個字元長，請再試一次。",
         "oldPassword": "無法設置舊密碼",
         "oldPasswordExplanation": "無法將舊密碼設置為新密碼，請嘗試輸入新的密碼。",
-        "ensureStrongPassword": "請確保使用至少12字元強度的密碼。",
+        "ensureStrongPassword": "請確認您輸入的密碼強度足夠且至少 12 個字元。",
         "currentPassword": "目前密碼",
         "newPassword": "新密碼",
         "confirmPassword": "確認新密碼"
@@ -126,19 +126,19 @@
     "copyToClipboard": {
         "seedCleared": "種子碼已清除",
         "seedClearedExplanation": "為保安全，種子碼已從剪貼簿清除。",
-        "seedCopied": "複製種子到剪貼簿",
-        "seedCopiedExplanation": "只要按下“完成” 或是60秒後種子將被清除",
-        "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。",
-        "doNotStore": "不要儲存種子於ㄧ般文字",
+        "seedCopied": "複製種子碼到剪貼簿",
+        "seedCopiedExplanation": "一旦按下「完成」或是 60 秒後種子將會被清除。",
+        "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理工具。",
+        "doNotStore": "不要儲存種子碼於一般文字格式。",
         "copyToClipboard": "複製種子碼",
         "shareSeed": "將種子碼儲存至密碼管理工具"
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
-        "invalidCharactersExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
+        "invalidCharactersExplanation": "種子碼只能由大寫 A-Z 字母和數字 9 組成，您的種子碼包含無效字元，請再試一次。",
         "seedTooShort": "種子碼過短",
-        "seedTooShortExplanation": "您的密碼必須至少{{最大的長度}} 字元。目前{{目前長度}} 字元長。請再試一次",
-        "seedExplanation": "種子應{{maxLength}} 字長, 並應包含大寫字母 a-z, 或數字9。您不能使用種子長於{{maxLength}} 字元。",
+        "seedTooShortExplanation": "您的密碼必須至少是 {{maxLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
+        "seedExplanation": "種子碼應為 {{maxLength}} 個字元長並包含大寫字母 A-Z 或數字 9，您的種子碼不能長於 {{maxLength}} 個字元。",
         "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {
@@ -152,8 +152,8 @@
         "language": "語言"
     },
     "login": {
-        "emptyPassword": "空白的密碼",
-        "emptyPasswordExplanation": "您必須輸入密碼以登入。請再試一遍。",
+        "emptyPassword": "密碼為空",
+        "emptyPasswordExplanation": "您必須輸入密碼登入，請再試一次。",
         "enterPassword": "請輸入您的密碼。",
         "useSeed": "使用種子碼",
         "login": "登入",
@@ -374,7 +374,7 @@
     },
     "manualSync": {
         "outOfSync": "您的交易紀錄是否看起來可能不同步？",
-        "pressToSync": "按下以下按鈕同步您的帳戶。",
+        "pressToSync": "按下方按鈕同步您的帳戶。",
         "thisMayTake": "這可能需要一些時間，而且您可能會注意到您的裝置變慢。",
         "doNotClose": "請注意，最小化應用程式的話將會取消同步。",
         "syncAccount": "同步帳戶",
@@ -411,8 +411,8 @@
         "disabled": "已停用",
         "fingerprintUnavailable": "指紋驗證無法使用",
         "fingerprintUnavailableExplanation": "您的裝置不支援指紋識別，或者裝置設定中並沒有啟用此權限。",
-        "buttonInstructionsDisable": "按下以下按鈕停用指紋驗證。",
-        "buttonInstructionsEnable": "按下以下按鈕啟用指紋驗證。",
+        "buttonInstructionsDisable": "按下方按鈕停用指紋驗證。",
+        "buttonInstructionsEnable": "按下方按鈕啟用指紋驗證。",
         "instructionsLogin": "請輕觸指紋讀取器登入。"
     },
     "transferConfirmation": {
