@@ -195,7 +195,7 @@
     "saveYourSeed": {
         "seedCleared": "種子已清除",
         "seedClearedExplanation": "基於安全理由，種子已從剪貼簿清除",
-        "mustSaveYourSeed": "<0><0> 您必須使用 </0><1> 以下其中一種選項 </1><2> 儲存您的種子碼。</2></0>"
+        "mustSaveYourSeed": "<0><0> 您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "錯誤種子",
@@ -301,7 +301,7 @@
         "okay": "好囉。來建置您的錢包！",
         "doYouAlreadyHaveASeed": "您是否已有希望使用的種子碼?",
         "seedExplanation": "IOTA種子碼是由您帳戶的名稱和密碼結合成為81個字元長的字串。",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
         "keepSafe": "請妥善保存您的種子碼"
     },
     "welcome": {
@@ -311,7 +311,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "您的種子碼由左至右總計 {{maxSeedLength}} 個字元。",
-        "writeDownYourSeed": "<0> 記下您的種子碼和檢查碼 </0><1>請再三確認</1><2> 它們是正確無誤的。</2>"
+        "writeDownYourSeed": "<0> 記下您的種子碼和檢查碼</0><1>請再三確認</1><2>它們是正確無誤的。</2>"
     },
     "history": {
         "bundleHashCopied": "交易組雜湊值已複製",
@@ -395,7 +395,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此動作將無法撤銷。",
-        "warning": "<0><0>所有的錢包資訊，</0><1>包含您的種子碼、密碼</1><2> 以及 </2><3>其他帳戶訊息</3><4> 都將遺失。</4></0>"
+        "warning": "<0><0>所有的錢包資訊包含您的</0><1>種子碼、密碼</1><2>以及</2><3>其他帳戶訊息</3><4>都將遺失。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "輕觸您裝置上的指紋讀取器以啟用指紋驗證。",
@@ -410,7 +410,7 @@
         "enabled": "已啟用",
         "disabled": "已停用",
         "fingerprintUnavailable": "指紋驗證無法使用",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation": "您的裝置不支援指紋識別，或者裝置設定中並沒有啟用此權限。",
         "buttonInstructionsDisable": "按下以下按鈕停用指紋驗證。",
         "buttonInstructionsEnable": "按下以下按鈕啟用指紋驗證。",
         "instructionsLogin": "請輕觸指紋讀取器登入。"
@@ -440,7 +440,7 @@
     },
     "rootDetection": {
         "warning": "警告！",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "rootDetected": "<0>您的裝置已經 root 過。</0><1>這可能會對您的錢包安全帶來重大風險。</1><2>請問您確定要繼續嗎？</2>"
     },
     "pow": {
         "feeless": "在 IOTA 中傳送無手續費的交易必須完成一點工作量證明。",
