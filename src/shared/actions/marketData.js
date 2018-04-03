@@ -119,8 +119,10 @@ export function getChartData() {
                     if (actualCurrency !== currentCurrency) {
                         actualCurrency = currentCurrency;
                     }
+
                     chartData[currentCurrency][currentTimeFrame] = formatedData;
                 });
+
                 dispatch(setChartData(chartData));
             })
             .catch((err) => console.log(err));
