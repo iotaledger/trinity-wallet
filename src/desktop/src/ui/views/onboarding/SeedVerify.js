@@ -3,7 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'libs/iota/utils';
+import { getVault } from 'libs/crypto';
 
 import { generateAlert } from 'actions/alerts';
 import { setOnboardingSeed } from 'actions/ui';
@@ -17,6 +19,8 @@ import SeedInput from 'ui/components/input/Seed';
  */
 class SeedVerify extends React.PureComponent {
     static propTypes = {
+        /** Current wallet password */
+        password: PropTypes.string.isRequired,
         /** Current onboarding seed, generation state */
         onboarding: PropTypes.object.isRequired,
         /** Set onboarding seed state
@@ -56,17 +60,25 @@ class SeedVerify extends React.PureComponent {
         }));
     };
 
-    setSeed = (e) => {
+    setSeed = async (e) => {
         if (e) {
             e.preventDefault();
         }
 
-        const { history, setOnboardingSeed, generateAlert, onboarding, t } = this.props;
+        const { history, password, setOnboardingSeed, generateAlert, onboarding, t } = this.props;
         const { seed } = this.state;
 
         if (onboarding.isGenerated && seed !== onboarding.seed) {
             generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
             return;
+        }
+
+        if (password.length) {
+            const vault = await getVault(password);
+            if (vault.seeds.indexOf(seed) > -1) {
+                generateAlert('error', t('addAdditionalSeed:seedInUse'), t('addAdditionalSeed:seedInUseExplanation'));
+                return;
+            }
         }
 
         if (seed.length < MAX_SEED_LENGTH) {
@@ -134,6 +146,7 @@ class SeedVerify extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     onboarding: state.ui.onboarding,
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {
