@@ -144,7 +144,7 @@
     "home": {
         "balance": "餘額",
         "send": "傳送",
-        "receive": "接收",
+        "receive": "收款",
         "history": "交易歷史",
         "settings": "設定"
     },
@@ -249,7 +249,7 @@
     "settings": {
         "transferSending": "傳送交易",
         "transferSendingExplanation": "請等到交易送出。",
-        "generatingAddress": "產生接收地址中",
+        "generatingAddress": "產生收款地址中",
         "generatingAddressExplanation": "請等到您的地址產生。",
         "mode": "模式",
         "theme": "佈景主題",
@@ -288,8 +288,8 @@
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
-        "undo": "Undo",
-        "redo": "Redo",
+        "undo": "復原",
+        "redo": "重做",
         "about": "關於 Trinity"
     },
     "resetWalletRequirePassword": {
@@ -420,12 +420,12 @@
         "aMessage": "訊息"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
+        "wrongCode": "驗證碼錯誤",
+        "wrongCodeExplanation": "您輸入的驗證碼不正確。",
+        "emptyCode": "驗證碼為空",
+        "emptyCodeExplanation": "請輸入驗證碼並重試。",
+        "keyCopied": "密鑰已複製到剪貼簿",
+        "keyCopiedExplanation": "您的 2FA 密鑰已經複製到剪貼簿。",
         "addKey": "Add this key to your 2FA app",
         "key": "密鑰",
         "twoFAEnabled": "2FA is now enabled",
@@ -443,8 +443,8 @@
         "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "feeless": "在 IOTA 中傳送無手續費的交易必須完成一點工作量證明。",
+        "localOrRemote": "工作量證明可以在本地裝置完成，或者由遠端節點處理。",
         "local": "本地",
         "remote": "遠端",
         "powUpdated": "工作量證明設定",
@@ -455,8 +455,8 @@
         "syncingAccount": "正在同步帳戶中",
         "preparingInputs": "正在準備交易來源資訊",
         "preparingTransfers": "正在準備交易資訊",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
+        "gettingTransactionsToApprove": "取得交易確認",
+        "proofOfWork": "完成工作量證明",
         "broadcasting": "廣播中"
     },
     "snapshotTransition": {
