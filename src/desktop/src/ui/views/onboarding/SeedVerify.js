@@ -69,14 +69,16 @@ class SeedVerify extends React.PureComponent {
             return;
         }
 
-        if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
-            generateAlert('error', t('enterSeed:invalidCharacters'), t('enterSeed:invalidCharactersExplanation'));
-        } else if (seed.length < MAX_SEED_LENGTH) {
+        if (seed.length < MAX_SEED_LENGTH) {
             generateAlert(
                 'error',
                 t('enterSeed:seedTooShort'),
                 t('enterSeed:seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
             );
+            return;
+        } else if (!seed.match(VALID_SEED_REGEX)) {
+            generateAlert('error', t('enterSeed:invalidCharacters'), t('enterSeed:invalidCharactersExplanation'));
+            return;
         }
 
         if (!onboarding.isGenerated) {
