@@ -130,8 +130,8 @@
         "seedCopiedExplanation": "只要按下“完成” 或是60秒後種子將被清除",
         "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。",
         "doNotStore": "不要儲存種子於ㄧ般文字",
-        "copyToClipboard": "複製種子",
-        "shareSeed": "將種子儲存至密碼管理工具"
+        "copyToClipboard": "複製種子碼",
+        "shareSeed": "將種子碼儲存至密碼管理工具"
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
@@ -158,7 +158,7 @@
         "useSeed": "使用種子碼",
         "login": "登入",
         "selectDifferentNode": "您要選擇不同的節點嗎？",
-        "setNode": "SET NODE",
+        "setNode": "設置節點",
         "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
