@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import QRCode from 'qrcode.react';
 import authenticator from 'authenticator';
 
-import { setKey, removeKey, getVault } from 'libs/crypto';
+import { setTwoFA, removeTwoFA, getVault } from 'libs/crypto';
 
 import { set2FAStatus } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
@@ -76,7 +76,7 @@ class TwoFA extends React.Component {
         const { generateAlert, set2FAStatus, t } = this.props;
 
         try {
-            setKey(password, key);
+            setTwoFA(password, key);
             set2FAStatus(true);
 
             this.setState({
@@ -96,12 +96,12 @@ class TwoFA extends React.Component {
         }
     }
 
-    disableTwoFA(password) {
+    disableTwoFA = async (password) => {
         const { code } = this.state;
         const { generateAlert, set2FAStatus, t } = this.props;
 
         try {
-            const key = getVault(password);
+            const key = await getVault(password);
             const validCode = authenticator.verifyToken(key, code);
 
             if (!validCode) {
@@ -112,7 +112,7 @@ class TwoFA extends React.Component {
                 return;
             }
 
-            removeKey(password, key);
+            removeTwoFA(password, key);
             set2FAStatus(false);
 
             this.setState({
@@ -130,7 +130,7 @@ class TwoFA extends React.Component {
             );
             return;
         }
-    }
+    };
 
     disableTwoFAview() {
         const { code } = this.state;

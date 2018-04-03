@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import authenticator from 'authenticator';
+import sjcl from 'sjcl';
 
-import { getVault } from 'libs/crypto';
+import { getVault, getSeed } from 'libs/crypto';
 
 import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
-import { clearWalletData } from 'actions/wallet';
-import { setSeeds, clearSeeds } from 'actions/seeds';
+import { clearWalletData, setPassword } from 'actions/wallet';
 
 import { runTask } from 'worker';
 
@@ -24,8 +24,6 @@ import Modal from 'ui/components/modal/Modal';
 /** Login component */
 class Login extends React.Component {
     static propTypes = {
-        /** Seed state state data */
-        seeds: PropTypes.array.isRequired,
         /** Accounts state state data
          * @ignore
          */
@@ -36,20 +34,15 @@ class Login extends React.Component {
         wallet: PropTypes.object.isRequired,
         /** Current currency symbol */
         currency: PropTypes.string.isRequired,
-        /** Set seed state data
-         * @param {Array} seeds - Seed state data
+        /** Set password state
+         * @param {String} password - Current password
          * @ignore
          */
-        setSeeds: PropTypes.func.isRequired,
+        setPassword: PropTypes.func.isRequired,
         /** Clear wallet state data
          * @ignore
          */
         clearWalletData: PropTypes.func.isRequired,
-        /** Clear temporary seed state data
-         * @ignore
-         */
-        clearSeeds: PropTypes.func.isRequired,
-
         /** Fetch chart data */
         getChartData: PropTypes.func.isRequired,
         /** Fetch price data */
@@ -81,14 +74,13 @@ class Login extends React.Component {
     componentDidMount() {
         Electron.updateMenu('authorised', false);
 
-        const { seeds, wallet } = this.props;
+        const { wallet } = this.props;
 
         if (wallet.ready && wallet.addingAdditionalAccount) {
-            const seed = seeds[wallet.seedIndex];
-            this.setupAccount(seed);
+            this.setupAccount();
         } else {
             this.props.clearWalletData();
-            this.props.clearSeeds();
+            this.props.setPassword('');
         }
     }
 
@@ -98,8 +90,10 @@ class Login extends React.Component {
         });
     };
 
-    setupAccount(seed) {
+    setupAccount = async () => {
         const { accounts, wallet, currency } = this.props;
+
+        const seed = await getSeed(wallet.seedIndex, wallet.password);
 
         this.props.getPrice();
         this.props.getChartData();
@@ -113,20 +107,21 @@ class Login extends React.Component {
         } else {
             runTask('getAccountInfo', [seed, accounts.accountNames[wallet.seedIndex]]);
         }
-    }
+    };
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         if (e) {
             e.preventDefault();
         }
 
         const { password, code, verifyTwoFA } = this.state;
-        const { setSeeds, wallet, generateAlert, t } = this.props;
+        const { setPassword, wallet, generateAlert, t } = this.props;
 
+        const passwordHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password));
         let vault = null;
 
         try {
-            vault = getVault(password);
+            vault = await getVault(passwordHash);
 
             if (vault.twoFAkey && !authenticator.verifyToken(vault.twoFAkey, code)) {
                 if (verifyTwoFA) {
@@ -144,7 +139,7 @@ class Login extends React.Component {
         }
 
         if (vault) {
-            setSeeds(vault.seeds);
+            setPassword(passwordHash);
 
             const seed = vault.seeds[wallet.seedIndex];
 
@@ -222,14 +217,12 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     firstUse: state.accounts.firstUse,
     currency: state.settings.currency,
-    seeds: state.seeds.seeds,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    setSeeds,
+    setPassword,
     clearWalletData,
-    clearSeeds,
     getChartData,
     getPrice,
     getMarketData,

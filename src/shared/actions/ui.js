@@ -6,6 +6,8 @@ export const ActionTypes = {
     CLEAR_SEND_FIELDS: 'IOTA/UI/CLEAR_SEND_FIELDS',
     SET_SEND_DENOMINATION: 'IOTA/UI/SET_SEND_DENOMINATION',
     SET_USER_ACTIVITY: 'IOTA/UI/SET_USER_ACTIVITY',
+    SET_ONBOARDING_SEED: 'IOTA/UI/SET_ONBOARDING_SEED',
+    SET_ONBOARDING_NAME: 'IOTA/UI/SET_ONBOARDING_NAME',
 };
 
 export const setSendAddressField = (payload) => ({
@@ -41,3 +43,17 @@ export const setUserActivity = (payload) => ({
     type: ActionTypes.SET_USER_ACTIVITY,
     payload,
 });
+
+export const setOnboardingSeed = (seed, isGenerated) => {
+    return {
+        type: ActionTypes.SET_ONBOARDING_SEED,
+        payload: { seed, isGenerated },
+    };
+};
+
+export const setOnboardingName = (name) => {
+    return {
+        type: ActionTypes.SET_ONBOARDING_NAME,
+        payload: name,
+    };
+};
