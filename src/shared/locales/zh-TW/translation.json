@@ -164,7 +164,7 @@
     "loading": {
         "loadingFirstTime": "首次載入種子碼。",
         "thisMayTake": "這可能需要一點時間。",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "請不要最小化或關閉應用程式。",
         "youMayNotice": "您的裝置可能會變慢"
     },
     "newSeedSetup": {
