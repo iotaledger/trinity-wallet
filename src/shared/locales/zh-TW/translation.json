@@ -62,9 +62,9 @@
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
         "wallet": "錢包",
         "sent": "送出",
-        "received": "Received",
-        "sending": "Sending",
-        "receiving": "Receiving",
+        "received": "已接收",
+        "sending": "發送中",
+        "receiving": "接收中",
         "confirmed": "已確認",
         "pending": "檢測中",
         "bundleHash": "Bundle Hash",
@@ -72,7 +72,7 @@
         "reattach": "REATTACH",
         "promote": "PROMOTE",
         "rebroadcast": "REBROADCAST",
-        "pressBackAgain": "Press back again to close the app",
+        "pressBackAgain": "再按一次返回鍵退出",
         "autoreattaching": "Autoreattaching to Tangle",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
         "autopromoting": "Autopromoting transfer",
@@ -82,7 +82,7 @@
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
-        "pleaseWait": "Please wait",
+        "pleaseWait": "請稍候",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
@@ -223,8 +223,8 @@
         "invalidAmount": "錯誤數額填入",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "已選定最大的數額",
-        "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "iotaUnits": "IOTA單位說明",
+        "sendMax": "全部發送"
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
@@ -241,8 +241,8 @@
         "youCanAdd": "您可至設定選單中加入更多種子碼。"
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
+        "expert": "專家",
+        "standard": "標準",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
@@ -283,7 +283,7 @@
         "paste": "貼上",
         "selectAll": "選擇所有",
         "securitySettings": "安全設定",
-        "fingerprint": "Biometric authentication",
+        "fingerprint": "生物識別驗證",
         "couldNotFetchRates": "Could not fetch rates",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
@@ -436,7 +436,7 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Change",
-        "volume": "交易量(24小時內)"
+        "volume": "交易量(24h)"
     },
     "rootDetection": {
         "warning": "警告！",
