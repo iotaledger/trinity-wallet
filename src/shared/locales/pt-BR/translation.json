@@ -165,7 +165,7 @@
         "loadingFirstTime": "Carregando a Seed pela primeira vez.",
         "thisMayTake": "Isso pode demorar algum tempo.",
         "doNotMinimise": "Não feche ou minimize o aplicativo.",
-        "youMayNotice": "Você pode notar seu dispositivo ficar mais lento."
+        "youMayNotice": "Você poderá notar que seu dispositivo ficará mais lento."
     },
     "newSeedSetup": {
         "seedNotGenerated": "A Seed não foi gerada",
@@ -189,7 +189,7 @@
         "generateNewAddress": "GERAR ENDEREÇO",
         "message": "Mensagem opcional",
         "removeMessage": "REMOVER MENSAGEM",
-        "noAddresses": "SEM ENDEREÇOS",
+        "noAddresses": "NÃO EXISTEM ENDEREÇOS",
         "spent": "Gasto"
     },
     "saveYourSeed": {
@@ -199,7 +199,7 @@
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorreta",
-        "incorrectSeedExplanation": "A Seed infromada está incorreta. Por favor, tente novamente.",
+        "incorrectSeedExplanation": "A Seed informada está incorreta. Por favor, tente novamente.",
         "thisIsACheck": "Isto é uma verificação para certificar-se que você gravou a sua Seed.",
         "ifYouHaveNotSaved": "Se não gravou a sua Seed, por favor volte para a tela anterior e grave-a."
     },
