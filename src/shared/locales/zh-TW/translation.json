@@ -66,7 +66,7 @@
         "sending": "發送中",
         "receiving": "接收中",
         "confirmed": "已確認",
-        "pending": "檢測中",
+        "pending": "等待中",
         "bundleHash": "Bundle Hash",
         "addresses": "位址",
         "reattach": "REATTACH",
