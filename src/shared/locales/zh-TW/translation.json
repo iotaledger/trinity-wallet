@@ -14,8 +14,8 @@
         "transferSentMessage": "您的交易已經傳送至 Tangle",
         "messageSent": "訊息送出",
         "messageSentMessage": "您的訊息已經傳送至 Tangle",
-        "keyReuse": "私鑰重複使用",
-        "keyReuseError": "您不能發送到已用過的位址。",
+        "keyReuse": "私鑰遭重複使用",
+        "keyReuseError": "您不能傳送到已使用過的地址。",
         "invalidResponse": "無效的回應",
         "invalidResponseExplanation": "節點回傳無效回應。",
         "invalidResponsePollingExplanation": "節點於輪詢程序時回傳無效回應。",
@@ -118,7 +118,7 @@
         "passwordTooShortExplanation": "你的密碼必須至少有 12 個字元長，請再試一次。",
         "oldPassword": "無法設置舊密碼",
         "oldPasswordExplanation": "無法將舊密碼設置為新密碼，請嘗試輸入新的密碼。",
-        "ensureStrongPassword": "請確認您輸入的密碼強度足夠且至少 12 個字元。",
+        "ensureStrongPassword": "請確認您使用的密碼強度足夠且至少 12 個字元。",
         "currentPassword": "目前密碼",
         "newPassword": "新密碼",
         "confirmPassword": "確認新密碼"
@@ -162,16 +162,16 @@
         "cannotConnect": "無法連線到 IOTA 節點。"
     },
     "loading": {
-        "loadingFirstTime": "首次載入種子碼。",
+        "loadingFirstTime": "首次讀取種子碼。",
         "thisMayTake": "這可能需要一點時間。",
         "doNotMinimise": "請不要最小化或關閉應用程式。",
-        "youMayNotice": "您的裝置可能會變慢"
+        "youMayNotice": "您的裝置可能會變慢。"
     },
     "newSeedSetup": {
         "seedNotGenerated": "尚未產生種子碼",
         "seedNotGeneratedExplanation": "請產生新的種子碼。",
-        "pressForNewSeed": "按此處得到新種子碼",
-        "individualLetters": "請按各字母以成隨機順序"
+        "pressForNewSeed": "按此取得新種子碼",
+        "individualLetters": "請按各字母以隨機產生。"
     },
     "onboardingComplete": {
         "walletReady": "錢包已設置完成且能使用。若您在未來需要做任何變動，請到設定選單。"
@@ -194,46 +194,46 @@
     },
     "saveYourSeed": {
         "seedCleared": "種子已清除",
-        "seedClearedExplanation": "基於安全理由，種子已從剪貼簿清除",
+        "seedClearedExplanation": "基於安全理由，種子已從剪貼簿清除。",
         "mustSaveYourSeed": "<0><0> 您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "錯誤種子",
-        "incorrectSeedExplanation": "您輸入的種子碼錯誤。請再試一遍。",
-        "thisIsACheck": "本頁面提醒您檢查是否已儲存種子碼",
-        "ifYouHaveNotSaved": "假如你未儲存你的種子，請退回並儲存"
+        "incorrectSeedExplanation": "您輸入的種子碼錯誤，請再試一次。",
+        "thisIsACheck": "本頁面提醒您檢查是否已儲存種子碼。",
+        "ifYouHaveNotSaved": "假如你尚未儲存您的種子碼，請返回並儲存。"
     },
     "send": {
-        "invalidAddress": "無效的地址",
+        "invalidAddress": "地址無效",
         "invalidAddressExplanation1": "地址應該為 {{maxLength}} 個字元且應有一個檢查碼。",
         "invalidAddressExplanation2": "地址包含無效的字元。",
         "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
         "invalidAddressExplanationGeneric": "有效地址應為 90 個字元而且僅包含 A-Z 或 9。",
         "notEnoughFunds": "餘額不足",
-        "notEnoughFundsExplanation": "您的IOTA不足以完成本次交易。",
-        "keyReuse": "重新使用加密鑰匙",
+        "notEnoughFundsExplanation": "您沒有足夠的 IOTA 完成本次交易。",
+        "keyReuse": "私鑰遭重複使用",
         "keyReuseExplanation": "您欲傳送的收款地址已有人使用，請輸入其他地址。",
         "recipientAddress": "收款地址",
         "amount": "金額",
-        "max": "最大值",
+        "max": "上限",
         "message": "訊息",
         "invalidMessage": "無效訊息",
         "invalidMessageExplanation": "您的訊息包含無效字元。",
         "send": "傳送",
-        "invalidAmount": "錯誤數額填入",
+        "invalidAmount": "輸入金額錯誤",
         "invalidAmountExplanation": "請輸入有效交易金額，詳閱本頁底部的 IOTA 單位說明可能會有幫助。",
-        "maximumSelected": "已選定最大的數額",
-        "iotaUnits": "IOTA單位說明",
+        "maximumSelected": "已選擇金額上限",
+        "iotaUnits": "IOTA 單位說明",
         "sendMax": "全部傳送"
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
-        "passwordTooShortExplanation": "您的密碼必須至少{{最小的長度}} 字元。目前{{目前長度}} 字元長。請再試一次",
+        "passwordTooShortExplanation": "您的密碼必須至少為 {{minLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
         "passwordMismatch": "密碼不符",
-        "passwordMismatchExplanation": "您輸入的密碼不符。請再試一遍。",
-        "nowWeNeedTo": "現在需要設置密碼。",
+        "passwordMismatchExplanation": "您輸入的密碼不符，請再試一次。",
+        "nowWeNeedTo": "現在我們需要設置密碼。",
         "anEncryptedCopy": "裝置上將會儲存一份您加密過的種子碼。未來您需要這份密碼來使用錢包。",
-        "ensure": "請確保使用至少12字元強度的密碼。",
+        "ensure": "請確認您使用的密碼強度足夠且至少 12 個字元。",
         "retypePassword": "重新輸入密碼"
     },
     "setSeedName": {
@@ -250,14 +250,14 @@
         "transferSending": "傳送交易",
         "transferSendingExplanation": "請等到交易送出。",
         "generatingAddress": "產生收款地址中",
-        "generatingAddressExplanation": "請等到您的地址產生。",
+        "generatingAddressExplanation": "請等待您的地址產生。",
         "mode": "模式",
         "theme": "佈景主題",
         "currency": "貨幣",
         "language": "語言",
         "accountManagement": "帳戶管理",
         "addNewSeed": "增加新的種子碼",
-        "twoFA": "雙因素身分驗證",
+        "twoFA": "雙重身分驗證",
         "changePassword": "修改密碼",
         "advanced": "進階設定",
         "logout": "登出",
@@ -269,8 +269,8 @@
         "accountDeleted": "帳戶已刪除",
         "accountDeletedExplanation": "您的帳戶已從錢包中刪除。",
         "cannotPerformAction": "無法執行操作",
-        "cannotPerformActionExplanation": "轉到進階設定中重置錢包。",
-        "poorConnection": "連線不良",
+        "cannotPerformActionExplanation": "請到進階設定重置錢包。",
+        "poorConnection": "連線不穩",
         "poorConnectionExplanation": "由於連接不良, 無法更改幣別。",
         "hide": "隱藏",
         "hideOthers": "隱藏其他",
