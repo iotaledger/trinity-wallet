@@ -67,7 +67,7 @@
         "receiving": "接收中",
         "confirmed": "已確認",
         "pending": "等待中",
-        "bundleHash": "Bundle Hash",
+        "bundleHash": "交易包雜湊值",
         "addresses": "位址",
         "reattach": "重新連接",
         "promote": "促進",
@@ -373,10 +373,10 @@
         "enterPassword": "請輸入密碼以刪除這個帳號。"
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "outOfSync": "您的交易紀錄是否看起來可能不同步？",
+        "pressToSync": "按下以下按鈕同步您的帳戶。",
+        "thisMayTake": "這可能需要一些時間，而且您可能會注意到您的裝置變慢。",
+        "doNotClose": "請注意，最小化應用程式的話將會取消同步。",
         "syncAccount": "同步帳戶",
         "syncingYourAccount": "同步您的帳戶。"
     },
@@ -391,28 +391,28 @@
     "saveSeedConfirmation": {
         "alreadyHave": "我已儲存我的種子",
         "reenter": "現在, 您將被要求重新輸入您的種子。",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning": "如果您的裝置失效而且您沒有儲存種子碼的話，您將損失您的 IOTA。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "此動作將無法撤銷。",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>所有的錢包資訊，</0><1>包含您的種子碼、密碼</1><2> 以及 </2><3>其他帳戶訊息</3><4> 都將遺失。</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
+        "instructionsEnable": "輕觸您裝置上的指紋讀取器以啟用指紋驗證。",
+        "instructionsDisable": "輕觸您裝置上的指紋讀取器以停用指紋驗證",
+        "fingerprintAuthEnabled": "指紋驗證已啟用",
+        "fingerprintAuthEnabledExplanation": "您已成功啟用指紋驗證。",
+        "fingerprintAuthDisabled": "指紋驗證已停用",
+        "fingerprintAuthDisabledExplanation": "您已成功停用指紋驗證。",
         "fingerprintAuthFailed": "指紋驗證失敗",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "fingerprintAuthFailedExplanation": "指紋驗證失敗，請再試一次。",
         "status": "狀態",
         "enabled": "已啟用",
         "disabled": "已停用",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
+        "fingerprintUnavailable": "指紋驗證無法使用",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "buttonInstructionsDisable": "按下以下按鈕停用指紋驗證。",
+        "buttonInstructionsEnable": "按下以下按鈕啟用指紋驗證。",
         "instructionsLogin": "請輕觸指紋讀取器登入。"
     },
     "transferConfirmation": {
@@ -429,7 +429,7 @@
         "addKey": "新增此密鑰至您的 2FA 應用程式",
         "key": "密鑰",
         "twoFAEnabled": "2FA 現已啟用",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "twoFAEnabledExplanation": "您已成功啟用雙重身分驗證。",
         "enterCode": "請輸入您的 2FA 應用程式中的驗證碼",
         "code": "驗證碼"
     },
