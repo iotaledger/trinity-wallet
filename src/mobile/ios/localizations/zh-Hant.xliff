@@ -29,7 +29,10 @@
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
-        <target xml:lang="zh-Hant" state="translated">2018 IOTA基金會版權所有</target>
+        <target xml:lang="zh-Hant" state="translated">2018 IOTA Foundation. All rights reserved.</target>
+        <alt-trans>
+          <target xml:lang="zh-Hant">2018 IOTA基金會版權所有</target>
+        </alt-trans>
       </trans-unit>
     </body>
   </file>
