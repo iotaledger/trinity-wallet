@@ -5,7 +5,7 @@
         "continue?": "您確定要繼續嗎？",
         "noTransactions": "無近來歷史",
         "refresh": "刷新",
-        "qr": "QR Code",
+        "qr": "QR",
         "balanceError": "餘額不足",
         "balanceErrorMessage": "您的IOTA不足以完成本次交易。",
         "transferError": "交易錯誤",
@@ -159,7 +159,7 @@
         "login": "登入",
         "selectDifferentNode": "您要選擇不同的節點嗎？",
         "setNode": "設置節點",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "cannotConnect": "無法連線到 IOTA 節點。"
     },
     "loading": {
         "loadingFirstTime": "首次載入種子碼。",
@@ -413,7 +413,7 @@
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "instructionsLogin": "請輕觸指紋讀取器登入。"
     },
     "transferConfirmation": {
         "youAreAbout": "您將發送{{contents}} 到地址",
