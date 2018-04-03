@@ -3,7 +3,7 @@
         "send": "INVIA",
         "cancel": "ANNULLA",
         "continue?": "Sei sicuro di voler continuare?",
-        "noTransactions": "NIENTE NELLA CRONOLOGIA RECENTE",
+        "noTransactions": "Cronologia recente vuota",
         "refresh": "AGGIORNA",
         "qr": "QR",
         "balanceError": "Saldo insufficiente",
@@ -274,7 +274,7 @@
         "poorConnectionExplanation": "Impossibile modificare la valuta a causa di una cattiva connessione.",
         "hide": "Nascondi",
         "hideOthers": "Nascondi altri",
-        "show": "Show",
+        "show": "Visualizza",
         "showAll": "Mostra tutti",
         "quit": "Esci",
         "edit": "Modifica",
@@ -288,9 +288,9 @@
         "couldNotFetchRatesExplanation": "Qualcosa è andato storto durante il reperimento dei tassi di conversione per {{currency}}.",
         "fetchedConversionRates": "Reperiti i tassi di conversione",
         "fetchedConversionRatesExplanation": "Reperiti con successo i più recenti tassi di conversione per {{currency}}.",
-        "undo": "Undo",
-        "redo": "Redo",
-        "about": "About Trinity"
+        "undo": "Annulla",
+        "redo": "Ripeti",
+        "about": "Info su Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Immetti la tua password per reimpostare il portafoglio.",
@@ -367,7 +367,7 @@
         "one": "Unità"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Sei sicuro di voler eliminare il conto {{accountName}}?",
         "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
         "thisAction": "Questa azione non può essere annullata.",
         "enterPassword": "Immetti la tua password per cancellare il conto."
@@ -407,7 +407,7 @@
         "fingerprintAuthFailed": "Autenticazione tramite impronta digitale non riuscita",
         "fingerprintAuthFailedExplanation": "Autenticazione tramite impronta digitale fallita. Riprova.",
         "status": "Stato",
-        "enabled": "Abilitato",
+        "enabled": "Attivato",
         "disabled": "Disabilitato",
         "fingerprintUnavailable": "Sensore impronta digitale non disponibile",
         "fingerprintUnavailableExplanation": "Il tuo dispositivo non supporta il riconoscimento dell'impronta digitale o non è stato configurato nelle impostazioni del dispositivo.",
@@ -447,8 +447,8 @@
         "localOrRemote": "Il calcolo (PoW) può essere completato in locale nel tuo dispositivo, oppure demandato ad un nodo.",
         "local": "Locale",
         "remote": "Remoto",
-        "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated."
+        "powUpdated": "Impostazioni proof-of-work",
+        "powUpdatedExplanation": "Configurazione proof-of-work aggiornata."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Convalido l'indirizzo ricevente",
