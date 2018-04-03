@@ -1,6 +1,6 @@
 {
     "global": {
-        "send": "傳送",
+        "send": "轉帳",
         "cancel": "取消",
         "continue?": "您確定要繼續嗎？",
         "noTransactions": "無近來歷史",
@@ -15,7 +15,7 @@
         "messageSent": "訊息送出",
         "messageSentMessage": "您的訊息已經傳送至 Tangle",
         "keyReuse": "重新使用加密鑰匙",
-        "keyReuseError": "您不能傳送到已使用過的地址。",
+        "keyReuseError": "您不能發送到已用過的位址。",
         "invalidResponse": "無效的回應",
         "invalidResponseExplanation": "節點回傳無效回應。",
         "invalidResponsePollingExplanation": "節點於輪詢程序時回傳無效回應。",
@@ -66,7 +66,7 @@
         "sending": "轉帳中",
         "receiving": "接收中",
         "confirmed": "已確認",
-        "pending": "等待中",
+        "pending": "確認中",
         "bundleHash": "交易組雜湊值",
         "addresses": "位址",
         "reattach": "重新連接",
@@ -180,7 +180,7 @@
         "clickToPrint": "按下方按鈕列印出您的種子碼。",
         "storeSafely": "妥善存放。",
         "neverShare": "千萬別和任何人分享您的種子碼。",
-        "iotaLogo": "IOTA標誌",
+        "iotaLogo": "IOTA 標誌",
         "printWallet": "列印紙本錢包"
     },
     "receive": {
