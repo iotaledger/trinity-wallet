@@ -9,9 +9,8 @@ import { translate } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 
-import { clearWalletData } from 'actions/wallet';
+import { setPassword, clearWalletData } from 'actions/wallet';
 import { getUpdateData, updateTheme } from 'actions/settings';
-import { clearSeeds } from 'actions/seeds';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
 import { sendAmount } from 'actions/deepLinks';
 
@@ -69,10 +68,11 @@ class App extends React.Component {
          * @ignore
          */
         clearWalletData: PropTypes.func.isRequired,
-        /** Clear temporary seed state data
+        /** Set password state
+         * @param {String} password - Current password
          * @ignore
          */
-        clearSeeds: PropTypes.func.isRequired,
+        setPassword: PropTypes.func.isRequired,
         /** Initiate update check
          * @param {Boolean} force - Force update confirmation dialog
          * @ignore
@@ -172,7 +172,7 @@ class App extends React.Component {
                 break;
             case 'logout':
                 this.props.clearWalletData();
-                this.props.clearSeeds();
+                this.props.setPassword('');
                 this.props.history.push('/onboarding/login');
                 break;
             default:
@@ -250,7 +250,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     clearWalletData,
-    clearSeeds,
+    setPassword,
     sendAmount,
     getUpdateData,
     disposeOffAlert,

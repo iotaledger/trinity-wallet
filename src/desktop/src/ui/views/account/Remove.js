@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { setSeeds } from 'actions/seeds';
+import { setPassword } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
 
 import { setVault } from 'libs/crypto';
@@ -19,10 +19,11 @@ class Remove extends PureComponent {
     static propTypes = {
         /** Current seed index */
         seedIndex: PropTypes.number.isRequired,
-        /** Set seed state
-         * @param {Array} seeds - Seeds list
+        /** Set password state
+         * @param {String} password - Current password
+         * @ignore
          */
-        setSeeds: PropTypes.func.isRequired,
+        setPassword: PropTypes.func.isRequired,
         /** Current account name */
         accountName: PropTypes.string.isRequired,
         /** Current vault content */
@@ -58,7 +59,7 @@ class Remove extends PureComponent {
         const {
             accountName,
             seedIndex,
-            setSeeds,
+            setPassword,
             password,
             vault,
             history,
@@ -70,8 +71,8 @@ class Remove extends PureComponent {
         try {
             const seeds = vault.seeds.filter((seed, index) => index !== seedIndex);
 
-            setVault(password, password, { seeds: seeds });
-            setSeeds(seeds);
+            setVault(password, { seeds: seeds });
+            setPassword('');
 
             deleteAccount(accountName);
 
@@ -122,7 +123,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     deleteAccount,
-    setSeeds,
+    setPassword,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Remove));

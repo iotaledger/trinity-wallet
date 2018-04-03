@@ -7,7 +7,6 @@ import wallet from './reducers/wallet';
 import accounts from './reducers/accounts';
 import app from './reducers/app';
 import settings from './reducers/settings';
-import seeds from './reducers/seeds';
 import alerts from './reducers/alerts';
 import home from './reducers/home';
 import keychain from './reducers/keychain';
@@ -28,7 +27,6 @@ const reducers = combineReducers({
     accounts,
     app,
     settings,
-    seeds,
     home,
     keychain,
     polling,
