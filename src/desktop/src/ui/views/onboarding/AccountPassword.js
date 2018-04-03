@@ -168,6 +168,7 @@ class AccountPassword extends React.PureComponent {
             <form onSubmit={(e) => this.createAccount(e)}>
                 <section>
                     <PasswordInput
+                        focus
                         value={this.state.password}
                         label={t('password')}
                         onChange={(value) => this.setState({ password: value })}
