@@ -11,6 +11,7 @@ import GENERAL from '../theme/general';
 import RootDetectionModal from '../components/RootDetectionModal';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { width, height } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -176,6 +177,7 @@ class Welcome extends Component {
                     style={{ alignItems: 'center' }}
                     isVisible={isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                    useNativeDriver={isAndroid ? true : false}
                 >
                     <View style={[styles.modalContent, { backgroundColor: theme.body.bg }]}>
                         {this.state.modalContent}
