@@ -376,7 +376,7 @@
         "outOfSync": "Kas teie tehingute ajalugu näeb välja nagu see oleks sünkroniseerimata?",
         "pressToSync": "Konto sünkroniseerimiseks vajutage järgnevat nuppu.",
         "thisMayTake": "See võib aega võtta. Te võite märgata oma seadme aeglustumist.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "doNotClose": "Rakenduse minimiseerimine katkestab sünkroonimise.",
         "syncAccount": "SÜNKRONISEERI KONTO",
         "syncingYourAccount": "Sünkroniseerin teie kontot."
     },
@@ -390,7 +390,7 @@
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Ma olen oma seemne salvestanud",
-        "reenter": "You will now be asked to re-enter your seed.",
+        "reenter": "Teilt küsitakse nüüd oma seemet uuesti.",
         "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
