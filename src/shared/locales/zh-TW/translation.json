@@ -15,7 +15,7 @@
         "messageSent": "訊息送出",
         "messageSentMessage": "您的訊息已經傳送至 Tangle",
         "keyReuse": "重新使用加密鑰匙",
-        "keyReuseError": "您不能發送到已用過的位址。",
+        "keyReuseError": "您不能傳送到已使用過的地址。",
         "invalidResponse": "無效的回應",
         "invalidResponseExplanation": "節點回傳無效回應。",
         "invalidResponsePollingExplanation": "節點於輪詢程序時回傳無效回應。",
@@ -63,11 +63,11 @@
         "wallet": "錢包",
         "sent": "送出",
         "received": "已接收",
-        "sending": "發送中",
+        "sending": "轉帳中",
         "receiving": "接收中",
         "confirmed": "已確認",
         "pending": "等待中",
-        "bundleHash": "交易包雜湊值",
+        "bundleHash": "交易組雜湊值",
         "addresses": "位址",
         "reattach": "重新連接",
         "promote": "促進",
@@ -79,8 +79,8 @@
         "autopromotingExplanation": "使用雜湊值 {{hash}} 促進交易",
         "promoting": "促進交易",
         "promotionError": "無法促進交易",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
-        "cannotSendToOwn": "Sending to own address",
+        "noLongerValid": "您嘗試促進的交易組已經無效",
+        "cannotSendToOwn": "傳送到自己的地址",
         "cannotSendToOwnExplanation": "您無法轉帳到自己的地址。",
         "pleaseWait": "請稍候",
         "pleaseWaitExplanation": "Trinity 正在執行其他功能，請稍後再試。",
@@ -143,7 +143,7 @@
     },
     "home": {
         "balance": "餘額",
-        "send": "傳送",
+        "send": "轉帳",
         "receive": "收款",
         "history": "交易歷史",
         "settings": "設定"
@@ -212,7 +212,7 @@
         "notEnoughFunds": "餘額不足",
         "notEnoughFundsExplanation": "您的IOTA不足以完成本次交易。",
         "keyReuse": "重新使用加密鑰匙",
-        "keyReuseExplanation": "您欲發送的接收地址已有人使用。請輸入別的地址。",
+        "keyReuseExplanation": "您欲傳送的收款地址已有人使用，請輸入其他地址。",
         "recipientAddress": "收款地址",
         "amount": "金額",
         "max": "最大值",
@@ -224,7 +224,7 @@
         "invalidAmountExplanation": "請輸入有效交易金額，詳閱本頁底部的 IOTA 單位說明可能會有幫助。",
         "maximumSelected": "已選定最大的數額",
         "iotaUnits": "IOTA單位說明",
-        "sendMax": "全部發送"
+        "sendMax": "全部傳送"
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
@@ -314,11 +314,11 @@
         "writeDownYourSeed": "<0> 記下您的種子碼和檢查碼 </0><1>請再三確認</1><2> 它們是正確無誤的。</2>"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "交易組雜湊值已複製",
+        "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
-        "send": "SEND",
+        "send": "轉帳",
         "receive": "收款"
     },
     "accountManagement": {
@@ -416,7 +416,7 @@
         "instructionsLogin": "請輕觸指紋讀取器登入。"
     },
     "transferConfirmation": {
-        "youAreAbout": "您將發送{{contents}} 到地址",
+        "youAreAbout": "您將轉帳{{contents}} 到地址",
         "aMessage": "訊息"
     },
     "twoFA": {
