@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import Curl from 'curl.lib.js';
 
+import { getVault } from 'libs/crypto';
+
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
 import MessageInput from 'ui/components/input/Message';
@@ -21,8 +23,10 @@ class Send extends React.PureComponent {
         isSending: PropTypes.bool.isRequired,
         /** Deep link state */
         deepLinkAmount: PropTypes.object.isRequired,
-        /** Current seed value */
-        seed: PropTypes.string.isRequired,
+        /** Current password value */
+        password: PropTypes.string.isRequired,
+        /** Current seed index */
+        seedIndex: PropTypes.number.isRequired,
         /** Total current account wallet ballance in iotas */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
@@ -59,7 +63,7 @@ class Send extends React.PureComponent {
 
     state = {
         address: '',
-        amount: '',
+        amount: '0',
         message: '',
         isModalVisible: false,
     };
@@ -101,9 +105,9 @@ class Send extends React.PureComponent {
         });
     };
 
-    confirmTransfer = () => {
+    confirmTransfer = async () => {
         const { address, amount, message } = this.state;
-        const { seed, sendTransfer, settings } = this.props;
+        const { password, seedIndex, sendTransfer, settings } = this.props;
 
         this.setState({
             isModalVisible: false,
@@ -117,6 +121,9 @@ class Send extends React.PureComponent {
                 return Curl.pow({ trytes, minWeight });
             };
         }
+
+        const vault = await getVault(password);
+        const seed = vault.seeds[seedIndex];
 
         sendTransfer(seed, address, parseInt(amount), message, null, powFn);
     };
