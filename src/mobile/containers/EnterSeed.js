@@ -15,6 +15,7 @@ import QRScanner from '../components/QrScanner';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
+import { isAndroid } from '../utils/device';
 
 console.ignoredYellowBox = ['Native TextInput'];
 
@@ -248,6 +249,7 @@ class EnterSeed extends React.Component {
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
                         hideModalContentWhileAnimating
+                        useNativeDriver={isAndroid ? true : false}
                     >
                         {this.renderModalContent()}
                     </Modal>
