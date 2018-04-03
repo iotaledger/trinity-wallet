@@ -154,7 +154,9 @@
 
             &:last-child {
                 margin-top: 26px;
-
+                word-break: break-word;
+                max-height: 100px;
+                overflow: scroll;
                 strong {
                     margin-right: 12px;
                 }
